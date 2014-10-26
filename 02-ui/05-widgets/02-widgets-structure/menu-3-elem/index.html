@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="menu.js"></script>
+</head>
+<body>
+
+<button onclick="menu.toggle()">menu.toggle()</button>
+<button onclick="menu.open()">menu.open()</button>
+<button onclick="menu.close()">menu.close()</button>
+
+<div id="sweets-menu-holder"></div>
+
+
+<script>
+var menu = new Menu({ 
+  title: "Сладости",
+  items: [
+    "Торт",
+    "Пончик",
+    "Пирожное",
+    "Шоколадка",
+    "Мороженое"
+  ]
+});
+
+$('#sweets-menu-holder').append(menu.getElem());
+</script>
+
+</body>
+</html>

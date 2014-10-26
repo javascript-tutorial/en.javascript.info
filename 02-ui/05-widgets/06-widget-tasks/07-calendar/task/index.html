@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="calendar.css">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="calendar.js"></script>
+</head>
+<body>
+
+
+<button onclick="calendar.setValue(new Date())">setValue(сегодня)</button>
+
+<div id="calendar-holder"></div>
+<div id="value">тут будет выбранное значение (дата)</div>
+
+
+<script>
+  var calendar = new Calendar({ 
+    value: {year: 2012, month: 2 }
+  });
+  $('#calendar-holder').append(calendar.getElement());
+
+  $(calendar).on("select", function(e) {
+    $('#value').html(e.value+'');
+  });
+</script>
+
+
+</body>
+</html>

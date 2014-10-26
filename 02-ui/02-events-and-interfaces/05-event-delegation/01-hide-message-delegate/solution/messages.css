@@ -1,0 +1,35 @@
+body {
+	margin: 10px auto;
+	width: 470px;
+}
+h3 {
+	margin: 0;
+	padding-bottom: .3em;
+	font-size: 1.1em;
+}
+p {
+	margin: 0;
+	padding: 0 0 .5em;
+}
+.pane {
+	position: relative;
+	padding: 10px 20px 10px;
+	border-top: solid 2px #c4df9b;
+	background: #edf5e1;
+}
+
+
+.remove-button {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: block;
+	width: 16px;
+	height: 16px;
+	background: url(http://js.cx/clipart/delete.gif) no-repeat;
+	cursor: pointer;
+}
+
+h3 {
+	padding-right: 20px;
+}

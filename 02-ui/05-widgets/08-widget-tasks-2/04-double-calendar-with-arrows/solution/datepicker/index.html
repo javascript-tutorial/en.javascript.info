@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <link type="text/css" rel="stylesheet" href="calendar.css">
+  <link type="text/css" rel="stylesheet" href="datepicker.css">
+
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+
+  <script src="calendar.js"></script>
+  <script src="datepicker.js"></script>
+</head>
+<body>
+
+<div id="value">тут будет выбранное значение (дата)</div>
+
+<script type="text/template" id="template-datepicker">
+  <div class="header">
+    <div class="prev-link">&laquo;</div>
+    <div class="next-link">&raquo;</div>
+    <div class="title">Выберите дату</div>
+  </div>
+  <div class="body">
+    <div class="calendar-left-holder prev-month">
+      <!-- left calendar -->
+    </div>
+    <div class="calendar-right-holder next-month">
+      <!-- right calendar -->
+    </div>
+  </div>
+</script>
+
+<script>
+var datePicker = new DatePicker({
+  template: $('#template-datepicker').html(),
+  value: {year: 2012, month: 2 }
+});
+
+datePicker.getElement().appendTo('body');
+
+$(datePicker).on("select", function(e) {
+  $("#value").html( e.value + '' );
+});
+</script>
+
+</body>
+</html>

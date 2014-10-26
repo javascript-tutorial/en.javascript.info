@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+
+<img width="500" height="282" id="heroes" src="http://js.cx/clipart/heroes.jpg">
+
+<div id="info"></div>
+<script>
+function Croppable(options) {
+  /* ваш код */
+}
+
+var croppable = new Croppable({
+  elem: $('#heroes')
+});
+
+$(croppable).on("crop", function(event) {
+  // вывести координаты и размеры crop-квадрата относительно изображения
+  var str = "";
+  $(['left','top','width','height']).each(function() {
+    str += this+":"+event[this]+" ";
+  });
+
+  $('#info').html("Crop: " + str);
+});
+
+</script>
+
+</body>
+</html>

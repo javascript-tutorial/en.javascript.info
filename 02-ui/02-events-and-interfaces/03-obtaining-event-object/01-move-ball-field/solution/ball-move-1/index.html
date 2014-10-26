@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<style> 
+  #field { 
+    width: 200px;
+    height: 150px;
+    border: 10px groove black;
+    background-color: #00FF00;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  
+  #ball {
+    position: absolute;
+    background: gray;
+  }
+</style>
+</head>
+<body>
+
+Кликните на любое место поля, чтобы мяч перелетел туда.<br>
+
+
+<div id="field">
+<img src="http://js.cx/clipart/ball.gif" id="ball">
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+</div>
+
+<script>
+
+var field = document.getElementById('field');
+var ball = document.getElementById('ball');
+
+field.onclick = function(e) {
+
+  var fieldCoords = field.getBoundingClientRect();
+  var fieldInnerCoords = {
+    top: fieldCoords.top + field.clientTop,
+    left: fieldCoords.left + field.clientLeft
+  };
+
+  ball.style.left = e.clientX - fieldInnerCoords.left + 'px';
+  ball.style.top = e.clientY - fieldInnerCoords.top + 'px';
+
+};
+
+
+
+
+</script>
+
+</body>
+</html>

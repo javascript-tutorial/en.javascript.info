@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="voter.js"></script> <!-- отрефакторить -->
+</head>
+<body>
+
+<div id="voter" class="voter">
+  <span class="down">–</span>
+  <span class="vote">0</span>
+  <span class="up">+</span>
+</div>
+
+<script>
+
+var voter = new Voter({
+  elem: $('#voter')
+});
+
+</script>
+
+</body>
+</html>
+

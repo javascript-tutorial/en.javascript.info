@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .selected {
+      background: #0f0;
+    }
+    li {
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+Клик на элементе выделяет только его.<br>
+
+<ul>
+<li>Кристофер Робин</li>
+<li>Винни-Пух</li>
+<li>Ослик Иа</li>
+<li>Мудрая Сова</li>
+<li>Кролик. Просто кролик.</li>
+</ul>
+
+<script>
+
+var ul = document.getElementsByTagName('ul')[0];
+
+// --- обработчики ---
+
+ul.onclick = function(event) {
+  var target = e.target;
+
+  // возможно, клик был внутри списка UL, но вне элементов LI
+  if (target.tagName != "LI") return;
+
+  selectSingle(target);
+}
+
+
+// --- функции для выделения ---
+
+function selectSingle(li) {
+  deselectAll();
+  li.classList.add('selected');
+}
+
+// снятие выделения со всех - перебором
+// это медленнее, чем запоминать список текущих выделенных,
+// но подойдет для не очень больших (до 1000 элементов) списков
+function deselectAll() {
+  for(var i=0; i<ul.children.length; i++) {
+    ul.children[i].classList.remove('selected');
+  }
+}
+
+
+</script>
+</body>
+</html>

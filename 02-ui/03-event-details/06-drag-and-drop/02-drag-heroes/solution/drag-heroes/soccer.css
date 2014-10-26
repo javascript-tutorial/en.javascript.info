@@ -1,0 +1,58 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#field {
+  background: url(http://js.cx/drag-heroes/field.png);
+  width: 800px;
+  height: 600px;
+  float: left;
+}
+
+.hero {
+  background: url(http://js.cx/drag-heroes/heroes.png);
+  width: 105px;
+  height: 128px;
+  float: left;
+}
+
+#hero1 {
+  background-position: 0 0;
+}
+
+#hero2 {
+  background-position: 0 -128px;
+}
+
+#hero3 {
+  background-position: -131px 0;
+}
+
+#hero4 {
+  background-position: -131px -128px;
+}
+
+#hero5 {
+  background-position: -236px 0;
+  width: 130px;
+}
+
+#winnie {
+  background: url(http://js.cx/drag-heroes/winnie.png);
+  width: 115px;
+  height: 128px;
+  float: left;
+}
+
+.draggable {
+  cursor: pointer;
+}
+
+.dragging {
+  z-index: 1000;
+  position: absolute;
+  cursor: move;
+}
+
+

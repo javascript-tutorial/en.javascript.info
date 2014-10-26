@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<style>
+  body {
+    height: 2000px; /* подсказка должна работать независимо от прокрутки */
+  }
+
+  .tooltip {
+    position:absolute;
+    z-index:100; /* подсказка должна перекрывать другие элементы */
+    padding: 10px 20px;
+
+    /* красивости... */
+    border: 1px solid #b3c9ce;
+    border-radius: 4px;
+    text-align: center;
+    font: italic 14px/1.3 arial, sans-serif; 
+    color: #333;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+  }
+
+</style>
+</head>
+<body>
+
+<a href="#" id="link">Ссылка с подсказкой</a>
+<a href="#" id="link2">Еще ссылка</a>
+
+<div id="elem" style="border:1px solid black; position:absolute;width:300px;height:150px;right:10px;bottom:10px">
+  <em>Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+  Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст</em>
+</div>
+
+<script>
+// должно работать даже если страница имеет прокрутку
+// подсказка должна перекрывать текст под ней
+// у нижнего и правого края окна подсказка должна идти налево/вверх от курсора
+function Tooltip(options) {
+
+  var offsetFromCursor = (options.offset === undefined) ? 10 : options.offset;
+  var tooltipElem;
+  var isEnabled = true;
+
+  var elem = options.elem;
+  var html = options.html;
+
+  elem.on({
+    mouseenter: onMouseEnter,
+    mouseleave: onMouseLeave,
+    mousemove: onMouseMove
+  });
+
+  function onMouseEnter(e) {
+    show(e.pageX, e.pageY);
+  }
+
+  function onMouseLeave() {
+    hide();    
+  }
+
+  function onMouseMove(e) {
+    show(e.pageX, e.pageY);    
+  }
+
+
+  function hide() {
+    getTooltipElem().remove();
+  };
+
+  function getTooltipElem() {
+    if (!tooltipElem) {
+      tooltipElem = $('<div/>', {
+        "class" : 'tooltip',
+        html: html
+      });
+    }
+    return tooltipElem;
+  }
+
+  function show(pageX, pageY) {
+    var tooltipElem = getTooltipElem();
+
+    if (!tooltipElem.is(':visible')) {
+      // первым делом - отобразить подсказку, чтобы можно было получить её размеры
+      tooltipElem.appendTo('body');
+    }
+
+    var scrollY = $(window).scrollTop();
+    var winBottom = scrollY + $(window).height();
+
+    var scrollX = $(window).scrollLeft();
+    var winRight  = scrollX + $(window).width();
+
+    var newLeft = pageX + offsetFromCursor;
+    var newTop = pageY + offsetFromCursor;
+
+    if (newLeft + tooltipElem.outerWidth() > winRight) { // если за правой границей окна
+      newLeft -= tooltipElem.outerWidth();
+      newLeft -= offsetFromCursor + 2; // немного левее, чтобы курсор был не над подсказкой
+    }
+
+    if (newTop + tooltipElem.outerHeight() > winBottom) { // если за нижней границей окна
+      newTop -= tooltipElem.outerHeight();
+      newTop -= offsetFromCursor + 2;  // немного выше
+    }
+
+    tooltipElem.css({
+      left: newLeft,
+      top: newTop
+    });
+  };
+
+}
+
+new Tooltip({
+  elem: $('#elem'),
+  html: "Вот <b>такая</b> подсказка!"
+});
+
+new Tooltip({
+  elem: $('#link'),
+  html: $('#link').html()
+});
+
+new Tooltip({
+  elem: $('#link2'),
+  html: $('#link2').html()
+});
+
+</script>
+
+
+</body>
+</html>

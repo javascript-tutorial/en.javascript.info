@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<!-- клик плохо работает в IE<8, из-за плохой поддержки :active -->
+<style>
+
+  .button:hover { background-position: 0 -52px; }
+
+  .button:active { background-position: 0 -104px; }
+
+  .button {
+    width: 186px;
+    height: 52px;
+    background: url(http://js.cx/rollover/button-sprite.png) no-repeat 0 0;
+    display: block;
+  }
+
+
+</style>
+</head>
+<body>
+
+<p>DIV:</p>
+
+<div class="button"></div>
+
+<p>A:</p>
+
+<a href="#" class="button"></a>
+
+</body>
+</html>

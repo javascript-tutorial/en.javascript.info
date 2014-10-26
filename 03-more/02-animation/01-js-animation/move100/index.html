@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="animate.css">
+</head>
+<body>
+<script>
+function move(elem) {
+
+  var left = 0; // начальное значение
+
+  function frame() { // функция для отрисовки
+    left++;
+    elem.style.left = left + 'px'
+
+    if (left == 100) {
+      clearInterval(timer); // завершить анимацию
+    }
+  }
+
+  var timer = setInterval(frame, 10) // рисовать каждые 10мс
+}
+</script>
+
+<div onclick="move(this.children[0])" class="example_path">
+  <div class="example_block"></div>
+</div>
+
+</body>
+</html>

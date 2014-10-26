@@ -1,0 +1,47 @@
+.customselect {
+    width: 200px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.customselect-title {
+    height: 17px;
+    border: 1px solid #ADD8E6;
+    background-position: right;
+    background-image: url(http://js.cx/clipart/select-button.gif);
+    background-repeat: no-repeat;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.customselect-options li {
+    padding: 2px;
+    cursor: pointer;
+}
+
+.customselect-options li:nth-child(even) {
+    background-color: #f0f8ff;
+}
+
+.customselect-options li:hover {
+    background-color: #7fffd4;
+}
+
+.customselect-options {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+    display: none;
+
+    position: absolute;
+    z-index: 1000;
+    background: white;
+    width: 200px;
+    border-bottom: 1px solid #add8e6;
+    border-left: 1px solid #add8e6;
+    border-right: 1px solid #add8e6;
+    box-sizing: border-box;
+}
+.customselect-open .customselect-options {
+    display: block;
+}

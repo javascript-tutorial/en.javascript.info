@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+  <script src="dateselector.js"></script>
+</head>
+<body>
+
+<script type="text/template" id="date-selector-template">
+  /* шаблон для виджета */
+</script>
+
+<div id="selector-holder"></div>
+<div id="value">тут будет значение даты при выборе</div>
+
+<script>
+  var dateSelector = new DateSelector({ 
+    yearFrom: 2010, 
+    yearTo: 2020, 
+    value: new Date(2012, 2, 31), // 31 марта 2012
+    template: $('#date-selector-template').html()
+  });
+
+  $('#selector-holder').append(dateSelector.getElement());
+
+  $(dateSelector).on("select", function(e) {
+    $('#value').html( e.value + '' );
+  });
+</script>
+
+<button onclick="dateSelector.setValue(new Date)">setValue(сегодня)</button>
+
+
+</body>
+</html>

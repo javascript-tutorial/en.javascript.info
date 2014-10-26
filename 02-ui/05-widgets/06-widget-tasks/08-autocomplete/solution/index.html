@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="autocomplete.css">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="autocomplete.js"></script>
+  <script src="filtering-list-provider.js"></script>
+  <script src="autocomplete-list.js"></script>
+</head>
+<body>
+  
+  <div class="autocomplete" id="search">
+    
+    <input type="text" autocomplete="off">
+    
+  </div>
+  
+  <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam explicabo nostrum eum placeat aliquid voluptatem nihil modi libero nulla tempore dolore itaque accusamus distinctio veniam quae voluptatibus suscipit provident quas quaerat tempora sequi magnam.</div>
+
+
+  <script>
+    var dataProvider = new FilteringListProvider([ 
+        'Человек',
+        'Чело',
+        'Че Гевара',
+        'Яблоко',
+        'Ноутбук',
+        'Но Пасаран!'
+    ]);
+
+    var autocomplete = new Autocomplete({
+      elem: $('#search'),
+      provider: dataProvider
+    });
+
+    $(autocomplete).on('change', function(e) {
+      $('#search').next().html(e.value);
+    });
+
+  </script>
+</body>
+</html>

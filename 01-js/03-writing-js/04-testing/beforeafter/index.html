@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/mocha/1.13.0/mocha.css">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/mocha/1.13.0/mocha.js"></script>
+  <script> mocha.setup('bdd'); </script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/chai/1.9.0/chai.js"></script>
+  <script> var assert = chai.assert; </script>
+</head>
+
+<body>
+
+  <!-- в этом скрипте находятся спеки -->  
+  <script src="test.js"></script>
+
+  <!-- в элементе с id="mocha" будут результаты тестов -->
+  <div id="mocha"></div>
+  
+  <!-- запустить тесты! -->
+  <script> mocha.run(); </script>
+</body>
+</html>

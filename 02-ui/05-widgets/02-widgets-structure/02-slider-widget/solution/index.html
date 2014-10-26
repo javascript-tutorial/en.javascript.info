@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="lib.js"></script>
+  <style>
+    .slider {
+      border-radius: 5px;
+      background: #E0E0E0;
+      background: -moz-linear-gradient(left top , #E0E0E0, #EEEEEE) repeat scroll 0 0 transparent;
+      background: -webkit-gradient(linear, left top, right bottom, from(#E0E0E0), to(#EEEEEE));
+      background: linear-gradient(left top, #E0E0E0, #EEEEEE);
+      width: 310px;
+      height: 15px;
+      margin: 5px;
+    }
+    .thumb {
+      width: 10px;
+      height: 25px;
+      border-radius: 3px;
+      position: relative;
+      left: 10px;
+      top: -5px;
+      background: blue;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<div id="slider" class="slider">
+  <div class="thumb"></div>
+</div>
+
+<script>
+
+var sliderElem = document.getElementById('slider');
+var thumbElem = sliderElem.children[0];
+
+thumbElem.ondragstart = function() { return false; };
+thumbElem.onmousedown = function(e) {
+  e = fixEvent(e);
+  var thumbCoords = getCoords(thumbElem);
+  var shiftX = e.pageX - thumbCoords.left;
+  // shiftY здесь не нужен, слайдер двигается только по горизонтали
+
+  var sliderCoords = getCoords(sliderElem);
+
+  document.onmousemove = function(e) {
+    e = fixEvent(e);
+
+    //  вычесть координату родителя, т.к. position: relative
+    var newLeft = e.pageX - shiftX - sliderCoords.left;
+
+    // курсор ушёл вне слайдера
+    if (newLeft < 0) {
+      newLeft = 0;
+    }
+    var rightEdge = sliderElem.offsetWidth - thumbElem.offsetWidth;
+    if (newLeft > rightEdge) {
+      newLeft = rightEdge;
+    }
+
+    thumbElem.style.left = newLeft + 'px';
+  }
+
+  document.onmouseup = function() {
+    document.onmousemove = document.onmouseup = null;
+  };
+
+  return false; // disable selection start (cursor change)
+};
+
+
+</script>
+
+</body>
+</html>
+

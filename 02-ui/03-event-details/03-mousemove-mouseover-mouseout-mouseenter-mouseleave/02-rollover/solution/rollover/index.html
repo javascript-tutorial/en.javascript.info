@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+    
+  .button {
+    width: 186px;
+	  height: 52px;    
+    background: url(http://js.cx/rollover/button_static.png); 
+  }
+  
+  .button-hover {
+    background-image: url(http://js.cx/rollover/button_hover.png);    
+  }
+    
+  .button-click {
+    background-image: url(http://js.cx/rollover/button_click.png);    
+  }
+    
+</style>
+</head>
+<body>
+
+<div id="btn" class="button"></div>
+
+<script>
+var button = document.getElementById('btn');
+
+button.onmouseover = function() {
+  this.classList.add('button-hover');
+};
+
+button.onmouseout = function() {
+  this.classList.remove('button-hover');
+  this.classList.remove('button-click');
+};
+
+button.onmousedown = function() {
+  this.classList.add('button-click');  
+};
+
+button.onmouseup = function() {
+  this.classList.remove('button-click');  
+};
+
+
+</script>
+
+</body>
+</html>

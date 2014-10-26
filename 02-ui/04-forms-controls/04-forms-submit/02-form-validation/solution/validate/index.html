@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+<style>
+td select, td input {
+  width: 150px;
+}
+
+label {
+  display: block;
+}
+
+.error input, .error textarea {
+  border: 1px solid red;
+}
+.error {
+  color: red;
+}
+
+</style>
+</head>
+<body>
+
+
+<form>
+<table>
+  <tr>
+  <td>От кого</td>
+  <td><input name="from" type="text"></td>
+  </tr>
+  <tr>
+  <td>Ваш пароль</td>
+  <td><input name="password" type="password"></td>
+  </tr>
+  <tr>
+  <td>Повторите пароль</td>
+  <td><input name="password2" type="password"></td>
+  </tr>
+  <tr>
+  <td>Куда</td>
+  <td>
+    <select name="to">
+      <option></option>
+      <option value="1">Отдел снабжения</option>
+      <option value="2">Отдел разработки</option>
+      <option value="3">Директору</option>
+    </select>
+  </td>
+  </tr>
+</table>
+
+Сообщение:
+<label>
+<textarea name="message" style="display:block;width:400px;height:80px"></textarea>
+</label>
+
+<input type="button" onclick="validate(this.form)" value="Проверить">
+</form>
+
+<script>
+
+function showError(container, errorMessage) {
+  container.className = 'error';
+  var msgElem = document.createElement('span');
+  msgElem.className = "error-message";
+  msgElem.innerHTML = errorMessage;
+  container.appendChild(msgElem);
+}
+
+function resetError(container) {
+  container.className = '';
+  if (container.lastChild.className == "error-message") {
+    container.removeChild(container.lastChild);
+  }
+}
+
+function validate(form) {
+  var elems = form.elements;
+
+  resetError(elems.from.parentNode);
+  if (!elems.from.value) {
+    showError(elems.from.parentNode, ' Укажите от кого.');
+  }
+
+  resetError(elems.password.parentNode);
+  if (!elems.password.value) {
+    showError(elems.password.parentNode, ' Укажите пароль.');
+  } else if (elems.password.value != elems.password2.value) {
+    showError(elems.password.parentNode, ' Пароли не совпадают.');
+  }
+
+  resetError(elems.to.parentNode);
+  if (!elems.to.value) {
+    showError(elems.to.parentNode, ' Укажите, куда.');
+  }
+
+  resetError(elems.message.parentNode);
+  if (!elems.message.value) {
+    showError(elems.message.parentNode, ' Отсутствует текст.');
+  }
+
+}
+
+</script>
+
+
+</body>
+</html>
+
