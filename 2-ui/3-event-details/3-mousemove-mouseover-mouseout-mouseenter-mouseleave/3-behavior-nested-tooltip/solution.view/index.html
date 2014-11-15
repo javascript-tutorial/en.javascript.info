@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    height: 2000px; /* подсказка должна работать независимо от прокрутки */
+  }
+
+  .tooltip {
+    position:absolute;
+    z-index:100; /* подсказка должна перекрывать другие элементы */
+    padding: 10px 20px;
+
+    /* красивости... */
+    border: 1px solid #b3c9ce;
+    border-radius: 4px;
+    text-align: center;
+    font: italic 14px/1.3 arial, sans-serif; 
+    color: #333;
+    background: #fff;
+    box-shadow: 3px 3px 3px rgba(0,0,0,.3);
+  }
+
+  #house {
+    margin-top: 50px;
+    width: 400px;
+    border: 1px solid brown;
+  }
+
+  #roof {
+    width: 0; 
+    height: 0; 
+    border-left: 200px solid transparent;
+    border-right: 200px solid transparent;
+    
+    border-bottom: 20px solid brown;
+    margin-top: -20px;
+  }
+
+  p {
+    text-align: justify;
+    margin: 10px 3px;
+  }
+
+</style>
+</head>
+<body>
+
+
+<div data-tooltip="Это – внутренность дома" id="house">
+<div data-tooltip="Это – крыша" id="roof"></div>
+
+  <p>Жили-были на свете три поросёнка. Три брата.</p>
+
+  <p>Все одинакового роста, кругленькие, розовые, с одинаковыми весёлыми хвостиками.</p>
+
+  <p>Даже имена у них были похожи. Звали поросят Ниф-Ниф, Нуф-Нуф и Наф-Наф. Всё лето они кувыркались в зелёной траве, грелись на солнышке, нежились в лужах.</p>
+
+  <p>Но вот наступила осень. <a href="http://ru.wikipedia.org/wiki/Три_поросёнка" data-tooltip="Читать дальше&hellip;">Наведи на меня</a></p>
+
+</div>
+
+<script>
+
+var showingTooltip;
+
+document.onmouseover = function(e) {
+  e = e || event;
+  var target = e.target || e.srcElement;
+
+  // ВАЖНО: mouseover может сработать сразу на потомке
+  // минуя родителя (при быстром движении мышью)
+  
+  // пройти вверх до первого элемента с data-tooltip
+  while (target !== this) {
+    var tooltip = target.getAttribute('data-tooltip');
+    if (tooltip) break;
+    target = target.parentNode;
+  }
+
+  if (!tooltip) return;
+
+  // показать и запомнить подсказку
+  showingTooltip = showTooltip(tooltip, target);  
+}
+
+document.onmouseout = function() {
+  // возможно такое, что mouseout сработал, а мы все еще внутри элемента (всплытие)
+  // но в этом случае сразу же будет и mouseover, 
+  // то есть подсказка будет уничтожена и тут же показана заново
+  // 
+  // это лишние расходы, их можно избежать дополнительными проверками
+  if (showingTooltip) {
+    document.body.removeChild(showingTooltip);
+    showingTooltip = false;
+  }
+
+}
+
+
+function showTooltip(text, elem) {
+  var tooltipElem = document.createElement('div');
+  tooltipElem.className = 'tooltip';
+  tooltipElem.innerHTML = text;
+  document.body.appendChild(tooltipElem);
+
+  var coords = getCoords(elem);
+  
+  // не вылезаем за пределы экрана
+  var scroll = getPageScroll();
+
+  var left = coords.left + (elem.offsetWidth - tooltipElem.offsetWidth)/2^0;
+  if (left < scroll.left) left = scroll.left; // не вылезать за левую границу экрана
+
+  var top = coords.top - tooltipElem.offsetHeight - 5;
+  if (top < scroll.top) {
+    top = coords.top + elem.offsetHeight + 5;
+  }
+
+  tooltipElem.style.left = left + 'px';
+  tooltipElem.style.top = top + 'px';
+
+  return tooltipElem;
+}
+
+
+
+function getCoords(elem) {
+    var box = elem.getBoundingClientRect();
+    
+    var body = document.body;
+    var docEl = document.documentElement;
+
+    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    var clientTop = docEl.clientTop || body.clientTop || 0;
+    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    var top  = box.top +  scrollTop - clientTop;
+    var left = box.left + scrollLeft - clientLeft;
+
+    return { top: Math.round(top), left: Math.round(left) };
+}
+
+function getPageScroll() {
+  if (window.pageXOffset != undefined) {
+    return {
+      left: pageXOffset,
+      top: pageYOffset
+    }
+  }
+
+  var html = document.documentElement;
+  var body = document.body;
+
+  var top = html.scrollTop || body && body.scrollTop || 0;
+  top -= html.clientTop;
+
+  var left = html.scrollLeft || body && body.scrollLeft || 0;
+  left -= html.clientLeft;
+
+  return { top: top, left: left };
+}
+
+</script>
+
+</body>
+</html>

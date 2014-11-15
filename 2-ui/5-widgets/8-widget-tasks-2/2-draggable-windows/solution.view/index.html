@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="http://code.jquery.com/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="window.css" />
+    <style>
+      html, body {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+    <script src="draggableWindow.js"></script>
+</head>
+<body style="height:2000px">
+
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+
+<script type="text/template" id="draggable-window-template">
+<div class="window-title"><%=title%></div>
+<div class="window-content"></div>
+<form class="window-message-form">
+<input type="text" name="message" class="window-message-text"><input type="submit" name="submit" class="window-message-submit" value="Послать">
+</form>
+</script>
+
+<script>
+
+var win = new DraggableWindow({
+  title: "Чат с Петей",
+  template: $('#draggable-window-template').html()
+});
+
+win.getElement().appendTo('body');
+
+</script>
+
+</body>
+</html>

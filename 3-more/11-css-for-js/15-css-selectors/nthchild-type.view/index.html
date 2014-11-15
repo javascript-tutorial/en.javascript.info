@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <style>
+
+    dt:nth-of-type(2n) {
+      /* чётные dt (соседи с другими тегами игнорируются) */
+      background: #eee;
+    }
+
+    dd:nth-last-of-type(2) {
+      /* второй dd снизу */
+      color: red;
+    }
+    
+    code {
+      border: 1px solid black;
+    }
+
+
+  </style>
+</head>
+<body>
+
+<dl>
+  <dt>Первый dt</dt>
+  <dd>Описание dd</dd>
+  <dt>Второй dt <code>dt:nth-of-type(2n)</code></dt>
+  <dd>Описание dd</dd>
+  <dt>Третий dt</dt>
+  <dd>Описание dd <code>dd:nth-last-of-type(2)</code></dd>
+  <dt>Четвёртый dt <code>dt:nth-of-type(2n)</code></dt>
+  <dd>Описание dd</dd>
+</dl>
+
+
+</body>
+</html>

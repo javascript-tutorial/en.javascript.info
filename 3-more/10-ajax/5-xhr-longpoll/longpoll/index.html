@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="browser.js"></script>
+</head>
+<body>
+
+Несколько человек при заходе на эту страницу будут получать сообщения друг друга.
+
+<form name="publish">
+<input type="text" name="message"/>
+<input type="submit" value="Отправить"/>
+</form>
+
+<div id="subscribe">
+</div>
+
+<script>
+	new PublishForm(document.forms.publish, 'publish');
+	new SubscribePane(document.getElementById('subscribe'), 'subscribe');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+.edit-area  {
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  resize: none;    /* remove resizing handle in Firefox */
+  outline: none;   /* remove outline on focus in Chrome */
+  overflow: auto; /* remove scrollbar in IE */
+}
+

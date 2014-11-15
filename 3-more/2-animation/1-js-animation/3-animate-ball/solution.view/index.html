@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script src="animate.js"></script>
+<style>
+  #field {
+    height: 200px;
+    border-bottom: 3px black groove;
+    position: relative;
+  }
+
+  #ball {
+    position: absolute;
+  }
+</style>
+</head>
+<body>
+
+
+<div id="field">
+<img src="http://js.cx/clipart/ball.gif" width="40" height="40" id="ball">
+</div>
+
+<script>
+
+
+var img = document.getElementById('ball');
+
+img.onclick = function() {
+
+  var to = document.getElementById('field').clientHeight - img.clientHeight;
+
+  animate({
+    delay: 20,
+    duration: 1000,
+    delta: makeEaseOut(bounce),
+    step: function(delta) {
+      img.style.top = to*delta + 'px'
+    }
+  });
+
+
+}
+
+</script>
+
+
+
+</body>
+</html>

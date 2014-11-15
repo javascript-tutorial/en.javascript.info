@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="menu.css">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+  <script src="menu.js"></script>
+</head>
+<body>
+
+<script type="text/template" id="menu-template">
+<div class="menu">
+  <span class="title"><%-title%></span>
+</div>
+</script>
+
+<script type="text/template" id="menu-list-template">
+<ul>
+  <% for(var key in items) { %>
+  <li><a href="#<%-key%>"><%-items[key]%></li>
+  <% } %>
+</ul>
+</script>
+
+<script>
+var menu = new Menu({ 
+  title: "Сладости",
+  template: _.template($('#menu-template').html()),
+  listTemplate: _.template($('#menu-list-template').html()),
+  items: {
+    "donut": "Пончик", 
+    "cake": "Пирожное", 
+    "chocolate": "Шоколадка"
+  }
+});
+
+$(document.body).append(menu.getElem());
+menu.open();
+</script>
+
+</body>
+</html>
+

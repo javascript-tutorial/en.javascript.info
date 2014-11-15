@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+
+<script type="text/template" id="menu-template">
+<div class="menu">
+  <span class="title"><%-title%>
+  <ul>
+  <% items.forEach(function(item) { %>
+    <li><%-item%></li>
+  <% }); %>
+  </ul>
+</div>
+</script>
+
+<script>
+  var tmpl = document.getElementById('menu-template').innerHTML;
+ 
+  var compiled = _.template(tmpl);
+  var result = compiled({ title: "Заголовок" });
+
+  document.write(result);
+</script>
+
+</body>
+</html>
+

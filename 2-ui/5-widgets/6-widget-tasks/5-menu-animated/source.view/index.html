@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery.min.js"></script>
+<style>
+  .menu {
+    padding: 5px;
+    width: 250px;
+    border: 1px solid black;
+  }
+  .menu ul {
+    margin: 0;
+    padding-left: 20px;
+    margin-left: 10px;
+    height: 0;
+
+    list-style-position: outside;
+    overflow: hidden;
+  }
+
+  .menu .menu-title {
+    padding-left: 16px;
+    background: url(http://js.cx/clipart/arrow-right.png) left center no-repeat;
+    font-size: 18px;
+    cursor: pointer;
+
+  }
+
+  .menu-open .menu-title {
+    background: url(http://js.cx/clipart/arrow-down.png) left center no-repeat;
+  }
+
+  .menu-open ul {
+    display: block;
+  }
+
+</style>
+</head>
+<body>
+
+<div id="selected"></div>
+
+<div id="sweeties" class="menu">
+  <span class="menu-title">Сладости (наведи курсор)!</span>
+  <ul>
+    <li><a href="#cake">Торт</a></li>
+    <li><a href="#donut">Пончик</a></li>
+    <li><a href="#cake-small">Пирожное</a></li>
+    <li><a href="#chokolate">Шоколадка</a></li>
+    <li><a href="#icecream">Мороженое</a></li>
+    <li><a href="#souflet">Суфле</a></li>
+    <li><a href="#rahatlukum">Рахат-Лукум</a></li>
+  </ul>
+
+</div>
+
+<script>
+
+var menu = new SlidingMenu({
+  elem: $('#sweeties'),
+  duration: 1000
+});
+
+$(menu).on("select", function(e) {
+  $("#selected").html(e.value);
+});
+
+
+function SlidingMenu(options) {
+  /* ваш код, оживляющий меню */
+}
+
+
+</script>
+
+</body>
+</html>

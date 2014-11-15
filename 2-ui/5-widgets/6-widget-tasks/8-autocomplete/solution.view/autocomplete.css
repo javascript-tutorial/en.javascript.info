@@ -1,0 +1,51 @@
+
+.autocomplete ol {
+  display: none;
+  margin: 0;
+  padding: 3px;
+  border: 1px solid gray;
+  list-style: none;
+}
+
+.autocomplete input {
+  -moz-box-sizing: border-box;
+  
+  box-sizing: border-box;
+  margin: 0;
+  padding: 1px 0 1px 3px;
+
+  width: 100%;
+
+  border: 1px solid blue;
+  border-radius: 3px;
+  -webkit-appearance: none;
+
+  font-size: 16px;
+}
+
+.autocomplete input:focus {
+  outline: none;
+}
+
+.autocomplete.open input {
+  border-bottom: none;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.autocomplete.open ol {
+  display: block;
+
+  background: white;
+  z-index: 10000;
+  position: relative;
+}
+
+.autocomplete {
+  width: 400px;
+  height: 20px;
+}
+
+.autocomplete ol .selected {
+  background: blue;
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="iframe.js"></script>
+<script src="name.js"></script>
+
+<script>
+function ok(result) {
+   alert('ok: ' + result);
+}
+function fail() {
+   alert('fail');
+}
+
+// запрос к файлу anydomain.php на другом домене
+var url = 'http://test.javascript.ru' + location.pathname.replace(/[^\/]*$/, 'anydomain.php');
+</script>
+
+
+<button onclick="iframePost(url, {data: 'Client date: '+new Date}, ok, fail)">iframePost</button>
+
+</body>
+</html>

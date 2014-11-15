@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    .menu {
+      margin: 0;
+      padding: 0;
+    }
+
+    .menu li {
+      list-style: none;
+
+      float: left;
+      padding: 6px;
+      margin: 0 2px;
+    }
+
+    .menu li.item {
+      border: 1px solid gray;
+      border-radius: 10px;
+
+      cursor: pointer;
+      font-size: 90%;
+      background: #FFF5EE;
+    }
+
+    .menu li.vertical-splitter:before {
+      content: "|";
+    }
+
+    .menu .item a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .menu .item a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+<ul class="menu">
+  <li class="item"><a href="#">Главная</a></li>
+  <li class="vertical-splitter"></li>
+  <li class="item"><a href="#">Товары</a></li>
+  <li class="item"><a href="#">Фотографии</a></li>
+  <li class="item"><a href="#">Контакты</a></li>
+</ul>
+
+</body>
+</html>

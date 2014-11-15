@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    input {
+      margin: 0;
+      width: 12em;
+    }
+
+    #placeholder {
+      color: red;
+
+      margin: -1.3em 0 0 0.2em;
+    }
+  </style>
+</head>
+<body>
+
+<div>Добро пожаловать</div>
+<input type="password" id="input">
+
+<div id="placeholder">Скажи пароль, друг</div>
+
+<div>.. и заходи</div>
+
+<script>
+var placeholder = document.getElementById('placeholder');
+var input = document.getElementById('input');
+
+placeholder.onclick = function() {
+  input.focus();
+}
+
+input.onfocus = function() {
+  placeholder.parentNode && placeholder.parentNode.removeChild(placeholder);
+}
+
+</script>
+
+</body>
+</html>

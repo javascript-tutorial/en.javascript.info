@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<head>
+  <meta charset="utf-8">
+  <script src="browser.js"></script>
+</head>
+<form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
+  <input type="file" name="file1">
+  <input type="submit" name="submit" value="Загрузить">
+</form>
+
+<button onclick="uploader.pause()">Пауза</button>
+<button onclick="uploader.resume()">Возобновить</button>
+
+
+<div id="log">Индикация прогресса</div>
+
+<script>
+function log(html) {
+  document.getElementById('log').innerHTML = html;
+  //console.log(html);
+}
+
+function onSuccess() {
+  log('success');
+}
+
+function onError() {
+  log('error');
+}
+
+function onProgress(loaded, total) {
+  log("progress " + loaded + ' / '+ total);
+}
+
+var uploader;
+
+document.forms.upload.onsubmit = function() {
+  var file = this.elements.file1.files[0];
+  if (!file) return false;
+  
+  uploader = new Uploader(file, onSuccess, onError, onProgress); 
+  uploader.upload(); 
+  return false;
+}
+
+
+</script>
+</body>
+</html>

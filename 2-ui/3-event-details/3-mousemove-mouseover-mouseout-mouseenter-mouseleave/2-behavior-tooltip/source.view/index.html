@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body {
+    height: 2000px; /* подсказка должна работать независимо от прокрутки */
+  }
+
+  /* ваши стили */
+
+</style>
+</head>
+<body>
+
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+<p>ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя ЛяЛяЛя</p>
+
+<a href="#" id="link" data-tooltip="подсказка длиннее, чем элемент">Короткая ссылка</a>
+<a href="#" id="link2" data-tooltip="HTML<br>подсказка">Еще ссылка</a>
+
+<p>Прокрутите страницу и проверьте, правильно ли показывается подсказка</p>
+
+
+<script>
+
+// ваш код
+
+// ------------  вспомогательные функции 
+
+function getCoords(elem) {
+    var box = elem.getBoundingClientRect();
+    
+    var body = document.body;
+    var docEl = document.documentElement;
+
+    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+
+    var clientTop = docEl.clientTop || body.clientTop || 0;
+    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+
+    var top  = box.top +  scrollTop - clientTop;
+    var left = box.left + scrollLeft - clientLeft;
+
+    return { top: Math.round(top), left: Math.round(left) };
+}
+
+function getPageScroll() {
+  if (window.pageXOffset != undefined) {
+    return {
+      left: pageXOffset,
+      top: pageYOffset
+    }
+  }
+
+  var html = document.documentElement;
+  var body = document.body;
+
+  var top = html.scrollTop || body && body.scrollTop || 0;
+  top -= html.clientTop;
+
+  var left = html.scrollLeft || body && body.scrollLeft || 0;
+  left -= html.clientLeft;
+
+  return { top: top, left: left };
+}
+
+</script>
+
+</body>
+</html>

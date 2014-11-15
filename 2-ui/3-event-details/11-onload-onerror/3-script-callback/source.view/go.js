@@ -1,0 +1,3 @@
+function go() {
+  alert("ok");
+}

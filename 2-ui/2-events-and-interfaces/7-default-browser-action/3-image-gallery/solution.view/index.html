@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Галерея</title>
+  <link rel="stylesheet" type="text/css" href="gallery.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+<p><img id="largeImg" src="http://js.cx/gallery/img1-lg.jpg" alt="Large image"></p>
+
+<ul id="thumbs">
+  <!-- При наведении на изображение показывается встроенная подсказка браузера (title) -->
+  <li><a href="http://js.cx/gallery/img2-lg.jpg" title="Image 2"><img src="http://js.cx/gallery/img2-thumb.jpg"></a></li>
+  <li><a href="http://js.cx/gallery/img3-lg.jpg" title="Image 3"><img src="http://js.cx/gallery/img3-thumb.jpg"></a></li>
+  <li><a href="http://js.cx/gallery/img4-lg.jpg" title="Image 4"><img src="http://js.cx/gallery/img4-thumb.jpg"></a></li>
+  <li><a href="http://js.cx/gallery/img5-lg.jpg" title="Image 5"><img src="http://js.cx/gallery/img5-thumb.jpg"></a></li>
+  <li><a href="http://js.cx/gallery/img6-lg.jpg" title="Image 6"><img src="http://js.cx/gallery/img6-thumb.jpg"></a></li>
+</ul>
+
+<script>
+var largeImg = document.getElementById('largeImg');
+
+var thumbs = document.getElementById('thumbs');
+
+thumbs.onclick = function(e) {
+  e = e || window.event;
+  var target = e.target || e.srcElement;
+
+  while(target != this) {
+
+    if (target.nodeName == 'A') {
+      showThumbnail(target.href, target.title);
+      return false;
+    }
+
+    target = target.parentNode;
+  }
+
+}
+
+function showThumbnail(href, title) {
+  largeImg.src = href;
+  largeImg.alt = title;
+}
+
+
+/* предзагрузка */
+var imgs = thumbs.getElementsByTagName('img');
+for(var i=0; i<imgs.length; i++) {
+  var url = imgs[i].parentNode.href;
+  var img = document.createElement('img');
+  img.src = url;
+}
+</script>
+
+</body>
+</html>

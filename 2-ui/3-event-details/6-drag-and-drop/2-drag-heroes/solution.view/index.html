@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="soccer.css">
+</head>
+<body>
+  
+  <h2>Расставьте супергероев по полю.</h2>
+  
+  <p>Супергерои -- это элементы с классом "draggable". Сделайте так, чтобы их можно было переносить.</p>
+  
+  <p>Важно: если супергероя подносят к низу или верху страницы, она должна автоматически прокручиваться. Конечно, можно прокрутить и клавиатурой, но так -- удобнее. Если страница помещается на вашем экране целиком и не имеет вертикальной прокрутки -- сделайте окно браузера меньше, чтобы протестировать эту возможность.</p>
+  
+  <p>Да, и ещё: супергерои ни при каких условиях не должны попасть за край экрана.</p>
+  
+  <div id="field">
+    
+  </div>
+
+  <div class="hero draggable" id="hero1"></div>
+  <div class="hero draggable" id="hero2"></div>
+  <div class="hero draggable" id="hero3"></div>
+  <div class="hero draggable" id="hero4"></div>
+  <div class="hero draggable" id="hero5"></div>
+  <div id="winnie" class="draggable"></div>
+
+  <img src="http://js.cx/drag-heroes/ball.png" class="draggable">
+
+  <div style="clear:both"></div>
+
+  <script src="http://js.cx/libs/getCoords.js"></script>
+  <script src="http://js.cx/libs/documentScroll.js"></script>
+  
+  <script src="soccer.js"></script>
+</body>
+</html>

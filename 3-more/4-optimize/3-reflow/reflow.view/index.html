@@ -1,0 +1,73 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+function resize() {
+// calculate -> set, repeat
+	var t = new Date();
+
+	for(var i=0; i<firstRow.cells.length; i++) {
+		var td = firstRow.cells[i];
+		td.style.width = td.offsetWidth + 10 + 'px';
+	}
+
+	alert('Done in '+(new Date - t));
+}
+function resize2() {
+// optimizes against reflow
+// 1. calculate -> repeat
+// 2. set -> repeat
+	var t = new Date();
+
+	var widths = [];
+
+	for(var i=0; i<firstRow.cells.length; i++) {
+		widths[i] = firstRow.cells[i].offsetWidth;
+	}
+
+	for(var i=0; i<widths.length; i++) {
+		firstRow.cells[i].style.width = widths[i] + 10 + 'px';
+	}
+
+	alert('Done in '+(new Date - t));
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+<table id="table" style="font-size:80%">
+<tr id="firstRow"><td>0:0</td><td>0:1</td><td>0:2</td><td>0:3</td><td>0:4</td><td>0:5</td><td>0:6</td><td>0:7</td><td>0:8</td><td>0:9</td><td>0:10</td><td>0:11</td><td>0:12</td><td>0:13</td><td>0:14</td><td>0:15</td><td>0:16</td><td>0:17</td><td>0:18</td><td>0:19</td></tr>
+<tr><td>1:0</td><td>1:1</td><td>1:2</td><td>1:3</td><td>1:4</td><td>1:5</td><td>1:6</td><td>1:7</td><td>1:8</td><td>1:9</td><td>1:10</td><td>1:11</td><td>1:12</td><td>1:13</td><td>1:14</td><td>1:15</td><td>1:16</td><td>1:17</td><td>1:18</td><td>1:19</td></tr>
+<tr><td>2:0</td><td>2:1</td><td>2:2</td><td>2:3</td><td>2:4</td><td>2:5</td><td>2:6</td><td>2:7</td><td>2:8</td><td>2:9</td><td>2:10</td><td>2:11</td><td>2:12</td><td>2:13</td><td>2:14</td><td>2:15</td><td>2:16</td><td>2:17</td><td>2:18</td><td>2:19</td></tr>
+<tr><td>3:0</td><td>3:1</td><td>3:2</td><td>3:3</td><td>3:4</td><td>3:5</td><td>3:6</td><td>3:7</td><td>3:8</td><td>3:9</td><td>3:10</td><td>3:11</td><td>3:12</td><td>3:13</td><td>3:14</td><td>3:15</td><td>3:16</td><td>3:17</td><td>3:18</td><td>3:19</td></tr>
+<tr><td>4:0</td><td>4:1</td><td>4:2</td><td>4:3</td><td>4:4</td><td>4:5</td><td>4:6</td><td>4:7</td><td>4:8</td><td>4:9</td><td>4:10</td><td>4:11</td><td>4:12</td><td>4:13</td><td>4:14</td><td>4:15</td><td>4:16</td><td>4:17</td><td>4:18</td><td>4:19</td></tr>
+<tr><td>5:0</td><td>5:1</td><td>5:2</td><td>5:3</td><td>5:4</td><td>5:5</td><td>5:6</td><td>5:7</td><td>5:8</td><td>5:9</td><td>5:10</td><td>5:11</td><td>5:12</td><td>5:13</td><td>5:14</td><td>5:15</td><td>5:16</td><td>5:17</td><td>5:18</td><td>5:19</td></tr>
+<tr><td>6:0</td><td>6:1</td><td>6:2</td><td>6:3</td><td>6:4</td><td>6:5</td><td>6:6</td><td>6:7</td><td>6:8</td><td>6:9</td><td>6:10</td><td>6:11</td><td>6:12</td><td>6:13</td><td>6:14</td><td>6:15</td><td>6:16</td><td>6:17</td><td>6:18</td><td>6:19</td></tr>
+<tr><td>7:0</td><td>7:1</td><td>7:2</td><td>7:3</td><td>7:4</td><td>7:5</td><td>7:6</td><td>7:7</td><td>7:8</td><td>7:9</td><td>7:10</td><td>7:11</td><td>7:12</td><td>7:13</td><td>7:14</td><td>7:15</td><td>7:16</td><td>7:17</td><td>7:18</td><td>7:19</td></tr>
+<tr><td>8:0</td><td>8:1</td><td>8:2</td><td>8:3</td><td>8:4</td><td>8:5</td><td>8:6</td><td>8:7</td><td>8:8</td><td>8:9</td><td>8:10</td><td>8:11</td><td>8:12</td><td>8:13</td><td>8:14</td><td>8:15</td><td>8:16</td><td>8:17</td><td>8:18</td><td>8:19</td></tr>
+<tr><td>9:0</td><td>9:1</td><td>9:2</td><td>9:3</td><td>9:4</td><td>9:5</td><td>9:6</td><td>9:7</td><td>9:8</td><td>9:9</td><td>9:10</td><td>9:11</td><td>9:12</td><td>9:13</td><td>9:14</td><td>9:15</td><td>9:16</td><td>9:17</td><td>9:18</td><td>9:19</td></tr>
+<tr><td>10:0</td><td>10:1</td><td>10:2</td><td>10:3</td><td>10:4</td><td>10:5</td><td>10:6</td><td>10:7</td><td>10:8</td><td>10:9</td><td>10:10</td><td>10:11</td><td>10:12</td><td>10:13</td><td>10:14</td><td>10:15</td><td>10:16</td><td>10:17</td><td>10:18</td><td>10:19</td></tr>
+<tr><td>11:0</td><td>11:1</td><td>11:2</td><td>11:3</td><td>11:4</td><td>11:5</td><td>11:6</td><td>11:7</td><td>11:8</td><td>11:9</td><td>11:10</td><td>11:11</td><td>11:12</td><td>11:13</td><td>11:14</td><td>11:15</td><td>11:16</td><td>11:17</td><td>11:18</td><td>11:19</td></tr>
+<tr><td>12:0</td><td>12:1</td><td>12:2</td><td>12:3</td><td>12:4</td><td>12:5</td><td>12:6</td><td>12:7</td><td>12:8</td><td>12:9</td><td>12:10</td><td>12:11</td><td>12:12</td><td>12:13</td><td>12:14</td><td>12:15</td><td>12:16</td><td>12:17</td><td>12:18</td><td>12:19</td></tr>
+<tr><td>13:0</td><td>13:1</td><td>13:2</td><td>13:3</td><td>13:4</td><td>13:5</td><td>13:6</td><td>13:7</td><td>13:8</td><td>13:9</td><td>13:10</td><td>13:11</td><td>13:12</td><td>13:13</td><td>13:14</td><td>13:15</td><td>13:16</td><td>13:17</td><td>13:18</td><td>13:19</td></tr>
+<tr><td>14:0</td><td>14:1</td><td>14:2</td><td>14:3</td><td>14:4</td><td>14:5</td><td>14:6</td><td>14:7</td><td>14:8</td><td>14:9</td><td>14:10</td><td>14:11</td><td>14:12</td><td>14:13</td><td>14:14</td><td>14:15</td><td>14:16</td><td>14:17</td><td>14:18</td><td>14:19</td></tr>
+<tr><td>15:0</td><td>15:1</td><td>15:2</td><td>15:3</td><td>15:4</td><td>15:5</td><td>15:6</td><td>15:7</td><td>15:8</td><td>15:9</td><td>15:10</td><td>15:11</td><td>15:12</td><td>15:13</td><td>15:14</td><td>15:15</td><td>15:16</td><td>15:17</td><td>15:18</td><td>15:19</td></tr>
+<tr><td>16:0</td><td>16:1</td><td>16:2</td><td>16:3</td><td>16:4</td><td>16:5</td><td>16:6</td><td>16:7</td><td>16:8</td><td>16:9</td><td>16:10</td><td>16:11</td><td>16:12</td><td>16:13</td><td>16:14</td><td>16:15</td><td>16:16</td><td>16:17</td><td>16:18</td><td>16:19</td></tr>
+<tr><td>17:0</td><td>17:1</td><td>17:2</td><td>17:3</td><td>17:4</td><td>17:5</td><td>17:6</td><td>17:7</td><td>17:8</td><td>17:9</td><td>17:10</td><td>17:11</td><td>17:12</td><td>17:13</td><td>17:14</td><td>17:15</td><td>17:16</td><td>17:17</td><td>17:18</td><td>17:19</td></tr>
+<tr><td>18:0</td><td>18:1</td><td>18:2</td><td>18:3</td><td>18:4</td><td>18:5</td><td>18:6</td><td>18:7</td><td>18:8</td><td>18:9</td><td>18:10</td><td>18:11</td><td>18:12</td><td>18:13</td><td>18:14</td><td>18:15</td><td>18:16</td><td>18:17</td><td>18:18</td><td>18:19</td></tr>
+<tr><td>19:0</td><td>19:1</td><td>19:2</td><td>19:3</td><td>19:4</td><td>19:5</td><td>19:6</td><td>19:7</td><td>19:8</td><td>19:9</td><td>19:10</td><td>19:11</td><td>19:12</td><td>19:13</td><td>19:14</td><td>19:15</td><td>19:16</td><td>19:17</td><td>19:18</td><td>19:19</td></tr>
+</table>
+
+<input type="button" onclick="resize()" value="resize"/>
+<input type="button" onclick="resize2()" value="resize2"/>
+
+
+
+
+
+</body></html>

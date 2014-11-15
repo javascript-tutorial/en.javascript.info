@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      #timer { color: red; }
+    </style>
+  </head>
+  <body>
+    
+    <p id="timer">0</p>
+
+    <script>
+      var localDocument = document.currentScript.ownerDocument;
+      var timer = localDocument.getElementById('timer');
+      
+      var timerId = setInterval(function() {
+        timer.innerHTML++;
+      }, 1000);  
+
+      document.body.appendChild(timer);
+
+    </script>
+    
+  </body>
+</html>

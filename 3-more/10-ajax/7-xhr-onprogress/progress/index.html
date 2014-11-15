@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+<head><meta charset="utf-8"></head>
+<form name="upload">
+  <input type="file" name="file1">
+  <input type="submit" value="Загрузить">
+</form>
+
+<div id="log">Прогресс загрузки</div>
+
+<script>
+function log(html) {
+  document.getElementById('log').innerHTML = html;
+}
+
+function onSuccess() {
+  log('success');
+}
+
+function onError() {
+  log('error');
+}
+
+function onProgress(loaded, total) {
+  log(loaded + ' / '+ total);
+}
+
+var form = document.forms.upload;
+form.onsubmit = function() {
+  var file = this.elements.file1.files[0];  
+  if (file) upload(file, onSuccess, onError, onProgress);  
+  return false;
+}
+
+
+function upload(file, onSuccess, onError, onProgress) {
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.onload = xhr.onerror = function() {
+    if(this.status != 200 || this.responseText != 'OK') {
+      onError(this);
+      return;
+    }
+    onSuccess();
+  };
+
+  xhr.upload.onprogress = function(event) {
+    onProgress(event.loaded, event.total);
+  }
+
+  xhr.open("POST", "upload.php", true); 
+  xhr.send(file);
+
+}
+</script>
+</body>
+</html>
