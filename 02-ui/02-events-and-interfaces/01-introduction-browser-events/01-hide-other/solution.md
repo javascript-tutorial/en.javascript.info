@@ -1,1 +1,0 @@
-[edit src="solution"]Решение задачи[/edit]

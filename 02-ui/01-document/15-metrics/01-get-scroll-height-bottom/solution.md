@@ -1,1 +1,0 @@
-Решение: `elem.scrollHeight - elem.scrollTop - elem.clientHeight`.
