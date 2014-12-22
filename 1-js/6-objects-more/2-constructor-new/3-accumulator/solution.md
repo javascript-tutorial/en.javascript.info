@@ -1,7 +1,7 @@
 
 
 ```js
-//+ run
+//+ run demo
 function Accumulator(startingValue) {
   this.value = startingValue;
 
