@@ -27,5 +27,5 @@ $(croppable).on("crop", function(e) {
 <li>Область не может вылезать за пределы изображения.</li>
 </ul>
 
-[edit src="source" task/]
+
 

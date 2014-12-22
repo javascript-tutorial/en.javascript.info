@@ -23,4 +23,3 @@ $(menu).on("select", function(e) {
 
 В исходном документе находится DOM-структура и стили для меню.
 
-[edit src="source" task/]

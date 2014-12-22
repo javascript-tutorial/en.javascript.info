@@ -13,4 +13,4 @@ td.style.backgroundColor = 'red';
 Должно получиться так:
 [iframe src="solution"]
 
-[edit src="source" task/]
+

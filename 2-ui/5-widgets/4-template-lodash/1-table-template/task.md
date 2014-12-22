@@ -20,5 +20,5 @@ var users = [
 
 [iframe src="solution"]
 
-[edit src="source" task/]
+
 

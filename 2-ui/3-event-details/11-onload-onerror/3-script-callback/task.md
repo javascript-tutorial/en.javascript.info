@@ -17,4 +17,3 @@ addScript("go.js", function() {
 
 Ошибки загрузки обрабатывать не нужно.
 
-[edit src="source" task/]

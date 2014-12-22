@@ -74,4 +74,3 @@ function getCoords(elem) {
 
 Учтите при решении, что мышонок изначально находится где-то в глубине документа, в `DIV'е` с `position:relative`.
 
-[edit src="source" task/]

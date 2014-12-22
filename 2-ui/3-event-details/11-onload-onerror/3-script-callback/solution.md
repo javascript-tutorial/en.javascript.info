@@ -16,4 +16,3 @@ s.parentNode.insertBefore(script, s); // перед ним и вставим
 
 # Решение
 
-[edit src="solution"]Открыть в песочнице[/edit]

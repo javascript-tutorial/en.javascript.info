@@ -37,5 +37,5 @@ showNotification({
 
 Элемент уведомления должен иметь CSS-класс `notification`, к которому добавляется класс из `options.className`, если есть. Исходный документ содержит готовые стили.
 
-[edit src="source" task/]
+
 

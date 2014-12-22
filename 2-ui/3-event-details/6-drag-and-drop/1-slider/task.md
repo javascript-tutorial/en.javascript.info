@@ -9,7 +9,7 @@
 
 Позже к этому слайдеру можно будет добавить дополнительные функции по чтению/установке значения.
 
-[edit src="source" task/] ([getCoords](#getCoords) -- в lib.js).
+ ([getCoords](#getCoords) -- в lib.js).
 
 Важно:
 <ul>

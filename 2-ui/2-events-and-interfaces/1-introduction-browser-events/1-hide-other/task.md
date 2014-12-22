@@ -7,4 +7,4 @@
 Демо:
 [iframe border=1 src="solution"]
 
-[edit src="source" task/]
+

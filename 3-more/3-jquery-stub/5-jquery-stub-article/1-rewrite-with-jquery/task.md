@@ -4,4 +4,3 @@
 
 Перепишите делегирование на jQuery.
 
-[edit src="source" task/]

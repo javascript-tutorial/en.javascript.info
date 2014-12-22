@@ -6,6 +6,6 @@
 
 [iframe src="solution" height=90]
 
-[edit src="source" task/]
+
 
 При клике плейсхолдер просто исчезает и дальше не показывается.

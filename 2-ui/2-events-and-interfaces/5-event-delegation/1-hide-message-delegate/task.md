@@ -9,4 +9,3 @@
 В результате, должно работать вот так(кликните на крестик):
 [iframe src="solution" height=500]
 
-[edit src="source" task/]

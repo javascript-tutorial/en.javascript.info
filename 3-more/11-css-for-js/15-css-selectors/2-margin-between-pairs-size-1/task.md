@@ -35,4 +35,3 @@ body {
 Результат:
 [iframe src="solution" border=1 link]
 
-[edit src="source" task/]

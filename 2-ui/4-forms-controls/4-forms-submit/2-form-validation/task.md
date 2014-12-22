@@ -13,5 +13,5 @@
 Ошибка должна сопровождаться сообщением у поля. Например:
 [iframe height=280 src="solution"]
 
- [edit src="source" task/]
+ 
 

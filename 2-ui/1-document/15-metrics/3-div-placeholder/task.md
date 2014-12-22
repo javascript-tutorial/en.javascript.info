@@ -44,7 +44,7 @@ div.style.right = div.style.top = 0;
 
 [iframe height=140 src="solution"]
 
-[edit src="source" task/]
+
 
 
 

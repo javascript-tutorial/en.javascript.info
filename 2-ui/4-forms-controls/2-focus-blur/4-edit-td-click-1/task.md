@@ -15,4 +15,3 @@
 
 [iframe src="solution"]
 
-[edit src="source" task/]

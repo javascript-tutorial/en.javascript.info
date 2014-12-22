@@ -5,4 +5,3 @@
 <li>По `keydown` отслеживаем нажатие с `keyCode = 13` ([key Enter]) с `shiftKey` и трансформируем ячейку обратно.</li>
 </ol>
 
-[edit src="solution"]Открыть в песочнице[/edit]

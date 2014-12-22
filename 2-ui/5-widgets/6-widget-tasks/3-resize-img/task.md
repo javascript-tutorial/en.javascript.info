@@ -26,4 +26,3 @@ $(resizeMe).on("resize", function(e) {
 
 В исходном документе есть ссылка на <a href="http://js.cx/clipart/handle-se.png">картинку handle-se.png</a> для правого-нижнего угла.
 
-[edit src="source" task/]

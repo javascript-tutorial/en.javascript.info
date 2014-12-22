@@ -31,4 +31,4 @@ showPrompt("Введите что-нибудь<br>... умное :)", function(v
 
 Исходный HTML/CSS для формы с готовым fixed-позиционированием:
 
-[edit src="source" task/]
+

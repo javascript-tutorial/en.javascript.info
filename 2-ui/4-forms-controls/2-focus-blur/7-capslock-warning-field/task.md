@@ -8,4 +8,3 @@
 
 [iframe height=80 src="solution"]
 
-[edit src="source" task/]

@@ -14,7 +14,7 @@
 Демо:
 [iframe border="1" src="solution"]
 
-[edit src="source" task/]
+
 
 P.S. В этой задаче можно считать, что в элементах списка может быть только текст, без вложенных тегов. 
 P.P.S. Обработка одновременного нажатия <code class="key">Ctrl</code>(<code class="key">Cmd</code>) и <code class="key">Shift</code> может быть любой.

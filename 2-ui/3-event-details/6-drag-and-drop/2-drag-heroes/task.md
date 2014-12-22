@@ -8,6 +8,6 @@
 
 [demo src="solution"] 
 
-[edit src="source" task/]
+
 
 P.S. Для вашего удобства добавлены функции `getCoords` --  для координат и `getDocumentScroll` -- для получения границ видимой области и прокрутки в документе.

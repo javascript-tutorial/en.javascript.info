@@ -15,4 +15,4 @@
 
 [iframe src="solution" height=40]
 
-[edit src="source" task/]
+

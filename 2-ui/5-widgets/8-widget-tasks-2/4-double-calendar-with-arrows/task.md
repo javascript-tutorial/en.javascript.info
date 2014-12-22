@@ -42,6 +42,6 @@ $(datePicker).on("select", function(e) {
 Пример в действии:
 [iframe border=1 src="solution"]
 
-[edit src="source" task/]
+
 
 **В решении используйте готовый компонент -- календарь из задачи [](/task/calendar).**

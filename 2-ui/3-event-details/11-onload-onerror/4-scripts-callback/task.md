@@ -19,5 +19,5 @@ addScripts(["a.js", "b.js", "c.js"], function() { a() });
 
 Исходный содержит скрипты `a.js`, `b.js`, `c.js`: 
 
-[edit src="source" task/]
+
 

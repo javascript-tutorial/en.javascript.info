@@ -22,4 +22,3 @@ clock.stop();  // стоп
 Пример результата:
 [iframe src="solution" border=1]
 
-[edit src="source" task/]

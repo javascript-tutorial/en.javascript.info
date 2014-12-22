@@ -22,4 +22,4 @@
 Результат:
 [iframe src="solution" height=60 border=1]
 
-[edit src="source" task/]
+

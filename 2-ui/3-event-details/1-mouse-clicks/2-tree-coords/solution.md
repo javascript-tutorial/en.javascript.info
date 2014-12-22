@@ -26,4 +26,3 @@ var isClickOnTitle = (elem == span);
 
 # Решение
 
-[edit src="solution"]Открыть в песочнице[/edit]

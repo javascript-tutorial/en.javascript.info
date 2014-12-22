@@ -9,4 +9,4 @@
 
 Как лучше отобразить кнопку справа-сверху: через `position:absolute` или `float`?
 
-[edit src="source" task/]
+

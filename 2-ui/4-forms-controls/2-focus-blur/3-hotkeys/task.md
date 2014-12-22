@@ -9,5 +9,5 @@
 
 [demo src="solution"].
 
-[edit src="source" task/]
+
 
