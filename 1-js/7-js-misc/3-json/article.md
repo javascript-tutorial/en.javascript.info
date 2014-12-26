@@ -53,7 +53,7 @@ alert( numbers[1] ); // 1
 
 ```js
 //+ run
-var user = '{ "name": "Вася", "age": 35, "isAdmin": false, friends: [0,1,2,3] }';
+var user = '{ "name": "Вася", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
 
 user = JSON.parse(user);
 
@@ -282,7 +282,7 @@ var user = {
 
 *!*
 var str = JSON.stringify(user, function(key, value) {
-  if (key == 'elem') return undefined;
+  if (key == 'window') return undefined;
   return value;
 } );
 */!*
@@ -290,7 +290,7 @@ var str = JSON.stringify(user, function(key, value) {
 alert(str); // {"name":"Вася","age":25}
 ```
 
-В примере выше функция пропустит свойство с названием `elem`. Для остальных она просто возвращает значение, передавая его стандартному алгоритму. А могла бы и как-то обработать.
+В примере выше функция пропустит свойство с названием `window`. Для остальных она просто возвращает значение, передавая его стандартному алгоритму. А могла бы и как-то обработать.
 
 **Функция `replacer` работает рекурсивно.**
 
