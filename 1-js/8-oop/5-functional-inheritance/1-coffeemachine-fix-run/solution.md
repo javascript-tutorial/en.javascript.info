@@ -12,4 +12,4 @@ this.run = function() {
 };
 ```
 
-[edit src="solution" /]
+

@@ -8,4 +8,3 @@
 
 # Решение
 
-[edit src="solution"/]

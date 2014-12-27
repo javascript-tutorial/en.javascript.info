@@ -73,4 +73,3 @@ var regions = [
 
 # Решение
 
-[edit src="solution"/]

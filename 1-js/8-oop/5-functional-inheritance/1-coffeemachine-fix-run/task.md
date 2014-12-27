@@ -19,4 +19,3 @@ coffeeMachine.enable();
 coffeeMachine.run(); // ...Кофе готов!
 ```
 
-[edit src="source" task /]

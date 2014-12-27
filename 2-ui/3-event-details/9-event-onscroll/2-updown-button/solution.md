@@ -92,4 +92,3 @@ updownElem.onclick = function() {
 }
 ```
 
-[edit src="solution"/]

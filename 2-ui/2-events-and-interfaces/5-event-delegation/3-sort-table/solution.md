@@ -18,4 +18,3 @@
 
 # Решение
 
-[edit src="solution"/]

@@ -26,4 +26,3 @@ value = Math.round( newLeft / pixelsPerValue);
 
 # Полное решение
 
-[edit src="solution"/]
