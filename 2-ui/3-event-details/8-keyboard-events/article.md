@@ -331,9 +331,7 @@ keyup
 Для работы с вводом в формы, существуют [события для форм](/events-change), которые мы разберём позже. Их можно использовать как отдельно от событий клавиатуры, так и вместе с ними.
  
 [head]
-<style>
-
-##scan-codes th, #scan-codes td {
+<style> #scan-codes th, #scan-codes td {
   text-align: center;
 }
 </style>
