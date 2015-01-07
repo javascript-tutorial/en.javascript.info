@@ -35,8 +35,8 @@
 <li>[http://help.dottoro.com]() -- содержит подробную информацию по HTML/CSS/JavaScript.</li>
 <li>[http://javascript.ru/manual]() -- справочник по JavaScript на русском языке, он содержит основную информацию по языку, без функций для работы с документом. К нему можно обращаться и по адресу, если знаете, что искать. Например, так: [http://javascript.ru/RegExp]().
 </li>
-<li>[http://www.quirksmode.org]() -- информация о поддержке тех или иных возможностей и несовместимостях. 
-Для поиска можно пользоваться комбинацией **"quirksmode onkeypress"** в Google.
+<li>[http://www.quirksmode.org]() -- информация о браузерных несовместимостях. Этот ресурс сам по себе довольно старый и, в первую очередь, полезен для поддержки устаревших браузеров. Для поиска можно пользоваться комбинацией **"quirksmode onkeypress"** в Google. </li>
+<li>[http://caniuse.com]() -- ресурс о поддержке браузерами новейших возможностях HTML/CSS/JavaScript. Например, для поддержки функций криптографии: [http://caniuse.com/#feat=cryptography]().
 </li>
 </ol>
 
@@ -48,9 +48,9 @@
 
 ### Спецификация ECMAScript
 
-Спецификация (формальное описание синтаксиса, базовых объектов и алгоритмов) языка Javascript называется <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMAScript</a>. 
+Спецификация (формальное описание синтаксиса, базовых объектов и алгоритмов) языка Javascript называется [ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-Ее перевод есть на сайте в разделе [стандарт языка](http://javascript.ru/ecma).
+Ее перевод есть на сайте в разделе [стандарт языка](http://es5.javascript.ru/).
 
 [smart header="Почему не просто &quot;JavaScript&quot; ?"]
 Вы можете спросить: "Почему спецификация для JavaScript не называется просто *"JavaScript"*, зачем существует какое-то отдельное название?"
@@ -62,21 +62,21 @@
 
 Спецификация может рассказать многое о том, как работает язык, и является самым фундаментальным, доверенным источником информации.
 
-Мы живем во время, когда все быстро изменяется. Современный стандарт -- это <a href="http://www.ecma-international.org/publications/standards/Ecma-262.htm">ECMA-262 5.1</a> (или просто ES5), поддерживается всеми современными браузерами.
-
-Не за горами -- новая спецификация ES6, в которой предусмотрены еще много полезных возможностей, делающих разработку быстрее и веселее :)
-
-### Спецификации HTML/CSS 
+### Спецификации HTML/DOM/CSS 
 
 JavaScript -- язык общего назначения, поэтому в спецификации ECMAScript нет ни слова о браузерах. 
 
-Соответствующую информацию вы можете найти на сайте [w3.org](http://w3.org). Там расположены стандарты HTML, CSS и многие другие. 
+Главная организация, которая занимается HTML, CSS, XML и множеством других стандартов -- [Консорциум Всемирной паутины](https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D1%81%D0%BE%D1%80%D1%86%D0%B8%D1%83%D0%BC_%D0%92%D1%81%D0%B5%D0%BC%D0%B8%D1%80%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%83%D1%82%D0%B8%D0%BD%D1%8B) (World Wide Consortium, сокращённо W3C).
 
-К сожалению, найти в этой куче то, что нужно, может быть нелегко, особенно когда неизвестно в каком именно стандарте искать. Самый лучший способ -- попросить Google с указанием сайта. 
+Информацию о них можно найти на сайте [w3.org](http://w3.org). К сожалению, найти в этой куче то, что нужно, может быть нелегко, особенно когда неизвестно в каком именно стандарте искать. Самый лучший способ -- попросить Google с указанием сайта. 
 
 Например, для поиска `document.cookie` набрать [document.cookie site:w3.org](https://www.google.com/search?q=document.cookie+site%3Aw3.org). 
 
 Последние версии стандартов расположены на домене [dev.w3.org](http://dev.w3.org).
+
+Кроме того, в том, что касается HTML5 и DOM/CSS, W3C активно использует наработки другой организации: [WhatWG](https://whatwg.org/), поэтому самые актуальные версии спецификаций по этим темам обычно находятся на [https://whatwg.org/specs/](). 
+
+Иногда бывает так, что информация на сайте [http://dev.w3.org]() отличается от [http://whatwg.org](). В этом случае, как правило, следует руководствоваться [http://whatwg.org]().
 
 ## Итого
 
@@ -100,12 +100,19 @@ Google-комбо: `"RegExp site:javascript.ru"`.
 
 <ul>
 <li>JavaScript, современный стандарт [ES5 (англ)](http://www.ecma-international.org/publications/standards/Ecma-262.htm), и предыдущий [ES3 (рус)](http://javascript.ru/ecma).</li>
-<li>HTML/DOM/CSS -- на сайте [w3.org](http://www.w3.org).
+<li>HTML/DOM/CSS -- на сайте [http://w3.org](http://www.w3.org).
 Google-комбо: `"document.cookie site:w3.org"`.</li>
+<li>...А самые последние версии стандартов -- на [http://dev.w3.org]() и на [http://whatwg.org/specs/](https://whatwg.org/specs/).</li>
 </ul>
 
 То, как оно на самом деле работает и несовместимости:
 
 <ul>
-<li>Смотрите <a href="http://www.quirksmode.org/">http://www.quirksmode.org/</a>. Google-комбо: `"innerHeight quirksmode"`.</li>
+<li>[http://quirksmode.org/](). Google-комбо: `"innerHeight quirksmode"`.</li>
+</ul>
+
+Поддержка современных и новейших возможностей браузерами:
+
+<ul>
+<li>[http://caniuse.com](). Google-комбо: `"caniuse geolocation"`.</li>
 </ul>
