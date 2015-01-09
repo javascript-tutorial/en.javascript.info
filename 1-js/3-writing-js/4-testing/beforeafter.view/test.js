@@ -1,7 +1,7 @@
 describe("Тест", function() {
 
-  before(function() { alert("Начало тестов"); });
-  after(function() { alert("Конец тестов"); });
+  before(function() { alert("Начало всех тестов"); });
+  after(function() { alert("Окончание всех тестов"); });
 
   beforeEach(function() { alert("Вход в тест"); });
   afterEach(function() { alert("Выход из теста"); });
