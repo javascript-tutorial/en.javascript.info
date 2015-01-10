@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="366px" height="103px" viewBox="0 0 366 103" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>Diagrams</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="variable-copy-value" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M43.5,45 L145.5,45" id="Line-2" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M1.5,101.5 L43.5,45.5" id="Line" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M132.5,100.5 L174.5,44.5" id="Line-3" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M43.5,5 L175.5,5" id="Line-7" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M1.5,61.5 L43.5,5.5" id="Line-8" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M132.5,61.5 L174.5,5.5" id="Line-9" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M43,45.5 L43,5.5" id="Line-4" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <rect id="Rectangle-2" stroke="#979797" stroke-width="2" fill="#E8E8E8" sketch:type="MSShapeGroup" transform="translate(81.959003, 36.776161) rotate(47.000000) translate(-81.959003, -36.776161) " x="42" y="24.247795" width="79.918006" height="25.0567324"></rect>
+        <text id="&quot;Привет&quot;" sketch:type="MSTextLayer" transform="translate(85.693270, 38.500000) rotate(47.000000) translate(-85.693270, -38.500000) " font-family="Open Sans" font-size="14" font-weight="normal" fill="#373535">
+            <tspan x="54.6932699" y="44">"Привет"</tspan>
+        </text>
+        <path d="M175,44 L175,5.5" id="Line-5" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <rect id="Rectangle-4" stroke="#979797" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="62" width="133" height="40"></rect>
+        <g id="Rectangle-3-+-Oval-1-+-message" sketch:type="MSLayerGroup" transform="translate(37.000000, 75.000000)">
+            <rect id="Rectangle-3" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="63" height="16"></rect>
+            <circle id="Oval-1" stroke="#979797" sketch:type="MSShapeGroup" cx="3.5" cy="3.5" r="1.5"></circle>
+            <text id="message" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
+                <tspan x="7" y="12">message</tspan>
+            </text>
+        </g>
+        <path d="M232.5,45 L334.5,45" id="Line-6" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M190.5,101.5 L232.5,45.5" id="Line-10" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M321.5,100.5 L363.5,44.5" id="Line-11" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M232.5,5 L364.5,5" id="Line-12" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M190.5,61.5 L232.5,5.5" id="Line-13" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M321.5,61.5 L363.5,5.5" id="Line-14" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <path d="M232,45.5 L232,5.5" id="Line-15" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <rect id="Rectangle-5" stroke="#979797" stroke-width="2" fill="#E8E8E8" sketch:type="MSShapeGroup" transform="translate(270.959003, 36.776161) rotate(47.000000) translate(-270.959003, -36.776161) " x="231" y="24.247795" width="79.918006" height="25.0567324"></rect>
+        <text id="&quot;Привет&quot;" sketch:type="MSTextLayer" transform="translate(274.693270, 38.500000) rotate(47.000000) translate(-274.693270, -38.500000) " font-family="Open Sans" font-size="14" font-weight="normal" fill="#373535">
+            <tspan x="243.69327" y="44">"Привет"</tspan>
+        </text>
+        <path d="M364,44 L364,5.5" id="Line-16" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+        <rect id="Rectangle-6" stroke="#979797" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" x="189" y="62" width="133" height="40"></rect>
+        <g id="Rectangle-3-+-Oval-1-+-message-2" sketch:type="MSLayerGroup" transform="translate(226.000000, 75.000000)">
+            <rect id="Rectangle-3" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="63" height="16"></rect>
+            <circle id="Oval-1" stroke="#979797" sketch:type="MSShapeGroup" cx="3.5" cy="3.5" r="1.5"></circle>
+            <text id="phrase" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
+                <tspan x="10" y="12">phrase</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

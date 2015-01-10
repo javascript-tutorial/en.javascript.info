@@ -23,7 +23,7 @@ var list = {
 ```
 
 Графическое представление этого списка:
-<img src="linkedlist.png">
+<img src="linked-list.svg">
 
 Альтернативный способ создания:
 
