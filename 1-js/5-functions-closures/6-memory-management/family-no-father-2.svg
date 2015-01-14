@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120px" height="203px" viewBox="0 0 120 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>family-no-father-2</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="family-no-father-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="18" y="18" width="80" height="30"></rect>
+        <text id="window" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="18" y="11">window</tspan>
+        </text>
+        <text id="Корень" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="35" y="37">Корень</tspan>
+        </text>
+        <rect id="Rectangle-2" stroke="#979797" fill="#E8E8E8" sketch:type="MSShapeGroup" x="18" y="85" width="80" height="28"></rect>
+        <text id="Object" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="35" y="102">Object</tspan>
+        </text>
+        <text id="family" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="3" y="69">family</tspan>
+        </text>
+        <rect id="Rectangle-4" stroke="#979797" fill="#E8E8E8" sketch:type="MSShapeGroup" x="0" y="153" width="120" height="50"></rect>
+        <text id="name:-&quot;Мария&quot;" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="23" y="191">name: "Мария"</tspan>
+        </text>
+        <text id="mother" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="5" y="136">mother</tspan>
+        </text>
+        <text id="Object-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="37" y="171">Object</tspan>
+        </text>
+        <path d="M59.5,50.5 L59.5,81.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M59.5,81.5 C60.55,77.72 61.45,74.48 62.5,70.7 C60.4,70.7 58.6,70.7 56.5,70.7 C57.55,74.48 58.45,77.72 59.5,81.5 C59.5,81.5 59.5,81.5 59.5,81.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M58.5,117.5 L58.5,149.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M58.5,149.5 C59.55,145.72 60.45,142.48 61.5,138.7 C59.4,138.7 57.6,138.7 55.5,138.7 C56.55,142.48 57.45,145.72 58.5,149.5 C58.5,149.5 58.5,149.5 58.5,149.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+    </g>
+</svg>

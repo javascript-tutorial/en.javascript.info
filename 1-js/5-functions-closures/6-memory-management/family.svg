@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="329px" height="203px" viewBox="0 0 329 203" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>family</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="family" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <path d="M188.5,196.5 L129.5,196.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M129.5,196.5 C133.28,197.55 136.52,198.45 140.3,199.5 C140.3,197.4 140.3,195.6 140.3,193.5 C136.52,194.55 133.28,195.45 129.5,196.5 C129.5,196.5 129.5,196.5 129.5,196.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="118" y="18" width="80" height="30"></rect>
+        <text id="window" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="118" y="11">window</tspan>
+        </text>
+        <text id="Корень" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="135" y="37">Корень</tspan>
+        </text>
+        <rect id="Rectangle-2" stroke="#979797" fill="#E8E8E8" sketch:type="MSShapeGroup" x="118" y="85" width="80" height="28"></rect>
+        <text id="Object" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="135" y="102">Object</tspan>
+        </text>
+        <rect id="Rectangle-3" stroke="#979797" fill="#E8E8E8" sketch:type="MSShapeGroup" x="0" y="153" width="120" height="50"></rect>
+        <text id="Object-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="35" y="171">Object</tspan>
+        </text>
+        <text id="father" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="31" y="133">father</tspan>
+        </text>
+        <text id="wife" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="143" y="154">wife</tspan>
+        </text>
+        <text sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="103" y="69">family</tspan>
+        </text>
+        <text id="name:-&quot;Василий&quot;" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="15" y="191">name: "Василий"</tspan>
+        </text>
+        <rect id="Rectangle-4" stroke="#979797" fill="#E8E8E8" sketch:type="MSShapeGroup" x="209" y="153" width="120" height="50"></rect>
+        <text id="name:-&quot;Мария&quot;" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" fill="#000000">
+            <tspan x="226" y="191">name: "Мария"</tspan>
+        </text>
+        <text id="mother" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="238" y="133">mother</tspan>
+        </text>
+        <text id="Object-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="240" y="171">Object</tspan>
+        </text>
+        <path d="M159.5,50.5 L159.5,81.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M159.5,81.5 C160.55,77.72 161.45,74.48 162.5,70.7 C160.4,70.7 158.6,70.7 156.5,70.7 C157.55,74.48 158.45,77.72 159.5,81.5 C159.5,81.5 159.5,81.5 159.5,81.5 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M110.5,118.5 L64.5,150.5" id="Line-2" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-2-decoration-1" d="M64.5293087,150.479611 C68.2319481,149.182938 71.405639,148.071504 75.1082783,146.77483 C73.9090429,145.05093 72.8811268,143.5733 71.6818914,141.849399 C69.1784875,144.869973 67.0327127,147.459037 64.5293087,150.479611 C64.5293087,150.479611 64.5293087,150.479611 64.5293087,150.479611 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+        <path d="M129.5,162.5 L190.5,162.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#9B9B9B" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M190.5,162.5 C186.72,161.45 183.48,160.55 179.7,159.5 C179.7,161.6 179.7,163.4 179.7,165.5 C183.48,164.45 186.72,163.55 190.5,162.5 C190.5,162.5 190.5,162.5 190.5,162.5 Z" stroke="#979797" stroke-linecap="square" fill="#9B9B9B"></path>
+        <text id="husband" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+            <tspan x="132" y="187">husband</tspan>
+        </text>
+        <path d="M204.5,118.5 L251.5,150.5" id="Line" stroke="#979797" stroke-linecap="square" fill="#979797" sketch:type="MSShapeGroup"></path>
+        <path id="Line-decoration-1" d="M250.789558,150.016295 C248.255943,147.021016 246.084274,144.453634 243.550659,141.458354 C242.368798,143.194213 241.355774,144.682091 240.173913,146.41795 C243.889389,147.677371 247.074082,148.756874 250.789558,150.016295 C250.789558,150.016295 250.789558,150.016295 250.789558,150.016295 Z" stroke="#979797" stroke-linecap="square" fill="#979797"></path>
+    </g>
+</svg>
