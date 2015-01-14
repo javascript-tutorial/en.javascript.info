@@ -13,7 +13,6 @@
 
 Пример кода (кроме IE10-):
 
-<div style="position:relative">
 ```js
 //+ run
 var animal = { eats: true };
@@ -27,8 +26,6 @@ rabbit.__proto__ = animal;
 alert(rabbit.jumps); // true
 alert(rabbit.eats); // true
 ```
-<div style="position:absolute;left:0;top:0;bottom:0;right:0"><img src="proto-animal-rabbit.svg"></div>
-</div>
 
 <ol>
 <li>Первый `alert` здесь работает очевидным образом -- он выводит свойство `jumps` объекта `rabbit`.</li>
@@ -37,18 +34,7 @@ alert(rabbit.eats); // true
 
 Иллюстрация происходящего при чтении `rabbit.eats` (поиск идет снизу вверх):
 
-```js
-var animal  = {
-  eats: true
-};
-
-var rabbit = {
-  jumps: true
-};
-```
-
-
-<img src="1.png">
+<img src="proto-animal-rabbit.svg">
 
 **Объект, на который указывает ссылка `__proto__`, называется *"прототипом"*. В данном случае получилось, что `animal` является прототипом для `rabbit`.**
 
@@ -72,38 +58,16 @@ alert(rabbit.eats); // false, свойство взято из rabbit
 
 **Другими словами, прототип -- это "резервное хранилище свойств и методов" объекта, автоматически используемое при поиске.**
 
+У объекта, который является `__proto__`, может быть свой `__proto__`, у того -- свой, и так далее. При этом свойства будут искаться по цепочке.
+
 [smart header="Ссылка __proto__ в спецификации"]
 Если вы будете читать спецификацию EcmaScript -- свойство `__proto__` обозначено в ней как `[[Prototype]]`. 
 
 Двойные квадратные скобки здесь важны, чтобы не перепутать его с совсем другим свойством, которое называется `prototype`, и которое мы рассмотрим позже.
 [/smart]
 
-
-## Цепочка прототипов
-
-У объекта, который является `__proto__`, может быть свой `__proto__`, у того -- свой, и так далее. 
-
-Например, цепочка наследования из трех объектов `donkey -> winnie -> owl`:
-
-```js
-//+ run
-var donkey = { /* ... */ };
-var winnie = { /* ... */ };
-var owl = { knowsAll: true };
-
-donkey.__proto__ = winnie;
-winnie.__proto__ = owl;
-
-*!*
-alert( donkey.knowsAll ); // true
-*/!*
-```
-
-Картина происходящего:
-
-<img src="donkey_winnie_owl.png">
  
-## Перебор свойств без прототипа
+## Метод hasOwnProperty
 
 Обычный цикл `for..in` не делает различия между свойствами объекта и его прототипа.
 
@@ -172,28 +136,28 @@ for (var key in rabbit) {
 }
 ```
 
+
 ## Методы для работы с __proto__
 
 В современных браузерах есть два дополнительных метода для работы с `__proto__`. Зачем они нужны, если есть `__proto__`? В общем-то, не очень нужны, но по историческим причинам тоже существуют.
 
 <dl>
-<dt>[Object.getPrototypeOf(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)</dt>
+<dt>Чтение: [Object.getPrototypeOf(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getPrototypeOf)</dt>
 <dd>Возвращает `obj.__proto__` (кроме IE8-)</dd>
-<dt>[Object.setPrototypeOf(obj, proto)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)</dt>
+<dt>Запись: [Object.setPrototypeOf(obj, proto)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/setPrototypeOf)</dt>
 <dd>Устанавливает `obj.__proto__ = proto` (кроме IE10-).</dd>
 </dl>
 
 Кроме того, есть ещё один вспомогательный метод:
-<dt>[Object.create(proto)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create)</dt>
-<dd>Создаёт пустой объект с `__proto__`, равным первому аргументу (кроме IE8-).</dd>
+<dt>Создание объекта с прототипом: [Object.create(proto, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create)</dt>
+<dd>Создаёт пустой объект с `__proto__`, равным первому аргументу (кроме IE8-), второй необязательный аргумент может содержать [дескрипторы свойств](/descriptors-getters-setters).</dd>
 </dl>
-
-Метод `Object.create` -- несколько более мощный, чем здесь описано, у него есть необязательный второй аргумент, который позволяет также задать другие свойства объекта, но используется он редко и пока что нам не нужен. Мы рассмотрим его позже, в главе [](/descriptors-getters-setters).
 
 ## Итого
 
+
 <ul>
-<li>Объекты в JavaScript можно организовать в цепочку при помощи специального свойства `__proto__`.</li>
+<li>В JavaScript есть встроенное "наследование" между объектами при помощи специального свойства `__proto__`.</li>
 <li>При установке свойства `rabbit.__proto__ = animal` говорят, что объект `animal` будет "прототипом" `rabbit`.</li>
 <li>При чтении свойства из объекта, если его в нём нет, оно ищется в `__proto__`. Прототип задействуется только при чтении свойства. Операции присвоения `obj.prop =` или удаления `delete obj.prop` совершаются всегда над самим объектом `obj`.</li>
 </ul>
@@ -205,12 +169,12 @@ for (var key in rabbit) {
 <ul>
 <li>[Object.getPrototypeOf(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) (кроме IE8-)</li>
 <li>[Object.setPrototypeOf(obj, proto)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/setPrototypeOf) (кроме IE10-)</li>
-<li>[Object.create(proto)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create) (кроме IE8-)</li>
+<li>[Object.create(proto, descriptors)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/create) (кроме IE8-)</li>
 </ul>
 
-Возможно, вас смущает недостаточная поддержка `__proto__` в старых IE. Но это временно. В последующих главах мы рассмотрим дополнительные методы работы с `__proto__`, включая те, которые работают везде.
+Возможно, вас смущает недостаточная поддержка `__proto__` в старых IE. Но это не страшно. В последующих главах мы рассмотрим дополнительные методы работы с `__proto__`, включая те, которые работают везде.
 
-Также мы рассмотрим, как свойство `__proto__` используется внутри самого языка JavaScript.
+Также мы рассмотрим, как свойство `__proto__` используется внутри самого языка JavaScript и как организовать классы с его помощью.
 
 
 
