@@ -13,6 +13,7 @@
 
 Пример кода (кроме IE10-):
 
+<div style="position:relative">
 ```js
 //+ run
 var animal = { eats: true };
@@ -26,13 +27,26 @@ rabbit.__proto__ = animal;
 alert(rabbit.jumps); // true
 alert(rabbit.eats); // true
 ```
+<div style="position:absolute;left:0;top:0;bottom:0;right:0"><img src="proto-animal-rabbit.svg"></div>
+</div>
 
 <ol>
 <li>Первый `alert` здесь работает очевидным образом -- он выводит свойство `jumps` объекта `rabbit`.</li>
 <li>Второй `alert` хочет вывести `rabbit.eats`, ищет его в самом объекте `rabbit`, не находит -- и продолжает поиск в объекте `rabbit.__proto__`, то есть, в данном случае, в `animal`.</li>
 </ol>
 
-Иллюстрация происходящего (поиск идет снизу вверх):
+Иллюстрация происходящего при чтении `rabbit.eats` (поиск идет снизу вверх):
+
+```js
+var animal  = {
+  eats: true
+};
+
+var rabbit = {
+  jumps: true
+};
+```
+
 
 <img src="1.png">
 
