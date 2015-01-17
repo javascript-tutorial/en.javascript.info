@@ -1,25 +1,29 @@
 # Наследование классов в JavaScript
 
-*Наследование* -- это когда мы на основе одного объекта создаём другой, который его расширяет: добавляет свои свойства, методы и так далее.
-
 Наследование на уровне объектов в JavaScript, как мы видели, реализуется через ссылку `__proto__`.
 
 Теперь поговорим о наследовании на уровне классов, то есть когда объекты, создаваемые, к примеру, через `new Admin`, должны иметь все методы, которые есть у объектов, создаваемых через `new User`, и ещё какие-то свои.
+
 [cut]
 
 ## Наследование Array от Object
 
-Примеры организации наследования мы встречаем среди встроенных типов JavaScript. Например, массивы, которые создаются при помощи `new Array` (или квадратных скобок `[...]`), используют методы из своего прототипа `Array.prototype`, а если их там нет -- то методы из родителя `Object.prototype`.
+Для реализации наследования в наших классах мы будем использовать тот же подход, который принят внутри JavaScript.
 
-Как JavaScript это организует?
+Взглянем на него ещё раз на примере `Array`, который наследует от `Object`:
 
-Очень просто: встроенный `Array.prototype` имеет ссылку `__proto__` на `Object.prototype`:
+<img src="class-inheritance-array-object.svg">
 
-<img src="array-object-prototype.png">
+<ul>
+<li>Методы массивов `Array` хранятся в `Array.prototype`.</li>
+<li>`Array.prototype` имеет прототипом `Object.prototype`.</li>
+</ul>
 
-То есть, как и раньше, методы хранятся в прототипах, а для наследования прототипы организованы в `__proto__`-цепочку.
+Поэтому когда экземпляры класса `Array` хотят получить метод массива -- они берут его из своего прототипа, например `Array.prototype.slice`. 
 
-Самый наглядный способ это увидеть -- запустить в консоли команду `console.dir([1,2,3])`.
+Если же нужен метод объекта, например, `hasOwnProperty`, то его в `Array.prototype` нет, и он берётся из `Object.prototype`.
+
+Отличный способ "потрогать это руками" -- запустить в консоли команду `console.dir([1,2,3])`.
 
 Вывод в Chrome будет примерно таким:
 
@@ -33,7 +37,7 @@
 
 ## Наследование в наших классах
 
-Применим тот же подход для наших классах. Объявим класс `Rabbit`, который будет наследовать от `Animal`.
+Применим тот же подход для наших классов: объявим класс `Rabbit`, который будет наследовать от `Animal`.
 
 Вначале создадим два этих класса по отдельности, они пока что будут совершенно независимы.
 
@@ -42,9 +46,8 @@
 ```js
 function Animal(name) {
   this.name = name;
+  this.speed = 0;
 }
-
-Animal.prototype.speed = 0;
 
 Animal.prototype.run = function(speed) {
   this.speed += speed;
@@ -62,6 +65,7 @@ Animal.prototype.stop = function() {
 ```js
 function Rabbit(name) {
   this.name = name;
+  this.speed = 0;
 }
 
 Rabbit.prototype.jump = function() {
@@ -76,15 +80,21 @@ var rabbit = new Rabbit('Кроль');
 
 Если ещё короче -- порядок поиска свойств и методов должен быть таким: `rabbit -> Rabbit.prototype -> Animal.prototype`, по аналогии с тем, как это сделано для объектов и массивов. 
 
-Для этого можно поставить ссылку `__proto__` явно: `Rabbit.prototype.__proto__ = Animal.prototype`. Но это не будет работать в IE10-. 
+Для этого можно поставить ссылку `__proto__` с `Rabbit.prototype` на `Animal.prototype`.
 
-Поэтому лучше используем функцию `Object.create`, благо она либо встроена либо легко эмулируется во всех браузерах.
+Можно сделать это так:
+```js
+Rabbit.prototype.__proto__ = Animal.prototype;
+```
 
-Класс `Animal` остаётся без изменений, а для `Rabbit` добавим установку `prototype`:
+Однако, прямой доступ к `__proto__` не поддерживается в IE10-, поэтому для поддержки этих браузеров мы используем функцию `Object.create`. Она либо встроена либо легко эмулируется во всех браузерах.
+
+Класс `Animal` остаётся без изменений, а `Rabbit.prototype` мы будем создавать с нужным прототипом, используя `Object.create`:
 
 ```js
 function Rabbit(name) {
   this.name = name;
+  this.speed = 0;
 }
 
 *!*
@@ -98,7 +108,16 @@ Rabbit.prototype.jump = function() { ... };
 
 Теперь выглядеть иерархия будет так:
 
-<img src="10.png">
+<img src="class-inheritance-rabbit-animal.svg">
+
+В `prototype` по умолчанию всегда находится свойство `constructor`, указывающее на функцию-конструктор. В частности, `Rabbit.prototype.constructor == Rabbit`. Если мы рассчитываем использовать это свойство, то при замене `prototype` через `Object.create` нужно его явно сохранить:
+
+```js
+Rabbit.prototype = Object.create(Animal.prototype);
+Rabbit.prototype.constructor = Rabbit;
+```
+
+## Полный код наследования
 
 Для наглядности -- вот итоговый код с двумя классами `Animal` и `Rabbit`:
 
@@ -106,10 +125,10 @@ Rabbit.prototype.jump = function() { ... };
 // 1. Конструктор Animal 
 function Animal(name) {
   this.name = name;
+  this.speed = 0;
 }
 
-// 1.1. Методы и свойства по умолчанию -- в прототип 
-Animal.prototype.speed = 0;
+// 1.1. Методы -- в прототип
 
 Animal.prototype.stop = function() {
   this.speed = 0;
@@ -125,10 +144,12 @@ Animal.prototype.run = function(speed) {
 // 2. Конструктор Rabbit
 function Rabbit(name) {
   this.name = name;
+  this.speed = 0;
 }
 
 // 2.1. Наследование
 Rabbit.prototype = Object.create(Animal.prototype);
+Rabbit.prototype.constructor = Rabbit;
 
 // 2.2. Методы Rabbit
 Rabbit.prototype.jump = function() {
@@ -141,26 +162,21 @@ Rabbit.prototype.jump = function() {
 
 Обратим внимание: `Rabbit.prototype = Object.create(proto)` присваивается сразу после объявления конструктора, иначе он перезатрёт уже записанные в прототип методы.
 
-[warn header="Альтернативный вариант: `Rabbit.prototype = new Animal`"]
+[warn header="Неправильный вариант: `Rabbit.prototype = new Animal`"]
 
-Можно унаследовать от `Animal` и по-другому:
+В некоторых устаревших руководствах предлагают вместо `Object.create(Animal.prototype)` записывать в прототип `new Animal`, вот так:
 
 ```js
 // вместо Rabbit.prototype = Object.create(Animal.prototype)
 Rabbit.prototype = new Animal();
 ```
 
-В этом случае мы получаем в прототипе не пустой объект с прототипом `Animal.prototype`, а полноценный `Animal`.
 
-Можно даже сконфигурировать его:
+Частично, он рабочий, поскольку иерархия прототипов будет такая же, ведь `new Animal` -- это объект с прототипом `Animal.prototype`, как и `Object.create(Animal.prototype)`. Они в этом плане идентичны.
 
-```js
-Rabbit.prototype = new Animal("Зверь номер два");
-```
+Но у этого подхода важный недостаток. Как правило мы не хотим создавать `Animal`, а хотим только унаследовать его методы!
 
-Теперь новые `Rabbit` будут создаваться на основе конкретного экземпляра `Animal`. Это интересная возможность, но  как правило мы не хотим создавать `Animal`, а хотим только унаследовать его методы!
-
-Более того, на практике создание объекта, скажем, меню `new Menu`, может иметь побочные эффекты, показывать что-то посетителю, и так далее, и этого мы хотели бы избежать. Поэтому рекомендуется использовать вариант с `Object.create`.
+Более того, на практике создание объекта может требовать обязательных аргументов, влиять на страницу в браузере, делать запросы к серверу и что-то ещё, чего мы хотели бы избежать. Поэтому рекомендуется использовать вариант с `Object.create`.
 [/warn]
 
 ## Вызов конструктора родителя
@@ -170,10 +186,12 @@ Rabbit.prototype = new Animal("Зверь номер два");
 ```js
 function Animal(name) {
   this.name = name;
+  this.speed = 0;
 }
 
 function Rabbit(name) {
   this.name = name;
+  this.speed = 0;
 }
 ```
 
@@ -206,20 +224,10 @@ Rabbit.prototype.run = function(speed) {
 
 Вызов `rabbit.run()` теперь будет брать `run` из своего прототипа:
 
-<img src="11.png">
+<img src="class-inheritance-rabbit-run-animal.svg">
 
-[smart]
-Кстати, можно назначить метод и на уровне конкретного объекта:
 
-```js
-rabbit.run = function() {
-  alert('Особый метод подпрыгивания для этого кролика');
-};
-```
-
-[/smart]
-
-### Вызов метода родителя после переопределения
+### Вызов метода родителя внутри своего
 
 Более частая ситуация -- когда мы хотим не просто заменить метод на свой, а взять метод родителя и расширить его. Скажем, кролик бежит так же, как и другие звери, но время от времени подпрыгивает.
 
@@ -230,13 +238,17 @@ rabbit.run = function() {
  
 Rabbit.prototype.run = function() {
 *!*
+  // вызвать метод родителя, передав ему текущие аргументы
   Animal.prototype.run.apply(this, arguments); 
-  this.jump();
 */!*
+  this.jump();
 }
 ```
 
-Обратите внимание на `apply` и явное указание контекста. Если вызвать просто `Animal.prototype.run()`, то в качестве `this` функция `run` получит `Animal.prototype`, а это неверно, нужен текущий объект.
+Обратите внимание на вызов через `apply` и явное указание контекста. 
+
+Если вызвать просто `Animal.prototype.run()`, то в качестве `this` функция `run` получит `Animal.prototype`, а это неверно, нужен текущий объект.
+
 
 ## Итого
 
@@ -277,44 +289,46 @@ Rabbit.prototype.run = function() {
 
 ```js
 //+ run
-// --------- *!*Класс-Родитель*/!* ------------
-// Конструктор родителя
+*!*
+// --------- Класс-Родитель ------------
+*/!*
+// Конструктор родителя пишет свойства конкретного объекта
 function Animal(name) {
   this.name = name;
+  this.speed = 0;
 }
 
-// Методы родителя 
-Animal.prototype.run= function() {
+// Методы хранятся в прототипе
+Animal.prototype.run = function() {
   alert(this + " бежит!")
 }
 
-Animal.prototype.toString = function() {
-  return this.name;
-}
-
-// --------- *!*Класс-потомок*/!* -----------
+*!*
+// --------- Класс-потомок -----------
+*/!*
 // Конструктор потомка
 function Rabbit(name) {
   Animal.apply(this, arguments);
 }
 
-// *!*Унаследовать*/!*
+// Унаследовать
 *!*
 Rabbit.prototype = Object.create(Animal.prototype);
 */!*
 
+// Желательно и constructor сохранить
+Rabbit.prototype.constructor = Rabbit;
+
 // Методы потомка
 Rabbit.prototype.run = function() { 
-  Animal.prototype.run.apply(this); // метод родителя вызвать
+  // Вызов метода родителя внутри своего
+  Animal.prototype.run.apply(this); 
   alert(this + " подпрыгивает!");  
 };
 
+// Готово, можно создавать объекты
 var rabbit = new Rabbit('Кроль');
-rabbit.run();
+rabbit.run(); 
 ```
 
-<ul>
-<li>Если метод или свойство начинается с `_`, то оно существует исключительно для внутренних нужд объекта, не нужно обращаться к нему из внешнего кода, но можно -- из методов объекта и наследников.</li>
-<li>Остальные свойства и методы -- публичные.</li>
-</ul>
 
