@@ -229,7 +229,7 @@ document.getElementById('my').onkeypress = function(e) {
 
 Перечислим их в таблице, обращая основное внимание на особенности работы с ними.
 
-<table class="bordered">
+<table>
 <tr>
   <th>Категория</th>
   <th>Примеры</th>

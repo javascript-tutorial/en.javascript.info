@@ -422,7 +422,7 @@ alert( document.body.getAttribute('AbBa') ); // что должен вернут
 
 Таблица сравнений для атрибутов и свойств:
 
-<table class="bordered">
+<table>
 <tr>
 <th>Свойства</th>
 <th>Атрибуты</th>

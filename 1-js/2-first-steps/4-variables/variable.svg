@@ -1,28 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="179px" height="105px" viewBox="0 0 179 105" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+<svg width="148px" height="128px" viewBox="0 0 148 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
     <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>Diagrams</title>
+    <title>variable</title>
     <desc>Created with Sketch.</desc>
     <defs></defs>
-    <g id="Variable-box" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <path d="M44.5,46 L146.5,46" id="Line-2" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M2.5,102.5 L44.5,46.5" id="Line" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M133.5,101.5 L175.5,45.5" id="Line-3" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M44.5,6 L176.5,6" id="Line-7" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M2.5,62.5 L44.5,6.5" id="Line-8" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M133.5,62.5 L175.5,6.5" id="Line-9" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <path d="M44,46.5 L44,6.5" id="Line-4" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <rect id="Rectangle-2" stroke="#979797" stroke-width="2" fill="#E8E8E8" sketch:type="MSShapeGroup" transform="translate(82.959003, 37.776161) rotate(47.000000) translate(-82.959003, -37.776161) " x="43" y="25.247795" width="79.918006" height="25.0567324"></rect>
-        <text id="&quot;Hello!&quot;" sketch:type="MSTextLayer" transform="translate(86.193270, 39.500000) rotate(47.000000) translate(-86.193270, -39.500000) " font-family="Open Sans" font-size="14" font-weight="normal" fill="#373535">
-            <tspan x="61.6932699" y="45">"Hello!"</tspan>
-        </text>
-        <path d="M176,45 L176,6.5" id="Line-5" stroke="#979797" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-        <rect id="Rectangle-4" stroke="#979797" stroke-width="2" fill="#FFFFFF" sketch:type="MSShapeGroup" x="1" y="63" width="133" height="40"></rect>
-        <g id="Rectangle-3-+-Oval-1-+-message" sketch:type="MSLayerGroup" transform="translate(38.000000, 76.000000)">
-            <rect id="Rectangle-3" stroke="#979797" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="63" height="16"></rect>
-            <circle id="Oval-1" stroke="#979797" sketch:type="MSShapeGroup" cx="3.5" cy="3.5" r="1.5"></circle>
-            <text id="message" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#373535">
-                <tspan x="7" y="12">message</tspan>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="variable" sketch:type="MSArtboardGroup" transform="translate(-161.000000, -71.000000)">
+            <g id="noun_1211_cc" sketch:type="MSLayerGroup" transform="translate(161.000000, 71.000000)">
+                <path d="M17,37.1960457 L129.557785,37.1960457 L129.557785,80.1456641 C129.557785,80.5185728 129.479295,81.0083855 129.279367,81.4404861 C129.07944,81.8725868 112.704625,117 112.704625,117 L112.704625,62.6396695 L129.559266,37.1960457 L148,9 L35.4407339,9 L17,37.1960457 L17,37.1960457 Z" id="Shape" fill="#BCA68E" sketch:type="MSShapeGroup"></path>
+                <path d="M17,66 L17,38 L2,66" id="Shape" fill="#BCA68E" sketch:type="MSShapeGroup"></path>
+                <g id="Rectangle-5-+-&quot;World!&quot;" transform="translate(15.000000, 0.000000)">
+                    <path d="M18.9106925,0.395208397 L73.4146415,58.8435379 L55.0893075,75.9321883 L0.585358502,17.4838588 L18.9106925,0.395208397 L18.9106925,0.395208397 Z" id="Rectangle-5" stroke="#8A704D" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup"></path>
+                    <text id="&quot;Hello!&quot;" sketch:type="MSTextLayer" transform="translate(39.885486, 40.782373) rotate(47.000000) translate(-39.885486, -40.782373) " font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+                        <tspan x="10.392998" y="46.2823729">"Hello!"</tspan>
+                    </text>
+                </g>
+                <path d="M0,68 L0,122.729971 C0,126.150501 1.4836395,128 4.38712201,128 L104.473443,128 C107.59502,128 110,125.4521 110,124.524372 L110,68 L0,68 L0,68 Z" id="Shape" fill="#BCA68E" sketch:type="MSShapeGroup"></path>
+            </g>
+            <text id="Message" sketch:type="MSTextLayer" font-family="Open Sans" font-size="18" font-weight="526" fill="#FFFFFF">
+                <tspan x="178" y="176">Message</tspan>
             </text>
         </g>
     </g>

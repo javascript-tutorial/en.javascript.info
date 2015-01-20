@@ -169,7 +169,7 @@ var timer = document.createElement("button", "my-timer");
 
 Следующие методы автоматически вызываются во время жизненного цикла элемента:
 
-<table class="bordered">
+<table>
 <tr><td>`createdCallback`</td><td>Элемент создан</td></tr>
 <tr><td>`attachedCallback`</td><td>Элемент добавлен в документ</td></tr>
 <tr><td>`detachedCallback`</td><td>Элемент удалён из документа</td></tr>

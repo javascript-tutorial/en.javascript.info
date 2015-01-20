@@ -147,7 +147,7 @@ var formatter = new Intl.DateFormatter([locales, [options] ])
 Первый аргумент -- такой же, как и в `Collator`, а в объекте `options` мы можем определить, какие именно части даты показывать (часы, месяц, год...) и в каком формате.
 
 Полный список свойств `options`:
-<table class="bordered">
+<table>
 <tr>
     <th>Свойство</th>
     <th>Описание</th>
@@ -321,7 +321,7 @@ formatter.format(number); // форматирование
 
 Список опций:
 
-<table class="bordered">
+<table>
 <tr>
     <th>Свойство </th>
     <th>Описание </th>

@@ -51,7 +51,7 @@ var a = +"123"; // 123
 var a = Number("123"); // 123, тот же эффект
 ```
 
-<table class="bordered">
+<table>
 <tr><th>Значение</th><th>Преобразуется в...</th></tr>
 <tr><td>`undefined`</td><td>`NaN`</td></tr>
 <tr><td>`null`</td><td>`0`</td></tr>

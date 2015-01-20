@@ -175,7 +175,7 @@ function showCount() {
 
 События изменения данных:
 
-<table class="bordered">
+<table>
 <tr>
 <th>Событие</th>
 <th>Описание</th>

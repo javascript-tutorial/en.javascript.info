@@ -25,7 +25,7 @@
 
 Они были детально рассмотрены в предыдущих главах раздела.
 
-<table class="bordered">
+<table>
 <tr>
 <th></th>
 <th>`XMLHttpRequest`</th>

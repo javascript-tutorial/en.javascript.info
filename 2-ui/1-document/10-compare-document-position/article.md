@@ -194,7 +194,7 @@ function compareDocumentPosition(a, b) {
 ```
 
 Список битовых масок для проверки:
-<table class="bordered">
+<table>
 <tr>
 <th>Биты</th>
 <th>Число</th>

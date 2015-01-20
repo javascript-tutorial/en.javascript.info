@@ -370,10 +370,10 @@ SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler
 
 Но, в остальном, это совершенно разные вещи.
 
-<table class="bordered">
+<table>
 <thead>
-<th style="text-align:center">Экстерн</th>
-<th style="text-align:center">Экспорт</th>
+<th>Экстерн</th>
+<th>Экспорт</th>
 </thead>
 <tbody>
 <tr>
