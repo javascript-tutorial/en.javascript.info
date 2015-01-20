@@ -1,23 +1,28 @@
-# Введение в JavaScript
+# JavaScript Intoduction
 
-Давайте посмотрим, что такого особенного в JavaScript, почему именно он, и какие еще технологии существуют, кроме JavaScript.
+Let's see what's so special about JavaScript, what we can achieve with it and what other technologies coexist with it.
 
-## Что такое JavaScript?   
+## What is JavaScript?   
 
-*JavaScript* изначально создавался для того, чтобы сделать web-странички "живыми".  
-Программы на этом языке называются *скриптами*. Они подключаются напрямую к HTML и, как только загружается страничка -- тут же выполняются.
+*JavaScript* was initially created to *make webpages live".
 
-**Программы на JavaScript -- обычный текст**. Они не требуют какой-то специальной подготовки.
+The programs in this language are called *scripts*. They are put directly into HTML and execute automatically as it loads.
 
-В этом плане JavaScript сильно отличается от другого языка, который называется [Java](http://ru.wikipedia.org/wiki/Java).
+**Scripts are provided and executed a plain text.**. 
 
-[smart header="Почему <u>Java</u>Script?"]
-Когда создавался язык JavaScript, у него изначально было другое название: "LiveScript". Но тогда был очень популярен язык Java, и маркетологи решили, что схожее название сделает новый язык более популярным.
+They don't need a special preparation or compilation to run.
 
-Планировалось, что JavaScript будет эдаким "младшим братом" Java. Однако, история распорядилась по-своему, JavaScript сильно вырос, и сейчас это совершенно независимый язык, со своей спецификацией, которая называется [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), и к Java не имеет никакого отношения.
+In this aspect, JavaScript is very different from another language called [Java](http://en.wikipedia.org/wiki/Java).
 
-У него много особенностей, которые усложняют освоение, но по ходу учебника мы с ними разберемся.
+[smart header="Why <u>Java</u>Script?"]
+When JavaScript was created, it initially had another name: "LiveScript". But Java language was very popular at that time and it was decided that positioning a new language as a "younger brother" to Java would help.
+
+But as it evolved, JavaScript became a fully independent language, with its specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and has no relation to Java altogether.
+
+It has quite a few special features that make mastering it a bit hard at first, but we'll deal with them as the tutorial goes on.
 [/smart]
+
+
 
 Чтобы читать и выполнять текст на JavaScript, нужна специальная программа -- [интерпретатор](http://ru.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%82%D0%BE%D1%80). Процесс выполнения скрипта называют *"интерпретацией"*.
 
