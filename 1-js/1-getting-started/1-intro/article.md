@@ -22,46 +22,44 @@ But as it evolved, JavaScript became a fully independent language, with its spec
 It has quite a few special features that make mastering it a bit hard at first, but we'll deal with them as the tutorial goes on.
 [/smart]
 
+JavaScript can execute not only in the browser, but anywhere, with the help of a special program called [an interpreter]("http://en.wikipedia.org/wiki/Interpreter_(computing)"). The execution process is called "an interpretation".
 
-
-Чтобы читать и выполнять текст на JavaScript, нужна специальная программа -- [интерпретатор](http://ru.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%82%D0%BE%D1%80). Процесс выполнения скрипта называют *"интерпретацией"*.
-
-[smart header="Компиляция и интерпретация, для программистов"]
-Строго говоря, для выполнения программ существуют "компиляторы" и "интерпретаторы". 
+[smart header="Compilation and interpretation, for programmers"]
+There are in fact two main means to execute programs: "compilers" and "interpreters".
 
 <ul>
-<li>*Компиляторы* преобразуют программу в машинный код. Этот машинный код затем распространяется и запускается.</li>
-<li>*Интерпретаторы*, в частности, встроенный JS-интерпретатор браузера -- получают программу в виде исходного кода. При этом распространяется именно сам исходный код (скрипт).</li>
+<li>*Compilers* convert the program text (source code) to another language, usually machine language (binary code) without executing it. The binary code is then distributed to the system which runs it.</li>
+<li>*Interpreters*, and in particular the one embedded in the browser -- get the source code and execute it "as is". The source code (script) is distributed to the system.</li>
 </ul>
 
-Современные интерпретаторы перед выполнением преобразуют JavaScript в машинный код или близко к нему, а уже затем выполняют. Поэтому JavaScript в них работает очень быстро.
+Modern interpreters actually convert the JavaScript to machine language or close to it, and then execute. That's why JavaScript is very fast.
 [/smart]
 
-Во все основные браузеры встроен интерпретатор JavaScript, именно поэтому они могут выполнять скрипты на странице.
+All major browsers have an embedded JavaScript interpreter, that's why they are capable of script execution.
 
-Но, разумеется, JavaScript можно использовать не только в браузере. Это полноценный язык, программы на котором можно запускать и на сервере, и даже в стиральной машинке, если в ней установлен соответствующий интерпретатор.
+But naturally JavaScript can be used not only in-browser. It's a full-fledged language usable at the server too and even in a washing machine if the interpreter is installed.
 
-[warn header="Поговорим о браузерах"]
-
-Далее в этой главе мы говорим о возможностях и ограничениях JavaScript именно в контексте браузера.
-
+[warn header="Let's talk browsers"]
+Further in the chapter we talk about capabilities and limitaitons of JavaScript in the browser.
 [/warn]
 
-## Что умеет JavaScript?   
+## What JavaScript can do?   
 
-Современный JavaScript -- это "безопасный" язык программирования общего назначения. Он не предоставляет низкоуровневых средств работы с памятью, процессором, так как изначально был ориентирован на браузеры, в которых это не требуется.
+The modern JavaScript is a "safe" general purpose programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
-Что же касается остальных возможностей -- они зависят от окружения, в котором запущен JavaScript. В браузере JavaScript умеет делать все, что относится к манипуляции со страницей, взаимодействию с посетителем и, в какой-то мере, с сервером: 
+Other capabilities depend on the environment which runs JavaScript. In the browser JavaScript is able to do everything related to webpage manipulation, talk to the visitor and, to some extent, talk to the internet.
+
+Or, in more details:
 
 <ul>
-<li>Создавать новые HTML-теги, удалять существующие, менять стили элементов, прятать, показывать элементы и т.п.</li>
-<li>Реагировать на действия посетителя, обрабатывать клики мыши, перемещение курсора, нажатие на клавиатуру и т.п. </li>
-<li>Посылать запросы на сервер и загружать данные без перезагрузки страницы(эта технология называется &quot;AJAX&quot;).</li>
-<li>Получать и устанавливать cookie, запрашивать данные, выводить сообщения...</li>
-<li>...и многое, многое другое!</li> 
+<li>To create new HTML tags, remove the existing ones, change styles, hide/show elements...</li>
+<li>To react on user actions, run on mouse clicks, pointer movements, key presses...</li>
+<li>To send requests over the network to remote servers, download and upload data without reloading the page (a so-called "AJAX" technology)...</li>
+<li>To get and set cookies, ask for data, show messages...</li>
+<li>...and much much more!</li> 
 </ul>
 
-## Что НЕ умеет JavaScript?   
+## What JavaScript can NOT do?
 
 JavaScript -- быстрый и мощный язык, но браузер накладывает на его исполнение некоторые ограничения.. 
 
