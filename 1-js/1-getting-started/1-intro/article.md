@@ -144,7 +144,11 @@ The trend: browsers, though eager for new features, become compatible with the s
 [/summary]
 
 
-## Альтернативные браузерные технологии
+## Alternative browser technologies
+
+Together with JavaScript, other technologies are used.
+
+The most well-known are Flash, Java, 
 
 Современный JavaScript используется во многих областях. Если говорить о браузерах, то вместе с JavaScript на страницах используются и другие технологии.
 
