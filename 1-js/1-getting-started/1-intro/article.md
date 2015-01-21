@@ -61,81 +61,87 @@ Or, in more details:
 
 ## What JavaScript can NOT do?
 
-JavaScript -- быстрый и мощный язык, но браузер накладывает на его исполнение некоторые ограничения.. 
+JavaScript abilities in the browser are limited for user safety, mainly not to let an evil webpage access private information or harm the user's data.
 
-Это сделано для безопасности пользователей, чтобы злоумышленник не мог с помощью JavaScript получить личные данные или как-то навредить компьютеру пользователя. 
+Such limits do not exist if JavaScript is used outside of the browser, for example on server. Besides, modern browsers allow to install plugins and extensions which get extended permissions, but require actions from the user to accept that.
 
-Этих ограничений нет там, где JavaScript используется вне браузера, например на сервере. Кроме того, современные браузеры предоставляют свои механизмы по установке плагинов и расширений, которые обладают расширенными возможностями, но требуют специальных действий по установке от пользователя
-
-**Большинство возможностей JavaScript в браузере ограничено текущим окном и страницей.**
+**JavaScript abilities are limited when it tries to access things outside of the current window/page.**
 
 <img src="limitations.svg" width="530" height="400">
 
 <ul>
-<li>JavaScript не может читать/записывать произвольные файлы на жесткий диск, копировать их или вызывать программы. Он не имеет прямого доступа к операционной системе.
+<li>JavaScript may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to the OS.
 
-Современные браузеры могут работать с файлами, но эта возможность ограничена специально выделенной директорией -- *"песочницей"*. Возможности по доступу к устройствам также прорабатываются в современных стандартах и частично доступны в некоторых браузерах.
+Modern browsers allow it to work with files, but limit with a specially created directory called "a sandbox". There is a work going on to allow access to devices, the means are partially implemented in modern browsers.
 </li>
-<li>JavaScript, работающий в одной вкладке, не может общаться с другими вкладками и окнами, за исключением случая, когда он сам открыл это окно или несколько вкладок из одного источника (одинаковый домен, порт, протокол).
+<li>JavaScript from a browser tab may not access other tabs and windows with the exception when they were opened by this script and come from the same origin (domain, port, protocol).
 
-Есть способы это обойти, и они раскрыты в учебнике, но они требуют специального кода на оба документа, которые находятся в разных вкладках или окнах. Без него, из соображений безопасности, залезть из одной вкладки в другую при помощи JavaScript нельзя. 
+There are ways to workaround this, and they are explained in the tutorial, but they require a special code on both documents which reside in different tabs/windows. Without it, for the sake of safety, JavaScript is disallowed to delve into another tab contents.
 </li>
-<li>Из JavaScript можно легко посылать запросы на сервер, с которого пришла страница. Запрос на другой домен тоже возможен, но менее удобен, т.к. и здесь есть ограничения безопасности. 
+<li>JavaScript can easily send requests over the net to the server where the current page came from. But requests to other sites/domains are limited. Though possible, it requires the agreement (expressed in HTTP headers) from the remote side. That's less convenient, but again it's safety limitations.
 </li>
 </ul>
 
-## В чем уникальность JavaScript?   
+## Why JavaScript is unique?   
 
-Есть как минимум *три* замечательных особенности JavaScript:
+There are at least *three* great features in JavaScript:
 
 [compare]
-+Полная интеграция с HTML/CSS.
-+Простые вещи делаются просто.
-+Поддерживается всеми распространенными браузерами и включен по умолчанию.
++Full integration with HTML/CSS.
++Simple things done simply.
++Supported by all major browsers and enabled by default.
 [/compare]
 
-**Этих трёх вещей одновременно нет больше ни в одной браузерной технологии.** 
+Combined, they only exist in JavaScript and no other browser technology. 
 
-Поэтому JavaScript и является самым распространенным средством создания браузерных интерфейсов.
+That makes JavaScript unique. That's why it is the most widespread way of creating browser interfaces.
 
-## Тенденции развития
+## The Trends
 
-Перед тем, как вы планируете изучить новую технологию, полезно ознакомиться с ее развитием и перспективами. Здесь в JavaScript всё более чем хорошо.
+While planning to learn a new technology, it's beneficial to check it's trends and perspectives.
+
+JavaScript shines in this aspect.
 
 ### HTML 5
 
-*HTML 5* -- эволюция стандарта HTML, добавляющая новые теги и, что более важно, ряд новых возможностей браузерам.
+*HTML 5* is an evolution of HTML standard which adds new tags and what's more important -- new browser abilities, accessable from JavaScript.
 
-Вот несколько примеров:
+A few examples:
+
 <ul>
-<li>Чтение/запись файлов на диск (в специальной "песочнице", то есть не любые).</li>
-<li>Встроенная в браузер база данных, которая позволяет хранить данные на компьютере пользователя.</li>
-<li>Многозадачность с одновременным использованием нескольких ядер процессора.</li>
-<li>Проигрывание видео/аудио, без Flash.</li>
-<li>2d и 3d-рисование с аппаратной поддержкой, как в современных играх.</li>
+<li>Read/write files on disk (in a "sandbox", not just any file).</li>
+<li>A database embedded in the browser, to keep data on a user's computer and effeciently operate on it.</li>
+<li>Multitasking with the usage of many CPU cores in one time.</li>
+<li>Audio/video playback.</li>
+<li>2d and 3d-drawing with hardware acceleration support, just like in modern games.</li>
 </ul>
 
-Многие возможности HTML5 всё ещё в разработке, но браузеры постепенно начинают их поддерживать.
+Many new abilities are still in progress, but browsers gradually start to support them.
 
-[summary]Тенденция: JavaScript становится всё более и более мощным и возможности браузера растут в сторону десктопных приложений.[/summary]
+[summary]
+The trend: JavaScript can do more and more, as features are added to browsers, it is becoming more like a desktop application.
+[/summary]
 
 ### EcmaScript 6
 
-Сам язык JavaScript улучшается. Современный стандарт EcmaScript 5 включает в себя новые возможности для разработки, EcmaScript 6 будет шагом вперёд в улучшении синтаксиса языка.
+JavaScript evolves. The upcoming EcmaScript 6 standard adds many new language-level features which make it's syntax more capable and expressive.
 
-Современные браузеры улучшают свои движки, чтобы увеличить скорость исполнения JavaScript, исправляют баги и стараются следовать стандартам.
+Modern browsers improve their engines to raise JavaScript execution script, fix bugs and try to follow the standards.
 
-[summary]Тенденция: JavaScript становится всё быстрее и стабильнее, в язык добавляются новые возможности.[/summary]
+[summary]
+The trend: JavaScript is becoming faster and more stable, gets new syntax.[/summary]
 
-Очень важно то, что новые стандарты HTML5 и ECMAScript сохраняют максимальную совместимость с предыдущими версиями. Это позволяет избежать неприятностей с уже существующими приложениями.
+It's crucially important that new standards, HTML5, EcmaScript 6 are still compatible with the previous code, so there are no problems with the existing applications.
 
-Впрочем, небольшая проблема "супер-современными штучками" всё же есть. Иногда браузеры стараются включить новые возможности, которые еще не полностью описаны в стандарте, но настолько интересны, что разработчики просто не могут ждать.  
+Still, there is a small gotcha with those "extra-fresh" modern browser abilities. Sometimes browsers try to implement them on very early stages when they are not fully described neither agreed upon, but still so  interesting that the developers just can't wait.
 
-...Однако, со временем стандарт меняется и браузерам приходится подстраиваться к нему, что может привести к ошибкам в уже написанном, основанном на старой реализации, JavaScript-коде. Поэтому следует дважды подумать перед тем, как применять на практике такие "супер-новые" решения.
+...But as the time goes, the specification matures and changes, and browsers must adopt it. That may lead to errors in JavaScript code which was too eager to use the early browser implementation. So one should think twice before relying on things that are in draft yet.
 
-При этом все браузеры сходятся к стандарту, и различий между ними уже гораздо меньше, чем всего лишь несколько лет назад.
+But what's great -- all browsers tend to follow the standard. There are much less differences between them now than only a couple years ago.
 
-[summary]Тенденция: всё идет к полной совместимости со стандартом.[/summary]
+[summary]
+The trend: browsers, though eager for new features, become compatible with the standard.
+[/summary]
 
 
 ## Альтернативные браузерные технологии
