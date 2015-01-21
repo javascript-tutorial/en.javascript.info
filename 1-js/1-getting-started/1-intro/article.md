@@ -146,100 +146,84 @@ The trend: browsers, though eager for new features, become compatible with the s
 
 ## Alternative browser technologies
 
-Together with JavaScript, other technologies are used.
-
-The most well-known are Flash, Java, 
-
-Современный JavaScript используется во многих областях. Если говорить о браузерах, то вместе с JavaScript на страницах используются и другие технологии.
-
-Самые извеcтные -- это Flash, Java, ActiveX/NPAPI. Связка с ними может помочь достигнуть более интересных результатов в тех местах, где браузерный JavaScript пока не столь хорош, как хотелось бы. 
+Besides JavaScript, other technologies are used in-browser. Together they allow to get better results.
 
 ### Java   
 
-Java -- язык общего назначения, на нем можно писать самые разные программы. Для интернет-страниц есть особая возможность - написание *апплетов*.
+Java is a widespread general-purpose language. For webpages, there is a special browser-level Java plugin which allows to run "applets".
 
-*Апплет* -- это программа на языке Java, которую можно подключить к HTML при помощи тега `applet`, выглядит это примерно так:
+*An applet* is a program written in Java language which can be attached to HTML using the `applet` tag, like this:
 
 ```html
 <!--+ run -->
-<applet code="BTApplet.class" codebase="/files/tutorial/intro/alt/">
+<applet code="BTApplet.class" codebase="/path/to/code">
   <param name="nodes" value="50,30,70,20,40,60,80,35,65,75,85,90">
   <param name="root" value="50">
 </applet>
 ```
 
-Такой тег загружает Java-программу из файла `BTApplet.class` и выполняет ее с параметрами `param`. Апплет выполняется в отдельной части страницы, в прямоугольном "контейнере". Все действия пользователя внутри него обрабатывает апплет. Контейнер, впрочем, может быть и спрятан, если апплету нечего показывать.
+This tag loads the Java program from `BTApplet.class` and executes it with given parameters (`param`).
 
-Конечно, для этого на компьютере должна быть установлена и включена среда выполнения Java, включая браузерный плагин. Кроме того, апплет должен быть подписан сертификатом издателя (в примере выше апплет без подписи), иначе Java заблокирует его.
+The applet runs in a rectangular part of the page, so called "container". All user actions inside it are processed by the applet, but only inside. One can hide the container if there's nothing to show.
 
-**Чем нам, JavaScript-разработчикам, может быть интересен Java?**
+Of course, Java runtime environment and the browser plugin must be installed and enabled to let the applet execute, and the applet itself must be signed by the publisher, otherwise it will be blocked.
 
-В первую очередь тем, что подписанный Java-апплет может всё то же, что и обычная программа, установленая на компьютере посетителя. Конечно, для этого понадобится согласие пользователя при открытии такого апплета.
+**Why we, JavaScript-developers should be aware of Java?**
 
-[compare]
-+Java может делать *всё* от имени посетителя, совсем как установленная программа. Потенциально опасные действия требуют подписанного апплета и согласия пользователя.
--Java требует больше времени для загрузки.
--Среда выполнения Java, включая браузерный плагин, должна быть установлена на компьютере посетителя и включена.
--Java-апплет не интегрирован с HTML-страницей, а выполняется отдельно. Но он может вызывать функции JavaScript.
-[/compare]
+Mainly because a signed Java-applet can do literally everything on a visitor's computer, just like any other program. Of course that requires a visitor's agreement to run it, but after that...
 
+Just to note, JavaScript and Java-applets can interact with each other, so JavaScript will have access to capabilities provided by the applet.
 
-### Плагины и расширения для браузера
+### Browser plugins and extensions
 
-Все современные браузеры предоставляют возможность написать плагины. Для этого можно использовать JavaScript (Chrome, Opera, Firefox), так и язык С (ActiveX для Internet Explorer).
+All modern browsers allow to write plugins using either JavaScript (Chrome, Opera, Firefox) and/or C language (ActiveX for Internet Explorer).
 
-Эти плагины могут как отображать содержимое специального формата (плагин для проигрывания музыки, для показа PDF), так и взаимодействовать со страницей.
+The plugins can both handle a special kind of content (a media-player to play music) and interact with the page.
 
-Как и в ситуации с Java-апплетом, у них широкие возможности, но посетитель поставит их в том случае, если вам доверяет.
+Just as Java-applets, they have wider access than JavaScript, but the user must install them and agree that he trusts the plugin.
 
 ### Adobe Flash   
 
-Adobe Flash -- кросс-браузерная платформа для мультимедиа-приложений, анимаций, аудио и видео. 
+Adobe Flash is a long-lived cross-browser platform mainly targeted on multimedia and animations.
 
-*Flash-ролик* -- это скомпилированная программа, написанная на языке ActionScript. Ее можно подключить к HTML-странице и запустить в прямоугольном контейнере.
+Just like Java, a pre-compiled Flash program can be attached to HTML and executed in a rectangular container.
 
-В первую очередь Flash полезен тем, что позволяет **кросс-браузерно** работать с микрофоном, камерой, с буфером обмена, а также поддерживает продвинутые возможности по работе с сетевыми соединениями. 
+Flash is good at cross-browser device access: camera, microphone, and for certain OS-level features like the clipboard. Also it is good at networking.
 
-[compare]
-+Сокеты, UDP для P2P и другие продвинутые возможности по работе с сетевыми соединениями
-+Поддержка мультмедиа: изображения, аудио, видео. Работа с веб-камерой и микрофоном.
--Flash должен быть установлен и включен. А на некоторых устройствах он вообще не поддерживается.
--Flash не интегрирован с HTML-страницей, а выполняется отдельно.
--Существуют ограничения безопасности, однако они немного другие, чем в JavaScript.
-[/compare]
+One can access Flash programs from JavaScript and vice versa.
 
-Из Flash можно вызывать JavaScript и наоборот, поэтому обычно сайты используют JavaScript, а там, где он не справляется -- можно подумать о Flash.
+The main drawback is that it needs Adobe Flash player to be installed and enabled. Users tend to disable it, because of nasty "multimedia" ads, certain devices like iPhone do not support it. Besides, it is notorious for software vulnerabilities.
 
+## Languages over JavaScript
 
-## Языки поверх JavaScript
+The syntax of JavaScript does not suit everyone's needs: some people think that it's too flexible, others consider it too limited, the third ones want to add new features absent in the standard...
 
+That's normal, because projects and requirements are different for everyone.
 
-Синтаксис JavaScript устраивает не всех: одним он кажется слишком свободным, другим -- наоборот, слишком ограниченным, третьи хотят добавить в язык дополнительные возможности, которых нет в стандарте...
+That's why a plethora of new languages appeared, which add features "over" JavaScript, meaning that the source code in these languages must be *transpiled* (converted) to JavaScript before they run.
 
-Это нормально, ведь требования и проекты у всех разные. 
+The transpilation happens automatically, modern tools make it fully transparent, actually the process of development in these languages is very comfortable.
 
-В последние годы появилось много языков, которые добавляют различные возможности "поверх" JavaScript, а для запуска в браузере -- при помощи специальных инструментов "трансляторов" превращаются в обычный JavaScript-код.
-
-Это преобразование происходит автоматически и совершенно прозрачно, при этом неудобств в разработке и отладке практически нет.
-
-При этом разные языки выглядят по-разному и добавляют совершенно разные вещи:
+Just a few examples of such languages:
 
 <ul>
-<li>Язык [CoffeeScript](http://coffeescript.org/) -- это "синтаксический сахар" поверх JavaScript, он сосредоточен на большей ясности и краткости кода. Как правило, его особенно любят программисты на Ruby.</li>
-<li>Язык [TypeScript](http://www.typescriptlang.org/) сосредоточен на добавлении строгой типизации данных, он предназначен для упрощения разработки и поддержки больших систем. Его разрабатывает MicroSoft.</li>
-<li>Язык [Dart](https://www.dartlang.org/) предложен компанией Google как замена JavaScript, но другие ведущие интернет-компании объявили о своей незаинтересованности в Dart. Возможно, в будущем он может составить конкуренцию JS.</li>
+<li>[CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby guys like it.</li>
+<li>[TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. Developed by Microsoft.</li>
+<li>[Dart](https://www.dartlang.org/) was offered by Google as a replacement for JavaScript, but other leading internet companies declared that they are not interested. Maybe later it will shine, we'll see. Right now it can be transpiled to JavaScript.</li>
 </ul>
 
-[smart header="ES6 и ES7 прямо сейчас"]
-Существуют также трансляторы, которые берут код, использующий возможности будущих стандартов JavaScript, и преобразуют его в более старый вариант, который понимают все браузеры.
+[smart header="ES6 and ES7 right now"]
+The upcoming standards really bring a lot of goodies.
 
-Например, [6to5](https://6to5.org/).
+For those eager to use them now, there are transpilers which take the code written with the new standards and convert it into the older one, so that the browsers can execute it.
 
-Благодаря этому, мы можем использовать многие возможности будущего уже сегодня.
+For example, [6to5](https://6to5.org/).
+
+Thanks for them, many great syntax features are available already, even prior to the release.
 [/smart]
 
 
-## Итого
+## Summary
 
 Язык JavaScript уникален благодаря своей полной интеграции с HTML/CSS. Он работает почти у всех посетителей.
 
