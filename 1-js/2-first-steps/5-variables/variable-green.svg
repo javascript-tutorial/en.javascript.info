@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="148px" height="128px" viewBox="0 0 148 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
+    <title>noun_1211_cc + Message</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="combined-green" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="variable" sketch:type="MSArtboardGroup" transform="translate(-161.000000, -71.000000)">
+            <g id="noun_1211_cc-+-Message" sketch:type="MSLayerGroup" transform="translate(161.000000, 71.000000)">
+                <g id="noun_1211_cc">
+                    <path d="M17,37.1960457 L129.557785,37.1960457 L129.557785,80.1456641 C129.557785,80.5185728 129.479295,81.0083855 129.279367,81.4404861 C129.07944,81.8725868 112.704625,117 112.704625,117 L112.704625,62.6396695 L129.559266,37.1960457 L148,9 L35.4407339,9 L17,37.1960457 L17,37.1960457 Z" id="Shape" fill="#CFCE95" sketch:type="MSShapeGroup"></path>
+                    <path d="M17,66 L17,38 L2,66" id="Shape" fill="#CFCE95" sketch:type="MSShapeGroup"></path>
+                    <g id="Rectangle-5-+-&quot;World!&quot;" transform="translate(15.000000, 0.000000)">
+                        <path d="M18.9106925,0.395208397 L73.4146415,58.8435379 L55.0893075,75.9321883 L0.585358502,17.4838588 L18.9106925,0.395208397 L18.9106925,0.395208397 Z" id="Rectangle-5" stroke="#8A704D" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup"></path>
+                        <text id="&quot;Hello!&quot;" sketch:type="MSTextLayer" transform="translate(39.885486, 40.782373) rotate(47.000000) translate(-39.885486, -40.782373) " font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+                            <tspan x="10.392998" y="46.2823729">"Hello!"</tspan>
+                        </text>
+                    </g>
+                    <path d="M0,68 L0,122.729971 C0,126.150501 1.4836395,128 4.38712201,128 L104.473443,128 C107.59502,128 110,125.4521 110,124.524372 L110,68 L0,68 L0,68 Z" id="Shape" fill="#CFCE95" sketch:type="MSShapeGroup"></path>
+                </g>
+                <text id="Message" sketch:type="MSTextLayer" font-family="Open Sans" font-size="18" font-weight="526" fill="#FFFFFF">
+                    <tspan x="17" y="105">Message</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

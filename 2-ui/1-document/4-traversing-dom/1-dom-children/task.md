@@ -5,7 +5,24 @@
 Для страницы:
 
 ```html
-<!--+ src="index.html" -->
+<!DOCTYPE HTML>
+<html>
+  <head><meta charset="utf-8"></head>
+  <body>
+    <div>Пользователи:</div>
+    <ul>
+      <li>Маша</li>
+      <li>Вовочка</li>
+    </ul>
+
+    <!-- комментарий -->
+
+    <script>
+      // ... ваш код
+    </script>
+
+  </body>
+</html>
 ```
 
 <ul>

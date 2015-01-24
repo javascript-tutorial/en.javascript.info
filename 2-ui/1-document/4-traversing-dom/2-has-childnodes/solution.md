@@ -22,6 +22,4 @@ if (!elem.firstChild) { ... }
 if (!elem.lastChild) { ... }
 ```
 
-Последний - самый короткий.
-
-P.S. Также есть метод [hasChildNodes](https://developer.mozilla.org/en-US/docs/Web/API/Node.hasChildNodes), который позволяет вызовом `elem.hasChildNodes()` определить наличие детей. Он работает так же, как проверка `elem.childNodes.length != 0`.
+Также существует метод [hasChildNodes](https://developer.mozilla.org/en-US/docs/Web/API/Node.hasChildNodes), который позволяет вызовом `elem.hasChildNodes()` определить наличие детей. Он работает так же, как проверка `elem.childNodes.length != 0`.

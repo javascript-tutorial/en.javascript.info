@@ -1,6 +1,6 @@
 # Методы contains и compareDocumentPosition
 
-Если есть два элемента, то иногда бывает нужно понять, находится ли один в другом, и произвести обработку в зависимости от результата.
+Если есть два элемента, то иногда бывает нужно понять, лежит ли один из них выше другого, то есть является ли его предком.
 
 Обычные поисковые методы здесь не дают ответа, но есть два специальных. Они используются редко, но когда подобная задача встаёт, то знание метода может сэкономить много строк кода.
 
@@ -20,7 +20,7 @@ var result = parent.contains(child);
 
 Бывает, что у нас есть два элемента, к примеру, `<li>` в списке, и нужно понять, какой из них выше другого.
 
-Это поможет сделать другой метод.
+Метод `compareDocumentPosition` -- более мощный, чем `contains`, он предоставляет одновременно информацию и о содержании и об относительном порядке элементов.
 
 Синтаксис:
 
@@ -55,32 +55,33 @@ var result = nodeA.compareDocumentPosition(nodeB);
 <ul>
   <li>1.1</li>
 </ul>
-<p>...</p>
 
 <script>
-var ul = document.getElementsByTagName('ul')[0];
-
-// 1. соседи
-alert( ul.compareDocumentPosition( ul.previousSibling ) ); // 2 = 10
-alert( ul.compareDocumentPosition( ul.nextSibling ) );  // 4 = 100
-
-// 2. родитель/потомок
-alert( ul.compareDocumentPosition( ul.firstChild ) ); // 20 = 10100
-alert( ul.compareDocumentPosition( ul.parentNode ) ); // 10 = 1010
-
-// 3. вообще разные узлы
+var p = document.body.children[0];
+var ul = document.body.children[1];
 var li = ul.children[0];
-alert( li.compareDocumentPosition( document.body.lastChild ) ); // 4 = 100
+
+// 1. <ul> находится после <p>
+alert( ul.compareDocumentPosition( p ) ); // 2 = 10
+
+// 2. <p> находится до <ul>
+alert( p.compareDocumentPosition( ul ) );  // 4 = 100
+
+// 3. <ul> родитель <li>
+alert( ul.compareDocumentPosition( li ) ); // 20 = 10100
+
+// 4. <ul> потомок <body>
+alert( ul.compareDocumentPosition( document.body ) ); // 10 = 1010
 </script>
 ```
 
-Комментарии:
+Более подробно:
 <ol>
-<li>Узлы являются соседями, поэтому стоит только бит "предшествования": какой перед каким.</li>
-<li>Здесь стоят сразу два бита: `10100` означает, что `ul` одновременно содержит `ul.firstChild` и является его предшественником, то есть при прямом обходе дерева документа сначала встречается `nodeA`, а потом `nodeB`. 
-Аналогично, `1010` означает, что `ul.parentNode` содержит `ul` и предшествует ему.</li>
-<li>Так как ни один из узлов не является предком друг друга, то стоит только бит предшествования: `li` предшествует последнему узлу документа, никакого сюрприза здесь нет.</li>
-</ol> 
+<li>Узлы не вложены один в другой, поэтому стоит только бит "предшествования", отсюда `10`.</li>
+<li>То же самое, но обратный порядок узлов, поэтому `100`.</li>
+<li>Здесь стоят сразу два бита: `10100` означает, что `ul` одновременно содержит `li` и является его предшественником, то есть при прямом обходе дерева документа сначала встречается `ul`, а потом `li`.</li>
+<li>Аналогично предыдущему, `1010` означает, что `document.body` содержит `ul` и предшествует ему.</li>
+</ol>
 
 [smart header="Перевод в двоичную систему"]
 Самый простой способ самостоятельно посмотреть, как число выглядит в 2-ной системе -- вызвать для него `toString(2)`, например:
@@ -101,7 +102,7 @@ alert( 20..toString(2) );
 Здесь после `20` две точки, так как если одна, то JS подумает, что после неё десятичная часть -- будет ошибка.
 [/smart]
 
-Проверка условия "`nodeA` содержит `nodeB`" с использованием битовых операций: `nodeA.compareDocumentPosition(nodeB) & 16`, например:
+Проверить конкретное условие, например, "`nodeA` содержит `nodeB`", можно при помощи битовых операций, в данном случае: `nodeA.compareDocumentPosition(nodeB) & 16`, например:
 
 ```html
 <!--+ run -->
@@ -110,12 +111,12 @@ alert( 20..toString(2) );
 </ul>
 
 <script>
-var nodeA = document.body;
-var nodeB = document.body.children[0].children[0];
+var body = document.body;
+var li = document.body.children[0].children[0];
 
 *!*
-if( nodeA.compareDocumentPosition(nodeB) & 16 ) {
-  alert( nodeA +' содержит ' + nodeB );
+if( body.compareDocumentPosition(li) & 16 ) {
+  alert( body +' содержит ' + li );
 }
 */!*
 </script>
@@ -134,76 +135,33 @@ if( nodeA.compareDocumentPosition(nodeB) & 16 ) {
 <dd>Номер элемента `node` в порядке прямого обхода дерева. Только для узлов-элементов.</dd>
 </dl>
 
-На их основе можно написать кросс-браузерную реализацию `compareDocumentPosition`:
+На их основе можно написать полифилл для `compareDocumentPosition`:
 
 ```js
-// Адаптировано с http://ejohn.org/blog/comparing-document-position/
-function compareDocumentPosition(a, b) {
-  return a.compareDocumentPosition ?
-    a.compareDocumentPosition(b) :
-      (a != b && a.contains(b) && 16) +
-        (a != b && b.contains(a) && 8) +
-        (a.sourceIndex >= 0 && b.sourceIndex >= 0 ?
-          (a.sourceIndex < b.sourceIndex && 4) +
-            (a.sourceIndex > b.sourceIndex && 2) :
-          1);
-}
+// код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
+(function(){
+  var el = document.documentElement;
+  if( !el.compareDocumentPosition && el.sourceIndex !== undefined ){
+
+    Element.prototype.compareDocumentPosition = function(other){
+      return (this != other && this.contains(other) && 16) +
+                 (this != other && other.contains(this) && 8) +
+                 (this.sourceIndex >= 0 && other.sourceIndex >= 0 ?
+                   (this.sourceIndex < other.sourceIndex && 4) +
+                   (this.sourceIndex > other.sourceIndex && 2) 
+                   : 1
+                 ) + 0;
+    }
+  }
+}());
 ```
 
-Эта функция будет работать для узлов-элементов во всех браузерах.
+С этим полифиллом метод доступен для элементов во всех браузерах.
 
 ## Итого
 
-Для проверки, лежит ли один узел внутри другого, достаточно метода `nodeA.contains(nodeB)`.
-
-Для расширенной проверки на предшествование есть метод `compareDocumentPosition`, кросс-браузерный вариант которого приведён выше.
-
-Пример использования:
-
-```html
-<!--+ run -->
 <ul>
-  <li id="li1">1</li>
-  <li id="li2">2</li>
+<li>Для проверки, является ли один узел предком другого, достаточно метода `nodeA.contains(nodeB)`.</li>
+<li>Для расширенной проверки на предшествование есть метод `compareDocumentPosition`.</li>
+<li>Для IE8 нужен полифилл для `compareDocumentPosition`.</li>
 </ul>
-
-<script>
-var body = document.body;
-
-*!*
-if( compareDocumentPosition(body, li1) & 16 ) {
-  alert( 'BODY содержит LI-1' );
-}
-
-if( compareDocumentPosition(li1, li2) & 4 ) {
-  alert( 'LI-1 предшествует LI-2' );
-}
-*/!*
-
-function compareDocumentPosition(a, b) {
-  return a.compareDocumentPosition ?
-    a.compareDocumentPosition(b) :
-      (a != b && a.contains(b) && 16) +
-        (a != b && b.contains(a) && 8) +
-        (a.sourceIndex >= 0 && b.sourceIndex >= 0 ?
-          (a.sourceIndex < b.sourceIndex && 4) +
-            (a.sourceIndex > b.sourceIndex && 2) :
-          1);
-}
-</script>
-```
-
-Список битовых масок для проверки:
-<table>
-<tr>
-<th>Биты</th>
-<th>Число</th>
-<th>Значение</th>
-</tr>
-<tr><td>000000</td><td>0</td><td>`nodeA` и `nodeB` -- один и тот же узел</td></tr>
-<tr><td>000001</td><td>1</td><td>Узлы в разных документах (или один из них не в документе)</td></tr>
-<tr><td>000010</td><td>2</td><td>`nodeB` предшествует `nodeA` (в порядке обхода документа)</td></tr>
-<tr><td>000100</td><td>4</td><td>`nodeA` предшествует `nodeB`</td></tr>
-<tr><td>001000</td><td>8</td><td>`nodeB` содержит `nodeA`</td></tr>
-<tr><td>010000</td><td>16</td><td>`nodeA` содержит `nodeB`</td></tr>
-</table>

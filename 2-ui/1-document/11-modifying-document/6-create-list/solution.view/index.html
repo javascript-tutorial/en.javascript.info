@@ -13,7 +13,7 @@
   while (true) {
     var data = prompt("Введите текст для пункта списка", "");
 
-    if (data === null) {
+    if (!data) {
        break;
     }
 
@@ -22,6 +22,6 @@
     ul.appendChild(li);
   }
 </script>
-     
+
 </body>
 </html>
