@@ -1,4 +1,4 @@
-# JavaScript Intoduction
+# JavaScript Introduction
 
 Let's see what's so special about JavaScript, what we can achieve with it and what other technologies coexist with it.
 
