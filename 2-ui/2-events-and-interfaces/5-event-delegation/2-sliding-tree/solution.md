@@ -106,4 +106,3 @@ tree.onclick = function(event) {
 
 Выделение узлов жирным при наведении делается при помощи CSS-селектора `:hover`.
 
-[edit src="solution"]Полное решение[/edit]

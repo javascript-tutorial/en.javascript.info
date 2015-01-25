@@ -1,4 +1,3 @@
-# Сопоставление значения и слайдера
 
 Как сопоставить позицию слайдера и значение?
 
@@ -24,5 +23,4 @@ pixelsPerValue = (sliderElem.clientWidth-thumbElem.clientWidth) / max;
 value = Math.round( newLeft / pixelsPerValue);
 ```
 
-# Полное решение
 

@@ -71,4 +71,3 @@ CSS для меню:
 
 Теперь сделайте JavaScript.
 
-[edit src="solution"]Полное решение в песочнице[/edit]

@@ -54,7 +54,7 @@ document.body.appendChild(ul); // затем в документ
   
 <table id="bench-table"></table>
 
-Код для тестов находится в файле [](insert-bench.js).
+Код для тестов находится в файле [insert-bench.js](insert-bench.js).
 
 [/online]
 ## Добавление множества узлов

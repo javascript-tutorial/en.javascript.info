@@ -33,5 +33,3 @@ img.onclick = function() {
 */!*
 }
 ```
-
-[edit src="solution"]Полное решение[/edit]
