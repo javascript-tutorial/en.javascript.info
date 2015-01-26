@@ -1,7 +1,11 @@
 # Размеры и прокрутка страницы
 
-Многие метрики для страницы работают совсем не так, как для элементов. Поэтому рассмотрим решения типичных задач для страницы отдельно.
+Многие метрики для страницы работают совсем не так, как для элементов. 
+
+Поэтому мы рассмотрим решения типичных задач для страницы отдельно.
+
 [cut]
+
 ## Ширина/высота видимой части окна
 
 Свойства `clientWidth/Height` для элемента `document.documentElement` позволяют получить ширину/высоту видимой области окна.
@@ -12,49 +16,69 @@
 
 Этот способ -- кросс-браузерный.
 
-## Ширина/высота всей страницы, с учётом прокрутки
+[warn header="Не `window.innerWidth/Height`"]
+Все браузеры, кроме IE8-, также поддерживают свойства `window.innerWidth/innerHeight`. Они хранят текущий размер окна.
 
-Если прокрутка на странице присутствует, то полные размеры страницы можно взять в `document.documentElement.scrollWidth/scrollHeight`. 
+Выглядят они короче, чем `document.documentElement.clientWidth`, однако есть один нюанс.
+
+Свойства `clientWidth/Height` берут в расчёт полосу прокрутку, а эти свойства -- нет.
+
+Если справа часть страницы занимает полоса прокрутки, то эти строки выведут разное:
+```js
+//+ run
+alert( window.innerWidth ); // вся ширина окна
+alert( document.documentElement.clientWidth ); // ширина минус прокрутка
+```
+
+Обычно нам нужна именно *доступная* ширина окна, например, чтобы нарисовать что-либо, то есть за вычетом полосы прокрутки. Поэтому используем `document.documentElement.clientWidth`.
+[/warn]
+
+## Ширина/высота страницы с учётом прокрутки
+
+Если прокрутка на странице заведомо присутствует, то полные размеры страницы можно взять в `document.documentElement.scrollWidth/scrollHeight`. 
 
 Проблемы с этими свойствами возникают, когда *прокрутка то есть, то нет*. В этом случае они работают некорректно. 
 
-В браузерах Chrome/Safari и Opera при отсутствии прокрутки значение `document.documentElement.scrollHeight` в этом случае может быть даже меньше, чем `document.documentElement.clientHeight` (нонсенс!). Эта проблема -- именно для `document.documentElement`, то есть для всей страницы. С обычными элементами здесь всё в порядке.
+В браузерах Chrome/Safari и Opera при отсутствии прокрутки значение `document.documentElement.scrollHeight` в этом случае может быть даже меньше, чем `document.documentElement.clientHeight` (нонсенс!). 
 
-Надёжно определить размер с учетом прокрутки можно, взяв максимум из двух свойств:
+Эта проблема возникает именно для `document.documentElement`, то есть для всей страницы. С обычными элементами здесь всё в порядке.
+
+Надёжно определить размер страницы с учетом прокрутки можно, взяв максимум из нескольких свойств:
 
 ```js
 //+ run
-var scrollHeight = document.documentElement.scrollHeight;
-var clientHeight = document.documentElement.clientHeight;
-
-*!*
-scrollHeight = Math.max(scrollHeight, clientHeight);
-*/!*
+var scrollHeight = Math.max(
+  document.body.scrollHeight, document.documentElement.scrollHeight,
+  document.body.offsetHeight, document.documentElement.offsetHeight,
+  document.body.clientHeight, document.documentElement.clientHeight
+);
 
 alert('Высота с учетом прокрутки: ' + scrollHeight);
 ```
 
-## Прокрутка страницы [#page-scroll]
+Почему так? Лучше и не спрашивайте, это одно из редких мест, где просто обходятся ошибки в браузерах. Глубокой логики здесь нет.
 
-### Получение текущей прокрутки
+## Получение текущей прокрутки [#page-scroll]
 
 Значение текущей прокрутки страницы хранится в свойствах `window.pageXOffset/pageYOffset`.
 
-Но эти свойства:
+```js
+//+ run
+alert('Текущая прокрутка сверху: ' + window.pageYOffset);
+alert('Текущая прокрутка слева: ' + window.pageXOffset);
+```
+
+Эти свойства:
 <ul>
-<li>Не поддерживаются IE<9</li>
+<li>Не поддерживаются IE8-</li>
 <li>Их можно только читать, а менять нельзя.</li>
 </ul>
 
-Поэтому для кросс-браузерности рассмотрим другой способ -- свойство `document.documentElement.scrollLeft/Top`. 
+Если IE8- не волнует, то для чтения прокрутки лучше способа нет, рецепт готов.
 
-<ul>
-<li>`document.documentElement` содержит значение прокрутки, если стоит правильный DOCTYPE. Это работает во всех браузерах, кроме Safari/Chrome.</li>
-<li>Safari/Chrome используют вместо этого `document.body` (это баг в Webkit).</li>
-<li>В режиме совместимости (если некорректный DOCTYPE) некоторые браузеры также используют  `document.body`.</li>
-</ul> 
+Альтернативный вариант -- это свойства `document.documentElement.scrollLeft/Top`, но они не работают в Safari/Chrome/Opera, которые используют `document.body` (это неправильно).
 
-Таким образом, для IE8+ и других браузеров, работающих в режиме соответствия стандартам, получить значение прокрутки можно так:
+Так что кросс-браузерный вариант с учётом IE8:
 
 ```js
 //+ run
@@ -63,72 +87,38 @@ var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 alert("Текущая прокрутка: " + scrollTop);
 ```
 
-### С учётом IE7- и Quirks Mode [#getPageScroll]
+## Изменение прокрутки: scrollTo, scrollBy, scrollIntoView [#window-scroll]
 
-Если дополнительно нужна поддержка IE<8, то там тоже есть важная тонкость. Документ может быть смещен относительно начальной позиции (0,0). Это смещение хранится в `document.documentElement.clientLeft/clientTop`, и мы должны вычесть его.
-
-Если дополнительно добавить возможность работы браузера в Quirks Mode, то надёжный способ будет таким:
-
-```js
-//+ run
-var html = document.documentElement;
-var body = document.body;
-
-var scrollTop = html.scrollTop || body && body.scrollTop || 0;
-scrollTop -= html.clientTop;
-alert("Текущая прокрутка: " + scrollTop);
-```
-
-Итого, можно создать кросс-браузерную функцию, которая возвращает значения прокрутки и поддерживает в том числе IE8-:
-
-```js
-var getPageScroll = (window.pageXOffset != undefined) ?
-  function() {
-    return {
-      left: pageXOffset,
-      top: pageYOffset
-    };
-  } :
-  function() {
-    var html = document.documentElement;
-    var body = document.body;
-
-    var top = html.scrollTop || body && body.scrollTop || 0;
-    top -= html.clientTop;
-
-    var left = html.scrollLeft || body && body.scrollLeft || 0;
-    left -= html.clientLeft;
-
-    return { top: top, left: left };
-  }
-```
-
-### Изменение прокрутки: scrollTo, scrollBy, scrollIntoView [#window-scroll]
-
-[smart]
+[warn]
 Чтобы прокрутить страницу при помощи JavaScript, её DOM должен быть полностью загружен.
-[/smart]
+[/warn]
 
 На обычных элементах свойства `scrollTop/scrollLeft` можно изменять, и при этом элемент будет прокручиваться.
 
-Никто не мешает точно так же поступать и со страницей. Во всех браузерах, кроме Chrome/Safari можно осуществить прокрутку установкой `document.documentElement.scrollTop`, а в Chrome/Safari -- использовать для этого `document.body.scrollTop`. И будет работать.
+Никто не мешает точно так же поступать и со страницей. Во всех браузерах, кроме Chrome/Safari/Opera можно осуществить прокрутку установкой `document.documentElement.scrollTop`, а в указанных -- использовать для этого `document.body.scrollTop`. И будет работать.
 
-Но есть и другое, полностью кросс-браузерное решение -- специальные методы прокрутки страницы [window.scrollBy(x,y)](https://developer.mozilla.org/en/Window.scrollBy) и [window.scrollTo(pageX,pageY)](https://developer.mozilla.org/en/Window.scrollTo). 
-
-
+Но есть и другое, полностью кросс-браузерное и универсальное решение -- специальные методы прокрутки страницы [window.scrollBy(x,y)](https://developer.mozilla.org/en/Window.scrollBy) и [window.scrollTo(pageX,pageY)](https://developer.mozilla.org/en/Window.scrollTo). 
 
 <ul>
-<li>**Метод `scrollBy(x,y)` прокручивает страницу относительно текущих координат.**
+<li>Метод `scrollBy(x,y)` прокручивает страницу относительно текущих координат.
+[online]
 Например, кнопка ниже прокрутит страницу на `10px` вниз:
 
 <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
+[/online]
 </li>
-<li>**Метод `scrollTo(pageX,pageY)` прокручивает страницу к указанным координатам относительно документа.** Он эквивалентен установке свойств `scrollLeft/scrollTop`.
+<li>Метод `scrollTo(pageX,pageY)` прокручивает страницу к указанным координатам относительно документа.
 
-Чтобы прокрутить в начало документа, достаточно указать координаты `(0,0)`:
+Он эквивалентен установке свойств `scrollLeft/scrollTop`.
+
+Чтобы прокрутить в начало документа, достаточно указать координаты `(0,0)`.
+[online]
 <button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
+[/online]
 </li>
 </ul>
+
+## scrollIntoView
 
 Для полноты картины рассмотрим также метод [elem.scrollIntoView(top)](https://developer.mozilla.org/en/DOM/element.scrollIntoView).
 
@@ -170,12 +160,11 @@ var getPageScroll = (window.pageXOffset != undefined) ?
 <li>Для получения размеров страницы с учётом прокрутки:
 
 ```js
-var scrollHeight = document.documentElement.scrollHeight;
-var clientHeight = document.documentElement.clientHeight;
-
-*!*
-scrollHeight = Math.max(scrollHeight, clientHeight);
-*/!*
+var scrollHeight = Math.max(
+  document.body.scrollHeight, document.documentElement.scrollHeight,
+  document.body.offsetHeight, document.documentElement.offsetHeight,
+  document.body.clientHeight, document.documentElement.clientHeight
+);
 ```
 
 </li>
@@ -184,9 +173,9 @@ scrollHeight = Math.max(scrollHeight, clientHeight);
 **Прокрутка окна:**
 
 <ul>
-<li>Прокрутку окна можно *получить* как `window.pageYOffset` (для горизонтальной -- `window.pageXOffset`) везде, кроме IE<9. 
+<li>Прокрутку окна можно *получить* как `window.pageYOffset` (для горизонтальной -- `window.pageXOffset`) везде, кроме IE8-. 
 
-Для кросс-браузерности используется другой способ:
+На всякий случай -- вот самый кросс-браузерный способ, учитывающий IE7- в том числе:
 
 ```js
 //+ run
@@ -194,7 +183,8 @@ var html = document.documentElement;
 var body = document.body;
 
 var scrollTop = html.scrollTop || body && body.scrollTop || 0;
-scrollTop -= html.clientTop; // IE<8
+scrollTop -= html.clientTop; // в IE7- <html> смещён относительно (0,0)
+
 alert("Текущая прокрутка: " + scrollTop);
 ```
 

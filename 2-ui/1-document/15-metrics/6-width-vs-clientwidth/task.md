@@ -2,6 +2,6 @@
 
 [importance 5]
 
-В чём отличия между `getComputedStyle(elem, "").width` и `elem.clientWidth`?
+В чём отличия между `getComputedStyle(elem).width` и `elem.clientWidth`?
 
-В решении приведены пять отличий. Постарайтесь найти столько же или больше :)
+Укажите хотя бы три отличия, лучше -- больше.

@@ -287,46 +287,11 @@ function getStyle(elem) {
 
 Он основан на свойствах `runtimeStyle` и `pixelLeft`, работающих только в IE.
 
-В следующем примере функция `getIEComputedStyle(elem, prop)` получает значение в пикселях для свойства `prop`, используя `elem.currentStyle` и метод Дина Эдвардса.
+В [edit src="getiecomputedstyle"]песочнице[/edit] вы можете найти функцию `getIEComputedStyle(elem, prop)`, которая получает значение в пикселях для свойства `prop`, используя `elem.currentStyle` и метод Дина Эдвардса, и пример её применения.
 
 Если вам интересно, как он работает, ознакомьтесь со свойствами с <a href="http://msdn.microsoft.com/en-us/library/ms535889(v=vs.85).aspx">runtimeStyle</a> и <a href="http://msdn.microsoft.com/en-us/library/ms531129%28VS.85%29.aspx">pixelLeft</a> в MSDN и раскройте код.
 
-```js
-//+ src="getIEComputedStyle.js" hide="Раскрыть код"
-
-```
-
-<script src="/files/tutorial/browser/dom/getIEComputedStyle.js"></script>
-
-Рабочий пример (только IE):
-
-```html
-<style> #margin-test { margin: 1%; border: 1px solid black; } </style>
-<div id="margin-test">Тестовый элемент с margin 1%</div>
-
-<script>
-  var elem = document.getElementById('margin-test');
-  if (!elem.getComputedStyle) // старые IE
-    document.write(getIEComputedStyle(elem, 'marginTop'));
-  else 
-    document.write('Пример работает только в IE8-');
-</script>
-```
-
-[pre]
-<style> #margin-test { margin: 1%; border: 1px solid black; } </style>
-<div id="margin-test">Тестовый элемент с margin 1%</div>
-<i>
-<script>
-  var elem = document.getElementById('margin-test');
-  if (!window.getComputedStyle) // старые IE
-    document.write(getIEComputedStyle(elem, 'marginTop'));
-  else 
-    document.write('Пример работает только в IE8-');
-</script>
-</i>
-[/pre]
-Современные Javascript-фреймворки и полифиллы используют этот прием для эмуляции `getComputedStyle` в старых IE.
+Конечно, это актуально только для IE8- и полифиллов.
 [/smart]
 
 
@@ -343,5 +308,5 @@ function getStyle(elem) {
 При этом `currentStyle` возвращает значение из CSS, до окончательных вычислений, а `getComputedStyle` -- окончательное, непосредственно применённое к элементу (как правило).</li>
 </ul>
 
-Более полная информация о `style`, включающая другие, реже используемые методы работы с ним, доступна здесь: [CSSStyleDeclaration](https://developer.mozilla.org/en-US/docs/DOM/CSSStyleDeclaration).
+Более полная информация о свойстве `style`, включающая другие, реже используемые методы работы с ним, доступна [в документации](https://developer.mozilla.org/en-US/docs/DOM/CSSStyleDeclaration).
 

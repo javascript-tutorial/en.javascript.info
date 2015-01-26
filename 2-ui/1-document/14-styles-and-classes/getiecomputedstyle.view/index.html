@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="getiecomputedstyle.js"></script>
+</head>
+<body>
+
+<style> 
+  #margin-test { margin: 1%; border: 1px solid black; } 
+</style>
+
+<div id="margin-test">Тестовый элемент с margin 1%</div>
+
+<script>
+  var elem = document.getElementById('margin-test');
+  if (!window.getComputedStyle) { // старые IE
+    document.write(getIEComputedStyle(elem, 'marginTop'));
+  } else {
+    document.write('Пример работает только в IE8-');
+  }
+</script>  
+</body>
+</html>
