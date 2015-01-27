@@ -1,18 +1,16 @@
 # Координаты в документе
 
-Система координат относительно всей страницы или, иначе говоря, относительно *документа*, тоже начинается в левом-верхнем углу.
+*Система координат относительно страницы* или, иначе говоря, *относительно документа*, начинается в левом-верхнем углу, но не окна, а именно страницы.
+
+И координаты в ней означают позицию по отношению не к окну браузера, а к документу в целом.
+
+Если провести аналогию с CSS, то координаты относительно окна -- это `position:fixed`, а относительно документа -- `position:absolute` (при позиционировании вне других элементов, естественно).
 
 Мы будем называть координаты в ней `pageX/pageY`.
 
 [cut]
 
-Зачем нужны ещё какие-то координаты, кроме рассмотренных ранее? 
-
-Как мы видели в конце предыдущей главы, позиционирование через `position: fixed` привязывает элемент не к месту на странице, а к окну. Поэтому при прокрутке страница под таким элементом двигается, а сам элемент -- нет.
-
-**Как правило, мы хотим показать элемент в определённом месте страницы, а не окна.**
-
-Для этого используют `position: absolute` и координаты `left/top`, которые заданы относительно документа.
+Они нужны в первую очередь для того, чтобы показывать элемент в определённом месте страницы, а не окна.
 
 ## Сравнение систем координат
 
@@ -29,46 +27,60 @@
 Посмотрите на рисунок ниже, на нём -- та же страница, только прокрученная, и тот же элемент "STANDARDS".
 
 <ul>
-<li>Координата `clientY` изменилась. Она теперь равна `0`, так как элемент находится вверху окна.</li>
+<li>Координата `clientY` изменилась. Она была `175`, а стала `0`, так как элемент находится вверху окна.</li>
 <li>Координата `pageY` осталась такой же, так как отсчитывается от левого-верхнего угла *документа*.</li>
 </ul>
 
 <img src="standards-scroll.png">
 
-**Итак, координаты `pageX/pageY` не меняются при прокрутке, в отличие от  `clientX/clientY`.** 
-
-Технически, координаты относительно страницы включают в себя текущую прокрутку. Эти две системы координат жёстко связаны, их разность `pageY-clientY` -- в точности размер текущей прокрученной области.
+Итак, координаты `pageX/pageY` не меняются при прокрутке, в отличие от  `clientX/clientY`.
 
 ## Получение координат [#getCoords]
 
 К сожалению, готовой функции для получения координат элемента относительно страницы нет. Но её можно легко написать самим.
 
+Эти две системы координат жёстко связаны: `pageY = clientY + текущая вертикальная прокрутка`.
+
 Наша функция `getCoords(elem)` будет брать результат `elem.getBoundingClientRect()` и прибавлять текущую прокрутку документа.
 
-Результат: объект с координатами `{left: .., top: ..}`
+Результат `getCoords`: объект с координатами `{left: .., top: ..}`
+
+```js
+function getCoords(elem) {  // кроме IE8-
+  var box = elem.getBoundingClientRect();
+  
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  };
+
+}
+```
+
+Если нужно поддерживать более старые IE, то вот альтернативный, самый кросс-браузерный вариант:
 
 ```js
 //+ autorun
 function getCoords(elem) {
-    // (1)
-    var box = elem.getBoundingClientRect();
-    
-    var body = document.body;
-    var docEl = document.documentElement;
-    
-    // (2)
-    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-    
-    // (3)
-    var clientTop = docEl.clientTop || body.clientTop || 0;
-    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
-    
-    // (4)
-    var top  = box.top +  scrollTop - clientTop;
-    var left = box.left + scrollLeft - clientLeft;
-    
-    return { top: top, left: left };
+  // (1)
+  var box = elem.getBoundingClientRect();
+  
+  var body = document.body;
+  var docEl = document.documentElement;
+  
+  // (2)
+  var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
+  var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
+  
+  // (3)
+  var clientTop = docEl.clientTop || body.clientTop || 0;
+  var clientLeft = docEl.clientLeft || body.clientLeft || 0;
+  
+  // (4)
+  var top  = box.top +  scrollTop - clientTop;
+  var left = box.left + scrollLeft - clientLeft;
+  
+  return { top: top, left: left };
 }
 ```
 
@@ -95,9 +107,9 @@ function getOffsetSum(elem) {
   var top = 0, left = 0;
 
   while(elem) {
-    top = top + parseInt(elem.offsetTop);
-    left = left + parseInt(elem.offsetLeft);
-    elem = elem.offsetParent;         
+  top = top + parseInt(elem.offsetTop);
+  left = left + parseInt(elem.offsetLeft);
+  elem = elem.offsetParent;     
   }
    
   return {top: top, left: left};
@@ -106,9 +118,8 @@ function getOffsetSum(elem) {
 
 Казалось бы, код нормальный. И он как-то работает, но разные браузеры преподносят "сюрпризы", включая или выключая размер рамок и прокруток из `offsetTop/Left`, некорректно учитывая позиционирование. В итоге результат не всегда верен. Можно, конечно, разобрать эти проблемы и посчитать действительно аккуратно и правильно этим способом, но зачем? Ведь есть `getBoundingClientRect`.
 
-### Сравнение offset* с getBoundingClientRect
-
-Посмотрим разницу между описанными способами вычисления координат на примере.
+[online]
+Вы можете увидеть разницу между вычислением координат через `offset*` и `getBoundingClientRect` на примере.
 
 В прямоугольнике ниже есть 3 вложенных `DIV`. Все они имеют `border`, кое-кто из них имеет `position/margin/padding`.
 
@@ -117,7 +128,7 @@ function getOffsetSum(elem) {
 [pre]
 <div style="position:relative;padding:10px;height:80px;width:380px;border:7px red solid">
   <div style="border:10px blue solid;padding:2px;position:absolute;left:20%;top:20%">
-    <div id="getBoundingClientRectEx" style="background-color:yellow;border:4px solid black;margin:2px;cursor:pointer">Кликните, чтобы получить координаты getOffsetSum и getCoords</div>
+  <div id="getBoundingClientRectEx" style="background-color:yellow;border:4px solid black;margin:2px;cursor:pointer">Кликните, чтобы получить координаты getOffsetSum и getCoords</div>
   </div>
 </div>
 <div id="getBoundingClientRectExRes">
@@ -128,20 +139,20 @@ function getOffsetSum(elem) {
 
 <script>
 document.getElementById('getBoundingClientRectEx').onclick = function(event) {
-    var o = getOffsetSum(this);
-    var orect = getCoords(this);
-    
-    event = event || window.event;
-    if ( event.pageX == null && event.clientX != null ) {
-        var html = document.documentElement, body = document.body;
-        event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0)
-        event.pageY = event.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0)
-    }
+  var o = getOffsetSum(this);
+  var orect = getCoords(this);
+  
+  event = event || window.event;
+  if ( event.pageX == null && event.clientX != null ) {
+    var html = document.documentElement, body = document.body;
+    event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0)
+    event.pageY = event.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0)
+  }
 
-    var list = document.getElementById('getBoundingClientRectExRes').getElementsByTagName('SPAN')
-    list[0].innerHTML = '{left:'+o.left+', top:'+o.top+'}'
-    list[1].innerHTML = '{left:'+orect.left+', top:'+orect.top+'}'
-    list[2].innerHTML = 'pageX='+event.pageX+' pageY='+event.pageY
+  var list = document.getElementById('getBoundingClientRectExRes').getElementsByTagName('SPAN')
+  list[0].innerHTML = '{left:'+o.left+', top:'+o.top+'}'
+  list[1].innerHTML = '{left:'+orect.left+', top:'+orect.top+'}'
+  list[2].innerHTML = 'pageX='+event.pageX+' pageY='+event.pageY
 }
 </script>
 [/pre]
@@ -154,79 +165,21 @@ document.getElementById('getBoundingClientRectEx').onclick = function(event) {
 
 <img src="getcoords-compare.png">
 
-**Именно `getCoords` всегда возвращает верное значение :).**
-
-
-
-
-### Комбинированный подход  
-
-Фреймворки, которые хотят быть совместимыми со старыми браузерами, используют комбинированный подход:
-
-```js
-function getOffset(elem) {
-    if (elem.getBoundingClientRect) {
-        return getCoords(elem);
-    } else { // старый браузер
-        return getOffsetSum(elem);
-    }
-}
-```
-
-[js hide="Открыть полный код getCoords/getOffsetSum"]
-function getOffsetSum(elem) {
-  var top=0, left=0
-  while(elem) {
-    top = top + parseInt(elem.offsetTop)
-    left = left + parseInt(elem.offsetLeft)
-    elem = elem.offsetParent        
-  }
-   
-  return {top: top, left: left}
-}
-
-
-function getCoords(elem) {
-    var box = elem.getBoundingClientRect()
-    
-    var body = document.body;
-    var docEl = document.documentElement;
-    
-    var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
-    var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-    
-    var clientTop = docEl.clientTop || body.clientTop || 0;
-    var clientLeft = docEl.clientLeft || body.clientLeft || 0;
-    
-    var top  = box.top +  scrollTop - clientTop;
-    var left = box.left + scrollLeft - clientLeft;
-    
-    return { top: Math.round(top), left: Math.round(left) };
-}
-
-
-function getOffset(elem) {
-    if (elem.getBoundingClientRect) {
-        return getCoords(elem)
-    } else {
-        return getOffsetSum(elem)
-    }
-}
-[/js]
-
+Именно `getCoords` всегда возвращает верное значение.
+[/online]
 
 ## Координаты на экране screenX/screenY
 
 Есть ещё одна система координат, которая используется очень редко, но для полноты картины необходимо её упомянуть.
 
-Координаты относительно *экрана* `screenX/screenY` отсчитываются от его левого-верхнего угла. Имеется в виду именно *весь экран*, а не окно браузера.
+*Координаты относительно экрана* `screenX/screenY` отсчитываются от его левого-верхнего угла. Имеется в виду именно *весь экран*, а не окно браузера.
 
 <img src="screen.png">
 
 Такие координаты могут быть полезны, например, при работе с мобильными устройствами или для открытия нового окна посередине экрана вызовом [window.open](https://developer.mozilla.org/en-US/docs/DOM/window.open).
 
 <ul>
-<li>**Общая информация об экране хранится в глобальной переменной [screen](https://developer.mozilla.org/en/DOM/window.screen):**
+<li>Размеры экрана хранятся в глобальной переменной [screen](https://developer.mozilla.org/en/DOM/window.screen):
 
 ```js
 //+ run
@@ -240,7 +193,7 @@ alert( screen.availWidth + ' x ' + screen.availHeight);
 ```
 
 </li>
-<li>**Координаты левого-верхнего угла браузера на экране хранятся в `window.screenX,` `window.screenY`** (не поддерживаются IE8-):
+<li>Координаты левого-верхнего угла браузера на экране хранятся в `window.screenX,` `window.screenY` (не поддерживаются IE8-):
 
 ```js
 //+ run
@@ -248,8 +201,9 @@ alert("Браузер находится на " + window.screenX + "," + window.
 ```
 
 Они могут быть и меньше нуля, если окно частично вне экрана. </li>
-<li>**Координаты *DOM-элемента* на экране получить нельзя, браузер не предоставляет свойств и методов для этого.**</li>
 </ul>
+
+Заметим, что общую информацию об экране и браузере получить можно, а вот координаты конкретного элемента на экране -- нельзя, нет аналога `getBoundingClientRect` или иного метода для этого. 
 
 ## Итого  
 
@@ -260,7 +214,7 @@ alert("Браузер находится на " + window.screenX + "," + window.
 <li>Относительно экрана `screen` -- можно узнать координаты браузера, но не элемента.</li>
 </ol>
 
-Метод `elem.getBoundingClientRect()` поддерживается IE очень давно, с версии 6, а вот версии других браузеров старше чем 2010 года (примерно), могут не иметь его. Для них (и только для них) используется подсчёт координат суммированием `offsetTop/Left`.
+Иногда в старом коде можно встретить использование `offsetTop/Left` для подсчёта координат. Это очень старый и неправильный способ, не стоит его использовать.
 
 Координаты будут нужны нам далее, при работе с событиями мыши (координаты клика) и элементами (перемещение).
 
