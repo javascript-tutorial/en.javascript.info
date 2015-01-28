@@ -32,24 +32,22 @@
 </div>
 
 <script>
-var elem = document.getElementById("elem");
+  var elem = document.getElementById("elem");
 
-// неверно!
-//elem.style.width = '100%';
+  // неверно!
+  //elem.style.width = '100%';
 
-// верно (решение с CSS)
-//elem.style.width = 'auto';
+  // верно (так как обычный div по умолчанию растягивается во всю ширину)
+  //elem.style.width = 'auto';
 
-// верно (решение с JS), т.к. padding указан  px
-// если паддинг в процентах, например 10%, то в IE<9 currentStyle вернет 10%,
-// и нужно преобразовать % в px через runtimeStyle
-var bodyWidth = document.body.clientWidth;
+  // верно (решение с JS)
+  var bodyWidth = document.body.clientWidth;
 
-var style = window.getComputedStyle ? getComputedStyle(elem, '') : elem.currentStyle;
+  var style = getComputedStyle(elem);
 
-var bodyInnerWidth = bodyWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
+  var bodyInnerWidth = bodyWidth - parseInt(style.paddingLeft) - parseInt(style.paddingRight);
 
-elem.style.width =  bodyInnerWidth + 'px';
+  elem.style.width = bodyInnerWidth + 'px';
 
 </script>
 
