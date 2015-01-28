@@ -1,5 +1,5 @@
 body {
-  padding: 10px
+  padding: 10px;
 }
 
 .carousel {
@@ -10,43 +10,57 @@ body {
   border-radius: 15px;
   background: #eee;
 }
+
 .carousel img {
   width: 130px;
   height: 130px;
-  display: block; /* если не поставить block, в ряде браузеров будет inline -> лишнее пространтсво вокруг элементов */
-}
-.carousel .arrow {
-  position: absolute;
-  top: 57px;
-  padding: 3px 8px 8px 9px;
-  background: #ddd;
-  border-radius: 15px;
-  font-size: 24px;
-  color: #444;
-  text-decoration: none;
+  /* по умолчанию inline, в ряде браузеров это даст лишнее пространство вокруг элементов */
+  display: block; 
 }
 
-.carousel .arrow:hover {
-  background: #ccc;
+.arrow {
+  position: absolute;
+  top: 60px;
+  padding: 0;
+  background: #ddd;
+  border-radius: 15px;
+  border: 1px solid gray;
+  font-size: 24px;
+  line-height: 24px;
+  color: #444;
+  display: block;
 }
-.carousel .left-arrow {
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+.prev {
   left: 7px;
 }
-.carousel .right-arrow {
+.next {
   right: 7px;
 }
+
 .gallery {
   width: 390px;
   overflow: hidden;
 }
+
 .gallery ul {
   height: 130px;
   width: 9999px;
   margin: 0;
   padding: 0;
   list-style: none;
+  transition: margin-left 250ms;
 }
 
-.gallery ul li {
-	float: left;
+.gallery li {
+  display: inline-block;
 }
+

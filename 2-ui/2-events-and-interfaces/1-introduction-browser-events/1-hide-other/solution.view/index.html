@@ -7,12 +7,14 @@
 
 <input type="button" id="hider" value="Нажмите, чтобы спрятать текст"/>
 
-<div id="hide">Текст</div>
+<div id="text">Текст</div>
 
 <script>
-document.getElementById('hider').onclick = function() {
-	document.getElementById('hide').style.display = 'none';
-}
+  // в этой задаче неважно, как именно прятать элемент
+  // например через style.display:
+  document.getElementById('hider').onclick = function() {
+  	document.getElementById('text').style.display = 'none';
+  }
 </script>
 </body>
 </html>

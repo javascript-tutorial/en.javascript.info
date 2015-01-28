@@ -3,26 +3,6 @@
 <head>
     <link rel="stylesheet" href="messages.css">
     <meta charset="utf-8">
-    <style>
-      .pane {
-        position: relative;
-      }
-
-      .remove-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        cursor: pointer;
-        display: block;
-        background: url(http://js.cx/clipart/delete.gif) no-repeat;
-        width: 16px;
-        height: 16px;
-      }
-
-      h3 {
-        padding-right: 20px;
-      }
-    </style>
 </head>
 
 <body>
@@ -31,17 +11,17 @@
   <div class="pane">
     <h3>Лошадь</h3>
     <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
-    <span class="remove-button"></span>
+    <button class="remove-button">[x]</button>
   </div>
   <div class="pane">
     <h3>Осёл</h3>
     <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
-    <span class="remove-button"></span>
+    <button class="remove-button">[x]</button>
   </div>
   <div class="pane">
     <h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
     <p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют тёлками.</p>
-    <span class="remove-button"></span>
+    <button class="remove-button">[x]</button>
   </div>
 </div>
 
@@ -49,13 +29,12 @@
 
 <script>
 
-  var spans = document.getElementById('messages-container').getElementsByTagName('span');
+  var buttons = document.querySelectorAll('#messages-container .remove-button');
 
-  for(var i=0; i<spans.length; i++) {
-    var span = spans[i];
-    if (span.className != 'remove-button') continue;
+  for(var i=0; i<buttons.length; i++) {
+    var button = buttons[i];
 
-    span.onclick = function() {
+    button.onclick = function() {
       var el = this.parentNode;
       el.parentNode.removeChild(el);
     };

@@ -1,0 +1,40 @@
+.arrow {
+  padding: 0;
+  background: #ddd;
+  border-radius: 15px;
+  border: 1px solid gray;
+  font-size: 24px;
+  line-height: 24px;
+  color: #444;
+  display: block;
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+ul {
+  height: 130px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul img {
+  width: 130px;
+  height: 130px;
+  /* по умолчанию inline, но в ряде браузеров это даст лишнее пространство вокруг элементов */
+  display: block; 
+}
+
+ul li {
+  /* если в HTML между элементами <li>..</li> есть пробелы, то они будут видны на странице,
+  чтобы их избежать, нужно либо писать <li>..</li><li>..</li> вплотную, либо не ставить закрывающие </li> */
+  display: inline-block;
+}

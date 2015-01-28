@@ -13,18 +13,21 @@
   }
 
   .menu .title {
-    padding-left: 16px;
     font-size: 18px;
     cursor: pointer;
-
-    background: url(http://js.cx/clipart/arrow-right.png) left center no-repeat;
   }
 
-  .menu-open .title {
-    background: url(http://js.cx/clipart/arrow-down.png) left center no-repeat;
+  .menu .title::before {
+    content: '▶ ';
+    font-size: 80%;
+    color: green;
   }
 
-  .menu-open ul {
+  .menu.open .title::before {
+    content: '▼ ';
+  }
+
+  .menu.open ul {
     display: block;
   }
 
@@ -33,7 +36,7 @@
 <body>
 
 <div id="sweeties" class="menu">
-  <span id="sweeties-title" class="title">Сладости (нажми меня)!</span>
+  <span class="title">Сладости (нажми меня)!</span>
   <ul>
     <li>Торт</li>
     <li>Пончик</li>
@@ -43,14 +46,12 @@
 </div>
 
 <script>
-var titleElem = document.getElementById('sweeties-title');
+  var menuElem = document.getElementById('sweeties');
+  var titleElem = menuElem.querySelector('.title');
 
-titleElem.onclick = function() {
-  var menu = this.parentNode;
-  menu.classList.toggle('menu-open');
-};
-
-
+  titleElem.onclick = function() {
+    menuElem.classList.toggle('open');
+  };
 </script>
 
 </body>

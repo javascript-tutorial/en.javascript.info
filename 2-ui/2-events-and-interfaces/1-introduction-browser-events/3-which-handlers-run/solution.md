@@ -9,8 +9,8 @@ function handler() {
   alert("1"); 
 }
 
-button.addEventListener("click", handler, false);
-button.removeEventListener("click", handler, false);
+button.addEventListener("click", handler);
+button.removeEventListener("click", handler);
 ```
 
 Обработчик `button.onclick` сработает независимо и в дополнение к назначенному в `addEventListener`.
