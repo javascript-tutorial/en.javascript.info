@@ -6,7 +6,7 @@
 
 [cut]
 
-## Метод contains
+## Метод contains для проверки на вложенность
 
 Синтаксис:
 
@@ -16,7 +16,7 @@ var result = parent.contains(child);
 
 Возвращает `true`, если `parent` содержит `child` или `parent == child`.
 
-## Метод compareDocumentPosition
+## Метод compareDocumentPosition для порядка узлов
 
 Бывает, что у нас есть два элемента, к примеру, `<li>` в списке, и нужно понять, какой из них выше другого.
 

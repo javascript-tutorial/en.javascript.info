@@ -1,4 +1,4 @@
-# Поиск: getElement* и querySelector*
+# Поиск: getElement* и querySelector* и не только
 
 Прямая навигация от родителя к потомку удобна, если элементы рядом. А если нет?
 
@@ -191,11 +191,11 @@ alert( articles.length ); // 2, найдёт оба элемента
 
 ## querySelectorAll [#querySelectorAll]
 
-Вызов `elem.querySelectorAll(cssQuery)` возвращает все элементы внутри `elem`, удовлетворяющие CSS-селектору `cssQuery`.
+Вызов `elem.querySelectorAll(css)` возвращает все элементы внутри `elem`, удовлетворяющие CSS-селектору `css`.
 
 Это один из самых часто используемых и полезных методов при работе с DOM.
 
-Он есть во всех современных браузерах, включая IE8+ (IE8 должен быть в режиме соответствия стандарту).
+Он есть во всех современных браузерах, включая IE8+ (в режиме соответствия стандарту).
 
 Следующий запрос получает все элементы `LI`, которые являются последними потомками своих `UL`:
 
@@ -222,9 +222,9 @@ alert( articles.length ); // 2, найдёт оба элемента
 
 ## querySelector [#querySelector]
 
-Вызов `elem.querySelector(cssQuery)` возвращает первый элемент, соответствующий CSS-селектору `cssQuery`.
+Вызов `elem.querySelector(css)` возвращает первый элемент, соответствующий CSS-селектору `css`.
 
-Иначе говоря, результат -- такой же, как и при `elem.querySelectorAll(cssQuery)[0]`, но в последнем вызове сначала ищутся все элементы, а потом берётся первый, а в `elem.querySelector(cssQuery)` ищется только первый, то есть он эффективнее.
+Иначе говоря, результат -- такой же, как и при `elem.querySelectorAll(css)[0]`, но в последнем вызове сначала ищутся все элементы, а потом берётся первый, а в `elem.querySelector(css)` ищется только первый, то есть он эффективнее.
 
 ## matches
 
@@ -255,6 +255,37 @@ alert( articles.length ); // 2, найдёт оба элемента
       alert("Ссылка на архив: " + elems[i].href);
     }
   }
+</script>
+```
+
+## closest
+
+Метод `elem.closest(css)` ищет ближайшего предка, подходящего под CSS-селектор `css`.
+
+Он самый новый из методов, рассмотренных в этой главе, поэтому не все браузеры его поддерживают. Это, конечно, легко поправимо, как мы увидим позже в главе [](/dom-polyfill).
+
+Пример использования:
+
+
+```html
+<!--+ run -->
+<ul>
+  <li class="chapter">Глава I
+    <ul>
+      <li class="subchapter">Глава <span class="num">1.1</span></li>
+      <li class="subchapter">Глава <span class="num">1.2</span></li>
+    </ul>
+  </li>
+</ul>
+
+
+<script>
+  var numberSpan = document.querySelector('.num');
+
+  // браузер должен поддерживать этот метод
+  alert( numberSpan.closest('li').className ) // subchapter
+  
+  alert( numberSpan.closest('.chapter').tagName ) // LI
 </script>
 ```
 
