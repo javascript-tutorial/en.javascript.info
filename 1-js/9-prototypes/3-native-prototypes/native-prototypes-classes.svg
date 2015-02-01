@@ -1,102 +1,91 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="661px" height="399px" viewBox="0 0 661 399" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
-    <!-- Generator: Sketch 3.2.2 (9983) - http://www.bohemiancoding.com/sketch -->
-    <title>native-prototypes-classes</title>
-    <desc>Created with Sketch.</desc>
+<svg width="682px" height="411px" viewBox="0 0 682 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs></defs>
-    <g id="native-prototypes-classes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g sketch:type="MSLayerGroup" transform="translate(1.000000, 0.000000)">
-            <g id="Rectangle-1-+-eats:-true-+-animal" transform="translate(226.000000, 69.000000)">
-                <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="0" y="17" width="200" height="60"></rect>
-                <text id="toString:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="11" y="41">toString: function</tspan>
-                    <tspan x="11" y="57">другие методы объектов</tspan>
-                </text>
-                <text id="Object.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#000000">
-                    <tspan x="0" y="10">Object.prototype</tspan>
-                </text>
-            </g>
-            <path d="M286.5,62.5 L286.5,21.5" id="Line-2" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-2-decoration-1" d="M286.5,21.5 C285.45,25.28 284.55,28.52 283.5,32.3 C285.6,32.3 287.4,32.3 289.5,32.3 C288.45,28.52 287.55,25.28 286.5,21.5 C286.5,21.5 286.5,21.5 286.5,21.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <text id="__proto__-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                <tspan x="296" y="43">__proto__</tspan>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="native-prototypes-classes">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="239" y="92" width="200" height="60"></rect>
+            <text id="toString:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="250" y="116">toString: function</tspan>
+                <tspan x="250" y="132">другие методы объектов</tspan>
             </text>
-            <path d="M286.5,195.5 L286.5,154.5" id="Line-3" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-3-decoration-1" d="M286.5,154.5 C285.45,158.28 284.55,161.52 283.5,165.3 C285.6,165.3 287.4,165.3 289.5,165.3 C288.45,161.52 287.55,158.28 286.5,154.5 C286.5,154.5 286.5,154.5 286.5,154.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <text id="null" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                <tspan x="272" y="10">null</tspan>
+            <text id="Object.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="239" y="85">Object.prototype</tspan>
             </text>
-            <g id="Rectangle-1-+-eats:-true-+-animal-2" transform="translate(0.000000, 166.000000)">
-                <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="0" y="51" width="200" height="60"></rect>
-                <text id="slice:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="11" y="75">slice: function</tspan>
-                    <tspan x="11" y="91">другие методы массивов</tspan>
-                </text>
-                <text id="__proto__-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                    <tspan x="68" y="10">__proto__</tspan>
-                </text>
-                <text id="Array.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#000000">
-                    <tspan x="0" y="44">Array.prototype</tspan>
-                </text>
-            </g>
-            <g id="Rectangle-1-+-eats:-true-+-animal-3" transform="translate(229.000000, 166.000000)">
-                <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="0" y="51" width="200" height="60"></rect>
-                <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                    <tspan x="67" y="10">__proto__</tspan>
-                </text>
-                <text id="apply:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="11" y="75">apply: function</tspan>
-                    <tspan x="11" y="91">другие методы функций</tspan>
-                </text>
-                <text id="Function.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#000000">
-                    <tspan x="0" y="44">Function.prototype</tspan>
-                </text>
-            </g>
-            <g id="Rectangle-1-+-eats:-true-+-animal-4" transform="translate(460.000000, 166.000000)">
-                <rect id="Rectangle-1" stroke="#979797" sketch:type="MSShapeGroup" x="0" y="51" width="200" height="60"></rect>
-                <text id="toFixed:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                    <tspan x="11" y="75">toFixed: function</tspan>
-                    <tspan x="11" y="91">другие методы чисел</tspan>
-                </text>
-                <text id="Number.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#000000">
-                    <tspan x="0" y="44">Number.prototype</tspan>
-                </text>
-                <text id="__proto__-4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                    <tspan x="68" y="10">__proto__</tspan>
-                </text>
-            </g>
-            <path d="M129.5,187.5 L207.5,151.5" id="Line" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M206.676548,151.880055 C202.80445,152.510737 199.485509,153.051323 195.613412,153.682005 C196.493434,155.58872 197.247739,157.223047 198.127761,159.129761 C201.119836,156.592364 203.684472,154.417452 206.676548,151.880055 C206.676548,151.880055 206.676548,151.880055 206.676548,151.880055 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <path d="M526.5,187.5 L449.5,151.5" id="Line" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M449.5,151.5 C452.479529,154.052118 455.033412,156.239647 458.012941,158.791765 C458.902353,156.889412 459.664706,155.258824 460.554118,153.356471 C456.685176,152.706706 453.368941,152.149765 449.5,151.5 C449.5,151.5 449.5,151.5 449.5,151.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <rect id="Rectangle-5" stroke="#979797" sketch:type="MSShapeGroup" x="34" y="332" width="119" height="25"></rect>
-            <text id="[1,-2,-3]" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                <tspan x="58" y="348">[1, 2, 3]</tspan>
+            <path d="M299.5,68.5 L299.5,27.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-2-decoration-1" d="M299.5,27.5 C298.45,31.28 297.55,34.52 296.5,38.3 C298.6,38.3 300.4,38.3 302.5,38.3 C301.45,34.52 300.55,31.28 299.5,27.5 C299.5,27.5 299.5,27.5 299.5,27.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="__proto__-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="309" y="49">__proto__</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#979797" sketch:type="MSShapeGroup" x="237" y="332" width="181" height="67"></rect>
-            <text id="function-f(args)-{" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                <tspan x="251" y="352">function f(args) {</tspan>
-                <tspan x="251" y="368">  ...</tspan>
-                <tspan x="251" y="384">}</tspan>
+            <path d="M299.5,201.5 L299.5,160.5" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-3-decoration-1" d="M299.5,160.5 C298.45,164.28 297.55,167.52 296.5,171.3 C298.6,171.3 300.4,171.3 302.5,171.3 C301.45,167.52 300.55,164.28 299.5,160.5 C299.5,160.5 299.5,160.5 299.5,160.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="null" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="285" y="16">null</tspan>
             </text>
-            <rect id="Rectangle-7" stroke="#979797" sketch:type="MSShapeGroup" x="527" y="332" width="71" height="25"></rect>
-            <text id="5" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
-                <tspan x="560" y="349">5</tspan>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="223" width="200" height="60"></rect>
+            <text id="slice:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="247">slice: function</tspan>
+                <tspan x="24" y="263">другие методы массивов</tspan>
             </text>
-            <path d="M286.5,325.5 L286.5,284.5" id="Line-4" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-4-decoration-1" d="M286.5,284.5 C285.45,288.28 284.55,291.52 283.5,295.3 C285.6,295.3 287.4,295.3 289.5,295.3 C288.45,291.52 287.55,288.28 286.5,284.5 C286.5,284.5 286.5,284.5 286.5,284.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <text id="__proto__-5" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                <tspan x="296" y="306">__proto__</tspan>
+            <text id="__proto__-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="81" y="182">__proto__</tspan>
             </text>
-            <path d="M563.5,325.5 L563.5,284.5" id="Line-5" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-5-decoration-1" d="M563.5,284.5 C562.45,288.28 561.55,291.52 560.5,295.3 C562.6,295.3 564.4,295.3 566.5,295.3 C565.45,291.52 564.55,288.28 563.5,284.5 C563.5,284.5 563.5,284.5 563.5,284.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <text id="__proto__-6" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                <tspan x="573" y="306">__proto__</tspan>
+            <text id="Array.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="216">Array.prototype</tspan>
             </text>
-            <path d="M93.5,325.5 L93.5,284.5" id="Line-6" stroke="#4990E2" stroke-linecap="square" fill="#4990E2" sketch:type="MSShapeGroup"></path>
-            <path id="Line-6-decoration-1" d="M93.5,284.5 C92.45,288.28 91.55,291.52 90.5,295.3 C92.6,295.3 94.4,295.3 96.5,295.3 C95.45,291.52 94.55,288.28 93.5,284.5 C93.5,284.5 93.5,284.5 93.5,284.5 Z" stroke="#4990E2" stroke-linecap="square" fill="#4990E2"></path>
-            <text id="__proto__-7" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#4990E2">
-                <tspan x="103" y="306">__proto__</tspan>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="242" y="223" width="200" height="60"></rect>
+            <text id="__proto__" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="309" y="182">__proto__</tspan>
+            </text>
+            <text id="apply:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="253" y="247">apply: function</tspan>
+                <tspan x="253" y="263">другие методы функций</tspan>
+            </text>
+            <text id="Function.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="242" y="216">Function.prototype</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="473" y="223" width="200" height="60"></rect>
+            <text id="toFixed:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="484" y="247">toFixed: function</tspan>
+                <tspan x="484" y="263">другие методы чисел</tspan>
+            </text>
+            <text id="Number.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="473" y="216">Number.prototype</tspan>
+            </text>
+            <text id="__proto__-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="541" y="182">__proto__</tspan>
+            </text>
+            <path d="M142.5,193.5 L220.5,157.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-decoration-1" d="M219.676548,157.880055 C215.80445,158.510737 212.485509,159.051323 208.613412,159.682005 C209.493434,161.58872 210.247739,163.223047 211.127761,165.129761 C214.119836,162.592364 216.684472,160.417452 219.676548,157.880055 C219.676548,157.880055 219.676548,157.880055 219.676548,157.880055 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M539.5,193.5 L462.5,157.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-decoration-1" d="M462.5,157.5 C465.479529,160.052118 468.033412,162.239647 471.012941,164.791765 C471.902353,162.889412 472.664706,161.258824 473.554118,159.356471 C469.685176,158.706706 466.368941,158.149765 462.5,157.5 C462.5,157.5 462.5,157.5 462.5,157.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="2" x="47" y="338" width="119" height="25"></rect>
+            <text id="[1,-2,-3]" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="71" y="354">[1, 2, 3]</tspan>
+            </text>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" x="250" y="338" width="181" height="67"></rect>
+            <text id="function-f(args)-{" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="264" y="358">function f(args) {</tspan>
+                <tspan x="264" y="374">  ...</tspan>
+                <tspan x="264" y="390">}</tspan>
+            </text>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" x="540" y="338" width="71" height="25"></rect>
+            <text id="5" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="573" y="355">5</tspan>
+            </text>
+            <path d="M299.5,331.5 L299.5,290.5" id="Line-4" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-4-decoration-1" d="M299.5,290.5 C298.45,294.28 297.55,297.52 296.5,301.3 C298.6,301.3 300.4,301.3 302.5,301.3 C301.45,297.52 300.55,294.28 299.5,290.5 C299.5,290.5 299.5,290.5 299.5,290.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="__proto__-5" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="309" y="312">__proto__</tspan>
+            </text>
+            <path d="M576.5,331.5 L576.5,290.5" id="Line-5" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-5-decoration-1" d="M576.5,290.5 C575.45,294.28 574.55,297.52 573.5,301.3 C575.6,301.3 577.4,301.3 579.5,301.3 C578.45,297.52 577.55,294.28 576.5,290.5 C576.5,290.5 576.5,290.5 576.5,290.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="__proto__-6" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="586" y="312">__proto__</tspan>
+            </text>
+            <path d="M106.5,331.5 L106.5,290.5" id="Line-6" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path id="Line-6-decoration-1" d="M106.5,290.5 C105.45,294.28 104.55,297.52 103.5,301.3 C105.6,301.3 107.4,301.3 109.5,301.3 C108.45,297.52 107.55,294.28 106.5,290.5 C106.5,290.5 106.5,290.5 106.5,290.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="__proto__-7" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="116" y="312">__proto__</tspan>
             </text>
         </g>
     </g>
