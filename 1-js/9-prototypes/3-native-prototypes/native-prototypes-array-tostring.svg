@@ -1,37 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="233px" height="320px" viewBox="0 0 233 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="233px" height="320px" viewBox="0 0 233 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>native-prototypes-array-tostring.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="native-prototypes-array-tostring">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="16" y="160" width="200" height="60"></rect>
-            <text id="toString:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="native-prototypes-array-tostring.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="16" y="160" width="200" height="60"></rect>
+            <text id="toString:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="27" y="184">toString: function</tspan>
                 <tspan x="27" y="200">...</tspan>
             </text>
-            <text id="Array.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="Array.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="16" y="153">Array.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="16" y="27" width="200" height="60"></rect>
-            <text id="toString:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="16" y="27" width="200" height="60"></rect>
+            <text id="toString:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="27" y="51">toString: function</tspan>
                 <tspan x="27" y="67">...</tspan>
             </text>
-            <text id="Object.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="Object.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="16" y="20">Object.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="16" y="277" width="200" height="30"></rect>
-            <path d="M76.5,268.5 L76.5,227.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="16" y="277" width="200" height="30"></rect>
+            <path d="M76.5,268.5 L76.5,227.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M76.5,227.5 C75.45,231.28 74.55,234.52 73.5,238.3 C75.6,238.3 77.4,238.3 79.5,238.3 C78.45,234.52 77.55,231.28 76.5,227.5 C76.5,227.5 76.5,227.5 76.5,227.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="__proto__" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="86" y="249">__proto__</tspan>
             </text>
-            <path d="M76.5,136.5 L76.5,95.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M76.5,136.5 L76.5,95.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-2-decoration-1" d="M76.5,95.5 C75.45,99.28 74.55,102.52 73.5,106.3 C75.6,106.3 77.4,106.3 79.5,106.3 C78.45,102.52 77.55,99.28 76.5,95.5 C76.5,95.5 76.5,95.5 76.5,95.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="__proto__-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="__proto__-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="86" y="117">__proto__</tspan>
             </text>
-            <ellipse id="Oval-1" stroke="#EE6B47" stroke-width="2" cx="60" cy="180" rx="42" ry="16"></ellipse>
-            <text id="[1,-2,-3]" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <ellipse id="Oval-1" stroke="#EE6B47" stroke-width="2" sketch:type="MSShapeGroup" cx="60" cy="180" rx="42" ry="16"></ellipse>
+            <text id="[1,-2,-3]" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="24" y="296">[1, 2, 3]</tspan>
             </text>
         </g>

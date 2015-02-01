@@ -13,17 +13,12 @@
 </div>
 
 <script>
-function getWidth() {
-  var style = window.getComputedStyle ? getComputedStyle(elem, '') : elem.currentStyle;
-  return style.width;
-}
-
 // FF: 200, Ch/Sa: 184, Op: 200, IE9: 184, IE7,8:200
 </script>
 
 У элемента стоит <code>style="width:300px"</code><br>
 
-<button onclick="alert(getWidth())">alert(width из getComputedStyle/currentStyle)</button>
+<button onclick="alert( getComputedStyle(elem).width )">alert( getComputedStyle(elem).width )</button>
 
 </body>
 </html>

@@ -1,57 +1,60 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="615px" height="77px" viewBox="0 0 615 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="615px" height="77px" viewBox="0 0 615 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>linked-list.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="linked-list">
-            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="2" x="10" y="29" width="80" height="34"></rect>
-            <text id="value" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="linked-list.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="10" y="29" width="80" height="34"></rect>
+            <text id="value" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="20">value</tspan>
             </text>
-            <text id="-8" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="-8" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="45" y="50">1</tspan>
             </text>
-            <path d="M75.73,45 L147.27,45" id="Line-21" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M75.73,45 L147.27,45" id="Line-21" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-21-decoration-1" d="M146.73,45 C142.95,43.95 139.71,43.05 135.93,42 C135.93,44.1 135.93,45.9 135.93,48 C139.71,46.95 142.95,46.05 146.73,45 C146.73,45 146.73,45 146.73,45 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="next" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="next" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="99" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="2" x="150" y="29" width="80" height="34"></rect>
-            <text id="value-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="150" y="29" width="80" height="34"></rect>
+            <text id="value-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="153" y="20">value</tspan>
             </text>
-            <text id="-9" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="-9" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="185" y="50">2</tspan>
             </text>
-            <path d="M215.73,45 L287.27,45" id="Line-22" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M215.73,45 L287.27,45" id="Line-22" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-22-decoration-1" d="M286.73,45 C282.95,43.95 279.71,43.05 275.93,42 C275.93,44.1 275.93,45.9 275.93,48 C279.71,46.95 282.95,46.05 286.73,45 C286.73,45 286.73,45 286.73,45 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="next-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="next-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="239" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="2" x="289" y="29" width="80" height="34"></rect>
-            <text id="value-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="289" y="29" width="80" height="34"></rect>
+            <text id="value-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="292" y="20">value</tspan>
             </text>
-            <text id="-10" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="-10" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="324" y="50">3</tspan>
             </text>
-            <path d="M354.73,45 L426.27,45" id="Line-23" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M354.73,45 L426.27,45" id="Line-23" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-23-decoration-1" d="M425.73,45 C421.95,43.95 418.71,43.05 414.93,42 C414.93,44.1 414.93,45.9 414.93,48 C418.71,46.95 421.95,46.05 425.73,45 C425.73,45 425.73,45 425.73,45 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="next-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="next-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="378" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="2" x="429" y="29" width="80" height="34"></rect>
-            <text id="value-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="429" y="29" width="80" height="34"></rect>
+            <text id="value-4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="432" y="20">value</tspan>
             </text>
-            <text id="4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="464" y="50">4</tspan>
             </text>
-            <path d="M494.73,45 L566.27,45" id="Line-24" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M494.73,45 L566.27,45" id="Line-24" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-24-decoration-1" d="M565.73,45 C561.95,43.95 558.71,43.05 554.93,42 C554.93,44.1 554.93,45.9 554.93,48 C558.71,46.95 561.95,46.05 565.73,45 C565.73,45 565.73,45 565.73,45 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="next-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="next-4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="518" y="34">next</tspan>
             </text>
-            <text id="null" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="null" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="574" y="49">null</tspan>
             </text>
         </g>

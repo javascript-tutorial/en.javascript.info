@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="225px" height="331px" viewBox="0 0 225 331" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="225px" height="331px" viewBox="0 0 225 331" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>class-inheritance-rabbit-run-animal.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="class-inheritance-rabbit-run-animal">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="156" width="200" height="50"></rect>
-            <text id="jump:-function" font-family="Consolas" font-size="14" font-weight="normal">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="class-inheritance-rabbit-run-animal.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="156" width="200" height="50"></rect>
+            <text id="jump:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal">
                 <tspan x="24" y="175" fill="#8A704D">jump: function</tspan>
                 <tspan x="131.761719" y="175" fill="#999647"></tspan>
                 <tspan x="24" y="191" fill="#7ED321">run: function</tspan>
             </text>
-            <text id="Rabbit.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="Rabbit.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="149">Rabbit.prototype</tspan>
             </text>
-            <text id="rabbit" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="rabbit" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="264">rabbit</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="23" width="200" height="50"></rect>
-            <text id="run:-function" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="23" width="200" height="50"></rect>
+            <text id="run:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="24" y="44">run: function</tspan>
                 <tspan x="24" y="60">stop: function</tspan>
             </text>
-            <text id="Animal.prototype" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="Animal.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="16">Animal.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="272" width="200" height="50"></rect>
-            <path d="M73.5,259.5 L73.5,218.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="272" width="200" height="50"></rect>
+            <path d="M73.5,259.5 L73.5,218.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M73.5,218.5 C72.45,222.28 71.55,225.52 70.5,229.3 C72.6,229.3 74.4,229.3 76.5,229.3 C75.45,225.52 74.55,222.28 73.5,218.5 C73.5,218.5 73.5,218.5 73.5,218.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="__proto__" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="83" y="240">__proto__</tspan>
             </text>
-            <path d="M73.5,132.5 L73.5,91.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M73.5,132.5 L73.5,91.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-2-decoration-1" d="M73.5,91.5 C72.45,95.28 71.55,98.52 70.5,102.3 C72.6,102.3 74.4,102.3 76.5,102.3 C75.45,98.52 74.55,95.28 73.5,91.5 C73.5,91.5 73.5,91.5 73.5,91.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="__proto__-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+            <text id="__proto__-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="83" y="113">__proto__</tspan>
             </text>
-            <text id="name:-&quot;Кроль&quot;" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="name:-&quot;Кроль&quot;" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="21" y="293">name: "Кроль"</tspan>
                 <tspan x="21" y="309">speed: 0</tspan>
             </text>

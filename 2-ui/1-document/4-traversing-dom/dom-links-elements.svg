@@ -1,55 +1,58 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="440px" height="309px" viewBox="0 0 440 309" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="440px" height="309px" viewBox="0 0 440 309" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>dom-links-elements.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="dom-links-elements">
-            <text id="document.documentEle" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="dom-links-elements.svg" sketch:type="MSArtboardGroup">
+            <text id="document.documentEle" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="137.692383" y="22">document.documentElement &lt;HTML&gt;</tspan>
             </text>
-            <text id="document.body-(если-" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+            <text id="document.body-(если-" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="172.84375" y="90">document.body (если внутри body)</tspan>
             </text>
-            <path d="M221.5,67.5 L221.5,37.5" id="Line-4" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M221.5,67.5 L221.5,37.5" id="Line-4" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-4-decoration-1" d="M221.5,37.5 C220.45,41.28 219.55,44.52 218.5,48.3 C220.6,48.3 222.4,48.3 224.5,48.3 C223.45,44.52 222.55,41.28 221.5,37.5 C221.5,37.5 221.5,37.5 221.5,37.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <path d="M233.2715,132.2195 C233.9275,132.2195 234.4565,132.7755 234.4565,133.4575 C234.4565,134.1385 233.9275,134.6935 233.2455,134.6935 C232.5895,134.6935 232.0595,134.1385 232.0595,133.4575 C232.0595,132.7755 232.5895,132.2195 233.2715,132.2195 L233.2715,132.2195 Z M231.1755,137.6715 C230.4935,137.6715 229.9645,137.1165 229.9645,136.4345 C229.9645,135.7535 230.4935,135.1985 231.1515,135.1985 C231.8325,135.1985 232.3625,135.7535 232.3625,136.4345 C232.3625,137.1165 231.8325,137.6715 231.1755,137.6715 L231.1755,137.6715 Z M231.1755,129.2415 C231.8325,129.2415 232.3625,129.7975 232.3625,130.4785 C232.3625,131.1605 231.8325,131.7155 231.1515,131.7155 C230.4935,131.7155 229.9645,131.1605 229.9645,130.4785 C229.9645,129.7975 230.4935,129.2415 231.1755,129.2415 L231.1755,129.2415 Z M229.6615,132.2955 C230.3185,132.2955 230.8475,132.8505 230.8475,133.5325 C230.8475,134.1885 230.3185,134.7435 229.6365,134.7435 C228.9805,134.7435 228.4495,134.1885 228.4495,133.5075 C228.4495,132.8505 228.9805,132.2955 229.6615,132.2955 L229.6615,132.2955 Z M229.0815,140.6495 C228.4245,140.6495 227.8695,140.0945 227.8695,139.4135 C227.8695,138.7315 228.4005,138.2015 229.0565,138.2015 C229.7375,138.2015 230.2675,138.7315 230.2675,139.4135 C230.2675,140.0945 229.7375,140.6495 229.0815,140.6495 L229.0815,140.6495 Z M229.0815,126.2635 C229.7375,126.2635 230.2675,126.8195 230.2675,127.5005 C230.2675,128.1815 229.7375,128.7375 229.0565,128.7375 C228.4005,128.7375 227.8695,128.1815 227.8695,127.5005 C227.8695,126.8195 228.4245,126.2635 229.0815,126.2635 L229.0815,126.2635 Z M226.9875,143.6275 C226.3305,143.6275 225.7755,143.0725 225.7755,142.3905 C225.7755,141.7105 226.3045,141.1795 226.9605,141.1795 C227.6425,141.1795 228.1725,141.7105 228.1725,142.3905 C228.1725,143.0725 227.6425,143.6275 226.9875,143.6275 L226.9875,143.6275 Z M226.9875,123.2855 C227.6425,123.2855 228.1725,123.8415 228.1725,124.5225 C228.1725,125.2035 227.6425,125.7595 226.9605,125.7595 C226.3045,125.7595 225.7755,125.2035 225.7755,124.5225 C225.7755,123.8415 226.3305,123.2855 226.9875,123.2855 L226.9875,123.2855 Z M226.0015,132.2955 C226.6575,132.2955 227.1885,132.8505 227.1885,133.5325 C227.1885,134.1885 226.6575,134.7435 225.9775,134.7435 C225.3215,134.7435 224.7905,134.1885 224.7905,133.5075 C224.7905,132.8505 225.3465,132.2955 226.0015,132.2955 L226.0015,132.2955 Z M222.3675,132.2955 C223.0245,132.2955 223.5545,132.8505 223.5545,133.5325 C223.5545,134.1885 222.9985,134.7435 222.3425,134.7435 C221.6865,134.7435 221.1305,134.1885 221.1305,133.5075 C221.1305,132.8505 221.6865,132.2955 222.3675,132.2955 L222.3675,132.2955 Z M218.7085,132.2955 C219.3645,132.2955 219.8945,132.8505 219.8945,133.5325 C219.8945,134.1885 219.3645,134.7435 218.6835,134.7435 C218.0275,134.7435 217.4965,134.1885 217.4965,133.5075 C217.4965,132.8505 218.0275,132.2955 218.7085,132.2955 L218.7085,132.2955 Z M215.0485,132.2955 C215.7045,132.2955 216.2355,132.8505 216.2355,133.5325 C216.2355,134.1885 215.7045,134.7435 215.0235,134.7435 C214.3665,134.7435 213.8365,134.1885 213.8365,133.5075 C213.8365,132.8505 214.3925,132.2955 215.0485,132.2955 L215.0485,132.2955 Z M211.4145,132.2955 C212.0705,132.2955 212.6005,132.8505 212.6005,133.5325 C212.6005,134.1885 212.0455,134.7435 211.3885,134.7435 C210.7335,134.7435 210.1775,134.1885 210.1775,133.5075 C210.1775,132.8505 210.7335,132.2955 211.4145,132.2955 L211.4145,132.2955 Z M207.7545,132.2955 C208.4105,132.2955 208.9415,132.8505 208.9415,133.5325 C208.9415,134.1885 208.4105,134.7435 207.7295,134.7435 C207.0735,134.7435 206.5435,134.1885 206.5435,133.5075 C206.5435,132.8505 207.0735,132.2955 207.7545,132.2955 L207.7545,132.2955 Z" id="Fill-7" fill="#EE6B47" transform="translate(220.500000, 133.456500) rotate(-90.000000) translate(-220.500000, -133.456500) "></path>
-            <path d="M14.5,108 L427,108" id="Line-5" stroke="#8A704D" stroke-width="2" stroke-linecap="square"></path>
-            <text id="parentElement" font-family="Consolas" font-size="14" font-weight="bold">
+            <path d="M233.2715,132.2195 C233.9275,132.2195 234.4565,132.7755 234.4565,133.4575 C234.4565,134.1385 233.9275,134.6935 233.2455,134.6935 C232.5895,134.6935 232.0595,134.1385 232.0595,133.4575 C232.0595,132.7755 232.5895,132.2195 233.2715,132.2195 L233.2715,132.2195 Z M231.1755,137.6715 C230.4935,137.6715 229.9645,137.1165 229.9645,136.4345 C229.9645,135.7535 230.4935,135.1985 231.1515,135.1985 C231.8325,135.1985 232.3625,135.7535 232.3625,136.4345 C232.3625,137.1165 231.8325,137.6715 231.1755,137.6715 L231.1755,137.6715 Z M231.1755,129.2415 C231.8325,129.2415 232.3625,129.7975 232.3625,130.4785 C232.3625,131.1605 231.8325,131.7155 231.1515,131.7155 C230.4935,131.7155 229.9645,131.1605 229.9645,130.4785 C229.9645,129.7975 230.4935,129.2415 231.1755,129.2415 L231.1755,129.2415 Z M229.6615,132.2955 C230.3185,132.2955 230.8475,132.8505 230.8475,133.5325 C230.8475,134.1885 230.3185,134.7435 229.6365,134.7435 C228.9805,134.7435 228.4495,134.1885 228.4495,133.5075 C228.4495,132.8505 228.9805,132.2955 229.6615,132.2955 L229.6615,132.2955 Z M229.0815,140.6495 C228.4245,140.6495 227.8695,140.0945 227.8695,139.4135 C227.8695,138.7315 228.4005,138.2015 229.0565,138.2015 C229.7375,138.2015 230.2675,138.7315 230.2675,139.4135 C230.2675,140.0945 229.7375,140.6495 229.0815,140.6495 L229.0815,140.6495 Z M229.0815,126.2635 C229.7375,126.2635 230.2675,126.8195 230.2675,127.5005 C230.2675,128.1815 229.7375,128.7375 229.0565,128.7375 C228.4005,128.7375 227.8695,128.1815 227.8695,127.5005 C227.8695,126.8195 228.4245,126.2635 229.0815,126.2635 L229.0815,126.2635 Z M226.9875,143.6275 C226.3305,143.6275 225.7755,143.0725 225.7755,142.3905 C225.7755,141.7105 226.3045,141.1795 226.9605,141.1795 C227.6425,141.1795 228.1725,141.7105 228.1725,142.3905 C228.1725,143.0725 227.6425,143.6275 226.9875,143.6275 L226.9875,143.6275 Z M226.9875,123.2855 C227.6425,123.2855 228.1725,123.8415 228.1725,124.5225 C228.1725,125.2035 227.6425,125.7595 226.9605,125.7595 C226.3045,125.7595 225.7755,125.2035 225.7755,124.5225 C225.7755,123.8415 226.3305,123.2855 226.9875,123.2855 L226.9875,123.2855 Z M226.0015,132.2955 C226.6575,132.2955 227.1885,132.8505 227.1885,133.5325 C227.1885,134.1885 226.6575,134.7435 225.9775,134.7435 C225.3215,134.7435 224.7905,134.1885 224.7905,133.5075 C224.7905,132.8505 225.3465,132.2955 226.0015,132.2955 L226.0015,132.2955 Z M222.3675,132.2955 C223.0245,132.2955 223.5545,132.8505 223.5545,133.5325 C223.5545,134.1885 222.9985,134.7435 222.3425,134.7435 C221.6865,134.7435 221.1305,134.1885 221.1305,133.5075 C221.1305,132.8505 221.6865,132.2955 222.3675,132.2955 L222.3675,132.2955 Z M218.7085,132.2955 C219.3645,132.2955 219.8945,132.8505 219.8945,133.5325 C219.8945,134.1885 219.3645,134.7435 218.6835,134.7435 C218.0275,134.7435 217.4965,134.1885 217.4965,133.5075 C217.4965,132.8505 218.0275,132.2955 218.7085,132.2955 L218.7085,132.2955 Z M215.0485,132.2955 C215.7045,132.2955 216.2355,132.8505 216.2355,133.5325 C216.2355,134.1885 215.7045,134.7435 215.0235,134.7435 C214.3665,134.7435 213.8365,134.1885 213.8365,133.5075 C213.8365,132.8505 214.3925,132.2955 215.0485,132.2955 L215.0485,132.2955 Z M211.4145,132.2955 C212.0705,132.2955 212.6005,132.8505 212.6005,133.5325 C212.6005,134.1885 212.0455,134.7435 211.3885,134.7435 C210.7335,134.7435 210.1775,134.1885 210.1775,133.5075 C210.1775,132.8505 210.7335,132.2955 211.4145,132.2955 L211.4145,132.2955 Z M207.7545,132.2955 C208.4105,132.2955 208.9415,132.8505 208.9415,133.5325 C208.9415,134.1885 208.4105,134.7435 207.7295,134.7435 C207.0735,134.7435 206.5435,134.1885 206.5435,133.5075 C206.5435,132.8505 207.0735,132.2955 207.7545,132.2955 L207.7545,132.2955 Z" id="Fill-7" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(220.500000, 133.456500) rotate(-90.000000) translate(-220.500000, -133.456500) "></path>
+            <path d="M14.5,108 L427,108" id="Line-5" stroke="#8A704D" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <text id="parentElement" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="175" y="165" fill="#8A704D">parent</tspan>
                 <tspan x="221.183594" y="165" fill="#EE6B47">Element</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" x="183" y="208" width="75" height="24"></rect>
-            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" x="165" y="73" width="113" height="24"></rect>
-            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" x="131" y="5" width="194" height="24"></rect>
-            <text id="&lt;DIV&gt;" font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="183" y="208" width="75" height="24"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="165" y="73" width="113" height="24"></rect>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="131" y="5" width="194" height="24"></rect>
+            <text id="&lt;DIV&gt;" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="201.051859" y="225">&lt;DIV&gt;</tspan>
             </text>
-            <path d="M220.5,200.5 L220.5,174.5" id="Line-6" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M220.5,200.5 L220.5,174.5" id="Line-6" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-6-decoration-1" d="M220.5,174.5 C219.45,178.28 218.55,181.52 217.5,185.3 C219.6,185.3 221.4,185.3 223.5,185.3 C222.45,181.52 221.55,178.28 220.5,174.5 C220.5,174.5 220.5,174.5 220.5,174.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <path d="M267.5,219.5 L427,219.5" id="Line-7" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M267.5,219.5 L427,219.5" id="Line-7" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-7-decoration-1" d="M426.5,219.5 C422.72,218.45 419.48,217.55 415.7,216.5 C415.7,218.6 415.7,220.4 415.7,222.5 C419.48,221.45 422.72,220.55 426.5,219.5 C426.5,219.5 426.5,219.5 426.5,219.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="nextElementSibling" font-family="Consolas" font-size="14" font-weight="bold">
+            <text id="nextElementSibling" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="276" y="205" fill="#8A704D">next</tspan>
                 <tspan x="306.789062" y="205" fill="#EE6B47">Element</tspan>
                 <tspan x="360.669922" y="205" fill="#8A704D">Sibling</tspan>
             </text>
-            <path d="M168,219.5 L12,219.5" id="Line-8" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M168,219.5 L12,219.5" id="Line-8" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-8-decoration-1" d="M12,219.5 C15.78,220.55 19.02,221.45 22.8,222.5 C22.8,220.4 22.8,218.6 22.8,216.5 C19.02,217.55 15.78,218.45 12,219.5 C12,219.5 12,219.5 12,219.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="previousElementSibli" font-family="Consolas" font-size="14" font-weight="bold">
+            <text id="previousElementSibli" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="6" y="205" fill="#8A704D">previous</tspan>
                 <tspan x="67.578125" y="205" fill="#EE6B47">Element</tspan>
                 <tspan x="121.458984" y="205" fill="#8A704D">Sibling</tspan>
             </text>
-            <path d="M116.5,278.5 L174.5,242.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path d="M325,279 L269.5,242.5" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <text id="children" font-family="Consolas" font-size="14" font-weight="bold" fill="#EE6B47">
+            <path d="M116.5,278.5 L174.5,242.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path d="M325,279 L269.5,242.5" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <text id="children" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#EE6B47">
                 <tspan x="188" y="266">children</tspan>
             </text>
-            <text id="firstElementChild--" font-family="Consolas" font-size="14" font-weight="bold">
+            <text id="firstElementChild--" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="43" y="300" fill="#8A704D">first</tspan>
                 <tspan x="81.4863281" y="300" fill="#EE6B47">Element</tspan>
                 <tspan x="135.367188" y="300" fill="#8A704D">Child  </tspan>
             </text>
-            <text id="lastElementChild" font-family="Consolas" font-size="14" font-weight="bold">
+            <text id="lastElementChild" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="273" y="300" fill="#8A704D">last</tspan>
                 <tspan x="303.789062" y="300" fill="#EE6B47">Element</tspan>
                 <tspan x="357.669922" y="300" fill="#8A704D">Child</tspan>

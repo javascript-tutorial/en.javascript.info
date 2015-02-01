@@ -1,25 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="161px" height="150px" viewBox="0 0 161 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="161px" height="150px" viewBox="0 0 161 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>proto-animal-rabbit.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="proto-animal-rabbit">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="22" width="120" height="30"></rect>
-            <text id="eats:-true" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="proto-animal-rabbit.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="22" width="120" height="30"></rect>
+            <text id="eats:-true" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="24" y="40">eats: true</tspan>
             </text>
-            <text id="animal" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="animal" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="15">animal</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" x="13" y="110" width="120" height="30"></rect>
-            <text id="jumps:-true" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="110" width="120" height="30"></rect>
+            <text id="jumps:-true" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="24" y="128">jumps: true</tspan>
             </text>
-            <text id="rabbit" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+            <text id="rabbit" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="103">rabbit</tspan>
             </text>
-            <path d="M73.5,101.5 L73.5,60.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M73.5,101.5 L73.5,60.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M73.5,60.5 C72.45,64.28 71.55,67.52 70.5,71.3 C72.6,71.3 74.4,71.3 76.5,71.3 C75.45,67.52 74.55,64.28 73.5,60.5 C73.5,60.5 73.5,60.5 73.5,60.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="__proto__" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="83" y="82">__proto__</tspan>
             </text>
         </g>

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="128px" height="207px" viewBox="0 0 128 207" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="128px" height="207px" viewBox="0 0 128 207" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>object-person-empty.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
     <defs></defs>
-    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="object-person-empty">
-            <path d="M117.16824,54 L13.6952,54 C11.65416,54 10,55.08054 10,56.4138 L10,196.87752 C10,198.21078 11.65416,199.29132 13.6952,199.29132 L117.16824,199.29132 C119.20928,199.29132 120.86344,198.21078 120.86344,196.87752 L120.86344,56.4138 C120.86344,55.08054 119.20928,54 117.16824,54 L117.16824,54 Z M111.16168,194.76666 L19.69928,194.76666 L19.69928,58.52628 L111.16168,58.52628 L111.16168,194.76666 L111.16168,194.76666 Z" id="Shape" fill="#E8C48F"></path>
-            <text id="пусто" font-family="Open Sans" font-size="14" font-weight="bold" fill="#D1C4B1">
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="object-person-empty.svg" sketch:type="MSArtboardGroup">
+            <path d="M117.16824,54 L13.6952,54 C11.65416,54 10,55.08054 10,56.4138 L10,196.87752 C10,198.21078 11.65416,199.29132 13.6952,199.29132 L117.16824,199.29132 C119.20928,199.29132 120.86344,198.21078 120.86344,196.87752 L120.86344,56.4138 C120.86344,55.08054 119.20928,54 117.16824,54 L117.16824,54 Z M111.16168,194.76666 L19.69928,194.76666 L19.69928,58.52628 L111.16168,58.52628 L111.16168,194.76666 L111.16168,194.76666 Z" id="Shape" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
+            <text id="пусто" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#D1C4B1">
                 <tspan x="45.2177734" y="130.535308">пусто</tspan>
             </text>
-            <text id="person" font-family="Open Sans" font-size="14" font-weight="bold" fill="#EE6B47">
+            <text id="person" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
                 <tspan x="41.3417969" y="17">person</tspan>
             </text>
-            <path d="M66,26 L66,45" id="Line-8" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M66,26 L66,45" id="Line-8" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-8-decoration-1" d="M66,45 C67.05,41.22 67.95,37.98 69,34.2 C66.9,34.2 65.1,34.2 63,34.2 C64.05,37.98 64.95,41.22 66,45 C66,45 66,45 66,45 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
         </g>
     </g>
