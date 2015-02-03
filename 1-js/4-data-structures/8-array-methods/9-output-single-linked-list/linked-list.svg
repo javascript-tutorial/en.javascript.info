@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="linked-list.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="10" y="29" width="80" height="34"></rect>
+            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="10" y="29" width="80" height="34"></rect>
             <text id="value" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="20">value</tspan>
             </text>
@@ -18,7 +18,7 @@
             <text id="next" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="99" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="150" y="29" width="80" height="34"></rect>
+            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="150" y="29" width="80" height="34"></rect>
             <text id="value-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="153" y="20">value</tspan>
             </text>
@@ -30,7 +30,7 @@
             <text id="next-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="239" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="289" y="29" width="80" height="34"></rect>
+            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="289" y="29" width="80" height="34"></rect>
             <text id="value-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="292" y="20">value</tspan>
             </text>
@@ -42,7 +42,7 @@
             <text id="next-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="378" y="34">next</tspan>
             </text>
-            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="429" y="29" width="80" height="34"></rect>
+            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="429" y="29" width="80" height="34"></rect>
             <text id="value-4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="432" y="20">value</tspan>
             </text>

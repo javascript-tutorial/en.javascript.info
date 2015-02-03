@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="native-prototypes-classes.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="239" y="92" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="239" y="92" width="200" height="60"></rect>
             <text id="toString:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="250" y="116">toString: function</tspan>
                 <tspan x="250" y="132">другие методы объектов</tspan>
@@ -24,7 +24,7 @@
             <text id="null" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="285" y="16">null</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="13" y="223" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="13" y="223" width="200" height="60"></rect>
             <text id="slice:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="24" y="247">slice: function</tspan>
                 <tspan x="24" y="263">другие методы массивов</tspan>
@@ -35,7 +35,7 @@
             <text id="Array.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="216">Array.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="242" y="223" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="242" y="223" width="200" height="60"></rect>
             <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="309" y="182">__proto__</tspan>
             </text>
@@ -46,7 +46,7 @@
             <text id="Function.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="242" y="216">Function.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="473" y="223" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="473" y="223" width="200" height="60"></rect>
             <text id="toFixed:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="484" y="247">toFixed: function</tspan>
                 <tspan x="484" y="263">другие методы чисел</tspan>
@@ -61,17 +61,17 @@
             <path id="Line-decoration-1" d="M219.676548,157.880055 C215.80445,158.510737 212.485509,159.051323 208.613412,159.682005 C209.493434,161.58872 210.247739,163.223047 211.127761,165.129761 C214.119836,162.592364 216.684472,160.417452 219.676548,157.880055 C219.676548,157.880055 219.676548,157.880055 219.676548,157.880055 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
             <path d="M539.5,193.5 L462.5,157.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M462.5,157.5 C465.479529,160.052118 468.033412,162.239647 471.012941,164.791765 C471.902353,162.889412 472.664706,161.258824 473.554118,159.356471 C469.685176,158.706706 466.368941,158.149765 462.5,157.5 C462.5,157.5 462.5,157.5 462.5,157.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="47" y="338" width="119" height="25"></rect>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="47" y="338" width="119" height="25"></rect>
             <text id="[1,-2,-3]" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="71" y="354">[1, 2, 3]</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="250" y="338" width="181" height="67"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="250" y="338" width="181" height="67"></rect>
             <text id="function-f(args)-{" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="264" y="358">function f(args) {</tspan>
                 <tspan x="264" y="374">  ...</tspan>
                 <tspan x="264" y="390">}</tspan>
             </text>
-            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="540" y="338" width="71" height="25"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="540" y="338" width="71" height="25"></rect>
             <text id="5" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="573" y="355">5</tspan>
             </text>

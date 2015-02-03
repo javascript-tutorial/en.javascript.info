@@ -20,9 +20,9 @@
                 <tspan x="175" y="165" fill="#8A704D">parent</tspan>
                 <tspan x="221.183594" y="165" fill="#EE6B47">Element</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="183" y="208" width="75" height="24"></rect>
-            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="165" y="73" width="113" height="24"></rect>
-            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="131" y="5" width="194" height="24"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="183" y="208" width="75" height="24"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="165" y="73" width="113" height="24"></rect>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="131" y="5" width="194" height="24"></rect>
             <text id="&lt;DIV&gt;" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="201.051859" y="225">&lt;DIV&gt;</tspan>
             </text>

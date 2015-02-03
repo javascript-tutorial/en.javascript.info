@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="reduce.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="8" y="74" width="80" height="40"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="8" y="74" width="80" height="40"></rect>
             <text id="1" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="44" y="99">1</tspan>
             </text>
@@ -16,7 +16,7 @@
                 <tspan x="15" y="49">current</tspan>
                 <tspan x="15" y="65">1</tspan>
             </text>
-            <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="87" y="74" width="80" height="40"></rect>
+            <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="87" y="74" width="80" height="40"></rect>
             <text id="2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="123" y="99">2</tspan>
             </text>
@@ -26,7 +26,7 @@
                 <tspan x="94" y="49">current</tspan>
                 <tspan x="94" y="65">2</tspan>
             </text>
-            <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="166" y="74" width="80" height="40"></rect>
+            <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="166" y="74" width="80" height="40"></rect>
             <text id="3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="202" y="99">3</tspan>
             </text>
@@ -36,7 +36,7 @@
                 <tspan x="173" y="49">current</tspan>
                 <tspan x="173" y="65">3</tspan>
             </text>
-            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="245" y="74" width="80" height="40"></rect>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="245" y="74" width="80" height="40"></rect>
             <text id="4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="281" y="99">4</tspan>
             </text>
@@ -46,7 +46,7 @@
                 <tspan x="252" y="49">current</tspan>
                 <tspan x="252" y="65">4</tspan>
             </text>
-            <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="2" sketch:type="MSShapeGroup" x="324" y="74" width="80" height="40"></rect>
+            <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="324" y="74" width="80" height="40"></rect>
             <text id="5" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="360" y="99">5</tspan>
             </text>
