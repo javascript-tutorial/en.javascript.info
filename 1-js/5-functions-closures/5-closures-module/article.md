@@ -174,7 +174,7 @@ function work() {
 ```html
 <!--+ run -->
 <p>Подключим библиотеку</p>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
 
 <p>Функция <code>_.defaults()</code> добавляет отсутствующие свойства.</p>
 <script>
