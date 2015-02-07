@@ -1,35 +1,50 @@
 # Итого
 
-В этой главе кратко перечислены основные свойства и методы DOM, которые мы изучили.
+В этой главе кратко перечислены основные свойства и методы DOM, которые мы изучили. Их уже довольно много.
 
-Используйте её, чтобы получить быстрый итоговый обзор того, что изучали ранее.
+Используйте её, чтобы по-быстрому вспомнить и прокрутить в голове то, что изучали ранее. Все ли эти свойства вам знакомы?
+
+Кое-где стоит ограничение на версии IE, но на все свойства можно найти или сделать или найти полифилл, с которым их можно использовать везде.
 
 [cut]
 
 ## Создание
 
 <dl>
-<dt>`document.createElement(tag)`</dt><dd>создать элемент с тегом `tag`</dd>
-<dt>`document.createTextNode(txt)`</dt><dd>создать текстовый узел с текстом `txt`</dd>
-<dt>`node.cloneNode(deep)`</dt><dd>клонировать существующий узел, если `deep=false`, то без потомков.</dd>
+<dt>`document.createElement(tag)`</dt><dd>Создать элемент с тегом `tag`</dd>
+<dt>`document.createTextNode(txt)`</dt><dd>Создать текстовый узел с текстом `txt`</dd>
+<dt>`node.cloneNode(deep)`</dt><dd>Клонировать существующий узел, если `deep=false`, то без потомков.</dd>
 </dl>
 
 ## Свойства узлов
 
 <dl>
-<dt>`node.nodeType`</dt><dd>тип узла: 1(элемент) / 3(текст) / другие.</dd>
-<dt>`elem.tagName`</dt><dd>тег элемента.</dd>
+<dt>`node.nodeType`</dt><dd>Тип узла: 1(элемент) / 3(текст) / другие.</dd>
+<dt>`elem.tagName`</dt><dd>Тег элемента.</dd>
 <dt>`elem.innerHTML`</dt><dd>HTML внутри элемента.</dd>
-<dt>`node.data`</dt><dd>содержимое любого узла любого типа, кроме элемента.</dd>
+<dt>`elem.outerHTML`</dt><dd>Весь HTML элемента, включая сам тег. На запись использовать с осторожностью, так как не модифицирует элемент, а вставляет новый вместо него.</dd>
+<dt>`node.data` / `node.nodeValue`</dt><dd>Содержимое узла любого типа, кроме элемента.</dd>
+<dt>`node.textContent`</dt><dd>Текстовое содержимое узла, для элементов содержит текст с вырезанными тегами (IE9+).</dd>
+<dt>`elem.hidden`</dt><dd>Если поставить `true`, то элемент будет скрыт (IE10+).</dd>
+</dl>
+
+## Атрибуты
+
+<dl>
+<dt>`elem.getAttribute(name)`, `elem.hasAttribute(name)`, `elem.setAttribute(name, value)`</dt>
+<dd>Чтение атрибута, проверка наличия и запись.</dd>
+<dt>`elem.dataset.*`</dt><dd>Значения атрибутов вида `data-*` (IE10+).</dd>
 </dl>
 
 ## Ссылки
 
 <dl>
 <dt>`document.documentElement`</dt>
-<dd>элемент `<HTML>`</dd>
+<dd>Элемент `<HTML>`</dd>
 <dt>`document.body`</dt>
-<dd>элемент `<BODY>`</dd>
+<dd>Элемент `<BODY>`</dd>
+<dt>`document.head`</dt>
+<dd>Элемент `<HEAD>` (IE9+)</dd>
 </dl>
 
 По всем узлам:
@@ -42,14 +57,15 @@
 Только по элементам:
 
 <ul>
-<li>`children`</li>
+<li>`parentElement`</li>
 <li>`nextElementSibling` `previousElementSibling`</li>
-<li>`firstElementChild` `lastElementChild`</li>
+<li>`children`, `firstElementChild` `lastElementChild`</li>
 </ul>
 
-В IE8- из них работает только `children`, причём содержит не только элементы, но и комментарии (ошибка в браузере).
+Все они IE9+, кроме `children`, который работает в IE8-, но содержит не только элементы, но и комментарии (ошибка в браузере).
 
-### Таблицы
+Дополнительно у некоторых типов элементов могут быть и другие ссылки, свойства, коллекции для навигации,
+например для таблиц:
 
 <dl>
 <dt>`table.rows[N]`</dt>
@@ -60,17 +76,6 @@
 <dd>номер строки в таблице в секции `THEAD/TBODY`.<dd>
 <dt>`td.cellIndex`</dt>
 <dd>номер ячейки в строке.</dd>
-</dl>
-
-### Формы
-
-<dl>
-<dt>`document.forms[N/name]`</dt>
-<dd>форма по номеру/имени.</dd>
-<dt>`form.elements[N/name]`</dt>
-<dd>элемент формы по номеру/имени</dd>
-<dt>`element.form`</dt>
-<dd>форма для элемента.</dd>
 </dl>
 
 ## Поиск
@@ -84,16 +89,28 @@
 <dt>`document.getElementById(id)`</dt>
 <dd>По уникальному `id`</dd>
 <dt>`document.getElementsByName(name)`</dt>
-<dd>По атрибуту `name`,  в IE<10 работает только для элементов, где `name` предусмотрен стандартом.</dd>
+<dd>По атрибуту `name`,  в IE9- работает только для элементов, где `name` предусмотрен стандартом.</dd>
 <dt>`*.getElementsByTagName(tag)`</dt>
 <dd>По тегу `tag`</dd>
 <dt>`*.getElementsByClassName(class)`</dt>
 <dd>По классу, IE9+, корректно работает с элементами, у которых несколько классов.</dd>
 </dl>
 
-При поддержки IE только версии 8 и выше, можно использовать только `querySelector/querySelectorAll`. 
+Если не нужно поддерживать IE7-, то можно использовать только `querySelector/querySelectorAll`. Методы `getElement*` работают быстрее (за счёт более оптимальной внутренней реализации), но в 99% случаев это различие очень небольшое и роли не играет.
 
-Для более старых IE нужен либо фреймворк, который сам умеет искать узлы по селектору, наподобие jQuery, либо пользоваться методами `get*`, все из которых, кроме `...ByClassName`, поддерживаются с древних времён.
+Дополнительно есть методы:
+<dl>
+<dt>`elem.matches(css)`</dt>
+<dd>Проверяет, подходит ли элемент под CSS-селектор.</dd.
+<dt>`elem.closest(css)`</dt>
+<dd>Ищет ближайший элемент сверху по иерархии DOM, подходящий под CSS-селектор. Первым проверяется сам `elem`. Этот элемент возвращается.</dd>
+<dt>`elemA.contains(elemB)`</dt>
+<dd>Возвращает `true`, если `elemA` является предком (содержит) `elemB`.</dd>
+<dt>`elemA.compareDocumentPosition(elemB)`</dt>
+<dd>Возвращает битовую маску, которая включает в себя отношение вложенности между `elemA` и `elemB`, а также -- какой из элементов появляется в DOM первым.</dd>
+
+</dl>
+
 
 ## Изменение
 
@@ -102,6 +119,19 @@
 <li>`parent.removeChild(child)`</li>
 <li>`parent.insertBefore(newChild, refNode)`</li>
 <li>`parent.insertAdjacentHTML("beforeBegin|afterBegin|beforeEnd|afterEnd", html)`</li>
+<li>`parent.insertAdjacentElement("beforeBegin|...|afterEnd", text)` (кроме FF)</li>
+<li>`parent.insertAdjacentText("beforeBegin|...|afterEnd", text)` (кроме FF)</li>
+<li>`document.write(...)`</li>
+</ul>
+
+Скорее всего, понадобятся полифиллы для:
+
+<ul>
+<li>`node.append(...nodes)`</li>
+<li>`node.prepend(...nodes)`</li>
+<li>`node.after(...nodes)`,</li>
+<li>`node.before(...nodes)`</li>
+<li>`node.replaceWith(...nodes)`</li>
 </ul>
 
 ## Классы и стили
@@ -110,7 +140,7 @@
 <dt>`elem.className`</dt>
 <dd>Атрибут `class`</dt>
 <dt>`elem.classList.add(class) remove(class) toggle(class) contains(class)`</dt>
-<dd>Управление классами в HTML5, для IE8+ есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).</dd>
+<dd>Управление классами, для IE9- есть [эмуляция](https://github.com/eligrey/classList.js/blob/master/classList.js).</dd>
 <dt>`elem.style`</dt>
 <dd>Стили в атрибуте `style` элемента</dd>
 <dt>`getComputedStyle(elem, "")`</dd>
