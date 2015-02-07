@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="489px" height="542px" viewBox="0 0 489 542" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>metric-scroll-top.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="76" y="23" width="324" height="498"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="metric-scroll-top.svg" sketch:type="MSArtboardGroup">
+            <text id="Introduction" sketch:type="MSTextLayer" font-family="Times" font-size="18" font-weight="bold" fill="#5A4739">
+                <tspan x="94" y="54">Introduction</tspan>
+                <tspan x="191.699219" y="54" font-size="16" font-weight="normal"></tspan>
+                <tspan x="94" y="83" font-size="16" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="94" y="102" font-size="16" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="94" y="121" font-size="16" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="94" y="140" font-size="16" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="94" y="159" font-size="16" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="94" y="178" font-size="16" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="94" y="197" font-size="16" font-weight="normal">2.0 browser. It has appeared in all </tspan>
+                <tspan x="94" y="216" font-size="16" font-weight="normal">subsequent browsers from Netscape and in </tspan>
+                <tspan x="94" y="235" font-size="16" font-weight="normal">all browsers from Microsoft starting with </tspan>
+                <tspan x="94" y="254" font-size="16" font-weight="normal">Internet Explorer 3.0.</tspan>
+                <tspan x="94" y="273" font-size="16" font-weight="normal">The development of this Standard started in </tspan>
+                <tspan x="94" y="292" font-size="16" font-weight="normal">November 1996. The first edition of this </tspan>
+                <tspan x="94" y="311" font-size="16" font-weight="normal">Ecma Standard was adopted by the Ecma </tspan>
+                <tspan x="94" y="330" font-size="16" font-weight="normal">General Assembly of June 1997.</tspan>
+                <tspan x="94" y="349" font-size="16" font-weight="normal">That Ecma Standard was submitted to ISO/</tspan>
+                <tspan x="94" y="368" font-size="16" font-weight="normal">IEC JTC 1 for adoption under the fast-track </tspan>
+                <tspan x="94" y="387" font-size="16" font-weight="normal">procedure, and approved as international </tspan>
+                <tspan x="94" y="406" font-size="16" font-weight="normal">standard ISO/IEC 16262, in April 1998. </tspan>
+                <tspan x="94" y="425" font-size="16" font-weight="normal">The Ecma General Assembly of June 1998 </tspan>
+                <tspan x="94" y="444" font-size="16" font-weight="normal">approved the second edition of ECMA-262 </tspan>
+                <tspan x="94" y="463" font-size="16" font-weight="normal">to keep it fully aligned with ISO/IEC </tspan>
+                <tspan x="94" y="482" font-size="16" font-weight="normal">16262. Changes between the first and the </tspan>
+                <tspan x="94" y="501" font-size="16" font-weight="normal">second edition are editorial in nature.</tspan>
+            </text>
+            <path d="M400,147 L400,387 L76,387 L76,147 L400,147 Z M51,122 L425,122 L425,412 L51,412 L51,122 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
+            <g id="Rectangle-2">
+                <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <use stroke-opacity="0.8" stroke="#E8C48F" stroke-width="2" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+            </g>
+            <text id="scrollTop" sketch:type="MSTextLayer" transform="translate(18.500000, 84.000000) rotate(-90.000000) translate(-18.500000, -84.000000) " font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="-11.1894531" y="86">scrollTop</tspan>
+            </text>
+            <path d="M9.5,147 L75.6399994,147" id="Line-43" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M10.5,21 L76.6399994,21" id="Line-42" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M35,20.5 L35,146.32" id="Line-39" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-39-decoration-1" d="M35,21.3 C36.05,25.08 36.95,28.32 38,32.1 C35.9,32.1 34.1,32.1 32,32.1 C33.05,28.32 33.95,25.08 35,21.3 C35,21.3 35,21.3 35,21.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-39-decoration-2" d="M35,145.5 C36.05,141.72 36.95,138.48 38,134.7 C35.9,134.7 34.1,134.7 32,134.7 C33.05,138.48 33.95,141.72 35,145.5 C35,145.5 35,145.5 35,145.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="88" y="33" width="312" height="89"></rect>
+            <rect id="Rectangle-15" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="88" y="411" width="312" height="89"></rect>
+            <text id="scrollHeight:723px" sketch:type="MSTextLayer" transform="translate(451.500000, 270.000000) rotate(-90.000000) translate(-451.500000, -270.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle">
+                <tspan x="382.224609" y="272" fill="#EE6B47">scrollHeight:</tspan>
+                <tspan x="482.289062" y="272" fill="#3B86C4">723px</tspan>
+            </text>
+            <path d="M393.5,22 L471.639999,22" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M393.5,522 L471.639999,522" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M462,24.5 L462,518.5" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-25-decoration-1" d="M462,25.3 C463.05,29.08 463.95,32.32 465,36.1 C462.9,36.1 461.1,36.1 459,36.1 C460.05,32.32 460.95,29.08 462,25.3 C462,25.3 462,25.3 462,25.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-25-decoration-2" d="M462,518.5 C463.05,514.72 463.95,511.48 465,507.7 C462.9,507.7 461.1,507.7 459,507.7 C460.05,511.48 460.95,514.72 462,518.5 C462,518.5 462,518.5 462,518.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <g id="Scrollbar" sketch:type="MSLayerGroup" transform="translate(384.000000, 147.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F3F3" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="240" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-2)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 230.000000) scale(1, -1) translate(-8.000000, -230.000000) translate(0.000000, 220.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-2)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)" sketch:type="MSShapeGroup">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " stroke="#CFCFCF" fill="url(#linearGradient-2)">
+                        <rect id="Rectangle-18" x="0" y="0" width="16" height="51" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" stroke="#979797" fill="#D8D8D8">
+                        <rect id="Rectangle-22" x="0" y="0" width="8" height="2"></rect>
+                        <rect id="Rectangle-23" x="0" y="3" width="8" height="2"></rect>
+                        <rect id="Rectangle-24" x="0" y="6" width="8" height="2"></rect>
+                        <rect id="Rectangle-25" x="0" y="9" width="8" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

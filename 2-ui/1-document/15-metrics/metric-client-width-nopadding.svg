@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="409px" height="467px" viewBox="0 0 409 467" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>metric-client-width-nopadding.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="metric-client-width-nopadding.svg" sketch:type="MSArtboardGroup">
+            <path d="M364,156 L364,356 L60,356 L60,156 L364,156 Z M35,131 L389,131 L389,381 L35,381 L35,131 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
+            <text id="clientWidth:284px-=-" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
+                <tspan x="94.6386719" y="399.64193" fill="#EE6B47">clientWidth:</tspan>
+                <tspan x="173.810547" y="399.64193" fill="#3B86C4">284px </tspan>
+                <tspan x="213.396484" y="399.64193" fill="#EE6B47">= content width</tspan>
+            </text>
+            <path d="M63.6799927,409.64193 L343.679993,409.64193" id="Line-44" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-44-decoration-1" d="M64.4799927,409.64193 C68.2599927,408.59193 71.4999927,407.69193 75.2799927,406.64193 C75.2799927,408.74193 75.2799927,410.54193 75.2799927,412.64193 C71.4999927,411.59193 68.2599927,410.69193 64.4799927,409.64193 C64.4799927,409.64193 64.4799927,409.64193 64.4799927,409.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-44-decoration-2" d="M343.679993,409.64193 C339.899993,408.59193 336.659993,407.69193 332.879993,406.64193 C332.879993,408.74193 332.879993,410.54193 332.879993,412.64193 C336.659993,411.59193 339.899993,410.69193 343.679993,409.64193 C343.679993,409.64193 343.679993,409.64193 343.679993,409.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="CSS-width:-300px" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
+                <tspan x="150.71875" y="429.64193" fill="#F48158">CSS width:</tspan>
+                <tspan x="216.695312" y="429.64193" fill="#3B86C4"> 300px</tspan>
+            </text>
+            <path d="M62.6799927,434.64193 L363,434.64193" id="Line-47" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-47-decoration-1" d="M63.4799927,434.64193 C67.2599927,433.59193 70.4999927,432.69193 74.2799927,431.64193 C74.2799927,433.74193 74.2799927,435.54193 74.2799927,437.64193 C70.4999927,436.59193 67.2599927,435.69193 63.4799927,434.64193 C63.4799927,434.64193 63.4799927,434.64193 63.4799927,434.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-47-decoration-2" d="M362.679993,434.64193 C358.899993,433.59193 355.659993,432.69193 351.879993,431.64193 C351.879993,433.74193 351.879993,435.54193 351.879993,437.64193 C355.659993,436.59193 358.899993,435.69193 362.679993,434.64193 C362.679993,434.64193 362.679993,434.64193 362.679993,434.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="Introduction-2" sketch:type="MSTextLayer" font-family="Times" font-size="18" font-weight="bold" fill="#5A4739">
+                <tspan x="62" y="173">Introduction</tspan>
+                <tspan x="159.699219" y="173" font-size="16" font-weight="normal"></tspan>
+                <tspan x="62" y="202" font-size="16" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="62" y="221" font-size="16" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="62" y="240" font-size="16" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="62" y="259" font-size="16" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="62" y="278" font-size="16" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="62" y="297" font-size="16" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="62" y="316" font-size="16" font-weight="normal">2.0 browser. It has appeared in all </tspan>
+                <tspan x="62" y="335" font-size="16" font-weight="normal">subsequent browsers from Netscape and in </tspan>
+                <tspan x="62" y="354" font-size="16" font-weight="normal">all browsers from Microsoft starting with </tspan>
+            </text>
+            <ellipse id="Oval-5" stroke="#EE6B47" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup" cx="191" cy="58.8580704" rx="76" ry="43.5"></ellipse>
+            <path d="M191,104 L191,128.638622" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M191,128 C192.05,124.22 192.95,120.98 194,117.2 C191.9,117.2 190.1,117.2 188,117.2 C189.05,120.98 189.95,124.22 191,128 C191,128 191,128 191,128 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="padding:-0;" sketch:type="MSTextLayer" font-family="Consolas" font-size="16" font-weight="bold" fill="#8A704D">
+                <tspan x="136" y="52">padding: 0;</tspan>
+                <tspan x="136" y="71">width: 300px;</tspan>
+            </text>
+            <g id="Group-2" sketch:type="MSLayerGroup" transform="translate(348.000000, 156.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F3F3" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="200" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 190.000000) scale(1, -1) translate(-8.000000, -190.000000) translate(0.000000, 180.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)" sketch:type="MSShapeGroup">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " stroke="#CFCFCF" fill="url(#linearGradient-1)">
+                        <rect id="Rectangle-18" x="0" y="0" width="16" height="51" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" stroke="#979797" fill="#D8D8D8">
+                        <rect id="Rectangle-22" x="0" y="0" width="8" height="2"></rect>
+                        <rect id="Rectangle-23" x="0" y="3" width="8" height="2"></rect>
+                        <rect id="Rectangle-24" x="0" y="6" width="8" height="2"></rect>
+                        <rect id="Rectangle-25" x="0" y="9" width="8" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+            <path d="M60.5,354.64193 L60.5,450.64193" id="Line-46" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M345.5,354.64193 L345.5,414" id="Line-45" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M363.5,354.64193 L363.5,450.64193" id="Line-48" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+        </g>
+    </g>
+</svg>

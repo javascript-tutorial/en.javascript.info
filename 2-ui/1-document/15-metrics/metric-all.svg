@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="670px" height="602px" viewBox="0 0 670 602" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>metric-all.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="142" y="63" width="324" height="498"></rect>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="metric-all.svg" sketch:type="MSArtboardGroup">
+            <text id="Introduction" sketch:type="MSTextLayer" font-family="Times" font-size="18" font-weight="bold" fill="#5A4739">
+                <tspan x="160" y="94">Introduction</tspan>
+                <tspan x="257.699219" y="94" font-size="16" font-weight="normal"></tspan>
+                <tspan x="160" y="123" font-size="16" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="160" y="142" font-size="16" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="160" y="161" font-size="16" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="160" y="180" font-size="16" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="160" y="199" font-size="16" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="160" y="218" font-size="16" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="160" y="237" font-size="16" font-weight="normal">2.0 browser. It has appeared in all </tspan>
+                <tspan x="160" y="256" font-size="16" font-weight="normal">subsequent browsers from Netscape and in </tspan>
+                <tspan x="160" y="275" font-size="16" font-weight="normal">all browsers from Microsoft starting with </tspan>
+                <tspan x="160" y="294" font-size="16" font-weight="normal">Internet Explorer 3.0.</tspan>
+                <tspan x="160" y="313" font-size="16" font-weight="normal">The development of this Standard started in </tspan>
+                <tspan x="160" y="332" font-size="16" font-weight="normal">November 1996. The first edition of this </tspan>
+                <tspan x="160" y="351" font-size="16" font-weight="normal">Ecma Standard was adopted by the Ecma </tspan>
+                <tspan x="160" y="370" font-size="16" font-weight="normal">General Assembly of June 1997.</tspan>
+                <tspan x="160" y="389" font-size="16" font-weight="normal">That Ecma Standard was submitted to ISO/</tspan>
+                <tspan x="160" y="408" font-size="16" font-weight="normal">IEC JTC 1 for adoption under the fast-track </tspan>
+                <tspan x="160" y="427" font-size="16" font-weight="normal">procedure, and approved as international </tspan>
+                <tspan x="160" y="446" font-size="16" font-weight="normal">standard ISO/IEC 16262, in April 1998. </tspan>
+                <tspan x="160" y="465" font-size="16" font-weight="normal">The Ecma General Assembly of June 1998 </tspan>
+                <tspan x="160" y="484" font-size="16" font-weight="normal">approved the second edition of ECMA-262 </tspan>
+                <tspan x="160" y="503" font-size="16" font-weight="normal">to keep it fully aligned with ISO/IEC </tspan>
+                <tspan x="160" y="522" font-size="16" font-weight="normal">16262. Changes between the first and the </tspan>
+                <tspan x="160" y="541" font-size="16" font-weight="normal">second edition are editorial in nature.</tspan>
+            </text>
+            <path d="M466,187 L466,427 L142,427 L142,187 L466,187 Z M117,162 L491,162 L491,452 L117,452 L117,162 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
+            <g id="Rectangle-2">
+                <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <use stroke-opacity="0.8" stroke="#E8C48F" stroke-width="2" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+            </g>
+            <text id="scrollHeight" sketch:type="MSTextLayer" transform="translate(594.500000, 310.000000) rotate(-90.000000) translate(-594.500000, -310.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="548.316406" y="312">scrollHeight</tspan>
+            </text>
+            <text id="offsetHeight" sketch:type="MSTextLayer" transform="translate(560.500000, 310.000000) rotate(-90.000000) translate(-560.500000, -310.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="514.316406" y="312">offsetHeight</tspan>
+            </text>
+            <text id="scrollTop" sketch:type="MSTextLayer" transform="translate(510.500000, 114.000000) rotate(-90.000000) translate(-510.500000, -114.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="475.862305" y="116">scrollTop</tspan>
+            </text>
+            <path d="M466.5,62 L614.639999,62" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M492.5,163 L584.639999,163" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M492.5,451 L584.639999,451" id="Line-29" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M467.5,189 L539.639999,189" id="Line-33" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M467.5,427 L539.639999,427" id="Line-32" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M466.5,561 L614.639999,561" id="Line-26" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M605,64.5 L605,558.5" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-25-decoration-1" d="M605,65.3 C606.05,69.08 606.95,72.32 608,76.1 C605.9,76.1 604.1,76.1 602,76.1 C603.05,72.32 603.95,69.08 605,65.3 C605,65.3 605,65.3 605,65.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-25-decoration-2" d="M605,558.5 C606.05,554.72 606.95,551.48 608,547.7 C605.9,547.7 604.1,547.7 602,547.7 C603.05,551.48 603.95,554.72 605,558.5 C605,558.5 605,558.5 605,558.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M571,164.5 L571,447.5" id="Line-30" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-30-decoration-1" d="M571,165.3 C572.05,169.08 572.95,172.32 574,176.1 C571.9,176.1 570.1,176.1 568,176.1 C569.05,172.32 569.95,169.08 571,165.3 C571,165.3 571,165.3 571,165.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-30-decoration-2" d="M571,447.5 C572.05,443.72 572.95,440.48 574,436.7 C571.9,436.7 570.1,436.7 568,436.7 C569.05,440.48 569.95,443.72 571,447.5 C571,447.5 571,447.5 571,447.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="clientHeight" sketch:type="MSTextLayer" transform="translate(516.500000, 304.000000) rotate(-90.000000) translate(-516.500000, -304.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="470.316406" y="306">clientHeight</tspan>
+            </text>
+            <path d="M527,191.5 L527,425.5" id="Line-34" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-34-decoration-1" d="M527,192.3 C528.05,196.08 528.95,199.32 530,203.1 C527.9,203.1 526.1,203.1 524,203.1 C525.05,199.32 525.95,196.08 527,192.3 C527,192.3 527,192.3 527,192.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-34-decoration-2" d="M527,425.5 C528.05,421.72 528.95,418.48 530,414.7 C527.9,414.7 526.1,414.7 524,414.7 C525.05,418.48 525.95,421.72 527,425.5 C527,425.5 527,425.5 527,425.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="offsetTop" sketch:type="MSTextLayer" transform="translate(106.500000, 83.000000) rotate(-90.000000) translate(-106.500000, -83.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="71.8623047" y="85">offsetTop</tspan>
+            </text>
+            <text id="clientLeft" sketch:type="MSTextLayer" transform="translate(133.000000, 237.000000) rotate(-90.000000) translate(-133.000000, -237.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#C74A6C">
+                <tspan x="94.5136719" y="239">clientLeft</tspan>
+            </text>
+            <path d="M117,4.5 L117,160.5" id="Line-36" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-36-decoration-1" d="M117,5.3 C118.05,9.08 118.95,12.32 120,16.1 C117.9,16.1 116.1,16.1 114,16.1 C115.05,12.32 115.95,9.08 117,5.3 C117,5.3 117,5.3 117,5.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-36-decoration-2" d="M117,159.5 C118.05,155.72 118.95,152.48 120,148.7 C117.9,148.7 116.1,148.7 114,148.7 C115.05,152.48 115.95,155.72 117,159.5 C117,159.5 117,159.5 117,159.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M521,64.5 L521,157.5" id="Line-31" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-31-decoration-1" d="M521,65.3 C522.05,69.08 522.95,72.32 524,76.1 C521.9,76.1 520.1,76.1 518,76.1 C519.05,72.32 519.95,69.08 521,65.3 C521,65.3 521,65.3 521,65.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-31-decoration-2" d="M521,157.5 C522.05,153.72 522.95,150.48 524,146.7 C521.9,146.7 520.1,146.7 518,146.7 C519.05,150.48 519.95,153.72 521,157.5 C521,157.5 521,157.5 521,157.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-14" fill-opacity="0.88" fill="#FFFFFF" sketch:type="MSShapeGroup" x="154" y="73" width="312" height="89"></rect>
+            <rect id="Rectangle-15" fill-opacity="0.88" fill="#FFFFFF" sketch:type="MSShapeGroup" x="154" y="451" width="312" height="93"></rect>
+            <path d="M145.639999,486.09 L444.999985,486.09" id="Line-39" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-39-decoration-1" d="M146.439999,486.09 C150.219999,485.04 153.459999,484.14 157.239999,483.09 C157.239999,485.19 157.239999,486.99 157.239999,489.09 C153.459999,488.04 150.219999,487.14 146.439999,486.09 C146.439999,486.09 146.439999,486.09 146.439999,486.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-39-decoration-2" d="M444.639999,486.09 C440.859999,485.04 437.619999,484.14 433.839999,483.09 C433.839999,485.19 433.839999,486.99 433.839999,489.09 C437.619999,488.04 440.859999,487.14 444.639999,486.09 C444.639999,486.09 444.639999,486.09 444.639999,486.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M445.639999,510 L445.639999,426" id="Line-42" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M141.639999,510 L141.639999,426" id="Line-43" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <text id="clientWidth" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="265.165039" y="478">clientWidth</tspan>
+            </text>
+            <path d="M4.63999939,163.09 L114,163.09" id="Line-41" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-41-decoration-1" d="M5.43999939,163.09 C9.21999939,162.04 12.4599994,161.14 16.2399994,160.09 C16.2399994,162.19 16.2399994,163.99 16.2399994,166.09 C12.4599994,165.04 9.21999939,164.14 5.43999939,163.09 C5.43999939,163.09 5.43999939,163.09 5.43999939,163.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-41-decoration-2" d="M113.639999,163.09 C109.859999,162.04 106.619999,161.14 102.839999,160.09 C102.839999,162.19 102.839999,163.99 102.839999,166.09 C106.619999,165.04 109.859999,164.14 113.639999,163.09 C113.639999,163.09 113.639999,163.09 113.639999,163.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="clientTop" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#C74A6C">
+                <tspan x="150.862305" y="178">clientTop</tspan>
+            </text>
+            <text id="offsetLeft" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="21.0136719" y="154">offsetLeft</tspan>
+            </text>
+            <path d="M120.639999,529.09 L488.999985,529.09" id="Line-40" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-40-decoration-1" d="M121.439999,529.09 C125.219999,528.04 128.459999,527.14 132.239999,526.09 C132.239999,528.19 132.239999,529.99 132.239999,532.09 C128.459999,531.04 125.219999,530.14 121.439999,529.09 C121.439999,529.09 121.439999,529.09 121.439999,529.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-40-decoration-2" d="M488.639999,529.09 C484.859999,528.04 481.619999,527.14 477.839999,526.09 C477.839999,528.19 477.839999,529.99 477.839999,532.09 C481.619999,531.04 484.859999,530.14 488.639999,529.09 C488.639999,529.09 488.639999,529.09 488.639999,529.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M490.639999,551 L490.639999,447" id="Line-45" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M116.639999,551 L116.639999,447" id="Line-44" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <text id="offsetWidth" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="262.165039" y="516">offsetWidth</tspan>
+            </text>
+            <rect id="Rectangle-233" stroke="#8A704D" stroke-width="2" sketch:type="MSShapeGroup" x="0" y="0" width="670" height="602"></rect>
+            <g id="Scrollbar" sketch:type="MSLayerGroup" transform="translate(450.000000, 187.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F3F3" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="240" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-2)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 230.000000) scale(1, -1) translate(-8.000000, -230.000000) translate(0.000000, 220.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-2)" x="0" y="0" width="16" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)" sketch:type="MSShapeGroup">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " stroke="#CFCFCF" fill="url(#linearGradient-2)">
+                        <rect id="Rectangle-18" x="0" y="0" width="16" height="51" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" stroke="#979797" fill="#D8D8D8">
+                        <rect id="Rectangle-22" x="0" y="0" width="8" height="2"></rect>
+                        <rect id="Rectangle-23" x="0" y="3" width="8" height="2"></rect>
+                        <rect id="Rectangle-24" x="0" y="6" width="8" height="2"></rect>
+                        <rect id="Rectangle-25" x="0" y="9" width="8" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+            <g id="Group" sketch:type="MSLayerGroup" transform="translate(115.000000, 162.000000)">
+                <g id="Line-4-+-Line-5" transform="translate(23.000000, 19.000000)" stroke="#C74A6C" stroke-width="2" sketch:type="MSShapeGroup" stroke-linecap="square">
+                    <path d="M2.5,0.5 L0,6" id="Line-4" transform="translate(1.500000, 3.000000) scale(1, -1) translate(-1.500000, -3.000000) "></path>
+                    <path d="M5.5,0.5 L3,6" id="Line-5" transform="translate(4.500000, 3.000000) scale(-1, -1) translate(-4.500000, -3.000000) "></path>
+                </g>
+                <g id="Line-4-+-Line-6" transform="translate(26.000000, 4.000000) scale(1, -1) translate(-26.000000, -4.000000) translate(23.000000, 1.000000)" stroke="#C74A6C" stroke-width="2" sketch:type="MSShapeGroup" stroke-linecap="square">
+                    <path d="M2.5,0.5 L0,6" id="Line-4" transform="translate(1.500000, 3.000000) scale(1, -1) translate(-1.500000, -3.000000) "></path>
+                    <path d="M5.5,0.5 L3,6" id="Line-5" transform="translate(4.500000, 3.000000) scale(-1, -1) translate(-4.500000, -3.000000) "></path>
+                </g>
+                <path d="M14,13.5 L14,38.5" id="Line-49" stroke="#C74A6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="bevel" sketch:type="MSShapeGroup" transform="translate(14.000000, 26.000000) rotate(-270.000000) translate(-14.000000, -26.000000) "></path>
+                <path d="M26,25.5 L26,0.5" id="Line-50" stroke="#C74A6C" stroke-width="2" stroke-linecap="round" stroke-linejoin="bevel" sketch:type="MSShapeGroup"></path>
+                <path d="M26.3,27.2348224 L26.4965635,27.3241694 L26.5989404,27.0989404 L26.8241694,26.9965635 L26.7348224,26.8 L27.3241694,25.5034365 L26.4138029,25.0896335 L20.9138029,22.5896335 L20.0034365,22.1758306 L19.1758306,23.9965635 L20.0861971,24.4103665 L23.8833908,26.1363636 L19.5861971,28.0896335 L18.6758306,28.5034365 L19.5034365,30.3241694 L20.4138029,29.9103665 L25.9138029,27.4103665 L26.3,27.2348224 Z" id="Line-4" fill="#C74A6C" sketch:type="MSShapeGroup"></path>
+                <path d="M1.26517764,26.8 L0.675830578,25.5034365 L1.58619706,25.0896335 L7.08619706,22.5896335 L7.99656353,22.1758306 L8.82416942,23.9965635 L7.91380294,24.4103665 L4.11660919,26.1363636 L8.41380294,28.0896335 L9.32416942,28.5034365 L8.49656353,30.3241694 L7.58619706,29.9103665 L2.08619706,27.4103665 L1.7,27.2348224 L1.50343647,27.3241694 L1.40105963,27.0989404 L1.17583058,26.9965635 L1.26517764,26.8 Z" id="Line-4" fill="#C74A6C" sketch:type="MSShapeGroup"></path>
+            </g>
+        </g>
+    </g>
+</svg>

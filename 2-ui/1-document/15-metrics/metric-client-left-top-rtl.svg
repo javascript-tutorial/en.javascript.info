@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="359px" height="316px" viewBox="0 0 359 316" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>metric-client-left-top-rtl.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="116" y="105" width="284" height="200"></rect>
+        <linearGradient x1="0%" y1="47.0960915%" x2="62.2987085%" y2="47.0960918%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="metric-client-left-top-rtl.svg" sketch:type="MSArtboardGroup">
+            <g id="Rectangle-1">
+                <use stroke="#EE6B47" stroke-width="2" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+                <use stroke="none" xlink:href="#path-1"></use>
+            </g>
+            <g id="Rectangle-209-+-Rectangle-208" sketch:type="MSLayerGroup" transform="translate(15.000000, 14.000000)" fill="#EBCB9D">
+                <rect id="Rectangle-209" sketch:type="MSShapeGroup" x="0" y="1" width="50" height="300"></rect>
+                <rect id="Rectangle-208" sketch:type="MSShapeGroup" transform="translate(190.500000, 26.000000) rotate(-90.000000) translate(-190.500000, -26.000000) " x="165.5" y="-129.5" width="50" height="311"></rect>
+            </g>
+            <text id="היא-שפת-תסריט-מפורשת" sketch:type="MSTextLayer" font-family="Lucida Grande" font-size="32" font-weight="bold" fill="#5A4739">
+                <tspan x="119" y="135">היא שפת תסריט </tspan>
+                <tspan x="119" y="173">מפורשת מבוססת </tspan>
+                <tspan x="119" y="211">אובייקטים המותאמת </tspan>
+                <tspan x="119" y="249">לשילוב באתרי אינטרנט </tspan>
+                <tspan x="119" y="287">ורצה על ידי דפדפן </tspan>
+                <tspan x="119" y="325">האינטרנט בצד הלקוח. </tspan>
+                <tspan x="119" y="363">השפה מרחיבה את </tspan>
+                <tspan x="119" y="401">יכולות שפת התגיות </tspan>
+                <tspan x="119" y="439">הבסיסית HTML </tspan>
+                <tspan x="119" y="477">ומאפשרת בכך ליצור </tspan>
+                <tspan x="119" y="515">יישומי אינטרנט </tspan>
+                <tspan x="119" y="553">מתוחכמים יותר. </tspan>
+                <tspan x="119" y="591">למעשה, כיום, רוב אתרי </tspan>
+                <tspan x="119" y="629">האינטרנט המודרניים </tspan>
+                <tspan x="119" y="667">משלבים שפה זו. היא </tspan>
+                <tspan x="119" y="705">ידועה בעיקר כשפה </tspan>
+                <tspan x="119" y="743">המוטבעת בדפ</tspan>
+            </text>
+            <rect id="Rectangle-5" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" transform="translate(182.500000, 216.500000) rotate(-180.000000) translate(-182.500000, -216.500000) " x="45" y="-7" width="275" height="447"></rect>
+            <rect id="Rectangle-6" fill="#FFFFFF" sketch:type="MSShapeGroup" x="319" y="8" width="162" height="399"></rect>
+            <g id="Group-2" sketch:type="MSLayerGroup" transform="translate(65.000000, 65.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F3F3" sketch:type="MSShapeGroup" x="0" y="0" width="21" height="240" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-3)" x="0" y="0" width="21" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="10.5 7 14.7 13 6.3 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(10.500000, 230.000000) scale(1, -1) translate(-10.500000, -230.000000) translate(0.000000, 220.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-3)" x="0" y="0" width="21" height="20" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="10.5 7 14.7 13 6.3 13 "></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)" sketch:type="MSShapeGroup">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(10.500000, 25.500000) scale(1, -1) translate(-10.500000, -25.500000) " stroke="#CFCFCF" fill="url(#linearGradient-3)">
+                        <rect id="Rectangle-18" x="0" y="0" width="21" height="51" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(5.250000, 20.000000)" stroke="#979797" fill="#D8D8D8">
+                        <rect id="Rectangle-22" x="0" y="0" width="10.5" height="2"></rect>
+                        <rect id="Rectangle-23" x="0" y="3" width="10.5" height="2"></rect>
+                        <rect id="Rectangle-24" x="0" y="6" width="10.5" height="2"></rect>
+                        <rect id="Rectangle-25" x="0" y="9" width="10.5" height="2"></rect>
+                    </g>
+                </g>
+            </g>
+            <path d="M65.4099998,15.6800003 L65.4099998,63.6800003" id="Line-7" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-7-decoration-1" d="M65.4099998,62.6800003 C66.4599998,58.9000003 67.3599998,55.6600003 68.4099998,51.8800003 C66.3099998,51.8800003 64.5099998,51.8800003 62.4099998,51.8800003 C63.4599998,55.6600003 64.3599998,58.9000003 65.4099998,62.6800003 C65.4099998,62.6800003 65.4099998,62.6800003 65.4099998,62.6800003 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-7-decoration-2" d="M65.4099998,16.4800003 C66.4599998,20.2600003 67.3599998,23.5000003 68.4099998,27.2800003 C66.3099998,27.2800003 64.5099998,27.2800003 62.4099998,27.2800003 C63.4599998,23.5000003 64.3599998,20.2600003 65.4099998,16.4800003 C65.4099998,16.4800003 65.4099998,16.4800003 65.4099998,16.4800003 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M15.4099998,64.6800003 L85.9999962,64.6800003" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-28-decoration-1" d="M85.4099998,64.6800003 C81.6299998,63.6300003 78.3899998,62.7300003 74.6099998,61.6800003 C74.6099998,63.7800003 74.6099998,65.5800003 74.6099998,67.6800003 C78.3899998,66.6300003 81.6299998,65.7300003 85.4099998,64.6800003 C85.4099998,64.6800003 85.4099998,64.6800003 85.4099998,64.6800003 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-28-decoration-2" d="M16.2099998,64.6800003 C19.9899998,63.6300003 23.2299998,62.7300003 27.0099998,61.6800003 C27.0099998,63.7800003 27.0099998,65.5800003 27.0099998,67.6800003 C23.2299998,66.6300003 19.9899998,65.7300003 16.2099998,64.6800003 C16.2099998,64.6800003 16.2099998,64.6800003 16.2099998,64.6800003 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <text id="clientTop:25px-=-bor" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
+                <tspan x="85.6269531" y="43" fill="#EE6B47">clientTop:</tspan>
+                <tspan x="151.603516" y="43" fill="#3B86C4">25px </tspan>
+                <tspan x="184.591797" y="43" fill="#EE6B47">= border</tspan>
+            </text>
+            <text id="clientLeft:41px" sketch:type="MSTextLayer" transform="translate(42.320000, 125.000000) rotate(-90.000000) translate(-42.320000, -125.000000) " font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
+                <tspan x="-7.16242218" y="127" fill="#EE6B47">clientLeft:</tspan>
+                <tspan x="65.4117966" y="127" fill="#3B86C4">41px</tspan>
+            </text>
+            <g id="Rectangle-8-+-Rectangle-7" sketch:type="MSLayerGroup" transform="translate(-42.000000, -3.000000)">
+                <rect id="Rectangle-8" fill="url(#linearGradient-2)" sketch:type="MSShapeGroup" transform="translate(224.000000, 138.000000) rotate(-90.000000) translate(-224.000000, -138.000000) " x="86.5" y="-85.5" width="275" height="447"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" sketch:type="MSShapeGroup" transform="translate(233.000000, 355.500000) rotate(-270.000000) translate(-233.000000, -355.500000) " x="152" y="156" width="162" height="399"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

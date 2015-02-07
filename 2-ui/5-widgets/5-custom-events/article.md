@@ -52,7 +52,7 @@ function showSelected(href) {
 
 Демо:
 
-[example src="menu-callback" height="180"]
+[codetabs src="menu-callback" height="180"]
 
 ## Свои события 
 
@@ -236,7 +236,7 @@ menu.on('select', function(value) {
 ```
 
 Результат:
-[example src="menu-event"]
+[codetabs src="menu-event"]
 
 ## События при помощи jQuery
 
