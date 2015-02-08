@@ -29,7 +29,7 @@
 
     var counter = event.target;
 
-    counter.value++;
+    counter.innerHTML++;
   };
 </script>
 ```
