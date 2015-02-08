@@ -5,7 +5,7 @@
 Сделать сортировку таблицы при клике на заголовок.
 
 Демо:
-[iframe border=1 src="solution"]
+[iframe border=1 src="solution" height=180]
 
 Требования:
 <ul>

@@ -2,12 +2,12 @@
 <html>
 <head>
 <style>
-.tree span:hover {
-  font-weight: bold;
-}
-.tree span {
-  cursor: pointer;
-}
+  .tree span:hover {
+    font-weight: bold;
+  }
+  .tree span {
+    cursor: pointer;
+  }
 </style>
 <meta charset="utf-8">
 </head>
@@ -73,11 +73,11 @@ tree.onclick = function(event) {
     return;
   }
 
-  /* now we know SPAN is clicked */
-  var node = target.parentNode.getElementsByTagName('ul')[0];
-  if (!node) return; // no children
+  /* now we know the SPAN is clicked */
+  var childrenContainer = target.parentNode.getElementsByTagName('ul')[0];
+  if (!childrenContainer) return; // no children
 
-  node.style.display = node.style.display ? '' : 'none';
+  childrenContainer.hidden = !childrenContainer.hidden;
 }
 
 </script>

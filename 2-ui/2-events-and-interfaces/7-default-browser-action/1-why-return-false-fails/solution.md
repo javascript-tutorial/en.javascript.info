@@ -1,10 +1,10 @@
 Дело в том, что обработчик из атрибута `onclick` делается браузером как функция с заданным телом. 
 
-То есть, он будет таким:
+То есть, в данном случае он будет таким:
 
 ```js
 function(event) {
-  handler()
+  handler()  // тело взято из атрибута onclick
 }
 ```
 
@@ -24,7 +24,7 @@ function(event) {
 <a href="http://w3.org" onclick="*!*return handler()*/!*">w3.org</a>
 ```
 
-Альтернатива -- передать и использовать объект события для вызова `event.preventDefault()` (или кросс-браузерного варианта для поддержки старых IE).
+Также можно использовать объект события для вызова `event.preventDefault()`, например:
 
 ```html
 <!--+ run -->
@@ -32,7 +32,7 @@ function(event) {
 *!*
   function handler(event) {
     alert("...");
-    event.preventDefault ? event.preventDefault() : (event.returnValue=false);
+    event.preventDefault();
   }
 */!*
 </script>

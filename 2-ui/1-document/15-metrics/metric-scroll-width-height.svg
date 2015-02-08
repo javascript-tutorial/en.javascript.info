@@ -4,7 +4,7 @@
     <title>metric-scroll-width-height.svg</title>
     <desc>Created with bin/sketchtool.</desc>
     <defs>
-        <rect id="path-1" x="46" y="23" width="324" height="498"></rect>
+        <rect id="path-1" x="46" y="23" width="324" height="500"></rect>
         <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
             <stop stop-color="#FFFFFF" offset="0%"></stop>
             <stop stop-color="#F1F1F1" offset="100%"></stop>
@@ -19,26 +19,29 @@
                 <tspan x="66" y="102" font-size="16" font-weight="normal">originating technologies, the most well </tspan>
                 <tspan x="66" y="121" font-size="16" font-weight="normal">known being JavaScript (Netscape) and </tspan>
                 <tspan x="66" y="140" font-size="16" font-weight="normal">JScript (Microsoft). The language was </tspan>
-                <tspan x="66" y="159" font-size="16" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
-                <tspan x="66" y="178" font-size="16" font-weight="normal">first appeared in that company’s Navigator </tspan>
-                <tspan x="66" y="197" font-size="16" font-weight="normal">2.0 browser. It has appeared in all </tspan>
-                <tspan x="66" y="216" font-size="16" font-weight="normal">subsequent browsers from Netscape and in </tspan>
-                <tspan x="66" y="235" font-size="16" font-weight="normal">all browsers from Microsoft starting with </tspan>
-                <tspan x="66" y="254" font-size="16" font-weight="normal">Internet Explorer 3.0.</tspan>
-                <tspan x="66" y="273" font-size="16" font-weight="normal">The development of this Standard started in </tspan>
-                <tspan x="66" y="292" font-size="16" font-weight="normal">November 1996. The first edition of this </tspan>
-                <tspan x="66" y="311" font-size="16" font-weight="normal">Ecma Standard was adopted by the Ecma </tspan>
-                <tspan x="66" y="330" font-size="16" font-weight="normal">General Assembly of June 1997.</tspan>
-                <tspan x="66" y="349" font-size="16" font-weight="normal">That Ecma Standard was submitted to ISO/</tspan>
-                <tspan x="66" y="368" font-size="16" font-weight="normal">IEC JTC 1 for adoption under the fast-track </tspan>
-                <tspan x="66" y="387" font-size="16" font-weight="normal">procedure, and approved as international </tspan>
-                <tspan x="66" y="406" font-size="16" font-weight="normal">standard ISO/IEC 16262, in April 1998. </tspan>
-                <tspan x="66" y="425" font-size="16" font-weight="normal">The Ecma General Assembly of June 1998 </tspan>
-                <tspan x="66" y="444" font-size="16" font-weight="normal">approved the second edition of ECMA-262 </tspan>
-                <tspan x="66" y="463" font-size="16" font-weight="normal">to keep it fully aligned with ISO/IEC </tspan>
-                <tspan x="66" y="482" font-size="16" font-weight="normal">16262. Changes between the first and the </tspan>
-                <tspan x="66" y="501" font-size="16" font-weight="normal">second edition are editorial in nature.</tspan>
+                <tspan x="66" y="159" font-size="16" font-weight="normal">invented by Brendan Eich at Netscape </tspan>
+                <tspan x="66" y="178" font-size="16" font-weight="normal">and first appeared in that company’s </tspan>
+                <tspan x="66" y="197" font-size="16" font-weight="normal">Navigator 2.0 browser. It has appeared in </tspan>
+                <tspan x="66" y="216" font-size="16" font-weight="normal">all subsequent browsers from Netscape </tspan>
+                <tspan x="66" y="235" font-size="16" font-weight="normal">and in all browsers from Microsoft </tspan>
+                <tspan x="66" y="254" font-size="16" font-weight="normal">starting with Internet Explorer 3.0.</tspan>
+                <tspan x="66" y="273" font-size="16" font-weight="normal">The development of this Standard started </tspan>
+                <tspan x="66" y="292" font-size="16" font-weight="normal">in November 1996. The first edition of </tspan>
+                <tspan x="66" y="311" font-size="16" font-weight="normal">this Ecma Standard was adopted by the </tspan>
+                <tspan x="66" y="330" font-size="16" font-weight="normal">Ecma General Assembly of June 1997.</tspan>
+                <tspan x="66" y="349" font-size="16" font-weight="normal">That Ecma Standard was submitted to </tspan>
+                <tspan x="66" y="368" font-size="16" font-weight="normal">ISO/IEC JTC 1 for adoption under the </tspan>
+                <tspan x="66" y="387" font-size="16" font-weight="normal">fast-track procedure, and approved as </tspan>
+                <tspan x="66" y="406" font-size="16" font-weight="normal">international standard ISO/IEC 16262, in </tspan>
+                <tspan x="66" y="425" font-size="16" font-weight="normal">April 1998. The Ecma General </tspan>
+                <tspan x="66" y="444" font-size="16" font-weight="normal">Assembly of June 1998 approved the </tspan>
+                <tspan x="66" y="463" font-size="16" font-weight="normal">second edition of ECMA-262 to keep it </tspan>
+                <tspan x="66" y="482" font-size="16" font-weight="normal">fully aligned with ISO/IEC 16262. </tspan>
+                <tspan x="66" y="501" font-size="16" font-weight="normal">Changes between the first and the second </tspan>
+                <tspan x="66" y="520" font-size="16" font-weight="normal">edition are editorial in nature.</tspan>
             </text>
+            <rect id="Rectangle-15" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="58" y="410" width="312" height="111"></rect>
+            <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="58" y="35" width="312" height="89"></rect>
             <path d="M370,148 L370,388 L46,388 L46,148 L370,148 Z M21,123 L395,123 L395,413 L21,413 L21,123 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
             <g id="Rectangle-2">
                 <use stroke="none" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
@@ -51,12 +54,10 @@
                 <tspan x="459.289062" y="272" fill="#3B86C4">723px</tspan>
             </text>
             <path d="M370.5,22 L448.639999,22" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
-            <path d="M370.5,521 L448.639999,521" id="Line-26" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
-            <path d="M439,24.5 L439,518.5" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-25-decoration-1" d="M439,25.3 C440.05,29.08 440.95,32.32 442,36.1 C439.9,36.1 438.1,36.1 436,36.1 C437.05,32.32 437.95,29.08 439,25.3 C439,25.3 439,25.3 439,25.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-25-decoration-2" d="M439,518.5 C440.05,514.72 440.95,511.48 442,507.7 C439.9,507.7 438.1,507.7 436,507.7 C437.05,511.48 437.95,514.72 439,518.5 C439,518.5 439,518.5 439,518.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="58" y="33" width="312" height="89"></rect>
-            <rect id="Rectangle-15" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="58" y="411" width="312" height="89"></rect>
+            <path d="M370.5,524 L448.639999,524" id="Line-26" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
+            <path d="M439,25.5 L439,519.5" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-25-decoration-1" d="M439,26.3 C440.05,30.08 440.95,33.32 442,37.1 C439.9,37.1 438.1,37.1 436,37.1 C437.05,33.32 437.95,30.08 439,26.3 C439,26.3 439,26.3 439,26.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+            <path id="Line-25-decoration-2" d="M439,519.5 C440.05,515.72 440.95,512.48 442,508.7 C439.9,508.7 438.1,508.7 436,508.7 C437.05,512.48 437.95,515.72 439,519.5 C439,519.5 439,519.5 439,519.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <path d="M49.6399994,109.09 L348.999985,109.09" id="Line-39" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <path id="Line-39-decoration-1" d="M50.4399994,109.09 C54.2199994,108.04 57.4599994,107.14 61.2399994,106.09 C61.2399994,108.19 61.2399994,109.99 61.2399994,112.09 C57.4599994,111.04 54.2199994,110.14 50.4399994,109.09 C50.4399994,109.09 50.4399994,109.09 50.4399994,109.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <path id="Line-39-decoration-2" d="M348.639999,109.09 C344.859999,108.04 341.619999,107.14 337.839999,106.09 C337.839999,108.19 337.839999,109.99 337.839999,112.09 C341.619999,111.04 344.859999,110.14 348.639999,109.09 C348.639999,109.09 348.639999,109.09 348.639999,109.09 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>

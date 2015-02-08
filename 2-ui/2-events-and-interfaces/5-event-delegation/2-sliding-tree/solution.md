@@ -95,12 +95,12 @@ tree.onclick = function(event) {
   var li = target.parentNode; // получить родительский LI
 
   // получить UL с потомками -- это первый UL внутри LI
-  var node = li.getElementsByTagName('ul')[0];
+  var childrenContainer = li.getElementsByTagName('ul')[0];
 
-  if (!node) return; // потомков нет -- ничего не надо делать
+  if (!childrenContainer) return; // потомков нет -- ничего не надо делать
 
   // спрятать/показать (можно и через CSS-класс)
-  node.style.display = node.style.display ? '' : 'none';
+  childrenContainer.hidden = !childrenContainer.hidden;
 }
 ```
 
