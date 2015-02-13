@@ -12,7 +12,7 @@
 <img src="yozhik.jpg" width="128" height="128">
 ```
 
-<img src="http://js.cx/clipart/yozhik.jpg" width="128" height="128">
+<img src="//js.cx/clipart/yozhik.jpg" width="128" height="128">
 
 
 Стоит вот такое:
@@ -21,7 +21,7 @@
 <img *!*src="1.gif"*/!* width="128" height="128" *!*realsrc="yozhik.jpg"*/!*>
 ```
 
-<img src="http://js.cx/lazyimg/1.gif" width="128" height="128">
+<img src="//js.cx/lazyimg/1.gif" width="128" height="128">
 
 То есть настоящий URL находится в атрибуте `realsrc` (название атрибута можно выбрать любое). А в `src` поставлен серый GIF размера 1x1, и так как `width/height` правильные, то он растягивается, так что вместо изображения виден серый прямоугольник. 
 

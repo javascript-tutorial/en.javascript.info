@@ -42,7 +42,7 @@ document.addEventListener( "DOMContentLoaded", ready, false );
 */!*
 </script>  
 
-<img id="img" src="http://js.cx/clipart/yozhik.jpg?speed=1">
+<img id="img" src="//js.cx/clipart/yozhik.jpg?speed=1">
 ```
 
 В примере выше размеры обработчик `DOMContentLoaded` сработает сразу после загрузки документа, не дожидаясь получения картинки. 
@@ -104,7 +104,7 @@ Firefox/Chrome/Opera автозаполняют формы по `DOMContentLoade
 */!*
 </script>
 <iframe src="http://example.com/" style="height:60px"></iframe>
-<img src="http://js.cx/clipart/yozhik.jpg?speed=1">
+<img src="//js.cx/clipart/yozhik.jpg?speed=1">
 ```
 
 ## window.onunload
@@ -162,7 +162,7 @@ Firefox игнорирует текст, а всегда показывает с
 
 ```html
 <!--+ run -->
-<script src="http://js.cx/script/jquery.documentReady.js"></script>
+<script src="//js.cx/script/jquery.documentReady.js"></script>
 
 <script>
 *!*
@@ -172,7 +172,7 @@ Firefox игнорирует текст, а всегда показывает с
 */!*
 </script>
 
-<img src="http://js.cx/clipart/yozhik.jpg?speed=1">
+<img src="//js.cx/clipart/yozhik.jpg?speed=1">
 <div>Текст страницы</div>
 ```
 

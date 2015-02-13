@@ -40,14 +40,16 @@
 
 Например, клик вызывает сначала `mousedown` при нажатии, а затем `mouseup` и `click` при отпускании кнопки.
 
-В тех случаях, когда одно действие генерирует несколько событий, их порядок фиксирован. То есть, обработчики вызовутся в порядке `mousedown -> mouseup -> click`.  
+В тех случаях, когда одно действие генерирует несколько событий, их порядок фиксирован. То есть, обработчики вызовутся в порядке `mousedown` -> `mouseup -> `click`.  
 
+[online]
 Кликните по кнопке ниже и вы увидите, какие при этом происходят события. Попробуйте также двойной клик. 
 
 На тест-стенде ниже все мышиные события записываются, и если между событиями проходит больше 1 секунды, то они для удобства чтения отделяются линией. Также присутствуют свойства `which/button`, по которым можно определить кнопку мыши. Мы их рассмотрим далее.
-
+[pre no-typography]
 <input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Кликни меня левой или правой кнопкой мыши" type="button" /> <input onclick="logClear('test')" value="Очистить" type="button" /> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form>
-
+[/pre]
+[/online]
 **Каждое событие обрабатывается независимо.**
 
 Например, при клике события `mouseup + click` возникают одновременно, но обрабатываются последовательно. Сначала полностью завершается обработка `mouseup`, затем запускается `click`.
@@ -72,19 +74,22 @@
 
 ## Правый клик: oncontextmenu   
 
-При клике правой кнопкой мыши браузер показывает свое контекстное меню. Это является его действием по умолчанию:
+Это событие срабатывает при клике правой кнопкой мыши:
 
 ```html
-<!--+ autorun height=auto -->
+<!--+ autorun height=80 -->
+<div>Правый клик на этой кнопке выведет "Клик".</div>
 <button oncontextmenu="alert('Клик!');">Правый клик сюда</button>
 ```
 
-...Но если мы не хотим, чтобы показывалось встроенное меню, например потому что показываем своё, то можно отменить действие по умолчанию.
+При клике на кнопку выше после обработчика `oncontextmenu` будет показано обычное контекстное меню, которое браузер всегда показывает при клике правой кнопкой. Это является его действием по умолчанию.
+
+Если мы не хотим, чтобы показывалось встроенное меню, например потому что показываем своё, специфичное для нашего приложения, то можно отменить действие по умолчанию.
 
 В примере ниже встроенное меню показано не будет:
 
 ```html
-<!--+ autorun height=auto -->
+<!--+ autorun height=60 -->
 <button oncontextmenu="alert('Клик!');return false">Правый клик сюда</button>
 ```
 
@@ -103,12 +108,11 @@
 Например, кнопка ниже сработает только на Alt+Shift+Клик:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun height=60 -->
 <button>Alt+Shift+Кликни меня!</button>
 
 <script>
   document.body.children[0].onclick = function(e) {
-    e = e || event;
 *!*
     if (!e.altKey || !e.shiftKey) return;
 */!*
@@ -118,31 +122,30 @@
 ```
 
 [warn header="Внимание: на Mac вместо `Ctrl` используется `Cmd`"]
-На компьютерах Mac кроме клавиш [key Alt], [key Shift] и [key Ctrl], есть ещё одна специальная клавиша: [key Cmd], которой соответствует свойство `metaKey`.
+На компьютерах под управлением Windows и Linux есть специальные клавиши [key Alt], [key Shift] и [key Ctrl]. На Mac есть ещё одна специальная клавиша: [key Cmd], которой соответствует свойство `metaKey`.
 
-В большинстве случаев на Mac вместо [key Ctrl] используется [key Cmd]. Там, где пользователь Windows нажимает [key Ctrl+Enter] или [key Ctrl+A], пользователь Mac нажмёт [key Cmd+Enter] или [key Cmd+A], и так далее, почти всегда [key Cmd] вместо [key Ctrl].
+В большинстве случаев там, где под Windows/Linux используется [key Ctrl], на Mac используется [key Cmd]. Там, где пользователь Windows нажимает [key Ctrl+Enter] или [key Ctrl+A], пользователь Mac нажмёт [key Cmd+Enter] или [key Cmd+A], и так далее, почти всегда [key Cmd] вместо [key Ctrl].
 
-Поэтому, если мы хотим поддерживать [key Ctrl]+click, то под Mac имеет смысл обрабатывать [key Cmd]+click.
+Поэтому, если мы хотим поддерживать сочетание [key Ctrl]+click или другие подобные, то под Mac имеет смысл использовать [key Cmd]+click. Пользователям Mac это будет гораздо комфортнее.
 
-Даже если бы мы хотели бы заставить пользователей Mac использовать именно [key Ctrl]+click -- это было бы затруднительно. Дело в том, что обычный клик с зажатым [key Ctrl] под Mac работает как *правый клик* и генерирует другое событие: `oncontextmenu`, так что сгенерировать именно [key Ctrl]+click под Mac достаточно сложно.
+Более того, даже если бы мы хотели бы заставить пользователей Mac использовать именно [key Ctrl]+click -- это было бы затруднительно. Дело в том, что обычный клик с зажатым [key Ctrl] под Mac работает как *правый клик* и генерирует событие `oncontextmenu`, а вовсе не `onclick`, как под Windows/Linux.
 
-Вывод -- чтобы пользователи обоих операционных систем работали с комфортом, в паре с `ctrlKey` нужно обязательно использовать `metaKey`.
+Решение -- чтобы пользователи обоих операционных систем работали с комфортом, в паре с `ctrlKey` нужно обязательно использовать `metaKey`.
 
 В JS-коде это означает, что для удобства пользователей Mac нужно проверять `if (event.ctrlKey || event.metaKey)`. 
 [/warn]
 
-## Координаты мыши
+## Координаты в окне: clientX/Y
 
 Все мышиные события предоставляют текущие координаты курсора в двух видах: относительно окна и относительно документа.
 
-### Относительно окна: clientX/Y
-
-Есть отличное кросс-браузерное свойство `clientX`(`clientY`), которое содержит координаты курсора относительно `window`.
+Пара свойств `clientX/clientY` содержит координаты курсора относительно текущего окна.
 
 При этом, например, если ваше окно размером 500x500, а мышь находится в центре, тогда и `clientX` и `clientY` будут равны 250.
 
 Можно как угодно прокручивать страницу, но если не двигать при этом мышь, то координаты курсора `clientX/clientY` не изменятся, потому что они считаются относительно окна, а не документа.
 
+[online]
 Проведите мышью над полем ввода, чтобы увидеть `clientX/clientY`:
 
 ```html
@@ -150,7 +153,9 @@
 ```
 
 <input onmousemove="this.value = event.clientX+':'+event.clientY">
+[/online]
 
+В той же системе координат работает и метод `elem.getBoundingClientRect()`, возвращающий координаты элемента, а также `position:fixed`.
 
 ### Относительно документа: pageX/Y     
 
@@ -160,6 +165,7 @@
 
 В IE8- этих свойств нет, но можно получить их способом, описанным в конце главы. 
 
+[online]
 Проведите мышью над полем ввода, чтобы увидеть `pageX/pageY` (кроме IE8-):
 
 ```html
@@ -167,6 +173,9 @@
 ```
 
 <input onmousemove="this.value = event.pageX+':'+event.pageY">
+[/online]
+
+В той же системе координат работает `position:absolute`, если элемент позиционируется относительно документа.
 
 [warn header="Устарели: `x, y, layerX, layerY`"]
 Некоторые браузеры поддерживают свойства  `event.x/y`, `event.layerX/layerY`.  
@@ -199,7 +208,7 @@
 <li>`mouseup+dblclick` (отжал).</li>
 </ul>
 
-**Поэтому отловить двойной клик в IE8-, отслеживая только `click`, нельзя, ведь при втором нажатии его нет. Нужно именно событие `dblclick`.**
+Поэтому отловить двойной клик в IE8-, отслеживая только `click`, нельзя, ведь при втором нажатии его нет. Нужно именно событие `dblclick`.
 
 ### Свойство which/button
 
@@ -234,7 +243,7 @@ function fixWhich(e) {
 
 Более подробно о её вычислении вы можете прочитать в разделе [прокрутка страницы](#page-scroll). 
 
-Мы же здесь приведем готовый вариант, который позволяет нам получить `pageX/pageY` для старых IE:
+Мы же здесь приведем готовый вариант, который позволяет нам получить `pageX/pageY` для старых и совсем старых IE:
 
 ```js
 function fixPageXY(e) {
@@ -256,10 +265,10 @@ function fixPageXY(e) {
 События мыши имеют следующие свойства:
 
 <ul>
-<li>Кнопка мыши: `which` (для IE<9: нужно ставить из `button`)</li>
+<li>Кнопка мыши: `which` (для IE8-: нужно ставить из `button`)</li>
 <li>Элемент, вызвавший событие: `target`</li>
 <li>Координаты, относительно окна: `clientX/clientY`</li>
-<li>Координаты, относительно документа: `pageX/pageY` (для IE<9: нужно ставить по `clientX/Y` и прокрутке)</li>
+<li>Координаты, относительно документа: `pageX/pageY` (для IE8-: нужно ставить по `clientX/Y` и прокрутке)</li>
 <li>Если зажата спец. клавиша, то стоит соответствующее свойство: `altKey`, `ctrlKey`, `shiftKey` или `metaKey` (Mac).</li>
 <li>Для поддержки [key Ctrl]+`click` не забываем проверить `if (e.metaKey || e.ctrlKey)`, чтобы пользователи `Mac` тоже были довольны.</li>
 </ul>
@@ -269,66 +278,50 @@ function fixPageXY(e) {
 
 [head]
 <script>
+!function() {
+  var timer = 0;
 
-var timer = 0
+  function showmesg(t, form) {
 
-function showmesg(t, form) {
+     if (timer==0) timer = new Date()
 
-   if (timer==0) timer = new Date()
+     var tm = new Date()
+     if (tm-timer > 300) {
+  	t = '------------------------------\n'+t
+     }
 
-   var tm = new Date()
-   if (tm-timer > 300) {
-	t = '------------------------------\n'+t
-   }
+     var area = document.forms[form+'form'].getElementsByTagName('textarea')[0]
 
-   var area = document.forms[form+'form'].getElementsByTagName('textarea')[0]
+     area.value += t + '\n';
+     area.scrollTop = area.scrollHeight
 
-   area.value += t + '\n';
-   area.scrollTop = area.scrollHeight
+     timer = tm
+  }
 
-   timer = tm
-}
+  function logMouse(e) {
+     var evt = e.type
+     while (evt.length < 11) evt += ' '
+     showmesg(evt+" which="+e.which+" button="+e.button, 'test')
+     return false
+  }
 
-function logMouse(e) {
-   var evt = e.type
-   while (evt.length < 11) evt += ' '
-   showmesg(evt+" which="+e.which+" button="+e.button, 'test')
-   return false
-}
-
-function logMouseMove(e) {
-   var evt = e.type
-   while (evt.length < 11) evt += ' '
-   showmesg(evt+" target="+(e.target || e.srcElement).id, 'move')
-   return false
-}
-
-/*
-function logKey(e) {
-   var evt = e.type
-   while (evt.length < 10) evt += ' '
-   showmesg(evt + 'keyCode=' + keyval(e.keyCode) + ' which=' + keyval(e.which) +  ' charCode=' + keyval(e.charCode) +
-      (e.shiftKey ? ' +shift' : '') +
-      (e.ctrlKey ? ' +ctrl' : '') +
-      (e.altKey ? ' +alt' : '') +
-      (e.metaKey ? ' +meta' : ''), 'key'
-   )
-
-} */
-
-function keyval(n) {
-   if (n == null) return 'undefined';
-   var s = '' + n;
-   if (n >= 32 && n < 127) s += ' ' + String.fromCharCode(n);
-   while (s.length < 6) s += ' ';
-   return s;
-}
+  function keyval(n) {
+     if (n == null) return 'undefined';
+     var s = '' + n;
+     if (n >= 32 && n < 127) s += ' ' + String.fromCharCode(n);
+     while (s.length < 6) s += ' ';
+     return s;
+  }
 
 
-function logClear(form) {
-	timer = 0
-	document.forms[form+'form'].getElementsByTagName('textarea')[0].value ='';
-	lines=0
-}
+  function logClear(form) {
+  	timer = 0
+  	document.forms[form+'form'].getElementsByTagName('textarea')[0].value ='';
+  	lines=0
+  }
+
+  window.logClear = logClear;
+  window.logMouse = logMouse;
+}();
 </script>
 [/head]

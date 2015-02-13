@@ -104,7 +104,7 @@
 <!--+ run height=100 -->
 <p>Начало страницы...</p>
 
-<script src="http://js.cx/hello/ads.js?speed=0"></script>
+<script src="//js.cx/hello/ads.js?speed=0"></script>
 
 <p>...Важная информация!</p>
 ```
@@ -155,7 +155,7 @@
 <!--+ run height=100 -->
 <p>Начало страницы...</p>
 
-<script *!*async*/!* src="http://js.cx/hello/ads.js?speed=0"></script>
+<script *!*async*/!* src="//js.cx/hello/ads.js?speed=0"></script>
 
 <p>...Важная информация!</p>
 ```

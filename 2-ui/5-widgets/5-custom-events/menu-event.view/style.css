@@ -7,7 +7,7 @@
 .menu .title {
   font-weight: bold;
   cursor: pointer;
-  background: url(http://js.cx/clipart/arrow-right.png) left center no-repeat;
+  background: url(//js.cx/clipart/arrow-right.png) left center no-repeat;
   padding-left: 18px;
 }
 
@@ -16,5 +16,5 @@
 }
 
 .menu.open .title {
-  background-image: url(http://js.cx/clipart/arrow-down.png);
+  background-image: url(//js.cx/clipart/arrow-down.png);
 }

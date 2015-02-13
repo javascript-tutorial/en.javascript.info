@@ -64,7 +64,7 @@ ball.onmousedown = function(e) { // 1. отследить нажатие*!*
 В действии:
 <div style="height:80px">
 Кликните по мячу и тяните, чтобы двигать его.
-<img src="http://js.cx/clipart/ball.gif" style="cursor:pointer" width="40" height="40" id="ball">
+<img src="//js.cx/clipart/ball.gif" style="cursor:pointer" width="40" height="40" id="ball">
 </div>
 
 **Попробуйте этот пример. Он не совсем работает, мячик "раздваивается".**
@@ -123,7 +123,7 @@ ball.ondragstart = function() {
 
 <div style="height:80px">
 Кликните по мячу и тяните, чтобы двигать его.
-<img src="http://js.cx/clipart/ball.gif" style="cursor:pointer"  width="40" height="40" id="ball2">
+<img src="//js.cx/clipart/ball.gif" style="cursor:pointer"  width="40" height="40" id="ball2">
 </div>
 
 [smart header="Обработчик `mousemove` ставим на `document`"]
@@ -228,7 +228,7 @@ ball.ondragstart = function() {
 
 <div style="height:80px">
 Кликните по мячу и тяните, чтобы двигать его.
-<img src="http://js.cx/clipart/ball.gif" style="cursor:pointer" width="40" height="40" id="ball3">
+<img src="//js.cx/clipart/ball.gif" style="cursor:pointer" width="40" height="40" id="ball3">
 </div>
 
 Различие особенно заметно, если захватить мяч за правый-нижний угол. В предыдущем примере мячик "прыгнет" серединой под курсор, в этом -- будет плавно переноситься с текущей позиции.

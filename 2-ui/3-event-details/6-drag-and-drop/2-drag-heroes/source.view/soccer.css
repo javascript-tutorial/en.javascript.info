@@ -4,14 +4,14 @@ html, body {
 }
 
 #field {
-  background: url(http://js.cx/drag-heroes/field.png);
+  background: url(//js.cx/drag-heroes/field.png);
   width: 800px;
   height: 600px;
   float: left;
 }
 
 .hero {
-  background: url(http://js.cx/drag-heroes/heroes.png);
+  background: url(//js.cx/drag-heroes/heroes.png);
   width: 105px;
   height: 128px;
   float: left;
@@ -39,7 +39,7 @@ html, body {
 }
 
 #winnie {
-  background: url(http://js.cx/drag-heroes/winnie.png);
+  background: url(//js.cx/drag-heroes/winnie.png);
   width: 115px;
   height: 128px;
   float: left;

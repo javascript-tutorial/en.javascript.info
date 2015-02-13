@@ -42,7 +42,7 @@ iframe { /* iframe с сайта-жертвы */
 <div>Нажмите, чтобы разбогатеть сейчас:</div>
      
 <!-- URL в реальности - с другого домена (атакуемого сайта) -->
-<iframe src="http://js.cx/clickjacking/facebook.html"></iframe>
+<iframe src="//js.cx/clickjacking/facebook.html"></iframe>
  
 <a href="http://google.com">Нажми тут!</a>
  

@@ -23,12 +23,12 @@
 }
 
 .tree-open .tree-toggler {
-	background: url(http://js.cx/tree/minus.gif) no-repeat center;
+	background: url(//js.cx/tree/minus.gif) no-repeat center;
 }
 
 
 .tree-closed .tree-toggler {
-	background: url(http://js.cx/tree/plus.gif) no-repeat center;
+	background: url(//js.cx/tree/plus.gif) no-repeat center;
 }
 
 .tree li {
