@@ -1,0 +1,26 @@
+.hours {
+  color: red;
+}
+
+.minutes {
+  color: green;
+}
+
+.seconds {
+  color: blue;
+}
+
+.clock {
+  border: 1px dashed black;
+  padding: 5px;
+  display: inline-block;
+  margin: 30px;
+  background: yellow;
+}
+
+.tooltip {
+  position: absolute;
+  background: #eee;
+  border: 1px brown solid;
+  padding: 3px;
+}
