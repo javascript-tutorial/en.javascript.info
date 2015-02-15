@@ -20,28 +20,27 @@
 var script = document.createElement('script');
 script.src = "my.js";
 
-document.documentElement.appendChild(script);
+document.body.appendChild(script);
 ```
 
-...Но, как подгрузки выполнить функцию из этого скрипта? Конечно, можно вызвать её в самом скрипте, но если скрипт -- это универсальная библиотека, то это было бы неправильно.
+...Но как после подгрузки выполнить функцию, которая объявлена в этом скрипте? Для этого нужно отловить момент окончания загрузки и выполнения тега `<script>`.
 
-### script.onload [#onload]
+### script.onload 
 
-Первым нашим помощником станет событие `onload`.
-
-**Событие `onload` сработает, когда скрипт загрузился *и* выполнился.**
+Главным помощником станет событие `onload`. Оно сработает, когда скрипт загрузился и выполнился.
 
 Например:
 
 ```js
 //+ run
 var script = document.createElement('script');
-script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"
-document.documentElement.appendChild(script);
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"
+document.body.appendChild(script);
 
 *!*
 script.onload = function() {
-  alert(jQuery); 
+  // после выполнения скрипта становится доступна функция _
+  alert(_); // её код
 }
 */!*
 ```
@@ -50,19 +49,19 @@ script.onload = function() {
 
 ...А что, если загрузка скрипта не удалась? Например, такого скрипта на сервере нет (ошибка 404) или сервер "упал" (ошибка 500). 
 
-По-хорошему, такое тоже нужно как-то обрабатывать, хотя бы сообщить посетителю о возникшей проблеме.
+Такую ситуацию тоже нужно как-то обрабатывать, хотя бы сообщить посетителю о возникшей проблеме.
 
-### script.onerror [#onerror]
+### script.onerror 
 
 Любые ошибки загрузки (но не выполнения) скрипта отслеживаются обработчиком `onerror`.
 
-Например, для заведомо отсутствующего скрипта:
+Например, сделаем запрос заведомо отсутствующего скрипта:
 
 ```js
 //+ run
 var script = document.createElement('script');
-script.src = "http://example.com/404.js"
-document.documentElement.appendChild(script);
+script.src = "https://example.com/404.js"
+document.body.appendChild(script);
 
 *!*
 script.onerror = function() {
