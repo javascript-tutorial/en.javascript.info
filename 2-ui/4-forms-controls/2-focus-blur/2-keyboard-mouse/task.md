@@ -12,7 +12,7 @@
 </style>
 
 <div style="position:relative;top:20px;width:100px;height:100px">
-  <div style="width:41px; height:48px;background:url(//js.cx/clipart/mousie.gif)" id="mousie" tabindex="0"></div>
+  <div style="width:41px; height:48px;background:url(https://js.cx/clipart/mousie.gif)" id="mousie" tabindex="0"></div>
 </div>
 
 <script>

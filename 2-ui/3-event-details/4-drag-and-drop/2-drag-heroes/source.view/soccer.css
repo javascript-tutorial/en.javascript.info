@@ -4,7 +4,7 @@ html, body {
 }
 
 #field {
-  background: url(//js.cx/drag-heroes/field.png);
+  background: url(https://js.cx/drag-heroes/field.png);
   width: 800px;
   height: 600px;
   float: left;
@@ -12,7 +12,7 @@ html, body {
 
 /* герои и мяч (переносимые элементы) */
 .hero {
-  background: url(//js.cx/drag-heroes/heroes.png);
+  background: url(https://js.cx/drag-heroes/heroes.png);
   width: 130px;
   height: 128px;
   float: left;

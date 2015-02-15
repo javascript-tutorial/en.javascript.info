@@ -219,7 +219,7 @@ var template = document.getElementById('menu-template').innerHTML;
 ```html
 <!--+ run height=150 -->
 <!-- библиотека LoDash -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
 
 <!-- шаблон для списка от 1 до count -->
 <script *!*type="text/template"*/!* id="list-template">

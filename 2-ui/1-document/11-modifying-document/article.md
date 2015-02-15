@@ -14,7 +14,7 @@ HTML-код для сообщения (с подключённой библио�
 
 ```html
 <!--+ autorun height="100" -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 
 <div class="alert alert-success">
   <strong>Ура!</strong> Вы прочитали это важное сообщение.
@@ -146,7 +146,7 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=150 run autorun -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -166,7 +166,7 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=150 run autorun -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -196,7 +196,7 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=200 run autorun -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -283,7 +283,7 @@ div.parentNode.insertBefore( div2, div.nextSibling );
 
 ```html
 <!--+ run -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 <body>
   <h3>Сообщение пропадёт через секунду</h3>
 </body>
@@ -315,7 +315,7 @@ div.parentNode.insertBefore( div2, div.nextSibling );
 
 ```html
 <!--+ run -->
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
 
 <script>
   var div = document.createElement('div');

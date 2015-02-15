@@ -24,5 +24,5 @@ $(resizeMe).on("resize", function(e) {
 
 Минимальный размер изображения 3x3, меньше ресайзить нельзя.
 
-В исходном документе есть ссылка на <a href="//js.cx/clipart/handle-se.png">картинку handle-se.png</a> для правого-нижнего угла.
+В исходном документе есть ссылка на <a href="https://js.cx/clipart/handle-se.png">картинку handle-se.png</a> для правого-нижнего угла.
 

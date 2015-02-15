@@ -199,7 +199,7 @@
 
 <div><button id="up">Кликните, чтобы увеличить размер шрифта</button></div>
 
-<img src="//js.cx/clipart/angry_dog.png">
+<img src="https://js.cx/clipart/angry_dog.png">
 
 <ul>
 <li>Собака
