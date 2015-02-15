@@ -3,42 +3,45 @@
 <head>
   <meta charset="utf-8">
   <style>
-  #mousie:focus {
-    outline: none;
-    border: 1px dashed black;
-  }
-  html, body {
+  #mouse {
+    display: inline-block;
+    cursor: pointer;
     margin: 0;
-    height: 100%;
+  }
+
+  #mouse:focus {
+    outline: 1px dashed black;
   }
   </style>
 </head>
 <body>
 
-Кликните на мышонка и передвигайте его, нажимая клавиши со стрелками.
+<p>Кликните на мышонка и передвигайте его, нажимая клавиши со стрелками.</p>
 
-<div style="position:relative;top:30px;width:50px;height:50px">
-  <div style="width:41px; height:48px; background:url(https://js.cx/clipart/mousie.gif)" id="mousie" tabindex="-1"></div>
-</div>
+<pre id="mouse" tabindex="0">
+ _   _
+(q\_/p)
+ /. .\
+=\_t_/=   __
+ /   \   (
+((   ))   )
+/\) (/\  /
+\  Y  /-'
+ nn^nn
+</pre>
+
 
 <script>
 
-document.getElementById('mousie').onclick = function() {
-  var coords = getCoords(this);
-  this.style.position = 'absolute';
-  this.style.left = coords.left + 'px';
-  this.style.top = coords.top + 'px';
+document.getElementById('mouse').onclick = function() {
+  this.style.left = this.getBoundingClientRect().left + 'px';
+  this.style.top = this.getBoundingClientRect().top + 'px';
 
-  if (this.parentNode != document.body) {
-    document.body.appendChild(this);
-    this.focus();
-  }
+  this.style.position = 'fixed';
 };
 
 
-document.getElementById('mousie').onkeydown = function(e) {
-  e = e || event;
-
+document.getElementById('mouse').onkeydown = function(e) {
   switch(e.keyCode) {
   case 37: // влево
     this.style.left = parseInt(this.style.left) - this.offsetWidth + 'px';
@@ -54,27 +57,6 @@ document.getElementById('mousie').onkeydown = function(e) {
     return false;
   }
 };
-
-// -----------------------
-
-
-function getCoords(elem) {
-    var box = elem.getBoundingClientRect();
-
-    var body = document.body;
-    var docElem = document.documentElement;
-
-    var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
-    var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
-
-    var clientTop = docElem.clientTop || body.clientTop || 0;
-    var clientLeft = docElem.clientLeft || body.clientLeft || 0;
-
-    var top  = box.top +  scrollTop - clientTop;
-    var left = box.left + scrollLeft - clientLeft;
-
-    return { top: Math.round(top), left: Math.round(left) };
-}
 
 </script>
 

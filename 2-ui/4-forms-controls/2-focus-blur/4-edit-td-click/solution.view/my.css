@@ -1,7 +1,5 @@
-.edit-area  {
+.edit-td .edit-area {
   border: none;
-  width: 100%;
-  height: 100%;
   margin: 0;
   padding: 0;
   display: block;
@@ -10,3 +8,10 @@
   overflow: auto; /* remove scrollbar in IE */
 }
 
+.edit-controls {
+  position: absolute;
+}
+.edit-td {
+  position: relative;
+  padding: 0;
+}

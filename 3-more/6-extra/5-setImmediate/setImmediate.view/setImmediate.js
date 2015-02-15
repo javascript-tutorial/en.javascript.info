@@ -12,7 +12,7 @@ if (!window.setImmediate) window.setImmediate = (function() {
   }
 
   if(window.addEventListener) { // IE9+, другие браузеры
-    window.addEventListener('message', onmessage, false);
+    window.addEventListener('message', onmessage);
   } else { // IE8
     window.attachEvent( 'onmessage', onmessage ); 
   }

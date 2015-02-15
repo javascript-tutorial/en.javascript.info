@@ -53,12 +53,10 @@
       var grid = document.getElementById('grid');
 
       grid.onclick = function(e) {
-        var target = e && e.target || window.event.srcElement;
-
-        if (target.tagName != 'TH') return;
+        if (e.target.tagName != 'TH') return;
 
         // Если TH -- сортируем
-        sortGrid(target.cellIndex, target.getAttribute('data-type'));
+        sortGrid(e.target.cellIndex, e.target.getAttribute('data-type'));
       };
 
       function sortGrid(colNum, type) {
@@ -89,18 +87,8 @@
         // Убрать tbody из большого DOM документа для лучшей производительности
         grid.removeChild(tbody);
 
-
-        // Убрать TR из TBODY.
-        // Присваивание tbody.innerHTML = '' не работает в IE
-        // 
-        // на самом деле без этих строк можно обойтись! 
-        // при добавлении appendChild все узлы будут сами перемещены на правильное место!
-        while(tbody.firstChild) {
-          tbody.removeChild(tbody.firstChild);
-        }
- 
-
         // добавить результат в нужном порядке в TBODY
+        // они автоматически будут убраны со старых мест и вставлены в правильном порядке
         for(var i=0; i<rowsArray.length; i++) {
           tbody.appendChild(rowsArray[i]);
         }
@@ -108,8 +96,6 @@
         grid.appendChild(tbody);
 
       }
-
-      // P.S. В IE7 cells, cellIndex не работают, если элемент вне документа
 
     </script>
 

@@ -8,8 +8,7 @@
 var largeImg = document.getElementById('largeImg');
 
 document.getElementById('thumbs').onclick = function(e) {
-  e = e || window.event;
-  var target = e.target || e.srcElement;
+  var target = e.target;
 
   while(target != this) {
 

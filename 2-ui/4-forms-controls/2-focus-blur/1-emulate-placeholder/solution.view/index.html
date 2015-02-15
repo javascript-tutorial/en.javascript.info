@@ -4,43 +4,66 @@
   <meta charset="UTF-8">
   <style>
     .placeholder {
-      color: gray;
+      color: blue;
+      font-family: Georgia;
+    }
+
+    .placeholder-tooltip {
+      color: blue;
+      font-family: Georgia; 
+      position: fixed;
     }
   </style>
 </head>
 <body>
   
+<p>Красивый placeholder:</p>
 
-<input type="text" class="placeholder" value="E-mail">
-
+<input type="email" data-placeholder="E-mail">
 
 
 <script>
-  var input = document.getElementsByTagName('input')[0];
+  var input = document.querySelector('[data-placeholder]');
 
-  function prepareInput(input) {
-    input.className = '';
-    input.oldValue = input.value;
-    input.value = '';
+  showPlaceholder(input);
+
+  // Показать placeholder внутри input
+  // Также можно сделать это при помощи вёрстки, отдельным элементом
+  function showPlaceholder(input) {
+    input.classList.add('placeholder');
+    input.value = input.dataset.placeholder;
   }
 
-  function resetInput(input) {
-    input.className = 'placeholder';
-    input.value = input.oldValue;
+  // Показать подсказку над элементом (будет вместо placeholder)
+  function showTooltip(input) {
+    var tooltip = document.createElement('span');
+    tooltip.innerHTML = input.dataset.placeholder;
+    tooltip.className = 'placeholder-tooltip';
+    tooltip.style.fontSize = getComputedStyle(input).fontSize;
+    tooltip.style.left = input.getBoundingClientRect().left + 'px';
+    document.body.appendChild(tooltip);
+    tooltip.style.top = input.getBoundingClientRect().top - tooltip.offsetHeight - 4 + 'px';
+    input.tooltip = tooltip;
   }
-  
 
   input.onfocus = function() {
-    if (this.className == 'placeholder') {
-      prepareInput(this);
+    if (input.classList.contains('placeholder')) {
+      input.classList.remove('placeholder');
+      input.value = '';
     }
-  }
+
+    showTooltip(input);
+  };
 
   input.onblur = function() {
-    if (this.value == '') {
-      resetInput(this);
+    document.body.removeChild(input.tooltip);
+    delete input.tooltip;
+
+    // показываем placeholder обратно, если input пуст
+    if (input.value == '') {
+      showPlaceholder(input);
     }
-  }
+  };
   
 </script>
 

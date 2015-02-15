@@ -3,23 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    /* стиль для input с плейсхолдером */
     .placeholder {
-      color: gray;
+      color: blue;
+      font-family: Georgia;
+    }
+
+    /* стиль для подсказки над элементом (вместо плейсхолдера при фокусировке) */
+    .placeholder-tooltip {
+      color: blue;
+      font-family: Georgia; 
+      position: fixed;
     }
   </style>
 </head>
 <body>
   
+<p>Красивый placeholder:</p>
 
-<input type="text" class="placeholder" value="E-mail">
-
+<input type="email" data-placeholder="E-mail">
 
 
 <script>
-  var input = document.getElementsByTagName('input')[0];
+  var input = document.querySelector('[data-placeholder]');
 
-  // ...
+  showPlaceholder(input);
 
+  // Показать placeholder внутри input
+  // Также можно сделать это при помощи вёрстки, отдельным элементом
+  function showPlaceholder(input) {
+    input.classList.add('placeholder');
+    input.value = input.dataset.placeholder;
+  }
+
+  // ...ваш код для input...
+  
 </script>
 
 

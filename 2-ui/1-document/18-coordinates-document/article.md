@@ -142,7 +142,6 @@ document.getElementById('getBoundingClientRectEx').onclick = function(event) {
   var o = getOffsetSum(this);
   var orect = getCoords(this);
   
-  event = event || window.event;
   if ( event.pageX == null && event.clientX != null ) {
     var html = document.documentElement, body = document.body;
     event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0)

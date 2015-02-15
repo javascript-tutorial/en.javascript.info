@@ -18,11 +18,7 @@ HTML разрешён.
 
 <script>
 
-area = document.getElementById('area');
-view = document.getElementById('view');
-
 document.onkeydown = function(e) {
-    e = e || event;
     if (e.keyCode == 27) { // escape
         cancel();
         return false;

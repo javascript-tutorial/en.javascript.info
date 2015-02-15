@@ -39,13 +39,13 @@
 if (elem.addEventListener) {
   if ('onwheel' in document) {
     // IE9+, FF17+, Ch31+
-    elem.addEventListener ("wheel", onWheel, false);
+    elem.addEventListener ("wheel", onWheel);
   } else if ('onmousewheel' in document) {
     // устаревший вариант события
-    elem.addEventListener ("mousewheel", onWheel, false);
+    elem.addEventListener ("mousewheel", onWheel);
   } else {
     // Firefox < 17
-    elem.addEventListener ("MozMousePixelScroll", onWheel, false);
+    elem.addEventListener ("MozMousePixelScroll", onWheel);
   }
 } else { // IE<9
   elem.attachEvent ("onmousewheel", onWheel);

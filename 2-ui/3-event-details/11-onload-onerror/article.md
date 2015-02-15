@@ -91,7 +91,7 @@ script.onerror = function() {
 ```js
 //+ run
 var script = document.createElement('script');
-script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js";
+script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
 
 *!*
@@ -134,7 +134,7 @@ script.onreadystatechange = function() {
 ```js
 //+ run
 var script = document.createElement('script');
-script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js";
+script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
 
 function afterLoad() {
@@ -172,7 +172,7 @@ script.onreadystatechange = function() {
 ```js
 //+ run
 var script = document.createElement('script');
-script.src = "http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js";
+script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
 
 function afterLoad() {

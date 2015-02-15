@@ -295,9 +295,9 @@ var option = new Option("Текст", "value", true, true);
 
 <dl>
 <dt>`document.forms`</dt>
-<dd>Форму можно получить как <code>document.forms[name/index].</dd>
+<dd>Форму можно получить как `document.forms[name/index]`.</dd>
 <dt>`form.elements`</dt>
-<dd>Элементы в форме: <code>form.elements[name/index]</code>. Каждый элемент имеет ссылку на форму в свойстве `form`. Свойство `elements` также есть у `<fieldset>`.</dd>
+<dd>Элементы в форме: `form.elements[name/index]`. Каждый элемент имеет ссылку на форму в свойстве `form`. Свойство `elements` также есть у `<fieldset>`.</dd>
 </dl>
 
 Значение элементов читается/ставится через `value` или `checked`.

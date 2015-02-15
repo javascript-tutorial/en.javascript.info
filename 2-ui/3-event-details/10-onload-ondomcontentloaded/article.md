@@ -24,7 +24,7 @@
 Обработчик на него вешается только через `addEventListener`:
 
 ```js
-document.addEventListener( "DOMContentLoaded", ready, false );
+document.addEventListener("DOMContentLoaded", ready);
 ```
 
 Пример:
@@ -38,7 +38,7 @@ document.addEventListener( "DOMContentLoaded", ready, false );
   }
  
 *!*
-  document.addEventListener( "DOMContentLoaded", ready, false );
+  document.addEventListener("DOMContentLoaded", ready);
 */!*
 </script>  
 
@@ -128,15 +128,14 @@ window.onbeforeunload = function() {
 ```
 
 [warn header="Firefox игнорирует текст, он показывает своё сообщение"]
-Firefox игнорирует текст, а всегда показывает своё сообщение. 
-
-Это сделано в целях безопасности.
+Firefox игнорирует текст, а всегда показывает своё сообщение. Это сделано в целях большей безопасности посетителя, чтобы его нельзя было ввести в заблуждение сообщением.
 [/warn]
 
+[online]
 Кликните на кнопку в `IFRAME'е` ниже, чтобы поставить обработчик, а затем по ссылке, чтобы увидеть его в действии:
 
 [iframe src="window-onbeforeunload" border="1" height="80" link]
-
+[/online]
 
 ## Эмуляция DOMContentLoaded для IE8-
 

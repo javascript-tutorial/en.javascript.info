@@ -1,6 +1,6 @@
 # Фокусировка: focus/blur
 
-Говорят, что элемент "получает фокус", когда посетитель фокусируется на нём. Обычно фокусировка автоматически происходит при нажатии на элементе мышкой, но также можно перейти на нужный элемент клавиатурой -- через клавишу [key Tab], нажатие пальцем (на мобильных устройствах) и так далее.
+Говорят, что элемент "получает фокус", когда посетитель фокусируется на нём. Обычно фокусировка автоматически происходит при нажатии на элементе мышкой, но также можно перейти на нужный элемент клавиатурой -- через клавишу [key Tab], нажатие пальцем на планшете и так далее.
 
 Момент получения фокуса и потери очень важен. 
 
@@ -21,11 +21,11 @@
 <li>Обработчик `onfocus`, если текущее состояние поля ввода -- "ошибка" -- скрывает её (потом при `onblur` будет повторная проверка).</li>
 </ul>
 
-Наберите что-нибудь в поле "возраст" примера ниже и завершите ввод, нажав [key Tab] или кликнув в другое место страницы. Введённое значение будет автоматически проверено:
+В примере ниже, если набрать что-нибудь в поле "возраст" и завершить ввод, нажав [key Tab] или кликнув в другое место страницы, то введённое значение будет автоматически проверено:
 
 ```html
 <!--+ run autorun height=60 -->
-<style> .error { background: red; } </style>
+<style> .error { border-color: red; } </style>
 
 Введите ваш возраст: <input type="text" id="input">
 
@@ -36,7 +36,7 @@
   if (isNaN(this.value)) { // введено не число
     // показать ошибку
     this.className = "error";
-    error.innerHTML = 'Вы ввели не число. Исправьте, пожалуйста'
+    error.innerHTML = 'Вы ввели не число. Исправьте, пожалуйста.'
   }
 };
 
@@ -186,7 +186,7 @@ age.onblur = function() {
 
 <style> 
   li { cursor: pointer; }
-  :focus { border: 1px dashed green; outline: 0; } 
+  :focus { outline: 1px dashed green; } 
 </style>
 ```
 
@@ -207,7 +207,7 @@ age.onblur = function() {
   <input type="text" name="surname" value="Ваша фамилия">
 </form>
 
-<style> .focused { border: 2px solid red; } </style>
+<style> .focused { outline: 1px solid red; } </style>
 ```
 
 В примере выше стоит обработчик `onfocus` на форме, но он не работает, т.к. при фокусировке на любом `INPUT` событие `focus` срабатывает только на этом элементе и не всплывает наверх.
@@ -225,7 +225,7 @@ age.onblur = function() {
   <input type="text" name="surname" value="Ваша фамилия">
 </form>
 
-<style> .focused { border: 2px solid red; } </style>
+<style> .focused { outline: 1px solid red; } </style>
 
 <script>
 *!*
@@ -262,7 +262,7 @@ age.onblur = function() {
   <input type="text" name="surname" value="Ваша фамилия">
 </form>
 <style>
-.focused { border: 2px solid red; }
+.focused { outline: 1px solid red; }
 </style>
 
 <script>

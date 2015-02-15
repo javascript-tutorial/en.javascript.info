@@ -1,13 +1,14 @@
 #view, #area {
   height:150px;
   width:400px;
-  font-family:arial;
+  font-family: arial;
+  font-size: 14px;
 }
 
 #view {  
   /* padding + border = 3px */
   padding: 2px; 
-  border:1px solid black; 
+  border:1px solid black;
 }
 
 #area {

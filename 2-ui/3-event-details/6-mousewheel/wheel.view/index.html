@@ -26,13 +26,13 @@ var elem = document.getElementById('container');
 if (elem.addEventListener) {
   if ('onwheel' in document) {
     // IE9+, FF17+
-    elem.addEventListener ("wheel", onWheel, false);
+    elem.addEventListener ("wheel", onWheel);
   } else if ('onmousewheel' in document) {
     // устаревший вариант события
-    elem.addEventListener ("mousewheel", onWheel, false);
+    elem.addEventListener ("mousewheel", onWheel);
   } else {
     // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
-    elem.addEventListener ("MozMousePixelScroll", onWheel, false);
+    elem.addEventListener ("MozMousePixelScroll", onWheel);
   }
 } else { // IE<9
   elem.attachEvent ("onmousewheel", onWheel);

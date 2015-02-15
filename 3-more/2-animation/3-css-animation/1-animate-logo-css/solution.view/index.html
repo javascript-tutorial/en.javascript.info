@@ -80,13 +80,13 @@ function growIn(img) {
     requestAnimationFrame(function() {
       img.classList.add('growing');
  
-      img.addEventListener('transitionend', done, false);
+      img.addEventListener('transitionend', done);
     });
   });
 
   function done(e) {
     // сработать только первый раз
-    img.removeEventListener('transitionend', done, false);
+    img.removeEventListener('transitionend', done);
 
     placeholder.parentNode.replaceChild(img, placeholder);
     

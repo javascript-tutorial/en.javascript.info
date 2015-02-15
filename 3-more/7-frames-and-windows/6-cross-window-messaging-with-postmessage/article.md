@@ -62,7 +62,7 @@ function listener(event) {
 }
 
 if (window.addEventListener){
-  window.addEventListener("message", listener, false);
+  window.addEventListener("message", listener);
 } else {
   window.attachEvent("onmessage", listener);
 }

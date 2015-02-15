@@ -47,11 +47,11 @@ function bounceBoat(elem) {
 
   go();
 
-  elem.addEventListener('transitionend', go, false); /* на будущее */
-  elem.addEventListener('webkitTransitionEnd', go, false);
-  elem.addEventListener('mozTransitionEnd', go, false);
-  elem.addEventListener('oTransitionEnd', go, false);
-  elem.addEventListener('msTransitionEnd', go, false);
+  elem.addEventListener('transitionend', go); /* на будущее */
+  elem.addEventListener('webkitTransitionEnd', go);
+  elem.addEventListener('mozTransitionEnd', go);
+  elem.addEventListener('oTransitionEnd', go);
+  elem.addEventListener('msTransitionEnd', go);
 }
 </script>
 
