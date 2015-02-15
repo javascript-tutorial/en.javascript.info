@@ -42,7 +42,7 @@ new HoverIntent({
 });
 ```
 
-Демо:
+Демо этого кода:
 
 [iframe src="solution" height=110]
 
