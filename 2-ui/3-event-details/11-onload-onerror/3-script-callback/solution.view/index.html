@@ -23,7 +23,7 @@
 
     script.onload = onload; // все браузеры, IE с версии 9
 
-    script.onreadystatechange = function () { // IE<9
+    script.onreadystatechange = function () { // IE8-
       if (this.readyState == 'loaded' || this.readyState == 'complete') {
         setTimeout(onload, 0);
       }

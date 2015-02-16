@@ -17,7 +17,7 @@
 
     for (var i = 0; i < sources.length; i++) {
       var img = document.createElement('img');
-      // сначала onload/onerror, затем src - важно для IE<9
+      // сначала onload/onerror, затем src - важно для IE8-
       img.onload = img.onerror = onLoad;
       img.src = sources[i];
     }

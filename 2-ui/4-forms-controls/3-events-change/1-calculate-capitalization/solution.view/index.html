@@ -102,7 +102,7 @@ moneyElem.onkeyup = calculate;
 // любые действия, кроме IE. В IE9 также работает, кроме удаления
 moneyElem.oninput = calculate;
 
-moneyElem.onpropertychange = function() { // для IE<9 изменение значения, кроме удаления
+moneyElem.onpropertychange = function() { // для IE8- изменение значения, кроме удаления
   event.propertyName == "value" && calculate();
 }
 

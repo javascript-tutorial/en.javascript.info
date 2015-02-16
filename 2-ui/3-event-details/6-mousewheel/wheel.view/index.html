@@ -31,14 +31,15 @@ if (elem.addEventListener) {
     // устаревший вариант события
     elem.addEventListener ("mousewheel", onWheel);
   } else {
-    // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
+    // Firefox < 17
     elem.addEventListener ("MozMousePixelScroll", onWheel);
   }
-} else { // IE<9
+} else { // IE8-
   elem.attachEvent ("onmousewheel", onWheel);
 }
 
 
+// Это решение предусматривает поддержку IE8-
 function onWheel(e) {
   e = e || window.event;
 

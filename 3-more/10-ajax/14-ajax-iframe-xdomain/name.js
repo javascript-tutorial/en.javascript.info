@@ -25,7 +25,7 @@ function iframePost(url, data, onSuccess, onError) {
     onSuccess( eval('(' + newName +')') ); 
   };
 
-  // для IE<9 нужно использовать attachEvent вместо iframe.onload 
+  // для IE8- нужно использовать attachEvent вместо iframe.onload 
   if (iframe.attachEvent && !iframe.addEventListener) {
     iframe.attachEvent("onload", iframe.onload);
     iframe.onload = null;

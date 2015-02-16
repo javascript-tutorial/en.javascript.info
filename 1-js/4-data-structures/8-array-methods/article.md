@@ -367,7 +367,7 @@ alert(newArr); // 1,2,3,4,5
 
 ## indexOf/lastIndexOf
 
-Эти методы не поддерживаются в IE<9. Для их поддержки подключите библиотеку [ES5-shim](https://github.com/kriskowal/es5-shim).
+Эти методы не поддерживаются в IE8-. Для их поддержки подключите библиотеку [ES5-shim](https://github.com/kriskowal/es5-shim).
 
 
 Метод ["arr.indexOf(searchElement[, fromIndex])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf) возвращает номер элемента `searchElement` в массиве `arr` или `-1`, если его нет. 
@@ -446,7 +446,7 @@ alert(keys); // name, age
 <li>`sort` -- для сортировки массива. Если не передать функцию сравнения -- сортирует элементы как строки.</li>
 <li>`reverse` -- меняет порядок элементов на обратный.</li>
 <li>`concat` -- объединяет массивы.</li>
-<li>`indexOf/lastIndexOf` -- возвращают позицию элемента в массиве (не поддерживается в IE<9).</li>
+<li>`indexOf/lastIndexOf` -- возвращают позицию элемента в массиве (не поддерживается в IE8-).</li>
 </ul>
  
 Изученных нами методов достаточно в 95% случаях, но существуют и другие. Для знакомства с ними рекомендуется заглянуть в справочник <a href="http://javascript.ru/Array">Array</a> и [Array в Mozilla Developer Network](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array).

@@ -21,7 +21,7 @@ function addOnWheel(elem, handler) {
       // 3.5 <= Firefox < 17, более старое событие DOMMouseScroll пропустим
       elem.addEventListener ("MozMousePixelScroll", handler);
     }
-  } else { // IE<9
+  } else { // IE8-
     text.attachEvent ("onmousewheel", handler);
   }
 }

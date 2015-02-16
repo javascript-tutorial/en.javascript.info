@@ -484,7 +484,7 @@ div.classList.add('order-state-canceled');
 //+ run
 document.body.setAttribute('my', 123);
 
-alert( document.body.my );  // 123 в IE<9
+alert( document.body.my );  // 123 в IE8-
 ```
 
 При этом даже тип данных не меняется. Атрибут не становится строкой, как ему положено. 

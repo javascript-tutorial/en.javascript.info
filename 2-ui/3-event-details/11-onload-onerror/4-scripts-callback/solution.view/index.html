@@ -33,7 +33,7 @@
         onload(i);
       };
 
-      script.onreadystatechange = function() { // IE<9
+      script.onreadystatechange = function() { // IE8-
         if (this.readyState == 'loaded' || this.readyState == 'complete') {
           setTimeout(this.onload, 0); // возможны повторные вызовы onload
         }

@@ -6,5 +6,5 @@ function unique(arr) {
     obj[str] = true; // запомнить строку в виде свойства объекта
   }
  
-  return Object.keys(obj); // или собрать ключи перебором для IE<9
+  return Object.keys(obj); // или собрать ключи перебором для IE8-
 }

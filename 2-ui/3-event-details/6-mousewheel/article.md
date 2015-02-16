@@ -47,7 +47,7 @@ if (elem.addEventListener) {
     // Firefox < 17
     elem.addEventListener ("MozMousePixelScroll", onWheel);
   }
-} else { // IE<9
+} else { // IE8-
   elem.attachEvent ("onmousewheel", onWheel);
 }
 

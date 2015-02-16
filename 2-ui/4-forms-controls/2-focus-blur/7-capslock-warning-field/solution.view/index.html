@@ -37,8 +37,6 @@ function getChar(event) {
 
 if (navigator.platform.substr(0,3) != 'Mac') { // событие для CapsLock глючит под Mac
   document.onkeydown = function(e) {
-    e = e || event;
-
     if (e.keyCode == 20 && capsLockEnabled !== null) {
       capsLockEnabled = !capsLockEnabled;
     }

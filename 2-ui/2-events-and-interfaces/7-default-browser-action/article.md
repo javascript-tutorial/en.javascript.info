@@ -129,7 +129,7 @@ element.onclick = function(event) {
 
   if (event.preventDefault) {  // если метод существует
     event.preventDefault(); // то вызвать его
-  } else { // иначе вариант IE<9:
+  } else { // иначе вариант IE8-:
     event.returnValue = false;
   }
 }
@@ -147,7 +147,7 @@ event.preventDefault ? event.preventDefault() : (event.returnValue=false);
 
 <ul>
 <li>Браузер имеет встроенные действия при ряде событий -- переход по ссылке, отправка формы и т.п. Как правило, их можно отменить.</li>
-<li>Есть два способа отменить действие по умолчанию: первый -- использовать `event.preventDefault()` (IE<9: `event.returnValue=false`), второй -- `return false` из обработчика. Второй способ работает только если обработчик назначен через `onсобытие`.</li>
+<li>Есть два способа отменить действие по умолчанию: первый -- использовать `event.preventDefault()` (IE8-: `event.returnValue=false`), второй -- `return false` из обработчика. Второй способ работает только если обработчик назначен через `onсобытие`.</li>
 </ul>
 
 
