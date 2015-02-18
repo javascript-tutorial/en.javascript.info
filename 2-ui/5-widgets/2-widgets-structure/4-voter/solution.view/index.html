@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
   <style>
     .voter {
       font-family: Consolas, "Lucida Console", monospace;
@@ -13,7 +14,6 @@
       font-weight: bold;
     }
   </style>
-  <script src="http://code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
 
@@ -27,38 +27,39 @@
 function Voter(options) {
   var elem = options.elem;
 
-  var voteElem = elem.find('.vote');
+  var voteElem = elem.querySelector('.vote');
 
-  elem.on('click', '.down', onDownClick)
-    .on('click', '.up', onUpClick)
-    .on('mousedown selectstart', false);
+  elem.onclick = function(event) {
+    // сам обработчик не меняет голос, он вызывает функцию
+    if (event.target.closest('.down')) {
+      voteDecrease();  
+    } else if (event.target.closest('.up')) {
+      voteIncrease();
+    }
+  }
+
+  elem.onmousedown = function() {
+    return false;
+  };
 
   // ----------- методы -------------
 
-  function onDownClick() {
-    voteDecrease(); // сам обработчик не меняет голос, он вызывает функцию
-  }
-
-  function onUpClick() {
-    voteIncrease();
-  }
-
   function voteDecrease() {
-    voteElem.html( +voteElem.html()-1 );
+    voteElem.innerHTML = +voteElem.innerHTML - 1;
   }
 
   function voteIncrease() {
-    voteElem.html( +voteElem.html()+1 );
+    voteElem.innerHTML = +voteElem.innerHTML + 1;
   }
 
   this.setVote = function(vote) {
-    voteElem.html( +vote );
+    voteElem.innerHTML = +vote;
   };
 
 }
 
 var voter = new Voter({
-  elem: $('#voter')
+  elem: document.getElementById('voter')
 });
 voter.setVote(1);
 

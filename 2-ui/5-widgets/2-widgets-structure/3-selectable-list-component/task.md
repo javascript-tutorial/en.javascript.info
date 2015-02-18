@@ -2,7 +2,7 @@
 
 [importance 5]
 
-Перепишите решение задачи [](/task/selectable-list) (последний шаг) в виде компонента, с использованием jQuery. 
+Перепишите решение задачи [](/task/selectable-list) в виде компонента.
 
 У компонента должен быть единственный публичный метод `getSelected()`, который возвращает выбранные значения в виде массива.
 
@@ -10,7 +10,7 @@
 
 ```js
 var listSelect = new ListSelect({
-  elem: $('ul')
+  elem: document.querySelector('ul')
 });
 // listSelect.getSelected()
 ```

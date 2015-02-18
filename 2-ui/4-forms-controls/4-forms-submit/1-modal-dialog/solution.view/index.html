@@ -10,14 +10,12 @@ html, body {
   height: 100%;
 }
 
-
-
 #prompt-form {
   display: inline-block;
   padding: 5px 5px 5px 70px;
   width: 200px;
   border: 1px solid black;
-  background: white url(prompt.png) no-repeat left 5px;
+  background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
   vertical-align: middle;
 }
 
@@ -48,7 +46,6 @@ html, body {
   height: 100%;
   background-color: gray;
   opacity: 0.3;
-  filter: alpha(opacity=30);
 }
 
 #prompt-form input[name="text"] {
@@ -115,7 +112,6 @@ function showPrompt(text, callback) {
   };
 
   document.onkeydown = function(e) {
-    e = e || event;
     if (e.keyCode == 27) { // escape
       complete(null);
     }

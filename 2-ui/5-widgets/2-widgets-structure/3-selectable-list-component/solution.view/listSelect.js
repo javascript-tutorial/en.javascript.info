@@ -4,11 +4,13 @@ function ListSelect(options) {
 
   var lastClickedLi = null;
 
-  elem.on('click', 'li', onLiClick);
-  elem.on('selectstart mousedown', false);
+  elem.onmousedown = function() {
+    return false;
+  };
 
-  function onLiClick(e) {
-    var li = $(this);
+  elem.onclick = function(e) {
+    var li = e.target.closest('li');
+    if (!li) return;
 
     if(e.metaKey || e.ctrlKey) { // для Mac проверяем Cmd, т.к. Ctrl + click там контекстное меню
       toggleSelect(li);
@@ -22,40 +24,46 @@ function ListSelect(options) {
   }
 
   function deselectAll() {
-    elem.children().removeClass('selected');
-  }    
+    [].forEach.call(elem.children, function(child) {
+      child.classList.remove('selected')
+    });
+  }
 
   function toggleSelect(li) {
-    li.toggleClass('selected');
+    li.classList.toggle('selected');
   }
 
   function selectSingle(li) {
     deselectAll();
-    li.addClass('selected');
+    li.classList.add('selected');
   }
 
   function selectFromLast(target) {
-    var startElem = lastClickedLi || elem.children().first();
+    var startElem = lastClickedLi || elem.children[0];
 
-    target.addClass('selected');
-    if (startElem[0] == target[0]) {
+    target.classList.add('selected');
+    if (startElem == target) {
       // клик на том же элементе, что и раньше
       // это особый случай
       return; 
     }
 
-    var isLastClickedBefore = startElem.index() < target.index();
+    var isLastClickedBefore = startElem.compareDocumentPosition(target) & 4;
 
     if (isLastClickedBefore) {
-      startElem.nextUntil(target).add(startElem).addClass('selected');
+      for(var elem = startElem; elem != target; elem = elem.nextElementSibling) {
+        elem.classList.add('selected');
+      }
     } else {
-      startElem.prevUntil(target).add(startElem).addClass('selected');
+      for(var elem = startElem; elem != target; elem = elem.previousElementSibling) {
+        elem.classList.add('selected');
+      }
     }
   }
 
   this.getSelected = function() {
-    return elem.children('.selected').map(function() {
-      return this.innerHTML;
-    }).toArray();
+    return [].map.call(elem.querySelectorAll('.selected'), function(li) {
+      return li.innerHTML;
+    });
   };
 }

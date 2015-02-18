@@ -2,6 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
   <style>
     .voter {
       font-family: Consolas, "Lucida Console", monospace;
@@ -13,7 +14,6 @@
       font-weight: bold;
     }
   </style>
-  <script src="http://code.jquery.com/jquery.min.js"></script>
 </head>
 <body>
 
@@ -29,7 +29,7 @@ function Voter(options) {
 }
 
 var voter = new Voter({
-  elem: $('#voter')
+  elem: document.getElementById('voter')
 });
 
 voter.setVote(1);

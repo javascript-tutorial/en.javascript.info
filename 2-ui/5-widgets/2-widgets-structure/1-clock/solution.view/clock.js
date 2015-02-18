@@ -8,15 +8,15 @@ function Clock(options) {
 
     var hours = date.getHours();
     if (hours < 10) hours = '0' + hours;
-    $('.hour', elem).html(hours);
+    elem.querySelector('.hour').innerHTML = hours;
 
     var min = date.getMinutes();
     if (min < 10) min = '0' + min;
-    $('.min', elem).html(min);
+    elem.querySelector('.min').innerHTML = min;
 
     var sec = date.getSeconds();
     if (sec < 10) sec = '0' + sec;
-    $('.sec', elem).html(sec);
+    elem.querySelector('.sec').innerHTML = sec;
   }
 
   this.stop = function() {
@@ -26,6 +26,6 @@ function Clock(options) {
   this.start = function() {
     render();
     timer = setInterval(render, 1000);
-  }
+  };
 
 }

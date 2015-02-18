@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
-  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
   <script src="listSelect.js"></script>
 </head>
 <body>
@@ -24,7 +24,7 @@ Shift+Клик добавляет промежуток от последнего
 
 <script>
 var listSelect = new ListSelect({
-  elem: $('ul')
+  elem: document.querySelector('ul')
 });
 </script>
 

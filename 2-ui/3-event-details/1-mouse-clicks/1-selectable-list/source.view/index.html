@@ -26,22 +26,8 @@ Shift+Клик добавляет промежуток от последнего
 </ul>
 
 <script>
-
 // ... ваш код 
-
-
-// --- вспомогательная функция, может понадобиться для части 3 ---
-// http://learn.javascript.ru/compare-document-position
-function compareDocumentPosition(a, b) {
-  return a.compareDocumentPosition ?
-    a.compareDocumentPosition(b) :
-      (a != b && a.contains(b) && 16) +
-        (a != b && b.contains(a) && 8) +
-        (a.sourceIndex >= 0 && b.sourceIndex >= 0 ?
-          (a.sourceIndex < b.sourceIndex && 4) +
-            (a.sourceIndex > b.sourceIndex && 2) :
-          1);
-}
+</script>
 
 </body>
 </html>

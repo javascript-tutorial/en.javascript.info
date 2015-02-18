@@ -27,7 +27,7 @@ Shift+Клик добавляет промежуток от последнего
 
 <script>
 
-var ul = document.getElementsByTagName('ul')[0];
+var ul = document.querySelector('ul');
 
 var lastClickedLi = null;
 
@@ -51,6 +51,10 @@ ul.onclick = function(event) {
   lastClickedLi = target;
 }
 
+ul.onmousedown = function() {
+  return false;
+};
+
 // --- функции для выделения ---
 
 function toggleSelect(li) {
@@ -60,7 +64,7 @@ function toggleSelect(li) {
 function selectFromLast(target) {
   var startElem = lastClickedLi || ul.children[0];
 
-  var isLastClickedBefore = compareDocumentPosition(startElem, target) & 4;
+  var isLastClickedBefore = startElem.compareDocumentPosition(target) & 4;
 
   if (isLastClickedBefore) {
     for(var elem = startElem; elem != target; elem = elem.nextElementSibling) {
@@ -86,20 +90,6 @@ function deselectAll() {
 function selectSingle(li) {
   deselectAll();
   li.classList.add('selected');
-}
-
-
-// --- вспомогательная функция ---
-// http://learn.javascript.ru/compare-document-position
-function compareDocumentPosition(a, b) {
-  return a.compareDocumentPosition ?
-    a.compareDocumentPosition(b) :
-      (a != b && a.contains(b) && 16) +
-        (a != b && b.contains(a) && 8) +
-        (a.sourceIndex >= 0 && b.sourceIndex >= 0 ?
-          (a.sourceIndex < b.sourceIndex && 4) +
-            (a.sourceIndex > b.sourceIndex && 2) :
-          1);
 }
 
 

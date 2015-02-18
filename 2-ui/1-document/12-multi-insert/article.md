@@ -213,7 +213,7 @@ ul.appendChild(fragment);   // вместо фрагмента вставятс�
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="//polyfill.webservices.ft.com/v1/polyfill.js?features=Element.prototype.mutation"></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.mutation"></script>
 </head>
 
 <body>

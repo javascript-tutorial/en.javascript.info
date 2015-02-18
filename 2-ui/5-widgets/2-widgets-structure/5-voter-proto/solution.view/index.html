@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
-  <script src="http://code.jquery.com/jquery-latest.js"></script>
-  <script src="voter.js"></script> <!-- отрефакторить -->
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+  <script src="voter.js"></script> 
 </head>
 <body>
 
@@ -17,7 +17,7 @@
 <script>
 
 var voter = new Voter({
-  elem: $('#voter')
+  elem: document.getElementById('voter')
 });
 
 </script>

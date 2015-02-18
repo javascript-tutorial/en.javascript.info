@@ -3,9 +3,8 @@
   
   <head>
     <meta charset="utf-8">
-    
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    
+    <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+  
     <style>
       .slider {
         margin: 5px;
@@ -36,68 +35,68 @@
     </div>
     <script>
       var slider = new Slider({
-        elem: $('#slider')
+        elem: document.getElementById('slider')
       });
 
       function Slider(options) {
         var elem = options.elem;
-        var thumbElem = elem.find('.thumb');
+        var thumbElem = elem.querySelector('.thumb');
 
         var sliderCoords, thumbCoords, shiftX, shiftY;
 
-        elem.on('dragstart', false)
-          .on('mousedown', '.thumb', onThumbMouseDown);
+        elem.ondragstart = function() {
+          return false;
+        };
 
-        // ---------------
-
-        function onDocumentMouseMove(e) {
-          moveTo(e.pageX);
+        elem.onmousedown = function(event) {
+          if (event.target.closest('.thumb')) {
+            startDrag(event.clientX, event.clientY);
+            return false; // disable selection start (cursor change)
+          }
         }
 
-        function onThumbMouseDown(e) {
-          startDrag(e.pageX, e.pageY);
-          return false; // disable selection start (cursor change)
+        function startDrag(startClientX, startClientY) {
+          thumbCoords = thumbElem.getBoundingClientRect();
+          shiftX = startClientX - thumbCoords.left;
+          shiftY = startClientY - thumbCoords.top;
+
+          sliderCoords = elem.getBoundingClientRect();
+
+          document.addEventListener('mousemove', onDocumentMouseMove);
+          document.addEventListener('mouseup', onDocumentMouseUp);
+        }
+
+
+
+        function moveTo(clientX) {
+          // вычесть координату родителя, т.к. position: relative
+          var newLeft = clientX - shiftX - sliderCoords.left;
+
+          // курсор ушёл вне слайдера
+          if(newLeft < 0) {
+            newLeft = 0;
+          }
+          var rightEdge = elem.offsetWidth - thumbElem.offsetWidth;
+          if(newLeft > rightEdge) {
+            newLeft = rightEdge;
+          }
+
+          thumbElem.style.left = newLeft + 'px';
+        }
+
+
+        function onDocumentMouseMove(e) {
+          moveTo(e.clientX);
         }
 
         function onDocumentMouseUp() {
           endDrag();
         }
 
-        // -------------------
-
-        function moveTo(pageX) {
-          // вычесть координату родителя, т.к. position: relative
-          var newLeft = pageX - shiftX - sliderCoords.left;
-
-          // курсор ушёл вне слайдера
-          if(newLeft < 0) {
-            newLeft = 0;
-          }
-          var rightEdge = elem.width() - thumbElem.width();
-          if(newLeft > rightEdge) {
-            newLeft = rightEdge;
-          }
-
-          thumbElem.css('left', newLeft);
-        }
-
-
-        function startDrag(startPageX, startPageY) {
-          thumbCoords = thumbElem.offset();
-          shiftX = startPageX - thumbCoords.left;
-          shiftY = startPageY - thumbCoords.top;
-
-          sliderCoords = elem.offset();
-
-          $(document).on({
-            'mousemove.slider': onDocumentMouseMove,
-            'mouseup.slider': onDocumentMouseUp
-          });
-
-        }
 
         function endDrag() {
-          $(document).off('.slider');
+          document.removeEventListener('mousemove', onDocumentMouseMove);
+          document.removeEventListener('mouseup', onDocumentMouseUp);
         }
 
       }

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+  <script src="menu.js"></script>
+</head>
+<body>
+
+<div id="sweets-menu" class="menu">
+  <span class="title">Сладости</span>
+  <ul>
+    <li>Торт</li>
+    <li>Пончик</li>
+    <li>Пирожное</li>
+    <li>Шоколадка</li>
+    <li>Мороженое</li>
+  </ul>
+</div>
+
+<script>
+var menu = new Menu({
+  elem: document.getElementById('sweets-menu')
+});
+</script>
+
+</body>
+</html>
