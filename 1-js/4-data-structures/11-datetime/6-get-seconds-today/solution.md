@@ -17,3 +17,12 @@ function getSecondsToday() {
 alert( getSecondsToday() );
 ```
 
+Альтернативное решение -- получить часы/минуты/секунды и преобразовать их все в секунды:
+
+```js
+//+ run
+function getSecondsToday(){ 
+  var d = new Date(); 
+  return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds(); 
+};
+```

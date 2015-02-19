@@ -24,7 +24,7 @@
 
 С первой группой виджетов -- вопросов нет. Добавляем обработчики, и дело сделано.
 
-Интересно начинается со второй группы, и совсем интересно -- с третьей группой.
+Здесь нам интересна вторая группа. Третья -- это по существу оптимизация с едиными шаблонами на клиенте и сервере, рассмотрим её позже.
 
 ## Зачем нужны шаблоны?
 
@@ -241,7 +241,7 @@ var template = document.getElementById('menu-template').innerHTML;
 ```html
 <!--+ run height=150 -->
 <!-- библиотека LoDash -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 
 <!-- шаблон для списка от 1 до count -->
 <script *!*type="text/template"*/!* id="list-template">
@@ -408,11 +408,11 @@ function Menu(options) {
   }
 
   function render() {
-    var elemHtml = options.template({title: options.title});
+    var html = options.template({title: options.title});
 
     elem = document.createElement('div');
-    elem.innerHTML = elemHTML;
-    elem = elem.firstChild;
+    elem.innerHTML = html;
+    elem = elem.firstElementChild;
 
     elem.onmousedown = function() {
       return false;
@@ -509,12 +509,32 @@ function(obj) {
 
 Нои здесь можно кое-что отладить. При ошибке, если она не синтаксическая, отладчик при этом останавливается где-то посередине "страшной" функции. 
 
-При этом, особенно если шаблонов много и компилируются они где-то раньше по коду -- бывает совершенно неочевидно, из какого шаблона она получена. 
 
-Попробуйте сами запустить пример с открытыми инструментами разработчика и включённой опцией "остановка при ошибке":
+Попробуйте сами запустить пример с открытыми инструментами разработчика и *включённой* опцией "остановка при ошибке":
 
 ```html
-<!--+ run src="index.html" -->
+<!--+ run -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+
+<script type="text/template" id="menu-template">
+<div class="menu">
+  <span class="title"><%-title%>
+  <ul>
+  <% items.forEach(function(item) { %>
+    <li><%-item%></li>
+  <% }); %>
+  </ul>
+</div>
+</script>
+
+<script>
+  var tmpl = document.getElementById('menu-template').innerHTML;
+ 
+  var compiled = _.template(tmpl);
+  var result = compiled({ title: "Заголовок" });
+
+  document.write(result);
+</script>
 ```
 
 В шаблоне допущена ошибка, поэтому отладчик остановит выполнение. 
@@ -523,13 +543,13 @@ function(obj) {
 
 <img src="template-debugger.png">
 
-**LoDash пытается нам помочь. Он добавляет к шаблонам специальный идентификатор [sourceURL](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl), который служит аналогом "имени файла".  На картинке он отмечен красным.**
+Библиотека LoDash пытается нам помочь, подсказать, в каком именно шаблоне произошла ошибка. Ведь из функции это может быть неочевидно. 
+
+Для этого она добавляет к шаблонам специальный идентификатор [sourceURL](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/#toc-sourceurl), который служит аналогом "имени файла".  На картинке он отмечен красным.
 
 По умолчанию `sourceURL` имеет вид `/lodash/template/source[N]`, где `N` -- постоянно увеличивающийся номер шаблона. В данном случае мы можем понять, что эта функция получена при самой первой компиляции.
 
-**Это, конечно, лучше чем ничего, но, как правило, его имеет смысл заменить `sourceURL` на свой.**
-
-Это делается при компиляции дополнительным параметром `sourceURL`:
+Это, конечно, лучше чем ничего, но, как правило, его имеет смысл заменить `sourceURL` на свой, указав при компиляции дополнительный параметр `sourceURL`:
 
 ```js
 ...
@@ -537,7 +557,7 @@ var compiled = _.template(tmpl, null, {sourceURL: '/template/menu-template'});
 ...
 ```
 
-Попробуйте запустить [исправленный пример](/tutorial/widgets/template-error-sourceurl/) и вы увидите в качестве имени файла `/template/menu-template`.
+Попробуйте запустить [исправленный пример](template-error-sourceurl/) и вы увидите в качестве имени файла `/template/menu-template`.
 
 [warn header="Не определена переменная -- ошибка"]
 Кстати говоря, а в чём же здесь ошибка? 
@@ -551,7 +571,7 @@ var compiled = _.template(tmpl, null, {sourceURL: '/template/menu-template'});
 
 Шаблоны полезны для того, чтобы отделить HTML от кода. Это упрощает разработку и поддержку. 
 
-В этой главе подробно разобрана система шаблонизации из библиотеки [LoDash](https://github.com/bestiejs/lodash). 
+В этой главе подробно разобрана система шаблонизации из библиотеки [LoDash](https://lodash.com). 
 
 Теперь, когда мы с ней знакомы, мы можем как использовать её в своих проектах, так и перейти к более глобальному рассмотрению подходов к шаблонизации.
 

@@ -2,7 +2,7 @@
 <html>
 <body>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 
 <script type="text/template" id="menu-template">
 <div class="menu">
@@ -18,7 +18,7 @@
 <script>
   var tmpl = document.getElementById('menu-template').innerHTML;
  
-  var compiled = _.template(tmpl);
+  var compiled = _.template(tmpl, null, {sourceURL: '/template/menu-template'});
   var result = compiled({ title: "Заголовок" });
 
   document.write(result);

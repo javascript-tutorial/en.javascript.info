@@ -14,4 +14,3 @@ function getSecondsToTomorrow() {
   return Math.round(diff / 1000); // перевести в секунды
 }
 ```
-

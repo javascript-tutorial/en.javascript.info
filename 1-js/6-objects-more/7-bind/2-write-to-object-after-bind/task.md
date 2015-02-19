@@ -10,7 +10,7 @@ function f() {
 }
 
 var user = {
-  g: bind(f, "Hello")
+  g: f.bind("Hello")
 }
       
 user.g();

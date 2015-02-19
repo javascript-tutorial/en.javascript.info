@@ -7,11 +7,11 @@ function Menu(options) {
   }
 
   function render() {
-    var elemHtml = options.template({title: options.title});
+    var html = options.template({title: options.title});
 
     elem = document.createElement('div');
-    elem.innerHTML = elemHTML;
-    elem = elem.firstChild;
+    elem.innerHTML = html;
+    elem = elem.firstElementChild;
 
     elem.onmousedown = function() {
       return false;
