@@ -8,15 +8,13 @@
       padding: 0;
     }
 
-    .menu li {
+    .menu__item {
       list-style: none;
 
-      float: left;
+      display: inline-block;
       padding: 6px;
       margin: 0 2px;
-    }
 
-    .menu li.item {
       border: 1px solid gray;
       border-radius: 10px;
 
@@ -25,16 +23,21 @@
       background: #FFF5EE;
     }
 
-    .menu li.vertical-splitter:before {
+    .menu__vertical-splitter {
+      list-style: none;
+      display: inline-block;
+    }
+
+    .menu__vertical-splitter:before {      
       content: "|";
     }
 
-    .menu .item a {
+    .menu__item a {
       color: black;
       text-decoration: none;
     }
 
-    .menu .item a:hover {
+    .menu__item a:hover {
       text-decoration: underline;
     }
 
@@ -43,11 +46,11 @@
 <body>
 
 <ul class="menu">
-  <li class="item"><a href="#">Главная</a></li>
-  <li class="vertical-splitter"></li>
-  <li class="item"><a href="#">Товары</a></li>
-  <li class="item"><a href="#">Фотографии</a></li>
-  <li class="item"><a href="#">Контакты</a></li>
+  <li class="menu__item"><a href="#">Главная</a></li>
+  <li class="menu__vertical-splitter"></li>
+  <li class="menu__item"><a href="#">Товары</a></li>
+  <li class="menu__item"><a href="#">Фотографии</a></li>
+  <li class="menu__item"><a href="#">Контакты</a></li>
 </ul>
 
 </body>

@@ -22,12 +22,14 @@
 
 ```html
 <ul class="menu">
-  <li class="item"><a href="#">Главная</a></li>
-  <li class="vertical-splitter"></li>
-  <li class="item"><a href="#">Товары</a></li>
-  <li class="item"><a href="#">Фотографии</a></li>
-  <li class="item"><a href="#">Контакты</a></li>
+  <li class="menu__item"><a href="#">Главная</a></li>
+  <li class="menu__vertical-splitter"></li>
+  <li class="menu__item"><a href="#">Товары</a></li>
+  <li class="menu__item"><a href="#">Фотографии</a></li>
+  <li class="menu__item"><a href="#">Контакты</a></li>
 </ul>
 ```
 
-[edit src="solution"]Полное меню со стилями[/edit]
+Дополнительно, классы помечены префиксом компонента, на тот случай, если в заголовках появится произвольный HTML. 
+
+
