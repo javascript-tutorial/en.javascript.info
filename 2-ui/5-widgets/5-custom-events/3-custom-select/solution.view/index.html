@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Селект</title>
-  <script src='http://code.jquery.com/jquery.min.js'></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=CustomEvent,Element.prototype.closest"></script>
   <link rel="stylesheet" href="customselect.css"/>
   <script src="customselect.js"></script>
 </head>
@@ -11,38 +11,38 @@
 <div>Последний результат: <span id="result">...</span></div>
 
 <div id="animal-select" class="customselect">
-  <div class="customselect-title">Выберите</div>
-  <ol class="customselect-options">
+  <button class="title">Выберите</button>
+  <ul>
     <!-- значение хранится в свойстве data-value -->
     <li data-value="bird">Птицы</li>
     <li data-value="fish">Рыбы</li>
     <li data-value="animal">Звери</li>
     <li data-value="dino">Динозавры</li>
     <li data-value="simplest">Одноклеточные</li>
-  </ol>
+  </ul>
 </div>
 
 <div id="food-select" class="customselect">
-  <div class="customselect-title">Выберите</div>
-  <ol class="customselect-options">
+  <button class="title">Выберите</button>
+  <ul>
     <li data-value="carnivore">Плотоядные</li>
     <li data-value="herbivore">Травоядные</li>
     <li data-value="omnivore">Всеядные</li>
-  </ol>
+  </ul>
 </div>
 
 
 <script>
   var animalSelect = new CustomSelect({
-    elem: $('#animal-select')
+    elem: document.getElementById('animal-select')
   });
 
   var foodSelect = new CustomSelect({
-    elem: $('#food-select')
+    elem: document.getElementById('food-select')
   });
 
-  $([animalSelect, foodSelect]).on('select', function (event) {
-    $('#result').html(event.value)
+  document.addEventListener('select', function (event) {
+    document.getElementById('result').innerHTML = event.detail.value;
   });
 
 </script>

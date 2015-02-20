@@ -7,44 +7,51 @@ function Menu(options) {
   }
 
   function render() {
-    var elemHtml = options.template({title: options.title});
+    var html = options.template({title: options.title});
 
-    elem = $(elemHtml);
+    elem = document.createElement('div');
+    elem.innerHTML = html;
+    elem = elem.firstElementChild;
 
-    elem.on('mousedown selectstart', false);
+    elem.onmousedown = function() {
+      return false;
+    }
 
-    elem.on('click', '.title', onTitleClick);
-    elem.on('click', 'a', onItemClick)
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+
+      if (event.target.closest('a')) {
+        event.preventDefault();
+        select(event.target.closest('a'));
+      }
+
+    }
   }
-
 
   function renderItems() {
-    if (elem.find('ul').length) return;
+    if (elem.querySelector('ul')) return;
     
     var listHtml = options.listTemplate({items: options.items});
-    elem.append(listHtml);
+    elem.insertAdjacentHTML("beforeEnd", listHtml);
   }
 
-  function onItemClick(e) {
-    alert(e.currentTarget.getAttribute('href').slice(1));
-    e.preventDefault();
-  }
-
-  function onTitleClick(e) {
-    toggle();
+  function select(link) {
+    alert(link.getAttribute('href').slice(1));
   }
 
   function open() {
     renderItems();
-    elem.addClass('open');
+    elem.classList.add('open');
   };
 
   function close() {
-    elem.removeClass('open');
+    elem.classList.remove('open');
   };
 
   function toggle() {
-    if (elem.hasClass('open')) close();
+    if (elem.classList.contains('open')) close();
     else open();
   };
 

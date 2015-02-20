@@ -7,14 +7,18 @@
 .menu .title {
   font-weight: bold;
   cursor: pointer;
-  background: url(https://js.cx/clipart/arrow-right.png) left center no-repeat;
-  padding-left: 18px;
+}
+
+.menu .title:before {
+  content: '▶';
+  padding-right: 6px;
+  color: green;
 }
 
 .menu.open ul {
   display: block;
 }
 
-.menu.open .title {
-  background-image: url(https://js.cx/clipart/arrow-down.png);
+.menu.open .title:before {
+  content: '▼';
 }

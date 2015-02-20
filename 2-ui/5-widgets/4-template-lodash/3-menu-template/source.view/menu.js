@@ -7,37 +7,41 @@ function Menu(options) {
   }
 
   function render() {
-    var elemHtml = options.template({title: options.title});
+    var html = options.template({title: options.title});
 
-    elem = $(elemHtml);
+    elem = document.createElement('div');
+    elem.innerHTML = html;
+    elem = elem.firstElementChild;
 
-    elem.on('mousedown selectstart', false);
+    elem.onmousedown = function() {
+      return false;
+    }
 
-    elem.on('click', '.title', onTitleClick);
+    elem.onclick = function(event) {
+      if (event.target.closest('.title')) {
+        toggle();
+      }
+    }
   }
 
   function renderItems() {
-    if (elem.find('ul').length) return;
+    if (elem.querySelector('ul')) return;
     
     var listHtml = options.listTemplate({items: options.items});
-    elem.append(listHtml);
-  }
-
-  function onTitleClick(e) {
-    toggle();
+    elem.insertAdjacentHTML("beforeEnd", listHtml);
   }
 
   function open() {
     renderItems();
-    elem.addClass('open');
+    elem.classList.add('open');
   };
 
   function close() {
-    elem.removeClass('open');
+    elem.classList.remove('open');
   };
 
   function toggle() {
-    if (elem.hasClass('open')) close();
+    if (elem.classList.contains('open')) close();
     else open();
   };
 

@@ -18,7 +18,7 @@ var users = [
 
 Результат:
 
-[iframe src="solution"]
+[iframe src="solution" height=180]
 
 
 

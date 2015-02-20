@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="menu.css">
-  <script src="http://code.jquery.com/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
   <script src="menu.js"></script>
 </head>
 <body>
@@ -26,18 +26,17 @@
 <script>
 var menu = new Menu({ 
   title: "Сладости",
-  template: _.template($('#menu-template').html()),
-  listTemplate: _.template($('#menu-list-template').html()),
+  template: _.template( document.getElementById('menu-template').innerHTML.trim()),
+  listTemplate: _.template( document.getElementById('menu-list-template').innerHTML.trim()),
   items: [
+    "Торт", // cake  <a href="#cake">Торт</a>
     "Пончик", // donut
-    "Пирожное", // cake
-    "Шоколадка", // chockolate
+    "Шоколадка" // chokolate
   ]
 });
 
-$(document.body).append(menu.getElem());
+document.body.appendChild(menu.getElem());
 </script>
 
 </body>
 </html>
-

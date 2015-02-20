@@ -1,44 +1,39 @@
 function CustomSelect(options) {
-  var self = this;
-
   var elem = options.elem;
 
-  elem.on('click', '.customselect-title', onTitleClick);
-  elem.on('click', 'li', onOptionClick);
+  elem.onclick = function(event) {
+    if (event.target.className == 'title') {
+      toggle();
+    } else if (event.target.tagName == 'LI') {
+      setValue(event.target.innerHTML, event.target.dataset.value);
+      close();
+    }
+  }
 
   var isOpen = false;
 
   // ------ обработчики ------
 
-  function onTitleClick(event) {
-    toggle();
-  }
-
   // закрыть селект, если клик вне его
   function onDocumentClick(event) {
-    var isInside = $(event.target).closest(elem).length;
-    if (!isInside) close();
-  }
-
-  function onOptionClick(event) {
-    close();
-
-    var name = $(event.target).html(); 
-    var value = $(event.target).data('value'); 
-        
-    setValue(name, value);
+    if (!elem.contains(event.target)) close();
   }
 
   // ------------------------
 
-  function setValue(name, value) {
-    elem.find('.customselect-title').html(name);
+  function setValue(title, value) {
+    elem.querySelector('.title').innerHTML = title;
 
-    $(self).triggerHandler({
-      type: 'select',
-      name: name,
-      value: value
+    var widgetEvent = new CustomEvent('select', {
+      bubbles: true, 
+      detail: {
+        title: title,
+        value: value
+      } 
     });
+
+    elem.dispatchEvent(widgetEvent);
+
   }
 
   function toggle() {
@@ -47,14 +42,14 @@ function CustomSelect(options) {
   }
 
   function open() {
-    elem.addClass('customselect-open');
-    $(document).on('click', onDocumentClick);
+    elem.classList.add('open');
+    document.addEventListener('click', onDocumentClick);
     isOpen = true;
   }
 
   function close() {
-    elem.removeClass('customselect-open');
-    $(document).off('click', onDocumentClick);
+    elem.classList.remove('open');
+    document.removeEventListener('click', onDocumentClick);
     isOpen = false;
   }
 

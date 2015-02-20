@@ -2,7 +2,6 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="http://code.jquery.com/jquery.min.js"></script>
   <style>
     .voter {
       font-family: Consolas, "Lucida Console", monospace;
@@ -14,6 +13,8 @@
       font-weight: bold;
     }
   </style>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=CustomEvent,Element.prototype.closest"></script>
+  <script src="voter.js"></script>
 </head>
 <body>
 
@@ -24,67 +25,14 @@
 </div>
 
 <script>
-function Voter(options) {
-  var self = this;
-  var elem = options.elem;
-
-  var voteElem = elem.find('.vote');
-
-  // вынесем текущее значение в отдельную переменную
-  var vote = options.value || 0;
-
-  // установить значение без генерации события
-  setVote(vote, true);
-
-  elem.on('click', '.down', onDownClick)
-    .on('click', '.up', onUpClick)
-    .on('mousedown selectstart', false);
-
-  // ----------- методы -------------
-
-  function onDownClick() {
-    // сам обработчик не меняет голос, он вызывает для этого функцию
-    voteDecrease(); 
-  }
-
-  function onUpClick() {
-    voteIncrease();
-  }
-
-  function voteDecrease() {
-    self.setVote( vote - 1 );
-  }
-
-  function voteIncrease() {
-    self.setVote( vote + 1 );
-  }
-
-  // сделали функцию приватной, чтобы её можно было вызывать до объявления
-  // в коде инициализации
-  function setVote(newVote, quiet) {
-    vote = newVote;
-
-    voteElem.html( vote );
-
-    if (!quiet) {
-      $(self).triggerHandler({
-        type: 'change',
-        value: vote
-      });
-    }
-  }
-
-  this.setVote = setVote;
-
-}
-
 var voter = new Voter({
-  elem: $('#voter'),
-  value: 5
+  elem: document.getElementById('voter')
 });
 
-$(voter).on('change', function(e) {
-  alert(e.value);
+voter.setVote(5);
+
+document.getElementById('voter').addEventListener('change', function(e) {
+  alert(e.detail);
 });
 
 </script>

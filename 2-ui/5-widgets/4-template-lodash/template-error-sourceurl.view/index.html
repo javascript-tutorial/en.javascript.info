@@ -16,10 +16,12 @@
 </script>
 
 <script>
-  var tmpl = document.getElementById('menu-template').innerHTML;
+  var tmpl = _.template(
+    document.getElementById('menu-template').innerHTML,
+    {sourceURL: '/template/menu-template'}
+  );
  
-  var compiled = _.template(tmpl, null, {sourceURL: '/template/menu-template'});
-  var result = compiled({ title: "Заголовок" });
+  var result = tmpl({ title: "Заголовок" });
 
   document.write(result);
 </script>

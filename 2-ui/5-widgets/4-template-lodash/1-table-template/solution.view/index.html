@@ -2,8 +2,7 @@
  <html>
  <head>
    <meta charset="utf-8">
-   <script src="http://code.jquery.com/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
    <style>
      table {
       border-collapse: collapse;
@@ -44,14 +43,13 @@ var users = [
   {name: "Даша", age: 30}
 ];
 
-$('#grid-holder').html( 
-  _.template( $('#grid-template').html().trim(), {list: users}) 
-);
+var tmpl = document.getElementById('grid-template').innerHTML.trim();
+tmpl = _.template(tmpl);
 
 
+document.getElementById('grid-holder').innerHTML = tmpl({list: users});
 
 </script>
-
 
 </body>
 </html>
