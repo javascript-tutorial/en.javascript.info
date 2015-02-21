@@ -7,7 +7,7 @@
 
 <template id="tmpl">
   <style>
-    @import url(http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css);
+    @import url(http://code.jquery.com/ui/1.11.3/themes/ui-lightness/jquery-ui.css);
 
     :host { 
       display: block;
@@ -32,8 +32,8 @@ SliderProto.createdCallback = function() {
   var self = this;
 
   this.$slider.slider({
-    min: this.getAttribute('min') || 0,
-    max: this.getAttribute('max') || 100,
+    min: +this.getAttribute('min') || 0,
+    max: +this.getAttribute('max') || 100,
     value: this.getAttribute('value') || 0,
     slide: function() {
       var event = new CustomEvent("slide", {
