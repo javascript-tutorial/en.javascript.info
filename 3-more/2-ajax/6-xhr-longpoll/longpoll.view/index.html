@@ -18,7 +18,8 @@
 
 <script>
 	new PublishForm(document.forms.publish, 'publish');
-	new SubscribePane(document.getElementById('subscribe'), 'subscribe');
+  // random url to fix https://code.google.com/p/chromium/issues/detail?id=46104
+	new SubscribePane(document.getElementById('subscribe'), 'subscribe?random='+Math.random());
 </script>
 
 </body>

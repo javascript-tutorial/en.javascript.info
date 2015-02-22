@@ -36,12 +36,12 @@
 
 **Чтобы ничего не загружать в ифрейм, укажите `src="javascript:false"`.** 
 </dd>
-<dt>Атрибут `name` и создание ифрейма в IE<8</dt>
+<dt>Атрибут `name` и создание ифрейма в IE7-</dt>
 <dd>В старых IE нельзя менять атрибут `name` после создания ифрейма:
 
 ```js
 var iframe = document.createElement('iframe');
-iframe.name = 'iName'; // в IE<8 не сработает
+iframe.name = 'iName'; // в IE7- не сработает
 ```
 
 Поэтому, если нужна совместимость, создавайте ифреймы через `innerHTML`:

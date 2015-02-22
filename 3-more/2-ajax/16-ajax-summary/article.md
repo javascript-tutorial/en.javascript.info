@@ -36,8 +36,8 @@
 </tr>
 <tr>
 <th>Кросс-доменность</th>
-<td>да, кроме IE<10<a class="link-ref" href="#x1">x1</a></td>
-<td>да, сложности в IE<8<a class="link-ref" href="#i1">i1</a></td>
+<td>да, кроме IE9-<a class="link-ref" href="#x1">x1</a></td>
+<td>да, сложности в IE7-<a class="link-ref" href="#i1">i1</a></td>
 <td>да</td>
 <td>да</td>
 <td>да</td>
@@ -89,7 +89,7 @@
 <dt>`WebSocket`</dt>
 <dd>
 <ol>
-<li id="w1">Имеется в виду поддержка окончательной редакции протокола [RFC 6455](http://tools.ietf.org/html/rfc6455). Более старые браузеры могут поддерживать черновики протокола. IE<10 не поддерживает `WebSocket`.</li>
+<li id="w1">Имеется в виду поддержка окончательной редакции протокола [RFC 6455](http://tools.ietf.org/html/rfc6455). Более старые браузеры могут поддерживать черновики протокола. IE9- не поддерживает `WebSocket`.</li>
 </ol>
 </dd>
 </dl>

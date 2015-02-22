@@ -1,4 +1,4 @@
-# XMLHttpRequest и POST, отсылка форм
+# XMLHttpRequest POST, формы и кодировка
 
 Во время обычной отправки формы `<form>` браузер собирает значения её полей, делает из них строку и составляет тело GET/POST-запроса для посылки на сервер. 
 
@@ -90,7 +90,7 @@ xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 ```
 [/smart]
 
-## POST-запрос 
+## POST с urlencoded 
 
 В методе POST параметры передаются не в URL, а в теле, посылаемом через `send(body)`. Поэтому `params` нужно указывать не в `open`, а в `send`.
 
@@ -123,12 +123,7 @@ xhr.send(body);
 
 В этой кодировке поля пересылаются одно за другим, через строку-разделитель.
 
-
-
-
-Этот способ используется в методе `POST` и указывается атрибутом `enctype="multipart/form-data"`.
-
-Пример формы
+Чтобы использовать этот способ, нужно указат его в атрибуте `enctype` и метод должен быть POST:
 
 ```html
 <form action="/submit" method="POST" enctype="multipart/form-data"> 
@@ -137,7 +132,7 @@ xhr.send(body);
 </form>
 ```
 
-Форма при такой кодировке пересылается в теле запроса, поля разделены случайно сгенерированной строкой `boundary`, вот так:
+Форма при такой кодировке будет выглядеть примерно так:
 
 ```
 ...Заголовки...
@@ -154,16 +149,21 @@ Content-Disposition: form-data; name="*!*surname*/!*"
 --RaNdOmDeLiMiTeR--
 ```
 
-Сервер видит заголовок `Content-Type: multipart/form-data` и раскодирует поля формы.
+...То есть, поля передаются одно за другим, значения не кодируются, а чтобы было чётко понятно, какое значение где -- поля разделены случайно сгенерированной строкой, которую называют "boundary" (англ. граница), в примере выше это `RaNdOmDeLiMiTeR`:
 
-**Как видно, само содержимое полей при этом оставляется "как есть". Поэтому такой способ используется в первую очередь при пересылке файла.**
+Сервер видит заголовок `Content-Type: multipart/form-data`, читает из него границу и раскодирует поля формы.
 
+Такой способ используется в первую очередь при пересылке файлов, так перекодировка мегабайтов через urlencoded существенно загрузила бы браузер. Да и объём данных после неё сильно вырос бы. 
 
-### POST-запрос
+Однако, никто не мешает использовать эту кодировку всегда для POST запросов. Для GET доступна только urlencoded.
 
-В `XMLHttpRequest` можно указать кодировку `multipart/form-data` и вручную сформировать тело запроса, удовлетворяющее требованиям кодировки.
+## POST с multipart/form-data
 
-Пример кода для формирования запроса в кодировке `multipart/form-data`:
+Сделать POST-запрос в кодировке `multipart/form-data` можно и через XMLHttpRequest.
+
+Достаточно указать в заголовке `Content-Type` кодировку и границу, и далее сформировать тело запроса, удовлетворяющее требованиям кодировки.
+
+Пример кода для пересылке того же запроса, что и раньше, в кодировке `multipart/form-data`:
 
 ```js
 var data = {
@@ -202,11 +202,9 @@ xhr.send(body);
 Тело запроса будет иметь вид, описанный выше, то есть поля через разделитель. 
 
 [smart header="Отправка файла"]
-**Можно создать запрос, который сервер воспримет как загрузку файла.**
+Можно создать запрос, который сервер воспримет как загрузку файла. 
 
-Для этого текст файла должен быть уже доступен JavaScript, т.е. произвольный файл прочитать и переслать, конечно же, нельзя.
-
-Для добавления файла нужно использовать тот же код, что выше, но при добавлении поля  вместо строки `body.push('Content-Disposition: form-data; name=...')` указать расширенные заголовки:
+Для добавления файла нужно использовать тот же код, что выше, модифицировав заголовки перед полем, которое является файлом, так:
 
 ```js
 Content-Disposition: form-data; name="myfile"; filename="pic.jpg"
@@ -214,39 +212,28 @@ Content-Type: image/jpeg
 (пустая строка)
 содержимое файла
 ```
-
-Код будет выглядеть так:
-
-```js
-body.push('Content-Disposition: form-data; name="'+key+'"; filename="pic.jpg"\r\nContent-Type: image/jpeg\r\n\r\n'+data[key]+'\r\n');
-```
-
-Имя файла `pic.jpg` здесь задано явно, но вам не составит труда его заменить.
 [/smart]
 
 ## FormData
 
-Современные браузеры, исключая IE<10, поддерживают объект [FormData](https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest/FormData/Using_FormData_Objects), который позволяет загружать формы напрямую.
+Современные браузеры, исключая IE9- (впрочем, есть полифилл), поддерживают встроенный объект [FormData](https://developer.mozilla.org/en-US/docs/DOM/XMLHttpRequest/FormData/Using_FormData_Objects), который кодирует формы для отправки на сервер.
 
-**В форме могут быть любые поля, в том числе файловые.** 
-
-Лучше всего это показывает пример:
+Это очень удобно. Например:
 
 ```html
-<form name="user">
-  <input name="firstname" value="Вася">
+<form name="person"> 
+  <input name="name" value="Виктор">
+  <input name="surname" value="Цой">
 </form>
 
 <script>
-// создать объект из формы
-// в форме могут быть любые поля
-var form = document.forms.user;
+// создать объект для формы
 *!*
-var formData = new FormData(form);  
+var formData = new FormData(document.forms.person);  
 */!*
 
 // добавить к пересылке ещё пару ключ - значение
-formData.append("lastname", "Пупкин");
+formData.append("patronym", "Робертович");
 
 // отослать
 var xhr = new XMLHttpRequest();
@@ -257,7 +244,7 @@ xhr.send(formData);
 </script>
 ```
 
-Этот код отправит на сервер форму с полями `firstname` и `lastname`.
+Этот код отправит на сервер форму с полями `name`, `surname` и `patronym`.
 
 Интерфейс:
 <ul>
@@ -265,30 +252,37 @@ xhr.send(formData);
 <li>Метод `formData.append(name, value)` добавляет данные к форме.</li>
 </ul>
 
-Интеграция `FormData` с `XMLHttpRequest` встроена в браузер.
-[head]
-<script>
-function voteSync(outputElem) {
-  var xhr = new XMLHttpRequest(); // (1)
+Объект `formData` можно сразу отсылать, интеграция `FormData` с `XMLHttpRequest` встроена в браузер. Кодировка при этом будет `multipart/form-data`.
 
-  xhr.open('GET', '/files/tutorial/ajax/xhr/vote.php', false); 
-  xhr.send(null);   // (2)
+## Другие кодировки
 
-  outputElem.innerHTML = xhr.responseText;  // (3)
-}
+XMLHttpRequest сам по себе не ограничивает кодировку и формат пересылаемых данных.
 
-function vote(outputElem) {
-  var xhr = new XMLHttpRequest();
+Поэтому просто для обмена данными JS <-> сервер, без всяких форма, часто используется POST с JSON:
 
-  xhr.open('GET', '/files/tutorial/ajax/xhr/vote.php', true);
+```js
+var xhr = new XMLHttpRequest();
 
-  xhr.onreadystatechange = function() {
-    if (xhr.readyState != 4) return;
-debugger
-    outputElem.innerHTML = xhr.responseText;
-  }
+var json = JSON.stringify({
+  name: "Виктор",
+  surname: "Цой"
+});
 
-  xhr.send(null);
-}
-</script>
-[/head]
+xhr.open("POST", '/submit', true)
+xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+
+xhr.onreadystatechange = ...;
+
+xhr.send(json);
+```
+
+## Итого
+
+<ul>
+<li>У форм есть две основные кодировки: `application/x-www-form-urlencoded` -- по умолчанию и `multipart/form-data` -- для POST запросов, если явно указана в `enctype`. Вторая кодировка обычно используется для больших данных и только для тела запроса.</li>
+<li>Для составления запроса в `application/x-www-form-urlencoded` используется функция `encodeURIComponent`.</li>
+<li>Для отправки запроса в `multipart/form-data` -- объект `FormData`.</li>
+<li>Для обмена данными JS <-> сервер можно использовать и просто JSON, желательно с указанием кодировки в заголовке `Content-Type`.</li>
+</ul>
+
+В XMLHttpRequest можно использовать и другие HTTP-методы, например PUT, DELETE, TRACE. К ним применимы все те же принципы, что описаны выше.

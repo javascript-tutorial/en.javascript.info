@@ -10,33 +10,29 @@ var subscribers = {};
 function onSubscribe(req, res) {
   var id = Math.random();
   
+  res.setHeader('Content-Type', 'text/plain;charset=utf-8');
+  res.setHeader("Cache-Control", "no-cache, must-revalidate");
+
   subscribers[id] = res;
-  console.log("новый клиент " + id + ", клиентов:" + Object.keys(subscribers).length);
+  //console.log("новый клиент " + id + ", клиентов:" + Object.keys(subscribers).length);
 
   req.on('close', function() {
     delete subscribers[id];
-    console.log("клиент "+id+" отсоединился, клиентов:" + Object.keys(subscribers).length);
+    //console.log("клиент "+id+" отсоединился, клиентов:" + Object.keys(subscribers).length);
   });
 
 }
 
-function onPublish(req, res, message) {
+function publish(message) {
 
-  console.log("есть сообщение, клиентов:" + Object.keys(subscribers).length);    
+  //console.log("есть сообщение, клиентов:" + Object.keys(subscribers).length);    
 
   for(var id in subscribers) {
-    console.log("отсылаю сообщение " + id);
+    //console.log("отсылаю сообщение " + id);
     var res = subscribers[id];
-
-    res.writeHead(200, {
-        'Content-Type': 'text/plain;charset=utf-8',
-        "Cache-Control": "no-cache, must-revalidate"
-    });
-
-    res.write(message, 'utf-8');    
-    res.end();
+    res.end(message);
   }
-  
+
   subscribers = {};
 }
 
@@ -52,11 +48,13 @@ function accept(req, res) {
   // отправка сообщения
   if (urlParsed.pathname == '/publish' && req.method == 'POST') {
     // принять POST-запрос
-    var post;
-    req.addListener('data', function (chunk) {
-      post = querystring.parse(chunk.toString());
-    }).addListener('end', function () {
-      onPublish(req, res, post.message.toString()); // собственно, отправка
+    req.setEncoding('utf8');
+    var message = '';
+    req.on('data', function (chunk) {
+      message += chunk;
+    }).on('end', function () {
+      publish(message); // собственно, отправка
+      res.end("ok");
     });
   
     return;

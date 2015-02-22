@@ -13,7 +13,7 @@
 
 В других браузерах `setImmediate` нет, но его можно эмулировать, используя, к примеру, метод [postMessage](https://developer.mozilla.org/en-US/docs/DOM/window.postMessage), предназначенный для пересылки сообщений от одного окна другому. Детали работы с `postMessage` вы найдёте в статье [](/cross-window-messaging-with-postmessage). Желательно читать её после освоения темы "События".
 
-Эмуляция `setImmediate` с его помощью для всех браузеров, кроме IE<8 (в которых нет `postMessage`, так что будет использован setTimeout):
+Эмуляция `setImmediate` с его помощью для всех браузеров, кроме IE7- (в которых нет `postMessage`, так что будет использован setTimeout):
 
 ```js
 //+ hide="Раскрыть код" src="setImmediate.js"

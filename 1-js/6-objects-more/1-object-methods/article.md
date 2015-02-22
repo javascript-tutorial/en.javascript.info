@@ -184,7 +184,7 @@ func();
 //+ run
 function func() { 
   "use strict";
-  alert(this); // выведет undefined (кроме IE<10)
+  alert(this); // выведет undefined (кроме IE9-)
 }
 
 func();

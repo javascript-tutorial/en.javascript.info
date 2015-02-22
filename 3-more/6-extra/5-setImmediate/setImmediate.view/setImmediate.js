@@ -21,7 +21,7 @@ if (!window.setImmediate) window.setImmediate = (function() {
     tail = tail.next = { func: func };
     window.postMessage(ID, "*");
   } : 
-  function(func) { // IE<8
+  function(func) { // IE7-
     setTimeout(func, 0);
   };
 }());
