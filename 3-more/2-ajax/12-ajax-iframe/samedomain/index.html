@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="iframe.js"></script>
+<script src="samedomain.js"></script>
+
+<script>
+function ok(result) {
+   alert('ok: ' + result);
+}
+function fail() {
+   alert('fail');
+}
+</script>
+
+<button onclick="iframeGet('samedomain.php', ok, fail)">iframeGet</button>
+
+<button onclick="iframePost('samedomain.php', {data: 'Client date: '+new Date}, ok, fail)">iframePost</button>
+
+</body>
+</html>

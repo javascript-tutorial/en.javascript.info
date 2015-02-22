@@ -8,18 +8,18 @@
         <g id="array-speed.svg" sketch:type="MSArtboardGroup">
             <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="108" y="92" width="37" height="64"></rect>
             <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="144" y="92" width="37" height="64"></rect>
-            <text id="0" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+            <text id="0" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
                 <tspan x="122.5" y="128.5">0</tspan>
             </text>
-            <text id="1" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+            <text id="1" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
                 <tspan x="159.5" y="128.5">1</tspan>
             </text>
             <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="180" y="92" width="37" height="64"></rect>
-            <text id="2" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+            <text id="2" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
                 <tspan x="195.5" y="128.5">2</tspan>
             </text>
             <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="216" y="92" width="37" height="64"></rect>
-            <text id="3" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" fill="#8A704D">
+            <text id="3" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
                 <tspan x="231.5" y="128.5">3</tspan>
             </text>
             <path d="M326.5,117.5 L331,111.30787 L328,111.30787 L328,95.5 L325,95.5 L325,111.30787 L322,111.30787 L326.5,117.5 Z" id="Shape-5" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(326.500000, 106.500000) rotate(-90.000000) translate(-326.500000, -106.500000) "></path>

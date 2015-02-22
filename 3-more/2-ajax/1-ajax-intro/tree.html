@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="tree.css">
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="tree.js"></script>
+</head>
+<body>
+
+Дерево с подгрузкой узлов (рабочее):
+<ul class="Container" id="tree">
+  <li class="Node IsRoot IsLast ExpandClosed">
+    <div class="Expand"></div>
+    <div class="Content">Каталог</div>
+    <ul class="Container">
+    </ul>
+  </li>
+</ul>
+
+<script>
+	tree("tree", "data.php");
+</script>
+
+
+</body>
+</html>

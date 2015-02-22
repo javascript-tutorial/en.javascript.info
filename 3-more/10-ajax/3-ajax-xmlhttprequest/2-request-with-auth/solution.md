@@ -1,1 +1,0 @@
-Решение: <a href="/zip/tutorial/ajax/xhr/get.zip">get.zip</a>

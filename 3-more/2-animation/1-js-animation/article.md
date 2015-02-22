@@ -210,7 +210,7 @@ function linear(progress) {
 
 
 **График:**
-<img src="linear.png">
+<img src="linear.svg">
 
 **По горизонтали -  `progress`, а по вертикали - `delta(progress)`.**
 
@@ -262,7 +262,7 @@ function quad(progress) {
 
 **График квадратичной функции:**
 
-<img src="quad.png">
+<img src="quad.svg">
 
 Пример для квадратичной функции (клик для просмотра):
 <div onclick="move(this.children[0], quad)" class="example_path">
@@ -271,7 +271,7 @@ function quad(progress) {
 
 Увеличение степени влияет на ускорение. Например, график для 5-й степени:
 
-<img src="quint.png">
+<img src="quint.svg">
 
 И пример:
 <div onclick="move(this.children[0], quint)" class="example_path">
@@ -294,7 +294,7 @@ function circ(progress) {
 ```
 
 **График:**
-<img src="circ.png">
+<img src="circ.svg">
 
 Пример:
 <div onclick="move(this.children[0], circ)" class="example_path">
@@ -318,7 +318,8 @@ function back(progress, x) {
 ```
 
 **График для `x = 1.5`:**
-<img src="back.png">
+
+<img src="back.svg">
 
 Пример для `x = 1.5`:
 <div onclick="move(this.children[0], back)" class="example_path">
@@ -413,7 +414,7 @@ function makeEaseOut(delta) {  // преобразовать delta
 
 Давайте посмотрим, как преобразование `easeOut` изменяет поведение функции:
 
-<img src="bounce-inout.png">
+<img src="bounce-inout.svg">
 
 Красным цветом обозначен <span style="color:red">easeIn</span>, а зеленым - <span style="color:#0f0">easeOut</span>.
 <ul>
@@ -465,7 +466,7 @@ bounceEaseInOut = makeEaseInOut(bounce);
 
 Например, давайте посмотрим эффект <span style="color:#0f0">`easeOut`</span>/<span style="color:#00f">`easeInOut`</span> на примере функции `circ`:
 
-<img src="circ_ease.png">
+<img src="circ-ease.svg">
 Как видно, график первой половины анимации представляет собой уменьшенный "easeIn", а второй -- уменьшенный "easeOut". В результате, анимация начинается и заканчивается одинаковым эффектом.
 
 

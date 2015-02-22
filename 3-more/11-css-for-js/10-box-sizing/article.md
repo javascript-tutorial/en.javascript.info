@@ -28,7 +28,7 @@ div {
 }
 ```
 
-<img src="border-box.png">
+<img src="border-box.svg">
 
 В верхнем случае браузер нарисовал весь элемент размером в `width x height`, в нижнем -- интерпретировал `width/height` как размеры внутренней области.
 
