@@ -14,8 +14,8 @@ Accept-Language:ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4
 Connection:keep-alive
 Host:google.ru
 *!*
-Origin:http://learn.javascript.ru
-Referer:http://learn.javascript.ru/node/add/learning-task
+Origin:http://javascript.ru
+Referer:http://javascript.ru/some/url
 */!*
 ```
 

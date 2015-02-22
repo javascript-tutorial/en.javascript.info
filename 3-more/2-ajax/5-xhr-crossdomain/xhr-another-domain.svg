@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="610px" height="411px" viewBox="0 0 610 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>xhr-another-domain.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="xhr-another-domain.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="3" y="15" width="130" height="66"></rect>
+            <text id="JavaScript" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="29" y="50">JavaScript</tspan>
+            </text>
+            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="228" y="15" width="130" height="66"></rect>
+            <text id="Браузер" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="266" y="50">Браузер</tspan>
+            </text>
+            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="454" y="15" width="130" height="66"></rect>
+            <text id="Сервер" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="495" y="50">Сервер</tspan>
+            </text>
+            <path d="M69,81 L69,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path d="M294,81 L294,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path d="M520,81 L520,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path d="M70.5,139.5 L290.5,139.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M279.7,142.5 C283.48,141.45 286.72,140.55 290.5,139.5 C286.72,138.45 283.48,137.55 279.7,136.5" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="send()" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="153" y="132">send()</tspan>
+            </text>
+            <path d="M295.5,189.5 L515.5,189.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M515.5,189.5 C511.72,188.45 508.48,187.55 504.7,186.5 C504.7,188.6 504.7,190.4 504.7,192.5 C508.48,191.45 511.72,190.55 515.5,189.5 C515.5,189.5 515.5,189.5 515.5,189.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="HTTP-запрос" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" line-spacing="18" fill="#8A704D">
+                <tspan x="370.165039" y="181">HTTP-запрос</tspan>
+                <tspan x="349.822266" y="201" font-size="12">с заголовком Origin</tspan>
+            </text>
+            <path d="M297.5,294.5 L517.5,294.5" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-2-decoration-1" d="M298.3,294.5 C302.08,293.45 305.32,292.55 309.1,291.5 C309.1,293.6 309.1,295.4 309.1,297.5 C305.32,296.45 302.08,295.55 298.3,294.5 C298.3,294.5 298.3,294.5 298.3,294.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M71.5,359.5 L291.5,359.5" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-3-decoration-1" d="M72.3,359.5 C76.08,358.45 79.32,357.55 83.1,356.5 C83.1,358.6 83.1,360.4 83.1,362.5 C79.32,361.45 76.08,360.55 72.3,359.5 C72.3,359.5 72.3,359.5 72.3,359.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="HTTP-ответ" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" line-spacing="18" fill="#8A704D">
+                <tspan x="371.513672" y="287">HTTP-ответ</tspan>
+                <tspan x="274.748047" y="307" font-size="12">Access-Control-Allow-Origin: * или Origin</tspan>
+                <tspan x="545.251953" y="307"> </tspan>
+            </text>
+            <text id="если-заголовок-стоит" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" line-spacing="18" fill="#8A704D">
+                <tspan x="80.0869141" y="351">если заголовок стоит onload</tspan>
+                <tspan x="133.967773" y="371">иначе onerror</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
