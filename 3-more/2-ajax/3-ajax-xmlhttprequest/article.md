@@ -326,7 +326,7 @@ xhr.ontimeout = function() {
 Кросс-браузерно:
 
 ```js
-var XHR = window.XDomainRequest || XMLHttpRequest;
+var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
 var xhr = new XHR();
 ```
 

@@ -364,7 +364,7 @@ function elastic(progress, x) {
 ```
 
 **График для `x=1.5`:**
-<img src="elastic.png">
+<img src="elastic.svg">
 
 Пример для `x=1.5`:
 <div onclick="move(this.children[0], elastic, 2000)" class="example_path">
