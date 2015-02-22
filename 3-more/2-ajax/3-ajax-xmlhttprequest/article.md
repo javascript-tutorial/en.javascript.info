@@ -378,7 +378,7 @@ xhr.onreadystatechange = function() {
 }
 ```
 
-Методы объектов `XMLHttpRequest`:
+Мы разобрали следующие методы `XMLHttpRequest`:
 
 <ul>
 <li>`open(method, url, async, user, password)`</li>
@@ -389,7 +389,7 @@ xhr.onreadystatechange = function() {
 <li>`getAllResponseHeaders()`</li>
 </ul>
 
-Свойства объектов `XMLHttpRequest`:
+Свойства `XMLHttpRequest`:
 
 <ul>
 <li>`timeout`</li>
