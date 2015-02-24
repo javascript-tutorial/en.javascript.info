@@ -270,7 +270,7 @@ Access-Control-Allow-Credentials: true
 
 Его задача -- спросить сервер, разрешает ли он использовать выбранный метод и заголовки. 
 
-На этот запрос сервер должен ответить статусом 200, указав заголовки `Access-Control-Allow-Method: метод` и, если есть заголовки, `Access-Control-Allow-Headers: разрешённые заголовки`.
+На этот запрос сервер должен ответить статусом 200, без тела ответа, указав заголовки `Access-Control-Allow-Method: метод` и, при необходимости, `Access-Control-Allow-Headers: разрешённые заголовки`.
 
 Дополнительно он может указать `Access-Control-Max-Age: sec`, где `sec` -- количество секунд, на которые нужно закэшировать разрешение. Тогда при последующих вызовах метода браузер уже не будет делать предзапрос.
 
@@ -319,8 +319,8 @@ Access-Control-Request-Headers: Destination
 
 <ul>
 <li>Адрес -- тот же, что и у основного запроса: `http://site.com/~ilya`.</li>
-<li>Стандартные заголовки `Accept`, `Accept-Encoding`, `Connection` присутствуют.</li>
-<li>Кросс-доменные специальные заголовки:
+<li>Стандартные заголовки запроса `Accept`, `Accept-Encoding`, `Connection` присутствуют.</li>
+<li>Кросс-доменные специальные заголовки запроса:
 <ul>
 <li>`Origin` -- домен, с которого сделан запрос.</li>
 <li>`Access-Control-Request-Method` -- желаемый метод.</li>
@@ -340,6 +340,8 @@ Content-Type: text/plain
 *!*Access-Control-Allow-Headers*/!*: Overwrite, Destination, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control
 *!*Access-Control-Max-Age*/!*: 86400
 ```
+
+Ответ должен быть без тела, то есть только заголовки.
 
 Браузер видит, что метод `COPY` -- в числе разрешённых и заголовок `Destination` -- тоже, и дальше он шлёт уже основной запрос.
 
@@ -375,3 +377,24 @@ Access-Control-Allow-Origin: http://javascript.ru
 
 Так как `Access-Control-Allow-Origin` содержит правильный домен, то браузер вызовет `xhr.onload` и запрос будет завершён.
 
+## Итого
+
+<ul>
+<li>Все современные браузеры умеют делать кросс-доменные XMLHttpRequest.</li>
+<li>В IE8,9 для этого используется объект `XDomainRequest`, ограниченный по возможностям.</li>
+<li>Кросс-доменный запрос всегда содержит заголовок `Origin` с доменом запроса.</li>
+</ul>
+
+Порядок выполнения:
+<ol>
+<li>Для запросов с "непростым" методом или особыми заголовками браузер делает предзапрос `OPTIONS`, указывая их в `Access-Control-Request-Method` и `Access-Control-Request-Headers`.
+
+Браузер ожидает ответ со статусом `200`, без тела, со списком разрешённых методов и заголовков в `Access-Control-Allow-Method` и `Access-Control-Allow-Headers`. Дополнительно можно указать `Access-Control-Max-Age` для кеширования  предзапроса.</li>
+<li>Браузер делает запрос и проверяет, есть ли в ответе `Access-Control-Allow-Origin`, равный `*` или `Origin`. 
+
+Для запросов с `withCredentials` может быть только `Origin` и дополнительно `Access-Control-Allow-Credentials: true`.</li>
+<li>Если проверки пройдены, то вызывается `xhr.onload`, иначе `xhr.onerror`, без деталей ответа.</li>
+<li>Дополнительно: названия нестандартных заголовков ответа сервер должен указать в `Access-Control-Expose-Headers`, если хочет, чтобы клиент мог их прочитать.</li>
+</ol>
+
+Детали и примеры мы разобрали выше.

@@ -6,8 +6,6 @@ var file = new static.Server('.');
 
 function accept(req, res) {
 
-console.log(req.url);
-
   if (req.url == '/digits') {
 
     res.writeHead(200, {

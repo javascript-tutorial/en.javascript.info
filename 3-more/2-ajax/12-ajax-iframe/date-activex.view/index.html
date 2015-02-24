@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="activex.js"></script>
+
+<script>
+function ok(result) {
+   alert('result: ' + result);
+}
+function fail() {
+   alert('fail');
+}
+
+function go() {
+	if (!("ActiveXObject" in window)) {
+		alert("Только Internet Explorer");
+		return;
+	}
+	iframeActiveXGet("server", ok, fail);
+}
+</script>
+
+
+<button onclick="go()">iframeActiveXGet server date</button>
+
+
+</body>
+</html>

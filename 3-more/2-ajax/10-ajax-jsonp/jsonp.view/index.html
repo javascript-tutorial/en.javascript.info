@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="scriptRequest.js"></script>
+</head>
+<body>
+
+<script>
+function ok(data) {
+  alert("Загружен пользователь " + data.id + ": " + data.name);
+}
+
+function fail(url) {
+  alert('Ошибка при запросе ' + url);
+}
+
+function go() {
+  // ответы могут приходить в любой последовательности!
+  scriptRequest("user?id=123", ok, fail); // Загружен
+  scriptRequest("/badurl.js", ok, fail); // fail, 404
+  scriptRequest("index.html", ok, fail); // fail, 200 но некорректный скрипт
+}
+</script>
+
+<button onclick='go()'>Сделать запросы</button>
+  
+      
+</body>
+</html>
