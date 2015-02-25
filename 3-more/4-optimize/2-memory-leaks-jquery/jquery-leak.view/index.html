@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="data"></div>
+
+<script>
+  
+  function go() {
+  
+    $('<div/>')
+      .html(new Array(1000).join('text'))
+      .click(function() { })
+      .appendTo('#data');
+
+    document.getElementById('data').innerHTML = '';
+      
+  }
+
+  var interval = setInterval(go, 10)
+</script>
+
+Утечка идёт...
+
+<input type="button" onclick="clearInterval(interval)" value="stop"/>
+
+</body>
+</html>
