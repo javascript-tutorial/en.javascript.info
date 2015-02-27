@@ -5,13 +5,9 @@
 Он очень удобен, например, для взаимодействия внешних виджетов и сервисов, подключённых через ифрейм с основной страницей.
 [cut]
 
-## Интерфейс
+## Отправитель: метод postMessage
 
-Интерфейс состоит из двух частей.
-
-### Отправитель: метод postMessage
-
-Первая часть состоит из метода [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage). Его вызывает окно, которое хочет отправить сообщение, в контексте окна-получателя.
+Первая часть интерфейса состоит из метода [postMessage](https://developer.mozilla.org/en-US/docs/Web/API/Window.postMessage). Его вызывает окно, которое хочет отправить сообщение, в контексте окна-получателя.
 
 Проще говоря, если мы хотим отправить сообщение в окно `win`, то нужно вызвать `win.postMessage(data, targetOrigin)`.
 
@@ -28,14 +24,25 @@
 Мы ведь не можем из JavaScript узнать, на каком именно URL находится другое окно. Но иногда хочется быть уверенным, что данные передаются в доверенный документ. Для этого и нужен этот параметр. Проверку осуществляет браузер. При указании `'*'` ограничений нет.</dd>
 </dl>
 
-[warn header="В IE8 можно использовать `postMessage` только для ифреймов"]
+Например:
+```html
+<iframe src="http://target.com" name="target">
 
-В браузере IE8, интерфейс `postMessage` работает только с ифреймами. Он не работает между табами и окнами. 
+<script>
+  var win = window.frames.target;
+  win.postMessage("сообщение", "http://javascript.ru");
+</script>
+```
 
-Это ошибка в данном конкретном браузере, в других -- всё в порядке.
+
+[warn header="В IE11- можно использовать `postMessage` только для ифреймов"]
+
+В браузере IE, интерфейс `postMessage` работает только с ифреймами. Он не работает между табами и окнами. 
+
+Это ошибка в данном конкретном браузере, в других -- всё в порядке. Детали по этой и связанным с ней ошибкам: [HTML5 Implementation Issues in IE8 and later](http://blogs.msdn.com/b/ieinternals/archive/2009/09/16/bugs-in-ie8-support-for-html5-postmessage-sessionstorage-and-localstorage.aspx).
 [/warn]
 
-### Получатель: событие onmessage
+## Получатель: событие onmessage
 
 Чтобы получить сообщение, окно должно поставить обработчик на событие `onmessage`.
 
@@ -53,40 +60,28 @@
 
 ```js
 function listener(event) {
-  if( event.origin != 'http://learn.javascript.ru') { 
-    // что-то прислали с чужого домена - проигнорируем..    
+  if( event.origin != 'http://javascript.ru') { 
+    // что-то прислали с неизвестного домена - проигнорируем..    
     return;
   }
 
-  document.getElementById("msg").innerHTML = "получено: " + event.data;
+  alert("получено: " + event.data);
 }
 
 if (window.addEventListener){
   window.addEventListener("message", listener);
 } else {
+  // IE8
   window.attachEvent("onmessage", listener);
 }
 ```
 
-Этот код содержит ифрейм ниже, с именем `name="receiveFrame"`:
-
-<iframe src="/files/tutorial/window/receive.html" style="width:100%; height: 60px; border:1px solid black" frameborder="0" name="receiveFrame"></iframe>
-
-Запустите код для отправки ему сообщения:
-
-```js
-//+ run
-var win = frames.receiveFrame;
-win.postMessage("Привет!", "http://learn.javascript.ru");
-```
-
-## Задержка
-
+[smart header="Задержка отсутствуют"]
 Задержки между отправкой и получением нет, совсем.
 
-Если для `setTimeout` стандарт предусматривает минимальную задержку 4мс, то для `postMessage` она равна 0мс.  
-
+Если для `setTimeout` стандарт предусматривает минимальную задержку 4мс, то для `postMessage` она равна 0мс.
 Поэтому `postMessage` можно, в том числе, использовать как мгновенную альтернативу `setTimeout`.
+[/smart]
 
 ## Итого
 
