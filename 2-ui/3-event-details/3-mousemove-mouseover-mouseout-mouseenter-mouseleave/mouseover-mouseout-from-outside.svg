@@ -18,7 +18,7 @@
             <text id="#TO" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="251.150618" y="109">#TO</tspan>
             </text>
-            <path d="M236,94.6353921 L223.12832,94.6353921 L217.344468,101.853926 L105.198001,101.853926 L108.348404,94.146 L82,103.645409 L108.348404,113.146 L105.235092,105.438074 L217.204218,105.438074 L223.12832,112.830378 L236,112.830378 L228.709332,103.733476 L236,94.6353921" id="Fill-21" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(159.000000, 103.646000) scale(-1, 1) translate(-159.000000, -103.646000) "></path>
+            <path d="M236,94.6353921 L223.12832,94.6353921 L217.344468,101.853926 L105.198001,101.853926 L108.348404,94.146 L82,103.645409 L108.348404,113.146 L105.235092,105.438074 L217.204218,105.438074 L223.12832,112.830378 L236,112.830378 L228.709332,103.733476 L236,94.6353921" id="Fill-21" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(159.000000, 103.646000) scale(-1, 1) translate(-159.000000, -103.646000) "></path>
             <text id="target" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="240" y="80">target</tspan>
             </text>

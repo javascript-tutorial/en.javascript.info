@@ -19,9 +19,9 @@
             <text id="3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#EE6B47">
                 <tspan x="157" y="181">3</tspan>
             </text>
-            <text id="Самый-глубокий-элеме" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
-                <tspan x="211" y="181">Самый глубокий </tspan>
-                <tspan x="211" y="198">элемент</tspan>
+            <text id="Самый-глубокий-элеме" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
+                <tspan x="213.611328" y="181">Самый глубокий </tspan>
+                <tspan x="243.361328" y="198">элемент</tspan>
             </text>
             <path d="M170.5,176.5 L200.5,176.5" id="Line-30" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
         </g>

@@ -2,56 +2,36 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <style>
-  .bouncing-boat {
-    margin-left: 0;
-    cursor: pointer;
-    -webkit-transition: margin-left 3s ease-in-out;
-    -moz-transition: margin-left 3s ease-in-out;
-    -o-transition: margin-left 3s ease-in-out;
-    -ms-transition: margin-left 3s ease-in-out;
-  }
-
-  /* переворот картинки через CSS */
-  .flip-horizontal {
-      -webkit-transform: scaleX(-1);
-      -moz-transform: scaleX(-1);
-      -o-transform: scaleX(-1);
-      -ms-transform: scaleX(-1);
-      filter: fliph; /* IE9- */
-  }
-
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<img src="https://js.cx/clipart/boat.png" class="bouncing-boat" onclick="bounceBoat(this)">
+<img src="https://js.cx/clipart/boat.png" id="boat">
 
 <script>
-function bounceBoat(elem) {
+boat.onclick = function() {
 
-  elem.onclick = null; // следующий клик не испортит анимацию
+  this.onclick = null; // только первый клик сработает
+
+  var times = 1;
 
   function go() {
-    var marginLeft = parseInt(elem.style.marginLeft) || 0;
-
-    if (marginLeft == 0) {
-      elem.className = 'bouncing-boat';
-    } else {
-      elem.className = 'bouncing-boat flip-horizontal';
+    if (times % 2) {
+      boat.classList.remove('back');
+      boat.style.marginLeft = 100 * times + 200 + 'px';
+    } else {      
+      boat.classList.add('back');
+      boat.style.marginLeft = 100 * times - 200 + 'px';
     }
-
-    elem.style.marginLeft = (marginLeft ? 0 : 400) + 'px';
 
   }
 
   go();
 
-  elem.addEventListener('transitionend', go); /* на будущее */
-  elem.addEventListener('webkitTransitionEnd', go);
-  elem.addEventListener('mozTransitionEnd', go);
-  elem.addEventListener('oTransitionEnd', go);
-  elem.addEventListener('msTransitionEnd', go);
+  boat.addEventListener('transitionend', function() {
+    times++;
+    go();
+  }); 
 }
 </script>
 

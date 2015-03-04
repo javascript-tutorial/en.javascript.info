@@ -2,38 +2,15 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <style>img { display: block; cursor: pointer; }</style>
+  <style>img { cursor: pointer; }</style>
   <style>
-  /**
-   * до анимации: .flyjet
-   * в начале анимации .flyjet .growing-init
-   * в процессе анимации .flyjet .growing-init .growing
-   * в конце анимации .flyjet
-   */
-
-    .flyjet {
-      width: 400px;
-      height: 240px;
+    #flyjet {
+      width: 40px;
+      height: 24px;
+      transition: all 3s;
     }
 
-    .growing-init {
-      position: absolute;
-      height: 0;
-      width: 0;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      right: 0;
-      margin: auto;
-
-      /* все свойства анимируются 3 секунды */
-      -webkit-transition: all 3s;
-      -moz-transition: all 3s;
-      -o-transition: all 3s;
-      -ms-transition: all 3s;
-    }
-
-    .growing {
+    #flyjet.growing {
       width: 400px;
       height: 240px;
     }
@@ -41,62 +18,21 @@
 </head>
 <body>
 
-Кликните картинку для анимации. Расположение элементов при анимации не должно меняться!
-<table>
-<tr>
-<td>Догнать</td>
-<td><img onclick="growIn(this)" src="https://js.cx/clipart/flyjet.jpg" class="flyjet">
-</td>
-<td>..и перегнать!</td>
-</tr>
-</table>
-
-<b>В процессе анимации повторные клики на изображение игнорировать.</b>
+<img id="flyjet" src="https://js.cx/clipart/flyjet.jpg">
 
 <script>
-function growIn(img) {
-  if (img.classList.contains('growing-init')) return;
-  console.log("growIn!");
+flyjet.onclick = function() {
 
-  var height = img.offsetHeight;
-  var width = img.offsetWidth;
+  var ended = false;
 
-  // переместить изображение в placeholder постоянного размера
-  var placeholder = document.createElement('div');
-  placeholder.style.position = 'relative';
-  placeholder.style.width = width + 'px';
-  placeholder.style.height = height + 'px';
-  img.parentNode.replaceChild(placeholder, img);
-  placeholder.appendChild(img);
-
-  img.classList.add('growing-init');
-
-  // откладываем на следующий фрейм, чтобы началась анимация
-  // иначе изменение свойств IMG не будет замечено
-  requestAnimationFrame(function() {
-
-    // Firefox иногда не стартует анимацию, 
-    // если не отложить classList.add ещё на один кадр (tested: FF30-)
-    requestAnimationFrame(function() {
-      img.classList.add('growing');
- 
-      img.addEventListener('transitionend', done);
-    });
+  flyjet.addEventListener('transitionend', function() {
+    if (!ended) {
+      ended = true;
+      alert('Готово!');
+    }
   });
 
-  function done(e) {
-    // сработать только первый раз
-    img.removeEventListener('transitionend', done);
-
-    placeholder.parentNode.replaceChild(img, placeholder);
-    
-    img.classList.remove('growing');
-    img.classList.remove('growing-init');
-
-    alert('ok');
-  }
-  
-
+  flyjet.classList.add('growing');
 }
 </script>
 

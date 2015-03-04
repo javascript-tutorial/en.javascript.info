@@ -21,13 +21,13 @@
             <path d="M69,81 L69,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <path d="M294,81 L294,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <path d="M520,81 L520,401" id="Line" stroke="#979797" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path d="M70.5,139.5 L290.5,139.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M279.7,142.5 C283.48,141.45 286.72,140.55 290.5,139.5 C286.72,138.45 283.48,137.55 279.7,136.5" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M70.5,139.5 L290.5,139.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M279.7,142.5 C283.48,141.45 286.72,140.55 290.5,139.5 C286.72,138.45 283.48,137.55 279.7,136.5" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="send()" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="153" y="132">send()</tspan>
             </text>
-            <path d="M295.5,189.5 L515.5,189.5" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M515.5,189.5 C511.72,188.45 508.48,187.55 504.7,186.5 C504.7,188.6 504.7,190.4 504.7,192.5 C508.48,191.45 511.72,190.55 515.5,189.5 C515.5,189.5 515.5,189.5 515.5,189.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M295.5,189.5 L515.5,189.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M515.5,189.5 C511.72,188.45 508.48,187.55 504.7,186.5 C504.7,188.6 504.7,190.4 504.7,192.5 C508.48,191.45 511.72,190.55 515.5,189.5 C515.5,189.5 515.5,189.5 515.5,189.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="HTTP-запрос" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" sketch:alignment="middle" line-spacing="18" fill="#8A704D">
                 <tspan x="370.165039" y="181">HTTP-запрос</tspan>
                 <tspan x="349.822266" y="201" font-size="12">с заголовком Origin</tspan>

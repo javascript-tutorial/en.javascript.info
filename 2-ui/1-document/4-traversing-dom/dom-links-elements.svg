@@ -26,17 +26,17 @@
             <text id="&lt;DIV&gt;" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="201.051859" y="225">&lt;DIV&gt;</tspan>
             </text>
-            <path d="M220.5,200.5 L220.5,174.5" id="Line-6" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-6-decoration-1" d="M220.5,174.5 C219.45,178.28 218.55,181.52 217.5,185.3 C219.6,185.3 221.4,185.3 223.5,185.3 C222.45,181.52 221.55,178.28 220.5,174.5 C220.5,174.5 220.5,174.5 220.5,174.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <path d="M267.5,219.5 L427,219.5" id="Line-7" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-7-decoration-1" d="M426.5,219.5 C422.72,218.45 419.48,217.55 415.7,216.5 C415.7,218.6 415.7,220.4 415.7,222.5 C419.48,221.45 422.72,220.55 426.5,219.5 C426.5,219.5 426.5,219.5 426.5,219.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M220.5,200.5 L220.5,174.5" id="Line-6" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-6-decoration-1" d="M220.5,174.5 C219.45,178.28 218.55,181.52 217.5,185.3 C219.6,185.3 221.4,185.3 223.5,185.3 C222.45,181.52 221.55,178.28 220.5,174.5 C220.5,174.5 220.5,174.5 220.5,174.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M267.5,219.5 L427,219.5" id="Line-7" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-7-decoration-1" d="M426.5,219.5 C422.72,218.45 419.48,217.55 415.7,216.5 C415.7,218.6 415.7,220.4 415.7,222.5 C419.48,221.45 422.72,220.55 426.5,219.5 C426.5,219.5 426.5,219.5 426.5,219.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="nextElementSibling" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="276" y="205" fill="#8A704D">next</tspan>
                 <tspan x="306.789062" y="205" fill="#EE6B47">Element</tspan>
                 <tspan x="360.669922" y="205" fill="#8A704D">Sibling</tspan>
             </text>
-            <path d="M168,219.5 L12,219.5" id="Line-8" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-8-decoration-1" d="M12,219.5 C15.78,220.55 19.02,221.45 22.8,222.5 C22.8,220.4 22.8,218.6 22.8,216.5 C19.02,217.55 15.78,218.45 12,219.5 C12,219.5 12,219.5 12,219.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M168,219.5 L12,219.5" id="Line-8" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-8-decoration-1" d="M12,219.5 C15.78,220.55 19.02,221.45 22.8,222.5 C22.8,220.4 22.8,218.6 22.8,216.5 C19.02,217.55 15.78,218.45 12,219.5 C12,219.5 12,219.5 12,219.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="previousElementSibli" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold">
                 <tspan x="6" y="205" fill="#8A704D">previous</tspan>
                 <tspan x="67.578125" y="205" fill="#EE6B47">Element</tspan>

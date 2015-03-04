@@ -56,8 +56,8 @@
                 <tspan x="331" y="49">current</tspan>
                 <tspan x="331" y="65">5</tspan>
             </text>
-            <path d="M420.5,92 L470.5,92" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M470.5,92 C466.72,90.95 463.48,90.05 459.7,89 C459.7,91.1 459.7,92.9 459.7,95 C463.48,93.95 466.72,93.05 470.5,92 C470.5,92 470.5,92 470.5,92 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M420.5,92 L470.5,92" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M470.5,92 C466.72,90.95 463.48,90.05 459.7,89 C459.7,91.1 459.7,92.9 459.7,95 C463.48,93.95 466.72,93.05 470.5,92 C470.5,92 470.5,92 470.5,92 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="0+1+2+3+4+5-=-15" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="485" y="96">0+1+2+3+4+5 = 15</tspan>
             </text>

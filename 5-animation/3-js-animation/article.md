@@ -1,256 +1,238 @@
 # JS-Анимация 
 
-В этой главе мы рассмотрим устройство браузерной анимации. Она примерно одинаково реализована во всех фреймворках.
+JavaScript-анимация применяется там, где не подходит CSS.
 
-Понимание этого позволит разобраться в происходящем, если что-то вдруг не работает, а также написать сложную анимацию самому.
+Например, по сложной траектории, с временной функцией, выходящей за рамки кривых Безье, на canvas. Иногда её используют для анимации в старых IE.
 
-Анимация при помощи JavaScript и современная CSS-анимация дополняют друг друга.
 [cut]
 
-## Основы анимации   
+## setInterval
 
 С точки зрения HTML/CSS, анимация -- это постепенное изменение стиля  DOM-элемента. Например, увеличение координаты `style.left` от `0px` до `100px` сдвигает элемент.
 
-Код, который производит изменение, вызывается таймером. Интервал таймера очень мал и поэтому анимация выглядит плавной. Это тот же принцип, что и в кино: для непрерывной анимации достаточно 24 или больше вызовов таймера в секунду.
+Если увеличивать `left` от `0` до `100` при помощи `setInterval`, делая по 50 изменений в секунду, то это будет выглядеть как плавное перемещение. Тот же принцип, что и в кино: для непрерывной анимации достаточно 24 или больше вызовов `setInterval` в секунду.
 
 Псевдо-код для анимации выглядит так:
 
 ```js
+var fps = 50; // 50 кадров в секунду
 var timer = setInterval(function() {
-    показать новый кадр 
-    if (время вышло) clearInterval(timer);     
-}, 10)
+    if (время вышло) clearInterval(timer);
+    else немного увеличить left 
+}, 1000 / fps)
 ```
 
-Задержка между кадрами в данном случае составляет `10 ms`, что означает `100` кадров в секунду. 
+Более полный пример кода анимации:
 
-В большинстве фреймворков, задержка по умолчанию составляет `10`-`15` мс. Меньшая задержка делает анимацию более плавной, но только в том случае, если браузер достаточно быстр, чтобы анимировать каждый шаг вовремя. 
+```js
+var start = Date.now(); // сохранить время начала
 
-Если анимация требует большого количества вычислений, то нагрузка процессора может доходить до 100% и вызывать ощутимые "тормоза" в работе браузера. В 
-таком случае, задержку можно увеличить. Например, 40мс дадут нам 25 кадров в секунду, что очень близко к кинематографическому стандарту в 24 кадра.
+var timer = setInterval(function() {
+  // вычислить сколько времени прошло с начала анимации
+  var timePassed = Date.now() - start;
 
-[smart header="`setInterval` вместо `setTimeout`"]
-Мы используем `setInterval`, а не рекурсивный `setTimeout`, потому что нам нужен *один кадр за промежуток времени*, а не *фиксированная задержка между кадрами*</b>. 
-В статье [](/setTimeout-setInterval) описана разница между `setInterval` и рекурсивным `setTimeout`.
-[/smart]
-
-
-### Пример
-
-Например, передвинем элемент путём изменения `element.style.left` от 0 до 100px. Изменение происходит на 1px каждые 10мс.
-
-```html
-<script>
-function move(elem) {
-
-  var left = 0; // начальное значение
-
-  function frame() { // функция для отрисовки
-    left++;
-    elem.style.left = left + 'px' 
-
-    if (left == 100) { 
-      clearInterval(timer); // завершить анимацию
-    }
+  if (timePassed >= 2000) {
+    clearInterval(timer); // конец через 2 секунды 
+    return;
   }
 
-  var timer = setInterval(frame, 10) // рисовать каждые 10мс
-}
-</script>
+  // рисует состояние анимации, соответствующее времени timePassed
+  draw(timePassed);
 
-<div onclick="move(this.children[0])" class="example_path">
-  <div class="example_block"></div>
-</div>
+}, 20);
+
+// в то время как timePassed идёт от 0 до 2000
+// left принимает значения от 0 до 400px
+function draw(timePassed) {
+  train.style.left = timePassed / 5 + 'px'; 
+}
 ```
 
 Кликните для демонстрации:
-[iframe height=60 src="move100" link]
+
+[codetabs height=200 src="move"]
+
+## requestAnimationFrame
+
+Если у нас не один такой `setInterval`, а несколько в разных местах кода, то браузеру нужно в те же 20мс работать со страницей уже несколько раз. А ведь кроме `setInterval` есть ещё другие действия, к примеру, прокрутка страницы, которую тоже надо нарисовать.
+
+Если все действия по перерисовке производить независимо, то будет выполняться много двойной работы.
+
+Гораздо выгоднее с точки зрения производительности -- сгруппировать все перерисовки в одну и запускать их централизованно, все вместе.
+
+Для этого в JavaScript-фреймворках, которые поддерживают анимацию, есть единый таймер:
+
+```js
+setInterval(function() {
+  /* отрисовать все анимации */
+}, 20);
+```
+
+...Все анимации, которые запускает такой фреймворк, добавляются в общий список, и раз в 20мс единый таймер проверяет его, запускает текущие, удаляет завершившиеся.
+
+Современные браузеры, кроме IE9-, поддерживают стандарт [Animation timing](http://www.w3.org/TR/animation-timing/), который представляет собой дальнейший шаг в этом направлении. Он позволяет синхронизировать наши анимации со встроенными механизмами обновления страницы. То есть, сгруппированы будут не только наши, но и CSS-анимации и другие браузерные перерисовки. 
+
+При этом графический ускоритель будет использован максимально эффективно, и исключена повторная обработка одних и тех же участков страницы. А значит -- меньше будет загрузка CPU, да и сама анимация станет более плавной.
+
+Для этого используется функция [requestAnimationFrame](http://www.w3.org/TR/animation-timing/#dom-windowanimationtiming-requestanimationframe).
+
+Синтаксис:
+```js
+var requestId = requestAnimationFrame(callback)
+```
+
+Такой вызов планирует запуск `callback` в ближайшее время, когда браузер сочтёт возможным осуществить анимацию. 
+
+Если запланировать в `callback` какое-то рисование, то оно будет сгруппировано с другими `requestAnimationFrame` и с внутренними перерисовками браузера.
+
+Возвращаемое значение `requestId` служит для отмены запуска:
+```js
+// отменить запланированное выше выполнение callback
+cancelAnimationFrame(requestId);
+```
+
+Функция `callback` получает один аргумент -- время, прошедшее с начала загрузки страницы, результат вызова [performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).
+
+Как правило, запуск `callback` происходит очень скоро. Если у процессора большая загрузка или батарея у ноутбука почти разряжена -- то пореже.
+
+Если вы запустите этот код, то увидите промежутки между первыми 20 запусками `requestAnimationFrame`. Как правило, это 10-20мс, но бывает и больше и меньше. Это оптимальная частота анимации с точки зрения браузера.
+
+```html
+<!--+ run height=40 refresh -->
+<script>
+var prev = performance.now();
+var times = 0;
+
+requestAnimationFrame(function measure(time) {
+  document.body.insertAdjacentHTML("beforeEnd", Math.floor(time - prev) + " ");
+  prev = time;
+
+  if (times++ < 10) requestAnimationFrame(measure);
+})
+</script>
+```
 
 
-## Структура анимации  
+Функция анимации на основе `requestAnimationFrame`:
+
+```js
+// Рисует функция draw
+// Продолжительность анимации duration
+function animate(draw, duration) {
+  var start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // определить, сколько прошло времени с начала анимации
+    var timePassed = time - start;
+
+    // возможно небольшое превышение времени, в этом случае зафиксировать конец
+    if (timePassed > duration) timePassed = duration;
+
+    // нарисовать состояние анимации в момент timePassed
+    draw(timePassed); 
+
+    // если время анимации не закончилось - запланировать ещё кадр
+    if (timePassed < duration) {
+      requestAnimationFrame(animate);
+    }
+
+  });
+}
+```
+
+Использование для поезда:
+```js
+animate(function(timePassed) {
+  train.style.left = timePassed / 5 + 'px';
+}, 2000);
+```
+
+В действии:
+
+[codetabs src="move-raf"]
+
+## Структура анимации
+
+На основе `requestAnimationFrame` можно соорудить и гораздо более мощную, но в то же время простую функцию анимации.
 
 У анимации есть три основных параметра:
 <dl>
-<dt>`delay`</dt>
-<dd>Время между кадрами (в миллисекундах, т.е. 1/1000 секунды). Например, 10мс.</dd>
 <dt>`duration`</dt>
-<dd>Общее время, которое должна длиться анимация, в мс. Например, 1000мс.</dd>
-<dt>`step(progress)`</dt>
-<dd>Функция **`step(progress)`** занимается отрисовкой состояния анимации, соответствующего времени `progress`.</dd>
-</dl>
+<dd>Общее время, которое должна длиться анимация, в мс. Например, `1000`.</dd>
+<dt>`timing(timeFraction)`</dt>
+<dd>Временная функция, которая, по аналогии с CSS-свойством `transition-timing-function`, будет по текущему времени вычислять состояние анимации.
 
-Каждый кадр выполняется, сколько времени прошло: `progress = (now-start)/duration`. Значение `progress` меняется от `0` в начале анимации до `1` в конце. Так как вычисления с дробными числами не всегда точны, то в конце оно может быть даже немного больше 1. В этом случае мы уменьшаем его до 1 и завершаем анимацию.
+Она получает на вход непрерывно возрастающее число `timeFraction` -- от `0` до `1`, где `0` означает самое начало анимации, а `1` -- её конец.
 
-Создадим функцию `animate`, которая получает объект со свойствами `delay, duration, step` и выполняет анимацию.
+Её результатом должно быть значение завершённости анимации, которому в CSS transitions на кривых Безье соответствует координата `y`. 
 
+Также по аналогии с `transition-timing-function` должны соблюдаться условия:
+<ul>
+<li>timing(0) = 0</li>
+<li>timing(1) = 1</li>
+</ul>
+
+...То есть, анимация начинается в точке `(0,0)` -- нулевое время и нулевой прогресс и заканчивается в `(1, 1)` -- прошло полное время, и процесс завершён.
+
+Например, функция-прямая означает равномерное развитие процесса:
 ```js
-function animate(opts) {
-  
-  var start = new Date; // сохранить время начала 
-
-  var timer = setInterval(function() {
-
-    // вычислить сколько времени прошло
-    var progress = (new Date - start) / opts.duration;
-    if (progress > 1) progress = 1;
-
-    // отрисовать анимацию
-    opts.step(progress);
-    
-    if (progress == 1) clearInterval(timer); // конец :)
-     
-  }, opts.delay || 10); // по умолчанию кадр каждые 10мс
-
+function linear(timeFraction) {
+  return timeFraction;
 }
 ```
-
-### Пример
-
-
-Анимируем ширину элемента `width` от `0` до `100%`, используя нашу функцию:
-
-```js
-function stretch(elem) {
-  animate({ 
-    duration: 1000, // время на анимацию 1000 мс
-    step: function(progress) {
-      elem.style.width = progress*100 + '%';
-    }
-  });
-}
-```
-
-Кликните для демонстрации:
-[iframe height=60 src="width" link]
-
-
-Функция `step` может получать дополнительные параметры анимации из `opts` (через `this`) или через замыкание.
-
-Следующий пример использует параметр `to` из замыкания для анимации бегунка:
-
-```js
-function move(elem) {
-  var to = 500;
-
-  animate({
-    duration: 1000,
-    step: function(progress) {
-      // progress меняется от 0 до 1, left от 0px до 500px
-      elem.style.left = to*progress + "px";
-    }
-  });
-
-}
-```
-
-Кликните для демонстрации:
-[iframe height=60 src="move" link]
-
-## Временная функция delta   
-
-В сложных анимациях свойства изменяются по определённому закону. Зачастую, он гораздо сложнее, чем простое равномерное возрастание/убывание.
-
-Для того, чтобы можно было задать более хитрые виды анимации, в алгоритм добавляется дополнительная функция `delta(progress)`, которая вычисляет текущее состояние анимации от 0 до 1, а `step` использует её значение вместо `progress`.
-
-В `animate` изменится всего одна строчка. Было:
-
-```js
-...
-opts.step(progress);
-...
-```
-
-Станет:
-
-```js
-...
-opts.step( opts.delta(progress) );
-...
-```
-
-
-
-```js
-//+ hide="Раскрыть код animate с delta"
-function animate(opts) {
-
-  var start = new Date; 
-
-  var timer = setInterval(function() {
-
-    var progress = (new Date - start) / opts.duration;
-    if (progress > 1) progress = 1;
-
-    opts.step( opts.delta(progress) );
-
-    if (progress == 1) clearInterval(timer);
-
-  }, opts.delay || 10);
-
-}
-```
-
-Такое небольшое изменение добавляет много гибкости. Функция `step` занимается всего лишь отрисовкой текущего состояния анимации, а само состояние по времени определяется в `delta`.
-
-Разные значения `delta` заставляют скорость анимации, ускорение и другие параметры вести себя абсолютно по-разному.
-
-Рассмотрим примеры анимации движения с использованием различных `delta`.
-
-### Линейная delta   
-
-Самая простая функция `delta` -- это та, которая просто возвращает `progress`.
-
-```js
-function linear(progress) {
-  return progress;
-}
-```
-
-То есть, как будто никакой `delta` нет. Состояние анимации (которое при передвижении отображается как координата `left`) зависит от времени линейно.
-
-
-**График:**
+Её график:
 <img src="linear.svg">
 
-**По горизонтали -  `progress`, а по вертикали - `delta(progress)`.**
+Как видно, её график полностью совпадает с `transition-timing-function: linear`, и эффект абсолютно такой же.
 
-Пример:
+Есть и другие, более интересные варианты, мы рассмотрим их чуть позже.
 
-```html
-<div onclick="move(this.children[0], linear)" class="example_path">
-	<div class="example_block"></div>
-</div>
-```
+</dd>
+<dt>`draw(progress)`</dt>
+<dd>Функция, которая получает состояние завершённости анимации и рисует его. Значению `progress=0` соответствует начальная точка анимации, `progress=1` -- конечная.
 
-Здесь и далее функция `move` будет такой:
+Именно эта функция и осуществляет, собственно, анимацию.
 
+Например, может двигать элемент:
 ```js
-function move(elem, delta, duration) {
-  var to = 500;
-  
-  animate({
-    delay: 10,
-    duration: duration || 1000, 
-    delta: delta,
-    step: function(delta) {
-      elem.style.left = to*delta + "px"    
-    }
-  });
-  
+function draw(progress) {
+  train.style.left = progress + 'px';
 }
 ```
 
-То есть, она будет перемещать бегунок, изменяя `left` по закону `delta`, за `duration` мс (по умолчанию 1000мс).
+Возможны любые варианты, анимировать можно что угодно и как угодно.
+</dd>
+</dl>
 
-Кликните для демонстрации линейной `delta`:
-<div onclick="move(this.children[0], linear)" class="example_path">
-	<div class="example_block"></div>
-</div>
 
+Анимируем ширину элемента `width` от `0` до `100%`, используя нашу функцию.
+
+Кликните для демонстрации:
+[codetabs height=60 src="width"]
+
+Код для запуска анимации:
+
+```js
+animate({
+  duration: 1000,
+  timing: function(timeFraction) { 
+    return timeFraction; 
+  },
+  draw: function(progress) { 
+    elem.style.width = progress * 100 + '%';
+  }
+});
+```
+
+## Временные функции
+
+Выше мы видели самую простую, линейную временную функцию. 
+
+Рассмотрим примеры анимации движения с использованием различных `timing`.
 
 ### В степени n   
 
-Вот еще один простой случай. `delta` - это `progress` в `n-й` степени . Частные случаи - квадратичная, кубическая функции и т.д.
+Вот еще один простой случай -- `progress` в степени `n`. Частные случаи - квадратичная, кубическая функции и т.д.
 
 Для квадратичной функции:
 
@@ -265,42 +247,30 @@ function quad(progress) {
 <img src="quad.svg">
 
 Пример для квадратичной функции (клик для просмотра):
-<div onclick="move(this.children[0], quad)" class="example_path">
-	<div class="example_block"></div>
-</div>
+[iframe height=40 src="quad" link]
 
 Увеличение степени влияет на ускорение. Например, график для 5-й степени:
 
 <img src="quint.svg">
 
-И пример:
-<div onclick="move(this.children[0], quint)" class="example_path">
-	<div class="example_block"></div>
-</div>
-
-**Функция `delta` описывает развитие анимации в зависимости от времени.** 
-
-В примере выше -- сначала медленно: время идёт (ось X), а состояние анимации почти не меняется (ось Y), а потом всё быстрее и быстрее. Другие графики зададут иное поведение.
-
+В действии:
+[iframe height=40 src="quint" link]
 
 ### Дуга   
 
 Функция:
 
 ```js
-function circ(progress) {
-    return 1 - Math.sin(Math.acos(progress))
+function circ(timeFraction) {
+  return 1 - Math.sin(Math.acos(timeFraction))
 }
 ```
 
 **График:**
+
 <img src="circ.svg">
 
-Пример:
-<div onclick="move(this.children[0], circ)" class="example_path">
-	<div class="example_block"></div>
-</div>
-
+[iframe height=40 src="circ" link]
 
 
 ### Back: стреляем из лука   
@@ -312,8 +282,8 @@ function circ(progress) {
 Её код:
 
 ```js
-function back(progress, x) {
-    return Math.pow(progress, 2) * ((x + 1) * progress - x)
+function back(x, timeFraction) {
+  return Math.pow(timeFraction, 2) * ((x + 1) * timeFraction - x)
 }
 ```
 
@@ -322,12 +292,11 @@ function back(progress, x) {
 <img src="back.svg">
 
 Пример для `x = 1.5`:
-<div onclick="move(this.children[0], back)" class="example_path">
-	<div class="example_block"></div>
-</div>
 
 
-### Отскок
+[iframe height=40 src="back" link]
+
+### Отскок bounce
 
 Представьте, что мы отпускаем мяч, он падает на пол, несколько раз отскакивает и останавливается.
 
@@ -336,10 +305,10 @@ function back(progress, x) {
 Эта функция немного сложнее предыдущих и использует специальные коэффициенты:
 
 ```js
-function bounce(progress) {
+function bounce(timeFraction) {
   for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
-    if (progress >= (7 - 4 * a) / 11) {
-      return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2)
+    if (timeFraction >= (7 - 4 * a) / 11) {
+      return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2)
     }
   }
 }
@@ -348,18 +317,16 @@ function bounce(progress) {
 Код взят из MooTools.FX.Transitions. Конечно же, есть и другие реализации `bounce`.
 
 Пример:
-<div onclick="move(this.children[0], bounce, 2000)" class="example_path">
-  <div class="example_block"></div>
-</div>
 
+[iframe height=40 src="bounce" link]
 
 ### Упругая анимация
 
 Эта функция зависит от дополнительного параметра `x`, который определяет начальный диапазон.
 
 ```js
-function elastic(progress, x) {
-  return Math.pow(2, 10 * (progress-1)) * Math.cos(20*Math.PI*x/3*progress)
+function elastic(x, timeFraction) {
+  return Math.pow(2, 10 * (timeFraction-1)) * Math.cos(20*Math.PI*x/3*timeFraction)
 }
 ```
 
@@ -367,331 +334,175 @@ function elastic(progress, x) {
 <img src="elastic.svg">
 
 Пример для `x=1.5`:
-<div onclick="move(this.children[0], elastic, 2000)" class="example_path">
-  <div class="example_block"></div>
-</div>
+
+[iframe height=40 src="elastic" link]
 
 
-## Реверсивные функции (easeIn, easeOut, easeInOut)   
+## Реверсивные функции ease*
 
-Обычно, JavaScript-фреймворк предоставляет несколько `delta`-функций.
+Итак, у нас есть коллекция временных функций.
+
 Их прямое использование называется "easeIn".
 
 **Иногда нужно показать анимацию в обратном режиме. Преобразование функции, которое даёт такой эффект, называется "easeOut"**. 
 
-
 ### easeOut   
 
-В режиме "easeOut", значение delta вычисляется так:
-`deltaEaseOut(progress) = 1 - delta(1 - progress)`
+В режиме "easeOut", значение timing вычисляется по формуле: `timingEaseOut(timeFraction) = 1 - timing(1 - timeFraction)`
 
 Например, функция `bounce` в режиме "easeOut":
 
 ```js
-function bounce(progress) {
+// обычный вариант
+function bounce(timeFraction) {
   for (var a = 0, b = 1, result; 1; a += b, b /= 2) {
-    if (progress >= (7 - 4 * a) / 11) {
-      return -Math.pow((11 - 6 * a - 11 * progress) / 4, 2) + Math.pow(b, 2);
+    if (timeFraction >= (7 - 4 * a) / 11) {
+      return -Math.pow((11 - 6 * a - 11 * timeFraction) / 4, 2) + Math.pow(b, 2);
     }
   }
 }
 
-*!*
-function makeEaseOut(delta) {  // преобразовать delta 
-  return function(progress) {
-    return 1 - delta(1 - progress);
+// преобразователь в easeOut
+function makeEaseOut(timing) {  
+  return function(timeFraction) {
+    return 1 - timing(1 - timeFraction);
   }
 }
-*/!*
 
-*!*var bounceEaseOut = makeEaseOut(bounce);*/!*
+*!*
+var bounceEaseOut = makeEaseOut(bounce);
+*/!*
 ```
 
-Кликните для демонстрации:
-<div onclick="move(this.children[0], makeEaseOut(bounce))" class="example_path">
-	<div class="example_block"></div>
-</div>
+Полный пример -- откок в `bounceEaseOut` теперь не в начале, а в конце (и это куда красивее):
 
-Давайте посмотрим, как преобразование `easeOut` изменяет поведение функции:
+[codetabs src="bounce-easeout"]
+
+На этом графике видно, как преобразование `easeOut` изменяет поведение функции:
 
 <img src="bounce-inout.svg">
 
-Красным цветом обозначен <span style="color:red">easeIn</span>, а зеленым - <span style="color:#0f0">easeOut</span>.
+Если есть анимационный эффект, такой как подпрыгивание -- он будет показан в конце, а не в начале (или наоборот, в начале, а не в конце).
+
+Красным цветом обозначен <span style="color:#EE6B47">обычный вариант</span>, а <span style="color:#62C0DC">синим</span> -- `easeOut`.
 <ul>
-<li><span style="color:red">Обычно</span> анимируемый объект сначала медленно скачет внизу, а затем, в конце, резко достигает верха..</li>
-<li>А после <span style="color:red">easeOut</span> он сначала прыгает наверх, а затем медленно скачет внизу.</li>
+<li>Обычно анимируемый объект сначала медленно скачет внизу, а затем, в конце, резко достигает верха..</li>
+<li>А после `easeOut` -- он сначала прыгает наверх, а затем медленно скачет внизу.</li>
 </ul>
 
-**При `easeOut` анимация развивается в обратном временном порядке.**
-
-Если есть анимационный эффект, такой как подпрыгивание -- он будет показан в конце, а не в начале (или наоборот, в начале, а не в конце).
 
 ### easeInOut   
 
-А еще можно сделать так, чтобы показать эффект *и* в начале *и* в конце анимации. Соответствующее преобразование называется "easeInOut".
+А еще можно сделать так, чтобы показать эффект *и в начале и в конце* анимации. Соответствующее преобразование называется "easeInOut".
 
 Его код выглядит так:
 
 ```js
-if (progress <= 0.5) { // первая половина анимации)
-  return delta(2 * progress) / 2;
+if (timeFraction <= 0.5) { // первая половина анимации)
+  return timing(2 * timeFraction) / 2;
 } else { // вторая половина
-  return (2 - delta(2 * (1 - progress))) / 2;
+  return (2 - timing(2 * (1 - timeFraction))) / 2;
 }
 ```
 
-Например, `easeInOut` для `bounce`:
-<div onclick="move(this.children[0], makeEaseInOut(bounce), 3000)" class="example_path">
-	<div class="example_block"></div>
-</div>
-
-*У этого примера длительность составляет 3 секунды для того, что бы хватило времени для обоих эффектов(начального и конечного).*
-
-Код, который трансформирует `delta`:
+Код, который трансформирует `timing`:
 
 ```js
-function makeEaseInOut(delta) {  
-  return function(progress) {
-    if (progress < .5)
-      return delta(2*progress) / 2;
+function makeEaseInOut(timing) {  
+  return function(timeFraction) {
+    if (timeFraction < .5)
+      return timing(2*timeFraction) / 2;
     else
-      return (2 - delta(2*(1-progress))) / 2;
+      return (2 - timing(2*(1-timeFraction))) / 2;
   }
 }
 
 bounceEaseInOut = makeEaseInOut(bounce);
 ```
 
+Пример с `bounceEaseInOut`:
+
+[codetabs src="bounce-easeinout"]
+
+
 Трансформация "easeInOut" объединяет в себе два графика в один: `easeIn` для первой половины анимации и `easeOut` -- для второй.
 
-Например, давайте посмотрим эффект <span style="color:#0f0">`easeOut`</span>/<span style="color:#00f">`easeInOut`</span> на примере функции `circ`:
+Это отлично видно, если посмотреть графики `easeIn`, `easeOut` и `easeInOut` на примере функции `circ`:
 
 <img src="circ-ease.svg">
-Как видно, график первой половины анимации представляет собой уменьшенный "easeIn", а второй -- уменьшенный "easeOut". В результате, анимация начинается и заканчивается одинаковым эффектом.
-
-
-### Графопостроитель  
-
-Для наглядной демонстрации в действии различных delta, как нормальных(easeIn), так и измененных(easeOut,easeInOut), я подготовил графопостроитель. 
-
-<iframe src="/files/tutorial/browser/animation/plot.html" style="border:1px;height:460px;width:600px"></iframe>
-<a href="/files/tutorial/browser/animation/plot.html">Открыть в новом окне</a>.
-
-Выберите функцию и нажмите `Рисовать!`
-
 
 <ul>
-<li><span style="color:#f00">easeIn</span> - базовое поведение: медленная анимация в начале, с постепенным ускорением.</li>
-<li><span style="color:#0f0">easeOut</span> - поведение, обратное <span style="color:#f00">easeIn</span>: быстрая анимация на старте, а затем все медленней и медленней.</li>
-<li><span style="color:#00f">easeInOut</span> - слияние обоих поведений. Анимация разделяется на две части. Первая часть - это `easeIn`, а вторая - `easeOut`.</li>
+<li><span style="color:#EE6B47">Красным</span> цветом обозначен обычный вариант функции `circ`.</li>
+<li><span style="color:#8DB173">Зелёным</span> -- `easeOut`.</li>
+<li><span style="color:#62C0DC">Синим</span> -- `easeInOut`.</li>
 </ul>
 
-Для примера, попробуйте "bounce". 
+Как видно, график первой половины анимации представляет собой уменьшенный "easeIn", а второй -- уменьшенный "easeOut". В результате, анимация начинается и заканчивается одинаковым эффектом.
 
 [summary]
-Процесс анимации полностью в ваших руках благодаря `delta`. Вы можете сделать ее настолько реалистичной, насколько захотите.
+Процесс анимации полностью в ваших руках благодаря `timing`. Её можно сделать настолько реалистичной, насколько захочется.
 
-И кстати. Если вы когда-нибудь изучали математику... Некоторые вещи все же бывают полезны в жизни :) Можно продумать и сделать красиво.
-
-Впрочем, исходя из практики, можно сказать, что варианты `delta`, описанные выше, покрывают 95% потребностей в анимации.
+Впрочем, исходя из практики, можно сказать, что варианты `timing`, описанные выше, покрывают 95% потребностей в анимации.
 [/summary]
 
 ## Сложные варианты step   
 
-Анимировать можно все, что угодно. Вместо движения, как во всех предыдущих примерах, вы можете изменять прозрачность, ширину, высоту, цвет... Все, о чем вы можете подумать! 
+Анимировать можно все, что угодно. Вместо движения, как во всех предыдущих примерах, можно изменять любые CSS свойства... И не только!
 
-Достаточно лишь написать соответствующий `step`.
-
-### Подсветка цветом   
-
-Функция `highlight`, представленная ниже, анимирует изменение цвета.
-
-```js
-function highlight(elem) {
-  var from = [255,0,0], to = [255,255,255]
-  animate({
-    delay: 10,
-    duration: 1000,
-    delta: linear,
-    step: function(delta) {
-      elem.style.backgroundColor = 'rgb(' +
-        Math.max(Math.min(parseInt((delta * (to[0]-from[0])) + from[0], 10), 255), 0) + ',' +
-        Math.max(Math.min(parseInt((delta * (to[1]-from[1])) + from[1], 10), 255), 0) + ',' +
-        Math.max(Math.min(parseInt((delta * (to[2]-from[2])) + from[2], 10), 255), 0) + ')'
-    }
-  })  
-}
-```
-
-<div onclick="highlight(this, linear)" style="font-size:150%">Кликните по этой надписи, чтобы увидеть функцию в действии</div>
-
-А теперь тоже самое, но `delta = makeEaseOut(bounce)`:
-
-<div onclick="highlight(this, makeEaseOut(bounce))" style="font-size:150%">Кликните по этой надписи, чтобы увидеть функцию в действии</div>
-
+Достаточно лишь написать соответствующий `draw`.
 
 ### Набор текста  
 
-Вы можете создавать интересные анимации, как, например, набор текста в "скачущем" режиме:
+Можно, к примеру, анимировать набор текста в "скачущем" режиме:
 
-[pre]
-<textarea id="textExample" style="border: 1px solid #BBB; color:#444" rows="4" cols="60">Он стал под дерево и ждет.
-И вдруг граахнул гром —
-Летит ужасный Бармаглот
-И пылкает огнем!
-</textarea>
+[codetabs src="text"]
 
-<button onclick="animateText(document.getElementById('textExample'))">Запустить анимированную печать!</button>
-[/pre]
-Исходный код:
+## Итого 
+
+Анимация выполняется путём вызовов `requestAnimationFrame`. Для поддержки IE9- желательно подключить полифилл, который будет внутри использовать `setTimeout`. Это будет всё равно лучше, чем независимые `setInterval`.
+
+Реализация анимации -- очень простая и вместе с тем гибкая:
 
 ```js
-function animateText(textArea) {
-  var text = textArea.value
-  var to = text.length, from = 0
-  
-  animate({
-    delay: 20,
-    duration: 5000,
-    delta: bounce,
-    step: function(delta) {
-      var result = (to-from) * delta + from
-      textArea.value = text.substr(0, Math.ceil(result))
+function animate(options) {
+
+  var start = performance.now();
+
+  requestAnimationFrame(function animate(time) {
+    // timeFraction от 0 до 1
+    var timeFraction = (time - start) / options.duration;
+    if (timeFraction > 1) timeFraction = 1;
+
+    // текущее состояние анимации
+    var progress = options.timing(timeFraction)
+
+    options.draw(progress);
+
+    if (timeFraction < 1) {
+      requestAnimationFrame(animate);
     }
-  })
-}
-```
 
-## Итого [#animate]
-
-
-Анимация выполняется путём использования `setInterval` с маленькой задержкой, порядка 10-50мс. При каждом запуске происходит отрисовка очередного кадра.
-
-Анимационная функция, немного расширенная:
-
-```js
-function animate(opts) {
-
-  var start = new Date;
-  var delta = opts.delta || linear;
-
-  var timer = setInterval(function() {
-
-    var progress = (new Date - start) / opts.duration;
-    if (progress > 1) progress = 1;
-
-    opts.step( delta(progress) );
-
-    if (progress == 1) {
-      clearInterval(timer);
-      opts.complete && opts.complete();
-    }
-  }, opts.delay || 13);
-
-  return timer;
+  });
 }
 ```
 
 Основные параметры:
 <ul>
-<li>`delay` - задержка между кадрами, по умолчанию 13мс.</li>
-<li>`duration` - длительность анимации в мс.</li> 
-<li>`delta` - функция, которая определяет состояние анимации каждый кадр. Получает часть времени от 0 до 1, возвращает завершенность анимации от 0 до 1. По умолчанию `linear`.</li>
-<li>`step` - функция, которая отрисовывает состояние анимации от 0 до 1.</li>
-<li>`complete` - функция для вызова после завершенности анимации.</li>
-<li>Вызов `animate` возвращает таймер, чтобы анимацию можно было отменить.</li>
+<li>`duration` -- длительность анимации в мс.</li> 
+<li>`timing` -- функция, которая определяет состояние анимации каждый кадр. Получает часть времени от 0 до 1, возвращает завершенность анимации от 0 до 1. 
+</li>
+<li>`draw` -- функция, которая отрисовывает состояние анимации от 0 до 1.</li>
 </ul>
 
-Функцию `delta` можно модифицировать, используя трансформации `easeOut/easeInOut`:
+Эту функцию можно улучшить, например добавить коллбэк `complete` для вызова в конце анимации.
 
-```js
-function makeEaseInOut(delta) {
-  return function(progress) {
-    if (progress < .5) return delta(2*progress) / 2;
-    else return (2 - delta(2*(1-progress))); / 2;
-  }
-}
+Мы рассмотрели ряд примеров для `timing` и  трансформации `easeOut`, `easeInOut`, которые позволяют их разнообразить. В отличие от CSS мы не ограничены кривыми Безье, можно реализовать всё, что угодно.
 
-function makeEaseOut(delta) {
-  return function(progress) {
-    return 1 - delta(1 - progress);
-  }
-}
-```
+Это же относится и к функции `draw`.
 
-На основе этой общей анимационной функции можно делать и более специализированные, например `animateProp`, которая анимирует свойство `opts.elem[opts.prop]` от `opts.start px` до `opts.end px` :
-
-```js
-//+ run
-function animateProp(opts) {
-  var start = opts.start, end = opts.end, prop = opts.prop;
-
-  opts.step = function(delta) {
-    opts.elem.style[prop] = Math.round(start + (end - start)*delta) + 'px';
-  }
-  return animate(opts);
-}
-
-// Использование:
-animateProp({ 
-  elem: document.body,
-  prop: "width",
-  start: 0,
-  duration: 2000,
-  end: document.body.clientWidth
-});
-```
-
-Можно добавить еще варианты `delta`, `step`, создать общий фреймворк для анимации с единым таймером и т.п. Собственно, это и делают библиотеки типа jQuery. 
-
-
-### Советы по оптимизации  
-
-<dl>
-<dt>Большое количество таймеров сильно нагружают процессор.</dt>
-<dd>Если вы хотите запустить несколько анимаций одновременно, например, показать много падающих снежинок, то управляйте ими с помощью одного таймера.
-
-Дело в том, что каждый таймер вызывает перерисовку. Поэтому браузер работает гораздо эффективней, если для всех анимаций приходится делать одну объединенную перерисовку вместо нескольких.
-
-Фреймворки обычно используют один `setInterval` и запускают все кадры в заданном интервале.
-</dd>
-<dt>Помогайте браузеру в отрисовке</dt>
-<dd>Браузер управляет отрисовкой дерева и элементы зависят друг от друга.
-
-Если анимируемый элемент лежит глубоко в DOM, то другие элементы зависят от его размеров и позиции. Даже если анимация не касается их, браузер все равно делает лишние расчёты.
-
-Для того, чтобы анимация меньше расходовала ресурсы процессора(и была плавнее), не анимируйте элемент, находящийся глубоко в DOM.
-
-Вместо этого:
-<ol>
-<li>Для начала, удалите анимируемый элемент из DOM и прикрепите его непосредственно к `BODY`. Вам, возможно придется использовать `position: absolute` и выставить координаты.</li>
-<li>Анимируйте элемент.</li>
-<li>Верните его обратно в DOM.
-</ol>
-
-Эта хитрость поможет выполнять сложные анимации и при этом экономить ресурсы процессора.
-</dd>
-</dl>
-
-Там, где это возможно, стоит использовать CSS-анимацию, особенно на смартфонах и планшетах, где процессор слабоват и JavaScript работает не быстро.
-
-[head]
-<link type="text/css" rel="stylesheet" href="/files/tutorial/browser/animation/animate.css" />
-<script src="/files/tutorial/js/animate.js"></script>
-<script src="/files/tutorial/browser/animation/step.js"></script>
-<script>
-function move(elem, delta, duration) {
-  var to = 500;
-  
-  animate({
-    delay: 10,
-    duration: duration || 1000, 
-    delta: delta,
-    step: function(delta) {
-      elem.style.left = to*delta + "px"    
-    }
-  });
-  
-}
-</script>
-[/head]
+Такая реализация анимации имеет три основных области применения:
+<ul>
+<li>Нестандартные задачи и требования, не укладывающиеся в рамки CSS.</li>
+<li>Поддержка IE9-.</li>
+<li>Графика, рисование на canvas.</li>
+</ul>

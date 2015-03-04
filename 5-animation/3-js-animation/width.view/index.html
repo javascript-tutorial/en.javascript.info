@@ -1,13 +1,36 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="animate.css">
-<script src="width.js"></script>
+  <meta charset="utf-8">
+  <style>
+    progress {
+      width: 5%;
+    }
+  </style>
+  <script src="animate.js"></script>
 </head>
 <body>
 
-<div onclick="stretch(this.children[0])" class="example_path">
-	<div class="example_block"></div>
-</div>
+
+<progress id="elem"></progress>
+
+<script>
+
+
+elem.onclick = function() {
+  animate({
+    duration: 1000,
+    timing: function(timeFraction) { 
+      return timeFraction; 
+    },
+    draw: function(progress) {
+      elem.style.width = progress * 100 + '%';
+    }
+  });
+};
+
+</script>
+
+
 </body>
 </html>

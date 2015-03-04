@@ -2,30 +2,19 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <script src="animate.js"></script>
-  <style>img { display: block; cursor: pointer; }</style>
+  <style>img { cursor: pointer; }</style>
+  <style>
+    #flyjet {
+      width: 40px; /* -> 400px */
+      height: 24px; /* -> 240px */
+    }
+
+  </style>
 </head>
 <body>
 
-Кликните картинку для анимации. Расположение элементов при анимации не должно меняться!
-<table>
-<tr>
-<td>Догнать</td>
-<td><img onclick="growIn(this)" src="https://js.cx/clipart/flyjet.jpg" width="400" height="240">
-</td>
-<td>..и перегнать!</td>
-</tr>
-</table>
+<img id="flyjet" src="https://js.cx/clipart/flyjet.jpg">
 
-<b>В процессе анимации повторные нажатия на изображение игнорируются.</b>
-
-<script>
-function growIn(img) {
-  /* ваш код */
-}
-</script>
 
 </body>
 </html>
-
-

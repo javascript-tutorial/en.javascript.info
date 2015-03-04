@@ -1,13 +1,35 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="animate.css">
-<script src="move.js"></script>
+<style>
+#train {
+  position: relative;
+  cursor: pointer;
+}
+</style>
 </head>
 <body>
 
-<div onclick="move(this.children[0])" class="example_path">
-	<div class="example_block"></div>
-</div>
+<img id="train" src="https://js.cx/clipart/train.gif">
+  
+
+<script>
+
+train.onclick = function() {
+  var start = Date.now(); // сохранить время начала
+
+  var timer = setInterval(function() {
+    // вычислить сколько времени прошло из opts.duration
+    var timePassed = Date.now() - start;
+
+    train.style.left = timePassed / 5 + 'px';
+
+    if (timePassed > 2000) clearInterval(timer);
+
+  }, 20);
+}
+</script>
+
+
 </body>
 </html>

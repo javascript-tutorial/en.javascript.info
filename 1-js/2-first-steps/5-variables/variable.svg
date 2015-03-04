@@ -12,7 +12,7 @@
                     <path d="M17,66 L17,38 L2,66" id="Shape" fill="#E8C48F" sketch:type="MSShapeGroup"></path>
                     <g id="Rectangle-5-+-&quot;World!&quot;" transform="translate(15.000000, 0.000000)">
                         <path d="M18.9106925,0.395208397 L73.4146415,58.8435379 L55.0893075,75.9321883 L0.585358502,17.4838588 L18.9106925,0.395208397 L18.9106925,0.395208397 Z" id="Rectangle-5" stroke="#8A704D" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup"></path>
-                        <text id="&quot;Hello!&quot;" sketch:type="MSTextLayer" transform="translate(39.885486, 39.782373) rotate(47.000000) translate(-39.885486, -39.782373) " font-family="Open Sans" font-size="14" font-weight="526" line-spacing="17" fill="#8A704D">
+                        <text id="&quot;Hello!&quot;" sketch:type="MSTextLayer" transform="translate(39.885486, 39.782373) rotate(47.000000) translate(-39.885486, -39.782373) " font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
                             <tspan x="10.392998" y="46.2823729">"Hello!"</tspan>
                         </text>
                     </g>
