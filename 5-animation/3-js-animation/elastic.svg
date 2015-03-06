@@ -1,1 +1,25 @@
-<svg width="233" height="388" viewBox="0 0 233 388" xmlns="http://www.w3.org/2000/svg"><title>elastic.svg</title><desc>Created with bin/sketchtool.</desc><g fill="none" fill-rule="evenodd"><path d="M34 365V22.16" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"/><path d="M34 23l-3 10.8h6L34 23z" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"/><path d="M24.5 194h184.01" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"/><path d="M208.5 194l-10.8-3v6l10.8-3z" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"/><path d="M34.88 192.698c3.442 0 11.656-1.502 18.614.34 8.527 2.258 8.02-3.415 33.52 1.3 13.1 2.424 13.41-10.73 28.147.562 20.16 15.445 18.718-35.537 33.36-.222 3.42 8.25 6.88 22.6 10.134 19.61 2.91-2.677 5.195-19.38 14.577-64.113 4.61-21.984 15.004 146.122 19.118 130.36 9.62-36.844 11.21-241.394 14.99-258.44" stroke="#EE6B47" stroke-width="3"/><text font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D"><tspan x="17" y="212">0</tspan></text><text font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D"><tspan x="17" y="36">1</tspan></text><text font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D"><tspan x="200" y="212">1</tspan></text></g></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="233px" height="388px" viewBox="0 0 233 388" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>elastic.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="elastic.svg" sketch:type="MSArtboardGroup">
+            <path d="M34,365 L34,22.1600037" id="Line" stroke="#E8C48E" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M34,23 C32.95,26.78 32.05,30.02 31,33.8 C33.1,33.8 34.9,33.8 37,33.8 C35.95,30.02 35.05,26.78 34,23 C34,23 34,23 34,23 Z" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M24.5,194 L208.509995,194" id="Line" stroke="#E8C48E" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M208.5,194 C204.72,192.95 201.48,192.05 197.7,191 C197.7,193.1 197.7,194.9 197.7,197 C201.48,195.95 204.72,195.05 208.5,194 C208.5,194 208.5,194 208.5,194 Z" stroke="#E8C48E" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M34.8792035,192.69782 C38.3217915,192.697818 46.5362784,191.195974 53.4936997,193.038137 C62.0206897,195.295885 61.5154635,189.622956 87.0139157,194.339254 C100.114357,196.762365 100.423927,183.608251 115.161483,194.900075 C135.318831,210.34451 133.877092,159.362737 148.519851,194.677907 C151.940119,202.926853 155.398942,217.279032 158.65332,214.286779 C161.563227,211.611251 163.848094,194.907207 173.23036,150.175435 C177.841468,128.191083 188.232669,296.296579 192.347319,280.535848 C201.966406,243.690946 203.555755,39.1411041 207.337233,22.0938619" id="Path-747" stroke="#EE6B47" stroke-width="3" sketch:type="MSShapeGroup"></path>
+            <text id="0" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="212">0</tspan>
+            </text>
+            <text id="1" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="36">1</tspan>
+            </text>
+            <text id="-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="200" y="212">1</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
