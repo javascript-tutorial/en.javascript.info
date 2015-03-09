@@ -4,7 +4,7 @@ body {
 }
 
 #field {
-  overflow: hidden; 
+  overflow: hidden;
   width: 200px;
   height: 150px;
   border-top: 10px solid black;
@@ -24,4 +24,4 @@ body {
   border-left: 20px solid red;
   text-indent: -20px;
   font: 12px/1 monospace;
-}  
+}

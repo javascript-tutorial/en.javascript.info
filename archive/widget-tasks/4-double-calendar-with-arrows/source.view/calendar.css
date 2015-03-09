@@ -1,9 +1,9 @@
-
 .calendar-table {
   border-collapse: collapse;
 }
 
-.calendar-table td, .calendar-table th {
+.calendar-table td,
+.calendar-table th {
   border: 1px solid black;
   padding: 3px;
   text-align: center;

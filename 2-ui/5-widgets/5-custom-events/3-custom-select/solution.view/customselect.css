@@ -1,50 +1,49 @@
 .customselect {
-    width: 200px;
-    font-size: 14px;
-    display: inline-block;
+  width: 200px;
+  font-size: 14px;
+  display: inline-block;
 }
 
 .customselect .title {
-    height: 20px;
-    border: 2px groove #ADD8E6;
-    background: white;
-    width: 200px;
-    box-sizing: border-box;
-    padding: 2px;
-    line-height: 14px;
-    cursor: pointer;
-    text-align: left;
+  height: 20px;
+  border: 2px groove #ADD8E6;
+  background: white;
+  width: 200px;
+  box-sizing: border-box;
+  padding: 2px;
+  line-height: 14px;
+  cursor: pointer;
+  text-align: left;
 }
 
 .customselect li {
-    padding: 2px;
-    cursor: pointer;
+  padding: 2px;
+  cursor: pointer;
 }
 
 .customselect li:nth-child(even) {
-    background-color: #f0f8ff;
+  background-color: #f0f8ff;
 }
 
 .customselect li:hover {
-    background-color: #7fffd4;
+  background-color: #7fffd4;
 }
 
 .customselect ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-    display: none;
-
-    position: absolute;
-    z-index: 1000;
-    background: white;
-    width: 200px;
-    border-bottom: 1px solid #add8e6;
-    border-left: 1px solid #add8e6;
-    border-right: 1px solid #add8e6;
-    box-sizing: border-box;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  background: white;
+  width: 200px;
+  border-bottom: 1px solid #add8e6;
+  border-left: 1px solid #add8e6;
+  border-right: 1px solid #add8e6;
+  box-sizing: border-box;
 }
 
 .customselect.open ul {
-    display: block;
+  display: block;
 }

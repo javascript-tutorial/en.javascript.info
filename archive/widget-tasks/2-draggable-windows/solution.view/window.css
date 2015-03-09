@@ -1,56 +1,52 @@
-
-  .window {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 10;
-    
-    width: 200px;
-    height: 300px;
-    border: 2px #ADD8E6 groove;
-    /* раскомментировать для проверки, вылезает ли внешняя рамка за экран
+.window {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  width: 200px;
+  height: 300px;
+  border: 2px #ADD8E6 groove;
+  /* раскомментировать для проверки, вылезает ли внешняя рамка за экран
     border: 2px red solid;
     */
-    background: white;
-  }
+  
+  background: white;
+}
 
-  .window-title {
-    width: 100%;
-    height: 30px;
-    line-height: 30px;
+.window-title {
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+  background-color: #4169E1;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+}
 
-    background-color: #4169E1;
-    color: white;
-    text-align:center;        
-    cursor: pointer;
-  }
+.window-moving .window-title {
+  cursor: move;
+}
 
-  .window-moving .window-title {
-    cursor: move;
-  }
+.window-message-form {
+  position: absolute;
+  bottom: 0;
+  height: 30px;
+  line-height: 30px;
+  width: 100%;
+  background: #ADD8E6;
+}
 
-  .window-message-form {
-    position: absolute;
-    bottom: 0;
-    height: 30px;
-    line-height: 30px;
-    width: 100%;
+.window-content {
+  height: 240px;
+  padding: 3px;
+  overflow-y: auto;
+}
 
-    background: #ADD8E6;
-  }
+.window-message-text {
+  width: 120px;
+}
 
-  .window-content {
-    height: 240px;
-    padding: 3px;
-    overflow-y: auto;
-  }
-
-  .window-message-text {
-    width: 120px;
-  }
-
-  .window-message-submit {
-    width: 70px;
-    margin-left: 2px;
-  }
-
+.window-message-submit {
+  width: 70px;
+  margin-left: 2px;
+}

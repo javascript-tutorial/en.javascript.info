@@ -1,13 +1,12 @@
-
 #text {
   display: block;
-  height:100px;
-  width:400px;
+  height: 100px;
+  width: 400px;
 }
 
 #table th {
   text-align: center;
-  font-weight: bold;  
+  font-weight: bold;
 }
 
 #table td {
@@ -35,10 +34,12 @@
 #table .w {
   background: #ff0;
 }
+
 #table .c {
   background: #60c;
   color: #fff;
 }
+
 #table .e {
   background: #09f;
   color: #fff;
@@ -53,6 +54,7 @@
   background: #f60;
   color: #fff;
 }
+
 #table .se {
   background: #0c3;
   color: #fff;
@@ -61,4 +63,3 @@
 #table .highlight {
   background: red;
 }
-

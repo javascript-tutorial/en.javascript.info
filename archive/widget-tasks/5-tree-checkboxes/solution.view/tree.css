@@ -1,37 +1,36 @@
-.tree, .tree ul {
-	list-style: none;
-	margin: 0;
-	padding: 2px;
+.tree,
+.tree ul {
+  list-style: none;
+  margin: 0;
+  padding: 2px;
 }
 
 .tree .tree-open ul {
-	display: block;
+  display: block;
 }
 
-
 .tree .tree-closed ul {
-	display: none;
+  display: none;
 }
 
 .tree-toggler {
-	color: blue;
-	cursor: pointer;
-	float: left;
-	margin-left: -16px;
-	width: 1em;
-	height: 1em;
+  color: blue;
+  cursor: pointer;
+  float: left;
+  margin-left: -16px;
+  width: 1em;
+  height: 1em;
 }
 
 .tree-open .tree-toggler {
-	background: url(https://js.cx/tree/minus.gif) no-repeat center;
+  background: url(https://js.cx/tree/minus.gif) no-repeat center;
 }
 
-
 .tree-closed .tree-toggler {
-	background: url(https://js.cx/tree/plus.gif) no-repeat center;
+  background: url(https://js.cx/tree/plus.gif) no-repeat center;
 }
 
 .tree li {
-	line-height: 1em;
-	padding-left: 16px;
+  line-height: 1em;
+  padding-left: 16px;
 }

@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   margin: 0;
   padding: 0;
 }
@@ -9,8 +10,8 @@ html, body {
   height: 600px;
   float: left;
 }
-
 /* герои и мяч (переносимые элементы) */
+
 .hero {
   background: url(https://js.cx/drag-heroes/heroes.png);
   width: 130px;

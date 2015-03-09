@@ -9,11 +9,11 @@
 }
 
 blockquote {
-  background:#f9f9f9;
-  border-left:10px solid #ccc;
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
   margin: 0 0 0 100px;
-  padding:.5em 10px;
-  quotes:"\201C""\201D""\2018""\2019";
+  padding: .5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
   display: inline-block;
   white-space: pre;
 }
@@ -21,8 +21,8 @@ blockquote {
 blockquote:before {
   color: #ccc;
   content: open-quote;
-  font-size:4em;
-  line-height:.1em;
-  margin-right:.25em;
-  vertical-align:-.4em;
+  font-size: 4em;
+  line-height: .1em;
+  margin-right: .25em;
+  vertical-align: -.4em;
 }

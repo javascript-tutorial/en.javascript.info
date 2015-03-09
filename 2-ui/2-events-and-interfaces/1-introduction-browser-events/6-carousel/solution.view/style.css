@@ -15,7 +15,8 @@ body {
   width: 130px;
   height: 130px;
   /* по умолчанию inline, в ряде браузеров это даст лишнее пространство вокруг элементов */
-  display: block; 
+  
+  display: block;
 }
 
 .arrow {
@@ -39,9 +40,11 @@ body {
   background: #ccc;
   cursor: pointer;
 }
+
 .prev {
   left: 7px;
 }
+
 .next {
   right: 7px;
 }
@@ -63,4 +66,3 @@ body {
 .gallery li {
   display: inline-block;
 }
-

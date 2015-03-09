@@ -1,9 +1,7 @@
-
 #kinput {
   font-size: 150%;
   width: 600px;
 }
-
 
 #area {
   width: 600px;
@@ -11,7 +9,6 @@
   border: 1px solid black;
   display: block;
 }
-
 
 form label {
   display: inline;
