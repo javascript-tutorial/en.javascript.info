@@ -190,7 +190,7 @@ for(var i=0; i<5; i++) {
 }
 ```
 
-Полную информацию по специальным командам консоли вы можете получить на странице [](https://developers.google.com/chrome-developer-tools/docs/commandline-api?hl=ru). Эти команды также действуют в Firebug (отладчик для браузера Firefox).
+Полную информацию по специальным командам консоли вы можете получить на странице [Chrome Console API](https://developer.chrome.com/devtools/docs/console-api) и [Chrome CommandLine API](https://developer.chrome.com/devtools/docs/commandline-api). Почти все команды также действуют в Firebug (отладчик для браузера Firefox).
 
 Консоль поддерживают все браузеры, и, хотя IE10- поддерживает далеко не все функции, но `console.log` работает везде. Используйте его для вывода отладочной информации по ходу работы скрипта.
 
@@ -239,7 +239,7 @@ for(var i=0; i<5; i++) {
 
 Осваивать можно двумя путями:
 <ol>
-<li>[Официальная документация](https://developers.google.com/chrome-developer-tools/docs/overview) (на англ.)</li>
+<li>[Официальная документация](https://developer.chrome.com/devtools) (на англ.)</li>
 <li>Кликать в разных местах и смотреть, что получается. Не забывать о клике правой кнопкой мыши.</li>
 </ol>
 
