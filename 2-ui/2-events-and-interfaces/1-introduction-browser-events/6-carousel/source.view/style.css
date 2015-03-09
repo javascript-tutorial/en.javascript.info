@@ -24,6 +24,10 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+  /* убрать между inline-block li лишние пробелы, которые есть в HTML */
+  /* http://davidwalsh.name/remove-whitespace-inline-block */
+  
+  font-size: 0;
 }
 
 ul img {
