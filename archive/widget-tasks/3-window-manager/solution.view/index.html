@@ -1,50 +1,51 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <script src="http://code.jquery.com/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
-    <link type="text/css" rel="stylesheet" href="window.css" />
-    <style>
-      html, body {
-        padding: 0;
-        margin: 0;
-      }
-    </style>
-    <script src="draggableWindow.js"></script>
-    <script src="windowManager.js"></script>
+  <meta charset="UTF-8">
+  <script src="http://code.jquery.com/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+  <link type="text/css" rel="stylesheet" href="window.css" />
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="draggableWindow.js"></script>
+  <script src="windowManager.js"></script>
 </head>
+
 <body>
 
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
-Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+  Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+  Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
+  Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст Текст
 
-<script type="text/template" id="draggable-window-template">
-<div class="window-title"><%=title%></div>
-<div class="window-content"></div>
-<form class="window-message-form">
-<input type="text" name="message" class="window-message-text"><input type="submit" name="submit" class="window-message-submit" value="Послать">
-</form>
-</script>
+  <script type="text/template" id="draggable-window-template">
+    <div class="window-title">
+      <%=title%>
+    </div>
+    <div class="window-content"></div>
+    <form class="window-message-form">
+      <input type="text" name="message" class="window-message-text">
+      <input type="submit" name="submit" class="window-message-submit" value="Послать">
+    </form>
+  </script>
 
-<script>
+  <script>
+    WindowManager.setTemplate($('#draggable-window-template').html().trim());
 
+    WindowManager.addWindow({
+      title: "Чат с Петей"
+    });
 
-WindowManager.setTemplate( $('#draggable-window-template').html().trim() );
-
-WindowManager.addWindow({
-  title: "Чат с Петей"
-});
-
-WindowManager.addWindow({
-  title: "Чат с Машей"
-});
-
-</script>
+    WindowManager.addWindow({
+      title: "Чат с Машей"
+    });
+  </script>
 
 </body>
+
 </html>

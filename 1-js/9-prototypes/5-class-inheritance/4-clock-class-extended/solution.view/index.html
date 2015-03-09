@@ -1,23 +1,26 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <title>Часики в консоли</title>
-    <meta charset="utf-8">
+  <title>Часики в консоли</title>
+  <meta charset="utf-8">
 </head>
+
 <body>
 
-<script src="clock.js"></script>
+  <script src="clock.js"></script>
 
-<script src="extended-clock.js"></script>
+  <script src="extended-clock.js"></script>
 
-<script>
+  <script>
     var lowResolutionClock = new ExtendedClock({
-        template: 'h:m:s',
-        precision: 10000
+      template: 'h:m:s',
+      precision: 10000
     });
 
     lowResolutionClock.start();
-</script>
+  </script>
 
 </body>
+
 </html>

@@ -1,63 +1,65 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
 </head>
+
 <body style="height: 200px">
 
-<p>Кликните по мячу и тяните, чтобы двигать его.</p>
+  <p>Кликните по мячу и тяните, чтобы двигать его.</p>
 
-<img src="https://js.cx/clipart/ball.svg" style="cursor:pointer" width="40" height="40" id="ball">
-
-
-<script>
-var ball = document.getElementById('ball');
-
-ball.onmousedown = function(e) {
-
-  var coords = getCoords(ball);
-  var shiftX = e.pageX - coords.left;
-  var shiftY = e.pageY - coords.top;
-
-  ball.style.position = 'absolute';
-  document.body.appendChild(ball);
-  moveAt(e);
-
-  ball.style.zIndex = 1000; // над другими элементами
-
-  function moveAt(e) {
-    ball.style.left = e.pageX - shiftX + 'px';
-    ball.style.top = e.pageY - shiftY + 'px';
-  }
-
-  document.onmousemove = function(e) { 
-    moveAt(e); 
-  };
-
-  ball.onmouseup = function() {
-    document.onmousemove = null;
-    ball.onmouseup = null;
-  };
-
-}
-
-ball.ondragstart = function() { 
-  return false; 
-};
+  <img src="https://js.cx/clipart/ball.svg" style="cursor:pointer" width="40" height="40" id="ball">
 
 
-function getCoords(elem) {  // кроме IE8-
-  var box = elem.getBoundingClientRect();
+  <script>
+    var ball = document.getElementById('ball');
 
-  return {
-    top: box.top + pageYOffset,
-    left: box.left + pageXOffset
-  };
+    ball.onmousedown = function(e) {
 
-}
+      var coords = getCoords(ball);
+      var shiftX = e.pageX - coords.left;
+      var shiftY = e.pageY - coords.top;
 
-</script>
-  
-      
+      ball.style.position = 'absolute';
+      document.body.appendChild(ball);
+      moveAt(e);
+
+      ball.style.zIndex = 1000; // над другими элементами
+
+      function moveAt(e) {
+        ball.style.left = e.pageX - shiftX + 'px';
+        ball.style.top = e.pageY - shiftY + 'px';
+      }
+
+      document.onmousemove = function(e) {
+        moveAt(e);
+      };
+
+      ball.onmouseup = function() {
+        document.onmousemove = null;
+        ball.onmouseup = null;
+      };
+
+    }
+
+    ball.ondragstart = function() {
+      return false;
+    };
+
+
+    function getCoords(elem) { // кроме IE8-
+      var box = elem.getBoundingClientRect();
+
+      return {
+        top: box.top + pageYOffset,
+        left: box.left + pageXOffset
+      };
+
+    }
+  </script>
+
+
 </body>
+
 </html>

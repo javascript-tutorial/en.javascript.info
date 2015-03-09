@@ -1,21 +1,23 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <title>Часики в консоли</title>
-    <meta charset="utf-8">
+  <title>Часики в консоли</title>
+  <meta charset="utf-8">
 </head>
+
 <body>
 
-<!-- исходные часы, от них нужно унаследовать -->
-<script src="clock.js"></script>
-<script>
+  <!-- исходные часы, от них нужно унаследовать -->
+  <script src="clock.js"></script>
+  <script>
     var clock = new Clock({
-        template: 'h:m:s'
+      template: 'h:m:s'
     });
     clock.start();
 
 
-	/* ... ваш код для ExtendedClock */
+    /* ... ваш код для ExtendedClock */
 
     /*
 	Надо: часы, которые тикают раз в 10 секунд (точность 10000)
@@ -26,8 +28,8 @@
 
     lowResolutionClock.start();
     */
-
-</script>
+  </script>
 
 </body>
+
 </html>

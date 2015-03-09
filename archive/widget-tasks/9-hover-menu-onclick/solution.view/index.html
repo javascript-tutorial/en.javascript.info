@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="menu.css">
@@ -7,8 +8,9 @@
   <script src="hoverintent.js"></script>
   <script src="menu.js"></script>
 </head>
+
 <body>
-  
+
   <!--   Разрешить вложенные меню -->
   <div class="menu" id="menu">
     <a href="#" class="title">Моё меню</a>
@@ -17,7 +19,7 @@
         <a href="#a1">Элемент 1</a>
         <ol>
           <li><a href="#a1.1">Элемент 1.1</a></li>
-          <li class="has-children">  
+          <li class="has-children">
             <a href="#a1.2">Элемент 1.2</a>
             <ol>
               <li><a href="#a1.2.1">Элемент 1.2.1</a></li>
@@ -39,12 +41,11 @@
       <li><a href="#a4">Элемент 4</a></li>
       <li><a href="#a5">Элемент 5</a></li>
     </ol>
-    
+
   </div>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor eos.
-  
-  <script>
 
+  <script>
     var menu = new Menu({
       elem: $('#menu')
     });
@@ -53,9 +54,8 @@
       if (!e.value) return;
       alert(e.value);
     });
-
-
   </script>
-  
+
 </body>
+
 </html>

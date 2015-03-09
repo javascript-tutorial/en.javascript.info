@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <script src="http://code.jquery.com/jquery.min.js"></script>
@@ -7,14 +8,18 @@
     .resize-wrapper {
       position: relative;
     }
+    
     .resize-wrapper img {
       /* img при таком DOCTYPE в некоторых браузерах имеет display:inline, в некоторых display:block
          если оставить inline, то под img браузер оставит пустое место для "хвостов" букв
       */
+      
       display: block;
     }
-
-    .resize-handle-se { /* правый-нижний угол */
+    
+    .resize-handle-se {
+      /* правый-нижний угол */
+      
       position: absolute;
       bottom: 0;
       right: 0;
@@ -23,127 +28,131 @@
       background: url(https://js.cx/clipart/handle-se.png) no-repeat;
       cursor: se-resize;
     }
-
-    .resize-handle-s { /* нижняя "рамка", за которую можно потащить */
+    
+    .resize-handle-s {
+      /* нижняя "рамка", за которую можно потащить */
+      
       position: absolute;
       bottom: 0;
       height: 3px;
-      width:100%;
+      width: 100%;
       background: gray;
       cursor: s-resize;
     }
-
-    .resize-handle-e { /* правая "рамка", за которую можно потащить */
+    
+    .resize-handle-e {
+      /* правая "рамка", за которую можно потащить */
+      
       position: absolute;
       right: 0;
       top: 0;
       width: 3px;
-      height:100%;
+      height: 100%;
       background: gray;
       cursor: e-resize;
     }
-
   </style>
 </head>
+
 <body>
 
-<img style="width:500px;height:282px" id="heroes" src="https://js.cx/clipart/heroes.jpg">
+  <img style="width:500px;height:282px" id="heroes" src="https://js.cx/clipart/heroes.jpg">
 
-<div id="info"></div>
+  <div id="info"></div>
 
-<script>
-function Resizeable(options) {
-  var self = this;
+  <script>
+    function Resizeable(options) {
+      var self = this;
 
-  var elem = options.elem;
-  var handleSize = options.handleSize || 3;
+      var elem = options.elem;
+      var handleSize = options.handleSize || 3;
 
-  var newWidth, newHeight, resizeType; // размеры в процессе ресайза
+      var newWidth, newHeight, resizeType; // размеры в процессе ресайза
 
-  // внешняя обертка
-  var wrapper = $('<div class="resize-wrapper"/>')
-  wrapper.prependTo(elem.parent())
-  wrapper.append(elem);
+      // внешняя обертка
+      var wrapper = $('<div class="resize-wrapper"/>')
+      wrapper.prependTo(elem.parent())
+      wrapper.append(elem);
 
-  // добавляем "ручки" в обертку
-  wrapper.append(
-    '<div class="resize-handle-s"/><div class="resize-handle-e"/><div class="resize-handle-se"/>'
-  );
+      // добавляем "ручки" в обертку
+      wrapper.append(
+        '<div class="resize-handle-s"/><div class="resize-handle-e"/><div class="resize-handle-se"/>'
+      );
 
-  // отменить перенос и выделение браузера
-  // в дополнение к return false из mousedown
-  wrapper.on('selectstart dragstart', false);
+      // отменить перенос и выделение браузера
+      // в дополнение к return false из mousedown
+      wrapper.on('selectstart dragstart', false);
 
-  adjustWrapperSize();
+      adjustWrapperSize();
 
-  wrapper.on('mousedown', onMouseDown);
+      wrapper.on('mousedown', onMouseDown);
 
-  function onMouseDown(e) {
-    var className = e.target.className;
-    if (className.indexOf("resize-handle-") == 0) {
-      // поймали клик на "ручке" - вызываем начало ресайза
-      resizeType = className.slice("resize-handle-".length);
-      startResize();
+      function onMouseDown(e) {
+        var className = e.target.className;
+        if (className.indexOf("resize-handle-") == 0) {
+          // поймали клик на "ручке" - вызываем начало ресайза
+          resizeType = className.slice("resize-handle-".length);
+          startResize();
+        }
+        return false;
+      }
+
+      function adjustWrapperSize() {
+        // подгоняет размер обертки под картинку
+        wrapper.css({
+          width: elem.width() + handleSize,
+          height: elem.height() + handleSize
+        });
+      }
+
+      function startResize() {
+        $(document).on('mousemove.resizeable', onDocumentMouseMove);
+        $(document).on('mouseup.resizeable', onDocumentMouseUp);
+      }
+
+      function onDocumentMouseMove(e) {
+        var offset = wrapper.offset();
+
+        if (~resizeType.indexOf("s")) {
+          // в ручке есть буква "s" - значит меняем высоту картинки
+          newHeight = Math.max(e.pageY - offset.top, handleSize);
+          elem.css('height', newHeight);
+        }
+        if (~resizeType.indexOf("e")) {
+          // в ручке есть буква "e" - значит меняем ширину картинки
+          newWidth = Math.max(e.pageX - offset.left, handleSize);
+          elem.css('width', newWidth);
+        }
+
+        // подогнать обертку
+        adjustWrapperSize();
+      }
+
+      function onDocumentMouseUp() {
+        endResize();
+      }
+
+      function endResize() {
+        $(document).off('.resizeable');
+        $(self).triggerHandler({
+          type: "resize",
+          newWidth: newWidth,
+          newHeight: newHeight
+        });
+      }
+
     }
-    return false;
-  }
 
-  function adjustWrapperSize() {
-    // подгоняет размер обертки под картинку
-    wrapper.css({
-      width: elem.width() + handleSize,
-      height: elem.height() + handleSize
+    var resizeMe = new Resizeable({
+      elem: $('#heroes')
     });
-  }
 
-  function startResize() {
-    $(document).on('mousemove.resizeable', onDocumentMouseMove);
-    $(document).on('mouseup.resizeable', onDocumentMouseUp);
-  }
-
-  function onDocumentMouseMove(e) {
-    var offset = wrapper.offset();
-
-    if (~resizeType.indexOf("s")) {
-      // в ручке есть буква "s" - значит меняем высоту картинки
-      newHeight = Math.max(e.pageY - offset.top, handleSize);
-      elem.css('height', newHeight);
-    }
-    if (~resizeType.indexOf("e")) {
-      // в ручке есть буква "e" - значит меняем ширину картинки
-      newWidth = Math.max(e.pageX - offset.left, handleSize);
-      elem.css('width', newWidth);
-    }
-
-    // подогнать обертку
-    adjustWrapperSize();
-  }
-
-  function onDocumentMouseUp() {
-    endResize();
-  }
-
-  function endResize() {
-    $(document).off('.resizeable');
-    $(self).triggerHandler({
-      type: "resize", 
-      newWidth: newWidth,
-      newHeight: newHeight
+    $(resizeMe).on("resize", function(e) {
+      // вывести результат
+      $('#info').html("ширина:" + e.newWidth + ", высота:" + e.newHeight);
     });
-  }
-
-}
-
-var resizeMe = new Resizeable({
-  elem: $('#heroes')
-});
-
-$(resizeMe).on("resize", function(e) {
-  // вывести результат
-  $('#info').html("ширина:" + e.newWidth + ", высота:" + e.newHeight);
-});
-
-</script>
+  </script>
 
 </body>
+
 </html>

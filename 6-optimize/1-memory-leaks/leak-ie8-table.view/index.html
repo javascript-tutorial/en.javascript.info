@@ -1,33 +1,34 @@
 <!DOCTYPE HTML>
 <html>
+
 <body>
 
-<script>
+  <script>
+    var elem = document.createElement('div'); // любой элемент
 
-var elem = document.createElement('div'); // любой элемент
+    // Течёт в настоящем IE8, Standards Mode
+    // Не течёт в других IE. Не течёт в IE9 в режиме совместимости с IE8
+    function leak() {
 
-// Течёт в настоящем IE8, Standards Mode
-// Не течёт в других IE. Не течёт в IE9 в режиме совместимости с IE8
-function leak() {
+      for (var i = 0; i < 2000; i++) {
 
-  for (var i = 0; i < 2000; i++) {
+        elem.innerHTML = '<table><tr><td>1</td></tr></table>';
 
-    elem.innerHTML = '<table><tr><td>1</td></tr></table>';
+        elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
+        // при том, что мы даже без сохраненяем значение в переменную
 
-    elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
-    // при том, что мы даже без сохраненяем значение в переменную
+        elem.removeChild(elem.firstChild); // удалить таблицу
+        // elem.innerHTML = '' очистил бы память, он работает по-другому, см. главу "управление памятью"
+      }
 
-    elem.removeChild(elem.firstChild); // удалить таблицу
-    // elem.innerHTML = '' очистил бы память, он работает по-другому, см. главу "управление памятью"
-  }
-
-}
-</script>
+    }
+  </script>
 
 
-<p>Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.</p>
-<button onclick="leak()">Создать утечку!</button>
+  <p>Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.</p>
+  <button onclick="leak()">Создать утечку!</button>
 
 
 </body>
+
 </html>

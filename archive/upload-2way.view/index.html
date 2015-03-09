@@ -1,47 +1,48 @@
 <!DOCTYPE HTML>
 <html>
+
 <body>
-<head>
-  <meta charset="utf-8">
-  <script src="uploader.js"></script>
-</head>
-<form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
-  <input type="file" name="myfile">
-  <input type="submit" name="submit" value="Загрузить">
-</form>
 
-<div id="log">Индикация прогресса</div>
+  <head>
+    <meta charset="utf-8">
+    <script src="uploader.js"></script>
+  </head>
+  <form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="myfile">
+    <input type="submit" name="submit" value="Загрузить">
+  </form>
 
-<script>
-function log(html) {
-  document.getElementById('log').innerHTML = html;
-}
+  <div id="log">Индикация прогресса</div>
 
-function onSuccess() {
-  log('success');
-}
+  <script>
+    function log(html) {
+      document.getElementById('log').innerHTML = html;
+    }
 
-function onError() {
-  log('error');
-}
+    function onSuccess() {
+      log('success');
+    }
 
-function onProgress(loaded, total) {
-  log(loaded + ' / '+ total);
-}
+    function onError() {
+      log('error');
+    }
 
-
-var uploader;
-
-document.forms.upload.onsubmit = function() {
-  var file = this.elements.myfile.files[0];
-  if (!file) return false;
-  
-  uploader = new Uploader(file, onSuccess, onError, onProgress); 
-  uploader.upload(); 
-  return false;
-}
+    function onProgress(loaded, total) {
+      log(loaded + ' / ' + total);
+    }
 
 
-</script>
+    var uploader;
+
+    document.forms.upload.onsubmit = function() {
+      var file = this.elements.myfile.files[0];
+      if (!file) return false;
+
+      uploader = new Uploader(file, onSuccess, onError, onProgress);
+      uploader.upload();
+      return false;
+    }
+  </script>
 </body>
+
 </html>

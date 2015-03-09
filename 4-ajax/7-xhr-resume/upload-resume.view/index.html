@@ -1,50 +1,51 @@
 <!DOCTYPE HTML>
 <html>
+
 <body>
-<head>
-  <meta charset="utf-8">
-  <script src="uploader.js"></script>
-</head>
-<form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
-  <input type="file" name="myfile">
-  <input type="submit" name="submit" value="Загрузить">
-</form>
 
-<button onclick="uploader.pause()">Пауза</button>
+  <head>
+    <meta charset="utf-8">
+    <script src="uploader.js"></script>
+  </head>
+  <form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
+    <input type="file" name="myfile">
+    <input type="submit" name="submit" value="Загрузить">
+  </form>
 
-
-<div id="log">Индикация прогресса</div>
-
-<script>
-function log(html) {
-  document.getElementById('log').innerHTML = html;
-  //console.log(html);
-}
-
-function onSuccess() {
-  log('success');
-}
-
-function onError() {
-  log('error');
-}
-
-function onProgress(loaded, total) {
-  log("progress " + loaded + ' / '+ total);
-}
-
-var uploader;
-
-document.forms.upload.onsubmit = function() {
-  var file = this.elements.myfile.files[0];
-  if (!file) return false;
-  
-  uploader = new Uploader(file, onSuccess, onError, onProgress); 
-  uploader.upload();
-  return false;
-}
+  <button onclick="uploader.pause()">Пауза</button>
 
 
-</script>
+  <div id="log">Индикация прогресса</div>
+
+  <script>
+    function log(html) {
+      document.getElementById('log').innerHTML = html;
+      //console.log(html);
+    }
+
+    function onSuccess() {
+      log('success');
+    }
+
+    function onError() {
+      log('error');
+    }
+
+    function onProgress(loaded, total) {
+      log("progress " + loaded + ' / ' + total);
+    }
+
+    var uploader;
+
+    document.forms.upload.onsubmit = function() {
+      var file = this.elements.myfile.files[0];
+      if (!file) return false;
+
+      uploader = new Uploader(file, onSuccess, onError, onProgress);
+      uploader.upload();
+      return false;
+    }
+  </script>
 </body>
+
 </html>

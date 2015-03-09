@@ -1,55 +1,58 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
 </head>
+
 <body>
-  
-<script>
-function Machine(power) {
-  this._enabled = false;
 
-  this.enable = function() {
-    this._enabled = true;
-  };
+  <script>
+    function Machine(power) {
+      this._enabled = false;
 
-  this.disable = function() {
-    this._enabled = false;
-  };
-}
+      this.enable = function() {
+        this._enabled = true;
+      };
 
-function CoffeeMachine(power) {
-  Machine.apply(this, arguments);
-
-  var waterAmount = 0;
-  var timerId;
-
-  this.setWaterAmount = function(amount) {
-    waterAmount = amount;
-  };
-
-  function onReady() {
-    alert('Кофе готов!');
-  }
-
-  var parentDisable = this.disable;
-  this.disable = function() {
-    parentDisable.call(this);
-    clearTimeout(timerId);
-  }
-
-  this.run = function() {
-    if (!this._enabled) {
-      throw new Error("Кофеварка выключена");
+      this.disable = function() {
+        this._enabled = false;
+      };
     }
-    timerId = setTimeout(onReady, 1000);
-  };
 
-}
+    function CoffeeMachine(power) {
+      Machine.apply(this, arguments);
 
-var coffeeMachine = new CoffeeMachine(10000);
-coffeeMachine.run();
-</script>
+      var waterAmount = 0;
+      var timerId;
+
+      this.setWaterAmount = function(amount) {
+        waterAmount = amount;
+      };
+
+      function onReady() {
+        alert('Кофе готов!');
+      }
+
+      var parentDisable = this.disable;
+      this.disable = function() {
+        parentDisable.call(this);
+        clearTimeout(timerId);
+      }
+
+      this.run = function() {
+        if (!this._enabled) {
+          throw new Error("Кофеварка выключена");
+        }
+        timerId = setTimeout(onReady, 1000);
+      };
+
+    }
+
+    var coffeeMachine = new CoffeeMachine(10000);
+    coffeeMachine.run();
+  </script>
 
 </body>
+
 </html>

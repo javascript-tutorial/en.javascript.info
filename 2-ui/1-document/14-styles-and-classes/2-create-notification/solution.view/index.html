@@ -1,17 +1,21 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
-    
+
   <h2>Уведомление</h2>
-  
+
   <p>
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
-  </p>    
-  
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum aspernatur quam ex eaque inventore quod voluptatem adipisci omnis nemo nulla fugit iste numquam ducimus cumque minima porro ea quidem maxime necessitatibus beatae labore soluta voluptatum
+    magnam consequatur sit laboriosam velit excepturi laborum sequi eos placeat et quia deleniti? Corrupti velit impedit autem et obcaecati fuga debitis nemo ratione iste veniam amet dicta hic ipsam unde cupiditate incidunt aut iure ipsum officiis soluta
+    temporibus. Tempore dicta ullam delectus numquam consectetur quisquam explicabo culpa excepturi placeat quo sequi molestias reprehenderit hic at nemo cumque voluptates quidem repellendus maiores unde earum molestiae ad.
+  </p>
+
   <script>
     /**
      * Показывает уведомление, пропадающее через 1.5 сек
@@ -23,7 +27,7 @@
      * @param options.html {string} HTML-текст для показа
      */
     function showNotification(options) {
-      
+
       var notification = document.createElement('div');
       notification.className = "notification";
       if (options.cssText) {
@@ -51,11 +55,11 @@
         right: 10,
         html: 'Привет ' + ++i,
         className: "welcome"
-      });      
+      });
     }, 2000);
-
   </script>
 
 
 </body>
+
 </html>

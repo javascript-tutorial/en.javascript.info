@@ -1,98 +1,102 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <style>
-        body, html {
-          height:100%;
-          width: 100%;
-          padding:  0;
-          margin:  0;
-        }
-        #matrix {
-          width: 400px;
-          margin: auto;
-          overflow: auto;
-          text-align: justify;
-        }
-
-
-        #updown {
-          height: 9px;
-          width: 14px;
-          color: green;
-          position: fixed;
-          top: 10px;
-          left: 10px;
-          cursor: pointer;
-        }
-
-        #updown.up::before {
-          content: '▲';
-        }
-
-        #updown.down::before {
-          content: '▼';
-        }
-
-    </style>
-    <meta charset="utf-8">
+  <style>
+    body,
+    html {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #matrix {
+      width: 400px;
+      margin: auto;
+      overflow: auto;
+      text-align: justify;
+    }
+    
+    #updown {
+      height: 9px;
+      width: 14px;
+      color: green;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
+    
+    #updown.up::before {
+      content: '▲';
+    }
+    
+    #updown.down::before {
+      content: '▼';
+    }
+  </style>
+  <meta charset="utf-8">
 </head>
+
 <body>
 
-<div id="matrix">
-  <script>for (var i = 0; i < 2000; i++) document.writeln(i)</script>
-</div>
+  <div id="matrix">
+    <script>
+      for (var i = 0; i < 2000; i++) document.writeln(i)
+    </script>
+  </div>
 
-<div id="updown"></div>
+  <div id="updown"></div>
 
-<script>
-var updownElem = document.getElementById('updown');
+  <script>
+    var updownElem = document.getElementById('updown');
 
-var pageYLabel = 0;
+    var pageYLabel = 0;
 
-updownElem.onclick = function() {
-  var pageY = window.pageYOffset || document.documentElement.scrollTop;
+    updownElem.onclick = function() {
+      var pageY = window.pageYOffset || document.documentElement.scrollTop;
 
-  switch(this.className) {
-    case 'up':
-      pageYLabel = pageY;
-      window.scrollTo(0, 0);
-      this.className = 'down';
-      break;
+      switch (this.className) {
+        case 'up':
+          pageYLabel = pageY;
+          window.scrollTo(0, 0);
+          this.className = 'down';
+          break;
 
-    case 'down':
-      window.scrollTo(0, pageYLabel);
-      this.className = 'up';
-  }
-
-}
-
-window.onscroll = function() {
-  var pageY = window.pageYOffset || document.documentElement.scrollTop;
-  var innerHeight = document.documentElement.clientHeight;
-
-  switch(updownElem.className) {
-    case '':
-      if (pageY > innerHeight) {
-        updownElem.className = 'up';
+        case 'down':
+          window.scrollTo(0, pageYLabel);
+          this.className = 'up';
       }
-      break;
 
-    case 'up':
-      if (pageY < innerHeight) {
-        updownElem.className = '';
+    }
+
+    window.onscroll = function() {
+      var pageY = window.pageYOffset || document.documentElement.scrollTop;
+      var innerHeight = document.documentElement.clientHeight;
+
+      switch (updownElem.className) {
+        case '':
+          if (pageY > innerHeight) {
+            updownElem.className = 'up';
+          }
+          break;
+
+        case 'up':
+          if (pageY < innerHeight) {
+            updownElem.className = '';
+          }
+          break;
+
+        case 'down':
+          if (pageY > innerHeight) {
+            updownElem.className = 'up';
+          }
+          break;
+
       }
-      break;
-
-    case 'down':
-      if (pageY > innerHeight) {
-        updownElem.className = 'up';
-      }
-      break;
-
-  }
-}
-
-</script>
+    }
+  </script>
 </body>
+
 </html>

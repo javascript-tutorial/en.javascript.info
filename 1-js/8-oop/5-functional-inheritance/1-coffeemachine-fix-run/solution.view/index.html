@@ -1,48 +1,51 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
 </head>
+
 <body>
-  
-<script>
-function Machine(power) {
-  this._enabled = false;
 
-  this.enable = function() {
-    this._enabled = true;
-  };
+  <script>
+    function Machine(power) {
+      this._enabled = false;
 
-  this.disable = function() {
-    this._enabled = false;
-  };
-}
+      this.enable = function() {
+        this._enabled = true;
+      };
 
-function CoffeeMachine(power) {
-  Machine.apply(this, arguments);
-
-  var waterAmount = 0;
-
-  this.setWaterAmount = function(amount) {
-    waterAmount = amount;
-  };
-
-  function onReady() {
-    alert('Кофе готов!');
-  }
-
-  this.run = function() {
-    if (!this._enabled) {
-      throw new Error("Кофеварка выключена");
+      this.disable = function() {
+        this._enabled = false;
+      };
     }
-    setTimeout(onReady, 1000);
-  };
 
-}
+    function CoffeeMachine(power) {
+      Machine.apply(this, arguments);
 
-var coffeeMachine = new CoffeeMachine(10000);
-coffeeMachine.run();
-</script>
+      var waterAmount = 0;
+
+      this.setWaterAmount = function(amount) {
+        waterAmount = amount;
+      };
+
+      function onReady() {
+        alert('Кофе готов!');
+      }
+
+      this.run = function() {
+        if (!this._enabled) {
+          throw new Error("Кофеварка выключена");
+        }
+        setTimeout(onReady, 1000);
+      };
+
+    }
+
+    var coffeeMachine = new CoffeeMachine(10000);
+    coffeeMachine.run();
+  </script>
 
 </body>
+
 </html>

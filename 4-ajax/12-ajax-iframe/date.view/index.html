@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<script src="iframe.js"></script>
+  <script src="iframe.js"></script>
 
-<script>
-function ok(result) {
-   alert('result: ' + result);
-}
-function fail() {
-   alert('fail');
-}
-</script>
+  <script>
+    function ok(result) {
+      alert('result: ' + result);
+    }
 
-<button onclick="iframeGet('server', ok, fail)">iframeGet server</button>
+    function fail() {
+      alert('fail');
+    }
+  </script>
 
-<button onclick="iframePost('diff', {clientDate: +new Date}, ok, fail)">iframePost diff</button>
+  <button onclick="iframeGet('server', ok, fail)">iframeGet server</button>
+
+  <button onclick="iframePost('diff', {clientDate: +new Date}, ok, fail)">iframePost diff</button>
 
 </body>
+
 </html>

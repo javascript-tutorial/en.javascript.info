@@ -1,31 +1,41 @@
 <!DOCTYPE html>
- <html>
- <head>
-   <meta charset="utf-8">
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
- </head>
- <body>
+<html>
 
- <div id="grid-holder"></div>
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+</head>
 
-<script type="text/template" id="grid-template">
-  ..ваш шаблон..
-</script>
+<body>
 
- <script>
+  <div id="grid-holder"></div>
 
- var users = [
-  {name: "Вася", age: 10},
-  {name: "Петя", age: 15},
-  {name: "Женя", age: 20},
-  {name: "Маша", age: 25},
-  {name: "Даша", age: 30},
-];
+  <script type="text/template" id="grid-template">
+    ..ваш шаблон..
+  </script>
 
-// ваш код, чтобы сгенерировать таблицу с юзерами (table/tr/td) по шаблону и данным users
-// выведите таблицу внутри #grid-holder
+  <script>
+    var users = [{
+      name: "Вася",
+      age: 10
+    }, {
+      name: "Петя",
+      age: 15
+    }, {
+      name: "Женя",
+      age: 20
+    }, {
+      name: "Маша",
+      age: 25
+    }, {
+      name: "Даша",
+      age: 30
+    }, ];
 
- </script>
+    // ваш код, чтобы сгенерировать таблицу с юзерами (table/tr/td) по шаблону и данным users
+    // выведите таблицу внутри #grid-holder
+  </script>
 
- </body>
- </html>
+</body>
+
+</html>

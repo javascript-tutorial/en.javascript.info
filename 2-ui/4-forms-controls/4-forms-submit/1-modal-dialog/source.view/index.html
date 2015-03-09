@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
-<style>
-html, body {
-  width: 100%;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-#prompt-form {
-  display: inline-block;
-  padding: 5px 5px 5px 70px;
-  width: 200px;
-  border: 1px solid black;
-  background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
-  vertical-align: middle;
-}
-
-#prompt-form-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-  width: 100%;
-  height: 100%;
-  text-align: center;
-}
-
-#prompt-form-container:before {
-  display: inline-block;
-  height: 100%;
-  content: '';
-  vertical-align: middle;
-}
-
-#prompt-form input[name="text"] {
-  display: block;
-  margin: 5px;
-  width: 180px;
-}
-</style>
+  <style>
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    
+    #prompt-form {
+      display: inline-block;
+      padding: 5px 5px 5px 70px;
+      width: 200px;
+      border: 1px solid black;
+      background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
+      vertical-align: middle;
+    }
+    
+    #prompt-form-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9999;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+    }
+    
+    #prompt-form-container:before {
+      display: inline-block;
+      height: 100%;
+      content: '';
+      vertical-align: middle;
+    }
+    
+    #prompt-form input[name="text"] {
+      display: block;
+      margin: 5px;
+      width: 180px;
+    }
+  </style>
 </head>
+
 <body>
 
 
-<div id="prompt-form-container">
-  <form id="prompt-form">
-    <div id="prompt-message">Введите, пожалуйста...<br>Что-то..</div>
-    <input name="text" type="text">
-    <input type="submit" value="Ок">
-    <input type="button" name="cancel" value="Отмена">
-  </form>
-</div>
+  <div id="prompt-form-container">
+    <form id="prompt-form">
+      <div id="prompt-message">Введите, пожалуйста...
+        <br>Что-то..</div>
+      <input name="text" type="text">
+      <input type="submit" value="Ок">
+      <input type="button" name="cancel" value="Отмена">
+    </form>
+  </div>
 
 
 </body>
+
 </html>

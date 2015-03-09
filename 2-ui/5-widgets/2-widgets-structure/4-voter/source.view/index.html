@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
@@ -8,34 +9,36 @@
       font-family: Consolas, "Lucida Console", monospace;
       font-size: 18px;
     }
-    .up, .down {
+    
+    .up,
+    .down {
       cursor: pointer;
       color: blue;
       font-weight: bold;
     }
   </style>
 </head>
+
 <body>
 
-<div id="voter" class="voter">
-  <span class="down">—</span>
-  <span class="vote">0</span>
-  <span class="up">+</span>
-</div>
+  <div id="voter" class="voter">
+    <span class="down">—</span>
+    <span class="vote">0</span>
+    <span class="up">+</span>
+  </div>
 
-<script>
-function Voter(options) {
-  // ... ваш код
-}
+  <script>
+    function Voter(options) {
+      // ... ваш код
+    }
 
-var voter = new Voter({
-  elem: document.getElementById('voter')
-});
+    var voter = new Voter({
+      elem: document.getElementById('voter')
+    });
 
-voter.setVote(1);
-
-</script>
+    voter.setVote(1);
+  </script>
 
 </body>
-</html>
 
+</html>

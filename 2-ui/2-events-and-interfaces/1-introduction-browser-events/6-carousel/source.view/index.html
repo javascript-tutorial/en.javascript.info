@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
@@ -6,43 +7,42 @@
 
 <body>
 
-<!-- ваша верстка виджета, ваши стили -->
+  <!-- ваша верстка виджета, ваши стили -->
 
-<button class="arrow">⇦</button>
-<button class="arrow">⇨</button>
-  
-  
-<ul>
-  <li><img src="https://js.cx/carousel/1.png">
-  <li><img src="https://js.cx/carousel/2.png">
-  <li><img src="https://js.cx/carousel/3.png">
-  <li><img src="https://js.cx/carousel/4.png">
-  <li><img src="https://js.cx/carousel/5.png">
-  <li><img src="https://js.cx/carousel/6.png">
-  <li><img src="https://js.cx/carousel/7.png">
-  <li><img src="https://js.cx/carousel/8.png">
-  <li><img src="https://js.cx/carousel/9.png">
-  <li><img src="https://js.cx/carousel/10.png">
-</ul>
+  <button class="arrow">⇦</button>
+  <button class="arrow">⇨</button>
 
 
-<script>
-/* этот код помечает картинки цифрами, для удобства разработки
-  его можно убрать, если не нужен */
-var lis = document.getElementsByTagName('li');
-for(var i=0; i<lis.length; i++) {
-  lis[i].style.position='relative';
-  var span = document.createElement('span');
-  span.style.cssText='position:absolute;left:0;top:0';
-  span.innerHTML = i+1;
-  lis[i].appendChild(span);
-}
-</script>
+  <ul>
+    <li><img src="https://js.cx/carousel/1.png">
+      <li><img src="https://js.cx/carousel/2.png">
+        <li><img src="https://js.cx/carousel/3.png">
+          <li><img src="https://js.cx/carousel/4.png">
+            <li><img src="https://js.cx/carousel/5.png">
+              <li><img src="https://js.cx/carousel/6.png">
+                <li><img src="https://js.cx/carousel/7.png">
+                  <li><img src="https://js.cx/carousel/8.png">
+                    <li><img src="https://js.cx/carousel/9.png">
+                      <li><img src="https://js.cx/carousel/10.png">
+  </ul>
 
-<script>
 
-// ваш код..
+  <script>
+    /* этот код помечает картинки цифрами, для удобства разработки
+      его можно убрать, если не нужен */
+    var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].style.position = 'relative';
+      var span = document.createElement('span');
+      span.style.cssText = 'position:absolute;left:0;top:0';
+      span.innerHTML = i + 1;
+      lis[i].appendChild(span);
+    }
+  </script>
 
-</script>
+  <script>
+    // ваш код..
+  </script>
 </body>
+
 </html>

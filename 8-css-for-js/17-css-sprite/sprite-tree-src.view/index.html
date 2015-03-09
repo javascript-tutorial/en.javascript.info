@@ -1,63 +1,68 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <style>
-
     .icon {
       width: 16px;
       height: 16px;
       float: left;
     }
-
+    
     .open .icon {
       cursor: pointer;
       background: url(https://js.cx/sprite-tree/minus.gif);
     }
-
+    
     .closed .icon {
       cursor: pointer;
       background: url(https://js.cx/sprite-tree/plus.gif);
     }
-
+    
     .leaf .icon {
       cursor: text;
       background: url(https://js.cx/sprite-tree/article.gif);
     }
-
+    
     li {
       list-style: none;
     }
+    
     .text {
       margin: 6px 0 6px 16px;
     }
-
   </style>
 </head>
+
 <body>
 
 
 
-<ul>
-<li class="open">
-  <div class="icon"></div>
-  <div class="text">Раздел 1<br>В две строки</div>
   <ul>
-  <li class="closed">
-    <div class="icon"></div>
-    <div class="text">Раздел 1.1 в одну строку</div>
-  </li>
-  <li class="leaf">
-    <div class="icon"></div>
-    <div class="text">Страница 1.2<br> в две строки</div>
-  </li>
+    <li class="open">
+      <div class="icon"></div>
+      <div class="text">Раздел 1
+        <br>В две строки</div>
+      <ul>
+        <li class="closed">
+          <div class="icon"></div>
+          <div class="text">Раздел 1.1 в одну строку</div>
+        </li>
+        <li class="leaf">
+          <div class="icon"></div>
+          <div class="text">Страница 1.2
+            <br> в две строки</div>
+        </li>
+      </ul>
+    </li>
+    <li class="closed">
+      <div class="icon"></div>
+      <div class="text">Раздел 2
+        <br>В две строки</div>
+    </li>
   </ul>
-</li>
-<li class="closed">
-  <div class="icon"></div>
-  <div class="text">Раздел 2<br>В две строки</div>
-</li>
-</ul>
 
 </body>
+
 </html>

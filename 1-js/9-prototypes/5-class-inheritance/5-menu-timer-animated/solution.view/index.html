@@ -1,67 +1,64 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-    <meta charset="utf-8">
+  <meta charset="utf-8">
 </head>
+
 <body>
 
-<script src="menu.js"></script>
-<script>
-
-  function AnimatingMenu() {
-    Menu.apply(this, arguments);
-  }
-
-  AnimatingMenu.prototype = Object.create(Menu.prototype);
-
-  AnimatingMenu.prototype.STATE_ANIMATING = 2;
-
-  AnimatingMenu.prototype.open = function() {
-    var self = this;
-
-    this._state = this.STATE_ANIMATING;
-
-    this._timer = setTimeout(function() {
-      Menu.prototype.open.call(self);
-    }, 1000);
-  };
-
-  AnimatingMenu.prototype.close = function() {
-    clearTimeout(this._timer);
-    Menu.prototype.close.apply(this);
-  };
-
-  AnimatingMenu.prototype._stateAsString = function() {
-    
-    switch(this._state) {
-      case this.STATE_ANIMATING:
-        return 'анимация';
-
-      default:
-        return Menu.prototype._stateAsString.call(this);
+  <script src="menu.js"></script>
+  <script>
+    function AnimatingMenu() {
+      Menu.apply(this, arguments);
     }
-  };
 
-  // тест, использование..
-  var menu = new AnimatingMenu();
+    AnimatingMenu.prototype = Object.create(Menu.prototype);
 
-  menu.showState(); // закрыто
+    AnimatingMenu.prototype.STATE_ANIMATING = 2;
 
-  menu.open(); 
-  menu.showState(); // анимация
+    AnimatingMenu.prototype.open = function() {
+      var self = this;
 
-  setTimeout(function() { // через 1 секунду
-    menu.showState(); // открыто
+      this._state = this.STATE_ANIMATING;
 
-    menu.close(); 
+      this._timer = setTimeout(function() {
+        Menu.prototype.open.call(self);
+      }, 1000);
+    };
+
+    AnimatingMenu.prototype.close = function() {
+      clearTimeout(this._timer);
+      Menu.prototype.close.apply(this);
+    };
+
+    AnimatingMenu.prototype._stateAsString = function() {
+
+      switch (this._state) {
+        case this.STATE_ANIMATING:
+          return 'анимация';
+
+        default:
+          return Menu.prototype._stateAsString.call(this);
+      }
+    };
+
+    // тест, использование..
+    var menu = new AnimatingMenu();
+
     menu.showState(); // закрыто
-  }, 1000);
 
+    menu.open();
+    menu.showState(); // анимация
 
+    setTimeout(function() { // через 1 секунду
+      menu.showState(); // открыто
 
-
-
-</script>
+      menu.close();
+      menu.showState(); // закрыто
+    }, 1000);
+  </script>
 
 </body>
+
 </html>

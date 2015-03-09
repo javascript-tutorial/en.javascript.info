@@ -1,20 +1,23 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
 </head>
+
 <body>
-  
-Вставляются 100 элементов LI в пустой UL.
 
-<input type="button" onclick="alert(bench(DocumentFragmentTest.insertPlain,200))" value="Замерить время на обычную вставку"/>
+  Вставляются 100 элементов LI в пустой UL.
 
-<input type="button" onclick="alert(bench(DocumentFragmentTest.insertDocumentFragment,200))" value="Замерить время на вставку через DocumentFragment">
+  <input type="button" onclick="alert(bench(DocumentFragmentTest.insertPlain,200))" value="Замерить время на обычную вставку" />
 
-<ul id="bench-list"></ul>
+  <input type="button" onclick="alert(bench(DocumentFragmentTest.insertDocumentFragment,200))" value="Замерить время на вставку через DocumentFragment">
 
-<script src="bench.js"></script>  
-<script src="documentfragment-bench.js"></script>
+  <ul id="bench-list"></ul>
+
+  <script src="bench.js"></script>
+  <script src="documentfragment-bench.js"></script>
 
 </body>
+
 </html>

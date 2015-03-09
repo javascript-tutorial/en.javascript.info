@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <style>
@@ -9,32 +10,34 @@
     }
   </style>
 </head>
+
 <body>
 
-<fieldset id="contents">
-  <legend>#contents</legend>
-  <p>
-  Как насчет почитать <a href="http://wikipedia.org">Википедию</a>, или посетить <a href="http://w3.org"><i>W3.org</i></a> и узнать про современные стандарты?
-  </p>
-</fieldset>
+  <fieldset id="contents">
+    <legend>#contents</legend>
+    <p>
+      Как насчет почитать <a href="http://wikipedia.org">Википедию</a>, или посетить <a href="http://w3.org"><i>W3.org</i></a> и узнать про современные стандарты?
+    </p>
+  </fieldset>
 
-<script>
-  document.getElementById('contents').onclick = function(event) {
+  <script>
+    document.getElementById('contents').onclick = function(event) {
 
-    function handleLink(href) {
-      var isLeaving = confirm('Уйти на '+href+'?');
-      if (!isLeaving) return false;
-    }
-
-    var target = event.target;
-    
-    while(target != this) {
-      if (target.nodeName == 'A') {
-        return handleLink(target.getAttribute('href'));
+      function handleLink(href) {
+        var isLeaving = confirm('Уйти на ' + href + '?');
+        if (!isLeaving) return false;
       }
-      target = target.parentNode;
+
+      var target = event.target;
+
+      while (target != this) {
+        if (target.nodeName == 'A') {
+          return handleLink(target.getAttribute('href'));
+        }
+        target = target.parentNode;
+      }
     }
-  }
-</script>
+  </script>
 </body>
+
 </html>

@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
-  <script src="voter.js"></script> 
-  <script src="step-voter.js"></script> <!-- отнаследовать и переопределить методы -->
+  <script src="voter.js"></script>
+  <script src="step-voter.js"></script>
+  <!-- отнаследовать и переопределить методы -->
 </head>
+
 <body>
 
-<div id="voter" class="voter">
-  <span class="down">–</span>
-  <span class="vote">0</span>
-  <span class="up">+</span>
-</div>
+  <div id="voter" class="voter">
+    <span class="down">–</span>
+    <span class="vote">0</span>
+    <span class="up">+</span>
+  </div>
 
-<script>
-
-var voter = new StepVoter({
-  elem: document.getElementById('voter'),
-  step: 2
-});
-
-</script>
+  <script>
+    var voter = new StepVoter({
+      elem: document.getElementById('voter'),
+      step: 2
+    });
+  </script>
 
 </body>
-</html>
 
+</html>

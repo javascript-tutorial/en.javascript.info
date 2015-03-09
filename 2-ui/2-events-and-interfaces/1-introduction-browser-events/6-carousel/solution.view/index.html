@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="style.css">
@@ -6,67 +7,66 @@
 
 <body>
 
-<div id="carousel" class="carousel">
-  <button class="arrow prev">⇦</button>
-  <div class="gallery">
-    <ul class="images">
-      <li><img src="https://js.cx/carousel/1.png">
-      <li><img src="https://js.cx/carousel/2.png">
-      <li><img src="https://js.cx/carousel/3.png">
-      <li><img src="https://js.cx/carousel/4.png">
-      <li><img src="https://js.cx/carousel/5.png">
-      <li><img src="https://js.cx/carousel/6.png">
-      <li><img src="https://js.cx/carousel/7.png">
-      <li><img src="https://js.cx/carousel/8.png">
-      <li><img src="https://js.cx/carousel/9.png">
-      <li><img src="https://js.cx/carousel/10.png">
-    </ul>
+  <div id="carousel" class="carousel">
+    <button class="arrow prev">⇦</button>
+    <div class="gallery">
+      <ul class="images">
+        <li><img src="https://js.cx/carousel/1.png">
+          <li><img src="https://js.cx/carousel/2.png">
+            <li><img src="https://js.cx/carousel/3.png">
+              <li><img src="https://js.cx/carousel/4.png">
+                <li><img src="https://js.cx/carousel/5.png">
+                  <li><img src="https://js.cx/carousel/6.png">
+                    <li><img src="https://js.cx/carousel/7.png">
+                      <li><img src="https://js.cx/carousel/8.png">
+                        <li><img src="https://js.cx/carousel/9.png">
+                          <li><img src="https://js.cx/carousel/10.png">
+      </ul>
+    </div>
+    <button class="arrow next">⇨</button>
   </div>
-  <button class="arrow next">⇨</button>
-</div>
 
-<script>
+  <script>
+    /* этот код помечает картинки, для удобства разработки */
+    var lis = document.getElementsByTagName('li');
+    for (var i = 0; i < lis.length; i++) {
+      lis[i].style.position = 'relative';
+      var span = document.createElement('span');
+      // обычно лучше использовать CSS-классы,
+      // но этот код - для удобства разработки, так что не будем трогать стили
+      span.style.cssText = 'position:absolute;left:0;top:0';
+      span.innerHTML = i + 1;
+      lis[i].appendChild(span);
+    }
 
-/* этот код помечает картинки, для удобства разработки */
-var lis = document.getElementsByTagName('li');
-for(var i=0; i<lis.length; i++) {
-  lis[i].style.position='relative';
-  var span = document.createElement('span');
-  // обычно лучше использовать CSS-классы,
-  // но этот код - для удобства разработки, так что не будем трогать стили
-  span.style.cssText='position:absolute;left:0;top:0';
-  span.innerHTML = i+1;
-  lis[i].appendChild(span);
-}
+    /* конфигурация */
+    var width = 130; // ширина изображения
+    var count = 3; // количество изображений
 
-/* конфигурация */
-var width = 130; // ширина изображения
-var count = 3; // количество изображений
+    var carousel = document.getElementById('carousel');
+    var list = carousel.querySelector('ul');
+    var listElems = carousel.querySelectorAll('li');
 
-var carousel = document.getElementById('carousel');
-var list = carousel.querySelector('ul');
-var listElems = carousel.querySelectorAll('li');
+    var position = 0; // текущий сдвиг влево
 
-var position = 0; // текущий сдвиг влево
+    carousel.querySelector('.prev').onclick = function() {
+      if (position >= 0) return; // уже сдвинулись до упора
 
-carousel.querySelector('.prev').onclick = function() {
-  if (position >= 0) return; // уже сдвинулись до упора
+      // сдвиг влево
+      // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
+      position = Math.min(position + width * count, 0)
+      list.style.marginLeft = position + 'px';
+    };
 
-  // сдвиг влево
-  // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
-  position = Math.min(position + width*count, 0)
-  list.style.marginLeft = position + 'px';
-};
+    carousel.querySelector('.next').onclick = function() {
+      if (position <= -width * (listElems.length - count)) return; // уже до упора
 
-carousel.querySelector('.next').onclick = function() {
-  if (position <= -width*(listElems.length-count)) return; // уже до упора
-
-  // сдвиг вправо
-  // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
-  position = Math.max(position-width*count, -width*(listElems.length-count));
-  list.style.marginLeft = position + 'px';
-};
-
-</script>
+      // сдвиг вправо
+      // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
+      position = Math.max(position - width * count, -width * (listElems.length - count));
+      list.style.marginLeft = position + 'px';
+    };
+  </script>
 </body>
+
 </html>

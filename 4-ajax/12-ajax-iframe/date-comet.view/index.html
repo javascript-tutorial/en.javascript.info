@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<script src="iframeComet.js"></script>
+  <script src="iframeComet.js"></script>
 
-<button onclick="go()">IframeComet.open("comet");</button>
+  <button onclick="go()">IframeComet.open("comet");</button>
 
 
-<div id="showElem"></div>
+  <div id="showElem"></div>
 
-<script>
+  <script>
+    IframeComet.onMessage = IframeComet.onError = show;
 
-IframeComet.onMessage = IframeComet.onError = show;
+    function show(msg) {
+      showElem.innerHTML = msg;
+    }
 
-function show(msg) {
-	showElem.innerHTML = msg;
-}
-
-function go() {
-	IframeComet.open("comet");
-}
-</script>
+    function go() {
+      IframeComet.open("comet");
+    }
+  </script>
 
 
 </body>
+
 </html>

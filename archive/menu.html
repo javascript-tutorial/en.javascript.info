@@ -1,79 +1,76 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<meta charset="utf-8">
-<style>
-
-  .menu ul {
-    margin: 0;
-    list-style: none;
-    padding-left: 20px;
-
-    display: none;
-  }
-
-  .menu .title {
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .menu .title::before {
-    color: green;
-    font-size: 80%;
-    content: '▶ ';
-  }
-
-  .menu_open .title::before {
-    color: green;
-    font-size: 80%;
-    content: '▼ ';
-  }
-  
-
-  .menu_open ul {
-    display: block;
-  }
-
-</style>
+  <meta charset="utf-8">
+  <style>
+    .menu ul {
+      margin: 0;
+      list-style: none;
+      padding-left: 20px;
+      display: none;
+    }
+    
+    .menu .title {
+      font-size: 18px;
+      cursor: pointer;
+    }
+    
+    .menu .title::before {
+      color: green;
+      font-size: 80%;
+      content: '▶ ';
+    }
+    
+    .menu_open .title::before {
+      color: green;
+      font-size: 80%;
+      content: '▼ ';
+    }
+    
+    .menu_open ul {
+      display: block;
+    }
+  </style>
 </head>
+
 <body>
 
-<div id="sweeties" class="menu">
-  <span class="title">Сладости (нажми меня)!</span>
-  <ul>
-    <li>Торт</li>
-    <li>Пончик</li>
-    <li>Пирожное</li>
-  </ul>
-</div>
+  <div id="sweeties" class="menu">
+    <span class="title">Сладости (нажми меня)!</span>
+    <ul>
+      <li>Торт</li>
+      <li>Пончик</li>
+      <li>Пирожное</li>
+    </ul>
+  </div>
 
-<script>
-function Menu(options) {
-  var elem = options.elem;
-  
-  function toggle() {
-    elem.classList.toggle('menu_open');
-  }
-  
-  elem.onclick = function(event) {
-    console.log(event);
-    console.log(this == elem);
-    toggle();
-  }
-  
-  this.toggle = toggle;
-}
+  <script>
+    function Menu(options) {
+      var elem = options.elem;
 
-var menu = new Menu({
-  elem: document.querySelector('#sweeties')
-});
+      function toggle() {
+        elem.classList.toggle('menu_open');
+      }
 
-setInterval(function() {
-  menu.toggle();
-}, 3000)
+      elem.onclick = function(event) {
+        console.log(event);
+        console.log(this == elem);
+        toggle();
+      }
 
-</script>
+      this.toggle = toggle;
+    }
+
+    var menu = new Menu({
+      elem: document.querySelector('#sweeties')
+    });
+
+    setInterval(function() {
+      menu.toggle();
+    }, 3000)
+  </script>
 
 </body>
-</html>
 
+</html>

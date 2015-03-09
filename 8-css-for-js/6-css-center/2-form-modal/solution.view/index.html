@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
   <style>
     /* внешний DIV перекрывает всё окно */
+    
     #box {
       position: fixed;
       left: 0;
@@ -12,8 +14,8 @@
       height: 100%;
       z-index: 999;
     }
-
     /* в нём находится полупрозрачный экран, на 20px меньше */
+    
     #box-inner {
       position: absolute;
       left: 20px;
@@ -24,12 +26,19 @@
       opacity: 0.3;
       filter: alpha(opacity=30);
     }
-
     /* форма находится не в экране, а рядом с ним, чтобы не быть полупрозрачной */
+    
     #box form {
       position: absolute;
-      top: 0; bottom: 0; right: 0; left: 0; /* центрирование */
-      margin: auto;  /* центрирование */
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      /* центрирование */
+      
+      margin: auto;
+      /* центрирование */
+      
       height: 120px;
       width: 300px;
       border: 1px solid black;
@@ -38,32 +47,48 @@
     }
   </style>
 </head>
+
 <body style="height:2000px">
 
-<p>Текст Текст Текст</p>
+  <p>Текст Текст Текст</p>
 
-<button onclick="alert('Эта кнопка не должна работать')">Эта кнопка не работает</button>
+  <button onclick="alert('Эта кнопка не должна работать')">Эта кнопка не работает</button>
 
-<p>Текст Текст Текст</p>
+  <p>Текст Текст Текст</p>
 
 
-<div id="box">
-<div id="box-inner">
-</div>
+  <div id="box">
+    <div id="box-inner">
+    </div>
 
-  <form>
-   Добро пожаловать!
-  <table>
-    <tr><td>Логин</td><td><input></td></tr>
-    <tr><td>Пароль</td><td><input></td></tr>
-    <tr><td colspan="2"><input type="submit" value="Войти"></td></tr>
-  </table>
+    <form>
+      Добро пожаловать!
+      <table>
+        <tr>
+          <td>Логин</td>
+          <td>
+            <input>
+          </td>
+        </tr>
+        <tr>
+          <td>Пароль</td>
+          <td>
+            <input>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="Войти">
+          </td>
+        </tr>
+      </table>
 
-  </form>
+    </form>
 
-</div>
+  </div>
 
 
 
 </body>
+
 </html>

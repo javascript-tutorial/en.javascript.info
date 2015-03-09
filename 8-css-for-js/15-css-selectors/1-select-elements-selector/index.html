@@ -1,76 +1,79 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
 </head>
+
 <body>
 
-<input type="checkbox"> 
-<input type="checkbox" checked> 
-<input type="text" id="message">
+  <input type="checkbox">
+  <input type="checkbox" checked>
+  <input type="text" id="message">
 
-<h3 id="widget-title">Сообщения:</h3>
-<ul id="messages">
-  <li id="message-1">Сообщение 1</li>
-  <li id="message-2">Сообщение 2</li>
-  <li id="message-3" data-action="delete">Сообщение 3</li>
-  <li id="message-4" data-action="edit do-not-delete">Сообщение 4</li>
-  <li id="message-5" data-action="edit delete">Сообщение 5</li>
-  <li><a href="#">...</a></li>
-</ul>
-
-
-<a href="http://site.com/list.zip">Ссылка на архив</a>
-<a href="http://site.com/list.pdf">..И на PDF</a>
+  <h3 id="widget-title">Сообщения:</h3>
+  <ul id="messages">
+    <li id="message-1">Сообщение 1</li>
+    <li id="message-2">Сообщение 2</li>
+    <li id="message-3" data-action="delete">Сообщение 3</li>
+    <li id="message-4" data-action="edit do-not-delete">Сообщение 4</li>
+    <li id="message-5" data-action="edit delete">Сообщение 5</li>
+    <li><a href="#">...</a></li>
+  </ul>
 
 
-<script>
-// тестовая функция для селекторов 
-// проверяет, чтобы элементов по селектору selector было ровно count
-function test(selector, count) {
-  var elems = document.querySelectorAll(selector);
-  var ok = (elems.length == count);
+  <a href="http://site.com/list.zip">Ссылка на архив</a>
+  <a href="http://site.com/list.pdf">..И на PDF</a>
 
-  if (!ok) alert(selector+": " + elems.length + " != " + count);
-}
 
-// ------------- селекторы --------------
+  <script>
+    // тестовая функция для селекторов 
+    // проверяет, чтобы элементов по селектору selector было ровно count
+    function test(selector, count) {
+      var elems = document.querySelectorAll(selector);
+      var ok = (elems.length == count);
 
-// Выбрать input типа checkbox
-test('input[type="checkbox"]', 1);
+      if (!ok) alert(selector + ": " + elems.length + " != " + count);
+    }
 
-// Выбрать input типа checkbox, НЕ отмеченный
-test('input[type="checkbox"]:not(:checked)', 1);
+    // ------------- селекторы --------------
 
-// Найти все элементы с id=message или message-*
-test('[id|="message"]', 6); 
+    // Выбрать input типа checkbox
+    test('input[type="checkbox"]', 1);
 
-// Найти все элементы с id=message-*
-test('[id^="message-"]', 5); 
+    // Выбрать input типа checkbox, НЕ отмеченный
+    test('input[type="checkbox"]:not(:checked)', 1);
 
-// Найти все ссылки с расширением href="...zip"
-test('a[href$=".zip"]', 1); 
+    // Найти все элементы с id=message или message-*
+    test('[id|="message"]', 6);
 
-// Найти все элементы с data-action, содержащим delete в списке (через пробел)
-test('[data-action~="delete"]', 2); 
+    // Найти все элементы с id=message-*
+    test('[id^="message-"]', 5);
 
-// Найти все элементы, у которых ЕСТЬ атрибут data-action, 
-// но он НЕ содержащит delete в списке (через пробел)
-test('[data-action]:not([data-action~="delete"])', 1); 
+    // Найти все ссылки с расширением href="...zip"
+    test('a[href$=".zip"]', 1);
 
-// Выбрать все чётные элементы списка #messages
-test('#messages li:nth-child(2n)', 3);
+    // Найти все элементы с data-action, содержащим delete в списке (через пробел)
+    test('[data-action~="delete"]', 2);
 
-// Выбрать один элемент сразу за заголовком h3#widget-title
-// на том же уровне вложенности
-test('h3#widget-title + *', 1);
+    // Найти все элементы, у которых ЕСТЬ атрибут data-action, 
+    // но он НЕ содержащит delete в списке (через пробел)
+    test('[data-action]:not([data-action~="delete"])', 1);
 
-// Выбрать все ссылки, следующие за заголовком h3#widget-title
-// на том же уровне вложенности
-test('h3#widget-title ~ a', 2);
+    // Выбрать все чётные элементы списка #messages
+    test('#messages li:nth-child(2n)', 3);
 
-// Выбрать ссылку внутри последнего элемента списка #messages
-test('#messages li:last-child a', 1);
-</script>
+    // Выбрать один элемент сразу за заголовком h3#widget-title
+    // на том же уровне вложенности
+    test('h3#widget-title + *', 1);
+
+    // Выбрать все ссылки, следующие за заголовком h3#widget-title
+    // на том же уровне вложенности
+    test('h3#widget-title ~ a', 2);
+
+    // Выбрать ссылку внутри последнего элемента списка #messages
+    test('#messages li:last-child a', 1);
+  </script>
 </body>
+
 </html>

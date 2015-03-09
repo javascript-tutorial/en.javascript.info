@@ -1,86 +1,89 @@
 <!DOCTYPE HTML>
 <html>
+
 <head>
-<style>
-  .tree span:hover {
-    font-weight: bold;
-  }
-  .tree span {
-    cursor: pointer;
-  }
-</style>
-<meta charset="utf-8">
+  <style>
+    .tree span:hover {
+      font-weight: bold;
+    }
+    
+    .tree span {
+      cursor: pointer;
+    }
+  </style>
+  <meta charset="utf-8">
 </head>
+
 <body>
 
-<ul class="tree">
+  <ul class="tree">
     <li>Животные
-        <ul>
-            <li>Млекопитающие
-                <ul>
-                    <li>Коровы</li>
-                    <li>Ослы</li>
-                    <li>Собаки</li>
-                    <li>Тигры</li>
-                </ul>
-            </li>
-            <li>Другие
-                <ul>
-                    <li>Змеи</li>
-                    <li>Птицы</li>
-                    <li>Ящерицы</li>
-                </ul>
-            </li>
-        </ul>
+      <ul>
+        <li>Млекопитающие
+          <ul>
+            <li>Коровы</li>
+            <li>Ослы</li>
+            <li>Собаки</li>
+            <li>Тигры</li>
+          </ul>
+        </li>
+        <li>Другие
+          <ul>
+            <li>Змеи</li>
+            <li>Птицы</li>
+            <li>Ящерицы</li>
+          </ul>
+        </li>
+      </ul>
     </li>
     <li>Рыбы
-        <ul>
-            <li>Аквариумные
-                <ul>
-                    <li>Гуппи</li>
-                    <li>Скалярии</li>
-                </ul>
+      <ul>
+        <li>Аквариумные
+          <ul>
+            <li>Гуппи</li>
+            <li>Скалярии</li>
+          </ul>
 
-            </li>
-            <li>Морские
-                <ul>
-                    <li>Морская форель</li>
-                </ul>
-            </li>
-        </ul>
+        </li>
+        <li>Морские
+          <ul>
+            <li>Морская форель</li>
+          </ul>
+        </li>
+      </ul>
     </li>
-</ul>
+  </ul>
 
-<script>
-var tree = document.getElementsByTagName('ul')[0];
+  <script>
+    var tree = document.getElementsByTagName('ul')[0];
 
-var treeLis = tree.getElementsByTagName('li');
+    var treeLis = tree.getElementsByTagName('li');
 
-/* wrap all textNodes into spans */
-for(var i=0; i<treeLis.length; i++) {
-  var li = treeLis[i];
+    /* wrap all textNodes into spans */
+    for (var i = 0; i < treeLis.length; i++) {
+      var li = treeLis[i];
 
-  var span = document.createElement('span');
-  li.insertBefore(span, li.firstChild);
-  span.appendChild(span.nextSibling);
-}
+      var span = document.createElement('span');
+      li.insertBefore(span, li.firstChild);
+      span.appendChild(span.nextSibling);
+    }
 
-/* catch clicks on whole tree */
-tree.onclick = function(event) {
-  var target = event.target;
+    /* catch clicks on whole tree */
+    tree.onclick = function(event) {
+      var target = event.target;
 
-  if (target.tagName != 'SPAN') {
-    return;
-  }
+      if (target.tagName != 'SPAN') {
+        return;
+      }
 
-  /* now we know the SPAN is clicked */
-  var childrenContainer = target.parentNode.getElementsByTagName('ul')[0];
-  if (!childrenContainer) return; // no children
+      /* now we know the SPAN is clicked */
+      var childrenContainer = target.parentNode.getElementsByTagName('ul')[0];
+      if (!childrenContainer) return; // no children
 
-  childrenContainer.hidden = !childrenContainer.hidden;
-}
-
-</script>
+      childrenContainer.hidden = !childrenContainer.hidden;
+    }
+  </script>
 
 </body>
+
 </html>

@@ -1,42 +1,45 @@
 <!doctype html>
 <html>
+
 <head>
   <meta charset="UTF-8">
 </head>
+
 <body>
-  
-<script>
-function Machine(power) {
-  this._enabled = false;
 
-  this.enable = function() {
-    this._enabled = true;
-  };
+  <script>
+    function Machine(power) {
+      this._enabled = false;
 
-  this.disable = function() {
-    this._enabled = false;
-  };
-}
+      this.enable = function() {
+        this._enabled = true;
+      };
 
-function CoffeeMachine(power) {
-  Machine.apply(this, arguments);
+      this.disable = function() {
+        this._enabled = false;
+      };
+    }
 
-  var waterAmount = 0;
+    function CoffeeMachine(power) {
+      Machine.apply(this, arguments);
 
-  this.setWaterAmount = function(amount) {
-    waterAmount = amount;
-  };
+      var waterAmount = 0;
 
-  function onReady() {
-    alert('Кофе готово!');
-  }
+      this.setWaterAmount = function(amount) {
+        waterAmount = amount;
+      };
 
-  this.run = function() {
-    setTimeout(onReady, 1000);
-  };
+      function onReady() {
+        alert('Кофе готово!');
+      }
 
-}
-</script>
+      this.run = function() {
+        setTimeout(onReady, 1000);
+      };
+
+    }
+  </script>
 
 </body>
+
 </html>

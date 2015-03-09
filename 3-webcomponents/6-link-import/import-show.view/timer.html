@@ -1,18 +1,19 @@
 <!DOCTYPE HTML>
 <html>
-  <body>
-    
-    <time id="timer">0</time>
 
-    <script>
-      var localDocument = document.currentScript.ownerDocument;
-      var timer = localDocument.getElementById('timer');
-      
-      var timerId = setInterval(function() {
-        timer.innerHTML++;
-      }, 1000);  
+<body>
 
-    </script>
-    
-  </body>
+  <time id="timer">0</time>
+
+  <script>
+    var localDocument = document.currentScript.ownerDocument;
+    var timer = localDocument.getElementById('timer');
+
+    var timerId = setInterval(function() {
+      timer.innerHTML++;
+    }, 1000);
+  </script>
+
+</body>
+
 </html>

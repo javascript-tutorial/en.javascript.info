@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="menu.css">
@@ -7,41 +8,46 @@
   <script src="https://cdn.polyfill.io/v1/polyfill.js?features=CustomEvent,Element.prototype.closest"></script>
   <script src="menu.js"></script>
 </head>
+
 <body>
 
-<script type="text/template" id="menu-template">
-<div class="menu">
-  <span class="title"><%-title%></span>
-</div>
-</script>
+  <script type="text/template" id="menu-template">
+    <div class="menu">
+      <span class="title"><%-title%></span>
+    </div>
+  </script>
 
-<script type="text/template" id="menu-list-template">
-<ul>
-  <% for(var name in items) { %>
-  <li><a href="#<%=encodeURIComponent(name)%>"><%-items[name]%></a></li>
-  <% } %>
-</ul>
-</script>
+  <script type="text/template" id="menu-list-template">
+    <ul>
+      <% for(var name in items) { %>
+        <li>
+          <a href="#<%=encodeURIComponent(name)%>">
+            <%-items[name]%>
+          </a>
+        </li>
+        <% } %>
+    </ul>
+  </script>
 
-<script>
-var menu = new Menu({ 
-  title: "Сладости",
-  template: _.template( document.getElementById('menu-template').innerHTML.trim()),
-  listTemplate: _.template( document.getElementById('menu-list-template').innerHTML.trim()),
-  items: {
-    cake: "Торт", // cake  <a href="#cake">Торт</a>
-    donut: "Пончик", // donut
-    chokolate: "Шоколадка" // chokolate
-  }
-});
+  <script>
+    var menu = new Menu({
+      title: "Сладости",
+      template: _.template(document.getElementById('menu-template').innerHTML.trim()),
+      listTemplate: _.template(document.getElementById('menu-list-template').innerHTML.trim()),
+      items: {
+        cake: "Торт", // cake  <a href="#cake">Торт</a>
+        donut: "Пончик", // donut
+        chokolate: "Шоколадка" // chokolate
+      }
+    });
 
-var elem = menu.getElem();
-document.body.appendChild(elem);
-elem.addEventListener('select', function(event) {
-  alert(event.detail);
-});
-
-</script>
+    var elem = menu.getElem();
+    document.body.appendChild(elem);
+    elem.addEventListener('select', function(event) {
+      alert(event.detail);
+    });
+  </script>
 
 </body>
+
 </html>
