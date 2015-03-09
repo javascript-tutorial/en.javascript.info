@@ -1,8 +1,8 @@
 describe("makeCaching", function() {
 
   it("запоминает предыдущее значение функции с таким аргументом", function() {
-    function f(x) { 
-      return Math.random()*x;  
+    function f(x) {
+      return Math.random() * x;
     }
 
     f = makeCaching(f);
@@ -10,10 +10,10 @@ describe("makeCaching", function() {
     var a = f(1);
     var b = f(1);
     assert.equal(a, b);
- 
-    var anotherValue = f(2);    
+
+    var anotherValue = f(2);
     // почти наверняка другое значение
-    assert.notEqual( a, anotherValue );
+    assert.notEqual(a, anotherValue);
   });
 
   it("сохраняет контекст вызова", function() {
@@ -24,8 +24,8 @@ describe("makeCaching", function() {
     var spy = obj.spy;
     obj.spy = makeCaching(obj.spy);
     obj.spy(123);
-    assert( spy.calledWith(123) );
-    assert( spy.calledOn(obj) );
+    assert(spy.calledWith(123));
+    assert(spy.calledOn(obj));
   });
 
 });

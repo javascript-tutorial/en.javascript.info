@@ -3,9 +3,9 @@ function find(array, value) {
     return array.indexOf(value);
   }
 
-  for(var i=0; i<array.length; i++) {
+  for (var i = 0; i < array.length; i++) {
     if (array[i] === value) return i;
   }
-   
+
   return -1;
 }

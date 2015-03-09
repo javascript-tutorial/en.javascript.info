@@ -1,4 +1,3 @@
-
 function Voter(options) {
   var elem = this._elem = options.elem;
   this._voteElem = elem.querySelector('.vote');
@@ -30,4 +29,3 @@ Voter.prototype._voteDecrease = function() {
 Voter.prototype.setVote = function(vote) {
   this._voteElem.innerHTML = +vote;
 };
-

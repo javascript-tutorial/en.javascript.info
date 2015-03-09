@@ -5,16 +5,16 @@ var dragManager = new function() {
 
   var self = this;
 
-  function onMouseDown(e){
+  function onMouseDown(e) {
 
-    if (e.which != 1 ) { // не левой кнопкой
+    if (e.which != 1) { // не левой кнопкой
       return false;
     }
 
     dragZone = findDragZone(e);
 
     if (!dragZone) {
-	    return;
+      return;
     }
 
     // запомним, что элемент нажат на текущих координатах pageX/pageY
@@ -27,8 +27,8 @@ var dragManager = new function() {
   function onMouseMove(e) {
     if (!dragZone) return; // элемент не зажат
 
-    if ( !avatar ) { // элемент нажат, но пока не начали его двигать
-      if ( Math.abs(e.pageX-downX) < 3 && Math.abs(e.pageY-downY) < 3 ) {
+    if (!avatar) { // элемент нажат, но пока не начали его двигать
+      if (Math.abs(e.pageX - downX) < 3 && Math.abs(e.pageY - downY) < 3) {
         return;
       }
       // попробовать захватить элемент
@@ -63,7 +63,7 @@ var dragManager = new function() {
 
   function onMouseUp(e) {
 
-    if (e.which != 1 ) { // не левой кнопкой
+    if (e.which != 1) { // не левой кнопкой
       return false;
     }
 
@@ -89,7 +89,7 @@ var dragManager = new function() {
 
   function findDragZone(event) {
     var elem = event.target;
-    while(elem != document && !elem.dragZone) {
+    while (elem != document && !elem.dragZone) {
       elem = elem.parentNode;
     }
     return elem.dragZone;
@@ -99,7 +99,7 @@ var dragManager = new function() {
     // получить элемент под аватаром
     var elem = avatar.getTargetElem();
 
-    while(elem != document && !elem.dropTarget) {
+    while (elem != document && !elem.dropTarget) {
       elem = elem.parentNode;
     }
 

@@ -1,8 +1,6 @@
-
-
 var elems = document.querySelectorAll('form,div,p');
 
-for(var i=0; i<elems.length; i++) {
+for (var i = 0; i < elems.length; i++) {
   elems[i].addEventListener("click", highlightThis, true);
   elems[i].addEventListener("click", highlightThis, false);
 }

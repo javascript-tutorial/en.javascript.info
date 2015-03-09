@@ -13,12 +13,12 @@ function AutocompleteList(provider) {
     filteredResults = provider.filterByStart(value);
 
     if (filteredResults.length) {
-      elem.html( '<li>' + filteredResults.join('</li><li>') + '</li>' );
+      elem.html('<li>' + filteredResults.join('</li><li>') + '</li>');
     } else {
       elem.empty();
     }
 
-    currentIndex = 0; 
+    currentIndex = 0;
     renderCurrent();
 
     // это событие, как и всё обновление,
@@ -34,8 +34,8 @@ function AutocompleteList(provider) {
     elem.children().eq(currentIndex).addClass('selected');
   }
 
-  function clearCurrent() {   
-    elem.children().eq(currentIndex).removeClass('selected'); 
+  function clearCurrent() {
+    elem.children().eq(currentIndex).removeClass('selected');
   }
 
   this.get = function() {

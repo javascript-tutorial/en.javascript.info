@@ -6,8 +6,8 @@ describe("multiplyNumeric", function() {
       title: "Моё меню"
     };
     multiplyNumeric(menu);
-    assert.equal( menu.width, 400 );
-    assert.equal( menu.height, 600 );
-    assert.equal( menu.title, "Моё меню" );
+    assert.equal(menu.width, 400);
+    assert.equal(menu.height, 600);
+    assert.equal(menu.title, "Моё меню");
   });
 });

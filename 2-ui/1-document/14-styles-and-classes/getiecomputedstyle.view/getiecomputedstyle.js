@@ -13,6 +13,6 @@ function getIEComputedStyle(elem, prop) {
   // restore values for left
   elem.style.left = leftCopy;
   elem.runtimeStyle.left = runtimeLeftCopy;
- 
+
   return value;
 }

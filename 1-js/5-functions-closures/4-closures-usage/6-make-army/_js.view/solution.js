@@ -2,18 +2,18 @@ function makeArmy() {
 
   var shooters = [];
 
-  for(var i=0; i<10; i++) {
+  for (var i = 0; i < 10; i++) {
 
     var shooter = (function(x) {
 
       return function() {
-        alert( x ); 
+        alert(x);
       };
 
     })(i);
 
-    shooters.push(shooter);   
+    shooters.push(shooter);
   }
 
-  return shooters; 
+  return shooters;
 }

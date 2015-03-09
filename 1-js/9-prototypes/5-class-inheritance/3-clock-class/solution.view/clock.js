@@ -1,4 +1,3 @@
-
 function Clock(options) {
   this._template = options.template;
 }

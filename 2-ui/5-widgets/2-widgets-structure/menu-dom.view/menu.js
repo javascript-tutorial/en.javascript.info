@@ -15,8 +15,8 @@ function Menu(options) {
     titleElem.className = "title";
     titleElem.textContent = options.title;
 
-    elem.onmousedown = function() { 
-      return false; 
+    elem.onmousedown = function() {
+      return false;
     };
 
     elem.onclick = function(event) {

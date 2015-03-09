@@ -1,5 +1,3 @@
-
-
 function ExtendedClock(options) {
   Clock.apply(this, arguments);
   this._precision = +options.precision || 1000;

@@ -1,11 +1,11 @@
 function makeBuffer() {
-  var text = ''; 
-    
+  var text = '';
+
   function buffer(piece) {
     if (arguments.length == 0) { // вызов без аргументов
       return text;
     }
-    text += piece; 
+    text += piece;
   };
 
   buffer.clear = function() {

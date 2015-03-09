@@ -9,7 +9,7 @@ function animate(options) {
 
     // текущее состояние анимации
     var progress = options.timing(timeFraction)
-    
+
     options.draw(progress);
 
     if (timeFraction < 1) {

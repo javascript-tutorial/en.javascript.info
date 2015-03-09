@@ -1,14 +1,13 @@
-
 kinput.onkeydown = kinput.onkeyup = kinput.onkeypress = handle;
 
 var lastTime = Date.now();
 
 function handle(e) {
   if (form.elements[e.type + 'Ignore'].checked) return;
-   
-  var text = event.type + 
-    ' keyCode=' + e.keyCode + 
-    ' which=' + e.which + 
+
+  var text = event.type +
+    ' keyCode=' + e.keyCode +
+    ' which=' + e.which +
     ' charCode=' + e.charCode +
     ' char=' + String.fromCharCode(e.keyCode || e.charCode) +
     (e.shiftKey ? ' +shift' : '') +

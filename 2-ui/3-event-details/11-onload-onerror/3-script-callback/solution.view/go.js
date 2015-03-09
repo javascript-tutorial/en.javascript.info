@@ -1,3 +1,3 @@
-function go () {
+function go() {
   alert("ok");
 }

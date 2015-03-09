@@ -9,7 +9,7 @@ var subscribers = {};
 
 function onSubscribe(req, res) {
   var id = Math.random();
-  
+
   res.setHeader('Content-Type', 'text/plain;charset=utf-8');
   res.setHeader("Cache-Control", "no-cache, must-revalidate");
 
@@ -27,7 +27,7 @@ function publish(message) {
 
   //console.log("есть сообщение, клиентов:" + Object.keys(subscribers).length);    
 
-  for(var id in subscribers) {
+  for (var id in subscribers) {
     //console.log("отсылаю сообщение " + id);
     var res = subscribers[id];
     res.end(message);
@@ -43,22 +43,22 @@ function accept(req, res) {
   if (urlParsed.pathname == '/subscribe') {
     onSubscribe(req, res); // собственно, подписка
     return;
-  } 
+  }
 
   // отправка сообщения
   if (urlParsed.pathname == '/publish' && req.method == 'POST') {
     // принять POST-запрос
     req.setEncoding('utf8');
     var message = '';
-    req.on('data', function (chunk) {
+    req.on('data', function(chunk) {
       message += chunk;
-    }).on('end', function () {
+    }).on('end', function() {
       publish(message); // собственно, отправка
       res.end("ok");
     });
-  
+
     return;
-  } 
+  }
 
   // всё остальное -- статика
   fileServer.serve(req, res);
@@ -74,4 +74,3 @@ if (!module.parent) {
 } else {
   exports.accept = accept;
 }
-

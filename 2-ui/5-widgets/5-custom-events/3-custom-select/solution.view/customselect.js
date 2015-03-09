@@ -25,11 +25,11 @@ function CustomSelect(options) {
     elem.querySelector('.title').innerHTML = title;
 
     var widgetEvent = new CustomEvent('select', {
-      bubbles: true, 
+      bubbles: true,
       detail: {
         title: title,
         value: value
-      } 
+      }
     });
 
     elem.dispatchEvent(widgetEvent);

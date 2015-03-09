@@ -1,4 +1,3 @@
-
 // элемент TD, внутри которого сейчас курсор
 var currentElem = null;
 
@@ -11,7 +10,7 @@ table.onmouseover = function(event) {
   }
 
   // посмотрим, куда пришёл курсор
-  var target = event.target; 
+  var target = event.target;
 
   // уж не на TD ли?
   while (target != this) {
@@ -33,7 +32,7 @@ table.onmouseout = function(event) {
   // произошёл уход с элемента - проверим, куда, может быть на потомка?
   var relatedTarget = event.relatedTarget;
   if (relatedTarget) { // может быть relatedTarget = null
-    while(relatedTarget) {
+    while (relatedTarget) {
       // идём по цепочке родителей и проверяем, 
       // если переход внутрь currentElem - игнорируем это событие
       if (relatedTarget == currentElem) return;

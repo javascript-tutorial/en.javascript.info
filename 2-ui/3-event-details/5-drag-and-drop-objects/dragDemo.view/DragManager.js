@@ -8,12 +8,12 @@ var DragManager = new function() {
    *   downX/downY - координаты, на которых был mousedown
    *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
    * }
-  */
+   */
   var dragObject = {};
 
   var self = this;
 
-  function onMouseDown(e){
+  function onMouseDown(e) {
 
     if (e.which != 1) return;
 
@@ -32,12 +32,12 @@ var DragManager = new function() {
   function onMouseMove(e) {
     if (!dragObject.elem) return; // элемент не зажат
 
-    if ( !dragObject.avatar ) { // если перенос не начат...
+    if (!dragObject.avatar) { // если перенос не начат...
       var moveX = e.pageX - dragObject.downX;
       var moveY = e.pageY - dragObject.downY;
 
       // если мышь передвинулась в нажатом состоянии недостаточно далеко
-      if ( Math.abs(moveX) < 3 && Math.abs(moveY) < 3 ) {        
+      if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
         return;
       }
 
@@ -75,17 +75,17 @@ var DragManager = new function() {
   }
 
   function finishDrag(e) {
-      var dropElem = findDroppable(e);
+    var dropElem = findDroppable(e);
 
-      if (!dropElem) {
-        self.onDragCancel(dragObject);
-      } else {
-        self.onDragEnd(dragObject, dropElem);
-      }
+    if (!dropElem) {
+      self.onDragCancel(dragObject);
+    } else {
+      self.onDragEnd(dragObject, dropElem);
+    }
   }
 
   function createAvatar(e) {
-  
+
     // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
     var avatar = dragObject.elem;
     var old = {
@@ -140,13 +140,13 @@ var DragManager = new function() {
   document.onmouseup = onMouseUp;
   document.onmousedown = onMouseDown;
 
-  this.onDragEnd = function(dragObject, dropElem) { };
-  this.onDragCancel = function(dragObject) { };
+  this.onDragEnd = function(dragObject, dropElem) {};
+  this.onDragCancel = function(dragObject) {};
 
 };
 
 
-function getCoords(elem) {  // кроме IE8-
+function getCoords(elem) { // кроме IE8-
   var box = elem.getBoundingClientRect();
 
   return {
@@ -155,4 +155,3 @@ function getCoords(elem) {  // кроме IE8-
   };
 
 }
-

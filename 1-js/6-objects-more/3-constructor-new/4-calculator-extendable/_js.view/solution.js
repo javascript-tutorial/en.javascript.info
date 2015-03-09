@@ -16,7 +16,7 @@ function Calculator() {
       op = split[1],
       b = +split[2]
 
-    if(!methods[op] || isNaN(a) || isNaN(b)) {
+    if (!methods[op] || isNaN(a) || isNaN(b)) {
       return NaN;
     }
 

@@ -10,10 +10,10 @@ function scriptRequest(url, onSuccess, onError) {
 
   // укажем это имя в URL запроса 
   url += ~url.indexOf('?') ? '&' : '?';
-  url += 'callback=CallbackRegistry.'+callbackName;
+  url += 'callback=CallbackRegistry.' + callbackName;
 
   // ..и создадим саму функцию в реестре
-  CallbackRegistry[callbackName] = function(data) {       
+  CallbackRegistry[callbackName] = function(data) {
     scriptOk = true; // обработчик вызвался, указать что всё ок  
     delete CallbackRegistry[callbackName]; // можно очистить реестр
     onSuccess(data); // и вызвать onSuccess
@@ -21,21 +21,21 @@ function scriptRequest(url, onSuccess, onError) {
 
   // эта функция сработает при любом результате запроса
   // важно: при успешном результате - всегда после JSONP-обработчика 
-  function checkCallback() {      
+  function checkCallback() {
     if (scriptOk) return; // сработал обработчик?
-    delete CallbackRegistry[callbackName]; 
-    onError(url);  // нет - вызвать onError
+    delete CallbackRegistry[callbackName];
+    onError(url); // нет - вызвать onError
   }
 
-  var script = document.createElement('script');  
+  var script = document.createElement('script');
 
   // в старых IE поддерживается только событие, а не onload/onerror
   // в теории 'readyState=loaded' означает "скрипт загрузился", 
   // а 'readyState=complete' -- "скрипт выполнился", но иногда
   // почему-то случается только одно из них, поэтому проверяем оба
-  script.onreadystatechange = function() {    
-    if (this.readyState == 'complete' || this.readyState == 'loaded'){   
-      this.onreadystatechange = null;   
+  script.onreadystatechange = function() {
+    if (this.readyState == 'complete' || this.readyState == 'loaded') {
+      this.onreadystatechange = null;
       setTimeout(checkCallback, 0); // Вызвать checkCallback - после скрипта
     }
   }
@@ -46,4 +46,3 @@ function scriptRequest(url, onSuccess, onError) {
 
   document.body.appendChild(script);
 }
-

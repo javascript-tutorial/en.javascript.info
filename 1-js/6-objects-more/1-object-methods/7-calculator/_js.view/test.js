@@ -9,11 +9,11 @@ describe("calculator", function() {
   });
 
   it("при вводе 2 и 3 сумма равна 5", function() {
-    assert.equal( calculator.sum(), 5 );
+    assert.equal(calculator.sum(), 5);
   });
 
   it("при вводе 2 и 3 произведение равно 6", function() {
-    assert.equal( calculator.mul(), 6 );
+    assert.equal(calculator.mul(), 6);
   });
 });
 

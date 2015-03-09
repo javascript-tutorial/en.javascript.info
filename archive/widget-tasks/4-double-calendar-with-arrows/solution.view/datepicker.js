@@ -2,8 +2,8 @@
  * options:
  *   value Date или объект {year,month,day}} -- дата, для которой показывать календарь
  *     если в объекте указаны только {year,month}, то день не выбран
-*/
-function DatePicker(options) { 
+ */
+function DatePicker(options) {
   var elem;
   var calendarLeft;
   var calendarRight;
@@ -50,7 +50,10 @@ function DatePicker(options) {
 
     if (!calendarCache[key]) {
       calendar = calendarCache[key] = new Calendar({
-        value: {year: year, month: month}
+        value: {
+          year: year,
+          month: month
+        }
       });
       $(calendar).on("select", onCalendarSelect);
     } else {
@@ -78,7 +81,7 @@ function DatePicker(options) {
     }
 
     $(self).triggerHandler({
-      type: "select", 
+      type: "select",
       value: e.target.getValue()
     });
   }

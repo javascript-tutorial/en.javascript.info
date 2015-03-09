@@ -2,7 +2,7 @@ var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
 
-var fileServer = new (require('node-static')).Server('.');
+var fileServer = new(require('node-static')).Server('.');
 
 function onDigits(req, res) {
   res.writeHead(200, {
@@ -10,7 +10,7 @@ function onDigits(req, res) {
     'Cache-Control': 'no-cache'
   });
 
-  var i=0;
+  var i = 0;
 
   var timer = setInterval(write, 1000);
   write();
@@ -26,7 +26,7 @@ function onDigits(req, res) {
     }
 
     res.write('data: ' + i + '\n\n');
-    
+
   }
 }
 

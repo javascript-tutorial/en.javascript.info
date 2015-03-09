@@ -7,7 +7,9 @@ function Menu(options) {
   }
 
   function render() {
-    var html = options.template({title: options.title});
+    var html = options.template({
+      title: options.title
+    });
 
     elem = document.createElement('div');
     elem.innerHTML = html;
@@ -32,8 +34,10 @@ function Menu(options) {
 
   function renderItems() {
     if (elem.querySelector('ul')) return;
-    
-    var listHtml = options.listTemplate({items: options.items});
+
+    var listHtml = options.listTemplate({
+      items: options.items
+    });
     elem.insertAdjacentHTML("beforeEnd", listHtml);
   }
 

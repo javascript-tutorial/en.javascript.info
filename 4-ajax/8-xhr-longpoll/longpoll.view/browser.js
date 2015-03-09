@@ -17,12 +17,12 @@ function PublishForm(form, url) {
       sendMessage(message);
     }
     return false;
-  };  
+  };
 }
 
 // Получение сообщений, COMET
 function SubscribePane(elem, url) {
-  
+
   function showMessage(message) {
     var messageElem = document.createElement('div');
     messageElem.appendChild(document.createTextNode(message));
@@ -41,16 +41,16 @@ function SubscribePane(elem, url) {
         return;
       }
 
-      if (this.status != 404 ) {  // 404 может означать, что сервер перезагружается
+      if (this.status != 404) { // 404 может означать, что сервер перезагружается
         showMessage(this.statusText); // показать ошибку
       }
-      
-      setTimeout(subscribe, 1000);  // попробовать ещё раз через 1 сек
+
+      setTimeout(subscribe, 1000); // попробовать ещё раз через 1 сек
     }
     xhr.open("GET", url, true);
     xhr.send();
   }
-  
-  subscribe(); 
-  
+
+  subscribe();
+
 }

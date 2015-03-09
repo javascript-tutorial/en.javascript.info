@@ -9,4 +9,3 @@ function inBetween(a, b) {
 function inArray(arr) {
   // ...ваш код...
 }
-

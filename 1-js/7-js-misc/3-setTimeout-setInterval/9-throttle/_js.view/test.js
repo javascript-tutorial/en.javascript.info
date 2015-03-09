@@ -1,7 +1,10 @@
 describe("throttle(f, 1000)", function() {
   var f1000;
   var log = "";
-  function f(a) { log += a; } 
+
+  function f(a) {
+    log += a;
+  }
 
   before(function() {
     f1000 = throttle(f, 1000);
@@ -19,9 +22,9 @@ describe("throttle(f, 1000)", function() {
     // через 1000 мс запланирован вызов с последним аргументом 
 
     assert.equal(log, "1"); // пока что сработал только первый вызов
- 
+
     this.clock.tick(1000); // прошло 1000мс времени
-    assert.equal(log, "13");  // log==13, т.к. сработал вызов f1000(3)
+    assert.equal(log, "13"); // log==13, т.к. сработал вызов f1000(3)
   });
 
   it("тормозит третье срабатывание до 1000мс после второго", function() {
@@ -31,7 +34,7 @@ describe("throttle(f, 1000)", function() {
     f1000(5); // (тормозим, с последнего вызова прошло 200мс - менее 1000мс)
     this.clock.tick(700);
     f1000(6); // (тормозим, с последнего вызова прошло 900мс - менее 1000мс)
- 
+
     this.clock.tick(100); // сработал вызов с 6
 
     assert.equal(log, "136");

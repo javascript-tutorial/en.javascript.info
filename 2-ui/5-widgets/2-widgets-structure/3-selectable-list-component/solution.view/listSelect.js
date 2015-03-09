@@ -1,4 +1,3 @@
-
 function ListSelect(options) {
   var elem = options.elem;
 
@@ -12,7 +11,7 @@ function ListSelect(options) {
     var li = e.target.closest('li');
     if (!li) return;
 
-    if(e.metaKey || e.ctrlKey) { // для Mac проверяем Cmd, т.к. Ctrl + click там контекстное меню
+    if (e.metaKey || e.ctrlKey) { // для Mac проверяем Cmd, т.к. Ctrl + click там контекстное меню
       toggleSelect(li);
     } else if (e.shiftKey) {
       selectFromLast(li);
@@ -45,17 +44,17 @@ function ListSelect(options) {
     if (startElem == target) {
       // клик на том же элементе, что и раньше
       // это особый случай
-      return; 
+      return;
     }
 
     var isLastClickedBefore = startElem.compareDocumentPosition(target) & 4;
 
     if (isLastClickedBefore) {
-      for(var elem = startElem; elem != target; elem = elem.nextElementSibling) {
+      for (var elem = startElem; elem != target; elem = elem.nextElementSibling) {
         elem.classList.add('selected');
       }
     } else {
-      for(var elem = startElem; elem != target; elem = elem.previousElementSibling) {
+      for (var elem = startElem; elem != target; elem = elem.previousElementSibling) {
         elem.classList.add('selected');
       }
     }

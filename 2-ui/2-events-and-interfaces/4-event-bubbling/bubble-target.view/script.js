@@ -1,4 +1,3 @@
-
 var form = document.querySelector('form');
 
 form.onclick = function(event) {

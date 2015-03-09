@@ -74,8 +74,7 @@ DropTarget.prototype.onDragEnd = function(avatar, event) {
 /**
  * Вход аватара в DropTarget
  */
-DropTarget.prototype.onDragEnter = function(fromDropTarget, avatar, event) {
-};
+DropTarget.prototype.onDragEnter = function(fromDropTarget, avatar, event) {};
 
 /**
  * Выход аватара из DropTarget
@@ -84,5 +83,3 @@ DropTarget.prototype.onDragLeave = function(toDropTarget, avatar, event) {
   this._hideHoverIndication();
   this._targetElem = null;
 };
-
-

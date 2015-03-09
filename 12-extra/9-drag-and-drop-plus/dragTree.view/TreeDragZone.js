@@ -1,4 +1,3 @@
-
 function TreeDragZone(elem) {
   DragZone.apply(this, arguments);
 }

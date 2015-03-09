@@ -2,7 +2,9 @@ var http = require('http');
 var url = require('url');
 var querystring = require('querystring');
 var static = require('node-static');
-var file = new static.Server('.',  { cache: 0 });
+var file = new static.Server('.', {
+  cache: 0
+});
 
 
 function accept(req, res) {
@@ -12,7 +14,7 @@ function accept(req, res) {
     req.on('data', function(chunk) {
       // ничего не делаем с приходящими данными, просто считываем
       length += chunk.length;
-      if (length > 50*1024*1024) {
+      if (length > 50 * 1024 * 1024) {
         res.statusCode = 413;
         res.end("File too big");
       }
@@ -23,7 +25,7 @@ function accept(req, res) {
   } else {
     file.serve(req, res);
   }
-  
+
 }
 
 
@@ -34,4 +36,3 @@ if (!module.parent) {
 } else {
   exports.accept = accept;
 }
-

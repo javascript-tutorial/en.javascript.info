@@ -1,5 +1,3 @@
-
-
 document.onmousedown = function(e) {
 
   var dragElement = e.target;
@@ -7,7 +5,7 @@ document.onmousedown = function(e) {
   if (!dragElement.classList.contains('draggable')) return;
 
   var coords, shiftX, shiftY;
-  
+
   startDrag(e.clientX, e.clientY);
 
   document.onmousemove = function(e) {
@@ -25,10 +23,10 @@ document.onmousedown = function(e) {
 
     shiftX = clientX - dragElement.getBoundingClientRect().left;
     shiftY = clientY - dragElement.getBoundingClientRect().top;
-   
+
     dragElement.style.position = 'fixed';
 
-    document.body.appendChild(dragElement); 
+    document.body.appendChild(dragElement);
 
     moveAt(clientX, clientY);
   };
@@ -44,8 +42,8 @@ document.onmousedown = function(e) {
 
   function moveAt(clientX, clientY) {
     // новые координаты
-    var newX = clientX - shiftX; 
-    var newY = clientY - shiftY; 
+    var newX = clientX - shiftX;
+    var newY = clientY - shiftY;
 
     // ------- обработаем вынос за нижнюю границу окна ------
     // новая нижняя граница элемента
@@ -60,11 +58,11 @@ document.onmousedown = function(e) {
       // обычно скроллим на 10px
       // но если расстояние от newBottom до docBottom меньше, то меньше
       var scrollY = Math.min(docBottom - newBottom, 10);
-      
+
       // ошибки округления при полностью прокрученной странице
       // могут привести к отрицательному scrollY, что будет означать прокрутку вверх
       // поправим эту ошибку
-      if (scrollY < 0) scrollY = 0; 
+      if (scrollY < 0) scrollY = 0;
 
       window.scrollBy(0, scrollY);
 
@@ -83,7 +81,7 @@ document.onmousedown = function(e) {
 
       window.scrollBy(0, -scrollY);
       // при резком движении мыши элемент мог "вылететь" сильно вверх, поправим его
-      newY = Math.max(newY, 0); 
+      newY = Math.max(newY, 0);
     }
 
 

@@ -40,14 +40,14 @@ function Uploader(file, onSuccess, onFail, onProgress) {
 
     };
 
-    xhrStatus.open("GET", "status", true); 
+    xhrStatus.open("GET", "status", true);
     xhrStatus.setRequestHeader('X-File-Id', fileId);
     xhrStatus.send();
   }
 
 
   function send() {
-    
+
     xhrUpload = new XMLHttpRequest();
     xhrUpload.onload = xhrUpload.onerror = function() {
       console.log("upload end status:" + this.status + " text:" + this.statusText);
@@ -55,28 +55,28 @@ function Uploader(file, onSuccess, onFail, onProgress) {
       if (this.status == 200) {
         // успешное завершение загрузки
         onSuccess();
-        return; 
+        return;
       }
 
       // что-то не так
       if (errorCount++ < MAX_ERROR_COUNT) {
         setTimeout(resume, 1000 * errorCount); // через 1,2,4,8,16 сек пробуем ещё раз
       } else {
-        onError(this.statusText);  
-      }      
+        onError(this.statusText);
+      }
     };
 
-    xhrUpload.open("POST", "upload", true); 
+    xhrUpload.open("POST", "upload", true);
     // какой файл догружаем /загружаем
-    xhrUpload.setRequestHeader('X-File-Id', fileId); 
+    xhrUpload.setRequestHeader('X-File-Id', fileId);
 
     xhrUpload.upload.onprogress = function(e) {
-      errorCount = 0; 
-      onProgress( startByte + e.loaded, startByte + e.total);
+      errorCount = 0;
+      onProgress(startByte + e.loaded, startByte + e.total);
     }
 
     // отослать, начиная с байта startByte
-    xhrUpload.send(file.slice(startByte));   
+    xhrUpload.send(file.slice(startByte));
   }
 
   function pause() {
@@ -93,11 +93,12 @@ function Uploader(file, onSuccess, onFail, onProgress) {
 
 function hashCode(str) {
   if (str.length == 0) return 0;
-  
-  var hash = 0, i, chr, len;
+
+  var hash = 0,
+    i, chr, len;
   for (i = 0; i < str.length; i++) {
-    chr   = str.charCodeAt(i);
-    hash  = ((hash << 5) - hash) + chr;
+    chr = str.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr;
     hash |= 0; // Convert to 32bit integer
   }
   return hash;

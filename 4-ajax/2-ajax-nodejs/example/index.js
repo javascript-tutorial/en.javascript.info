@@ -17,7 +17,7 @@ function accept(req, res) {
     // иначе считаем это запросом к обычному файлу и выводим его
     file.serve(req, res); // (если он есть)
   }
-  
+
 }
 
 
@@ -28,4 +28,3 @@ if (!module.parent) {
 } else {
   exports.accept = accept;
 }
-

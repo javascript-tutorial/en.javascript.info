@@ -16,7 +16,7 @@ function Menu(options) {
   // ----------------------
 
   function onLiClick(e) {
-    
+
     close();
 
     var li = $(e.currentTarget).closest('li');
@@ -26,7 +26,7 @@ function Menu(options) {
       value: getLiValue(li)
     });
 
-    return false;    
+    return false;
   }
 
   function onTitleClick() {
@@ -55,7 +55,7 @@ function Menu(options) {
 
 
   function close(argument) {
-    
+
     elem.removeClass('open');
 
     if (activeLi) {
@@ -77,7 +77,7 @@ function Menu(options) {
 
     // TODO: close menu on document click outside of it
     $(document).on('click.menu-nested', function(e) {
-      if ( $(e.target).closest(elem).length ) return;
+      if ($(e.target).closest(elem).length) return;
       close();
     });
   }
@@ -93,7 +93,7 @@ function Menu(options) {
       // collapse parents of last active until container of new element
       collapseActiveUntil(li);
     }
-      
+
     activeLi = li;
     activeLi.addClass("active");
   }
@@ -101,7 +101,7 @@ function Menu(options) {
   function collapseActiveUntil(li) {
 
     var el = activeLi;
-    for(;;) {
+    for (;;) {
       el.removeClass('active');
       if (el[0].parentNode == li[0].parentNode) break;
       el = getParentLi(el);
@@ -109,12 +109,12 @@ function Menu(options) {
 
   }
 
-  function openChildren() {        
+  function openChildren() {
     var subcontainer = activeLi.children('ol');
     if (!subcontainer.length) return;
 
     // show children
-    
+
     var left = activeLi.width(); // to the right of the parent 
     var top = activeLi.position().top; // at same height as current parent
 

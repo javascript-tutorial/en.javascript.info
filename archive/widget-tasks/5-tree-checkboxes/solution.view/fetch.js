@@ -1,5 +1,7 @@
 var result = {
-	0: { children: [] }	
+  0: {
+    children: []
+  }
 };
 
 $('div[id^="region"]').each(function() {
@@ -17,7 +19,7 @@ $('div[id^="region"]').each(function() {
   } else {
     pid = 0;
   }
-    
+
   result[pid].children.push(+id);
-  
+
 });

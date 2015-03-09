@@ -1,4 +1,3 @@
-
 function TreeDragAvatar(dragZone, dragElem) {
   DragAvatar.apply(this, arguments);
 }
@@ -42,4 +41,3 @@ TreeDragAvatar.prototype.onDragCancel = function() {
 TreeDragAvatar.prototype.onDragEnd = function() {
   this._destroy();
 };
-

@@ -1,4 +1,3 @@
-
 function HoverIntent(options) {
 
   options = Object.create(options); // not to modify the object
@@ -34,7 +33,7 @@ function HoverIntent(options) {
     pX = event.pageX;
     pY = event.pageY;
     pTime = Date.now();
-    
+
     elem.addEventListener('mousemove', onMouseMove);
   });
 
@@ -74,4 +73,3 @@ function HoverIntent(options) {
   }
 
 }
-

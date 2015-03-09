@@ -38,11 +38,11 @@ function Slider(options) {
     var newLeft = clientX - shiftX - sliderCoords.left;
 
     // курсор ушёл вне слайдера
-    if(newLeft < 0) {
+    if (newLeft < 0) {
       newLeft = 0;
     }
     var rightEdge = elem.offsetWidth - thumbElem.offsetWidth;
-    if(newLeft > rightEdge) {
+    if (newLeft > rightEdge) {
       newLeft = rightEdge;
     }
 
@@ -59,7 +59,7 @@ function Slider(options) {
   }
 
   function positionToValue(left) {
-    return Math.round( left / pixelsPerValue);
+    return Math.round(left / pixelsPerValue);
   }
 
   function onDocumentMouseMove(e) {

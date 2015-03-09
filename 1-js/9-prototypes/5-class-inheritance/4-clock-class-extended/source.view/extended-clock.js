@@ -3,10 +3,11 @@ function extend(Child, Parent) {
   Child.prototype.constructor = Child;
   Child.parent = Parent.prototype;
 }
+
 function inherit(proto) {
   function F() {}
   F.prototype = proto;
   return new F;
 }
 
-// ваш код 
+// ваш код

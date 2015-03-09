@@ -9,7 +9,7 @@ function DraggableWindow(options) {
   var self = this;
 
   var title = options.title;
-  var template = typeof options.template == 'function' ?  // компиляция, если строка
+  var template = typeof options.template == 'function' ? // компиляция, если строка
     options.template : _.template(options.template);
 
   var elem, contentElem;
@@ -25,8 +25,8 @@ function DraggableWindow(options) {
 
     titleElem = elem.find('.window-title');
 
-    titleElem.on('selectstart dragstart', false); 
-    titleElem.on('mousedown', onTitleMouseDown); 
+    titleElem.on('selectstart dragstart', false);
+    titleElem.on('mousedown', onTitleMouseDown);
 
     contentElem = elem.find('.window-content'); // = children[1]
     elem.on('focusin', onFocus);
@@ -38,11 +38,13 @@ function DraggableWindow(options) {
   }
 
   function onFocus() {
-    $(self).triggerHandler({ type: 'focus' });
+    $(self).triggerHandler({
+      type: 'focus'
+    });
   }
 
-  function onTitleMouseDown(e) {  
-    startDrag(e.pageX, e.pageY);  
+  function onTitleMouseDown(e) {
+    startDrag(e.pageX, e.pageY);
 
     setTimeout(onFocus, 0);
     return false; // returning false prevents onfocus
@@ -51,8 +53,8 @@ function DraggableWindow(options) {
   function startDrag(mouseDownX, mouseDownY) {
     // запомнить координаты нажатия
     var coords = elem.offset();
-    mouseDownShift = { 
-      x: mouseDownX - coords.left, 
+    mouseDownShift = {
+      x: mouseDownX - coords.left,
       y: mouseDownY - coords.top
     };
 
@@ -119,7 +121,9 @@ function DraggableWindow(options) {
 
   function submit(message) {
     // добавить
-    var newMessageElem = $('<div>', {text: message }).appendTo(contentElem);
+    var newMessageElem = $('<div>', {
+      text: message
+    }).appendTo(contentElem);
 
     // прокрутить к новому сообщению
     contentElem.prop('scrollTop', 999999999);
@@ -139,4 +143,3 @@ function DraggableWindow(options) {
   }
 
 }
-

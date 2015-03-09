@@ -11,7 +11,9 @@ function debounce(f, ms) {
 
     state = COOLDOWN;
 
-    setTimeout(function() { state = null }, ms);
+    setTimeout(function() {
+      state = null
+    }, ms);
   }
 
 }

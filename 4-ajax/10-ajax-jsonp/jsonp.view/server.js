@@ -1,7 +1,9 @@
 var http = require('http');
 var url = require('url');
 var static = require('node-static');
-var file = new static.Server('.',  { cache: 0 });
+var file = new static.Server('.', {
+  cache: 0
+});
 
 
 function accept(req, res) {
@@ -24,7 +26,7 @@ function accept(req, res) {
   } else {
     file.serve(req, res);
   }
-  
+
 }
 
 
@@ -35,4 +37,3 @@ if (!module.parent) {
 } else {
   exports.accept = accept;
 }
-

@@ -1,7 +1,9 @@
 describe("removeClass", function() {
 
   it("ничего не делает, если класса нет", function() {
-    var obj = { className: 'open menu' };
+    var obj = {
+      className: 'open menu'
+    };
     removeClass(obj, 'new');
     assert.deepEqual(obj, {
       className: 'open menu'
@@ -9,7 +11,9 @@ describe("removeClass", function() {
   });
 
   it("не меняет пустое свойство", function() {
-    var obj = { className: '' };
+    var obj = {
+      className: ''
+    };
     removeClass(obj, 'new');
     assert.deepEqual(obj, {
       className: ""
@@ -17,7 +21,9 @@ describe("removeClass", function() {
   });
 
   it("удаляет класс, не оставляя лишних пробелов", function() {
-    var obj = { className: 'open menu' };
+    var obj = {
+      className: 'open menu'
+    };
     removeClass(obj, 'open');
     assert.deepEqual(obj, {
       className: "menu"
@@ -25,7 +31,9 @@ describe("removeClass", function() {
   });
 
   it("если класс один и он удалён, то результат - пустая строка", function() {
-    var obj = { className: "menu" };
+    var obj = {
+      className: "menu"
+    };
     removeClass(obj, 'menu');
     assert.deepEqual(obj, {
       className: ""

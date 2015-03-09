@@ -1,14 +1,14 @@
 describe("truncate", function() {
   it("обрезает строку до указанной длины (включая троеточие)", function() {
-    assert.equal( 
+    assert.equal(
       truncate("Вот, что мне хотелось бы сказать на эту тему:", 20),
       "Вот, что мне хоте..."
     );
   });
 
   it("не меняет короткие строки", function() {
-    assert.equal( 
-      truncate("Всем привет!", 20), 
+    assert.equal(
+      truncate("Всем привет!", 20),
       "Всем привет!"
     );
   });

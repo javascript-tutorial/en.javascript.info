@@ -13,18 +13,18 @@ function accept(req, res) {
       'Cache-Control': 'no-cache'
     });
 
-    var i=0;
+    var i = 0;
 
     var timer = setInterval(write, 1000);
     write();
 
     function write() {
-      res.write(new Array(1000).join(++i+'') + ' ');
+      res.write(new Array(1000).join(++i + '') + ' ');
       if (i == 9) {
         clearInterval(timer);
         res.end();
       }
-      
+
     }
   } else {
     file.serve(req, res);

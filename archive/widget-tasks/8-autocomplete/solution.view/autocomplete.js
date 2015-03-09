@@ -2,7 +2,7 @@ function Autocomplete(options) {
   var self = this;
 
   var elem = options.elem;
-  
+
   var input = $('input', elem);
   var list;
 
@@ -23,7 +23,7 @@ function Autocomplete(options) {
     var KEY_ENTER = 13;
     var KEY_ESC = 27;
 
-    switch(e.keyCode) {
+    switch (e.keyCode) {
       case KEY_ARROW_UP:
         list.up();
         return false;
@@ -31,12 +31,12 @@ function Autocomplete(options) {
 
       case KEY_ARROW_RIGHT:
         if (list.get()) {
-          self.setValue( list.get(), true );
+          self.setValue(list.get(), true);
         }
         break;
 
       case KEY_ENTER:
-        self.setValue( list.get() || input.val() );
+        self.setValue(list.get() || input.val());
         input.blur();
         break;
 
@@ -68,12 +68,13 @@ function Autocomplete(options) {
 
   function onInputFocus() {
     var inputValue = input.val();
+
     function checkInput() {
       if (inputValue != input.val()) {
 
         if (!list) {
           initList();
-        } 
+        }
 
         list.update(input.val());
         inputValue = input.val();

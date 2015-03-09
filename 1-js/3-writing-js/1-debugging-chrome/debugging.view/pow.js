@@ -3,6 +3,6 @@ function pow(x, n) {
     return x;
   }
 
-  var result = x * pow(x, n-1); 
+  var result = x * pow(x, n - 1);
   return result;
 }

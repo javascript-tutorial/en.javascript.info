@@ -3,7 +3,7 @@ var WindowManager = new function() {
   var windows = [];
   var activeWindow;
 
-  var template; 
+  var template;
 
   this.setTemplate = function(newTemplate) {
     template = _.template(newTemplate);
@@ -43,8 +43,8 @@ var WindowManager = new function() {
       if (activeWindow == b) return -1; // активное окно больше всех
       return a.getZIndex() - b.getZIndex(); // порядок среди остальных - оставляем "как есть"
     });
-    for(var i=0; i<windows.length; i++) {
-      windows[i].setZIndex(i+1);
+    for (var i = 0; i < windows.length; i++) {
+      windows[i].setZIndex(i + 1);
     }
 
   }

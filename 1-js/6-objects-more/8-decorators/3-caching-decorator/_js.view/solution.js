@@ -1,8 +1,8 @@
-function makeCaching(f) { 
-  var cache = {};  
+function makeCaching(f) {
+  var cache = {};
 
   return function(x) {
-    if (!(x in cache)) {   
+    if (!(x in cache)) {
       cache[x] = f.call(this, x);
     }
     return cache[x];

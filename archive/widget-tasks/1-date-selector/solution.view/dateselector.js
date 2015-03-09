@@ -3,7 +3,7 @@
  * yearFrom {number} начальный год в селекторе
  * yearTo {number} конечный год в селекторе
  * value {Date} текущая выбранная дата
-*/
+ */
 function DateSelector(options) {
   var self = this;
 
@@ -15,14 +15,14 @@ function DateSelector(options) {
   var yearSelect, monthSelect, daySelect;
 
   function render() {
-    var tmpl = _.template( options.template );
+    var tmpl = _.template(options.template);
     elem = $('<div class="date-selector"/>').html(tmpl({
       yearFrom: options.yearFrom,
       yearTo: options.yearTo,
       dayTo: getLastDayOfMonth(value.getFullYear(), value.getMonth()),
       monthNames: monthNames
     }));
-    
+
     yearSelect = elem.find('.year');
     monthSelect = elem.find('.month');
     daySelect = elem.find('.day');
@@ -44,7 +44,7 @@ function DateSelector(options) {
 
     if (!quiet) {
       $(self).triggerHandler({
-        type: "select", 
+        type: "select",
         value: value
       });
     }
@@ -56,7 +56,7 @@ function DateSelector(options) {
   };
 
   function onChange(e) {
-    
+
     var selectType = e.target.className;
 
     if (selectType == "month" || selectType == "year") {
@@ -65,25 +65,25 @@ function DateSelector(options) {
     }
 
     readValue(); // для простоты -- получим значения из всех селектов
-    
+
     $(self).triggerHandler({
-      type: "select", 
+      type: "select",
       value: value
     });
   }
 
   function readValue() {
-      // если я сделаю сначала value.setMonth(),
-      // то может получится некорректная дата типа 31 марта -> 31 февраля,
-      // которая автоскорректируется в 2 марта, т.е месяц не поставится.
-      // поэтому сначала именно setDate, и так далее.
-      value.setDate(daySelect.val());
-      value.setMonth(monthSelect.val());
-      value.setFullYear(yearSelect.val());    
+    // если я сделаю сначала value.setMonth(),
+    // то может получится некорректная дата типа 31 марта -> 31 февраля,
+    // которая автоскорректируется в 2 марта, т.е месяц не поставится.
+    // поэтому сначала именно setDate, и так далее.
+    value.setDate(daySelect.val());
+    value.setMonth(monthSelect.val());
+    value.setFullYear(yearSelect.val());
   }
 
   function getLastDayOfMonth(year, month) {
-    var date = new Date(year, month+1, 0);
+    var date = new Date(year, month + 1, 0);
     return date.getDate();
   }
 
@@ -96,7 +96,7 @@ function DateSelector(options) {
     }).remove();
 
     // добавить дни, если новый месяц дольше
-    for(var i = +daySelect.last().val(); i <= maxDay; i++) {
+    for (var i = +daySelect.last().val(); i <= maxDay; i++) {
       daySelect.append(new Option(i, i));
     }
   }

@@ -37,5 +37,3 @@ DragZone.prototype.onDragStart = function(downX, downY, event) {
 
   return avatar;
 };
-
-

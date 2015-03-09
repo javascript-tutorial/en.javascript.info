@@ -14,7 +14,7 @@ Menu.prototype.close = function() {
 };
 
 Menu.prototype._stateAsString = function() {
-  switch(this._state) {
+  switch (this._state) {
     case this.STATE_OPEN:
       return 'открыто';
 
@@ -24,5 +24,5 @@ Menu.prototype._stateAsString = function() {
 };
 
 Menu.prototype.showState = function() {
-  alert( this._stateAsString() );
+  alert(this._stateAsString());
 }

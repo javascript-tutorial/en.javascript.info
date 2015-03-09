@@ -2,7 +2,7 @@
  * options:
  *   value Date или объект {year,month,day}} -- дата, для которой показывать календарь
  *     если в объекте указаны только {year,month}, то день не выбран
-*/
+ */
 function Calendar(options) {
   var self = this;
 
@@ -55,7 +55,7 @@ function Calendar(options) {
 
     if (!quiet) {
       $(self).triggerHandler({
-        type: "select", 
+        type: "select",
         value: new Date(year, month, day)
       });
     }
@@ -69,16 +69,16 @@ function Calendar(options) {
   function render() {
     if (!elem) {
       elem = $('<div class="calendar"/>')
-        .on('click', '.date-cell', onDateCellClick);     
+        .on('click', '.date-cell', onDateCellClick);
     }
 
-    if (showYear != year || showMonth != month) {  
+    if (showYear != year || showMonth != month) {
       elem.html(renderCalendarTable(year, month));
-      elem.find('caption').html(monthNames[month]+' '+year);
+      elem.find('caption').html(monthNames[month] + ' ' + year);
       showYear = year;
       showMonth = month;
     }
-       
+
     if (day) {
       var num = getCellByDate(new Date(year, month, day));
       elem.find('td').eq(num).addClass("selected");
@@ -91,9 +91,13 @@ function Calendar(options) {
   }
 
 
-  function onDateCellClick(e) {    
+  function onDateCellClick(e) {
     day = $(e.target).html();
-    self.setValue({year: year, month: month, day: day});
+    self.setValue({
+      year: year,
+      month: month,
+      day: day
+    });
   }
 
 
@@ -101,7 +105,7 @@ function Calendar(options) {
    * Возвращает по дате номер TD в таблице
    * Использование:
    *  var td = table.getElementsByTagName('td')[getCellByDate(date)]
-  */
+   */
   function getCellByDate(date) {
     var dateDayOne = new Date(date.getFullYear(), date.getMonth(), 1);
 
@@ -127,24 +131,24 @@ function Calendar(options) {
 
     var table = ['<table class="calendar-table"><caption></caption><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th></tr><tr>'];
 
-    for (var i=0; i<getDay(d); i++) {
+    for (var i = 0; i < getDay(d); i++) {
       table.push('<td></td>');
     }
 
     // ячейки календаря с датами
-    while(d.getMonth() == month) {
-      table.push('<td class="date-cell">'+d.getDate()+'</td>');
+    while (d.getMonth() == month) {
+      table.push('<td class="date-cell">' + d.getDate() + '</td>');
 
       if (getDay(d) % 7 == 6) { // вс, последний день - перевод строки
         table.push('</tr><tr>');
       }
 
-      d.setDate(d.getDate()+1);
+      d.setDate(d.getDate() + 1);
     }
 
     // добить таблицу пустыми ячейками, если нужно
     if (getDay(d) != 0) {
-      for (var i=getDay(d); i<7; i++) {
+      for (var i = getDay(d); i < 7; i++) {
         table.push('<td></td>');
       }
     }
@@ -155,4 +159,3 @@ function Calendar(options) {
   }
 
 }
-  

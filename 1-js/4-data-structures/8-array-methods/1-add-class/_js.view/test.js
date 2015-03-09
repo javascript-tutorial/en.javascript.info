@@ -1,7 +1,9 @@
 describe("addClass", function() {
 
   it("добавляет класс, которого нет", function() {
-    var obj = { className: 'open menu' };
+    var obj = {
+      className: 'open menu'
+    };
     addClass(obj, 'new');
     assert.deepEqual(obj, {
       className: 'open menu new'
@@ -9,7 +11,9 @@ describe("addClass", function() {
   });
 
   it("не добавляет класс, который уже есть", function() {
-    var obj = { className: 'open menu' };
+    var obj = {
+      className: 'open menu'
+    };
     addClass(obj, 'open');
     assert.deepEqual(obj, {
       className: 'open menu'
@@ -17,7 +21,9 @@ describe("addClass", function() {
   });
 
   it("не добавляет лишних пробелов, который уже есть", function() {
-    var obj = { className: '' };
+    var obj = {
+      className: ''
+    };
     addClass(obj, 'open');
     assert.deepEqual(obj, {
       className: 'open'

@@ -3,7 +3,7 @@ describe("Article.showStats", function() {
     sinon.stub(window, "alert");
     this.clock = sinon.useFakeTimers();
   });
-  
+
   after(function() {
     window.alert.restore();
     this.clock.restore();
@@ -13,9 +13,9 @@ describe("Article.showStats", function() {
     new Article();
     this.clock.tick(100);
     new Article();
-    Article.showStats(); 
-    
-    assert( alert.calledWith('Всего: 2, Последняя: ' + new Date() ) );
+    Article.showStats();
+
+    assert(alert.calledWith('Всего: 2, Последняя: ' + new Date()));
   });
 
   it("и ещё одна статья...", function() {
@@ -23,6 +23,6 @@ describe("Article.showStats", function() {
     new Article();
     Article.showStats();
 
-    assert( alert.calledWith('Всего: 3, Последняя: ' + new Date() ) );
+    assert(alert.calledWith('Всего: 3, Последняя: ' + new Date()));
   });
 });

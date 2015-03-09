@@ -28,7 +28,10 @@ function Voter(options) {
 
   function setVote(vote) {
     voteElem.innerHTML = +vote;
-    var widgetEvent = new CustomEvent("change", { bubbles: true, detail: +vote });
+    var widgetEvent = new CustomEvent("change", {
+      bubbles: true,
+      detail: +vote
+    });
     elem.dispatchEvent(widgetEvent);
   };
 

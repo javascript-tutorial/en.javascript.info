@@ -13,25 +13,25 @@ describe("Accumulator(1)", function() {
   });
 
   it("начальное значение 1", function() {
-    assert.equal( accumulator.value, 1 );
+    assert.equal(accumulator.value, 1);
   });
 
   it("после ввода 0 значение 1", function() {
     prompt.returns("0");
     accumulator.read();
-    assert.equal( accumulator.value, 1 );
+    assert.equal(accumulator.value, 1);
   });
 
   it("после ввода 1 значение 2", function() {
     prompt.returns("1");
     accumulator.read();
-    assert.equal( accumulator.value, 2 );
+    assert.equal(accumulator.value, 2);
   });
 
   it("после ввода 2 значение 4", function() {
     prompt.returns("2");
     accumulator.read();
-    assert.equal( accumulator.value, 4 );
+    assert.equal(accumulator.value, 4);
   });
 
 });

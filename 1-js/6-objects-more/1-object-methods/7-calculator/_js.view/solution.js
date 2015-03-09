@@ -12,4 +12,3 @@ var calculator = {
     this.b = +prompt('b?', 0);
   }
 }
-
