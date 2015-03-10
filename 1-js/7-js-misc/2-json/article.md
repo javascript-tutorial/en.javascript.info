@@ -335,7 +335,6 @@ alert( str );
 <ul>
 <li>JSON -- формат для представления объектов (и не только) в виде строки.</li>
 <li>Методы [JSON.parse](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse) и [JSON.stringify](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify) позволяют интеллектуально преобразовать объект в строку и обратно.</li>
-<li>Для IE7- можно подключить библиотеку [json2](https://github.com/douglascrockford/JSON-js/blob/master/json2.js).</li>
 </ul>
 
 

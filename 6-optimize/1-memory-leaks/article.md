@@ -146,7 +146,7 @@ function empty(elem) {
 
 ```js
 function leak() {
-  var xhr = new XMLHttpRequest(); // в IE6 создать через ActiveX
+  var xhr = new XMLHttpRequest(); 
 
   xhr.open('GET', '/server.do', true);
 

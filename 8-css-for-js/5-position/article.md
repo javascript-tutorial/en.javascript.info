@@ -1,4 +1,4 @@
-# Свойство "position" [todo]
+# Свойство "position"
 
 Свойство `position` позволяет сдвигать элемент со своего обычного места. Цель этой главы -- не только напомнить, как оно работает, но и разобрать ряд частых заблуждений и граблей.
 [cut]
@@ -18,10 +18,10 @@ position: static;
 
 ```html
 <!--+ autorun height=200 -->
-<div style="background: #aef; width: 500px">
+<div style="background: #fee; width: 500px">
     Без позиционирования ("position: static").
 
-    <h2 style="background: #fee; margin: 0">Заголовок</h2>
+    <h2 style="background: #aef; margin: 0">Заголовок</h2>
 
     <div>А тут - всякий разный текст... <br/>
          ... В две строки!</div>
@@ -61,10 +61,10 @@ top: 10px;
 </style>
 */!*
 
-<div style="background: #aef; width: 500px">
+<div style="background: #fee; width: 500px">
     Заголовок сдвинут на 10px вниз.
 
-    <h2 style="background: #fee; margin: 0;">Заголовок</h2>
+    <h2 style="background: #aef; margin: 0;">Заголовок</h2>
 
     <div>А тут - всякий разный текст... <br/>
          ... В две строки!</div>
@@ -97,10 +97,10 @@ top: 10px;
 </style>
 */!*
 
-<div style="background: #aef; width: 500px">
+<div style="background: #fee; width: 500px">
     Заголовок сдвинут на 10% влево.
 
-    <h2 style="background: #fee; margin: 0;">Заголовок</h2>
+    <h2 style="background: #aef; margin: 0;">Заголовок</h2>
 
     <div>А тут - всякий разный текст... <br/>
          ... В две строки!</div>
@@ -143,10 +143,10 @@ position: absolute;
 </style>
 */!*
 
-<div style="background: #aef; width: 500px">
+<div style="background: #fee; width: 500px">
     Заголовок в правом-верхнем углу документа.
 
-    <h2 style="background: #fee; margin: 0;">Заголовок</h2>
+    <h2 style="background: #aef; margin: 0;">Заголовок</h2>
 
     <div>А тут - всякий разный текст... <br/>
          ... В две строки!</div>
@@ -165,7 +165,7 @@ position: absolute;
 
 **В абсолютно позиционированном элементе можно одновременно задавать противоположные границы.**
 
-Браузер растянет такой элемент до границ. Работает везде, кроме IE6:
+Браузер растянет такой элемент до границ. 
 
 ```html
 <!--+ autorun height=50 -->
@@ -218,7 +218,7 @@ div {
   right: 0; bottom: 0; /* ..указанием противоположных границ */
 }
 ```
-
+  
 С виду логично, но нет, не получится! 
 
 Координаты `top/right/left/bottom` вычисляются относительно *окна*. Значение `bottom: 0` -- нижняя граница окна, а не документа, блок растянется до неё. То есть, будет то же самое, что и в предыдущем примере.
@@ -244,10 +244,10 @@ div {
 </style>
 */!*
 
-<div style="background: #aef; width: 500px; *!*position: relative*/!*">
+<div style="background: #fee; width: 500px; *!*position: relative*/!*">
     Заголовок в правом-верхнем углу DIV'а.
 
-    <h2 style="background: #fee; margin: 0;">Заголовок</h2>
+    <h2 style="background: #aef; margin: 0;">Заголовок</h2>
 
     <div>А тут - всякий разный текст... <br/>
          ... В две строки!</div>
@@ -330,8 +330,6 @@ position: fixed;
 <p>Много строк..</p><p>Много строк..</p>
 ```
 
-Поддерживается во всех современных браузерах, в IE начиная с версии 7. Для реализации аналогичного функционала в IE6 используют CSS-выражения.
-
 
 ## Итого
 
@@ -355,7 +353,7 @@ position: fixed;
 
 <ul>
 <li>Ширина элемента по умолчанию устанавливается по содержимому.</li>
-<li>Можно указать противположные границы `left/right` (`top/bottom`). Элемент растянется. Возможность не поддерживается в IE7-.</li>
+<li>Можно указать противположные границы `left/right` (`top/bottom`). Элемент растянется.</li>
 <li>Окружающие элементы заполняют освободившееся место.</li>
 </ul>
 </li>

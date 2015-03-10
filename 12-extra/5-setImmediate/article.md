@@ -35,17 +35,14 @@ if (!window.setImmediate) window.setImmediate = (function() {
     window.attachEvent( 'onmessage', onmessage ); 
   }
 
-  return window.postMessage ? function(func) {
+  return function(func) {
     tail = tail.next = { func: func };
     window.postMessage(ID, "*");
-  } : 
-  function(func) { // IE7-
-    setTimeout(func, 0);
   };
 }());
 ```
 
-Есть и более сложные эмуляции, включая [MessageChannel](http://www.w3.org/TR/webmessaging/#channel-messaging) для работы с [Web Workers](http://www.w3.org/TR/workers/) и хитрый метод для поддержки IE6-8: [](https://github.com/NobleJS/setImmediate). Все они по существу являются "хаками", направленными на то, чтобы обеспечить поддержку `setImmediate` в тех браузерах, где его нет.
+Есть и более сложные эмуляции, включая [MessageChannel](http://www.w3.org/TR/webmessaging/#channel-messaging) для работы с [Web Workers](http://www.w3.org/TR/workers/) и хитрый метод для поддержки IE8-: [](https://github.com/NobleJS/setImmediate). Все они по существу являются "хаками", направленными на то, чтобы обеспечить поддержку `setImmediate` в тех браузерах, где его нет.
 
 ## Тест производительности
 

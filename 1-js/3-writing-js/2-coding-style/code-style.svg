@@ -19,8 +19,9 @@
             <path d="M236,215 L236,205.5" id="Line-5" stroke="#4990E2" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <path d="M236.5,214.5 L246.5,214.5" id="Line-20" stroke="#4990E2" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
             <text id="Между-именем-функции" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
-                <tspan x="122.139648" y="89">Между именем функции</tspan>
-                <tspan x="126.559082" y="108">и скобкой ( нет пробела</tspan>
+                <tspan x="60.2202148" y="89">Между именем функции и скобкой ( </tspan>
+                <tspan x="52.8442383" y="108">между скобкой и первым параметром</tspan>
+                <tspan x="150.478516" y="127">нет пробела</tspan>
             </text>
             <path d="M270.5,118.5 L326.5,174.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M326.361436,174.361436 C324.431034,170.94611 322.776404,168.018688 320.846003,164.603362 C319.361079,166.088286 318.088286,167.361079 316.603362,168.846003 C320.018688,170.776404 322.94611,172.431034 326.361436,174.361436 C326.361436,174.361436 326.361436,174.361436 326.361436,174.361436 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
@@ -46,15 +47,15 @@
             </text>
             <path d="M326,507 L300,481.565217" id="Line-15" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-15-decoration-1" d="M300.265975,481.82541 C302.233789,485.219318 303.920486,488.128382 305.8883,491.522289 C307.356818,490.021138 308.615547,488.734437 310.084065,487.233285 C306.647734,485.340529 303.702307,483.718167 300.265975,481.82541 C300.265975,481.82541 300.265975,481.82541 300.265975,481.82541 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="пустая-строка" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
-                <tspan x="51.4902344" y="374">пустая строка</tspan>
+            <text id="Пустая-строка" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="50.8374023" y="374">Пустая строка</tspan>
                 <tspan x="77.7128906" y="393">между </tspan>
                 <tspan x="18.0761719" y="412">логическими блоками</tspan>
             </text>
             <path d="M170.441667,385.5 L223,385.5" id="Line-7" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-7-decoration-1" d="M222.441667,385.5 C218.661667,384.45 215.421667,383.55 211.641667,382.5 C211.641667,384.6 211.641667,386.4 211.641667,388.5 C215.421667,387.45 218.661667,386.55 222.441667,385.5 C222.441667,385.5 222.441667,385.5 222.441667,385.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
-            <text id="длина-строки" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
-                <tspan x="569.00293" y="380">длина строки</tspan>
+            <text id="Длина-строки" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="568.302246" y="380">Длина строки</tspan>
                 <tspan x="539.126465" y="399">не более 80 символов</tspan>
             </text>
             <path d="M534.441667,385.5 L443,420" id="Line-13" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
@@ -65,6 +66,12 @@
             </text>
             <path d="M591,252.5 L386,252.5" id="Line-8" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-8-decoration-1" d="M386,252.5 C389.78,253.55 393.02,254.45 396.8,255.5 C396.8,253.4 396.8,251.6 396.8,249.5 C393.02,250.55 389.78,251.45 386,252.5 C386,252.5 386,252.5 386,252.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
+            <text id="Пробелы-" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
+                <tspan x="596.064453" y="186">Пробелы </tspan>
+                <tspan x="559.283691" y="205">вокруг операторов</tspan>
+            </text>
+            <path d="M575.5,188.5 L401.5,225.5" id="Line-16" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-16-decoration-1" d="M402.370943,225.3148 C406.286668,225.555622 409.643004,225.762041 413.558729,226.002864 C413.121943,223.94879 412.747556,222.188156 412.31077,220.134082 C408.83183,221.947333 405.849882,223.501548 402.370943,225.3148 C402.370943,225.3148 402.370943,225.3148 402.370943,225.3148 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="Фигурная-скобка-{" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="bold" sketch:alignment="middle" fill="#EE6B47">
                 <tspan x="525.230957" y="85">Фигурная скобка {</tspan>
                 <tspan x="477.153809" y="104">на той же строке, через пробел</tspan>

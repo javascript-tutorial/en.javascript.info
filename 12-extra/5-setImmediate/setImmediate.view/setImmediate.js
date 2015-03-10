@@ -18,13 +18,10 @@ if (!window.setImmediate) window.setImmediate = (function() {
     window.attachEvent('onmessage', onmessage);
   }
 
-  return window.postMessage ? function(func) {
-      tail = tail.next = {
-        func: func
-      };
-      window.postMessage(ID, "*");
-    } :
-    function(func) { // IE7-
-      setTimeout(func, 0);
+  return function(func) {
+    tail = tail.next = {
+      func: func
     };
+    window.postMessage(ID, "*");
+  };
 }());

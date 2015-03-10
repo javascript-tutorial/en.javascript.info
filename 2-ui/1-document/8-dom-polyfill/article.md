@@ -159,8 +159,6 @@ alert( document.body.lowerTag ); // body
 В IE8 современные методы для работы со свойствами, такие как [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty), [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) и другие не поддерживаются для произвольных объектов, но отлично работают для DOM-элементов.
 
 Чем полифиллы и пользуются, "добавляя" в IE8 многие из современных методов DOM.
-
-В IE6,7 геттеры/сеттеры совсем не работают. Когда-то для них использовалась особая "IE-магия" при помощи `.htc`-файлов, которые [более не поддерживаются](http://msdn.microsoft.com/en-us/library/ie/hh801216.aspx). Если нужно поддерживать и эти версии, то рекомендуется воспользоваться фреймворками. К счастью, для большинства проектов эти браузеры уже стали историей. 
 [/warn]
 
 
