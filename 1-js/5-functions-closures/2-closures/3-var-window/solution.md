@@ -3,12 +3,12 @@
 ```js
 //+ run
 function test() {
-  
-  alert(window);
+
+  alert( window );
 
   var window = 5;
 
-  alert(window);
+  alert( window );
 }
 
 test();

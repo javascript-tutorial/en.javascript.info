@@ -22,8 +22,8 @@
 
 ```js
 //+ run
-if ( {} && [] ) {
-  alert("Все объекты - true!"); // alert сработает
+if ({} && []) {
+  alert( "Все объекты - true!" ); // alert сработает
 }
 ```
 
@@ -33,11 +33,11 @@ if ( {} && [] ) {
 
 ```js
 //+ run
-var user = { 
-  firstName: 'Василий' 
+var user = {
+  firstName: 'Василий'
 };
 
-alert(user); // [object Object]
+alert( user ); // [object Object]
 ```
 
 Как видно, содержимое объекта не вывелось. Это потому, что стандартным строковым представлением пользовательского объекта является строка `"[object Object]"`.
@@ -68,10 +68,12 @@ alert( user );  // Пользователь Василий
 ```js
 //+ run
 var obj = {
-  toString: function() { return 123; }
+  toString: function() {
+    return 123;
+  }
 };
 
-alert(obj); // 123
+alert( obj ); // 123
 ```
 
 Поэтому мы и называем его здесь *"строковое преобразование"*, а не "преобразование к строке".
@@ -81,9 +83,9 @@ alert(obj); // 123
 
 ```js
 //+ run
-alert( [1,2] );    // toString для массивов выводит список элементов "1,2"
+alert( [1, 2] ); // toString для массивов выводит список элементов "1,2"
 alert( new Date ); // toString для дат выводит дату в виде строки
-alert( function() { } ); // toString для функции выводит её код
+alert( function() {} ); // toString для функции выводит её код
 ```
 
 ## Численное преобразование
@@ -134,11 +136,13 @@ alert( +new Date() ); // valueOf: кол-во миллисекунд, проше
 
 ```js
 //+ run
-var obj = { 
-  valueOf: function() { return 1; }
+var obj = {
+  valueOf: function() {
+    return 1;
+  }
 };
 
-alert(obj == true); // true
+alert( obj == true ); // true
 ```
 
 Объект `obj` был сначала преобразован в примитив, используя численное преобразование, получилось `1 == true`. 
@@ -149,25 +153,31 @@ alert(obj == true); // true
 
 ```js
 //+ run
-var obj = { 
-  valueOf: function() { return 1; }
+var obj = {
+  valueOf: function() {
+    return 1;
+  }
 };
 
-alert(obj + "test"); // 1test
+alert( obj + "test" ); // 1test
 ```
 
 Или вот, для разности объектов:
 
 ```js
 //+ run
-var a = { 
-  valueOf: function() { return "1"; }
+var a = {
+  valueOf: function() {
+    return "1";
+  }
 };
-var b = { 
-  valueOf: function() { return "2"; }
+var b = {
+  valueOf: function() {
+    return "2";
+  }
 };
 
-alert(a - b); // "1" - "2" = -1
+alert( a - b ); // "1" - "2" = -1
 ```
 
 [warn header="Исключение: `Date`"]
@@ -194,9 +204,9 @@ alert( +new Date ); // число миллисекунд
 
 ```js
 //+ run
-var value = new Boolean(false); 
-if ( value ) {
-  alert(true); // сработает!
+var value = new Boolean(false);
+if (value) {
+  alert( true ); // сработает!
 }
 ```
 
@@ -204,14 +214,14 @@ if ( value ) {
 
 ```js
 //+ run
-var value = new Boolean(false); 
+var value = new Boolean(false);
 
 *!*
-alert(value); // выводит false, все ок..
+alert( value ); // выводит false, все ок..
 */!*
 
-if ( value ) {
-  alert(true);  // ..но тогда почему выполняется alert в if ?!? 
+if (value) {
+  alert( true ); // ..но тогда почему выполняется alert в if ?!? 
 }
 ```
 
@@ -236,6 +246,7 @@ if ( value ) {
 
 Заметим, для полноты картины, что некоторые тесты знаний в интернет предлагают вопросы типа:
 ```js
+//+ no-beautify
 {}[0]  // чему равно? 
 {} + {} // а так?
 ```
@@ -252,6 +263,7 @@ if ( value ) {
 
 А если команду изъять, то будет пустой блок `{}`, который ничего не делает. Два примера выше как раз содержат пустой блок в начале, который ничего не делает. Иначе говоря:
 ```js
+//+ no-beautify
 {}[0]   // то же что и: [0]  
 {} + {} // то же что и: + {}
 ```

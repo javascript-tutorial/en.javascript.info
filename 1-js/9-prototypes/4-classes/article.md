@@ -14,24 +14,24 @@
 function Animal(name) {
   this.speed = 0;
   this.name = name;
- 
+
   this.run = function(speed) {
     this.speed += speed;
-    alert(this.name + ' бежит, скорость ' + this.speed);
+    alert( this.name + ' бежит, скорость ' + this.speed );
   };
 
   this.stop = function() {
     this.speed = 0;
-    alert(this.name + ' стоит');
+    alert( this.name + ' стоит' );
   };
 };
 
 var animal = new Animal('Зверь');
 
-alert(animal.speed);               // 0, начальная скорость
-animal.run(3);                     // Зверь бежит, скорость 3
-animal.run(10);                    // Зверь бежит, скорость 13
-animal.stop();                     // Зверь стоит
+alert( animal.speed ); // 0, начальная скорость
+animal.run(3); // Зверь бежит, скорость 3
+animal.run(10); // Зверь бежит, скорость 13
+animal.stop(); // Зверь стоит
 ```
 
 ## Класс через прототип
@@ -58,20 +58,20 @@ function Animal(name) {
 // методы в прототипе
 Animal.prototype.run = function(speed) {
   this.speed += speed;
-  alert(this.name + ' бежит, скорость ' + this.speed);
+  alert( this.name + ' бежит, скорость ' + this.speed );
 };
 
 Animal.prototype.stop = function() {
   this.speed = 0;
-  alert(this.name + ' стоит');
+  alert( this.name + ' стоит' );
 };
 
 var animal = new Animal('Зверь');
 
-alert(animal.speed);               // 0, свойство взято из прототипа
-animal.run(5);                     // Зверь бежит, скорость 5
-animal.run(5);                     // Зверь бежит, скорость 10
-animal.stop();                     // Зверь стоит
+alert( animal.speed ); // 0, свойство взято из прототипа
+animal.run(5); // Зверь бежит, скорость 5
+animal.run(5); // Зверь бежит, скорость 10
+animal.stop(); // Зверь стоит
 ```
 
 В объекте `animal` будут хранится свойства конкретного экземпляра: `name` и `speed`, а общие методы -- в прототипе.
@@ -96,7 +96,7 @@ animal.stop();                     // Зверь стоит
 function Animal(name) {
   this.sayHi = function() {
 *!*
-    alert(name);
+    alert( name );
 */!*
   };
 }
@@ -117,7 +117,7 @@ function Animal(name) {
 
 Animal.prototype.sayHi = function() {
 *!*
-  alert(this._name);
+  alert( this._name );
 */!*
 }
 

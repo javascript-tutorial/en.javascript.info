@@ -13,6 +13,7 @@ var shooters = [];
 При этом каждый элемент массива -- это функция, так что в итоге после цикла массив будет таким:
 
 ```js
+//+ no-beautify
 shooters = [
   function () { alert(i); },
   function () { alert(i); },
@@ -59,19 +60,19 @@ function makeArmy() {
 
   var shooters = [];
 
-  for(var i=0; i<10; i++) {
+  for (var i = 0; i < 10; i++) {
 
 *!*
     var shooter = function me() {
-      alert( me.i ); 
+      alert( me.i );
     };
     shooter.i = i;
 */!*
 
-    shooters.push(shooter);    
+    shooters.push(shooter);
   }
 
-  return shooters; 
+  return shooters;
 }
 
 var army = makeArmy();
@@ -87,7 +88,7 @@ army[1](); // 1
 ```js
 ...
 var shooter = function me() {
-  alert( me.i ); 
+  alert( me.i );
 };
 ...
 ```
@@ -95,10 +96,10 @@ var shooter = function me() {
 Если убрать имя `me` и оставить обращение через `shooter`, то работать не будет:
 
 ```js
-for(var i=0; i<10; i++) {
-  var shooter = function() { 
+for (var i = 0; i < 10; i++) {
+  var shooter = function() {
 *!*
-    alert(shooter.i); // вывести свой номер (не работает!)
+    alert( shooter.i ); // вывести свой номер (не работает!)
     // потому что откуда функция возьмёт переменную shooter?
     // ..правильно, из внешнего объекта, а там она одна на всех
 */!*
@@ -121,22 +122,22 @@ function makeArmy() {
 
   var shooters = [];
 
-  for(var i=0; i<10; i++) {
+  for (var i = 0; i < 10; i++) {
 
 *!*
     var shooter = (function(x) {
 
       return function() {
-        alert( x ); 
+        alert( x );
       };
 
     })(i);
 */!*
 
-    shooters.push(shooter);   
+    shooters.push(shooter);
   }
 
-  return shooters; 
+  return shooters;
 }
 
 var army = makeArmy();
@@ -150,7 +151,7 @@ army[1](); // 1
 ```js
 var shooter = (function(x) {
   return function() {
-    alert( x ); 
+    alert( x );
   };
 })(i);
 ```
@@ -164,7 +165,7 @@ var shooter = (function(x) {
 ```js
 var shooter = (function(i) {
   return function() {
-    alert( i ); 
+    alert( i );
   };
 })(i);
 ```
@@ -190,18 +191,18 @@ function makeArmy() {
   var shooters = [];
 
 *!*
-  for(var i=0; i<10; i++) (function(i) {
+  for (var i = 0; i < 10; i++)(function(i) {
 
     var shooter = function() {
-      alert( i ); 
+      alert( i );
     };
-    
-    shooters.push(shooter); 
-   
+
+    shooters.push(shooter);
+
   })(i);
 */!*
 
-  return shooters; 
+  return shooters;
 }
 
 var army = makeArmy();

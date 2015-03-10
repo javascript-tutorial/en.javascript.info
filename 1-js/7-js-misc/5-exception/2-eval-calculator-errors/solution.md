@@ -15,7 +15,7 @@ alert( eval("2+2") ); // 4
 //+ run demo
 var expr, res;
 
-while(true) {
+while (true) {
   expr = prompt("Введите выражение?", '2-');
   if (expr == null) break;
 
@@ -26,11 +26,11 @@ while(true) {
     }
 
     break;
-  } catch(e) {
-    alert("Ошибка: "+e.message+", повторите ввод");
+  } catch (e) {
+    alert( "Ошибка: " + e.message + ", повторите ввод" );
   }
 }
 
-alert(res);
+alert( res );
 ```
 

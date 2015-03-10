@@ -5,7 +5,7 @@
 ```js
 //+ run
 function randomInteger(min, max) {
-  var rand = min + Math.random()*(max-min)
+  var rand = min + Math.random() * (max - min)
   rand = Math.round(rand);
   return rand;
 }
@@ -20,6 +20,7 @@ alert( randomInteger(1, 3) );
 Это происходит из-за того, что `Math.round()`  получает разнообразные случайные числа из интервала от `1` до `3`, но при округлении до ближайшего целого получится, что:
 
 ```js
+//+ no-beautify
 значения из диапазона 1   ... 1.49999..  станут 1
 значения из диапазона 1.5 ... 2.49999..  станут 2 
 значения из диапазона 2.5 ... 2.99999..  станут 3
@@ -35,10 +36,10 @@ alert( randomInteger(1, 3) );
 //+ run
 *!*
 function randomInteger(min, max) {
-  var rand = min - 0.5 + Math.random()*(max-min+1)
-  rand = Math.round(rand);
-  return rand;
-}
+    var rand = min - 0.5 + Math.random() * (max - min + 1)
+    rand = Math.round(rand);
+    return rand;
+  }
 */!*
 
 alert( randomInteger(5, 10) );
@@ -55,6 +56,7 @@ alert( randomInteger(5, 10) );
 Тогда `Math.floor()` округлит их так:
 
 ```js
+//+ no-beautify
 1 ... 1.999+ станет 1
 2 ... 2.999+ станет 2
 3 ... 3.999+ станет 3
@@ -67,10 +69,10 @@ alert( randomInteger(5, 10) );
 //+ run
 *!*
 function randomInteger(min, max) {
-  var rand = min + Math.random() * (max+1-min); 
-  rand = Math.floor(rand); 
-  return rand;
-}
+    var rand = min + Math.random() * (max + 1 - min);
+    rand = Math.floor(rand);
+    return rand;
+  }
 */!*
 
 alert( randomInteger(5, 10) );

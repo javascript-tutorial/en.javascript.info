@@ -5,10 +5,10 @@
 ```js
 //+ run  untrusted refresh
 if ("a" in window) {
-    a = 1;
+  a = 1;
 }
 var a;
 
-alert(a); // 1
+alert( a ); // 1
 ```
 

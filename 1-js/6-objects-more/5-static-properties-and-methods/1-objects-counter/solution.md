@@ -2,7 +2,7 @@
 
 ```js
 //+ run
-function Article() {  
+function Article() {
   this.created = new Date;
 
 *!*
@@ -14,7 +14,7 @@ Article.count = 0; // начальное значение
 // (нельзя оставить undefined, т.к. Article.count++ будет NaN)
 
 Article.showStats = function() {
-  alert('Всего: ' + this.count + ', Последняя: ' + this.last);
+  alert( 'Всего: ' + this.count + ', Последняя: ' + this.last );
 };
 
 new Article();

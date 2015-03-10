@@ -53,7 +53,7 @@
 ```html
 <script src="file.js"></script>
 <script>
-  alert(1); 
+  alert( 1 );
 </script>
 ```
 
@@ -69,24 +69,27 @@
 <!--+ run height=100 -->
 <!DOCTYPE HTML>
 <html>
+
 <head>
   <meta charset="utf-8">
 </head>
+
 <body>
 
   <p>Начинаем считать:</p>
 
 *!*
   <script>
-    alert('Первый кролик!');
-    alert('Второй кролик!');
-    alert('Третий кролик!');
+    alert( 'Первый кролик!' );
+    alert( 'Второй кролик!' );
+    alert( 'Третий кролик!' );
   </script>
 */!*
 
   <p>Кролики посчитаны!</p>
 
 </body>
+
 </html>
 ```
 

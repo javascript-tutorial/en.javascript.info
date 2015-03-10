@@ -13,7 +13,7 @@
 function CoffeeMachine(power) {
   var waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
   function getTimeToBoil() {
     return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
@@ -21,7 +21,7 @@ function CoffeeMachine(power) {
 
   this.run = function() {
     setTimeout(function() {
-      alert('Кофе готов!');
+      alert( 'Кофе готов!' );
     }, getTimeToBoil());
   };
 

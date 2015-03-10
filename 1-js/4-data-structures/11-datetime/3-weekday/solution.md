@@ -6,14 +6,14 @@ function getLocalDay(date) {
 
   var day = date.getDay();
 
-  if ( day == 0 ) { // день 0 становится 7
-    day = 7; 
+  if (day == 0) { // день 0 становится 7
+    day = 7;
   }
-  
+
   return day;
 }
 
-alert( getLocalDay(new Date(2012,0,3)) );  // 2
+alert( getLocalDay(new Date(2012, 0, 3)) ); // 2
 ```
 
 Если удобнее, чтобы день недели начинался с нуля, то можно возвращать в функции `day - 1`, тогда дни будут от 0 (пн) до 6(вс).

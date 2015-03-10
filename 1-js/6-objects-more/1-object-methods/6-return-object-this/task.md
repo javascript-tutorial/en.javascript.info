@@ -9,15 +9,15 @@ var name = "";
 
 var user = {
   name: "Василий",
-        
+
   export: function() {
-    return {  
+    return {
       value: this
     };
   }
 
-};  
+};
 
-alert(user.export().value.name);
+alert( user.export().value.name );
 ```
 

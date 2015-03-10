@@ -5,8 +5,8 @@
 function filter(arr, func) {
   var result = [];
 
-  for(var i=0; i<arr.length; i++) {
-    var val  = arr[i];
+  for (var i = 0; i < arr.length; i++) {
+    var val = arr[i];
     if (func(val)) {
       result.push(val);
     }
@@ -17,7 +17,9 @@ function filter(arr, func) {
 
 var arr = [1, 2, 3, 4, 5, 6, 7];
 
-alert( filter(arr, function(a) { return a % 2 == 0; }) ); // 2, 4, 6
+alert(filter(arr, function(a) {
+  return a % 2 == 0;
+})); // 2, 4, 6
 ```
 
 # Фильтр inBetween
@@ -27,8 +29,8 @@ alert( filter(arr, function(a) { return a % 2 == 0; }) ); // 2, 4, 6
 function filter(arr, func) {
   var result = [];
 
-  for(var i=0; i<arr.length; i++) {
-    var val  = arr[i];
+  for (var i = 0; i < arr.length; i++) {
+    var val = arr[i];
     if (func(val)) {
       result.push(val);
     }
@@ -39,14 +41,14 @@ function filter(arr, func) {
 
 *!*
 function inBetween(a, b) {
-  return function(x) {
-    return x >=a && x <= b;
-  };
-}
+    return function(x) {
+      return x >= a && x <= b;
+    };
+  }
 */!*
 
 var arr = [1, 2, 3, 4, 5, 6, 7];
-alert( filter(arr, inBetween(3,6)) ); // 3,4,5,6
+alert( filter(arr, inBetween(3, 6)) ); // 3,4,5,6
 ```
 
 # Фильтр inArray
@@ -56,8 +58,8 @@ alert( filter(arr, inBetween(3,6)) ); // 3,4,5,6
 function filter(arr, func) {
   var result = [];
 
-  for(var i=0; i<arr.length; i++) {
-    var val  = arr[i];
+  for (var i = 0; i < arr.length; i++) {
+    var val = arr[i];
     if (func(val)) {
       result.push(val);
     }
@@ -68,13 +70,13 @@ function filter(arr, func) {
 
 *!*
 function inArray(arr) {
-  return function(x) {
-    return arr.indexOf(x) != -1;
-  };
-}
+    return function(x) {
+      return arr.indexOf(x) != -1;
+    };
+  }
 */!*
 
 var arr = [1, 2, 3, 4, 5, 6, 7];
-alert( filter(arr, inArray([1,2,10])) ); // 1,2
+alert( filter(arr, inArray([1, 2, 10])) ); // 1,2
 ```
 

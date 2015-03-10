@@ -183,8 +183,8 @@ event = JSON.parse(str);
 //+ run
 var room = {
   number: 23,
-  occupy: function() { 
-    alert(this.number);
+  occupy: function() {
+    alert( this.number );
   }
 };
 
@@ -216,9 +216,9 @@ alert( JSON.stringify(event) );
 var room = {
   number: 23,
 *!*
-  toJSON: function() { 
-    return this.number;
-  }
+  toJSON: function() {
+      return this.number;
+    }
 */!*
 };
 
@@ -239,7 +239,7 @@ alert( JSON.stringify(room) ); // 23
 var user = {
   name: "Вася",
   age: 25,
-  window: window 
+  window: window
 };
 
 *!*
@@ -259,11 +259,11 @@ alert( JSON.stringify(user) ); // ошибка!
 var user = {
   name: "Вася",
   age: 25,
-  window: window 
+  window: window
 };
 
 *!*
-alert( JSON.stringify(user, ["name", "age"]) ); 
+alert( JSON.stringify(user, ["name", "age"]) );
 // {"name":"Вася","age":25}
 */!*
 ```
@@ -275,17 +275,17 @@ alert( JSON.stringify(user, ["name", "age"]) );
 var user = {
   name: "Вася",
   age: 25,
-  window: window  
+  window: window
 };
 
 *!*
 var str = JSON.stringify(user, function(key, value) {
   if (key == 'window') return undefined;
   return value;
-} );
+});
 */!*
 
-alert(str); // {"name":"Вася","age":25}
+alert( str ); // {"name":"Вася","age":25}
 ```
 
 В примере выше функция пропустит свойство с названием `window`. Для остальных она просто возвращает значение, передавая его стандартному алгоритму. А могла бы и как-то обработать.
@@ -307,14 +307,17 @@ alert(str); // {"name":"Вася","age":25}
 var user = {
   name: "Вася",
   age: 25,
-  roles: {isAdmin: false, isEditor: true} 
+  roles: {
+    isAdmin: false,
+    isEditor: true
+  }
 };
 
 *!*
 var str = JSON.stringify(user, "", 4);
 */!*
 
-alert(str);
+alert( str );
 /* Результат -- красиво сериализованный объект:
 {
     "name": "Вася",

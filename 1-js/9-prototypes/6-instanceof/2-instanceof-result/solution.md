@@ -4,9 +4,9 @@
 
 ```js
 //+ run
-function Animal() { }
+function Animal() {}
 
-function Rabbit() { }
+function Rabbit() {}
 Rabbit.prototype = Object.create(Animal.prototype);
 
 var rabbit = new Rabbit();

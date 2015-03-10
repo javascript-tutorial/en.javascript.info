@@ -29,7 +29,7 @@ this.food = something;
 
 ```js
 //+ run
-function Hamster() { 
+function Hamster() {
 *!*
   this.food = [];
 */!*

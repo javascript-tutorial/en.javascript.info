@@ -7,7 +7,7 @@ Function.prototype.defer = function(ms) {
 }
 
 function f() {
-  alert("привет");
+  alert( "привет" );
 }
 
 f.defer(1000); // выведет "привет" через 1 секунду

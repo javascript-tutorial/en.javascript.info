@@ -19,7 +19,7 @@ try {
 
   // код ...
 
-} catch(err) {
+} catch (err) {
 
   // обработка ошибки
 
@@ -101,11 +101,11 @@ alert("Потом код продолжит выполнение...");
 ```js
 //+ run
 try {
-  setTimeout(function() { 
+  setTimeout(function() {
     throw new Error(); // вылетит в консоль
   }, 1000);
-} catch(e) {
-  alert("не сработает");
+} catch (e) {
+  alert( "не сработает" );
 }
 ```
 
@@ -169,11 +169,11 @@ var data = "Has Error"; // в данных ошибка
 try {
 
   var user = JSON.parse(data); // <-- ошибка при выполнении
-  alert(user.name); // не сработает
+  alert( user.name ); // не сработает
 
-} catch(e) {
+} catch (e) {
   // ...выполнится catch
-  alert( "Извините, в данных ошибка, мы попробуем получить их ещё раз"); 
+  alert( "Извините, в данных ошибка, мы попробуем получить их ещё раз" );
   alert( e.name );
   alert( e.message );
 }
@@ -193,12 +193,12 @@ try {
 
   var user = JSON.parse(data); // <-- выполнится без ошибок
 *!*
-  alert(user.name); // undefined
+  alert( user.name ); // undefined
 */!*
 
-} catch(e) {
+} catch (e) {
   // не выполнится
-  alert( "Извините, в данных ошибка"); 
+  alert( "Извините, в данных ошибка" );
 }
 ```
 
@@ -234,10 +234,10 @@ try {
   }
 */!*
 
-  alert(user.name);
+  alert( user.name );
 
-} catch(e) {
-  alert( "Извините, в данных ошибка"); 
+} catch (e) {
+  alert( "Извините, в данных ошибка" );
 }
 ```
 
@@ -265,7 +265,7 @@ var data = '{ "name": "Вася", "age": 30 }'; // данные корректн
 
 try {
 
-  var user = JSON.parse(data); 
+  var user = JSON.parse(data);
 
   if (!user.name) {
     throw new SyntaxError("Ошибка в данных");
@@ -275,13 +275,13 @@ try {
   blabla(); // произошла непредусмотренная ошибка
 */!*
 
-  alert(user.name);
+  alert( user.name );
 
-} catch(e) {
+} catch (e) {
 
-*!* 
+*!*
   if (e.name == "SyntaxError") {
-    alert( "Извините, в данных ошибка"); 
+    alert( "Извините, в данных ошибка" );
   } else {
     throw e;
   }
@@ -297,14 +297,14 @@ try {
 ```js
 //+ run
 function readData() {
-  var data = '{ "name": "Вася", "age": 30 }'; 
+  var data = '{ "name": "Вася", "age": 30 }';
 
   try {
     // ...
 *!*
     blabla(); // ошибка!
 */!*
-  } catch(e) {
+  } catch (e) {
     // ...
 *!*
     if (e.name != 'SyntaxError') {
@@ -317,9 +317,9 @@ function readData() {
 
 try {
   readData();
-} catch(e) {
+} catch (e) {
 *!*
-  alert("Поймал во внешнем catch: " + e); // ловим
+  alert( "Поймал во внешнем catch: " + e ); // ловим
 */!*
 }
 ```
@@ -357,13 +357,13 @@ function ReadError(message, cause) {
 }
 
 function readData() {
-  var data = '{ bad data }'; 
+  var data = '{ bad data }';
 
   try {
     // ...
     JSON.parse(data);
     // ...
-  } catch(e) {
+  } catch (e) {
     // ...
     if (e.name == 'URIError') {
       throw new ReadError("Ошибка в URI", e);
@@ -380,10 +380,10 @@ function readData() {
 
 try {
   readData();
-} catch(e) {
+} catch (e) {
   if (e.name == 'ReadError') {
-    alert(e.message);
-    alert(e.cause); // оригинальная ошибка-причина
+    alert( e.message );
+    alert( e.cause ); // оригинальная ошибка-причина
   } else {
     throw e;
   }
@@ -419,12 +419,12 @@ try {
 ```js
 //+ run
 try {
-  alert('try');
+  alert( 'try' );
   if (confirm('Сгенерировать ошибку?')) BAD_CODE();
-} catch(e) {
-  alert('catch');
+} catch (e) {
+  alert( 'catch' );
 } finally {
-  alert('finally');
+  alert( 'finally' );
 }
 ```
 
@@ -441,7 +441,7 @@ try {
 ```js
 //+ run
 function sum(n) {
-  return n ? (n + sum(n-1)) : 0;
+  return n ? (n + sum(n - 1)) : 0;
 }
 
 var n = +prompt('Введите n?', 100);
@@ -450,7 +450,7 @@ var start = new Date();
 
 try {
   var result = sum(n);
-} catch(e) {
+} catch (e) {
   result = 0;
 *!*
 } finally {
@@ -458,8 +458,8 @@ try {
 }
 */!*
 
-alert(result ? result : 'была ошибка');
-alert("Выполнение заняло " + diff);
+alert( result ? result : 'была ошибка' );
+alert( "Выполнение заняло " + diff );
 ```
 
 Здесь секция `finally` гарантирует, что время будет подсчитано в любых ситуациях -- при ошибке в `sum` или без неё.
@@ -475,16 +475,16 @@ alert("Выполнение заняло " + diff);
 ```js
 //+ run
 function func() {
- 
+
   try {
     // сразу вернуть значение
     return 1;
 
-  } catch(e) {
+  } catch (e) {
     /* ... */
   } finally {
 *!*
-    alert('finally');
+    alert( 'finally' );
 */!*
   }
 }
@@ -502,7 +502,7 @@ function func() {
   try {
     return 1;
   } finally {
-    alert('Вызов завершён');
+    alert( 'Вызов завершён' );
   }
 }
 
@@ -529,17 +529,17 @@ alert( func() ); // сначала finally, потом 1
 <!--+ run -->
 <script>
 *!*
-window.onerror = function(message, url, lineNumber) {
-  alert("Поймана ошибка, выпавшая в глобальную область!\n" +
-   "Сообщение: " + message +"\n(" + url + ":" + lineNumber + ")");
-};
+  window.onerror = function(message, url, lineNumber) {
+    alert("Поймана ошибка, выпавшая в глобальную область!\n" +
+      "Сообщение: " + message + "\n(" + url + ":" + lineNumber + ")");
+  };
 */!*
 
-function readData() {
-  error(); // ой, что-то не так
-}
+  function readData() {
+    error(); // ой, что-то не так
+  }
 
-readData();
+  readData();
 </script>
 ```
 

@@ -7,8 +7,8 @@
 ```js
 function makeCounter() {
   var currentCount = 1;
-    
-  return function() { 
+
+  return function() {
     var currentCount;
     // можно ли здесь вывести currentCount из внешней функции (равный 1)?
   };

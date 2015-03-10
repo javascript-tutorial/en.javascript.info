@@ -2,9 +2,9 @@
 
 ```js
 //+ run
-for(var i=0; i<5; ++i) alert(i);
+for (var i = 0; i < 5; ++i) alert( i );
 
-for(var i=0; i<5; i++) alert(i);
+for (var i = 0; i < 5; i++) alert( i );
 ```
 
 Такой результат обусловлен алгоритмом работы `for`:

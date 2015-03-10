@@ -5,7 +5,7 @@
 function CoffeeMachine(power) {
   this.waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 *!*
   var timerId;
 */!*
@@ -16,7 +16,7 @@ function CoffeeMachine(power) {
   }
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {

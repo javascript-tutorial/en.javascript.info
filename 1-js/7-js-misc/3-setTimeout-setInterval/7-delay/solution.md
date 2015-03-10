@@ -18,7 +18,7 @@ function delay(f, ms) {
 }
 
 function f(x) {
-  alert(x);
+  alert( x );
 }
 
 var f1000 = delay(f, 1000);
@@ -36,7 +36,7 @@ return function() {
   var savedArgs = arguments;
 
   setTimeout(function() {
-    f.apply(savedThis , savedArgs);
+    f.apply(savedThis, savedArgs);
   }, ms);
 };
 ```

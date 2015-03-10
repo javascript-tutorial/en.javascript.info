@@ -6,8 +6,8 @@
 //+ run
 function sum(a) {
 
-  return function(b) { 
-    return a + b;  // возьмет a из внешнего LexicalEnvironment
+  return function(b) {
+    return a + b; // возьмет a из внешнего LexicalEnvironment
   };
 
 }

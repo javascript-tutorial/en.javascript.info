@@ -6,7 +6,7 @@
 
 ```js
 //+ run
-alert( [] == [] );  // false
+alert( [] == [] ); // false
 alert( [] == ![] ); // true
 ```
 

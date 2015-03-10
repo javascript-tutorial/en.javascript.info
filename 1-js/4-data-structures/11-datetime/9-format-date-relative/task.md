@@ -15,12 +15,12 @@
 ```js
 function formatDate(date) { /* ваш код */ }
 
-alert( formatDate( new Date(new Date - 1) ) ); // "только что"
+alert( formatDate(new Date(new Date - 1)) ); // "только что"
 
-alert( formatDate( new Date(new Date - 30*1000) ) ); // "30 сек. назад"
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
 
-alert( formatDate( new Date(new Date- 5*60*1000) ) ); // "5 мин. назад"
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
 
-alert( formatDate( new Date(new Date - 86400*1000) ) ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
+alert( formatDate(new Date(new Date - 86400 * 1000)) ); // вчерашняя дата в формате "дд.мм.гг чч:мм"
 ```
 

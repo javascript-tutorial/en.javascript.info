@@ -10,7 +10,7 @@
 
 ```js
 //+ run
-var obj = { };
+var obj = {};
 alert( obj ); // "[object Object]" ?
 ```
 
@@ -39,16 +39,16 @@ alert( {}.__proto__.toString ); // function toString
 
 ```js
 //+ run
-var obj = { };
+var obj = {};
 
 // метод берётся из прототипа?
-alert(obj.toString == Object.prototype.toString); // true, да
+alert( obj.toString == Object.prototype.toString ); // true, да
 
 // проверим, правда ли что __proto__ это Object.prototype?
-alert(obj.__proto__ == Object.prototype); // true
+alert( obj.__proto__ == Object.prototype ); // true
 
 // А есть ли __proto__ у Object.prototype?
-alert(obj.__proto__.__proto__); // null, нет
+alert( obj.__proto__.__proto__ ); // null, нет
 ```
 
 ## Встроенные "классы" в JavaScript
@@ -146,7 +146,7 @@ var user = "Вася";
 user.age = 30;
 
 *!*
-alert(user.age); // undefined
+alert( user.age ); // undefined
 */!*
 ```
 
@@ -157,9 +157,9 @@ alert(user.age); // undefined
 
 ```js
 //+ run
-alert(typeof 1); // "number"
+alert( typeof 1 ); // "number"
 
-alert(typeof new Number(1)); // "object" ?!?
+alert( typeof new Number(1) ); // "object" ?!?
 ```
 
 Или, ещё страннее:
@@ -168,8 +168,8 @@ alert(typeof new Number(1)); // "object" ?!?
 //+ run
 var zero = new Number(0);
 
-if (zero) {  // объект - true, так что alert выполнится
-  alert("число ноль -- true?!?");
+if (zero) { // объект - true, так что alert выполнится
+  alert( "число ноль -- true?!?" );
 }
 ```
 
@@ -192,10 +192,10 @@ if (zero) {  // объект - true, так что alert выполнится
 ```js
 //+ run
 String.prototype.repeat = function(times) {
-  return new Array(times+1).join(this);
+  return new Array(times + 1).join(this);
 };
 
-alert( "ля".repeat(3) ) // ляляля
+alert( "ля".repeat(3) ); // ляляля
 ```
 
 Аналогично мы могли бы создать метод `Object.prototype.each(func)`, который будет применять `func` к каждому свойству:
@@ -210,10 +210,13 @@ Object.prototype.each = function(f) {
 }
 
 // Попробуем! (внимание, пока что это работает неверно!) 
-var user = { name: 'Вася', age: 25 };
+var user = {
+  name: 'Вася',
+  age: 25
+};
 
-user.each(function(prop, val) { 
-  alert(prop); // name -> age -> (!) each
+user.each(function(prop, val) {
+  alert( prop ); // name -> age -> (!) each
 });
 ```
 
@@ -240,10 +243,13 @@ Object.prototype.each = function(f) {
 };
 
 // Теперь все будет в порядке
-var obj = { name: 'Вася', age: 25 };
+var obj = {
+  name: 'Вася',
+  age: 25
+};
 
-obj.each(function(prop, val) { 
-  alert(prop); // name -> age
+obj.each(function(prop, val) {
+  alert( prop ); // name -> age
 });
 ```
 
@@ -264,14 +270,19 @@ Object.prototype.each = function(f) {
 
 *!*
 // поправить объявление свойства, установив флаг enumerable: false
-Object.defineProperty(Object.prototype, 'each', { enumerable: false });
+Object.defineProperty(Object.prototype, 'each', {
+  enumerable: false
+});
 */!*
 
 // Теперь все будет в порядке
-var obj = { name: 'Вася', age: 25 };
+var obj = {
+  name: 'Вася',
+  age: 25
+};
 
-obj.each(function(prop, val) { 
-  alert(prop); // name -> age
+obj.each(function(prop, val) {
+  alert( prop ); // name -> age
 });
 ```
 

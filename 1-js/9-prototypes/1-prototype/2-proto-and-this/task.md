@@ -7,7 +7,7 @@
 Если да, то в какой именно объект он запишет свойство `full`: в `rabbit` или `animal`?
 
 ```js
-var animal = { 
+var animal = {
   eat: function() {
     this.full = true;
   }
@@ -18,7 +18,7 @@ var rabbit = {
 };
 
 *!*
-rabbit.eat();  
+rabbit.eat();
 */!*
 ```
 

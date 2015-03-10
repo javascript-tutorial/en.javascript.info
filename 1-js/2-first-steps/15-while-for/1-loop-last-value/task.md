@@ -7,8 +7,8 @@
 ```js
 var i = 3;
 
-while(i) {
-  alert(i--);
+while (i) {
+  alert( i-- );
 }
 ```
 

@@ -5,7 +5,7 @@
 Превратите объект `leader` из примера ниже в JSON:
 
 ```js
-var leader = { 
+var leader = {
   name: "Василий Иванович",
   age: 35
 };

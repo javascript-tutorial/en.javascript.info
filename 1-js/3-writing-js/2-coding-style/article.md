@@ -12,7 +12,7 @@
 <!--
 ```js
 function pow(x, n) {
-  var result = 1;  
+  var result = 1;
 
   for (var i = 0; i < n; i++) {
     result *= x;
@@ -25,8 +25,8 @@ var x = prompt("x?", "");
 var n = prompt("n?", "");
 
 if (n < 0) {
-  alert('Степень ' + n + 
-        'не поддерживается, введите целую степень, большую 0');
+  alert('Степень ' + n +
+    'не поддерживается, введите целую степень, большую 0');
 } else {
   alert( pow(x, n) );
 }
@@ -41,6 +41,7 @@ if (n < 0) {
 
 <!--
 ```js
+//+ no-beautify
 if (n < 0) {alert('Степень ' + n + ' не поддерживается');}
 
 
@@ -79,6 +80,7 @@ if (n < 0) {
 
 Например, выровнять аргументы относительно открывающей скобки:
 ```js
+//+ no-beautify
 show("Строки" + 
      " выровнены" +
      " строго" +
@@ -91,15 +93,14 @@ show("Строки" +
 
 ```js
 function pow(x, n) {
-  var result = 1;  
+  var result = 1;
   //              <--       
   for (var i = 0; i < n; i++) {
-    result *=x;
+    result *= x;
   }
   //              <--
   return result;
 }
-
 ```
 
 Вставляйте дополнительный перевод строки туда, где это сделает код более читаемым. Не должно быть более 9 строк кода подряд без вертикального отступа.
@@ -133,7 +134,7 @@ function pow(x, n) {
 Вместо:
 
 ```js
-for (var i=0; i<10; i++) {
+for (var i = 0; i < 10; i++) {
   if (i подходит) {
     ... // <- уровень вложенности 2
   }
@@ -158,7 +159,7 @@ function isEven(n) { // проверка чётности
   if (n % 2 == 0) {
     return true;
 *!*
-  } else { 
+  } else {
     return false;
   }
 */!*
@@ -172,9 +173,9 @@ function isEven(n) { // проверка чётности
   if (n % 2 == 0) {
     return true;
   }
- 
+
 *!*
-  return false; 
+  return false;
 */!*
 }
 ```
@@ -187,7 +188,7 @@ function isEven(n) { // проверка чётности
 
 ```js
 function isEven(n) { // проверка чётности
-  return !(n % 2); 
+  return !(n % 2);
 }
 ```
 
@@ -209,14 +210,13 @@ function isEven(n) { // проверка чётности
 
 ```js
 function showPrimes(n) {
-  nextPrime: 
-  for (var i=2; i<n; i++) {
+  nextPrime: for (var i = 2; i < n; i++) {
 
-    for (var j=2; j<i; j++) {
-      if ( i % j == 0) continue nextPrime;
+    for (var j = 2; j < i; j++) {
+      if (i % j == 0) continue nextPrime;
     }
-    
-    alert(i);  // простое
+
+    alert( i ); // простое
   }
 }
 ```

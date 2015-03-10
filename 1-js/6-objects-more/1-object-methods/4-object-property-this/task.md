@@ -9,10 +9,10 @@ var name = "";
 
 var user = {
   name: "Василий",
-        
-  export: this
-};  
 
-alert(user.export.name);
+  export: this
+};
+
+alert( user.export.name );
 ```
 

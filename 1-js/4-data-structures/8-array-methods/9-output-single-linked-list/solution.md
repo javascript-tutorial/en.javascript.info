@@ -3,10 +3,14 @@
 ```js
 //+ run
 var list = {
-  value: 1,  next: {
-    value: 2, next: {
-      value: 3, next: {
-        value: 4, next: null
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
       }
     }
   }
@@ -15,7 +19,7 @@ var list = {
 function printList(list) {
   var tmp = list;
 
-  while(tmp) {
+  while (tmp) {
     alert( tmp.value );
     tmp = tmp.next;
   }
@@ -49,23 +53,27 @@ function printList(list) {
 ```js
 //+ run
 var list = {
-  value: 1,  next: {
-    value: 2, next: {
-      value: 3, next: {
-        value: 4, next: null
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
       }
     }
   }
 };
 
 function printList(list) {
- 
-  alert(list.value); // (1)
- 
+
+  alert( list.value ); // (1)
+
   if (list.next) {
     printList(list.next); // (2)
   }
- 
+
 }
 
 printList(list);
@@ -78,10 +86,14 @@ printList(list);
 ```js
 //+ run
 var list = {
-  value: 1,  next: {
-    value: 2, next: {
-      value: 3, next: {
-        value: 4, next: null
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
       }
     }
   }
@@ -93,7 +105,7 @@ function printReverseList(list) {
     printReverseList(list.next);
   }
 
-  alert(list.value);
+  alert( list.value );
 }
 
 printReverseList(list);
@@ -104,10 +116,14 @@ printReverseList(list);
 ```js
 //+ run
 var list = {
-  value: 1,  next: {
-    value: 2, next: {
-      value: 3, next: {
-        value: 4, next: null
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
       }
     }
   }
@@ -118,12 +134,12 @@ function printReverseList(list) {
   var arr = [];
   var tmp = list;
 
-  while(tmp) {
+  while (tmp) {
     arr.push(tmp.value);
     tmp = tmp.next;
   }
 
-  for( var i = arr.length-1; i>=0; i-- ) {
+  for (var i = arr.length - 1; i >= 0; i--) {
     alert( arr[i] );
   }
 }

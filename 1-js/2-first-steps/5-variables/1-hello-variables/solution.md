@@ -4,10 +4,10 @@
 //+ run
 var admin, name; // две переменных через запятую
 
-name = "Василий"; 
+name = "Василий";
 
 admin = name;
 
-alert(admin); // "Василий"
+alert( admin ); // "Василий"
 ```
 

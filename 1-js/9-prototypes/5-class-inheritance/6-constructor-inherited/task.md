@@ -7,9 +7,9 @@
 Что содержит свойство `rabbit.constructor`? Распознает ли проверка в `alert` объект как `Rabbit`?
 
 ```js
-function Animal() { }
+function Animal() {}
 
-function Rabbit() { }
+function Rabbit() {}
 Rabbit.prototype = Object.create(Animal.prototype);
 
 var rabbit = new Rabbit();

@@ -9,8 +9,8 @@
 function Animal(name) {
   this.name = name;
 
-  this.walk = function() { 
-    alert("ходит " + this.name);
+  this.walk = function() {
+    alert( "ходит " + this.name );
   };
 }
 
@@ -20,8 +20,8 @@ function Rabbit(name) {
 Rabbit.prototype = Object.create(Animal.prototype);
 
 *!*
-Rabbit.prototype.walk = function() { 
-  alert("прыгает! и ходит: " + this.name);
+Rabbit.prototype.walk = function() {
+  alert( "прыгает! и ходит: " + this.name );
 };
 */!*
 

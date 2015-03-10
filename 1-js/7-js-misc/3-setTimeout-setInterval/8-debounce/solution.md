@@ -1,7 +1,7 @@
 
 
 ```js
-//+ run
+//+ run no-beautify
 function debounce(f, ms) {
 
   var state = null;

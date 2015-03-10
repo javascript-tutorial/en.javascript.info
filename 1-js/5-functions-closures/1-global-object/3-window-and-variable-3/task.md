@@ -6,10 +6,10 @@
 
 ```js
 if ("a" in window) {
-    a = 1;
+  a = 1;
 }
 var a;
 
-alert(a);
+alert( a );
 ```
 

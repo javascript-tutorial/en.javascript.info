@@ -9,7 +9,7 @@ P.S.
 
 ```js
 //+ run
-alert( ['x','y'] == 'x,y' ); // true
+alert( ['x', 'y'] == 'x,y' ); // true
 alert( [] == '' ); // true
 ```
 

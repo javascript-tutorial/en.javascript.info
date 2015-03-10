@@ -17,7 +17,7 @@ var user = {
   password: '12345',
 
   loginDone: function(result) {
-    alert(this.login + (result ? ' вошёл в сайт' : ' ошибка входа'));
+    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
   },
 
   checkPassword: function() {
@@ -49,15 +49,19 @@ var user = {
   password: '12345',
 
   loginDone: function(result) {
-    alert(this.login + (result ? ' вошёл в сайт' : ' ошибка входа'));
+    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
   },
 
   checkPassword: function() {
     var self = this;
 *!*
     ask("Ваш пароль?", this.password,
-       function() { self.loginDone(true); }, 
-       function() { self.loginDone(false); }
+      function() {
+        self.loginDone(true);
+      },
+      function() {
+        self.loginDone(false);
+      }
     );
 */!*
   }

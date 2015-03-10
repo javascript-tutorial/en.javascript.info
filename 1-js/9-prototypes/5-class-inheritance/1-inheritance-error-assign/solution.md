@@ -9,7 +9,7 @@ Rabbit.prototype = Animal.prototype;
 Получится, что все животные прыгают, вот пример:
 
 ```js
-//+ run
+//+ run no-beautify
 function Animal(name) {
   this.name = name;
 }

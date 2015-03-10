@@ -28,8 +28,8 @@ setTimeout(function go() {
 }, 15);
 
 setTimeout(function() {
-  alert(runner1.steps);
-  alert(runner2.steps);
+  alert( runner1.steps );
+  alert( runner2.steps );
 }, 5000);
 ```
 

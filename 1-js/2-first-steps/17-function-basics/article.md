@@ -13,8 +13,8 @@
 Пример объявления функции:
 
 ```js
-function showMessage() {  
-  alert('Привет всем присутствующим!');
+function showMessage() {
+  alert( 'Привет всем присутствующим!' );
 }
 ```
 
@@ -24,8 +24,8 @@ function showMessage() {
 
 ```js
 //+ run
-function showMessage() {  
-  alert('Привет всем присутствующим!');
+function showMessage() {
+  alert( 'Привет всем присутствующим!' );
 }
 
 *!*
@@ -49,12 +49,12 @@ function showMessage() {
   var message = 'Привет, я - Вася!'; // локальная переменная
 */!*
 
-  alert(message);
+  alert( message );
 }
 
 showMessage(); // 'Привет, я - Вася!'
 
-alert(message); // <-- будет ошибка, т.к. переменная видна только внутри
+alert( message ); // <-- будет ошибка, т.к. переменная видна только внутри
 ```
 
 **Блоки `if/else`, `switch`, `for`, `while`, `do..while` не влияют на область видимости переменных.**
@@ -64,6 +64,7 @@ alert(message); // <-- будет ошибка, т.к. переменная ви
 Например:
 
 ```js
+//+ no-beautify
 function count() {
   // переменные i,j не будут уничтожены по окончании цикла
   for (*!*var*/!* i=0; i<3; i++) {
@@ -86,12 +87,12 @@ function count() {
 *!*
   var i, j; // передвинули объявления var в начало
 */!*
-  for (i=0; i<3; i++) {
+  for (i = 0; i < 3; i++) {
     j = i * 2;
   }
 
-  alert(i); // i=3
-  alert(j); // j=4
+  alert( i ); // i=3
+  alert( j ); // j=4
 }
 ```
 
@@ -100,7 +101,7 @@ function count() {
 Функция может обратиться ко внешней переменной, например:
 
 ```js
-//+ run
+//+ run no-beautify
 var *!*userName*/!* = 'Вася';
 
 function showMessage() {
@@ -121,13 +122,13 @@ function showMessage() {
   userName = 'Петя'; // (1) присвоение во внешнюю переменную
 
   var message = 'Привет, я ' + userName;
-  alert(message);
+  alert( message );
 }
 
 showMessage();
 
 *!*
-alert(userName); // Петя, значение внешней переменной изменено функцией
+alert( userName ); // Петя, значение внешней переменной изменено функцией
 */!*
 ```
 
@@ -154,7 +155,7 @@ function showMessage() {
 
 showMessage();
 
-alert(message); // Привет
+alert( message ); // Привет
 ```
 
 В коде выше переменная `message` нигде не объявлена, а сразу присваивается. Скорее всего, программист просто забыл поставить `var`.
@@ -177,7 +178,7 @@ alert(message); // Привет
 Например, этот код выводит два сообщения:
 
 ```js
-//+ run
+//+ run no-beautify
 function showMessage(*!*from, text*/!*) { // параметры from, text
   
   from = "** " + from + " **"; // здесь может быть сложный код оформления
@@ -197,18 +198,18 @@ showMessage('Маша', 'Как дела?');
 
 ```js
 //+ run
-function showMessage(from, text) { 
+function showMessage(from, text) {
 *!*
-  from = '**' + from + '**';  // меняем локальную переменную from 
+  from = '**' + from + '**'; // меняем локальную переменную from 
 */!*
-  alert(from + ': ' + text);
+  alert( from + ': ' + text );
 }
 
 var from = "Маша";
 
-showMessage(from, "Привет"); 
+showMessage(from, "Привет");
 
-alert(from); // старое значение from без изменений, в функции была изменена копия
+alert( from ); // старое значение from без изменений, в функции была изменена копия
 ```
 
 ## Аргументы по умолчанию
@@ -234,7 +235,7 @@ function showMessage(from, text) {
   }
 */!*
 
-  alert(from + ": " + text); 
+  alert( from + ": " + text );
 }
 
 showMessage("Маша", "Привет!"); // Маша: Привет!
@@ -254,9 +255,9 @@ showMessage("Маша"); // Маша: текст не передан
 ```js
 //+ run
 function showMessage(from, text) {
-  text = text || 'текст не передан'; 
+  text = text || 'текст не передан';
 
-  ... 
+  ...
 }
 ```
 
@@ -273,7 +274,7 @@ function showMessage(from, text) {
 Например, создадим функцию `calcD`, которая будет возвращать дискриминант квадратного уравнения по формуле <code>b<sup>2</sup> - 4ac</code>:
 
 ```js
-//+ run
+//+ run no-beautify
 function calcD(a, b, c) {
    *!*return*/!* b*b - 4*a*c;
 }
@@ -291,7 +292,7 @@ alert(test); // 20
 ```js
 //+ run
 function checkAge(age) {
-  if (age > 18) { 
+  if (age > 18) {
     return true;
   } else {
     return confirm('Родители разрешили?');
@@ -301,9 +302,9 @@ function checkAge(age) {
 var age = prompt('Ваш возраст?');
 
 if (checkAge(age)) {
-  alert('Доступ разрешен'); 
+  alert( 'Доступ разрешен' );
 } else {
-  alert('В доступе отказано');
+  alert( 'В доступе отказано' );
 }
 ```
 
@@ -318,8 +319,8 @@ function showMovie(age) {
     return;
 */!*
   }
-  
-  alert("Фильм не для всех"); // (*)  
+
+  alert( "Фильм не для всех" ); // (*)  
   // ...
 }
 ```
@@ -342,7 +343,7 @@ alert( doNothing() ); // undefined
 
 ```js
 //+ run
-function doNothing() { 
+function doNothing() {
   return;
 }
 
@@ -360,12 +361,14 @@ alert( doNothing() === undefined ); // true
 Функции, которые начинаются с `"show"` -- что-то показывают:
 
 ```js
+//+ no-beautify
 showMessage(..)     // префикс show, "показать" сообщение
 ```
 
 Функции, начинающиеся с `"get"` -- получают, и т.п.:
 
 ```js
+//+ no-beautify
 getAge(..)          // get, "получает" возраст
 calcD(..)           // calc, "вычисляет" дискриминант
 createForm(..)      // create, "создает" форму

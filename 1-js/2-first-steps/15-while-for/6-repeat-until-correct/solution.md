@@ -6,7 +6,7 @@ var num;
 
 do {
   num = prompt("Введите число больше 100?", 0);
-} while(num <= 100 && num != null);
+} while (num <= 100 && num != null);
 ```
 
 Цикл `do..while` повторяется, пока верны две проверки:

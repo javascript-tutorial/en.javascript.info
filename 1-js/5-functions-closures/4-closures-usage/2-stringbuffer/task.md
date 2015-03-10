@@ -23,9 +23,9 @@ function makeBuffer() { /* ваш код */ }
 var buffer = makeBuffer();
 
 // добавить значения к буферу
-buffer('Замыкания'); 
-buffer(' Использовать'); 
-buffer(' Нужно!'); 
+buffer('Замыкания');
+buffer(' Использовать');
+buffer(' Нужно!');
 
 // получить текущее значение
 alert( buffer() ); // Замыкания Использовать Нужно!
@@ -35,7 +35,9 @@ alert( buffer() ); // Замыкания Использовать Нужно!
 
 ```js
 var buffer = makeBuffer();
-buffer(0); buffer(1); buffer(0);
+buffer(0);
+buffer(1);
+buffer(0);
 
 alert( buffer() ); // '010'
 ```

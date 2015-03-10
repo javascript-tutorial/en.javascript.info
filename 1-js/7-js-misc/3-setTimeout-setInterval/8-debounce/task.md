@@ -9,6 +9,7 @@
 Например:
 
 ```js
+//+ no-beautify
 function f() { ... }
 
 var f = debounce(f, 1000);

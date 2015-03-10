@@ -6,7 +6,7 @@
 Например:
 
 ```js
-//+ run
+//+ run no-beautify
 function go(a,b) {
   alert("a="+a+", b="+b);
 }
@@ -25,13 +25,13 @@ function log(a) {
   ...
 }
 
-function log(a,b,c) {
+function log(a, b, c) {
   ...
 }
 
 *!*
 log(a); // вызовется первая функция
-log(a,b,c); // вызовется вторая функция
+log(a, b, c); // вызовется вторая функция
 */!*
 ```
 
@@ -57,12 +57,12 @@ log(a,b,c); // вызовется вторая функция
 ```js
 //+ run
 function sayHi() {
-  for (var i=0; i<arguments.length; i++) {
-    alert("Привет, " + arguments[i]);
+  for (var i = 0; i < arguments.length; i++) {
+    alert( "Привет, " + arguments[i] );
   }
 }
- 
-sayHi("Винни", "Пятачок");  // 'Привет, Винни', 'Привет, Пятачок'
+
+sayHi("Винни", "Пятачок"); // 'Привет, Винни', 'Привет, Пятачок'
 ```
 
 Все параметры находятся в `arguments`, даже если они есть в списке. Код выше сработал бы также, будь функция объявлена `sayHi(a,b,c)`. 
@@ -80,8 +80,8 @@ sayHi("Винни", "Пятачок");  // 'Привет, Винни', 'Прив
 //+ run
 function f(x) {
   arguments[0] = 5; // меняет переменную x
-  alert(x); // 5
-} 
+  alert( x ); // 5
+}
 
 f(1);
 ```
@@ -91,9 +91,9 @@ f(1);
 ```js
 //+ run
 function f(x) {
-  x = 5; 
-  alert(arguments[0]); // 5, обновленный x 
-} 
+  x = 5;
+  alert( arguments[0] ); // 5, обновленный x 
+}
 
 f(1);
 ```
@@ -106,8 +106,8 @@ function f(x) {
   "use strict"; // для браузеров с поддержкой строгого режима
 
   arguments[0] = 5;
-  alert(x); // не 5, а 1! Переменная "отвязана" от arguments
-} 
+  alert( x ); // не 5, а 1! Переменная "отвязана" от arguments
+}
 
 f(1);
 ```
@@ -137,7 +137,7 @@ sayHi(1);
 ```js
 //+ run
 var args = [];
-for(var i=0; i<arguments.length; i++) {
+for (var i = 0; i < arguments.length; i++) {
   args[i] = arguments[i];
 }
 ```
@@ -169,7 +169,7 @@ var vasya = {
   surname: 'Петров'
 };
 
-var user = { 
+var user = {
   isAdmin: false,
   isEmailConfirmed: true
 };
@@ -180,11 +180,11 @@ var student = {
 
 // добавить к vasya свойства из user и student
 *!*
-copy(vasya, user, student); 
+copy(vasya, user, student);
 */!*
 
-alert(vasya.isAdmin); // false
-alert(vasya.university); // My university
+alert( vasya.isAdmin ); // false
+alert( vasya.university ); // My university
 ```
 
 </li>
@@ -207,7 +207,7 @@ var userClone = copy({}, user);
 function copy() {
   var dst = arguments[0];
 
-  for (var i=1; i<arguments.length; i++) {
+  for (var i = 1; i < arguments.length; i++) {
     var arg = arguments[i];
     for (var key in arg) {
       dst[key] = arg[key];
@@ -225,7 +225,7 @@ function copy() {
 function copy(dst) {
 */!*
   // остальные аргументы остаются безымянными
-  for (var i=1; i<arguments.length; i++) {
+  for (var i = 1; i < arguments.length; i++) {
     var arg = arguments[i];
     for (var key in arg) {
       dst[key] = arg[key];
@@ -248,7 +248,7 @@ function copy(dst) {
 function showWarning(width, height, title, contents) {
   width = width || 200; // если не указана width, то width = 200
   height = height || 100; // если нет height, то height = 100
-  title = title || "Предупреждение"; 
+  title = title || "Предупреждение";
 
   //...
 }
@@ -260,9 +260,9 @@ function showWarning(width, height, title, contents) {
 
 ```js
 function showWarning(width, height, title, contents) {
-  if (width !== undefined) width = 200; 
+  if (width !== undefined) width = 200;
   if (height !== undefined) height = 100;
-  if (title !== undefined) title = "Предупреждение"; 
+  if (title !== undefined) title = "Предупреждение";
 
   //...
 }
@@ -282,9 +282,9 @@ function showWarning(width, height, title, contents) {
 
 ```js
 function showWarning(options) {
-  var width = options.width || 200;  // по умолчанию
+  var width = options.width || 200; // по умолчанию
   var height = options.height || 100;
-  
+
   var title = options.title || "Предупреждение";
 
   // ...
@@ -296,7 +296,7 @@ showWarning({
 Вызвать такую функцию очень легко. Достаточно передать объект аргументов, указав в нем только нужные:
 
 ```js
-showWarning({ 
+showWarning({
   contents: "Вы вызвали функцию" // и всё понятно!
 });
 ```
@@ -304,7 +304,7 @@ showWarning({
 Сравним это с передачей аргументов через список:
 
 ```js
-showWarning(null, null, "Предупреждение!"); 
+showWarning(null, null, "Предупреждение!");
 // мысль программиста "а что это за null, null в начале? ох, надо глядеть описание функции"
 ```
 
@@ -315,13 +315,13 @@ showWarning(null, null, "Предупреждение!");
 ```js
 var opts = {
   width: 400,
-  height: 200, 
+  height: 200,
   contents: "Текст"
 };
 
 showWarning(opts);
 
-opts.contents = "Другой текст"; 
+opts.contents = "Другой текст";
 
 *!*
 showWarning(opts); // вызвать с новым текстом, без копирования других аргументов
@@ -391,17 +391,17 @@ var factorial = function(n) {
 f1();
 
 function f1() {
-  alert(arguments.callee.caller); // null, меня вызвали из глобального кода
+  alert( arguments.callee.caller ); // null, меня вызвали из глобального кода
   f2();
 }
 
 function f2() {
-  alert(arguments.callee.caller); // f1, функция, из которой меня вызвали
+  alert( arguments.callee.caller ); // f1, функция, из которой меня вызвали
   f3();
 }
 
 function f3() {
-  alert(arguments.callee.caller); // f2, функция, из которой меня вызвали
+  alert( arguments.callee.caller ); // f2, функция, из которой меня вызвали
 }
 ```
 

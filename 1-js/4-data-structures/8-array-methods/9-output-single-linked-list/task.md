@@ -28,6 +28,7 @@ var list = {
 Альтернативный способ создания:
 
 ```js
+//+ no-beautify
 var list = { value: 1 };
 list.next = { value: 2 };
 list.next.next = { value: 3 };

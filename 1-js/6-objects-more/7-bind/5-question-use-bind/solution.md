@@ -19,11 +19,11 @@ var user = {
   password: '12345',
 
   loginOk: function() {
-    alert(this.login + ' вошёл в сайт');
+    alert( this.login + ' вошёл в сайт' );
   },
 
   loginFail: function() {
-    alert(this.login + ': ошибка входа');
+    alert( this.login + ': ошибка входа' );
   },
 
   checkPassword: function() {
@@ -43,6 +43,7 @@ vasya.checkPassword();
 Альтернативное решение -- сделать функции-обёртки над `user.loginOk/loginFail`:
 
 ```js
+//+ no-beautify
 var user = {
   ...
   checkPassword: function() {
@@ -79,19 +80,23 @@ var user = {
   password: '12345',
 
   loginOk: function() {
-    alert(this.login + ' вошёл в сайт');
+    alert( this.login + ' вошёл в сайт' );
   },
 
   loginFail: function() {
-    alert(this.login + ': ошибка входа');
+    alert( this.login + ': ошибка входа' );
   },
 
   checkPassword: function() {
 *!*
     var self = this;
-    ask("Ваш пароль?", this.password, 
-      function() { self.loginOk(); }, 
-      function() { self.loginFail(); }
+    ask("Ваш пароль?", this.password,
+      function() {
+        self.loginOk();
+      },
+      function() {
+        self.loginFail();
+      }
     );
 */!*
   }

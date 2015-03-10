@@ -26,7 +26,9 @@ var phrase = message;
 Вот как выглядит переменная, которой присвоен объект:
 
 ```js
-var user = { name: "Вася" };
+var user = {
+  name: "Вася"
+};
 ```
 
 <img src="variable-contains-reference.svg">
@@ -38,6 +40,7 @@ var user = { name: "Вася" };
 Например:
 
 ```js
+//+ no-beautify
 var user = { name: "Вася" }; // в переменной - ссылка 
 
 var admin = user; // скопировали ссылку
@@ -78,14 +81,14 @@ alert(*!*user.name*/!*); // 'Петя', изменения видны в user
 //+ run
 var user = {
   name: "Вася",
-  age: 30 
+  age: 30
 };
 
 *!*
 var clone = {}; // новый пустой объект
 
 // скопируем в него все свойства user
-for(var key in user) {
+for (var key in user) {
   clone[key] = user[key];
 }
 */!*
@@ -93,7 +96,7 @@ for(var key in user) {
 // теперь clone - полностью независимая копия
 clone.name = "Петя"; // поменяли данные в clone
 
-alert(user.name); // по-прежнем "Вася"
+alert( user.name ); // по-прежнем "Вася"
 ```
 
 В этом коде каждое свойство объекта `user` копируется в `clone`. Если предположить, что они примитивны, то каждое скопируется по значению и мы как раз получим полный клон.
@@ -116,7 +119,7 @@ var time = {
   microsecond: 123456
 }
 
-console.log(time);  // (*)
+console.log(time); // (*)
 time.microsecond++; // (**)
 
 console.log(time);

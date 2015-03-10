@@ -13,7 +13,7 @@
 ```js
 function Animal(name) {
   this.name = name;
-  this.canWalk = true;  
+  this.canWalk = true;
 }
 
 *!*
@@ -52,7 +52,7 @@ function Animal(name) {
 
   // в this пишем свойства, методы  
   this.name = name;
-  this.canWalk = true;  
+  this.canWalk = true;
 
 *!*
   // return this
@@ -75,7 +75,7 @@ function Animal(name) {
 Например, возврат объекта:
 
 ```js
-//+ run
+//+ run no-beautify
 function BigAnimal() {
 
   this.name = "Мышь";
@@ -97,7 +97,7 @@ function BigAnimal() {
   return "Годзилла"; // <-- возвратим примитив
 }
 
-alert( new BigAnimal().name );  // Мышь, получили this (а Годзилла пропал)
+alert( new BigAnimal().name ); // Мышь, получили this (а Годзилла пропал)
 ```
 
 Эта особенность работы `new` прописана в стандарте, но используется она весьма редко.
@@ -126,9 +126,9 @@ var animal = new BigAnimal();
 //+ run
 function User(name) {
   this.name = name;
- 
+
   this.sayHi = function() {
-    alert("Моё имя: " + this.name);
+    alert( "Моё имя: " + this.name );
   };
 }
 
@@ -156,15 +156,15 @@ function User(firstName, lastName) {
 *!*
   // вспомогательная переменная
   var phrase = "Привет";
- 
+
   //  вспомогательная вложенная функция
-  function getFullName() { 
-    return firstName + " " + lastName;
-  }
+  function getFullName() {
+      return firstName + " " + lastName;
+    }
 */!*
- 
+
   this.sayHi = function() {
-    alert(phrase + ", " + getFullName()); // использование
+    alert( phrase + ", " + getFullName() ); // использование
   };
 }
 

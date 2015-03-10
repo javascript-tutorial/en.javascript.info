@@ -3,6 +3,7 @@
 В реальном случае, скорее всего, подойдёт обычное сравнение `'=='`.
 
 ```js
+//+ no-beautify
 if(browser == 'IE') {
   alert('О, да у вас IE!');
 } else if (browser == 'Chrome'

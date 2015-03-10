@@ -4,6 +4,6 @@
 //+ run
 var max = 10;
 
-alert( Math.random()*max );
+alert( Math.random() * max );
 ```
 

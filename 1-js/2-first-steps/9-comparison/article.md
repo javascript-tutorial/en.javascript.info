@@ -65,7 +65,7 @@ alert( 'Б' > 'А' ); // true
 
 ```js
 //+ run
-alert('а' > 'Я'); // true, строчные буквы больше прописных
+alert( 'а' > 'Я' ); // true, строчные буквы больше прописных
 ```
 
 Для корректного сравнения символы должны быть в одинаковом регистре. 
@@ -137,7 +137,7 @@ alert( +"2" > +"14" ); // false, теперь правильно
 alert( '2' > 1 ); // true, сравнивается как 2 > 1
 alert( '01' == 1 ); // true, сравнивается как 1 == 1
 alert( false == 0 ); // true, false становится числом 0
-alert( true == 1); // true, так как true становится числом 1.
+alert( true == 1 ); // true, так как true становится числом 1.
 ```
 
 Тема преобразований типов будет продолжена далее, в главе [](/types-conversion). 
@@ -148,7 +148,7 @@ alert( true == 1); // true, так как true становится числом
 
 ```js
 //+ run
-alert(0 == false); // true
+alert( 0 == false ); // true
 ```
 
 Та же ситуация с пустой строкой:
@@ -156,7 +156,7 @@ alert(0 == false); // true
 
 ```js
 //+ run
-alert('' == false); // true
+alert( '' == false ); // true
 ```
 
 Это естественное следствие того, что операнды разных типов преобразовались к числу. Пустая строка, как и `false`, при преобразовании к числу дают `0`.
@@ -169,7 +169,7 @@ alert('' == false); // true
 
 ```js
 //+ run
-alert(0 === false); // false, т.к. типы различны
+alert( 0 === false ); // false, т.к. типы различны
 ```
 
 Строгое сравнение предпочтительно, если мы хотим быть уверены, что "сюрпризов" не будет.
@@ -195,8 +195,8 @@ alert(0 === false); // false, т.к. типы различны
 
 ```js
 //+ run
-alert(null > 0); // false
-alert(null == 0); // false
+alert( null > 0 ); // false
+alert( null == 0 ); // false
 ```
 
 Итак, мы получили, что `null` не больше и не равен нулю. А теперь...
@@ -220,9 +220,9 @@ alert(null >= 0); // *!*true*/!*
 
 ```js
 //+ run
-alert(undefined > 0); // false (1)
-alert(undefined < 0); // false (2)
-alert(undefined == 0); // false (3)
+alert( undefined > 0 ); // false (1)
+alert( undefined < 0 ); // false (2)
+alert( undefined == 0 ); // false (3)
 ```
 
 <ul>

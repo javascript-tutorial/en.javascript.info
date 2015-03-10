@@ -10,7 +10,7 @@
 Синтаксис:
 
 ```js
-var timerId = setTimeout(func/code, delay[, arg1, arg2...])
+var timerId = setTimeout(func / code, delay[, arg1, arg2...])
 ```
 
 Параметры:
@@ -31,8 +31,8 @@ var timerId = setTimeout(func/code, delay[, arg1, arg2...])
 
 ```js
 //+ run
-function func() { 
-  alert('Привет');
+function func() {
+  alert( 'Привет' );
 }
 
 *!*
@@ -44,12 +44,12 @@ setTimeout(func, 1000);
 
 ```js
 //+ run
-function func(phrase, who) { 
-  alert(phrase + ', ' + who);
+function func(phrase, who) {
+  alert( phrase + ', ' + who );
 }
 
 *!*
-setTimeout(func, 1000, "Привет", "Вася");  // Привет, Вася
+setTimeout(func, 1000, "Привет", "Вася"); // Привет, Вася
 */!*
 ```
 
@@ -58,7 +58,7 @@ setTimeout(func, 1000, "Привет", "Вася");  // Привет, Вася
 То есть такая запись тоже сработает:
 
 ```js
-//+ run
+//+ run no-beautify
 setTimeout("alert('Привет')", 1000);
 ```
 
@@ -67,7 +67,7 @@ setTimeout("alert('Привет')", 1000);
 Вместо них используйте анонимные функции, вот так:
 
 ```js
-//+ run
+//+ run no-beautify
 setTimeout(function() { alert('Привет') }, 1000);
 ```
 
@@ -85,7 +85,7 @@ clearTimeout(timerId);
 В следующем примере мы ставим таймаут, а затем удаляем (передумали). В результате ничего не происходит.
 
 ```js
-//+ run
+//+ run no-beautify
 var timerId = setTimeout(function() { alert(1) }, 1000);
 alert(timerId); // число - идентификатор таймера
 
@@ -104,7 +104,7 @@ alert(timerId); // всё ещё число, оно не обнуляется п
 Метод `setInterval` имеет синтаксис, аналогичный `setTimeout`.
 
 ```js
-var timerId = setInterval(func/code, delay[, arg1, arg2...])
+var timerId = setInterval(func / code, delay[, arg1, arg2...])
 ```
 
 Смысл аргументов -- тот же самый. Но, в отличие от `setTimeout`, он запускает выполнение функции не один раз, а  регулярно повторяет её через указанный интервал времени. Остановить исполнение можно вызовом `clearInterval(timerId)`.
@@ -114,14 +114,14 @@ var timerId = setInterval(func/code, delay[, arg1, arg2...])
 ```js
 //+ run
 // начать повторы с интервалом 2 сек
-var timerId = setInterval(function() { 
-  alert("тик");
+var timerId = setInterval(function() {
+  alert( "тик" );
 }, 2000);
 
 // через 5 сек остановить повторы
-setTimeout(function() { 
+setTimeout(function() {
   clearInterval(timerId);
-  alert('стоп');
+  alert( 'стоп' );
 }, 5000);
 ```
 
@@ -141,12 +141,12 @@ setTimeout(function() {
 ```js
 /** вместо:
 var timerId = setInterval(function() { 
-  alert("тик");
+  alert( "тик" );
 }, 2000);
 */
 
 var timerId = setTimeout(function tick() {
-  alert("тик");
+  alert( "тик" );
 *!*
   timerId = setTimeout(tick, 2000);
 */!*

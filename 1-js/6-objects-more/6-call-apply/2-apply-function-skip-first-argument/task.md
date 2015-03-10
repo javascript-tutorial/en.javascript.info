@@ -21,10 +21,15 @@ alert( applyAll(Math.min, 2, -2, 3) ); // -2
 ```js
 //+ run
 function sum() { // суммирует аргументы: sum(1,2,3) = 6
-  return [].reduce.call(arguments, function(a, b) { return a + b; });
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
+  });
 }
+
 function mul() { // перемножает аргументы: mul(2,3,4) = 24
-  return [].reduce.call(arguments, function(a, b) { return a * b; });
+  return [].reduce.call(arguments, function(a, b) {
+    return a * b;
+  });
 }
 
 *!*

@@ -2,8 +2,8 @@
 
 ```js
 function getDateAgo(date, days) {
-  date.setDate( date.getDate() - days );
-  return date.getDate(); 
+  date.setDate(date.getDate() - days);
+  return date.getDate();
 }
 ```
 
@@ -15,9 +15,9 @@ function getDateAgo(date, days) {
 //+ run
 function getDateAgo(date, days) {
   var dateCopy = new Date(date);
-  
-  dateCopy.setDate( date.getDate() - days );
-  return dateCopy.getDate(); 
+
+  dateCopy.setDate(date.getDate() - days);
+  return dateCopy.getDate();
 }
 
 var date = new Date(2015, 0, 2);

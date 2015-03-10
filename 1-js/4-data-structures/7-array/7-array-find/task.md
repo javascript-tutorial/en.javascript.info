@@ -7,7 +7,7 @@
 Например:
 
 ```js
-arr = [ "test", 2, 1.5, false ];
+arr = ["test", 2, 1.5, false];
 
 find(arr, "test"); // 0
 find(arr, 2); // 1

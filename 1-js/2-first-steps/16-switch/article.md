@@ -9,6 +9,7 @@
 Выглядит она так:
 
 ```js
+//+ no-beautify
 switch(x) {
   case 'value1':  // if (x === 'value1')
     ...
@@ -48,18 +49,18 @@ var a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert('Маловато');
+    alert( 'Маловато' );
     break;
 *!*
   case 4:
-    alert('В точку!');
+    alert( 'В точку!' );
     break;
 */!*
   case 5:
-    alert('Перебор');
+    alert( 'Перебор' );
     break;
   default:
-    alert('Я таких значений не знаю');
+    alert( 'Я таких значений не знаю' );
 }
 ```
 
@@ -73,18 +74,18 @@ switch (a) {
 
 ```js
 //+ run
-var a = 2+2;
+var a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert('Маловато');
+    alert( 'Маловато' );
 *!*
   case 4:
-    alert('В точку!');
+    alert( 'В точку!' );
   case 5:
-    alert('Перебор');
+    alert( 'Перебор' );
   default:
-    alert('Я таких значений не знаю');
+    alert( 'Я таких значений не знаю' );
 */!*
 }
 ```
@@ -92,9 +93,9 @@ switch (a) {
 В примере выше  последовательно выполнятся три `alert`:
 
 ```js
-alert('В точку!');
-alert('Перебор');
-alert('Я таких значений не знаю');
+alert( 'В точку!' );
+alert( 'Перебор' );
+alert( 'Я таких значений не знаю' );
 ```
 
 В `case` могут быть любые выражения, в том числе включающие в себя переменные и функции.
@@ -106,10 +107,10 @@ alert('Я таких значений не знаю');
 var a = 1;
 var b = 0;
 
-switch(a) {
+switch (a) {
 *!*
-  case b+1:
-    alert(1);
+  case b + 1:
+    alert( 1 );
     break;
 */!*
 
@@ -125,7 +126,7 @@ switch(a) {
 В примере ниже `case 3` и `case 5`  выполняют один и тот же код:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 2+2;
 
 switch (a) {
@@ -155,17 +156,17 @@ switch (a) {
 ```js
 //+ run
 var arg = prompt("Введите arg?")
-switch(arg) {
+switch (arg) {
   case '0':
   case '1':
-    alert('Один или ноль');
+    alert( 'Один или ноль' );
 
   case '2':
-    alert('Два');
+    alert( 'Два' );
     break;
 
   case 3:
-    alert('Никогда не выполнится');
+    alert( 'Никогда не выполнится' );
 
   default:
     alert('Неизвестное значение: ' + arg)

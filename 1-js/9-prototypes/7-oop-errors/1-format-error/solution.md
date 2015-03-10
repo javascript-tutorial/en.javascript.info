@@ -20,9 +20,9 @@ FormatError.prototype.constructor = FormatError;
 
 var err = new FormatError("ошибка форматирования");
 
-alert(err.message); // ошибка форматирования
-alert(err.name); // FormatError
-alert(err.stack); // стек на момент генерации ошибки
+alert( err.message ); // ошибка форматирования
+alert( err.name ); // FormatError
+alert( err.stack ); // стек на момент генерации ошибки
 
-alert(err instanceof SyntaxError); // true
+alert( err instanceof SyntaxError ); // true
 ```

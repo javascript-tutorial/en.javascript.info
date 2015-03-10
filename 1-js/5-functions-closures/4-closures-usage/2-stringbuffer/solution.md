@@ -3,26 +3,28 @@
 ```js
 //+ run
 function makeBuffer() {
-  var text = ''; 
-    
+  var text = '';
+
   return function(piece) {
     if (arguments.length == 0) { // вызов без аргументов
       return text;
     }
-    text += piece; 
+    text += piece;
   };
 };
 
 var buffer = makeBuffer();
 
 // добавить значения к буферу
-buffer('Замыкания'); 
-buffer(' Использовать'); 
-buffer(' Нужно!'); 
+buffer('Замыкания');
+buffer(' Использовать');
+buffer(' Нужно!');
 alert( buffer() ); // 'Замыкания Использовать Нужно!'
 
 var buffer2 = makeBuffer();
-buffer2(0); buffer2(1); buffer2(0);
+buffer2(0);
+buffer2(1);
+buffer2(0);
 
 alert( buffer2() ); // '010'
 ```

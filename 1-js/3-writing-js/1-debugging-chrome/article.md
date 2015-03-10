@@ -185,7 +185,7 @@ function pow(x, n) {
 ```js
 //+ run
 // результат будет виден в консоли
-for(var i=0; i<5; i++) {
+for (var i = 0; i < 5; i++) {
   console.log("значение", i);
 }
 ```

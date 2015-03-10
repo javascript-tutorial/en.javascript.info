@@ -11,8 +11,8 @@ function truncate(str, maxlength) {
   return str;
 }
 
-alert(truncate("Вот, что мне хотелось бы сказать на эту тему:", 20));
-alert(truncate("Всем привет!", 20));
+alert( truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) );
+alert( truncate("Всем привет!", 20) );
 ```
 
 Можно было бы написать этот код ещё короче:
@@ -20,7 +20,7 @@ alert(truncate("Всем привет!", 20));
 ```js
 //+ run
 function truncate(str, maxlength) {
-  return (str.length > maxlength) ? 
+  return (str.length > maxlength) ?
     str.slice(0, maxlength - 3) + '...' : str;
 }
 ```

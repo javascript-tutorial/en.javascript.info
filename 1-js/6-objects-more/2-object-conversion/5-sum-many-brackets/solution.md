@@ -13,23 +13,25 @@
 ```js
 //+ run
 function sum(a) {
-  
+
   var currentSum = a;
-  
+
   function f(b) {
     currentSum += b;
     return f;
   }
-  
-  f.toString = function() { return currentSum; };
-  
+
+  f.toString = function() {
+    return currentSum;
+  };
+
   return f;
 }
 
-alert( sum(1)(2) );  // 3
-alert( sum(5)(-1)(2) );  // 6
-alert( sum(6)(-1)(-2)(-3) );  // 0
-alert( sum(0)(1)(2)(3)(4)(5) );  // 15
+alert( sum(1)(2) ); // 3
+alert( sum(5)(-1)(2) ); // 6
+alert( sum(6)(-1)(-2)(-3) ); // 0
+alert( sum(0)(1)(2)(3)(4)(5) ); // 15
 ```
 
 При внимательном взгляде на решение легко заметить, что функция `sum` срабатывает только один раз. Она возвращает функцию `f`.

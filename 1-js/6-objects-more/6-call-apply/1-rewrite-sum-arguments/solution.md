@@ -5,12 +5,12 @@
 function sumArgs() {
   // скопируем reduce из массива
   arguments.reduce = [].reduce;
-  return arguments.reduce(function(a, b) { 
+  return arguments.reduce(function(a, b) {
     return a + b;
   });
 }
 
-alert( sumArgs(4,5,6) ); // 15
+alert( sumArgs(4, 5, 6) ); // 15
 ```
 
 # Второй вариант
@@ -21,11 +21,11 @@ alert( sumArgs(4,5,6) ); // 15
 //+ run
 function sumArgs() {
   // запустим reduce из массива напрямую
-  return [].reduce.call(arguments, function(a, b) { 
-    return a + b; 
+  return [].reduce.call(arguments, function(a, b) {
+    return a + b;
   });
 }
 
-alert( sumArgs(4,5,6) ); // 15
+alert( sumArgs(4, 5, 6) ); // 15
 ```
 

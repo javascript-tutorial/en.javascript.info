@@ -2,7 +2,7 @@
 
 ```js
 //+ run
-var arr = [ 5, 2, 1, -10, 8];
+var arr = [5, 2, 1, -10, 8];
 
 function compareReversed(a, b) {
   return b - a;
@@ -10,6 +10,6 @@ function compareReversed(a, b) {
 
 arr.sort(compareReversed);
 
-alert(arr);
+alert( arr );
 ```
 

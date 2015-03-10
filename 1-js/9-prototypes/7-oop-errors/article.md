@@ -49,7 +49,7 @@ PropertyError.prototype = Object.create(Error.prototype);
 <dd>У встроенных объектов `Error` это свойство есть автоматически, вот к примеру:
 ```js
 //+ run
-function f() { 
+function f() {
   alert( new Error().stack );
 }
 
@@ -109,15 +109,15 @@ PropertyError.prototype = Object.create(Error.prototype);
 // Генерация ошибки
 */!*
 function readUser(data) {
-  
+
   var user = JSON.parse(data);
 
   if (!user.age) {
-    throw new PropertyError("age"); 
+    throw new PropertyError("age");
   }
 
   if (!user.name) {
-    throw new PropertyError("name"); 
+    throw new PropertyError("name");
   }
 
   return user;
@@ -134,13 +134,13 @@ try {
     if (err.property == 'name') {
       // если в данном месте кода возможны анонимы, то всё нормально
 *!*
-      alert("Здравствуйте, Аноним!"); 
+      alert( "Здравствуйте, Аноним!" );
 */!*
     } else {
-      alert(err.message);  // Отсутствует свойство ...
+      alert( err.message ); // Отсутствует свойство ...
     }
   } else if (err instanceof SyntaxError) {
-    alert("Ошибка в данных: " + err.message); 
+    alert( "Ошибка в данных: " + err.message );
   } else {
     throw err; // неизвестная ошибка, не знаю что с ней делать
   }
@@ -215,7 +215,7 @@ PropertyRequiredError.prototype.constructor = PropertyRequiredError;
 
 var err = new PropertyRequiredError("age");
 // пройдёт проверку
-alert(err instanceof PropertyError); // true
+alert( err instanceof PropertyError ); // true
 ```
 
 Здесь заодно и `message` было перезаписано на более точное. Если хочется избежать записи и перезаписи, то можно оформить его в виде геттера через `Object.defineProperty`.

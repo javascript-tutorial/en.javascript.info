@@ -8,7 +8,7 @@
 
 ```js
 function f(x) {
-  alert(x);
+  alert( x );
 }
 
 var f1000 = delay(f, 1000);

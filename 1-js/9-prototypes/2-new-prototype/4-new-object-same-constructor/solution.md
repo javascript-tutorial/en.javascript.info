@@ -4,14 +4,14 @@
 
 ```js
 //+ run
-function User(name) { 
+function User(name) {
   this.name = name;
 }
 
 var obj = new User('Вася');
 var obj2 = new obj.constructor('Петя');
 
-alert(obj2.name); // Петя (сработало)
+alert( obj2.name ); // Петя (сработало)
 ```
 
 Сработало, так как `User.prototype.constructor == User`. 
@@ -20,9 +20,9 @@ alert(obj2.name); // Петя (сработало)
 
 ```js
 //+ run
-function User(name) { 
-  this.name = name;
-}
+function User(name) {
+    this.name = name;
+  }
 *!*
 User.prototype = {};
 */!*
@@ -30,5 +30,5 @@ User.prototype = {};
 var obj = new User('Вася');
 var obj2 = new obj.constructor('Петя');
 
-alert(obj2.name); // undefined
+alert( obj2.name ); // undefined
 ```

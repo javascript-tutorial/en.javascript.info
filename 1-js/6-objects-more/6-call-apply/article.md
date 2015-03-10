@@ -11,7 +11,7 @@
 Синтаксис метода `call`:
 
 ```js
-func.call(context, arg1, arg2,...)
+func.call(context, arg1, arg2, ...)
 ```
 
 При этом вызывается функция `func`, первый аргумент `call` становится её `this`, а остальные передаются "как есть".
@@ -21,7 +21,7 @@ func.call(context, arg1, arg2,...)
 Например, у нас есть функция `showFullName`, которая  работает с `this`:
 
 ```js
-function showFullName() { 
+function showFullName() {
   alert( this.firstName + " " + this.lastName );
 }
 ```
@@ -32,18 +32,18 @@ function showFullName() {
 
 ```js
 //+ run
-function showFullName() { 
+function showFullName() {
   alert( this.firstName + " " + this.lastName );
 }
 
-var user = { 
+var user = {
   firstName: "Василий",
   lastName: "Петров"
 };
 
 *!*
 // функция вызовется с this=user
-showFullName.call(user)  // "Василий Петров"
+showFullName.call(user) // "Василий Петров"
 */!*
 ```
 
@@ -51,20 +51,20 @@ showFullName.call(user)  // "Василий Петров"
 
 ```js
 //+ run
-var user = { 
+var user = {
   firstName: "Василий",
   surname: "Петров",
   patronym: "Иванович"
 };
 
-function showFullName(firstPart, lastPart) { 
+function showFullName(firstPart, lastPart) {
   alert( this[firstPart] + " " + this[lastPart] );
 }
 
 *!*
 // f.call(контекст, аргумент1, аргумент2, ...)
-showFullName.call(user, 'firstName', 'surname')  // "Василий Петров"
-showFullName.call(user, 'firstName', 'patronym')  // "Василий Иванович"
+showFullName.call(user, 'firstName', 'surname') // "Василий Петров"
+showFullName.call(user, 'firstName', 'patronym') // "Василий Иванович"
 */!*
 ```
 
@@ -85,9 +85,9 @@ showFullName.call(user, 'firstName', 'patronym')  // "Василий Ивано�
 function printArgs() {
   arguments.join = [].join; // одолжили метод (1)
 
-  var argStr = arguments.join(':');  // (2)
+  var argStr = arguments.join(':'); // (2)
 
-  alert(argStr);  // сработает и выведет 1:2:3
+  alert( argStr ); // сработает и выведет 1:2:3
 }
 
 printArgs(1, 2, 3);
@@ -107,12 +107,12 @@ printArgs(1, 2, 3);
 function join(separator) {
   if (!this.length) return '';
 
-  var str = this[0]; 
+  var str = this[0];
 
-  for (var i = 1; i<this.length; i++) {
-    str += separator + this[i]; 
+  for (var i = 1; i < this.length; i++) {
+    str += separator + this[i];
   }
-  
+
   return str;
 }
 ```
@@ -123,9 +123,9 @@ function join(separator) {
 
 ```js
 //+ run
-var obj = {  // обычный объект с числовыми индексами и length
-  0: "А", 
-  1: "Б", 
+var obj = { // обычный объект с числовыми индексами и length
+  0: "А",
+  1: "Б",
   2: "В",
   length: 3
 };
@@ -154,10 +154,10 @@ function printArgs() {
 *!*
   // вызовем join с this=arguments,
   // этот вызов эквивалентен arguments.join(':') из примера выше
-  var argStr = join.call(arguments, ':'); 
+  var argStr = join.call(arguments, ':');
 */!*
 
-  alert(argStr);  // сработает и выведет 1:2:3
+  alert( argStr ); // сработает и выведет 1:2:3
 }
 
 printArgs(1, 2, 3);
@@ -195,7 +195,7 @@ printArgs('Привет', 'мой', 'мир'); // Привет, мой, мир
 **Вызов функции при помощи `func.apply` работает аналогично `func.call`, но принимает массив аргументов вместо списка.**
 
 ```js
-func.call(context, arg1, arg2)
+func.call(context, arg1, arg2);
 // идентичен вызову
 func.apply(context, [arg1, arg2]);
 ```
@@ -203,7 +203,7 @@ func.apply(context, [arg1, arg2]);
 В частности, эти две строчки cработают одинаково:
 
 ```js
-showFullName.call(user, 'firstName', 'surname'); 
+showFullName.call(user, 'firstName', 'surname');
 
 showFullName.apply(user, ['firstName', 'surname']);
 ```
@@ -243,10 +243,10 @@ alert( Math.max.apply(null, arr) ); // 5
 Современный стандарт:
 ```js
 //+ run
-function f() { 
+function f() {
   "use strict";
 *!*
-  alert(this); // null
+  alert( this ); // null
 */!*
 }
 
@@ -257,11 +257,11 @@ f.call(null);
 
 ```js
 //+ run
-function f() { 
-  alert(this); // window
+function f() {
+  alert( this ); // window
 }
 
-f.call(null); 
+f.call(null);
 ```
 
 [/smart]
@@ -275,6 +275,7 @@ f.call(null);
 <dd>
 
 ```js
+//+ no-beautify
 obj.func(...)    // this = obj
 obj["func"](...)
 ```
@@ -284,7 +285,7 @@ obj["func"](...)
 <dd>
 
 ```js
-func(...)        // this = window (ES3) /undefined (ES5)
+func(...) // this = window (ES3) /undefined (ES5)
 ```
 
 </dd>
@@ -292,7 +293,7 @@ func(...)        // this = window (ES3) /undefined (ES5)
 <dd>
 
 ```js
-new func()       // this = {} (новый объект)
+new func() // this = {} (новый объект)
 ```
 
 </dd>

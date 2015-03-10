@@ -11,6 +11,7 @@ function CoffeeMachine(power, capacity) {
   var waterAmount = 0;
 
   var WATER_HEAT_CAPACITY = 4200;
+
   function getTimeToBoil() {
     return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
   }
@@ -26,8 +27,8 @@ function CoffeeMachine(power, capacity) {
 
 *!*
   function onReady() {
-    alert('Кофе готов!');
-  }
+      alert( 'Кофе готов!' );
+    }
 */!*
 
   this.run = function() {
@@ -45,8 +46,8 @@ coffeeMachine.setWaterAmount(150);
 
 *!*
 coffeeMachine.setOnReady(function() {
-  var amount =  coffeeMachine.getWaterAmount();
-  alert('Готов кофе: ' + amount + 'мл'); // Кофе готов: 150 мл
+  var amount = coffeeMachine.getWaterAmount();
+  alert( 'Готов кофе: ' + amount + 'мл' ); // Кофе готов: 150 мл
 });
 */!*
 

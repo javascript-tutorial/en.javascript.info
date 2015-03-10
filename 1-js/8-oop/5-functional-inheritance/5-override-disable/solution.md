@@ -29,15 +29,15 @@ function Fridge(power) {
     if (food.length + arguments.length >= this._power / 100) {
       throw new Error("Нельзя добавить, не хватает мощности");
     }
-    for(var i=0; i<arguments.length; i++) {
-      food.push(arguments[i]);  // добавить всё из arguments
+    for (var i = 0; i < arguments.length; i++) {
+      food.push(arguments[i]); // добавить всё из arguments
     }
 
   };
 
   this.getFood = function() {
     // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
-    return food.slice(); 
+    return food.slice();
   };
 
   this.filterFood = function(filter) {
@@ -60,7 +60,7 @@ function Fridge(power) {
 */!*
 }
 
-var fridge = new Fridge(500); 
+var fridge = new Fridge(500);
 fridge.enable();
 fridge.addFood("кус-кус");
 fridge.disable(); // ошибка, в холодильнике есть еда

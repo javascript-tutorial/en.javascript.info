@@ -73,7 +73,7 @@ getFunc()(); // *!*2*/!*, из LexicalEnvironment функции getFunc
 Ну а если внутри функции, создаваемой через `new Function`, всё же нужно использовать какие-то данные -- без проблем, нужно всего лишь предусмотреть соответствующие параметры и передавать их явным образом, например так:
 
 ```js
-//+ run untrusted refresh
+//+ run untrusted refresh no-beautify
 *!*
 var sum = new Function('a, b', ' return a + b; ');
 */!*

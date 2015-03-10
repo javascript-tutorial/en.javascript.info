@@ -1,6 +1,7 @@
 
 
 ```js
+//+ no-beautify
 new Date(0) - 0 = 0 // (1)
 new Array(1)[0] + "" = "undefined" // (2)
 ({})[0]  = undefined // (3)
@@ -24,6 +25,7 @@ new Array(1)[0] + "" = "undefined" // (2)
 Если это непонятно, то посмотрите на такой пример:
 
 ```js
+//+ no-beautify
 alert( [1,[0],2][1] );
 ```
 

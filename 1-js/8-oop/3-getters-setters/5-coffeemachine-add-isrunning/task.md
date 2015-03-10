@@ -12,13 +12,13 @@
 var coffeeMachine = new CoffeeMachine(20000, 500);
 coffeeMachine.setWaterAmount(100);
 
-alert('До: ' + coffeeMachine.isRunning()); // До: false
+alert( 'До: ' + coffeeMachine.isRunning() ); // До: false
 
 coffeeMachine.run();
-alert('В процессе: ' + coffeeMachine.isRunning()); // В процессе: true
+alert( 'В процессе: ' + coffeeMachine.isRunning() ); // В процессе: true
 
 coffeeMachine.setOnReady(function() {
-  alert("После: " + coffeeMachine.isRunning()); // После: false
+  alert( "После: " + coffeeMachine.isRunning() ); // После: false
 });
 ```
 

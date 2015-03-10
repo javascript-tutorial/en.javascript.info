@@ -23,11 +23,11 @@ var user = {
   password: '12345',
 
   loginOk: function() {
-    alert(this.login + ' вошёл в сайт');
+    alert( this.login + ' вошёл в сайт' );
   },
 
   loginFail: function() {
-    alert(this.login + ': ошибка входа');
+    alert( this.login + ': ошибка входа' );
   },
 
   checkPassword: function() {

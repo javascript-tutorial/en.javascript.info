@@ -19,7 +19,7 @@ var message = "Привет";
 
 // функция для вывода этой переменной
 function showMessage() {
-  alert(message);
+  alert( message );
 }
 
 // выводим сообщение
@@ -45,7 +45,7 @@ showMessage();
 <button>Кнопка</button>
 <script>
   // ожидается сообщение из переменной выше...
-  alert(message); // но на самом деле будет введено "Привет"
+  alert( message ); // но на самом деле будет введено "Привет"
 </script>
 ```
 
@@ -68,13 +68,13 @@ showMessage();
 ```js
 //+ run
 (function() {
-  
+
   // глобальная переменная нашего скрипта
   var message = "Привет";
 
   // функция для вывода этой переменной
   function showMessage() {
-    alert(message);
+    alert( message );
   }
 
   // выводим сообщение
@@ -97,8 +97,8 @@ showMessage();
 ```js
 //+ run
 (function() {
- 
-  alert("объявляем локальные переменные, функции, работаем");
+
+  alert( "объявляем локальные переменные, функции, работаем" );
   // ...
 
 }());
@@ -111,7 +111,7 @@ showMessage();
 ```js
 //+ run
 function() {
- // будет ошибка
+  // будет ошибка
 }();
 ```
 
@@ -123,7 +123,7 @@ function() {
 //+ run
 function work() {
   // ...
-}();  // syntax error
+}(); // syntax error
 ```
 
 **Дело в том, что "на месте" разрешено вызывать *только* `Function Expression`.**
@@ -140,7 +140,7 @@ function work() {
 Можно показать это другим способом, например поставив перед функцией оператор:
 
 ```js
-//+ run
+//+ run no-beautify
 +function() {
   alert('Вызов на месте');
 }();
@@ -178,15 +178,20 @@ function work() {
 
 <p>Функция <code>_.defaults()</code> добавляет отсутствующие свойства.</p>
 <script>
-var user = { name: 'Вася' };
+  var user = {
+    name: 'Вася'
+  };
 
 *!*
-_.defaults(user, { name: 'Не указано', employer: 'Не указан' });
+  _.defaults(user, {
+    name: 'Не указано',
+    employer: 'Не указан'
+  });
 */!*
 
-alert(user.name); // Вася
-alert(user.employer); // Не указан
-alert(_.size(user)); // 2
+  alert( user.name ); // Вася
+  alert( user.employer ); // Не указан
+  alert( _.size(user) ); // 2
 </script>
 ```
 
@@ -196,7 +201,7 @@ alert(_.size(user)); // 2
 Вот выдержка из исходного файла:
 
 ```js
-//+ run
+//+ run no-beautify
 ;(function() {
 
 *!*
@@ -255,6 +260,7 @@ var a = 5
 
 Второй файл `lib.js`:
 ```js
+//+ no-beautify
 (function() {
   // без точки с запятой в начале
 })()
@@ -263,7 +269,7 @@ var a = 5
 После объединения в один файл:
 
 ```js
-//+ run
+//+ run no-beautify
 *!*
 var a = 5
 */!*
@@ -285,6 +291,7 @@ var a = 5
 Можно оформить модуль и чуть по-другому, например передать значение через `return`:
 
 ```js
+//+ no-beautify
 var lodash = (function() {
 
   var version;

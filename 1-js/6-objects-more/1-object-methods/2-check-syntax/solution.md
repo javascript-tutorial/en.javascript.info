@@ -5,10 +5,12 @@
 ```js
 //+ run
 var obj = {
-  go: function() { alert(this) }
+  go: function() {
+    alert(this)
+  }
 }
 
-(obj.go)()  // error!
+(obj.go)() // error!
 ```
 
 Причем сообщение об ошибке в большинстве браузеров не даёт понять, что на самом деле не так.
@@ -18,6 +20,7 @@ var obj = {
 JavaScript игнорирует перевод строки перед скобкой `(obj.go)()`  и читает этот код как:
 
 ```js
+//+ no-beautify
 var obj = { go:... }(obj.go)()
 ```
 

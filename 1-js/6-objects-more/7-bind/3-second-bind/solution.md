@@ -1,7 +1,7 @@
 Ответ: `"Вася"`.
 
 ```js
-//+ run
+//+ run no-beautify
 function f() {
   alert(this.name);
 }
@@ -19,8 +19,8 @@ f(); // Вася
 
 ```js
 function bind(func, context) {
-  return function() { 
-    return func.apply(context, arguments); 
+  return function() {
+    return func.apply(context, arguments);
   };
 }
 ```
@@ -28,6 +28,7 @@ function bind(func, context) {
 Код станет таким:
 
 ```js
+//+ no-beautify
 function f() {
   alert(this.name);
 }
@@ -43,8 +44,8 @@ f(); // Вася
 ```js
 function bind(func, context) {
 *!*
-  return function() { 
-    return func.apply(context, arguments); 
+  return function() {
+    return func.apply(context, arguments);
   };
 */!*
 }

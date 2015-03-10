@@ -3,7 +3,7 @@
 ```js
 //+ run
 function User() {
-  
+
   var firstName, surName;
 
   this.setFirstName = function(newFirstName) {

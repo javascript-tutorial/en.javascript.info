@@ -1,7 +1,7 @@
 Запоминать результаты вызова функции будем в замыкании, в объекте `cache: { ключ:значение }`.
 
 ```js
-//+ run
+//+ run no-beautify
 function f(x) { 
   return Math.random()*x;
 }

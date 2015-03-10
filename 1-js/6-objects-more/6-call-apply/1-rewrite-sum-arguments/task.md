@@ -7,10 +7,12 @@
 ```js
 //+ run
 function sum(arr) {
-  return arr.reduce(function(a, b) { return a + b; });
+  return arr.reduce(function(a, b) {
+    return a + b;
+  });
 }
 
-alert( sum([1,2,3]) ); // 6 (=1+2+3)
+alert( sum([1, 2, 3]) ); // 6 (=1+2+3)
 ```
 
 Создайте аналогичную функцию `sumArgs()`, которая будет суммировать все свои аргументы:
@@ -20,7 +22,7 @@ function sumArgs() {
   /* ваш код */
 }
 
-alert( sumArgs(1,2,3) ); // 6, аргументы переданы через запятую, без массива
+alert( sumArgs(1, 2, 3) ); // 6, аргументы переданы через запятую, без массива
 ```
 
 Для решения примените метод `reduce` к `arguments`, используя `call`, `apply` или одалживание метода.

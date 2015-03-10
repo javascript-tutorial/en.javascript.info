@@ -35,7 +35,9 @@
 Пример использования:
 
 ```js
-var f = function(a) { console.log(a) };
+var f = function(a) {
+  console.log(a)
+};
 
 // затормозить функцию до одного раза в 1000 мс
 var f1000 = throttle(f, 1000);

@@ -7,14 +7,14 @@
 <li>Постфиксная форма:
 
 ```js
-for(var i=0; i<5; i++) alert(i);
+for (var i = 0; i < 5; i++) alert( i );
 ```
 
 </li>
 <li>Префиксная форма:
 
 ```js
-for(var i=0; i<5; ++i) alert(i);
+for (var i = 0; i < 5; ++i) alert( i );
 ```
 
 </li>

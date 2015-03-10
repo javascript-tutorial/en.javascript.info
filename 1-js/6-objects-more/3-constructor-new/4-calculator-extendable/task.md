@@ -13,7 +13,7 @@
 ```js
 var calc = new Calculator;
 
-alert(calc.calculate("3 + 7")); // 10
+alert( calc.calculate("3 + 7") ); // 10
 ```
 
 </li>
@@ -23,12 +23,18 @@ alert(calc.calculate("3 + 7")); // 10
 
 ```js
 var powerCalc = new Calculator;
-powerCalc.addMethod("*", function(a, b) { return a * b; });
-powerCalc.addMethod("/", function(a, b) { return a / b; });
-powerCalc.addMethod("**", function(a, b) { return Math.pow(a, b); });
+powerCalc.addMethod("*", function(a, b) {
+  return a * b;
+});
+powerCalc.addMethod("/", function(a, b) {
+  return a / b;
+});
+powerCalc.addMethod("**", function(a, b) {
+  return Math.pow(a, b);
+});
 
 var result = powerCalc.calculate("2 ** 3");
-alert(result); // 8
+alert( result ); // 8
 ```
 
 </li>

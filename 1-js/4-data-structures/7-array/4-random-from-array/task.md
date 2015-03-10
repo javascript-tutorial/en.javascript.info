@@ -11,6 +11,6 @@ var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
 P.S. Код для генерации случайного целого от `min` to `max` включительно:
 
 ```js
-var rand = min + Math.floor( Math.random() * (max+1-min) );
+var rand = min + Math.floor(Math.random() * (max + 1 - min));
 ```
 

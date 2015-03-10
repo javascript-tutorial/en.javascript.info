@@ -5,6 +5,7 @@
 Каков будет результат этого кода?
 
 ```js
+//+ no-beautify
 var obj = {
   go: function() { alert(this) }
 }

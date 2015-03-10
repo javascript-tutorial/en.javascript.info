@@ -38,7 +38,7 @@ Article.count = 0;
 
 Article.showCount = function() {
 *!*
-  alert(this.count);  // (1)
+  alert( this.count ); // (1)
 */!*
 }
 
@@ -82,10 +82,10 @@ function Journal(date) {
   this.date = date;
 
   this.formatDate = function(date) {
-    return date.getDate() + '.' + (date.getMonth()+1) + '.' + date.getFullYear();
+    return date.getDate() + '.' + (date.getMonth() + 1) + '.' + date.getFullYear();
   };
 
-  this.getTitle = function() { 
+  this.getTitle = function() {
     return "Выпуск от " + this.formatDate(this.date);
   };
 
@@ -99,17 +99,17 @@ Journal.compare = function(journalA, journalB) {
 
 // использование:
 var journals = [
-  new Journal(new Date(2012,1,1)), 
-  new Journal(new Date(2012,0,1)),
-  new Journal(new Date(2011,11,1)) 
+  new Journal(new Date(2012, 1, 1)),
+  new Journal(new Date(2012, 0, 1)),
+  new Journal(new Date(2011, 11, 1))
 ];
 
 function findMin(journals) {
   var min = 0;
-  for(var i=0; i<journals.length; i++) {
+  for (var i = 0; i < journals.length; i++) {
 *!*
     // используем статический метод
-    if ( Journal.compare(journals[min], journals[i]) > 0 ) min = i;
+    if (Journal.compare(journals[min], journals[i]) > 0) min = i;
 */!*
   }
   return journals[min];
@@ -154,7 +154,7 @@ alert( *!*Journal.formatDate(new Date)*/!* );
 ```js
 //+ run
 var str = String.fromCharCode(65);
-alert(str); // 'A'
+alert( str ); // 'A'
 ```
 
 Но строки -- слишком простой пример, посмотрим что-нибудь посложнее.
@@ -165,15 +165,17 @@ alert(str); // 'A'
 
 ```js
 //+ run
-function User(userData) { 
+function User(userData) {
   if (userData) { // если указаны данные -- одна ветка if
     this.name = userData.name;
     this.age = userData.age;
-  } else {   // если не указаны -- другая
+  } else { // если не указаны -- другая
     this.name = 'Аноним';
   }
 
-  this.sayHi = function() { alert(this.name) };
+  this.sayHi = function() {
+    alert(this.name)
+  };
   // ...
 }
 
@@ -182,7 +184,10 @@ function User(userData) {
 var guest = new User();
 guest.sayHi(); // Аноним
 
-var knownUser = new User({name: 'Вася', age: 25});
+var knownUser = new User({
+  name: 'Вася',
+  age: 25
+});
 knownUser.sayHi(); // Вася
 ```
 
@@ -192,8 +197,10 @@ knownUser.sayHi(); // Вася
 
 ```js
 //+ run
-function User() { 
-  this.sayHi = function() { alert(this.name) };
+function User() {
+  this.sayHi = function() {
+    alert(this.name)
+  };
 }
 
 User.createAnonymous = function() {
@@ -215,7 +222,10 @@ User.createFromData = function(userData) {
 var guest = User.createAnonymous();
 guest.sayHi(); // Аноним
 
-var knownUser = User.createFromData({name: 'Вася', age: 25});
+var knownUser = User.createFromData({
+  name: 'Вася',
+  age: 25
+});
 knownUser.sayHi(); // Вася
 */!*
 ```

@@ -5,6 +5,7 @@
 Какие недостатки вы видите в стиле этого примера?
 
 ```js
+//+ no-beautify
 function pow(x,n) 
 {
   var result=1;  

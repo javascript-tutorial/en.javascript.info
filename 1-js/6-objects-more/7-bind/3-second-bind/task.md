@@ -5,6 +5,7 @@
 Что выведет этот код?
 
 ```js
+//+ no-beautify
 function f() {
   alert(this.name);
 }

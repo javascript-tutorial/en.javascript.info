@@ -12,7 +12,7 @@ function f() {
 var user = {
   g: f.bind("Hello")
 }
-      
+
 user.g();
 ```
 

@@ -7,6 +7,7 @@
 ```js
 //+ run
 function A() {}
+
 function B() {}
 
 A.prototype = B.prototype = {};
@@ -14,7 +15,7 @@ A.prototype = B.prototype = {};
 var a = new A();
 
 *!*
-alert(a instanceof B); // true
+alert( a instanceof B ); // true
 */!*
 ```
 

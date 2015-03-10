@@ -5,7 +5,7 @@
 У объекта есть свойство `className`, которое хранит список "классов" - слов, разделенных пробелами:
 
 ```js
-var obj = { 
+var obj = {
   className: 'open menu'
 };
 ```
@@ -20,9 +20,11 @@ removeClass(obj, 'blabla'); // без изменений (нет такого к
 P.S. Дополнительное усложнение. Функция должна корректно обрабатывать дублирование класса в строке:
 
 ```js
-obj = { className: 'my menu menu' };
+obj = {
+  className: 'my menu menu'
+};
 removeClass(obj, 'menu');
-alert(obj.className); // 'my'
+alert( obj.className ); // 'my'
 ```
 
 Лишних пробелов после функции образовываться не должно.

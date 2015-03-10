@@ -46,6 +46,7 @@ Object.defineProperty(obj, prop, descriptor)
 Два таких вызова работают одинаково:
 
 ```js
+//+ no-beautify
 var user = {};
 
 // 1. простое присваивание
@@ -69,7 +70,7 @@ var user = {};
 
 Object.defineProperty(user, "name", {
   value: "Вася",
-  writable: false,    // запретить присвоение "user.name=" 
+  writable: false, // запретить присвоение "user.name=" 
   configurable: false // запретить удаление "delete user.name"
 });
 
@@ -90,7 +91,7 @@ user.name = "Петя";
 К сожалению, свойство `toString`, объявленное обычным способом, будет видно в цикле `for..in`, например:
 
 ```js
-//+ run
+//+ run no-beautify
 var user = {
   name: "Вася",
   toString: function() { return this.name; }
@@ -106,7 +107,7 @@ for(var key in user) alert(key);  // name, toString
 `Object.defineProperty` может исключить `toString` из списка итерации, поставив ему флаг `enumerable: false`. По стандарту, у встроенного `toString` этот флаг уже стоит.
 
 ```js
-//+ run
+//+ run no-beautify
 var user = {
   name: "Вася",
   toString: function() { return this.name; }
@@ -169,18 +170,18 @@ Object.defineProperty(user, "fullName", {
 
 *!*
   set: function(value) {
-    var split = value.split(' ');
-    this.firstName = split[0];
-    this.surname = split[1];
-  }
+      var split = value.split(' ');
+      this.firstName = split[0];
+      this.surname = split[1];
+    }
 */!*
 });
 
 *!*
 user.fullName = "Петя Иванов";
 */!*
-alert(user.firstName); // Петя 
-alert(user.surname); // Иванов
+alert( user.firstName ); // Петя 
+alert( user.surname ); // Иванов
 ```
 
 ## Указание get/set в литералах
@@ -213,11 +214,11 @@ var user = {
 };
 
 *!*
-alert(user.fullName); // Вася Петров (из геттера)
+alert( user.fullName ); // Вася Петров (из геттера)
 
 user.fullName = "Петя Иванов";
-alert(user.firstName); // Петя  (поставил сеттер)
-alert(user.surname); // Иванов (поставил сеттер)
+alert( user.firstName ); // Петя  (поставил сеттер)
+alert( user.surname ); // Иванов (поставил сеттер)
 */!*
 ```
 
@@ -237,7 +238,7 @@ function User(name, age) {
 
 var pete = new User("Петя", 25);
 
-alert(pete.age); // 25
+alert( pete.age ); // 25
 ```
 
 С обычными свойствами в коде меньше букв, они удобны, причины использовать функции пока нет.
@@ -268,8 +269,8 @@ function User(name, birthday) {
   this.birthday = birthday;
 
 *!*
-  Object.defineProperty(this, "age", { 
-    get: function() { 
+  Object.defineProperty(this, "age", {
+    get: function() {
       var todayYear = new Date().getFullYear();
       return todayYear - this.birthday.getFullYear();
     }
@@ -279,7 +280,7 @@ function User(name, birthday) {
 
 var pete = new User("Петя", new Date(1987, 6, 1));
 
-alert(pete.age); // получает возраст из даты рождения
+alert( pete.age ); // получает возраст из даты рождения
 ```
 
 Таким образом, `defineProperty` позволяет нам использовать обычные свойства и, при необходимости, в любой момент заменить их на функции, сохраняя полную совместимость.
@@ -335,7 +336,9 @@ var obj = {
   internal: 3
 };
 
-Object.defineProperty(obj, "internal", {enumerable: false});
+Object.defineProperty(obj, "internal", {
+  enumerable: false
+});
 
 *!*
 alert( Object.keys(obj) ); // a,b 
@@ -351,7 +354,9 @@ alert( Object.getOwnPropertyNames(obj) ); // a, internal, b
 
 ```js
 //+ run
-var obj = { test: 5 };
+var obj = {
+  test: 5
+};
 *!*
 var descriptor = Object.getOwnPropertyDescriptor(obj, 'test');
 */!*
@@ -362,7 +367,7 @@ var descriptor = Object.getOwnPropertyDescriptor(obj, 'test');
 delete descriptor.value; // ..нужно убрать value/writable
 delete descriptor.writable;
 descriptor.get = function() { // и поставить get
-  alert("Preved :)"); 
+  alert( "Preved :)" );
 };
 
 *!*
@@ -370,7 +375,7 @@ descriptor.get = function() { // и поставить get
 */!*
 
 // если не удалить - defineProperty объединит старый дескриптор с новым
-delete obj.test; 
+delete obj.test;
 
 Object.defineProperty(obj, 'test', descriptor);
 

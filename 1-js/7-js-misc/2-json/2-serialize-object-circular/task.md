@@ -5,7 +5,7 @@
 Превратите объект `team` из примера ниже в JSON:
 
 ```js
-var leader = { 
+var leader = {
   name: "Василий Иванович"
 };
 
@@ -17,7 +17,7 @@ var soldier = {
 leader.soldier = soldier;
 soldier.leader = leader;
 
-var team = [ leader, soldier ];
+var team = [leader, soldier];
 ```
 
 <ol>

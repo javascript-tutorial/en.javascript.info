@@ -4,6 +4,7 @@
 Например, для `[-1, 2, 3, -9, 11]`:
 
 ```js
+//+ no-beautify
 // Начиная с -1:
 -1
 -1 + 2
@@ -41,9 +42,9 @@
 function getMaxSubSum(arr) {
   var maxSum = 0; // если совсем не брать элементов, то сумма 0
 
-  for(var i=0; i<arr.length; i++) {
+  for (var i = 0; i < arr.length; i++) {
     var sumFixedStart = 0;
-    for(var j=i; j<arr.length; j++) {
+    for (var j = i; j < arr.length; j++) {
       sumFixedStart += arr[j];
       maxSum = Math.max(maxSum, sumFixedStart);
     }
@@ -76,8 +77,9 @@ alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```js
 //+ run
 function getMaxSubSum(arr) {
-  var maxSum = 0, partialSum = 0;
-  for (var i=0; i<arr.length; i++) {
+  var maxSum = 0,
+    partialSum = 0;
+  for (var i = 0; i < arr.length; i++) {
     partialSum += arr[i];
     maxSum = Math.max(maxSum, partialSum);
     if (partialSum < 0) partialSum = 0;

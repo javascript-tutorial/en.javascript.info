@@ -5,8 +5,8 @@
 ```js
 //+ run untrusted refresh
 if ("a" in window) {
-    a = 1;
-} 
-alert(a);  // <-- error!
+  a = 1;
+}
+alert( a ); // <-- error!
 ```
 

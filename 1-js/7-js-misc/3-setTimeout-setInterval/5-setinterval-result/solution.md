@@ -4,23 +4,23 @@
 
 ```js
 //+ run
-var timer = setInterval(function() { 
+var timer = setInterval(function() {
   i++;
 }, 10);
 
-setTimeout(function() { 
+setTimeout(function() {
   clearInterval(timer);
 *!*
-  alert(i); // (*)
+  alert( i ); // (*)
 */!*
 }, 50);
 
 var i;
 
-function f() { 
+function f() {
   // точное время выполнения не играет роли
   // здесь оно заведомо больше 100мс
-  for(i=0; i<1e8; i++) f[i%2] = i;
+  for (i = 0; i < 1e8; i++) f[i % 2] = i;
 }
 
 f();

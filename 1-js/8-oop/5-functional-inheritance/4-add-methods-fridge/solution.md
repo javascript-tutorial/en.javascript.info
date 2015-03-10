@@ -30,15 +30,15 @@ function Fridge(power) {
     if (food.length + arguments.length >= this._power / 100) {
       throw new Error("Нельзя добавить, не хватает мощности");
     }
-    for(var i=0; i<arguments.length; i++) {
-      food.push(arguments[i]);  // добавить всё из arguments
+    for (var i = 0; i < arguments.length; i++) {
+      food.push(arguments[i]); // добавить всё из arguments
     }
 
   };
 
   this.getFood = function() {
     // копируем еду в новый массив, чтобы манипуляции с ним не меняли food
-    return food.slice(); 
+    return food.slice();
   };
 
 *!*
@@ -53,25 +53,37 @@ function Fridge(power) {
 */!*
 }
 
-var fridge = new Fridge(500); 
+var fridge = new Fridge(500);
 fridge.enable();
-fridge.addFood({ title: "котлета", calories: 100 });
-fridge.addFood({ title: "сок", calories: 30 });
-fridge.addFood({ title: "зелень", calories: 10 });
-fridge.addFood({ title: "варенье", calories: 150 }); 
+fridge.addFood({
+  title: "котлета",
+  calories: 100
+});
+fridge.addFood({
+  title: "сок",
+  calories: 30
+});
+fridge.addFood({
+  title: "зелень",
+  calories: 10
+});
+fridge.addFood({
+  title: "варенье",
+  calories: 150
+});
 
 var dietItems = fridge.filterFood(function(item) {
   return item.calories < 50;
 });
 
 fridge.removeFood("нет такой еды"); // без эффекта
-alert(fridge.getFood().length); // 4
+alert( fridge.getFood().length ); // 4
 
 dietItems.forEach(function(item) {
-  alert(item.title); // сок, зелень
+  alert( item.title ); // сок, зелень
   fridge.removeFood(item);
 });
 
-alert(fridge.getFood().length); // 2
+alert( fridge.getFood().length ); // 2
 ```
 

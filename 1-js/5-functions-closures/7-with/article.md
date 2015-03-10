@@ -9,7 +9,7 @@
 
 ```js
 with(obj) {
-  ... код ...
+  ...код...
 }
 ```
 
@@ -23,12 +23,14 @@ with(obj) {
 //+ run
 var a = 5;
 
-var obj = { a : 10 };
+var obj = {
+  a: 10
+};
 
 *!*
 with(obj) {
-  alert(a); // 10, из obj
-}
+    alert( a ); // 10, из obj
+  }
 */!*
 ```
 
@@ -38,12 +40,14 @@ with(obj) {
 //+ run
 var b = 1;
 
-var obj = { a : 10 };
+var obj = {
+  a: 10
+};
 
 *!*
 with(obj) {
-  alert(b); // 1, из window
-}
+    alert( b ); // 1, из window
+  }
 */!*
 ```
 
@@ -64,7 +68,7 @@ var obj = {
 with(obj) {
   with(size) { // size будет взят из obj
 *!*
-    alert( width*height / weight ); // width,height из size, weight из obj
+    alert( width * height / weight ); // width,height из size, weight из obj
 */!*
   }
 }
@@ -81,14 +85,16 @@ with(obj) {
 
 ```js
 //+ run
-var obj = { a : 10 }
+var obj = {
+  a: 10
+}
 
 *!*
 with(obj) {
-  a = 20;
-}
+    a = 20;
+  }
 */!*
-alert(obj.a); // 20, переменная была изменена в объекте
+alert( obj.a ); // 20, переменная была изменена в объекте
 ```
 
 ## Почему отказались от with?   
@@ -104,15 +110,17 @@ alert(obj.a); // 20, переменная была изменена в объе�
 
 ```js
 //+ run
-var obj = { weight: 10 };
+var obj = {
+  weight: 10
+};
 
 with(obj) {
   weight = 20; // (1)
-  size = 35;   // (2)
+  size = 35; // (2)
 }
 
-alert(obj.size);
-alert(window.size);
+alert( obj.size );
+alert( window.size );
 ```
 
 В строке `(2)` присваивается свойство, отсутствующее в `obj`. В результате интерпретатор, не найдя его, создает новую глобальную переменную `window.size`.
@@ -134,20 +142,20 @@ function fast() {
   i++;
 }
 
-function slow() { 
+function slow() {
   with(i) {}
   i++;
 }
 
 
 var time = performance.now();
-while(i < 1000000) fast();
-alert("Без with: " + (performance.now() - time));
+while (i < 1000000) fast();
+alert( "Без with: " + (performance.now() - time) );
 
 var time = performance.now();
-i=0;
-while(i < 1000000) slow();
-alert("С with: " + (performance.now() - time));
+i = 0;
+while (i < 1000000) slow();
+alert( "С with: " + (performance.now() - time) );
 ```
 
 </li>

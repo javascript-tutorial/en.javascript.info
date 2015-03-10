@@ -8,7 +8,7 @@
 
 ```js
 var i = 0;
-while (++i < 5) alert(i);
+while (++i < 5) alert( i );
 ```
 
 </li>
@@ -16,7 +16,7 @@ while (++i < 5) alert(i);
 
 ```js
 var i = 0;
-while (i++ < 5) alert(i);
+while (i++ < 5) alert( i );
 ```
 
 </li>

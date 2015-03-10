@@ -51,12 +51,12 @@ function Animal(name) {
 
 Animal.prototype.run = function(speed) {
   this.speed += speed;
-  alert(this.name + ' бежит, скорость ' + this.speed);
+  alert( this.name + ' бежит, скорость ' + this.speed );
 };
 
 Animal.prototype.stop = function() {
   this.speed = 0;
-  alert(this.name + ' стоит');
+  alert( this.name + ' стоит' );
 };
 ```
 
@@ -70,7 +70,7 @@ function Rabbit(name) {
 
 Rabbit.prototype.jump = function() {
   this.speed++;
-  alert(this.name + ' прыгает');
+  alert( this.name + ' прыгает' );
 };
 
 var rabbit = new Rabbit('Кроль');
@@ -92,6 +92,7 @@ Rabbit.prototype.__proto__ = Animal.prototype;
 Класс `Animal` остаётся без изменений, а `Rabbit.prototype` мы будем создавать с нужным прототипом, используя `Object.create`:
 
 ```js
+//+ no-beautify
 function Rabbit(name) {
   this.name = name;
   this.speed = 0;
@@ -132,12 +133,12 @@ function Animal(name) {
 
 Animal.prototype.stop = function() {
   this.speed = 0;
-  alert(this.name + ' стоит');
+  alert( this.name + ' стоит' );
 }
 
 Animal.prototype.run = function(speed) {
   this.speed += speed;
-  alert(this.name + ' бежит, скорость ' + this.speed);
+  alert( this.name + ' бежит, скорость ' + this.speed );
 };
 
 
@@ -154,7 +155,7 @@ Rabbit.prototype.constructor = Rabbit;
 // 2.2. Методы Rabbit
 Rabbit.prototype.jump = function() {
   this.speed++;
-  alert(this.name + ' прыгает, скорость ' + this.speed);
+  alert( this.name + ' прыгает, скорость ' + this.speed );
 }
 ```
 
@@ -235,14 +236,13 @@ Rabbit.prototype.run = function(speed) {
 
 ```js
 //+ run
- 
-Rabbit.prototype.run = function() {
+ Rabbit.prototype.run = function() {
 *!*
-  // вызвать метод родителя, передав ему текущие аргументы
-  Animal.prototype.run.apply(this, arguments); 
+   // вызвать метод родителя, передав ему текущие аргументы
+   Animal.prototype.run.apply(this, arguments);
 */!*
-  this.jump();
-}
+   this.jump();
+ }
 ```
 
 Обратите внимание на вызов через `apply` и явное указание контекста. 
@@ -320,15 +320,15 @@ Rabbit.prototype = Object.create(Animal.prototype);
 Rabbit.prototype.constructor = Rabbit;
 
 // Методы потомка
-Rabbit.prototype.run = function() { 
+Rabbit.prototype.run = function() {
   // Вызов метода родителя внутри своего
-  Animal.prototype.run.apply(this); 
-  alert(this + " подпрыгивает!");  
+  Animal.prototype.run.apply(this);
+  alert( this + " подпрыгивает!" );
 };
 
 // Готово, можно создавать объекты
 var rabbit = new Rabbit('Кроль');
-rabbit.run(); 
+rabbit.run();
 ```
 
 Такое наследование лучше функционального стиля, так как не дублирует методы в каждом объекте.
@@ -341,8 +341,10 @@ rabbit.run();
 
 ```js
 function Animal() {
-  this.walk = function() { alert('walk')};
-  alert('Му-у-у!');
+  this.walk = function() {
+    alert('walk')
+  };
+  alert( 'Му-у-у!' );
 }
 
 function Rabbit() {

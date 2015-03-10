@@ -22,7 +22,7 @@
 Её можно представить как совокупность более простого действия и более простой задачи того же типа вот так: 
 
 ```js
-pow(x, n) = x * pow(x, n-1)
+pow(x, n) = x * pow(x, n - 1)
 ```
 
 То есть, <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>.
@@ -46,9 +46,9 @@ pow(x, n) = x * pow(x, n-1)
 //+ run
 function pow(x, n) {
   if (n != 1) { // пока n != 1, сводить вычисление pow(x,n) к pow(x,n-1)
-    return x * pow(x, n-1); 
-  } else { 
-    return x; 
+    return x * pow(x, n - 1);
+  } else {
+    return x;
   }
 }
 
@@ -85,10 +85,10 @@ alert( pow(2, 3) ); // 8
 function pow(x, n) {
   if (n != 1) { // пока n != 1 сводить вычисление pow(x,n) к pow(x,n-1)
 *!*
-    return x * pow(x, n-1); 
+    return x * pow(x, n - 1);
 */!*
-  } else { 
-    return x; 
+  } else {
+    return x;
   }
 }
 ```
@@ -109,14 +109,14 @@ function pow(x, n) {
 //+ run
 function pow(x, n) {
   if (n != 1) { // пока n!=1 сводить вычисление pow(..n) к pow(..n-1)
-    return x * pow(x, n-1); 
-  } else { 
-    return x; 
+    return x * pow(x, n - 1);
+  } else {
+    return x;
   }
 }
 
 *!*
-alert( pow(2, 3) );  // (*)
+alert( pow(2, 3) ); // (*)
 */!*
 ```
 
@@ -154,11 +154,11 @@ alert( pow(2, 3) );  // (*)
 
 ```js
 function pow(x, n) {
-  if (n != 1) { 
-    return x * pow(x, n-1); 
-  } else { 
+  if (n != 1) {
+    return x * pow(x, n - 1);
+  } else {
 *!*
-    return x;  // первая степень числа равна самому числу
+    return x; // первая степень числа равна самому числу
 */!*
   }
 }
@@ -194,7 +194,7 @@ function pow(x, n) {
 ```js
 function pow(x, n) {
   var result = x;
-  for(var i=1; i<n; i++) {
+  for (var i = 1; i < n; i++) {
     result *= x;
   }
   return result;

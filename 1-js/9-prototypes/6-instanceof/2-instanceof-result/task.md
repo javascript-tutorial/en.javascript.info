@@ -9,9 +9,9 @@
 Распознает ли он `rabbit` как `Animal`, `Rabbit` и к тому же `Object`?
 
 ```js
-function Animal() { }
+function Animal() {}
 
-function Rabbit() { }
+function Rabbit() {}
 Rabbit.prototype = Object.create(Animal.prototype);
 
 var rabbit = new Rabbit();

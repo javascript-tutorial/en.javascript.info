@@ -8,8 +8,12 @@
 
 ```js
 //+ run
-function Rabbit(name) { this.name = name; }
-Rabbit.prototype.sayHi = function() { alert(this.name); }
+function Rabbit(name) {
+  this.name = name;
+}
+Rabbit.prototype.sayHi = function() {
+  alert( this.name );
+}
 
 var rabbit = new Rabbit("Rabbit");
 

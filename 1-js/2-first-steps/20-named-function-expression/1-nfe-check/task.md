@@ -5,6 +5,7 @@
 Каков будет результат выполнения кода?
 
 ```js
+//+ no-beautify
 function g() { return 1; }
 
 alert(g);
@@ -13,6 +14,7 @@ alert(g);
 А такого? Будет ли разница, если да -- почему?
 
 ```js
+//+ no-beautify
 (function g() { return 1; });
 
 alert(g);

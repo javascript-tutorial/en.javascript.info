@@ -4,8 +4,8 @@
 //+ run
 function removeClass(obj, cls) {
   var classes = obj.className.split(' ');
- 
-  for(i=0; i<classes.length; i++) {
+
+  for (i = 0; i < classes.length; i++) {
     if (classes[i] == cls) {
       classes.splice(i, 1); // удалить класс  
 *!*
@@ -14,14 +14,16 @@ function removeClass(obj, cls) {
     }
   }
   obj.className = classes.join(' ');
-	
+
 }
 
-var obj = { className: 'open menu menu' }
+var obj = {
+  className: 'open menu menu'
+}
 
-removeClass(obj, 'blabla'); 
+removeClass(obj, 'blabla');
 removeClass(obj, 'menu')
-alert(obj.className)   // open
+alert(obj.className) // open
 ```
 
 В примере выше есть тонкий момент. Элементы массива проверяются один за другим. При вызове `splice` удаляется текущий, `i-й` элемент, и те элементы, которые идут дальше, сдвигаются на его место.

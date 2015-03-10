@@ -10,8 +10,8 @@
 </ul>
 
 ```js
-var calculator = { 
-  ... ваш код...
+var calculator = {
+  ...ваш код...
 }
 
 calculator.read();

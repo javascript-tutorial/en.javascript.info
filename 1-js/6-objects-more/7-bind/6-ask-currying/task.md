@@ -30,14 +30,18 @@ var user = {
 
   // метод для вызова из ask 
   loginDone: function(result) {
-    alert(this.login + (result ? ' вошёл в сайт' : ' ошибка входа'));
+    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
   },
 
   checkPassword: function() {
 *!*
-    ask("Ваш пароль?", this.password, 
-      function() { user.loginDone(true); },
-      function() { user.loginDone(false); }
+    ask("Ваш пароль?", this.password,
+      function() {
+        user.loginDone(true);
+      },
+      function() {
+        user.loginDone(false);
+      }
     );
 */!*
   }

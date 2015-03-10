@@ -2,15 +2,14 @@
 
 ```js
 //+ run
- 
 *!*
-say('Вася');  // Что выведет? Не будет ли ошибки?
+say('Вася'); // Что выведет? Не будет ли ошибки?
 */!*
 
 var phrase = 'Привет';
 
 function say(name) {
-  alert(name + ", " + phrase);
+  alert( name + ", " + phrase );
 }
 ```
 

@@ -7,14 +7,14 @@
 ```js
 var value = 0;
 
-function f() {  
+function f() {
   if (1) {
     value = true;
   } else {
     var value = false;
   }
 
-  alert(value);
+  alert( value );
 }
 
 f();

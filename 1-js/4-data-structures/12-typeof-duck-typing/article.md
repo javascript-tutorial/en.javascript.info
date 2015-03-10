@@ -36,8 +36,8 @@
 ```js
 typeof undefined // "undefined" 
 
-typeof 0    // "number" 
- 
+typeof 0 // "number" 
+
 typeof true // "boolean" 
 
 typeof "foo" // "string" 
@@ -45,7 +45,7 @@ typeof "foo" // "string"
 typeof {} // "object" 
 
 *!*
-typeof null  // "object" 
+typeof null // "object" 
 */!*
 
 function f() { /* ... */ }
@@ -63,7 +63,7 @@ typeof f // "function"
 ```js
 //+ run
 var x = null;
-x.prop = 1;  // ошибка, т.к. нельзя присвоить свойство примитиву
+x.prop = 1; // ошибка, т.к. нельзя присвоить свойство примитиву
 ```
 
 </li>
@@ -98,7 +98,7 @@ alert( typeof new Date ); // 'object'
 var something = [1, 2, 3];
 
 if (something.splice) {
-  alert('Это утка! То есть, массив!');
+  alert( 'Это утка! То есть, массив!' );
 }
 ```
 
@@ -111,7 +111,7 @@ if (something.splice) {
 var x = new Date();
 
 if (x.getTime) {
-  alert('Дата!');
+  alert( 'Дата!' );
 }
 ```
 
@@ -130,7 +130,7 @@ function sayHi(who) {
   if (who.forEach) { // проверка на массив (или что-то похожее)
     who.forEach(sayHi);
   } else {
-    alert('Привет, ' + who);
+    alert( 'Привет, ' + who );
   }
 }
 
@@ -138,10 +138,10 @@ function sayHi(who) {
 sayHi("Вася"); // Привет, Вася
 
 // Вызов с массивом
-sayHi( ["Саша", "Петя"] ); // Привет, Саша... Петя
+sayHi(["Саша", "Петя"]); // Привет, Саша... Петя
 
 // Вызов с вложенными массивами
-sayHi( ["Саша", "Петя", ["Маша", "Юля"] ] ); // Привет Саша..Петя..Маша..Юля
+sayHi(["Саша", "Петя", ["Маша", "Юля"]]); // Привет Саша..Петя..Маша..Юля
 ```
 
 Здесь вместо `splice` проверяется наличие `forEach`. Так надёжнее, поскольку именно его мы собираемся использовать.

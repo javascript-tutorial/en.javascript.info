@@ -16,13 +16,13 @@
 //+ run
 function makeCounter() {
   var currentCount = 1;
-    
-  return function() { 
-    return currentCount++; 
+
+  return function() {
+    return currentCount++;
   };
 }
 
-var counter = makeCounter(); 
+var counter = makeCounter();
 
 // каждый вызов увеличивает счётчик и возвращает результат
 alert( counter() ); // 1 
@@ -38,13 +38,13 @@ alert( counter() ); // 3
 //+ run
 function makeCounter() {
   var currentCount = 1;
-    
-  return {  // возвратим объект вместо функции
-    getNext: function() {  
+
+  return { // возвратим объект вместо функции
+    getNext: function() {
       return currentCount++;
     },
- 
-    set: function(value) {  
+
+    set: function(value) {
       currentCount = value;
     },
 
@@ -85,16 +85,16 @@ alert( counter.getNext() ); // 5
 //+ run
 function makeCounter() {
   var currentCount = 1;
-    
+
 *!*
   // возвращаемся к функции
-  function counter() {  
-    return currentCount++;
-  }
+  function counter() {
+      return currentCount++;
+    }
 */!*
 
   // ...и добавляем ей методы!
-  counter.set = function(value) {  
+  counter.set = function(value) {
     currentCount = value;
   };
 

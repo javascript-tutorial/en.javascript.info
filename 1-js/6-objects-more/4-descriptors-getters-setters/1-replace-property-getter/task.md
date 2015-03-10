@@ -20,13 +20,13 @@ var vasya = new User("Василий Попкин");
 var vasya = new User("Василий Попкин");
 
 // чтение firstName/lastName
-alert(vasya.firstName); // Василий
-alert(vasya.lastName); // Попкин
+alert( vasya.firstName ); // Василий
+alert( vasya.lastName ); // Попкин
 
 // запись в lastName
 vasya.lastName = 'Сидоров';
 
-alert(vasya.fullName); // Василий Сидоров
+alert( vasya.fullName ); // Василий Сидоров
 ```
 
 Важно: не рекомендуется дублировать одни и те же данные в различных свойствах. Поэтому в этой задаче `fullName` должно остаться свойством, а `firstName/lastName` -- реализованы через `get/set`.

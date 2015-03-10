@@ -6,8 +6,8 @@
 
 ```js
 //+ run
-function sayHi() { 
-  alert( "Привет" ); 
+function sayHi() {
+  alert( "Привет" );
 }
 
 *!*
@@ -20,7 +20,7 @@ alert( sayHi ); // выведет код функции
 **Функцию можно скопировать в другую переменную:**
 
 ```js
-//+ run
+//+ run no-beautify
 function sayHi() {   // (1)
   alert( "Привет" ); 
 }
@@ -53,7 +53,7 @@ sayHi();             // ошибка (4)
 ```js
 //+ run
 var f = function(параметры) {
-   // тело функции
+  // тело функции
 };
 ```
 
@@ -62,7 +62,7 @@ var f = function(параметры) {
 ```js
 //+ run
 var sayHi = function(person) {
-    alert("Привет, " + person);
+  alert( "Привет, " + person );
 };
 
 sayHi('Вася');
@@ -84,7 +84,7 @@ sayHi('Вася');
 function sum(a, b) {
   return a + b;
 }
- 
+
 // Function Expression
 var sum = function(a, b) {
   return a + b;
@@ -104,7 +104,7 @@ sayHi("Вася"); // Привет, Вася
 */!*
 
 function sayHi(name) {
-  alert("Привет, " + name);
+  alert( "Привет, " + name );
 }
 ```
 
@@ -113,11 +113,11 @@ function sayHi(name) {
 ```js
 //+ run
 *!*
-sayHi("Вася");  // ошибка!
+sayHi("Вася"); // ошибка!
 */!*
 
 var sayHi = function(name) {
-  alert("Привет, " + name);
+  alert( "Привет, " + name );
 }
 ```
 
@@ -140,9 +140,13 @@ var sayHi = function(name) {
 var age = +prompt("Сколько вам лет?", 20);
 
 if (age >= 18) {
-  function sayHi() { alert('Прошу вас!');  } 
+  function sayHi() {
+    alert( 'Прошу вас!' );
+  }
 } else {
-  function sayHi() { alert('До 18 нельзя'); } 
+  function sayHi() {
+    alert( 'До 18 нельзя' );
+  }
 }
 
 sayHi();
@@ -158,19 +162,24 @@ sayHi();
 <li>Дальше, во время выполнения, объявления Function Declaration игнорируются (они уже были обработаны). Это как если бы код был таким:
 
 ```js
-function sayHi() {  alert('Прошу вас!');  } 
-function sayHi() {  alert('До 18 нельзя'); } 
+function sayHi() {
+  alert( 'Прошу вас!' );
+}
+
+function sayHi() {
+  alert( 'До 18 нельзя' );
+}
 
 var age = 20;
 
 if (age >= 18) {
-   /* объявление было обработано ранее */
+  /* объявление было обработано ранее */
 } else {
   /* объявление было обработано ранее */
 }
 
 *!*
-sayHi();  // "До 18 нельзя", сработает всегда вторая функция
+sayHi(); // "До 18 нельзя", сработает всегда вторая функция
 */!*
 ```
 
@@ -191,9 +200,13 @@ var age = prompt('Сколько вам лет?');
 var sayHi;
 
 if (age >= 18) {
-  sayHi = function() { alert('Прошу Вас!'); }
+  sayHi = function() {
+    alert( 'Прошу Вас!' );
+  }
 } else {
-  sayHi = function() { alert('До 18 нельзя'); }
+  sayHi = function() {
+    alert( 'До 18 нельзя' );
+  }
 }
 
 sayHi();
@@ -202,7 +215,7 @@ sayHi();
 Или даже так:
 
 ```js
-//+ run
+//+ run no-beautify
 var age = prompt('Сколько вам лет?');
 
 var sayHi = (age >= 18) ?
@@ -226,17 +239,17 @@ sayHi();
 //+ run
 *!*
 function ask(question, yes, no) {
-  if (confirm(question)) yes()
-  else no();
-}
+    if (confirm(question)) yes()
+    else no();
+  }
 */!*
 
 function showOk() {
-  alert("Вы согласились.");
+  alert( "Вы согласились." );
 }
 
 function showCancel() {
-  alert("Вы отменили выполнение.");
+  alert( "Вы отменили выполнение." );
 }
 
 // использование
@@ -250,7 +263,7 @@ ask("Вы согласны?", showOk, showCancel);
 Здесь обратим внимание на то, что то же самое можно написать более коротко:
 
 ```js
-//+ run
+//+ run no-beautify
 function ask(question, yes, no) {
   if (confirm(question)) yes()
   else no();
@@ -283,8 +296,8 @@ ask(
 //+ run
 var sum = new Function('a,b', ' return a+b; ');
 
-var result = sum(1,2);
-alert(result); // 3
+var result = sum(1, 2);
+alert( result ); // 3
 ```
 
 То есть, функция создаётся вызовом `new Function(params, code)`:
@@ -340,6 +353,7 @@ alert(result); // 3
 Сравните по читаемости:
 
 ```js
+//+ no-beautify
 // Function Expression 
 var f = function() { ... }
 

@@ -3,6 +3,7 @@
 Вы могли заметить следующие недостатки, сверху-вниз:
 
 ```js
+//+ no-beautify
 function pow(x,n)  // <- отсутствует пробел между аргументами
 {  // <- фигурная скобка на отдельной строке
   var result=1;   // <- нет пробелов вокруг знака =
@@ -27,13 +28,13 @@ else // <- можно на одной строке } else {
 Исправленный вариант:
 
 ```js
-function pow(x, n)  {
+function pow(x, n) {
   var result = 1;
 
-  for(var i = 0; i < n; i++) {
-    result *=x;
+  for (var i = 0; i < n; i++) {
+    result *= x;
   }
-  
+
   return result;
 }
 
@@ -41,7 +42,7 @@ var x = prompt("x?", "");
 var n = prompt("n?", "");
 
 if (n < 0) {
-  alert('Степень ' + n + 
+  alert('Степень ' + n +
     'не поддерживается, введите целую степень, большую 0');
 } else {
   alert( pow(x, n) );

@@ -25,7 +25,7 @@
 var arr = ["Яблоко", "Апельсин", "Груша"];
 
 arr.forEach(function(item, i, arr) {
-  alert(i + ": " + item + " (массив:" + arr + ")");
+  alert( i + ": " + item + " (массив:" + arr + ")" );
 });
 ```
 
@@ -51,7 +51,7 @@ var positiveArr = arr.filter(function(number) {
 });
 */!*
 
-alert(positiveArr); // 1,2,3
+alert( positiveArr ); // 1,2,3
 ```
 
 ## map
@@ -73,7 +73,7 @@ var urls = pages.map(function(page) {
 */!*
 
 // к каждой строке был прибавлен префикс
-alert(urls); // http://site.com/a.html, http://site.com/b.html...
+alert( urls ); // http://site.com/a.html, http://site.com/b.html...
 ```
 
 ## every/some
@@ -132,9 +132,11 @@ var arr = [1, 2, 3, 4, 5]
 
 // для каждого элемента массива запустить функцию, 
 // промежуточный результат передавать первым аргументом далее
-var result = arr.reduce(function(sum, current) { return sum + current; }, 0);
+var result = arr.reduce(function(sum, current) {
+  return sum + current;
+}, 0);
 
-alert(result); // 15
+alert( result ); // 15
 ```
 
 Разберём, что в нём происходит.
@@ -203,9 +205,11 @@ alert(result); // 15
 var arr = [1, 2, 3, 4, 5]
 
 // убрали 0 в конце
-var result = arr.reduce(function(sum, current) { return sum + current });
+var result = arr.reduce(function(sum, current) {
+  return sum + current
+});
 
-alert(result); // 15
+alert( result ); // 15
 ```
 
 Результат -- точно такой же! Это потому, что при отсутствии `initialValue` в качестве первого значения берётся первый элемент массива, а перебор стартует со второго. 

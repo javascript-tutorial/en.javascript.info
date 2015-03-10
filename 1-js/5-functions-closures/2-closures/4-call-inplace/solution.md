@@ -1,7 +1,7 @@
 Результат - **ошибка**. Попробуйте:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 5
 
 (function() {
@@ -14,7 +14,7 @@ var a = 5
 JavaScript воспринимает этот код как если бы перевода строки не было:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 5(function() {
   alert(a)
 })()
@@ -25,7 +25,7 @@ var a = 5(function() {
 Если точку с запятой поставить, все будет хорошо:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 5;
 
 (function() {

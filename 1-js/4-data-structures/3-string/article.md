@@ -26,7 +26,7 @@ var str = "012345";
 
 ```js
 //+ run
-alert('Привет\nМир'); // выведет "Мир" на новой строке
+alert( 'Привет\nМир' ); // выведет "Мир" на новой строке
 ```
 
 Есть и более редкие символы, вот их список:
@@ -56,7 +56,7 @@ var str = '*!*I\'m*/!* a JavaScript programmer';
 ```js
 //+ run
 var str = "I'm a JavaScript \"programmer\" ";
-alert(str); // I'm a JavaScript "programmer"
+alert( str ); // I'm a JavaScript "programmer"
 ```
 
 Экранирование служит исключительно для правильного восприятия строки JavaScript. В памяти строка будет содержать сам символ без `'\'`. Вы можете увидеть это, запустив пример выше.
@@ -67,7 +67,7 @@ alert(str); // I'm a JavaScript "programmer"
 //+ run
 var str = ' символ \\ ';
 
-alert(str); // символ \
+alert( str ); // символ \
 ```
 
 Заэкранировать можно любой символ. Если он не специальный, то ничего не произойдёт:
@@ -75,7 +75,7 @@ alert(str); // символ \
 ```js
 //+ run
 alert( "\a" ); // a
-// идентично alert( "a" );
+// идентично alert(  "a"  );
 ```
 
 ## Методы и свойства 
@@ -91,7 +91,7 @@ alert( "\a" ); // a
 //+ run
 var str = "My\n"; // 3 символа. Третий - перевод строки
 
-alert(str.length);  // 3
+alert( str.length ); // 3
 ```
 
 ### Доступ к символам   
@@ -101,7 +101,7 @@ alert(str.length);  // 3
 ```js
 //+ run
 var str = "jQuery";
-alert( str.charAt(0) );  // "j"
+alert( str.charAt(0) ); // "j"
 ```
 
 В JavaScript **нет отдельного типа "символ"**, так что `charAt` возвращает строку, состоящую из выбранного символа.
@@ -111,7 +111,7 @@ alert( str.charAt(0) );  // "j"
 ```js
 //+ run
 var str = "Я - современный браузер!";
-alert(str[0]);  // "Я", IE8+
+alert( str[0] ); // "Я", IE8+
 ```
 
 Разница между этим способом и `charAt` заключается в том, что если символа нет -- `charAt` выдает пустую строку, а скобки -- `undefined`:
@@ -119,7 +119,7 @@ alert(str[0]);  // "Я", IE8+
 ```js
 //+ run
 alert( "".charAt(0) ); // пустая строка
-alert( ""[0] ); // undefined, IE8+
+alert( "" [0] ); // undefined, IE8+
 ```
 
 Вообще же метод `charAt` существует по историческим причинам, ведь квадратные скобки -- проще и короче.
@@ -143,9 +143,9 @@ alert( ""[0] ); // undefined, IE8+
 //+ run
 var str = "строка";
 
-str =  str[3] + str[4] + str[5];
+str = str[3] + str[4] + str[5];
 
-alert(str); // ока
+alert( str ); // ока
 ```
 
 ### Смена регистра   
@@ -160,7 +160,7 @@ alert( "Интерфейс".toUpperCase() ); // ИНТЕРФЕЙС
 Пример ниже получает первый символ и приводит его к нижнему регистру:
 
 ```js
-alert( "Интерфейс"[0].toLowerCase() ); // 'и'
+alert( "Интерфейс" [0].toLowerCase() ); // 'и'
 ```
 
 ### Поиск подстроки
@@ -184,7 +184,7 @@ alert( str.indexOf("widget") ); // -1, не найдено, так как пои
 //+ run
 var str = "Widget with id";
 
-alert( str.indexOf("id", 2) ) // 12, поиск начат с позиции 2
+alert(str.indexOf("id", 2)) // 12, поиск начат с позиции 2
 ```
 
 Также существует аналогичный метод <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/lastIndexOf">lastIndexOf</a>, который ищет не с начала, а с конца строки.
@@ -214,8 +214,8 @@ alert( ~-1 ); // -(-1+1) = 0
 //+ run
 var str = "Widget";
 
-if( ~str.indexOf("get") ) {
-  alert('совпадение есть!');
+if (~str.indexOf("get")) {
+  alert( 'совпадение есть!' );
 }
 ```
 
@@ -235,14 +235,14 @@ if( ~str.indexOf("get") ) {
 ```js
 //+ run
 var str = "Ослик Иа-Иа посмотрел на виадук"; // ищем в этой строке 
-var target = "Иа";         // цель поиска
+var target = "Иа"; // цель поиска
 
 var pos = 0;
-while(true) {
+while (true) {
   var foundPos = str.indexOf(target, pos);
-  if (foundPos == -1) break; 
+  if (foundPos == -1) break;
 
-  alert(foundPos); // нашли на этой позиции
+  alert( foundPos ); // нашли на этой позиции
   pos = foundPos + 1; // продолжить поиск со следующей
 }
 ```
@@ -254,12 +254,12 @@ while(true) {
 ```js
 //+ run
 var str = "Ослик Иа-Иа посмотрел на виадук"; // ищем в этой строке 
-var target = "Иа";         // цель поиска
+var target = "Иа"; // цель поиска
 
 *!*
 var pos = -1;
-while ( (pos = str.indexOf(target, pos+1)) != -1) {
-  alert(pos);
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+  alert( pos );
 }
 */!*
 ```
@@ -313,14 +313,14 @@ alert(str)
 
 ```js
 //+ run
-alert( "testme".substring(-2) );  // "testme", -2 становится 0
+alert( "testme".substring(-2) ); // "testme", -2 становится 0
 ```
 
 Кроме того, если <code>start &gt; end</code>, то аргументы меняются местами, т.е. возвращается участок строки *между* `start` и `end`:
 
 ```js
 //+ run
-alert( "testme".substring(4, -1) );  // "test"
+alert( "testme".substring(4, -1) ); // "test"
 // -1 становится 0 -> получили substring(4, 0) 
 // 4 > 0, так что аргументы меняются местами -> substring(0, 4) = "test"
 ```
@@ -331,7 +331,7 @@ alert( "testme".substring(4, -1) );  // "test"
 
 ```js
 //+ run
-alert( "testme".slice(-2) );  // "me", от 2 позиции с конца
+alert( "testme".slice(-2) ); // "me", от 2 позиции с конца
 ```
 
 
@@ -416,10 +416,10 @@ alert( "абрикос".charCodeAt(0) ); // 1072, код 'а'
 ```js
 //+ run
 var str = '';
-for (var i=1034; i<=1113; i++) {
+for (var i = 1034; i <= 1113; i++) {
   str += String.fromCharCode(i);
 }
-alert(str);
+alert( str );
 ```
 
 Результат:
@@ -479,7 +479,7 @@ alert( "ö" > "z" ); // true
 
 ```js
 "Вася" > "Ваня" // true, т.к. начальные символы совпадают, а потом 'с' > 'н'
-"Дома" > "До"  // true, т.к. начало совпадает, но в 1й строке больше символов
+"Дома" > "До" // true, т.к. начало совпадает, но в 1й строке больше символов
 ```
 
 [warn header="Числа в виде строк сравниваются как строки"]  
@@ -488,14 +488,14 @@ alert( "ö" > "z" ); // true
 
 ```js
 //+ run
-alert("2" > "14"); // true, так как это строки, и для первых символов верно "2" > "1"
+alert( "2" > "14" ); // true, так как это строки, и для первых символов верно "2" > "1"
 ```
 
 Если хотя бы один аргумент -- не строка, то другой будет преобразован к числу:
 
 ```js
 //+ run
-alert(2 > "14"); // false
+alert( 2 > "14" ); // false
 ```
 
 [/warn]

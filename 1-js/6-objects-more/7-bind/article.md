@@ -19,7 +19,7 @@
 ```js
 //+ run
 setTimeout(function() {
-  alert("Привет");
+  alert( "Привет" );
 }, 1000);
 ```
 
@@ -29,13 +29,13 @@ setTimeout(function() {
 //+ run
 var user = {
   firstName: "Вася",
-  sayHi: function() { 
-    alert(this.firstName);
+  sayHi: function() {
+    alert( this.firstName );
   }
 };
 
 *!*
-setTimeout( user.sayHi, 1000); // undefined (не Вася!)
+setTimeout(user.sayHi, 1000); // undefined (не Вася!)
 */!*
 ```
 
@@ -61,15 +61,15 @@ setTimeout(f, 1000); // контекст user потеряли
 //+ run
 var user = {
   firstName: "Вася",
-  sayHi: function() { 
-    alert(this.firstName);
+  sayHi: function() {
+    alert( this.firstName );
   }
 };
 
 *!*
 setTimeout(function() {
- user.sayHi(); // Вася
-}, 1000); 
+  user.sayHi(); // Вася
+}, 1000);
 */!*
 ```
 
@@ -82,15 +82,15 @@ setTimeout(function() {
 //+ run
 var user = {
   firstName: "Вася",
-  sayHi: function(who) { 
-    alert(this.firstName + ": Привет, " + who);
+  sayHi: function(who) {
+    alert( this.firstName + ": Привет, " + who );
   }
 };
 
 *!*
 setTimeout(function() {
- user.sayHi("Петя"); // Вася: Привет, Петя
-}, 1000); 
+  user.sayHi("Петя"); // Вася: Привет, Петя
+}, 1000);
 */!*
 ```
 
@@ -108,7 +108,7 @@ setTimeout(function() {
 ```js
 function bind(func, context) {
   return function() { // (*)
-    return func.apply(context, arguments); 
+    return func.apply(context, arguments);
   };
 }
 ```
@@ -117,10 +117,12 @@ function bind(func, context) {
 
 ```js
 //+ run
-function f() { alert(this); }
+function f() {
+  alert( this );
+}
 
 var g = bind(f, "Context");
-g();  // Context
+g(); // Context
 ```
 
 То есть, `bind(f, "Context")` привязывает `"Context"` в качестве `this` для `f`.
@@ -132,16 +134,16 @@ g();  // Context
 Вот она отдельно:
 
 ```js
-function() {   // (*)
-  return func.apply(context, arguments); 
+function() { // (*)
+  return func.apply(context, arguments);
 };
 ```
 
 Если подставить наши конкретные аргументы, то есть `f` и `"Context"`, то получится так:
 
 ```js
-function() {   // (*)
-  return f.apply("Context", arguments); 
+function() { // (*)
+  return f.apply("Context", arguments);
 };
 ```
 
@@ -153,13 +155,13 @@ function() {   // (*)
 
 ```js
 //+ run
-function f(a, b) { 
-  alert(this); 
-  alert(a + b);
+function f(a, b) {
+  alert( this );
+  alert( a + b );
 }
 
 var g = bind(f, "Context");
-g(1, 2);  // Context, затем 3
+g(1, 2); // Context, затем 3
 ```
 
 Аргументы, которые получила `g(...)`, передаются в `f` также благодаря методу `.apply`.
@@ -171,20 +173,20 @@ g(1, 2);  // Context, затем 3
 ```js
 //+ run
 function bind(func, context) {
-  return function() { 
-    return func.apply(context, arguments); 
+  return function() {
+    return func.apply(context, arguments);
   };
 }
 
 var user = {
   firstName: "Вася",
   sayHi: function() {
-    alert(this.firstName);
+    alert( this.firstName );
   }
 };
 
 *!*
-setTimeout( bind(user.sayHi, user), 1000 );
+setTimeout(bind(user.sayHi, user), 1000);
 */!*
 ```
 
@@ -201,7 +203,7 @@ var user = {
 *!*
   sayHi: function(who) { // здесь у sayHi есть один аргумент
 */!*
-    alert(this.firstName + ": Привет, " + who);
+    alert( this.firstName + ": Привет, " + who );
   }
 };
 
@@ -228,9 +230,9 @@ sayHi("Маша"); // Вася: Привет, Маша
 
 ```js
 //+ run
-function f(a, b) { 
-  alert(this); 
-  alert(a + b);
+function f(a, b) {
+  alert( this );
+  alert( a + b );
 }
 
 *!*
@@ -238,7 +240,7 @@ function f(a, b) {
 // var g = bind(f, "Context");
 var g = f.bind("Context");
 */!*
-g(1, 2);  // Context, затем 3
+g(1, 2); // Context, затем 3
 ```
 
 Синтаксис встроенного `bind`:
@@ -264,14 +266,14 @@ var wrapper = func.bind(context[, arg1, arg2...])
 //+ run
 var user = {
   firstName: "Вася",
-  sayHi: function() { 
-    alert(this.firstName);
+  sayHi: function() {
+    alert( this.firstName );
   }
 };
 
 *!*
 // setTimeout( bind(user.sayHi, user), 1000 ); 
-setTimeout( user.sayHi.bind(user), 1000 ); // аналог через встроенный метод
+setTimeout(user.sayHi.bind(user), 1000); // аналог через встроенный метод
 */!*
 ```
 
@@ -291,7 +293,7 @@ setTimeout( user.sayHi.bind(user), 1000 ); // аналог через встро
 Если у объекта много методов и мы планируем их активно передавать, то можно привязать контекст для них всех в цикле:
 
 ```js
-for(var prop in user) {
+for (var prop in user) {
   if (typeof user[prop] == 'function') {
     user[prop] = user[prop].bind(user);
   }
@@ -327,9 +329,9 @@ function mul(a, b) {
 var double = mul.bind(null, 2); // контекст фиксируем null, он не используется
 */!*
 
-alert( double(3) );  // = mul(2, 3) = 6
-alert( double(4) );  // = mul(2, 4) = 8
-alert( double(5) );  // = mul(2, 5) = 10
+alert( double(3) ); // = mul(2, 3) = 6
+alert( double(4) ); // = mul(2, 4) = 8
+alert( double(5) ); // = mul(2, 5) = 10
 ```
 
 При вызове `double` будет передавать свои аргументы исходной функции `mul` после тех, которые указаны в `bind`, то есть в данном случае после зафиксированного первого аргумента `2`.
@@ -344,9 +346,9 @@ alert( double(5) );  // = mul(2, 5) = 10
 var triple = mul.bind(null, 3); // контекст фиксируем null, он не используется
 */!*
 
-alert( triple(3) );  // = mul(3, 3) = 9
-alert( triple(4) );  // = mul(3, 4) = 12
-alert( triple(5) );  // = mul(3, 5) = 15
+alert( triple(3) ); // = mul(3, 3) = 9
+alert( triple(4) ); // = mul(3, 4) = 12
+alert( triple(5) ); // = mul(3, 5) = 15
 ```
 
 При помощи `bind` мы можем получить из функции её "частный вариант" как самостоятельную функцию и дальше передать в `setTimeout` или сделать с ней что-то ещё.
@@ -377,12 +379,12 @@ function ask(question, answer, ok, fail) {
 ask("Выпустить птичку?", "да", fly, die);
 */!*
 
-function fly() { 
-  alert('улетела :)');
+function fly() {
+  alert( 'улетела :)' );
 }
 
-function die() { 
-  alert('птичку жалко :(');
+function die() {
+  alert( 'птичку жалко :(' );
 }
 ```
 
@@ -400,7 +402,7 @@ setTimeout(function() {
 <li>...Либо использовать `bind`:
 
 ```js
-setTimeout( obj.func.bind(obj) );
+setTimeout(obj.func.bind(obj));
 ```
 </li>
 <li>Вызов `bind` часто используют для привязки функции к контексту, чтобы затем присвоить её в обычную переменную и вызывать уже без явного указания объекта.</li>

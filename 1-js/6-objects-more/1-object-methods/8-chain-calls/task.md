@@ -7,14 +7,14 @@
 ```js
 var ladder = {
   step: 0,
-  up: function() {  // вверх по лестнице
+  up: function() { // вверх по лестнице
     this.step++;
   },
-  down: function() {  // вниз по лестнице
+  down: function() { // вниз по лестнице
     this.step--;
   },
   showStep: function() { // вывести текущую ступеньку
-    alert(this.step);
+    alert( this.step );
   }
 };
 ```
@@ -31,7 +31,7 @@ ladder.showStep(); // 1
 Модифицируйте код методов объекта, чтобы вызовы можно было делать цепочкой, вот так:
 
 ```js
-ladder.up().up().down().up().down().showStep();  // 1
+ladder.up().up().down().up().down().showStep(); // 1
 ```
 
 Такой подход называется "чейнинг" (chaining) и используется, например, во фреймворке jQuery.

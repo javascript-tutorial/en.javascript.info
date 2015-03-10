@@ -9,13 +9,13 @@ var name = "";
 
 var user = {
   name: "Василий",
-        
-  export: function() {        
+
+  export: function() {
     return this;
   }
 
-};  
+};
 
-alert(user.export().name);
+alert( user.export().name );
 ```
 

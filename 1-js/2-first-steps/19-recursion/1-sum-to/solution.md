@@ -4,7 +4,7 @@
 //+ run
 function sumTo(n) {
   var sum = 0;
-  for(var i=1; i<=n; i++) {
+  for (var i = 1; i <= n; i++) {
     sum += i;
   }
   return sum;
@@ -19,7 +19,7 @@ alert( sumTo(100) );
 //+ run
 function sumTo(n) {
   if (n == 1) return 1;
-  return n + sumTo(n-1);
+  return n + sumTo(n - 1);
 }
 
 alert( sumTo(100) );
@@ -30,7 +30,7 @@ alert( sumTo(100) );
 ```js
 //+ run
 function sumTo(n) {
-  return n*(n+1)/2;
+  return n * (n + 1) / 2;
 }
 
 alert( sumTo(100) );

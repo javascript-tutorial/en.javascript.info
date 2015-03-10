@@ -60,8 +60,8 @@
 //+ run
 function CoffeeMachine(power) {
   this.waterAmount = 0; // количество воды в кофеварке
-  
-  alert('Создана кофеварка мощностью: ' + power + ' ватт');
+
+  alert( 'Создана кофеварка мощностью: ' + power + ' ватт' );
 }
 
 // создать кофеварку
@@ -107,10 +107,10 @@ function CoffeeMachine(power) {
   function getBoilTime() {
     return 1000; // точная формула расчета будет позже
   }
- 
+
   // что делать по окончании процесса
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
@@ -153,21 +153,21 @@ function CoffeeMachine(power) {
 
 *!*
   // физическая константа - удельная теплоёмкость воды для getBoilTime
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
   // расчёт времени для кипячения
   function getBoilTime() {
-    return this.waterAmount * WATER_HEAT_CAPACITY * 80 / power;  // ошибка!
-  }
+      return this.waterAmount * WATER_HEAT_CAPACITY * 80 / power; // ошибка!
+    }
 */!*
 
   // что делать по окончании процесса
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
-    setTimeout(onReady, getBoilTime()); 
+    setTimeout(onReady, getBoilTime());
   };
 
 }
@@ -192,14 +192,14 @@ coffeeMachine.run();
 //+ run
 function CoffeeMachine(power) {
   this.waterAmount = 0;
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
   function getBoilTime() {
     return this.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
   }
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
@@ -230,7 +230,7 @@ coffeeMachine.run();
 function CoffeeMachine(power) {
   this.waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
 *!*
   var getBoilTime = function() {
@@ -239,7 +239,7 @@ function CoffeeMachine(power) {
 */!*
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
@@ -269,18 +269,18 @@ coffeeMachine.run();
 function CoffeeMachine(power) {
   this.waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
 *!*
   var self = this;
 
   function getBoilTime() {
-    return self.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
-  }
+      return self.waterAmount * WATER_HEAT_CAPACITY * 80 / power;
+    }
 */!*
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {

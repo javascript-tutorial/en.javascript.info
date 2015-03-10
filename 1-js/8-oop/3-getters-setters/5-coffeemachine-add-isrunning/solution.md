@@ -14,6 +14,7 @@ function CoffeeMachine(power, capacity) {
 */!*
 
   var WATER_HEAT_CAPACITY = 4200;
+
   function getTimeToBoil() {
     return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
   }
@@ -28,7 +29,7 @@ function CoffeeMachine(power, capacity) {
   };
 
   function onReady() {
-    alert('Кофе готов!');
+    alert( 'Кофе готов!' );
   }
 
   this.setOnReady = function(newOnReady) {
@@ -38,7 +39,7 @@ function CoffeeMachine(power, capacity) {
   this.run = function() {
 *!*
     timerId = setTimeout(function() {
-      timerId = null; 
+      timerId = null;
       onReady();
     }, getTimeToBoil());
   };
@@ -49,13 +50,13 @@ function CoffeeMachine(power, capacity) {
 var coffeeMachine = new CoffeeMachine(20000, 500);
 coffeeMachine.setWaterAmount(100);
 
-alert('До: ' + coffeeMachine.isRunning()); // До: false
+alert( 'До: ' + coffeeMachine.isRunning() ); // До: false
 
 coffeeMachine.run();
-alert('В процессе: ' + coffeeMachine.isRunning()); // В процессе: true
+alert( 'В процессе: ' + coffeeMachine.isRunning() ); // В процессе: true
 
 coffeeMachine.setOnReady(function() {
-  alert("После: " + coffeeMachine.isRunning()); // После: false
+  alert( "После: " + coffeeMachine.isRunning() ); // После: false
 });
 ```
 

@@ -15,8 +15,8 @@ var names = 'Маша, Петя, Марина, Василий';
 
 var arr = names.split(', ');
 
-for (var i=0; i<arr.length; i++) { 
-  alert('Вам сообщение ' + arr[i]);
+for (var i = 0; i < arr.length; i++) {
+  alert( 'Вам сообщение ' + arr[i] );
 }
 ```
 
@@ -54,7 +54,7 @@ var arr = ['Маша', 'Петя', 'Марина', 'Василий'];
 
 var str = arr.join(';');
 
-alert(str); // Маша;Петя;Марина;Василий
+alert( str ); // Маша;Петя;Марина;Василий
 ```
 
 [smart header="new Array + join = Повторение строки"]
@@ -82,7 +82,7 @@ var arr = ["Я", "иду", "домой"];
 delete arr[1]; // значение с индексом 1 удалено
 
 // теперь arr = ["Я", undefined, "домой"];
-alert(arr[1]); // undefined
+alert( arr[1] ); // undefined
 ```
 
 Да, элемент удален из массива, но не так, как нам этого хочется. Образовалась "дырка".
@@ -109,10 +109,10 @@ alert(arr[1]); // undefined
 var arr = ["Я", "изучаю", "JavaScript"];
 
 *!*
-arr.splice(1, 1);  // начиная с позиции 1, удалить 1 элемент
+arr.splice(1, 1); // начиная с позиции 1, удалить 1 элемент
 */!*
 
-alert(arr); //  осталось ["Я", "JavaScript"]
+alert( arr ); //  осталось ["Я", "JavaScript"]
 ```
 
 Ниже продемонстрировано, как использовать `splice` для удаления одного элемента. Следующие за удаленным элементы сдвигаются, чтобы заполнить его место.
@@ -122,7 +122,7 @@ alert(arr); //  осталось ["Я", "JavaScript"]
 var arr = ["Я", "изучаю", "JavaScript"];
 
 *!*
-arr.splice(0, 1);  // удалить 1 элемент, начиная с позиции 0
+arr.splice(0, 1); // удалить 1 элемент, начиная с позиции 0
 */!*
 
 alert( arr[0] ); // "изучаю" стал первым элементом
@@ -161,9 +161,9 @@ var arr = ["Я", "изучаю", "JavaScript"];
 // с позиции 2 
 // удалить 0 
 // вставить "сложный", "язык"
-arr.splice(2, 0, "сложный", "язык"); 
+arr.splice(2, 0, "сложный", "язык");
 
-alert(arr); // "Я", "изучаю", "сложный", "язык", "JavaScript"
+alert( arr ); // "Я", "изучаю", "сложный", "язык", "JavaScript"
 ```
 
 Допускается использование отрицательного номера позиции, которая в этом случае отсчитывается с конца:
@@ -177,7 +177,7 @@ var arr = [1, 2, 5]
 // затем вставить числа 3 и 4
 arr.splice(-1, 0, 3, 4);
 
-alert(arr); // результат: 1,2,3,4,5
+alert( arr ); // результат: 1,2,3,4,5
 ```
 
 ## Метод slice   
@@ -190,9 +190,9 @@ alert(arr); // результат: 1,2,3,4,5
 //+ run
 var arr = ["Почему", "надо", "учить", "JavaScript"];
 
-var arr2 = arr.slice(1,3); // элементы 1, 2 (не включая 3)
+var arr2 = arr.slice(1, 3); // элементы 1, 2 (не включая 3)
 
-alert(arr2); // надо, учить
+alert( arr2 ); // надо, учить
 ```
 
 Аргументы ведут себя так же, как и в строковом `slice`:
@@ -301,7 +301,7 @@ arr.sort( compareNumeric*!*()*/!* );  // не сработает
 ```js
 //+ run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
-  alert(a + " <> " + b);
+  alert( a + " <> " + b );
 });
 ```
 
@@ -326,10 +326,10 @@ function compareNumeric(a, b) {
 
 ```js
 //+ run
-var arr = [1,2,3];
+var arr = [1, 2, 3];
 arr.reverse();
 
-alert(arr); // 3,2,1
+alert( arr ); // 3,2,1
 ```
 
 ## concat
@@ -340,12 +340,12 @@ alert(arr); // 3,2,1
 
 ```js
 //+ run
-var arr = [1,2];
+var arr = [1, 2];
 *!*
-var newArr = arr.concat(3,4);
+var newArr = arr.concat(3, 4);
 */!*
 
-alert(newArr); // 1,2,3,4
+alert( newArr ); // 1,2,3,4
 ```
 
 У `concat` есть одна забавная особенность.
@@ -356,13 +356,13 @@ alert(newArr); // 1,2,3,4
 
 ```js
 //+ run
-var arr = [1,2];
+var arr = [1, 2];
 
 *!*
-var newArr = arr.concat( [3,4], 5);// то же самое, что arr.concat(3,4,5)
+var newArr = arr.concat([3, 4], 5); // то же самое, что arr.concat(3,4,5)
 */!*
 
-alert(newArr); // 1,2,3,4,5
+alert( newArr ); // 1,2,3,4,5
 ```
 
 ## indexOf/lastIndexOf
@@ -380,7 +380,7 @@ alert(newArr); // 1,2,3,4,5
 
 ```js
 //+ run
-var arr = [ 1, 0, false ];
+var arr = [1, 0, false];
 
 alert( arr.indexOf(0) ); // 1
 alert( arr.indexOf(false) ); // 2
@@ -401,13 +401,13 @@ alert( arr.indexOf(null) ); // -1
 Например, организуем такую проверку для коллекции строк `"div"`, `"a"` и `"form"`:
 
 ```js
-var store = { }; // объект для коллекции
+var store = {}; // объект для коллекции
 
 var items = ["div", "a", "form"];
 
-for(var i=0; i<items.length; i++) {
+for (var i = 0; i < items.length; i++) {
   var key = items[i]; // для каждого элемента создаём свойство
-  store[ key ] = true; // значение здесь не важно
+  store[key] = true; // значение здесь не важно
 }
 ```
 
@@ -434,7 +434,7 @@ var user = {
 
 var keys = Object.keys(user);
 
-alert(keys); // name, age
+alert( keys ); // name, age
 ```
 
 ## Итого

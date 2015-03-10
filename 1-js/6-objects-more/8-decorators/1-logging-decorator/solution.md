@@ -2,7 +2,7 @@
 
 ```js
 //+ run
-function work(a) { 
+function work(a) {
   /*...*/ // work - произвольная функция, один аргумент
 }
 
@@ -10,9 +10,9 @@ function makeLogging(f, log) {
 
 *!*
   function wrapper(a) {
-    log.push(a);
-    return f.call(this, a);   
-  }
+      log.push(a);
+      return f.call(this, a);
+    }
 */!*
 
   return wrapper;
@@ -24,7 +24,7 @@ work = makeLogging(work, log);
 work(1); // 1
 work(5); // 5
 
-for(var i=0; i<log.length; i++) {
+for (var i = 0; i < log.length; i++) {
   alert( 'Лог:' + log[i] ); // "Лог:1", затем "Лог:5"
 }
 ```

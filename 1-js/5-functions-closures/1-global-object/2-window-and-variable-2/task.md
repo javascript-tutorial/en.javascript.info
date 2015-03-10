@@ -6,8 +6,8 @@
 
 ```js
 if ("a" in window) {
-    a = 1;
+  a = 1;
 }
-alert(a);
+alert( a );
 ```
 

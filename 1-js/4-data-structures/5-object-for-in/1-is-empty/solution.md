@@ -2,8 +2,8 @@
 
 ```js
 //+ run
-function isEmpty(obj) { 
-  for(var key in obj) {
+function isEmpty(obj) {
+  for (var key in obj) {
     return false;
   }
   return true;
@@ -11,10 +11,10 @@ function isEmpty(obj) {
 
 var schedule = {};
 
-alert( isEmpty( schedule ) ); // true
+alert( isEmpty(schedule) ); // true
 
 schedule["8:30"] = "подъём";
 
-alert( isEmpty( schedule ) ); // false
+alert( isEmpty(schedule) ); // false
 ```
 

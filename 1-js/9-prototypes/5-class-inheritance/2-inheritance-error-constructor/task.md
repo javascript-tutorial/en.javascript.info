@@ -9,8 +9,8 @@
 function Animal(name) {
   this.name = name;
 
-  this.walk = function() { 
-    alert("ходит " + this.name);
+  this.walk = function() {
+    alert( "ходит " + this.name );
   };
 
 }

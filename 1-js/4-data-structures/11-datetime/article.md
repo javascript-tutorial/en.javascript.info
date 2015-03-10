@@ -13,7 +13,7 @@
 ```js
 //+ run
 var now = new Date();
-alert(now);
+alert( now );
 ```
 
 </dd>
@@ -23,7 +23,7 @@ alert(now);
 ```js
 //+ run
 // 24 часа после 01.01.1970 GMT+0
-var Jan02_1970 = new Date(3600*24*1000);
+var Jan02_1970 = new Date(3600 * 24 * 1000);
 alert( Jan02_1970 );
 ```
 
@@ -50,8 +50,8 @@ new Date(2011, 0, 1); // то же самое, часы/секунды по ум
 
 ```js
 //+ run
-var date = new Date(2011, 0, 1, 2, 3, 4, 567); 
-alert(date); // 1.01.2011, 02:03:04.567
+var date = new Date(2011, 0, 1, 2, 3, 4, 567);
+alert( date ); // 1.01.2011, 02:03:04.567
 ```
 
 </dd>
@@ -94,11 +94,11 @@ alert(date); // 1.01.2011, 02:03:04.567
 var date = new Date();
 
 // час в текущей временной зоне
-alert( date.getHours() ); 
+alert( date.getHours() );
 
 // сколько сейчас времени в Лондоне?
 // час в зоне GMT+0 
-alert( date.getUTCHours() ); 
+alert( date.getUTCHours() );
 ```
 
 Кроме описанных выше, существуют два специальных метода без UTC-варианта:
@@ -111,7 +111,7 @@ alert( date.getUTCHours() );
 
 ```js
 //+ run
-alert( new Date().getTimezoneOffset() );  // Для GMT-1 выведет 60
+alert( new Date().getTimezoneOffset() ); // Для GMT-1 выведет 60
 ```
 
 </dd>
@@ -141,11 +141,11 @@ alert( new Date().getTimezoneOffset() );  // Для GMT-1 выведет 60
 //+ run
 var today = new Date;
 
-today.setHours(0); 
+today.setHours(0);
 alert( today ); // сегодня, но час изменён на 0
 
-today.setHours(0, 0, 0, 0); 
-alert (today ); // сегодня, ровно 00:00:00.
+today.setHours(0, 0, 0, 0);
+alert( today ); // сегодня, ровно 00:00:00.
 ```
 
 ### Автоисправление даты   
@@ -166,10 +166,10 @@ alert(d); // ... это 1 февраля 2013!
 //+ run
 var d = new Date(2011, 1, 28);
 *!*
-d.setDate( d.getDate() + 2 );
+d.setDate(d.getDate() + 2);
 */!*
 
-alert(d); // 2 марта, 2011
+alert( d ); // 2 марта, 2011
 ```
 
 Также это используют для получения даты, отдаленной от имеющейся на нужный промежуток времени. Например, получим дату на 70 секунд большую текущей:
@@ -177,9 +177,9 @@ alert(d); // 2 марта, 2011
 ```js
 //+ run
 var d = new Date();
-d.setSeconds( d.getSeconds()+70);
+d.setSeconds(d.getSeconds() + 70);
 
-alert(d); // выведет корректную дату
+alert( d ); // выведет корректную дату
 ```
 
 Можно установить и нулевые, и даже отрицательные компоненты. Например:
@@ -189,10 +189,10 @@ alert(d); // выведет корректную дату
 var d = new Date;
 
 d.setDate(1); // поставить первое число месяца
-alert(d);
+alert( d );
 
 d.setDate(0); // нулевого числа нет, будет последнее число предыдущего месяца
-alert(d);
+alert( d );
 ```
 
 
@@ -202,7 +202,7 @@ alert(d);
 var d = new Date;
 
 d.setDate(-1); // предпоследнее число предыдущего месяца
-alert(d);
+alert( d );
 ```
 
 ### Преобразование к числу, разность дат   
@@ -211,7 +211,7 @@ alert(d);
 
 ```js
 //+ run
-alert( +new Date ) // +date то же самое, что: +date.valueOf()
+alert(+new Date) // +date то же самое, что: +date.valueOf()
 ```
 
 **Важный побочный эффект: даты можно вычитать, результат вычитания объектов `Date` -- их временная разница, в миллисекундах**.
@@ -223,13 +223,13 @@ alert( +new Date ) // +date то же самое, что: +date.valueOf()
 var start = new Date; // засекли время
 
 // что-то сделать
-for (var i=0; i<100000; i++) {
-  var doSomething = i*i*i; 
+for (var i = 0; i < 100000; i++) {
+  var doSomething = i * i * i;
 }
 
 var end = new Date; // конец измерения
 
-alert("Цикл занял " + (end-start) + " ms");
+alert( "Цикл занял " + (end - start) + " ms" );
 ```
 
 ### Бенчмаркинг
@@ -242,11 +242,11 @@ alert("Цикл занял " + (end-start) + " ms");
 
 ```js
 function walkIn(arr) {
-  for(var key in arr) arr[i]++
+  for (var key in arr) arr[i]++
 }
 
 function walkLength(arr) {
-  for(var i=0; i<arr.length; i++) arr[i]++;
+  for (var i = 0; i < arr.length; i++) arr[i]++;
 }
 ```
 
@@ -259,19 +259,24 @@ function walkLength(arr) {
 ```js
 //+ run
 var arr = [];
-for(var i=0; i<1000; i++) arr[i] = 0;
+for (var i = 0; i < 1000; i++) arr[i] = 0;
 
-function walkIn(arr) {  for(var key in arr) arr[i]++; }
-function walkLength(arr) { for(var i=0; i<arr.length; i++) arr[i]++; }
+function walkIn(arr) {
+  for (var key in arr) arr[i]++;
+}
+
+function walkLength(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i]++;
+}
 
 function bench(f) {
   var date = new Date();
-  for (var i=0; i<10000; i++) f(arr);
+  for (var i = 0; i < 10000; i++) f(arr);
   return new Date() - date;
 }
 
-alert('Время walkIn: ' + bench(walkIn) + 'мс');
-alert('Время walkLength: ' + bench(walkLength) + 'мс');
+alert( 'Время walkIn: ' + bench(walkIn) + 'мс' );
+alert( 'Время walkLength: ' + bench(walkLength) + 'мс' );
 ```
 
 Теперь представим себе, что во время первого бенчмаркинга `bench(walkIn)` компьютер что-то делал параллельно важное (вдруг) и это занимало ресурсы, а во время второго -- перестал. Реальная ситуация? Конечно реальна, особенно на современных ОС, где много процессов одновременно.
@@ -281,28 +286,34 @@ alert('Время walkLength: ' + bench(walkLength) + 'мс');
 ```js
 //+ run
 var arr = [];
-for(var i=0; i<1000; i++) arr[i] = 0;
+for (var i = 0; i < 1000; i++) arr[i] = 0;
 
-function walkIn(arr) {  for(var key in arr) arr[i]++; }
-function walkLength(arr) { for(var i=0; i<arr.length; i++) arr[i]++; }
+function walkIn(arr) {
+  for (var key in arr) arr[i]++;
+}
+
+function walkLength(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i]++;
+}
 
 function bench(f) {
   var date = new Date();
-  for (var i=0; i<1000; i++) f(arr);
+  for (var i = 0; i < 1000; i++) f(arr);
   return new Date() - date;
 }
 
 *!*
 // bench для каждого теста запустим много раз, чередуя
-var timeIn = 0, timeLength = 0;
-for(var i=0; i<100; i++) {
+var timeIn = 0,
+  timeLength = 0;
+for (var i = 0; i < 100; i++) {
   timeIn += bench(walkIn);
   timeLength += bench(walkLength);
 }
 */!*
 
-alert('Время walkIn: ' + timeIn + 'мс');
-alert('Время walkLength: ' +timeLength + 'мс');
+alert( 'Время walkIn: ' + timeIn + 'мс' );
+alert( 'Время walkLength: ' + timeLength + 'мс' );
 ```
 
 [smart header="Более точное время с `performance.now()`"]
@@ -328,13 +339,18 @@ alert('Время walkLength: ' +timeLength + 'мс');
 ```js
 //+ run
 var arr = [];
-for(var i=0; i<1000; i++) arr[i] = 0;
+for (var i = 0; i < 1000; i++) arr[i] = 0;
 
-function walkIn(arr) {  for(var key in arr) arr[i]++; }
-function walkLength(arr) { for(var i=0; i<arr.length; i++) arr[i]++; }
+function walkIn(arr) {
+  for (var key in arr) arr[i]++;
+}
+
+function walkLength(arr) {
+  for (var i = 0; i < arr.length; i++) arr[i]++;
+}
 
 function bench(f) {
-  for (var i=0; i<10000; i++) f(arr);
+  for (var i = 0; i < 10000; i++) f(arr);
 }
 
 console.time("All Benchmarks");
@@ -452,7 +468,7 @@ alert( d.toISOString() ); // вывод, похожий на '2011-01-26T13:51:5
 //+ run
 var msUTC = Date.parse('2012-01-26T13:51:50.417Z'); // зона UTC
 
-alert(msUTC); // 1327571510417 (число миллисекунд)
+alert( msUTC ); // 1327571510417 (число миллисекунд)
 ```
 
 С таймзоной `-07:00 GMT`:
@@ -461,7 +477,7 @@ alert(msUTC); // 1327571510417 (число миллисекунд)
 //+ run
 var ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert(ms); // 1327611110417 (число миллисекунд)
+alert( ms ); // 1327611110417 (число миллисекунд)
 ```
 
 
@@ -474,7 +490,7 @@ alert(ms); // 1327611110417 (число миллисекунд)
 //+ run
 var ms = Date.parse("January 26, 2011 13:51:50");
 
-alert(ms);
+alert( ms );
 ```
 
 Вы также можете почитать о старых форматах IE в документации к методу  <a href="http://msdn.microsoft.com/en-us/library/k4w173wk%28v=vs.85%29.aspx">MSDN Date.parse</a>. 

@@ -15,7 +15,7 @@ coffeeMachine.run(); // ошибка, кофеварка выключена!
 
 ```js
 var coffeeMachine = new CoffeeMachine(10000);
-coffeeMachine.enable(); 
+coffeeMachine.enable();
 coffeeMachine.run(); // ...Кофе готов!
 ```
 

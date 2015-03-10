@@ -12,7 +12,7 @@
 
 ```js
 //+ run
-function Rabbit() { }
+function Rabbit() {}
 
 *!*
 // создаём объект
@@ -21,7 +21,7 @@ var rabbit = new Rabbit();
 
 // проверяем -- этот объект создан Rabbit?
 *!*
-alert(rabbit instanceof Rabbit); // true, верно
+alert( rabbit instanceof Rabbit ); // true, верно
 */!*
 ```
 
@@ -30,8 +30,8 @@ alert(rabbit instanceof Rabbit); // true, верно
 ```js
 //+ run
 var arr = [];
-alert(arr instanceof Array); // true
-alert(arr instanceof Object); // true
+alert( arr instanceof Array ); // true
+alert( arr instanceof Object ); // true
 ```
 
 Как это часто бывает в JavaScript, здесь есть ряд тонкостей. В некоторых ситуациях, проверка может даже ошибаться!
@@ -55,7 +55,7 @@ alert(arr instanceof Object); // true
 ```js
 //+ run
 // Создаём объект rabbit, как обычно
-function Rabbit() { }
+function Rabbit() {}
 var rabbit = new Rabbit();
 
 // изменили prototype...

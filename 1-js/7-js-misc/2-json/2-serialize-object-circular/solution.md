@@ -24,7 +24,7 @@ team.toJSON = function() {
 Изменённая структура может выглядеть так:
 
 ```js
-var leader = { 
+var leader = {
   id: 12,
   name: "Василий Иванович"
 };
@@ -41,8 +41,8 @@ soldier.leaderId = 12;
 */!*
 
 var team = {
- 12: leader,
- 51: soldier
+  12: leader,
+  51: soldier
 };
 ```
 
@@ -57,6 +57,7 @@ var team = {
 При вызове `dojox.json.ref.toJson(team)` будет создано следующее строковое представление:
 
 ```js
+//+ no-beautify
 [{"name":"Василий Иванович","soldier":{"name":"Петька","leader":{"$ref":"#0"}}},{"$ref":"#0.soldier"}]
 ```
 

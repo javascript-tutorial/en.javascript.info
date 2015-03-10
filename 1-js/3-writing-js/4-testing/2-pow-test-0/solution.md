@@ -2,7 +2,7 @@
 
 ```js
 it("любое число в степени 0 равно 1", function() {
-  assert.equal( pow(123, 0), 1);
+  assert.equal(pow(123, 0), 1);
 });
 ```
 
@@ -14,12 +14,12 @@ it("любое число в степени 0 равно 1", function() {
 describe("любое число, кроме нуля, в степени 0 равно 1", function() {
 
   function makeTest(x) {
-    it("при возведении " + x + " в степень 0 результат: 1", function() { 
-      assert.equal( pow(x, 0), 1);
+    it("при возведении " + x + " в степень 0 результат: 1", function() {
+      assert.equal(pow(x, 0), 1);
     });
   }
 
-  for(var x = -5; x <= 5; x+=2) {
+  for (var x = -5; x <= 5; x += 2) {
     makeTest(x);
   }
 
@@ -29,6 +29,7 @@ describe("любое число, кроме нуля, в степени 0 рав
 И не забудем добавить отдельный тест для нуля:
 
 ```js
+//+ no-beautify
 ...
 it("ноль в нулевой степени даёт NaN", function() {
   assert( isNaN(pow(0,0), "0 в степени 0 не NaN");

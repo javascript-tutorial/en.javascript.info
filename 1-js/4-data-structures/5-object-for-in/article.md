@@ -9,7 +9,7 @@
 Синтаксис:
 
 ```js
-for (key in obj) { 
+for (key in obj) {
   /* ... делать что-то с obj[key] ... */
 }
 ```
@@ -33,17 +33,17 @@ for (*!*var key*/!* in menu) {
 ```js
 //+ run
 var menu = {
-    width:  300,
-    height: 200,
-    title: "Menu"
+  width: 300,
+  height: 200,
+  title: "Menu"
 };
 
-for (var key in menu) { 
-    // этот код будет вызван для каждого свойства объекта    
-    // ..и выведет имя свойства и его значение
+for (var key in menu) {
+  // этот код будет вызван для каждого свойства объекта    
+  // ..и выведет имя свойства и его значение
 
 *!*
-    alert("Ключ: " + key + " значение:" + menu[key]);
+  alert( "Ключ: " + key + " значение:" + menu[key] );
 */!*
 }
 ```
@@ -61,9 +61,9 @@ for (var key in menu) {
 ```js
 //+ run
 var menu = {
-    width:  300,
-    height: 200,
-    title: "Menu"
+  width: 300,
+  height: 200,
+  title: "Menu"
 };
 
 *!*
@@ -74,7 +74,7 @@ for (var key in menu) {
 }
 */!*
 
-alert("Всего свойств: " + counter);
+alert( "Всего свойств: " + counter );
 ```
 
 В следующих главах мы пройдём массивы и познакомимся с другим, более коротким, вызовом: `Object.keys(menu).length`.
@@ -119,7 +119,7 @@ user.age = 25;
 // порядок перебора соответствует порядку присвоения свойства
 */!*
 for (var prop in user) {
-  alert(prop); // name, surname, age
+  alert( prop ); // name, surname, age
 }
 ```
 
@@ -134,7 +134,7 @@ var codes = {
   "1": "США"
 };
 
-for(var code in codes) alert(code); // 1, 7, 38
+for (var code in codes) alert( code ); // 1, 7, 38
 ```
 
 При запуске этого кода в современном браузере мы увидим, что на первое место попал код США! 
@@ -148,15 +148,15 @@ for(var code in codes) alert(code); // 1, 7, 38
 ```js
 //+ run
 var codes = {
-  "+7": "Россия", 
+  "+7": "Россия",
   "+38": "Украина",
   "+1": "США"
 };
 
-for (var code in codes ) {
+for (var code in codes) {
   var value = codes[code];
   code = +code; // ..если нам нужно именно число, преобразуем: "+7" -> 7
- 
+
   alert( code + ": " + value ); // 7, 38, 1 во всех браузерах
 }
 ```

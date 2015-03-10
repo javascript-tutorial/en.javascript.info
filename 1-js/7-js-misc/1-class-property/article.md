@@ -32,14 +32,14 @@ alert( obj ); // [object Object]
 //+ run
 var toClass = {}.toString; // (1)
 
-var arr = [1,2];
+var arr = [1, 2];
 alert( toClass.call(arr) ); // (2) [object Array]
 
 var date = new Date;
 alert( toClass.call(date) ); // [object Date]
 
 var type = toClass.call(date).slice(8, -1); // (3)
-alert(type); // Date
+alert( type ); // Date
 ```
 
 Разберем происходящее более подробно.
@@ -61,7 +61,7 @@ var toClass = obj.toString;
 
 ```js
 //+ run
-var arr = [1,2];
+var arr = [1, 2];
 arr.toClass = {}.toString;
 
 alert( arr.toClass() ); // [object Array]
@@ -86,6 +86,7 @@ alert( {}.toString.call("строка") ); // [object String]
 Эта ошибка возникает потому, что фигурные скобки `{ }` в основном потоке кода интерпретируются как блок. Интерпретатор читает `{}.toString.call(...)` так:
 
 ```js
+//+ no-beautify
 { } // пустой блок кода
 .toString.call(...) // а что это за точка в начале? не понимаю, ошибка!
 ```

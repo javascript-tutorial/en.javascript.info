@@ -45,6 +45,7 @@ function CoffeeMachine(power, capacity) { // capacity - ёмкость кофе�
   var waterAmount = 0;
 
   var WATER_HEAT_CAPACITY = 4200;
+
   function getTimeToBoil() {
     return waterAmount * WATER_HEAT_CAPACITY * 80 / power;
   }
@@ -64,7 +65,7 @@ function CoffeeMachine(power, capacity) { // capacity - ёмкость кофе�
 */!*
 
   function onReady() {
-    alert('Кофе готов!');
+    alert( 'Кофе готов!' );
   }
 
   this.run = function() {
@@ -106,7 +107,7 @@ function CoffeeMachine(power, capacity) {
 }
 
 var coffeeMachine = new CoffeeMachine(1000, 500);
-coffeeMachine.setWaterAmount(450); 
+coffeeMachine.setWaterAmount(450);
 alert( coffeeMachine.getWaterAmount() ); // 450
 ```
 
@@ -146,7 +147,7 @@ var coffeeMachine = new CoffeeMachine(1000, 500);
 
 // пример использования
 *!*
-coffeeMachine.waterAmount(450); 
+coffeeMachine.waterAmount(450);
 alert( coffeeMachine.waterAmount() ); // 450
 */!*
 ```

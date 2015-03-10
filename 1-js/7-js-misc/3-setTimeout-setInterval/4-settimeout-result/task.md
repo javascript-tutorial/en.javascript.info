@@ -15,15 +15,15 @@
 Что выведет `alert` в коде ниже?
 
 ```js
-setTimeout(function() { 
-  alert(i);
+setTimeout(function() {
+  alert( i );
 }, 100);
 
 var i;
 
-function hardWork() { 
+function hardWork() {
   // время выполнения этого кода >100мс, сам код неважен
-  for(i=0; i<1e8; i++) hardWork[i%2] = i;
+  for (i = 0; i < 1e8; i++) hardWork[i % 2] = i;
 }
 
 hardWork();

@@ -11,6 +11,6 @@ var fruits = ["Яблоко", "Груша", "Слива"];
 То есть, для массива длины `goods`:
 
 ```js
-var lastItem = goods[goods.length-1]; // получить последний элемент
+var lastItem = goods[goods.length - 1]; // получить последний элемент
 ```
 

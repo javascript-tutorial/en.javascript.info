@@ -20,7 +20,7 @@ function aclean(arr) {
   // этот объект будем использовать для уникальности
   var obj = {};
 
-  for(var i=0; i<arr.length; i++) {
+  for (var i = 0; i < arr.length; i++) {
     // разбить строку на буквы, отсортировать и слить обратно
 *!*
     var sorted = arr[i].toLowerCase().split('').sort().join(''); // (*)
@@ -32,7 +32,7 @@ function aclean(arr) {
   var result = [];
 
   // теперь в obj находится для каждого ключа ровно одно значение
-  for(var key in obj) result.push(obj[key]);
+  for (var key in obj) result.push(obj[key]);
 
   return result;
 }
@@ -48,10 +48,10 @@ alert( aclean(arr) );
 
 ```js
 var sorted = arr[i] // ЗОВ
-  .toLowerCase()   // зов
-  .split('')        // ['з','о','в']  
-  .sort()           // ['в','з','о']
-  .join('');        // взо
+  .toLowerCase() // зов
+  .split('') // ['з','о','в']  
+  .sort() // ['в','з','о']
+  .join(''); // взо
 ```
 
 Получится, что два разных слова `'ЗОВ'` и `'воз'` получат одинаковую отсортированную форму `'взо'`. 

@@ -7,9 +7,9 @@
 ```js
 var currentCount = 1;
 
-function makeCounter() {    
-  return function() { 
-    return currentCount++; 
+function makeCounter() {
+  return function() {
+    return currentCount++;
   };
 }
 

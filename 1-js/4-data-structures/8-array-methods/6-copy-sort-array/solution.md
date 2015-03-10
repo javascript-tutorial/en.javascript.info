@@ -2,13 +2,13 @@
 
 ```js
 //+ run
-var arr = [ "HTML", "JavaScript", "CSS" ];
+var arr = ["HTML", "JavaScript", "CSS"];
 
 *!*
 var arrSorted = arr.slice().sort();
 */!*
 
-alert(arrSorted);
-alert(arr);
+alert( arrSorted );
+alert( arr );
 ```
 

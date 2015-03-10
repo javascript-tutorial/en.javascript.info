@@ -8,7 +8,7 @@
 function CoffeeMachine(power) {
   this.waterAmount = 0;
 
-  var WATER_HEAT_CAPACITY = 4200; 
+  var WATER_HEAT_CAPACITY = 4200;
 
   var self = this;
 
@@ -17,7 +17,7 @@ function CoffeeMachine(power) {
   }
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
@@ -32,7 +32,7 @@ function CoffeeMachine(power) {
 ```js
 var coffeeMachine = new CoffeeMachine(50000);
 coffeeMachine.waterAmount = 200;
- 
+
 coffeeMachine.run();
 coffeeMachine.stop(); // кофе приготовлен не будет
 ```

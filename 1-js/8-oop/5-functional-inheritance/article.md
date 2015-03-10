@@ -105,7 +105,7 @@ function CoffeeMachine(power) {
 
 *!*
   // ошибка, переменная не определена!
-  alert(enabled);
+  alert( enabled );
 */!*
 }
 
@@ -140,7 +140,7 @@ function CoffeeMachine(power) {
   this.enable();
 
 *!*
-  alert(this._enabled); // true
+  alert( this._enabled ); // true
 */!*
 }
 
@@ -178,8 +178,8 @@ function CoffeeMachine(power) {
   Machine.apply(this, arguments); // (2)
 */!*
 
-  alert(this._enabled); // false
-  alert(this._power); // 10000
+  alert( this._enabled ); // false
+  alert( this._power ); // 10000
 }
 
 var coffeeMachine = new CoffeeMachine(10000);
@@ -204,8 +204,8 @@ var coffeeMachine = new CoffeeMachine(10000);
 // которые в Machine не будут использованы
 function Fridge(power, temperature) {
   Machine.apply(this, arguments);
- 
-   // ...
+
+  // ...
 }
 ```
 
@@ -216,11 +216,11 @@ function Fridge(power, temperature) {
 ```js
 function CoffeeMachine(power, capacity) {
   Machine.apply(this, arguments);
- 
-   // переопределить this.enable
-   this.enable = function() { 
-     /* enable для кофеварки */ 
-   };
+
+  // переопределить this.enable
+  this.enable = function() {
+    /* enable для кофеварки */
+  };
 }
 ```
 
@@ -234,10 +234,10 @@ function CoffeeMachine(power) {
 
 *!*
   var parentEnable = this.enable; // (1)
-  this.enable = function() {  // (2)
-    parentEnable.call(this); // (3)
-    this.run(); // (4)
-  }
+  this.enable = function() { // (2)
+      parentEnable.call(this); // (3)
+      this.run(); // (4)
+    }
 */!*
 
   ...
@@ -265,13 +265,13 @@ function Machine(power) {
   this._enabled = false;
 
 *!*
-  var self = this; 
+  var self = this;
 */!*
 
   this.enable = function() {
 *!*
     // используем внешнюю переменную вместо this
-    self._enabled = true;  
+    self._enabled = true;
 */!*
   };
 
@@ -293,13 +293,13 @@ function CoffeeMachine(power) {
 *!*
   var parentEnable = this.enable;
   this.enable = function() {
-    parentEnable();  // теперь можно вызывать как угодно, this не важен
-    this.run();
-  }
+      parentEnable(); // теперь можно вызывать как угодно, this не важен
+      this.run();
+    }
 */!*
 
   function onReady() {
-    alert('Кофе готово!');
+    alert( 'Кофе готово!' );
   }
 
   this.run = function() {
@@ -327,7 +327,7 @@ coffeeMachine.enable();
 ```js
 function Machine(params) {
   // локальные переменные и функции доступны только внутри Machine
-  var privateProperty; 
+  var privateProperty;
 
   // публичные доступны снаружи
   this.publicProperty = ...;
@@ -348,7 +348,7 @@ machine.public();
 function CoffeeMachine(params) {
   // универсальный вызов с передачей любых аргументов
 *!*
-  Machine.apply(this, arguments); 
+  Machine.apply(this, arguments);
 */!*
 
   this.coffeePublicProperty = ...
@@ -364,7 +364,7 @@ coffeeMachine.coffeePublicProperty();
 
 ```js
 function CoffeeMachine(params) {
-  Machine.apply(this, arguments); 
+  Machine.apply(this, arguments);
 
 *!*
   var parentProtected = this._protectedProperty;
@@ -383,7 +383,7 @@ function Machine(params) {
   var self = this;
 
   this._protected = function() {
-    self.property = "value"; 
+    self.property = "value";
   };
 }
 ```

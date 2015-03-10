@@ -11,19 +11,20 @@ function unique(arr) {
   var result = [];
 
   nextInput:
-  for(var i=0; i<arr.length; i++) {
-    var str = arr[i];                      // для каждого элемента
-    for(var j=0; j<result.length; j++) {   // ищем, был ли он уже?
-      if (result[j] == str) continue nextInput; // если да, то следующий
+    for (var i = 0; i < arr.length; i++) {
+      var str = arr[i]; // для каждого элемента
+      for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
+        if (result[j] == str) continue nextInput; // если да, то следующий
+      }
+      result.push(str);
     }
-    result.push(str);
-  }
- 
+
   return result;
 }
 
-var strings = ["кришна", "кришна", "харе", "харе", 
-  "харе", "харе", "кришна", "кришна", "8-()"];
+var strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", "8-()"
+];
 
 alert( unique(strings) ); // кришна, харе, 8-()
 ```
@@ -62,18 +63,19 @@ alert( unique(strings) ); // кришна, харе, 8-()
 function unique(arr) {
   var obj = {};
 
-  for(var i=0; i<arr.length; i++) {
+  for (var i = 0; i < arr.length; i++) {
     var str = arr[i];
 *!*
     obj[str] = true; // запомнить строку в виде свойства объекта
 */!*
   }
- 
+
   return Object.keys(obj); // или собрать ключи перебором для IE8-
 }
 
-var strings = ["кришна", "кришна", "харе", "харе", 
-  "харе", "харе", "кришна", "кришна", "8-()"];
+var strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", "8-()"
+];
 
 alert( unique(strings) ); // кришна, харе, 8-()
 ```

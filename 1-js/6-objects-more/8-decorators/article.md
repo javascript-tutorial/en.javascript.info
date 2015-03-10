@@ -16,8 +16,8 @@ JavaScript предоставляет удивительно гибкие воз
 
 ```js
 function bind(func, context) {
-  return function() { 
-    return func.apply(context, arguments); 
+  return function() {
+    return func.apply(context, arguments);
   };
 }
 ```
@@ -32,7 +32,7 @@ function bind(func, context) {
 
 Использование:
 ```js
-function f(x) { } // любая функция
+function f(x) {} // любая функция
 
 var timers = {}; // объект для таймеров
 
@@ -44,7 +44,7 @@ f(1);
 f(2);
 f(3); // функция работает как раньше, но время подсчитывается
 
-alert(timers.myFunc); // общее время выполнения всех вызовов f
+alert( timers.myFunc ); // общее время выполнения всех вызовов f
 ```
 
 При помощи декоратора `timingDecorator` мы сможем взять произвольную функцию и одним движением руки прикрутить к ней измеритель времени.
@@ -71,7 +71,7 @@ function timingDecorator(f, timer) {
 
 // функция может быть произвольной, например такой:
 function fibonacci(n) {
-  return (n > 2) ? fibonacci(n-1) + fibonacci(n-2) : 1;
+  return (n > 2) ? fibonacci(n - 1) + fibonacci(n - 2) : 1;
 }
 
 *!*
@@ -86,7 +86,7 @@ alert( fibonacci(20) ); // 6765
 
 *!*
 // в любой момент можно получить общее количество времени на вызовы
-alert( timers.fibo + 'мс' ); 
+alert( timers.fibo + 'мс' );
 */!*
 ```
 
@@ -105,6 +105,7 @@ var result = f.apply(this, arguments); // (*)
 Например:
 
 ```js
+//+ no-beautify
 function sum(a, b) {
   return a + b;
 }
@@ -134,9 +135,9 @@ function checkNumber(value) {
 // второй аргумент checks - массив с функциями для проверки
 function typeCheck(f, checks) {
   return function() {
-    for(var i=0; i<arguments.length; i++) {
+    for (var i = 0; i < arguments.length; i++) {
       if (!checks[i](arguments[i])) {
-        alert("Некорректный тип аргумента номер " + i);
+        alert( "Некорректный тип аргумента номер " + i );
         return;
       }
     }
@@ -154,7 +155,7 @@ sum = typeCheck(sum, [checkNumber, checkNumber]); // оба аргумента -
 */!*
 
 // пользуемся функцией как обычно
-alert( sum(1,2 ) ); // 3, все хорошо
+alert( sum(1, 2) ); // 3, все хорошо
 
 *!*
 // а вот так - будет ошибка
@@ -180,10 +181,10 @@ sum(1, ["array", "in", "sum?!?"]); // некорректный аргумент 
 ```js
 function checkPermissionDecorator(f) {
   return function() {
-    if ( isAdmin() ) {
-      return f.apply(this, arguments); 
+    if (isAdmin()) {
+      return f.apply(this, arguments);
     }
-    alert('Недостаточно прав');
+    alert( 'Недостаточно прав' );
   }
 }
 ```
@@ -191,6 +192,7 @@ function checkPermissionDecorator(f) {
 Использование декоратора:
 
 ```js
+//+ no-beautify
 function save() { ... }
 
 save = checkPermissionDecorator(save);

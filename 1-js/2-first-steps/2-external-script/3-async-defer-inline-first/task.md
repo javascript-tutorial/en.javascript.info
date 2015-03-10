@@ -11,7 +11,7 @@
 <script async src="big.js"></script>
 
 <script defer async>
-  alert("обычный скрипт");
+  alert( "обычный скрипт" );
 </script>
 ```
 

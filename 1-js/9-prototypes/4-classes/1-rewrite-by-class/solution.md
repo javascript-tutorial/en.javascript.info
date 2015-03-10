@@ -17,7 +17,7 @@ CoffeeMachine.prototype._getTimeToBoil = function() {
 
 CoffeeMachine.prototype.run = function() {
   setTimeout(function() {
-    alert('Кофе готов!');
+    alert( 'Кофе готов!' );
   }, this._getTimeToBoil());
 };
 

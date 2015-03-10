@@ -10,7 +10,7 @@
 В простейшем случае `eval` всего лишь выполняет код, например:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 1;
 
 (function() {
@@ -42,8 +42,8 @@ alert( eval('1+1') ); // 2
 ```js
 //+ untrusted refresh run
 var x = 5;
-eval(" alert(x); x = 10"); // 5, доступ к старому значению
-alert(x); // 10, значение изменено внутри eval
+eval(" alert( x ); x = 10"); // 5, доступ к старому значению
+alert( x ); // 10, значение изменено внутри eval
 ```
 
 [smart header="В строгом режиме `eval` имеет свою область видимости "]
@@ -58,7 +58,7 @@ alert(x); // 10, значение изменено внутри eval
 *!*
 eval("var a = 5; function f() { }");
 */!*
-alert(a); // ошибка, переменная не определена
+alert( a ); // ошибка, переменная не определена
 // функция f тоже не видна снаружи
 ```
 
@@ -93,7 +93,7 @@ function sayHi() {
 ```js
 function sayHi() {
   var phrase = "Привет";
-  alert(phrase);
+  alert( phrase );
 }
 ```
 
@@ -102,7 +102,7 @@ function sayHi() {
 ```js
 function sayHi() {
   var a = "Привет";
-  alert(a);
+  alert( a );
 }
 ```
 
@@ -110,7 +110,7 @@ function sayHi() {
 
 ```js
 function sayHi() {
-  alert("Привет");
+  alert( "Привет" );
 }
 ```
 
@@ -134,7 +134,7 @@ function sayHi() {
 Вот так:
 
 ```js
-//+ run
+//+ run no-beautify
 var a = 1;
 
 (function() {
@@ -153,7 +153,7 @@ var a = 1;
 Оба способа можно объединить в единой функции `globalEval(code)`, выполняющей код без доступа к локальным переменным:
 
 ```js
-//+ run
+//+ run no-beautify
 *!*
 function globalEval(code) { // объединим два способа в одну функцию
   window.execScript ? execScript(code) : window.eval(code);
@@ -185,12 +185,13 @@ var a = 1;
 
 ```js
 //+ run
-var a = 2, b = 3; 
-  
+var a = 2,
+  b = 3;
+
 *!*
 // вместо обращения к a,b через eval
 // будем принимать их как аргументы динамически созданной функции
-var mul = new Function('a, b', ' return a * b;'); 
+var mul = new Function('a, b', ' return a * b;');
 */!*
 
 alert( mul(a, b) ); // 6
@@ -206,7 +207,7 @@ alert( mul(a, b) ); // 6
 
 ```js
 //+ run
-var str= '{ \
+var str = '{ \
     "name": "Вася", \
     "age": 25 \
 }';
@@ -215,7 +216,7 @@ var str= '{ \
 var user = eval('(' + str + ')');
 */!*
 
-alert(user.name); // Вася
+alert( user.name ); // Вася
 ```
 
 Зачем здесь нужны скобки `eval( '(' + str + ')' )`, почему не просто `eval(str)`? 
@@ -228,15 +229,15 @@ alert(user.name); // Вася
 
 ```js
 //+ run
-var user = eval( '{  "name": "Вася",  "age": 25  }' );
+var user = eval('{  "name": "Вася",  "age": 25  }');
 ```
 
 А если `eval` получает выражение в скобках `( ... )`, то интерпретатор точно знает, что это не блок кода, а объект:
 
 ```js
 //+ run
-var user = eval( '( {  "name": "Вася",  "age": 25  } )' );
-alert(user.age); // 25
+var user = eval('( {  "name": "Вася",  "age": 25  } )');
+alert( user.age ); // 25
 ```
 
 [warn header="Осторожно, злой JSON!"]

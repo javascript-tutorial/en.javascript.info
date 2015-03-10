@@ -13,7 +13,9 @@
 
 ```js
 //+ run
-var animal = { eats: true };
+var animal = {
+  eats: true
+};
 
 function Rabbit(name) {
   this.name = name;
@@ -39,9 +41,11 @@ alert( rabbit.eats ); // true, из прототипа
 
 ```js
 //+ run
-var animal = { eats: true };
+var animal = {
+  eats: true
+};
 
-function Rabbit(name) { 
+function Rabbit(name) {
   this.name = name;
 }
 
@@ -77,7 +81,7 @@ alert( rabbit.eats ); // true
 Оно содержит объект такого вида:
 
 ```js
-function Rabbit() { }
+function Rabbit() {}
 
 Rabbit.prototype = {
   constructor: Rabbit
@@ -90,22 +94,22 @@ Rabbit.prototype = {
 
 ```js
 //+ run
-function Rabbit() { }
+function Rabbit() {}
 
 // в Rabbit.prototype есть одно свойство: constructor
-alert(Object.getOwnPropertyNames(Rabbit.prototype)); // constructor
+alert( Object.getOwnPropertyNames(Rabbit.prototype) ); // constructor
 
 // оно равно Rabbit
-alert(Rabbit.prototype.constructor == Rabbit); // true
+alert( Rabbit.prototype.constructor == Rabbit ); // true
 ```
 
 Можно его использовать для создания объекта с тем же конструктором, что и данный:
 
 ```js
 //+ run
-function Rabbit(name) { 
+function Rabbit(name) {
   this.name = name;
-  alert(name);
+  alert( name );
 }
 
 var rabbit = new Rabbit("Кроль");
@@ -163,11 +167,13 @@ function inherit(proto) {
 
 ```js
 //+ run
-var animal = { eats: true };
+var animal = {
+  eats: true
+};
 
-var rabbit = inherit(animal); 
- 
-alert(rabbit.eats); // true
+var rabbit = inherit(animal);
+
+alert( rabbit.eats ); // true
 ```
 
 Посмотрите внимательно на функцию `inherit` и вы, наверняка, сами поймёте, как она работает...
@@ -175,6 +181,7 @@ alert(rabbit.eats); // true
 Если где-то неясности, то её построчное описание:
 
 ```js
+//+ no-beautify
 function inherit(proto) {
   function F() {}     // (1)
   F.prototype = proto // (2)

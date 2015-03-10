@@ -22,16 +22,16 @@
 
 ```js
 //+ run untrusted refresh
-var a = 5;   // объявление var создаёт свойство window.a
-alert(window.a); // 5
+var a = 5; // объявление var создаёт свойство window.a
+alert( window.a ); // 5
 ```
 
 Создать переменную можно и явным присваиванием в `window`:
 
 ```js
 //+ run untrusted refresh
-window.a = 5; 
-alert(a); // 5
+window.a = 5;
+alert( a ); // 5
 ```
 
 ## Порядок инициализации
@@ -88,7 +88,7 @@ var g = function() { /*...*/ };
 //+ run
 a = 5;
 
-alert(a); // 5
+alert( a ); // 5
 ```
 
 Такое присвоение, как и `var a = 5`, создает свойство `window.a = 5`. Отличие от `var a = 5` -- в том, что переменная будет создана не на этапе входа в область видимости, а в момент присвоения.
@@ -100,7 +100,7 @@ alert(a); // 5
 ```js
 //+ run untrusted refresh
 *!*
-alert(a); // undefined
+alert( a ); // undefined
 */!*
 
 var a = 5;
@@ -111,7 +111,7 @@ var a = 5;
 ```js
 //+ run untrusted refresh
 *!*
-alert(a); // error, a is not defined
+alert( a ); // error, a is not defined
 */!*
 
 a = 5;
@@ -166,7 +166,7 @@ for (i=0; i<5; i++) { }
 ```js
 var i = 10;
 
-for (var i=0; i<20; i++) {
+for (var i = 0; i < 20; i++) {
   ...
 }
 
@@ -189,9 +189,9 @@ var i = 5;
 ```html
 <!--+ run -->
 <div id="a">...</div>
-<script> 
-  a = 5;    // ошибка в IE8-! Правильно будет "var a = 5"
-  alert(a); // никогда не сработает
+<script>
+  a = 5; // ошибка в IE8-! Правильно будет "var a = 5"
+  alert( a ); // никогда не сработает
 </script>
 ```
 
@@ -205,12 +205,12 @@ var i = 5;
 ```html
 <!--+ run height=0 -->
 <script>
-// рекурсия через функцию, явно записанную в window
-window.recurse = function(times) {
-  if (times !== 0) recurse(times-1);
-}
+  // рекурсия через функцию, явно записанную в window
+  window.recurse = function(times) {
+    if (times !== 0) recurse(times - 1);
+  }
 
-recurse(13);
+  recurse(13);
 </script>
 ```
 

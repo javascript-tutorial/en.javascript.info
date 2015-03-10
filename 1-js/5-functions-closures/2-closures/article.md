@@ -19,7 +19,7 @@
 ```js
 function sayHi(name) {
   var phrase = "Привет, " + name;
-  alert(phrase);
+  alert( phrase );
 }
 
 sayHi('Вася');
@@ -37,7 +37,7 @@ function sayHi(name) {
   // LexicalEnvironment = { name: 'Вася', phrase: undefined }
 */!*
   var phrase = "Привет, " + name;
-  alert(phrase);
+  alert( phrase );
 }
 
 sayHi('Вася');
@@ -56,7 +56,7 @@ function sayHi(name) {
 *!*
   // LexicalEnvironment = { name: 'Вася', phrase: 'Привет, Вася'}
 */!*
-  alert(phrase);
+  alert( phrase );
 }
 
 sayHi('Вася');
@@ -83,7 +83,7 @@ sayHi('Вася');
 var userName = "Вася";
 
 function sayHi() {
-  alert(userName);  // "Вася"
+  alert( userName ); // "Вася"
 }
 ```
 
@@ -95,6 +95,7 @@ function sayHi() {
 
 В примере выше таким окружением является `window`, так что создаётся свойство:
 ```js
+//+ no-beautify
 sayHi.[[Scope]] = window
 ```
 
@@ -122,7 +123,7 @@ sayHi.[[Scope]] = window
 Например, в коде ниже функция `sayHi` берёт `phrase` из внешней области:
 
 ```js
-//+ run
+//+ run no-beautify
  
 var phrase = 'Привет';
 
@@ -161,8 +162,8 @@ function sayHiBye(firstName, lastName) {
 
 *!*
   function getFullName() {
-    return firstName + " " + lastName;
-  }
+      return firstName + " " + lastName;
+    }
 */!*
 
 }
@@ -175,6 +176,7 @@ sayHiBye("Вася", "Пупкин"); // Привет, Вася Пупкин ; �
 Вложенные функции получают `[[Scope]]` так же, как и глобальные. В нашем случае:
 
 ```js
+//+ no-beautify
 getFullName.[[Scope]] = объект переменных текущего запуска sayHiBye
 ```
 
@@ -187,9 +189,9 @@ getFullName.[[Scope]] = объект переменных текущего за�
 var phrase = 'Привет';
 
 function say() {
-  
+
   function go() {
-    alert(phrase); // найдёт переменную снаружи
+    alert( phrase ); // найдёт переменную снаружи
   }
 
   go();
@@ -214,7 +216,7 @@ function makeCounter() {
 */!*
 
   return function() { // (**)
-    return currentCount++; 
+    return currentCount++;
   };
 }
 
@@ -250,7 +252,7 @@ function makeCounter() {
 *!*
   // LexicalEnvironment = { currentCount: 1 } 
 */!*
-    
+
   return function() { // [[Scope]] -> LexicalEnvironment (**)
     return currentCount++;
   };
@@ -288,9 +290,9 @@ function() { // [[Scope]] -> {currentCount: 1}
 //+ run
 function makeCounter() {
   var currentCount = 1;
-    
-  return function() { 
-    return currentCount++; 
+
+  return function() {
+    return currentCount++;
   };
 }
 
@@ -298,7 +300,7 @@ var counter = makeCounter(); // [[Scope]] -> {currentCount: 1}
 
 alert( counter() ); // 1, [[Scope]] -> {currentCount: 1}
 alert( counter() ); // 2, [[Scope]] -> {currentCount: 2}
-alert( counter() ); // 3, [[Scope]] -> {currentCount: 3} 
+alert( counter() ); // 3, [[Scope]] -> {currentCount: 3}
 ```
 
 **Переменную во внешней области видимости можно не только читать, но и изменять.**
@@ -330,7 +332,7 @@ alert( counter2() ); // 1, *!*счётчики независимы*/!*
 function f() {}
 
 f.test = 5;
-alert(f.test);
+alert( f.test );
 ```
 
 Свойства функции не стоит путать с переменными и параметрами. Они совершенно никак не связаны. Переменные доступны только внутри функции, они создаются в процессе её выполнения. Это -- использование функции "как функции".
@@ -343,10 +345,10 @@ alert(f.test);
 
 ```js
 //+ run
-function makeCounter() {    
+function makeCounter() {
 *!*
-  function counter() { 
-    return counter.currentCount++; 
+  function counter() {
+    return counter.currentCount++;
   };
   counter.currentCount = 1;
 */!*
@@ -354,7 +356,7 @@ function makeCounter() {
   return counter;
 }
 
-var counter = makeCounter(); 
+var counter = makeCounter();
 alert( counter() ); // 1
 alert( counter() ); // 2
 ```
@@ -366,7 +368,7 @@ alert( counter() ); // 2
 Например, можно взять и поменять счётчик из внешнего кода:
 
 ```js
-var counter = makeCounter(); 
+var counter = makeCounter();
 alert( counter() ); // 1
 
 *!*

@@ -15,16 +15,20 @@
 
 ```js
 //+ run
-var animal = { eats: true };
-var rabbit = { jumps: true };
+var animal = {
+  eats: true
+};
+var rabbit = {
+  jumps: true
+};
 
 *!*
-rabbit.__proto__ = animal; 
+rabbit.__proto__ = animal;
 */!*
 
 // в rabbit можно найти оба свойства
-alert(rabbit.jumps); // true
-alert(rabbit.eats); // true
+alert( rabbit.jumps ); // true
+alert( rabbit.eats ); // true
 ```
 
 <ol>
@@ -46,13 +50,18 @@ alert(rabbit.eats); // true
 
 ```js
 //+ run
-var animal = { eats: true };
-var rabbit = { jumps: true, eats: false };
+var animal = {
+  eats: true
+};
+var rabbit = {
+  jumps: true,
+  eats: false
+};
 
 rabbit.__proto__ = animal;
 
 *!*
-alert(rabbit.eats); // false, свойство взято из rabbit 
+alert( rabbit.eats ); // false, свойство взято из rabbit 
 */!*
 ```
 
@@ -86,7 +95,7 @@ var rabbit = {
 
 *!*
 for (var key in rabbit) {
-  alert (key + " = " + rabbit[key]); // выводит и "eats" и "jumps"
+  alert( key + " = " + rabbit[key] ); // выводит и "eats" и "jumps"
 }
 */!*
 ```
@@ -130,9 +139,9 @@ var rabbit = {
 
 for (var key in rabbit) {
 *!*
-  if ( !rabbit.hasOwnProperty(key) ) continue; // пропустить "не свои" свойства
+  if (!rabbit.hasOwnProperty(key)) continue; // пропустить "не свои" свойства
 */!*
-  alert (key + " = " + rabbit[key]); // выводит только "jumps"
+  alert( key + " = " + rabbit[key] ); // выводит только "jumps"
 }
 ```
 
