@@ -6,11 +6,11 @@
 
 ```html
 <script>
-var body = document.body;
+  var body = document.body;
 
-body.innerHTML = "<!--" + body.tagName + "-->";  
+  body.innerHTML = "<!--" + body.tagName + "-->";
 
-alert(body.firstChild.data); // что выведет? 
+  alert( body.firstChild.data ); // что выведет?
 </script>
 ```
 

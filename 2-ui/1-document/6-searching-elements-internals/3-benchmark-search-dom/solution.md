@@ -3,7 +3,7 @@
 ```js
 function bench(f, times) {
   var d = new Date();
-  for(var i=0; i<times; i++) f();
+  for (var i = 0; i < times; i++) f();
   return new Date() - d;
 }
 ```

@@ -109,16 +109,15 @@
 </ul>
 
 <script>
-var list = $('li');
+  var list = $('li');
 
-// вызовом css('color', ..) поставим цвет элементам:
+  // вызовом css('color', ..) поставим цвет элементам:
 
 *!*
-list.filter(':even').css('color', 'blue');// ФИЛЬТР: чётные 
-list.not(':even').css('color', 'green');  // НЕ чётные
-list.has('em').css('background', 'pink'); // СОДЕРЖАТ em
+  list.filter(':even').css('color', 'blue'); // ФИЛЬТР: чётные 
+  list.not(':even').css('color', 'green'); // НЕ чётные
+  list.has('em').css('background', 'pink'); // СОДЕРЖАТ em
 */!*
-
 </script>
 ```
 
@@ -134,16 +133,16 @@ list.has('em').css('background', 'pink'); // СОДЕРЖАТ em
 </ul>
 
 <script>
-var list = $('li');
+  var list = $('li');
 
-// ФИЛЬТР: первый ребёнок - текстовый узел
+  // ФИЛЬТР: первый ребёнок - текстовый узел
 *!*
-var result = list.filter(function() { 
-  return this.firstChild.nodeType == 3;
-});
+  var result = list.filter(function() {
+    return this.firstChild.nodeType == 3;
+  });
 */!*
 
-alert( result.length ); // 1, это последний LI
+  alert( result.length ); // 1, это последний LI
 </script>
 ```
 
@@ -169,12 +168,12 @@ alert( result.length ); // 1, это последний LI
 </ul>
 
 <script>
-var list = $('ul').children();
+  var list = $('ul').children();
 
 *!*
-alert( list.is('li') ); // true
-alert( list.is('.other') ); // true
-alert( list.is(':hidden') ); // false
+  alert( list.is('li') ); // true
+  alert( list.is('.other') ); // true
+  alert( list.is(':hidden') ); // false
 */!*
 </script>
 ```
@@ -193,24 +192,24 @@ alert( list.is(':hidden') ); // false
 </ul>
 
 <script>
-var elems = $('ul');
+  var elems = $('ul');
 
-// можно добавить элемент DOM
-var li = document.getElementsByTagName('li')[0];
+  // можно добавить элемент DOM
+  var li = document.getElementsByTagName('li')[0];
 *!*
-elems = elems.add( li );
+  elems = elems.add(li);
 */!*
-alert(elems.length); // 2
-
-*!*
-elems = elems.add( '.other' ); // можно - по селектору
-*/!*
-alert(elems.length); // 3
+  alert( elems.length ); // 2
 
 *!*
-elems = elems.add( $('li') );  // можно - коллекцию
+  elems = elems.add('.other'); // можно - по селектору
 */!*
-alert(elems.length); // 5, дубликаты удаляются
+  alert( elems.length ); // 3
+
+*!*
+  elems = elems.add($('li')); // можно - коллекцию
+*/!*
+  alert( elems.length ); // 5, дубликаты удаляются
 </script>
 ```
 
@@ -230,14 +229,14 @@ alert(elems.length); // 5, дубликаты удаляются
 </ul>
 
 <script>
-$('code')
- .css('color', 'red') // подсветить CODE красным
+  $('code')
+    .css('color', 'red') // подсветить CODE красным
 *!*
- .map(function() { 
-  return this.parentNode; // получить коллекцию родителей CODE
- })
+    .map(function() {
+      return this.parentNode; // получить коллекцию родителей CODE
+    })
 */!*
- .css('color', 'green'); // подсветить их зелёным
+    .css('color', 'green'); // подсветить их зелёным
 </script>
 ```
 
@@ -270,18 +269,18 @@ $('code')
 </ul>
 
 <script>
-var link = $('a[href*="blog"]'); // ссылка, атрибут href содержит "blog"
+  var link = $('a[href*="blog"]'); // ссылка, атрибут href содержит "blog"
 
 *!*
-var ul = link.closest('ul'); // ближайший сверху UL
+  var ul = link.closest('ul'); // ближайший сверху UL
 */!*
-alert( ul[0].id ); // 1
+  alert( ul[0].id ); // 1
 
 *!*
-var li = $('li')[0];
-ul = link.closest('ul', li); // ближайший сверху UL, но внутри LI
+  var li = $('li')[0];
+  ul = link.closest('ul', li); // ближайший сверху UL, но внутри LI
 */!*
-alert( ul.length ); // 0, нет таких 
+  alert( ul.length ); // 0, нет таких
 </script>
 ```
 
@@ -313,11 +312,11 @@ $('li').find('code');
 </ul>
 
 <script>
-$('li')
+  $('li')
 *!*
- .children('code') // вернуть всех детей LI, подходящих под селектор code  
+    .children('code') // вернуть всех детей LI, подходящих под селектор code  
 */!*
- .css('color', 'red'); // подсветить
+    .css('color', 'red'); // подсветить
 </script>
 ```
 
@@ -333,13 +332,13 @@ $('li')
 </ul>
 
 <script>
-$('li') 
+  $('li')
 *!*
- .contents()  // все узлы-дети LI
+    .contents() // все узлы-дети LI
 */!*
- .map(function() {  // обернуть текстовые узлы в скобки
-    if (this.nodeType == 3) this.data = "("+this.data+")" 
-  });
+    .map(function() { // обернуть текстовые узлы в скобки
+      if (this.nodeType == 3) this.data = "(" + this.data + ")"
+    });
 </script>
 ```
 
@@ -371,6 +370,7 @@ $('li')
 Можно сделать это так:
 
 ```js
+//+ no-beautify
 $('form')
   .find(':checkbox')
   .each(function() { ... }); // сделать что-то с элементами коллекции
@@ -381,6 +381,7 @@ $('form')
 Самый очевидный способ это сделать -- сохранить `$('form')` в переменной:
 
 ```js
+//+ no-beautify
 var form = $('form');
 
 form
@@ -397,6 +398,7 @@ form
 jQuery, при вызове `find` сохраняет предыдущую найденную коллекцию, к которой можно вернуться вызовом `end()`:
 
 ```js
+//+ no-beautify
 $('form')
   .find(':checkbox') // нашли чекбоксы внутри
   .each(function() { ... }) // обработали
@@ -414,6 +416,7 @@ $('form')
 Этот метод бывает очень удобен, когда какую-то операцию нужно сделать как с детьми, так и с самим элементом, например:
 
 ```js
+//+ no-beautify
 $('ul')       // коллекция: UL
   .children() // получить коллекцию LI
   .addBack()  // добавить к ней сам UL

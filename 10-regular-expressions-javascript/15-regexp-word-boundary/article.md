@@ -6,7 +6,7 @@ For example, <code class=pattern">\bdog\b</code> matches a standalone <code clas
 
 ```js
 //+ run
-showMatch( "doggy catdog dog", /\bdog\b/ ) // "dog"
+showMatch("doggy catdog dog", /\bdog\b/) // "dog"
 ```
 
 Here, <code class="match">dog</code> matches, because the previous char is a space (non-wordly), and the next position is text end.
@@ -16,14 +16,14 @@ If the word is long enough, it may match multiple times:
 
 ```js
 //+ run
-showMatch( "Boombaroom", /\w{4}/g) // 'Boom', 'baro'
+showMatch("Boombaroom", /\w{4}/g) // 'Boom', 'baro'
 ```
 
 Appending <code class="pattern">\b</code> causes <code class="pattern">\w{4}\b</code> to match only at word end:
 
 ```js
 //+ run
-showMatch( "Because life is awesome", /\w{4}\b/g) // 'ause', 'life', 'some'
+showMatch("Because life is awesome", /\w{4}\b/g) // 'ause', 'life', 'some'
 ```
 
 **The word boundary <code class="pattern">\b</code> like <code class="pattern">^</code> and <code class="pattern">$</code> doesn't match a char. It only performs the check.**
@@ -32,7 +32,7 @@ Let's add the check from another side, <code class="pattern">\b\w{4}\b</code>:
 
 ```js
 //+ run
-showMatch( "Because life is awesome", /\b\w{4}\b/g) //  'life'
+showMatch("Because life is awesome", /\b\w{4}\b/g) //  'life'
 ```
 
 Now there is only one result <code class="match">life</code>.

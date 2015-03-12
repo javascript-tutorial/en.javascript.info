@@ -17,7 +17,7 @@ position: static;
 Здесь и далее, для примеров мы будем использовать следующий документ:
 
 ```html
-<!--+ autorun height=200 -->
+<!--+ autorun height=200  no-beautify -->
 <div style="background: #fee; width: 500px">
     Без позиционирования ("position: static").
 
@@ -51,7 +51,7 @@ top: 10px;
 
 
 ```html
-<!--+ autorun height=200 -->
+<!--+ autorun height=200  no-beautify -->
 *!*
 <style>
   h2 {
@@ -87,7 +87,7 @@ top: 10px;
 **Возможны отрицательные координаты** и координаты, использующие другие единицы измерения. Например, `left: 10%` сдвинет элемент на 10% его ширины вправо, а `left: -10%` -- влево. При этом часть элемента может оказаться за границей окна:
 
 ```html
-<!--+ autorun height=200 -->
+<!--+ autorun height=200  no-beautify -->
 *!*
 <style>
   h2 {
@@ -132,7 +132,7 @@ position: absolute;
 Например, отпозиционируем заголовок в правом-верхнем углу документа:
 
 ```html
-<!--+ autorun height=200 -->
+<!--+ autorun height=200  no-beautify -->
 *!*
 <style>
   h2 {
@@ -168,7 +168,7 @@ position: absolute;
 Браузер растянет такой элемент до границ. 
 
 ```html
-<!--+ autorun height=50 -->
+<!--+ autorun height=50  no-beautify -->
 <style>
 *!*
 div {
@@ -189,6 +189,7 @@ div {
 Первое, что может прийти в голову:
 
 ```css
+/*+ no-beautify */
 div {
   position: absolute;
   left: 0; top: 0; /* в левый-верхний угол */
@@ -212,6 +213,7 @@ div {
 Может быть, получится так?
 
 ```css
+/*+ no-beautify */
 div {
   position: absolute;
   left: 0; top: 0; /* в левый-верхний угол, и растянуть..  */
@@ -261,7 +263,7 @@ div {
 <li>Используем `position` для размещения элемента управления:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <button style="position: absolute; right: 10px; opacity: 0.8">
   Кнопка
 </button>
@@ -274,7 +276,7 @@ div {
 <li>Используем `float` для размещения элемента управления:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <button style="float: right; margin-right: 10px; opacity: 0.8;">
   Кнопка
 </button>

@@ -152,7 +152,7 @@ alert( str.match(reg) ); // witch, broom
 
 ```js
 //+ run
-alert( "123 456".match ( /\d+ \d+?/g) );  // 123 4
+alert( "123 456".match(/\d+ \d+?/g) ); // 123 4
 ```
 
 <ol>

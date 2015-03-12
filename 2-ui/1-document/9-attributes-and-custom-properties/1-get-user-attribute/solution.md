@@ -8,12 +8,12 @@
 
   <script>
     var div = document.getElementById('widget');
- 
+
     var widgetName = div.getAttribute('data-widget-name');
     // или так, кроме IE10-
     var widgetName = div.dataset.widgetName;
 
-    alert( widgetName );  // "menu"
+    alert( widgetName ); // "menu"
   </script>
 </body>
 ```

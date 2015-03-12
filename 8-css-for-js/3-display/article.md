@@ -46,7 +46,7 @@
 Например, инлайновые элементы по умолчанию: `<span>`, `<a>`.
 
 ```html
-<!--+ autorun height=40 -->
+<!--+ autorun height=40  no-beautify -->
 <span style="border:1px solid black">
   <span style="border:1px solid blue; width:50%">Ширина</span>
   <a style="border:1px solid red">Игнорируется</a>
@@ -73,7 +73,7 @@
 Например, три прямоугольника подряд:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <div style="width:400px">
 ...<span style="background: lightgreen">
   Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля Ля
@@ -114,7 +114,7 @@
 Например:
 
 ```html
-<!--+ autorun height=160 -->
+<!--+ autorun height=160  no-beautify -->
 <style>
 li {
 *!*
@@ -137,7 +137,7 @@ li {
 Свойство `vertical-align` позволяет выровнять такие элементы внутри внешнего блока:
 
 ```html
-<!--+ autorun height=160 -->
+<!--+ autorun height=160  no-beautify -->
 <style>
 li {
   display: inline-block;  
@@ -189,6 +189,7 @@ li {
 С точки зрения современного CSS, обычные `<table>`, `<tr>`, `<td>` и т.д. -- это просто элементы с предопределёнными значениями `display`:
 
 ```css
+/*+ no-beautify */
 table    { display: table }
 tr       { display: table-row }
 thead    { display: table-header-group }

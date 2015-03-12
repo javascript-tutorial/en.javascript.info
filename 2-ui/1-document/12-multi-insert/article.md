@@ -14,13 +14,14 @@
 ```js
 var ul = document.createElement('ul');
 document.body.appendChild(ul); // сначала в документ
-for(...) ul.appendChild(li);   // потом узлы
+for (...) ul.appendChild(li); // потом узлы
 ```
 
 </li>
 <li>Полностью создать список "вне DOM", а потом -- вставить в документ:
 
 ```js
+//+ no-beautify
 var ul = document.createElement('ul');
 for(...) ul.appendChild(li);   // сначала вставить узлы
 document.body.appendChild(ul); // затем в документ
@@ -115,14 +116,14 @@ elem.insertAdjacentHTML(where, html);
 </ul>
 
 <script>
-var ul = document.body.children[0];
-var li5 = ul.children[2];
+  var ul = document.body.children[0];
+  var li5 = ul.children[2];
 
-li5.insertAdjacentHTML("beforeBegin", "<li>3</li><li>4</li>");
+  li5.insertAdjacentHTML("beforeBegin", "<li>3</li><li>4</li>");
 </script>
 ```
 
-Единственный недостаток этого метода -- он не работает в Firefox до версии 8. Но его можно легко добавить, используя [полифилл insertAdjacentHTML для Firefox](insertAdjacentHTML.js).
+Единственный недостаток этого метода -- он не работает в Firefox до версии 8. Но его можно легко добавить, используя [полифилл insertAdjacentHTML для Firefox](insertAdjacentFF.js).
 
 У этого метода есть "близнецы-братья", которые поддерживаются везде, кроме Firefox, но в него они добавляются тем же полифиллом:
 
@@ -181,7 +182,7 @@ for (цикл по li) {
   fragment.appendChild(list[i]); // вставить каждый LI в DocumentFragment 
 }
 
-ul.appendChild(fragment);   // вместо фрагмента вставятся элементы списка
+ul.appendChild(fragment); // вместо фрагмента вставятся элементы списка
 ```
 
 В современных браузерах эффект от такой оптимизации может быть различным, а на небольших документах иногда и отрицательным. 
@@ -211,28 +212,30 @@ ul.appendChild(fragment);   // вместо фрагмента вставятс�
 ```html
 <!--+ run autorun height=80 -->
 <html>
+
 <head>
   <meta charset="utf-8">
   <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.mutation"></script>
 </head>
 
 <body>
-<script>
-  // добавим элемент в конец <body>
-  var p = document.createElement('p');
-  document.body.append(p);
+  <script>
+    // добавим элемент в конец <body>
+    var p = document.createElement('p');
+    document.body.append(p);
 
-  var em = document.createElement('em');
-  em.append('Мир!');
+    var em = document.createElement('em');
+    em.append('Мир!');
 
-  // вставить в параграф текстовый и обычный узлы
-  p.append("Привет, ", em);
+    // вставить в параграф текстовый и обычный узлы
+    p.append("Привет, ", em);
 
-  // добавить элемент после <p>
-  p.after(document.createElement('hr'))
-</script>
+    // добавить элемент после <p>
+    p.after(document.createElement('hr'))
+  </script>
 
 </body>
+
 </html>
 ```
 

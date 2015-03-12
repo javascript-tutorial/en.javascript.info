@@ -57,21 +57,21 @@ var result = nodeA.compareDocumentPosition(nodeB);
 </ul>
 
 <script>
-var p = document.body.children[0];
-var ul = document.body.children[1];
-var li = ul.children[0];
+  var p = document.body.children[0];
+  var ul = document.body.children[1];
+  var li = ul.children[0];
 
-// 1. <ul> находится после <p>
-alert( ul.compareDocumentPosition( p ) ); // 2 = 10
+  // 1. <ul> находится после <p>
+  alert( ul.compareDocumentPosition(p) ); // 2 = 10
 
-// 2. <p> находится до <ul>
-alert( p.compareDocumentPosition( ul ) );  // 4 = 100
+  // 2. <p> находится до <ul>
+  alert( p.compareDocumentPosition(ul) ); // 4 = 100
 
-// 3. <ul> родитель <li>
-alert( ul.compareDocumentPosition( li ) ); // 20 = 10100
+  // 3. <ul> родитель <li>
+  alert( ul.compareDocumentPosition(li) ); // 20 = 10100
 
-// 4. <ul> потомок <body>
-alert( ul.compareDocumentPosition( document.body ) ); // 10 = 1010
+  // 4. <ul> потомок <body>
+  alert( ul.compareDocumentPosition(document.body) ); // 10 = 1010
 </script>
 ```
 
@@ -111,13 +111,13 @@ alert( 20..toString(2) );
 </ul>
 
 <script>
-var body = document.body;
-var li = document.body.children[0].children[0];
+  var body = document.body;
+  var li = document.body.children[0].children[0];
 
 *!*
-if( body.compareDocumentPosition(li) & 16 ) {
-  alert( body +' содержит ' + li );
-}
+  if (body.compareDocumentPosition(li) & 16) {
+    alert( body + ' содержит ' + li );
+  }
 */!*
 </script>
 ```
@@ -139,18 +139,17 @@ if( body.compareDocumentPosition(li) & 16 ) {
 
 ```js
 // код с http://compatibility.shwups-cms.ch/en/polyfills/?&id=82
-(function(){
+(function() {
   var el = document.documentElement;
-  if( !el.compareDocumentPosition && el.sourceIndex !== undefined ){
+  if (!el.compareDocumentPosition && el.sourceIndex !== undefined) {
 
-    Element.prototype.compareDocumentPosition = function(other){
+    Element.prototype.compareDocumentPosition = function(other) {
       return (this != other && this.contains(other) && 16) +
-                 (this != other && other.contains(this) && 8) +
-                 (this.sourceIndex >= 0 && other.sourceIndex >= 0 ?
-                   (this.sourceIndex < other.sourceIndex && 4) +
-                   (this.sourceIndex > other.sourceIndex && 2) 
-                   : 1
-                 ) + 0;
+        (this != other && other.contains(this) && 8) +
+        (this.sourceIndex >= 0 && other.sourceIndex >= 0 ?
+          (this.sourceIndex < other.sourceIndex && 4) +
+          (this.sourceIndex > other.sourceIndex && 2) : 1
+        ) + 0;
     }
   }
 }());

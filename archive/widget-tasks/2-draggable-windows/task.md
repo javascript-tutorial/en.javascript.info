@@ -13,7 +13,7 @@
 ```js
 new DraggableWindow({
   title: "Чат с Петей",
-  template: HTML-шаблон окна
+  template: HTML - шаблон окна
 });
 ```
 

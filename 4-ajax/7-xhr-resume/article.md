@@ -38,9 +38,9 @@ xhr.send(slice); // ... и отправить эти байты в запрос�
 
 ```js
 function Uploader(file, onSuccess, onFail, onProgress) {
-  
+
   var fileId = file.name + '-' + file.size + '-' + +file.lastModifiedDate;
-  
+
   var errorCount = 0;
 
   var MAX_ERROR_COUNT = 6;

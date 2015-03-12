@@ -7,7 +7,9 @@
 ```html
 <table id="table">
   <tr>
-    <td>Это</td><td>Все</td><td>Элементы DOM</td>
+    <td>Это</td>
+    <td>Все</td>
+    <td>Элементы DOM</td>
   </tr>
 </table>
 

@@ -5,8 +5,8 @@
 HTML-документ:
 
 ```html
-<input type="checkbox"> 
-<input type="checkbox" checked> 
+<input type="checkbox">
+<input type="checkbox" checked>
 <input type="text" id="message">
 
 <h3 id="widget-title">Сообщения:</h3>

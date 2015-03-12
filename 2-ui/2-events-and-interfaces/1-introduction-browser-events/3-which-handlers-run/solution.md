@@ -5,8 +5,8 @@
 Для того, чтобы удалить функцию-обработчик, нужно где-то сохранить ссылку на неё, например так:
 
 ```js
-function handler() { 
-  alert("1"); 
+function handler() {
+  alert( "1" );
 }
 
 button.addEventListener("click", handler);

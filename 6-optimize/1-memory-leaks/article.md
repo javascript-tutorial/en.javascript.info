@@ -104,16 +104,16 @@ elem.menu = menu; // такая привязка или что-то подобн
 var elem = document.createElement('div'); // любой элемент
 
 function leak() {
-     
-    elem.innerHTML = '<table><tr><td>1</td></tr></table>';
+
+  elem.innerHTML = '<table><tr><td>1</td></tr></table>';
 
 *!*
-    elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
-    // при том, что мы даже не сохраняем значение в переменную
+  elem.firstChild.rows[0]; // просто доступ через rows[] приводит к утечке
+  // при том, что мы даже не сохраняем значение в переменную
 */!*
 
-    elem.removeChild(elem.firstChild); // удалить таблицу (*)
-    // alert(elem.childNodes.length) // выдал бы 0, elem очищен, всё честно
+  elem.removeChild(elem.firstChild); // удалить таблицу (*)
+  // alert(elem.childNodes.length) // выдал бы 0, elem очищен, всё честно
 }
 ```
 
@@ -132,7 +132,7 @@ function leak() {
 
 ```js
 function empty(elem) {
-  while(elem.firstChild) elem.removeChild(elem.firstChild);
+  while (elem.firstChild) elem.removeChild(elem.firstChild);
 }
 ```
 
@@ -146,12 +146,12 @@ function empty(elem) {
 
 ```js
 function leak() {
-  var xhr = new XMLHttpRequest(); 
+  var xhr = new XMLHttpRequest();
 
   xhr.open('GET', '/server.do', true);
 
   xhr.onreadystatechange = function() {
-    if(xhr.readyState == 4 && xhr.status == 200) {            
+    if (xhr.readyState == 4 && xhr.status == 200) {
       // ...
     }
   }
@@ -181,12 +181,12 @@ function leak() {
 function leak() {
   var xhr = new XMLHttpRequest();
 
-  xhr.open('GET', 'something.js?'+Math.random(), true);
+  xhr.open('GET', 'something.js?' + Math.random(), true);
 
   xhr.onreadystatechange = function() {
     if (xhr.readyState != 4) return;
 
-    if(xhr.status == 200) {
+    if (xhr.status == 200) {
       document.getElementById('test').innerHTML++;
     }
 

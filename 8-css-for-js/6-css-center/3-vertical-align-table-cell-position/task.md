@@ -7,7 +7,7 @@
 Почему оно не работает? Нажмите на просмотр, чтобы увидеть (стрелка должна быть в центре по вертикали).
 
 ```html
-<!--+ run height=70 -->
+<!--+ run height=70  no-beautify -->
 <style>
   .arrow {
     position: absolute;

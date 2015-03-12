@@ -21,6 +21,7 @@
 **Для свойств, названия которых состоят из нескольких слов, используется вотТакаяЗапись:**
 
 ```js
+//+ no-beautify
 background-color  => elem.style.backgroundColor
 z-index           => elem.style.zIndex
 border-left-width => elem.style.borderLeftWidth
@@ -73,15 +74,15 @@ setTimeout(function() {
 ```html
 <!--+ run height=100 -->
 <body>
-  <script> 
+  <script>
 *!*
     document.body.style.margin = '20px';
-    alert(document.body.style.marginTop); // 20px! 
+    alert( document.body.style.marginTop ); // 20px! 
 */!*
 
 *!*
     document.body.style.color = '#abc';
-    alert(document.body.style.color); // rgb(170, 187, 204) 
+    alert( document.body.style.color ); // rgb(170, 187, 204) 
 */!*
   </script>
 </body>
@@ -146,7 +147,7 @@ setTimeout(function() {
 Вот так `style` уже ничего не увидит:
 
 ```html
-<!--+ run height=100 -->
+<!--+ run height=100  no-beautify -->
 <head>
   <style> body { color: red; margin: 5px } </style>
 </head>
@@ -190,14 +191,17 @@ getComputedStyle(element[, pseudo])
 ```html
 <!--+ run height=100 -->
 <style>
-  body { margin: 10px }
+  body {
+    margin: 10px
+  }
 </style>
+
 <body>
 
-  <script> 
+  <script>
     var computedStyle = getComputedStyle(document.body);
-    alert(computedStyle.marginTop);  // выведет отступ в пикселях
-    alert(computedStyle.color);  // выведет цвет 
+    alert( computedStyle.marginTop ); // выведет отступ в пикселях
+    alert( computedStyle.color ); // выведет цвет
   </script>
 
 </body>
@@ -264,10 +268,13 @@ function getStyle(elem) {
 ```html
 <!--+ run height=100 -->
 <style>
-  body { margin: 10% }
+  body {
+    margin: 10%
+  }
 </style>
+
 <body>
-  <script> 
+  <script>
     var elem = document.body;
 
     function getStyle(elem) {
@@ -275,7 +282,7 @@ function getStyle(elem) {
     }
 
     var marginTop = getStyle(elem).marginTop;
-    alert(marginTop); // IE8-: 10%, иначе пиксели
+    alert( marginTop ); // IE8-: 10%, иначе пиксели
   </script>
 </body>
 ```

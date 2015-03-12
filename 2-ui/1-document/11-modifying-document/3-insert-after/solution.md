@@ -9,9 +9,9 @@ function insertAfter(elem, refElem) {
   var parent = refElem.parentNode;
   var next = refElem.nextSibling;
   if (next) {
-      return parent.insertBefore(elem, next);
+    return parent.insertBefore(elem, next);
   } else {
-      return parent.appendChild(elem);
+    return parent.appendChild(elem);
   }
 }
 ```
@@ -20,7 +20,7 @@ function insertAfter(elem, refElem) {
 
 ```js
 function insertAfter(elem, refElem) {
-    return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
+  return refElem.parentNode.insertBefore(elem, refElem.nextSibling);
 }
 ```
 

@@ -24,7 +24,7 @@
 В следующем примере при клике по ссылке переход не произойдет:
 
 ```html
-<!--+ autorun height=60 -->
+<!--+ autorun height=60  no-beautify -->
 <a href="/" onclick="return false">Нажми здесь</a>
 или
 <a href="/" onclick="event.preventDefault()">здесь</a>
@@ -68,7 +68,7 @@ menu.onclick = function(event) {
   if (event.target.nodeName != 'A') return;
 
   var href = event.target.getAttribute('href');
-  alert(href); // может быть подгрузка с сервера, генерация интерфейса и т.п.
+  alert( href ); // может быть подгрузка с сервера, генерация интерфейса и т.п.
 
 *!*
   return false; // отменить переход по url
@@ -127,7 +127,7 @@ menu.onclick = function(event) {
 element.onclick = function(event) {
   event = event || window.event;
 
-  if (event.preventDefault) {  // если метод существует
+  if (event.preventDefault) { // если метод существует
     event.preventDefault(); // то вызвать его
   } else { // иначе вариант IE8-:
     event.returnValue = false;
@@ -138,6 +138,7 @@ element.onclick = function(event) {
 Можно записать в одну строку:
 
 ```js
+//+ no-beautify
 ...
 event.preventDefault ? event.preventDefault() : (event.returnValue=false);
 ...

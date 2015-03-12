@@ -13,8 +13,8 @@
   var lis = document.body.getElementsByTagName('li');
 
   document.body.innerHTML = "";
-  
-  alert(lis.length);
+
+  alert( lis.length );
 </script>
 ```
 
@@ -36,13 +36,12 @@
   <li>Магазин</li>
 </ul>
 <script>
-
   var menu = document.getElementById('menu');
   var lis = menu.getElementsByTagName('li');
 
   document.body.innerHTML = "";
 
-  alert(lis.length);
+  alert( lis.length );
 </script>
 ```
 

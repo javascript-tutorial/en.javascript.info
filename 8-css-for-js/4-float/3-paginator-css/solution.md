@@ -4,7 +4,9 @@ HTML-структура:
 <div class="nav">
   <img src="arrow-left.jpg" class="left" width="40" height="40">
   <img src="arrow-right.jpg" class="right" width="40" height="40">
-  <ul class="pages"> <li>...</li> </ul>
+  <ul class="pages">
+    <li>...</li>
+  </ul>
 </div>
 ```
 
@@ -54,6 +56,7 @@ HTML-структура:
 Код в порядке лево-центр-право (неправильный):
 
 ```html
+<!--+ no-beautify -->
 <div...>
   <img src="arrow-left.jpg" class="left" width="40" height="40">
   <ul class="pages"> (li) 1 2 3 4 5 6 7 8 9</ul>

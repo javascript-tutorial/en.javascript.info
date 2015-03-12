@@ -12,6 +12,7 @@
 Например:
 
 ```js
+//+ no-beautify
 // присвоить
 $(document).data('prop', { anything: "любой объект" }) 
 
@@ -27,13 +28,14 @@ jQuery-вызов `elem.data(prop, val)` делает следующее:
 <li>Элемент получает уникальный идентификатор, если у него такого еще нет:
 
 ```js
-elem[ jQuery.expando ] = id = ++jQuery.uuid;  // средствами jQuery
+elem[jQuery.expando] = id = ++jQuery.uuid; // средствами jQuery
 ```
 
 `jQuery.expando` -- это случайная строка, сгенерированная jQuery один раз при входе на страницу. Уникальное свойство, чтобы ничего важного не перезаписать.</li> 
 <li>...А сами данные сохраняются в специальном объекте `jQuery.cache`:
 
 ```js
+//+ no-beautify
 jQuery.cache[id]['prop'] = { anything: "любой объект" };
 ```
 
@@ -55,20 +57,37 @@ jQuery.cache[id]['prop'] = { anything: "любой объект" };
 
 ## Примеры утечек в jQuery
 
-Следующий код создает jQuery-утечку во всех браузерах:
+Следующая функция `leak` создает jQuery-утечку во всех браузерах:
 
-```js
-$('<div/>')
-  .html(new Array(1000).join('text')) // div с текстом, возможна AJAX-загрузка
-  .click(function() { })
-  .appendTo('#data')
 
-document.getElementById('data').innerHTML = ''; // (*)
+```html
+<!--+ run -->
+<script src="http://code.jquery.com/jquery.min.js"></script>
+
+<div id="data"></div>
+
+<script>
+  function leak() {
+
+*!*
+    $('<div/>')
+      .html(new Array(1000).join('text'))
+      .click(function() {})
+      .appendTo('#data');
+
+    document.getElementById('data').innerHTML = '';
+*/!*
+
+  }
+
+  var interval = setInterval(leak, 10)
+</script>
+
+Утечка идёт...
+
+<input type="button" onclick="clearInterval(interval)" value="stop" />
 ```
 
-Полный пример:
-
-[codetabs src="jquery-leak"]
 
 Утечка происходит потому, что обработчик события в jQuery хранится в данных элемента. В строке `(*)` элемент удален очисткой родительского `innerHTML`, но в `jQuery.cache` данные остались. 
 
@@ -79,9 +98,9 @@ document.getElementById('data').innerHTML = ''; // (*)
 Этот код также создает утечку:
 
 ```js
-function go() {
+function leak() {
   $('<div/>')
-    .click(function() { })
+    .click(function() {})
 }
 ```
 

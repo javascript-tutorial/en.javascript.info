@@ -22,10 +22,8 @@
   float: left;
   padding: 6px;
   margin: 0 2px;
-
   border: 1px solid gray;
   border-radius: 10px;
-
   cursor: pointer;
   font-size: 90%;
   background: #FFF5EE;

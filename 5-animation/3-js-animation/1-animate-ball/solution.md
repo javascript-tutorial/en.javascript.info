@@ -13,7 +13,7 @@ animate({
   duration: 2000,
   timing: makeEaseOut(bounce),
   draw: function(progress) {
-    ball.style.top = to*progress + 'px'
+    ball.style.top = to * progress + 'px'
   }
 });
 ```

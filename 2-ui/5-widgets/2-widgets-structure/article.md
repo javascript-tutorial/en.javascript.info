@@ -47,7 +47,9 @@
 function Menu(options) {
   var elem = options.elem;
 
-  elem.onmousedown = function() { return false; }
+  elem.onmousedown = function() {
+    return false;
+  }
 
   elem.onclick = function(event) {
     if (event.target.closest('.title')) {
@@ -127,7 +129,9 @@ if (event.target.closest('.title')) {
 function Menu(options) {
   var elem = options.elem;
 
-  elem.onmousedown = function() { return false; }
+  elem.onmousedown = function() {
+    return false;
+  }
 
   elem.onclick = function(event) {
     if (event.target.closest('.title')) {
@@ -173,7 +177,7 @@ menu.toggle();
 *!*
 // создать объект меню с данным заголовком и опциями
 */!*
-var menu = new Menu({ 
+var menu = new Menu({
   title: "Сладости",
   items: [
     "Торт",
@@ -215,8 +219,8 @@ function Menu(options) {
     titleElem.className = "title";
     titleElem.textContent = options.title;
 
-    elem.onmousedown = function() { 
-      return false; 
+    elem.onmousedown = function() {
+      return false;
     };
 
     elem.onclick = function(event) {

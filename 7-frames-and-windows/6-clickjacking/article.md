@@ -23,7 +23,7 @@
 Вот пример вредоносной страницы (для наглядности `iframe` -- полупрозрачный):
 
 ```html
-<!--+ run height=120 -->
+<!--+ run height=120  no-beautify -->
 <style>
 iframe { /* iframe с сайта-жертвы */
   width: 400px;
@@ -164,10 +164,10 @@ Firefox и старый IE могут активировать designMode на �
 ```html
 <style>
   #iframe-protector {
-    height: 100%; 
-    width: 100%; 
-    position: absolute; 
-    left: 0; 
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
     top: 0;
     z-index: 99999999;
   }
@@ -179,7 +179,7 @@ Firefox и старый IE могут активировать designMode на �
 
 <script>
   if (top.document.domain == document.domain) {
-    убрать iframe-protector
+    убрать iframe - protector
   }
 </script>
 ```

@@ -4,7 +4,7 @@
 
 ```js
 function(event) {
-  handler()  // тело взято из атрибута onclick
+  handler() // тело взято из атрибута onclick
 }
 ```
 

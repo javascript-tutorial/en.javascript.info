@@ -5,14 +5,17 @@
 ```html
 <!--+ run -->
 <html>
+
 <head>
   <script>
-    alert(document.body); // null
+    alert( document.body ); // null
   </script>
 </head>
+
 <body>
   Привет, мир!
 </body>
+
 </html>
 ```
 

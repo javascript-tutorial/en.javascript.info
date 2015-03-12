@@ -4,7 +4,7 @@
 
 ```js
 function removeChildren(elem) {
-  for(var k=0; k<elem.childNodes.length;k++) {
+  for (var k = 0; k < elem.childNodes.length; k++) {
     elem.removeChild(elem.childNodes[k]);
   }
 }
@@ -20,7 +20,7 @@ function removeChildren(elem) {
 
 ```js
 function removeChildren(elem) {
-  while(elem.lastChild) {
+  while (elem.lastChild) {
     elem.removeChild(elem.lastChild);
   }
 }
@@ -44,8 +44,8 @@ function removeChildren(elem) {
 function removeChildren(elem) {
   try {
     elem.innerHTML = '';
-  } catch(e) {
-    while(elem.firstChild) { 
+  } catch (e) {
+    while (elem.firstChild) {
       elem.removeChild(elem.firstChild);
     }
   }

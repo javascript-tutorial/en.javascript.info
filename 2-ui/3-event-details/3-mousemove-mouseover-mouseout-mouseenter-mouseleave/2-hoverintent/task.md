@@ -24,7 +24,7 @@ tooltip.innerHTML = "Подсказка";
 
 // при "наведении на элемент" показать подсказку
 new HoverIntent({
-  elem: elem, 
+  elem: elem,
   over: function() {
     tooltip.style.left = this.getBoundingClientRect().left + 'px';
     tooltip.style.top = this.getBoundingClientRect().bottom + 5 + 'px';

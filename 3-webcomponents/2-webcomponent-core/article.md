@@ -77,7 +77,7 @@
 В примере ниже регистрация элемента происходит через 2 секунды после его появления в разметке:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <style>
 *!*
   /* стиль для :unresolved элемента (до регистрации) */
@@ -192,7 +192,7 @@ var timer = document.createElement("button", "my-timer");
 <script>
   var MyTimerProto = Object.create(HTMLElement.prototype);
 
-  MyTimerProto.tick = function() { 
+  MyTimerProto.tick = function() {
     this.timer++;
     this.innerHTML = this.timer;
   };
@@ -209,7 +209,7 @@ var timer = document.createElement("button", "my-timer");
   };
 */!*
 
-  document.registerElement("my-timer", { 
+  document.registerElement("my-timer", {
     prototype: MyTimerProto
   });
 </script>

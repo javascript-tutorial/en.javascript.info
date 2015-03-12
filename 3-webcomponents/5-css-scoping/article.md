@@ -17,15 +17,19 @@
 
 <template id="tmpl">
 *!*
-  <style> p { color: red; } </style>
+  <style>
+    p {
+      color: red;
+    }
+  </style>
 */!*
-  <h3><content></content></h3> 
+  <h3><content></content></h3>
   <p>Привет из подполья!</p>
 </template>
 
 <script>
   var root = elem.createShadowRoot();
-  root.appendChild( tmpl.content.cloneNode(true) );
+  root.appendChild(tmpl.content.cloneNode(true));
 </script>
 ```
 
@@ -52,15 +56,17 @@
 ```html
 <!--+ run -->
 <style>
-#elem::shadow span {
-  /* для span только внутри Shadow DOM #elem */
-  border-bottom: 1px dashed blue;    
-}
-
-#elem >>> * {
-  /* для всех элементов внутри Shadow DOM #elem и далее внутри input[type=date] */
-  color: red; 
-}
+  #elem::shadow span {
+    /* для span только внутри Shadow DOM #elem */
+    
+    border-bottom: 1px dashed blue;
+  }
+  
+  #elem >>> * {
+    /* для всех элементов внутри Shadow DOM #elem и далее внутри input[type=date] */
+    
+    color: red;
+  }
 </style>
 
 <p id="elem"></p>
@@ -108,11 +114,11 @@
 <script>
   var root = elem.createShadowRoot();
   root.innerHTML = "<span>Текущее время:</span> <input type='date'>";
-  
+
   // выберет только span из #elem
   // вообще-то, должен выбрать span и из вложенных Shadow DOM,
   // но для встроенных элементов - не умеет
-  alert(document.querySelectorAll('#elem::shadow span').length); // 1
+  alert( document.querySelectorAll('#elem::shadow span').length ); // 1
 </script>
 ```
 [/warn]
@@ -131,8 +137,10 @@
 После `:host` мы можем указать селекторы и стили, которые нужно применить, если хозяин удовлетворяет тому или иному условию, например:
 
 ```html
-<style> 
-  :host > p { color: green; } 
+<style>
+  :host > p {
+    color: green;
+  }
 </style>
 ```
 Этот селектор сработает для `<p>` первого уровня внутри Shadow DOM.
@@ -142,8 +150,13 @@
 Этот селектор используется для темизации хозяина "изнутри", в зависимости от его классов и атрибутов. Он отлично добавляет просто `:host`, например:
 
 ```css
-:host p { color: green; } 
-:host(.important) p { color: red; } 
+:host p {
+  color: green;
+}
+
+:host(.important) p {
+  color: red;
+}
 ```
 
 Здесь параграфы будут иметь `color:green`, но если у хозяина класс `.important`, то `color:red`.
@@ -163,7 +176,7 @@
 Пример использования селектора `:host()` для разной расцветки Shadow DOM-сообщения, в зависимости от того, в каком оно `<p>`:
 
 ```html
-<!--+ run autorun="no-epub" -->
+<!--+ run autorun="no-epub"  no-beautify -->
 *!*
 <p class="message info">Доброе утро, страна!</p>
 */!*
@@ -215,7 +228,7 @@ elems[1].createShadowRoot().appendChild( tmpl.content.cloneNode(true) );
 Например, здесь применится стиль для `<span>`:
 
 ```html
-<!--+ run autorun="no-epub" -->
+<!--+ run autorun="no-epub"  no-beautify -->
 <style>
 *!*
   span { text-decoration: underline; }
@@ -247,7 +260,7 @@ elems[1].createShadowRoot().appendChild( tmpl.content.cloneNode(true) );
 В примере ниже селектор `::content span` стилизует все `<span>` внутри всех `<content>`:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <style>
 *!*
   span { text-decoration: underline; }

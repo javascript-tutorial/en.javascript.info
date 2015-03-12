@@ -61,7 +61,7 @@ alert( encodeURIComponent('Виктор') ); // %D0%92%D0%B8%D0%BA%D1%82%D0%BE%D
 
 var xhr = new XMLHttpRequest();
 
-var params = 'name=' + encodeURIComponent(name) + 
+var params = 'name=' + encodeURIComponent(name) +
   '&surname=' + encodeURIComponent(surname);
 
 xhr.open("GET", '/submit?' + params, true);
@@ -109,7 +109,7 @@ xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 ```js
 var xhr = new XMLHttpRequest();
 
-var body = 'name=' + encodeURIComponent(name) + 
+var body = 'name=' + encodeURIComponent(name) +
   '&surname=' + encodeURIComponent(surname);
 
 xhr.open("POST", '/submit', true)
@@ -187,7 +187,7 @@ var boundaryLast = '--' + boundary + '--\r\n'
 var body = ['\r\n'];
 for (var key in data) {
   // добавление поля
-  body.push('Content-Disposition: form-data; name="'+key+'"\r\n\r\n'+data[key]+'\r\n');
+  body.push('Content-Disposition: form-data; name="' + key + '"\r\n\r\n' + data[key] + '\r\n');
 }
 
 body = body.join(boundaryMiddle) + boundaryLast;
@@ -197,12 +197,12 @@ body = body.join(boundaryMiddle) + boundaryLast;
 var xhr = new XMLHttpRequest();
 xhr.open('POST', '/submit', true);
 
-xhr.setRequestHeader('Content-Type','multipart/form-data; boundary=' + boundary);
+xhr.setRequestHeader('Content-Type', 'multipart/form-data; boundary=' + boundary);
 
 xhr.onreadystatechange = function() {
   if (this.readyState != 4) return;
 
-  alert(this.responseText);
+  alert( this.responseText );
 }
 
 xhr.send(body);
@@ -216,6 +216,7 @@ xhr.send(body);
 Для добавления файла нужно использовать тот же код, что выше, модифицировав заголовки перед полем, которое является файлом, так:
 
 ```js
+//+ no-beautify
 Content-Disposition: form-data; name="myfile"; filename="pic.jpg"
 Content-Type: image/jpeg
 (пустая строка)
@@ -230,25 +231,25 @@ Content-Type: image/jpeg
 Это очень удобно. Например:
 
 ```html
-<form name="person"> 
+<form name="person">
   <input name="name" value="Виктор">
   <input name="surname" value="Цой">
 </form>
 
 <script>
-// создать объект для формы
+  // создать объект для формы
 *!*
-var formData = new FormData(document.forms.person);  
+  var formData = new FormData(document.forms.person);
 */!*
 
-// добавить к пересылке ещё пару ключ - значение
-formData.append("patronym", "Робертович");
+  // добавить к пересылке ещё пару ключ - значение
+  formData.append("patronym", "Робертович");
 
-// отослать
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "/url");
+  // отослать
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/url");
 *!*
-xhr.send(formData);
+  xhr.send(formData);
 */!*
 </script>
 ```
@@ -278,7 +279,7 @@ var json = JSON.stringify({
 });
 
 xhr.open("POST", '/submit', true)
-xhr.setRequestHeader('Content-type','application/json; charset=utf-8');
+xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
 xhr.onreadystatechange = ...;
 

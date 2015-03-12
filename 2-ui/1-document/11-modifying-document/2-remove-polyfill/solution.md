@@ -18,6 +18,6 @@
 
   var elem = document.body.children[0];
 
-  elem.remove();  
+  elem.remove();
 </script>
 ```

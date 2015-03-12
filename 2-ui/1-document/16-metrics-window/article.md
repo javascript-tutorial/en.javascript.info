@@ -57,7 +57,7 @@ var scrollHeight = Math.max(
   document.body.clientHeight, document.documentElement.clientHeight
 );
 
-alert('Высота с учетом прокрутки: ' + scrollHeight);
+alert( 'Высота с учетом прокрутки: ' + scrollHeight );
 ```
 
 Почему так? Лучше и не спрашивайте, это одно из редких мест, где просто ошибки в браузерах. Глубокой логики здесь нет.
@@ -74,8 +74,8 @@ alert('Высота с учетом прокрутки: ' + scrollHeight);
 
 ```js
 //+ run
-alert('Текущая прокрутка сверху: ' + window.pageYOffset);
-alert('Текущая прокрутка слева: ' + window.pageXOffset);
+alert( 'Текущая прокрутка сверху: ' + window.pageYOffset );
+alert( 'Текущая прокрутка слева: ' + window.pageXOffset );
 ```
 
 Эти свойства:
@@ -92,7 +92,7 @@ alert('Текущая прокрутка слева: ' + window.pageXOffset);
 //+ run
 var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-alert("Текущая прокрутка: " + scrollTop);
+alert( "Текущая прокрутка: " + scrollTop );
 ```
 
 ## Изменение прокрутки: scrollTo, scrollBy, scrollIntoView [#window-scroll]
@@ -199,7 +199,7 @@ var body = document.body;
 var scrollTop = html.scrollTop || body && body.scrollTop || 0;
 scrollTop -= html.clientTop; // в IE7- <html> смещён относительно (0,0)
 
-alert("Текущая прокрутка: " + scrollTop);
+alert( "Текущая прокрутка: " + scrollTop );
 ```
 
 </li>

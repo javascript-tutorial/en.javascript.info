@@ -5,12 +5,14 @@
 ```html
 <!--+ run height=60 -->
 <!DOCTYPE HTML>
-<html>  
-<body>  
-   <script>
-      alert(document.body.lastChild.nodeType);
-   </script>
-</body>  
+<html>
+
+<body>
+  <script>
+    alert( document.body.lastChild.nodeType );
+  </script>
+</body>
+
 </html>
 ```
 

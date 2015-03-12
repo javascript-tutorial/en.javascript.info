@@ -18,7 +18,7 @@
 elem.onclick = function(event) {
 *!*
   // если IE8-, то получить объект события window.event и исправить его
-  event = event || fixEvent.call(this, window.event); 
+  event = event || fixEvent.call(this, window.event);
 */!*
   ...
 }
@@ -40,11 +40,11 @@ function fixEvent(e) {
 
   e.currentTarget = this;
   e.target = e.srcElement;
-  
+
   if (e.type == 'mouseover' || e.type == 'mouseenter') e.relatedTarget = e.fromElement;
   if (e.type == 'mouseout' || e.type == 'mouseleave') e.relatedTarget = e.toElement;
-  
-  if (e.pageX == null && e.clientX != null ) {
+
+  if (e.pageX == null && e.clientX != null) {
     var html = document.documentElement;
     var body = document.body;
 
@@ -56,7 +56,7 @@ function fixEvent(e) {
   }
 
   if (!e.which && e.button) {
-    e.which = e.button & 1 ? 1 : ( e.button & 2 ? 3 : (e.button & 4 ? 2 : 0) );
+    e.which = e.button & 1 ? 1 : (e.button & 2 ? 3 : (e.button & 4 ? 2 : 0));
   }
 
   return e;

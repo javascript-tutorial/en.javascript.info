@@ -57,23 +57,32 @@
 
 ```html
 <!--+ run autorun height=80 -->
-<style> .error { background: red; } </style>
+<style>
+  .error {
+    background: red;
+  }
+</style>
 
-<div>Возраст: <input type="text" id="age"></div>
-  
-<div>Имя: <input type="text"></div>
+<div>Возраст:
+  <input type="text" id="age">
+</div>
+
+<div>Имя:
+  <input type="text">
+</div>
 
 <script>
-age.onblur = function() {
-  if (isNaN(this.value)) { // введено не число
-    // показать ошибку
-    this.classList.add("error");
-    age.focus();*!*
-  } else {
-    this.classList.remove("error");
-  }
-};
-
+  age.onblur = function() {
+    if (isNaN(this.value)) { // введено не число
+      // показать ошибку
+      this.classList.add("error");
+*!*
+      age.focus();
+*/!* 
+    } else {
+      this.classList.remove("error");
+    }
+  };
 </script>
 ```
 
@@ -117,7 +126,7 @@ age.onblur = function() {
 
 ```html
 <input type="text" name="search">
-<script> 
+<script>
   document.getElementsByName('search')[0].focus();
 </script>
 ```
@@ -175,7 +184,7 @@ age.onblur = function() {
 В примере ниже есть список элементов. Кликните на любой из них и нажмите "tab".
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 Кликните на первый элемент списка и нажмите Tab. Внимание! Дальнейшие нажатия Tab могут вывести за границы iframe'а с примером.
 <ul>
   <li tabindex="1">Один</li>
@@ -225,7 +234,11 @@ age.onblur = function() {
   <input type="text" name="surname" value="Ваша фамилия">
 </form>
 
-<style> .focused { outline: 1px solid red; } </style>
+<style>
+  .focused {
+    outline: 1px solid red;
+  }
+</style>
 
 <script>
 *!*
@@ -262,22 +275,29 @@ age.onblur = function() {
   <input type="text" name="surname" value="Ваша фамилия">
 </form>
 <style>
-.focused { outline: 1px solid red; }
+  .focused {
+    outline: 1px solid red;
+  }
 </style>
 
 <script>
-function onFormFocus() { this.className = 'focused'; }
-function onFormBlur() { this.className = ''; }
+  function onFormFocus() {
+    this.className = 'focused';
+  }
 
-var form = document.forms.form;
+  function onFormBlur() {
+    this.className = '';
+  }
 
-if (form.addEventListener) { 
-  form.addEventListener('focus', onFormFocus, true); 
-  form.addEventListener('blur', onFormBlur, true); 
-} else {  // IE8-
-  form.onfocusin = onFormFocus;
-  form.onfocusout = onFormBlur;
-}
+  var form = document.forms.form;
+
+  if (form.addEventListener) {
+    form.addEventListener('focus', onFormFocus, true);
+    form.addEventListener('blur', onFormBlur, true);
+  } else { // IE8-
+    form.onfocusin = onFormFocus;
+    form.onfocusout = onFormBlur;
+  }
 </script>
 ```
 

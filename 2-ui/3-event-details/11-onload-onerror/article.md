@@ -39,9 +39,9 @@ document.body.appendChild(script);
 
 *!*
 script.onload = function() {
-  // после выполнения скрипта становится доступна функция _
-  alert(_); // её код
-}
+    // после выполнения скрипта становится доступна функция _
+    alert( _ ); // её код
+  }
 */!*
 ```
 
@@ -65,7 +65,7 @@ document.body.appendChild(script);
 
 *!*
 script.onerror = function() {
-  alert("Ошибка: " + this.src); 
+  alert( "Ошибка: " + this.src );
 };
 */!*
 ```
@@ -89,7 +89,7 @@ script.onerror = function() {
 Например, рабочий скрипт:
 
 ```js
-//+ run
+//+ run no-beautify
 var script = document.createElement('script');
 script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
@@ -104,7 +104,7 @@ script.onreadystatechange = function() {
 Скрипт с ошибкой:
 
 ```js
-//+ run
+//+ run no-beautify
 var script = document.createElement('script');
 script.src = "http://ajax.googleapis.com/404.js";
 document.documentElement.appendChild(script);
@@ -132,7 +132,7 @@ script.onreadystatechange = function() {
 Пример ниже вызывает `afterLoad` после загрузки скрипта и работает только в IE:
 
 ```js
-//+ run
+//+ run no-beautify
 var script = document.createElement('script');
 script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
@@ -176,7 +176,7 @@ script.src = "https://code.jquery.com/jquery.js";
 document.documentElement.appendChild(script);
 
 function afterLoad() {
-  alert("Загрузка завершена: " + typeof(jQuery));
+  alert( "Загрузка завершена: " + typeof(jQuery) );
 }
 
 script.onload = script.onerror = function() {
@@ -189,7 +189,9 @@ script.onload = script.onerror = function() {
 script.onreadystatechange = function() {
   var self = this;
   if (this.readyState == "complete" || this.readyState == "loaded") {
-    setTimeout(function() { self.onload() }, 0);// сохранить "this" для onload
+    setTimeout(function() {
+      self.onload()
+    }, 0); // сохранить "this" для onload
   }
 };
 ```
@@ -221,6 +223,7 @@ script.onreadystatechange = function() {
 <dd>Ставим обработчики на `onload` + `onerror`
 
 ```js
+//+ no-beautify
 var img = document.createElement('img');
 img.onload = function() { alert("Успех "+this.src };
 img.onerror = function() { alert("Ошибка "+this.src };

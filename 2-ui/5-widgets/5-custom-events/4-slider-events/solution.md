@@ -12,7 +12,7 @@
 Соответственно, ширина области изменения будет `sliderElem.clientWidth - thumbElem.clientWidth`. Далее её можно уже поделить на части, количество пикселей на значение будет:
 
 ```js
-pixelsPerValue = (sliderElem.clientWidth-thumbElem.clientWidth) / max;
+pixelsPerValue = (sliderElem.clientWidth - thumbElem.clientWidth) / max;
 ```
 
 Может получиться так, что это значение будет дробным, меньше единицы. Например, если `max = 1000`, а ширина слайдера `110` (пробег 100), то будет `0.1` пикселя на значение. 
@@ -23,7 +23,7 @@ pixelsPerValue = (sliderElem.clientWidth-thumbElem.clientWidth) / max;
 
 ```js
 function positionToValue(left) {
-  return Math.round( left / pixelsPerValue);
+  return Math.round(left / pixelsPerValue);
 }
 
 function valueToPosition(value) {

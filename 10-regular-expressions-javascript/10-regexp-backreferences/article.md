@@ -10,7 +10,7 @@
 var name = "Александр Пушкин";
 
 name = name.replace(/([а-яё]+) ([а-яё]+)/i, "$2, $1");
-alert(name); // Пушкин, Александр
+alert( name ); // Пушкин, Александр
 ```
 
 К скобочной группе можно также обратиться в самом шаблоне.
@@ -25,7 +25,7 @@ str = "He said:\"She's the one\"."
 
 reg = /['"](.*?)['"]/g
 
-alert( str.match(reg) ) // "She'
+alert(str.match(reg)) // "She'
 ```
 
 Как видно, регэксп нашёл открывающую кавычку <code class="match">"</code>, затем текст, вплоть до новой кавычки <code class="match">'</code>, которая закрывает соответствие.
@@ -38,7 +38,7 @@ str = "He said:\"She's the one\"."
 
 reg = /(['"])(.*?)\1/g
 
-alert( str.match(reg) ) // "She's the one"
+alert(str.match(reg)) // "She's the one"
 ```
 
 Теперь работает верно!

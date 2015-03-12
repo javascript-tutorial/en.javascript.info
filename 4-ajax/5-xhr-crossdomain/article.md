@@ -24,11 +24,11 @@ var xhr = new XHR();
 xhr.open('GET', 'http://anywhere.com/request', true);
 
 xhr.onload = function() {
-  alert(this.responseText);
+  alert( this.responseText );
 }
 
 xhr.onerror = function() {
-  alert('Ошибка ' + this.status);
+  alert( 'Ошибка ' + this.status );
 }
 
 xhr.send();
@@ -218,7 +218,7 @@ var xhr = new XMLHttpRequest();
 xhr.withCredentials = true;
 
 xhr.open('POST', 'http://anywhere.com/request', true)
-...
+  ...
 ```
 
 Далее -- всё как обычно, дополнительных действий со стороны клиента не требуется.
@@ -236,6 +236,7 @@ xhr.open('POST', 'http://anywhere.com/request', true)
 Пример заголовков:
 
 ```js
+//+ no-beautify
 HTTP/1.1 200 OK
 Content-Type:text/html; charset=UTF-8
 *!*

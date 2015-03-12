@@ -77,7 +77,7 @@
 
 ```js
 // создание 
-var collator = new Intl.Collator([locales, [options] ])
+var collator = new Intl.Collator([locales, [options]])
 ```
 
 Параметры:
@@ -131,7 +131,9 @@ alert( collator.compare("ёжик", "яблоко") ); // -1 (ёжик мень�
 var collator = new Intl.Collator();
 alert( collator.compare("ЁжиК", "ёжик") ); // 1, разные
 
-var collator = new Intl.Collator(undefined, { sensitivity: "accent" } );
+var collator = new Intl.Collator(undefined, {
+  sensitivity: "accent"
+});
 alert( collator.compare("ЁжиК", "ёжик") ); // 0, одинаковые
 ```
 
@@ -141,7 +143,7 @@ alert( collator.compare("ЁжиК", "ёжик") ); // 0, одинаковые
 
 ```js
 // создание 
-var formatter = new Intl.DateFormatter([locales, [options] ])
+var formatter = new Intl.DateFormatter([locales, [options]])
 ```
 
 Первый аргумент -- такой же, как и в `Collator`, а в объекте `options` мы можем определить, какие именно части даты показывать (часы, месяц, год...) и в каком формате.
@@ -281,13 +283,13 @@ alert( formatter.format(date) ); // 12/31/2014
 var date = new Date(2014, 11, 31, 12, 30, 0);
 
 var formatter = new Intl.DateTimeFormat("ru", {
-  weekday: "long", 
-  year: "numeric", 
+  weekday: "long",
+  year: "numeric",
   month: "long",
-  day: "numeric" 
+  day: "numeric"
 });
 
-alert( formatter.format(date) );  // среда, 31 декабря 2014 г.
+alert( formatter.format(date) ); // среда, 31 декабря 2014 г.
 ```
 
 Только время:
@@ -297,12 +299,12 @@ alert( formatter.format(date) );  // среда, 31 декабря 2014 г.
 var date = new Date(2014, 11, 31, 12, 30, 0);
 
 var formatter = new Intl.DateTimeFormat("ru", {
-  hour: "numeric" , 
-  minute: "numeric" , 
-  second: "numeric" 
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric"
 });
 
-alert( formatter.format(date) );  // 12:30:00
+alert( formatter.format(date) ); // 12:30:00
 ```
 
 ## Числа: Intl.NumberFormat
@@ -312,7 +314,7 @@ alert( formatter.format(date) );  // 12:30:00
 Синтаксис:
 
 ```js
-var formatter = new Intl.NumberFormat([locales [, options] ]);
+var formatter = new Intl.NumberFormat([locales[, options]]);
 
 formatter.format(number); // форматирование
 ```
@@ -398,7 +400,7 @@ formatter.format(number); // форматирование
 ```js
 //+ run
 var formatter = new Intl.NumberFormat("ru");
-alert(formatter.format(1234567890.123)); // 1 234 567 890,123
+alert( formatter.format(1234567890.123) ); // 1 234 567 890,123
 ```
 
 С ограничением значимых цифр (важны только первые 3):
@@ -408,7 +410,7 @@ alert(formatter.format(1234567890.123)); // 1 234 567 890,123
 var formatter = new Intl.NumberFormat("ru", {
   maximumSignificantDigits: 3
 });
-alert(formatter.format(1234567890.123)); // 1 230 000 000
+alert( formatter.format(1234567890.123) ); // 1 230 000 000
 ```
 
 C опциями для валюты:
@@ -419,7 +421,7 @@ var formatter = new Intl.NumberFormat("ru", {
   currency: "GBP"
 });
 
-alert( formatter.format(1234.5)); // 1 234,5 £
+alert( formatter.format(1234.5) ); // 1 234,5 £
 ```
 
 С двумя цифрами после запятой:
@@ -431,7 +433,7 @@ var formatter = new Intl.NumberFormat("ru", {
   minimumFractionDigits: 2
 });
 
-alert( formatter.format(1234.5)); // 1 234,50 £
+alert( formatter.format(1234.5) ); // 1 234,50 £
 ```
 
 ## Методы в Date, String, Number
@@ -454,7 +456,7 @@ alert( str.localeCompare("яблоко", "ru") ); // -1
 <dd>Форматирует дату в соответствии с локалью, например:
 
 ```js
-//+ run
+//+ run no-beautify
 var date = new Date(2014, 11, 31, 12, 00);
 
 alert( date.toLocaleString("ru", { year: 'numeric', month: 'long' }) ); // Декабрь 2014

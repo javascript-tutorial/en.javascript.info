@@ -79,15 +79,15 @@
 //+ autorun
 // event.type должен быть keypress
 function getChar(event) {
-  if (event.which == null) {  // IE
+  if (event.which == null) { // IE
     if (event.keyCode < 32) return null; // спец. символ
-    return String.fromCharCode(event.keyCode) 
-  } 
+    return String.fromCharCode(event.keyCode)
+  }
 
-  if (event.which!=0 && event.charCode!=0) { // все кроме IE
+  if (event.which != 0 && event.charCode != 0) { // все кроме IE
     if (event.which < 32) return null; // спец. символ
     return String.fromCharCode(event.which); // остальные
-  } 
+  }
 
   return null; // спец. символ
 }
@@ -179,18 +179,18 @@ function getChar(event) {
 ```html
 <input id="only-upper" type="text" size="2">
 <script>
-document.getElementById('only-upper').onkeypress = function(e) {  
-  // спец. сочетание - не обрабатываем  
-  if (e.ctrlKey || e.altKey || e.metaKey) return;
-  
-  var char = getChar(e);  
+  document.getElementById('only-upper').onkeypress = function(e) {
+    // спец. сочетание - не обрабатываем  
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
 
-  if (!char) return; // спец. символ - не обрабатываем
-  
-  this.value = char.toUpperCase();
-  
-  return false;
-};
+    var char = getChar(e);
+
+    if (!char) return; // спец. символ - не обрабатываем
+
+    this.value = char.toUpperCase();
+
+    return false;
+  };
 </script>
 ```
 

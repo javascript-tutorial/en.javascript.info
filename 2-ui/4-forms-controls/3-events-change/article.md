@@ -36,11 +36,11 @@
 <!--+ autorun height=40 -->
 <input type="text"> oninput: <span id="result"></span>
 <script>
-var input = document.body.children[0];
+  var input = document.body.children[0];
 
-input.oninput = function() {
-  document.getElementById('result').innerHTML = input.value;
-};
+  input.oninput = function() {
+    document.getElementById('result').innerHTML = input.value;
+  };
 </script>
 ```
 
@@ -58,24 +58,24 @@ input.oninput = function() {
 <!--+ autorun height=40 -->
 <input type="checkbox"> Чекбокс с "onchange", работающим везде одинаково
 <script>
-var checkbox = document.body.children[0];
+  var checkbox = document.body.children[0];
 
-if("onpropertychange" in checkbox) { 
-  // старый IE
+  if ("onpropertychange" in checkbox) {
+    // старый IE
 *!*
-  checkbox.onpropertychange = function() {
-    // проверим имя изменённого свойства
-    if (event.propertyName == "checked") { 
-      alert(checkbox.checked);
-    }
-  };
+    checkbox.onpropertychange = function() {
+      // проверим имя изменённого свойства
+      if (event.propertyName == "checked") {
+        alert( checkbox.checked );
+      }
+    };
 */!*
-} else {
-  // остальные браузеры
-  checkbox.onchange = function() {
-    alert(checkbox.checked);
-  };
-}
+  } else {
+    // остальные браузеры
+    checkbox.onchange = function() {
+      alert( checkbox.checked );
+    };
+  }
 </script>
 ```
 
@@ -127,18 +127,17 @@ if("onpropertychange" in checkbox) {
 <!--+ autorun run height=60 -->
 <input type="text" id="sms"> символов: <span id="result"></span>
 <script>
+  function showCount() {
+    result.innerHTML = sms.value.length;
+  }
 
-function showCount() {
-  result.innerHTML = sms.value.length;
-}
-
-sms.onkeyup = sms.oninput = showCount;
-sms.onpropertychange = function() {
-  if (event.propertyName == "value") showCount();
-}
-sms.oncut = function() {
-  setTimeout(showCount, 0); // на момент oncut значение еще старое
-};
+  sms.onkeyup = sms.oninput = showCount;
+  sms.onpropertychange = function() {
+    if (event.propertyName == "value") showCount();
+  }
+  sms.oncut = function() {
+    setTimeout(showCount, 0); // на момент oncut значение еще старое
+  };
 </script>
 ```
 
@@ -153,26 +152,26 @@ sms.oncut = function() {
 <input type="text" id="sms"> символов: <span id="result"></span>
 
 <script>
-var timerId;
+  var timerId;
 
-sms.onfocus = function() {
+  sms.onfocus = function() {
 
-  var lastValue = sms.value;
-  timerId = setInterval(function() {
-    if (sms.value != lastValue) {
-      showCount();
-      lastValue = sms.value;
-    }
-  }, 20);
-};
+    var lastValue = sms.value;
+    timerId = setInterval(function() {
+      if (sms.value != lastValue) {
+        showCount();
+        lastValue = sms.value;
+      }
+    }, 20);
+  };
 
-sms.onblur = function() {
-  clearInterval(timerId);
-};
+  sms.onblur = function() {
+    clearInterval(timerId);
+  };
 
-function showCount() {
-  result.innerHTML = sms.value.length;
-}
+  function showCount() {
+    result.innerHTML = sms.value.length;
+  }
 </script>
 ```
 

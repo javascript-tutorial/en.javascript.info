@@ -11,7 +11,7 @@
 Однако, как видите, это не получается. Почему? Как поправить?
 
 ```html
-<!--+ autorun run -->
+<!--+ autorun run  no-beautify -->
   
 <style>
   .block {

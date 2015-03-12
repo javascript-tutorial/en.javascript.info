@@ -76,7 +76,7 @@ element.onclick = function(event) {
 
 ```js
 element.onclick = function(e) {
-  e = e || event; 
+  e = e || event;
 
   // Теперь e - объект события во всех браузерах.
 };
@@ -93,9 +93,9 @@ element.onclick = function(e) {
 
 ```js
 element.onclick = function(event) {
-    event = event || window.event;
+  event = event || window.event;
 
-    // Теперь event - объект события во всех браузерах.
+  // Теперь event - объект события во всех браузерах.
 };
 ```
 
@@ -103,8 +103,8 @@ element.onclick = function(event) {
 
 ```js
 element.onclick = function(e) {
-    e = e || event; // если нет другой внешней переменной event
-    ...
+  e = e || event; // если нет другой внешней переменной event
+  ...
 };
 ```
 

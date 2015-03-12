@@ -17,8 +17,8 @@ JavaScript-анимация применяется там, где не подх�
 ```js
 var fps = 50; // 50 кадров в секунду
 var timer = setInterval(function() {
-    if (время вышло) clearInterval(timer);
-    else немного увеличить left 
+  if (время вышло) clearInterval(timer);
+  else немного увеличить left
 }, 1000 / fps)
 ```
 
@@ -44,7 +44,7 @@ var timer = setInterval(function() {
 // в то время как timePassed идёт от 0 до 2000
 // left принимает значения от 0 до 400px
 function draw(timePassed) {
-  train.style.left = timePassed / 5 + 'px'; 
+  train.style.left = timePassed / 5 + 'px';
 }
 ```
 
@@ -100,15 +100,15 @@ cancelAnimationFrame(requestId);
 ```html
 <!--+ run height=40 refresh -->
 <script>
-var prev = performance.now();
-var times = 0;
+  var prev = performance.now();
+  var times = 0;
 
-requestAnimationFrame(function measure(time) {
-  document.body.insertAdjacentHTML("beforeEnd", Math.floor(time - prev) + " ");
-  prev = time;
+  requestAnimationFrame(function measure(time) {
+    document.body.insertAdjacentHTML("beforeEnd", Math.floor(time - prev) + " ");
+    prev = time;
 
-  if (times++ < 10) requestAnimationFrame(measure);
-})
+    if (times++ < 10) requestAnimationFrame(measure);
+  })
 </script>
 ```
 
@@ -129,7 +129,7 @@ function animate(draw, duration) {
     if (timePassed > duration) timePassed = duration;
 
     // нарисовать состояние анимации в момент timePassed
-    draw(timePassed); 
+    draw(timePassed);
 
     // если время анимации не закончилось - запланировать ещё кадр
     if (timePassed < duration) {
@@ -215,10 +215,10 @@ function draw(progress) {
 ```js
 animate({
   duration: 1000,
-  timing: function(timeFraction) { 
-    return timeFraction; 
+  timing: function(timeFraction) {
+    return timeFraction;
   },
-  draw: function(progress) { 
+  draw: function(progress) {
     elem.style.width = progress * 100 + '%';
   }
 });
@@ -326,7 +326,7 @@ function bounce(timeFraction) {
 
 ```js
 function elastic(x, timeFraction) {
-  return Math.pow(2, 10 * (timeFraction-1)) * Math.cos(20*Math.PI*x/3*timeFraction)
+  return Math.pow(2, 10 * (timeFraction - 1)) * Math.cos(20 * Math.PI * x / 3 * timeFraction)
 }
 ```
 
@@ -363,7 +363,7 @@ function bounce(timeFraction) {
 }
 
 // преобразователь в easeOut
-function makeEaseOut(timing) {  
+function makeEaseOut(timing) {
   return function(timeFraction) {
     return 1 - timing(1 - timeFraction);
   }
@@ -408,12 +408,12 @@ if (timeFraction <= 0.5) { // первая половина анимации)
 Код, который трансформирует `timing`:
 
 ```js
-function makeEaseInOut(timing) {  
+function makeEaseInOut(timing) {
   return function(timeFraction) {
     if (timeFraction < .5)
-      return timing(2*timeFraction) / 2;
+      return timing(2 * timeFraction) / 2;
     else
-      return (2 - timing(2*(1-timeFraction))) / 2;
+      return (2 - timing(2 * (1 - timeFraction))) / 2;
   }
 }
 

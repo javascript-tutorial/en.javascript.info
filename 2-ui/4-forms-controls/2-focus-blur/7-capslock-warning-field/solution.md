@@ -46,8 +46,8 @@ document.onkeypress = function(e) {
 Например, когда пользователь открыл страницу, мы не знаем, включен ли [key CapsLock]. Затем, мы получаем событие `keydown` для [key CapsLock]. Но мы все равно не знаем его состояния, был ли [key CapsLock] *выключен* или, наоборот, включен.
 
 ```js
-if (navigator.platform.substr(0,3) != 'Mac') { // событие для CapsLock глючит под Mac
-  document.onkeydown = function(e) {  
+if (navigator.platform.substr(0, 3) != 'Mac') { // событие для CapsLock глючит под Mac
+  document.onkeydown = function(e) {
     if (e.keyCode == 20 && capsLockEnabled !== null) {
       capsLockEnabled = !capsLockEnabled;
     }
@@ -73,18 +73,18 @@ if (navigator.platform.substr(0,3) != 'Mac') { // событие для CapsLock
 Код проверки поля:
 
 ```html
-<input type="text" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()"/>
+<input type="text" onkeyup="checkCapsWarning(event)" onfocus="checkCapsWarning(event)" onblur="removeCapsWarning()" />
 
 <div style="display:none;color:red" id="caps">Внимание: нажат CapsLock!</div>
 
 <script>
-function checkCapsWarning() {
-  document.getElementById('caps').style.display = capsLockEnabled ? 'block' : 'none';
-}
+  function checkCapsWarning() {
+    document.getElementById('caps').style.display = capsLockEnabled ? 'block' : 'none';
+  }
 
-function removeCapsWarning() {
-  document.getElementById('caps').style.display = 'none';
-}
+  function removeCapsWarning() {
+    document.getElementById('caps').style.display = 'none';
+  }
 </script>
 ```
 

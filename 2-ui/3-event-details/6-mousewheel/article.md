@@ -9,7 +9,7 @@
 Несмотря на то, что колёсико мыши обычно ассоциируется с прокруткой, это совсем разные вещи.
 
 <ul>
-<li>При прокрутке срабатывает событие [onscroll](/event-onscroll) -- рассмотрим его в дальнейшем. Оно произойдёт *при любой прокрутке*, в том числе через клавиатурy, но *только на прокручиваемых элементах*. Например, элемент с `overflow:hidden` в принципе не может сгенерировать `onscroll`.</li>
+<li>При прокрутке срабатывает событие [onscroll](/onscroll) -- рассмотрим его в дальнейшем. Оно произойдёт *при любой прокрутке*, в том числе через клавиатурy, но *только на прокручиваемых элементах*. Например, элемент с `overflow:hidden` в принципе не может сгенерировать `onscroll`.</li>
 <li>А событие `wheel` является чисто "мышиным". Оно генерируется *над любым элементом* при передвижении колеса мыши. При этом не важно, прокручиваемый он или нет. В частности, `overflow:hidden` никак не препятствует обработке колеса мыши.</li>
 </ul>
 
@@ -39,16 +39,16 @@
 if (elem.addEventListener) {
   if ('onwheel' in document) {
     // IE9+, FF17+, Ch31+
-    elem.addEventListener ("wheel", onWheel);
+    elem.addEventListener("wheel", onWheel);
   } else if ('onmousewheel' in document) {
     // устаревший вариант события
-    elem.addEventListener ("mousewheel", onWheel);
+    elem.addEventListener("mousewheel", onWheel);
   } else {
     // Firefox < 17
-    elem.addEventListener ("MozMousePixelScroll", onWheel);
+    elem.addEventListener("MozMousePixelScroll", onWheel);
   }
 } else { // IE8-
-  elem.attachEvent ("onmousewheel", onWheel);
+  elem.attachEvent("onmousewheel", onWheel);
 }
 
 function onWheel(e) {

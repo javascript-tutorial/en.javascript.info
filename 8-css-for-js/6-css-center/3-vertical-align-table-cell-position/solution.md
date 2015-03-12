@@ -9,7 +9,7 @@
 В однострочном случае можно сделать центрирование при помощи `line-height`:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <style>
   .arrow {
     position: absolute;

@@ -13,15 +13,15 @@ DOM -- это представление документа в виде дере
 Построим, для начала, дерево DOM для следующего документа.
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>О лосях</title>
-  </head>
-  <body>
-     Правда о лосях
-   </body>
+<head>
+  <title>О лосях</title>
+</head>
+<body>
+  Правда о лосях
+</body>
 </html>
 ```
 
@@ -60,6 +60,7 @@ drawHtmlTree(node, 'div.domtree', 690, 350);
 В остальных случаях всё честно -- если пробелы есть в документе, то они есть и в DOM, а если их убрать, то и в DOM их не будет, получится так:
 
 ```html
+<!--+ no-beautify -->
 <!DOCTYPE HTML>
 <html><head><title>О лосях</title></head><body>Правда о лосях</body></html>
 ```
@@ -86,6 +87,7 @@ drawHtmlTree(node, 'div.domtree', 690, 300);
 Такой документ:
 
 ```html
+<!--+ no-beautify -->
 <p>Привет
 <li>Мама
 <li>и
@@ -98,7 +100,7 @@ drawHtmlTree(node, 'div.domtree', 690, 300);
 <script>
 var node = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"P","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Привет\n"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Мама\n"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"и\n"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Папа\n"}]}]}]}
 
-drawHtmlTree(node,  [].pop.call(document.querySelectorAll('div.domtree')), 690, 400);
+drawHtmlTree(node, 'div.domtree', 690, 400);
 </script>
 
 [warn header="Таблицы всегда содержат `<tbody>`"]
@@ -107,6 +109,7 @@ drawHtmlTree(node,  [].pop.call(document.querySelectorAll('div.domtree')), 690, 
 Например, для такого HTML:
 
 ```html
+<!--+ no-beautify -->
 <table id="table">
   <tr><td>1</td></tr>
 </table>
@@ -123,6 +126,7 @@ drawHtmlTree(node,  'div.domtree', 600, 200);
 Вы видите? Появился `<tbody>`, как будто документ был таким:
 
 ```html
+<!--+ no-beautify -->
 <table>
 *!*
   <tbody>
@@ -145,16 +149,18 @@ drawHtmlTree(node,  'div.domtree', 600, 200);
 ```html
 <!DOCTYPE HTML>
 <html>
-  <body>
-    Правда о лосях
-    <ol>
-      <li>Лось — животное хитрое</li>
+
+<body>
+  Правда о лосях
+  <ol>
+    <li>Лось — животное хитрое</li>
 *!*
-      <!-- комментарий -->
+    <!-- комментарий -->
 */!*
-      <li>...и коварное!</li>
-    </ol>
-  </body>
+    <li>...и коварное!</li>
+  </ol>
+</body>
+
 </html>
 ```
 
@@ -198,10 +204,10 @@ drawHtmlTree(node, 'div.domtree', 690, 550);
 ```js
 //+ run
 document.body.style.backgroundColor = 'red';
-alert('Поменяли цвет BODY');
+alert( 'Поменяли цвет BODY' );
 
 document.body.style.backgroundColor = '';
-alert('Сбросили цвет BODY');
+alert( 'Сбросили цвет BODY' );
 ```
 
 DOM предоставляет возможность делать со страницей всё, что угодно.
@@ -216,6 +222,7 @@ IE8- не генерирует текстовые узлы, если они со
  То есть, такие два документа дадут идентичный DOM:
 
 ```html
+<!--+ no-beautify -->
 <!DOCTYPE HTML>
 <html><head><title>О лосях</title></head><body>Правда о лосях</body></html>
 ```
@@ -225,12 +232,15 @@ IE8- не генерирует текстовые узлы, если они со
 ```html
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <title>О лосях</title>
-  </head>
-  <body>
-    Правда о лосях
-  </body>
+
+<head>
+  <title>О лосях</title>
+</head>
+
+<body>
+  Правда о лосях
+</body>
+
 </html>
 ```
 

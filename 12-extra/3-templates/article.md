@@ -16,6 +16,7 @@
 Пример:
 
 ```html
+<!--+ no-beautify -->
 <div class="menu">
   <span class="title"><%-title%></span>
   <ul>
@@ -129,6 +130,7 @@ alert( compiled() ); // <div>Привет</div>
 Шаблон для меню в Handlerbars, к примеру, будет выглядеть так:
 
 ```html
+<!--+ no-beautify -->
 <div class="menu">
   <span class="title">{{title}}</span>
   <ul>
@@ -151,7 +153,7 @@ var compiled = Handlebars.compile(tmpl);
 
 var result = compiled({
   title: "Сладости",
-  items: [ "Торт", "Пирожное", "Пончик" ]
+  items: ["Торт", "Пирожное", "Пончик"]
 });
 ```
 
@@ -228,7 +230,7 @@ ko.applyBindings(user, document.body);
 Например:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <script src="http://knockoutjs.com/downloads/knockout-3.1.0.js"></script>
 
 <script>

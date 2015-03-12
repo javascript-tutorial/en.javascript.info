@@ -16,6 +16,7 @@
 Полифилл для `setImmediate` через `postMessage`:
 
 ```js
+//+ no-beautify
 if (!window.setImmediate) window.setImmediate = (function() {
   var head = { }, tail = head; // очередь вызовов, 1-связный список
 

@@ -34,7 +34,7 @@
 Все браузеры, кроме IE9-, также поддерживают свойство `outline-offset`, задающее отступ `outline` от внешней границы элемента:
 
 ```html
-<!--+ autorun height=60 -->
+<!--+ autorun height=60  no-beautify -->
 <div style="border:3px solid blue; outline: 3px solid red; outline-offset:5px">
  Везде, кроме IE9-, между рамками будет расстояние 5px
 </div>

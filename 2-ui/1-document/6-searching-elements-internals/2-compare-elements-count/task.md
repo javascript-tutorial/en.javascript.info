@@ -5,7 +5,7 @@
 Для любого документа сделаем следующее:
 
 ```js
-var aList1 = document.getElementsByTagName('a'),
+var aList1 = document.getElementsByTagName('a');
 var aList2 = document.querySelectorAll('a');
 ```
 

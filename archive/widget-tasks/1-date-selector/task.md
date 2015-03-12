@@ -7,10 +7,10 @@
 Конструктор:
 
 ```js
-var dateSelector = new DateSelector({ 
-  yearFrom: 2010,  // начальный год в селекторе
-  yearTo: 2020,    // конечный год в селекторе
-  value: new Date(2012,2,31) // текущая выбранная дата
+var dateSelector = new DateSelector({
+  yearFrom: 2010, // начальный год в селекторе
+  yearTo: 2020, // конечный год в селекторе
+  value: new Date(2012, 2, 31) // текущая выбранная дата
 });
 ```
 

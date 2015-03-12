@@ -25,20 +25,20 @@
 
 ```js
 *!*
-if( document.documentElement.firstElementChild === undefined ) { // (1)
+if (document.documentElement.firstElementChild === undefined) { // (1)
 */!*
 
 *!*
   Object.defineProperty(Element.prototype, 'firstElementChild', { // (2)
 */!*
-    get: function () { 
+    get: function() {
       var el = this.firstChild;
       do {
-        if( el.nodeType === 1 ) {
+        if (el.nodeType === 1) {
           return el;
         }
         el = el.nextSibling;
-      } while(el);
+      } while (el);
 
       return null;
     }
@@ -80,7 +80,7 @@ var div = document.createElement('div');
 var input = document.createElement('input');
 
 alert( input.value ); // пустая строка, поддержка есть
-alert( div.value );  // undefined, поддержки нет
+alert( div.value ); // undefined, поддержки нет
 ```
 
 [smart header="Поддержка значений свойств"]
@@ -98,8 +98,8 @@ alert( div.value );  // undefined, поддержки нет
 <input type="no-such-type">
 
 <script>
-  alert(document.body.children[0].type); // radio, поддерживается
-  alert(document.body.children[1].type); // text, не поддерживается
+  alert( document.body.children[0].type ); // radio, поддерживается
+  alert( document.body.children[1].type ); // text, не поддерживается
 </script>
 ```
 
@@ -136,7 +136,7 @@ alert( div.value );  // undefined, поддержки нет
 ```js
 //+ run
 Element.prototype.sayHi = function() {
-  alert("Привет от " + this);
+  alert( "Привет от " + this );
 }
 
 document.body.sayHi(); // Привет от [object HTMLBodyElement]
@@ -146,7 +146,7 @@ document.body.sayHi(); // Привет от [object HTMLBodyElement]
 
 ```js
 //+ run
-Object.defineProperty(Element.prototype, 'lowerTag', { 
+Object.defineProperty(Element.prototype, 'lowerTag', {
   get: function() {
     return this.tagName.toLowerCase();
   }

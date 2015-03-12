@@ -77,7 +77,7 @@
 Центрируемый элемент позиционируем абсолютно и опускаем до середины по вертикали при помощи `top:50%`:
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
   .outer {
     position: relative;
@@ -108,7 +108,7 @@
 **Приподнимем элемент на пол-высоты при помощи `margin-top`:**
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
   .outer {
     position: relative;
@@ -144,7 +144,7 @@
 Вертикально отцентрировать одну строку в элементе с известной высотой `height` можно, указав эту высоту в свойстве `line-height`:
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
   .outer {
     height: 5em;
@@ -179,7 +179,7 @@
 Например, ниже есть таблица со всеми 3-мя значениями:
 
 ```html
-<!--+ autorun height=130 -->
+<!--+ autorun height=130  no-beautify -->
 <style>
   table {  border-collapse: collapse; }
   td {    
@@ -252,7 +252,7 @@
 Допустим, высота внешнего элемента `120px`. Укажем её в свойстве `line-height`:
 
 ```html
-<!--+ autorun height=150 -->
+<!--+ autorun height=150  no-beautify -->
 <style>
   .outer {
     line-height: 120px;
@@ -282,7 +282,7 @@
 Пример:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
 .before {
   display: inline-block;
@@ -352,7 +352,7 @@
 Второе решение:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
 .outer:before {
   content: '';

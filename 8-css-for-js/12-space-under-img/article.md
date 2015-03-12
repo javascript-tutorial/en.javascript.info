@@ -6,12 +6,17 @@
 Например:
 
 ```html
-<style> * { margin: 0; padding: 0; } </style>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+</style>
 <table>
   <tr>
-  <td style="border:1px red solid">
-    <img src="square.png">
-  </td>
+    <td style="border:1px red solid">
+      <img src="square.png">
+    </td>
   </tr>
 </table>
 ```
@@ -30,17 +35,24 @@
 Самый лучший способ избежать этого -- поставить `display: block` таким картинкам:
 
 ```html
-<style> 
-  * { margin: 0; padding: 0; }
+<!--+ no-beautify -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
 *!*
-  img { display: block }
+  img {
+    display: block
+  } 
 */!*
 </style>
 <table>
   <tr>
-  <td style="border:1px red solid">
-    <img src="square.png">
-  </td>
+    <td style="border:1px red solid">
+      <img src="square.png">
+    </td>
   </tr>
 </table>
 ```
@@ -60,17 +72,24 @@
 При этом браузер не будет оставлять место под изображением, так как запланирует продолжение строки сверху, а не снизу:
 
 ```html
-<style> 
-  * { margin: 0; padding: 0; }
+<!--+ no-beautify -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
 *!*
-  img { vertical-align: top}
+  img {
+    vertical-align: top
+  }
 */!*
 </style>
 <table>
   <tr>
-  <td style="border:1px red solid">
-    <img src="square.png">
-  </td>
+    <td style="border:1px red solid">
+      <img src="square.png">
+    </td>
   </tr>
 </table>
 ```
@@ -90,18 +109,28 @@
 Таким образом, требуется уменьшить еще и `line-height` контейнера. Окончательное решение для маленьких изображений с `vertical-align`:
 
 ```html
-<style> 
-  * { margin: 0; padding: 0; }
+<!--+ no-beautify -->
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+  
 *!*
-  td { line-height: 1px }
-  img { vertical-align: top }
+  td {
+    line-height: 1px
+  }
+  
+  img {
+    vertical-align: top
+  } 
 */!*
 </style>
 <table>
   <tr>
-  <td style="border:1px red solid">
-    <img src="square.png" style="height:10px">
-  </td>
+    <td style="border:1px red solid">
+      <img src="square.png" style="height:10px">
+    </td>
   </tr>
 </table>
 ```

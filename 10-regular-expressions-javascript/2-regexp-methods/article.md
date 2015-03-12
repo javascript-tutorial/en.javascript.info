@@ -112,7 +112,7 @@ alert( result.index ); // undefined
 var str = "Ой-йой-йой";
 
 // результат match не всегда массив!
-alert( str.match( /лю/gi ).length ) // ошибка! нет свойства length у null
+alert(str.match(/лю/gi).length) // ошибка! нет свойства length у null
 ```
 [/warn]
 
@@ -124,7 +124,7 @@ alert( str.match( /лю/gi ).length ) // ошибка! нет свойства l
 
 ```js
 //+ run
-alert( '12-34-56'.split('-') ) // [12, 34, 56]
+alert('12-34-56'.split('-')) // [12, 34, 56]
 ```
 
 Можно передать в него и регулярное выражение, тогда он разобьёт строку по всем совпадениям.
@@ -133,7 +133,7 @@ alert( '12-34-56'.split('-') ) // [12, 34, 56]
 
 ```js
 //+ run
-alert( '12-34-56'.split(/-/) ) // [12, 34, 56]
+alert('12-34-56'.split(/-/)) // [12, 34, 56]
 ```
 
 ## str.replace(reg, str|func)   
@@ -145,7 +145,7 @@ alert( '12-34-56'.split(/-/) ) // [12, 34, 56]
 ```js
 //+ run
 // заменить дефис на двоеточие
-alert( '12-34-56'.replace("-", ":") )  // 12:34-56
+alert('12-34-56'.replace("-", ":")) // 12:34-56
 ```
 
 **При вызове со строкой замены `replace` всегда заменяет только первое совпадение.**
@@ -198,7 +198,7 @@ alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 //+ run
 var str = "Василий Пупкин";
 
-alert( str.replace( /(Василий) (Пупкин)/ ,'$2, $1') ) // Пупкин, Василий
+alert(str.replace(/(Василий) (Пупкин)/, '$2, $1')) // Пупкин, Василий
 ```
 
 Ещё пример, с использованием `$&`:
@@ -207,7 +207,7 @@ alert( str.replace( /(Василий) (Пупкин)/ ,'$2, $1') ) // Пупки
 //+ run
 var str = "Василий Пупкин";
 
-alert( str.replace( /Василий Пупкин/ ,'Великий $&!') ) // Великий Василий Пупкин!
+alert(str.replace(/Василий Пупкин/, 'Великий $&!')) // Великий Василий Пупкин!
 ```
 
 **Для ситуаций, который требуют максимально "умной" замены, в качестве второго аргумента предусмотрена функция.**
@@ -221,9 +221,9 @@ alert( str.replace( /Василий Пупкин/ ,'Великий $&!') ) // В
 var i = 0;
 
 // заменить каждое вхождение "ой" на результат вызова функции
-alert( "ОЙ-Ой-ой".replace( /ой/gi, function() { 
-  return ++i; 
-}) ); // 1-2-3
+alert("ОЙ-Ой-ой".replace(/ой/gi, function() {
+  return ++i;
+})); // 1-2-3
 ```
 
 В примере выше функция просто возвращала числа по очереди, но обычно она основывается на поисковых данных.
@@ -245,12 +245,12 @@ alert( "ОЙ-Ой-ой".replace( /ой/gi, function() {
 //+ run
 // вывести и заменить все совпадения
 function replacer(str, offset, s) {
-  alert("Найдено: " + str + " на позиции: " + offset + " в строке: " + s);
+  alert( "Найдено: " + str + " на позиции: " + offset + " в строке: " + s );
   return str.toLowerCase();
-} 
+}
 
-var result = "ОЙ-Ой-ой".replace( /ой/gi, replacer);
-alert('Результат: ' + result); // Результат: ой-ой-ой
+var result = "ОЙ-Ой-ой".replace(/ой/gi, replacer);
+alert( 'Результат: ' + result ); // Результат: ой-ой-ой
 ```
 
 С двумя скобочными выражениями -- аргументов уже 5:
@@ -260,8 +260,8 @@ alert('Результат: ' + result); // Результат: ой-ой-ой
 function replacer(str, name, surname, offset, s) {
   return surname + ", " + name;
 }
- 
-alert( str.replace( /(Василий) (Пупкин)/ , replacer) ) // Пупкин, Василий
+
+alert(str.replace(/(Василий) (Пупкин)/, replacer)) // Пупкин, Василий
 ```
 
 Функция -- это самый мощный инструмент для замены, какой только может быть. Она владеет всей информацией о совпадении и имеет доступ к замыканию, поэтому может всё.
@@ -319,14 +319,14 @@ var str = 'Многое по JavaScript можно найти на сайте ht
 
 var regexp = /javascript/ig;
 
-alert("Начальное значение lastIndex: " + regexp.lastIndex);
+alert( "Начальное значение lastIndex: " + regexp.lastIndex );
 
-while( result = regexp.exec(str) ) { 
-  alert('Найдено: ' + result[0] + ' на позиции:' + result.index);
-  alert('Свойство lastIndex: ' + regexp.lastIndex);
+while (result = regexp.exec(str)) {
+  alert( 'Найдено: ' + result[0] + ' на позиции:' + result.index );
+  alert( 'Свойство lastIndex: ' + regexp.lastIndex );
 }
 
-alert('Конечное значение lastIndex: ' + regexp.lastIndex);
+alert( 'Конечное значение lastIndex: ' + regexp.lastIndex );
 ```
 
 Здесь цикл продолжается до тех пор, пока `regexp.exec` не вернёт `null`, что означает "совпадений больше нет".

@@ -9,6 +9,7 @@
 Пример использования:
 
 ```js
+//+ no-beautify
 addScripts(["a.js", "b.js", "c.js"], function() { a() });
 /* функция a() описана в a.js и использует b.js,c.js */
 ```

@@ -10,7 +10,7 @@
 function getTooltipElem() {
   if (!tooltipElem) {
     tooltipElem = $('<div/>', {
-      "class" : 'tooltip',
+      "class": 'tooltip',
       html: html
     });
   }
@@ -23,6 +23,7 @@ function getTooltipElem() {
 Например:
 
 ```css
+/*+ no-beautify */
 .tooltip {
   position:absolute;
   z-index:100; /* подсказка должна перекрывать другие элементы */
@@ -47,7 +48,7 @@ function getTooltipElem() {
 <img src="tooltip-fixed-center.png">
 
 ```js
-tooltipElem.left = elem.offset().left + elem.outerWidth()/2
+tooltipElem.left = elem.offset().left + elem.outerWidth() / 2
 ```
 
 Дополнительно нужно сдвинуть подсказку на половину собственной ширины влево:
@@ -55,7 +56,7 @@ tooltipElem.left = elem.offset().left + elem.outerWidth()/2
 <img src="tooltip-fixed-center2.png">
 
 ```js
-left -= tooltipElem.outerWidth()/2;
+left -= tooltipElem.outerWidth() / 2;
 ```
 
 **Теперь отпозиционируем по вертикали.**

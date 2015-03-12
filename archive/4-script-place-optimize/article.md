@@ -14,25 +14,26 @@
 ```html
 <!--+ run height=100 -->
 <html>
-  <head>
-    *!*
-    <script>
-      function count_rabbits() {
-        for (var i=1; i<=3; i++) {
-          alert("Кролик номер " + i);
-        }
+
+<head>
+*!*
+  <script>
+    function count_rabbits() {
+      for (var i = 1; i <= 3; i++) {
+        alert( "Кролик номер " + i );
       }
-    </script>
-    */!*
-  </head>
+    }
+  </script>
+*/!*
+</head>
 
-  <body>
-  
-    <h3>Нажмите на кнопку, чтобы начать</h3>
+<body>
 
-    <input type="button" onclick="count_rabbits()" value="Считать кроликов!"/>
+  <h3>Нажмите на кнопку, чтобы начать</h3>
 
-  </body>
+  <input type="button" onclick="count_rabbits()" value="Считать кроликов!" />
+
+</body>
 
 </html>
 ```

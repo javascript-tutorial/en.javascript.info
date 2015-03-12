@@ -3,7 +3,7 @@
 Она должна срабатывать не только при прокрутке, но и при загрузке. Вполне достаточно для этого -- указать ее вызов в скрипте под страницей, вот так:
 
 ```js
-... страница ...
+...страница...
 
 function isVisible(elem) {
 
@@ -20,7 +20,7 @@ function isVisible(elem) {
 
 
 *!*
-showVisible(); 
+showVisible();
 window.onscroll = showVisible;
 */!*
 ```

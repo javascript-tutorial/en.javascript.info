@@ -40,15 +40,14 @@
 
 <script>
   var iframe = document.body.children[0];
-  
+
   iframe.onload = function() {
     try {
-      alert(iframe.contentWindow.document);
-    } catch(e) {
-      alert("Ошибка: " + e.message);
+      alert( iframe.contentWindow.document );
+    } catch (e) {
+      alert( "Ошибка: " + e.message );
     }
   }
-
 </script>
 ```
 
@@ -68,21 +67,20 @@
 
 <script>
   var iframe = document.body.children[0];
-  
+
   iframe.onload = function() {
     try {
       // не сработает (чтение)
-      alert(iframe.contentWindow.location.href);
-    } catch(e) {
-      alert("Ошибка: " + e.message);
+      alert( iframe.contentWindow.location.href );
+    } catch (e) {
+      alert( "Ошибка: " + e.message );
     }
 
     // сработает (запись)
     iframe.contentWindow.location.href = 'http://wikipedia.org';
 
-    iframe.onload = null; 
+    iframe.onload = null;
   }
-
 </script>
 ```
 

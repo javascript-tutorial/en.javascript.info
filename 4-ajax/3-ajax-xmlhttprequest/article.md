@@ -18,27 +18,27 @@
 *!*
 // 1. Создаём новый объект XMLHttpRequest
 */!*
-var xhr = new XMLHttpRequest(); 
+var xhr = new XMLHttpRequest();
 
 *!*
 // 2. Конфигурируем его: GET-запрос на URL 'phones.json'
-xhr.open('GET', 'phones.json', false); 
+xhr.open('GET', 'phones.json', false);
 */!*
 
 *!*
 // 3. Отсылаем запрос
 */!*
-xhr.send(); 
+xhr.send();
 
 *!*
 // 4. Если код ответа сервера не 200, то это ошибка
 */!*
 if (xhr.status != 200) {
   // обработать ошибку
-  alert(xhr.status + ': ' + xhr.statusText); // пример вывода: 404: Not Found 
+  alert( xhr.status + ': ' + xhr.statusText ); // пример вывода: 404: Not Found 
 } else {
   // вывести результат
-  alert(xhr.responseText); // responseText -- текст ответа.
+  alert( xhr.responseText ); // responseText -- текст ответа.
 }
 ```
 
@@ -284,7 +284,7 @@ xhr.timeout = 30000; // 30 секунд (в миллисекундах)
 
 ```js
 xhr.ontimeout = function() {
-  alert('Извините, запрос превысил максимальное время');
+  alert( 'Извините, запрос превысил максимальное время' );
 }
 ```
 
@@ -370,7 +370,7 @@ xhr.onreadystatechange = function() {
 
   if (this.status != 200) {
     // обработать ошибку
-    alert('ошибка: ' + (this.status ? this.statusText || 'запрос не удался') );
+    alert( 'ошибка: ' + (this.status ? this.statusText || 'запрос не удался') );
     return;
   }
 

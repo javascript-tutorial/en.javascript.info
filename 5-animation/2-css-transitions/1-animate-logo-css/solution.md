@@ -2,10 +2,10 @@
 CSS-код для анимации одновременно `width` и `height`:
 ```css
 /* исходный класс */
+
 #flyjet {
   transition: all 3s;
 }
-
 /* JS добавляет .growing *.
 #flyjet.growing {
   width: 400px;

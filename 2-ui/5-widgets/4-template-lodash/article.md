@@ -13,6 +13,7 @@
 Ранее мы уже видели код `Menu`, который сам создаёт свой элемент:
 
 ```js
+//+ no-beautify
 function Menu(options) {
   // ... приведены только методы для генерации DOM ...
 
@@ -66,6 +67,7 @@ function Menu(options) {
 Пример шаблона для меню:
 
 ```html
+<!--+ no-beautify -->
 <div class="menu">
   <span class="title"><%-title%></span>
   <ul>
@@ -87,7 +89,7 @@ function Menu(options) {
 // сгенерировать HTML, используя шаблон tmpl (см. выше) 
 // с данными title и items
 */!*
-var html = _.template(tmpl)({ 
+var html = _.template(tmpl)({
   title: "Сладости",
   items: [
     "Торт",
@@ -180,7 +182,7 @@ alert( tmpl(data) ); // <span class="title">Заголовок</span>
 Например, вот шаблон для генерации списка от `1` до `count`:
 
 ```js
-//+ run
+//+ run no-beautify
 // используется \, чтобы объявить многострочную переменную-текст шаблона
 var tmpl = '<ul>\
   <% for (var i=1; i<=count; i++) { %> \
@@ -257,12 +259,13 @@ var template = document.getElementById('menu-template').innerHTML;
 //+ run
 var compiled = _.template("<h1><%=title%></h1>");
 
-alert( compiled ); 
+alert( compiled );
 ```
 
 Функция `compiled`, которую вернул вызов `_template` из этого примера, выглядит примерно так:
 
 ```js
+//+ no-beautify
 function(obj) { 
   obj || (obj = {}); 
   var __t, __p = '', __e = _.escape; 
@@ -297,7 +300,7 @@ function(obj) {
 Например:
 
 ```js
-//+ run
+//+ run no-beautify
 alert( _.template("<h1><%=menu.title%></h1>", {variable: "menu"}) );
 ```
 
@@ -331,6 +334,7 @@ function(*!*menu*/!*) {
 HTML (шаблоны):
 
 ```html
+<!--+ no-beautify -->
 <script type="text/template" id="menu-template">
 <div class="menu">
   <span class="title"><%-title%></span>
@@ -349,13 +353,13 @@ HTML (шаблоны):
 JS для создания меню:
 
 ```js
-var menu = new Menu({ 
+var menu = new Menu({
   title: "Сладости",
 *!*
   // передаём также шаблоны
 */!*
-  template: _.template( document.getElementById('menu-template').innerHTML),
-  listTemplate: _.template( document.getElementById('menu-list-template').innerHTML),
+  template: _.template(document.getElementById('menu-template').innerHTML),
+  listTemplate: _.template(document.getElementById('menu-list-template').innerHTML),
   items: [
     "Торт",
     "Пончик",
@@ -380,7 +384,9 @@ function Menu(options) {
   }
 
   function render() {
-    var html = options.template({title: options.title});
+    var html = options.template({
+      title: options.title
+    });
 
     elem = document.createElement('div');
     elem.innerHTML = html;
@@ -399,8 +405,10 @@ function Menu(options) {
 
   function renderItems() {
     if (elem.querySelector('ul')) return;
-    
-    var listHtml = options.listTemplate({items: options.items});
+
+    var listHtml = options.listTemplate({
+      items: options.items
+    });
     elem.insertAdjacentHTML("beforeEnd", listHtml);
   }
 
@@ -432,6 +440,7 @@ function Menu(options) {
 Здесь два шаблона. Первый мы уже разобрали, посмотрим теперь на список `ul/li`:
 
 ```html
+<!--+ no-beautify -->
 <ul>
   <% items.forEach(function(item) { %>
   <li><%-item%></li>
@@ -453,6 +462,7 @@ function Menu(options) {
 Вот функция, которую возвратит `_.template(tmpl)` для этого шаблона:
 
 ```js
+//+ no-beautify
 function(obj) {
   obj || (obj = {});
   var __t, __p = '', __e = _.escape;
@@ -485,7 +495,7 @@ function(obj) {
 Попробуйте сами запустить пример с открытыми инструментами разработчика и *включённой* опцией "остановка при ошибке":
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 
 <script type="text/template" id="menu-template">
@@ -523,6 +533,7 @@ function(obj) {
 Это, конечно, лучше чем ничего, но, как правило, его имеет смысл заменить `sourceURL` на свой, указав при компиляции дополнительный параметр `sourceURL`:
 
 ```js
+//+ no-beautify
 ...
 var compiled = _.template(tmpl, {sourceURL: '/template/menu-template'});
 ...

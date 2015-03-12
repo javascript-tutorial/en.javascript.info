@@ -3,11 +3,11 @@
 ```html
 <!--+ run -->
 <script>
-var body = document.body;
+  var body = document.body;
 
-body.innerHTML = "<!--" + body.tagName + "-->"; 
+  body.innerHTML = "<!--" + body.tagName + "-->";
 
-alert(body.firstChild.data); // BODY
+  alert( body.firstChild.data ); // BODY
 </script>
 ```
 

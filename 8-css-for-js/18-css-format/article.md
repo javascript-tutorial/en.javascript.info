@@ -8,13 +8,15 @@
 Так -- неверно:
 
 ```css
-##snapshot-box h2 { padding: 0 0 6px 0; font-weight: bold; position: absolute; left: 0; top: 0; }
+/*+ no-beautify */
+#snapshot-box h2 { padding: 0 0 6px 0; font-weight: bold; position: absolute; left: 0; top: 0; }
 ```
 
 Так -- правильно:
 
 ```css
-##snapshot-box h2 {
+/*+ no-beautify */
+#snapshot-box h2 {
   position: absolute;
   left: 0;
   top: 0;
@@ -30,7 +32,8 @@
 Неправильно:
 
 ```css
-##snapshot-box h2, #profile-box h2, #order-box h2 {
+/*+ no-beautify */
+#snapshot-box h2, #profile-box h2, #order-box h2 {
   padding: 0 0 6px 0; 
   font-weight: bold; 
 }
@@ -39,9 +42,10 @@
 Правильно:
 
 ```css
-##snapshot-box h2, 
-##profile-box h2, 
-##order-box h2 {
+/*+ no-beautify */
+#snapshot-box h2, 
+#profile-box h2, 
+#order-box h2 {
   padding: 0 0 6px 0; 
   font-weight: bold; 
 }
@@ -71,7 +75,8 @@
 Например:
 
 ```css
-##snapshot-box h2 {
+/*+ no-beautify */
+#snapshot-box h2 {
   position: absolute; /* позиционирование */
   left: 0;
   top: 0;
@@ -110,6 +115,7 @@ box-shadow:0 0 100px 20px #000;
 Этот CSS описывает общий вид страницы, расположение компонент и их дополнительную стилизацию, зависящую от места на странице и т.п.
 
 ```css
+/*+ no-beautify */
 .tab .profile { /* профиль внутри вкладки */
   float: left;
   width: 300px;

@@ -23,19 +23,19 @@
 ```js
 var links = document.querySelectorAll('a');
 
-for(var i=0; i<links.length; i++) {
+for (var i = 0; i < links.length; i++) {
 
-    var a = links[i];
+  var a = links[i];
 
-    var href = a.getAttribute('href'); 
+  var href = a.getAttribute('href');
 
-    if (!href) continue; // нет атрибута
+  if (!href) continue; // нет атрибута
 
-    if (href.indexOf('://') == -1) continue; // без протокола 
+  if (href.indexOf('://') == -1) continue; // без протокола 
 
-    if (href.indexOf('http://internal.com') === 0) continue; // внутренняя
+  if (href.indexOf('http://internal.com') === 0) continue; // внутренняя
 
-    a.classList.add('external');
+  a.classList.add('external');
 }
 ```
 
@@ -47,7 +47,7 @@ for(var i=0; i<links.length; i++) {
 var css = 'a[href*="://"]:not([href^="http://internal.com"])';
 var links = document.querySelectorAll(css);
 
-for(var i=0; i<links.length; i++) {
+for (var i = 0; i < links.length; i++) {
   links[i].classList.add('external');
 }
 ```

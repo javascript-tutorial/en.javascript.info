@@ -89,7 +89,7 @@ dot -Tsvg my.dot -o my.svg
 function User(name) {
 
   this.sayHi = function() {
-    alert(name);
+    alert( name );
   };
 
 }
@@ -139,13 +139,14 @@ var minIEVersion = 8;
 
 ```js
 function test(a, b) {
-   run(a, 'my'+'string', 600*600*5, 1 && 0, b && 0)
+  run(a, 'my' + 'string', 600 * 600 * 5, 1 && 0, b && 0)
 }
 ```
 
 После:
 
 ```js
+//+ no-beautify
 function test(a,b){run(a,"mystring",18E5,0,b&&0)};
 ```
 
@@ -169,6 +170,7 @@ function sayHi(*!*name*/!*, *!*message*/!*) {
 После оптимизации:
 
 ```js
+//+ no-beautify
 function sayHi(a,b){alert(a+" сказал: "+b)};
 ```
 
@@ -186,13 +188,14 @@ function sayHi(a,b){alert(a+" сказал: "+b)};
 function test(nodeId) {
   var elem = document.getElementsById(nodeId);
   var parent = elem.parentNode;
-  alert(parent);
+  alert( parent );
 }
 ```
 
 После оптимизации GCC:
 
 ```js
+//+ no-beautify
 function test(a){a=document.getElementsById(a).parentNode;alert(a)};
 ```
 
@@ -210,22 +213,23 @@ function test(a){a=document.getElementsById(a).parentNode;alert(a)};
 ```js
 function test(node) {
   var parent = node.parentNode;
-  
+
   if (0) {
-    alert("Привет с параллельной планеты");
+    alert( "Привет с параллельной планеты" );
   } else {
-    alert("Останется только один");
+    alert( "Останется только один" );
   }
 
   return;
 
-  alert(1);
+  alert( 1 );
 }
 ```
 
 После оптимизации:
 
 ```js
+//+ no-beautify
 function test(){alert("Останется только один")}
 ```
 
@@ -244,25 +248,26 @@ function test(){alert("Останется только один")}
 ```js
 var i = 0;
 while (i++ < 10) {
-  alert(i);
+  alert( i );
 }
 
 if (i) {
-  alert(i);
+  alert( i );
 }
 
-if (i=='1') {
-  alert(1);
-} else if(i == '2') {
-  alert(2);
+if (i == '1') {
+  alert( 1 );
+} else if (i == '2') {
+  alert( 2 );
 } else {
-  alert(i);
+  alert( i );
 }
 ```
 
 После оптимизации:
 
 ```js
+//+ no-beautify
 for(var i=0;10>i++;)alert(i);i&&alert(i);"1"==i?alert(1):"2"==i?alert(2):alert(i);
 ```
 
@@ -299,9 +304,9 @@ function sayHi(message) {
 После оптимизации (переводы строк также будут убраны):
 
 ```js
-function sayHi(b){
-  var a=document.createElement("div");
-  a.innerHTML=b;
+function sayHi(b) {
+  var a = document.createElement("div");
+  a.innerHTML = b;
   document.body.appendChild(a)
 };
 ```
@@ -323,43 +328,44 @@ function sayHi(b){
 
   window.sayHi = function() {
     if (isVisible) {
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-      alert(hi);
-    } 
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+      alert( hi );
+    }
   }
-  
+
 })();
 ```
 
 После оптимизации:
 
 ```js
-(function(){
-  window.sayHi=function(){
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-    alert("Привет вам из JavaScript");
-  };
-}})();
+(function() {
+    window.sayHi = function() {
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+      alert( "Привет вам из JavaScript" );
+    };
+  }
+})();
 ```
 
 <ul>
@@ -385,6 +391,7 @@ function sayHi(b){
 <li>Убираются лишние кавычки у ключей
 
 ```js
+//+ no-beautify
 {"prop" : "val" }   =>  {prop:"val"}
 ```
 
@@ -392,6 +399,7 @@ function sayHi(b){
 <li>Упрощаются простые вызовы `Array/Object`
 
 ```js
+//+ no-beautify
 a = new Array()   =>  a = []
 o = new Object()  => o = {}
 ```
@@ -414,6 +422,7 @@ o = new Object()  => o = {}
 Рассмотрим код:
 
 ```js
+//+ no-beautify
 function changePosition(style) {
   var position, test;
 
@@ -432,6 +441,7 @@ function changePosition(style) {
 Можно ли в такой ситуации заменить локальную переменную на более короткую? Очевидно, нет:
 
 ```js
+//+ no-beautify
 function changePosition(style) {
   var a, b;
 
@@ -446,6 +456,7 @@ function changePosition(style) {
 Такая же опасность для сжатия кроется в использованном `eval`. Ведь `eval` может обращаться к локальным переменным:
 
 ```js
+//+ no-beautify
 function f(code) {
   var myVar;
 
@@ -481,32 +492,22 @@ function f(code) {
 
 ```js
 //+ run
-var isIE /*@cc_on =true@*/;
+var isIE /*@cc_on =true@*/ ;
 
-alert(isIE); // true в IE.
+alert( isIE ); // true в IE10-
 ```
 
-Там же доступны и дополнительные директивы: `@_jscript_version`, `@if` и т.п., но речь здесь не о том.
-
-Для минификаторов этот "условный" комментарий -- всего лишь обычный комментарий. Они его удалят. Получится, что код не поймёт, где же IE.
-
-Что делать?
-
-<ol>
-<li>Первое и наиболее корректное решение -- не использовать условную компиляцию.</li>
-<li>Второе, если уж очень надо -- применить хак, завернуть его в `eval` или `new Function` (чтобы сжиматель не ругался):
+Можно хитро сделать, чтобы комментарий остался, например так:
 
 ```js
 //+ run
 var isIE = new Function('', '/*@cc_on return true@*/')();
 
-alert(isIE); // true в IE.
+alert( isIE ); // true в IE.
 ```
 
-</li>
-</ol>
 
-Ещё раз заметим, что в современных IE11+ эта компиляция не работает в любом случае.
+...Однако, с учётом того, что в современных IE11+ эта компиляция не работает в любом случае, лучше избавиться от неё вообще.
 
 В следующих главах мы посмотрим, какие продвинутые возможности есть в минификаторах, как сделать сжатие более эффективным.
 

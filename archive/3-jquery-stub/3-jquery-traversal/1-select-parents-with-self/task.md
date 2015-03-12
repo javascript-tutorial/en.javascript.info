@@ -8,11 +8,13 @@
 
 ```html
 <html>
-  <body>
-    <ul>
-      <li>Текст</li>
-    </ul>
-  </body>
+
+<body>
+  <ul>
+    <li>Текст</li>
+  </ul>
+</body>
+
 </html>
 ```
 

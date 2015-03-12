@@ -24,13 +24,16 @@
 ```html
 <!--+ run autorun -->
 <style>
-  body * { margin: 10px; border: 1px solid blue; }
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
 </style>
 
 <form onclick="alert('form')">FORM
-    <div onclick="alert('div')">DIV
-        <p onclick="alert('p')">P</p>
-    </div>
+  <div onclick="alert('div')">DIV
+    <p onclick="alert('p')">P</p>
+  </div>
 </form>
 ```
 
@@ -166,7 +169,7 @@ JS-код здесь такой:
 var elems = document.querySelectorAll('form,div,p');
 
 // на каждый элемент повесить обработчик на стадии перехвата
-for(var i=0; i<elems.length; i++) {
+for (var i = 0; i < elems.length; i++) {
   elems[i].addEventListener("click", highlightThis, true);
 }
 ```
@@ -176,7 +179,7 @@ for(var i=0; i<elems.length; i++) {
 ```js
 var elems = document.querySelectorAll('form,div,p');
 
-for(var i=0; i<elems.length; i++) {
+for (var i = 0; i < elems.length; i++) {
   elems[i].addEventListener("click", highlightThis, true);
   elems[i].addEventListener("click", highlightThis, false);
 }
@@ -218,6 +221,7 @@ elem.onclick = function(event) {
 <dd>Кросс-браузерно остановить всплытие можно так:
 
 ```js
+//+ no-beautify
 event.stopPropagation ? event.stopPropagation() : (event.cancelBubble=true);
 ```
 

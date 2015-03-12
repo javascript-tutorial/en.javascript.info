@@ -19,9 +19,9 @@
     <th colspan="3"><em>Bagua</em> Chart: Direction, Element, Color, Meaning</th>
   </tr>
   <tr>
-     <td>...<strong>Northwest</strong>...</td>
-     <td>...</td>
-     <td>...</td>
+    <td>...<strong>Northwest</strong>...</td>
+    <td>...</td>
+    <td>...</td>
   </tr>
   <tr>...еще 2 строки такого же вида...</tr>
   <tr>...еще 2 строки такого же вида...</tr>
@@ -44,7 +44,7 @@ var selectedTd;
 *!*
 table.onclick = function(event) {
   var target = event.target; // где был клик?
-  
+
   if (target.tagName != 'TD') return; // не на TD? тогда не интересует
 
   highlight(target); // подсветить TD
@@ -94,13 +94,13 @@ function highlight(node) {
 ```js
 table.onclick = function(event) {
   var target = event.target;
-  
+
   // цикл двигается вверх от target к родителям до table
-  while(target != table) { 
+  while (target != table) {
     if (target.tagName == 'TD') {
-       // нашли элемент, который нас интересует!
-       highlight(target);
-       return;
+      // нашли элемент, который нас интересует!
+      highlight(target);
+      return;
     }
     target = target.parentNode;
   }
@@ -115,7 +115,7 @@ table.onclick = function(event) {
 Кстати, в проверке `while` можно бы было использовать `this` вместо `table`:
 
 ```js
-while(target != this) {
+while (target != this) {
   // ...
 }
 ```
@@ -128,13 +128,13 @@ while(target != this) {
 ```js
 table.onclick = function(event) {
   var target = event.target;
-  
+
   var td = event.target.closest('td');
   if (!td) return; // клик вне <td>, не интересует
 
   // если клик на td, но вне этой таблицы (возможно при вложенных таблицах)
   // то не интересует
-  if (!table.contains(td)) return; 
+  if (!table.contains(td)) return;
 
   // нашли элемент, который нас интересует!
   highlight(td);
@@ -172,25 +172,31 @@ table.onclick = function(event) {
 </div>
 
 <script>
-function Menu(elem) {
-  this.save = function() { alert('сохраняю'); };
-  this.load = function() { alert('загружаю'); };
-  this.search = function() { alert('ищу'); };
+  function Menu(elem) {
+    this.save = function() {
+      alert( 'сохраняю' );
+    };
+    this.load = function() {
+      alert( 'загружаю' );
+    };
+    this.search = function() {
+      alert( 'ищу' );
+    };
 
-  var self = this;
+    var self = this;
 
-  elem.onclick = function(e) {
-    var target = e.target;
+    elem.onclick = function(e) {
+      var target = e.target;
 *!*
-    var action = target.getAttribute('data-action');
-    if (action) {
-      self[action]();
-    }
+      var action = target.getAttribute('data-action');
+      if (action) {
+        self[action]();
+      }
 */!*
-  };
-}
+    };
+  }
 
-new Menu(menu);
+  new Menu(menu);
 </script>
 ```
 

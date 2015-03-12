@@ -14,7 +14,7 @@ var voter = new Voter({
 voter.setVote(5);
 
 document.getElementById('voter').addEventListener('change', function(e) {
-  alert(e.detail); // новое значение голоса
+  alert( e.detail ); // новое значение голоса
 });
 ```
 

@@ -19,18 +19,20 @@
 
 ```html
 <!--+ run autorun="no-epub" -->
-  
-<p id="elem">Доброе утро, страна!</p>
+<p id="elem">
+  Доброе утро, страна!</p>
 
 <template id="tmpl">
-  <h3><content></content></h3> 
+  <h3><content></content></h3>
   <p>Привет из подполья!</p>
-  <script> document.write('...document.write:Новость!'); </script>
+  <script>
+    document.write('...document.write:Новость!');
+  </script>
 </template>
 
 <script>
   var root = elem.createShadowRoot();
-  root.appendChild( tmpl.content.cloneNode(true) );
+  root.appendChild(tmpl.content.cloneNode(true));
 </script>
 ```
 

@@ -22,7 +22,7 @@
 
 ```js
 showPrompt("Введите что-нибудь<br>... умное :)", function(value) {
-  alert(value);
+  alert( value );
 });
 ```
 

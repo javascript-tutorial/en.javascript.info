@@ -9,7 +9,7 @@
 ```js
 var voter = new StepVoter({
   elem: document.getElementById('voter'),
-  step: 2  // увеличивать/уменьшать сразу на 2 пункта
+  step: 2 // увеличивать/уменьшать сразу на 2 пункта
 });
 ```
 

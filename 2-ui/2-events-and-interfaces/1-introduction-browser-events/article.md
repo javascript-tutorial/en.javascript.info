@@ -106,12 +106,12 @@
 Пример установки обработчика `click`:
 
 ```html
-<input id="elem" type="button" value="Нажми меня"/>
+<input id="elem" type="button" value="Нажми меня" />
 <script>
 *!*
-elem.onclick = function() {
-    alert('Спасибо');
-};
+  elem.onclick = function() {
+    alert( 'Спасибо' );
+  };
 */!*
 </script>
 ```
@@ -137,12 +137,12 @@ elem.onclick = function() {
 
 ```html
 <!--+ run height=50 -->
-<input type="button" id="button" value="Кнопка"/>
+<input type="button" id="button" value="Кнопка" />
 <script>
 *!*
-button.onclick = function() {
-  alert('Клик!');
-};
+  button.onclick = function() {
+    alert( 'Клик!' );
+  };
 */!*
 </script>
 ```
@@ -156,12 +156,12 @@ button.onclick = function() {
 
 ```html
 <!--+ run height=50 autorun -->
-<input type="button" id="elem" onclick="alert('До')" value="Нажми меня"/>
+<input type="button" id="elem" onclick="alert('До')" value="Нажми меня" />
 <script>
 *!*
-elem.onclick = function() { // перезапишет существующий обработчик
-  alert('После'); // выведется только это
-};
+  elem.onclick = function() { // перезапишет существующий обработчик
+    alert( 'После' ); // выведется только это
+  };
 */!*
 </script>
 ```
@@ -170,7 +170,7 @@ elem.onclick = function() { // перезапишет существующий �
 
 ```js
 function sayThanks() {
-  alert('Спасибо!');
+  alert( 'Спасибо!' );
 }
 
 elem.onclick = sayThanks;
@@ -211,7 +211,7 @@ button.onclick = sayThanks;
 ...А вот в разметке как раз скобки нужны:
 
 ```html
-<input type="button" id="button" onclick="sayThanks()"/>
+<input type="button" id="button" onclick="sayThanks()" />
 ```
 
 Это различие просто объяснить. При создании обработчика браузером из атрибута, он автоматически создает функцию из его содержимого. Поэтому последний пример -- фактически то же самое, что:
@@ -219,7 +219,7 @@ button.onclick = sayThanks;
 ```js
 button.onclick = function() {
 *!*
-  sayThanks();  // содержимое атрибута
+  sayThanks(); // содержимое атрибута
 */!*
 };
 ```
@@ -234,7 +234,7 @@ button.onclick = function() {
 Такой вызов работать не будет:
 
 ```js
-//+ run
+//+ run no-beautify
 // при нажатии на body будут ошибки 
 // потому что при назначении в атрибут функция будет преобразована в строку
 document.body.setAttribute('onclick', function() { alert(1) });
@@ -255,6 +255,7 @@ document.body.setAttribute('onclick', function() { alert(1) });
 При этом новый обработчик будет затирать предыдущий. Например, следующий код на самом деле назначает один обработчик -- последний:
 
 ```js
+//+ no-beautify
 input.onclick = function() { alert(1); }
 // ...
 input.onclick = function() { alert(2); } // заменит предыдущий обработчик
@@ -269,7 +270,7 @@ input.onclick = function() { alert(2); } // заменит предыдущий 
 Назначение обработчика осуществляется вызовом `addEventListener` с тремя аргументами:
 
 ```js
-element.addEventListener( event, handler[, phase]);
+element.addEventListener(event, handler[, phase]);
 ```
 
 <dl>
@@ -285,7 +286,7 @@ element.addEventListener( event, handler[, phase]);
 
 ```js
 // передать те же аргументы, что были у addEventListener
-element.removeEventListener( event, handler[, phase]);
+element.removeEventListener(event, handler[, phase]);
 ```
 
 [warn header="Удаление требует именно ту же функцию"]
@@ -294,6 +295,7 @@ element.removeEventListener( event, handler[, phase]);
 Вот так `removeEventListener` не сработает:
 
 ```js
+//+ no-beautify
 elem.addEventListener( "click" , function() {alert('Спасибо!')});
 // .... 
 elem.removeEventListener( "click", function() {alert('Спасибо!')});
@@ -305,12 +307,12 @@ elem.removeEventListener( "click", function() {alert('Спасибо!')});
 
 ```js
 function handler() {
-  alert('Спасибо!');
+  alert( 'Спасибо!' );
 }
 
-input.addEventListener( "click", handler);
+input.addEventListener("click", handler);
 // .... 
-input.removeEventListener( "click", handler);
+input.removeEventListener("click", handler);
 ```
 
 Обратим внимание -- если функцию не сохранить где-либо, а просто передать в `addEventListener`, как в предыдущем коде, то потом получить её обратно, чтобы снять обработчик, будет невозможно. Нет метода, который позволяет считать обработчики событий, назанченные через `addEventListener`.
@@ -319,7 +321,7 @@ input.removeEventListener( "click", handler);
 Метод `addEventListener` позволяет добавлять несколько обработчиков на одно событие одного элемента, например:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <input id="elem" type="button" value="Нажми меня"/>
 
 <script>
@@ -357,6 +359,7 @@ input.removeEventListener( "click", handler);
     transition: width 1s;
     width: 100px;
   }
+  
   .wide {
     width: 300px;
   }
@@ -367,14 +370,14 @@ input.removeEventListener( "click", handler);
 </button>
 
 <script>
-  elem.ontransitionend = function() { 
-    alert("ontransitionend");  // не сработает
+  elem.ontransitionend = function() {
+    alert( "ontransitionend" ); // не сработает
   };
 
 *!*
   elem.addEventListener("transitionend", function() {
-    alert("addEventListener"); // сработает по окончании анимации
-  }, false);
+    alert( "addEventListener" ); // сработает по окончании анимации
+  });
 */!*
 </script>
 ```
@@ -390,24 +393,24 @@ input.removeEventListener( "click", handler);
 Назначение обработчика осуществляется вызовом `attachEvent`:
 
 ```js
-element.attachEvent( "on"+event, handler);
+element.attachEvent("on" + event, handler);
 ```
 
 Удаление обработчика -- вызовом `detachEvent`:
 
 ```js
-element.detachEvent( "on"+event, handler);
+element.detachEvent("on" + event, handler);
 ```
 
 Например:
 
 ```js
 function handler() {
-    alert('Спасибо!');
+  alert( 'Спасибо!' );
 }
-button.attachEvent( "onclick" , handler) // Назначение обработчика
-// .... 
-button.detachEvent( "onclick", handler) // Удаление обработчика
+button.attachEvent("onclick", handler) // Назначение обработчика
+  // .... 
+button.detachEvent("onclick", handler) // Удаление обработчика
 ```
 
 Как видите, почти то же самое, только событие должно включать префикс `on`.

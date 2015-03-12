@@ -37,7 +37,7 @@ var event = new Event(тип события[, флаги]);
 При просмотре примера ниже кнопка обработчик `onclick` на кнопке сработает сам по себе, событие генерируется скриптом:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <button id="elem" onclick="alert('Клик');">Автоклик</button>
 
 <script>
@@ -74,15 +74,17 @@ var event = new Event(тип события[, флаги]);
   setTimeout(hide, 2000);
 
   function hide() {
-    var event = new Event("hide", {cancelable: true});
+    var event = new Event("hide", {
+      cancelable: true
+    });
     if (!rabbit.dispatchEvent(event)) {
-      alert('действие отменено');
+      alert( 'действие отменено' );
     } else {
       rabbit.hidden = true;
     }
   }
 
-  rabbit.addEventListener('hide',  function(event) {
+  rabbit.addEventListener('hide', function(event) {
     if (confirm("Вызвать preventDefault?")) {
       event.preventDefault();
     }
@@ -112,6 +114,7 @@ var event = new Event(тип события[, флаги]);
 Другие свойства события, если они нужны, например координаты для события мыши -- можно присвоить в объект события позже, например:
 
 ```js
+//+ no-beautify
 var event = new Event("click", {bubbles: true, cancelable: false});
 event.clientX = 100;
 event.clientY = 100;
@@ -124,7 +127,7 @@ event.clientY = 100;
 Всё, что для этого нужно -- это флаг `bubbles`:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <h1 id="elem">Привет от скрипта!</h1>
 
 <script>
@@ -179,7 +182,7 @@ var e = new MouseEvent("click", {
 });
 
 *!*
-alert(e.clientX); // 100
+alert( e.clientX ); // 100
 */!*
 ```
 
@@ -195,7 +198,7 @@ var e = new Event("click", {
 });
 
 *!*
-alert(e.clientX); // undefined, свойство не присвоено!
+alert( e.clientX ); // undefined, свойство не присвоено!
 */!*
 ```
 
@@ -275,7 +278,10 @@ event.initEvent(type, boolean bubbles, boolean cancelable);
 
 ```js
 // современный стандарт
-var event = new Event("click", { bubbles: true, cancelable: true });
+var event = new Event("click", {
+  bubbles: true,
+  cancelable: true
+});
 
 // старый стандарт
 var event = document.createEvent("Event");
@@ -291,9 +297,9 @@ event.initEvent("click", true, true);
 <h1 id="elem">Привет от скрипта!</h1>
 
 <script>
-  document.addEventListener("hello", function(event) { 
-    alert("Привет");
-    event.preventDefault();  
+  document.addEventListener("hello", function(event) {
+    alert( "Привет" );
+    event.preventDefault();
   }, false);
 
 *!*
@@ -302,9 +308,8 @@ event.initEvent("click", true, true);
 */!*
 
   if (elem.dispatchEvent(event) === false) {
-    alert('Событие было отменено preventDefault');
+    alert( 'Событие было отменено preventDefault' );
   }
-
 </script>
 ```
 
@@ -318,22 +323,22 @@ event.initEvent("click", true, true);
 Выглядят они немного страшновато, например (взято из [спецификации](http://www.w3.org/TR/DOM-Level-3-Events/#idl-interface-MouseEvent-initializers)):
 
 ```js
-void initMouseEvent ( 
-  DOMString typeArg,  // тип
-  boolean bubblesArg,  // всплывает?
-  boolean cancelableArg,  // можно отменить?
-  AbstractView? viewArg, // объект window, null означает текущее окно
-  long detailArg,   // свойство detail и другие...
-  long screenXArg,   
-  long screenYArg,  
-  long clientXArg,  
-  long clientYArg, 
-  boolean ctrlKeyArg, 
-  boolean altKeyArg, 
-  boolean shiftKeyArg, 
-  boolean metaKeyArg, 
-  unsigned short buttonArg, 
-  EventTarget? relatedTargetArg);
+void initMouseEvent(
+  DOMString typeArg, // тип
+  boolean bubblesArg, // всплывает?
+  boolean cancelableArg, // можно отменить?
+  AbstractView ? viewArg, // объект window, null означает текущее окно
+  long detailArg, // свойство detail и другие...
+  long screenXArg,
+  long screenYArg,
+  long clientXArg,
+  long clientYArg,
+  boolean ctrlKeyArg,
+  boolean altKeyArg,
+  boolean shiftKeyArg,
+  boolean metaKeyArg,
+  unsigned short buttonArg,
+  EventTarget ? relatedTargetArg);
 };
 ```
 
@@ -345,7 +350,7 @@ void initMouseEvent (
 
 <script>
   elem.onclick = function(e) {
-    alert('Клик на координатах ' + e.clientX + ':' + e.clientY);
+    alert( 'Клик на координатах ' + e.clientX + ':' + e.clientY );
   };
 
   var event = document.createEvent("MouseEvent");
@@ -371,9 +376,9 @@ try {
   window.CustomEvent = function(event, params) {
     var evt;
     params = params || {
-      bubbles:    false,
+      bubbles: false,
       cancelable: false,
-      detail:     undefined
+      detail: undefined
     };
     evt = document.createEvent("CustomEvent");
     evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
@@ -399,15 +404,15 @@ try {
 
 <script>
   document.body.onclick = function() {
-    alert("Клик, event.type=" + event.type);
+    alert( "Клик, event.type=" + event.type );
     return false;
   };
 
 *!*
   var event = document.createEventObject();
-  if( !elem.fireEvent("onclick", event) ) {
-    alert('Событие было отменено');
-  } 
+  if (!elem.fireEvent("onclick", event)) {
+    alert( 'Событие было отменено' );
+  }
 */!*
 </script>
 ```

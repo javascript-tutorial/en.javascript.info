@@ -49,13 +49,13 @@
   var iframe = document.getElementsByTagName('iframe')[0];
 
   // сработает
-  iframe.onload = function() { 
-    alert("iframe onload"); 
+  iframe.onload = function() {
+    alert( "iframe onload" );
   };
 
   // не сработает
-  iframe.contentWindow.onload = function() { 
-    alert("contentWindow onload"); 
+  iframe.contentWindow.onload = function() {
+    alert( "contentWindow onload" );
   };
 </script>
 ```
@@ -80,13 +80,13 @@
 <!--+ run -->
 <iframe src="javascript:''" style="height:80px" name="i"></iframe>
 
-<script>  
+<script>
   var iframeTag = document.body.children[0];
 
   var iframeWindow = iframe.contentWindow; // окно из тега
 
-  alert(frames[0] === iframeWindow); // true, окно из коллекции frames
-  alert(frames.i == iframeWindow); // true, окно из frames по имени
+  alert( frames[0] === iframeWindow ); // true, окно из коллекции frames
+  alert( frames.i == iframeWindow ); // true, окно из frames по имени
 </script>
 ```
 
@@ -122,9 +122,9 @@ window.frames[0].frames[0].frames[0].top === window
 ```js
 //+ run
 if (window == top) {
-  alert('Этот скрипт является окном верхнего уровня в браузере');
+  alert( 'Этот скрипт является окном верхнего уровня в браузере' );
 } else {
-  alert('Этот скрипт исполняется во фрейме!');
+  alert( 'Этот скрипт исполняется во фрейме!' );
 }
 ```
 

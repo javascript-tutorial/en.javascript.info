@@ -25,8 +25,8 @@ var coords3 = [coords.left + field.clientLeft, coords.top + field.clientTop];
 
 ```js
 var coords4 = [
-  coords.right - parseInt(getComputedStyle(field).borderRightWidth) ,
-  coords.bottom - parseInt(getComputedStyle(field).borderBottomWidth) 
+  coords.right - parseInt(getComputedStyle(field).borderRightWidth),
+  coords.bottom - parseInt(getComputedStyle(field).borderBottomWidth)
 ]
 ```
 
@@ -34,7 +34,7 @@ var coords4 = [
 
 ```js
 var coords4 = [
-  coords.left + elem.clientLeft + elem.clientWidth ,
+  coords.left + elem.clientLeft + elem.clientWidth,
   coords.top + elem.clientTop + elem.clientHeight
 ]
 ```

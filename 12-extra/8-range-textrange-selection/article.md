@@ -50,25 +50,25 @@ HTML:
 </button>
 
 <script>
-function domRangeCreate() {
-  // Найдем корневой контейнер
-  var root = document.getElementById('ex2');
-  // Найдем контейнеры граничных точек (в данном случае тестовые)
-  var start = root.getElementsByTagName('h2')[0].firstChild;
-  var end = root.getElementsByTagName('p')[0].firstChild;
-  if (root.createRange) {
-    // Создаем Range
-    var rng = root.createRange();
-    // Задаем верхнюю граничную точку, передав контейнер и смещение
-    rng.setStart( start, 3 );
-    // Аналогично для нижней границы
-    rng.setEnd( end, 10 );
-    // Теперь мы можем вернуть текст, который содержится в полученной области
-    return rng.toString();
-  } else {
-    return 'Вероятно, у вас IE8-, смотрите реализацию TextRange ниже';
+  function domRangeCreate() {
+    // Найдем корневой контейнер
+    var root = document.getElementById('ex2');
+    // Найдем контейнеры граничных точек (в данном случае тестовые)
+    var start = root.getElementsByTagName('h2')[0].firstChild;
+    var end = root.getElementsByTagName('p')[0].firstChild;
+    if (root.createRange) {
+      // Создаем Range
+      var rng = root.createRange();
+      // Задаем верхнюю граничную точку, передав контейнер и смещение
+      rng.setStart(start, 3);
+      // Аналогично для нижней границы
+      rng.setEnd(end, 10);
+      // Теперь мы можем вернуть текст, который содержится в полученной области
+      return rng.toString();
+    } else {
+      return 'Вероятно, у вас IE8-, смотрите реализацию TextRange ниже';
+    }
   }
-}
 </script>
 ```
 
@@ -99,9 +99,9 @@ function domRangeCreate() {
 ```js
 var rng = document.createRange();
 // Установит верхнюю граничную точку по левой границе спана #s1
-rng.setStartBefore( document.getElementById('s1') );
+rng.setStartBefore(document.getElementById('s1'));
 // Установит нижнюю граничную точку по правой границе спана #s2
-rng.setEndAfter( document.getElementById('s2') );
+rng.setEndAfter(document.getElementById('s2'));
 ```
 
 </li>
@@ -129,32 +129,32 @@ rng.setEndAfter( document.getElementById('s2') );
 </div>
 
 <script>
-function domRangeHighlight(text) {
-  // Получим текстовый узел
-  var root = document.getElementById('ex3').firstChild;
-  // и его содержимое
-  var content = root.nodeValue;
-  // Проверим есть ли совпадения с переданным текстом
-  if ( ~content.indexOf( text ) ) {
-    if ( document.createRange ) {
-      // Если есть совпадение, и браузер поддерживает Range, создаем объект
-      var rng = document.createRange();
-      // Ставим верхнюю границу по индексу совпадения,
-      rng.setStart( root, content.indexOf( text ) );
-      // а нижнюю по индексу + длина текста
-      rng.setEnd( root, content.indexOf( text ) + text.length );
-      // Создаем спан с синим фоном
-      var highlightDiv = document.createElement('span');
-      highlightDiv.style.backgroundColor = 'blue';
-      // Обернем наш Range в спан
-      rng.surroundContents( highlightDiv );
+  function domRangeHighlight(text) {
+    // Получим текстовый узел
+    var root = document.getElementById('ex3').firstChild;
+    // и его содержимое
+    var content = root.nodeValue;
+    // Проверим есть ли совпадения с переданным текстом
+    if (~content.indexOf(text)) {
+      if (document.createRange) {
+        // Если есть совпадение, и браузер поддерживает Range, создаем объект
+        var rng = document.createRange();
+        // Ставим верхнюю границу по индексу совпадения,
+        rng.setStart(root, content.indexOf(text));
+        // а нижнюю по индексу + длина текста
+        rng.setEnd(root, content.indexOf(text) + text.length);
+        // Создаем спан с синим фоном
+        var highlightDiv = document.createElement('span');
+        highlightDiv.style.backgroundColor = 'blue';
+        // Обернем наш Range в спан
+        rng.surroundContents(highlightDiv);
+      } else {
+        alert( 'Вероятно, у вас IE8-, смотрите реализацию TextRange ниже' );
+      }
     } else {
-      alert('Вероятно, у вас IE8-, смотрите реализацию TextRange ниже');
+      alert( 'Совпадений не найдено' );
     }
-  } else {
-    alert('Совпадений не найдено');
   }
-}
 </script>
 ```
 
@@ -177,19 +177,19 @@ function domRangeHighlight(text) {
 <input id="buttonId" type="button" value="Test button" onclick="alert( ieTextRangeCreate() );" />
 
 <script>
-function ieTextRangeCreate() {
-  // Найдем кнопку
-  var button = document.getElementById('buttonId');
-  // Если мы в ИЕ
-  if ( button.createTextRange && button.createTextRange() != undefined ) {
-    // Создаем TextRange
-    var rng = button.createTextRange();
-    // И вернем текстовое содержимое полученного объекта
-    return rng.text;
-  } else {
-    return 'Вероятно, у вас не IE, смотрите реализацию Range выше';
+  function ieTextRangeCreate() {
+    // Найдем кнопку
+    var button = document.getElementById('buttonId');
+    // Если мы в ИЕ
+    if (button.createTextRange && button.createTextRange() != undefined) {
+      // Создаем TextRange
+      var rng = button.createTextRange();
+      // И вернем текстовое содержимое полученного объекта
+      return rng.text;
+    } else {
+      return 'Вероятно, у вас не IE, смотрите реализацию Range выше';
+    }
   }
-}
 </script>
 ```
 
@@ -239,30 +239,30 @@ function ieTextRangeCreate() {
 </div>
 
 <script>
-function ieTextRangeHighlight(text) {
-  // Получим ссылку на элемент, в котором будет происходить поиск
-  var root = document.getElementById('ex4');
-  // Получим значение его текстового потомка
-  var content = root.firstChild.nodeValue;
-  // Если есть совпадение
-  if ( ~content.indexOf(text) ) {
-    // и мы в MSIE
-    if ( document.body.createTextRange ) {
-      // Создадим объект TextRange
-      var rng = document.body.createTextRange();
-      // Свернем его до root
-      rng.moveToElementText( root );
-      // Найдем текст и свернем диапазон до него
-      if ( rng.findText( text ) )
+  function ieTextRangeHighlight(text) {
+    // Получим ссылку на элемент, в котором будет происходить поиск
+    var root = document.getElementById('ex4');
+    // Получим значение его текстового потомка
+    var content = root.firstChild.nodeValue;
+    // Если есть совпадение
+    if (~content.indexOf(text)) {
+      // и мы в MSIE
+      if (document.body.createTextRange) {
+        // Создадим объект TextRange
+        var rng = document.body.createTextRange();
+        // Свернем его до root
+        rng.moveToElementText(root);
+        // Найдем текст и свернем диапазон до него
+        if (rng.findText(text))
         // Заменим текстовый фрагмент на span с синим фоном
-        rng.pasteHTML( '<span style="background:blue;">' + text + '</span>' );
+          rng.pasteHTML('<span style="background:blue;">' + text + '</span>');
+      } else {
+        alert( 'Вероятно, у вас не  IE, смотрите реализацию Range выше' );
+      }
     } else {
-      alert('Вероятно, у вас не  IE, смотрите реализацию Range выше');
+      alert( 'Совпадений не найдено' );
     }
-  } else {
-    alert('Совпадений не найдено');
   }
-}
 </script>
 ```
 
@@ -281,6 +281,7 @@ function ieTextRangeHighlight(text) {
 Эту задачу мы уже решали в самом начале статьи <a href="#demo-mix">в примере с миксом</a>. Теперь рассмотрим код:
 
 ```js
+//+ no-beautify
 function getSelectionText() {
   var txt = '';
   if (txt = window.getSelection) // Не IE, используем метод getSelection
@@ -342,21 +343,21 @@ IE предоставляет собственный интерфейс взаи
 </div>
 
 <script>
-function setSelection() {
-  var target = document.getElementById('ex5').getElementsByTagName('span')[0];
-  var rng, sel;
-  if ( document.createRange ) {
-    rng = document.createRange();
-    rng.selectNode( target )
-    sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange( rng );
-  } else {
-    var rng = document.body.createTextRange();
-    rng.moveToElementText( target );
-    rng.select();
+  function setSelection() {
+    var target = document.getElementById('ex5').getElementsByTagName('span')[0];
+    var rng, sel;
+    if (document.createRange) {
+      rng = document.createRange();
+      rng.selectNode(target)
+      sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(rng);
+    } else {
+      var rng = document.body.createTextRange();
+      rng.moveToElementText(target);
+      rng.select();
+    }
   }
-}
 </script>
 ```
 
@@ -372,7 +373,7 @@ function clearSelection() {
   try {
     // современный объект Selection
     window.getSelection().removeAllRanges();
-  } catch(e) {
+  } catch (e) {
     // для IE8-
     document.selection.empty();
   }
@@ -393,15 +394,15 @@ function clearSelection() {
 
 ```js
   var range = getRangeObject();
-  if(range) {
-    alert(range);
-    alert(range.startContainer.nodeValue);
-    alert(range.startOffset);
-    alert(range.endOffset);
+  if (range) {
+    alert( range );
+    alert( range.startContainer.nodeValue );
+    alert( range.startOffset );
+    alert( range.endOffset );
   } else {
-    alert('Ничего не выделено');
+    alert( 'Ничего не выделено' );
   }
-}
+  }
 ```
 
 В действии:

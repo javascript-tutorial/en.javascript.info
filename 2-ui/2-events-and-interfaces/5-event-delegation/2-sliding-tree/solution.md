@@ -11,18 +11,20 @@
 ```html
 <!--+ autorun height=190 untrusted -->
 <style>
-li { border: 1px solid green; }
+  li {
+    border: 1px solid green;
+  }
 </style>
 
 <ul onclick="alert(event.target)">
-<li>Млекопетающие
-  <ul>
-    <li>Коровы</li>
-    <li>Ослы</li>
-    <li>Собаки</li>
-    <li>Тигры</li>
-  </ul>
-</li>
+  <li>Млекопетающие
+    <ul>
+      <li>Коровы</li>
+      <li>Ослы</li>
+      <li>Собаки</li>
+      <li>Тигры</li>
+    </ul>
+  </li>
 </ul>
 ```
 
@@ -41,9 +43,9 @@ var treeUl = document.getElementsByTagName('ul')[0];
 
 var treeLis = treeUl.getElementsByTagName('li');
 
-for(var i=0; i<treeLis.length; i++) {
+for (var i = 0; i < treeLis.length; i++) {
   var li = treeLis[i];
-  
+
   var span = document.createElement('span');
   li.insertBefore(span, li.firstChild); // добавить пустой SPAN
   span.appendChild(span.nextSibling); // переместить в него заголовок
@@ -57,18 +59,20 @@ for(var i=0; i<treeLis.length; i++) {
 ```html
 <!--+ autorun height=190 untrusted -->
 <style>
-span { border: 1px solid red; }
+  span {
+    border: 1px solid red;
+  }
 </style>
 
 <ul onclick="alert(event.target.tagName)">
-<li><span>Млекопетающие</span>
-  <ul>
-    <li><span>Коровы</span></li>
-    <li><span>Ослы</span></li>
-    <li><span>Собаки</span></li>
-    <li><span>Тигры</span></li>
-  </ul>
-</li>
+  <li><span>Млекопетающие</span>
+    <ul>
+      <li><span>Коровы</span></li>
+      <li><span>Ослы</span></li>
+      <li><span>Собаки</span></li>
+      <li><span>Тигры</span></li>
+    </ul>
+  </li>
 </ul>
 ```
 
@@ -88,10 +92,10 @@ var tree = document.getElementsByTagName('ul')[0];
 tree.onclick = function(event) {
   var target = event.target;
 
-  if (target.tagName != 'SPAN') {    
+  if (target.tagName != 'SPAN') {
     return; // клик был не на заголовке
   }
-    
+
   var li = target.parentNode; // получить родительский LI
 
   // получить UL с потомками -- это первый UL внутри LI

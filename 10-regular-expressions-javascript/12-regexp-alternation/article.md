@@ -14,7 +14,7 @@ var reg = /html|php|css|java(script)?/gi
 
 var str = "Сначала появился HTML, затем CSS, потом JavaScript"
 
-alert( str.match(reg) )  // 'HTML', 'CSS', 'JavaScript'
+alert(str.match(reg)) // 'HTML', 'CSS', 'JavaScript'
 ```
 
 **Альтернация имеет очень низкий приоритет.**

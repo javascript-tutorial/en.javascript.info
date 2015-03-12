@@ -13,9 +13,11 @@
 ```html
 <body>
 
-  <div id="widget" data-widget-name="menu">Выберите жанр</div>  
+  <div id="widget" data-widget-name="menu">Выберите жанр</div>
 
-  <script>/* ... */</script>
+  <script>
+    /* ... */
+  </script>
 </body>
 ```
 

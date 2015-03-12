@@ -4,7 +4,7 @@
 
 У такого выделения есть два эффекта:
 <ol>
-<li>Он позволяет выделить часть совпадения в отдельный элемент массива при поиске через [:String#match] или [:RegExp#exec].</li>
+<li>Он позволяет выделить часть совпадения в отдельный элемент массива при поиске через [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) или [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).</li>
 <li>Если поставить квантификатор после скобки, то он применится *ко всей скобке*, а не всего лишь к одному символу.</li>
 </ol>
 
@@ -13,7 +13,7 @@
 
 ```js
 //+ run
-alert( 'Gogogo now!'.match( /(go)+/i );  // "Gogogo"
+alert( 'Gogogo now!'.match(/(go)+/i ); // "Gogogo"
 ```
 
 Без скобок, шаблон <code class="pattern">/go+/</code> означал бы <code class="subject">g</code>, после которого идёт одна или более <code class="subject">o</code>, например: <code class="match">goooo</code>.
@@ -25,17 +25,17 @@ alert( 'Gogogo now!'.match( /(go)+/i );  // "Gogogo"
 
 Для удобства заключим его в скобки: <code class="pattern">&lt;(.*?)&gt;</code>. Тогда содержимое скобок можно будет получить отдельно.
 
-Используем метод [:String#match]. В результирующем массиве будет сначала всё совпадение, а далее -- скобочные группы, в данном случае -- только одна:
+Используем метод [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match). В результирующем массиве будет сначала всё совпадение, а далее -- скобочные группы, в данном случае -- только одна:
 
 ```js
 //+ run
 var str = '<h1>Привет, мир!</h1>'
-var reg = /<(.*?)>/ 
+var reg = /<(.*?)>/
 
-alert( str.match(reg) ) // массив: <h1>, h1
+alert(str.match(reg)) // массив: <h1>, h1
 ```
 
-Для поиска всех совпадений, как мы обсуждали ранее, используется метод [:RegExp#exec].
+Для поиска всех совпадений, как мы обсуждали ранее, используется метод [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec).
 
 **Скобки могут быть и вложенными. В этом случае нумерация также идёт слева направо.**
 
@@ -49,7 +49,7 @@ var str = '<span class="my">';
 
 reg = /<(([a-z])[a-z0-9]*).*?>/;
 
-alert( str.match(reg) );  // <span class="my">, span, s
+alert( str.match(reg) ); // <span class="my">, span, s
 ```
 
 Вот так выглядят скобочные группы:
@@ -65,12 +65,12 @@ alert( str.match(reg) );  // <span class="my">, span, s
 
 ```js
 //+ run
-match = 'a'.match( /a(z)?(c)?/ )  
+match = 'a'.match(/a(z)?(c)?/)
 
-alert(match.length); // 3
-alert(match[0]); // a
-alert(match[1]); // undefined
-alert(match[2]); // undefined
+alert( match.length ); // 3
+alert( match[0] ); // a
+alert( match[1] ); // undefined
+alert( match[2] ); // undefined
 ```
 
 Массив получился длины `3`, но все скобочные группы -- `undefined`.
@@ -79,12 +79,12 @@ alert(match[2]); // undefined
 
 ```js
 //+ run
-match = 'ack'.match( /a(z)?(c)?/ )  
+match = 'ack'.match(/a(z)?(c)?/)
 
-alert(match.length); // 3
-alert(match[0]); // ac, всё совпадение
-alert(match[1]); // undefined, для (z)? ничего нет
-alert(match[2]); // c
+alert( match.length ); // 3
+alert( match[0] ); // ac, всё совпадение
+alert( match[1] ); // undefined, для (z)? ничего нет
+alert( match[2] ); // c
 ```
 
 Длина массива результатов по-прежнему `3`. Она постоянна. А вот для скобочной группы <code class="pattern">(z)?</code> в ней ничего нет.

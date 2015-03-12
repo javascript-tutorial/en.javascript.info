@@ -27,16 +27,16 @@
 <button id="color">Кликни меня</button>
 
 <style>
-#color {
-  transition-property: background-color;
-  transition-duration: 3s;
-}
+  #color {
+    transition-property: background-color;
+    transition-duration: 3s;
+  }
 </style>
 
 <script>
-color.onclick = function() {
-  this.style.backgroundColor = 'red';
-}
+  color.onclick = function() {
+    this.style.backgroundColor = 'red';
+  }
 </script>
 ```
 
@@ -53,7 +53,7 @@ color.onclick = function() {
 Например, при клике на эту кнопку анимируются одновременно цвет и размер шрифта:
 
 ```html
-<!--+ run height=80 autorun -->
+<!--+ run height=80 autorun  no-beautify -->
 <button id="growing">Кликни меня</button>
 
 <style>
@@ -97,7 +97,7 @@ growing.onclick = function() {
 Она осуществляется сменой `margin-left` у элемента с цифрами, примерно так:
 
 ```css
-#stripe.animate  {
+#stripe.animate {
   margin-left: -174px;
   transition-property: margin-left;
   transition-duration: 9s;
@@ -355,7 +355,7 @@ boat.onclick = function() {
   boat.addEventListener('transitionend', function() {
     times++;
     go();
-  }); 
+  });
 };
 ```
 
@@ -380,31 +380,40 @@ boat.onclick = function() {
 
 ```html
 <!--+ run height=60 -->
-
-<div class="progress"></div>
+<div class="progress">
+</div>
 
 <style>
-/* Chrome, Opera, Safari */
-@-webkit-keyframes MY-ANIMATION-NAME {
-  from { left:0px; }
-  to { left:300px; }
-}
-
-/* Other browsers, except IE9- */
-@keyframes MY-ANIMATION-NAME {
-  from { left:0px; }
-  to { left:300px; }
-}
-
-.progress {
-  position: relative;
-  animation: MY-ANIMATION-NAME 3s infinite alternate;
-  -webkit-animation: MY-ANIMATION-NAME 3s infinite alternate;
-  border: 2px solid green;
-  width: 50px;
-  height: 20px;
-  background: lime;
-}
+  /* Chrome, Opera, Safari */
+  
+  @-webkit-keyframes MY-ANIMATION-NAME {
+    from {
+      left: 0px;
+    }
+    to {
+      left: 300px;
+    }
+  }
+  /* Other browsers, except IE9- */
+  
+  @keyframes MY-ANIMATION-NAME {
+    from {
+      left: 0px;
+    }
+    to {
+      left: 300px;
+    }
+  }
+  
+  .progress {
+    position: relative;
+    animation: MY-ANIMATION-NAME 3s infinite alternate;
+    -webkit-animation: MY-ANIMATION-NAME 3s infinite alternate;
+    border: 2px solid green;
+    width: 50px;
+    height: 20px;
+    background: lime;
+  }
 </style>
 ```
 

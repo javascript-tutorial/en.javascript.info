@@ -13,11 +13,11 @@
 alert( document.cookie );
 ```
 
-Эта строка состоит из пар `ключ=значение`, которые перечисляются через точку с запятой с пробелом `; `. 
+Эта строка состоит из пар `ключ=значение`, которые перечисляются через точку с запятой с пробелом `"; "`. 
 
-Значит, чтобы прочитать cookie, достаточно разбить строку по `; `, и затем найти нужный ключ. Это можно делать либо через `split` и работу с массивом, либо через регулярное выражение.
+Значит, чтобы прочитать cookie, достаточно разбить строку по `"; "`, и затем найти нужный ключ. Это можно делать либо через `split` и работу с массивом, либо через регулярное выражение.
 
-### Функция getCookie(name)
+## Функция getCookie(name)
 
 Следующая функция `getCookie(name)` возвращает cookie с именем `name`:
 
@@ -63,7 +63,7 @@ document.cookie = "userName=Vasya";
 ```js
 // +1 день от текущего момента
 var date = new Date;
-date.setDate( date.getDate() + 1 );
+date.setDate(date.getDate() + 1);
 alert( date.toUTCString() );
 ```
 
@@ -78,8 +78,8 @@ alert( date.toUTCString() );
 
 ```js
 //+ run
-var date = new Date( new Date().getTime() + 60*1000 );
-document.cookie="name=value; path=/; expires="+date.toUTCString();
+var date = new Date(new Date().getTime() + 60 * 1000);
+document.cookie = "name=value; path=/; expires=" + date.toUTCString();
 ```
 
 Чтобы удалить это cookie:
@@ -87,12 +87,12 @@ document.cookie="name=value; path=/; expires="+date.toUTCString();
 ```js
 //+ run
 var date = new Date(0);
-document.cookie="name=; path=/; expires="+date.toUTCString();
+document.cookie = "name=; path=/; expires=" + date.toUTCString();
 ```
 
 При удалении значение не важно. Можно его не указывать, как сделано в коде выше.
 
-### Функция setCookie(name, value, options)
+## Функция setCookie(name, value, options)
 
 Если собрать все настройки воедино, вот такая функция ставит куки:
 
@@ -104,23 +104,23 @@ function setCookie(name, value, options) {
 
   if (typeof expires == "number" && expires) {
     var d = new Date();
-    d.setTime(d.getTime() + expires*1000);
+    d.setTime(d.getTime() + expires * 1000);
     expires = options.expires = d;
   }
-  if (expires && expires.toUTCString) { 
-  	options.expires = expires.toUTCString();
+  if (expires && expires.toUTCString) {
+    options.expires = expires.toUTCString();
   }
 
   value = encodeURIComponent(value);
 
   var updatedCookie = name + "=" + value;
 
-  for(var propName in options) {
+  for (var propName in options) {
     updatedCookie += "; " + propName;
-    var propValue = options[propName];    
-    if (propValue !== true) { 
+    var propValue = options[propName];
+    if (propValue !== true) {
       updatedCookie += "=" + propValue;
-     }
+    }
   }
 
   document.cookie = updatedCookie;
@@ -137,7 +137,7 @@ function setCookie(name, value, options) {
 <dt>expires</dt><dd>Время истечения cookie. Интерпретируется по-разному, в зависимости от типа:
 <ul>
 <li>Число -- количество секунд до истечения. Например, `expires: 3600` -- кука на час.</li>
-<li>Объект типа [:Date] -- дата истечения.</li>
+<li>Объект типа [Date](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Date) -- дата истечения.</li>
 <li>Если expires в прошлом, то cookie будет удалено.</li>
 <li>Если expires отсутствует или `0`, то cookie будет установлено как сессионное и исчезнет при закрытии браузера.</li>
 </ul>
@@ -149,13 +149,15 @@ function setCookie(name, value, options) {
 </dd>
 </dl>
 
-### Функция deleteCookie(name)
+## Функция deleteCookie(name)
 
 Здесь всё просто -- удаляем вызовом `setCookie` с датой в прошлом.
 
 ```js
 function deleteCookie(name) {
-  setCookie(name, "", { expires: -1 })
+  setCookie(name, "", {
+    expires: -1
+  })
 }
 ```
 
@@ -241,13 +243,13 @@ function deleteCookie(name) {
 ```js
 //+ run
 if (!navigator.cookieEnabled) {
-  alert('Включите cookie для комфортной работы с этим сайтом');
+  alert( 'Включите cookie для комфортной работы с этим сайтом' );
 }
 ```
 
 ...Конечно, предполагается, что включён JavaScript. Впрочем, посетитель без JS и cookie с большой вероятностью не человек, а бот.</li> 
 </ul>
 
-## Cookie.js
+## Итого
 
-Файл с функциями для работы с cookie: [cookie.js](/files/tutorial/browser/cookie/cookie.js).
+Файл с функциями для работы с cookie: [cookie.js](cookie.js).

@@ -7,11 +7,11 @@
 ```html
 <!--+ run -->
 <body>
-<h1>Привет, мир!</h1>
+  <h1>Привет, мир!</h1>
 
-<script>
-alert( document.body.firstChild.innerHTML ); // undefined
-</script>
+  <script>
+    alert( document.body.firstChild.innerHTML ); // undefined
+  </script>
 </body>
 ```
 

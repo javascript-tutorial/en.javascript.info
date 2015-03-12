@@ -19,7 +19,7 @@ var lis = document.body.getElementsByTagName('li');
 
 document.body.innerHTML = "";
 
-alert(lis.length);
+alert( lis.length );
 ```
 
 2. А такой код (вопрос посложнее)?
@@ -30,6 +30,6 @@ var lis = menu.getElementsByTagName('li');
 
 document.body.innerHTML = "";
 
-alert(lis.length);
+alert( lis.length );
 ```
 

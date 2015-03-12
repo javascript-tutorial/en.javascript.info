@@ -22,8 +22,8 @@
 
 ```html
 <div class="container">
-  <div class="toggler"> 
-    <!-- стрелка влево при помощи CSS, ширина фиксирована --> 
+  <div class="toggler">
+    <!-- стрелка влево при помощи CSS, ширина фиксирована -->
   </div>
   <div class="content">
     ...Текст...
@@ -84,6 +84,7 @@ CSS:
 Например:
 
 ```css
+/*+ no-beautify */
 .container {
   height: 200px; /* теперь height в % внутри будет работать */
 }

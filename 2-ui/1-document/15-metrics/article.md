@@ -11,6 +11,7 @@
 Мы будем использовать для примера вот такой элемент, у которого есть рамка (border), поля (padding), и прокрутка:
 
 ```html
+<!--+ no-beautify -->
 <div id="example">
   ...Текст...
 </div>
@@ -125,7 +126,7 @@
 **Это дает нам замечательный способ для проверки, виден ли элемент**:
 
 ```js
-function isHidden(elem)
+function isHidden(elem) {
   return !elem.offsetWidth && !elem.offsetHeight;
 }
 ```
@@ -265,7 +266,7 @@ alert( getComputedStyle(elem).width ); // вывести CSS-ширину для
 
 <script>
 *!*
-  alert( getComputedStyle(elem).width );  // auto
+  alert( getComputedStyle(elem).width ); // auto
 */!*
 </script>
 ```

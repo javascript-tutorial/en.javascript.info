@@ -15,7 +15,7 @@
 Проверьте, например:
 
 ```js
-//+ run
+//+ run no-beautify
 setInterval(function() { window.focus() }, 1000);
 ```
 
@@ -40,25 +40,25 @@ setInterval(function() { window.focus() }, 1000);
 <!--+ run -->
 <script>
   var win = open('/', 'test', 'width=300,height=300')
- 
+
   function getAttention(win) {
-    if (win.closed) { 
-      alert("Окно закрыто, привлечь внимание к нему нельзя");
+    if (win.closed) {
+      alert( "Окно закрыто, привлечь внимание к нему нельзя" );
       return;
     }
 
     win.focus();
     var i = 0;
     var show = ['************', win.document.title];
- 
-    var focusTimer = setInterval(function() { 
+
+    var focusTimer = setInterval(function() {
       if (win.closed) {
         clearInterval(focusTimer);
         return;
-      }  
+      }
       win.document.title = show[i++ % 2];
     }, 1000);
- 
+
     win.document.onmousemove = function() {
       clearInterval(focusTimer);
       win.document.title = show[1];
@@ -66,7 +66,7 @@ setInterval(function() { window.focus() }, 1000);
     }
   }
 </script>
-   
+
 <input type="button" onclick="getAttention(win)" value="getAttention(win)">
 ```
 
@@ -88,8 +88,8 @@ setInterval(function() { window.focus() }, 1000);
   var win = open('/', 'test', 'width=300,height=300')
 
   function getAttention(win) {
-    if (win.closed) { 
-      alert("Окно закрыто, привлечь внимание к нему нельзя");
+    if (win.closed) {
+      alert( "Окно закрыто, привлечь внимание к нему нельзя" );
       return;
     }
 
@@ -97,21 +97,21 @@ setInterval(function() { window.focus() }, 1000);
     var show = ['************', win.document.title];
 
     function stop() {
-      clearInterval(focusTimer); 
-      win.document.title = show[1];      
+      clearInterval(focusTimer);
+      win.document.title = show[1];
     }
- 
-    win.onfocus = function() { 
+
+    win.onfocus = function() {
       stop();
       win.onfocus = null;
     }
-      
-    var focusTimer = setInterval(function() { 
+
+    var focusTimer = setInterval(function() {
       if (win.closed) {
         clearInterval(focusTimer);
         return;
-      } 
-     
+      }
+
       win.document.title = show[i++ % 2];
     }, 1000);
 

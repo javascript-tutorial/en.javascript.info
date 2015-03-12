@@ -157,7 +157,7 @@
 Протестируем на таком списке:
 
 ```html
-<!--+ run autorun height=150 -->
+<!--+ run autorun height=150  no-beautify -->
 <ul>
 <li>Собака
   <ul>
@@ -188,7 +188,7 @@
 Теперь уменьшим размер шрифта до `0.8em`, вот что получится:
 
 ```html
-<!--+ run autorun height=100 -->
+<!--+ run autorun height=100  no-beautify -->
 <style>
   li {
     font-size: 0.8em;
@@ -229,7 +229,7 @@
 Как правило, браузеры ставят этому элементу некоторый "разумный" (reasonable) размер по-умолчанию, который мы, конечно, можем переопределить и использовать `rem` для задания шрифтов внутри относительно него:
 
 ```html
-<!--+ run height=400 autorun -->
+<!--+ run height=400 autorun  no-beautify -->
 <style>
 *!*
   html {

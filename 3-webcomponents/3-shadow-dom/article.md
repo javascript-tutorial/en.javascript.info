@@ -21,7 +21,7 @@
 В Shadow DOM выше можно увидеть полезный атрибут `pseudo`. Он нестандартный, существует по историческим причинам. С его помощью можно стилизовать подэлементы через CSS, например, сделаем поле редактирования даты красным:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <style>
 *!*
 input::-webkit-datetime-edit {
@@ -92,7 +92,7 @@ Shadow DOM примера выше в инструментах разработ�
 Например:
 
 ```html
-<!--+ run autorun="no-epub" -->
+<!--+ run autorun="no-epub"  no-beautify -->
   
 <section id="elem">
   <h1>Новости</h1>
@@ -145,11 +145,11 @@ Shadow DOM примера выше в инструментах разработ�
 *!*
   // прочитать данные из Shadow DOM для elem
 */!*
-  var root = elem.shadowRoot; 
+  var root = elem.shadowRoot;
   // Привет из подполья!
-  document.write("<p>p:" + root.querySelector('p').innerHTML); 
+  document.write("<p>p:" + root.querySelector('p').innerHTML);
   // пусто, так как физически узлы - вне content 
-  document.write("<p>content:" + root.querySelector('content').innerHTML); 
+  document.write("<p>content:" + root.querySelector('content').innerHTML);
 </script>
 ```
 

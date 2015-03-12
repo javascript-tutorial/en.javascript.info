@@ -10,7 +10,7 @@ var largeImg = document.getElementById('largeImg');
 document.getElementById('thumbs').onclick = function(e) {
   var target = e.target;
 
-  while(target != this) {
+  while (target != this) {
 
     if (target.nodeName == 'A') {
       showThumbnail(target.href, target.title);
@@ -34,11 +34,11 @@ function showThumbnail(href, title) {
 
 ```js
 var imgs = thumbs.getElementsByTagName('img');
-for(var i=0; i<imgs.length; i++) {
+for (var i = 0; i < imgs.length; i++) {
   var url = imgs[i].parentNode.href;
 
 *!*
-  var img = document.createElement('img');  
+  var img = document.createElement('img');
   img.src = url;
 */!*
 }

@@ -33,14 +33,14 @@ document.addEventListener("DOMContentLoaded", ready);
 <!--+ run height=150 -->
 <script>
   function ready() {
-    alert('DOM готов');
-    alert("Размеры картинки: " + img.offsetWidth + "x" + img.offsetHeight);
+    alert( 'DOM готов' );
+    alert( "Размеры картинки: " + img.offsetWidth + "x" + img.offsetHeight );
   }
- 
+
 *!*
   document.addEventListener("DOMContentLoaded", ready);
 */!*
-</script>  
+</script>
 
 <img id="img" src="https://js.cx/clipart/yozhik.jpg?speed=1">
 ```
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", ready);
 
 ```html
 <link type="text/css" rel="stylesheet" href="style.css">
-<script>  
+<script>
   // сработает после загрузки style.css
 </script>
 ```
@@ -99,7 +99,7 @@ Firefox/Chrome/Opera автозаполняют формы по `DOMContentLoade
 <script>
 *!*
   window.onload = function() {
-    alert('Документ и все ресурсы загружены');
+    alert( 'Документ и все ресурсы загружены' );
   };
 */!*
 </script>
@@ -144,9 +144,9 @@ Firefox игнорирует текст, а всегда показывает с
 ```html
 <body>
   ...
-<script>
-  init();
-</script>
+  <script>
+    init();
+  </script>
 </body>
 ```
 
@@ -166,7 +166,7 @@ Firefox игнорирует текст, а всегда показывает с
 <script>
 *!*
   $(function() {
-    alert("DOMContentLoaded");
+    alert( "DOMContentLoaded" );
   });
 */!*
 </script>

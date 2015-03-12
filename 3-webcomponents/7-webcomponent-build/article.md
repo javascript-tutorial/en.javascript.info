@@ -38,29 +38,31 @@
 ```html
 <template id="tmpl">
   <style>
-  .content {  
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-  }
-
-  :host { 
-    display: block;
-  }
-
-  :host(.info) .content {
-    color: green;
-  }
-  
-  :host(.warning) .content {
-    color: red;
-  }
+    .content {
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f5f5f5;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    }
+    
+    :host {
+      display: block;
+    }
+    
+    :host(.info) .content {
+      color: green;
+    }
+    
+    :host(.warning) .content {
+      color: red;
+    }
   </style>
-  <div class="content"><content></content></div>
+  <div class="content">
+    <content></content>
+  </div>
 </template>
 ```
 
@@ -123,12 +125,12 @@ document.registerElement('ui-message', {
 <link rel="import" id="link" href="ui-slider.html">
 
 <ui-slider min="0" max="1000" id="elem"></ui-slider>
-    
+
 <script>
   elem.addEventListener("slide", function(e) {
-    value.innerHTML = e.detail.value; 
+    value.innerHTML = e.detail.value;
   });
-</script>    
+</script>
 
 <div id="value">0</div>
 ```
@@ -171,8 +173,7 @@ document.registerElement('ui-message', {
 <template id="tmpl">
   <style>
     @import url(http://code.jquery.com/ui/1.11.3/themes/ui-lightness/jquery-ui.css);
-
-    :host { 
+    :host {
       display: block;
     }
   </style>
@@ -198,7 +199,7 @@ SliderProto.createdCallback = function() {
   root.appendChild(tmpl.content.cloneNode(true));
 
   this.$slider = $(root.getElementById('slider'));
-  
+
   var self = this;
 
   // (2) инициализовать слайдер, пробросить параметры
@@ -206,10 +207,12 @@ SliderProto.createdCallback = function() {
     min: this.getAttribute('min') || 0,
     max: this.getAttribute('max') || 100,
     value: this.getAttribute('value') || 0,
-    slide: function() {  
+    slide: function() {
       // (3) пробросить событие
       var event = new CustomEvent("slide", {
-        detail: { value: self.$slider.slider("option", "value") },
+        detail: {
+          value: self.$slider.slider("option", "value")
+        },
         bubbles: true
       });
       self.dispatchEvent(event);
@@ -258,10 +261,13 @@ Object.defineProperty(SliderProto, 'value', {
 Он был в методе [offset](http://api.jquery.com/offset/), который предназначен для того, чтобы определять координаты элемента. Этот метод не срабатывал, поскольку в нём есть проверка, которая выглядит примерно так:
 
 ```js
-var box = { top: 0, left: 0 };
+var box = {
+  top: 0,
+  left: 0
+};
 ...
 // Make sure it's not a disconnected DOM node
-if ( !jQuery.contains( elem.ownerDocument, elem ) ) {
+if(!jQuery.contains(elem.ownerDocument, elem)) {
   return box;
 }
 ```

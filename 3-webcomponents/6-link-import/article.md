@@ -102,6 +102,7 @@
 <li>Главный файл `index.html` подключает документы:
 
 ```html
+<!--+ no-beautify -->
 <link rel="import" href="ui-tabs.html">
 <link rel="import" href="ui-dialog.html">
 ...
@@ -111,6 +112,7 @@
 <li>`ui-tabs.html` подключает `libs.html`:
 
 ```html
+<!--+ no-beautify -->
 <link rel="import" href="libs.html">
 ...template и код для табов...
 ```
@@ -120,6 +122,7 @@
 <li>`ui-dialog.html` также использует `libs.html`:
 
 ```html
+<!--+ no-beautify -->
 <link rel="import" href="libs.html">
 ...template и код для диалогов...
 ```

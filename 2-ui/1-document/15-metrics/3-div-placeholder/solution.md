@@ -20,9 +20,9 @@ placeHolder.style.height = div.offsetHeight + 'px';
 // можно и width, но в этом примере это не обязательно
 
 // IE || другой браузер
-var computedStyle = div.currentStyle ||  getComputedStyle(div, '');
+var computedStyle = div.currentStyle || getComputedStyle(div, '');
 
-placeHolder.style.marginTop = computedStyle.marginTop;          // (1)
+placeHolder.style.marginTop = computedStyle.marginTop; // (1)
 placeHolder.style.marginBottom = computedStyle.marginBottom;
 ```
 

@@ -98,11 +98,15 @@
 ```html
 <!--+ autorun height=auto -->
 <style>
-b {
-  -webkit-user-select: none; /* user-select -- это нестандартное свойство */
-  -moz-user-select: none;    /* поэтому нужны префиксы */
-  -ms-user-select: none;    
-}
+  b {
+    -webkit-user-select: none;
+    /* user-select -- это нестандартное свойство */
+    
+    -moz-user-select: none;
+    /* поэтому нужны префиксы */
+    
+    -ms-user-select: none;
+  }
 </style>
 
 Строка до..
@@ -151,7 +155,7 @@ b {
 <li>Отмена действий на `mousedown` и `selectstart`:
 
 ```js
-elem.onmousedown = elem.onselectstart = function() { 
+elem.onmousedown = elem.onselectstart = function() {
   return false;
 };
 ```
@@ -171,7 +175,7 @@ elem.onmousedown = elem.onselectstart = function() {
 Если уж хочется запретить копирование -- можно использовать событие `oncopy`:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <div oncopy="alert('Копирование запрещено');return false">
   Уважаемый копирователь, 
   почему-то автор хочет заставить вас покопаться в исходном коде этой страницы.

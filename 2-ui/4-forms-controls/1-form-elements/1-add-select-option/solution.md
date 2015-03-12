@@ -12,12 +12,12 @@
 
   // 1) 
   var selectedOption = select.options[select.selectedIndex];
-  alert(selectedOption.value);
+  alert( selectedOption.value );
 
   // 2)
   var newOption = new Option("Classic", "Классика");
   select.appendChild(newOption);
- 
+
   // 3)
   newOption.selected = true;
 </script>

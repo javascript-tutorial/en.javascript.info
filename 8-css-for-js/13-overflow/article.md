@@ -21,7 +21,7 @@
 Например:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
   .overflow {
 *!*
@@ -47,7 +47,7 @@
 Переполняющее содержимое не отображается.
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
   .overflow {
 *!*
@@ -75,7 +75,7 @@
 При переполнении отображается полоса прокрутки.
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
   .overflow {
 *!*
@@ -99,7 +99,7 @@
 Полоса прокрутки отображается всегда.
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
   .overflow {
 *!*
@@ -124,7 +124,7 @@
 Можно указать поведение блока при переполнении по ширине в `overflow-x` и высоте -- в `overflow-y`:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <style>
   .overflow {
 *!*

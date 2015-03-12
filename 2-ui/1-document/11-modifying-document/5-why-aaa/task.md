@@ -9,17 +9,17 @@
 <table>
   aaa
   <tr>
-   <td>Test</td>
+    <td>Test</td>
   </tr>
 </table>
 
 <script>
-var table = document.body.children[0]; 
+  var table = document.body.children[0];
 
-alert(table); // таблица, пока всё правильно
+  alert( table ); // таблица, пока всё правильно
 
-document.body.removeChild( table );
-// почему в документе остался текст?
+  document.body.removeChild(table);
+  // почему в документе остался текст?
 </script>
 ```
 

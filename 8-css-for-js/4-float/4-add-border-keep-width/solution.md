@@ -7,7 +7,7 @@
 Да, можно -- указываем `box-sizing: border-box` и добавляем свойства:
 
 ```html
-<!--+ run -->
+<!--+ run  no-beautify -->
 <style>
   .left {
     float:left; 

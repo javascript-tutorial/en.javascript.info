@@ -8,7 +8,7 @@
 <!--+ autorun run -->
 <script>
   function handler() {
-    alert("...");
+    alert( "..." );
     return false;
   }
 </script>

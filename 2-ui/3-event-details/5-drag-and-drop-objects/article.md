@@ -60,7 +60,7 @@
 Код обработчика `mousedown`:
 
 ```js
-var dragObject = {}; 
+var dragObject = {};
 
 document.onmousedown = function(e) {
 
@@ -103,8 +103,8 @@ document.onmousedown = function(e) {
 document.onmousemove = function(e) {
   if (!dragObject.elem) return; // элемент не зажат
 
-  if ( !dragObject.avatar ) { // элемент нажат, но пока не начали его двигать
-    ... начать перенос, присвоить dragObject.avatar = переносимый элемент
+  if (!dragObject.avatar) { // элемент нажат, но пока не начали его двигать
+    ...начать перенос, присвоить dragObject.avatar = переносимый элемент
   }
 
   ...отобразить перенос элемента...
@@ -131,7 +131,7 @@ document.onmousemove = function(e) {
 
 ```js
 // в начале переноса:
-if (avatar.parentNode != document.body) { 
+if (avatar.parentNode != document.body) {
   document.body.appendChild(avatar); // переместить в BODY, если надо
 }
 avatar.style.zIndex = 9999; // сделать, чтобы элемент был над другими
@@ -356,6 +356,7 @@ function findDroppable(event) {
 Для его создания используем не обычный синтаксис `{...}`, а вызов `new function`. Это позволит прямо при создании объявить дополнительные переменные и функции в замыкании, которыми могут пользоваться методы объекта, а также назначить обработчики:
 
 ```js
+//+ no-beautify
 var DragManager = new function() {
   
   var dragObject = {};
@@ -400,6 +401,7 @@ var DragManager = new function() {
 С использованием `DragManager` пример, с которого начиналась эта глава -- перенос иконок браузеров в компьютер, реализуется совсем просто:
 
 ```js
+//+ no-beautify
 DragManager.onDragEnd = function(dragObject, dropElem) {
 
   // скрыть/удалить переносимый объект

@@ -24,7 +24,7 @@ addScript('user?id=123');
 
 Такой вызов добавит в `HEAD` документа тег:
 
-```js
+```html
 <script src="/user?id=123"></script>
 ```
 
@@ -38,6 +38,7 @@ addScript('user?id=123');
 
 
 ```js
+//+ no-beautify
 // ответ сервера
 var user = {name: "Вася", age: 25 };
 ```
@@ -127,11 +128,11 @@ onUserData({
 Пример использования:
 ```js
 function ok(data) {
-  alert("Загружен пользователь " + data.name);
+  alert( "Загружен пользователь " + data.name );
 }
 
 function fail(url) {
-  alert('Ошибка при запросе ' + url);
+  alert( 'Ошибка при запросе ' + url );
 }
 
 // Внимание! Ответы могут приходить в любой последовательности!

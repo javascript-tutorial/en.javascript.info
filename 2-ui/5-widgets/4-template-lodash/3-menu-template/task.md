@@ -8,14 +8,14 @@
 <li>Вместо массива `items` меню должно принимать *объект* `items`, вот так:
 
 ```js
-var menu = new Menu({ 
+var menu = new Menu({
   title: "Сладости",
   template: _.template(document.getElementById('menu-template').innerHTML),
   listTemplate: _.template(document.getElementById('menu-list-template').innerHTML),
 *!*
   items: {
-    "donut": "Пончик", 
-    "cake": "Пирожное", 
+    "donut": "Пончик",
+    "cake": "Пирожное",
     "chocolate": "Шоколадка"
   }
 */!*

@@ -9,6 +9,7 @@
 Что будет выведено при клике после выполнения кода?
 
 ```js
+//+ no-beautify
 button.addEventListener("click", function() { alert("1"); });
 
 button.removeEventListener("click", function() { alert("1"); });

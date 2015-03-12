@@ -78,12 +78,10 @@ div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важ�
 </ol>
 
 <script>
-
   var newLi = document.createElement('li');
   newLi.innerHTML = 'Привет, мир!';
 
   list.appendChild(newLi);
-
 </script>
 ```
 
@@ -101,7 +99,6 @@ div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важ�
   <li>2</li>
 </ol>
 <script>
-
   var newLi = document.createElement('li');
   newLi.innerHTML = 'Привет, мир!';
 
@@ -147,6 +144,7 @@ parentElem.appendChild(elem)
 ```html
 <!--+ height=150 run autorun -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -167,6 +165,7 @@ parentElem.appendChild(elem)
 ```html
 <!--+ height=150 run autorun -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -197,6 +196,7 @@ parentElem.appendChild(elem)
 ```html
 <!--+ height=200 run autorun -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+
 <body>
   <h3>Моя страница</h3>
 </body>
@@ -214,16 +214,15 @@ parentElem.appendChild(elem)
   // копию можно подправить
   div2.querySelector('strong').innerHTML = 'Супер!';
   // вставим её после текущего сообщения
-  div.parentNode.insertBefore( div2, div.nextSibling );
+  div.parentNode.insertBefore(div2, div.nextSibling);
 */!*
-
 </script>
 ```
 
 Обратите внимание на последнюю строку, которая вставляет `div2` после `div`:
 
 ```js
-div.parentNode.insertBefore( div2, div.nextSibling );
+div.parentNode.insertBefore(div2, div.nextSibling);
 ```
 
 <ol>
@@ -284,6 +283,7 @@ div.parentNode.insertBefore( div2, div.nextSibling );
 ```html
 <!--+ run -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+
 <body>
   <h3>Сообщение пропадёт через секунду</h3>
 </body>
@@ -321,12 +321,12 @@ div.parentNode.insertBefore( div2, div.nextSibling );
   var div = document.createElement('div');
   div.className = "alert alert-success";
   document.body.appendChild(div);
-  
+
 *!*
   var text = prompt("Введите текст для сообщения", "Жили были <a> и <b>!");
 
   // вставится именно как текст, без HTML-обработки
-  div.appendChild( document.createTextNode(text) );
+  div.appendChild(document.createTextNode(text));
 */!*
 </script>
 ```

@@ -102,17 +102,15 @@ var elements = document.getElementsByTagName('div');
 </table>
 
 <script>
-
 *!*
   var tableElem = document.getElementById('age-table');
   var elements = tableElem.getElementsByTagName('input');
 */!*
 
-  for (var i=0; i<elements.length; i++) {
-    var input = elements[i];  
-    alert(input.value + ': ' + input.checked);
+  for (var i = 0; i < elements.length; i++) {
+    var input = elements[i];
+    alert( input.value + ': ' + input.checked );
   }
-
 </script>
 ```
 
@@ -181,8 +179,8 @@ var elems = document.getElementsByName('age');
 <div class="long article">Длинная статья</div>
 
 <script>
-var articles = document.getElementsByClassName('article');
-alert( articles.length ); // 2, найдёт оба элемента 
+  var articles = document.getElementsByClassName('article');
+  alert( articles.length ); // 2, найдёт оба элемента
 </script>
 ```
 
@@ -214,8 +212,8 @@ alert( articles.length ); // 2, найдёт оба элемента
   var elements = document.querySelectorAll('ul > li:last-child');
 */!*
 
-  for (var i=0; i<elements.length; i++) {
-    alert(elements[i].innerHTML ); // "тест", "пройден"
+  for (var i = 0; i < elements.length; i++) {
+    alert( elements[i].innerHTML ); // "тест", "пройден"
   }
 </script>
 ```
@@ -248,11 +246,11 @@ alert( articles.length ); // 2, найдёт оба элемента
 <script>
   var elems = document.body.children;
 
-  for(var i=0; i<elems.length; i++) {
+  for (var i = 0; i < elems.length; i++) {
 *!*
-    if ( elems[i].matches('a[href$="zip"]') ) {
+    if (elems[i].matches('a[href$="zip"]')) {
 */!*
-      alert("Ссылка на архив: " + elems[i].href);
+      alert( "Ссылка на архив: " + elems[i].href );
     }
   }
 </script>
@@ -284,14 +282,14 @@ alert( articles.length ); // 2, найдёт оба элемента
   var numberSpan = document.querySelector('.num');
 
   // ближайший элемент сверху подходящий под селектор li
-  alert( numberSpan.closest('li').className ) // subchapter
-  
+  alert(numberSpan.closest('li').className) // subchapter
+
   // ближайший элемент сверху подходящий под селектор .chapter
-  alert( numberSpan.closest('.chapter').tagName ) // LI
+  alert(numberSpan.closest('.chapter').tagName) // LI
 
   // ближайший элемент сверху, подходящий под селектор span
   // это сам numberSpan, так как поиск включает в себя сам элемент
-  alert( numberSpan.closest('span') === numberSpan ) // true
+  alert(numberSpan.closest('span') === numberSpan) // true
 </script>
 ```
 
@@ -306,11 +304,12 @@ alert( articles.length ); // 2, найдёт оба элемента
 Найдем заголовки с текстом `XPath` в текущем документе:
 
 ```js
-//+ run
-var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null,                  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+//+ run no-beautify
+var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null, 
+  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
 
-for (var i=0; i<result.snapshotLength; i++) {
-    alert(result.snapshotItem(i).outerHTML);
+for (var i = 0; i < result.snapshotLength; i++) {
+  alert( result.snapshotItem(i).outerHTML );
 }
 ```
 

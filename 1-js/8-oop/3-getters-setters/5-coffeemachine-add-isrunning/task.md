@@ -22,4 +22,4 @@ coffeeMachine.setOnReady(function() {
 });
 ```
 
-Исходный код возьмите из решения [предыдущей задачи](/task/setter-onReady).
+Исходный код возьмите из решения [предыдущей задачи](/task/setter-onready).

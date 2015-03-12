@@ -35,7 +35,7 @@ java -jar compiler.jar --compilation_level ADVANCED_OPTIMIZATIONS --js my.js
 
 ```js
 function test(n) {
-  alert("this is my test number " + n);
+  alert( "this is my test number " + n );
 }
 test(1);
 test(2);
@@ -121,13 +121,17 @@ first:2 --module second:1:first
 Например:
 
 ```js
-document.onkeyup = function(event) { alert(event.type) }
+document.onkeyup = function(event) {
+  alert(event.type)
+}
 ```
 
 После продвинутого сжатия:
 
 ```js
-document.onkeyup = function(a) { alert(a.type) }
+document.onkeyup = function(a) {
+  alert(a.type)
+}
 ```
 
 Как видите, переименованной оказалась только переменная `event`. Такое переименование заведомо безопасно, т.к. `event` -- локальная переменная.
@@ -135,13 +139,17 @@ document.onkeyup = function(a) { alert(a.type) }
 Почему компилятор не тронул остального? Попробуем другой вариант:
 
 ```js
-document.blabla = function(event) { alert(event.megaProperty) }
+document.blabla = function(event) {
+  alert(event.megaProperty)
+}
 ```
 
 После компиляции:
 
 ```js
-document.a = function(a) { alert(a.b) }
+document.a = function(a) {
+  alert(a.b)
+}
 ```
 
 Теперь компилятор переименовал и <code>blabla</code> и <code>megaProperty</code>. 
@@ -175,9 +183,9 @@ window.a = function(a) {
 
 ```js
 window['User'] = function(name, type, age) {
-	this.name = name
-	this.type = type
-	this.age = age
+  this.name = name
+  this.type = type
+  this.age = age
 }
 ```
 
@@ -253,9 +261,9 @@ SayWidget.prototype = {
   init: function() {
     this.elem.style.display = 'none'
   },
-	
+
   setSayHandler: function() {
-    this.elem.onclick = function() { 
+    this.elem.onclick = function() {
       alert("hi")
     };
   }
@@ -268,6 +276,7 @@ SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler;
 После сжатия:
 
 ```js
+//+ no-beautify
 function a(b) {
   this.a = b;
   this.b()
@@ -428,6 +437,7 @@ MyFramework.publicOne();
 Результат компиляции в обычном режиме:
 
 ```js
+//+ no-beautify
 // java -jar compiler.jar --js myframework.js --formatting PRETTY_PRINT
 (function(a) {
   a = a.MyFramework = {};

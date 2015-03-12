@@ -407,8 +407,8 @@ HTML: посетитель отсылает сообщения из формы �
 ```html
 <!-- форма для отправки сообщений -->
 <form name="publish">
-  <input type="text" name="message"/>
-  <input type="submit" value="Отправить"/>
+  <input type="text" name="message" />
+  <input type="submit" value="Отправить" />
 </form>
 
 <!-- здесь будут появляться входящие сообщения -->
@@ -432,7 +432,7 @@ document.forms.publish.onsubmit = function() {
 // обработчик входящих сообщений
 socket.onmessage = function(event) {
   var incomingMessage = event.data;
-  showMessage(incomingMessage); 
+  showMessage(incomingMessage);
 };
 
 // показать сообщение в div#subscribe
@@ -452,7 +452,9 @@ var WebSocketServer = new require('ws');
 var clients = {};
 
 // WebSocket-сервер на порту 8081
-var webSocketServer = new WebSocketServer.Server({port: 8081});
+var webSocketServer = new WebSocketServer.Server({
+  port: 8081
+});
 webSocketServer.on('connection', function(ws) {
 
   var id = Math.random();
@@ -462,7 +464,7 @@ webSocketServer.on('connection', function(ws) {
   ws.on('message', function(message) {
     console.log('получено сообщение ' + message);
 
-    for(var key in clients) {
+    for (var key in clients) {
       clients[key].send(message);
     }
   });
@@ -475,7 +477,7 @@ webSocketServer.on('connection', function(ws) {
 });
 ```
 
-Рабочий пример можно скачать: [websocket.zip](/zip/tutorial/ajax/websocket.zip). Понадобится поставить два модуля: `npm install node-static && npm install ws`.
+Рабочий пример можно скачать: [websocket.zip](websocket.zip). Понадобится поставить два модуля: `npm install node-static && npm install ws`.
 ## Итого
 
 WebSocket -- современное средство коммуникации. Кросс-доменное, универсальное, безопасное.
@@ -489,6 +491,3 @@ WebSocket -- современное средство коммуникации. �
 Например, для Node.JS одной из самых известных библиотек является [Socket.IO](http://socket.io).
 
 К недостаткам библиотек следует отнести то, что некоторые продвинутые возможности WebSocket, такие как двухсторонний обмен бинарными данными, в них недоступны. С другой -- в большинстве случаев стандартного текстового обмена вполне достаточно.
-[head]
-<script src="/files/tutorial/ajax/script/scriptRequest.js"></script>
-[/head]

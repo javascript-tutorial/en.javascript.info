@@ -42,12 +42,12 @@
   var resultGet = document.getElementsByTagName('div');
   var resultQuery = document.querySelectorAll('div');
 
-  alert(resultQuery.length + ', ' + resultGet.length); // 1, 1 
+  alert( resultQuery.length + ', ' + resultGet.length ); // 1, 1 
 
   document.body.innerHTML = ''; // удалить всё содержимое BODY
 
 *!*
-  alert(resultQuery.length + ', ' + resultGet.length); // 1, 0
+  alert( resultQuery.length + ', ' + resultGet.length ); // 1, 0
 */!*
 </script>
 ```
@@ -142,22 +142,22 @@ alert( elems.length );
 ```html
 <!--+ run -->
 <script>
-  for(var i=0; i<10000;i++) document.write('<span> </span>');
+  for (var i = 0; i < 10000; i++) document.write('<span> </span>');
 
   var elements = document.body.getElementsByTagName('span');
   var len = elements.length;
 
   var d = new Date;
 *!*
-  for(var i = 0; i<len; i++) elements[i];
+  for (var i = 0; i < len; i++) elements[i];
 */!*
-  alert("Последовательно: "+ (new Date - d) + "мс");   // (1)
+  alert( "Последовательно: " + (new Date - d) + "мс" ); // (1)
 
   var d = new Date;
 *!*
-  for(var i = 0; i<len; i+=2) elements[i], elements[len-i-1];
+  for (var i = 0; i < len; i += 2) elements[i], elements[len - i - 1];
 */!*
-  alert("Вразнобой: "+ (new Date - d) + "мс");  // (2)
+  alert( "Вразнобой: " + (new Date - d) + "мс" ); // (2)
 </script>
 ```
 

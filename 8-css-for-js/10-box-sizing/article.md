@@ -16,6 +16,7 @@
 Для большей наглядности посмотрим на картинку этого `div` в зависимости от `box-sizing`:
 
 ```css
+/*+ no-beautify */
 div {
   width: 200px;
   height: 100px;
@@ -49,10 +50,12 @@ div {
     width: 200px;
     border: 2px solid green;
   }
-
-  form input, form select {
+  
+  form input,
+  form select {
     display: block;
-    padding-left: 5px; /* padding для красоты */
+    padding-left: 5px;
+    /* padding для красоты */
   }
 </style>
 
@@ -60,7 +63,9 @@ div {
 *!*
   <input>
   <input>
-  <select><option>опции</option></select>
+  <select>
+    <option>опции</option>
+  </select>
 */!*
 </form>
 ```
@@ -74,7 +79,7 @@ div {
 Попробуем:
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
   form {
     width: 200px;
@@ -114,26 +119,34 @@ div {
     width: 200px;
     border: 2px solid green;
   }
- 
   /* убрать padding/border */
-  form input, form select { 
+  
+  form input,
+  form select {
     padding: 0;
     border: 0;
-    width: 100%; 
+    width: 100%;
   }
-
   /* внешний div даст дизайн */
+  
   form div {
     padding-left: 5px;
     border: 1px solid black;
   }
-
 </style>
 
 <form>
-  <div><input></div>
-  <div><input></div>
-  <div><select><option>опции</option></select></div>
+  <div>
+    <input>
+  </div>
+  <div>
+    <input>
+  </div>
+  <div>
+    <select>
+      <option>опции</option>
+    </select>
+  </div>
 </form>
 ```
 
@@ -148,7 +161,7 @@ div {
 **При помощи `box-sizing: border-box` мы можем сказать браузеру, что ширина, которую мы ставим, относится к элементу полностью, включая `border` и `padding`**:
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
   form {
     width: 200px;

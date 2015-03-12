@@ -7,21 +7,26 @@
 ```html
 <!DOCTYPE HTML>
 <html>
-  <head><meta charset="utf-8"></head>
-  <body>
-    <div>Пользователи:</div>
-    <ul>
-      <li>Маша</li>
-      <li>Вовочка</li>
-    </ul>
 
-    <!-- комментарий -->
+<head>
+  <meta charset="utf-8">
+</head>
 
-    <script>
-      // ... ваш код
-    </script>
+<body>
+  <div>Пользователи:</div>
+  <ul>
+    <li>Маша</li>
+    <li>Вовочка</li>
+  </ul>
 
-  </body>
+  <!-- комментарий -->
+
+  <script>
+    // ... ваш код
+  </script>
+
+</body>
+
 </html>
 ```
 

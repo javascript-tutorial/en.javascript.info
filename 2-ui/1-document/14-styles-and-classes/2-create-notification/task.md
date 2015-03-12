@@ -16,7 +16,7 @@
  * @param options.className {string} CSS-класс 
  * @param options.html {string} HTML-текст для показа
  */
-function showNotification(options) { 
+function showNotification(options) {
   // ваш код
 }
 ```

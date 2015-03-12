@@ -102,7 +102,7 @@ HTML-разметка и названия CSS-классов должны отр
 Рассмотрим пример вёрстки "диалогового окна":
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <div class="dialog">
   <h2 class="title">Заголовок</h2>
   <div class="content">

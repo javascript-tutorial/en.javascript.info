@@ -6,16 +6,19 @@
 
 ```html
 <html>
+
 <head>
 *!*
   <script>
-    alert(document.body); // ?
+    alert( document.body ); // ?
   </script>
 */!*
 </head>
+
 <body>
   Привет, мир!
 </body>
+
 </html>
 ```
 

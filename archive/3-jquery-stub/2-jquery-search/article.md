@@ -71,13 +71,13 @@ jQuery-объект также называют "jQuery-коллекцией", "
 
 <script>
 *!*
-var links = $('li > a');
+  var links = $('li > a');
 */!*
 
-// перебор результатов
-for(var i=0; i<links.length; i++) {
-  alert( links[i].href );
-}
+  // перебор результатов
+  for (var i = 0; i < links.length; i++) {
+    alert( links[i].href );
+  }
 </script>
 ```
 
@@ -99,6 +99,7 @@ $('a', menu); // поиск аналогичен menu.querySelectorAll('a')
 В качестве контекста можно передать не только DOM-элемент, но и селектор:
 
 ```js
+//+ no-beautify
    
 $('a', '#menu' );
 ```
@@ -138,12 +139,12 @@ $('a', menu);
 
 <script>
 *!*
-var links = $('a', 'li'); 
+  var links = $('a', 'li');
 */!*
 
-for(var i=0; i<links.length; i++) {
-  alert( i + ": " +  links[i].href ); // 3 ссылки по очереди
-}
+  for (var i = 0; i < links.length; i++) {
+    alert( i + ": " + links[i].href ); // 3 ссылки по очереди
+  }
 </script>
 ```
 
@@ -152,7 +153,7 @@ for(var i=0; i<links.length; i++) {
 Для более удобного перебора у jQuery-коллекции есть метод [each](http://api.jquery.com/each/). Его синтаксис похож на [forEach](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach) массива:
 
 ```js
-.each( function(index, item) )
+.each(function(index, item))
 ```
 
 Он выполняет для каждого элемента коллекции перед точкой функцию-аргумент, и передаёт ей номер `index` и  очередной элемент `item`.
@@ -161,7 +162,7 @@ for(var i=0; i<links.length; i++) {
 
 ```js
 $('li a').each(function(i, a) {
-  alert( i + ": " + a.href); 
+  alert( i + ": " + a.href );
 });
 ```
 
@@ -182,14 +183,14 @@ $('li a').each(function(i, a) {
 </ul>
 
 <script>
-var links = $('li a'); // найти все ссылки на странице внутри LI
+  var links = $('li a'); // найти все ссылки на странице внутри LI
 
 *!*
-links.each(function(i, a) {
-  alert(i + ': ' + a.innerHTML);
+  links.each(function(i, a) {
+    alert( i + ': ' + a.innerHTML );
 
-  if (i == 1) return false; // стоп на элементе коллекции с индексом 1
-});
+    if (i == 1) return false; // стоп на элементе коллекции с индексом 1
+  });
 */!*
 </script>
 ```
@@ -272,9 +273,9 @@ $('li a[href$=".pdf"]') // ссылки, оканчивающиеся на pdf
     this.className = "pdf"; // дать им класс
   })
 *!*
-  .each(function() {     
+  .each(function() {
 */!*
-    alert(this.href); // вывести
+    alert( this.href ); // вывести
   });
 ```
 

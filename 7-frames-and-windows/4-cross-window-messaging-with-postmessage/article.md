@@ -26,6 +26,7 @@
 
 Например:
 ```html
+<!--+ no-beautify -->
 <iframe src="http://target.com" name="target">
 
 <script>
@@ -60,15 +61,15 @@
 
 ```js
 function listener(event) {
-  if( event.origin != 'http://javascript.ru') { 
+  if (event.origin != 'http://javascript.ru') {
     // что-то прислали с неизвестного домена - проигнорируем..    
     return;
   }
 
-  alert("получено: " + event.data);
+  alert( "получено: " + event.data );
 }
 
-if (window.addEventListener){
+if (window.addEventListener) {
   window.addEventListener("message", listener);
 } else {
   // IE8

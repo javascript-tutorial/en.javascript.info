@@ -45,16 +45,16 @@ alert( document.body ); // [object HTMLBodyElement]
 Вот из него выдержка:
 
 ```js
-interface HTMLInputElement : HTMLElement {
-  attribute DOMString accept; 
+interface HTMLInputElement: HTMLElement {
+  attribute DOMString accept;
   attribute DOMString alt;
   attribute DOMString autocomplete;
   attribute boolean autofocus;
   ...
   attribute DOMString value;
   ...
-  void select();   
-  ... 
+  void select();
+  ...
 }
 ```
 
@@ -84,18 +84,18 @@ interface HTMLInputElement : HTMLElement {
 ```js
 interface Node {
   // NodeType
-  const unsigned short      ELEMENT_NODE       = 1;
-  const unsigned short      ATTRIBUTE_NODE     = 2;
-  const unsigned short      TEXT_NODE          = 3;
-  const unsigned short      CDATA_SECTION_NODE = 4;
-  const unsigned short      ENTITY_REFERENCE_NODE = 5;
-  const unsigned short      ENTITY_NODE        = 6;
-  const unsigned short      PROCESSING_INSTRUCTION_NODE = 7;
-  const unsigned short      COMMENT_NODE       = 8;
-  const unsigned short      DOCUMENT_NODE      = 9;
-  const unsigned short      DOCUMENT_TYPE_NODE = 10;
-  const unsigned short      DOCUMENT_FRAGMENT_NODE = 11;
-  const unsigned short      NOTATION_NODE      = 12;   
+  const unsigned short ELEMENT_NODE = 1;
+  const unsigned short ATTRIBUTE_NODE = 2;
+  const unsigned short TEXT_NODE = 3;
+  const unsigned short CDATA_SECTION_NODE = 4;
+  const unsigned short ENTITY_REFERENCE_NODE = 5;
+  const unsigned short ENTITY_NODE = 6;
+  const unsigned short PROCESSING_INSTRUCTION_NODE = 7;
+  const unsigned short COMMENT_NODE = 8;
+  const unsigned short DOCUMENT_NODE = 9;
+  const unsigned short DOCUMENT_TYPE_NODE = 10;
+  const unsigned short DOCUMENT_FRAGMENT_NODE = 11;
+  const unsigned short NOTATION_NODE = 12;
   ...
 }
 ```
@@ -112,20 +112,20 @@ interface Node {
     <li>Вася</li>
     <li>Петя</li>
   </ul>
- 
+
   <!-- комментарий -->
 
-  <script>   
+  <script>
     var childNodes = document.body.childNodes;
 
-    for (var i=0; i<childNodes.length; i++) {
+    for (var i = 0; i < childNodes.length; i++) {
 
 *!*
       // отфильтровать не-элементы  
       if (childNodes[i].nodeType != 1) continue;
 */!*
 
-      alert(childNodes[i]);
+      alert( childNodes[i] );
 
     }
   </script>
@@ -145,8 +145,8 @@ interface Node {
 
 ```js
 //+ run
-alert( document.body.nodeName );   // BODY
-alert( document.body.tagName );   // BODY
+alert( document.body.nodeName ); // BODY
+alert( document.body.tagName ); // BODY
 ```
 
 [smart header="В XHTML `nodeName` может быть не в верхнем регистре"]
@@ -172,17 +172,18 @@ XML-режим включается, когда браузер получает 
 
 ```html
 <!--+ run -->
-<body><!-- комментарий -->
+<body>
+  <!-- комментарий -->
 
-<script>
-  // для комментария
-  alert(document.body.firstChild.nodeName); // #comment
-  alert(document.body.firstChild.tagName); // undefined (в IE8- воскл. знак "!")
+  <script>
+    // для комментария
+    alert( document.body.firstChild.nodeName ); // #comment
+    alert( document.body.firstChild.tagName ); // undefined (в IE8- воскл. знак "!")
 
-  // для документа
-  alert(document.nodeName); // #document, т.к. корень DOM -- не элемент
-  alert(document.tagName); // undefined
-</script>
+    // для документа
+    alert( document.nodeName ); // #document, т.к. корень DOM -- не элемент
+    alert( document.tagName ); // undefined
+  </script>
 </body>
 ```
 
@@ -218,7 +219,7 @@ XML-режим включается, когда браузер получает 
 
   <script>
     document.body.innerHTML = '<b>тест'; // незакрытый тег
-    alert(document.body.innerHTML); // <b>тест</b> (исправлено)
+    alert( document.body.innerHTML ); // <b>тест</b> (исправлено)
   </script>
 
 </body>
@@ -270,7 +271,7 @@ chatDiv.innerHTML += "Как дела?";
 
 <script>
   var elem = document.getElementById('my');
-  elem.innerHTML = 'ТЕСТ<script>alert(1);</scr'+'ipt>';
+  elem.innerHTML = 'ТЕСТ<script>alert( 1 );</scr' + 'ipt>';
 </script>
 ```
 
@@ -299,7 +300,7 @@ chatDiv.innerHTML += "Как дела?";
 <script>
   var div = document.body.children[0];
 
-  alert(div.outerHTML); // <div>Привет <b>Мир</b></div>
+  alert( div.outerHTML ); // <div>Привет <b>Мир</b></div>
 </script>
 ```
 
@@ -326,7 +327,7 @@ chatDiv.innerHTML += "Как дела?";
 *!*
   // ... но содержимое div.outerHTML осталось тем же, несмотря на "перезапись"
 */!*
-  alert(div.outerHTML);  // <div>Привет, Мир!</div>
+  alert( div.outerHTML ); // <div>Привет, Мир!</div>
 </script>
 ```
 
@@ -354,9 +355,9 @@ chatDiv.innerHTML += "Как дела?";
   Привет
   <!-- Комментарий -->
   <script>
-    for (var i=0; i<document.body.childNodes.length; i++) {
+    for (var i = 0; i < document.body.childNodes.length; i++) {
 *!*
-      alert(document.body.childNodes[i].data);
+      alert( document.body.childNodes[i].data );
 */!*
     }
   </script>
@@ -489,9 +490,9 @@ chatDiv.innerHTML += "Как дела?";
 <script>
   var input = document.body.children[0];
 
-  alert(input.type); // "text"
-  alert(input.id); // "input"
-  alert(input.value); // значение
+  alert( input.type ); // "text"
+  alert( input.id ); // "input"
+  alert( input.value ); // значение
 </script>
 ```
 

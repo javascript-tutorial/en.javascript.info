@@ -36,9 +36,9 @@ var COMPILED = false;
 
 ```js
 goog.require = function(rule) {
-   // ...
+  // ...
   if (!COMPILED) {
-     // основное тело функции
+    // основное тело функции
   }
 }
 ```
@@ -49,14 +49,14 @@ goog.require = function(rule) {
 /** @define {boolean} */
 var COMPILED = false
 
-Framework = { }
+Framework = {}
 
 Framework.sayCompiled = function() {
-	if (!COMPILED) {
-		alert("Not compressed")
-	} else {
-		alert("Compressed")
-	}
+  if (!COMPILED) {
+    alert("Not compressed")
+  } else {
+    alert("Compressed")
+  }
 }
 ```
 
@@ -65,7 +65,7 @@ Framework.sayCompiled = function() {
 ```js
 Framework = {};
 Framework.sayCompiled = Framework.a = function() {
-  alert("Compressed");
+  alert( "Compressed" );
 };
 ```
 
@@ -102,13 +102,12 @@ Google Closure Library умеет преобразовывать классы CS
 Например, следующая функция задает такой список.
 
 ```js
- 
-goog.setCssNameMapping({
+ goog.setCssNameMapping({
    "goog-menu": "a",
    "goog-menu-disabled": "a-b",
    "CSS_LOGO": "b",
    "hidden": "c"
-});
+ });
 ```
 
 Тогда следующий вызов преобразуется в "a a-b":
@@ -151,9 +150,8 @@ Google Closure Compiler производит соответствующие пр
 
 ```js
 /** @export */
-function Widget() {
-}
-/** @export */
+function Widget() {}
+  /** @export */
 Widget.prototype.hide = function() {
   this.elem.style.display = 'none'
 }
@@ -162,8 +160,7 @@ Widget.prototype.hide = function() {
 После компиляции в продвинутом режиме:
 
 ```js
-function a() {
-}
+function a() {}
 goog.d("Widget", a);
 a.prototype.a = function() {
   this.b.style.display = "none"

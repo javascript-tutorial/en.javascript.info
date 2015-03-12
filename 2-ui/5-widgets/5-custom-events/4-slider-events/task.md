@@ -8,7 +8,7 @@
 
 ```js
 var slider = new Slider({
-  elem: document.getElementById('slider'), 
+  elem: document.getElementById('slider'),
   max: 100 // слайдер на самой правой позиции соответствует 100
 });
 ```

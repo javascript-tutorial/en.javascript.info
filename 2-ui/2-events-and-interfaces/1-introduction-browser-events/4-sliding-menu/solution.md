@@ -1,4 +1,3 @@
-# Структура HTML/CSS
 
 Для начала, зададим структуру HTML/CSS.
 
@@ -33,41 +32,36 @@
 <span style="border: solid red 1px">[Сладости (нажми меня)!]</span>
 ```
 
-Раскрытие/закрытие делайте путём добавления/удаления класса `.menu-open` к меню, которые отвечает за стрелочку и отображение `UL`.
+Раскрытие/закрытие сделаем путём добавления/удаления класса `.menu-open` к меню, которые отвечает за стрелочку и отображение `UL`.
 
-# CSS 
-
-CSS для меню:
+Обычно меню будет закрыто:
 
 ```css
 .menu ul {
   margin: 0;
   list-style: none;
   padding-left: 20px;
-    
   display: none;
 }
-  
-.menu .title {
-  padding-left: 16px;
-  font-size: 18px;
-  cursor: pointer;
-    
-  background: url(...arrow-right.png) left center no-repeat;       
+
+.menu .title::before {
+  content: '▶ ';
+  font-size: 80%;
+  color: green;
 }
 ```
 
 Если же меню раскрыто, то есть имеет класс `.menu-open`, то стрелочка слева заголовка меняется и список детей показывается:
 
 ```css
-.menu-open .title {
-  background: url(...arrow-down.png) left center no-repeat; 
+.menu.open .title::before {
+  content: '▼ ';
 }
-  
-.menu-open ul {
+
+.menu.open ul {
   display: block;
 }
 ```
 
-Теперь сделайте JavaScript.
+Для JavaScript остался минимум работы -- только добавить/удалить класс при клике.
 

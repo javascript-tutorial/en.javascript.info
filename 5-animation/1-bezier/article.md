@@ -119,11 +119,15 @@
 <li>Эти точки соединяются. На рисунке ниже соединяющий их отрезок изображён <span style="color:blue">синим</span>.
 
 <table>
+<thead>
 <tr><td>При `t=0.25`</td><td>При `t=0.5`</td></tr>
+</thead>
+<tbody>
 <tr>
 <td><img src="bezier3-draw1.svg"></td>
 <td><img src="bezier3-draw2.svg"></td>
 </tr>
+</tbody>
 </table>
 
 </li>

@@ -19,22 +19,22 @@
 
 ```js
 //+ run
-document.body.myData = { 
+document.body.myData = {
   name: 'Петр',
   familyName: 'Петрович'
 };
 
-alert(document.body.myData.name); // Петр
+alert( document.body.myData.name ); // Петр
 ```
 
 Можно добавить и новую функцию:
 
 ```js
 //+ run
-document.body.sayHi = function() { 
-  alert(this.nodeName);
+document.body.sayHi = function() {
+  alert( this.nodeName );
 }
- 
+
 document.body.sayHi(); // BODY, выполнилась с правильным this
 ```
 
@@ -91,13 +91,13 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
 
   <script>
     alert( elem.getAttribute('About') ); // (1) 'Elephant', атрибут получен
-    
-    elem.setAttribute('Test', 123);  // (2) атрибут Test установлен
-    alert( document.body.innerHTML );  // (3) в HTML видны все атрибуты!
 
-    var attrs = elem.attributes;  // (4) можно получить коллекцию атрибутов
-    for (var i=0; i<attrs.length; i++) {
-      alert(attrs[i].name + " = " + attrs[i].value); 
+    elem.setAttribute('Test', 123); // (2) атрибут Test установлен
+    alert( document.body.innerHTML ); // (3) в HTML видны все атрибуты!
+
+    var attrs = elem.attributes; // (4) можно получить коллекцию атрибутов
+    for (var i = 0; i < attrs.length; i++) {
+      alert( attrs[i].name + " = " + attrs[i].value );
     }
   </script>
 </body>
@@ -162,7 +162,7 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
   // работа с checked через атрибут
 */!*
   alert( input.getAttribute('checked') ); // пустая строка
-  input.removeAttribute('checked');  // снять галочку 
+  input.removeAttribute('checked'); // снять галочку 
 
 *!*  
   // работа с checked через свойство
@@ -189,7 +189,7 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
 *!*
     input.value = 'new'; // поменяли свойство
 
-    alert(input.getAttribute('value')); // 'markup', не изменилось!
+    alert( input.getAttribute('value') ); // 'markup', не изменилось!
 */!*
   </script>
 </body>
@@ -232,10 +232,10 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
 <body class="main page">
   <script>
     // прочитать класс элемента
-    alert( document.body.className );  // main page
+    alert( document.body.className ); // main page
 
     // поменять класс элемента
-    document.body.className="class1 class2"; 
+    document.body.className = "class1 class2";
   </script>
 </body>
 ```
@@ -269,16 +269,16 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
   <script>
     var classList = document.body.classList;
 
-   classList.remove('page');   // удалить класс
-   classList.add('post');         // добавить класс
+    classList.remove('page'); // удалить класс
+    classList.add('post'); // добавить класс
 
-   for(var i=0; i<classList.length; i++) { // перечислить классы
-     alert(classList[i]); // main, затем post
-   }
+    for (var i = 0; i < classList.length; i++) { // перечислить классы
+      alert( classList[i] ); // main, затем post
+    }
 
-   alert( classList.contains('post') );  // проверить наличие класса
+    alert( classList.contains('post') ); // проверить наличие класса
 
-   alert( document.body.className ); // main post, тоже работает
+    alert( document.body.className ); // main post, тоже работает
   </script>
 </body>
 ```
@@ -331,9 +331,11 @@ document.body.sayHi(); // BODY, выполнилась с правильным t
   .order[order-state="new"] {
     color: green;
   }
+  
   .order[order-state="pending"] {
     color: blue;
   }
+  
   .order[order-state="canceled"] {
     color: red;
   }
@@ -364,7 +366,7 @@ div.setAttribute('order-state', 'canceled');
 Для классов -- нужно знать, какой класс у заказа сейчас. И тогда мы можем снять старый класс, и поставить новый:
 
 ```js
-div.classList.remove('order-state-new'); 
+div.classList.remove('order-state-new');
 div.classList.add('order-state-canceled');
 ```
 
@@ -417,7 +419,7 @@ div.classList.add('order-state-canceled');
 Этот атрибут должен прятать элемент, действие весьма простое, для его поддержки в HTML достаточно такого CSS:
 
 ```html
-<!--+ run height="80" -->
+<!--+ run height="80"  no-beautify -->
 <style>
 *!*
   [hidden] { display: none }
@@ -441,7 +443,7 @@ div.classList.add('order-state-canceled');
 
 
 ```html
-<!--+ run height="80" -->
+<!--+ run height="80"  no-beautify -->
 <style>
 *!*
   [hidden] { display: none }
@@ -485,7 +487,7 @@ div.classList.add('order-state-canceled');
 //+ run
 document.body.setAttribute('my', 123);
 
-alert( document.body.my );  // 123 в IE8-
+alert( document.body.my ); // 123 в IE8-
 ```
 
 При этом даже тип данных не меняется. Атрибут не становится строкой, как ему положено. 

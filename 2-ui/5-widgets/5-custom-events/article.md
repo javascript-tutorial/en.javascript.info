@@ -13,6 +13,7 @@
 Например, мы можем добавить в `options` для `Menu` новый параметр -- функцию `onselect`, которая будет вызываться при выборе пункта меню:
 
 ```js
+//+ no-beautify
 var menu = new Menu({ 
   title: "Сладости",
   template: _.template(document.getElementById('menu-template').innerHTML),
@@ -37,6 +38,7 @@ function showSelected(href) {
 В коде меню нужно будет вызывать её, например так:
 
 ```js
+//+ no-beautify
 ...
   function select(link) {
     options.onselect(link.getAttribute('href').slice(1));
@@ -58,6 +60,7 @@ function showSelected(href) {
 Для этого модифицируем функцию `select`:
 
 ```js
+//+ no-beautify
 function Menu(options) {
   ...
 
@@ -84,7 +87,7 @@ var menu = new Menu(...);
 var elem = menu.getElem();
 
 elem.addEventListener('select', function(event) {
-  alert(event.detail);
+  alert( event.detail );
 });
 ```
 

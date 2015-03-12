@@ -31,15 +31,15 @@
 
 ```js
 xhr.upload.onprogress = function(event) {
-  alert('Загружено на сервер ' + event.loaded + ' байт из '+ event.total);
+  alert( 'Загружено на сервер ' + event.loaded + ' байт из ' + event.total );
 }
 
 xhr.upload.onload = function() {
-  alert('Данные полностью загружены на сервер!');
+  alert( 'Данные полностью загружены на сервер!' );
 }
 
 xhr.upload.onerror = function() {
-  alert('Произошла ошибка при загрузке данных на сервер!');
+  alert( 'Произошла ошибка при загрузке данных на сервер!' );
 }
 ```
 
@@ -49,7 +49,7 @@ xhr.upload.onerror = function() {
 
 ```js
 xhr.onprogress = function(event) {
-  alert('Получено с сервера ' + event.loaded + ' байт из '+ event.total);
+  alert( 'Получено с сервера ' + event.loaded + ' байт из ' + event.total );
 }
 ```
 
@@ -67,20 +67,20 @@ File API позволяет получить доступ к содержимо�
 
 ```html
 <form name="upload">
-	<input type="file" name="myfile">
-	<input type="submit" value="Загрузить">
+  <input type="file" name="myfile">
+  <input type="submit" value="Загрузить">
 </form>
 
 <script>
-document.forms.upload.onsubmit = function() {
-  var file = this.elements.myfile.files[0];	
-  if (file) {
+  document.forms.upload.onsubmit = function() {
+    var file = this.elements.myfile.files[0];
+    if (file) {
 *!*
-    upload(file);
+      upload(file);
 */!*
+    }
+    return false;
   }
-  return false;
-}
 </script>
 ```
 
@@ -94,7 +94,7 @@ function upload(file) {
   // обработчики можно объединить в один,
   // если status == 200, то это успех, иначе ошибка
   xhr.onload = xhr.onerror = function() {
-    if(this.status == 200) {
+    if (this.status == 200) {
       log("success");
     } else {
       log("error " + this.status);
@@ -103,10 +103,10 @@ function upload(file) {
 
   // обработчик для закачки
   xhr.upload.onprogress = function(event) {
-    log(event.loaded + ' / '+ event.total);
+    log(event.loaded + ' / ' + event.total);
   }
 
-  xhr.open("POST", "upload", true); 
+  xhr.open("POST", "upload", true);
   xhr.send(file);
 
 }

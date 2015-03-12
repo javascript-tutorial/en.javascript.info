@@ -5,6 +5,7 @@
 Есть данные:
 
 ```js
+//+ no-beautify
 var users = [
   {name: "Вася", age: 10},
   {name: "Петя", age: 15},

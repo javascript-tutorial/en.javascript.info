@@ -68,7 +68,6 @@ var iframeDoc = iframe.contentWindow.document;
 <li>Когда ифрейм уже создан, то единственный способ поменять его `src` без попадания запроса в историю посещений:
 
 ```js
- 
 // newSrc - новый адрес
 iframeDoc.location.replace(newSrc);
 ```
@@ -104,7 +103,7 @@ function createIframe(name, src, debug) {
 
   // в старых IE нельзя присвоить name после создания iframe
   // поэтому создаём через innerHTML
-  tmpElem.innerHTML = '<iframe name="'+name+'" id="'+name+'" src="'+src+'">';
+  tmpElem.innerHTML = '<iframe name="' + name + '" id="' + name + '" src="' + src + '">';
   var iframe = tmpElem.firstChild;
 
   if (!debug) {
@@ -138,14 +137,14 @@ function createIframe(name, src, debug) {
 ```js
 // Например: postToIframe('/vote', {mark:5}, 'frame1')
 
-function postToIframe(url, data, target){
+function postToIframe(url, data, target) {
   var phonyForm = document.getElementById('phonyForm');
-  if(!phonyForm){
+  if (!phonyForm) {
     // временную форму создаем, если нет
     phonyForm = document.createElement("form");
     phonyForm.id = 'phonyForm';
     phonyForm.style.display = "none";
-    phonyForm.method = "POST";        
+    phonyForm.method = "POST";
     document.body.appendChild(phonyForm);
   }
 
@@ -154,11 +153,11 @@ function postToIframe(url, data, target){
 
   // заполнить форму данными из объекта
   var html = [];
-  for(var key in data){
+  for (var key in data) {
     var value = String(data[key]).replace(/"/g, "&quot;");
     // в старых IE нельзя указать name после создания input
     // поэтому используем innerHTML вместо DOM-методов
-    html.push("<input type='hidden' name=\""+key+"\" value=\""+value+"\">");
+    html.push("<input type='hidden' name=\"" + key + "\" value=\"" + value + "\">");
   }
   phonyForm.innerHTML = html.join('');
 
@@ -181,6 +180,7 @@ function postToIframe(url, data, target){
 <li>Сервер отвечает как-то так:
 
 ```html
+<!--+ no-beautify -->
 <script>
   parent.CallbackRegistry[window.name]({данные});
 </script>
@@ -257,6 +257,7 @@ function postToIframe(url, data, target){
 Поэтому в таком `IFRAME` первые несколько сообщений задержатся:
 
 ```html
+<!--+ no-beautify -->
 <!DOCTYPE HTML>
 <html>
   <body>
@@ -270,10 +271,15 @@ function postToIframe(url, data, target){
 ```html
 <!DOCTYPE HTML>
 <html>
-  <body>
+
+<body>
   ******* 1 килобайт пробелов, а потом уже сообщения ******
-  <script>parent.onMessage("привет");</script>
-  <script>parent.onMessage("от сервера");</script>
+  <script>
+    parent.onMessage("привет");
+  </script>
+  <script>
+    parent.onMessage("от сервера");
+  </script>
   ...
 ```
 
@@ -303,15 +309,15 @@ function iframeActiveXGet(url, onSuccess, onError) {
 *!*
   var iframe = createActiveXFrame(iframeName, url);
 */!*
-  
+
   CallbackRegistry[iframeName] = function(data) {
-    iframeOk = true;  
+    iframeOk = true;
     onSuccess(data);
   }
 
-  iframe.onload = function() { 
+  iframe.onload = function() {
     iframe.parentNode.removeChild(iframe); // очистка
-    delete CallbackRegistry[iframeName];   
+    delete CallbackRegistry[iframeName];
     if (!iframeOk) onError(); // если коллбэк не вызвался - что-то не так
   }
 
@@ -335,12 +341,12 @@ function createActiveXFrame(name, src) {
     // (3)
     htmlfile.parentWindow.CallbackRegistry = CallbackRegistry;
   }
-  
+
   // (4)
   src = src || 'javascript:false';
-  htmlfile.body.insertAdjacentHTML('beforeEnd', 
-    "<iframe name='"+name+"' src='"+src+"'></iframe>");
-  return htmlfile.body.lastChild; 
+  htmlfile.body.insertAdjacentHTML('beforeEnd',
+    "<iframe name='" + name + "' src='" + src + "'></iframe>");
+  return htmlfile.body.lastChild;
 }
 ```
 
@@ -351,7 +357,7 @@ function createActiveXFrame(name, src) {
 
 ```html
 <script>
-parent.CallbackRegistry[window.name]( объект с данными );
+  parent.CallbackRegistry[window.name](объект с данными);
 </script>
 ```
 

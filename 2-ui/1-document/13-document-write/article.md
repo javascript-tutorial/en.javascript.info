@@ -13,11 +13,11 @@ HTML-документ ниже будет содержать `1 2 3`.
 ```html
 <!--+ run -->
 <body>
-1
-<script>
-  document.write(2);
-</script>
-3
+  1
+  <script>
+    document.write(2);
+  </script>
+  3
 </body>
 ```
 
@@ -29,14 +29,18 @@ HTML-документ ниже будет содержать `1 2 3`.
 
 ```html
 <!--+ run -->
-<script> 
+<script>
   document.write('<style> td { color: #F40 } </style>');
- </script>
+</script>
 <table>
   <tr>
-  <script> document.write('<td>') </script>
+    <script>
+      document.write('<td>')
+    </script>
     Текст внутри TD.
-  <script> document.write('</td>') </script>
+    <script>
+      document.write('</td>')
+    </script>
   </tr>
 </table>
 ```
@@ -93,7 +97,7 @@ HTML-документ ниже будет содержать `1 2 3`.
   var url = 'http://ads.com/buyme?screen=' + screen.width + "x" + screen.height;
 
   // загрузить такой скрипт прямо сейчас
-  document.write('<script src="'+url+'"></scr'+'ipt>');
+  document.write('<script src="' + url + '"></scr' + 'ipt>');
 </script>
 ```
 
@@ -103,7 +107,7 @@ HTML-документ ниже будет содержать `1 2 3`.
 Также используют запись:
 
 ```js
-document.write('<script src="'+url+'"><\/script>');
+document.write('<script src="' + url + '"><\/script>');
 ```
 
 Здесь `<\/script>` вместо `</script>`: обратный слеш `\` обычно используется для вставки спецсимволов типа `\n`, а если такого спецсимвола нет, в данном случае `\/` не является спецсимволом, то будет проигнорирован. Так что получается такой альтернативный способ безопасно вставить строку `</script>`. 

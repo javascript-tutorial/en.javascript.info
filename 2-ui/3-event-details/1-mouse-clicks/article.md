@@ -77,7 +77,7 @@
 Это событие срабатывает при клике правой кнопкой мыши:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <div>Правый клик на этой кнопке выведет "Клик".</div>
 <button oncontextmenu="alert('Клик!');">Правый клик сюда</button>
 ```
@@ -89,7 +89,7 @@
 В примере ниже встроенное меню показано не будет:
 
 ```html
-<!--+ autorun height=60 -->
+<!--+ autorun height=60  no-beautify -->
 <button oncontextmenu="alert('Клик!');return false">Правый клик сюда</button>
 ```
 
@@ -116,7 +116,7 @@
 *!*
     if (!e.altKey || !e.shiftKey) return;
 */!*
-    alert('Ура!');
+    alert( 'Ура!' );
   }
 </script>
 ```
@@ -230,7 +230,7 @@
 ```js
 function fixWhich(e) {
   if (!e.which && e.button) { // если which нет, но есть button... (IE8-)
-    if (e.button & 1) e.which = 1;      // левая кнопка
+    if (e.button & 1) e.which = 1; // левая кнопка
     else if (e.button & 4) e.which = 2; // средняя кнопка
     else if (e.button & 2) e.which = 3; // правая кнопка
   }
@@ -247,13 +247,13 @@ function fixWhich(e) {
 
 ```js
 function fixPageXY(e) {
-  if (e.pageX == null && e.clientX != null ) { // если нет pageX..
+  if (e.pageX == null && e.clientX != null) { // если нет pageX..
     var html = document.documentElement;
     var body = document.body;
 
     e.pageX = e.clientX + (html.scrollLeft || body && body.scrollLeft || 0);
     e.pageX -= html.clientLeft || 0;
-    
+
     e.pageY = e.clientY + (html.scrollTop || body && body.scrollTop || 0);
     e.pageY -= html.clientTop || 0;
   }

@@ -38,19 +38,19 @@ ball.onmousedown = function(e) { // 1. отследить нажатие*!*
 
   // подготовить к перемещению
   // 2. разместить на том же месте, но в абсолютных координатах*!*
-  ball.style.position = 'absolute'; 
+  ball.style.position = 'absolute';
   moveAt(e);
   // переместим в body, чтобы мяч был точно не внутри position:relative
-  document.body.appendChild(ball); 
+  document.body.appendChild(ball);
 
   ball.style.zIndex = 1000; // показывать мяч над другими элементами
-  
+
   // передвинуть мяч под координаты курсора 
   // и сдвинуть на половину ширины/высоты для центрирования
   function moveAt(e) {
-    ball.style.left = e.pageX - ball.offsetWidth/2 + 'px'; 
-    ball.style.top = e.pageY - ball.offsetHeight/2 + 'px'; 
-   }
+    ball.style.left = e.pageX - ball.offsetWidth / 2 + 'px';
+    ball.style.top = e.pageY - ball.offsetHeight / 2 + 'px';
+  }
 
   // 3, перемещать по экрану*!*
   document.onmousemove = function(e) {
@@ -78,8 +78,8 @@ ball.onmousedown = function(e) { // 1. отследить нажатие*!*
 Его нужно отключить:
 
 ```js
-ball.ondragstart = function() { 
-  return false; 
+ball.ondragstart = function() {
+  return false;
 };
 ```
 
@@ -106,8 +106,8 @@ ball.ondragstart = function() {
 В примерах выше мяч позиционируется в центре под курсором мыши:
 
 ```js
-self.style.left = e.pageX - ball.offsetWidth/2 + 'px';
-self.style.top = e.pageY - ball.offsetHeight/2 + 'px';
+self.style.left = e.pageX - ball.offsetWidth / 2 + 'px';
+self.style.top = e.pageY - ball.offsetHeight / 2 + 'px';
 ```
 
 Если поставить `left/top` ровно в `pageX/pageY`, то мячик прилипнет верхним-левым углом к курсору мыши. Будет некрасиво. Поэтому мы сдвигаем его на половину высоты/ширины, чтобы был центром под мышью. Уже лучше.

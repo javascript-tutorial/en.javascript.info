@@ -36,20 +36,23 @@ DOM позволяет делать что угодно с HTML-элементо
 <!--+ run -->
 <!DOCTYPE HTML>
 <html>
-  <head>
-    <script>
-*!*
-      alert("Из HEAD: " + document.body); // null, body ещё нет
-*/!*
-    </script>
-  </head>
-  <body>
-  
-    <script>
-      alert("Из BODY: " + document.body); // body есть
-    </script>
 
-  </body>
+<head>
+  <script>
+*!*
+    alert( "Из HEAD: " + document.body ); // null, body ещё нет
+*/!*
+  </script>
+</head>
+
+<body>
+
+  <script>
+    alert( "Из BODY: " + document.body ); // body есть
+  </script>
+
+</body>
+
 </html>
 ```
 [/warn]
@@ -76,6 +79,7 @@ DOM позволяет делать что угодно с HTML-элементо
 <!--+ run -->
 <!DOCTYPE HTML>
 <html>
+
 <body>
   <div>Начало</div>
 
@@ -87,13 +91,14 @@ DOM позволяет делать что угодно с HTML-элементо
 
   <script>
 *!* 
-    for(var i=0; i<document.body.childNodes.length; i++) {
+    for (var i = 0; i < document.body.childNodes.length; i++) {
       alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
     }
 */!*
   </script>
   ...
 </body>
+
 </html>
 ```
 
@@ -146,9 +151,9 @@ elems.forEach(function(elem) { // нет такого метода!
 var elems = document.documentElement.childNodes;
 
 *!*
-[].forEach.call(elems, function(elem) { 
+[].forEach.call(elems, function(elem) {
 */!*
-  alert(elem);  // HEAD, текст, BODY
+  alert( elem ); // HEAD, текст, BODY
 });
 ```
 
@@ -166,8 +171,8 @@ var elems = document.documentElement.childNodes;
 elems = Array.prototype.slice.call(elems); // теперь elems - массив
 */!*
 
-elems.forEach(function(elem) { 
-  alert(elem.tagName);  // HEAD, текст, BODY
+elems.forEach(function(elem) {
+  alert( elem.tagName ); // HEAD, текст, BODY
 });
 ```
 
@@ -188,8 +193,8 @@ elems.forEach(function(elem) {
 //+ run
 var elems = document.documentElement.childNodes;
 
-for(var key in elems) {
-  alert(key); // 0, 1, 2, length, item
+for (var key in elems) {
+  alert( key ); // 0, 1, 2, length, item
 }
 ```
 
@@ -242,6 +247,7 @@ for(var key in elems) {
 <!--+ run -->
 <!DOCTYPE HTML>
 <html>
+
 <body>
   <div>Начало</div>
 
@@ -253,13 +259,14 @@ for(var key in elems) {
 
   <script>
 *!* 
-    for(var i=0; i<document.body.children.length; i++) {
+    for (var i = 0; i < document.body.children.length; i++) {
       alert( document.body.children[i] ); // DIV, UL, DIV, SCRIPT
     }
 */!*
   </script>
   ...
 </body>
+
 </html>
 ```
 
@@ -267,7 +274,7 @@ for(var key in elems) {
 
 ```js
 elem.firstElementChild === elem.children[0]
-elem.lastElementChild === body.children[body.children.length-1]
+elem.lastElementChild === body.children[body.children.length - 1]
 ```
 
 

@@ -18,6 +18,7 @@
 <li>На злой странице находится форма такого вида:
 
 ```html
+<!--+ no-beautify -->
 <form action="http://mail.com/send" method="POST">
   <input type="hidden" name="message" value="Сообщение">
   ...

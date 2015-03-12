@@ -20,8 +20,7 @@
   insertAfter(elem, body.firstChild); // <--- должно работать
 
   // вставить elem за последним элементом
-  insertAfter(elem, body.lastChild);  // <--- должно работать 
-  
+  insertAfter(elem, body.lastChild); // <--- должно работать
 </script>
 ```
 

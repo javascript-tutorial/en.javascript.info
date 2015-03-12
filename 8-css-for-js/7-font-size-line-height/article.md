@@ -11,7 +11,7 @@
 Для наглядности посмотрим пример HTML, в котором шрифт и размер строки одинаковы:
 
 ```html
-<!--+ autorun height=100 -->
+<!--+ autorun height=100  no-beautify -->
 <style>
 body { 
 *!*

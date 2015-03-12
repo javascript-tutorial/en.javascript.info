@@ -5,7 +5,7 @@
 Есть две колонки `30%/70%`:
 
 ```html
-<!--+ autorun height=70 run play -->
+<!--+ autorun height=70 run play  no-beautify -->
 <style>
   .left {
     float:left; 

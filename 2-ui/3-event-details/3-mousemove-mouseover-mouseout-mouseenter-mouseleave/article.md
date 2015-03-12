@@ -161,12 +161,12 @@
 
 ```js
 table.onmouseover = function(event) {
-  var target = event.target; 
+  var target = event.target;
   target.style.background = 'pink';
 };
 
 table.onmouseout = function(event) {
-  var target = event.target; 
+  var target = event.target;
   target.style.background = '';
 };
 ```

@@ -50,7 +50,7 @@
 В действии:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <textarea rows="6" cols="40" id="area">Кликни меня
 </textarea>
 
@@ -103,7 +103,7 @@
 При этом обработчик `onclick` вызовет метод `focus()` на текстовом поле `text`. Код обработчика `onfocus`, который при этом запустится, сработает синхронно, прямо сейчас, до завершения `onclick`.
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <input type="button" id="button" value="Нажми меня">
 <input type="text" id="text" size="60">
 
@@ -147,7 +147,6 @@
 <input type="text" id="text" size="60">
 
 <script>
-
   button.onclick = function() {
     text.value += ' ->в onclick ';
 
@@ -156,10 +155,10 @@
       text.focus(); // сработает после onclick
     }, 0);
 */!*
-   
+
     text.value += ' из onclick-> ';
   };
- 
+
   text.onfocus = function() {
     text.value += ' !focus! ';
   };

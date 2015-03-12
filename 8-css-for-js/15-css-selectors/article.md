@@ -56,32 +56,33 @@ CSS3-селекторы -- фундаментально полезная вещ�
 CSS-селекторы:
 
 ```css
-##languages li {
+/*+ no-beautify */
+#languages li {
   color: brown;   /* потомки #languages, подходящие под селектор  LI */
 }
 
-##languages > li {
+#languages > li {
   color: black;   /* первый уровень детей #languages подходящих под LI */
 }
 
-##e-slavic { font-style: italic; }
+#e-slavic { font-style: italic; }
 
 *!*
-##e-slavic ~ li {  /* правые соседи #e-slavic с селектором LI */
+#e-slavic ~ li {  /* правые соседи #e-slavic с селектором LI */
   color: red;
 }
 */!*
 
-##latvian { 
+#latvian { 
   font-style: italic;
 }
 
-##latvian * {      /* потомки #latvian, подходяще под * (т.е. любые) */
+#latvian * {      /* потомки #latvian, подходяще под * (т.е. любые) */
   font-style: normal;
 }
 
 *!*
-##latvian + li {  /* первый правый сосед #latvian с селектором LI */
+#latvian + li {  /* первый правый сосед #latvian с селектором LI */
  color: green;
 }
 */!*
@@ -117,7 +118,7 @@ CSS-селекторы:
 [iframe src="nthchild" border="1" edit link]
 
 ```css
-/*+ hide="CSS к примеру выше" */
+/*+ hide="CSS к примеру выше"  no-beautify */
 li:nth-child(2n) { /* чётные */
   background: #eee;
 }
@@ -150,7 +151,7 @@ li:nth-child(3) {  /* 3-ий потомок */
 [iframe src="nthchild-type" border="1" edit link]
 
 ```css
-/*+ hide="CSS к примеру выше" */
+/*+ hide="CSS к примеру выше"  no-beautify */
 dt:nth-of-type(2n) {
   /* чётные dt (соседи с другими тегами игнорируются) */
   background: #eee;
@@ -220,13 +221,13 @@ dd:nth-last-of-type(2) {
 ```html
 <!--+ autorun -->
 <style>
-li::before {
-  content: " [[ ";
-}
-
-li::after {
-  content: " ]] ";
-}
+  li::before {
+    content: " [[ ";
+  }
+  
+  li::after {
+    content: " ]] ";
+  }
 </style>
 
 Обратите внимание: содержимое добавляется <b>внутрь</b> LI.

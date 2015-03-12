@@ -9,6 +9,7 @@
 
 ```html
 <html>
+
 <body>
   <div>
     <ul>
@@ -17,6 +18,7 @@
     Сосед
   </div>
 </body>
+
 </html>
 ```
 
@@ -75,9 +77,9 @@ document.body.innerHTML = "";
   var list = document.getElementsByTagName('ul')[0];
   document.body.innerHTML = ''; // удалили DIV 
 
-  alert(list.parentNode);  // цела ли ссылка UL -> DIV ?
-  alert(list.nextSibling); // живы ли соседи UL ?
-  alert(list.children.length);  // живы ли потомки UL ?
+  alert( list.parentNode ); // цела ли ссылка UL -> DIV ?
+  alert( list.nextSibling ); // живы ли соседи UL ?
+  alert( list.children.length ); // живы ли потомки UL ?
 </script>
 ```
 

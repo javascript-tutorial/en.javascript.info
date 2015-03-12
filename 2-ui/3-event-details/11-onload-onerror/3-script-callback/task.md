@@ -11,7 +11,7 @@
 ```js
 // go.js содержит функцию go()
 addScript("go.js", function() {
- go();
+  go();
 });
 ```
 

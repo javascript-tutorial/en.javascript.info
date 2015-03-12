@@ -28,12 +28,12 @@
 function User(firstName, lastName) {
   var fullName = firstName + ' ' + lastName;
 
-  this.sayHi = function() { 
+  this.sayHi = function() {
     showMessage(fullName);
   }
 
   function showMessage(msg) {
-    alert('**' + msg + '**');
+    alert( '**' + msg + '**' );
   }
 }
 ```
@@ -46,13 +46,13 @@ function User(firstName, lastName) {
   this._lastName = lastName;
 }
 
-User.prototype.sayHi = function() { 
+User.prototype.sayHi = function() {
   this._showMessage(this._fullName);
 }
 
 
-User.prototype._showMessage = function(msg) { 
-  alert('**' + msg + '**');
+User.prototype._showMessage = function(msg) {
+  alert( '**' + msg + '**' );
 }
 ```
 
@@ -71,21 +71,21 @@ User.prototype._showMessage = function(msg) {
 Проще всего это сделать локальной переменной в модуле:
 
 ```js
-(function($) {      
+(function($) {
 
 *!*
-   /** @const */
-   var platform = 'IE';  
+  /** @const */
+  var platform = 'IE';
 */!*
 
-   // .....
-   
-   if (platform == 'IE') {
-       alert('IE');
-   } else {
-       alert('NON-IE');
-   }
-   
+  // .....
+
+  if (platform == 'IE') {
+    alert( 'IE' );
+  } else {
+    alert( 'NON-IE' );
+  }
+
 })(jQuery);
 ```
 
@@ -108,16 +108,16 @@ UglifyJS и GCC позволяют задать значение глобаль�
 ```js
 // my.js
 if (isIE) {
-  alert("Привет от IE");
-} else {  
-  alert("Не IE :)");
+  alert( "Привет от IE" );
+} else {
+  alert( "Не IE :)" );
 }
 ```
 
 Сжатие вызовом `uglifyjs -d isIE my.js` даст:
 
 ```js
-alert("Привет от IE");
+alert( "Привет от IE" );
 ```
 
 ..Ну а чтобы код работал в обычном окружении, нужно определить в нём значение переменной по умолчанию. Это обычно делается в каком-то другом файле (на весь проект), так как если объявить `var isIE` в этом, то флаг `-d isIE` не сработает.
@@ -147,24 +147,24 @@ var uglify = require('uglify-js');
 var pro = uglify.uglify;
 
 function ast_squeeze_console(ast) {
-    var w = pro.ast_walker(),
-        walk = w.walk,
-        scope;
-    return w.with_walkers({
-        "stat": function(stmt) {
-            if(stmt[0] === "call" && stmt[1][0] == "dot" && stmt[1][1] instanceof Array && stmt[1][1][0] == 'name' && stmt[1][1][1] == "log") {
-                return ["block"];
-            }
-            return ["stat", walk(stmt)];
-        },
-        "call": function(expr, args) {
-            if(expr[0] == "dot" && expr[1] instanceof Array && expr[1][0] == 'name' && expr[1][1] == "console") {
-                return ["atom", "0"];
-            }
-        }
-    }, function() {
-        return walk(ast);
-    });
+  var w = pro.ast_walker(),
+    walk = w.walk,
+    scope;
+  return w.with_walkers({
+    "stat": function(stmt) {
+      if (stmt[0] === "call" && stmt[1][0] == "dot" && stmt[1][1] instanceof Array && stmt[1][1][0] == 'name' && stmt[1][1][1] == "log") {
+        return ["block"];
+      }
+      return ["stat", walk(stmt)];
+    },
+    "call": function(expr, args) {
+      if (expr[0] == "dot" && expr[1] instanceof Array && expr[1][0] == 'name' && expr[1][1] == "console") {
+        return ["atom", "0"];
+      }
+    }
+  }, function() {
+    return walk(ast);
+  });
 };
 ```
 

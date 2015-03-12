@@ -118,6 +118,7 @@ id: 3
 У объекта `EventSource` есть свойство `readyState`, которое содержит одно из значений (выдержка из стандарта):
 
 ```js
+//+ no-beautify
 const unsigned short CONNECTING = 0; // в процессе (пере-)соединения 
 const unsigned short OPEN = 1;       // соединение установлено
 const unsigned short CLOSED = 2;     // соединение закрыто
@@ -144,7 +145,7 @@ eventSource.onopen = function(e) {
 };
 
 eventSource.onerror = function(e) {
-  if (this.readyState == EventSource.CONNECTING) {      
+  if (this.readyState == EventSource.CONNECTING) {
     console.log("Соединение порвалось, пересоединяемся...");
   } else {
     console.log("Ошибка, состояние: " + this.readyState);
@@ -180,15 +181,15 @@ data: Вася
 
 ```js
 eventSource.addEventListener('join', function(e) {
-  alert('Пришёл ' + e.data);
+  alert( 'Пришёл ' + e.data );
 });
 
 eventSource.addEventListener('message', function(e) {
-  alert('Сообщение ' + e.data);
+  alert( 'Сообщение ' + e.data );
 });
 
 eventSource.addEventListener('leave', function(e) {
-  alert('Ушёл ' + e.data);
+  alert( 'Ушёл ' + e.data );
 });
 ```
 
@@ -203,7 +204,9 @@ eventSource.addEventListener('leave', function(e) {
 `EventSource` поддерживает кросс-доменные запросы, аналогично `XMLHttpRequest`. Для этого у конструктора есть второй аргумент -- объект, который нужно передать так:
 
 ```js
-var source = new EventSource("http://pupkin.ru/stream", { withCredentials: true });
+var source = new EventSource("http://pupkin.ru/stream", {
+  withCredentials: true
+});
 ```
 
 Второй аргумент сделан объектом с расчётом на будущее. Пока что никаких других свойств там не поддерживается, только `withCredentials`.
@@ -215,7 +218,7 @@ var source = new EventSource("http://pupkin.ru/stream", { withCredentials: true 
 ```js
 eventSource.addEventListener('message', function(e) {
   if (e.origin != 'http://javascript.ru') return;
-  alert('Сообщение ' + e.data);
+  alert( 'Сообщение ' + e.data );
 });
 ```
 

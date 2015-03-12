@@ -12,8 +12,8 @@
 var ball = document.getElementById('ball');
 var field = document.getElementById('field');
 
-ball.style.left = Math.round(field.clientWidth / 2)+'px';
-ball.style.top = Math.round(field.clientHeight / 2)+'px';
+ball.style.left = Math.round(field.clientWidth / 2) + 'px';
+ball.style.top = Math.round(field.clientHeight / 2) + 'px';
 ```
 
 [iframe hide="Нажмите, чтобы посмотреть текущий результат" height=180 src="ball-half"]
@@ -24,8 +24,8 @@ ball.style.top = Math.round(field.clientHeight / 2)+'px';
 var ball = document.getElementById('ball');
 var field = document.getElementById('field');
 
-ball.style.left = Math.round(field.clientWidth/2 - ball.offsetWidth/2)+'px';
-ball.style.top = Math.round(field.clientHeight/2 - ball.offsetHeight/2)+'px';
+ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px';
+ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';
 ```
 
 **Внимание, подводный камень!**

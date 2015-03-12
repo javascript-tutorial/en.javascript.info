@@ -18,7 +18,7 @@
 Например, в таком HTML оба способа выведут `alert`, форма не будет отправлена:
 
 ```html
-<!--+ autorun height=80 -->
+<!--+ autorun height=80  no-beautify -->
 <form onsubmit="alert('submit!');return false">
   Первый: Enter в текстовом поле <input type="text" value="Текст"><br>
   Второй: Нажать на "Отправить": <input type="submit" value="Отправить">

@@ -59,7 +59,7 @@ var func = bindLate(obj, "method");
 Код:
 
 ```js
-function bindLate(context, funcName) { 
+function bindLate(context, funcName) {
   return function() {
     return context[funcName].apply(context, arguments);
   };
@@ -138,7 +138,7 @@ userSayHi(); // Метод работает: *!*Привет!*/!*
 Обёртка для позднего связывания (без карринга):
 
 ```js
-function bindLate(context, funcName) { 
+function bindLate(context, funcName) {
   return function() {
     return context[funcName].apply(context, arguments);
   };

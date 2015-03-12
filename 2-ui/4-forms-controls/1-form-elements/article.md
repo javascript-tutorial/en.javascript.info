@@ -11,6 +11,7 @@
 Например:
 
 ```js
+//+ no-beautify
 document.forms.my -- форма с именем 'my'
 document.forms[0] -- первая форма в документе
 ```
@@ -24,18 +25,18 @@ document.forms[0] -- первая форма в документе
 ```html
 <!--+ run height=40 -->
 <body>
-<form name="my">
-  <input name="one" value="1">
-  <input name="two" value="2">
-</form>
+  <form name="my">
+    <input name="one" value="1">
+    <input name="two" value="2">
+  </form>
 
-<script>
-var form = document.forms.my; // можно document.forms[0]
+  <script>
+    var form = document.forms.my; // можно document.forms[0]
 
-var elem = form.elements.one;  // можно form.elements[0]
+    var elem = form.elements.one; // можно form.elements[0]
 
-alert(elem.value); // "один"
-</script>
+    alert( elem.value ); // "один"
+  </script>
 </body>
 ```
 
@@ -67,24 +68,25 @@ alert(elems[0].value); // 10, первый input
 ```html
 <!--+ run height=80 -->
 <body>
-<form>
-  <fieldset name="set"><legend>fieldset</legend>
+  <form>
+    <fieldset name="set">
+      <legend>fieldset</legend>
       <input name="text" type="text">
-  </fieldset>
-</form>
+    </fieldset>
+  </form>
 
-<script>
-var form = document.forms[0];
+  <script>
+    var form = document.forms[0];
 
-alert( form.elements.text ); // INPUT
+    alert( form.elements.text ); // INPUT
 *!*
-alert( form.elements.set.elements.text ); // INPUT
+    alert( form.elements.set.elements.text ); // INPUT
 */!*
-</script>
+  </script>
 </body>
 ```
 
-Спецификация: [HTML5 Forms](http://www.w3.org/TR/html5/forms.html).
+Спецификация: [HTML5 Forms](https://html.spec.whatwg.org/multipage/forms.html).
 
 [warn header="Доступ `form.name` тоже работает, но с особенностями"]
 Получить доступ к элементам формы можно не только через `form.elements[name/index]`, но и проще: `form[index/name]`.
@@ -95,19 +97,21 @@ alert( form.elements.set.elements.text ); // INPUT
 
 ```html
 <!--+ run height=40 -->
-<form name="myform"> <input name="text"> </form>
+<form name="myform">
+  <input name="text">
+</form>
 
 <script>
-var form = document.forms.myform;
+  var form = document.forms.myform;
 
-alert(form.elements.text == form.text); // true, это тот самый INPUT
+  alert( form.elements.text == form.text ); // true, это тот самый INPUT
 
-form.text.name = "new-name"; // меняем name ему
+  form.text.name = "new-name"; // меняем name ему
 
-// нет больше элемента с таким именем
-alert(form.elements.text); // undefined
+  // нет больше элемента с таким именем
+  alert( form.elements.text ); // undefined
 
-alert(form.text); //  INPUT (а должно быть undefined!)
+  alert( form.text ); //  INPUT (а должно быть undefined!)
 </script>
 ```
 
@@ -138,7 +142,7 @@ alert(elem.form == form); // true
 </body>
 ```
 
-Познакомиться с другими свойствами элементов можно в спецификации [HTML5 Forms](http://www.w3.org/TR/html5/forms.html).
+Познакомиться с другими свойствами элементов можно в спецификации [HTML5 Forms](https://html.spec.whatwg.org/multipage/forms.html).
 
 ## Элемент label
 
@@ -157,12 +161,20 @@ alert(elem.form == form); // true
 <!--+ autorun -->
 <table>
   <tr>
-    <td><label for="agree">Согласен с правилами</label></td>
-    <td><input id="agree" type="checkbox"></td>
+    <td>
+      <label for="agree">Согласен с правилами</label>
+    </td>
+    <td>
+      <input id="agree" type="checkbox">
+    </td>
   </tr>
   <tr>
-    <td><label for="not-a-robot">Я не робот</label></td>
-    <td><input id="not-a-robot" type="checkbox"></td>
+    <td>
+      <label for="not-a-robot">Я не робот</label>
+    </td>
+    <td>
+      <input id="not-a-robot" type="checkbox">
+    </td>
   </tr>
 </table>
 ```
@@ -171,7 +183,7 @@ alert(elem.form == form); // true
 <li>Завернуть элемент в `label`. В этом случае можно обойтись без дополнительных атрибутов:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun  no-beautify -->
 <label>Кликни меня <input type="checkbox"></label>
 ```
 
@@ -196,8 +208,8 @@ textarea.value = "Новый текст";
 **Текущее "отмеченное" состояние для `checkbox` и `radio` находится в свойстве `checked` (`true/false`).**
 
 ```js
-if (input.checked) { 
-  alert("Чекбокс выбран");
+if (input.checked) {
+  alert( "Чекбокс выбран" );
 }
 ```
 
@@ -242,13 +254,13 @@ for (var i=0; i<select.options.length; i++) {
 </script>
 ```
 
-Спецификация: <a href="http://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-94282980">HTMLSelectElement</a>.
+Спецификация: [the select element](https://html.spec.whatwg.org/multipage/forms.html#the-select-element).
 
 [smart header="`new Option`"]
-В стандарте [the Option Element](http://dev.w3.org/html5/spec/the-option-element.html#the-option-element) есть любопытный короткий синтаксис для создания элемента с тегом `option`:
+В стандарте [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) есть любопытный короткий синтаксис для создания элемента с тегом `option`:
 
 ```js
-option = new Option( text, value, defaultSelected, selected);
+option = new Option(text, value, defaultSelected, selected);
 ```
 
 Параметры:
@@ -261,7 +273,7 @@ option = new Option( text, value, defaultSelected, selected);
 Его можно использовать вместо `document.createElement('option')`, например:
 
 ```js
-var option = new Option("Текст", "value"); 
+var option = new Option("Текст", "value");
 // создаст <option value="value">Текст</option>
 ```
 
@@ -275,7 +287,7 @@ var option = new Option("Текст", "value", true, true);
 
 [smart header="Дополнительные свойства `option`"]
 
-У элементов `option` также есть особые свойства, которые могут оказаться полезными (см. [The Option Element](http://dev.w3.org/html5/spec/the-option-element.html#the-option-element)):
+У элементов `option` также есть особые свойства, которые могут оказаться полезными (см. [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element)):
 
 <dl>
 <dt>`selected`</dt>

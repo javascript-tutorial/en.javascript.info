@@ -46,9 +46,9 @@
 Результат `getCoords`: объект с координатами `{left: .., top: ..}`
 
 ```js
-function getCoords(elem) {  // кроме IE8-
+function getCoords(elem) { // кроме IE8-
   var box = elem.getBoundingClientRect();
-  
+
   return {
     top: box.top + pageYOffset,
     left: box.left + pageXOffset
@@ -64,23 +64,26 @@ function getCoords(elem) {  // кроме IE8-
 function getCoords(elem) {
   // (1)
   var box = elem.getBoundingClientRect();
-  
+
   var body = document.body;
   var docEl = document.documentElement;
-  
+
   // (2)
   var scrollTop = window.pageYOffset || docEl.scrollTop || body.scrollTop;
   var scrollLeft = window.pageXOffset || docEl.scrollLeft || body.scrollLeft;
-  
+
   // (3)
   var clientTop = docEl.clientTop || body.clientTop || 0;
   var clientLeft = docEl.clientLeft || body.clientLeft || 0;
-  
+
   // (4)
-  var top  = box.top +  scrollTop - clientTop;
+  var top = box.top + scrollTop - clientTop;
   var left = box.left + scrollLeft - clientLeft;
-  
-  return { top: top, left: left };
+
+  return {
+    top: top,
+    left: left
+  };
 }
 ```
 
@@ -104,15 +107,19 @@ function getCoords(elem) {
 ```js
 //+ autorun
 function getOffsetSum(elem) {
-  var top = 0, left = 0;
+  var top = 0,
+    left = 0;
 
-  while(elem) {
+  while (elem) {
     top = top + parseInt(elem.offsetTop);
     left = left + parseInt(elem.offsetLeft);
-    elem = elem.offsetParent;     
+    elem = elem.offsetParent;
   }
-   
-  return {top: top, left: left};
+
+  return {
+    top: top,
+    left: left
+  };
 }
 ```
 
@@ -183,10 +190,10 @@ document.getElementById('getBoundingClientRectEx').onclick = function(event) {
 ```js
 //+ run
 // общая ширина/высота
-alert( screen.width + ' x ' + screen.height ); 
+alert( screen.width + ' x ' + screen.height );
 
 // доступная ширина/высота (за вычетом таскбара и т.п.)
-alert( screen.availWidth + ' x ' + screen.availHeight); 
+alert( screen.availWidth + ' x ' + screen.availHeight );
 
 // есть и ряд других свойств screen (см. документацию)
 ```
@@ -196,7 +203,7 @@ alert( screen.availWidth + ' x ' + screen.availHeight);
 
 ```js
 //+ run
-alert("Браузер находится на " + window.screenX + "," + window.screenY);
+alert( "Браузер находится на " + window.screenX + "," + window.screenY );
 ```
 
 Они могут быть и меньше нуля, если окно частично вне экрана. </li>

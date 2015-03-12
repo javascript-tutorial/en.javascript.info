@@ -5,7 +5,8 @@
 Так как мы преобразуем `<div>` в `<textarea>` и обратно, нам нужно сделать их практически одинаковыми с виду:
 
 ```css
-#view, #area {
+#view,
+#area {
   height: 150px;
   width: 400px;
   font-family: arial;
@@ -18,10 +19,11 @@
 Для того, чтобы сделать размер `#area` таким же, как и `#view`, добавим поля(padding):
 
 ```css
-#view {  
+#view {
   /* padding + border = 3px */
-  padding: 2px; 
-  border:1px solid black; 
+  
+  padding: 2px;
+  border: 1px solid black;
 }
 ```
 
@@ -29,16 +31,16 @@ CSS для `#area` заменяет поля границами:
 
 ```css
 #area {
-  border: 3px groove blue;  
+  border: 3px groove blue;
   padding: 0px;
-
-  display:none;
+  display: none;
 }
 ```
 
 По умолчанию, текстовое поле скрыто. Кстати, этот код убирает дополнительную рамку в ряде браузеров, которая появляется вокруг поля, когда на него попадает фокус:
 
 ```css
+/*+ no-beautify */
 #area:focus { 
   outline: none; /* убирает рамку при фокусе */
 }
@@ -77,21 +79,21 @@ document.onkeydown = function(e) {
 
 ```js
 function edit() {
-    view.style.display = 'none';
-    area.value = view.innerHTML;
-    area.style.display = 'block';
-    area.focus();
+  view.style.display = 'none';
+  area.value = view.innerHTML;
+  area.style.display = 'block';
+  area.focus();
 }
 
 function save() {
-    area.style.display = 'none';
-    view.innerHTML = area.value;
-    view.style.display = 'block';
+  area.style.display = 'none';
+  view.innerHTML = area.value;
+  view.style.display = 'block';
 }
 
 function cancel() {
-    area.style.display = 'none';
-    view.style.display = 'block';
+  area.style.display = 'none';
+  view.style.display = 'block';
 }
 ```
 
