@@ -19,7 +19,7 @@ describe("Возводит x в степень n", function() {
   });
 
   it("5 в степени 3 равно 125", function() {
-    assert.equal(pow(5, 3), 25);
+    assert.equal(pow(5, 3), 125);
   });
 });
 ```

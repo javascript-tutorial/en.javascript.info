@@ -38,34 +38,41 @@
 ```js
 //+ no-beautify
 if (hours > 18) {
-    // Пойти поиграть в теннис
+      // Пойти поиграть в теннис
 }
 ```
 
-<ul>
-<li>**`white-space: pre`:**
+**`white-space: pre`:**
 
-[pre]
-<div class="white-space-example" style="white-space:pre">if (hours > 18) {
-    // Пойти поиграть в теннис
+```html
+<!--+ autorun height=100 -->
+<style>
+  div { font-family: monospace; width: 200px; border: 1px solid black; }
+</style>
+
+<div style="white-space:pre">if (hours > 18) {
+      // Пойти поиграть в теннис
 }
 </div>
-[/pre]
+```
 
 Здесь пробелы и переводы строк сохранены. В HTML этому значению `white-space` соответствует тег `PRE`.
-</li>
-<li>**`white-space: nowrap`:**
 
-[pre]
-<div class="white-space-example" style="white-space:nowrap">if (hours > 18) {
-    // Пойти поиграть в теннис
+**`white-space: nowrap`:**
+
+```html
+<!--+ autorun height=100 -->
+<style>
+  div { font-family: monospace; width: 200px; border: 1px solid black; }
+</style>
+
+<div style="white-space:nowrap">if (hours > 18) {
+      // Пойти поиграть в теннис
 } 
 </div>
-[/pre]
+```
 
 Здесь переводы строки проигнорированы, а подряд идущие пробелы, если присмотреться -- сжаты в один (например, перед комментарием `//`).
-</li>
-</ul> 
 
 Допустим, мы хотим разрешить посетителям публиковать код на сайте, с сохранением разметки. Но тег `PRE` и описанные выше значения `white-space` для этого не подойдут!
 
@@ -84,37 +91,34 @@ if (hours > 18) {
 
 Оба поведения отлично прослеживаются на примерах:
 
-<ul>
-<li>**`white-space: pre-wrap`:**
+**`white-space: pre-wrap`:**
 
-[pre]
-<div class="white-space-example" style="white-space:pre-wrap">if (hours > 18) {
-    // Пойти поиграть в теннис
+```html
+<!--+ autorun height=100 -->
+<style>
+  div { font-family: monospace; width: 200px; border: 1px solid black; }
+</style>
+
+<div style="white-space:pre-wrap">if (hours > 18) {
+      // Пойти поиграть в теннис
 }
 </div>
-[/pre]
+```
+
 Отличный выбор для безопасной вставки кода посетителями.
 
-</li>
-<li>**`white-space: pre-line`:**
+**`white-space: pre-line`:**
 
-[pre]
-<div class="white-space-example" style="white-space:pre-line">if (hours > 18) {
-    // Пойти поиграть в теннис
+```html
+<!--+ autorun height=100 -->
+<style>
+  div { font-family: monospace; width: 200px; border: 1px solid black; }
+</style>
+
+<div style="white-space:pre-line">if (hours > 18) {
+      // Пойти поиграть в теннис
 } 
 </div>
-[/pre]
+```
 
 Сохранены переводы строк, ничего не вылезает, но пробелы интерпретированы в режиме обычного HTML.
-</li>
-</ul> 
-
-[head]
-<style>
-.white-space-example {
-  font-family: monospace; 
-  width: 200px; 
-  border: 1px solid black;
-}
-</style>
-[/head]
