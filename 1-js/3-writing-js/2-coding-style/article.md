@@ -5,7 +5,7 @@
 [cut]
 ## Синтаксис
 
-Шпаргалка с правилами синтаксиса (детально они их варианты разобраны далее):
+Шпаргалка с правилами синтаксиса (детально их варианты разобраны далее):
 
 <img src="code-style.svg">
 
@@ -144,7 +144,7 @@ for (var i = 0; i < 10; i++) {
 Используйте:
 
 ```js
-for (var i=0; i<10; i++) {
+for (var i = 0; i < 10; i++) {
   if (i *!*не*/!* подходит) *!*continue*/!*;
   ...  // <- уровень вложенности 1
 }
@@ -226,7 +226,7 @@ function showPrimes(n) {
 ```js
 function showPrimes(n) {
   
-  for (var i=2; i<n; i++) {
+  for (var i = 2; i < n; i++) {
     *!*if (!isPrime(i)) continue;*/!*
      
     alert(i);  // простое         
@@ -234,7 +234,7 @@ function showPrimes(n) {
 }
 
 function isPrime(n) {
-  for (var i=2; i<n; i++) {
+  for (var i = 2; i < n; i++) {
     if ( n % i == 0) return false;
   }
   return true;

@@ -19,7 +19,7 @@ var people = [ vasya , masha , vovochka ];
 people.sort(compareAge);
 
 // вывести
-for(var i=0; i<people.length; i++) {
+for(var i = 0; i < people.length; i++) {
   alert(people[i].name); // Вовочка Маша Вася
 }
 ```

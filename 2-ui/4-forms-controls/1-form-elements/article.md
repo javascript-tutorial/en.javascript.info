@@ -243,11 +243,11 @@ select.selectedIndex = 0; // первая опция
 var form = document.forms[0];
 var select = form.elements.genre;
 
-for (var i=0; i<select.options.length; i++) {
+for (var i = 0; i < select.options.length; i++) {
   var option = select.options[i];
 *!*
   if(option.selected) {
-    alert(option.value);
+    alert( option.value );
   }
 */!*
 }

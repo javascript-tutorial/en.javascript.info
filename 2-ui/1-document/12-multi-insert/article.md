@@ -275,7 +275,7 @@ ul.appendChild(fragment); // вместо фрагмента вставятся 
 <script>
 function bench(test, times) {
    var sum = 0;
-   for(var i=0; i<times; i++) {
+   for(var i = 0; i < times; i++) {
       if(test.setup) test.setup();
       var t = new Date();
       test.work();
@@ -301,10 +301,10 @@ var appendFirst = new function() {
     var tbody = document.createElement('TBODY');
     benchTable.appendChild(tbody);
 
-    for(var i=0; i<20; i++) {
+    for(var i = 0; i < 20; i++) {
       var tr = document.createElement('TR');
       tbody.appendChild(tr);
-      for(var j=0; j<20; j++) {
+      for(var j = 0; j < 20; j++) {
         var td = document.createElement('td');
         td.appendChild(document.createTextNode(''+i.toString(20)+j.toString(20)));
         tr.appendChild(td);
@@ -329,10 +329,10 @@ var appendLast = new function() {
   this.work = function() {
     var tbody = document.createElement('TBODY');
 
-    for(var i=0; i<20; i++) {
+    for(var i = 0; i < 20; i++) {
       var tr = document.createElement('TR');
       tbody.appendChild(tr);
-      for(var j=0; j<20; j++) {
+      for(var j = 0; j < 20; j++) {
         var td = document.createElement('td');
         tr.appendChild(td);
         td.appendChild(document.createTextNode(''+i.toString(20)+j.toString(20)));
