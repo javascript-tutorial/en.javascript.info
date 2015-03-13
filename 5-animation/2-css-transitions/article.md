@@ -376,39 +376,46 @@ boat.onclick = function() {
 
 В нём задаётся "имя" анимации и правила: что, откуда и куда анимировать. Затем при помощи свойства `animation: имя параметры` эта анимация подключается к элементу, задаётся время анимации и дополнительные параметры, как её применять.
 
-Например:
+Пример с пояснениями в комментарии:
 
 ```html
-<!--+ run height=60 -->
-<div class="progress">
-</div>
+<!--+ run height=60 autorun="no-epub" no-beautify -->
+<div class="progress"></div>
 
 <style>
-  /* Chrome, Opera, Safari */
-  
-  @-webkit-keyframes MY-ANIMATION-NAME {
+*!*
+  /* Современные браузеры, кроме Chrome, Opera, Safari */
+  @keyframes go-left-right {   /* назовём анимацию: "go-left-right" */
     from {
-      left: 0px;
+      left: 0px;               /* от: left: 0px */
     }
     to {
-      left: 300px;
+      left: calc(100% - 50px); /* до: left: 100%-50px */
     }
   }
-  /* Other browsers, except IE9- */
-  
-  @keyframes MY-ANIMATION-NAME {
+*/!*
+
+  /* Префикс для Chrome, Opera, Safari */
+  @-webkit-keyframes go-left-right {
     from {
       left: 0px;
     }
     to {
-      left: 300px;
+      left: calc(100% - 50px);
     }
   }
   
   .progress {
+*!*
+    /* применить анимацию go-left-right */
+    /* продолжительность 3s */
+    /* количество раз: бесконечное (infinite) */
+    /* менять направление анимации каждый раз (alternate) */
+    animation: go-left-right 3s infinite alternate;
+    -webkit-animation: go-left-right 3s infinite alternate;
+*/!*
+
     position: relative;
-    animation: MY-ANIMATION-NAME 3s infinite alternate;
-    -webkit-animation: MY-ANIMATION-NAME 3s infinite alternate;
     border: 2px solid green;
     width: 50px;
     height: 20px;
@@ -422,7 +429,8 @@ boat.onclick = function() {
 Статей про CSS animations достаточно много, посмотрите, например:
 
 <ul>
-<li>[](http://css.yoksel.ru/css-animation/).</li>
+<li>[Статья про CSS Animation](http://css.yoksel.ru/css-animation/).</li>
+<li>[Пример бесконечной подпрыгивающей анимации на CSS Animation и кривых Безье](https://albiebrown.github.io/gravify/).</li>
 </ul>
 
 ## Итого
