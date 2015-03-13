@@ -41,7 +41,10 @@
 
 Таблица несовместимостей:
 <table>
+<thead>
 <tr><th>Клавиша</th><th>Firefox</th><th>Остальные браузеры</th></tr>
+</thead>
+<tbody>
 <tr>
 <td>[key ;]</td>
 <td>59</td>
@@ -57,6 +60,7 @@
 <td>109</td>
 <td>189</td>
 </tr>
+</tbody>
 </table>
 
 Остальные коды одинаковы, код для нужного символа будет в тестовом стенде.
@@ -218,10 +222,14 @@ document.getElementById('only-upper').onkeypress = function(e) {
 Стоит иметь в виду три основных категории клавиш, работа с которыми отличается.
 
 <table>
+<thead>
 <tr>
   <th>Категория</th>
   <th>События</th>
   <th>Описание</th>
+</tr>
+</thead>
+<tbody>
 <tr>
   <td>Печатные клавиши [key S] [key 1] [key ,]</td>
   <td>`keydown`
@@ -266,6 +274,7 @@ document.getElementById('only-upper').onkeypress = function(e) {
 Кроме того, если сочетание вызвало браузерное действие или диалог ("Сохранить файл", "Открыть" и т.п., ряд диалогов можно отменить при `keydown`), то может быть только `keydown`.
 </td>
 </tr>
+</tbody>
 </table>
 
 Общий вывод можно сделать такой:

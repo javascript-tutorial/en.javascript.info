@@ -150,12 +150,15 @@ var formatter = new Intl.DateFormatter([locales, [options]])
 
 Полный список свойств `options`:
 <table>
+<thead>
 <tr>
     <th>Свойство</th>
     <th>Описание</th>
     <th>Возможные значения</th>
     <th>По умолчанию</th>
   </tr>
+  </thead>
+  <tbody>
   <tr>
     <td>`localeMatcher` </td>
     <td> Алгоритм подбора локали</td>
@@ -241,6 +244,7 @@ var formatter = new Intl.DateFormatter([locales, [options]])
     <td>`short`, `long`</td>
     <td></td>
   </tr>
+  </tbody>
 </table>
 
 **Все локали обязаны поддерживать следующие наборы настроек:**

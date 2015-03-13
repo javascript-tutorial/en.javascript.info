@@ -507,10 +507,13 @@ alert( document.body.my ); // 123 в IE8-
 Таблица сравнений для атрибутов и свойств:
 
 <table>
+<thead>
 <tr>
 <th>Свойства</th>
 <th>Атрибуты</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Любое значение</td>
 <td>Строка</td>
@@ -523,6 +526,7 @@ alert( document.body.my ); // 123 в IE8-
 <td>Не видны в `innerHTML`</td>
 <td>Видны в `innerHTML`</td>
 </tr>
+</tbody>
 </table>
 
 Синхронизация между атрибутами и свойствами:

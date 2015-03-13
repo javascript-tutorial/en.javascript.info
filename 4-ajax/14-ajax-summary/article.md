@@ -26,6 +26,7 @@
 Они были детально рассмотрены в предыдущих главах раздела.
 
 <table>
+<thead>
 <tr>
 <th></th>
 <th>`XMLHttpRequest`</th>
@@ -34,6 +35,8 @@
 <th>`EventSource`</th>
 <th>`WebSocket`</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <th>Кросс-доменность</th>
 <td>да, кроме IE9-<a class="link-ref" href="#x1">x1</a></td>
@@ -66,6 +69,7 @@
 <td>Кроме IE</td>
 <td>IE 10, FF11, Chrome 16, Safari 6, Opera 12.5<a class="link-ref" href="#w1">w1</a></td>
 </tr>
+</tbody>
 </table>
 
 Пояснения:

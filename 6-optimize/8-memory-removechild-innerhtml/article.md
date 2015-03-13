@@ -86,11 +86,14 @@ document.body.innerHTML = "";
 Как ни странно, браузеры ведут себя по-разному:
 
 <table>
+<thead>
 <tr><th></th>
 <th>`parentNode`</th>
 <th>`nextSibling`</th>
 <th>`children.length`</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>Chrome/Safari/Opera</td>
 <td>`null`</td>
@@ -109,6 +112,7 @@ document.body.innerHTML = "";
 <td>`null`</td>
 <td>`0`</td>
 </tr>
+</tbody>
 </table>
 
 Иными словами, браузеры ведут себя с различной степенью агрессивности по отношению к элементам.

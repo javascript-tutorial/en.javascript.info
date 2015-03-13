@@ -206,12 +206,15 @@ CSS для анимации:
 Остальные кривые являются короткой записью следующих `cubic-bezier`:
 
 <table>
+<thead>
 <tr>
 <th>`ease`<sup>*</sup></th>
 <th>`ease-in`</th>
 <th>`ease-out`</th>
 <th>`ease-in-out`</th>
 </tr>
+</thead>
+<tbody>
 <tr>
 <td>`(0.25, 0.1, 0.25, 1.0)`</td>
 <td>`(0.42, 0, 1.0, 1.0)`</td>
@@ -224,6 +227,7 @@ CSS для анимации:
 <td><img src="ease-out.svg"></td>
 <td><img src="ease-in-out.svg"></td>
 </tr>
+</tbody>
 </table>
 
 * - По умолчанию, если никакой временной функции не указано, -- используется `ease`.

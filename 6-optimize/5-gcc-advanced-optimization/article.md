@@ -381,8 +381,10 @@ SayWidget.prototype['setSayHandler'] = SayWidget.prototype.setSayHandler
 
 <table>
 <thead>
+<tr>
 <th>Экстерн</th>
 <th>Экспорт</th>
+</tr>
 </thead>
 <tbody>
 <tr>

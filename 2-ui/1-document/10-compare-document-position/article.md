@@ -31,11 +31,14 @@ var result = nodeA.compareDocumentPosition(nodeB);
 Возвращаемое значение -- битовая маска (см. [](/bitwise-operators)), биты в которой означают следующее:
 
 <table>
+<thead>
 <tr>
 <th>Биты</th>
 <th>Число</th>
 <th>Значение</th>
 </tr>
+</thead>
+<tbody>
 <tr><td>000000</td><td>0</td><td>`nodeA` и `nodeB` -- один и тот же узел</td></tr>
 <tr><td>000001</td><td>1</td><td>Узлы в разных документах (или один из них не в документе)</td></tr>
 <tr><td>000010</td><td>2</td><td>`nodeB` предшествует `nodeA` (в порядке обхода документа)</td></tr>
@@ -43,6 +46,7 @@ var result = nodeA.compareDocumentPosition(nodeB);
 <tr><td>001000</td><td>8</td><td>`nodeB` содержит `nodeA`</td></tr>
 <tr><td>010000</td><td>16</td><td>`nodeA` содержит `nodeB`</td></tr>
 <tr><td>100000</td><td>32</td><td>Зарезервировано для браузера</td></tr>
+</tbody>
 </table>
 
 Понятие "предшествует" -- означает не только "предыдущий сосед при общем родителе", но и имеет более общий смысл:  "раньше встречается в порядке [прямого обхода](http://algolist.manual.ru/ds/walk.php) дерева документа.
