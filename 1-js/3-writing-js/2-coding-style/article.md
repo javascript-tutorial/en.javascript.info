@@ -404,13 +404,14 @@ function pow(x, n) {
 <ul>
 <li>[Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)</li>
 <li>[JQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)</li>
+<li>[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)</li>
 <li>[Idiomatic.JS](https://github.com/rwldrn/idiomatic.js) (есть [перевод](https://github.com/rwldrn/idiomatic.js/tree/master/translations/ru_RU))</li>
 <li>[Dojo Style Guide](http://dojotoolkit.org/community/styleGuide)</li>
 </ul>
 
 Для того, чтобы начать разработку, вполне хватит элементов стилей, обозначенных в этой главе. В дальнейшем, посмотрев эти руководства, вы можете выработать и свой стиль, но лучше не делать его особенно "уникальным и неповторимым", себе дороже потом будет с людьми сотрудничать.
 
-### Автоматизированные средства проверки
+## Автоматизированные средства проверки
 
 Существуют средства, проверяющие стиль кода.
 
