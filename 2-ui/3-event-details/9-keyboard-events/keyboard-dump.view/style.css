@@ -1,10 +1,12 @@
 #kinput {
   font-size: 150%;
-  width: 600px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 #area {
-  width: 600px;
+  width: 100%;
+  box-sizing: border-box;
   height: 250px;
   border: 1px solid black;
   display: block;
@@ -12,4 +14,5 @@
 
 form label {
   display: inline;
+  white-space: nowrap;
 }
