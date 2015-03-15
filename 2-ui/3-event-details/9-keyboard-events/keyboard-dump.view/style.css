@@ -1,11 +1,11 @@
 #kinput {
   font-size: 150%;
-  width: 100%;
   box-sizing: border-box;
+  width: 95%;
 }
 
 #area {
-  width: 100%;
+  width: 95%;
   box-sizing: border-box;
   height: 250px;
   border: 1px solid black;
