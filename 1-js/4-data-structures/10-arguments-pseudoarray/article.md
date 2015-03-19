@@ -260,9 +260,9 @@ function showWarning(width, height, title, contents) {
 
 ```js
 function showWarning(width, height, title, contents) {
-  if (width !== undefined) width = 200;
-  if (height !== undefined) height = 100;
-  if (title !== undefined) title = "Предупреждение";
+  if (width === undefined) width = 200;
+  if (height === undefined) height = 100;
+  if (title === undefined) title = "Предупреждение";
 
   //...
 }
