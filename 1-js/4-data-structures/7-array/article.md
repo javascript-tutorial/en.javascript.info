@@ -124,7 +124,7 @@ fruits.push("Груша");
 alert( fruits ); // Яблоко, Апельсин, Груша
 ```
 
-Является полным аналогом `fruits[fruits.length] = ...`.
+Вызов `fruits.push(...)` равнозначен `fruits[fruits.length] = ...`.
 </dd>
 </dl>
 
