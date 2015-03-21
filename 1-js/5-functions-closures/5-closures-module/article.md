@@ -198,7 +198,7 @@ function work() {
 
 Здесь нам не важно, какие, нас интересует именно как описана эта библиотека, как в ней применяется приём "модуль".
 
-Вот выдержка из исходного файла:
+Вот примерная выдержка из исходного файла:
 
 ```js
 //+ run no-beautify
@@ -221,8 +221,7 @@ function work() {
   // код функции size, пока что доступен только внутри
 */!*
   function size(collection) {
-    var length = collection ? collection.length : 0;
-    return typeof length == 'number' ? length : Object.keys(collection).length;
+    return Object.keys(collection).length;
   }
 
 *!*

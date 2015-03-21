@@ -415,15 +415,9 @@ function mul(a, b) {
   return a * b;
 };
 
-function ask(question, correctAnswer, ok, fail) {
-  var result;
-  if (typeof correctAnswer == 'boolean') {
-    result = confirm(question);
-  } else {
-    result = prompt(question, '');
-  }
-
-  if (result == correctAnswer) ok()
+function ask(question, answer, ok, fail) {
+  var result = prompt(question, '');
+  if (result.toLowerCase() == answer.toLowerCase()) ok();
   else fail();
 }
 
