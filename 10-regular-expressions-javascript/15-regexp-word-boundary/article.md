@@ -1,4 +1,4 @@
-# Word boundary
+# Word boundary [todo]
 
 Another position check is a *word boundary* <code class="pattern">\b</code>. It doesn't match a character, but matches in situations when a wordly character follows a non-wordly or vice versa. A "non-wordly" may also be text start or end.
 [cut]
