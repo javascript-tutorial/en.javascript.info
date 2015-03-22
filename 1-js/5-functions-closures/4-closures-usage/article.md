@@ -24,7 +24,7 @@ function makeCounter() {
 
 var counter = makeCounter();
 
-// каждый вызов увеличивает счётчик и возвращает результат
+// каждый вызов возвращает результат, увеличивая счётчик
 alert( counter() ); // 1 
 alert( counter() ); // 2
 alert( counter() ); // 3
@@ -49,7 +49,7 @@ function makeCounter() {
     },
 
     reset: function() {
-      currentCount = 0;
+      currentCount = 1;
     }
   };
 }

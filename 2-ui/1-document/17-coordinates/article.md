@@ -112,7 +112,7 @@ elem.style.background = "";
 
 В CSS для позиционирования элемента относительно окна используется свойство `position:fixed`. Как правило, вместе с ним идут и координаты, например `left/top`.
 
-Например, функция `createMessageUnder` из кода ниже код покажет сообщение под элементом `elem`:
+Например, функция `createMessageUnder` из кода ниже покажет сообщение под элементом `elem`:
 
 ```js
 var elem = document.getElementById("coords-show-mark");
