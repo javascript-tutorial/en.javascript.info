@@ -108,7 +108,7 @@ var family = marry({
 
 ```
 delete family.father;
-delete family.wife.husband;
+delete family.mother.husband;
 ```
 
 Обратим внимание, удаление только одной из этих ссылок ни к чему бы не привело. Пока до объекта можно добраться из корня `window`, объект остаётся жив.
