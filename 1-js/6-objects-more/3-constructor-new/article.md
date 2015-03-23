@@ -169,7 +169,7 @@ function User(firstName, lastName) {
 }
 
 var vasya = new User("Вася", "Петров");
-vasya.sayHi(); // Вася Петров
+vasya.sayHi(); // Привет, Вася Петров
 ```
 
 Мы уже говорили об этом подходе ранее, в главе [](/closures-usage). 
