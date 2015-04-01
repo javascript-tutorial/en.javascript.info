@@ -210,7 +210,7 @@ function PropertyRequiredError(property) {
   this.message = 'Отсутствует свойство ' + property;
 }
 
-PropertyRequiredError.prototype = Object.create(PropertyError);
+PropertyRequiredError.prototype = Object.create(PropertyError.prototype);
 PropertyRequiredError.prototype.constructor = PropertyRequiredError;
 
 var err = new PropertyRequiredError("age");

@@ -18,5 +18,7 @@ true + false
 0 || 5
 null + 1
 undefined + 1
+null == "\n0\n" 
++null == +"\n0\n" 
 ```
 

@@ -8,7 +8,7 @@
 
 Метод ["arr.forEach(callback[, thisArg])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/forEach) используется для перебора массива.
 
-Он позволяет для каждого элемента массива вызывает функцию `callback`. 
+Он для каждого элемента массива вызывает функцию `callback`. 
 
 Этой функции он передаёт три параметра `callback(item, i, arr)`:
 
@@ -64,16 +64,16 @@ alert( positiveArr ); // 1,2,3
 
 ```js
 //+ run
-var pages = ['a.html', 'b.html', 'c.html'];
+var names = ['HTML', 'CSS', 'JavaScript'];
 
 *!*
-var urls = pages.map(function(page) {
-  return 'http://site.com/' + page;
+var nameLengths = names.map(function(name) {
+  return name.length;
 });
 */!*
 
-// к каждой строке был прибавлен префикс
-alert( urls ); // http://site.com/a.html, http://site.com/b.html...
+// получили массив с длинами
+alert( nameLengths ); // 4,3,10
 ```
 
 ## every/some

@@ -135,7 +135,7 @@ function getOffsetSum(elem) {
 [pre]
 <div style="position:relative;padding:10px;height:80px;width:380px;border:7px red solid">
   <div style="border:10px blue solid;padding:2px;position:absolute;left:20%;top:20%">
-  <div id="getBoundingClientRectEx" style="background-color:yellow;border:4px solid black;margin:2px;cursor:pointer">Кликните, чтобы получить координаты getOffsetSum и getCoords</div>
+  <div id="getBoundingClientRectEx" style="background-color:yellow;font-size:14px;border:4px solid black;margin:2px;cursor:pointer">Кликните, чтобы получить координаты getOffsetSum и getCoords</div>
   </div>
 </div>
 <div id="getBoundingClientRectExRes">

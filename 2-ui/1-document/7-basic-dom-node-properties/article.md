@@ -38,34 +38,56 @@
 alert( document.body ); // [object HTMLBodyElement]
 ```
 
-Детальное описание свойств и методов каждого DOM-класса дано в [спецификации](http://www.whatwg.org/specs/web-apps/current-work/multipage/).
-
-Например, [The input element](http://www.whatwg.org/specs/web-apps/current-work/multipage/the-input-element.html#the-input-element) описывает класс, соответствующий `<input>`, включая [interface HTMLInputElement](http://www.whatwg.org/specs/web-apps/current-work/multipage/the-input-element.html#htmlinputelement), который нас как раз и интересует.
-
-Вот из него выдержка:
+Можно и проверить при помощи `instanceof`:
 
 ```js
-interface HTMLInputElement: HTMLElement {
+//+ run
+alert( document.body instanceof HTMLBodyElement ); // true
+alert( document.body instanceof HTMLElement ); // true
+alert( document.body instanceof Element ); // true
+alert( document.body instanceof Node ); // true
+```
+
+Как видно, DOM-узлы -- обычные JavaScript-объекты. Их классы заданы в прототипном стиле. В этом легко убедиться, если вывести в консоли любой элемент через `console.dir(elem)`. Или даже можно напрямую обратиться к методам, которые хранятся в `Node.prototype`, `Element.prototype` и так далее.
+
+[smart header="`console.dir(elem)` против `console.log(elem)`"]
+Вывод `console.log(elem)` и `console.dir(elem)` различен.
+
+<ul>
+<li>`console.log` выводит элемент в виде, удобном для исследования HTML-структуры.</li>
+<li>`console.dir` выводит элемент в виде JavaScript-объекта, удобно для анализа его свойств.</li>
+</ul>
+Попробуйте сами на `document.body`.
+[/smart]
+
+Детальное описание свойств и методов каждого DOM-класса дано в [спецификации](https://html.spec.whatwg.org/multipage/).
+
+Например, [The input element](https://html.spec.whatwg.org/multipage/forms.html#the-input-element) описывает класс, соответствующий `<input>`, включая [interface HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement), который нас как раз и интересует.
+
+При описании свойств и методов используется не JavaScript, а специальный язык [IDL](https://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D1%8F_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%BE%D0%B2) (Interface Definition Language), который достаточно легко понять "с ходу".
+
+Вот из него выдержка, с комментариями:
+
+```js
+// Объявлен HTMLInputElement
+// двоеточие означает, что он наследует от HTMLElement
+interface HTMLInputElement: HTMLElement { 
+
+  // у всех таких элементов есть строковые свойства 
+  // accept, alt, autocomplete, value
   attribute DOMString accept;
   attribute DOMString alt;
   attribute DOMString autocomplete;
+  attribute DOMString value;
+  
+  // и логическое свойство autofocus
   attribute boolean autofocus;
   ...
-  attribute DOMString value;
-  ...
+  // а также метод select, который значение не возвращает (void)
   void select();
   ...
 }
 ```
-
-При описании свойств и методов используется не JavaScript, а специальный язык [IDL](https://ru.wikipedia.org/wiki/%D0%AF%D0%B7%D1%8B%D0%BA_%D0%BE%D0%BF%D0%B8%D1%81%D0%B0%D0%BD%D0%B8%D1%8F_%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%84%D0%B5%D0%B9%D1%81%D0%BE%D0%B2) (Interface Definition Language), который достаточно легко понять "с ходу".
-
-В частности, выше мы видим, что:
-<ul>
-<li>`HTMLInputElement` наследует от `HTMLEmenet`.</li>
-<li>У всех `<input>`-элементов есть свойства `accept`, `alt`, `autocomplete` и `value`, которые являются строками (`DOMString`), а также также свойство `autofocus` с логическим значением.</li>
-<li>Также есть метод `select()`, который значение не возвращает (`void`).</li>
-</ul>
 
 Далее в этом разделе мы поговорим о самых главных свойствах узлов DOM, которые используются наиболее часто.
 
@@ -83,7 +105,7 @@ interface HTMLInputElement: HTMLElement {
 
 ```js
 interface Node {
-  // NodeType
+  // Всевозможные значения nodeType
   const unsigned short ELEMENT_NODE = 1;
   const unsigned short ATTRIBUTE_NODE = 2;
   const unsigned short TEXT_NODE = 3;
@@ -277,7 +299,7 @@ chatDiv.innerHTML += "Как дела?";
 
 В примере закрывающий тег `</scr'+'ipt>` разбит на две строки, т.к. иначе браузер подумает, что это конец скрипта. Вставленный скрипт не выполнится.
 
-Исключение -- IE9-, в нем вставляемый скрипт выполняются, если у него есть атрибут  `defer`. Но это нестандартная возможность, которой не следует пользоваться.
+Исключение -- IE9-, в нем вставляемый скрипт выполняются, если у него есть атрибут `defer`. Но это нестандартная возможность, которой не следует пользоваться.
 
 [/warn]
 
@@ -447,9 +469,9 @@ chatDiv.innerHTML += "Как дела?";
 
 Как правило, видим или невидим узел, определяется через CSS, свойствами `display` или `visibility`.
 
-В стандарте HTML5 предусмотрен специальный атрибут (он же свойство) для этого: `hidden`.
+В стандарте HTML5 предусмотрен специальный атрибут и свойство для этого: `hidden`.
 
-Его поддерживают все современные браузеры, кроме старых IE.
+Его поддерживают все современные браузеры, кроме IE10-.
 
 В примере ниже второй и третий `<div>` скрыты:
 

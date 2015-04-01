@@ -239,7 +239,7 @@ setTimeout(function() {}, 100);
 
 Позапускайте его в различных браузерах. Вы заметите, что несколько первых полосок анимируются с одинаковой скоростью. Это как раз потому, что слишком маленькие задержки таймер не различает.
 
-[iframe border="1" src="setInterval-anim" link edit]
+[iframe border="1" src="setinterval-anim" link edit]
 
 [warn]
 В Internet Explorer, нулевая задержка `setInterval(.., 0)` не сработает. Это касается именно `setInterval`, т.е. `setTimeout(.., 0)` работает нормально. 

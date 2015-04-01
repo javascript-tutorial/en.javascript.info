@@ -53,8 +53,8 @@ alert( toString.call(arr) ); // [object Array]
 var date = new Date;
 alert( toString.call(date) ); // [object Date]
 
-var obj = { name: "Вася" };
-alert( toString.call(date) ); // [object Object]
+var user = { name: "Вася" };
+alert( toString.call(user) ); // [object Object]
 ```
 
 В первой строке мы взяли метод `toString`, принадлежащий именно стандартному объекту `{}`. Нам пришлось это сделать, так как у `Date` и `Array`  -- свои собственные методы `toString`, которые работают иначе.

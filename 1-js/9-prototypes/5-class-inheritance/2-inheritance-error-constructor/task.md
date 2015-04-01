@@ -20,6 +20,10 @@ function Rabbit(name) {
 }
 Rabbit.prototype = Object.create(Animal.prototype);
 
+Rabbit.prototype.walk = function() {
+  alert( "прыгает " + this.name );
+};
+
 var rabbit = new Rabbit("Кроль");
 rabbit.walk();
 ```

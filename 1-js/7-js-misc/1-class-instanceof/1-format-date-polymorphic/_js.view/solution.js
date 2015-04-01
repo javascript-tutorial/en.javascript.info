@@ -3,15 +3,18 @@ function formatDate(date) {
     // перевести секунды в миллисекунды и преобразовать к Date
     date = new Date(date * 1000);
   } else if (typeof date == 'string') {
-    // разобрать строку и преобразовать к Date
-    date = date.split('-');
-    date = new Date(date[0], date[1] - 1, date[2]);
+    // строка в стандартном формате автоматически будет разобрана в дату
+    date = new Date(date); 
   } else if (Array.isArray(date)) { 
     date = new Date(date[0], date[1], date[2]);
   }
   // преобразования для поддержки полиморфизма завершены, 
   // теперь мы работаем с датой (форматируем её)
 
+  return date.toLocaleString("ru", {day: '2-digit', month: '2-digit', year: '2-digit'});
+
+  /*
+  // можно и вручную, если лень добавлят в старый IE поддержку локализации
   var day = date.getDate();
   if (day < 10) day = '0' + day;
 
@@ -23,6 +26,7 @@ function formatDate(date) {
   if (year < 10) year = '0' + year;
 
   var formattedDate = day + '.' + month + '.' + year;
-
+  
   return formattedDate;
+  */
 }

@@ -49,6 +49,6 @@ if (!window.setImmediate) window.setImmediate = (function() {
 
 Чтобы сравнить реальную частоту срабатывания -- измерим время на 100 последовательных вызовов при `setTimeout(..0)` по сравнению с `setImmediate`:
 
-[codetabs src="setImmediate"]
+[codetabs src="setimmediate"]
 
 Запустите пример выше -- и вы увидите реальную разницу во времени между `setTimeout(.., 0)` и `setImmediate`. Да, она может быть более в 50, 100 и более раз.
