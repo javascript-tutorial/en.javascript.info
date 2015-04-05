@@ -6,11 +6,11 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="mouseover-mouseout-over-elems.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="374" y="21" width="90.0136719" height="52.4511719"></rect>
+            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="374" y="21" width="90.0136719" height="52.4511719"></rect>
             <text id="#TO" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="405.150618" y="53">#TO</tspan>
             </text>
-            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="16" y="21" width="90.0136719" height="52.4511719"></rect>
+            <rect id="Rectangle-7" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="16" y="21" width="90.0136719" height="52.4511719"></rect>
             <text id="#FROM" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="36.8122396" y="53">#FROM</tspan>
             </text>
@@ -26,7 +26,7 @@
             <text id="&lt;DIV&gt;-3" opacity="0.6" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="306.384505" y="63">&lt;DIV&gt;</tspan>
             </text>
-            <path d="M401,38.6353921 L375.340223,38.6353921 L363.810075,45.8539263 L140.245366,45.8539263 L146.525714,38.146 L94,47.6454089 L146.525714,57.146 L140.319306,49.4380737 L363.530486,49.4380737 L375.340223,56.8303775 L401,56.8303775 L386.466006,47.7334759 L401,38.6353921" id="Fill-21" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(247.500000, 47.646000) scale(-1, 1) translate(-247.500000, -47.646000) "></path>
+            <path d="M401,38.6353921 L375.340223,38.6353921 L363.810075,45.8539263 L140.245366,45.8539263 L146.525714,38.146 L94,47.6454089 L146.525714,57.146 L140.319306,49.4380737 L363.530486,49.4380737 L375.340223,56.8303775 L401,56.8303775 L386.466006,47.7334759 L401,38.6353921" id="Fill-21" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(247.500000, 47.646000) scale(-1, 1) translate(-247.500000, -47.646000) "></path>
             <text id="mouseover" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="340" y="17">mouseover</tspan>
             </text>

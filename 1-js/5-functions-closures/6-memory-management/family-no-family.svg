@@ -6,9 +6,9 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="family-no-family.svg" sketch:type="MSArtboardGroup">
-            <path d="M256.5,233.5 L197.5,233.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M197.5,233.5 C201.28,234.55 204.52,235.45 208.3,236.5 C208.3,234.4 208.3,232.6 208.3,230.5 C204.52,231.55 201.28,232.45 197.5,233.5 C197.5,233.5 197.5,233.5 197.5,233.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="167" y="24" width="120" height="50"></rect>
+            <path d="M256.5,233.5 L197.5,233.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M197.5,233.5 C201.28,234.55 204.52,235.45 208.3,236.5 C208.3,234.4 208.3,232.6 208.3,230.5 C204.52,231.55 201.28,232.45 197.5,233.5 C197.5,233.5 197.5,233.5 197.5,233.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="167" y="24" width="120" height="50"></rect>
             <text id="window" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="201" y="17">window</tspan>
             </text>
@@ -42,15 +42,15 @@
             <text id="Object-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="308" y="208">Object</tspan>
             </text>
-            <path d="M178.5,155.5 L132.5,187.5" id="Line-2" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-2-decoration-1" d="M132.529309,187.479611 C136.231948,186.182938 139.405639,185.071504 143.108278,183.77483 C141.909043,182.05093 140.881127,180.5733 139.681891,178.849399 C137.178487,181.869973 135.032713,184.459037 132.529309,187.479611 C132.529309,187.479611 132.529309,187.479611 132.529309,187.479611 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
-            <path d="M197.5,199.5 L258.5,199.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M258.5,199.5 C254.72,198.45 251.48,197.55 247.7,196.5 C247.7,198.6 247.7,200.4 247.7,202.5 C251.48,201.45 254.72,200.55 258.5,199.5 C258.5,199.5 258.5,199.5 258.5,199.5 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M178.5,155.5 L132.5,187.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-2-decoration-1" d="M132.529309,187.479611 C136.231948,186.182938 139.405639,185.071504 143.108278,183.77483 C141.909043,182.05093 140.881127,180.5733 139.681891,178.849399 C137.178487,181.869973 135.032713,184.459037 132.529309,187.479611 C132.529309,187.479611 132.529309,187.479611 132.529309,187.479611 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M197.5,199.5 L258.5,199.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M258.5,199.5 C254.72,198.45 251.48,197.55 247.7,196.5 C247.7,198.6 247.7,200.4 247.7,202.5 C251.48,201.45 254.72,200.55 258.5,199.5 C258.5,199.5 258.5,199.5 258.5,199.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="husband" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="200" y="224">husband</tspan>
             </text>
-            <path d="M272.5,155.5 L319.5,187.5" id="Line" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M318.789558,187.016295 C316.255943,184.021016 314.084274,181.453634 311.550659,178.458354 C310.368798,180.194213 309.355774,181.682091 308.173913,183.41795 C311.889389,184.677371 315.074082,185.756874 318.789558,187.016295 C318.789558,187.016295 318.789558,187.016295 318.789558,187.016295 Z" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M272.5,155.5 L319.5,187.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M318.789558,187.016295 C316.255943,184.021016 314.084274,181.453634 311.550659,178.458354 C310.368798,180.194213 309.355774,181.682091 308.173913,183.41795 C311.889389,184.677371 315.074082,185.756874 318.789558,187.016295 C318.789558,187.016295 318.789558,187.016295 318.789558,187.016295 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <rect id="Rectangle-5" stroke="#D0011B" stroke-width="2" sketch:type="MSShapeGroup" x="47" y="111" width="366" height="152"></rect>
             <text id="family:-null" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="181" y="66">family: null</tspan>

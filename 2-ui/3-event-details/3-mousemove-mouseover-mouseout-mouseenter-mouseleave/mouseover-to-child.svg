@@ -6,15 +6,15 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="mouseover-to-child.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="12" y="14" width="212" height="117"></rect>
+            <rect id="Rectangle-7" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="12" y="14" width="212" height="117"></rect>
             <text id="#FROM" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="18.9784745" y="31">#FROM</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="140" y="64" width="69" height="36"></rect>
+            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="140" y="64" width="69" height="36"></rect>
             <text id="#TO" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="160.150618" y="88">#TO</tspan>
             </text>
-            <path d="M151,83.0279175 C151,83.0279175 135.824497,73.7186483 125.752316,70 C125.5079,71.5378926 125.264184,73.074982 125.019768,74.6120715 C108.511532,73.7507714 91.7455739,75.0256562 76,78.436726 C78.0169574,81.4976542 80.0339148,84.5581808 82.0508721,87.6187075 C95.3543869,84.7368655 109.520011,83.6599391 123.467831,84.3875269 C123.223415,85.9254195 122.978999,87.462509 122.735284,89 C130.836729,86.2297857 151,83.0279175 151,83.0279175" id="Fill-54" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path d="M151,83.0279175 C151,83.0279175 135.824497,73.7186483 125.752316,70 C125.5079,71.5378926 125.264184,73.074982 125.019768,74.6120715 C108.511532,73.7507714 91.7455739,75.0256562 76,78.436726 C78.0169574,81.4976542 80.0339148,84.5581808 82.0508721,87.6187075 C95.3543869,84.7368655 109.520011,83.6599391 123.467831,84.3875269 C123.223415,85.9254195 122.978999,87.462509 122.735284,89 C130.836729,86.2297857 151,83.0279175 151,83.0279175" id="Fill-54" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <text id="mouseover" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="113" y="59">mouseover</tspan>
             </text>

@@ -14,11 +14,11 @@
                 <path d="M49.7916667,21.125 C49.7916667,23.4593125 47.5634896,25.35 44.8125,25.35 C42.0615104,25.35 39.8333333,23.4593125 39.8333333,21.125 C39.8333333,18.7906875 42.0615104,16.9 44.8125,16.9 C47.5634896,16.9 49.7916667,18.7906875 49.7916667,21.125 L49.7916667,21.125 Z" id="Shape" sketch:type="MSShapeGroup"></path>
                 <path d="M69.7083333,21.125 C69.7083333,23.4593125 67.4801563,25.35 64.7291667,25.35 C61.9781771,25.35 59.75,23.4593125 59.75,21.125 C59.75,18.7906875 61.9781771,16.9 64.7291667,16.9 C67.4801563,16.9 69.7083333,18.7906875 69.7083333,21.125 L69.7083333,21.125 Z" id="Shape" sketch:type="MSShapeGroup"></path>
             </g>
-            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="231" y="85" width="69" height="36"></rect>
+            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="231" y="85" width="69" height="36"></rect>
             <text id="#TO" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="251.150618" y="109">#TO</tspan>
             </text>
-            <path d="M236,94.6353921 L223.12832,94.6353921 L217.344468,101.853926 L105.198001,101.853926 L108.348404,94.146 L82,103.645409 L108.348404,113.146 L105.235092,105.438074 L217.204218,105.438074 L223.12832,112.830378 L236,112.830378 L228.709332,103.733476 L236,94.6353921" id="Fill-21" stroke="#EE6B47" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(159.000000, 103.646000) scale(-1, 1) translate(-159.000000, -103.646000) "></path>
+            <path d="M236,94.6353921 L223.12832,94.6353921 L217.344468,101.853926 L105.198001,101.853926 L108.348404,94.146 L82,103.645409 L108.348404,113.146 L105.235092,105.438074 L217.204218,105.438074 L223.12832,112.830378 L236,112.830378 L228.709332,103.733476 L236,94.6353921" id="Fill-21" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(159.000000, 103.646000) scale(-1, 1) translate(-159.000000, -103.646000) "></path>
             <text id="target" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="240" y="80">target</tspan>
             </text>
