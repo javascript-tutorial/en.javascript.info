@@ -1,4 +1,4 @@
-Регулярное выражение для поиска 3-значного цвета: <code class="pattern">/#[a-f0-9]{3}/i</code>.
+Регулярное выражение для поиска 3-значного цвета вида `#abc`: <code class="pattern">/#[a-f0-9]{3}/i</code>.
 
 Нужно добавить ещё три символа, причём нужны именно три, четыре или семь символов не нужны. Эти три символа либо есть, либо нет.
 
@@ -18,4 +18,13 @@ var str = "color: #3f3; background-color: #AA00ef; and: #abcd";
 alert( str.match(re) ); // #3f3 #AA0ef #abc
 ```
 
+В последнем выражении <code class="subject">#abcd</code> было найдено совпадение <code class="match">#abc</code>. Чтобы этого не происходило, добавим в конец <code class="pattern">\b</code>:
 
+```js
+//+ run
+var re = /#([a-f0-9]{3}){1,2}\b/gi;
+
+var str = "color: #3f3; background-color: #AA00ef; and: #abcd";
+
+alert( str.match(re) ); // #3f3 #AA0ef
+```
