@@ -6,39 +6,39 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="array-speed.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="108" y="92" width="37" height="64"></rect>
-            <rect id="Rectangle-2" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="144" y="92" width="37" height="64"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="108" y="92" width="37" height="64"></rect>
+            <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="144" y="92" width="37" height="64"></rect>
             <text id="0" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
                 <tspan x="122.5" y="128.5">0</tspan>
             </text>
             <text id="1" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
                 <tspan x="159.5" y="128.5">1</tspan>
             </text>
-            <rect id="Rectangle-3" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="180" y="92" width="37" height="64"></rect>
+            <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="180" y="92" width="37" height="64"></rect>
             <text id="2" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
                 <tspan x="195.5" y="128.5">2</tspan>
             </text>
-            <rect id="Rectangle-4" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="216" y="92" width="37" height="64"></rect>
+            <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="216" y="92" width="37" height="64"></rect>
             <text id="3" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" line-spacing="17" fill="#8A704D">
                 <tspan x="231.5" y="128.5">3</tspan>
             </text>
             <path d="M326.5,117.5 L331,111.30787 L328,111.30787 L328,95.5 L325,95.5 L325,111.30787 L322,111.30787 L326.5,117.5 Z" id="Shape-5" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(326.500000, 106.500000) rotate(-90.000000) translate(-326.500000, -106.500000) "></path>
-            <rect id="Rectangle-5" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="263" y="94" width="48" height="24"></rect>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="263" y="94" width="48" height="24"></rect>
             <text id="pop" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="274.001465" y="110">pop</tspan>
             </text>
             <path d="M94.5,117.5 L99,111.30787 L96,111.30787 L96,95.5 L93,95.5 L93,111.30787 L90,111.30787 L94.5,117.5 Z" id="Shape-2" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(94.500000, 106.500000) rotate(-90.000000) translate(-94.500000, -106.500000) "></path>
-            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="18" y="95" width="63" height="24"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="18" y="95" width="63" height="24"></rect>
             <text id="unshift" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="25.0195312" y="112">unshift</tspan>
             </text>
             <path d="M326.5,152.5 L331,146.30787 L328,146.30787 L328,130.5 L325,130.5 L325,146.30787 L322,146.30787 L326.5,152.5 Z" id="Shape-3" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(326.500000, 141.500000) scale(-1, 1) rotate(-90.000000) translate(-326.500000, -141.500000) "></path>
-            <rect id="Rectangle-7" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" transform="translate(287.000000, 141.000000) scale(-1, 1) translate(-287.000000, -141.000000) " x="263" y="129" width="48" height="24"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" transform="translate(287.000000, 141.000000) scale(-1, 1) translate(-287.000000, -141.000000) " x="263" y="129" width="48" height="24"></rect>
             <text id="push" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="270.344238" y="146">push</tspan>
             </text>
             <path d="M93.5,152.5 L98,146.30787 L95,146.30787 L95,130.5 L92,130.5 L92,146.30787 L89,146.30787 L93.5,152.5 Z" id="Shape-4" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(93.500000, 141.500000) scale(-1, 1) rotate(-90.000000) translate(-93.500000, -141.500000) "></path>
-            <rect id="Rectangle-8" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" transform="translate(48.500000, 142.000000) scale(-1, 1) translate(-48.500000, -142.000000) " x="17" y="130" width="63" height="24"></rect>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" transform="translate(48.500000, 142.000000) scale(-1, 1) translate(-48.500000, -142.000000) " x="17" y="130" width="63" height="24"></rect>
             <text id="shift" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="33.40625" y="147">shift</tspan>
             </text>

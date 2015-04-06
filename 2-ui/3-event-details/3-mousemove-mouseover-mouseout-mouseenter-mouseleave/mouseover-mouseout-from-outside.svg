@@ -14,7 +14,7 @@
                 <path d="M49.7916667,21.125 C49.7916667,23.4593125 47.5634896,25.35 44.8125,25.35 C42.0615104,25.35 39.8333333,23.4593125 39.8333333,21.125 C39.8333333,18.7906875 42.0615104,16.9 44.8125,16.9 C47.5634896,16.9 49.7916667,18.7906875 49.7916667,21.125 L49.7916667,21.125 Z" id="Shape" sketch:type="MSShapeGroup"></path>
                 <path d="M69.7083333,21.125 C69.7083333,23.4593125 67.4801563,25.35 64.7291667,25.35 C61.9781771,25.35 59.75,23.4593125 59.75,21.125 C59.75,18.7906875 61.9781771,16.9 64.7291667,16.9 C67.4801563,16.9 69.7083333,18.7906875 69.7083333,21.125 L69.7083333,21.125 Z" id="Shape" sketch:type="MSShapeGroup"></path>
             </g>
-            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="231" y="85" width="69" height="36"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="231" y="85" width="69" height="36"></rect>
             <text id="#TO" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="251.150618" y="109">#TO</tspan>
             </text>

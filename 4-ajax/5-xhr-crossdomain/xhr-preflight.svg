@@ -6,15 +6,15 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="xhr-preflight.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-227" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="3" y="15" width="130" height="66"></rect>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="3" y="15" width="130" height="66"></rect>
             <text id="JavaScript" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="29" y="50">JavaScript</tspan>
             </text>
-            <rect id="Rectangle-228" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="228" y="15" width="130" height="66"></rect>
+            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="228" y="15" width="130" height="66"></rect>
             <text id="Браузер" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="266" y="50">Браузер</tspan>
             </text>
-            <rect id="Rectangle-229" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="467" y="15" width="130" height="66"></rect>
+            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="467" y="15" width="130" height="66"></rect>
             <text id="Сервер" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="503" y="50">Сервер</tspan>
             </text>

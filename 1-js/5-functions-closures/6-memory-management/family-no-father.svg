@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="family-no-father.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="186" y="27" width="80" height="30"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="186" y="27" width="80" height="30"></rect>
             <text id="window" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="186" y="20">window</tspan>
             </text>

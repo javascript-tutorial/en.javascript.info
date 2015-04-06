@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="class-inheritance-rabbit-animal.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="14" y="160" width="200" height="30"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="14" y="160" width="200" height="30"></rect>
             <text id="jump:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="25" y="179">jump: function</tspan>
             </text>
@@ -16,7 +16,7 @@
             <text id="rabbit" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="14" y="249">rabbit</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="14" y="27" width="200" height="50"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="14" y="27" width="200" height="50"></rect>
             <text id="run:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="25" y="48">run: function</tspan>
                 <tspan x="25" y="64">stop: function</tspan>
@@ -24,7 +24,7 @@
             <text id="Animal.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="14" y="20">Animal.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="14" y="257" width="200" height="50"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="14" y="257" width="200" height="50"></rect>
             <path d="M74.5,244.5 L74.5,203.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M74.5,203.5 C73.45,207.28 72.55,210.52 71.5,214.3 C73.6,214.3 75.4,214.3 77.5,214.3 C76.45,210.52 75.55,207.28 74.5,203.5 C74.5,203.5 74.5,203.5 74.5,203.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">

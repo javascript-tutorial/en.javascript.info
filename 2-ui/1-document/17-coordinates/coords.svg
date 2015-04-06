@@ -13,7 +13,7 @@
                 <path d="M72.2916667,32 C72.2916667,35.536 69.0566146,38.4 65.0625,38.4 C61.0683854,38.4 57.8333333,35.536 57.8333333,32 C57.8333333,28.464 61.0683854,25.6 65.0625,25.6 C69.0566146,25.6 72.2916667,28.464 72.2916667,32 L72.2916667,32 Z" id="Shape" sketch:type="MSShapeGroup"></path>
                 <path d="M101.208333,32 C101.208333,35.536 97.9732812,38.4 93.9791667,38.4 C89.9850521,38.4 86.75,35.536 86.75,32 C86.75,28.464 89.9850521,25.6 93.9791667,25.6 C97.9732812,25.6 101.208333,28.464 101.208333,32 L101.208333,32 Z" id="Shape" sketch:type="MSShapeGroup"></path>
             </g>
-            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="151" y="145.957" width="75" height="29.043"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="151" y="145.957" width="75" height="29.043"></rect>
             <text id="&lt;DIV&gt;" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="526" sketch:alignment="middle" fill="#8A704D">
                 <tspan x="169.051859" y="165.543917">&lt;DIV&gt;</tspan>
             </text>

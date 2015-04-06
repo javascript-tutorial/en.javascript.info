@@ -354,6 +354,56 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 
 Аналогичные полезные свойства есть у HTML-форм, они позволяют из формы получить все её элементы, а из них -- в свою очередь, форму. Мы рассмотрим их позже.
 
+# Интерактивное путешествие
+
+Для того, чтобы убедиться, что вы разобрались с навигацией по DOM-ссылкам -- вашему вниманию предлагается интерактивное путешествие по DOM.
+
+Ниже вы найдёте документ (в ифрейме), и кнопки для перехода по нему. 
+
+Изначальный элемент -- `<html>`. Попробуйте по ссылкам найти "информацию". Или ещё чего-нибудь.
+
+Вы также можете открыть документ [в отдельном окне](travel/) и походить по нему в браузерной консоли разработчика, чтобы лучше понять разницу между показанным там DOM и реальным.
+
+Разметка:
+
+[html src="travel/index.html"/]
+
+Документ:
+
+[iframe id="travel-dom-iframe" src="travel" height=150]
+
+<div id="travel-dom-control">
+
+Навигация:
+<ul>
+<li><input type="button" data-travel-dir="parentNode" value="Вверх (parentNode)">
+  <ul>
+    <li><input type="button" data-travel-dir="previousSibling" value="previousSibling"></li>
+    <li><b>Здесь стоите вы <code data-travel-prop="nodeText"></code></b>
+      <ul>
+        <li><input type="button" data-travel-dir="firstChild" value="firstChild"></li>
+        <li><input type="button" data-travel-dir="lastChild" value="lastChild"></li>
+      </ul>
+    </li>
+    <li><input type="button" data-travel-dir="nextSibling" value="nextSibling"></li>
+  </ul>
+</li>
+</ul>
+
+<div id="travel-dom-comment"></div>
+
+<!--
+<div class="nodeTypeEx-readControl">
+Получить:
+<input placeholder="название" type="text" id="nodeTypeEx-read" style="width: 80px" value=""/><input type="button" value="атрибут" onclick="nodeTypeEx.read(true)"/><input type="button" value="свойство" onclick="nodeTypeEx.read(false)"/>
+</div>
+-->
+
+</div>
+
+<script src="https://js.cx/script/travel.js?26"></script>
+
+
 # Итого
 
 В DOM доступна навигация по соседним узлам через ссылки:
@@ -368,3 +418,15 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 d3
 domtree
 [/libs]
+[head]
+
+<style>
+#travel-dom-comment { 
+  font-style: italic;
+}
+#travel-dom-control ul {
+  margin: 6px 0;
+}
+</style>
+[/head]
+

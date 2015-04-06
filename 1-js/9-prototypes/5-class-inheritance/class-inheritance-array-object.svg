@@ -6,7 +6,7 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="class-inheritance-array-object.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="12" y="157.109589" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="12" y="157.109589" width="200" height="60"></rect>
             <text id="slice:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="23" y="181.109589">slice: function</tspan>
                 <tspan x="23" y="197.109589">...</tspan>
@@ -17,7 +17,7 @@
             <text id="arr" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="12" y="267.109589">arr</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="12" y="24.109589" width="200" height="60"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="12" y="24.109589" width="200" height="60"></rect>
             <text id="hasOwnProperty:-func" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="23" y="48.109589">hasOwnProperty: function</tspan>
                 <tspan x="23" y="64.109589">...</tspan>
@@ -25,7 +25,7 @@
             <text id="Object.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="12" y="17.109589">Object.prototype</tspan>
             </text>
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="12" y="274.109589" width="200" height="30"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="12" y="274.109589" width="200" height="30"></rect>
             <path d="M72.5,265.609589 L72.5,224.609589" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M72.5,224.609589 C71.45,228.389589 70.55,231.629589 69.5,235.409589 C71.6,235.409589 73.4,235.409589 75.5,235.409589 C74.45,231.629589 73.55,228.389589 72.5,224.609589 C72.5,224.609589 72.5,224.609589 72.5,224.609589 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">

@@ -8,7 +8,7 @@
         <g id="family.svg" sketch:type="MSArtboardGroup">
             <path d="M192.5,201.5 L133.5,201.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-decoration-1" d="M133.5,201.5 C137.28,202.55 140.52,203.45 144.3,204.5 C144.3,202.4 144.3,200.6 144.3,198.5 C140.52,199.55 137.28,200.45 133.5,201.5 C133.5,201.5 133.5,201.5 133.5,201.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="122" y="23" width="80" height="30"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="122" y="23" width="80" height="30"></rect>
             <text id="window" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="122" y="16">window</tspan>
             </text>

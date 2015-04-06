@@ -15,7 +15,7 @@ alert( str.match(reg) ); // Java,Java,PHP,C,C
 
 Естественно, при этом <code class="match">JavaScript</code> не будет найдено никогда. 
 
-То же самое -- с <code class="match">C</code> и <code class="match">C++</code>.
+То же самое -- с языками <code class="match">C</code> и <code class="match">C++</code>.
 
 Есть два решения проблемы:
 

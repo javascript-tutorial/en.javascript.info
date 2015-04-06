@@ -6,19 +6,19 @@
     <defs></defs>
     <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
         <g id="array-pop.svg" sketch:type="MSArtboardGroup">
-            <rect id="Rectangle-1" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="102" y="81" width="37" height="54"></rect>
-            <rect id="Rectangle-2" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="138" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="102" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="138" y="81" width="37" height="54"></rect>
             <text id="0" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="117" y="112">0</tspan>
             </text>
             <text id="1" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="154" y="112">1</tspan>
             </text>
-            <rect id="Rectangle-3" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="174" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="174" y="81" width="37" height="54"></rect>
             <text id="2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="190" y="112">2</tspan>
             </text>
-            <rect id="Rectangle-4" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="210" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="210" y="81" width="37" height="54"></rect>
             <text id="3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="226" y="112">3</tspan>
             </text>
@@ -41,15 +41,15 @@
             <text id="очистить" sketch:type="MSTextLayer" font-family="Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="272" y="97">очистить</tspan>
             </text>
-            <rect id="Rectangle-7" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="362" y="81" width="37" height="54"></rect>
-            <rect id="Rectangle-5" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="398" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="362" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="398" y="81" width="37" height="54"></rect>
             <text id="-1" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="377" y="112">0</tspan>
             </text>
             <text id="-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="414" y="112">1</tspan>
             </text>
-            <rect id="Rectangle-6" stroke="#707175" stroke-width="2" fill="#EBEBEB" sketch:type="MSShapeGroup" x="434" y="81" width="37" height="54"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="434" y="81" width="37" height="54"></rect>
             <text id="-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="450" y="112">2</tspan>
             </text>
