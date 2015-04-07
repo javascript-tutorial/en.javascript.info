@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="463px" height="130px" viewBox="0 0 463 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>witch_lazy3.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="witch_lazy3.svg" sketch:type="MSArtboardGroup">
+            <text id="a-&quot;witch&quot;-and-her-&quot;b" sketch:type="MSTextLayer" font-family="Consolas" font-size="24" font-weight="normal" fill="#8A704D">
+                <tspan x="20" y="105">a "witch" and her "broom" is one</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" sketch:type="MSShapeGroup" x="45" y="43" width="29" height="77"></rect>
+            <path d="M52.0039062,53.4414062 L51.6757812,58.9375 L49.7539062,58.9375 L49.4140625,53.4414062 L52.0039062,53.4414062 Z M56.5625,53.4414062 L56.234375,58.9375 L54.3125,58.9375 L53.9726562,53.4414062 L56.5625,53.4414062 Z M66.0898438,66.3085938 C66.3554701,66.3085938 66.6074207,66.3593745 66.8457031,66.4609375 C67.0839856,66.5625005 67.2910147,66.7031241 67.4667969,66.8828125 C67.642579,67.0625009 67.7812495,67.2714832 67.8828125,67.5097656 C67.9843755,67.7480481 68.0351562,68.0039049 68.0351562,68.2773438 C68.0351562,68.5429701 67.9843755,68.7929676 67.8828125,69.0273438 C67.7812495,69.2617199 67.642579,69.466796 67.4667969,69.6425781 C67.2910147,69.8183603 67.0839856,69.9570307 66.8457031,70.0585938 C66.6074207,70.1601568 66.3554701,70.2109375 66.0898438,70.2109375 C65.8164049,70.2109375 65.5625012,70.1601568 65.328125,70.0585938 C65.0937488,69.9570307 64.8886728,69.8183603 64.7128906,69.6425781 C64.5371085,69.466796 64.398438,69.2617199 64.296875,69.0273438 C64.195312,68.7929676 64.1445312,68.5429701 64.1445312,68.2773438 C64.1445312,68.0039049 64.195312,67.7480481 64.296875,67.5097656 C64.398438,67.2714832 64.5371085,67.0625009 64.7128906,66.8828125 C64.8886728,66.7031241 65.0937488,66.5625005 65.328125,66.4609375 C65.5625012,66.3593745 65.8164049,66.3085938 66.0898438,66.3085938 L66.0898438,66.3085938 Z" id="--&quot;.&quot;---------------" fill="#CB1E31" sketch:type="MSShapeGroup"></path>
+            <path d="M78.3945312,53.4414062 L78.0664062,58.9375 L76.1445312,58.9375 L75.8046875,53.4414062 L78.3945312,53.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
+            <path d="M82.953125,53.4414062 L82.625,58.9375 L80.703125,58.9375 L80.3632812,53.4414062 L82.953125,53.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
+            <path d="M50.5,33.5 L71.5,33.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M71.5,33.5 C67.72,32.45 64.48,31.55 60.7,30.5 C60.7,32.6 60.7,34.4 60.7,36.5 C64.48,35.45 67.72,34.55 71.5,33.5 C71.5,33.5 71.5,33.5 71.5,33.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+        </g>
+    </g>
+</svg>

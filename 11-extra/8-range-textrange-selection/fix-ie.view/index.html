@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="fixIERangeObject.js"></script>
+
+  <script>
+    function test() {
+
+      var range = getRangeObject();
+      if (range) {
+        alert(range);
+        alert(range.startContainer.nodeValue);
+        alert(range.startOffset);
+        alert(range.endOffset);
+      } else {
+        alert('Сначала выделите текст');
+      }
+    }
+  </script>
+</head>
+
+<body>
+  Выделите текст:
+  <pre>The quick brown fox jumped over the lazy dog</pre>
+  <input type="button" value="Вывести выделение и свойства startContainer, startOffset, endOffset" onclick="test();" />
+</body>
+
+</html>

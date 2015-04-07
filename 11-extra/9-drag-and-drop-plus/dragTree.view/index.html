@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="lib.js"></script>
+  <script src="DragManager.js"></script>
+  <script src="DragAvatar.js"></script>
+  <script src="DragZone.js"></script>
+  <script src="DropTarget.js"></script>
+  <script src="TreeDragAvatar.js"></script>
+  <script src="TreeDragZone.js"></script>
+  <script src="TreeDropTarget.js"></script>
+  <link rel="stylesheet" type="text/css" href="dragTree.css">
+</head>
+
+<body>
+
+  Возьмите за любой заголовок и поменяйте ему родителя.
+  <br> В собственных детей перенести нельзя.
+  <br> Потомки всегда отсортированы по алфавиту.
+
+  <ul id="tree">
+    <li><span>Древо жизни (сверхмалая часть)</span>
+      <ul>
+        <li><span>Грибы</span>
+          <ul>
+            <li><span>Древесные</span>
+              <ul>
+                <li><span>Чага</span></li>
+              </ul>
+            </li>
+            <li><span>Наземные</span>
+              <ul>
+                <li><span>Опята</span></li>
+                <li><span>Подосиновики</span></li>
+              </ul>
+
+            </li>
+          </ul>
+        </li>
+        <li><span>Животные</span>
+          <ul>
+            <li><span>Земноводные</span>
+              <ul>
+                <li><span>Лягушки</span></li>
+                <li><span>Саламандры</span></li>
+                <li><span>Тритоны</span></li>
+              </ul>
+            </li>
+            <li><span>Млекопитающие</span>
+              <ul>
+                <li><span>Коровы</span></li>
+                <li><span>Ослы</span></li>
+                <li><span>Собаки</span></li>
+                <li><span>Тигры</span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+
+  <script>
+    var tree = document.getElementById('tree');
+    new TreeDragZone(tree);
+    new TreeDropTarget(tree);
+  </script>
+
+</body>
+
+</html>

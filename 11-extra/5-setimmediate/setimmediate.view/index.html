@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <script src="setImmediate.js"></script>
+</head>
+
+<body>
+
+  <button onclick="testTimeout()">testTimeout</button>
+  <button onclick="testImmediate()">testImmediate</button>
+
+  <script>
+    function testTimeout() {
+      var start = new Date();
+      var i = 0;
+      setTimeout(function go() {
+        i++;
+        if (i == 100) {
+          alert(new Date - start);
+        } else {
+          setTimeout(go, 0);
+        }
+      }, 0);
+    }
+
+    function testImmediate() {
+      var start = new Date();
+      var i = 0;
+      setImmediate(function go() {
+        i++;
+        if (i == 100) {
+          alert(new Date - start);
+        } else {
+          setImmediate(go);
+        }
+      });
+    }
+  </script>
+
+</body>
+
+</html>

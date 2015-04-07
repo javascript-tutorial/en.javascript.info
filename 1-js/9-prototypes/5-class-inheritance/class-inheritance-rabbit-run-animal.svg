@@ -10,7 +10,7 @@
             <text id="jump:-function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal">
                 <tspan x="24" y="175" fill="#8A704D">jump: function</tspan>
                 <tspan x="131.761719" y="175" fill="#999647"></tspan>
-                <tspan x="24" y="191" fill="#7ED321">run: function</tspan>
+                <tspan x="24" y="191" fill="#417505">run: function</tspan>
             </text>
             <text id="Rabbit.prototype" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
                 <tspan x="13" y="149">Rabbit.prototype</tspan>

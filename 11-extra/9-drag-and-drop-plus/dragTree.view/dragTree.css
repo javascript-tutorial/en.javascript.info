@@ -1,0 +1,22 @@
+#tree span:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+/* #tree span.hover, для приоритета перед :hover также добавлен подселектор */
+
+#tree span.hover,
+#tree span.hover:hover {
+  color: red;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+span.avatar {
+  padding: 1px;
+  border: 1px dotted black;
+  background: white;
+  cursor: pointer;
+  opacity: 0.6;
+  filter: progid: DXImageTransform.Microsoft.Alpha(opacity=60);
+  /* IE opacity */
+}
