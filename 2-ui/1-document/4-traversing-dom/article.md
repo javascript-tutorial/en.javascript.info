@@ -371,7 +371,7 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 
 Документ:
 
-[iframe id="travel-dom-iframe" src="travel" height=150]
+[iframe samedomain id="travel-dom-iframe" src="travel" height=150]
 
 <div id="travel-dom-control">
 
