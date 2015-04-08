@@ -146,10 +146,10 @@ Firefox и старый IE могут активировать designMode на �
 К примеру, Twitter использует `X-Frame-Options: SAMEORIGIN`. Результат:
 
 ```html
-<iframe src="http://twitter.com"></iframe>
+<iframe src="https://twitter.com"></iframe>
 ```
 
-<iframe src="http://twitter.com"></iframe>
+<iframe src="https://twitter.com"></iframe>
 
 В зависимости от браузера, `iframe` выше либо пустой, либо в нём находится сообщение о невозможности отобразить его (IE).
 
