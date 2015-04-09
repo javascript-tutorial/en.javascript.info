@@ -274,7 +274,7 @@ for (var key in elems) {
 
 ```js
 elem.firstElementChild === elem.children[0]
-elem.lastElementChild === body.children[body.children.length - 1]
+elem.lastElementChild === elem.children[elem.children.length - 1]
 ```
 
 
@@ -301,19 +301,19 @@ elem.lastElementChild === body.children[body.children.length - 1]
 <dt>`TABLE`</dt>
 <dd>
 <ul>
-<li>**`table.rows`** -- список строк `TR` таблицы.</li>
+<li>**`table.rows`** -- коллекция строк `TR` таблицы.</li>
 <li>`table.caption/tHead/tFoot` -- ссылки на элементы таблицы `CAPTION`, `THEAD`, `TFOOT`.</li>
-<li>`table.tBodies` -- список элементов таблицы `TBODY`, по спецификации их может быть несколько.</li>
+<li>`table.tBodies` -- коллекция элементов таблицы `TBODY`, по спецификации их может быть несколько.</li>
 </ul></dd>
 <dt>`THEAD/TFOOT/TBODY`</dt>
 <dd>
 <ul>
-<li>`tbody.rows` -- список строк `TR` секции.</li>
+<li>`tbody.rows` -- коллекция строк `TR` секции.</li>
 </ul></dd>
 <dt>`TR`</dt>
 <dd>
 <ul>
-<li>**`tr.cells`** -- список ячеек `TD/TH`</li>
+<li>**`tr.cells`** -- коллекция ячеек `TD/TH`</li>
 <li>**`tr.sectionRowIndex`** -- номер строки в текущей секции `THEAD/TBODY`</li>
 <li>`tr.rowIndex` -- номер строки в таблице</li>
 </ul>
