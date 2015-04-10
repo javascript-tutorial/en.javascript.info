@@ -53,8 +53,8 @@
             <text id="BOM" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#99C0C3">
                 <tspan x="135" y="73">BOM</tspan>
             </text>
-            <text id="JavaScript" sketch:type="MSTextLayer" font-family="Consolas" font-size="10" font-weight="normal" fill="#C74A6C">
-                <tspan x="280" y="71">JavaScript</tspan>
+            <text id="JavaScript" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#C74A6C">
+                <tspan x="271" y="73">JavaScript</tspan>
             </text>
             <text id="DOM" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#CFCE95">
                 <tspan x="17" y="73">DOM</tspan>
@@ -63,14 +63,14 @@
             <path id="Line-decoration-1" d="M174.5,72.5 C175.55,68.72 176.45,65.48 177.5,61.7 C175.4,61.7 173.6,61.7 171.5,61.7 C172.55,65.48 173.45,68.72 174.5,72.5 C174.5,72.5 174.5,72.5 174.5,72.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <path d="M132.5,41.5 L86.5,73.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
             <path id="Line-2-decoration-1" d="M86.5293087,73.4796113 C90.2319481,72.182938 93.405639,71.0715038 97.1082783,69.7748305 C95.9090429,68.0509295 94.8811268,66.5733002 93.6818914,64.8493993 C91.1784875,67.8699735 89.0327127,70.4590371 86.5293087,73.4796113 C86.5293087,73.4796113 86.5293087,73.4796113 86.5293087,73.4796113 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
-            <path d="M263.5,41.5 L217.5,73.5" id="Line-3" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(240.500000, 57.500000) scale(-1, 1) translate(-240.500000, -57.500000) "></path>
-            <path id="Line-3-decoration-1" d="M217.529309,73.4796113 C221.231948,72.182938 224.405639,71.0715038 228.108278,69.7748305 C226.909043,68.0509295 225.881127,66.5733002 224.681891,64.8493993 C222.178487,67.8699735 220.032713,70.4590371 217.529309,73.4796113 C217.529309,73.4796113 217.529309,73.4796113 217.529309,73.4796113 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="…" sketch:type="MSTextLayer" font-family="Consolas" font-size="24" font-weight="normal" fill="#727155">
                 <tspan x="50" y="122">…</tspan>
             </text>
             <text id="…-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="24" font-weight="normal" fill="#924565">
                 <tspan x="287" y="201">…</tspan>
             </text>
+            <path d="M217.490385,40.4861111 L267.509615,74.5138889" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M267.099194,74.2346818 C264.564439,71.2403677 262.391792,68.6738127 259.857037,65.6794986 C258.675837,67.4158069 257.66338,68.9040712 256.48218,70.6403795 C260.198135,71.8983853 263.383239,72.976676 267.099194,74.2346818 C267.099194,74.2346818 267.099194,74.2346818 267.099194,74.2346818 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
         </g>
     </g>
 </svg>
