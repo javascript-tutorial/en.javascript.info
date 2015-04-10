@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="488px" height="308px" viewBox="0 0 488 308" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: bin/sketchtool 1.3 (252) - http://www.bohemiancoding.com/sketch -->
+    <title>leak-xhr.svg</title>
+    <desc>Created with bin/sketchtool.</desc>
+    <defs></defs>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="leak-xhr.svg" sketch:type="MSArtboardGroup">
+            <rect id="Rectangle-2" stroke="#CFCE95" stroke-width="2" fill="#F5F5D9" sketch:type="MSShapeGroup" x="50" y="101" width="117" height="38"></rect>
+            <rect id="Rectangle-2" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" sketch:type="MSShapeGroup" x="331" y="101" width="117" height="38"></rect>
+            <rect id="Rectangle-2" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" sketch:type="MSShapeGroup" x="50" y="229" width="398" height="38"></rect>
+            <text id="xhr" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#727155">
+                <tspan x="97" y="125">xhr</tspan>
+            </text>
+            <text id="function" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#727155">
+                <tspan x="359.210938" y="125">function</tspan>
+            </text>
+            <text id="LexicalEnvironment" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle" fill="#924565">
+                <tspan x="180.224609" y="252">LexicalEnvironment</tspan>
+            </text>
+            <path d="M110.5,154.5 L110.5,185.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup" transform="translate(110.500000, 170.000000) scale(1, -1) translate(-110.500000, -170.000000) "></path>
+            <path id="Line-decoration-1" d="M110.5,185.5 C111.55,181.72 112.45,178.48 113.5,174.7 C111.4,174.7 109.6,174.7 107.5,174.7 C108.55,178.48 109.45,181.72 110.5,185.5 C110.5,185.5 110.5,185.5 110.5,185.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M187,123 L311.169243,123" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M311,123 C307.22,121.95 303.98,121.05 300.2,120 C300.2,122.1 300.2,123.9 300.2,126 C303.98,124.95 307.22,124.05 311,123 C311,123 311,123 311,123 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M381.5,175.5 L381.5,206.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M381.5,206.5 C382.55,202.72 383.45,199.48 384.5,195.7 C382.4,195.7 380.6,195.7 378.5,195.7 C379.55,199.48 380.45,202.72 381.5,206.5 C381.5,206.5 381.5,206.5 381.5,206.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
+            <path d="M112.5,46.5 L112.5,77.5" id="Line" stroke="#8A704D" stroke-width="2" stroke-linecap="square" fill="#8A704D" sketch:type="MSShapeGroup"></path>
+            <path id="Line-decoration-1" d="M112.5,77.5 C113.55,73.72 114.45,70.48 115.5,66.7 C113.4,66.7 111.6,66.7 109.5,66.7 C110.55,70.48 111.45,73.72 112.5,77.5 C112.5,77.5 112.5,77.5 112.5,77.5 Z" stroke="#8A704D" stroke-width="2" stroke-linecap="square" fill="#8A704D"></path>
+            <text id="property" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="78" y="208">property</tspan>
+            </text>
+            <text id="onreadystatechange" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="181.5" y="110">onreadystatechange</tspan>
+            </text>
+            <text id="внутренняя-ссылка" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="47" y="37">внутренняя ссылка</tspan>
+            </text>
+            <text id="[[Scope]]" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="346" y="164">[[Scope]]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

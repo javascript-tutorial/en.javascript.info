@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=8">
+</head>
+
+<body>
+
+
+  <script>
+    // Утечка в IE8 standards mode, а также в IE9 в режиме IE8
+    // См. http://blog.j15r.com/2009/07/memory-leaks-in-ie8.html
+    function leak() {
+      // Создаём новый DIV, добавляем к BODY
+      var elem = document.createElement('div');
+      document.body.appendChild(elem);
+
+      elem.__expando = {
+        bigAss: new Array(1000000).join('lalala'),
+        method: function() {} // создаётся круговая ссылка через замыкание
+      };
+
+      // Удалить элемент из DOM. Браузер должен очистить память.
+      elem.parentElement.removeChild(elem);
+    }
+  </script>
+
+  <p>Нажимайте на кнопку и наблюдайте, как увеличивается количество занимаемой браузером памяти.</p>
+  <button onclick="leak()">Создать утечку!</button>
+
+</body>
+
+</html>
