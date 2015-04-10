@@ -4,7 +4,7 @@
 //+ run
 function User() {
 
-  var firstName, surName;
+  var firstName, surname;
 
   this.setFirstName = function(newFirstName) {
     firstName = newFirstName;
