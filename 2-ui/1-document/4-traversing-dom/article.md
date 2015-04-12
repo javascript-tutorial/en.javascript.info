@@ -230,10 +230,16 @@ for (var key in elems) {
 <li>`parentElement` -- родитель-элемент.</li>
 </ul>
  
-[smart header="Родитель-элемент? А что, бывают родители не-элементы?"]
-Почти всегда родитель и так элемент, ведь текстовые узлы не могут иметь потомков. Поэтому это свойство равно `parentNode`, кроме одного исключения.
+[smart header="Зачем `parentElement`? Неужели бывают родители не-элементы?"]
+Свойство `elem.parentNode` возвращает родитель элемента. 
 
-В корне DOM находится `document`, и он-то как раз не элемент. То есть, если идти по цепочке `parentElement` вверх, то мы, остановимся мы не на `document` как в случае с `parentNode`, а на `document.documentElement`. 
+Оно всегда равно `parentElement`, кроме одного исключения:
+
+```js
+//+ run
+alert( document.documentElement.parentNode ); // document
+alert( document.documentElement.parentElement ); // null
+```
 
 Иногда это имеет значение, если хочется перебрать всех предков и вызвать какой-то метод, а на документе его нет.
 [/smart]
