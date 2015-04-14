@@ -300,7 +300,7 @@ function Animal(name) {
 
 // Методы хранятся в прототипе
 Animal.prototype.run = function() {
-  alert(this + " бежит!")
+  alert(this.name + " бежит!")
 }
 
 *!*
@@ -323,7 +323,7 @@ Rabbit.prototype.constructor = Rabbit;
 Rabbit.prototype.run = function() {
   // Вызов метода родителя внутри своего
   Animal.prototype.run.apply(this);
-  alert( this + " подпрыгивает!" );
+  alert( this.name + " подпрыгивает!" );
 };
 
 // Готово, можно создавать объекты
