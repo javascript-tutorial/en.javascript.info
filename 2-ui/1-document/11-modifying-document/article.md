@@ -10,15 +10,25 @@
 
 В качестве примера рассмотрим добавление сообщения на страницу, чтобы оно было оформленно красивее чем обычный `alert`.
 
-HTML-код для сообщения (с подключённой библиотекой стилей [bootstrap](http://getbootstrap.com/)):
+HTML-код для сообщения:
 
 ```html
 <!--+ autorun height="100" -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
-<div class="alert alert-success">
+*!*
+<div class="alert">
   <strong>Ура!</strong> Вы прочитали это важное сообщение.
 </div>
+*/!*
 ```
 
 ## Создание элемента
@@ -143,7 +153,15 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=150 run autorun -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
 <body>
   <h3>Моя страница</h3>
@@ -164,7 +182,15 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=150 run autorun -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
 <body>
   <h3>Моя страница</h3>
@@ -195,7 +221,15 @@ parentElem.appendChild(elem)
 
 ```html
 <!--+ height=200 run autorun -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
 <body>
   <h3>Моя страница</h3>
@@ -282,7 +316,15 @@ div.parentNode.insertBefore(div2, div.nextSibling);
 
 ```html
 <!--+ run -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
 <body>
   <h3>Сообщение пропадёт через секунду</h3>
@@ -315,7 +357,15 @@ div.parentNode.insertBefore(div2, div.nextSibling);
 
 ```html
 <!--+ run -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/css/bootstrap.css">
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
 
 <script>
   var div = document.createElement('div');
