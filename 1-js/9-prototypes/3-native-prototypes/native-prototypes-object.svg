@@ -19,12 +19,10 @@
                 <tspan x="13" y="205">obj</tspan>
             </text>
             <path d="M73.5,203.5 L73.5,162.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M73.5,162.5 C72.45,166.28 71.55,169.52 70.5,173.3 C72.6,173.3 74.4,173.3 76.5,173.3 C75.45,169.52 74.55,166.28 73.5,162.5 C73.5,162.5 73.5,162.5 73.5,162.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="83" y="184">__proto__</tspan>
             </text>
             <path d="M73.5,71.5 L73.5,30.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-2-decoration-1" d="M73.5,30.5 C72.45,34.28 71.55,37.52 70.5,41.3 C72.6,41.3 74.4,41.3 76.5,41.3 C75.45,37.52 74.55,34.28 73.5,30.5 C73.5,30.5 73.5,30.5 73.5,30.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="83" y="52">__proto__</tspan>
             </text>

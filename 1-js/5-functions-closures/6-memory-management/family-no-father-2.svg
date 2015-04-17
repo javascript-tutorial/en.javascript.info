@@ -31,9 +31,7 @@
                 <tspan x="52" y="177">Object</tspan>
             </text>
             <path d="M74.5,56.5 L74.5,87.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M74.5,87.5 C75.55,83.72 76.45,80.48 77.5,76.7 C75.4,76.7 73.6,76.7 71.5,76.7 C72.55,80.48 73.45,83.72 74.5,87.5 C74.5,87.5 74.5,87.5 74.5,87.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <path d="M73.5,123.5 L73.5,155.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M73.5,155.5 C74.55,151.72 75.45,148.48 76.5,144.7 C74.4,144.7 72.6,144.7 70.5,144.7 C71.55,148.48 72.45,151.72 73.5,155.5 C73.5,155.5 73.5,155.5 73.5,155.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
         </g>
     </g>
 </svg>

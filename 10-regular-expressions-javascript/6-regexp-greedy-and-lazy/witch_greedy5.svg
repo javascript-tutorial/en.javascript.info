@@ -15,7 +15,6 @@
             <path d="M421.472656,55.4414062 L421.144531,60.9375 L419.222656,60.9375 L418.882812,55.4414062 L421.472656,55.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
             <path d="M426.03125,55.4414062 L425.703125,60.9375 L423.78125,60.9375 L423.441406,55.4414062 L426.03125,55.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
             <path d="M53.5,29.5 L409.5,29.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M409.5,29.5 C405.72,28.45 402.48,27.55 398.7,26.5 C398.7,28.6 398.7,30.4 398.7,32.5 C402.48,31.45 405.72,30.55 409.5,29.5 C409.5,29.5 409.5,29.5 409.5,29.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <path d="M410.5,29.5 L435.5,29.5" id="Line" stroke="#B8BAC1" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
         </g>
         <g id="witch_greedy4.svg" sketch:type="MSArtboardGroup" transform="translate(-455.000000, 3.000000)"></g>

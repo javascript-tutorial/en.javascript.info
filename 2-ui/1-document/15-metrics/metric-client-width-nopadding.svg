@@ -18,15 +18,11 @@
                 <tspan x="213.396484" y="399.64193" fill="#EE6B47">= content width</tspan>
             </text>
             <path d="M63.6799927,409.64193 L343.679993,409.64193" id="Line-44" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-44-decoration-1" d="M64.4799927,409.64193 C68.2599927,408.59193 71.4999927,407.69193 75.2799927,406.64193 C75.2799927,408.74193 75.2799927,410.54193 75.2799927,412.64193 C71.4999927,411.59193 68.2599927,410.69193 64.4799927,409.64193 C64.4799927,409.64193 64.4799927,409.64193 64.4799927,409.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-44-decoration-2" d="M343.679993,409.64193 C339.899993,408.59193 336.659993,407.69193 332.879993,406.64193 C332.879993,408.74193 332.879993,410.54193 332.879993,412.64193 C336.659993,411.59193 339.899993,410.69193 343.679993,409.64193 C343.679993,409.64193 343.679993,409.64193 343.679993,409.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="CSS-width:-300px" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
                 <tspan x="150.71875" y="429.64193" fill="#F48158">CSS width:</tspan>
                 <tspan x="216.695312" y="429.64193" fill="#3B86C4"> 300px</tspan>
             </text>
             <path d="M62.6799927,434.64193 L363,434.64193" id="Line-47" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-47-decoration-1" d="M63.4799927,434.64193 C67.2599927,433.59193 70.4999927,432.69193 74.2799927,431.64193 C74.2799927,433.74193 74.2799927,435.54193 74.2799927,437.64193 C70.4999927,436.59193 67.2599927,435.69193 63.4799927,434.64193 C63.4799927,434.64193 63.4799927,434.64193 63.4799927,434.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-47-decoration-2" d="M362.679993,434.64193 C358.899993,433.59193 355.659993,432.69193 351.879993,431.64193 C351.879993,433.74193 351.879993,435.54193 351.879993,437.64193 C355.659993,436.59193 358.899993,435.69193 362.679993,434.64193 C362.679993,434.64193 362.679993,434.64193 362.679993,434.64193 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="Introduction-2" sketch:type="MSTextLayer" font-family="Times" font-size="18" font-weight="bold" fill="#5A4739">
                 <tspan x="62" y="173">Introduction</tspan>
                 <tspan x="159.699219" y="173" font-size="16" font-weight="normal"></tspan>
@@ -42,7 +38,6 @@
             </text>
             <ellipse id="Oval-5" stroke="#EE6B47" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup" cx="191" cy="58.8580704" rx="76" ry="43.5"></ellipse>
             <path d="M191,104 L191,128.638622" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M191,128 C192.05,124.22 192.95,120.98 194,117.2 C191.9,117.2 190.1,117.2 188,117.2 C189.05,120.98 189.95,124.22 191,128 C191,128 191,128 191,128 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="padding:-0;" sketch:type="MSTextLayer" font-family="Consolas" font-size="16" font-weight="bold" fill="#8A704D">
                 <tspan x="136" y="52">padding: 0;</tspan>
                 <tspan x="136" y="71">width: 300px;</tspan>

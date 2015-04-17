@@ -39,16 +39,11 @@
                 <tspan x="245" y="444" font-size="16" font-weight="normal">and in all browsers from Microsoft</tspan>
             </text>
             <path d="M201,42.5 L201,199.320007" id="Line-40" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-40-decoration-1" d="M201,198.5 C202.05,194.72 202.95,191.48 204,187.7 C201.9,187.7 200.1,187.7 198,187.7 C199.05,191.48 199.95,194.72 201,198.5 C201,198.5 201,198.5 201,198.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <path id="Line-40-decoration-2" d="M201,43.3 C202.05,47.08 202.95,50.32 204,54.1 C201.9,54.1 200.1,54.1 198,54.1 C199.05,50.32 199.95,47.08 201,43.3 C201,43.3 201,43.3 201,43.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
             <path d="M42.5899963,202.910004 L199.410004,202.910004" id="Line-41" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-41-decoration-1" d="M198.589996,202.910004 C194.809996,201.860004 191.569996,200.960004 187.789996,199.910004 C187.789996,202.010004 187.789996,203.810004 187.789996,205.910004 C191.569996,204.860004 194.809996,203.960004 198.589996,202.910004 C198.589996,202.910004 198.589996,202.910004 198.589996,202.910004 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
-            <path id="Line-41-decoration-2" d="M43.3899963,202.910004 C47.1699963,201.860004 50.4099963,200.960004 54.1899963,199.910004 C54.1899963,202.010004 54.1899963,203.810004 54.1899963,205.910004 C50.4099963,204.860004 47.1699963,203.960004 43.3899963,202.910004 C43.3899963,202.910004 43.3899963,202.910004 43.3899963,202.910004 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" fill="#EE6B47"></path>
             <circle id="Oval-2" fill="#3B86C4" sketch:type="MSShapeGroup" cx="225" cy="227" r="2"></circle>
             <circle id="Oval-2" fill="#3B86C4" sketch:type="MSShapeGroup" cx="201" cy="202" r="3"></circle>
             <ellipse id="Oval-6" stroke="#EE6B47" stroke-width="2" fill="#FFF9EB" sketch:type="MSShapeGroup" cx="386.25" cy="120" rx="100" ry="50"></ellipse>
             <path d="M387,173.378593 L387,198.017216" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M387,197.378593 C388.05,193.598593 388.95,190.358593 390,186.578593 C387.9,186.578593 386.1,186.578593 384,186.578593 C385.05,190.358593 385.95,193.598593 387,197.378593 C387,197.378593 387,197.378593 387,197.378593 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="position:-absolute;" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="bold" fill="#8A704D">
                 <tspan x="318.5" y="111.792656">position: absolute;</tspan>
                 <tspan x="318.5" y="127.792656">left: 180px;</tspan>

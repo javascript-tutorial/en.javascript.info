@@ -14,7 +14,6 @@
             <path d="M78.3945312,53.4414062 L78.0664062,58.9375 L76.1445312,58.9375 L75.8046875,53.4414062 L78.3945312,53.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
             <path d="M82.953125,53.4414062 L82.625,58.9375 L80.703125,58.9375 L80.3632812,53.4414062 L82.953125,53.4414062 Z" id="Path" fill="#5C8058" sketch:type="MSShapeGroup"></path>
             <path d="M50.5,33.5 L71.5,33.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M71.5,33.5 C67.72,32.45 64.48,31.55 60.7,30.5 C60.7,32.6 60.7,34.4 60.7,36.5 C64.48,35.45 67.72,34.55 71.5,33.5 C71.5,33.5 71.5,33.5 71.5,33.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
         </g>
     </g>
 </svg>

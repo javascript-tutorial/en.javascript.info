@@ -26,9 +26,7 @@
             </text>
             <ellipse id="Oval-5" stroke="#EE6B47" stroke-width="2" sketch:type="MSShapeGroup" cx="87" cy="183.5" rx="76" ry="43.5"></ellipse>
             <path d="M157,203 L186,221" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-3-decoration-1" d="M185.887766,220.930337 C183.229857,218.044784 180.951649,215.571452 178.29374,212.685898 C177.186278,214.470142 176.237025,215.999495 175.129563,217.783739 C178.894934,218.885048 182.122395,219.829028 185.887766,220.930337 C185.887766,220.930337 185.887766,220.930337 185.887766,220.930337 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <path d="M159,165 L191,146" id="Line-4" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-4-decoration-1" d="M190.814626,146.110066 C187.028309,147.137055 183.782895,148.017331 179.996578,149.04432 C181.068709,150.850015 181.987679,152.397754 183.059811,154.203449 C185.773996,151.370765 188.10044,148.94275 190.814626,146.110066 C190.814626,146.110066 190.814626,146.110066 190.814626,146.110066 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="border:-5px;" sketch:type="MSTextLayer" font-family="Consolas" font-size="16" font-weight="bold">
                 <tspan x="32" y="176.64193" fill="#999647">border: 5px;</tspan>
                 <tspan x="137.5625" y="176.64193" fill="#8A704D"></tspan>

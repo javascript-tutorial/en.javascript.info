@@ -52,8 +52,6 @@
             <path d="M9.5,147 L75.6399994,147" id="Line-43" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M10.5,21 L76.6399994,21" id="Line-42" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M35,20.5 L35,146.32" id="Line-39" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-39-decoration-1" d="M35,21.3 C36.05,25.08 36.95,28.32 38,32.1 C35.9,32.1 34.1,32.1 32,32.1 C33.05,28.32 33.95,25.08 35,21.3 C35,21.3 35,21.3 35,21.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-39-decoration-2" d="M35,145.5 C36.05,141.72 36.95,138.48 38,134.7 C35.9,134.7 34.1,134.7 32,134.7 C33.05,138.48 33.95,141.72 35,145.5 C35,145.5 35,145.5 35,145.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="88" y="33" width="312" height="89"></rect>
             <rect id="Rectangle-15" fill-opacity="0.8" fill="#FFFFFF" sketch:type="MSShapeGroup" x="88" y="411" width="312" height="89"></rect>
             <text id="scrollHeight:723px" sketch:type="MSTextLayer" transform="translate(451.500000, 270.000000) rotate(-90.000000) translate(-451.500000, -270.000000) " font-family="Consolas" font-size="14" font-weight="normal" sketch:alignment="middle">
@@ -63,8 +61,6 @@
             <path d="M393.5,22 L471.639999,22" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M393.5,522 L471.639999,522" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M462,24.5 L462,518.5" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-25-decoration-1" d="M462,25.3 C463.05,29.08 463.95,32.32 465,36.1 C462.9,36.1 461.1,36.1 459,36.1 C460.05,32.32 460.95,29.08 462,25.3 C462,25.3 462,25.3 462,25.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-25-decoration-2" d="M462,518.5 C463.05,514.72 463.95,511.48 465,507.7 C462.9,507.7 461.1,507.7 459,507.7 C460.05,511.48 460.95,514.72 462,518.5 C462,518.5 462,518.5 462,518.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <g id="Scrollbar" sketch:type="MSLayerGroup" transform="translate(384.000000, 147.000000)">
                 <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F3F3" sketch:type="MSShapeGroup" x="0" y="0" width="16" height="240" rx="3"></rect>
                 <g id="Rectangle-18-+-Triangle-1" sketch:type="MSShapeGroup">

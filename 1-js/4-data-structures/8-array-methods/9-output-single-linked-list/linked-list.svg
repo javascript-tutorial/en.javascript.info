@@ -14,7 +14,6 @@
                 <tspan x="45" y="50">1</tspan>
             </text>
             <path d="M75.73,45 L147.27,45" id="Line-21" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-21-decoration-1" d="M146.73,45 C142.95,43.95 139.71,43.05 135.93,42 C135.93,44.1 135.93,45.9 135.93,48 C139.71,46.95 142.95,46.05 146.73,45 C146.73,45 146.73,45 146.73,45 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="next" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="99" y="34">next</tspan>
             </text>
@@ -26,7 +25,6 @@
                 <tspan x="185" y="50">2</tspan>
             </text>
             <path d="M215.73,45 L287.27,45" id="Line-22" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-22-decoration-1" d="M286.73,45 C282.95,43.95 279.71,43.05 275.93,42 C275.93,44.1 275.93,45.9 275.93,48 C279.71,46.95 282.95,46.05 286.73,45 C286.73,45 286.73,45 286.73,45 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="next-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="239" y="34">next</tspan>
             </text>
@@ -38,7 +36,6 @@
                 <tspan x="324" y="50">3</tspan>
             </text>
             <path d="M354.73,45 L426.27,45" id="Line-23" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-23-decoration-1" d="M425.73,45 C421.95,43.95 418.71,43.05 414.93,42 C414.93,44.1 414.93,45.9 414.93,48 C418.71,46.95 421.95,46.05 425.73,45 C425.73,45 425.73,45 425.73,45 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="next-3" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="378" y="34">next</tspan>
             </text>
@@ -50,7 +47,6 @@
                 <tspan x="464" y="50">4</tspan>
             </text>
             <path d="M494.73,45 L566.27,45" id="Line-24" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-24-decoration-1" d="M565.73,45 C561.95,43.95 558.71,43.05 554.93,42 C554.93,44.1 554.93,45.9 554.93,48 C558.71,46.95 561.95,46.05 565.73,45 C565.73,45 565.73,45 565.73,45 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="next-4" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="518" y="34">next</tspan>
             </text>

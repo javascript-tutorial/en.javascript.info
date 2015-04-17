@@ -24,12 +24,10 @@
             </text>
             <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="4" fill="#FFF9EB" sketch:type="MSShapeGroup" x="16" y="277" width="200" height="30"></rect>
             <path d="M76.5,268.5 L76.5,227.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M76.5,227.5 C75.45,231.28 74.55,234.52 73.5,238.3 C75.6,238.3 77.4,238.3 79.5,238.3 C78.45,234.52 77.55,231.28 76.5,227.5 C76.5,227.5 76.5,227.5 76.5,227.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="86" y="249">__proto__</tspan>
             </text>
             <path d="M76.5,136.5 L76.5,95.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-2-decoration-1" d="M76.5,95.5 C75.45,99.28 74.55,102.52 73.5,106.3 C75.6,106.3 77.4,106.3 79.5,106.3 C78.45,102.52 77.55,99.28 76.5,95.5 C76.5,95.5 76.5,95.5 76.5,95.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
             <text id="__proto__-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="86" y="117">__proto__</tspan>
             </text>

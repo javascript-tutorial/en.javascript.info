@@ -12,7 +12,6 @@
             <rect id="Rectangle-1" stroke="#E8C48E" sketch:type="MSShapeGroup" x="45" y="50" width="15" height="77"></rect>
             <path d="M52.0039062,60.4414062 L51.6757812,65.9375 L49.7539062,65.9375 L49.4140625,60.4414062 L52.0039062,60.4414062 Z M56.5625,60.4414062 L56.234375,65.9375 L54.3125,65.9375 L53.9726562,60.4414062 L56.5625,60.4414062 Z" id="--&quot;-----------------" fill="#CB1E31" sketch:type="MSShapeGroup"></path>
             <path d="M52.5,9.5 L52.5,44.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M52.5,44.5 C53.55,40.72 54.45,37.48 55.5,33.7 C53.4,33.7 51.6,33.7 49.5,33.7 C50.55,37.48 51.45,40.72 52.5,44.5 C52.5,44.5 52.5,44.5 52.5,44.5 Z" stroke="#EE6B47" stroke-width="3" stroke-linecap="square" fill="#EE6B47"></path>
         </g>
     </g>
 </svg>

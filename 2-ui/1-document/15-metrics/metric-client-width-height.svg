@@ -48,8 +48,6 @@
                 <tspan x="237.189453" y="109" fill="#3B86C4">284px</tspan>
             </text>
             <path d="M68.6799927,117 L350.5,117" id="Line-15" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-15-decoration-1" d="M69.4799927,117 C73.2599927,115.95 76.4999927,115.05 80.2799927,114 C80.2799927,116.1 80.2799927,117.9 80.2799927,120 C76.4999927,118.95 73.2599927,118.05 69.4799927,117 C69.4799927,117 69.4799927,117 69.4799927,117 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-15-decoration-2" d="M349.679993,117 C345.899993,115.95 342.659993,115.05 338.879993,114 C338.879993,116.1 338.879993,117.9 338.879993,120 C342.659993,118.95 345.899993,118.05 349.679993,117 C349.679993,117 349.679993,117 349.679993,117 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <path d="M-0.46484375,114.945312 L42.5351562,114.945312" id="Line-14" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup" transform="translate(21.480469, 114.945312) rotate(-270.000000) translate(-21.480469, -114.945312) "></path>
             <path d="M26.5351562,113.945312 L67.5351562,113.945312" id="Line-13" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup" transform="translate(47.480469, 113.945312) rotate(-270.000000) translate(-47.480469, -113.945312) "></path>
             <text id="border-2" sketch:type="MSTextLayer" font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
@@ -78,8 +76,6 @@
             <path d="M46.5,376 L46.5,464.14193" id="Line-24" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M370.5,376 L370.5,464.14193" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M48,452.070965 L368,452.070965" id="Line-22" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-22-decoration-1" d="M48.8,452.070965 C52.58,451.020965 55.82,450.120965 59.6,449.070965 C59.6,451.170965 59.6,452.970965 59.6,455.070965 C55.82,454.020965 52.58,453.120965 48.8,452.070965 C48.8,452.070965 48.8,452.070965 48.8,452.070965 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-22-decoration-2" d="M368,452.070965 C364.22,451.020965 360.98,450.120965 357.2,449.070965 C357.2,451.170965 357.2,452.970965 357.2,455.070965 C360.98,454.020965 364.22,453.120965 368,452.070965 C368,452.070965 368,452.070965 368,452.070965 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="clientHeight:240px" sketch:type="MSTextLayer" transform="translate(489.500000, 277.000000) rotate(-90.000000) translate(-489.500000, -277.000000) " font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
                 <tspan x="430.121094" y="279" fill="#EE6B47">clientHeight:</tspan>
                 <tspan x="515.890625" y="279" fill="#3B86C4">240px</tspan>
@@ -87,8 +83,6 @@
             <path d="M365.5,156 L485.5,156" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M365.5,394 L485.5,394" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M476,160 L476,389" id="Line-26" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-26-decoration-1" d="M476,160.8 C477.05,164.58 477.95,167.82 479,171.6 C476.9,171.6 475.1,171.6 473,171.6 C474.05,167.82 474.95,164.58 476,160.8 C476,160.8 476,160.8 476,160.8 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-26-decoration-2" d="M476,389 C477.05,385.22 477.95,381.98 479,378.2 C476.9,378.2 475.1,378.2 473,378.2 C474.05,381.98 474.95,385.22 476,389 C476,389 476,389 476,389 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="height:200px" sketch:type="MSTextLayer" transform="translate(424.500000, 274.000000) rotate(-90.000000) translate(-424.500000, -274.000000) " font-family="Consolas" font-size="12" font-weight="normal" sketch:alignment="middle">
                 <tspan x="384.914062" y="276" fill="#EE6B47">height:</tspan>
                 <tspan x="431.097656" y="276" fill="#3B86C4">200px</tspan>
@@ -96,8 +90,6 @@
             <path d="M353.5,175 L441.64193,175" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M353.5,377 L441.64193,377" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" sketch:type="MSShapeGroup"></path>
             <path d="M435,177.5 L435,374" id="Line" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" sketch:type="MSShapeGroup"></path>
-            <path id="Line-decoration-1" d="M435,178.3 C436.05,182.08 436.95,185.32 438,189.1 C435.9,189.1 434.1,189.1 432,189.1 C433.05,185.32 433.95,182.08 435,178.3 C435,178.3 435,178.3 435,178.3 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
-            <path id="Line-decoration-2" d="M435,373.5 C436.05,369.72 436.95,366.48 438,362.7 C435.9,362.7 434.1,362.7 432,362.7 C433.05,366.48 433.95,369.72 435,373.5 C435,373.5 435,373.5 435,373.5 Z" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
             <text id="Introduction" sketch:type="MSTextLayer" font-family="Times" font-size="18" font-weight="bold" fill="#5A4739">
                 <tspan x="69" y="193">Introduction</tspan>
                 <tspan x="166.699219" y="193" font-size="16" font-weight="normal"></tspan>
