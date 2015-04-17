@@ -181,7 +181,7 @@ function linear(timeFraction) {
 }
 ```
 Её график:
-<img src="linear.svg">
+<img src="linear.png">
 
 Как видно, её график полностью совпадает с `transition-timing-function: linear`, и эффект абсолютно такой же.
 
@@ -244,14 +244,14 @@ function quad(progress) {
 
 **График квадратичной функции:**
 
-<img src="quad.svg">
+<img src="quad.png">
 
 Пример для квадратичной функции (клик для просмотра):
 [iframe height=40 src="quad" link]
 
 Увеличение степени влияет на ускорение. Например, график для 5-й степени:
 
-<img src="quint.svg">
+<img src="quint.png">
 
 В действии:
 [iframe height=40 src="quint" link]
@@ -268,7 +268,7 @@ function circ(timeFraction) {
 
 **График:**
 
-<img src="circ.svg">
+<img src="circ.png">
 
 [iframe height=40 src="circ" link]
 
@@ -289,7 +289,7 @@ function back(x, timeFraction) {
 
 **График для `x = 1.5`:**
 
-<img src="back.svg">
+<img src="back.png">
 
 Пример для `x = 1.5`:
 
@@ -331,7 +331,7 @@ function elastic(x, timeFraction) {
 ```
 
 **График для `x=1.5`:**
-<img src="elastic.svg">
+<img src="elastic.png">
 
 Пример для `x=1.5`:
 
@@ -380,7 +380,7 @@ var bounceEaseOut = makeEaseOut(bounce);
 
 На этом графике видно, как преобразование `easeOut` изменяет поведение функции:
 
-<img src="bounce-inout.svg">
+<img src="bounce-inout.png">
 
 Если есть анимационный эффект, такой как подпрыгивание -- он будет показан в конце, а не в начале (или наоборот, в начале, а не в конце).
 
@@ -429,7 +429,7 @@ bounceEaseInOut = makeEaseInOut(bounce);
 
 Это отлично видно, если посмотреть графики `easeIn`, `easeOut` и `easeInOut` на примере функции `circ`:
 
-<img src="circ-ease.svg">
+<img src="circ-ease.png">
 
 <ul>
 <li><span style="color:#EE6B47">Красным</span> цветом обозначен обычный вариант функции `circ`.</li>

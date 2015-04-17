@@ -12,7 +12,7 @@
 
 Взглянем на него ещё раз на примере `Array`, который наследует от `Object`:
 
-<img src="class-inheritance-array-object.svg">
+<img src="class-inheritance-array-object.png">
 
 <ul>
 <li>Методы массивов `Array` хранятся в `Array.prototype`.</li>
@@ -109,7 +109,7 @@ Rabbit.prototype.jump = function() { ... };
 
 Теперь выглядеть иерархия будет так:
 
-<img src="class-inheritance-rabbit-animal.svg">
+<img src="class-inheritance-rabbit-animal.png">
 
 В `prototype` по умолчанию всегда находится свойство `constructor`, указывающее на функцию-конструктор. В частности, `Rabbit.prototype.constructor == Rabbit`. Если мы рассчитываем использовать это свойство, то при замене `prototype` через `Object.create` нужно его явно сохранить:
 
@@ -225,7 +225,7 @@ Rabbit.prototype.run = function(speed) {
 
 Вызов `rabbit.run()` теперь будет брать `run` из своего прототипа:
 
-<img src="class-inheritance-rabbit-run-animal.svg">
+<img src="class-inheritance-rabbit-run-animal.png">
 
 
 ### Вызов метода родителя внутри своего

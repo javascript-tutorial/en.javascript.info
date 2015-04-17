@@ -4,4 +4,4 @@
 
 Её график:
 
-<img src="bezier-up.svg">
+<img src="bezier-up.png">

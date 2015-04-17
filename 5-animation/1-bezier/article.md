@@ -16,15 +16,15 @@
 
 По двум точкам:
 
-<img src="bezier2.svg">
+<img src="bezier2.png">
 
 По трём точкам:
 
-<img src="bezier3.svg">
+<img src="bezier3.png">
 
 По четырём точкам:
 
-<img src="bezier4.svg">
+<img src="bezier4.png">
 
 
 Если вы посмотрите внимательно на эти кривые, то "на глазок" заметите: 
@@ -34,7 +34,7 @@
 Для двух точек -- это линейная кривая (т.е. прямая), для трёх точек -- квадратическая кривая (парабола), для четырёх -- кубическая.</li>
 <li>**Кривая всегда находится внутри [выпуклой оболочки](http://ru.wikipedia.org/wiki/%D0%92%D1%8B%D0%BF%D1%83%D0%BA%D0%BB%D0%B0%D1%8F_%D0%BE%D0%B1%D0%BE%D0%BB%D0%BE%D1%87%D0%BA%D0%B0), образованной опорными точками:**
 
-<img src="bezier4-e.svg"> <img src="bezier3-e.svg">
+<img src="bezier4-e.png"> <img src="bezier3-e.png">
 
 Благодаря последнему свойству в компьютерной графике можно оптимизировать проверку пересечений двух кривых. Если их выпуклые оболочки не пересекаются, то и кривые тоже не пересекутся.
 </li>
@@ -52,7 +52,7 @@
 
 Вот некоторые примеры:
 
-<img src="bezier-car.svg"> <img src="bezier-letter.svg"> <img src="bezier-vase.svg">
+<img src="bezier-car.png"> <img src="bezier-letter.png"> <img src="bezier-vase.png">
 
 ## Математика
 
@@ -124,8 +124,8 @@
 </thead>
 <tbody>
 <tr>
-<td><img src="bezier3-draw1.svg"></td>
-<td><img src="bezier3-draw2.svg"></td>
+<td><img src="bezier3-draw1.png"></td>
+<td><img src="bezier3-draw2.png"></td>
 </tr>
 </tbody>
 </table>

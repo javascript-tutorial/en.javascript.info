@@ -33,7 +33,7 @@ alert( {}.__proto__.toString ); // function toString
 <li>В дальнейшем при обращении к `obj.toString()` -- функция будет взята из `Object.prototype`.</li>
 </ol>
 
-<img src="native-prototypes-object.svg">
+<img src="native-prototypes-object.png">
 
 Это можно легко проверить:
 
@@ -55,7 +55,7 @@ alert( obj.__proto__.__proto__ ); // null, нет
 
 Точно такой же подход используется в массивах `Array`, функциях `Function` и других объектах. Встроенные методы для них находятся в `Array.prototype`, `Function.prototype` и т.п.
 
-<img src="native-prototypes-classes.svg">
+<img src="native-prototypes-classes.png">
 
 Например, когда мы создаём массив, `[1, 2, 3]`, то это альтернативный вариант синтаксиса `new Array`, так что у массивов есть стандартный прототип `Array.prototype`.
 
@@ -81,7 +81,7 @@ alert( arr ); // 1,2,3 <-- результат Array.prototype.toString
 
 Как мы видели раньше, у `Object.prototype` есть свой `toString`, но так как в `Array.prototype` он ищется первым, то берётся именно вариант для массивов:
 
-<img src="native-prototypes-array-tostring.svg">
+<img src="native-prototypes-array-tostring.png">
 
 
 [smart header="Вызов методов через `apply` из прототипа"]

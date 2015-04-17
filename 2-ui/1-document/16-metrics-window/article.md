@@ -12,7 +12,7 @@
 
 Свойства `clientWidth/Height` для элемента `document.documentElement` -- это как раз ширина/высота видимой области окна.
 
-<img src="document-client-width-height.svg">
+<img src="document-client-width-height.png">
 
 [online]
 Например, кнопка ниже выведет размер такой области для этой страницы:

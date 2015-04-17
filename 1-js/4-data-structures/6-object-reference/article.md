@@ -15,7 +15,7 @@ var phrase = message;
 
 В результате такого копирования получились две полностью независимые переменные, в каждой из которых хранится значение `"Привет"`.
 
-<img src="variable-copy-value.svg">
+<img src="variable-copy-value.png">
 
 ## Копирование по ссылке
 
@@ -31,7 +31,7 @@ var user = {
 };
 ```
 
-<img src="variable-contains-reference.svg">
+<img src="variable-contains-reference.png">
 
 Внимание: объект -- вне переменной. В переменной -- лишь "адрес" (ссылка) для него.
 
@@ -48,7 +48,7 @@ var admin = user; // скопировали ссылку
 
 Получили две переменные, в которых находятся ссылки на один и тот же объект:
 
-<img src="variable-copy-reference.svg">
+<img src="variable-copy-reference.png">
 
 **Так как объект всего один, то изменения через любую переменную видны в других переменных:**
 

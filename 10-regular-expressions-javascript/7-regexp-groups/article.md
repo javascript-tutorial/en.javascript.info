@@ -84,7 +84,7 @@ alert( str.match(reg) ); // <span class="my">, span, s
 
 Вот так выглядят скобочные группы:
 
-<img src="regexp-nested-groups.svg">
+<img src="regexp-nested-groups.png">
 
 На нулевом месте -- всегда совпадение полностью, далее -- группы. Нумерация всегда идёт слева направо, по открывающей скобке.
 

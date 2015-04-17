@@ -79,7 +79,7 @@ function highlight(node) {
 
 Естественно, клик может произойти внутри `<td>`, на элементе `<strong>`. Такой клик будет пойман единым обработчиком, но `target` у него будет не `<td>`, а `<strong>`:
 
-<img src="bagua-bubble.svg">
+<img src="bagua-bubble.png">
 
 Внутри обработчика `table.onclick` мы должны по `event.target` разобраться, в каком именно `<td>` был клик.
 

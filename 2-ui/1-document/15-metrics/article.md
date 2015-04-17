@@ -34,7 +34,7 @@
 
 Результат выглядит так:
 
-<img src="metric-css.svg">
+<img src="metric-css.png">
 
 Вы можете открыть [edit src="metric"]этот документ в песочнице[/edit].
 
@@ -65,7 +65,7 @@
 Вот общая картина:
 
 
-<img src="metric-all.svg">
+<img src="metric-all.png">
 
 На картинке все они с трудом помещаются, но, как мы увидим далее, их значения просты и понятны.
 
@@ -100,7 +100,7 @@
 </main>
 ```
 
-<img src="metric-offset-parent.svg">
+<img src="metric-offset-parent.png">
 
 ## offsetWidth/Height
 
@@ -108,7 +108,7 @@
 
 Эти два свойства -- самые простые. Они содержат "внешнюю" ширину/высоту элемента, то есть его полный размер, включая рамки `border`.
 
-<img src="metric-offset-width-height.svg">
+<img src="metric-offset-width-height.png">
 
 Для нашего элемента:
 <ul>
@@ -153,7 +153,7 @@ function isHidden(elem) {
 <li>`clientTop = 25` -- ширина верхней рамки</li>
 </ul>
 
-<img src="metric-client-left-top.svg">
+<img src="metric-client-left-top.png">
 
 ...Но на самом деле они -- вовсе не рамки, а отступ внутренней части элемента от внешней.
 
@@ -163,7 +163,7 @@ function isHidden(elem) {
 
 Получится так:
 
-<img src="metric-client-left-top-rtl.svg">
+<img src="metric-client-left-top-rtl.png">
 
 
 ## clientWidth/Height
@@ -172,7 +172,7 @@ function isHidden(elem) {
 
 Они включают в себя ширину содержимого `width` вместе с полями `padding`, но без прокрутки.
 
-<img src="metric-client-width-height.svg">
+<img src="metric-client-width-height.png">
 
 На рисунке выше посмотрим вначале на `clientHeight`, её посчитать проще всего. Прокрутки нет, так что это в точности то, что внутри рамок: CSS-ширина `200px` плюс верхнее и нижнее поля `padding` (по `20px`), итого `240px`.
 
@@ -184,7 +184,7 @@ function isHidden(elem) {
 
 **Если `padding` нет, то `clientWidth/Height` в точности равны размеру области содержимого, внутри рамок и полосы прокрутки.**
 
-<img src="metric-client-width-nopadding.svg">
+<img src="metric-client-width-nopadding.png">
 
 Поэтому в тех случаях, когда мы точно знаем, что `padding` нет, их используют для определения внутренних размеров элемента.
 
@@ -194,7 +194,7 @@ function isHidden(elem) {
 
 Свойства `clientWidth/clientHeight` относятся только к видимой области элемента, а `scrollWidth/scrollHeight` добавляют к ней прокрученную (которую не видно) по горизонтали/вертикали.
 
-<img src="metric-scroll-width-height.svg">
+<img src="metric-scroll-width-height.png">
 
 На рисунке выше:
 <ul>
@@ -224,7 +224,7 @@ element.style.height = element.scrollHeight + 'px';
 
 Следующее иллюстрация показывает значения `scrollHeight` и `scrollTop` для блока с вертикальной прокруткой.
 
-<img src="metric-scroll-top.svg">
+<img src="metric-scroll-top.png">
 
 [smart header="`scrollLeft/scrollTop` можно изменять"]
 В отличие от большинства свойств, которые доступны только для чтения, значения `scrollLeft/scrollTop` можно изменить, и браузер выполнит прокрутку элемента.

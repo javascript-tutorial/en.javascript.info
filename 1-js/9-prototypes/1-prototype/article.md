@@ -38,7 +38,7 @@ alert( rabbit.eats ); // true
 
 Иллюстрация происходящего при чтении `rabbit.eats` (поиск идет снизу вверх):
 
-<img src="proto-animal-rabbit.svg">
+<img src="proto-animal-rabbit.png">
 
 **Объект, на который указывает ссылка `__proto__`, называется *"прототипом"*. В данном случае получилось, что `animal` является прототипом для `rabbit`.**
 

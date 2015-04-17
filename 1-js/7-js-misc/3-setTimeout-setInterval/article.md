@@ -184,7 +184,7 @@ setTimeout(function run() {
 
 При `setInterval` внутренний таймер будет срабатывать чётко каждые `100` мс и вызывать `func(i)`:
 
-<img src="setinterval-interval.svg">
+<img src="setinterval-interval.png">
 
 Вы обратили внимание?...
 
@@ -202,7 +202,7 @@ setTimeout(function run() {
 
 А так будет выглядить картинка с рекурсивным `setTimeout`:
 
-<img src="settimeout-interval.svg">
+<img src="settimeout-interval.png">
 
 **При рекурсивном `setTimeout` задержка всегда фиксирована и равна 100мс.**
 

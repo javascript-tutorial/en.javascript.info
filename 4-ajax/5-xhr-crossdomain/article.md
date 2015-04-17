@@ -111,7 +111,7 @@ Origin:http://javascript.ru
 
 **Только при наличии такого заголовка в ответе -- браузер сочтёт запрос успешным, а иначе JavaScript получит ошибку.**
 
-<img src="xhr-another-domain.svg">
+<img src="xhr-another-domain.png">
 
 То есть, ответ сервера может быть примерно таким:
 
@@ -275,7 +275,7 @@ Access-Control-Allow-Credentials: true
 
 Дополнительно он может указать `Access-Control-Max-Age: sec`, где `sec` -- количество секунд, на которые нужно закэшировать разрешение. Тогда при последующих вызовах метода браузер уже не будет делать предзапрос.
 
-<img src="xhr-preflight.svg">
+<img src="xhr-preflight.png">
 
 Давайте рассмотрим предзапрос на конкретном примере.
 

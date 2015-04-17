@@ -33,7 +33,7 @@ ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'p
 Код выше стабильно работать не будет, потому что `IMG` идет без ширины/высоты:
 
 ```html
-<img src="ball.svg" id="ball">
+<img src="ball.png" id="ball">
 ```
 
 **Высота и ширина изображения неизвестны браузеру до тех пор, пока оно не загрузится, если размер не указан явно.** 
@@ -43,7 +43,7 @@ ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'p
 Чтобы это исправить, добавим `width/height` к картинке:
 
 ```html
-<img src="ball.svg" *!*width="40" height="40"*/!* id="ball">
+<img src="ball.png" *!*width="40" height="40"*/!* id="ball">
 ```
 
 Теперь браузер всегда знает ширину и высоту, так что все работает. Тот же эффект дало бы указание размеров в CSS.
