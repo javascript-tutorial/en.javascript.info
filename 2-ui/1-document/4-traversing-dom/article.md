@@ -399,16 +399,10 @@ alert( table.*!*rows[0].cells[0]*/!*.innerHTML ) // "один"
 
 <div id="travel-dom-comment"></div>
 
-<!--
-<div class="nodeTypeEx-readControl">
-Получить:
-<input placeholder="название" type="text" id="nodeTypeEx-read" style="width: 80px" value=""/><input type="button" value="атрибут" onclick="nodeTypeEx.read(true)"/><input type="button" value="свойство" onclick="nodeTypeEx.read(false)"/>
-</div>
--->
 
 </div>
 
-<script src="https://js.cx/script/travel.js?26"></script>
+<script src="/script/travel.js"></script>
 [/online]
 
 # Итого
