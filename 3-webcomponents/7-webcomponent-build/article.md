@@ -172,7 +172,7 @@ document.registerElement('ui-message', {
 ```html
 <template id="tmpl">
   <style>
-    @import url(http://code.jquery.com/ui/1.11.3/themes/ui-lightness/jquery-ui.css);
+    @import url(https://code.jquery.com/ui/1.11.4/themes/ui-lightness/jquery-ui.css);
     :host {
       display: block;
     }
