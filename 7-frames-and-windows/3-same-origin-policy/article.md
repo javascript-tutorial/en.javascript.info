@@ -36,7 +36,7 @@
 
 ```html
 <!--+ run -->
-<iframe src="http://example.com"></iframe>
+<iframe src="https://example.com"></iframe>
 
 <script>
   var iframe = document.body.children[0];
@@ -63,7 +63,7 @@
 
 ```html
 <!--+ run -->
-<iframe src="http://example.com"></iframe>
+<iframe src="https://example.com"></iframe>
 
 <script>
   var iframe = document.body.children[0];

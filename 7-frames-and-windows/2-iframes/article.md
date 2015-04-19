@@ -43,7 +43,7 @@
 
 ```html
 <!--+ run height=120 -->
-<iframe src="http://example.com" style="height:100px"></iframe>
+<iframe src="https://example.com" style="height:100px"></iframe>
 
 <script>
   var iframe = document.getElementsByTagName('iframe')[0];

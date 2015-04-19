@@ -215,7 +215,7 @@ ul.appendChild(fragment); // вместо фрагмента вставятся 
 
 <head>
   <meta charset="utf-8">
-  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.append"></script>
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.append,Element.prototype.after"></script>
 </head>
 
 <body>

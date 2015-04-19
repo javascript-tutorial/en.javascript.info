@@ -103,7 +103,7 @@ Firefox/Chrome/Opera автозаполняют формы по `DOMContentLoade
   };
 */!*
 </script>
-<iframe src="http://example.com/" style="height:60px"></iframe>
+<iframe src="https://example.com/" style="height:60px"></iframe>
 <img src="https://js.cx/clipart/yozhik.jpg?speed=1">
 ```
 

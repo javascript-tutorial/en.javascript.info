@@ -192,7 +192,7 @@ var result = compiled({
 
 ```html
 <!--+ run height=120 autorun -->
-<script src="http://knockoutjs.com/downloads/knockout-3.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
 
 Поменяйте имя: <input *!*data-bind="value: name, valueUpdate: 'input'"*/!*>
 <hr>
@@ -231,7 +231,7 @@ ko.applyBindings(user, document.body);
 
 ```html
 <!--+ run  no-beautify -->
-<script src="http://knockoutjs.com/downloads/knockout-3.1.0.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
 
 <script>
 var user = ko.observable("Вася");

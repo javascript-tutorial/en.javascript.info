@@ -61,7 +61,7 @@ jQuery-объект также называют "jQuery-коллекцией", "
 ```html
 <!--+ run -->
 <!-- подключить библиотеку -->
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <ul>
   <li><a href="http://jquery.com">jQuery</a></li>
@@ -125,7 +125,7 @@ $('a', menu);
 
 ```html
 <!--+ run -->
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <ul>
   <li>
@@ -172,7 +172,7 @@ $('li a').each(function(i, a) {
 
 ```html
 <!--+ run -->
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <a href="http://wikipedia.ru">Википедия</a>
 

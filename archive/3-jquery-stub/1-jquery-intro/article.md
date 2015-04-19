@@ -20,14 +20,14 @@
 
 <ul>
 <li>По адресу [](http://code.jquery.com/jquery-latest.js) -- доступна всегда последняя версия</li>
-<li>С сети Google: [](https://developers.google.com/speed/libraries/devguide?hl=ru#jquery) можно загрузить любую из не слишком старых версий. Синтаксис такой: `src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"`, где `1.8.3` -- версия, причём можно указать её приблизительно: `1.8` означает последнюю версию вида `1.8.*`, а `1` -- последнюю версию вида `1.*`. Файл `jquery.min.js` обозначает сжатый код, а `jquery.js` -- несжатый, для удобства отладки.</li>
+<li>С сети Google: [](https://developers.google.com/speed/libraries/devguide?hl=ru#jquery) можно загрузить любую из не слишком старых версий. Синтаксис такой: `src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"`, где `1.8.3` -- версия, причём можно указать её приблизительно: `1.8` означает последнюю версию вида `1.8.*`, а `1` -- последнюю версию вида `1.*`. Файл `jquery.min.js` обозначает сжатый код, а `jquery.js` -- несжатый, для удобства отладки.</li>
 </ul>
 
 Например, подключим на страницу последнюю версию jQuery в несжатом виде и проверим её работу:
 
 ```html
 <!--+ run -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <script>
   alert( typeof $ ); // если jQuery загрузилась -- выведет function

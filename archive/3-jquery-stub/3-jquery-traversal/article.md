@@ -261,7 +261,7 @@
 
 ```html
 <!--+ run -->
-<script src="http://code.jquery.com/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <ul id="1">
   <li><a href="http://blog.jquery.com">jQuery Blog</a></li>
