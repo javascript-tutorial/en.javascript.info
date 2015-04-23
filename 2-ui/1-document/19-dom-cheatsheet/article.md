@@ -166,7 +166,7 @@
 
 <ul>
 <li>ширина/высота видимой области: `document.documentElement.clientHeight`</li>
-<li>прокрутка(чтение):  ` window.pageYOffset || document.documentElement.scrollTop`</li>
+<li>прокрутка(чтение): `window.pageYOffset || document.documentElement.scrollTop`</li>
 <li>прокрутка(изменение):
 <ul>
 <li>`window.scrollBy(x,y)`: на x,y относительно текущей позиции.</li>

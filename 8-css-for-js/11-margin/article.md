@@ -167,7 +167,7 @@ hr.position { position: relative; left: -2em; }
 <ul>
 <li>Отрицательные `margin-left/top` сдвигают элемент влево-вверх. Остальные элементы это учитывают, в отличие от сдвига через `position`.</li>
 <li>Отрицательные `margin-right/bottom` заставляют другие элементы думать, что блок меньше по размеру справа-внизу, чем он на самом деле.</li>
-<li>
+</ul>
 
 Отличная статья на тему отрицательных `margin`: [The Definitive Guide to Using Negative Margins](http://coding.smashingmagazine.com/2009/07/27/the-definitive-guide-to-using-negative-margins/)
 

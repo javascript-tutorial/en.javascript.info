@@ -445,7 +445,7 @@ alert( formatter.format(1234.5) ); // 1 234,50 £
 Методы форматирования также поддерживаются в обычных строках, датах, числах:
 
 <dl>
-<dt>`String.prototype.localeCompare`(that [, locales [, options]])`</dt>
+<dt>`String.prototype.localeCompare(that [, locales [, options]])`</dt>
 <dd>Сравнивает строку с другой, с учётом локали, например:
 
 ```js
@@ -469,7 +469,7 @@ alert( date.toLocaleString("ru", { year: 'numeric', month: 'long' }) ); // Де�
 </dd>
 <dt>`Date.prototype.toLocaleDateString([locales [, options]])`</dt>
 <dd>То же, что и выше, но опции по умолчанию включают в себя год, месяц, день</dd>
-<dt>`Date.prototype.toLocaleTimeString`([locales [, options]])`</dt>
+<dt>`Date.prototype.toLocaleTimeString([locales [, options]])`</dt>
 <dd>То же, что и выше, но опции по умолчанию включают в себя часы, минуты, секунды</dd>
 <dt>`Number.prototype.toLocaleString([locales [, options]])`</dt>
 <dd>Форматирует число, используя опции `Intl.NumberFormat`.</dd>

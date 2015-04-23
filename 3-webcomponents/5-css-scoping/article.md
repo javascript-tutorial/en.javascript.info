@@ -284,7 +284,7 @@ elems[1].createShadowRoot().appendChild( tmpl.content.cloneNode(true) );
 </script>
 ```
 
-Текст внутри `<h3>` -- зелёный и подчёркнутый одновременно, но стилизуется именно тот `<span>`, который показан в `<content>, а тот, который просто в Shadow DOM -- нет.
+Текст внутри `<h3>` -- зелёный и подчёркнутый одновременно, но стилизуется именно тот `<span>`, который показан в `<content>`, а тот, который просто в Shadow DOM -- нет.
 
 Приоритет селекторов расчитывается по [обычным правилам специфичности](http://www.w3.org/TR/css3-selectors/#specificity), если же приоритеты стилей на странице и в Shadow DOM и на странице равны, то, как описано в секции [Cascading](http://dev.w3.org/csswg/css-scoping/#cascading), побеждает страница, а для `!important`-стиля побеждает Shadow DOM.
 

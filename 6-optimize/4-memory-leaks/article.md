@@ -199,7 +199,7 @@ function leak() {
 }
 ```
 
-<img src="xhr2.png">
+<img src="leak-xhr-2.png">
 
 Теперь циклической ссылки нет -- и не будет утечки.
 

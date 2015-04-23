@@ -275,7 +275,7 @@ event.initEvent(type, boolean bubbles, boolean cancelable);
 <ul>
 <li>`type` -- тип события, например `"click"`.</li>
 <li>`bubbles` -- всплывает ли событие.</li>
-<li>`cancelable` -- можно ли отменить событие`.</li>
+<li>`cancelable` -- можно ли отменить событие.</li>
 </ul>
 
 Эти два кода аналогичны:
