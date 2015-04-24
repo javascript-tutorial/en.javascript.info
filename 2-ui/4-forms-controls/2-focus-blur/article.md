@@ -149,7 +149,11 @@
 ```html
 <!--+ autorun -->
 <style>
-.my*!*::-webkit-input-placeholder*/!*, .my*!*::-moz-placeholder*/!* {
+.my*!*::-webkit-input-placeholder*/!* {
+  color: red;
+  font-style: italic;
+}
+.my*!*::-moz-input-placeholder*/!* {
   color: red;
   font-style: italic;
 }
