@@ -114,7 +114,7 @@ DOM позволяет делать что угодно с HTML-элементо
 
 Свойства `firstChild` и `lastChild` обеспечивают быстрый доступ к первому и последнему элементу.
 
-Всегда верно:
+При наличии дочерних узлов всегда верно:
 ```js
 elem.childNodes[0] === elem.firstChild
 elem.childNodes[elem.childNodes.length - 1] === elem.lastChild

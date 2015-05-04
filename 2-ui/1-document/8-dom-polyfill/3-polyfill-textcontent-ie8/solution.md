@@ -7,7 +7,7 @@
   if (document.documentElement.textContent === undefined) {
 
     // определяем свойство
-    Object.defineProperty(HtmlElement.prototype, "textContent", {
+    Object.defineProperty(HTMLElement.prototype, "textContent", {
       get: function() {
         return this.innerText;
       },
