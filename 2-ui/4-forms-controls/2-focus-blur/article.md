@@ -99,7 +99,7 @@
 Стилизация полей ввода может быть решена средствами CSS (CSS2.1), а именно -- селектором `:focus`:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun height=100 -->
 <style> 
 *!*input:focus*/!* { 
   background: #FA6; 
@@ -140,14 +140,14 @@
 Во всех браузерах, кроме IE9-, это реализуется специальным атрибутом `placeholder`:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun height=80 -->
 <input type="text" placeholder="E-mail">
 ```
 
 В некоторых браузерах этот текст можно стилизовать:
 
 ```html
-<!--+ autorun -->
+<!--+ autorun height=80 -->
 <style>
 .my*!*::-webkit-input-placeholder*/!* {
   color: red;
@@ -214,7 +214,8 @@
 Это грустно, поскольку мы не можем использовать делегирование с ними. Например, мы не можем сделалать так, чтобы при фокусировке в форме она вся подсвечивалась:
 
 ```html
-<!--+ autorun height=auto -->
+<!--+ autorun height=100 -->
+<!-- при фокусировке на форме ставим ей класс -->
 <form *!*onfocus="this.className='focused'"*/!*>
   <input type="text" name="name" value="Ваше имя">
   <input type="text" name="surname" value="Ваша фамилия">
@@ -223,16 +224,16 @@
 <style> .focused { outline: 1px solid red; } </style>
 ```
 
-В примере выше стоит обработчик `onfocus` на форме, но он не работает, т.к. при фокусировке на любом `INPUT` событие `focus` срабатывает только на этом элементе и не всплывает наверх.
+Пример выше не работает, т.к. при фокусировке на любом `<input>` событие `focus` срабатывает только на этом элементе и не всплывает наверх. Так что обработчик `onfocus` на форме никогда не сработает.
 
-Что делать? Неужели мы должны присваивать обработчик каждому полю?
+Что делать? Неужели мы должны присваивать обработчик каждому полю `<input>`?
 
 **Это забавно, но хотя `focus/blur` не всплывают, они могут быть пойманы на фазе перехвата.**
 
 Вот так сработает:
 
 ```html
-<!--+ autorun height=auto -->
+<!--+ autorun height=100 -->
 <form id="form">
   <input type="text" name="name" value="Ваше имя">
   <input type="text" name="surname" value="Ваша фамилия">
@@ -264,11 +265,11 @@
 
 У них две особенности:
 <ul>
-<li>Не поддерживаются Firefox, хотя поддерживаются даже старейшими IE.</li>
-<li>Во всех браузерах, кроме IE, должны быть назначены не через `on`-свойство, а при помощи `elem.addEventListener`.</li>
+<li>Не поддерживаются Firefox (хотя поддерживаются даже старейшими IE), см. [](https://bugzilla.mozilla.org/show_bug.cgi?id=687787).</li>
+<li>Должны быть назначены не через `on`-свойство, а при помощи `elem.addEventListener`.</li>
 </ul>
 
-Для кросс-браузерной поддержки фокуса с делегированием можно использовать сочетать эти события с фазой перехвата.
+Из-за отсутствия подержки Firefox эти события используют редко. Получается, что во всех браузерах можно использовать `focus` на стадии перехвата, ну а `focusin/focusout` -- в IE8-, где стадии перехвата нет.
 
 Подсветка формы в примере ниже работает во всех браузерах.
 
@@ -296,9 +297,12 @@
   var form = document.forms.form;
 
   if (form.addEventListener) {
+    // focus/blur на стадии перехвата срабатывают во всех браузерах
+    // поэтому используем их
     form.addEventListener('focus', onFormFocus, true);
     form.addEventListener('blur', onFormBlur, true);
-  } else { // IE8-
+  } else { 
+    // ветка для IE8-, где нет стадии перехвата, но есть focusin/focusout
     form.onfocusin = onFormFocus;
     form.onfocusout = onFormBlur;
   }
@@ -319,13 +323,9 @@
 </li>
 </ul>
 
-Текущий элемент, на котором фокус, доступен как `document.activeElement`.
-
-
-
-
-
-
+[smart header="Текущий элемент: `document.activeElement`"]
+Кстати, текущий элемент, на котором фокус, доступен как `document.activeElement`.
+[/smart]
 
 
 
