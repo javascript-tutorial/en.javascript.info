@@ -129,7 +129,7 @@ while (target != this) {
 table.onclick = function(event) {
   var target = event.target;
 
-  var td = event.target.closest('td');
+  var td = target.closest('td');
   if (!td) return; // клик вне <td>, не интересует
 
   // если клик на td, но вне этой таблицы (возможно при вложенных таблицах)

@@ -172,7 +172,7 @@ table.onmouseout = function(event) {
 ```
 [online]
 
-[codetabs height=450 src="mouseenter-mouseleave-delegation"]
+[codetabs height=480 src="mouseenter-mouseleave-delegation"]
 
 [/online]
 
@@ -194,7 +194,7 @@ table.onmouseout = function(event) {
 [online]
 Детали кода вы можете посмотреть в примере ниже, который демонстрирует этот подход:
 
-[codetabs height=450 src="mouseenter-mouseleave-delegation-2"]
+[codetabs height=380 src="mouseenter-mouseleave-delegation-2"]
 
 Попробуйте по-разному, быстро или медленно заходить и выходить в ячейки таблицы. Обработчики `mouseover/mouseout` стоят на `table`, но при помощи делегирования корректно обрабатывают вход-выход.[/online]
 
