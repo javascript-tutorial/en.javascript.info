@@ -172,7 +172,7 @@ Content-Disposition: form-data; name="*!*surname*/!*"
 
 Достаточно указать в заголовке `Content-Type` кодировку и границу, и далее сформировать тело запроса, удовлетворяющее требованиям кодировки.
 
-Пример кода для пересылке того же запроса, что и раньше, в кодировке `multipart/form-data`:
+Пример кода для того же запроса, что и раньше, теперь в кодировке `multipart/form-data`:
 
 ```js
 var data = {
@@ -268,7 +268,7 @@ Content-Type: image/jpeg
 
 XMLHttpRequest сам по себе не ограничивает кодировку и формат пересылаемых данных.
 
-Поэтому просто для обмена данными JS <-> сервер, без всяких форма, часто используется POST с JSON:
+Поэтому для обмена данными часто используется формат JSON:
 
 ```js
 var xhr = new XMLHttpRequest();
@@ -283,6 +283,10 @@ xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 
 xhr.onreadystatechange = ...;
 
+*!*
+// Отсылаем объект в формате JSON и с Content-Type application/json
+// Сервер должен уметь такой Content-Type принимать и раскодировать
+*/!*
 xhr.send(json);
 ```
 
