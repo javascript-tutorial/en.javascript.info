@@ -23,8 +23,6 @@
   Первый: Enter в текстовом поле <input type="text" value="Текст"><br>
   Второй: Нажать на "Отправить": <input type="submit" value="Отправить">
 </form>
-
-</button>
 ```
 
 Ожидаемое поведение:

@@ -272,11 +272,11 @@ div.parentNode.insertBefore(div2, div.nextSibling);
 <dl>
 <dt>`parentElem.removeChild(elem)`</dt>
 <dd>Удаляет `elem` из списка детей `parentElem`.</dd>
-<dt>`parentElem.replaceChild(elem, currentElem)`</dt>
-<dd>Среди детей `parentElem` заменяет `currentElem` на `elem`.</dd>
+<dt>`parentElem.replaceChild(newElem, elem)`</dt>
+<dd>Среди детей `parentElem` удаляет `elem` и вставляет на его место `newElem`.</dd>
 </dl>
 
-Оба этих метода возвращают удаленный узел. Если нужно, его можно вставить в другое место DOM тут же или в будущем.
+Оба этих метода возвращают удаленный узел, то есть `elem`. Если нужно, его можно вставить в другое место DOM тут же или в будущем.
 
 [smart]
 Если вы хотите *переместить* элемент на новое место -- не нужно его удалять со старого.
@@ -399,12 +399,10 @@ div.parentNode.insertBefore(div2, div.nextSibling);
 <li>`parent.appendChild(elem)`</li>
 <li>`parent.insertBefore(elem, nextSibling)`</li>
 <li>`parent.removeChild(elem)`</li>
-<li>`parent.replaceChild(elem, currentElem)`</li>
+<li>`parent.replaceChild(newElem, elem)`</li>
 </ul>
 
 Все эти методы возвращают `elem`.
-
-**Запомнить порядок аргументов очень просто: вставляемый или удаляемый элемент -- всегда первый.**
 
 Методы для изменения DOM также описаны в спецификации <a href="http://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html">DOM Level 1</a>.
 

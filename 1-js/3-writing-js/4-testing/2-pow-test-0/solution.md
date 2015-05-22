@@ -32,7 +32,7 @@ describe("любое число, кроме нуля, в степени 0 рав
 //+ no-beautify
 ...
 it("ноль в нулевой степени даёт NaN", function() {
-  assert( isNaN(pow(0,0), "0 в степени 0 не NaN");
+  assert( isNaN(pow(0, 0)), "0 в степени 0 не NaN");
 });
 ...
 ```
