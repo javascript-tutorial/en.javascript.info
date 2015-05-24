@@ -1,7 +1,7 @@
 
 # Учебник JavaScript
 
-Этот репозитарий содержит учебник JavaScript [](https://learn.javascript.ru).
+Этот репозитарий содержит учебник JavaScript [https://learn.javascript.ru](https://learn.javascript.ru).
 
 Движок, написанный на io.js, находится в отдельном репозитарии https://github.com/iliakan/javascript-nodejs, а здесь &mdash; текст.
 
