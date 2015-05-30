@@ -98,7 +98,7 @@ var sum = function(a, b) {
 Поэтому их можно вызвать *до* объявления, например:
 
 ```js
-//+ run
+//+ run refresh untrusted
 *!*
 sayHi("Вася"); // Привет, Вася
 */!*
@@ -111,7 +111,7 @@ function sayHi(name) {
 А если бы это было объявление Function Expression, то такой вызов бы не сработал:
 
 ```js
-//+ run
+//+ run refresh untrusted
 *!*
 sayHi("Вася"); // ошибка!
 */!*

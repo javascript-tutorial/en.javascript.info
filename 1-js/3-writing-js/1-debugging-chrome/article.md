@@ -216,7 +216,7 @@ for (var i = 0; i < 5; i++) {
 Для этого:
 <ol>
 <li>Перейдите на вкладку Sources.</li>
-<li>Включите останов при ошибке, кликнув на кнопку <img style="vertical-align:middle" src="manage6.png"></li>
+<li>Включите остановку при ошибке, кликнув на кнопку <img style="vertical-align:middle" src="manage6.png"></li>
 <li>Перезагрузите страницу.</li>
 </ol>
 
