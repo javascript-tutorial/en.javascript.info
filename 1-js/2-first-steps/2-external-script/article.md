@@ -104,7 +104,7 @@
 <html>
 <head>
 *!*
-  <script src="big.jpg"></script>
+  <script src="big.js"></script>
 */!*
 </head>
 <body>
