@@ -44,7 +44,7 @@ alert( arr instanceof Object ); // true
 <li>Если не совпадает, тогда заменить `obj` на `obj.__proto__` и повторить проверку на шаге 2 до тех пор, пока либо не найдется совпадение (результат `true`), либо цепочка прототипов не закончится (результат `false`).</li>
 </ol>
 
-В проверке `rabbit instanceof Rabbit`, совпадение на первом же шаге этго алгоритма, так как: `rabbit.__proto__ == Rabbit.prototype`.
+В проверке `rabbit instanceof Rabbit` совпадение происходит на первом же шаге этого алгоритма, так как: `rabbit.__proto__ == Rabbit.prototype`.
 
 А если рассмотреть `arr instanceof Object`, то совпадение будет найдено на следующем шаге, так как `arr.__proto__.__proto__ == Object.prototype`.
 
