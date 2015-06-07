@@ -73,11 +73,11 @@
       // не сработает (чтение)
       alert( iframe.contentWindow.location.href );
     } catch (e) {
-      alert( "Ошибка: " + e.message );
+      alert( "Ошибка при чтении: " + e.message );
     }
 
     // сработает (запись)
-    iframe.contentWindow.location.href = 'http://wikipedia.org';
+    iframe.contentWindow.location.href = 'https://wikipedia.org';
 
     iframe.onload = null;
   }
