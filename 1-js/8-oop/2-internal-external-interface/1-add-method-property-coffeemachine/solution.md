@@ -20,7 +20,9 @@ function CoffeeMachine(power) {
   }
 
   this.run = function() {
+*!*
     timerId = setTimeout(onReady, getBoilTime());
+*/!*
   };
 
 *!*
