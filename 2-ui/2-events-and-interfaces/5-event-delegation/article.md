@@ -42,7 +42,7 @@
 var selectedTd;
 
 *!*
-table.onclick = function(event) {
+table.onclick = function(event) { 
   var target = event.target; // где был клик?
 
   if (target.tagName != 'TD') return; // не на TD? тогда не интересует
