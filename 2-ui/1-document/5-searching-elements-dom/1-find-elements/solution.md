@@ -16,7 +16,7 @@ document.getElementsByTagName('form')[1];
 document.querySelector('form[name="search"]');
 
 // 5
-document.querySelector('form[name="search-person"] input')
+document.querySelector('form[name="search"] input')
 
 // 6
 document.getElementsByName("info[0]")[0];
