@@ -5,7 +5,7 @@ var lastTime = Date.now();
 function handle(e) {
   if (form.elements[e.type + 'Ignore'].checked) return;
 
-  var text = event.type +
+  var text = e.type +
     ' keyCode=' + e.keyCode +
     ' which=' + e.which +
     ' charCode=' + e.charCode +
