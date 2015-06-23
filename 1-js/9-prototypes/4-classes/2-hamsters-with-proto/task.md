@@ -21,8 +21,8 @@ Hamster.prototype.found = function(something) {
 };
 
 // Создаём двух хомяков и кормим первого
-speedy = new Hamster();
-lazy = new Hamster();
+var speedy = new Hamster();
+var lazy = new Hamster();
 
 speedy.found("яблоко");
 speedy.found("орех");
