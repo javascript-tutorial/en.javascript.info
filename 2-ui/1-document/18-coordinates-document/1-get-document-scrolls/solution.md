@@ -1,7 +1,7 @@
 <ul>
 <li>`top` -- это `pageYOffset`.</li>
 <li>`bottom` -- это `pageYOffset` плюс высота видимой части `documentElement.clientHeight`.</li>
-<li>`height` -- полная высота документа, её вычисление давно в главе [](/metrics-window).</li>
+<li>`height` -- полная высота документа, её вычисление дано в главе [](/metrics-window).</li>
 </ul>
 
 Итого:
