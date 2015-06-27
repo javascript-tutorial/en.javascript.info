@@ -8,5 +8,3 @@
 <li>На `checkbox`: событие `click` вместо `change` для совместимости с IE8-.</li>
 <li>На `select`: событие `change`.</li>
 </ul>
-
-[edit src="solution"]Открыть решение в песочнице[/edit]
