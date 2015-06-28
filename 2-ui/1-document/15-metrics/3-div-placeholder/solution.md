@@ -27,5 +27,3 @@ placeHolder.style.marginBottom = computedStyle.marginBottom;
 ```
 
 В строке `(1)` использование полного название свойства `"marginTop"` гарантирует, что полученное значение будет корректным.
-
-[edit src="solution"]Открыть решение в песочнице[/edit]
