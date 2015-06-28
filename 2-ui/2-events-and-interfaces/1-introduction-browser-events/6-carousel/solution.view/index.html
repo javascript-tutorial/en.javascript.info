@@ -50,8 +50,6 @@
     var position = 0; // текущий сдвиг влево
 
     carousel.querySelector('.prev').onclick = function() {
-      if (position >= 0) return; // уже сдвинулись до упора
-
       // сдвиг влево
       // последнее передвижение влево может быть не на 3, а на 2 или 1 элемент
       position = Math.min(position + width * count, 0)
@@ -59,8 +57,6 @@
     };
 
     carousel.querySelector('.next').onclick = function() {
-      if (position <= -width * (listElems.length - count)) return; // уже до упора
-
       // сдвиг вправо
       // последнее передвижение вправо может быть не на 3, а на 2 или 1 элемент
       position = Math.max(position - width * count, -width * (listElems.length - count));
