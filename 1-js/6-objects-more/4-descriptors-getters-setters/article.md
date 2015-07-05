@@ -391,7 +391,7 @@ obj.test; // Preved :)
 
 ...И несколько методов, которые используются очень редко:
 <dl>
-<dt>[Object.preventExtensions(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)</dt>
+<dt>[Object.preventExtensions(obj)](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)</dt>
 <dd>Запрещает добавление свойств в объект.</dd>
 <dt>[Object.seal(obj)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/seal)</dt>
 <dd>Запрещает добавление и удаление свойств, все текущие свойства делает `configurable: false`.</dd>
