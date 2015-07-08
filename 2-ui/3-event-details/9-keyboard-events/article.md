@@ -215,7 +215,7 @@ document.getElementById('only-upper').onkeypress = function(e) {
 </script>
 [/online]
 
-## Невосместимости [#keyboard-events-order]
+## Несовместимости [#keyboard-events-order]
 
 Некоторые несовместимости в порядке срабатывания клавиатурных событий (когда что) ещё существуют.
 
