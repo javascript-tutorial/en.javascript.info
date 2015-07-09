@@ -1,0 +1,4 @@
+{
+  "name": "iliakan",
+  "isAdmin": true
+}
