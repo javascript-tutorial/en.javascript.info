@@ -80,6 +80,24 @@ alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 
 "Открутить назад" завершившийся генератор нельзя, но можно создать новый ещё одним вызовом `generateSequence()` и выполнить его.
 
+[smart header="`function* (…)` или `function *(…)`?"]
+Технически можно ставить звёздочку как сразу после `function`, так и позже, перед названием. В интернет можно найти обе эти формы записи, они верны:
+```js
+function* f() { 
+  // звёздочка после function
+}
+
+function *f() {
+  // звёздочка перед названием
+}
+```
+
+Автор этого текста полагает, что правильнее использовать первый вариант `function*`, так как звёздочка относится к типу объявляемой сущности (`function*` -- "функция-генератор"), а не к её названию. Конечно, это всего лишь рекомендация-мнение, не обязательное к выполнению, работать будет и так и эдак.
+[/smart] 
+
+
+
+
 ## Генератор -- итератор
 
 Как вы, наверно, уже догадались по наличию метода `next()`, генератор является итерируемым объектом.
@@ -595,35 +613,112 @@ co(function*() {
 });
 ```
 
-**Библиотеку `co` можно использовать один раз в самом внешнем вызове.**
+Библиотека `co` обрабатывает результаты рекурсивно. То есть, если в результате `yield` получается генератор, то он тоже выполняется библиотекой `co`, и так далее.
 
-Библиотека `co` обрабатывает результаты рекурсивно. То есть, если в результате `yield` получается генератор, то ...
+Звучит это сложнее, чем на самом деле. Практическое следствие простое -- мы можем использовать `yield` во вложенных вызовах функций.
 
-TODO
+Например:
 
+```js
+//+ run
+'use strict';
 
+function* gen() {
+  return yield gen2();
+}
+
+function* gen2() {
+  let result = yield new Promise(
+    resolve => setTimeout(resolve, 1000, 'hello')
+  );
+  return result;
+}
+
+co(function*() {
+  let result = yield gen();
+  alert(result); // hello
+});
+```
+
+В примере выше: первый `yield` возвращет генератор `gen()`, при его выполнении `yield'ится` генератор `gen2()`, внутри которого `yield'ится` промис, который завершается с `"hello"`.
+
+Библиотека `co` при этом -- только на самом верхнем уровне.
+
+Пример `showUserAvatar()` можно переписать с использованием `co` вот так:
+
+```js
+//+ run
+'use strict';
+
+// Загрузить данные пользователя с нашего сервера
+function* fetchUser(url) {
+  let userFetch = yield fetch(url);
+  
+  let user = yield userFetch.json();
+  
+  return user;
+}
+
+// Загрузить профиль пользователя с github 
+function* fetchGithubUser(user) {
+  let githubFetch = yield fetch(`https://api.github.com/users/${user.name}`); 
+  let githubUser = yield githubFetch.json();
+
+  return githubUser;
+}
+
+// Подождать ms миллисекунд
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+// Использовать функции выше для получения аватара пользователя
+function* fetchAvatar(url) {
+
+  let user = yield* fetchUser(url);
+
+  let githubUser = yield* fetchGithubUser(user);
+
+  return githubUser.avatar_url;
+}
+
+// Использовать функции выше для получения и показа аватара
 function* showUserAvatar() {
 
-  let userFetch = yield fetch('/article/generator/user.json');
-  let userInfo = yield userFetch.json();
+  let avatarUrl;
 
-  let githubFetch = yield fetch(`https://api.github.com/users/${userInfo.name}`); 
-  let githubUserInfo = yield githubFetch.json();
+*!*
+  try {
+    avatarUrl = yield* fetchAvatar('/article/generator/user.json');
+  } catch(e) {
+    avatarUrl = '/article/generator/anon.png';
+  }
+*/!*
 
   let img = new Image();
-  img.src = githubUserInfo.avatar_url;
+  img.src = avatarUrl;
   img.className = "promise-avatar-example";
   document.body.appendChild(img);
 
-  yield new Promise(resolve => setTimeout(resolve, 3000));
+  yield sleep(2000);
 
   img.remove();
 
   return img.src;
 }
 
+co(showUserAvatar);
+```
 
-co(showUserAvatar)
+Заметим, что для перехвата ошибок при получении аватара используется `try..catch` вокруг `yield* fetchAvatar`. Несмотря на то, что операции -- асинхронные, мы можем использовать обычный `try..catch`. И это очень удобно!
+
+TODO
+
+
+
+
+
+
 
 [head]
 <style>
