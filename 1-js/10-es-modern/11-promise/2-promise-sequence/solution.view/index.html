@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+
+  <script src="httpGet.js"></script>
+
+  <script>
+    'use strict';
+
+    let urls = ['guest.json', 'user.json'];
+
+    let chain = Promise.resolve();
+
+    let results = [];
+
+    urls.forEach(function(url) {
+      chain = chain
+        .then(() => httpGet(url))
+        .then((result) => {
+          results.push(result);
+        });
+    });
+
+    chain.then(() => {
+      alert(results);
+    });
+
+  </script>
+      
+</body>
+</html>
