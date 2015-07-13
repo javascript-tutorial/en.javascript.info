@@ -10,7 +10,7 @@ function handler(event) {
   log.value += event.type + ': ' +
     'target=' + str(event.target) +
     ', relatedTarget=' + str(event.relatedTarget) + "\n";
-  log.scrollTop = 1e9;
+  log.scrollTop = log.scrollHeight;
 
   if (event.type == 'mouseover') {
     event.target.style.background = 'pink'
