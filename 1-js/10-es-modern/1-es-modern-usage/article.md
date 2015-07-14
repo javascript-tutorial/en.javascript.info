@@ -63,7 +63,7 @@
 
 Это означает, что при запуске примеров в браузере, который их не поддерживает, будет ошибка. Это не означает, что пример неправильный! Просто пока нет поддержки...
 
-Рекомендуется [Chrome Canary](https://www.google.com/chrome/browser/canary.html), Edge или [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer), большинство примеров в них работает.
+Рекомендуется [Chrome Canary](https://www.google.com/chrome/browser/canary.html) большинство примеров в нём работает. [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) тоже неплох в поддержке современного стандарта, но на момент написания этого текста переменные [let](/let-const) работают только при указании `version=1.7` в типе скрипта: `<script type="application/javascript;version=1.7">`. Надеюсь, скоро это требование (`version=1.7`) отменят.
 
 Впрочем, если пример в браузере не работает (обычно проявляется как ошибка синтаксиса) -- почти все примеры вы можете запустить его при помощи Babel, на странице [Babel: try it out](https://babeljs.io/repl/). Там же увидите и преобразованный код.
 
