@@ -132,7 +132,9 @@ let options = {
 let {title, width, height} = options;
 */!*
 
-alert(`${title} ${width} ${height}`); // Меню 100 200
+alert(title);  // Меню
+alert(width);  // 100
+alert(height); // 200
 ```
 
 Как видно, свойства `options.title`, `options.width` и `options.height` автоматически присвоились соответствующим переменным.
@@ -153,7 +155,9 @@ let options = {
 let {width: w, height: h, title} = options;
 */!*
 
-alert(`${title} ${w} ${h}`); // Меню 100 200
+alert(title);  // Меню
+alert(w);      // 100
+alert(h);      // 200
 ```
 
 В примере выше свойство `width` отправилось в переменную `w`, свойство `height` -- в переменную `h`, а `title` -- в переменную с тем же названием. 
@@ -172,7 +176,9 @@ let options = {
 let {width=100, height=200, title} = options;
 */!*
 
-alert(`${title} ${width} ${height}`); // Меню 100 200
+alert(title);  // Меню
+alert(width);  // 100
+alert(height); // 200
 ```
 
 Можно и сочетать одновременно двоеточие и равенство:
@@ -190,7 +196,9 @@ let options = {
 let {width:w=100, height:h=200, title} = options;
 */!*
 
-alert(`${title} ${w} ${h}`); // Меню 100 200
+alert(title);  // Меню
+alert(w);      // 100
+alert(h);      // 200
 ```
 
 А что, если в объекте больше значений, чем переменных? Можно ли куда-то присвоить "остаток", аналогично массивам?
@@ -275,7 +283,11 @@ let options = {
 let { title="Меню", size: {width, height}, items: [item1, item2] } = options;
 
 // Меню 100 200 Пончик Пирожное
-alert(`${title} ${width} ${height} ${item1} ${item2}`);
+alert(title);  // Меню
+alert(width);  // 100
+alert(height); // 200
+alert(item1);  // Пончик
+alert(item2);  // Пирожное
 ```
 
 Как видно, весь объект `options` корректно разбит на переменные.
