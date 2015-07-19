@@ -74,7 +74,7 @@ function subscribe(url) {
 
 Демо:
 
-[codetabs src="longpoll"]
+[codetabs src="longpoll" height=500]
 
 ## Область применения
 
