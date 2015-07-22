@@ -1,234 +1,230 @@
-# Введение в JavaScript
+# An introduction to JavaScript 
 
-Давайте посмотрим, что такого особенного в JavaScript, почему именно он, и какие еще технологии существуют, кроме JavaScript.
+Let's see what's so special about JavaScript, what we can achieve with it and what other technologies coexist with it.
 
-## Что такое JavaScript?   
+## What is JavaScript?   
 
-*JavaScript* изначально создавался для того, чтобы сделать web-странички "живыми".  
-Программы на этом языке называются *скриптами*. В браузере они подключаются напрямую к HTML и, как только загружается страничка -- тут же выполняются.
+*JavaScript* was initially created to *"make webpages alive"*.
 
-**Программы на JavaScript -- обычный текст**. Они не требуют какой-то специальной подготовки.
+The programs in this language are called *scripts*. They are put directly into HTML and execute automatically as it loads.
 
-В этом плане JavaScript сильно отличается от другого языка, который называется [Java](http://ru.wikipedia.org/wiki/Java).
+Scripts are provided and executed a plain text. They don't need a special preparation or compilation to run.
 
-[smart header="Почему <u>Java</u>Script?"]
-Когда создавался язык JavaScript, у него изначально было другое название: "LiveScript". Но тогда был очень популярен язык Java, и маркетологи решили, что схожее название сделает новый язык более популярным.
+In this aspect, JavaScript is very different from another language called [Java](http://en.wikipedia.org/wiki/Java).
 
-Планировалось, что JavaScript будет эдаким "младшим братом" Java. Однако, история распорядилась по-своему, JavaScript сильно вырос, и сейчас это совершенно независимый язык, со своей спецификацией, которая называется [ECMAScript](https://ru.wikipedia.org/wiki/ECMAScript), и к Java не имеет никакого отношения.
+[smart header="Why <u>Java</u>Script?"]
+When JavaScript was created, it initially had another name: "LiveScript". But Java language was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
 
-У него много особенностей, которые усложняют освоение, но по ходу учебника мы с ними разберёмся.
+But as it evolved, JavaScript became a fully independent language, with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java altogether.
+
+It has quite a few special features that make mastering a bit hard at first, but we'll nicely deal with them later.
 [/smart]
 
-JavaScript может выполняться не только в браузере, а где угодно, нужна лишь специальная программа -- [интерпретатор](http://ru.wikipedia.org/wiki/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D1%80%D0%B5%D1%82%D0%B0%D1%82%D0%BE%D1%80). Процесс выполнения скрипта называют "интерпретацией".
+JavaScript can execute not only in the browser, but anywhere, with the help of a special program called [an interpreter]("http://en.wikipedia.org/wiki/Interpreter_(computing)"). The execution process is called "an interpretation".
 
-[smart header="Компиляция и интерпретация, для программистов"]
-Для выполнения программ, не важно на каком языке, существуют два способа: "компиляция" и "интерпретация". 
+[smart header="Compilation and interpretation"]
+There are in fact two general approaches to execute programs: "compilers" and "interpreters".
 
 <ul>
-<li>*Компиляция* -- это когда исходный код программы, при помощи специального инструмента, другой программы, которая называется "компилятор", преобразуется в другой язык, как правило -- в машинный код. Этот машинный код затем распространяется и запускается. При этом исходный код программы остаётся у разработчика.</li>
-<li>*Интерпретация* -- это когда исходный код программы получает другой инструмент, который называют "интерпретатор", и выполняет его "как есть". При этом распространяется именно сам исходный код (скрипт). Этот подход применяется в браузерах для JavaScript.</li>
+<li>*Compilers* convert the program text (source code) to another language, usually the machine language (binary code) without executing it. This is done by the developer and then the binary code is distributed to the system which actually runs it.</li>
+<li>*Interpreters*, and in particular the one embedded in the browser -- get the source code and execute it "as is". The source code (script) is distributed to the system as a plain text.</li>
 </ul>
 
-Современные интерпретаторы перед выполнением преобразуют JavaScript в машинный код или близко к нему, оптимизируют, а уже затем выполняют. И даже во время выполнения стараются оптимизировать. Поэтому JavaScript работает очень быстро.
+Modern interpreters actually combine these approaches into one: the script is distributed as a plain text, but prior to execution is converted to the machine language. That's why JavaScript is very fast.
 [/smart]
 
-Во все основные браузеры встроен интерпретатор JavaScript, именно поэтому они могут выполнять скрипты на странице. Но, разумеется, JavaScript можно использовать не только в браузере. Это полноценный язык, программы на котором можно запускать и на сервере, и даже в стиральной машинке, если в ней установлен соответствующий интерпретатор.
+All major browsers have an embedded JavaScript interpreter, that's why they are capable of script execution. But naturally JavaScript can be used not only in-browser. It's a full-fledged language usable at the server too and even in a washing machine if it gets a chip with the interpreter installed.
 
-[warn header="Поговорим о браузерах"]
-
-Далее в этой главе мы говорим о возможностях и ограничениях JavaScript именно в контексте браузера.
-
+[warn header="Let's talk about browsers"]
+Further in the chapter we talk about capabilities and limitaitons of JavaScript in the browser.
 [/warn]
 
-## Что умеет JavaScript?   
+## What JavaScript can do?   
 
-Современный JavaScript -- это "безопасный" язык программирования общего назначения. Он не предоставляет низкоуровневых средств работы с памятью, процессором, так как изначально был ориентирован на браузеры, в которых это не требуется.
+The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
-Что же касается остальных возможностей -- они зависят от окружения, в котором запущен JavaScript. В браузере JavaScript умеет делать всё, что относится к манипуляции со страницей, взаимодействию с посетителем и, в какой-то мере, с сервером: 
+Other capabilities depend on the environment which runs JavaScript. In the browser JavaScript is able to do everything related to webpage manipulation, talk to the visitor and, to some extent, talk to the internet.
 
-<ul>
-<li>Создавать новые HTML-теги, удалять существующие, менять стили элементов, прятать, показывать элементы и т.п.</li>
-<li>Реагировать на действия посетителя, обрабатывать клики мыши, перемещения курсора, нажатия на клавиатуру и т.п. </li>
-<li>Посылать запросы на сервер и загружать данные без перезагрузки страницы (эта технология называется &quot;AJAX&quot;).</li>
-<li>Получать и устанавливать cookie, запрашивать данные, выводить сообщения...</li>
-<li>...и многое, многое другое!</li> 
-</ul>
-
-## Что НЕ умеет JavaScript?   
-
-JavaScript -- быстрый и мощный язык, но браузер накладывает на его исполнение некоторые ограничения.. 
-
-Это сделано для безопасности пользователей, чтобы злоумышленник не мог с помощью JavaScript получить личные данные или как-то навредить компьютеру пользователя. 
-
-Этих ограничений нет там, где JavaScript используется вне браузера, например на сервере. Кроме того, современные браузеры предоставляют свои механизмы по установке плагинов и расширений, которые обладают расширенными возможностями, но требуют специальных действий по установке от пользователя
-
-**Большинство возможностей JavaScript в браузере ограничено текущим окном и страницей.**
-
-<img src="limitations.png" width="530" height="400">
+Or, in more details, it is able to:
 
 <ul>
-<li>JavaScript не может читать/записывать произвольные файлы на жесткий диск, копировать их или вызывать программы. Он не имеет прямого доступа к операционной системе.
+<li>Create new HTML tags, remove the existing ones, change styles, hide/show elements...</li>
+<li>React on user actions, run on mouse clicks, pointer movements, key presses...</li>
+<li>Send requests over the network to remote servers, download and upload data without reloading the page (a so-called "AJAX" technology)...</li>
+<li>Get and set cookies, ask for data, show messages...</li>
+<li>...and can do much more with the page and it's content!</li> 
+</ul>
 
-Современные браузеры могут работать с файлами, но эта возможность ограничена специально выделенной директорией -- *"песочницей"*. Возможности по доступу к устройствам также прорабатываются в современных стандартах и частично доступны в некоторых браузерах.
-</li>
-<li>JavaScript, работающий в одной вкладке, не может общаться с другими вкладками и окнами, за исключением случая, когда он сам открыл это окно или несколько вкладок из одного источника (одинаковый домен, порт, протокол).
+## What JavaScript can NOT do?
 
-Есть способы это обойти, и они раскрыты в учебнике, но они требуют специального кода на оба документа, которые находятся в разных вкладках или окнах. Без него, из соображений безопасности, залезть из одной вкладки в другую при помощи JavaScript нельзя. 
+JavaScript abilities in the browser are limited for user safety, mainly not to let an evil webpage access private information or harm the user's data.
+
+Such limits do not exist if JavaScript is used outside of the browser, for example on a server. Besides, modern browsers allow to install plugins and extensions which get extended permissions, but require actions from the user to accept that.
+
+JavaScript abilities are also limited when it tries to access things outside of the current window/page.
+
+<img src="limitations.planning">
+
+<ul>
+<li>JavaScript may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to the OS.
+
+Modern browsers allow it to work with files, but limit the access to a specially created directory called "a sandbox". There is a work going on to allow access to devices, with the user's permission.
 </li>
-<li>Из JavaScript можно легко посылать запросы на сервер, с которого пришла страница. Запрос на другой домен тоже возможен, но менее удобен, т. к. и здесь есть ограничения безопасности. 
+<li>JavaScript from a browser tab may not access other tabs and windows with the exception when they were opened by this script and come from the same origin (domain, port, protocol).
+
+There are ways to workaround this, and they are explained in the tutorial, but they require a special code on both documents which reside in different tabs/windows. Without it, for the sake of safety, JavaScript is disallowed to delve into another tab contents.
+</li>
+<li>JavaScript can easily interact over the net to the server where the current page came from. But it's ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 </li>
 </ul>
 
-## В чём уникальность JavaScript?   
+## Why JavaScript is unique?   
 
-Есть как минимум *три* замечательных особенности JavaScript:
+There are at least *three* great things about JavaScript:
 
 [compare]
-+Полная интеграция с HTML/CSS.
-+Простые вещи делаются просто.
-+Поддерживается всеми распространёнными браузерами и включён по умолчанию.
++Full integration with HTML/CSS.
++Simple things done simply.
++Supported by all major browsers and enabled by default.
 [/compare]
 
-**Этих трёх вещей одновременно нет больше ни в одной браузерной технологии.** 
+Combined, these 3 things only exist in JavaScript and no other browser technology. 
 
-Поэтому JavaScript и является самым распространённым средством создания браузерных интерфейсов.
+That's what makes JavaScript unique. That's why it is the most widespread way of creating browser interfaces.
 
-## Тенденции развития
+## The Trends
 
-Перед тем, как вы планируете изучить новую технологию, полезно ознакомиться с её развитием и перспективами. Здесь в JavaScript всё более чем хорошо.
+While planning to learn a new technology, it's beneficial to check it's trends and perspectives.
+
+JavaScript shines in this aspect.
 
 ### HTML 5
 
-*HTML 5* -- эволюция стандарта HTML, добавляющая новые теги и, что более важно, ряд новых возможностей браузерам.
+*HTML 5* is an evolution of HTML standard which adds new tags and what's more important -- new browser abilities, accessable from JavaScript.
 
-Вот несколько примеров:
+A few examples:
+
 <ul>
-<li>Чтение/запись файлов на диск (в специальной "песочнице", то есть не любые).</li>
-<li>Встроенная в браузер база данных, которая позволяет хранить данные на компьютере пользователя.</li>
-<li>Многозадачность с одновременным использованием нескольких ядер процессора.</li>
-<li>Проигрывание видео/аудио, без Flash.</li>
-<li>2D и 3D-рисование с аппаратной поддержкой, как в современных играх.</li>
+<li>Read/write files on disk (in a "sandbox", not just any file).</li>
+<li>A database embedded in the browser, to keep data on a user's computer and effeciently operate on it.</li>
+<li>Multitasking with the usage of many CPU cores in one time.</li>
+<li>Audio/video playback.</li>
+<li>2d and 3d-drawing with hardware acceleration support, just like in modern games.</li>
 </ul>
 
-Многие возможности HTML5 всё ещё в разработке, но браузеры постепенно начинают их поддерживать.
+Many new abilities are still in progress, but browsers gradually start to support them.
 
-[summary]Тенденция: JavaScript становится всё более и более мощным и возможности браузера растут в сторону десктопных приложений.[/summary]
+[summary]
+The trend: JavaScript can do more and more, as features are added to browsers, it is becoming more like a desktop application.
+[/summary]
 
 ### EcmaScript 6
 
-Сам язык JavaScript улучшается. Современный стандарт EcmaScript 5 включает в себя новые возможности для разработки, EcmaScript 6 будет шагом вперёд в улучшении синтаксиса языка.
+JavaScript evolves. The upcoming EcmaScript 6 standard adds many new language-level features which make it's syntax more capable and expressive.
 
-Современные браузеры улучшают свои движки, чтобы увеличить скорость исполнения JavaScript, исправляют баги и стараются следовать стандартам.
+Modern browsers improve their engines to raise JavaScript execution script, fix bugs and try to follow the standards.
 
-[summary]Тенденция: JavaScript становится всё быстрее и стабильнее, в язык добавляются новые возможности.[/summary]
+[summary]
+The trend: JavaScript is becoming faster and more stable, gets new syntax.[/summary]
 
-Очень важно то, что новые стандарты HTML5 и ECMAScript сохраняют максимальную совместимость с предыдущими версиями. Это позволяет избежать неприятностей с уже существующими приложениями.
+It's crucially important that new standards, HTML5, EcmaScript 6 are still compatible with the previous code, so there are introduced into the ecosystem without problems with the existing applications.
 
-Впрочем, небольшая проблема с "супер-современными штучками" всё же есть. Иногда браузеры стараются включить новые возможности, которые ещё не полностью описаны в стандарте, но настолько интересны, что разработчики просто не могут ждать.  
+Still, there is a small gotcha with those "extra-fresh" modern browser abilities. Sometimes browsers try to implement them on very early stages when they are nor fully defined neither agreed upon, but still are so  interesting that the developers just can't wait.
 
-...Однако, со временем стандарт меняется и браузерам приходится подстраиваться к нему, что может привести к ошибкам в уже написанном, основанном на старой реализации, JavaScript-коде. Поэтому следует дважды подумать перед тем, как применять на практике такие "супер-новые" решения.
+...As the time goes, the specification matures and changes, and browsers must adapt it. That may lead to errors in JavaScript code which was too eager to use the early browser implementation. So one should think twice before relying on things that are in draft yet.
 
-При этом все браузеры сходятся к стандарту, и различий между ними уже гораздо меньше, чем всего лишь несколько лет назад.
+But what's great -- eventually all browsers tend to follow the standard. There are much less differences between them now than only a couple years ago.
 
-[summary]Тенденция: всё идет к полной совместимости со стандартом.[/summary]
+[summary]
+The trend: browsers, though eager for new features, become compatible with the standard.
+[/summary]
 
 
-## Альтернативные браузерные технологии
+## Alternative browser technologies
 
-Вместе с JavaScript на страницах используются и другие технологии. Связка с ними может помочь достигнуть более интересных результатов в тех местах, где браузерный JavaScript пока не столь хорош, как хотелось бы. 
+Besides JavaScript, other technologies are used in-browser. Together they allow to get better results.
 
 ### Java   
 
-Java -- язык общего назначения, на нём можно писать самые разные программы. Для интернет-страниц есть особая возможность - написание *апплетов*.
+Java is a widespread general-purpose language. For webpages, there is a special browser-level Java plugin which allows to run "applets".
 
-*Апплет* -- это программа на языке Java, которую можно подключить к HTML при помощи тега `applet`, выглядит это примерно так:
+*An applet* is a program written in Java language which can be attached to HTML using the `applet` tag, like this:
 
 ```html
-<!--+ run -->
-<applet code="BTApplet.class" codebase="/files/tutorial/intro/alt/">
+<applet code="MyApplet.class" codebase="/path/to/code">
   <param name="nodes" value="50,30,70,20,40,60,80,35,65,75,85,90">
   <param name="root" value="50">
 </applet>
 ```
 
-Такой тег загружает Java-программу из файла `BTApplet.class` и выполняет её с параметрами `param`. Апплет выполняется в отдельной части страницы, в прямоугольном "контейнере". Все действия пользователя внутри него обрабатывает апплет. Контейнер, впрочем, может быть и спрятан, если апплету нечего показывать.
+This tag loads the Java program from `MyApplet.class` and executes it with given parameters (`nodes`, `root`).
 
-Конечно, для этого на компьютере должна быть установлена и включена среда выполнения Java, включая браузерный плагин. Кроме того, апплет должен быть подписан сертификатом издателя (в примере выше апплет без подписи), иначе Java заблокирует его.
+The applet runs in a rectangular part of the page, so called "container". All user actions inside it are processed by the applet. One can hide the container if the applet does something not fit for the show.
 
-**Чем нам, JavaScript-разработчикам, может быть интересен Java?**
+Of course, Java runtime environment and the browser plugin must be installed and enabled to let the applet execute, and the applet itself must be signed by the publisher, otherwise it will be blocked.
 
-В первую очередь тем, что подписанный Java-апплет может всё то же, что и обычная программа, установленная на компьютере посетителя. Конечно, для этого понадобится согласие пользователя при открытии такого апплета.
+**Why us, JavaScript-developers should be aware of Java?**
 
-[compare]
-+Java может делать *всё* от имени посетителя, совсем как установленная программа. Потенциально опасные действия требуют подписанного апплета и согласия пользователя.
--Java требует больше времени для загрузки.
--Среда выполнения Java, включая браузерный плагин, должна быть установлена на компьютере посетителя и включена.
--Java-апплет не интегрирован с HTML-страницей, а выполняется отдельно. Но он может вызывать функции JavaScript.
-[/compare]
+Mainly because a signed Java-applet can do literally everything on a visitor's computer, just like any other program. Of course that requires a visitor's agreement to run it, but after that they can break of any restrictions. 
 
+So if the user trusts as (like he's already a client of ours), we can implement something that pure javascript can't do yet.
 
-### Плагины и расширения для браузера
+Just to note, JavaScript and Java-applets can interact with each other, so JavaScript will have access to capabilities provided by the applet.
 
-Все современные браузеры предоставляют возможность написать плагины. Для этого можно использовать как JavaScript (Chrome, Opera, Firefox), так и язык С (ActiveX для Internet Explorer).
+### Browser plugins and extensions
 
-Эти плагины могут как отображать содержимое специального формата (плагин для проигрывания музыки, для показа PDF), так и взаимодействовать со страницей.
+All modern browsers allow to write plugins using either JavaScript and/or C language.
 
-Как и в ситуации с Java-апплетом, у них широкие возможности, но посетитель поставит их в том случае, если вам доверяет.
+The plugins can both handle a special kind of content (a media-player to play music) and interact with the page.
+
+Just as Java-applets, they have wider access than JavaScript, but the user must install them and agree that he trusts the plugin.
 
 ### Adobe Flash   
 
-Adobe Flash -- кросс-браузерная платформа для мультимедиа-приложений, анимаций, аудио и видео. 
+Adobe Flash is a long-lived cross-browser platform mainly targeted on multimedia and animations.
 
-*Flash-ролик* -- это скомпилированная программа, написанная на языке ActionScript. Её можно подключить к HTML-странице и запустить в прямоугольном контейнере.
+Just like Java, a pre-compiled Flash program can be attached to HTML and executed in a rectangular container.
 
-В первую очередь Flash полезен тем, что позволяет **кросс-браузерно** работать с микрофоном, камерой, с буфером обмена, а также поддерживает продвинутые возможности по работе с сетевыми соединениями. 
+Flash is good at cross-browser device access: camera, microphone, and for certain OS-level features like the clipboard. Also it is good at networking.
 
-[compare]
-+Сокеты, UDP для P2P и другие продвинутые возможности по работе с сетевыми соединениями
-+Поддержка мультимедиа: изображения, аудио, видео. Работа с веб-камерой и микрофоном.
--Flash должен быть установлен и включён. А на некоторых устройствах он вообще не поддерживается.
--Flash не интегрирован с HTML-страницей, а выполняется отдельно.
--Существуют ограничения безопасности, однако они немного другие, чем в JavaScript.
-[/compare]
+One can access Flash programs from JavaScript and vice versa.
 
-Из Flash можно вызывать JavaScript и наоборот, поэтому обычно сайты используют JavaScript, а там, где он не справляется -- можно подумать о Flash.
+The main drawback is that it needs Adobe Flash player to be installed and enabled. Users tend to disable it, because of nasty "multimedia" ads and many vulnerabilities in the past. Also, certain operational systems like iOS (iPhone, iPad) do not support it at all.
 
+## Languages over JavaScript
 
-## Языки поверх JavaScript
+The syntax of JavaScript does not suit everyone's needs: some people think that it's too flexible, the others consider it too limited, the third ones want to add new features absent in the standard...
 
+That's normal, because projects and requirements are different for everyone. There's no a single standard for a carpenter's hammer, why should it exist for the language?
 
-Синтаксис JavaScript устраивает не всех: одним он кажется слишком свободным, другим -- наоборот, слишком ограниченным, третьи хотят добавить в язык дополнительные возможности, которых нет в стандарте...
+So recently a plethora of new languages appeared, which add features "over" JavaScript, meaning that the source code in these languages is *transpiled* (converted) to JavaScript before they run.
 
-Это нормально, ведь требования и проекты у всех разные. 
+The transpilation happens automatically, modern tools make the process very fast and transparent, actually allowing developers to code in another language. They still should know JavaScript, to better understand what they are doing.
 
-В последние годы появилось много языков, которые добавляют различные возможности "поверх" JavaScript, а для запуска в браузере -- при помощи специальных инструментов "трансляторов" превращаются в обычный JavaScript-код.
-
-Это преобразование происходит автоматически и совершенно прозрачно, при этом неудобств в разработке и отладке практически нет.
-
-При этом разные языки выглядят по-разному и добавляют совершенно разные вещи:
+A few examples of such languages:
 
 <ul>
-<li>Язык [CoffeeScript](http://coffeescript.org/) -- это "синтаксический сахар" поверх JavaScript. Он сосредоточен на большей ясности и краткости кода. Как правило, его особенно любят программисты на Ruby.</li>
-<li>Язык [TypeScript](http://www.typescriptlang.org/) сосредоточен на добавлении строгой типизации данных. Он предназначен для упрощения разработки и поддержки больших систем. Его разрабатывает Microsoft.</li>
-<li>Язык [Dart](https://www.dartlang.org/) интересен тем, что он не только транслируется в JavaScript, как и другие языки, но и имеет свою независимую среду выполнения, которая даёт ему ряд возможностей и доступна для встраивания в приложения (вне браузера). Он разрабатывается компанией Google.</li>
+<li>[CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby guys like it.</li>
+<li>[TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. Developed by Microsoft.</li>
+<li>[Dart](https://www.dartlang.org/) was offered by Google as a replacement for JavaScript, but other leading internet companies declared that they are not interested. Maybe later, we'll see. Right now it can be transpiled to JavaScript, but used less often compared to two previous alternatives.</li>
 </ul>
 
-[smart header="ES6 и ES7 прямо сейчас"]
-Существуют также трансляторы, которые берут код, использующий возможности будущих стандартов JavaScript, и преобразуют его в более старый вариант, который понимают все браузеры.
+[smart header="ES6 and ES7 right now"]
+The upcoming standards really bring a lot of goodies.
 
-Например, [babeljs](https://babeljs.io/).
+For those eager to use them now, there are transpilers which take the code written with the new standards and convert it into the older one, so that the browsers can execute it.
 
-Благодаря этому, мы можем использовать многие возможности будущего уже сегодня.
+For example, [6to5](https://6to5.org/).
+
+Here in the first part of the tutorial I feel a little bit shy to use them, because without a native browser support such tools add unnecessary complexity at the start and can be easily integrated later when the basics are learned.
 [/smart]
 
 
-## Итого
+## Summary
 
-Язык JavaScript уникален благодаря своей полной интеграции с HTML/CSS. Он работает почти у всех посетителей.
+JavaScript is unique due it's full integration with HTML/CSS and wide browser adoption.
 
-...Но хороший JavaScript-программист не должен забывать и о других технологиях.
+...But a good JavaScript-developer should be aware of other technologies too. Our ultimate purpose is to create best frontend apps, and sometimes Java, Flash or plugins can be helpful too.
 
-Ведь наша цель -- создание хороших приложений, и здесь Flash, Java и браузерные расширения имеют свои уникальные возможности, которые можно использовать вместе с JavaScript.
-
-Что же касается CoffeeScript, TypeScript и других языков, построенных над JavaScript -- они могут быть очень полезны. Рекомендуется посмотреть их, хотя бы в общих чертах, но, конечно, уже после освоения самого JavaScript.
+Other languages like CoffeeScript and TypeScript can help to develop faster and write less bug-proof code. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
 
