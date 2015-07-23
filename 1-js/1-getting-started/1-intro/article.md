@@ -118,6 +118,10 @@ Still, there is a small gotcha with those "extra-fresh" modern browser abilities
 
 But what's great -- eventually all browsers tend to follow the standard. There are much less differences between them now than only a couple years ago.
 
+[summary]
+The trend: browsers, though eager for new features, tend to be compatible with the standard.
+[/summary]
+
 ## New EcmaScript
 
 JavaScript evolves. The upcoming EcmaScript-2016 standard adds more language-level features which make the syntax more capable and expressive.
@@ -125,17 +129,7 @@ JavaScript evolves. The upcoming EcmaScript-2016 standard adds more language-lev
 Modern browsers improve their engines to raise JavaScript execution script, fix bugs and try to follow the standards.
 
 [summary]
-The trend: JavaScript is becoming faster and more stable, gets new syntax.
-[/summary]
-
-It's great to see that that new standards, HTML5, EcmaScript are still compatible with the previous code, so they cause no problems with existing applications.
-
-...As the time goes, the specification matures and changes, and browsers must adapt it. That may lead to errors in JavaScript code which was too eager to use the early browser implementation. So one should think twice before relying on things that are in draft yet.
-
-But what's great -- eventually all browsers tend to follow the standard. There are much less differences between them now than only a couple years ago.
-
-[summary]
-The trend: browsers, though eager for new features, become compatible with the standard.
+The trend: JavaScript is becoming faster, gets new syntax and language features.
 [/summary]
 
 ## Languages over JavaScript
@@ -148,7 +142,7 @@ So recently a plethora of new languages appeared, which are *transpiled* (conver
 
 The transpilation happens automatically, modern tools make the process very fast and transparent, actually allowing developers to code in another language. But they still should know JavaScript, to better understand what they are doing.
 
-A few examples of such languages:
+Examples of such languages:
 
 <ul>
 <li>[CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby guys like it.</li>
@@ -160,5 +154,5 @@ A few examples of such languages:
 
 As of now, JavaScript is unique due it's full integration with HTML/CSS and wide browser adoption.
 
-Other languages like CoffeeScript and TypeScript can help to develop faster and write less bug-proof code. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+Other languages like TypeScript can help to write less bug-proof code. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
 
