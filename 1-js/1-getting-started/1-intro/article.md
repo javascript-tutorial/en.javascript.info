@@ -22,7 +22,16 @@ It has quite a few special features that make mastering a bit hard at first, but
 
 Since the time of its creation, JavaScript evolved.
 
-As of now, JavaScript can execute not only in the browser, but also on the server, or actually on any device where a special program called [an interpreter]("http://en.wikipedia.org/wiki/Interpreter_(computing)") is installed. The execution process is called "an interpretation". The browser has an embedded JavaScript interpreter.
+As of now, JavaScript can execute not only in the browser, but also on the server, or actually on any device where a special program called [an interpreter]("http://en.wikipedia.org/wiki/Interpreter_(computing)") is installed. The execution process is called "an interpretation". 
+
+The browser has an embedded JavaScript interpreter, of course. Sometimes it's also called a *JavaScript engine* or a "JavaScript virtual machine".
+
+Different engines have different "codenames", for example:
+<ul>
+<li>Chrome and Opera browsers and Node.JS server use [V8 engine]("https://en.wikipedia.org/wiki/V8_(JavaScript_engine)") (hence the same support for modern features).</li>
+<li>Firefox browser uses [Gecko]("https://en.wikipedia.org/wiki/Gecko_(software)").</li>
+<li>...There are other codenames like "Trident", "Chakra" for different versions of IE, "Nitro" and "SquirrelFish" for Safari etc.</li>
+</ul>
 
 [smart header="Compilation and interpretation"]
 There are in fact two general approaches to execute programs: "compilers" and "interpreters".
