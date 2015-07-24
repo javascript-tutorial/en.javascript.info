@@ -33,6 +33,8 @@ Different engines have different "codenames", for example:
 <li>...There are other codenames like "Trident", "Chakra" for different versions of IE, "Nitro" and "SquirrelFish" for Safari etc.</li>
 </ul>
 
+The codenames are usually used when searching for detailed information in the internet. Also, we'll use them further to be more exact. Instead of the words "Chrome supports feature..." we'd rather say "V8 supports feature...", not just because it's more precise, but because that also implies Opera and Node.JS.
+
 [smart header="Compilation and interpretation"]
 There are in fact two general approaches to execute programs: "compilers" and "interpreters".
 
@@ -44,11 +46,12 @@ There are in fact two general approaches to execute programs: "compilers" and "i
 Modern interpreters actually combine these approaches into one: the script is distributed as a plain text, but prior to execution is converted to the machine language. That's why JavaScript executes very fast.
 [/smart]
 
+
+## What in-browser JavaScript can do?
+
 The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it. 
 
 Other capabilities depend on the environment which runs JavaScript. In the browser JavaScript is able to do everything related to webpage manipulation, interaction with the user and the webserver.
-
-## What in-browser JavaScript can do?
 
 In more details, JavaScript is able to:
 
@@ -72,6 +75,7 @@ Modern browsers allow it to work with files, but limit the access to a specially
 <li>JavaScript may not freely access other pages opened in the same browser. The exception is when the pages come from the same site.
 
 There are ways to workaround this, of course. But if two pages come from different sites (different domain, protocol or port), they require a special code on *both of them* allowing to interact.
+
 
 The limitation is again for user safety. A page from evilsite.com which a user has opened occasionaly will be unable to access other browser tabs and steal information from there.
 </li>
