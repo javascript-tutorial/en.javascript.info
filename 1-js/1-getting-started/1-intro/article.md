@@ -51,9 +51,11 @@ Modern interpreters actually combine these approaches into one: the script is di
 
 The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it. 
 
-Other capabilities depend on the environment which runs JavaScript. In the browser JavaScript is able to do everything related to webpage manipulation, interaction with the user and the webserver.
+Other capabilities depend on the environment which runs JavaScript. For instance, Node.JS has functionality that allows JavaScript to read/write arbitrary files, perform network requests etc etc.
 
-In more details, JavaScript is able to:
+In the browser JavaScript can do everything related to webpage manipulation, interaction with the user and the webserver.
+
+In more details, in-browser JavaScript is able to:
 
 <ul>
 <li>Create new HTML tags, remove the existing ones, change styles, hide/show elements...</li>
@@ -68,9 +70,11 @@ In more details, JavaScript is able to:
 JavaScript abilities in the browser are limited. That is for user safety, mainly not to let an evil webpage access private information or harm the user's data.
 
 <ul>
-<li>JavaScript may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS system functions.
+<li>JavaScript on the webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS system functions.
 
 Modern browsers allow it to work with files, but limit the access to a specially created directory called "a sandbox". There are ways to interact with camera/microphone and other devices, but they require an explicit user's permission.
+
+So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to NSA.
 </li>
 <li>JavaScript may not freely access other pages opened in the same browser. The exception is when the pages come from the same site.
 
