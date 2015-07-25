@@ -72,9 +72,9 @@ JavaScript abilities in the browser are limited. That is for user safety, mainly
 <ul>
 <li>JavaScript on the webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS system functions.
 
-Modern browsers allow it to work with files, but limit the access to a specially created directory called "a sandbox". There are ways to interact with camera/microphone and other devices, but they require an explicit user's permission.
+Modern browsers allow it to work with files, but limit the access to a specially created directory called "a sandbox". 
 
-So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to NSA.
+There are ways to interact with camera/microphone and other devices, but they require an explicit user's permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to NSA.
 </li>
 <li>JavaScript may not freely access other pages opened in the same browser. The exception is when the pages come from the same site.
 
