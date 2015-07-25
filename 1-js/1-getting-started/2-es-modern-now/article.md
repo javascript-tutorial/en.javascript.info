@@ -1,118 +1,71 @@
-# Справочники и спецификации
 
-В этом разделе мы познакомимся со справочниками и спецификациями.
+# Modern JavaScript now
 
-Если вы только начинаете изучение, то вряд ли они будут нужны прямо сейчас. Тем не менее, эта глава находится в начале, так как предсказать точный момент, когда вы захотите заглянуть в справочник -- невозможно, но точно известно, что этот момент настанет. 
+The [latest standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm) was approved in June 2015.
 
-Поэтому рекомендуется кратко взглянуть на них и взять на заметку, чтобы при необходимости вернуться к ним в будущем.
+As it includes a lot of new features, most browsers implement them partially. You can find the current state of the support at [](https://kangax.github.io/compat-table/es6/).
 
-[cut]
+Sometimes the project is targeted to a single JavaScript engine, like Node.JS (V8). Then we can use only the features supported by V8 (quite a lot).
 
-## Справочники, и как в них искать
+But what if we're writing a cross-browser application?
 
-Самая полная и подробная информация по JavaScript и браузерам есть в справочниках.
+## Babel.JS
 
-Её объём таков, что перевести всё с английского невозможно. Даже сделать "единый полный справочник" не получается, так как изменений много и они происходят постоянно.
+[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler), it rewrites the modern JavaScript code into the previous standard.
 
-Тем не менее, жить вполне можно если знать, куда смотреть.
 
-**Есть три основных справочника по JavaScript на английском языке**: 
+Он состоит из двух частей:
 
 <ol>
-<li>[Mozilla Developer Network](https://developer.mozilla.org/) -- содержит информацию, верную для основных браузеров. Также там присутствуют расширения только для Firefox (они помечены).
-
-Когда мне нужно быстро найти "стандартную" информацию по `RegExp` - ввожу в Google **"RegExp MDN"**, и ключевое слово "MDN" (Mozilla Developer Network) приводит к информации из этого справочника.
-</li>
-<li>[MSDN](http://msdn.microsoft.com) -- справочник от Microsoft. Там много информации, в том числе и по JavaScript (они называют его "JScript"). Если нужно что-то, специфичное для IE -- лучше лезть сразу туда. 
-
-Например, для информации об особенностях `RegExp` в IE -- полезное сочетание: **"RegExp msdn"**. Иногда к поисковой фразе лучше добавить термин "JScript": **"RegExp msdn jscript"**. </li>
-<li>[Safari Developer Library](https://developer.apple.com/library/safari/navigation/index.html) -- менее известен и используется реже, но в нём тоже можно найти ценную информацию.</li> 
+<li>Собственно транспайлер, который переписывает код.</li>
+<li>Полифилл, который добавляет методы `Array.from`, `String.prototype.repeat` и другие.</li>
 </ol>
 
-Есть ещё справочники, не от разработчиков браузеров, но тоже хорошие:
+На странице [](https://babeljs.io/repl/) можно поэкспериментировать с транспайлером: слева вводится код в ES-2015, а справа появляется результат его преобразования в ES5.
 
-<ol>
-<li>[http://help.dottoro.com]() -- содержит подробную информацию по HTML/CSS/JavaScript.</li>
-<li>[http://javascript.ru/manual]() -- справочник по JavaScript на русском языке, он содержит основную информацию по языку, без функций для работы с документом. К нему можно обращаться и по адресу, если знаете, что искать. Например, так: [http://javascript.ru/RegExp]().
-</li>
-<li>[http://www.quirksmode.org]() -- информация о браузерных несовместимостях. Этот ресурс сам по себе довольно старый и, в первую очередь, полезен для поддержки устаревших браузеров. Для поиска можно пользоваться комбинацией **"quirksmode onkeypress"** в Google. </li>
-<li>[http://caniuse.com]() -- ресурс о поддержке браузерами новейших возможностей HTML/CSS/JavaScript. Например, для поддержки функций криптографии: [http://caniuse.com/#feat=cryptography]().
-</li>
-</ol>
+Обычно Babel.JS работает на сервере в составе системы сборки JS-кода (например [webpack](http://webpack.github.io/) или [brunch](http://brunch.io/)) и автоматически переписывает весь код в ES5.
 
-## Спецификации
+Настройка такой конвертации тривиальна, единственно -- нужно поднять саму систему сборки, а добавить к ней Babel легко, плагины есть к любой из них.
 
-Спецификация -- это самый главный, определяющий документ, в котором написано, как себя ведёт JavaScript, браузер, CSS и т.п.
+Если же хочется "поиграться", то можно использовать и браузерный вариант Babel.
 
-Если что-то непонятно, и справочник не даёт ответ, то спецификация, как правило, раскрывает тему гораздо глубже и позволяет расставить точки над i.
+Это выглядит так:
 
-### Спецификация ECMAScript
+```html
+<!--+ run -->
+*!*
+<!-- browser.js лежит на моём сервере, не надо брать с него -->
+<script src="https://js.cx/babel-core/browser.min.js"></script>
+*/!*
 
-Спецификация (формальное описание синтаксиса, базовых объектов и алгоритмов) языка Javascript называется [ECMAScript](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+<script type="text/babel">
+  let arr = ["hello", 2]; // let
 
-Её перевод есть на сайте в разделе [стандарт языка](http://es5.javascript.ru/).
+  let [str, times] = arr; // деструктуризация
 
-[smart header="Почему не просто &quot;JavaScript&quot; ?"]
-Вы можете спросить: "Почему спецификация для JavaScript не называется просто *"JavaScript"*, зачем существует какое-то отдельное название?"
+  alert( str.repeat(times) ); // hellohello, метод repeat
+</script>
+```
 
-Всё потому, что JavaScript&trade; -- зарегистрированная торговая марка, принадлежащая корпорации Oracle. 
+Сверху подключается браузерный скрипт `browser.min.js` из пакета Babel. Он включает в себя полифилл и транспайлер. Далее он автоматически транслирует и выполняет скрипты с `type="text/babel"`.
 
-Название "ECMAScript" было выбрано, чтобы сохранить спецификацию независимой от владельцев торговой марки.
-[/smart]
+Размер `browser.min.js` превышает 1 мегабайт, поэтому такое использование в production строго не рекомендуется.
 
-Спецификация может рассказать многое о том, как работает язык, и она является самым фундаментальным, доверенным источником информации.
+# Примеры на этом сайте
 
-### Спецификации HTML/DOM/CSS 
+[warn header="Только при поддержке браузера"]
+Запускаемые примеры с ES-2015 будут работать только если ваш браузер поддерживает соответствующую возможность стандарта.
+[/warn]
 
-JavaScript -- язык общего назначения, поэтому в спецификации ECMAScript нет ни слова о браузерах. 
+Это означает, что при запуске примеров в браузере, который их не поддерживает, будет ошибка. Это не означает, что пример неправильный! Просто пока нет поддержки...
 
-Главная организация, которая занимается HTML, CSS, XML и множеством других стандартов -- [Консорциум Всемирной паутины](https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BD%D1%81%D0%BE%D1%80%D1%86%D0%B8%D1%83%D0%BC_%D0%92%D1%81%D0%B5%D0%BC%D0%B8%D1%80%D0%BD%D0%BE%D0%B9_%D0%BF%D0%B0%D1%83%D1%82%D0%B8%D0%BD%D1%8B) (World Wide Consortium, сокращённо W3C).
+Рекомендуется [Chrome Canary](https://www.google.com/chrome/browser/canary.html) большинство примеров в нём работает. [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) тоже неплох в поддержке современного стандарта, но на момент написания этого текста переменные [let](/let-const) работают только при указании `version=1.7` в типе скрипта: `<script type="application/javascript;version=1.7">`. Надеюсь, скоро это требование (`version=1.7`) отменят.
 
-Информацию о них можно найти на сайте [w3.org](http://w3.org). К сожалению, найти в этой куче то, что нужно, может быть нелегко, особенно когда неизвестно в каком именно стандарте искать. Самый лучший способ -- попросить Google с указанием сайта. 
+Впрочем, если пример в браузере не работает (обычно проявляется как ошибка синтаксиса) -- почти все примеры вы можете запустить его при помощи Babel, на странице [Babel: try it out](https://babeljs.io/repl/). Там же увидите и преобразованный код.
 
-Например, для поиска `document.cookie` набрать [document.cookie site:w3.org](https://www.google.com/search?q=document.cookie+site%3Aw3.org). 
+На практике для кросс-браузерности всё равно используют Babel.
 
-Последние версии стандартов расположены на домене [dev.w3.org](http://dev.w3.org).
+Ещё раз заметим, что самая актуальная ситуация по поддержке современного стандарта браузерами и транспайлерами отражена на странице [](https://kangax.github.io/compat-table/es6/).
 
-Кроме того, в том, что касается HTML5 и DOM/CSS, W3C активно использует наработки другой организации -- [WhatWG](https://whatwg.org/). Поэтому самые актуальные версии спецификаций по этим темам обычно находятся на [https://whatwg.org/specs/](). 
+Итак, поехали!
 
-Иногда бывает так, что информация на сайте [http://dev.w3.org]() отличается от [http://whatwg.org](). В этом случае, как правило, следует руководствоваться [http://whatwg.org]().
-
-## Итого
-
-Итак, посмотрим какие у нас есть источники информации.
-
-Справочники:
-<ul>
-<li><a href="https://developer.mozilla.org/">Mozilla Developer Network</a> -- информация для Firefox и большинства браузеров. 
-Google-комбо: `"RegExp MDN"`, ключевое слово "MDN".</li>
-<li><a href="http://msdn.microsoft.com/">MSDN</a> -- информация по IE. 
-Google-комбо: `"RegExp msdn"`. Иногда лучше добавить термин "JScript": `"RegExp msdn jscript"`.</li>
-<li>[Safari Developer Library](https://developer.apple.com/library/safari/navigation/index.html) -- информация по Safari.</li>
-<li><a href="http://help.dottoro.com">http://help.dottoro.com</a> -- подробная информация по HTML/CSS/JavaScript с учётом браузерной совместимости.
-Google-комбо: `"RegExp dottoro"`.</li>
-<li>[](http://javascript.ru/manual) -- справочник по JavaScript на русском языке. К нему можно обращаться и по адресу, если знаете, что искать. Например, так: [](http://javascript.ru/RegExp).
-Google-комбо: `"RegExp site:javascript.ru"`.
-</li>
-</ul>
-
-Спецификации содержат важнейшую информацию о том, как оно "должно работать":
-
-<ul>
-<li>JavaScript, современный стандарт [ES5 (англ)](http://www.ecma-international.org/publications/standards/Ecma-262.htm), и предыдущий [ES3 (рус)](http://javascript.ru/ecma).</li>
-<li>HTML/DOM/CSS -- на сайте [http://w3.org](http://www.w3.org).
-Google-комбо: `"document.cookie site:w3.org"`.</li>
-<li>...А самые последние версии стандартов -- на [http://dev.w3.org]() и на [http://whatwg.org/specs/](https://whatwg.org/specs/).</li>
-</ul>
-
-То, как оно на самом деле работает и несовместимости:
-
-<ul>
-<li>[http://quirksmode.org/](). Google-комбо: `"innerHeight quirksmode"`.</li>
-</ul>
-
-Поддержка современных и новейших возможностей браузерами:
-
-<ul>
-<li>[http://caniuse.com](). Google-комбо: `"caniuse geolocation"`.</li>
-</ul>
