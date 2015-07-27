@@ -11,19 +11,20 @@ But what if we're writing a cross-browser application?
 
 ## Babel.JS
 
-[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler), it rewrites the modern JavaScript code into the previous standard.
+[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites the modern JavaScript code into the previous standard.
 
-
-Он состоит из двух частей:
+Actually, there are two parts in Babel:
 
 <ol>
-<li>Собственно транспайлер, который переписывает код.</li>
-<li>Полифилл, который добавляет методы `Array.from`, `String.prototype.repeat` и другие.</li>
+<li>The transpiler itself, which rewrites the code.</li>
+<li>An additional JavaScript library which adds the support for modern JavaScript functions to the browser.</li>
 </ol>
 
-На странице [](https://babeljs.io/repl/) можно поэкспериментировать с транспайлером: слева вводится код в ES-2015, а справа появляется результат его преобразования в ES5.
+The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily. One just needs to setup the build system itself.
 
-Обычно Babel.JS работает на сервере в составе системы сборки JS-кода (например [webpack](http://webpack.github.io/) или [brunch](http://brunch.io/)) и автоматически переписывает весь код в ES5.
+Most syntax-level language features 
+The JavaScript library if required if
+
 
 Настройка такой конвертации тривиальна, единственно -- нужно поднять саму систему сборки, а добавить к ней Babel легко, плагины есть к любой из них.
 
