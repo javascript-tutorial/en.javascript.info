@@ -1,5 +1,6 @@
-# Язык JavaScript
+# The JavaScript language
 
-Эта часть позволит вам изучить JavaScript с нуля или упорядочить и дополнить существующие знания.
+Here we learn JavaScript, starting from the scratch and to advanced concepts like OOP.
 
-Мы будем использовать браузер в качестве окружения, но основное внимание будет уделяться именно самому языку JavaScript.
+We'll be using browser as an environment, but the main attention goes to JavaScript itself.
+

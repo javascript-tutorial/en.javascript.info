@@ -1,3 +1,3 @@
-# Основы JavaScript
+# JavaScript Fundamentals
 
-Основные кирпичики из которых состоят скрипты.
+Let's learn the main building blocks of the scripts.

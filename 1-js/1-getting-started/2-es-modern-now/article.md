@@ -1,13 +1,15 @@
 
-# Modern JavaScript now
+# Using the latest features now 
 
 The [latest standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm) was approved in June 2015.
 
 As it includes a lot of new features, most browsers implement them partially. You can find the current state of the support at [](https://kangax.github.io/compat-table/es6/).
 
-Sometimes the project is targeted to a single JavaScript engine, like Node.JS (V8). Then we can use only the features supported by V8 (quite a lot).
+If a project is developed for a single JavaScript engine, like V8 (Node.JS, Chrome), then we can use V8-supported features. That's a lot.
 
-But what if we're writing a cross-browser application?
+But what if we're writing a cross-browser application? Different browsers support different subsets of ES-2015. 
+
+Here comes Babel.JS.
 
 ## Babel.JS
 
@@ -16,57 +18,63 @@ But what if we're writing a cross-browser application?
 Actually, there are two parts in Babel:
 
 <ol>
-<li>The transpiler itself, which rewrites the code.</li>
-<li>An additional JavaScript library which adds the support for modern JavaScript functions to the browser.</li>
+<li>The transpiler program, which rewrites the code. 
+
+The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily. One just needs to setup the build system itself.</li>
+<li>JavaScript library.
+
+An additional JavaScript library with modern JavaScript functions for the browsers that do not have them built-in (yet). The library must be attached to each webpage which relies on these functions.</li>
 </ol>
 
-The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily. One just needs to setup the build system itself.
+There is a special "play" mode of Babel.JS which merges both parts in a single in-browser script.
 
-Most syntax-level language features 
-The JavaScript library if required if
-
-
-Настройка такой конвертации тривиальна, единственно -- нужно поднять саму систему сборки, а добавить к ней Babel легко, плагины есть к любой из них.
-
-Если же хочется "поиграться", то можно использовать и браузерный вариант Babel.
-
-Это выглядит так:
+The usage looks like this:
 
 ```html
 <!--+ run -->
 *!*
-<!-- browser.js лежит на моём сервере, не надо брать с него -->
-<script src="https://js.cx/babel-core/browser.min.js"></script>
+<!-- browser.js is on my server please don't hotlink -->
+<script src="https://en.js.cx/babel-core/browser.min.js"></script>
 */!*
 
 <script type="text/babel">
-  let arr = ["hello", 2]; // let
+  let arr = ["hello", 2]; 
 
-  let [str, times] = arr; // деструктуризация
+  let [str, times] = arr; 
 
-  alert( str.repeat(times) ); // hellohello, метод repeat
+  alert( str.repeat(times) ); // hellohello
 </script>
 ```
 
-Сверху подключается браузерный скрипт `browser.min.js` из пакета Babel. Он включает в себя полифилл и транспайлер. Далее он автоматически транслирует и выполняет скрипты с `type="text/babel"`.
+Script `browser.min.js` is attached to the top of the page. It automatically transpiles and runs the scripts with `type="text/babel"`.
 
-Размер `browser.min.js` превышает 1 мегабайт, поэтому такое использование в production строго не рекомендуется.
+The size of `browser.min.js` is above 1 megabyte, because it includes the transpiler. Hence such usage is only for "playing" and not recommended for production.
 
-# Примеры на этом сайте
+Also:
+<ul>
+<li>There is a "try it" page on [](https://babeljs.io/repl/) which allows to run snippets of code.</li>
+<li>[JSBin](http://jsbin.com) allows to use "ES6/Babel" mode for JS, see [this snippet](http://jsbin.com/daxihelolo/edit?js,output) as an example.</li>
+</ul>
 
-[warn header="Только при поддержке браузера"]
-Запускаемые примеры с ES-2015 будут работать только если ваш браузер поддерживает соответствующую возможность стандарта.
+# Examples on this site
+
+[warn header="Browser support is required"]
+Examples that use ES-2015 will work only if your browser supports it.
 [/warn]
 
-Это означает, что при запуске примеров в браузере, который их не поддерживает, будет ошибка. Это не означает, что пример неправильный! Просто пока нет поддержки...
+Sometimes it means that when running an example in a non-supporting browser, an error is shown.
 
-Рекомендуется [Chrome Canary](https://www.google.com/chrome/browser/canary.html) большинство примеров в нём работает. [Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) тоже неплох в поддержке современного стандарта, но на момент написания этого текста переменные [let](/let-const) работают только при указании `version=1.7` в типе скрипта: `<script type="application/javascript;version=1.7">`. Надеюсь, скоро это требование (`version=1.7`) отменят.
+That doesn't mean that the example is wrong! It's just the browser lacking the support for certain features yet.
 
-Впрочем, если пример в браузере не работает (обычно проявляется как ошибка синтаксиса) -- почти все примеры вы можете запустить его при помощи Babel, на странице [Babel: try it out](https://babeljs.io/repl/). Там же увидите и преобразованный код.
+[Chrome Canary](https://www.google.com/chrome/browser/canary.html) is recommended, most examples work in it.
 
-На практике для кросс-браузерности всё равно используют Babel.
+[Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) is fine too, but it has certain glitches. Like: [let](/let-const) variables working only with when the script type contains `version=1.7` or `1.8`: `<script type="application/javascript;version=1.7">`. Most other browsers do not understand such script type. This site uses a special trick to workaround.
 
-Ещё раз заметим, что самая актуальная ситуация по поддержке современного стандарта браузерами и транспайлерами отражена на странице [](https://kangax.github.io/compat-table/es6/).
+And in any case you can go [Babel: try it out](https://babeljs.io/repl/) page and run the example there!
 
-Итак, поехали!
+On production everyone's using Babel anyway.
+
+Once again, let's note that the most up-to-date situation with support is reflected on [](https://kangax.github.io/compat-table/es6/).
+
+Now we can go coding, but we need a good code editor for that, right? That is discussed in the next session.
 

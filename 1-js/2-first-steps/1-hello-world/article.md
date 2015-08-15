@@ -1,13 +1,14 @@
-# Привет, мир!
+# Hello, world!
 
-В этой статье мы создадим простой скрипт и посмотрим, как он работает.
+In this chapter we'll create a simple script and see it working.
+
 [cut]
-## Тег SCRIPT
+## The "script" tag
 
-[smart header="А побыстрее?"]
-В том (и только в том!) случае, если читатель нетерпелив и уже разрабатывал на JavaScript или имеет достаточно опыта в другом языке программировании, он может не читать каждую статью этого раздела, а перепрыгнуть сразу к главе [](/javascript-specials). Там будет кратко самое основное.
+[smart header="What if I want to move faster?"]
+In the case if the impatient reader developed with JavaScript already or has a lot of experience in another language, he can skip detailed explanatins and jump to [](/javascript-specials). There he can find a condensed essense of important features.
 
-Если же у вас есть достаточно времени и желание начать с азов, то читайте дальше :)
+If you have enough time and want to learn things in details then read on :)
 [/smart]
 
 Программы на языке JavaScript можно вставить в любое место HTML при помощи тега `SCRIPT`. Например:

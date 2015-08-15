@@ -80,8 +80,7 @@ There are ways to interact with camera/microphone and other devices, but they re
 
 There are ways to workaround this, of course. But if two pages come from different sites (different domain, protocol or port), they require a special code on *both of them* allowing to interact.
 
-
-The limitation is again for user safety. A page from evilsite.com which a user has opened occasionaly will be unable to access other browser tabs and steal information from there.
+The limitation is again for user safety. A page from `http://evilsite.com` which a user has opened occasionaly will be unable to access other browser tabs and steal information from there.
 </li>
 <li>JavaScript can easily communicate over the net to the server where the current page came from. But it's ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 </li>
@@ -149,7 +148,7 @@ Modern browsers improve their engines to raise JavaScript execution script, fix 
 The trend: JavaScript is becoming faster, gets new syntax and language features.
 [/summary]
 
-## Languages over JavaScript
+## Languages "over" JavaScript
 
 The syntax of JavaScript does not suit everyone's needs: some people think that it's too flexible, the others consider it too limited, the third ones want to add new features absent in the standard...
 
@@ -169,7 +168,10 @@ Examples of such languages:
 
 ## Summary
 
-As of now, JavaScript is unique due it's full integration with HTML/CSS and wide browser adoption.
+<ul>
+<li>JavaScript was initially created as a browser-only language, but now used in many other environments as well.</li>
+<li>At this moment, JavaScript as a unique position as a most widely adopted browser language with full integration with HTML/CSS.</li>
+<li>There are over languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.</li>
+</ul>
 
-Other languages like TypeScript can help to write less bug-proof code. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
 

@@ -1,69 +1,73 @@
-# Редакторы для кода
+# Code editors
 
-Для разработки обязательно нужен хороший редактор. 
+For the comfortable development we need a good code editor.
 
-Выбранный вами редактор должен иметь в своем арсенале:
+It must support at least:
 
 <ol>
-<li>Подсветку синтаксиса.</li>
-<li>Автодополнение.</li>
-<li>"Фолдинг" (от англ. folding) -- возможность скрыть-раскрыть блок кода.</li>
+<li>Syntax highlight.</li>
+<li>Autocompletion.</li>
+<li>Folding -- hiding/opening blocks of code.</li>
 </ol>
 
 [cut]
+
 ## IDE
 
-Термин IDE (Integrated Development Environment) -- "интегрированная среда разработки", означает редактор, который расширен большим количеством "наворотов", умеет работать со вспомогательными системами, такими как багтрекер, контроль версий, и много чего ещё.
+The term "IDE" (Integrated Development Environment) -- denotes an editor which is extended by a number of plugins, can work with additional systems, such as bugtrackering, version control and much more.
 
-Как правило, IDE загружает весь проект целиком, поэтому может предоставлять автодополнение по функциям всего проекта, удобную навигацию по его файлам и т.п.
+Usually IDE loads the "project" and then can navigate between files, provide autocompletion based on the whole project, do other "project-level" stuff.
 
-Если вы ещё не задумывались над выбором IDE, присмотритесь к следующим вариантам. 
+If you haven't considered selecting an IDE, pleae look at the following variants:
 
 <ul>
-<li>Продукты IntelliJ: [WebStorm](http://www.jetbrains.com/webstorm/), а также в зависимости от дополнительного языка программирования [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) и другие.</li>
-<li>Visual Studio, в сочетании с разработкой под .NET (Win)</li>
-<li>Продукты на основе Eclipse, в частности [Aptana](http://www.aptana.com/) и Zend Studio</li>
-<li>[Komodo IDE](http://www.activestate.com/komodo-ide) и его облегчённая версия [Komodo Edit](http://www.activestate.com/komodo-edit).</li>
+<li>IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.</li>
+<li>Visual Studio is fine if you're a .NET developer.</li>
+<li>Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.</li>
+<li>[Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).</li>
 <li>[Netbeans](http://netbeans.org/)</li>
 </ul>
 
-Почти все они, за исключением Visual Studio, кросс-платформенные.
+All of them with the exception of Visual Studio are cross-platform.
 
-Сортировка в этом списке ничего не означает. Выбор осуществляется по вкусу и по другим технологиям, которые нужно использовать вместе с JavaScript.
+Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose what's most convenient.
 
-Большинство IDE -- платные, с возможностью скачать и бесплатно использовать некоторое время. Но их стоимость, по сравнению с зарплатой веб-разработчика, невелика, поэтому ориентироваться можно на удобство.
+## Lightweight editors
 
-## Лёгкие редакторы
+Lightweight editors are not as powerful as IDE, but they're fast and simple.
 
-Лёгкие редакторы -- не такие мощные, как IDE, но они быстрые и простые, мгновенно стартуют. 
+They are mainly used to instantly open and edit a file.
 
-Основная сфера применения лёгкого редактора -- мгновенно открыть нужный файл, чтобы что-то в нём поправить.
+The main differenct between a "lightweight editor" and an "IDE" is that the latter works on a project-level, meaning it has to load a lot of data to start, and the former one opens just the files. That's much faster.
 
-На практике "лёгкие" редакторы могут обладать большим количеством плагинов, так что граница между IDE и "лёгким" редактором размыта, спорить что именно редактор, а что IDE -- не имеет смысла. 
+In practice, "lightweight" editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict frontier between a "lightweight editor" and an IDE. There's no point in argueing what is what.
 
-Достойны внимания:
-
-<ul>
-<li><a href="http://www.sublimetext.com">Sublime Text</a> (кросс-платформенный, shareware).</li>
-<li><a href="http://www.scintilla.org/">SciTe</a> простой, легкий и очень быстрый (Windows, бесплатный).</li>
-<li><a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, бесплатный).</li>
-<li>Vim, Emacs. Если умеете их готовить.</li>
-</ul>
-
-## Мои редакторы
-
-Лично мои любимые редакторы:
+The following options deserve your attention:
 
 <ul>
-<li>Как IDE -- редакторы от Jetbrains: для чистого JavaScript [WebStorm](http://www.jetbrains.com/webstorm/), если ещё какой-то язык, то в зависимости от языка: [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/). У них есть и другие редакторы под разные языки, но я ими не пользовался.</li>
-<li>Как быстрый редактор -- <a href="http://www.sublimetext.com">Sublime Text</a>.</li>
-<li>Иногда Visual Studio, если разработка идёт под платформу .NET (Win).</li>
+<li><a href="http://www.sublimetext.com">Sublime Text</a> (cross-platform, shareware).</li>
+<li><a href="http://www.scintilla.org/">SciTe</a> (Windows, free).</li>
+<li><a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, free).</li>
+<li>Vim, Emacs are cool. If you know how to use them.</li>
 </ul>
 
-Если не знаете, что выбрать -- можно посмотреть на них ;)
+## My editors
 
-## Не будем ссориться
+I believe one should have both an IDE for projects and a lightweight editor for quick-n-fast file editing.
 
-В списках выше перечислены редакторы, которые использую я или мои знакомые -- хорошие разработчики. Конечно, существуют и другие отличные редакторы, если вам что-то нравится -- пользуйтесь.
+I'm using:
+<ul>
+<li>Jetbrains editors as IDE: [WebStorm](http://www.jetbrains.com/webstorm/) for JS and if I have other language in the project, then [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/). These guys provide editors for other languages too, but I didn't use them.</li>
+<li>As a lightweight editor -- <a href="http://www.sublimetext.com">Sublime Text</a>.</li>
+<li>Visual Studio, sometimes very rarely if that's a .NET project (Win).</li>
+</ul>
 
-Выбор редактора, как и любого инструмента, во многом индивидуален и зависит от ваших проектов, привычек, личных предпочтений.
+If you don't know what to choose -- you can consider those.
+
+## Let's not argue
+
+The editors listed above are those that me or my friends -- good developers use for a long time and happy with them.
+
+There are of course other great editors, please choose the one you like the most.
+
+The choice of an editor, like any other tool, is individual and depends on your projects, habbits, personal preferences.

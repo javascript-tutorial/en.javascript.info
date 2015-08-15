@@ -1,114 +1,72 @@
-# Консоль разработчика
+# Developer console
 
-При разработке скриптов всегда возможны ошибки... Впрочем, что я говорю? У вас абсолютно точно будут ошибки, если конечно вы -- человек, а не <a href="http://ru.wikipedia.org/wiki/%D0%91%D0%B5%D0%BD%D0%B4%D0%B5%D1%80_(%D0%A4%D1%83%D1%82%D1%83%D1%80%D0%B0%D0%BC%D0%B0)">робот</a>.
+As the last step before we start developing, let's learn the basics of developer console.
 
-Чтобы читать их в удобном виде, а также получать массу полезной информации о выполнении скриптов, в браузерах есть *инструменты разработки*.  
+A code is error-prone. You are quite likely to have errors... Oh what I'm talking? You are *absolutely* going to make errors, if you're a human, not a [robot]("https://en.wikipedia.org/wiki/Bender_(Futurama)").
 
-**Для разработки рекомендуется использовать Chrome или Firefox.**
+In browser, visitors don't see the errors by default. So, if something goes wrong, we won't see what's broken and can't fix it.
 
-Другие браузеры, как правило, находятся в положении "догоняющих" по возможностям встроенных инструментов разработки. Если ошибка, к примеру, именно в Internet Explorer, тогда уже смотрим конкретно в нём, но обычно -- Chrome/Firefox.
+To see errors and get a lot of other useful information about scripts, browsers have embedded "developer tools".
 
-В инструментах разработчика предусмотрена масса возможностей, но на текущем этапе мы просто посмотрим, как их открывать, смотреть в консоли ошибки и запускать команды JavaScript.
+**It is recommended to use Chrome or Firefox for the development.**
+
+Other browsers also provide developer tools, but are usually in a "catching-up" position, compared to Chrome/Firefox which are the best.
+
+If there is an error in Internet Explorer only, then we can use it's developer tools, but usually -- Chrome/Firefox.
+
+Developer tools are really powerful, there are many features, but on this stage let's just look how to open them, look at errors and run JavaScript commands.
 
 [cut]
 
 ## Google Chrome   
 
-Откройте страницу [bug.html](bug.html). 
+Open the page [bug.html](bug.html). 
 
-В её JavaScript-коде есть ошибка. Конечно, обычному посетителю она не видна, нужно открыть инструменты разработчика.
+There's an error in the JavaScript code on it. An ordinary visitor won't see it, we need t open developer tools for that.
 
-Для этого используйте сочетание клавиш [key Ctrl+Shift+J], а если у вас Mac, то [key Cmd+Shift+J].
+Press the keys [key Ctrl+Shift+J] or, if you're on Mac, then [key Cmd+Shift+J].
 
-При этом откроются инструменты разработчика и вкладка Console, в которой будет ошибка.
+The developer tools will open on the Console tab by default.
 
-Выглядеть будет примерно так:
+It looks somewhat like this:
 
 <img src="chrome.png">
 
+The exact look depends on your Chrome version. It changes from time to time, but should be similar.
 
 <ul>
-<li>При клике на `bug.html` вы перейдёте во вкладку с кодом к месту ошибки, там будет и краткое описание ошибки. 
-В данном случае ошибка вызвана строкой `lalala`, которая интерпретатору непонятна. </li>
-<li>В этом же окошке вы можете набирать команды на JavaScript. Например, наберите `alert("Hello")` -- команду вывода сообщения и запустите её нажатием [key Enter]. Мы познакомимся с этой и другими командами далее.</li>
-<li>Для перевода курсора на следующую строку (если команда состоит из нескольких строк) --  используется сочетание [key Shift+Enter].</li> 
+<li>Here we can see the red-colored error message. In this case the script contains a "lalala" command, which was put there just because it is unknown.</li>
+<li>On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.</li>
 </ul>
 
-Далее в учебнике мы подробнее рассмотрим отладку в Chrome в главе [](/debugging-chrome).
+In that very Console tab next to the blue `>` symbol, we can also type JavaScript commands and press enter to run them ([key Shift+Enter] to input multiline commands).
 
-## Firefox   
+Now we can see errors and that's enough for the start. We'll be back to developer tools later and cover debugging more in-depth in the chapter [](/debugging-chrome).
 
-Для разработки в Firefox используется расширение Firebug. 
+## Safari
 
-<ol>
-<li>Первым делом его надо установить.
+For Safari, we need to enable the "Develop menu" first.
 
-Это можно сделать со страницы <a href="https://addons.mozilla.org/ru/firefox/addon/firebug/">https://addons.mozilla.org/ru/firefox/addon/firebug/</a>.
-
-Перезапустите браузер. Firebug появится в правом-нижнем углу окна:
-
-<img src="firebug-gray.png">
-
-Если иконки не видно -- возможно, у вас выключена панель расширений. Нажмите [key Ctrl+\] для её отображения. 
-
-Ну а если её нет и там, то нажмите [key F12] -- это горячая клавиша для запуска Firebug, расширение появится, если установлено.
-</li>
-<li>Далее, для того чтобы консоль заработала, её надо включить.
-
-Если консоль уже была включена ранее, то этот шаг не нужен, но если она серая -- выберите в меню `Консоль` и включите её:
-
-<img src="firefox_console_enable.png">
-
-</li>
-<li>Для того, чтобы Firebug работал без глюков, желательно сначала открыть Firebug, а уже потом -- зайти на страницу.
-
-С открытым Firebug зайдите на страницу с ошибкой: [bug.html](/devtools/bug.html).
-
-Консоль покажет ошибку:
-
-<img src="firefox.png">
-
-Кликните на строчке с ошибкой и браузер покажет исходный код. При необходимости включайте дополнительные панели.
-</li>
-</ol>
-
-Как и в Chrome, можно набирать и запускать команды. Область для команд на рисунке находится справа, запуск команд осуществляется нажатием [key Ctrl+Enter] (для Mac -- [key Cmd+Enter]).
-
-Можно перенести её вниз, нажав на кнопочку <img src="firefox_console_down.png"> (на рисунке её не видно, но она присутствует в правом нижнем углу панели разработки).
-
-Об основных возможностях можно прочитать на сайте <a href="http://firebug.ru">firebug.ru</a>.
-
-## Internet Explorer   
-
-Панель разработчика запускается нажатием [key F12].
-
-Откройте её и зайдите на страницу с ошибкой: [bug.html](/devtools/bug.html). Если вы разобрались с Chrome/Firefox, то дальнейшее будет вам более-менее понятно, так как инструменты IE построены позже и по аналогии с Chrome/Firefox.
-
-## Safari   
-
-Горячие клавиши: [key Ctrl+Shift+I], [key Ctrl+Alt+C] для Mac -- [key Cmd] вместо [key Ctrl].
-
-Для доступа к функционалу разработки через меню:
-
-<ol>
-<li>
-В Safari первым делом нужно активировать меню разработки.
-
-Откройте меню, нажав на колесико справа-сверху и выберите `Настройки`.
-
-Затем вкладка `Дополнительно`:
+It is done on the "Advanced" pane of the preferences:
 
 <img src="safari.png">
 
-Отметьте `Показывать меню "Разработка" в строке меню`. Закройте настройки.
+Now [key Cmd+Alt+C] can toggle on the console. Also the new top menu item has appeared with many useful options.
+
+## Other browsers
+
+Most other browsers use [key F12] to open developer tools.
+
+The look & feel of them is quite similar, once we know how to use one of them (can start with Chrome), can easily switch to another.
+
+## Summary
+
+<ul>
+  <li>
+Developer tools allow us to see errors (crucial now), run commands, examine variables and much more.</li>
+<li>
+They can be opened with [key F12] for most browsers, with the exception of Chrome ([key Ctrl+Shift+J] / [key Cmd+Shift+J]) and Safari (need to enable, then [key Cmd+Alt+C]).
 </li>
-<li>Нажмите на колесико и выберите `Показать строку меню`.
+</ul>
 
-Инструменты будут доступны в появившейся строке меню, в пункте `Разработка`.</li>
-</ol>
-
-## Итого
-
-Мы разобрали, как открывать инструменты разработчика и смотреть ошибки, а также запускать простые команды, не отходя от браузера.
-
-Далее мы приступим к изучению JavaScript.
+Now we have the environment ready. In the next section we get down to JavaScript.
