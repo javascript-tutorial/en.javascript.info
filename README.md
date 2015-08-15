@@ -1,38 +1,26 @@
 
-# Учебник JavaScript
+# The JavaScript Tutorial
 
-Этот репозитарий содержит учебник JavaScript [https://learn.javascript.ru](https://learn.javascript.ru).
+This repository hosts the content of the JavaScript Tutorial, to be available on [https://javascript.info](https://javascript.info).
 
-Движок, написанный на io.js, находится в отдельном репозитарии https://github.com/iliakan/javascript-nodejs, а здесь &mdash; текст.
+The backend is written using [io.js](https://iojs.org/en/index.html). It is in the separate repo: [https://github.com/iliakan/javascript-nodejs](https://github.com/iliakan/javascript-nodejs), here is the text only.
 
-Делать исправления и предлагать PR по коду нужно там, по тексту учебника — здесь.
+Please use this repository to file issues and suggest PRs for the text.
 
-## Структура
+## Structure
 
-Каждому разделу, статье или задаче соответствует директория.
+Every chapter, article or task has it's folder.
 
-Эта директория имеет вид `N-url`, где `N` - это номер для сортировки статей и разделов (они упорядочены), а `url` &mdash; URL-имя, по которому материал будет доступен.
+The folder has the name `N-url`, where `N` is a number for the sorting and `url` — is the URL-address for the material.
 
-В директории находится один из файлов:
+The kind of the material is defined by the file inside the folder:
 
-  - `index.md` для раздела
-  - `article.md` для статьи
-  - `task.md` для условия задачи (+там же `solution.md` с решением)
+  - `index.md` means a chapter
+  - `article.md` means an article
+  - `task.md` means a task (+must also have `solution.md` with the solution)
 
-Каждый из этих файлов начинается с `# Заголовка материала`.
+Each of these files starts from the `# Main header`.
 
-Абсолютный URL для разделов и статей -- это URL-имя без номера и родителей, для задачи -- с префиксом `/task/`.
+Assets required for the material are in it's folder and can be referenced from the file.
 
-Например:
-
-  - директория `2-ui/3-event-details` с файлом `index.md` - это раздел сайта "События в деталях", он будет доступен по URL `/event-details`.
-  - директория `2-ui/3-event-details/6-drag-and-drop` с файлом `article.md` содержит статью "Мышь: Drag'n'Drop`, доступную по URL `/drag-and-drop`.
-  - директория `2-ui/3-event-details/6-drag-and-drop/slider` с файлом `task.md` содержит задачу с названием "Слайдер", доступную по адресу `/task/slider`.
-
-<blockquote>
-Заметим, что хотя структура директорий вложенная — URL-адреса "плоские". То есть, для URL берётся только название самой глубокой директории, без родителей: https://learn.javascript.ru/event-details, https://learn.javascript.ru/drag-and-drop и т.п. Это сделано специально, чтобы удобно было упорядочивать учебник, переносить статьи без изменения URL.
-</blockquote>
-
-Ресурсы и примеры, необходимые для статьи, раздела или задачи, находятся в её директории. На них можно ссылаться из материала.
-
-Все исправления и замечания, оформленные в виде Pull Request, будут учтены.
+For example, an `image.png` for the article should be in it's folder and accessed as `<img src="image.png">` from it's `article.md` file.
