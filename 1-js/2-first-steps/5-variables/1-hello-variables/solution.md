@@ -1,13 +1,13 @@
-Каждая строчка решения соответствует одному шагу задачи:
+In the code below, each line corresponds to the item in the task list.
 
 ```js
 //+ run
-var admin, name; // две переменных через запятую
+var admin, name; // can declare two variables at once
 
-name = "Василий";
+name = "John"; 
 
 admin = name;
 
-alert( admin ); // "Василий"
+alert( admin ); // "John"
 ```
 

@@ -1,9 +1,9 @@
-# Выведите alert
+# Show an alert
 
 [importance 5]
 
-Сделайте страницу, которая выводит "Я - JavaScript!".
+Create a page that shows a message "I'm JavaScript!".
 
-Создайте её на диске, откройте в браузере, убедитесь, что всё работает.
+Do it in a sandbox, or on your hard drive, doesn't matter, just ensure that it works.
 
 [demo src="solution"]

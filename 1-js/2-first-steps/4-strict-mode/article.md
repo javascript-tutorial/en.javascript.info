@@ -1,80 +1,55 @@
-# Современный стандарт, "use strict"
+# The modern mode, "use strict"
 
-Очень долго язык JavaScript развивался без потери совместимости. Новые возможности добавлялись в язык, но старые -- никогда не менялись, чтобы не "сломать" уже существующие HTML/JS-страницы с их использованием.
+For a long time JavaScript was evolving without compatibility issues. New features got added to the language, but the old ones did not change.
 
-Однако, это привело к тому, что любая ошибка в дизайне языка становилась "вмороженной" в него навсегда. 
+That had the benefit of never breaking the existing code. But the back side is that any mistake or imprefect decision made by JavaScript creators got stuck in the language forever.
 
-Так было до появления стандарта EcmaScript 5 (ES5), который одновременно добавил новые возможности и внёс в язык ряд исправлений, которые могут привести к тому, что старый код, который был написан до его появления, перестанет работать.
+It had been so before EcmaScript 5 (ES5) appeared with added new features to the language and modified some of the existing ones. 
 
-Чтобы этого не случилось, решили, что по умолчанию эти опасные изменения будут выключены, и код будет работать по-старому. А для того, чтобы перевести код в режим полного соответствия современному стандарту, нужно указать специальную директиву `use strict`. 
-
-Эта директива не поддерживается IE9-.
+To keep old code working, by default most modifications of the pre-existing features are off. We need to enable them manually with a special directive `use strict`. 
 
 [cut]
 
-## Директива use strict
+## "use strict"
 
-Директива выглядит как строка `"use strict";` или `'use strict';` и ставится в начале скрипта.
+The directive looks like a string `"use strict";` or `'use strict';`. When it is located on the top of the script, then the whole script works the "modern" way.
 
-Например:
+For example
 
 ```js
 "use strict";
 
-// этот код будет работать по современному стандарту ES5
+// this code works the modern way
 ...
 ```
 
-[warn header="Отменить действие `use strict` никак нельзя"]
-Не существует директивы `no use strict` или подобной, которая возвращает в старый режим. 
+[warn header="There's no way to cancel `use strict`"]
+There is no directive `"no use strict"` or alike, that would return the old behavior.
 
-Если уж вошли в современный режим, то это дорога в один конец.
+Once we enter the strict mode, there's no return.
 [/warn]
 
-[smart header="`use strict` для функций"]
-Через некоторое время мы будем проходить [функции](/function-basics). На будущее заметим, что `use strict` также можно указывать в начале функций, тогда строгий режим будет действовать только внутри функции.
+[smart header="`use strict` for functions"]
+We will learn [functions](/function-basics) very soon. For the future let's note that `use strict` can be put at the start of a function instead of the whole script. Then the strict mode is enabled in this function only.
 [/smart]
 
-В следующих главах мы будем подробно останавливаться на отличиях в работе языка при `use strict` и без него.
+## Do I really need "use strict"?
 
-## Нужен ли мне "use strict"?
+Actually, yes. All modern browsers support it.
 
-Если говорить абстрактно, то -- да, нужен. В строгом режиме исправлены некоторые ошибки в дизайне языка, и вообще, современный стандарт -- это хорошо.
+More than that, there are several JavaScript features that enable strict mode implicitly, "by default". So if we use for example [classes](/classes) (covered later), they implicitly switch the interpreter to "strict mode". 
 
-Однако, есть и две проблемы.
+So there's no way to stay modern and evade `"use strict"`. Let's put it everywhere.
 
-<dl>
-<dt>Поддержка браузеров IE9-, которые игнорируют `"use strict"`.</dt>
-<dd>Предположим, что мы, используя `"use strict"`, разработали код и протестировали его в браузере Chrome. Всё работает... Однако, вероятность ошибок при этом в IE9- выросла! Он-то всегда работает по старому стандарту, а значит, иногда по-другому. Возникающие ошибки придётся отлаживать уже в IE9-, и это намного менее приятно, нежели в Chrome. 
+The only downside is Internet Explorer prior to version 10. Those browsers do not support `use strict`, so we need to make sure that our code is compatible with the old behavior. That won't cause any problems for us.
 
-Впрочем, проблема не так страшна. Несовместимостей мало. И если их знать (а в учебнике мы будем останавливаться на них) и писать правильный код, то всё будет в порядке и `"use strict"` станет нашим верным помощником. 
-</dd>
-<dt>Библиотеки, написанные без учёта `"use strict"`.</dt>
-<dd>Некоторые библиотеки, которые написаны без `"use strict"`, не всегда корректно работают, если вызывающий код содержит `"use strict"`.
+Another minor problem is the 3rd party libraries, few of them are written without `use strict` in mind and do not work correctly when the calling code is in the strict mode. But that happens very rarely.
 
-В первую очередь имеются в виду сторонние библиотеки, которые писали не мы, и которые не хотелось бы переписывать или править.
+All code in the tutorial works correctly in `use strict`.
 
-Таких библиотек мало, но при переводе давно существующих проектов на `"use strict"` эта проблема возникает с завидной регулярностью.
-</dd>
-</dl>
+## Summary
 
-Вывод? 
+Here we got acquanted with the notion of a "strict mode".
 
-**Писать код с `use strict` следует лишь в том случае, если вы уверены, что описанных выше проблем не будет.**
-
-Конечно же, весь код, который находится в этом учебнике, корректно работает в режиме `"use strict"`.
-
-## ES5-shim [#es5-shim]
-
-Браузер IE8 поддерживает только совсем старую версию стандарта JavaScript, а именно ES3. 
-
-К счастью, многие возможности современного стандарта можно добавить в этот браузер, подключив библиотеку [ES5 shim](https://github.com/es-shims/es5-shim), а именно -- скрипты `es5-shim.js` и `es5-sham.js` из неё.
-
-## Итого
-
-В этой главе мы познакомились с понятием "строгий режим".
-
-Далее мы будем предполагать, что разработка ведётся либо в современном браузере, либо в IE8- с подключённым [ES5 shim](https://github.com/es-shims/es5-shim). Это позволит нам использовать большинство возможностей современного JavaScript во всех браузерах.
-
-Очень скоро, буквально в следующей главе, мы увидим особенности строгого режима на конкретных примерах.
+It is strongly advised to use it everywhere. Very soon, in the next chapter we'll see the differences of the strict mode in examples.
 

@@ -1,104 +1,98 @@
-# Внешние скрипты, порядок исполнения
+# External scripts
 
-Если JavaScript-кода много -- его выносят в отдельный файл, который подключается в HTML:
+If we have a lot of JavaScript code, it can be put into a separate file. 
+
+The script file is attached to HTML like this:
 
 ```html
 <script src="/path/to/script.js"></script>
 ```
 
-Здесь `/path/to/script.js` -- это абсолютный путь к файлу, содержащему скрипт (из корня сайта). 
+Here `/path/to/script.js` is an absolute path to the file with the script (from the site root).
 
-Браузер сам скачает скрипт и выполнит.
-
-Можно указать и полный URL, например:
+We can give a full URL too, for instance:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 ```
 
-Вы также можете использовать путь относительно текущей страницы. Например, `src="lodash.js"` обозначает файл из текущей директории.
+It is also possible to provide a path relative to the current page. For instance,  `src="lodash.js"` means a file from the current folder.
 
-Чтобы подключить несколько скриптов, используйте несколько тегов:
+To attach several scripts, use multiple tags:
 
 ```html
 <script src="/js/script1.js"></script>
 <script src="/js/script2.js"></script>
-...
+…
 ```
 
 [smart]
-Как правило, в HTML пишут только самые простые скрипты, а сложные выносят в отдельный файл.
+As a rule, only simplest scripts are put into HTML. More complex ones reside in separate files.
 
-Браузер скачает его только первый раз и в дальнейшем, при правильной настройке сервера, будет брать из своего [кеша](http://ru.wikipedia.org/wiki/%D0%9A%D1%8D%D1%88).
+The benefit is that the browser will download it only once, and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 
-Благодаря этому один и тот же большой скрипт, содержащий, к примеру, библиотеку функций, может использоваться на разных страницах без полной перезагрузки с сервера.  
+After it, other pages which want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
+
+That saves traffic and makes the future pages faster.
 [/smart]
 
 
-[warn header="Если указан атрибут `src`, то содержимое тега игнорируется."]
+[warn header="If `src` is set, the script content is ignored."]
+A single `<script>` tag may not both contain an `src` and the code.
 
-В одном теге `SCRIPT` нельзя одновременно подключить внешний скрипт и указать код. 
-
-Вот так не cработает:
+This won't work:
 
 ```html
 <script *!*src*/!*="file.js">
-  alert(1); // так как указан src, то внутренняя часть тега игнорируется
+  alert(1); // the content is ignored, because src is set
 </script>
 ```
 
-Нужно выбрать: либо `SCRIPT` идёт с `src`, либо содержит код. Тег выше следует разбить на два: один -- с `src`, другой -- с кодом, вот так:
+One needs to choose: either `<script src="…">` or `<script>` with code. The example above should be split into two scripts: with `src` and with the code.
 
 ```html
 <script src="file.js"></script>
 <script>
-  alert( 1 );
+  alert(1);
 </script>
 ```
-
 [/warn]
 
-## Асинхронные скрипты: defer/async
+## Asynchronous scripts: defer/async
 
-Браузер загружает и отображает HTML постепенно. Особенно это заметно при медленном интернет-соединении: браузер не ждёт, пока страница загрузится целиком, а показывает ту часть, которую успел загрузить.
+Browser loads and shows HTML gradually as it comes. That's clearly noticeable on the slow internet connection. The browser doesn't wait for the page to load fully. It shows the part that has been loaded already, and then adds content to it as it loads.
 
-Если браузер видит тег `<script>`, то он по стандарту обязан сначала выполнить его, а потом показать оставшуюся часть страницы.
+When the browser meets a `<script>` tag, it must execute it first and after that show the rest of the page.
 
-Например, в примере ниже -- пока все кролики не будут посчитаны -- нижний `<p>` не будет показан:
+For example, in the code below -- until all rabbits are counted, the bottom `<p>` is not shown:
 
 ```html
 <!--+ run height=100 -->
 <!DOCTYPE HTML>
 <html>
-
-<head>
-  <meta charset="utf-8">
-</head>
-
 <body>
 
-  <p>Начинаем считать:</p>
+  <p>Let's count:</p>
 
 *!*
   <script>
-    alert( 'Первый кролик!' );
-    alert( 'Второй кролик!' );
-    alert( 'Третий кролик!' );
+    alert( 'The 1st rabbit!' );
+    alert( 'The 2nd rabbit!' );
+    alert( 'The 3rd rabbit!' );
   </script>
 */!*
 
-  <p>Кролики посчитаны!</p>
+  <p>Rabbits counted!</p>
 
 </body>
-
 </html>
 ```
 
-Такое поведение называют "синхронным". Как правило, оно вполне нормально, но есть важное следствие.
+The behavior is called "synchronous". Usually it causes no problems, but there's an important consequence.
 
-**Если скрипт -- внешний, то пока браузер не выполнит его, он не покажет часть страницы под ним.**
+**If the script is external, then until the browser executes it, it can't show the page below.**
 
-То есть, в таком документе, пока не загрузится и не выполнится `big.js`, содержимое `<body>` будет скрыто:
+So, in this document, until `big.js` loads and executes, the `<body>` content is hidden:
 
 ```html
 <html>
@@ -108,144 +102,155 @@
 */!*
 </head>
 <body>
-  Этот текст не будет показан, пока браузер не выполнит big.js.
+  This text is not shown until the browser executes big.js.
 </body>
 </html>
 ```
 
-И здесь вопрос -- действительно ли мы этого хотим? То есть, действительно ли оставшуюся часть страницы нельзя показывать до загрузки скрипта? 
+The question is -- do we really want that? 
 
-Есть ситуации, когда мы не только НЕ хотим такой задержки, но она даже опасна.
+Most of time, we don't.
 
-Например, если мы подключаем внешний скрипт, который показывает рекламу или вставляет счётчик посещений, а затем идёт наша страница. Конечно, неправильно, что пока счётчик или реклама не подгрузятся -- оставшаяся часть страницы не показывается. Счётчик посещений не должен никак задерживать отображение страницы сайта. Реклама тоже не должна тормозить сайт и нарушать его функционал.
+Sometimes, the script contains a very important code that really must be loaded before the rest of the page is parsed (and the scripts below executed). But most of time we'd like to let the visitor see the content while the script is loading.
 
-А что, если сервер, с которого загружается внешний скрипт, перегружен? Посетитель в этом случае может ждать очень долго!
+[warn header="Blocking is dangerous"]
+There are situations when such blocking is even dangerous.
 
-Вот пример, с подобным скриптом (стоит искусственная задержка загрузки):
+Let's say we attach a script from the banner system, or a 3rd-party integration code.
+
+It's just wrong that the rest of the page is not shown until the banner system initialized. The banner is not that important.
+
+And what if their server is overloaded and responds slowly? Our visitors will wait even more.
+
+Here's an example of such "slow" script (the delay is artificial here):
 
 ```html
 <!--+ run height=100 -->
-<p>Важная информация не покажется, пока не загрузится скрипт.</p>
+<p>Important information below is not shown until the script loads and executes.</p>
 
-<script src="https://js.cx/hello/ads.js?speed=0"></script>
+<script src="https://en.js.cx/hello/ads.js?speed=0"></script>
 
-<p>...Важная информация!</p>
+<p>…Important information!</p>
 ```
+[/warn]
 
-Что делать?
+So, how to "fix" the blocking behavior?
 
-Можно поставить все подобные скрипты в конец страницы -- это уменьшит проблему, но не избавит от неё полностью, если скриптов несколько. Допустим, в конце страницы 3 скрипта, и первый из них тормозит -- получается, другие два его будут ждать -- тоже нехорошо.
+Our first attempt could be to put all such scripts to the bottom of the `<body>`, after all content. Then the browser will show the content first and then load the script. Problem gone.
 
-Кроме того, браузер дойдёт до скриптов, расположенных в конце страницы, они начнут грузиться только тогда, когда вся страница загрузится. А это не всегда правильно. Например, счётчик посещений наиболее точно сработает, если загрузить его пораньше.
+But the solution is not perfect:
 
-Поэтому "расположить скрипты внизу" -- не лучший выход.
+<ol>
+<li>The script won't start loading until the whole page loads. If the page is large, then the delay may be significant. We'd like the browser to start loading a script early.</li>
+<li>If there is more than one scripts at the bottom of the page, and the first script is slow, then the second one will still has wait for it. Scripts still depend one on another, that's not always welcome. Ads and counter can run independently.</li>
+</ol>
 
-Кардинально решить эту проблему помогут атрибуты `async` или `defer`:
+And here come the attributes `async` and `defer`.
+
 <dl>
-<dt>Атрибут `async`</dt>
-<dd>Поддерживается всеми браузерами, кроме IE9-. Скрипт выполняется полностью асинхронно. То есть, при обнаружении `<script async src="...">` браузер не останавливает обработку страницы, а спокойно работает дальше. Когда скрипт будет загружен -- он выполнится.</dd>
-<dt>Атрибут `defer`</dt>
-<dd>Поддерживается всеми браузерами, включая самые старые IE. Скрипт также выполняется асинхронно, не заставляет ждать страницу, но есть два отличия от `async`.
+<dt>The `async` attribute.</dt>
+<dd>The script is executed asynchronously. In other words, when the browser meets `<script async src="...">`, it does not stop showing the page. It just initiates script loading and goes on. When the script loads -- it runs.</dd>
+<dt>The `defer` attribute.</dt>
+<dd>The script with `defer` also executes asynchronously, like async. But there are two essential differences.
 
-Первое -- браузер гарантирует, что относительный порядок скриптов с `defer` будет сохранён. 
+First -- the browser guarantees to keep the relative order of scripts with `defer`.
 
-То есть, в таком коде (с `async`) первым сработает тот скрипт, который раньше загрузится:
+For example, in the code below (with `async`) there are two scripts. The one which loads first will run first.
 
 ```html
 <script src="1.js" async></script>
 <script src="2.js" async></script>
 ```
 
-А в таком коде (с `defer`) первым сработает всегда `1.js`, а скрипт `2.js`, даже если загрузился раньше, будет его ждать.
+With `async` it may happen that `2.js` will run before `1.js`. Scripts are totally independent.
+
+And in the other code `defer` is used, which forces browser to keeps execution order. Even if `2.js` loads first, it will execute after `1.js`:
 
 ```html
 <script src="1.js" defer></script>
 <script src="2.js" defer></script>
 ```
 
-Поэтому атрибут `defer` используют в тех случаях, когда второй скрипт `2.js` зависит от первого `1.js`, к примеру -- использует что-то, описанное первым скриптом.
+So `defer` is used when the second script `2.js` depends on the first one `1.js`, say uses something described in the first script.
 
-Второе отличие -- скрипт с `defer` сработает, когда весь HTML-документ будет обработан браузером. 
+The second difference -- script with `defer` always works when the HTML-document is fully processed by the browser.
 
-Например, если документ достаточно большой...
+For example, when the document is large...
+
 ```html
 <script src="async.js" async></script>
 <script src="defer.js" defer></script>
 
-Много много много букв
+Too long text. Didn't read. Many words.
 ```
 
-...То скрипт `async.js` выполнится, как только загрузится -- возможно, до того, как весь документ готов. А `defer.js` подождёт готовности всего документа.
+...Then `async.js` executes when it runs -- possibly, before the text is fully loaded. In contrast, `defer.js` always waits for the full document to be ready.
 
-Это бывает удобно, когда мы в скрипте хотим работать с документом, и должны быть уверены, что он полностью получен.
+It's great to have the choice here. Sometimes a script doesn't need the document at all (like a counter), then `async` is superb. And if we need the whole document to process it, then `defer` will work nice.
 </dd>
 </dl>
 
-[smart header="`async` вместе с `defer`"]
-При одновременном указании `async` и `defer` в современных браузерах будет использован только `async`, в IE9- -- только `defer` (не понимает `async`).
+[smart header="`async` together with `defer`"]
+We can't use both `defer` and `async` on a single script. If we do that, `defer` will be ignored.
 [/smart]
 
-[warn header="Атрибуты `async/defer` -- только для внешних скриптов"]
-Атрибуты `async/defer` работают только в том случае, если назначены на внешние скрипты, т.е. имеющие `src`. 
+[warn header="Attributes `async/defer` -- only for external scripts"]
+Attribute `async/defer` work only when set on a script with `src`.
 
-При попытке назначить их на обычные скрипты <code>&lt;script&gt;...&lt;/script&gt;</code>, они будут проигнороированы.
+On a script without `src` like <code>&lt;script&gt;...&lt;/script&gt;</code>, they will be ignored.
 [/warn]
 
-Тот же пример с `async`:
+Let's modify the "blocking script" example that we've seen before, adding `async`:
 
 ```html
 <!--+ run height=100 -->
-<p>Важная информация теперь не ждёт, пока загрузится скрипт...</p>
+<p>Important information below is not shown until the script loads and executes.</p>
 
-<script *!*async*/!* src="https://js.cx/hello/ads.js?speed=0"></script>
+<script *!*async*/!* src="https://en.js.cx/hello/ads.js?speed=0"></script>
 
-<p>...Важная информация!</p>
+<p>…Important information!</p>
 ```
 
-При запуске вы увидите, что вся страница отобразилась тут же, а `alert` из внешнего скрипта появится позже, когда загрузится скрипт. 
+Now if we run it, we'll see that the whole document is displayed immediately, and the external script runs when it loads.
 
-[smart header="Эти атрибуты давно \"в ходу\""]
-Большинство современных систем рекламы и счётчиков знают про эти атрибуты и используют их.
+[smart header="Running ahead..."]
+For an advanced reader who knows that new tags can be added on page dynamically, we'd like to note that the `<script>` tags added in such a way behave as if they have `async`.
 
-Перед вставкой внешнего тега `<script>` понимающий программист всегда проверит, есть ли у него подобный атрибут. Иначе медленный скрипт может задержать загрузку страницы.
-[/smart]
+In other words, they run as they load without an order.
 
-[smart header="Забегая вперёд"]
-Для продвинутого читателя, который знает, что теги `<script>` можно добавлять на страницу в любой момент при помощи самого javascript, заметим, что скрипты, добавленные таким образом, ведут себя так же, как `async`. То есть, выполняются как только загрузятся, без сохранения относительного порядка.
+If we'd like to add several `<script>` tags on the page and keep their execution order, it is possible via `script.async = false`.
 
-Если же нужно сохранить порядок выполнения, то есть добавить несколько скриптов, которые выполнятся строго один за другим, то используется свойство `script.async = false`.
-
-
-Выглядит это примерно так:
+Like this:
 ```js
 function addScript(src);
   var script = document.createElement('script');
   script.src = src;
 *!*
-  script.async = false; // чтобы гарантировать порядок 
+  script.async = false; 
 */!*
   document.head.appendChild(script);
 }
 
-addScript('1.js'); // загружаться эти скрипты начнут сразу
-addScript('2.js'); // выполнятся, как только загрузятся
-addScript('3.js'); // но, гарантированно, в порядке 1 -> 2 -> 3
+addScript('1.js'); // all these scripts will start loading immediately
+addScript('2.js'); // but execute in the order of insertion
+addScript('3.js'); // that is: 1 -> 2 -> 3
 ```
 
-Более подробно работу со страницей мы разберём во второй части учебника.
+We'll cover page manipulation in detail later, in the second part of the tutorial.
 [/smart]
 
 
-## Итого
+## Summary
 
 <ul>
-<li>Скрипты вставляются на страницу как текст в теге `<script>`, либо как внешний файл через `<script src="путь"></script>`</li>
-<li>Специальные атрибуты `async` и `defer` используются для того, чтобы пока грузится внешний скрипт -- браузер показал остальную (следующую за ним) часть страницы. Без них этого не происходит.</li>
-<li>Разница между `async` и `defer`: атрибут `defer` сохраняет относительную последовательность скриптов, а `async` -- нет. Кроме того, `defer` всегда ждёт, пока весь HTML-документ будет готов, а `async` -- нет.</li>
+<li>Scripts in an external file can be inserted on the page via `<script src="path"></script>`.</li>
+<li>Normally, the browser doesn't show the document after the script until it executes. Unless the script has `async` or `defer` attributes.</li>
+<li>Both `async` and `defer` allow the browser to start script loading and then continue to parse/show the page. They both only work on external scripts.</li>
+<li>The difference is that `defer` keeps the relative script order and always executes after the document is fully loaded. In contrast, `async` script executes when it loads, without any conditions.</li>
 </ul>
 
-Очень важно не только читать учебник, но делать что-то самостоятельно.
+Most modern systems that provide scripts know about these attributes and use them.
 
-Решите задачки, чтобы удостовериться, что вы всё правильно поняли.
+Before inserting an external `<script>` tag, one should always check if it should block the page or not. Especially if it's a 3rd-party script. And if not, then `defer/async` can come in handy.
 
 

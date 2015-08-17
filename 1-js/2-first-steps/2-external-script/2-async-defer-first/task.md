@@ -1,24 +1,24 @@
-# Какой скрипт выполнится первым?
+# Which script executes first?
 
 [importance 4]
 
-В примере ниже подключены два скрипта `small.js` и `big.js`.
+In the questions below, there are two scripts: `small.js` and `big.js`.
 
-Если предположить, что `small.js` загружается гораздо быстрее, чем `big.js` --  какой выполнится первым?
+If we assume that `small.js` loads much faster compared to `big.js` -- which script executes first?
 
 ```html
 <script src="big.js"></script>
 <script src="small.js"></script>
 ```
 
-А вот так?
+What if we add `async`?
 
 ```html
 <script async src="big.js"></script>
 <script async src="small.js"></script>
 ```
 
-А так?
+What if we switch to `defer`?
 
 ```html
 <script defer src="big.js"></script>

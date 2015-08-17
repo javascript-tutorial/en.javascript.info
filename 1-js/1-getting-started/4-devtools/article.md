@@ -24,7 +24,7 @@ Open the page [bug.html](bug.html).
 
 There's an error in the JavaScript code on it. An ordinary visitor won't see it, we need t open developer tools for that.
 
-Press the keys [key Ctrl+Shift+J] or, if you're on Mac, then [key Cmd+Shift+J].
+Press the key [key F12] or, if you're on Mac, then [key Cmd+Opt+J].
 
 The developer tools will open on the Console tab by default.
 
@@ -51,7 +51,7 @@ It is done on the "Advanced" pane of the preferences:
 
 <img src="safari.png">
 
-Now [key Cmd+Alt+C] can toggle on the console. Also the new top menu item has appeared with many useful options.
+Now [key Cmd+Opt+C] can toggle the console. Also the new top menu item has appeared with many useful options.
 
 ## Other browsers
 
@@ -62,10 +62,8 @@ The look & feel of them is quite similar, once we know how to use one of them (c
 ## Summary
 
 <ul>
-  <li>
-Developer tools allow us to see errors (crucial now), run commands, examine variables and much more.</li>
-<li>
-They can be opened with [key F12] for most browsers, with the exception of Chrome ([key Ctrl+Shift+J] / [key Cmd+Shift+J]) and Safari (need to enable, then [key Cmd+Alt+C]).
+  <li>Developer tools allow us to see errors (crucial now), run commands, examine variables and much more.</li>
+<li>They can be opened with [key F12] for most browsers under Windows. Chrome for Mac needs [key Cmd+Opt+J], Safari: [key Cmd+Opt+C] (need to enable first).
 </li>
 </ul>
 

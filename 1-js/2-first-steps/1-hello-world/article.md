@@ -6,89 +6,72 @@ In this chapter we'll create a simple script and see it working.
 ## The "script" tag
 
 [smart header="What if I want to move faster?"]
-In the case if the impatient reader developed with JavaScript already or has a lot of experience in another language, he can skip detailed explanatins and jump to [](/javascript-specials). There he can find a condensed essense of important features.
+In the case if an impatient reader has developed with JavaScript already or has a lot of experience in another language, he can skip detailed explanatins and jump to [](/javascript-specials). There he can find an essense of important features.
 
 If you have enough time and want to learn things in details then read on :)
 [/smart]
 
-Программы на языке JavaScript можно вставить в любое место HTML при помощи тега `SCRIPT`. Например:
+JavaScript programs can be inserted in any place of HTML with the help of the `<script>` tag.
+
+For instance:
 
 ```html
 <!--+ run height=100 -->
 <!DOCTYPE HTML>
 <html>
 
-<head>
-  <!-- Тег meta для указания кодировки -->
-  <meta charset="utf-8">
-</head>
-
 <body>
 
-  <p>Начало документа...</p>
+  <p>Document start...</p>
+
 *!*
   <script>
-    alert( 'Привет, Мир!' );
+    alert( 'Hello, world!' );
   </script>
 */!*
 
-  <p>...Конец документа</p>
+  <p>...Document end.</p>
 
 </body>
 
 </html>
 ```
 
-Этот пример использует следующие элементы:
- 
-<dl>
-<dt><code>&lt;script&gt; ... &lt;/script&gt;</code></dt>
-<dd>Тег `script` содержит исполняемый код. Предыдущие стандарты HTML требовали обязательного указания атрибута `type`, но сейчас он уже не нужен. Достаточно просто `<script>`.
+You can run the example clicking on a "Play" button in it's right-top corner.
 
-Браузер, когда видит `<script>`:
+The `<script>` tag contains JavaScript code which is automatically executed when the browser meets the tag.
+
+Please note the sequence:
+
 <ol>
-<li>Начинает отображать страницу, показывает часть документа до `script`</li>
-<li>Встретив тег `script`, переключается в JavaScript-режим и не показывает, а исполняет его содержимое.</li>
-<li>Закончив выполнение, возвращается обратно в HTML-режим и *только тогда* отображает оставшуюся часть документа.</li>
+<li>Browser starts to parse/show the document, makes it up to the `<script>`.</li>
+<li>When the browser meets `<script>`, it switches to the JavaScript execution mode. In this mode it executes the script. In this case `alert` command is used which shows a message.</li>
+<li>When the script is finished, it gets back to the HTML-mode, and *only then* it shows the rest of the document.</li>
 </ol>
 
-Попробуйте этот пример в действии, и вы сами всё увидите.
-</dd>
-<dt>`alert(сообщение)`</dt>
-<dd>Отображает окно с сообщением и ждёт, пока посетитель не нажмёт "Ок".</dd>
-</dl>
+So, a visitor won't see the content after the script until the script finishes to execute.
 
-[smart header="Кодировка и тег `META`"]
-При попытке сделать такой же файл у себя на диске и запустить, вы можете столкнуться с проблемой -- выводятся "кракозяблы", "квадратики" и "вопросики" вместо русского текста.
-
-Чтобы всё было хорошо, нужно:
-<ol>
-<li>Убедиться, что в `HEAD` есть строка `<meta charset="utf-8">`. Если вы будете открывать файл с диска, то именно он укажет браузеру кодировку.</li>
-<li>Убедиться, что редактор сохранил файл именно в кодировке UTF-8, а не, скажем, в `windows-1251`.</li>
-</ol>
-
-Указание кодировки -- часть обычного HTML, я упоминаю об этом "на всякий случай", чтобы не было сюрпризов при запуске примеров локально.
-[/smart]
+People say about that: "a `<script>` tag blocks rendering".
 
 
-## Современная разметка для SCRIPT
+## The modern markup
 
-В старых скриптах оформление тега `SCRIPT` было немного сложнее. В устаревших руководствах можно встретить следующие элементы: 
+In the past, `<script>` had a few necessary attributes.
+
+We can find the following in the old code:
 
 <dl>
- <dt>Атрибут <code>&lt;script <u>type</u>=...&gt;</code></dt>
+ <dt>The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code></dt>
 
- <dd>В отличие от HTML5, стандарт HTML 4 требовал обязательного указания этого атрибута. Выглядел он так: `type="text/javascript"`. Если указать другое значение `type`, то скрипт выполнен не будет.
-
- В современной разработке атрибут `type` не обязателен.
+ <dd>The old standard HTML4 required a script to have the type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default, no attribute is required.
 </dd>
 
- <dt>Атрибут <code>&lt;script <u>language</u>=...&gt;</code></dt>
-  <dd>Этот атрибут предназначен для указания языка, на котором написан скрипт. По умолчанию, язык -- JavaScript, так что и этот атрибут ставить не обязательно.</dd>
-<dt>Комментарии до и после скриптов</dt>
-<dd>В совсем старых руководствах и книгах иногда рекомендуют использовать HTML-комментарии внутри `SCRIPT`, чтобы спрятать Javascript от браузеров, которые не поддерживают его. 
+ <dt>The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code></dt>
+  <dd>This attribute was meant to show the language of the script. Certain outdated browsers supported other languages at that time. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.</dd>
+<dt>Comments before and after scripts.</dt>
+<dd>In the most pre-historic books and guides, `<script>` may have comments inside.
 
-Выглядит это примерно так:
+Like this:
 
 ```html
 <!--+ no-beautify -->
@@ -97,9 +80,9 @@ If you have enough time and want to learn things in details then read on :)
 //--></script>
 ```
 
-Браузер, для которого предназначались такие трюки, очень старый Netscape, давно умер. Поэтому в этих комментариях нет нужды.
+These comments were supposed to hide the code from an old browser that did't understand a `<script>` tag. But all browsers from the past 15 years know about `<script>`, so that's a really ancient theme. Giving this for the sake of completeness only. So if you see such code somewhere you know the guide is really ancient and not worth looking into.
 </dd>
 </dl>
 
-Итак, для вставки скрипта мы просто пишем `<script>`, без дополнительных атрибутов и комментариев.
+In summary, we just use `<script>` to add some code to the page, without additional attributes and comments.
 

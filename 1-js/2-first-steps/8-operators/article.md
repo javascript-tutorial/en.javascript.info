@@ -1,13 +1,11 @@
-# Основные операторы
+# Operators
 
-Для работы с переменными, со значениями, JavaScript поддерживает все стандартные операторы, большинство которых есть и в других языках программирования.
+Many operators are known to us from the school program. It is an addition `+`, a multiplication `*`, a subsctraction and so on.
 
-Несколько операторов мы знаем со школы -- это обычные сложение `+`, умножение `*`, вычитание и так далее.
-
-В этой главе мы сконцентрируемся на операторах, которые в курсе математики не проходят, и на их особенностях в JavaScript.
+In this chapter we mainly concentrate on aspects not covered by the arithmetic.
 [cut]
 
-## Термины: "унарный", "бинарный", "операнд"
+## Terms: "unary", "binary", "operand"
 
 У операторов есть своя терминология, которая используется во всех языках программирования.
 

@@ -1,10 +1,10 @@
-# Работа с переменными
+# Working with variables
 
 [importance 2]
 
 <ol>
-<li>Объявите две переменные: `admin` и `name`. </li>
-<li>Запишите в `name` строку `"Василий"`. </li>
-<li>Скопируйте значение из `name` в `admin`.</li>
-<li>Выведите `admin` (должно вывести "Василий").</li>
+<li>Declare two variables: `admin` and `name`. </li>
+<li>Assign the value `"John"` to `name`.</li>
+<li>Copy the value from `name` to `admin`.</li>
+<li>Show the value of `admin` using `alert` (must output "John").</li>
 </ol>

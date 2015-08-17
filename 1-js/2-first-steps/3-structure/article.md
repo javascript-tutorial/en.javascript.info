@@ -1,45 +1,46 @@
-# Структура кода
+# Code structure
 
-В этой главе мы рассмотрим общую структуру кода, команды и их разделение.
+In this section we explore the code structure and statements.
+
 [cut]
-## Команды
+## Statements
 
-Раньше мы уже видели пример команды: `alert('Привет, мир!')` выводит сообщение.
+We've already seen an example of a statement: `alert('Hello, world!')` shows the message.
 
-Для того, чтобы добавить в код ещё одну команду -- можно поставить её после точки с запятой.
+To add one more statement to the code, it can be separated with a semicolon.
 
-Например, вместо одного вызова `alert` сделаем два:
-
-```js
-//+ run no-beautify
-alert('Привет'); alert('Мир');
-```
-
-Как правило, каждая команда пишется на отдельной строке -- так код лучше читается:
+Let's make split the message into two messages:
 
 ```js
 //+ run no-beautify
-alert('Привет'); 
-alert('Мир');
+alert('Hello'); alert('World');
 ```
 
-## Точка с запятой [#semicolon]
-
-Точку с запятой *во многих случаях* можно не ставить, если есть переход на новую строку. 
-
-Так тоже будет работать:
+Usually each statement is written on a separate line -- thus the code becomes more readable:
 
 ```js
 //+ run no-beautify
-alert('Привет') 
-alert('Мир')
+alert( 'Hello' ); 
+alert( 'World' );
 ```
 
-В этом случае JavaScript интерпретирует переход на новую строчку как разделитель команд и автоматически вставляет "виртуальную" точку с запятой между ними. 
+## The semicolon [#semicolon]
 
-**Однако, важно то, что "во многих случаях" не означает "всегда"!**
+The semicolon may be omitted in most cases when a line break exists.
 
-Например, запустите этот код:
+This would also work:
+
+```js
+//+ run no-beautify
+alert( 'Hello' ) 
+alert( 'World' )
+```
+
+In this case JavaScript interprets the line break as a splitter and automatically assumes a "virtual" semicolon between them.
+
+**But it's important that "in most cases" does not mean "always"!**
+
+Consider this code as an example:
 
 ```js
 //+ run no-beautify
@@ -48,99 +49,103 @@ alert(3 +
 + 2);
 ```
 
-Выведет 6.
+It outputs `6`.
 
-То есть, точка с запятой не ставится. Почему? Интуитивно понятно, что здесь дело в "незавершённом выражении", конца которого JavaScript ждёт с первой строки и поэтому не ставит точку с запятой. И здесь это, пожалуй, хорошо и приятно.
+JavaScript does not insert semicolons here. It is intuitively obvious that the reason is the "uncomplete expression". JavaScript notes that the line ends with a plus `+` and awaits the expression to continue on the next line. And that is actually fine and comfortable here.
 
-**Но в некоторых важных ситуациях JavaScript "забывает" вставить точку с запятой там, где она нужна.**
+**But there are situations where "fails" to assume a semicolon where it is really needed.**
 
-Таких ситуаций не так много, но ошибки, которые при этом появляются, достаточно сложно обнаруживать и исправлять. 
+Errors which come appear in such cases are quite hard to find and fix.
 
-Чтобы не быть голословным, вот небольшой пример.
+[smart header="An example of the error"]
+For a curious reader who might be interested in a concrete example, check this code out:
 
-Такой код работает:
 ```js
 //+ run
 [1, 2].forEach(alert)
 ```
 
-Он выводит по очереди `1`, `2`. Почему он работает -- сейчас не важно, позже разберёмся.
+It shows `1` then `2`. How it works -- does not matter now, we'll get deal with it later.
 
-Важно, что вот такой код уже работать не будет:
+But let's insert an `alert` without a semicolon before it:
 
 ```js
 //+ run no-beautify
-alert("Сейчас будет ошибка")
+alert( "Without a semicolon we get an error here" )
 [1, 2].forEach(alert)
 ```
 
-Выведется только первый `alert`, а дальше -- ошибка. Потому что перед квадратной скобкой JavaScript точку с запятой не ставит, а как раз здесь она нужна (упс!).
+Now only the first `alert` is shown, not the numbers. And we can see an error in the browser console. That's actually because JavaScript does not insert a semicolon before square brackets `[...]` and misinterprets the code.
 
-Если её поставить, то всё будет в порядке:
+Everything's fine if we add a semicolon:
 ```js
 //+ run
-alert( "Сейчас будет ошибка" );
+alert( "With the semicolon everything works" );
 [1, 2].forEach(alert)
 ```
+[/smart]
 
-**Поэтому в JavaScript рекомендуется точки с запятой ставить. Сейчас это, фактически, стандарт, которому следуют все большие проекты.**
+As a conclusion, it's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community.
 
-## Комментарии
+## Comments
 
-Со временем программа становится большой и сложной. Появляется необходимость добавить *комментарии*, которые объясняют, что происходит и почему.
+As the time goes, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
 
-Комментарии могут находиться в любом месте программы и никак не влияют на её выполнение. Интерпретатор JavaScript попросту игнорирует их.
+Comments can be put into any place of the script. They don't affect it's execution. The JavaScript interpreter simply ignores them.
 
-*Однострочные комментарии* начинаются с двойного слэша `//`. Текст считается комментарием до конца строки:
+*One-line comments* start with a double slash `//`. The text after them till the end of line is considered a comment.
 
+It may occupy a full line of it's own or follow a statement, like this:
 ```js
 //+ run
-// Команда ниже говорит "Привет" 
-alert( 'Привет' );
+// The statement below outputs a word "Hello"
+alert( 'Hello' );
 
-alert( 'Мир' ); // Второе сообщение выводим отдельно
+alert( 'World' ); // ...The second word is shown separately.
 ```
 
-*Многострочные комментарии* начинаются слешем-звездочкой <code>"/&#42;"</code> и заканчиваются звездочкой-слэшем <code>"&#42;/"</code>, вот так:
+*Multiline comments* start with a slash and a star <code>"/&#42;"</code> and end with a star and a slash <code>"&#42;/"</code>, like this:
 
 ```js
 //+ run
-/* Пример с двумя сообщениями.
-Это - многострочный комментарий.
+/* An example with two messages.
+This is a multiline comment.
 */
+alert( 'Hello' );
+alert( 'World' );
+```
+
+All contents of comments is ignored. If we put a code inside <code>/&#42; ... &#42;/</code> or after `//` it won't execute.
+
+```js
+//+ run
+/* Commenting out the code
 alert( 'Привет' );
+*/
 alert( 'Мир' );
 ```
 
-Всё содержимое комментария игнорируется. Если поместить код внутрь <code>/&#42; ... &#42;/</code> или после `//` -- он не выполнится.
-
-```js
-//+ run
-/* Закомментировали код
-alert( 'Привет' );
-*/
-alert( 'Мир' );
-```
-
-[smart header="Используйте горячие клавиши!"]
-В большинстве редакторов комментарий можно поставить горячей клавишей, обычно это [key Ctrl+/] для однострочных и что-то вроде [key Ctrl+Shift+/] -- для многострочных комментариев (нужно выделить блок и нажать сочетание клавиш). Детали смотрите в руководстве по редактору.
+[smart header="Use hotkeys!"]
+In most editors a line of code can be commented out by [key Ctrl+/] hotkey for a single-line comment and something like [key Ctrl+Shift+/] -- for multiline comments (select a code and press the hotkey).
 [/smart]
  
-[warn header="Вложенные комментарии не поддерживаются!"]
-В этом коде будет ошибка:
+[warn header="Nested comments are not supported!"]
+There may not be comments inside comments. 
+
+This code will die with an error:
 
 ```js
 //+ run no-beautify
 /* 
-  /* вложенный комментарий ?!? */
+  /* nested comment ?!? */
 */
-alert('Мир');
+alert( 'World' );
 ```
-
 [/warn]
 
+Don't hesitate to comment. They more code is in the project -- the more helpful good comments are. 
 
-Не бойтесь комментариев. Чем больше кода в проекте -- тем они важнее. Что же касается увеличения размера кода -- это не страшно, т.к. существуют инструменты сжатия JavaScript, которые при публикации кода легко их удалят.
+Comments increase the overall code footprint, but that's not a problem at all, because there are many tools which minify the code before publishing to production server and remove comments in the process.
 
-На следующих занятиях мы поговорим о переменных, блоках и других структурных элементах программы на JavaScript.
+In our next sections we'll talk about other structure elements of JavaScript like blocks, variables and more.
 

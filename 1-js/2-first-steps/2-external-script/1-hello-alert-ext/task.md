@@ -1,7 +1,7 @@
-# Вывести alert внешним скриптом
+# Show an alert with an external script
 
 [importance 5]
 
-Возьмите решение предыдущей задачи [](/task/hello-alert) и вынесите скрипт во внешний файл `alert.js`, который расположите в той же директории.
+Take the solution of the previous task [](/task/hello-alert). Modify it by extracting the script content into an external file `alert.js`, residing in the same folder.
 
-Откройте страницу и проверьте, что вывод сообщения всё ещё работает.
+Open the page, ensures that the alert works.

@@ -1,10 +1,10 @@
-Код для HTML-файла:
+The HTML code:
 
 ```html
 <!--+ src="index.html" -->
 ```
 
-Для файла `alert.js` из той же директории:
+For the file `alert.js` in the same folder:
 
 ```js
 //+ src="alert.js"

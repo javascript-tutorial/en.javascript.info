@@ -1,6 +1,6 @@
-Ответы:
+Answers:
 <ol>
-<li>Первым выполнится `big.js`, это нормальная последовательность выполнения подряд идущих скриптов.</li>
-<li>Первым выполнится `small.js`, так как скрипты из-за `async` ведут себя совершенно независимо друг от друга, страница тоже от них не зависит.</li>
-<li>Первым выполнится `big.js`, так как скрипты, подключённые через `defer`, сохраняют порядок выполнения относительно друг друга.</li>
+<li>The first is `big.js`, that's a normal sequence for external `<script>` tags.</li>
+<li>The first is `small.js`, because `async` makes script behave independently of each other and the page. The first to loads runs first.</li>
+<li>The first is `big.js`, because "deferred" scripts keep relative execution order.</li>
 </ol>
