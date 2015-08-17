@@ -1,19 +1,17 @@
 # Operators
 
-Many operators are known to us from the school program. It is an addition `+`, a multiplication `*`, a subsctraction and so on.
+Many operators are known to us from the school program. It is an addition `+`, a multiplication `*`, a substraction `-` and so on.
 
-In this chapter we mainly concentrate on aspects not covered by the arithmetic.
+In this chapter we concentrate on aspects that are not covered by the school arithmetic.
 [cut]
 
 ## Terms: "unary", "binary", "operand"
 
-У операторов есть своя терминология, которая используется во всех языках программирования.
-
-Прежде, чем мы двинемся дальше -- несколько терминов, чтобы понимать, о чём речь.
+Before we move on, let's make a dip in the terminology, to understand what we're talking about.
 
 <ul>
-<li>*Операнд* -- то, к чему применяется оператор. Например: `5 * 2` -- оператор умножения с левым и правым операндами. Другое название: "аргумент оператора".</li>
-<li>*Унарным* называется оператор, который применяется к одному выражению. Например, оператор унарный минус `"-"` меняет знак числа на противоположный:
+<li>*An operand* -- is what operators are applied to. For instance in `5 * 2` the left operand of the multiplication is `5`, the right operand is `2`. Another word is "an argument of an operator".</li>
+<li>*Unary* is the operator which has a single operand. For example, the unary minus `"-"` reverses the sign of the number:
 
 ```js
 //+ run
@@ -22,54 +20,42 @@ var x = 1;
 *!*
 x = -x;
 */!*
-alert( x ); // -1, применили унарный минус
+alert( x ); // -1, unary minus was applied
 ```
 
 </li>
-<li>*Бинарным* называется оператор, который применяется к двум операндам. Тот же минус существует и в бинарной форме:
+<li>*Binary* is the operator which has two operands. The same minus exists in the binary form as well:
 
 ```js
 //+ run no-beautify
 var x = 1, y = 3;
-alert( y - x ); // 2, бинарный минус
+alert( y - x ); // 2, binary minus
 ```
+
+Formally, we're talking about the two different operators here: the unary minus (single operand, reverses the sign) and the binary minus (two operands, substracts).
 </li>
 </ul>
 
 
-## Сложение строк, бинарный +
+## Strings concatenation, binary +
 
-Обычно при помощи плюса `'+'` складывают числа.
+Usually the plus operator `'+'` sums numbers.
 
-Но если бинарный оператор `'+'` применить к строкам, то он их объединяет в одну:
+But if the binary `+` is applied to strings, it merges (concatenates) them:
 
 ```js
-var a = "моя" + "строка";
-alert( a ); // моястрока
+var s = "my" + "string";
+alert( s ); // mystring
 ```
 
-Иначе говорят, что "плюс производит конкатенацию (сложение) строк".
+If one of operands is a string, then the other one is converted to string too.
 
-**Если хотя бы один аргумент является строкой, то второй будет также преобразован к строке!**
-
-Причем не важно, справа или слева находится операнд-строка, в любом случае нестроковый аргумент будет преобразован. Например:
+For example:
 
 ```js
 //+ run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
-```
-
-**Это приведение к строке -- особенность исключительно бинарного оператора `"+"`.**
-
-Остальные арифметические операторы работают только с числами и всегда приводят аргументы к числу.
-
-Например:
-
-```js
-//+ run
-alert( 2 - '1' ); // 1
-alert( 6 / '2' ); // 3
 ```
 
 
@@ -80,7 +66,8 @@ alert( 6 / '2' ); // 3
 
 ```js
 //+ run
-alert( +1 ); // 1
+alert( +1 );
+ // 1
 alert( +(1 - 2) ); // -1
 ```
 
