@@ -58,6 +58,18 @@ alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
+Note that it doesn't matter whether the first operand is a string or the second one. The rule is simple: if any of operands is a string, then convert the other one into a string as well.
+
+The string concatenation and conversion is the special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands into numbers.
+
+For instance:
+
+```js
+//+ run
+alert( 2 - '1' ); // 1
+alert( 6 / '2' ); // 3
+```
+
 
 
 ### Преобразование к числу, унарный плюс +
