@@ -70,50 +70,53 @@ alert( 2 - '1' ); // 1
 alert( 6 / '2' ); // 3
 ```
 
+## Numeric conversion, unary +
 
+The unary plus or, in other words, the plus applied to a single value, doesn't do anything with numbers:
 
-### Преобразование к числу, унарный плюс +
-
-Унарный, то есть применённый к одному значению, плюс ничего не делает с числами:
 
 ```js
 //+ run
-alert( +1 );
- // 1
-alert( +(1 - 2) ); // -1
+var x = 1;
+alert( +x ); // 1
+
+var y = -2;
+alert( +y ); // -2
 ```
 
-Как видно, плюс ничего не изменил в выражениях. Результат -- такой же, как и без него. 
+As we can see, the plus didn't change a thing. The result is the same as it was.
 
-Тем не менее, он широко применяется, так как его "побочный эффект" -- преобразование значения в число.
+But there is a widely used "side-effect": if the plus is applied not not a number, it converts it to a number.
 
-Например, когда мы получаем значения из HTML-полей или от пользователя, то они обычно в форме строк.
+For example, if we are getting values from HTML-fields or the visitor types them in a prompt, then they are usually strings.
 
-А что, если их нужно, к примеру, сложить? Бинарный плюс сложит их как строки:
+What if we need to summarize them?
 
-```js
-//+ run
-var apples = "2";
-var oranges = "3";
-
-alert( apples + oranges ); // "23", так как бинарный плюс складывает строки
-```
-
-Поэтому используем унарный плюс, чтобы преобразовать к числу:
+The binary plus would add them as strings:
 
 ```js
 //+ run
 var apples = "2";
 var oranges = "3";
 
-alert( +apples + +oranges ); // 5, число, оба операнда предварительно преобразованы в числа
+alert( apples + oranges ); // "23", the binary plus concatenates strings
 ```
 
-С точки зрения математики такое изобилие плюсов может показаться странным. С точки зрения программирования -- никаких разночтений: сначала выполнятся унарные плюсы, приведут строки к числам, а затем -- бинарный `'+'` их сложит.
+So we can use the unary plus to convert values to numbers, and then sum them:
 
-Почему унарные плюсы выполнились до бинарного сложения? Как мы сейчас увидим, дело в их приоритете.
+```js
+//+ run
+var apples = "2";
+var oranges = "3";
 
-## Приоритет
+alert( +apples + +oranges ); // 5, both operands converted to numbers before the binary plus
+```
+
+From a mathematician's standpoint the abundance of pluses may seem strange. But from a programmer's -- there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus summarizes them.
+
+Why did unary pluses work before the binary one? As we're going to see soon, that's because of their *precedence*.
+
+## Operators precedence
 
 
 В том случае, если в выражении есть несколько операторов -- порядок их выполнения определяется *приоритетом*.
