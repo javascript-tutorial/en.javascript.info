@@ -118,29 +118,28 @@ Why did unary pluses work before the binary one? As we're going to see soon, tha
 
 ## Operators precedence
 
+If an expression has more than one operator -- their execution order is defined the their *precedence*.
 
-В том случае, если в выражении есть несколько операторов -- порядок их выполнения определяется *приоритетом*.
+From the school we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. If we're not satisfied with the order, we can use brackets to override the default precedence: `(1 + 2) * 2`.
 
-Из школы мы знаем, что умножение в выражении `2 * 2 + 1` выполнится раньше сложения, т.к. его *приоритет* выше, а скобки явно задают порядок выполнения. Но в JavaScript -- гораздо больше операторов, поэтому существует целая [таблица приоритетов](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence). 
+There are many operators in JavaScript. For clarity and internal needs there exists a [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence). Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
 
-Она содержит как уже пройденные операторы, так и те, которые мы еще не проходили. В ней каждому оператору задан числовой приоритет. Тот, у кого число больше -- выполнится раньше. Если приоритет одинаковый, то порядок выполнения -- слева направо.
-
-Отрывок из таблицы:
+An extract from the table:
 
 <table>
 <tr><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>15</td><td>унарный плюс</td><td>`+`</td></tr>
-<tr><td>15</td><td>унарный минус</td><td>`-`</td></tr>
-<tr><td>14</td><td>умножение</td><td>`*`</td></tr>
-<tr><td>14</td><td>деление</td><td>`/`</td></tr>
-<tr><td>13</td><td>сложение</td><td>`+`</td></tr>
-<tr><td>13</td><td>вычитание</td><td>`-`</td></tr>
+<tr><td>15</td><td>unary plus</td><td>`+`</td></tr>
+<tr><td>15</td><td>unary minus</td><td>`-`</td></tr>
+<tr><td>14</td><td>multiplication</td><td>`*`</td></tr>
+<tr><td>14</td><td>division</td><td>`/`</td></tr>
+<tr><td>13</td><td>addition</td><td>`+`</td></tr>
+<tr><td>13</td><td>substraction</td><td>`-`</td></tr>
 <tr><td>...</td><td>...</td><td>...</td></tr>
-<tr><td>3</td><td>присвоение</td><td>`=`</td></tr>
+<tr><td>3</td><td>assignment</td><td>`=`</td></tr>
 <tr><td>...</td><td>...</td><td>...</td></tr>
 </table>
 
-Так как "унарный плюс" имеет приоритет `15`, выше, чем `13` у обычного "сложения", то в выражении `+apples + +oranges` сначала сработали плюсы у `apples` и `oranges`, а затем уже обычное сложение.
+As we can see, the "unary plus" has a priority of `15`, higher than `13` for the ordinary "addition". That's why in the expression `+apples + +oranges` unary pluses worked first, and then the addition.
 
 ## Присваивание
 
