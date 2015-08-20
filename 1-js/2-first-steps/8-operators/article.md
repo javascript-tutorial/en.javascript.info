@@ -141,7 +141,7 @@ An extract from the table:
 
 As we can see, the "unary plus" has a priority of `15`, higher than `13` for the ordinary "addition". That's why in the expression `+apples + +oranges` unary pluses worked first, and then the addition.
 
-## Присваивание
+## Assignment
 
 Обратим внимание, в таблице приоритетов также есть оператор присваивания `=`.
 
