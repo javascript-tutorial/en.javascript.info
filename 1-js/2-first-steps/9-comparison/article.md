@@ -1,180 +1,151 @@
-# Операторы сравнения и логические значения
+# Comparisons and boolean values
 
-В этом разделе мы познакомимся с операторами сравнения и с логическими значениями, которые такие операторы возвращают.
+In this chapter we'll meet the comparison operators and boolean values that are their results.
 
 [cut]
 
-Многие операторы сравнения знакомы нам из математики:
+Many comparison operators we know from maths:
 
 <ul>
-<li>Больше/меньше: <code>a &gt; b</code>, <code>a &lt; b</code>.</li>
-<li>Больше/меньше или равно: <code>a &gt;= b</code>, <code>a &lt;= b</code>.</li>
-<li>Равно `a == b`. 
-Для сравнения используется два символа равенства `'='`. Один символ `a = b` означал бы присваивание.</li>
-<li>"Не равно". В математике он пишется как <code>&ne;</code>, в JavaScript -- знак равенства с восклицательным знаком перед ним <code>!=</code>.</li>
+<li>Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.</li>
+<li>Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.</li>
+<li>Equals: `a == b` (please note the double equation sign `'='`. A single symbol `a = b` would mean an assignment).</li>
+<li>Not equals. In maths the sign is <code>&ne;</code>, in JavaScript we use an assignment with an exclamation before it: <code>a != b</code>.</li>
 </ul>
 
-## Логические значения
+## Boolean values
 
-Как и другие операторы, сравнение возвращает значение. Это значение имеет *логический* тип. 
+Just as other operators, a comparison returns a value.
 
-Существует всего два логических значения:
+The value has the boolean type. The term "logical type" is also used and means the same.
+
+There are only two logical values:
+
 <ul>
-<li>`true` -- имеет смысл "да", "верно", "истина".</li>
-<li>`false` -- означает "нет", "неверно", "ложь".</li>
+<li>`true` -- means "yes", "correct" or "the truth".</li>
+<li>`false` -- means "no", "wrong" or "a lie".</li>
 </ul>
 
-Например:
+For example:
 
 ```js
 //+ run
-alert( 2 > 1 ); // true, верно
-alert( 2 == 1 ); // false, неверно
-alert( 2 != 1 ); // true
+alert( 2 > 1 ); // true (correct)
+alert( 2 == 1 ); // false (wrong)
+alert( 2 != 1 ); // true (correct)
 ```
 
-Логические значения можно использовать и напрямую, присваивать переменным, работать с ними как с любыми другими:
+Boolean values can be assigned directly, just like any other values:
 
 ```js
 //+ run
-var a = true; // присваивать явно
+var a = true; // assign directly
 
-var b = 3 > 4; // или как результат сравнения
+var b = 3 > 4; // assign the result of the comparison
 alert( b ); // false
 
-alert( a == b ); // (true == false) неверно, выведет false
+alert( a == b ); // false (cause a=true, b=false)
 ```
 
-## Сравнение строк
+## Strings comparison
 
-Строки сравниваются побуквенно:
+Strings are compared letter-by-letter, alphabetically.
+
+For example: 
 
 ```js
 //+ run
-alert( 'Б' > 'А' ); // true
+alert( 'Z' > 'A' ); // true
+alert( 'Glow' > 'Glee' ); // true
+alert( 'Bee' > 'Be' ); // true
 ```
 
-[warn header="Осторожно, Unicode!"]
-Аналогом "алфавита" во внутреннем представлении строк служит кодировка, у каждого символа -- свой номер (код). JavaScript использует кодировку [Unicode](http://ru.wikipedia.org/wiki/%D0%AE%D0%BD%D0%B8%D0%BA%D0%BE%D0%B4). 
+The algorithm to compare two strings is simple:
+<ol>
+<li>Compare the first characters of both strings. If the first one is greater(or less), then the first string is greater(or less).</li>
+<li>If first characters are equal, compare the second characters the same way.</li>
+<li>Repeat until the end of any string.</li>
+<li>If both strings ended simultaneously, then they are equal. Otherwise the longer string is greater.</li>
+</ol>
 
-При этом сравниваются *численные коды символов*. В частности, код у символа `Б` больше, чем у `А`, поэтому и результат сравнения такой.
+In the example above, the comparison `'Z' > 'A'` gets the result at the first step.
 
-**В кодировке Unicode обычно код у строчной буквы больше, чем у прописной.**
+Strings `"Glow"` and `"Glee"` are compared character-by-character:
+<ol>
+<li>`G` is the same as `G`.</li>
+<li>`l` is the same as `l`.</li>
+<li>`o` is greater than `e`. Stop here. The first string is greater.</li>
+</ol>
 
-Поэтому регистр имеет значение:
+[smart header="Lexicographical ordering"]
+The strings are compared in the so-called "lexicographical" or "dictionary" order.
+
+It implies that the greater string is the one which goes further in the dictionary. So, for example, `Z` goes after `A` in a dictionary. And `Glow` goes after `Glee`.
+
+But the actual situation is a little bit more complex with that, because of internal encoding details. We'll get back in the chapter [](/strings) where we study strings specifically.
+[/smart]
+
+
+## Comparison of different types
+
+When compared values are of different types, they get autoconverted to numbers.
+
+Strings are converted the same way as unary plus does. We discussed that in the chapter [](/operators).
+
+For example:
 
 ```js
 //+ run
-alert( 'а' > 'Я' ); // true, строчные буквы больше прописных
+alert( '2' > 1 ); // true, string '2' becomes a number 2
+alert( '01' == 1 ); // true, string '01' becomes a number 1
 ```
 
-Для корректного сравнения символы должны быть в одинаковом регистре. 
-[/warn]
-
-Если строка состоит из нескольких букв, то сравнение осуществляется как в телефонной книжке или в словаре. Сначала сравниваются первые буквы, потом вторые, и так далее, пока одна не будет больше другой.
-
-Иными словами, больше -- та строка, которая в телефонной книге была бы на большей странице. 
-
-Например:
-<ul>
-<li>Если первая буква первой строки больше -- значит первая строка больше, независимо от остальных символов:
+For boolean values, `true` becomes `1` and `false` becomes `0`, so:
 
 ```js
 //+ run
-alert( 'Банан' > 'Аят' );
+alert( true == 1 ); // true
+alert( false == 0 ); // true
 ```
 
-</li>
-<li>Если одинаковы -- сравнение идёт дальше. Здесь оно дойдёт до третьей буквы:
+Rules for numeric conversion are to be discussed in more details in the chapter [](/types-conversion). 
 
-```js
-//+ run
-alert( 'Вася' > 'Ваня' ); // true, т.к. 'с' > 'н'
-```
+## Strict equality
 
-</li>
-<li>При этом любая буква больше отсутствия буквы:
-
-```js
-//+ run
-alert( 'Привет' > 'Прив' ); // true, так как 'е' больше чем "ничего".
-```
-
-</li>
-</ul>
-Такое сравнение называется *лексикографическим*. 
-
-
-[warn]
-Обычно мы получаем значения от посетителя в виде строк. Например, `prompt` возвращает *строку*, которую ввел посетитель. 
-
-Числа, полученные таким образом, в виде строк сравнивать нельзя, результат будет неверен. Например:
-
-```js
-//+ run
-alert( "2" > "14" ); // true, неверно, ведь 2 не больше 14
-```
-
-В примере выше `2` оказалось больше `14`, потому что строки сравниваются посимвольно, а первый символ `'2'` больше `'1'`. 
-
-Правильно было бы преобразовать их к числу явным образом. Например, поставив перед ними `+`:
-
-```js
-//+ run
-alert( +"2" > +"14" ); // false, теперь правильно
-```
-
-[/warn]
-
-## Сравнение разных типов
-
-При сравнении значений разных типов, используется числовое преобразование. Оно применяется к обоим значениям.
-
-Например:
-
-```js
-//+ run
-alert( '2' > 1 ); // true, сравнивается как 2 > 1
-alert( '01' == 1 ); // true, сравнивается как 1 == 1
-alert( false == 0 ); // true, false становится числом 0
-alert( true == 1 ); // true, так как true становится числом 1.
-```
-
-Тема преобразований типов будет продолжена далее, в главе [](/types-conversion). 
-
-## Строгое равенство
-
-В обычном операторе `==` есть "проблема"" -- он не может отличить `0` от `false`:
+A regular equality `==` has a "problem": it cannot differ `0` from `false`:
 
 ```js
 //+ run
 alert( 0 == false ); // true
 ```
 
-Та же ситуация с пустой строкой:
-
+The same thing with an empty string:
 
 ```js
 //+ run
 alert( '' == false ); // true
 ```
 
-Это естественное следствие того, что операнды разных типов преобразовались к числу. Пустая строка, как и `false`, при преобразовании к числу дают `0`.
+That's the natural consequence of what we've seen before. Operands of different types are converted to a number. An empty string, just like `false`, becomes a zero.
 
-Что же делать, если всё же нужно отличить `0` от `false`? 
+What to do if we'd like to differentiate `0` from `false`?
 
-**Для проверки равенства без преобразования типов используются операторы строгого равенства `===` (тройное равно) и `!==`.**
+**A strict equality operator `===` checks the equality without type conversion.**
 
-Если тип разный, то они всегда возвращают `false`:
+In other words, `a === b` always returns `false` if `a` and `b` belong to differnt types.
+
+Let's try it:
 
 ```js
 //+ run
-alert( 0 === false ); // false, т.к. типы различны
+alert( 0 === false ); // false, because the types are different
 ```
 
-Строгое сравнение предпочтительно, если мы хотим быть уверены, что "сюрпризов" не будет.
+There also exists a "strict non-equality" operator `!==`, as an analogy for `!=`.
 
-## Сравнение с null и undefined
+The string equality is one character longer, but it's more obvious what's going on.
+
+## Comparison with null and undefined
 
 Проблемы со специальными значениями возможны, когда к переменной применяется операция сравнения `> < <= >=`, а у неё может быть как численное значение, так и `null/undefined`. 
 

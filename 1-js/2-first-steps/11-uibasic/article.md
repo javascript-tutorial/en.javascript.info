@@ -1,72 +1,71 @@
-# Взаимодействие с пользователем: alert, prompt, confirm
+# Interaction: alert, prompt, confirm
 
+This chapter covers basic UI operations: `alert`, `prompt` and `confirm`. They allow to ask a visitor for the input and show the results.
 
-В этом разделе мы рассмотрим базовые UI операции: `alert`, `prompt` и `confirm`, которые позволяют работать с данными, полученными от пользователя.
 [cut]
 ## alert   
 
-Синтаксис:
+Syntax:
 
 ```js
-alert(сообщение)
+alert(message)
 ```
 
-`alert` выводит на экран окно с сообщением и приостанавливает выполнение скрипта, пока пользователь не нажмёт "ОК".
+`alert` shows a message and pauses the script execution until the user presses "OK".
 
 ```js
 //+ run
-alert( "Привет" );
+alert( "Hello" );
 ```
 
-Окно сообщения, которое выводится, является *модальным окном*. Слово "модальное" означает, что посетитель не может взаимодействовать со страницей, нажимать другие кнопки и т.п., пока не разберётся с окном. В данном случае - пока не нажмёт на "OK".
+The small special window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until he deals with the window. In this case -- until he presses "OK".
 
 ## prompt   
 
-Функция prompt принимает два аргумента:
+Function `prompt` accepts two arguments:
 
 ```js
 //+ no-beautify
 result = prompt(title, default);
 ```
 
-Она выводит модальное окно с заголовком `title`, полем для ввода текста, заполненным строкой по умолчанию `default` и кнопками OK/CANCEL. 
+It shows a modal window with the given `title`, a field for text, initially filled with the `default` string and buttons OK/CANCEL.
 
-Пользователь должен либо что-то ввести и нажать OK, либо отменить ввод кликом на CANCEL или нажатием [key Esc] на клавиатуре.
+The visitor may type something in the field and press OK or cancel the input by pressing a CANCEL button or the [key Esc] key.
 
-**Вызов `prompt` возвращает то, что ввёл посетитель -- строку или специальное значение `null`, если ввод отменён.**
+**The call to `prompt` returns the text from the field or `null` if CANCEL is pressed.**
 
-[warn header="Safari 5.1+ не возвращает `null`"]
-Единственный браузер, который не возвращает `null` при отмене ввода -- это Safari. При отсутствии ввода он возвращает пустую строку. Предположительно, это ошибка в браузере.
+[warn header="Safari 5.1+ does not return `null`"]
+Safari is the only browser which does not return `null` when the input was canceled. It returns an empty string instead.
 
-Если нам важен этот браузер, то пустую строку нужно обрабатывать точно так же, как и `null`, т.е. считать отменой ввода.
+So actually we should treat empty line the same as `null`, that is: consider it a cancellation.
 [/warn]
 
-Как и в случае с `alert`, окно `prompt` модальное.
+As with `alert`, the `prompt` window is modal.
 
 ```js
 //+ run
-var years = prompt('Сколько вам лет?', 100);
+var age = prompt('How old are you?', 100);
 
-alert('Вам ' + years + ' лет!')
+alert(`You are ${age} years old!`)
 ```
 
-[warn header="Всегда указывайте `default`"]
-Второй параметр может отсутствовать. Однако при этом IE вставит в диалог значение по умолчанию `"undefined"`.
+[warn header="Always put `default`"]
+The second parameter is optional. But if we don't supply it, IE would insert the text `"undefined"` into the prompt.
 
-Запустите этот код <u>в IE</u>, чтобы понять о чём речь:
+Run this code in Internet Explorer to see that:
 
 ```js
 //+ run
-var test = prompt("Тест");
+var test = prompt("Test");
 ```
 
-Поэтому рекомендуется *всегда* указывать второй аргумент:
+So, for IE looking good, it's recommended to always provide the second argument:
 
 ```js
 //+ run
-var test = prompt("Тест", ''); // <-- так лучше
+var test = prompt("Test", ''); // <-- for IE
 ```
-
 [/warn]
 
 
