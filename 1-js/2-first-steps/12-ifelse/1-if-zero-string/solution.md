@@ -1,13 +1,13 @@
-**Да, выведется,** т.к. внутри `if` стоит строка `"0"`. 
+**Yes, it will.**
 
-Любая строка, кроме пустой (а здесь она не пустая), в логическом контексте является `true`.
+Any string except an empty one (and `"0"` is not empty) becomes `true` in the logical context.
 
-Можно запустить и проверить:
+We can run and check:
 
 ```js
 //+ run
 if ("0") {
-  alert( 'Привет' );
+  alert( 'Hello' );
 }
 ```
 

@@ -49,7 +49,7 @@ var prase = `can embed ${str}`;
 In JavaScript, there are 3 types of quotes.
 
 <ol>
-<li>Double quotes and single quotes are essentially the same. Can use either.</li>
+<li>Double quotes and single quotes are essentially the same.</li>
 <li>Backtricks are "extended functionality" quotes. They allow to embed other variables or even expressions into the string wrapping them by `${…}`.</li>
 </ol>
 

@@ -1,8 +1,8 @@
-# Простая страница
+# A simple page
 
 [importance 4]
 
-Создайте страницу, которая спрашивает имя и выводит его.
+Create a web-page which asks for a name and outputs it.
 
 [demo /]
 

@@ -60,7 +60,7 @@ Run this code in Internet Explorer to see that:
 var test = prompt("Test");
 ```
 
-So, for IE looking good, it's recommended to always provide the second argument:
+So, to look good in IE, it's recommended to always provide the second argument:
 
 ```js
 //+ run
@@ -77,34 +77,33 @@ var test = prompt("Test", ''); // <-- for IE
 result = confirm(question);
 ```
 
-`confirm` выводит окно с вопросом `question` с двумя кнопками: OK и CANCEL. 
+Function `confirm` shows a modal window with a `question` and two buttons: OK and CANCEL. 
 
-**Результатом будет `true` при нажатии OK и `false` - при CANCEL([key Esc]).**
+The result is `true` if OK is pressed and `false` otherwise.
 
-Например:
+For example:
 
 ```js
 //+ run
-var isAdmin = confirm("Вы - администратор?");
+var isBoss = confirm("Are you the boss?");
 
-alert( isAdmin );
+alert( isBoss ); // true is OK is pressed
 ```
 
-## Особенности встроенных функций
+## The limitations
 
-Конкретное место, где выводится модальное окно с вопросом -- обычно это центр браузера, и внешний вид окна выбирает браузер. Разработчик не может на это влиять.
+There are two limitations shared by all the methods:
+<ol>
+<li>The exact location of the modal window is determined by the browser. Usually it's in the center.</li>
+<li>The exact look of the window also depends on the browser. We can't modify it.</li>
+</ol>
 
-С одной стороны -- это недостаток, так как нельзя вывести окно в своем, особо красивом, дизайне. 
+That is the price for simplicity. There are other means to show windows and interact with the visitor, but if the "bells and whistles" do not matter much, these methods are just fine.
 
-С другой стороны, преимущество этих функций по сравнению с другими, более сложными методами взаимодействия, которые мы изучим в дальнейшем -- как раз в том, что они очень просты.
-
-Это самый простой способ вывести сообщение или получить информацию от посетителя. Поэтому их используют в тех случаях, когда простота важна, а всякие "красивости" особой роли не играют.
-
-
-## Резюме
+## Summary
 
 <ul>
-<li>`alert` выводит сообщение.</li>
-<li>`prompt` выводит сообщение и ждёт, пока пользователь введёт текст, а затем возвращает введённое значение или `null`, если ввод отменён (CANCEL/[key Esc]).</li>
-<li>`confirm` выводит сообщение и ждёт, пока пользователь нажмёт "OK" или "CANCEL" и возвращает `true/false`.</li>
+<li>`alert` shows a message.</li>
+<li>`prompt` shows a message asking the user to input text. It returns the text or, if CANCEL or [key Esc] is clicked, all browsers except Safari return `null`.</li>
+<li>`confirm` shows a message and waits the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/[key Esc].</li>
 </ul>

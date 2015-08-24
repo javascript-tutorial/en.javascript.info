@@ -147,22 +147,20 @@ The string equality is one character longer, but it's more obvious what's going 
 
 ## Comparison with null and undefined
 
-Проблемы со специальными значениями возможны, когда к переменной применяется операция сравнения `> < <= >=`, а у неё может быть как численное значение, так и `null/undefined`. 
+Thre's a non-intuitive behavior when `null` or `undefined` is compared with other values.
 
-**Интуитивно кажется, что `null/undefined` эквивалентны нулю, но это не так.**
+It may feel like `null/undefined` are equivalent to zero. But it is not so.
 
-Они ведут себя по-другому.
- 
 <ol>
-<li>Значения `null` и `undefined` равны `==` друг другу и не равны чему бы то ни было ещё. 
-Это жёсткое правило буквально прописано в спецификации языка.</li>
-<li>При преобразовании в число `null` становится `0`, а `undefined` становится `NaN`.</li>
+<li>For equality `==` the rule is simple: values `null` and `undefined` are equal `==` each other and non-equal to any other value.</li>
+<li>Comparisons like `< > >= <=` convert `null/undefined` to a number in the evaluation process. Upon the conversion `null` becomes `0`, while `undefined` becomes `NaN`.</li>
 </ol>
 
-Посмотрим забавные следствия.
+Let's see funny consequences.
 
-### Некорректный результат сравнения null с 0
-Сравним `null` с нулём:
+### Incorrect result of comparing null with 0
+
+Let's compare `null` with a zero:
 
 ```js
 //+ run
@@ -170,24 +168,28 @@ alert( null > 0 ); // false
 alert( null == 0 ); // false
 ```
 
-Итак, мы получили, что `null` не больше и не равен нулю. А теперь...
+Okay, from the code above we may decide that `null` is not greater and not equal to zero. 
+
+But...
 
 ```js
 //+ run
 alert(null >= 0); // *!*true*/!*
 ```
 
-Как такое возможно? Если нечто *"больше или равно нулю"*, то резонно полагать, что оно либо *больше*, либо *равно*. Но здесь это не так.
+How can that be possible? If `null` is "not greater than zero and not equal to zero" then how `null >= 0` can be true? 
 
-Дело в том, что алгоритмы проверки равенства `==` и сравнения `>= > < <=` работают по-разному.
+Yeah, mathematically that's strange. The reason is that an equality check `==` and comparisons `> < >= <=` work differently.
 
-Сравнение честно приводит к числу, получается ноль. А при проверке равенства значения `null` и `undefined` обрабатываются особым образом: они равны друг другу, но не равны чему-то ещё. 
+Comparisons convert `null` to a number, hence treat it as `0`. That's why `null >= 0` is true and `null > 0` is false.
 
-В результате получается странная с точки зрения здравого смысла ситуация, которую мы видели в примере выше. 
+From the other hand, equality has a rule that a "sweet couple" `undefined` and `null` match with each other and no other value.
 
-### Несравнимый undefined
+That's why we have a strange-looking situation above.
 
-Значение `undefined` вообще нельзя сравнивать:
+### An uncomparable undefined
+
+The value `undefined` shouldn't participate in comparisons at all:
 
 ```js
 //+ run
@@ -196,24 +198,22 @@ alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)
 ```
 
+Formally, it works like this:
 <ul>
-<li>Сравнения `(1)` и `(2)` дают `false` потому, что `undefined` при преобразовании к числу даёт `NaN`. А значение `NaN` по стандарту устроено так, что сравнения `==`, `<`, `>`, `<=`, `>=` и даже `===` с ним возвращают `false`.</li>
-<li>Проверка равенства `(3)` даёт `false`, потому что в стандарте явно прописано, что `undefined` равно лишь `null` и ничему другому.</li>
+<li>Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN`. And `NaN` is a special numeric value which returns `false` for all comparisons.</li>
+<li>The equality check `(3)` returns `false`, because `undefined` only equals `null` and no other value.</li>
 </ul>
 
+**Conclusion: any comparison with `undefined/null` except the exact equality `===` should be done with care.**
 
-**Вывод: любые сравнения с `undefined/null`, кроме точного `===`, следует делать с осторожностью.**
+For clarity it is preferable not to use comparisons `>= > < <=` with a variable which may be `null/undefined`. We can always make a separate check for `null` or add an explicit type conversion.
 
-Желательно не использовать сравнения `>= > < <=` с ними, во избежание ошибок в коде.
-
-
-## Итого
+## Summary
 
 <ul>
-<li>В JavaScript есть логические значения `true` (истина) и `false` (ложь). Операторы сравнения возвращают их.</li>
-<li>Строки сравниваются побуквенно.</li>
-<li>Значения разных типов приводятся к числу при сравнении, за исключением строгого равенства `===` (`!==`).</li>
-<li>Значения `null` и `undefined` равны `==` друг другу и не равны ничему другому. В других сравнениях (с участием `>`,`<`) их лучше не использовать, так как они ведут себя не как `0`.</li>
+<li>JavaScript has logical values `true` and `false`. Comparison operators return one of those.</li>
+<li>Strings are compared letter-by-letter in dictionary order.</li>
+<li>When values of different types are compared, they get converted to numbers, with the exclusion of a string equality check `===` (`!==`).</li>
+<li>Values `null` and `undefined` equal `==` each other and do not equal any other value. It's better not to use them in comparisons with `>` or `<`, because the result may be unexpected.</li>
 </ul>
 
-Мы ещё вернёмся к теме сравнения позже, когда лучше изучим различные типы данных в JavaScript.

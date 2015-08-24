@@ -1,25 +1,21 @@
-JS-код:
+JavaScript-code:
 
 ```js
 //+ demo run
-var name = prompt("Ваше имя?", "");
+var name = prompt("What is your name?", "");
 alert( name );
 ```
 
-Полная страница:
+The full page:
 
 ```html
 <!DOCTYPE html>
 <html>
 
-<head>
-  <meta charset="utf-8">
-</head>
-
 <body>
 
   <script>
-    var name = prompt("Ваше имя?", "");
+    var name = prompt("What is your name?", "");
     alert( name );
   </script>
 
