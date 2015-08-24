@@ -43,15 +43,34 @@ We'll cover working with numbers in the chapter [](/number).
 ```js
 var str = "Hello";
 var str2 = 'Single quotes are ok too';
-var prase = `can embed ${str}`;
+var phrase = `can embed ${str}`;
 ```
 
 In JavaScript, there are 3 types of quotes.
 
 <ol>
-<li>Double quotes and single quotes are essentially the same.</li>
+<li>Double quotes: `"Hello"`.</li>
+<li>Single quotes: `'Hello'`.</li>
 <li>Backtricks are "extended functionality" quotes. They allow to embed other variables or even expressions into the string wrapping them by `${…}`.</li>
 </ol>
+
+Double and single quotes are essentially the same. The only difference between them can be seen when the string includes the quotation character `"` or `'`.
+
+A double quote symbol may appear inside single-quoted lines and vise versa:
+
+```js
+var hello = "I'm JavaScript"; // single-quote inside "…"
+var name = 'My "official" name is "EcmaScript"'; // vise versa
+```
+
+If we want to include a single quote inside a same-quoted string, we can do it too. But we need to prepend it with a slash:
+
+```js
+// prepend ' inside the string with a slash \'
+var hello = 'I\'m JavaScript'; 
+```
+
+Similarly with double quotes.
 
 [smart header="There is no *character* type."]
 In some languages, there is a special "character" type for a single character. For example, in the C language it is `char`.
