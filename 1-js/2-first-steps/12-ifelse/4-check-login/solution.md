@@ -2,32 +2,31 @@
 
 ```js
 //+ run demo
-var userName = prompt('Кто пришёл?', '');
+var userName = prompt('Who's there?', '');
 
-if (userName == 'Админ') {
+if (userName == 'Admin') {
 
-  var pass = prompt('Пароль?', '');
+  var pass = prompt('Password?', '');
 
-  if (pass == 'Чёрный Властелин') {
-    alert( 'Добро пожаловать!' );
-  } else if (pass == null) { // (*)
-    alert( 'Вход отменён' );
+  if (pass == 'TheMaster') {
+    alert( 'Welcome!' );
+  } else if (pass == null || pass == '') { // (*)
+    alert( 'Canceled.' );
   } else {
-    alert( 'Пароль неверен' );
+    alert( 'Wrong password' );
   }
 
-} else if (userName == null) { // (**)
-  alert( 'Вход отменён' );
+} else if (userName == null || userName == '') { // (**)
+
+  alert( 'Canceled' );
 
 } else {
 
-  alert( 'Я вас не знаю' );
+  alert( "I don't know you" );
 
 }
 ```
 
-Обратите внимание на проверку `if` в строках `(*)` и `(**)`. Везде, кроме Safari, нажатие "Отмена" возвращает `null`, а вот Safari возвращает при отмене пустую строку, поэтому в браузере Safari можно было бы добавить дополнительную проверку на неё.
+Please note the `if` check in lines `(*)` and `(**)`. Every browser except Safari returns `null` when the input is canceled, and Safari returns an empty string. So we must treat them same for compatibility.
 
-Впрочем, такое поведение Safari является некорректным, надеемся, что скоро его исправят.
-
-Кроме того, обратите внимание на дополнительные вертикальные отступы внутри `if`. Они не обязательны, но полезны для лучшей читаемости кода.
+Also note the vertical indents inside the `if` blocks. They are technically not required, but make the code more readable.

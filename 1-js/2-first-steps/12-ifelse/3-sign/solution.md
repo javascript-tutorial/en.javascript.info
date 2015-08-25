@@ -2,7 +2,7 @@
 
 ```js
 //+ run
-var value = prompt('Введите число', 0);
+var value = prompt('Type a number', 0);
 
 if (value > 0) {
   alert( 1 );

@@ -1,20 +1,20 @@
-# Перепишите 'if..else' в '?'
+# Rewrite 'if..else' into '?'
 
 [importance 5]
 
-Перепишите `if..else` с использованием нескольких операторов `'?'`. 
+Rewrite `if..else` using multiple ternary operators `'?'`. 
 
-Для читаемости -- оформляйте код в несколько строк.
+For readability, please let the code span several lines.
 
 ```js
 var message;
 
-if (login == 'Вася') {
-  message = 'Привет';
-} else if (login == 'Директор') {
-  message = 'Здравствуйте';
+if (login == 'Employee') {
+  message = 'Hello';
+} else if (login == 'Director') {
+  message = 'Greetings';
 } else if (login == '') {
-  message = 'Нет логина';
+  message = 'No login';
 } else {
   message = '';
 }

@@ -1,17 +1,22 @@
-# Проверка логина
+# Check the login
 
 [importance 3]
 
-Напишите код, который будет спрашивать логин (`prompt`).
+Write the code which asks for a login with `prompt`.
 
-Если посетитель вводит "Админ", то спрашивать пароль, если нажал отмена (escape) -- выводить "Вход отменён", если вводит что-то другое -- "Я вас не знаю".
+If the visitor enters `"Admin"`, then `prompt` for a password, if the input is an empty line or [key Esc] -- show "Canceled.", if it's another string -- then show "I don't know you".
 
-Пароль проверять так. Если введён пароль "Чёрный Властелин", то выводить "Добро пожаловать!", иначе -- "Пароль неверен", при отмене -- "Вход отменён".
+The password is checked as follows:
+<ul>
+<li>If it equals "TheMaster", then show "Welcome!",</li>
+<li>Another string -- show "Wrong password",</li>
+<li>For an empty string or cancelled input, show "Canceled."</li>
+</ul>
 
-Блок-схема:
+The schema:
 
 <img src="ifelse_task.png">
 
-Для решения используйте вложенные блоки `if`. Обращайте внимание на стиль и читаемость кода.
+Please use nested `if` blocks. Mind the overall readability of the code.
 
 [demo /]

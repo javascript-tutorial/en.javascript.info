@@ -1,14 +1,14 @@
-# Перепишите 'if' в '?'
+# Rewrite 'if' into '?'
 
 [importance 5]
 
-Перепишите `if` с использованием оператора `'?'`:
+Rewrite this `if` using the ternary operator `'?'`:
 
 ```js
 if (a + b < 4) {
-  result = 'Мало';
+  result = 'Below';
 } else {
-  result = 'Много';
+  result = 'Over';
 }
 ```
 

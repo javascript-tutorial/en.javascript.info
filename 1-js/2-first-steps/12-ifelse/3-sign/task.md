@@ -1,12 +1,15 @@
-# Получить знак числа
+# Show the sign 
 
 [importance 2]
 
-Используя конструкцию `if..else`, напишите код, который получает значение `prompt`, а затем выводит `alert`:
+Using `if..else`, write the code which gets a number via `prompt` and then shows in `alert`:
+
 <ul>
-<li>`1`, если значение больше нуля,</li>
-<li>`-1`, если значение меньше нуля,</li>
-<li>`0`, если значение равно нулю.</li>
+<li>`1`, if the value is greater than zero,</li>
+<li>`-1`, if less than zero,</li>
+<li>`0`, if equals zero.</li>
 </ul>
+
+In this task we assume that the input is always a number.
 
 [demo src="if_sign"]
