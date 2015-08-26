@@ -1,15 +1,16 @@
-Ответ: сначала `1`, затем `2`.
+The answer: first `1`, then `2`.
 
 ```js
 //+ run
 alert( alert(1) || 2 || alert(3) );
 ```
 
-Вызов `alert` не возвращает значения, или, иначе говоря, возвращает `undefined`.
+The call to `alert` does not return a value. Or, in other words, it returns `undefined`.
 
 <ol>
-<li>Первый оператор ИЛИ `||` выполнит первый `alert(1)`, получит `undefined` и пойдёт дальше, ко второму операнду.</li>
-<li>Так как второй операнд `2` является истинным, то вычисления завершатся, результатом `undefined || 2` будет `2`, которое будет выведено внешним `alert( .... )`.</li>
+<li>The first OR `||` evaluates it's left operand `alert(1)`. That shows the first message with `1`.</li>
+<li>The `alert` returns `undefined`, so OR goes on to the second operand in it's search of a truthy value.</li>
+<li>The second operand `2` is truthy, so the execution is halted, `2` is returned and then shown by the outer alert.</li>
 </ol>
 
-Второй оператор `||` не будет выполнен, выполнение до `alert(3)` не дойдёт, поэтому `3` выведено не будет.
+There will be no `3`, because the evaluation does not reach `alert(3)`.

@@ -1,8 +1,8 @@
-# Что выведет alert (ИЛИ)?
+# What's the result of OR?
 
 [importance 5]
 
-Что выведет код ниже?
+What the code below is going to output?
 
 ```js
 alert( null || 2 || undefined );

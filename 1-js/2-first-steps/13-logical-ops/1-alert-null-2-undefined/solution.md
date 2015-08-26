@@ -1,4 +1,4 @@
-Ответ: `2`, это первое значение, которое в логическом контексте даст `true`.
+The answer is `2`, that's the first truthy value. 
 
 ```js
 //+ run

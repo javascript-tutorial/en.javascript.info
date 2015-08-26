@@ -1,8 +1,8 @@
-# Что выведет alert (И)?
+# What is the result of AND?
 
 [importance 5]
 
-Что выведет код ниже?
+What this code is going to show?
 
 ```js
 alert( 1 && null && 2 );
