@@ -1,21 +1,26 @@
-# Логические операторы
+# Logical operators
 
-Для операций над логическими значениями в JavaScript есть `||` (ИЛИ), `&&` (И) и `!` (НЕ). 
+There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT). 
 
-Хоть они и называются *"логическими"*, но в JavaScript могут применяться к значениям любого типа и возвращают также значения любого типа.
+Although they are called "logical", they can be applied to values of any type, not only boolean. The result can also be of any type.
+
+Let's see the details.
+
 [cut]
 
-## || (ИЛИ)
+## || (OR)
 
-Оператор ИЛИ выглядит как двойной символ вертикальной черты:
+The "OR" operator is represented with two vertical line symbols:
 
 ```js
 result = a || b;
 ```
 
-Логическое ИЛИ в классическом программировании работает следующим образом: "если *хотя бы один* из аргументов `true`, то возвращает `true`, иначе -- `false`". В JavaScript, как мы увидим далее, это не совсем так, но для начала рассмотрим только логические значения.
+In classical programming, logical OR is meant to manipulate boolean values. If any of it's arguments is `true`, then it returns `true`, otherwise -- returns `false`.
 
-Получается следующая "таблица результатов":
+In JavaScript the operator is a little bit more tricky and powerful. But first let's see what happens with logical values.
+
+A table of possible logical combinations:
 
 ```js
 //+ run
@@ -25,16 +30,22 @@ alert( true || false ); // true
 alert( false || false ); // false
 ```
 
-Если значение не логического типа -- то оно к нему приводится в целях вычислений. Например, число `1` будет воспринято как `true`, а `0` -- как `false`:
+As we can see, most results are truthy except for the case when `false` is at both sides.
+
+If an operand is not boolean, then it's converted to boolean for the sake of evaluation.
+
+For instance, a number `1` is treated as `true`, a number `0` -- as `false`:
 
 ```js
 //+ run
-if (1 || 0) { // сработает как if( true || false )
-  alert( 'верно' );
+if (1 || 0) { // works just like if( true || false )
+  alert( 'truthy!' );
 }
 ```
 
-Обычно оператор ИЛИ используется в `if`, чтобы проверить, выполняется ли хотя бы одно из условий, например:
+Mainly, OR is used in the `if` expression to test for *any* of given conditions.
+
+For example:
 
 ```js
 //+ run
@@ -43,32 +54,83 @@ var hour = 9;
 *!*
 if (hour < 10 || hour > 18) {
 */!*
-  alert( 'Офис до 10 или после 18 закрыт' );
+  alert( 'The office is closed.' ); 
 }
 ```
 
-Можно передать и больше условий:
+We can pass more conditions:
 
 ```js
 //+ run
-var hour = 12,
-  isWeekend = true;
+var hour = 12;
+var isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'Офис до 10 или после 18 или в выходной закрыт' );
+  alert( 'The office is closed.' ); // it is weekend 
 }
 ```
 
-## Короткий цикл вычислений
+## OR seeks the first truthy value
 
+The logic described above is somewhat classical. Now let's see reconsider the logic of OR to cover nice features of JavaScript.
 
-JavaScript вычисляет несколько ИЛИ слева направо. При этом, чтобы экономить ресурсы, используется так называемый *"короткий цикл вычисления"*. 
+Given multiple OR'ed values:
 
-Допустим, вычисляются несколько ИЛИ подряд: `a || b || c || ...`. Если первый аргумент -- `true`, то результат заведомо будет `true` (хотя бы одно из значений -- `true`), и остальные значения игнорируются.
+```js
+result = value1 || value2 || value3;
+```
 
-Это особенно заметно, когда выражение, переданное в качестве второго аргумента, имеет *сторонний эффект* -- например, присваивает переменную. 
+The OR `"||"` operator is doing the following:
 
-При запуске примера ниже присвоение `x` не произойдёт:
+<ul>
+<li>Evalutes operands from left to right.</li>
+<li>Returns the first value that would be truthy as a boolean, or the last one if all are falsy.</li>
+<li>The value is returned "as is", without the conversion.</li>
+</ul>
+
+For instance:
+
+```js
+//+ run
+alert( 1 || 0 ); // 1 (is truthy)
+alert( true || 'no matter what' ); // (true is truthy)
+
+alert( null || 1 ); // 1 (null is falsy, so 1)
+alert( undefined || 0 ); // 0 (all falsy, so the last one)
+```
+
+This logic does not contradict to what was spoken above. If you check this behavior with the boolean table, you see that it still works the same.
+
+But there leads to some interesting usages compared to a "pure, classical, boolean-only OR".
+
+<ol>
+<li>**Getting the first truthy value from the list.**
+
+Imagine, we have several variables, which can be either set or non-set. And we need to choose the first one with data.
+
+Using OR for that:
+
+```js
+//+ run
+var currentUser = null;
+var defaultUser = "John";
+
+*!*
+var name = currentUser || defaultUser || "unnamed";
+*/!*
+
+alert( name ); // outputs "John" -- the first truthy value
+```
+
+If both `currentUser` and `defaultUser` were falsy then `"unnamed"` would be the result.
+</li>
+<li>**Short-circuit evaluation.**
+
+Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. The process is called "a short-circuit evaluation".
+
+This is especially notable when the expression given as the second argument has a side effect. Like variable assignment.
+
+If we run the example below, `x` will not get assigned:
 
 ```js
 //+ run no-beautify
@@ -76,10 +138,10 @@ var x;
 
 *!*true*/!* || (x = 1);  
 
-alert(x); // undefined, x не присвоен
+alert(x); // undefined, (x = 1) not evaluated
 ```
 
-...А в примере ниже первый аргумент -- `false`, так что ИЛИ попытается вычислить второй, запустив тем самым присваивание:
+...And here the first argument is `false`, so `OR` goes on and evaluates the second one thus running the assignment:
 
 ```js
 //+ run no-beautify
@@ -89,66 +151,19 @@ var x;
 
 alert(x); // 1
 ```
-
-## Значение ИЛИ
-
-[quote author="Илья Канатов, участник курса JavaScript"]
-`||` запинается на "правде",<br>
-`&&` запинается на "лжи".
-[/quote]
-
-Итак, как мы видим, оператор ИЛИ вычисляет ровно столько значений, сколько необходимо -- до первого `true`.
-
-При этом оператор ИЛИ возвращает то значение, на котором остановились вычисления. Причём, не преобразованное к логическому типу.
-
-Например:
-
-```js
-//+ run
-alert( 1 || 0 ); // 1 
-alert( true || 'неважно что' ); // true
-
-alert( null || 1 ); // 1
-alert( undefined || 0 ); // 0
-```
-
-Это используют, в частности, чтобы выбрать первое "истинное" значение из списка:
-
-```js
-//+ run
-var undef; // переменная не присвоена, т.е. равна undefined
-var zero = 0;
-var emptyStr = "";
-var msg = "Привет!";
-
-*!*
-var result = undef || zero || emptyStr || msg || 0;
-*/!*
-
-alert( result ); // выведет "Привет!" - первое значение, которое является true
-```
-
-Если все значения "ложные", то `||` возвратит последнее из них:
-
-```js
-//+ run
-alert( undefined || '' || false || 0 ); // 0
-```
-
-Итак, оператор `||` вычисляет операнды слева направо до первого "истинного" и возвращает его, а если все ложные -- то последнее значение.
-
-Иначе можно сказать, что "`||` запинается на правде".
-
-## && (И)
+</li>
+</ol>
 
 
-Оператор И пишется как два амперсанда `&&`:
+## && (AND)
+
+The AND operator is represented with two ampersands `&&`:
 
 ```js
 result = a && b;
 ```
 
-В классическом программировании И возвращает `true`, если оба аргумента истинны, а иначе -- `false`:
+In classic programming AND returns `true` if both arguments are truthy and `false` -- otherwise:
 
 ```js
 //+ run
@@ -158,7 +173,7 @@ alert( true && false ); // false
 alert( false && false ); // false
 ```
 
-Пример c `if`:
+An example with `if`:
 
 ```js
 //+ run
@@ -166,39 +181,50 @@ var hour = 12,
   minute = 30;
 
 if (hour == 12 && minute == 30) {
-  alert( 'Время 12:30' );
+  alert( 'Time is 12:30' );
 }
 ```
 
-Как и в ИЛИ, в И допустимы любые значения:
+Just as in OR, any value is allowed in AND:
 
 ```js
 //+ run
-if (1 && 0) { // вычислится как true && false
-  alert( 'не сработает, т.к. условие ложно' );
+if (1 && 0) { // evaluated as true && false
+  alert( "won't work, because the result is falsy" );
 }
 ```
 
-К И применим тот же принцип "короткого цикла вычислений", но немного по-другому, чем к ИЛИ.
+More formally, given multiple AND'ed values:
 
-Если левый аргумент -- `false`, оператор И возвращает его и заканчивает вычисления. Иначе -- вычисляет и возвращает правый аргумент.
+```js
+result = value1 && value2 && value3;
+```
 
-Например:
+The AND `"&&"` operator is doing the following:
+<ul>
+<li>Evalutes operands from left to right.</li>
+<li>Returns the first value that would be falsy as a boolean, or the last one if all are truthy.</li>
+<li>The value is returned "as is", without the conversion.</li>
+</ul>
+
+The rules above are all-in-all similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+
+Examples: 
 
 ```js
 //+ run
-// Первый аргумент - true, 
-// Поэтому возвращается второй аргумент
+// if the first operand is truthy,
+// && returns the second one.
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
-// Первый аргумент - false,
-// Он и возвращается, а второй аргумент игнорируется
+// now the first operand is falsy,
+// it is returned, and the second one is ignored
 alert( null && 5 ); // null
-alert( 0 && "не важно" ); // 0
+alert( 0 && "no matter what" ); // 0
 ```
 
-Можно передать и несколько значений подряд, при этом возвратится первое "ложное" (на котором остановились вычисления), а если его нет -- то последнее:
+If we pass several values in a row, the first falsy one is returned (or the last one if all of them are truthy):
 
 ```js
 //+ run
@@ -207,14 +233,10 @@ alert( 1 && 2 && null && 3 ); // null
 alert( 1 && 2 && 3 ); // 3
 ```
 
-Итак, оператор `&&` вычисляет операнды слева направо до первого "ложного" и возвращает его, а если все истинные -- то последнее значение.
+[smart header="AND `&&` executes before OR `||`"]
+The precedence of the AND `&&` operator is higher than OR `||`, so it executes before OR.
 
-Иначе можно сказать, что "`&&` запинается на лжи".
-
-[smart header="Приоритет у `&&` больше, чем у `||`"]
-Приоритет оператора И `&&` больше, чем ИЛИ `||`, так что он выполняется раньше.
-
-Поэтому в следующем коде сначала будет вычислено правое И: `1 && 0 = 0`, а уже потом -- ИЛИ.
+In the code below `1 && 0` is calculated first:
 
 ```js
 //+ run
@@ -222,49 +244,52 @@ alert( 5 || 1 && 0 ); // 5
 ```
 [/smart]
 
-[warn header="Не используйте `&&` вместо `if`"]
+[warn header="Don't use `&&` instead of `if`"]
+The AND `&&` operator can sometimes replace `if`.
 
-Оператор `&&` в простых случаях можно использовать вместо `if`, например:
+For instance:
 
 ```js
 //+ run
 var x = 1;
 
-(x > 0) && alert( 'Больше' );
+(x > 0) && alert( 'Greater than zero!' );
 ```
 
-Действие в правой части `&&` выполнится только в том случае, если до него дойдут вычисления. То есть, `alert` сработает, если в левой части будет `true`.
+The action in the right part of `&&` would execute only if the evaluation reaches it. That is: only if `(x > 0)` is true.
 
-Получился аналог:
+So we basically have an analogue for:
 
 ```js
 //+ run
 var x = 1;
 
 if (x > 0) {
-  alert( 'Больше' );
+  alert( 'Greater than zero!' );
 }
 ```
 
-Однако, как правило, вариант с `if` лучше читается и воспринимается. Он более очевиден, поэтому лучше использовать его. Это, впрочем, относится и к другим неочевидным применениям возможностей языка.
+The variant with `&&` appears to be shorter. Although `if` is more obvious and tends to be a little bit more readable. So it is recommended to use `if` if we want if. And use `&&` if we want AND.
 [/warn]
 
-## ! (НЕ)
+## ! (NOT)
 
-Оператор НЕ -- самый простой. Он получает один аргумент. Синтаксис:
+The boolean NOT operator is represented with an exclamation `"!"`.
+
+The syntax is one of the simplest:
 
 ```js
 var result = !value;
 ```
 
-Действия `!`:
+The operator accepts a single argument and does the following:
 
 <ol>
-<li>Сначала приводит аргумент к логическому типу `true/false`.</li>
-<li>Затем возвращает противоположное значение.</li>
+<li>Converts the operand to logical type: `true/false`.</li>
+<li>Returns an inverse value.</li>
 </ol>
 
-Например:
+For instance:
 
 ```js
 //+ run
@@ -272,11 +297,21 @@ alert( !true ); // false
 alert( !0 ); // true
 ```
 
-**В частности, двойное НЕ используют для преобразования значений к логическому типу:**
+A double NOT is sometimes used for converting a value to boolean:
 
 ```js
 //+ run
-alert( !!"строка" ); // true
+alert( !!"non-empty string" ); // true
 alert( !!null ); // false
+```
+
+That is: the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again, so we have a plain value-to-boolean conversion.
+
+Although, there's a more obvious way to do that: a built-in `Boolean` function:
+
+```js
+//+ run
+alert( Boolean("non-empty string") ); // true
+alert( Boolean(null) ); // false
 ```
 
