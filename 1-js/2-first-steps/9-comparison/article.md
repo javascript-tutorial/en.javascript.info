@@ -110,6 +110,28 @@ alert( false == 0 ); // true
 
 Rules for numeric conversion are to be discussed in more details in the chapter [](/types-conversion). 
 
+### Equality of non-equal
+
+It is quite possible for two *equal* values that one value is `true`, while the other one is `false`.
+
+For example:
+
+```js
+//+ run
+var a = 0; 
+alert( Boolean(a) ); // false
+
+var b = "0";
+alert( Boolean(b) ); // true
+
+alert(a == b); // true!
+```
+
+From JavaScript standpoint that's quite normal. An equality converts using the numeric conversion, while `Boolean` uses logical rules.
+
+
+
+
 ## Strict equality
 
 A regular equality `==` has a "problem": it cannot differ `0` from `false`:

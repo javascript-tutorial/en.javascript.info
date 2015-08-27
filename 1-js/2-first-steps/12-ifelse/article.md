@@ -36,6 +36,8 @@ It is recommended to use figure brackets every time with `if`, even if there's o
 
 The `if (…)` operator evaluates the condition in brackets and converts it to boolean type. 
 
+Let's remember the rules.
+
 In the logical context:
 <ul>
 <li>A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,</li>
