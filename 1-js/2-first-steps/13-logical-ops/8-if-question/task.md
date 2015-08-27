@@ -1,14 +1,14 @@
-# Вопрос про "if"
+# A question about "if"
 
 [importance 5]
 
-Какие из этих `if` верны, т.е. выполнятся? 
+Which of these `alert`s are going to execute?
 
-Какие конкретно значения будут результатами выражений в условиях `if(...)`?
+What will be the results of the expressions inside `if(...)`?
 
 ```js
-if (-1 || 0) alert( 'первое' );
-if (-1 && 0) alert( 'второе' );
-if (null || -1 && 1) alert( 'третье' );
+if (-1 || 0) alert( 'first' );
+if (-1 && 0) alert( 'second' );
+if (null || -1 && 1) alert( 'third' );
 ```
 

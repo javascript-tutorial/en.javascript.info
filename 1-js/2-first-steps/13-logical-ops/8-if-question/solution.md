@@ -1,21 +1,21 @@
-Ответ: первое и третье выполнятся. 
+The answer: the first and the third will execute.
 
-Детали:
+Details:
 
 ```js
 //+ run
-// Выполнится
-// Результат -1 || 0 = -1, в логическом контексте true
-if (-1 || 0) alert( 'первое' );
+// Runs.
+// The result of -1 || 0 = -1, truthy
+if (-1 || 0) alert( 'first' );
 
-// Не выполнится
-// -1 && 0 = 0,  в логическом контексте false
-if (-1 && 0) alert( 'второе' );
+// Doesn't run
+// -1 && 0 = 0, falsy
+if (-1 && 0) alert( 'second' );
 
-// Выполнится
-// оператор && имеет больший приоритет, чем ||
-// так что -1 && 1 выполнится раньше
-// вычисления: null || -1 && 1 -> null || 1 -> 1
-if (null || -1 && 1) alert( 'третье' );
+// Executes
+// Operator && has a higher precedence than ||
+// so -1 && 1 executes first, giving us the chain:
+// null || -1 && 1  ->  null || 1  ->  1
+if (null || -1 && 1) alert( 'third' );
 ```
 

@@ -1,8 +1,8 @@
-# Что выведет этот код?
+# The result of OR AND OR
 
 [importance 5]
 
-Что выведет код ниже?
+What will be the result?
 
 ```js
 alert( null || 2 && 3 || 4 );
