@@ -1,8 +1,8 @@
-# Последнее значение цикла
+# Last loop value
 
 [importance 3]
 
-Какое последнее значение выведет этот код? Почему?
+What is be the last value alerted by this code? Why?
 
 ```js
 var i = 3;
