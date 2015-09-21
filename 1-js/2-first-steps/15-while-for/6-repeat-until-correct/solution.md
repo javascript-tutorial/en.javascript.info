@@ -1,18 +1,17 @@
 
-
 ```js
 //+ run demo
 var num;
 
 do {
-  num = prompt("Введите число больше 100?", 0);
-} while (num <= 100 && num != null);
+  num = prompt("Enter a number greater than 100?", 0);
+} while (num <= 100 && num);
 ```
 
-Цикл `do..while` повторяется, пока верны две проверки:
+The loop `do..while` repeats while both checks are truthy:
 <ol>
-<li>Проверка `num <= 100` -- то есть, введённое число всё еще меньше `100`.</li>
-<li>Проверка `num != null` -- значение `null` означает, что посетитель нажал "Отмена", в этом случае цикл тоже нужно прекратить.</li>
+<li>The check for `num <= 100` -- that is, the entered value is still not greater than `100`.</li>
+<li>The check for a truthiness of `num` checks that `num != null` and `num != ""` simultaneously.</li>
 </ol>
 
-Кстати, сравнение `num <= 100` при вводе `null` даст `true`, так что вторая проверка необходима.
+P.S. By the way, if `num` is `null` then `num <= 100` would return `false`, not `true`!

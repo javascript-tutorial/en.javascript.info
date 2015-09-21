@@ -1,4 +1,4 @@
-Первые две проверки -- обычный `case`, третья разделена на два `case`:
+The first two checks are a usual `case`. The third one is split into two cases:
 
 ```js
 //+ run
@@ -22,6 +22,7 @@ switch (a) {
 }
 ```
 
-Обратите внимание: `break` внизу не обязателен, но ставится по "правилам хорошего тона".
+Please note: the `break` at the bottom is not required. But we put it to make the code future-proof.
 
-Допустим, он не стоит. Есть шанс, что в будущем нам понадобится добавить в конец ещё один `case`, например `case 4`, и мы, вполне вероятно, забудем этот `break` поставить. В результате выполнение `case 2`/`case 3` продолжится на `case 4` и будет ошибка.
+In the future, there is a chance that we'd want to add one more `case`, for example `case 4`. And if we forget to add a break before it, at the end of `case 3`, there will be an error. So that's a kind of self-insurance.
+

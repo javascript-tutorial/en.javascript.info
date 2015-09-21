@@ -1,12 +1,16 @@
-# Вывести простые числа
+# Output prime numbers
 
 [importance 3]
 
-Натуральное число, большее 1, называется *простым*, если оно ни на что не делится, кроме себя и `1`.
+An integer number greater than `1` is called a [prime](https://en.wikipedia.org/wiki/Prime_number) if it cannot be not divided without a remainder by anything except `1` and itself.
 
-Другими словами, <code>n&gt;1</code> - простое, если при делении на любое число от `2` до `n-1` есть остаток.
+In other words, `n>1` is a prime if the result of it's division by anything except `1` and `n` is not integer.
 
-**Создайте код, который выводит все простые числа из интервала от `2` до `10`.** Результат должен быть: `2,3,5,7`.
+For example, `5` is a prime, because it cannot be divided without a remainder by `2`, `3` and `4`.
 
-P.S. Код также должен легко модифицироваться для любых других интервалов.
+**Write the code which outputs prime numbers in the interval from `2` to `10`.**
+
+The result will be `2,3,5,7`.
+
+P.S. The code should be easily modifiable for other intervals.
 

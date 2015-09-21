@@ -1,4 +1,4 @@
-**Ответ: от 0 до 4 в обоих случаях.**
+**The answer: from `0` to `4` in both cases.**
 
 ```js
 //+ run
@@ -7,11 +7,13 @@ for (var i = 0; i < 5; ++i) alert( i );
 for (var i = 0; i < 5; i++) alert( i );
 ```
 
-Такой результат обусловлен алгоритмом работы `for`:
+That can be easily deducted from the algorithm of `for`:
 <ol>
-<li>Выполнить присвоение `i=0`</li>
-<li>Проверить `i<5`</li>
-<li>Если верно - выполнить тело цикла `alert(i)`, затем выполнить `i++`</li>
+<li>Execute once `i=0` before everything.</li>
+<li>Check the condition `i<5`</li>
+<li>If `true` -- execute the loop body `alert(i)`, and then `i++`</li>
 </ol>
 
-Увеличение `i++` выполняется отдельно от проверки условия (2), значение `i` при этом не используется, поэтому нет никакой разницы между `i++` и `++i`.
+The increment `i++` is separated from the condition check (2). That's just another statement. 
+
+The value returned by the increment is not used here, so there's no difference between `i++` and `++i`.

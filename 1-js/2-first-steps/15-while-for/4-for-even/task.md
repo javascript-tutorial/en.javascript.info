@@ -1,7 +1,7 @@
-# Выведите чётные числа
+# Output even numbers in the loop
 
 [importance 5]
 
-При помощи цикла `for` выведите чётные числа от `2` до `10`.
+Use the `for` loop to output even numbers from `2` to `10`.
 
 [demo /]

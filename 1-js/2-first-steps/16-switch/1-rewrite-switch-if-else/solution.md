@@ -1,21 +1,21 @@
-Если совсем точно следовать условию, то сравнение должно быть строгим `'==='`. 
+To be precise, the `if` must use a strict comparison `'==='`. 
 
-В реальном случае, скорее всего, подойдёт обычное сравнение `'=='`.
+In reality though, probably a simple `'=='` would do.
 
 ```js
 //+ no-beautify
-if(browser == 'IE') {
-  alert('О, да у вас IE!');
+if(browser == 'Edge') {
+  alert("You've got the Edge!");
 } else if (browser == 'Chrome'
  || browser == 'Firefox'
  || browser == 'Safari' 
  || browser == 'Opera') {
-  alert('Да, и эти браузеры мы поддерживаем');
+  alert( 'Okay we support these browsers too' );
 } else {
-  alert('Мы надеемся, что и в вашем браузере все ок!');
+  alert( 'We hope that this page looks ok!' );
 }
 ```
 
-Обратите внимание: конструкция `browser == 'Chrome' || browser == 'Firefox' ...` разбита на несколько строк для лучшей читаемости.
+Please note: the construct `browser == 'Chrome' || browser == 'Firefox' …` is split into multiple lines for better readability.
 
-Но всё равно запись через `switch` нагляднее.
+But the `switch` is still neater and more descriptive.

@@ -9,4 +9,4 @@ for (var i = 2; i <= 10; i++) {
 }
 ```
 
-Чётность проверяется по остатку при делении на `2`, используя оператор "деление с остатком" `%`: `i % 2`.
+We use the "modulo" `%` to get the remainder and check for the evenness here.

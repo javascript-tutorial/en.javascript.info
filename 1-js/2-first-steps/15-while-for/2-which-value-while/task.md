@@ -1,10 +1,13 @@
-# Какие значения i выведет цикл while?
+# Which values shows the while?
 
 [importance 4]
 
-Для каждого цикла запишите, какие значения он выведет. Потом сравните с ответом.
+For every loop, scribe down which values it shows, in your opinion. 
+
+And then compare with the answer.
+
 <ol>
-<li>Префиксный вариант
+<li>The prefix form `++i`:
 
 ```js
 var i = 0;
@@ -12,7 +15,7 @@ while (++i < 5) alert( i );
 ```
 
 </li>
-<li>Постфиксный вариант
+<li>The postfix form `i++`
 
 ```js
 var i = 0;

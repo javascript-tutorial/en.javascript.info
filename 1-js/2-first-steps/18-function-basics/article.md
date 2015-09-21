@@ -1,31 +1,37 @@
-# Функции
+# Functions
 
-Зачастую нам надо повторять одно и то же действие во многих частях программы. 
+Quite often we need to perform a similar action in many places of the script.
 
-Например, красиво вывести сообщение необходимо при приветствии посетителя, при выходе посетителя с сайта, ещё где-нибудь.
+For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
 
-Чтобы не повторять один и тот же код во многих местах, придуманы функции. Функции являются основными "строительными блоками" программы.
+Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+
 [cut]
-Примеры встроенных функций вы уже видели -- это `alert(message)`, `prompt(message, default)` и `confirm(question)`. Но можно создавать и свои.
 
-## Объявление
+We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
 
-Пример объявления функции:
+## Definition
+
+An example of a function definition:
 
 ```js
 function showMessage() {
-  alert( 'Привет всем присутствующим!' );
+  alert( 'Hello everyone!' );
 }
 ```
 
-Вначале идет ключевое слово `function`, после него *имя функции*, затем *список параметров* в скобках (в примере выше он пустой) и *тело функции* -- код, который выполняется при её вызове. 
+The `function` keyword goes first, then follows the *name of the function*, then a list of *parameters* in the brackets (empty in the example above) and finally the code of the function, also named "the function body".
 
-Объявленная функция доступна по имени, например:
+<img src="function_basics.png">
+
+Once defined, the function can be called by it's name.
+
+For instance:
 
 ```js
 //+ run
 function showMessage() {
-  alert( 'Привет всем присутствующим!' );
+  alert( 'Hello everyone!' );
 }
 
 *!*
@@ -34,28 +40,34 @@ showMessage();
 */!*
 ```
 
-Этот код выведет сообщение два раза. Уже здесь видна **главная цель создания функций: избавление от дублирования кода**. 
+The call executes the code of the function. Here we will see the message shown two times.
 
-Если понадобится поменять сообщение или способ его вывода -- достаточно изменить его в одном месте: в функции, которая его выводит. 
+In this example we can see one of the main purposes of the functions: to evade code duplication.
 
-## Локальные переменные   
+If we ever need to change the message or the way it is shown -- it's enough to modify the code in one place: the function which outputs it.
 
-Функция может содержать *локальные* переменные, объявленные через `var`. Такие переменные видны только внутри функции:
+## Local variables
+
+A function may declare *local* variables with `var`, `let` or `const`.
+
+These variables are only seen from inside the function:
 
 ```js
 //+ run
 function showMessage() {
 *!*
-  var message = 'Привет, я - Вася!'; // локальная переменная
+  var message = "Hello, I'm JavaScript!"; // local variable
 */!*
 
   alert( message );
 }
 
-showMessage(); // 'Привет, я - Вася!'
+showMessage(); // Hello, I'm JavaScript!
 
-alert( message ); // <-- будет ошибка, т.к. переменная видна только внутри
+alert( message ); // <-- Error! The variable is local to the function
 ```
+
+
 
 **Блоки `if/else`, `switch`, `for`, `while`, `do..while` не влияют на область видимости переменных.**
 

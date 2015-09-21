@@ -1,8 +1,8 @@
-# Переписать if'ы в switch
+# Rewrite "if" into "switch"
 
 [importance 4]
 
-Перепишите код с использованием одной конструкции `switch`:
+Rewrite the code below using a single `switch` statement:
 
 ```js
 //+ run
