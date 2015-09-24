@@ -48,9 +48,9 @@ If we ever need to change the message or the way it is shown -- it's enough to m
 
 ## Local variables
 
-A function may declare *local* variables with `var`, `let` or `const`.
+A variable declared inside a function is only visible inside that function.
 
-These variables are only seen from inside the function:
+For example:
 
 ```js
 //+ run
@@ -67,121 +67,95 @@ showMessage(); // Hello, I'm JavaScript!
 alert( message ); // <-- Error! The variable is local to the function
 ```
 
+## Outer variables
 
-
-**Блоки `if/else`, `switch`, `for`, `while`, `do..while` не влияют на область видимости переменных.**
-
-При объявлении переменной в таких блоках, она всё равно будет видна во всей функции.
-
-Например:
-
-```js
-//+ no-beautify
-function count() {
-  // переменные i,j не будут уничтожены по окончании цикла
-  for (*!*var*/!* i = 0; i < 3; i++) {
-    *!*var*/!* j = i * 2;
-  }
-
-*!*
-  alert( i ); // i=3, последнее значение i, при нём цикл перестал работать
-  alert( j ); // j=4, последнее значение j, которое вычислил цикл
-*/!*
-}
-```
-
-**Неважно, где именно в функции и сколько раз объявляется переменная. Любое объявление срабатывает один раз и распространяется на всю функцию.**
-
-Объявления переменных в примере выше можно передвинуть вверх, это ни на что не повлияет:
-
-```js
-function count() {
-*!*
-  var i, j; // передвинули объявления var в начало
-*/!*
-  for (i = 0; i < 3; i++) {
-    j = i * 2;
-  }
-
-  alert( i ); // i=3
-  alert( j ); // j=4
-}
-```
-
-## Внешние переменные 
-
-Функция может обратиться ко внешней переменной, например:
+A function can access an outer variable as well, for example:
 
 ```js
 //+ run no-beautify
-var *!*userName*/!* = 'Вася';
+var *!*userName*/!* = 'John';
 
 function showMessage() {
-  var message = 'Привет, я ' + *!*userName*/!*;
+  var message = 'Hello, my name is ' + *!*userName*/!*;
   alert(message);
 }
 
-showMessage(); // Привет, я Вася
+showMessage(); // Hello, my name is John
 ```
 
-Доступ возможен не только на чтение, но и на запись. При этом, так как переменная внешняя, то изменения будут видны и снаружи функции:
+The function can not only read but also modify an outer variable.
+
+For instance:
 
 ```js
 //+ run
-var userName = 'Вася';
+var *!*userName*/!* = 'John';
 
 function showMessage() {
-  userName = 'Петя'; // (1) присвоение во внешнюю переменную
+  userName = "Bob"; // (1) changed the outer variable
 
-  var message = 'Привет, я ' + userName;
-  alert( message );
+  var message = 'Hello, my name is ' + *!*userName*/!*;
+  alert(message);
 }
+
+alert( userName ); // John before the function call
 
 showMessage();
 
 *!*
-alert( userName ); // Петя, значение внешней переменной изменено функцией
+alert( userName ); // Bob, the value was modified by the function
 */!*
 ```
 
-Конечно, если бы внутри функции, в строке `(1)`, была бы объявлена своя локальная переменная `var userName`, то все обращения использовали бы её, и внешняя переменная осталась бы неизменной.
+Of course if we had `var userName = ...` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one:
 
-**Переменные, объявленные на уровне всего скрипта, называют *"глобальными переменными"*.**
+```js
+//+ run
+var *!*userName*/!* = 'John';
 
-В примере выше переменная `userName` -- глобальная.
+function showMessage() {
+*!*
+  var userName = "Bob"; // declare a local variable 
+*/!*
 
-Делайте глобальными только те переменные, которые действительно имеют общее значение для вашего проекта, а нужные для решения конкретной задачи -- пусть будут локальными в соответствующей функции.
+  var message = 'Hello, my name is ' + *!*userName*/!*;
+  alert(message);
+}
 
+// the function will create and use it's own userName
+showMessage();
 
-[warn header="Внимание: неявное объявление глобальных переменных!"]
+*!*
+alert( userName ); // John, the outer variable is not modified
+*/!*
+```
 
-В старом стандарте JavaScript существовала возможность неявного объявления переменных присвоением значения.
+**Variables declared on the most outer level, not in any function, are called *global*.**
 
-Например:
+Please only declare global the variables which have a project-wide importance. Variables needed by specific tasks should reside in the corresponding functions. So to say, global variables are rare in modern projects.
+
+[warn header="Attention: implicit global declaration!"]
+In the old JavaScript it was possible to omit variable declaration:
 
 ```js
 //+ run
 function showMessage() {
-  message = 'Привет'; // без var!
+  message = 'Hello'; // pure assignment, no declaration
 }
 
 showMessage();
 
-alert( message ); // Привет
+alert( message ); // Hello
 ```
 
-В коде выше переменная `message` нигде не объявлена, а сразу присваивается. Скорее всего, программист просто забыл поставить `var`.
+In the code above `message` was not declared. Most probably, the programmer simply forgot to write `var`.
 
-При `use strict` такой код привёл бы к ошибке, но без него переменная будет создана автоматически, причём в примере выше она создаётся не в функции, а на уровне всего скрипта.
+With `"use strict"` there will be an error. But without it, the variable will be created automatically. And not in the function, but globally, in the whole script.
 
-Избегайте этого.
-
-Здесь опасность даже не в автоматическом создании переменной, а в том, что глобальные переменные должны использоваться тогда, когда действительно нужны "общескриптовые" параметры.
-
-Забыли `var` в одном месте, потом в другом -- в результате одна функция неожиданно поменяла глобальную переменную, которую использует другая. И поди разберись, кто и когда её поменял, не самая приятная ошибка для отладки.
+Modern editors and tools for code quality checking like [jshint](http://jshint.com/) allow to see and fix "missed declarations" early while coding.
 [/warn]
 
-В будущем, когда мы лучше познакомимся с основами JavaScript, в главе [](/closures), мы более детально рассмотрим внутренние механизмы работы переменных и функций.
+In the future, after we deal with the basics and data structures, in the chapter [](/closures) we will go deeper in the internals of functions and variables.
 
 ## Параметры 
 
