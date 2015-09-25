@@ -10,7 +10,7 @@ And then compare with the answer.
 <li>The prefix form `++i`:
 
 ```js
-var i = 0;
+let i = 0;
 while (++i < 5) alert( i );
 ```
 
@@ -18,7 +18,7 @@ while (++i < 5) alert( i );
 <li>The postfix form `i++`
 
 ```js
-var i = 0;
+let i = 0;
 while (i++ < 5) alert( i );
 ```
 

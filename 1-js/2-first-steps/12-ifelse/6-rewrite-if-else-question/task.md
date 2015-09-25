@@ -7,7 +7,7 @@ Rewrite `if..else` using multiple ternary operators `'?'`.
 For readability, please let the code span several lines.
 
 ```js
-var message;
+let message;
 
 if (login == 'Employee') {
   message = 'Hello';

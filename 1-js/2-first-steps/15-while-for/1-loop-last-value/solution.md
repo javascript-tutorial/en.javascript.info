@@ -2,7 +2,7 @@ The answer: `1`.
 
 ```js
 //+ run
-var i = 3;
+let i = 3;
 
 while (i) {
   alert( i-- );
@@ -14,7 +14,7 @@ Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop w
 Hence, the steps of the loop make the following sequence ("unrolled"):
 
 ```js
-var i = 3;
+let i = 3;
 
 alert(i--); // shows 3, decreases i to 2
 

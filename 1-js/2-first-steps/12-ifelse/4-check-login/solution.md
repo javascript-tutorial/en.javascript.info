@@ -2,11 +2,11 @@
 
 ```js
 //+ run demo
-var userName = prompt('Who's there?', '');
+let userName = prompt('Who's there?', '');
 
 if (userName == 'Admin') {
 
-  var pass = prompt('Password?', '');
+  let pass = prompt('Password?', '');
 
   if (pass == 'TheMaster') {
     alert( 'Welcome!' );

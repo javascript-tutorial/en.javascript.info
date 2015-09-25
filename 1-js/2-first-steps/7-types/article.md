@@ -9,7 +9,7 @@ Here we will get the common understanding of them. In the next chapters we'll ta
 ## A number
 
 ```js
-var n = 123;
+let n = 123;
 n = 12.345;
 ```
 
@@ -41,9 +41,9 @@ We'll cover working with numbers in the chapter [](/number).
 ## A string
 
 ```js
-var str = "Hello";
-var str2 = 'Single quotes are ok too';
-var phrase = `can embed ${str}`;
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed ${str}`;
 ```
 
 In JavaScript, there are 3 types of quotes.
@@ -59,15 +59,15 @@ Double and single quotes are essentially the same. The only difference between t
 A double quote symbol may appear inside single-quoted lines and vise versa:
 
 ```js
-var hello = "I'm JavaScript"; // single-quote inside "…"
-var name = 'My "official" name is "EcmaScript"'; // vise versa
+let hello = "I'm JavaScript"; // single-quote inside "…"
+let name = 'My "official" name is "EcmaScript"'; // vise versa
 ```
 
 If we want to include a single quote inside a same-quoted string, we can do it too. But we need to prepend it with a slash:
 
 ```js
 // prepend ' inside the string with a slash \'
-var hello = 'I\'m JavaScript'; 
+let hello = 'I\'m JavaScript'; 
 ```
 
 Similarly with double quotes.
@@ -90,7 +90,7 @@ For instance:
 
 ```js
 //+ no-beautify
-var checked = true; // the form field is checked
+let checked = true; // the form field is checked
 checked = false;    // the form field is not checked
 ```
 
@@ -98,7 +98,7 @@ Boolean values usually originate from the comparisons:
 
 ```js
 //+ run
-var isGreater = 4 > 1;
+let isGreater = 4 > 1;
 alert(isGreater); // true
 ```
 
@@ -111,7 +111,7 @@ The special `null` value does not belong to any type described above.
 It forms a separate type of its own, which contains only the `null` value:
 
 ```js
-var age = null;
+let age = null;
 ```
 
 In JavaScript `null` is not a "reference to a non-existing object" or a "null pointer" like in some other languages.
@@ -130,7 +130,7 @@ If a variable is declared, but not assigned, then its value is exactly `undefine
 
 ```js
 //+ run
-var x;
+let x;
 alert( x ); // shows "undefined"
 ```
 
@@ -138,7 +138,7 @@ Technically, it is possible to assign to `undefined`:
 
 ```js
 //+ run
-var x = 123;
+let x = 123;
 x = undefined;
 
 alert( x ); // "undefined"
@@ -198,7 +198,7 @@ A variable in JavaScript can contain any data. The same variable can get a strin
 
 ```js
 // perfectly fine
-var message = "hello";
+let message = "hello";
 message = 123456;
 ```
 
@@ -222,7 +222,7 @@ For example, `alert` does it:
 
 ```js
 //+ run
-var a = true;
+let a = true;
 
 alert( a ); // "true"
 ```
@@ -231,7 +231,7 @@ We can also use a call `String(value)` function for that:
 
 ```js
 //+ run
-var a = true;
+let a = true;
 
 a = String(a); // now: a = "true"
 alert(typeof a); // string
@@ -254,7 +254,7 @@ Although if we want to ensure that the value is a number, we can use a `Number(v
 
 ```js
 //+ run
-var n = Number("6"); 
+let n = Number("6"); 
 
 alert(typeof n); // number
 ```
@@ -267,7 +267,7 @@ For example:
 
 ```js
 //+ run
-var age = Number("a user-supplied string"); 
+let age = Number("a user-supplied string"); 
 
 alert(age); // NaN, conversion failed
 alert(age); // number, because NaN belongs to the "number" type
@@ -333,7 +333,7 @@ An object is defined with the figure brackets `{…}`.
 For instance, here we create a `user` object with the name and the age:
 
 ```js
-var user = { 
+let user = { 
   name: "John",
   age: 30
 };
@@ -353,7 +353,7 @@ We'll cover working with objects in the chapter [](/object).
 The `symbol` type is used to create unique identifiers.
 
 ```js
-var id = Symbol("id");
+let id = Symbol("id");
 ```
 
 ...And then we could use `id` as a special kind of identifier for object properties. We'll see more about object properties in the following chapters.

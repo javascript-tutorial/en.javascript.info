@@ -39,9 +39,9 @@ Boolean values can be assigned directly, just like any other values:
 
 ```js
 //+ run
-var a = true; // assign directly
+let a = true; // assign directly
 
-var b = 3 > 4; // assign the result of the comparison
+let b = 3 > 4; // assign the result of the comparison
 alert( b ); // false
 
 alert( a == b ); // false (cause a=true, b=false)
@@ -118,10 +118,10 @@ For example:
 
 ```js
 //+ run
-var a = 0; 
+let a = 0; 
 alert( Boolean(a) ); // false
 
-var b = "0";
+let b = "0";
 alert( Boolean(b) ); // true
 
 alert(a == b); // true!

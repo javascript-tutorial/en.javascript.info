@@ -12,7 +12,7 @@ For example:
 
 ```js
 //+ run
-var year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 *!*
 if (year == 2015) alert( 'You are right!' );
@@ -63,7 +63,7 @@ if (1) { // 1 is truthy
 We can also pass a pre-evaluated logical value to `if`. For example, in a variable like here:
 
 ```js
-var cond = (year == 2015); // equality evaluates to true or false
+let cond = (year == 2015); // equality evaluates to true or false
 
 if (cond) {
   ...
@@ -77,7 +77,7 @@ The `if` operator may contain an optional "else" block. It executes when the con
 For example:
 ```js
 //+ run
-var year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 if (year == 2015) {
   alert( 'You guessed it right!' );
@@ -94,7 +94,7 @@ For example:
 
 ```js
 //+ run
-var year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 if (year < 2015) {
   alert( 'Too early...' ); 
@@ -116,8 +116,8 @@ For instance:
 
 ```js
 //+ run no-beautify
-var hasAccess;
-var age = prompt('How old are you?', '');
+let hasAccess;
+let age = prompt('How old are you?', '');
 
 *!*
 if (age > 14) {
@@ -136,7 +136,7 @@ The operator is represented by a question mark `"?"`.  The formal term "ternary"
 
 The syntax is:
 ```
-var result = condition ? value1 : value2
+let result = condition ? value1 : value2
 ```
 
 The `condition` is evaluated, if it's truthy then `value1` is returned, otherwise -- `value2`.
@@ -144,14 +144,14 @@ The `condition` is evaluated, if it's truthy then `value1` is returned, otherwis
 For example:
 
 ```js
-var hasAccess = (age > 14) ? true : false;
+let hasAccess = (age > 14) ? true : false;
 ```
 
 We can omit brackets around `age > 14`, because the question mark operator has a low precedence. It executes after comparisons, so:
 
 ```js
 // the same
-var hasAccess = age > 14 ? true : false;
+let hasAccess = age > 14 ? true : false;
 ```
 
 ...But brackets make the code more readable. So it's recommended to put them.
@@ -161,7 +161,7 @@ In the described case it is possible to evade the question mark operator, becaus
 
 ```js
 // the same
-var hasAccess = age > 14;
+let hasAccess = age > 14;
 ```
 [/smart]
 
@@ -173,9 +173,9 @@ A sequence of question mark `"?"` operators allows to return a value depending o
 For instance:
 ```js
 //+ run
-var age = prompt('age?', 18);
+let age = prompt('age?', 18);
 
-var message = (age < 3) ? 'Hi, baby!' :
+let message = (age < 3) ? 'Hi, baby!' :
   (age < 18) ? 'Hello!' :
   (age < 100) ? 'Greetings!' :
   'What an unusual age!';
@@ -207,7 +207,7 @@ Sometimes the question mark `'?'` is used as a replacement for `if`:
 
 ```js
 //+ run no-beautify
-var company = prompt('Which company created JavaScript?', '');
+let company = prompt('Which company created JavaScript?', '');
 
 *!*
 (company == 'Netscape') ?
@@ -227,7 +227,7 @@ Here's the same with `if` for comparison:
 
 ```js
 //+ run no-beautify
-var company = prompt('Which company created JavaScript?', '');
+let company = prompt('Which company created JavaScript?', '');
 
 *!*
 if (company == 'Netscape') {

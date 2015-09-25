@@ -2,7 +2,7 @@ In the code below, each line corresponds to the item in the task list.
 
 ```js
 //+ run
-var admin, name; // can declare two variables at once
+let admin, name; // can declare two variables at once
 
 name = "John"; 
 

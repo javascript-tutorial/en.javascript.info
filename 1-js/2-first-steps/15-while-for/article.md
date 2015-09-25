@@ -23,7 +23,7 @@ For instance, the loop below outputs `i` while `i<3`:
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 while (i < 3) {
   alert( i );
   i++;
@@ -38,7 +38,7 @@ The `condition` is treated as a logical value, so instead of `while (i!=0)` we u
 
 ```js
 //+ run
-var i = 3;
+let i = 3;
 *!*
 while (i) { // when i becomes 0, the condition is falsy and the loop stops
 */!*
@@ -53,7 +53,7 @@ If the loop body has a single statement, we can omit the brackets `{…}`:
 
 ```js
 //+ run
-var i = 3;
+let i = 3;
 *!*
 while (i) alert(i--);
 */!*
@@ -76,7 +76,7 @@ For example:
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 do {
   alert( i );
   i++;
@@ -101,7 +101,7 @@ An example of the loop which runs `alert(i)` for `i` from `0` to `3` not includi
 
 ```js
 //+ run
-var i;
+let i;
 
 for (i = 0; i < 3; i++) { // shows 0, then 1, then 2
   alert( i );
@@ -133,7 +133,7 @@ We can declare a "counter" variable right in the beginning of the loop.
 
 ```js
 //+ run no-beautify
-for (*!*var*/!* i = 0; i < 3; i++) {
+for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
 ```
@@ -148,20 +148,20 @@ For example, we can remove `begin`, or move it before the actual `for`, like her
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 
 for (; i < 3; i++) { 
   alert( i ); // 0, 1, 2
 }
 ```
 
-It would work same as `for(var i=0; ...)`.
+It would work same as `for(let i=0; ...)`.
 
 We can also remove the `step` part:
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 
 for (; i < 3;) {
   alert( i );
@@ -195,11 +195,11 @@ But we can force the exit any moment. There's a special `break` directive for th
 For example, this code calculates the sum of numbers until the user keeps entering them. And then outputs it:
 
 ```js
-var sum = 0;
+let sum = 0;
 
 while (true) {
 
-  var value = +prompt("Enter a number", '');
+  let value = +prompt("Enter a number", '');
 
 *!*
   if (!value) break; // (*)
@@ -225,7 +225,7 @@ The loop above uses `continue` to output only odd values:
 
 ```js
 //+ run no-beautify
-for (var i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   
   *!*if (i % 2 == 0) continue;*/!*
 
@@ -239,7 +239,7 @@ For even `i` the `continue` directive stops body execution, passing the control 
 A loop for odd-only values could look like this:
 
 ```js
-for (var i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
 
   if (i % 2) {
     alert( i );
@@ -295,11 +295,11 @@ For example, in the code below we loop over `i` and `j` asking for values on coo
 
 ```js
 //+ run no-beautify
-for (var i = 0; i < 3; i++) {
+for (let i = 0; i < 3; i++) {
 
-  for (var j = 0; j < 3; j++) {
+  for (let j = 0; j < 3; j++) {
     
-    var input = prompt(`Value at coords (${i},${j})`, '');
+    let input = prompt(`Value at coords (${i},${j})`, '');
     // do something with the value...
 
   }
@@ -325,11 +325,11 @@ Like here:
 
 ```js
 //+ run no-beautify
-*!*outer:*/!* for (var i = 0; i < 3; i++) {
+*!*outer:*/!* for (let i = 0; i < 3; i++) {
 
-  for (var j = 0; j < 3; j++) {
+  for (let j = 0; j < 3; j++) {
     
-    var input = prompt(`Value at coords (${i},${j})`, '');
+    let input = prompt(`Value at coords (${i},${j})`, '');
 
     // if an empty string or canceled, then break out of both loops
     if (!input) *!*break outer*/!*; // (*)
@@ -349,7 +349,7 @@ We can also move a label into the separate string:
 ```js
 //+ no-beautify
 outer: 
-for (var i = 0; i < 3; i++) { ... }
+for (let i = 0; i < 3; i++) { ... }
 ```
 
 The `continue` directive can also be used with a label. In this case the execution would jump onto the next iteration of the labelled loop.

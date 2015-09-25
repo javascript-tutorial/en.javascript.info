@@ -49,7 +49,7 @@ For example:
 
 ```js
 //+ run
-var hour = 9;
+let hour = 9;
 
 *!*
 if (hour < 10 || hour > 18) {
@@ -62,8 +62,8 @@ We can pass more conditions:
 
 ```js
 //+ run
-var hour = 12;
-var isWeekend = true;
+let hour = 12;
+let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
   alert( 'The office is closed.' ); // it is weekend 
@@ -112,11 +112,11 @@ Using OR for that:
 
 ```js
 //+ run
-var currentUser = null;
-var defaultUser = "John";
+let currentUser = null;
+let defaultUser = "John";
 
 *!*
-var name = currentUser || defaultUser || "unnamed";
+let name = currentUser || defaultUser || "unnamed";
 */!*
 
 alert( name ); // outputs "John" -- the first truthy value
@@ -134,7 +134,7 @@ If we run the example below, `x` will not get assigned:
 
 ```js
 //+ run no-beautify
-var x;
+let x;
 
 *!*true*/!* || (x = 1);  
 
@@ -145,7 +145,7 @@ alert(x); // undefined, (x = 1) not evaluated
 
 ```js
 //+ run no-beautify
-var x;
+let x;
 
 *!*false*/!* || (x = 1);
 
@@ -177,7 +177,7 @@ An example with `if`:
 
 ```js
 //+ run
-var hour = 12,
+let hour = 12,
   minute = 30;
 
 if (hour == 12 && minute == 30) {
@@ -251,7 +251,7 @@ For instance:
 
 ```js
 //+ run
-var x = 1;
+let x = 1;
 
 (x > 0) && alert( 'Greater than zero!' );
 ```
@@ -262,7 +262,7 @@ So we basically have an analogue for:
 
 ```js
 //+ run
-var x = 1;
+let x = 1;
 
 if (x > 0) {
   alert( 'Greater than zero!' );
@@ -279,7 +279,7 @@ The boolean NOT operator is represented with an exclamation `"!"`.
 The syntax is one of the simplest:
 
 ```js
-var result = !value;
+let result = !value;
 ```
 
 The operator accepts a single argument and does the following:

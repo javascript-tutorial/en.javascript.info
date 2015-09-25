@@ -193,8 +193,8 @@ function pow(x, n) {
 
 ```js
 function pow(x, n) {
-  var result = x;
-  for (var i = 1; i < n; i++) {
+  let result = x;
+  for let i = 1; i < n; i++) {
     result *= x;
   }
   return result;

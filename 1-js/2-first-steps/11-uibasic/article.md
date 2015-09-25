@@ -45,7 +45,7 @@ As with `alert`, the `prompt` window is modal.
 
 ```js
 //+ run
-var age = prompt('How old are you?', 100);
+let age = prompt('How old are you?', 100);
 
 alert(`You are ${age} years old!`)
 ```
@@ -57,14 +57,14 @@ Run this code in Internet Explorer to see that:
 
 ```js
 //+ run
-var test = prompt("Test");
+let test = prompt("Test");
 ```
 
 So, to look good in IE, it's recommended to always provide the second argument:
 
 ```js
 //+ run
-var test = prompt("Test", ''); // <-- for IE
+let test = prompt("Test", ''); // <-- for IE
 ```
 [/warn]
 
@@ -85,7 +85,7 @@ For example:
 
 ```js
 //+ run
-var isBoss = confirm("Are you the boss?");
+let isBoss = confirm("Are you the boss?");
 
 alert( isBoss ); // true is OK is pressed
 ```

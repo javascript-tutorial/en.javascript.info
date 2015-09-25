@@ -5,7 +5,7 @@ The task demonstrates how postfix/prefix forms can lead to different results whe
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 while (++i < 5) alert( i );
 ```
 
@@ -19,7 +19,7 @@ Finally, `i=4` is incremented to `5`, the comparison `while(5 < 5)` fails and th
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 while (i++ < 5) alert( i );
 ```
 

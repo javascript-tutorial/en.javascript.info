@@ -6,7 +6,7 @@ Rewrite the code below using a single `switch` statement:
 
 ```js
 //+ run
-var a = +prompt('a?', '');
+let a = +prompt('a?', '');
 
 if (a == 0) {
   alert( 0 );

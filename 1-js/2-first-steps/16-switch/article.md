@@ -40,7 +40,7 @@ An example of `switch` (the executed code is highlighted):
 
 ```js
 //+ run
-var a = 2 + 2;
+let a = 2 + 2;
 
 switch (a) {
   case 3:
@@ -69,7 +69,7 @@ An example without `break`:
 
 ```js
 //+ run
-var a = 2 + 2;
+let a = 2 + 2;
 
 switch (a) {
   case 3:
@@ -100,8 +100,8 @@ For example:
 
 ```js
 //+ run
-var a = "1";
-var b = 0;
+let a = "1";
+let b = 0;
 
 switch (+a) {
 *!*
@@ -125,7 +125,7 @@ For example, if we want the same code for `case 3` and `case 5`:
 
 ```js
 //+ run no-beautify
-var a = 2 + 2;
+let a = 2 + 2;
 
 switch (a) {
   case 4:
@@ -156,7 +156,7 @@ For example, let's consider the code:
 
 ```js
 //+ run
-var arg = prompt("Enter a value?")
+let arg = prompt("Enter a value?")
 switch (arg) {
   case '0':
   case '1':

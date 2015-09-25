@@ -25,7 +25,7 @@ function sayHi() {   // (1)
   alert( "Привет" ); 
 }
 
-var func = sayHi;    // (2)
+let func = sayHi;    // (2)
 func(); // Привет    // (3)
 
 sayHi = null;
@@ -34,7 +34,7 @@ sayHi();             // ошибка (4)
 
 <ol>
 <li>Объявление `(1)` как бы говорит интерпретатору "создай функцию и помести её в переменную `sayHi`</li>
-<li>В строке `(2)` мы копируем функцию в новую переменную `func`. Ещё раз обратите внимание: после `sayHi` нет скобок. Если бы они были, то вызов `var func = sayHi()` записал бы в `func` *результат* работы `sayHi()` (кстати, чему он равен? правильно, `undefined`, ведь внутри `sayHi` нет `return`).</li>
+<li>В строке `(2)` мы копируем функцию в новую переменную `func`. Ещё раз обратите внимание: после `sayHi` нет скобок. Если бы они были, то вызов `let func = sayHi()` записал бы в `func` *результат* работы `sayHi()` (кстати, чему он равен? правильно, `undefined`, ведь внутри `sayHi` нет `return`).</li>
 <li>На момент `(3)` функцию можно вызывать и как `sayHi()` и как `func()`</li>
 <li>...Однако, в любой момент значение переменной можно поменять. При этом, если оно не функция, то вызов `(4)` выдаст ошибку.</li>
 </ol>
@@ -52,7 +52,7 @@ sayHi();             // ошибка (4)
 
 ```js
 //+ run
-var f = function(параметры) {
+let f = function(параметры) {
   // тело функции
 };
 ```
@@ -61,7 +61,7 @@ var f = function(параметры) {
 
 ```js
 //+ run
-var sayHi = function(person) {
+let sayHi = function(person) {
   alert( "Привет, " + person );
 };
 
@@ -86,7 +86,7 @@ function sum(a, b) {
 }
 
 // Function Expression
-var sum = function(a, b) {
+let sum = function(a, b) {
   return a + b;
 }
 ```
@@ -116,7 +116,7 @@ function sayHi(name) {
 sayHi("Вася"); // ошибка!
 */!*
 
-var sayHi = function(name) {
+let sayHi = function(name) {
   alert( "Привет, " + name );
 }
 ```
@@ -137,7 +137,7 @@ var sayHi = function(name) {
 
 ```js
 //+ run
-var age = +prompt("Сколько вам лет?", 20);
+let age = +prompt("Сколько вам лет?", 20);
 
 if (age >= 18) {
   function sayHi() {
@@ -170,7 +170,7 @@ function sayHi() {
   alert( 'До 18 нельзя' );
 }
 
-var age = 20;
+let age = 20;
 
 if (age >= 18) {
   /* объявление было обработано ранее */
@@ -195,9 +195,9 @@ sayHi(); // "До 18 нельзя", сработает всегда вторая
 
 ```js
 //+ run
-var age = prompt('Сколько вам лет?');
+let age = prompt('Сколько вам лет?');
 
-var sayHi;
+let sayHi;
 
 if (age >= 18) {
   sayHi = function() {
@@ -216,9 +216,9 @@ sayHi();
 
 ```js
 //+ run no-beautify
-var age = prompt('Сколько вам лет?');
+let age = prompt('Сколько вам лет?');
 
-var sayHi = (age >= 18) ?
+let sayHi = (age >= 18) ?
   function() { alert('Прошу Вас!');  } : 
   function() { alert('До 18 нельзя'); };
 
@@ -294,9 +294,9 @@ ask(
 
 ```js
 //+ run
-var sum = new Function('a,b', ' return a+b; ');
+let sum = new Function('a,b', ' return a+b; ');
 
-var result = sum(1, 2);
+let result = sum(1, 2);
 alert( result ); // 3
 ```
 
@@ -346,7 +346,7 @@ alert( result ); // 3
 </tr>
 </table>
 
-Иногда в коде начинающих разработчиков можно увидеть много Function Expression. Почему-то, видимо, не очень понимая происходящее, функции решают создавать как `var func = function()`, но в большинстве случаев обычное объявление функции -- лучше.
+Иногда в коде начинающих разработчиков можно увидеть много Function Expression. Почему-то, видимо, не очень понимая происходящее, функции решают создавать как `let func = function()`, но в большинстве случаев обычное объявление функции -- лучше.
 
 **Если нет явной причины использовать Function Expression -- предпочитайте Function Declaration.**
 
@@ -355,7 +355,7 @@ alert( result ); // 3
 ```js
 //+ no-beautify
 // Function Expression 
-var f = function() { ... }
+let f = function() { ... }
 
 // Function Declaration 
 function f() { ... }

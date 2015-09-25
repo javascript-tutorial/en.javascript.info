@@ -1,7 +1,7 @@
 
 ```js
 //+ run demo
-var num;
+let num;
 
 do {
   num = prompt("Enter a number greater than 100?", 0);

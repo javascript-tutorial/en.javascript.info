@@ -2,7 +2,7 @@
 
 Depending on our aims, the script needs to work with the information.
 
-If it's an online-shop -- that's going to be the goods and the card. If it's a chat -- visitors, message and so on.
+If it's an online-shop -- that's going to be the goods and the card. If it's a chat -- visitors, messages and so on.
 
 Variables are used to store the information.
 
@@ -10,35 +10,31 @@ Variables are used to store the information.
 
 ## A variable
 
-According to Wikipedia, a [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is a storage location paired with an associated symbolic name (identifier). The name is used to access the stored information.
+A [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is a "named storage" for the information.
 
-To declare a variable in JavaScript, there are two keywords:
+To declare a variable in JavaScript, we need to use the `let` keyword.
 
-<ol>
-<li>the `var` keyword comes from the ancient times.</li>
-<li>the `let` keyword is a "modern school".</li>
-</ol>
-
-We'll start with `var`, because it is widely used in older scripts and we need to understand it. Later when we know enough to understand the subtle differences (when they actually matter for us) we'll move further to `let`.
-
-The statement below creates (in other words: *declares* or *defines*) the variable `message`:
+The statement below creates (in other words: *declares* or *defines*) the variable with the name "message":
 
 ```js
-var message;
+let message;
 ```
 
 Now we can assign some data into it:
 
 ```js
-var message;
-message = 'Hello'; // keep the string
+let message;
+
+*!*
+message = 'Hello'; // store the string
+*/!*
 ```
 
 The string is now saved into the associated memory area. We can access it using the variable name:
 
 ```js
 //+ run
-var message;
+let message;
 message = 'Hello!';
 
 alert( message ); // shows the variable content
@@ -47,14 +43,14 @@ alert( message ); // shows the variable content
 To be concise we can merge the variable declaration and assignment into a single line:
 
 ```js
-var message = 'Hello!';
+let message = 'Hello!';
 ```
 
 We can also declare multiple variables in one line:
 
 ```js
 //+ no-beautify
-var user = 'John', age = 25, message = 'Hello';
+let user = 'John', age = 25, message = 'Hello';
 ```
 
 That might seem shorter, but it's recommended, for the sake of beter readability, to use a single line per variable.
@@ -63,16 +59,28 @@ This code is a bit longer, but easier to read:
 
 ```js
 //+ no-beautify
-var user = 'John';
-var age = 25;
-var message = 'Hello';
+let user = 'John';
+let age = 25;
+let message = 'Hello';
 ```
+
+[smart header="`var` instead of `let`"]
+In older scripts you may also find another keyword: `var` instead of `let`:
+
+```js
+*!*var*/!* message = 'Hello';
+```
+
+The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" fashion. 
+
+The subtle differences does not matter yet, but we'll cover them in detail later when going deeper into the language.
+[/smart]
 
 ## Real-life analogy
 
 We can easily grasp the concept of a "variable" if we imagine it as a "box" for the data, with the unique-named sticker on it.
 
-For instance, the variable `message` -- is a box with the value `"Hello!" labelled `"message"`:
+For instance, the variable `message` is a box with the value `"Hello!" labelled `"message"`:
 
 <img src="variable.png"> 
 
@@ -82,7 +90,7 @@ The value can be changed as many times as we need:
 
 ```js
 //+ run
-var message;
+let message;
 
 message = 'Hello!';
 
@@ -99,9 +107,9 @@ We can also declare two variables and copy data from one into another.
 
 ```js
 //+ run
-var hello = 'Hello world!';
+let hello = 'Hello world!';
 
-var message;
+let message;
 
 *!*
 // copy value
@@ -134,8 +142,8 @@ There are two limitations on the variable name in JavaScript:
 Valid name examples:
 
 ```js
-var userName;
-var test123;
+let userName;
+let test123;
 ```
 
 When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another with the capital letter at start: `myVeryLongName`.
@@ -146,8 +154,8 @@ These names are valid:
 
 ```js
 //+ run untrusted
-var $ = 1; // declared a variable with the name "$"
-var _ = 2; // and now the variable with the name "_"
+let $ = 1; // declared a variable with the name "$"
+let _ = 2; // and now the variable with the name "_"
 
 alert( $ + _ ); // 3
 ```
@@ -156,9 +164,9 @@ Examples of incorrect variable names:
 
 ```js
 //+ no-beautify
-var 1a; // cannot start with a digit
+let 1a; // cannot start with a digit
 
-var my-name; // a hyphen '-' is not allowed in the name
+let my-name; // a hyphen '-' is not allowed in the name
 ```
 
 [smart header="Case matters"]
@@ -171,8 +179,8 @@ It is possible to use cyrillic letters or even hieroglyphs, like this:
 
 ```js
 //+ run
-var имя = 123;
-var 我 = 456;
+let имя = 123;
+let 我 = 456;
 ```
 
 Technically, there is no error here, but there is a tradition to use only latin alphabet in variable names.
@@ -187,28 +195,28 @@ The code below will give a syntax error:
 
 ```js
 //+ run no-beautify
-var return = 5; // error!
+let return = 5; // error!
 ```
 [/warn]
 
 
-## Strict mode and "var"
+## Non-Strict mode assignment
 
-Without strict mode, it is possible to create a variable without a `var`, by a mere assignment of the value:
+Without strict mode, it is possible to create a variable without a `let`, by a mere assignment of the value:
 
 ```js
-//+ run
+//+ run no-strict
 num = 5; // the variable "num" is created if didn't exist
 
 alert(num);
 ```
 
-...But in `"use strict"` it is not allowed.
+...But that is allowed for compatibility with the old scripts. It is a frowned-upon feature that is disabled in the strict mode.
 
 The code below will give an error:
 
 ```js
-//+ run
+//+ run untrusted
 "use strict";
 
 *!*
@@ -222,16 +230,25 @@ Please make sure that `"use strict"` is on the top of the script, otherwise the 
 There is no strict mode here:
 
 ```js
-//+ run
-var something;
+//+ run untrusted no-strict
+alert("some code");
+// …
 
-"use strict"; // too late
+"use strict"; // ignored, because not on top
 
 *!*
-num = 5; // no error, strict mode is not activated
+num = 5; // No error! strict mode is not activated
 */!*
 ```
 [/smart]
+
+## Chrome (V8) needs "use strict" for "let"
+
+In Chrome browser and Node.JS, both powered by V8 engine, `"use strict"` is required if we want to use `let` and many other modern features of the language.
+
+Here, on-site, most examples are evaluated with implicit (omitted in text, but auto-added before execution) `"use strict"`.
+
+But when you write JS, make sure that you do not forget `"use strict". Otherwise using `let` will give you an error in console.
 
 ## Constants
 
@@ -241,28 +258,12 @@ To declare a constant variable, one can use `const`:
 
 ```js
 //+ run
-'use strict';
-
 const myBirthday = '18.04.1982';
 
-color = '01.01.2001'; // error!
+myBirthday = '01.01.2001'; // error!
 ```
 
-The code below can now calculate other values based on the constant, like the age or the sign of the zodiac. It can be sure that the calculations are always valid, because `myBirthday` never changes.
-
-Please note that `const` variables actually *can be assigned*, but only once.
-
-This is not an error:
-
-```js
-//+ run
-'use strict';
-
-const myBirthday;
-
-myBirthday = '18.04.1982'; // the first assignment 
-```
-
+A constant variable never changes, so the further code can rely on that to calculate dependant values (like the age or the sign of the zodiac). It can be sure that the calculations are always valid.
 
 [smart header="CONSTANT_NAMING"]
 There is a widespread practice to use constants as aliases for difficult-to-remember values. Such constants are named using capitals and underscores.
@@ -276,10 +277,7 @@ const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
 const COLOR_ORANGE = "#FF7F00";
 
-const a;
-a = 5;
-
-var color = COLOR_ORANGE;
+let color = COLOR_ORANGE;
 alert( color ); // #FF7F00
 ```
 
@@ -292,13 +290,13 @@ So, sometimes constants are used as aliases to complex values, to evade errors a
 
 ## Summary
 
-<ul>
-<li>We must declare variables to store data. That can be done using `var` or `let`. As of now we can think that `let` is a newer alias of `var`, later we'll cover their differences in detail.</li>
-<li>We can assign a value when the variable is declared: `var x = 10`.</li>
-<li>If a variable is not going to change after assignment, it is called "a constant". We can use `const` keyword instead of `var` to declare constants.</li>
-</ul>
+We can declare variables to store data. That can be done using `var` or `let` or `const`.
 
-And there's one more thing. The most important one.
+<ul>
+<li>`let` -- is a normal modern variable declaration. The code must be in strict mode to use in Chrome (V8).</li>
+<li>`var` -- is an old-school compatibility variable declaration. We'll study the subtle  differences from `let` later, after we get familiar with the basics.</li>
+<li>`const` -- is like `let`, but the variable can't be changed.</li>
+</ul>
 
 Please name the variables sensibly.
 

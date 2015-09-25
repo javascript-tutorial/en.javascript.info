@@ -15,7 +15,7 @@ Before we move on, let's make a dip in the terminology, to understand what we're
 
 ```js
 //+ run
-var x = 1;
+let x = 1;
 
 *!*
 x = -x;
@@ -28,7 +28,7 @@ alert( x ); // -1, unary minus was applied
 
 ```js
 //+ run no-beautify
-var x = 1, y = 3;
+let x = 1, y = 3;
 alert( y - x ); // 2, binary minus
 ```
 
@@ -44,7 +44,7 @@ Usually the plus operator `'+'` sums numbers.
 But if the binary `+` is applied to strings, it merges (concatenates) them:
 
 ```js
-var s = "my" + "string";
+let s = "my" + "string";
 alert( s ); // mystring
 ```
 
@@ -77,10 +77,10 @@ The unary plus or, in other words, the plus applied to a single value, doesn't d
 
 ```js
 //+ run
-var x = 1;
+let x = 1;
 alert( +x ); // 1
 
-var y = -2;
+let y = -2;
 alert( +y ); // -2
 ```
 
@@ -96,8 +96,8 @@ The binary plus would add them as strings:
 
 ```js
 //+ run
-var apples = "2";
-var oranges = "3";
+let apples = "2";
+let oranges = "3";
 
 alert( apples + oranges ); // "23", the binary plus concatenates strings
 ```
@@ -106,8 +106,8 @@ So we can use the unary plus to convert values to numbers, and then sum them:
 
 ```js
 //+ run
-var apples = "2";
-var oranges = "3";
+let apples = "2";
+let oranges = "3";
 
 alert( +apples + +oranges ); // 5, both operands converted to numbers before the binary plus
 ```
@@ -148,7 +148,7 @@ Let's note that an assignment `=` is also an operator. It is listed in the prece
 That's why when we assign a variable, like `x = 2 * 2 + 1`, the maths is done first, and then the assignment is evaluated.
 
 ```js
-var x = 2 * 2 + 1;
+let x = 2 * 2 + 1;
 
 alert( x ); // 5
 ```
@@ -157,7 +157,7 @@ It is possible to chain assignments:
 
 ```js
 //+ run
-var a, b, c;
+let a, b, c;
 
 *!*
 a = b = c = 2 + 2;
@@ -179,11 +179,11 @@ So it is actually possible to use an assignment as the part of the more complex 
 
 ```js
 //+ run
-var a = 1;
-var b = 2;
+let a = 1;
+let b = 2;
 
 *!*
-var c = 3 - (a = b + 1);
+let c = 3 - (a = b + 1);
 */!*
 
 alert( a ); // 3
@@ -223,7 +223,7 @@ So, there are special operators for that:
 
 ```js
 //+ run no-beautify
-var i = 2;
+let i = 2;
 i++;      // works same as i = i + 1, but shorter
 alert(i); // 3
 ```
@@ -233,7 +233,7 @@ alert(i); // 3
 
 ```js
 //+ run no-beautify
-var i = 2;
+let i = 2;
 i--;      // works same as i = i - 1, but shorter
 alert(i); // 1
 ```
@@ -261,8 +261,8 @@ Let's see the examples:
 
 ```js
 //+ run
-var i = 1;
-var a = ++i; // (*)
+let i = 1;
+let a = ++i; // (*)
 
 alert(a); // *!*2*/!*
 ```
@@ -273,8 +273,8 @@ Now let's use the postfix form:
 
 ```js
 //+ run
-var i = 1;
-var a = i++; // (*)
+let i = 1;
+let a = i++; // (*)
 
 alert(a); // *!*1*/!*
 ```
@@ -286,7 +286,7 @@ In the line `(*)` the *postfix* form `i++` also increments `i`, but returns the 
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 i++;
 ++i;
 alert( i ); // 2, the lines above did the same
@@ -297,7 +297,7 @@ alert( i ); // 2, the lines above did the same
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 alert( ++i ); // 1
 ```
 
@@ -306,7 +306,7 @@ alert( ++i ); // 1
 
 ```js
 //+ run
-var i = 0;
+let i = 0;
 alert( i++ ); // 0
 ```
 
@@ -318,7 +318,7 @@ An attentive reader could note that `++` (as well as `--`) can use as a part of 
 
 ```js
 //+ run
-var i = 1;
+let i = 1;
 alert( 2 * ++i ); // 4
 ```
 
@@ -326,7 +326,7 @@ Compare with:
 
 ```js
 //+ run
-var i = 1;
+let i = 1;
 alert( 2 * i++ ); // 2, because i++ returns the pre-increment value
 ```
 
@@ -337,7 +337,7 @@ Three lines, one line -- one action is much better:
 
 ```js
 //+ run
-var i = 1;
+let i = 1;
 alert( 2 * i );
 i++;
 ```
@@ -374,7 +374,7 @@ We often need to apply an operator to a variable and keep the result in it.
 For example:
 
 ```js
-var n = 2;
+let n = 2;
 n = n + 5;
 n = n * 2;
 ```
@@ -383,7 +383,7 @@ This notation can be shortened using operators `+=` and *=`:
 
 ```js
 //+ run
-var n = 2;
+let n = 2;
 n += 5; // now n=7 (same as n = n + 5)
 n *= 2; // now n=14 (same as n = n * 2)
 
@@ -396,7 +396,7 @@ The call has the same precedence as a normal assignment, so it executes after mo
 
 ```js
 //+ run
-var n = 2;
+let n = 2;
 n *= 3 + 5;
 
 alert( n ); // 16  (n = 2 * 8)

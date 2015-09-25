@@ -2,7 +2,7 @@ JavaScript-code:
 
 ```js
 //+ demo run
-var name = prompt("What is your name?", "");
+let name = prompt("What is your name?", "");
 alert( name );
 ```
 
@@ -15,7 +15,9 @@ The full page:
 <body>
 
   <script>
-    var name = prompt("What is your name?", "");
+    'use strict';
+    
+    let name = prompt("What is your name?", "");
     alert( name );
   </script>
 

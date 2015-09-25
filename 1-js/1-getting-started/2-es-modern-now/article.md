@@ -5,7 +5,13 @@ The [latest standard](http://www.ecma-international.org/publications/standards/E
 
 As it includes a lot of new features, most browsers implement them partially. You can find the current state of the support at [](https://kangax.github.io/compat-table/es6/).
 
+## Single-engine app
+
 If a project is developed for a single JavaScript engine, like V8 (Node.JS, Chrome), then we can use V8-supported features. That's a lot.
+
+Most notably, V8 supports many of the new features only if the code is running in the "strict mode" (modern mode), which should be enabled explicitly using a directive `'use strict';` at the start.
+
+You will find most code in this tutorial using this directive and, because of that, runnable in Chrome.
 
 But what if we're writing a cross-browser application? Different browsers support different subsets of ES-2015. 
 
@@ -68,13 +74,13 @@ That doesn't mean that the example is wrong! It's just the browser lacking the s
 
 [Chrome Canary](https://www.google.com/chrome/browser/canary.html) is recommended, most examples work in it.
 
-[Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) is fine too, but it has certain glitches. Like: [let](/let-const) variables working only with when the script type contains `version=1.7` or `1.8`: `<script type="application/javascript;version=1.7">`. Most other browsers do not understand such script type. This site uses a special trick to workaround.
+[Firefox Developer Edition](https://www.mozilla.org/en-US/firefox/channel/#developer) is fine too, but it has certain glitches. Like: [let](/let-const) variables working only with when the script type contains `version=1.7` or `1.8`: `<script type="application/javascript;version=1.7">`. Most other browsers do not understand such script type. This site uses a special trick to workaround that, so that the scripts work in both Firefox and other browsers.
 
-And in any case you can go [Babel: try it out](https://babeljs.io/repl/) page and run the example there!
+And even if your browser does not support some code, you can run it through Babel.JS, on the page [Babel: try it out](https://babeljs.io/repl/)!
 
-On production everyone's using Babel anyway.
+That would be fine, because on production everyone's using Babel anyway.
 
 Once again, let's note that the most up-to-date situation with support is reflected on [](https://kangax.github.io/compat-table/es6/).
 
-Now we can go coding, but we need a good code editor for that, right? That is discussed in the next session.
+Now we can go coding, but we need a good code editor for that. That is discussed in the next session.
 

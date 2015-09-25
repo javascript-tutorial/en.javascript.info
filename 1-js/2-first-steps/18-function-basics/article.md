@@ -56,7 +56,7 @@ For example:
 //+ run
 function showMessage() {
 *!*
-  var message = "Hello, I'm JavaScript!"; // local variable
+  let message = "Hello, I'm JavaScript!"; // local variable
 */!*
 
   alert( message );
@@ -73,10 +73,10 @@ A function can access an outer variable as well, for example:
 
 ```js
 //+ run no-beautify
-var *!*userName*/!* = 'John';
+let *!*userName*/!* = 'John';
 
 function showMessage() {
-  var message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, my name is ' + *!*userName*/!*;
   alert(message);
 }
 
@@ -89,12 +89,12 @@ For instance:
 
 ```js
 //+ run
-var *!*userName*/!* = 'John';
+let *!*userName*/!* = 'John';
 
 function showMessage() {
   userName = "Bob"; // (1) changed the outer variable
 
-  var message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, my name is ' + *!*userName*/!*;
   alert(message);
 }
 
@@ -107,18 +107,18 @@ alert( userName ); // Bob, the value was modified by the function
 */!*
 ```
 
-Of course if we had `var userName = ...` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one:
+Of course if we had `let userName = ...` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one:
 
 ```js
 //+ run
-var *!*userName*/!* = 'John';
+let *!*userName*/!* = 'John';
 
 function showMessage() {
 *!*
-  var userName = "Bob"; // declare a local variable 
+  let userName = "Bob"; // declare a local variable 
 */!*
 
-  var message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, my name is ' + *!*userName*/!*;
   alert(message);
 }
 
@@ -135,7 +135,7 @@ alert( userName ); // John, the outer variable is not modified
 Please only declare global the variables which have a project-wide importance. Variables needed by specific tasks should reside in the corresponding functions. So to say, global variables are rare in modern projects.
 
 [warn header="Attention: implicit global declaration!"]
-In the old JavaScript it was possible to omit variable declaration:
+Without strict mode, for compatibility with the old scripts, it is possible to omit variable declaration:
 
 ```js
 //+ run
@@ -148,14 +148,14 @@ showMessage();
 alert( message ); // Hello
 ```
 
-In the code above `message` was not declared. Most probably, the programmer simply forgot to write `var`.
+In the code above `message` was not declared. Most probably, the programmer simply forgot to write `let`.
 
-With `"use strict"` there will be an error. But without it, the variable will be created automatically. And not in the function, but globally, in the whole script.
+With `"use strict"` there will be an error. But without it, the variable will be created automatically. It will be global.
 
 Modern editors and tools for code quality checking like [jshint](http://jshint.com/) allow to see and fix "missed declarations" early while coding.
 [/warn]
 
-In the future, after we deal with the basics and data structures, in the chapter [](/closures) we will go deeper in the internals of functions and variables.
+Later, after we deal with the basics and data structures, in the chapter [](/closures) we will go deeper in the internals of functions and variables.
 
 ## Параметры 
 
@@ -191,7 +191,7 @@ function showMessage(from, text) {
   alert( from + ': ' + text );
 }
 
-var from = "Маша";
+let from = "Маша";
 
 showMessage(from, "Привет");
 
@@ -265,7 +265,7 @@ function calcD(a, b, c) {
    *!*return*/!* b*b - 4*a*c;
 }
 
-var test = calcD(-4, 2, 1);
+let test = calcD(-4, 2, 1);
 alert(test); // 20
 ```
 
@@ -285,7 +285,7 @@ function checkAge(age) {
   }
 }
 
-var age = prompt('Ваш возраст?');
+let age = prompt('Ваш возраст?');
 
 if (checkAge(age)) {
   alert( 'Доступ разрешен' );

@@ -2,7 +2,7 @@ The first two checks are a usual `case`. The third one is split into two cases:
 
 ```js
 //+ run
-var a = +prompt('a?', '');
+let a = +prompt('a?', '');
 
 switch (a) {
   case 0:

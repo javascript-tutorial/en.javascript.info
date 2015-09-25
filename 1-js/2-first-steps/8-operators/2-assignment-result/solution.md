@@ -4,7 +4,7 @@
 
 ```js
 //+ run
-var a = 2;
+let a = 2;
 alert( a *= 2 ); // 4
 ```
 

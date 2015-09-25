@@ -6,7 +6,7 @@
 
 ```js
 //+ run no-beautify
-var a = 1, b = 1, c, d; 
+let a = 1, b = 1, c, d; 
 
 c = ++a; alert(c); // 2
 d = b++; alert(d); // 1

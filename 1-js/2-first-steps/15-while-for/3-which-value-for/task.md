@@ -10,14 +10,14 @@ Then compare with the answer.
 <li>The postfix form:
 
 ```js
-for (var i = 0; i < 5; i++) alert( i );
+for (let i = 0; i < 5; i++) alert( i );
 ```
 
 </li>
 <li>The prefix form:
 
 ```js
-for (var i = 0; i < 5; ++i) alert( i );
+for (let i = 0; i < 5; ++i) alert( i );
 ```
 
 </li>
