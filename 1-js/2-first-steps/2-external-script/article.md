@@ -222,7 +222,7 @@ If we'd like to add several `<script>` tags on the page and keep their execution
 
 Like this:
 ```js
-function addScript(src);
+function addScript(src){
   let script = document.createElement('script');
   script.src = src;
 *!*
