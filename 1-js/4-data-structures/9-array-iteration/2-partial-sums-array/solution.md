@@ -31,6 +31,7 @@ alert(getSums([1,2,3,4,5])); // результат: *!*1,3,6,10*/!*
 //+ run
 function getSums(arr) {
   var result = [];
+  if (!arr.length) return result;
 
   *!*var totalSum*/!* = arr.reduce(function(sum, item) {
     result.push(sum);
