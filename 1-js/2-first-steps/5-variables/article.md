@@ -293,7 +293,7 @@ So, sometimes constants are used as aliases to complex values, to evade errors a
 We can declare variables to store data. That can be done using `var` or `let` or `const`.
 
 <ul>
-<li>`let` -- is a normal modern variable declaration. The code must be in strict mode to use in Chrome (V8).</li>
+<li>`let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).</li>
 <li>`var` -- is an old-school compatibility variable declaration. We'll study the subtle  differences from `let` later, after we get familiar with the basics.</li>
 <li>`const` -- is like `let`, but the variable can't be changed.</li>
 </ul>
