@@ -242,7 +242,7 @@ alert( "Цикл занял " + (end - start) + " ms" );
 
 ```js
 function walkIn(arr) {
-  for (var key in arr) arr[i]++
+  for (var key in arr) arr[key]++
 }
 
 function walkLength(arr) {
@@ -262,7 +262,7 @@ var arr = [];
 for (var i = 0; i < 1000; i++) arr[i] = 0;
 
 function walkIn(arr) {
-  for (var key in arr) arr[i]++;
+  for (var key in arr) arr[key]++;
 }
 
 function walkLength(arr) {
@@ -289,7 +289,7 @@ var arr = [];
 for (var i = 0; i < 1000; i++) arr[i] = 0;
 
 function walkIn(arr) {
-  for (var key in arr) arr[i]++;
+  for (var key in arr) arr[key]++;
 }
 
 function walkLength(arr) {
@@ -342,7 +342,7 @@ var arr = [];
 for (var i = 0; i < 1000; i++) arr[i] = 0;
 
 function walkIn(arr) {
-  for (var key in arr) arr[i]++;
+  for (var key in arr) arr[key]++;
 }
 
 function walkLength(arr) {
