@@ -1,3 +1,3 @@
 # JavaScript Fundamentals
 
-Let's learn the main building blocks of the scripts.
+Let's learn the fundamentals of script building.

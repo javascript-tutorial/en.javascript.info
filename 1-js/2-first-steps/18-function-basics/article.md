@@ -107,18 +107,18 @@ alert( userName ); // Bob, the value was modified by the function
 */!*
 ```
 
-Of course if we had `let userName = ...` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one:
+If we had `let` before `userName` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one:
 
 ```js
 //+ run
-let *!*userName*/!* = 'John';
+let userName = 'John';
 
 function showMessage() {
 *!*
   let userName = "Bob"; // declare a local variable 
 */!*
 
-  let message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, my name is ' + userName;
   alert(message);
 }
 
@@ -126,36 +126,36 @@ function showMessage() {
 showMessage();
 
 *!*
-alert( userName ); // John, the outer variable is not modified
+alert( userName ); // John, unmodified
 */!*
 ```
 
-**Variables declared on the script level, outside of any function, are called *global*.**
+## Global variables
+
+Variables declared on the script level, outside of any function, are called *global*.
 
 Global variables are visible from any function. They are used to store the data of a project-wide importance. Variables needed by specific tasks should reside in the corresponding functions. 
 
-[warn header="Attention: implicit global declaration!"]
-Without strict mode, for compatibility with the old scripts, it is possible to create a variable by an assignment, without a declaration:
+Without strict mode, for compatibility with the old scripts, it is possible to create a variable by an assignment, without a declaration.
+
+Consider the code below as an example. The variable `message` becomes global.
 
 ```js
-//+ run
+//+ run no-strict
 function showMessage() {
-  message = 'Hello'; // pure assignment, no declaration
+  message = 'Hello'; // (*) assignment without declaration!
 }
 
 showMessage();
 
-alert( message ); // Hello
+alert( message ); // Hello 
 ```
 
-In the code above, most probably, the programmer simply forgot to write `let`. As a result, he created a global variable `message`.
+With `"use strict"` there will be an error in line `(*)`. Without it, there won't be.
 
-With `"use strict"` there will be an error. 
+In the code above, most probably, the programmer simply forgot to write `let`, so the error message is a good thing. A one more reason to `"use strict"` all the time.
 
 Modern editors and tools for code quality checking like [jshint](http://jshint.com/) allow to see and fix "missed declarations" early while coding.
-[/warn]
-
-Later, after we deal with the basics and data structures, in the chapter [](/closures) we will go deeper in the internals of functions and variables.
 
 ## Parameters
 
@@ -201,7 +201,7 @@ showMessage(from, "Hello");
 alert( from ); // Ann
 ```
 
-## Default arguments
+## Default parameter values
 
 A function can be *called* with any number of arguments. If a parameter is not provided, but listed in the declaration, then its value becomes `undefined`.
 
@@ -211,7 +211,7 @@ For instance, a function `showMessage(from, text)` can actually be called with a
 showMessage("Ann");
 ```
 
-Normally, such call would output `**Ann**: undefined`, because `text === undefined`.
+Normally, such call would output `"Ann: undefined"`, because `text === undefined`.
 
 But we can modify the function to detect missed parameter and assign a "default value" to it:
 
@@ -250,7 +250,7 @@ function showMessage(from, text) {
 
 This way is shorter, but the argument is considered missing also if it's falsy, like an empty line, `0` or `null`.
 </li>
-<li>ES-2015 introduces an neater syntax for default values:
+<li>ES-2015 introduced an neater syntax for default values:
 
 ```js
 //+ run
@@ -267,13 +267,11 @@ This syntax is not yet widely supported in the browsers, but available with the 
 </li>
 </ol>
 
-A call may also provide more arguments than listed, for instance: `showMessage("Ann", "Hello", 1, 2, 3)`. Later we'll see how to read such extra arguments.
-
 ## Returning a value
 
-A function can do return a value into the calling code.
+A function can return a value into the calling code as the result.
 
-For instance, let's make a maths function `calcD` to calculate a [discriminant of a quadratic polynomial] using the formula <code>b<sup>2</sup> - 4ac</code>:
+For instance, let's make a mathematical function `calcD` to calculate a [discriminant of a quadratic polynomial](https://en.wikipedia.org/wiki/Discriminant#Quadratic_formula) using the formula <code>b<sup>2</sup> - 4ac</code>:
 
 ```js
 //+ run no-beautify
@@ -330,16 +328,16 @@ In the code above, if `checkAge(age)` returns `false`, then `showMovie` won't pr
 
 
 [smart header="A result with an empty or absent `return` returns `undefined`"]
-If a function does not return a value, it is considered to return `undefined`:
+If a function does not return a value, it is the same as if it returns `undefined`:
 
 ```js
 //+ run
-function doNothing() { /* пусто */ }
+function doNothing() { /* empty */ }
 
 alert( doNothing() ); // undefined
 ```
 
-The same happens when the `return` has no argument:
+A `return` with no argument is also the same as `return undefined`:
 
 ```js
 //+ run
@@ -358,44 +356,44 @@ Functions are actions. So their name is usually a verb.
 
 Usually, function names have verbal prefixes which vaguely describe the action.
 
-Functions that shart with `"show"` -- usually show something:
+There is an agreement within the team on the terms here. For instance, functions that start with `"show"` -- usually show something:
 
 ```js
 //+ no-beautify
 showMessage(..)     // shows a message
 ```
 
+Function starting with...
 <ul>
-<li>Functions starting with `"get"` -- allow to get something,</li>
-<li>with `"calc"` -- calculate something,</li>
-<li>with `"create"` -- create something,</li>
-<li>with `"check"` -- check something and return a boolean, etc.</li>
+<li>`"get"` -- allow to get something,</li>
+<li>`"calc"` -- calculate something,</li>
+<li>`"create"` -- create something,</li>
+<li>`"check"` -- check something and return a boolean, etc.</li>
 </ul>
 
+Examples of such names:
 
 ```js
 //+ no-beautify
-getAge(..)          // returns the age (gets it somehow)
+getAge(..)          // return the age (get it somehow)
 calcD(..)           // calculate a discriminant and return the result
 createForm(..)      // create a form, usually returns it
 checkPermission(..) // check a permission, return true/false
 ```
 
-Most prefixes are reused across multiple projects and understood by the community.
-
-That's very convenient: a glance on a function name gives an understanding what it does and what kind of value it returns.
+That's very convenient. The prefix itself is a great hint. A glance on a function name gives an understanding what it does and what kind of value it returns.
 
 [smart header="One function -- one action"]
-A function should do exactly what is suggested by its name. If many subactions are involved and the code becomes large -- maybe it's worth to separate them in their functions.
+A function should do exactly what is suggested by its name. 
 
-By all means, two independant actions deserve two functions, even if they are related.
+Two independant actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function calling those two).
 
-A few examples of "shouldn't" to see what I mean here:
+Few examples of "shouldn't do" for the names listed above:
 <ul>
-<li>`getAge` should not show update `age` or change it or show anything to the visitor.</li>
-<li>`calcD` should not save a calculated discriminant "for future reuse". It should only calculate it.</li>
-<li>`createForm` should not show the form to the user or modify something in the document. It should only create it.</li>
-<li>`checkPermission` should only perform the check and return the result. Not display the `access granted/access denied` message.</li>
+<li>`getAge` -- should not change `age`, also it should not show anything to the visitor.</li>
+<li>`calcD` -- should not store a calculated discriminant "for future reuse" anywhere. It should only calculate and return it.</li>
+<li>`createForm` -- should not show the form to the user or modify something in the document. It should only create it and return.</li>
+<li>`checkPermission` -- should only perform the check and return the result. It should not display the `access granted/denied` message.</li>
 </ul>
 [/smart]
 
@@ -427,7 +425,7 @@ It is possible for a function to access variables defined outside of it.
 
 But to make the code cleaner and easier to understand, it's recommended to use local variables and parameters instead as much as possible.
 
-It is always easier to understand a function which gets parameters `a, b, c`, works with them and returns a result, than a function which gets no parameters, but modifies outer `a, b, c` somewhere in it's code.
+It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side-effect.
 
 Function naming:
 

@@ -13,26 +13,29 @@ let n = 123;
 n = 12.345;
 ```
 
-There is a single *number* type for both integer and floating point numbers.
+A *number* type serves both for integer and floating point numbers.
 
-Besides numbers it may store so called "numeric values": `Infinity`, `-Infinity` and `NaN`.
+Besides numbers there are special "numeric values" which belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
-`Infinity` is meant to represent the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity).
+<ul>
+<li>`Infinity` is meant to represent the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity).
 
-We can get it dividing by zero:
+We can get it as a result of division by zero:
 
 ```js
 //+ run
 alert( 1 / 0 ); // Infinity
 alert( -1 / 0 ); // -Infinity
 ```
-
-`NaN` represents a computational error. It is the result of an incorrect or undefined mathematical operation, for instance:
+</li>
+<li>`NaN` represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
 
 ```js
 //+ run
 alert( "not a number" * 2 ); // NaN
 ```
+</li>
+</ul>
 
 These values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
 
@@ -51,26 +54,20 @@ In JavaScript, there are 3 types of quotes.
 <ol>
 <li>Double quotes: `"Hello"`.</li>
 <li>Single quotes: `'Hello'`.</li>
-<li>Backtricks are "extended functionality" quotes. They allow to embed other variables or even expressions into the string wrapping them by `${…}`.</li>
+<li>Backtricks: <code>&#96;Hello&#96;</code>.</li>
 </ol>
 
-Double and single quotes are essentially the same. The only difference between them can be seen when the string includes the quotation character `"` or `'`.
+Double and single quotes are essentially the same. 
 
-A double quote symbol may appear inside single-quoted lines and vise versa:
-
-```js
-let hello = "I'm JavaScript"; // single-quote inside "…"
-let name = 'My "official" name is "EcmaScript"'; // vise versa
-```
-
-If we want to include a single quote inside a same-quoted string, we can do it too. But we need to prepend it with a slash:
+Backtricks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
 ```js
-// prepend ' inside the string with a slash \'
-let hello = 'I\'m JavaScript'; 
+//+ run
+let name = "John";
+
+alert( `Hello, ${name}!` ); // Hello, John!
 ```
 
-Similarly with double quotes.
 
 [smart header="There is no *character* type."]
 In some languages, there is a special "character" type for a single character. For example, in the C language it is `char`.
@@ -82,7 +79,7 @@ We'll cover strings more thoroughly in the chapter [](/string).
 
 ## A boolean (logical)
 
-The boolean type has only two values in it: `true` and `false`.
+The boolean type has only two values: `true` and `false`.
 
 This type is commonly used to store the yes/no values.
 
@@ -94,7 +91,7 @@ let checked = true; // the form field is checked
 checked = false;    // the form field is not checked
 ```
 
-Boolean values usually originate from the comparisons:
+Boolean values also come as the result of comparisons:
 
 ```js
 //+ run
@@ -118,7 +115,7 @@ In JavaScript `null` is not a "reference to a non-existing object" or a "null po
 
 It's just a special value which has the sense of "nothing" or "value unknown".
 
-The code above basically says that the `age` is unknown.
+The code above states that the `age` is unknown.
 
 ## The "undefined" value
 
@@ -144,22 +141,21 @@ x = undefined;
 alert( x ); // "undefined"
 ```
 
-...But it's not recommended to do that, because such assignment contradicts to the sense of `undefined`.
+...But it's not recommended to do that, because such assignment contradicts to the sense of `undefined`. 
 
-To write an "empty" or an "unknown" value into the variable, use `null`.
+Normally, we use `null` to write an "empty" or an "unknown" value into the variable, and `undefined` is only used for checks, to see if the variable is assigned or similar.
 
 ## The typeof operator [#type-typeof]
 
 The `typeof` operator returns the type of the argument.
 
-It has two syntaxes: with the brackets or without them.
-
+It allows two forms of syntax:
 <ol>
 <li>As an operator: `typeof x`.</li>
 <li>Function style: `typeof(x)`.</li>
 </ol>
 
-They work the same. 
+In other words, it works both with the brackets or without them. They result is the same. 
 
 The result of `typeof x` is a string, which has the type name:
 
@@ -189,7 +185,7 @@ Please note the last two lines, because `typeof` behaves specially there.
 
 <ol>
 <li>The result of `typeof null` equals to `"object"`. That is an officially recognized error in the language that is kept for compatibility. In fact, `null` is not an object, but a special value from a data type of its own.</li>
-<li>Functions are yet to be covered. As of now let's just note that functions is a kind of objects. But `typeof` treats them separately returning `"function"`. That's very convenient in practie.</li>
+<li>Functions are yet to be covered. As of now let's just note that functions do not make a separate type, instead they are a special kind of objects in JavaScript. But `typeof` treats them separately returning `"function"`. That's actually just fine and very convenient in practice.</li>
 </ol>
 
 ## Type conversions
@@ -197,16 +193,16 @@ Please note the last two lines, because `typeof` behaves specially there.
 A variable in JavaScript can contain any data. The same variable can get a string and, a little bit later, be used to store a number:
 
 ```js
-// perfectly fine
+// no error
 let message = "hello";
 message = 123456;
 ```
 
-But sometimes we need to convert a value of one type to another. That is mostly useful because each type has it's own features, so we are really going to benefit from storing a number as a number, not a string with it.
+But sometimes we need to convert a value of one type to another. That is mostly useful because each type has it's own features. So we are really going to benefit from storing a number as a number, not a string with it.
 
 There are many type conversions in JavaScript, fully listed in [the specification](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion).
 
-Three conversions that are required most often are:
+Three conversions that happen the most often are:
 
 <ol>
 <li>String conversion.</li>
@@ -216,7 +212,7 @@ Three conversions that are required most often are:
 
 ### String conversion
 
-The string conversion happens when we need a string from a value.
+The string conversion happens when we need a string form of a value.
 
 For example, `alert` does it:
 
@@ -250,7 +246,7 @@ For example, a mathematical operation like division '/' can be applied to non-nu
 alert( "6" / "2" ); // 3, strings become numbers
 ```
 
-Although if we want to ensure that the value is a number, we can use a `Number(value)` function to do it explicitly:
+If we want to ensure that a value is a number, we can use a `Number(value)` function to do it explicitly:
 
 ```js
 //+ run
@@ -259,18 +255,16 @@ let n = Number("6");
 alert(typeof n); // number
 ```
 
-We can use that to ensure that a user-supplied value is a number. 
+It's handy when there is a value comes from a text form field, or another source which is string-bsed.
 
-If the string is not a number, the result is `NaN`.
-
-For example:
+If the string is not a number, the result of such conversion is `NaN`, for instance:
 
 ```js
 //+ run
 let age = Number("a user-supplied string"); 
 
 alert(age); // NaN, conversion failed
-alert(age); // number, because NaN belongs to the "number" type
+alert(typeof age); // number, because NaN belongs to the "number" type
 ```
 
 The rules of transformation:
@@ -282,8 +276,8 @@ The rules of transformation:
 <tbody>
 <tr><td>`undefined`</td><td>`NaN`</td></tr>
 <tr><td>`null`</td><td>`0`</td></tr>
-<tr><td>`true / false`</td><td>`1 / 0`</td></tr>
-<tr><td>A string</td><td>Whitespaces from the start and the end are cut.<br>Afterwards, if we have an empty string, then `0`, otherwise -- "read" aиначе из непустой строки "считывается" число, при ошибке результат `NaN`.</td></tr>
+<tr style="white-space:nowrap"><td>`true / false`</td><td>`1 / 0`</td></tr>
+<tr><td>A string</td><td>Whitespaces from the start and the end are cut off.<br>Then,  if the remaining string is empty, the result is `0`, otherwise -- the value is "read" from the string. An error gives `NaN`.</td></tr>
 </tbody>
 </table>
 
@@ -292,20 +286,22 @@ Other examples:
 ```js
 //+ run
 alert( Number("   123   ") ); // 123
-alert( Number("123z") ); // NaN (not a number because of "z")
+alert( Number("123z") ); // NaN (error reading a number at "z")
 alert( Number(true) ); // 1
 alert( Number(false) ); // 0
 ```
 
 Please note that `null` and `undefined` are similar in many aspects, but here they are not. A `null` becomes a zero, but `undefined` becomes `NaN`.
 
-## Boolean conversion
+### Boolean conversion
 
-Boolean conversion is happens automatically in some operations, but also can be performed manually with the call of `Boolean(value)`.
+Boolean conversion is happens automatically in logical operations (to be covered), but also can be performed manually with the call of `Boolean(value)`.
 
-All values that are intuitively "empty" become `false`. These are: `0`, an empty string, `null`, `undefined` and `NaN`.
-
-Other values become `true`.
+The conversion rule is simple here:
+<ul>
+<li>All values that are intuitively "empty" become `false`. These are: `0`, an empty string, `null`, `undefined` and `NaN`.</li>
+<li>Other values become `true`.</li>
+</ul>
 
 [warn header="Please note: a string `\"0\"` is `true`"]
 Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript a non-empty string is always `false`, no matter what is in it.
@@ -346,7 +342,7 @@ alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-We'll cover working with objects in the chapter [](/object).
+Objects are very capable and tunable in JavaScript. This topic is huge, we'll start working with objects in the chapter [](/object) and continue studying them in other parts of the tutorial.
 
 ### Symbol
 
@@ -356,18 +352,18 @@ The `symbol` type is used to create unique identifiers.
 let id = Symbol("id");
 ```
 
-...And then we could use `id` as a special kind of identifier for object properties. We'll see more about object properties in the following chapters.
+...And then we could use `id` as a special kind of identifier for object properties. 
 
-As of now, let's just say that JavaScript symbols is a separate primitive type. And they are different from symbols in Ruby language (just in case you are familiar with it, please don't get trapped by the same word).
+We'll see more about object properties in the following chapters. As of now, let's just say that JavaScript symbols is a separate primitive type. And they are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word).
 
-We list symbols here for completeness, their in-depth study will follow after objects.
+We list symbols here for the sake of completeness, their in-depth study will follow after objects.
 
 
 ## Summary
 
 <ul>
 <li>There are 7 basic types in JavaScript. Six "primitive" types: `number`, `string`, `boolean`, `null`, `undefined`, `symbol` and `object`.</li>
-<li>Use `typeof x` to see which type is stored in `x`, but note that `typeof null` is mistakingly returned as undefined.</li>
+<li>The `typeof` operator allows to see which type is stored in the variable, but note that it mistakingly returns `"object"` for `null`.</li>
 </ul>
 
 Type conversions usually happen automatically, but there are also functions for the manual conversion:
@@ -377,5 +373,4 @@ Type conversions usually happen automatically, but there are also functions for 
 <li>Boolean</li>
 </ul>
 
-Now let's move on to operators and compute something using these types.
-
+Further we'll cover each type in a separate chapter, devoted to this type only. But first let's move on to study operators and other language constructs. It will be more productive.

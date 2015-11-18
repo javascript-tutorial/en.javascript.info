@@ -11,7 +11,7 @@ while (i) {
 
 Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop when `i = 0`. 
 
-Hence, the steps of the loop make the following sequence ("unrolled"):
+Hence, the steps of the loop make the following sequence ("loop unrolled"):
 
 ```js
 let i = 3;

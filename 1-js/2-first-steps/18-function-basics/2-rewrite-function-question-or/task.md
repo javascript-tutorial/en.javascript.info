@@ -1,23 +1,26 @@
-# Перепишите функцию, используя оператор '?' или '||'
+# Rewrite the function using '?' or '||'
 
 [importance 4]
 
-Следующая функция возвращает `true`, если параметр `age` больше `18`.
-В ином случае она задаёт вопрос `confirm` и возвращает его результат.
+
+The following function returns `true` if the parameter `age` is greater than `18`.
+
+Otherwise it asks for a confirmation and returns its result.
 
 ```js
 function checkAge(age) {
   if (age > 18) {
     return true;
   } else {
-    return confirm('Родители разрешили?');
+    return confirm('Did parents allow you?');
   }
 }
 ```
 
-Перепишите функцию, чтобы она делала то же самое, но без `if`, в одну строку. 
-Сделайте два варианта функции `checkAge`:
+Rewrite it, to perform the same, but without `if`, in a single line.
+
+Make two variants of `checkAge`:
 <ol>
-<li>Используя оператор `'?'`</li>
-<li>Используя оператор `||`</li>
+<li>Using a question mark operator `'?'`</li>
+<li>Using OR `||`</li>
 </ol>

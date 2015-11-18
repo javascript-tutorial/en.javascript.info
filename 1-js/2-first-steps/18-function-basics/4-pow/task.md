@@ -1,8 +1,8 @@
-# Функция pow(x,n)
+# Function pow(x,n)
 
 [importance 4]
 
-Напишите функцию `pow(x,n)`, которая возвращает `x` в степени `n`. Иначе говоря, умножает `x` на себя `n` раз и возвращает результат.
+Write a function `pow(x,n)` that returns `x` in power `n`. Or, in other words, multiplies `x` by itself `n` times and returns the result.
 
 ```js
 pow(3, 2) = 3 * 3 = 9
@@ -10,8 +10,8 @@ pow(3, 3) = 3 * 3 * 3 = 27
 pow(1, 100) = 1 * 1 * ...*1 = 1
 ```
 
-Создайте страницу, которая запрашивает `x` и `n`, а затем выводит результат  `pow(x,n)`.
+Create a web-page that prompts for `x` and `n`, and then shows the result of `pow(x,n)`.
 
 [demo /]
 
-P.S. В этой задаче функция обязана поддерживать только натуральные значения `n`, т.е. целые от `1` и выше.
+P.S. In this task the function is allowed to support only natural values of `n`: integers up from `1`.

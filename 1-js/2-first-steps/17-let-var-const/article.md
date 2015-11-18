@@ -1,6 +1,8 @@
 
 # Let, const and var revisited
 
+**KILL ME**
+
 Now as we know most language syntax constructs, let's discuss the subtle features and differences between variable definitions: `let`, `var` and `const`.
 
 ## Let

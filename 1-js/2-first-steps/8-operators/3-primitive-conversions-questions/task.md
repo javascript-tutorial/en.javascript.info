@@ -4,7 +4,7 @@
 
 Let's recap type conversions in the context of operators.
 
-What will be the result for expressions?
+What will be the result for these expressions?
 
 ```js
 //+ no-beautify
@@ -24,3 +24,4 @@ null + 1
 undefined + 1
 ```
 
+Think well, write down and then compare with the answer.

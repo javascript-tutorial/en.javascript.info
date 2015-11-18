@@ -30,9 +30,9 @@ alert( true || false ); // true
 alert( false || false ); // false
 ```
 
-As we can see, most results are truthy except for the case when `false` is at both sides.
+As we can see, the result is always `true` except for the case when both operands are `false`.
 
-If an operand is not boolean, then it's converted to boolean for the sake of evaluation.
+If an operand is not boolean, then it's converted to boolean for the evaluation.
 
 For instance, a number `1` is treated as `true`, a number `0` -- as `false`:
 
@@ -43,7 +43,7 @@ if (1 || 0) { // works just like if( true || false )
 }
 ```
 
-Mainly, OR is used in the `if` expression to test for *any* of given conditions.
+Mainly, OR is used in the `if` expression to test if *any* of given conditions is correct.
 
 For example:
 
@@ -72,7 +72,9 @@ if (hour < 10 || hour > 18 || isWeekend) {
 
 ## OR seeks the first truthy value
 
-The logic described above is somewhat classical. Now let's see reconsider the logic of OR to cover nice features of JavaScript.
+The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScipt.
+
+The extended algorithm works as follows.
 
 Given multiple OR'ed values:
 
@@ -84,9 +86,11 @@ The OR `"||"` operator is doing the following:
 
 <ul>
 <li>Evalutes operands from left to right.</li>
-<li>Returns the first value that would be truthy as a boolean, or the last one if all are falsy.</li>
-<li>The value is returned "as is", without the conversion.</li>
+<li>For each value converts it to boolean and stops immediately if it's true.</li>
+<li>Returns the value where it stopped. The value is returned in it's original form, without the conversion.</li>
 </ul>
+
+In other words, it returns the first truthy value or the last one if no such value found.
 
 For instance:
 
@@ -95,8 +99,9 @@ For instance:
 alert( 1 || 0 ); // 1 (is truthy)
 alert( true || 'no matter what' ); // (true is truthy)
 
-alert( null || 1 ); // 1 (null is falsy, so 1)
-alert( undefined || 0 ); // 0 (all falsy, so the last one)
+alert( null || 1 ); // 1 (1 is the first truthy)
+alert( null || 0 || 1 ); // 1 (the first truthy)
+alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
 ```
 
 This logic does not contradict to what was spoken above. If you check this behavior with the boolean table, you see that it still works the same.
@@ -104,9 +109,9 @@ This logic does not contradict to what was spoken above. If you check this behav
 But there leads to some interesting usages compared to a "pure, classical, boolean-only OR".
 
 <ol>
-<li>**Getting the first truthy value from the list.**
+<li>**Getting the first truthy value from the list of variables or expressions.**
 
-Imagine, we have several variables, which can be either set or non-set. And we need to choose the first one with data.
+Imagine, we have several variables, which can either contain the data or be `null/undefined`. And we need to choose the first one with data.
 
 Using OR for that:
 
@@ -119,16 +124,16 @@ let defaultUser = "John";
 let name = currentUser || defaultUser || "unnamed";
 */!*
 
-alert( name ); // outputs "John" -- the first truthy value
+alert( name ); // selects "John" – the first truthy value
 ```
 
 If both `currentUser` and `defaultUser` were falsy then `"unnamed"` would be the result.
 </li>
 <li>**Short-circuit evaluation.**
 
-Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. The process is called "a short-circuit evaluation".
+Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. The process is called "a short-circuit evaluation", because it goes as short as possible from left to right.
 
-This is especially notable when the expression given as the second argument has a side effect. Like variable assignment.
+This is clearly seen when the expression given as the second argument has a side effect. Like a variable assignment.
 
 If we run the example below, `x` will not get assigned:
 
@@ -141,7 +146,7 @@ let x;
 alert(x); // undefined, (x = 1) not evaluated
 ```
 
-...And here the first argument is `false`, so `OR` goes on and evaluates the second one thus running the assignment:
+...And if the first argument were `false`, then `OR` would goes on and evaluate the second one thus running the assignment:
 
 ```js
 //+ run no-beautify
@@ -151,6 +156,10 @@ let x;
 
 alert(x); // 1
 ```
+An assignment is a simple case, other side effects can be involved. 
+
+As we can see, such use case is a "shorter way to `if`". The first operand is converted to boolean and if it's false then the second one is evaluated. It's recommended to use `if` for that for code clarity.
+
 </li>
 </ol>
 
@@ -163,7 +172,7 @@ The AND operator is represented with two ampersands `&&`:
 result = a && b;
 ```
 
-In classic programming AND returns `true` if both arguments are truthy and `false` -- otherwise:
+In classic programming AND returns `true` if both operands are truthy and `false` -- otherwise:
 
 ```js
 //+ run
@@ -177,15 +186,15 @@ An example with `if`:
 
 ```js
 //+ run
-let hour = 12,
-  minute = 30;
+let hour = 12;
+let minute = 30;
 
 if (hour == 12 && minute == 30) {
   alert( 'Time is 12:30' );
 }
 ```
 
-Just as in OR, any value is allowed in AND:
+Just as for OR, any value is allowed as an operand of AND and gets converted to a boolean in the process:
 
 ```js
 //+ run
@@ -203,11 +212,13 @@ result = value1 && value2 && value3;
 The AND `"&&"` operator is doing the following:
 <ul>
 <li>Evalutes operands from left to right.</li>
-<li>Returns the first value that would be falsy as a boolean, or the last one if all are truthy.</li>
-<li>The value is returned "as is", without the conversion.</li>
+<li>For each value converts it to a boolean. If the result is `false`, stops.</li>
+<li>Returns the value where it stopped "as is", without the conversion.</li>
 </ul>
 
-The rules above are all-in-all similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+In other words, AND returns the first falsy value or the last one if all are truthy.
+
+The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
 
 Examples: 
 
@@ -224,14 +235,20 @@ alert( null && 5 ); // null
 alert( 0 && "no matter what" ); // 0
 ```
 
-If we pass several values in a row, the first falsy one is returned (or the last one if all of them are truthy):
+We can also pass several values in a row. The first falsy one is returned:
 
 ```js
 //+ run
 alert( 1 && 2 && null && 3 ); // null
-
-alert( 1 && 2 && 3 ); // 3
 ```
+
+...Or the last one if all of them are truthy:
+
+```js
+//+ run
+alert( 1 && 2 && 3 ); // 3, all truthy
+```
+
 
 [smart header="AND `&&` executes before OR `||`"]
 The precedence of the AND `&&` operator is higher than OR `||`, so it executes before OR.
@@ -244,8 +261,7 @@ alert( 5 || 1 && 0 ); // 5
 ```
 [/smart]
 
-[warn header="Don't use `&&` instead of `if`"]
-The AND `&&` operator can sometimes replace `if`.
+Just like OR, the AND `&&` operator can sometimes replace `if`.
 
 For instance:
 
@@ -269,8 +285,9 @@ if (x > 0) {
 }
 ```
 
-The variant with `&&` appears to be shorter. Although `if` is more obvious and tends to be a little bit more readable. So it is recommended to use `if` if we want if. And use `&&` if we want AND.
-[/warn]
+The variant with `&&` appears to be shorter. But `if` is more obvious and tends to be a little bit more readable. 
+
+So it is recommended to use every construct for it's purpose. Use `if` if we want if. And use `&&` if we want AND.
 
 ## ! (NOT)
 
@@ -279,13 +296,13 @@ The boolean NOT operator is represented with an exclamation `"!"`.
 The syntax is one of the simplest:
 
 ```js
-let result = !value;
+result = !value;
 ```
 
 The operator accepts a single argument and does the following:
 
 <ol>
-<li>Converts the operand to logical type: `true/false`.</li>
+<li>Converts the operand to boolean type: `true/false`.</li>
 <li>Returns an inverse value.</li>
 </ol>
 
@@ -297,7 +314,7 @@ alert( !true ); // false
 alert( !0 ); // true
 ```
 
-A double NOT is sometimes used for converting a value to boolean:
+A double NOT is sometimes used for converting a value to boolean type:
 
 ```js
 //+ run

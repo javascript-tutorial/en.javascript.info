@@ -4,7 +4,7 @@
 
 Rewrite `if..else` using multiple ternary operators `'?'`. 
 
-For readability, please let the code span several lines.
+For readability, it's recommended to split the code span over lines.
 
 ```js
 let message;

@@ -1,8 +1,8 @@
-# Результат присваивания
+# Assignment result
 
 [importance 3]
 
-Чему будет равен `x` в примере ниже?
+What will be values of `a` and `x` in the example below?
 
 ```js
 let a = 2;

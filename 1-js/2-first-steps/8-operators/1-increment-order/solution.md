@@ -1,23 +1,20 @@
-# Разъяснения
+
+The answer is:
+
+<ul>
+<li>`a = 2`</li>
+<li>`b = 2`</li>
+<li>`c = 2`</li>
+<li>`d = 1`</li>
+</ul>
 
 ```js
 //+ run no-beautify
-let a = 1, b = 1, c, d; 
+let a = 1, b = 1;
 
-// префиксная форма сначала увеличивает a до 2, а потом возвращает 
-c = ++a; alert(c); // 2
+alert( ++a ); // 2, prefix form returns the new value
+alert( b++ ); // 1, postfix form returns the old value
 
-// постфиксная форма увеличивает, но возвращает старое значение
-d = b++; alert(d); // 1
-
-// сначала увеличили a до 3, потом использовали в арифметике
-c = (2+ ++a); alert(c); // 5
-
-// увеличили b до 3, но в этом выражении оставили старое значение
-d = (2+ b++); alert(d); // 4
-
-// каждую переменную увеличили по 2 раза
-alert(a); // 3
-alert(b); // 3
+alert( a ); // 2, incremented once
+alert( b ); // 2, incremented once
 ```
-

@@ -1,6 +1,0 @@
-
-
-```html
-<!--+ src="index.html" -->
-```
-

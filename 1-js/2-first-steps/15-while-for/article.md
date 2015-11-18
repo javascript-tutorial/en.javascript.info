@@ -2,9 +2,9 @@
 
 We often have a need to perform similar actions many times in a row.
 
-For example, when we need to output goods from the list one after another. Or just write the same code for each number from 1 to 10.
+For example, when we need to output goods from the list one after another. Or just run the same code for each number from 1 to 10.
 
-*Loops* are a way to repeat the same part code multiple times.
+*Loops* are a way to repeat the same part of code multiple times.
 
 [cut]
 ## The "while" loop
@@ -13,18 +13,18 @@ The `while` loop has the following syntax:
 
 ```js
 while (condition) {
-  // code, loop body
+  // code ("loop body")
 }
 ```
 
-While the `condition` is true -- the `code` from the loop body is executed.
+While the `condition` is `true` -- the `code` from the loop body is executed.
 
 For instance, the loop below outputs `i` while `i<3`:
 
 ```js
 //+ run
 let i = 0;
-while (i < 3) {
+while (i < 3) { // shows 0, then 1, then 2
   alert( i );
   i++;
 }
@@ -32,9 +32,11 @@ while (i < 3) {
 
 There's a special term *iteration* for each loop run. The loop in the example above makes 3 iterations.
 
-If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser would show a message about a "hanging" script and let the user stop it.
+If there were no `i++` in the example above, the loop would repeat (in theory) forever, eating 100% CPU. In practice, the browser would show a message about a "hanging" script and let the user stop it.
 
-The `condition` is treated as a logical value, so instead of `while (i!=0)` we usually write `while (i)`:
+The `while` converts `condition` to a logical value. It can be any expression, not just a comparison. 
+
+For instance, the shorter way to write `while (i!=0)` could be `while (i)`:
 
 ```js
 //+ run
@@ -83,7 +85,7 @@ do {
 } while (i < 3);
 ```
 
-This form of syntax is rarely used, because the ordinary `while` is more obvious. We don't need to eye down the code looking for the condition. Neither we need to ask ourselves a question why it is checked at the bottom.
+This form of syntax is rarely used, because the ordinary `while` is more obvious. We don't need to scroll down the code looking for the condition.
 
 ## The "for" loop
 
@@ -97,7 +99,7 @@ for (begin; condition; step) {
 }
 ```
 
-An example of the loop which runs `alert(i)` for `i` from `0` to `3` not including `3`:
+Let's see these parts in an example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
 
 ```js
 //+ run
@@ -108,7 +110,7 @@ for (i = 0; i < 3; i++) { // shows 0, then 1, then 2
 }
 ```
 
-Here:
+Here the parts are:
 <ul>
 <li>**Begin:** `i=0`.</li>
 <li>**Condition:** `i<3`.</li>
@@ -116,17 +118,23 @@ Here:
 <li>**Body:** `alert(i)`, the code inside figure brackets. Brackets not required for a single statement.</li>
 </ul>
 
-The loop execution follows these steps:
+The `for` loop execution follows these steps:
 
 <ol>
-<li>Begin: `i=0` executes only once upon entering the loop.</li>
-<li>Condition: `i<3` is checked before every iteration including the first one. If it fails, the loop stops.</li>
-<li>Body: `alert(i)` runs is the condition is truthy.</li>
-<li>Step: `i++` executes after the `body` on each iteration, but before the `condition` check.</li>
+<li>**Begin**: `i=0` executes only once upon entering the loop.</li>
+<li>**Condition**: `i<3` is checked before every iteration. If it fails, the loop stops.</li>
+<li>**Body**: `alert(i)` runs is the condition is truthy.</li>
+<li>**Step**: `i++` executes after the `body` on each iteration, but before the `condition` check.</li>
 <li>Continue to step 2.</li>
 </ol>
 
-In other words, the execution flow is: `begin` -> (if `condition` -> run `body` and `step`) -> (if `condition` -> run `body` and `step`) -> ... and so on while the `condition` is truthy.
+In other words, the execution flow is: 
+```
+Begin 
+  → (if condition → run body and step) 
+  → (if condition → run body and step) 
+  → ... repeat until the condition is falsy.
+```
 
 [smart header="Inline variable declaration"]
 We can declare a "counter" variable right in the beginning of the loop.
@@ -144,7 +152,9 @@ for (*!*let*/!* i = 0; i < 3; i++) {
 
 Any part of the `for` can be skipped.
 
-For example, we can remove `begin`, or move it before the actual `for`, like here:
+For example, we can omit `begin` if we don't need to do anything at the loop start.
+
+Like here:
 
 ```js
 //+ run
@@ -177,7 +187,7 @@ for (;;) {
 }
 ```
 
-Although the semicolons `;` must present, otherwise it would be a syntax error.
+Please note that the semicolons `;` must present, otherwise it would be a syntax error.
 
 [smart header="`for..in`"]
 There is also a special construct `for..in` to iterate over object properties.
@@ -190,9 +200,9 @@ We'll get to it later while [talking about objects](#for..in).
 
 Normally the loop exists when the condition becomes falsy.
 
-But we can force the exit any moment. There's a special `break` directive for that.
+But we can force the exit at any moment. There's a special `break` directive for that.
 
-For example, this code calculates the sum of numbers until the user keeps entering them. And then outputs it:
+For example, this code below asks user for numbers and breaks if no number entered:
 
 ```js
 let sum = 0;
@@ -217,9 +227,9 @@ Actually, the composition: "an infinite loop + break" is a great thing for situa
 
 ## Continue to the next iteration [#continue]
 
-The `continue` is a younger sister of `break`. It doesn't break the whole loop, just the current body execution, as if it finished.
+The `continue` directive is a younger sister of `break`. It doesn't stop the whole loop. Instead if stops the current iteration and forces the loop to start a new one (if the condition allows).
 
-We can use it if we're done on the current iteration and would like to move to the next one.
+We can use it if we're done on the current iteration and would like to move on to the next.
 
 The loop above uses `continue` to output only odd values:
 
@@ -233,7 +243,7 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-For even `i` the `continue` directive stops body execution, passing the control to the next iteration of `for` (with the next number).
+For even `i` the `continue` directive stops body execution, passing the control to the next iteration of `for` (with the next number). So the `alert` is only called for odd values.
 
 [smart header="`continue` allows to decrease nesting level"]
 A loop for odd-only values could look like this:
@@ -248,42 +258,32 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-From the technical point of view it's identical. Really, we can just wrap the code in the `if` block instead of `continue`.
+From the technical point of view it's identical. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
-But we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that lowers the overall readability.
+But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 [/smart]
 
 [warn header="No `break/continue` to the right side of '?'"]
-Usually it is possible to replace `if` with a question mark operator `'?'`.
+Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
 
-The code:
+For example, if one would rewrite an `if` like that into a question mark:
 
 ```js
-if (condition) {
-  a();
+if (i > 5) {
+  alert(i);
 } else {
-  b();
+  continue;
 }
 ```
 
-...Is identical to:
-
-```js
-condition ? a() : b();
-```
-
-In both cases either `a()` or `b()` is executed depending on the `condition`. 
-
-Please note that syntax constructs that do not return a value cannot be used in `'?'`. Directives `break/continue` are not expressions. They are disallowed here.
-
-The code below will give a syntax error:
+...Then the code like this will give a syntax error:
 
 ```js
 //+ no-beautify
-(i > 5) ? alert(i) : *!*continue*/!*;
+(i > 5) ? alert(i) : *!*continue*/!*; // continue not allowed here
 ```
 
-That's one more reason not to use a question mark operator `'?'` instead of `if`.
+That's just another reason not to use a question mark operator `'?'` instead of `if`.
 [/warn]
 
 ## Labels for break/continue
@@ -300,7 +300,8 @@ for (let i = 0; i < 3; i++) {
   for (let j = 0; j < 3; j++) {
     
     let input = prompt(`Value at coords (${i},${j})`, '');
-    // do something with the value...
+    
+    // what if I want to exit from here?
 
   }
 }
@@ -310,7 +311,7 @@ alert('Done!');
 
 Let's say we need a way to stop the process. Like if we user decides to cancel the input.
 
-The ordinary `break` after `input` would only break the iterations over `j`. That's not sufficient.
+The ordinary `break` after `input` would only break the inner loop. That's not sufficient. Labels come to the rescue.
 
 A *label* is an identifier with a colon before a loop:
 ```js
@@ -354,7 +355,7 @@ for (let i = 0; i < 3; i++) { ... }
 
 The `continue` directive can also be used with a label. In this case the execution would jump onto the next iteration of the labelled loop.
 
-[warn header="Labels are not Goto"]
+[warn header="Labels are not a \"goto\""]
 Labels do not allow to jump into an arbitrary place of code.
 
 For example, it is impossible to do like this:
@@ -379,7 +380,7 @@ There are 3 types of loops in JavaScript:
 
 To make in "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
-If we don't want to do anything more on this iteration and would like to forward on to the next one -- use the `continue` directive.
+If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
 
-Both these directives support labels before the loop. A label is the only way for `break/continue` to go up the nesting and affect the outer loop.
+`Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
 

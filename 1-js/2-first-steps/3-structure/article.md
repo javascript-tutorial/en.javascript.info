@@ -5,15 +5,15 @@ In this section we explore the code structure and statements.
 [cut]
 ## Statements
 
-We've already seen an example of a statement: `alert('Hello, world!')` shows the message.
+We've already seen a statement: `alert('Hello, world!')`, which shows the message.
 
-To add one more statement to the code, it can be separated with a semicolon.
+Another statement can be separated with a semicolon.
 
-Let's make split the message into two messages:
+For example, here we split the message into two:
 
 ```js
 //+ run no-beautify
-alert('Hello'); alert('World');
+alert( 'Hello' ); alert( 'World' );
 ```
 
 Usually each statement is written on a separate line -- thus the code becomes more readable:
@@ -38,7 +38,7 @@ alert( 'World' )
 
 In this case JavaScript interprets the line break as a splitter and automatically assumes a "virtual" semicolon between them.
 
-**But it's important that "in most cases" does not mean "always"!**
+**But it's important that "in most cases" does not mean "always" here!**
 
 Consider this code as an example:
 
@@ -51,9 +51,9 @@ alert(3 +
 
 It outputs `6`.
 
-JavaScript does not insert semicolons here. It is intuitively obvious that the reason is the "uncomplete expression". JavaScript notes that the line ends with a plus `+` and awaits the expression to continue on the next line. And that is actually fine and comfortable here.
+JavaScript does not insert semicolons here. It is intuitively obvious that the first lines are an "uncomplete expression". JavaScript notes that and awaits the rest of the expression on the next line. And in this case that's actually fine and comfortable.
 
-**But there are situations where "fails" to assume a semicolon where it is really needed.**
+**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
 
 Errors which come appear in such cases are quite hard to find and fix.
 
@@ -65,23 +65,23 @@ For a curious reader who might be interested in a concrete example, check this c
 [1, 2].forEach(alert)
 ```
 
-It shows `1` then `2`. How it works -- does not matter now, we'll get deal with it later.
-
-But let's insert an `alert` without a semicolon before it:
+It shows `1` then `2`. What `[...].forEach` means -- does not matter here (we'll get it later). Now let's insert an `alert` without a semicolon before it:
 
 ```js
 //+ run no-beautify
-alert( "Without a semicolon we get an error here" )
-[1, 2].forEach(alert)
+alert( "Without a semicolon we get an error here" ) // printed
+[1, 2].forEach(alert) // not printed
 ```
 
-Now only the first `alert` is shown, not the numbers. And we can see an error in the browser console. That's actually because JavaScript does not insert a semicolon before square brackets `[...]` and misinterprets the code.
+Now only the phrase is shown, not the numbers. And we can see an error in the developer console. 
+
+That's exactly because JavaScript engine did not insert a semicolon before square brackets `[...]` and misunderstood the code.
 
 Everything's fine if we add a semicolon:
 ```js
 //+ run
-alert( "With the semicolon everything works" );
-[1, 2].forEach(alert)
+alert( "With the semicolon everything works" ); // printed
+[1, 2].forEach(alert)  // printed too
 ```
 [/smart]
 
@@ -91,17 +91,19 @@ As a conclusion, it's recommended to put semicolons between statements even if t
 
 As the time goes, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
 
-Comments can be put into any place of the script. They don't affect it's execution. The JavaScript interpreter simply ignores them.
+Comments can be put into any place of the script. They don't affect it's execution. The JavaScript engine simply ignores them.
 
 *One-line comments* start with a double slash `//`. The text after them till the end of line is considered a comment.
 
-It may occupy a full line of it's own or follow a statement, like this:
+It may occupy a full line of it's own or follow a statement.
+
+Like this:
 ```js
 //+ run
-// The statement below outputs a word "Hello"
+// This says "Hello" (the comment occupies a line of it's own)
 alert( 'Hello' );
 
-alert( 'World' ); // ...The second word is shown separately.
+alert( 'World' ); // ...this says "World" (the comment follows a statement)
 ```
 
 *Multiline comments* start with a slash and a star <code>"/&#42;"</code> and end with a star and a slash <code>"&#42;/"</code>, like this:
@@ -115,14 +117,16 @@ alert( 'Hello' );
 alert( 'World' );
 ```
 
-All contents of comments is ignored. If we put a code inside <code>/&#42; ... &#42;/</code> or after `//` it won't execute.
+The content of comments is ignored, so if we put a code inside <code>/&#42; ... &#42;/</code> or after `//` it won't execute.
+
+Sometimes it's used to temporarily disable a part of the code.
 
 ```js
 //+ run
 /* Commenting out the code
-alert( 'Привет' );
+alert( 'Hello' );
 */
-alert( 'Мир' );
+alert( 'World' );
 ```
 
 [smart header="Use hotkeys!"]
@@ -147,5 +151,21 @@ Don't hesitate to comment. They more code is in the project -- the more helpful 
 
 Comments increase the overall code footprint, but that's not a problem at all, because there are many tools which minify the code before publishing to production server and remove comments in the process.
 
-In our next sections we'll talk about other structure elements of JavaScript like blocks, variables and more.
+There are various types of comments, answering different questions:
+
+<ul>
+<li>What the code does?</li>
+<li>Why the code is written like that?</li>
+<li>Which counter-intuitive or implicit connections it has with other parts of the script?</li>
+</ul>
+
+All these comments are highly valuable. 
+
+[smart header="The good code is inherently readable and self-commenting"]
+Please note that the first type of comments ("what the code does") should be used to describe a "high-level" action, like the overall architecture, a function or a chunk of code. It's purpose is to give an overview, so a reader doesn't need to delve into the code and figure out.
+
+Novice programmers sometimes tend to elaborate too much. Please don't. The good code is inherently readable. No need to describe what few lines do. Unless it's something hard to grasp, and *then* it's worth to consider rewriting the code at the first place rather than commenting it.
+[/smart]
+
+Further in the tutorial we'll make more notes about how to write the code better, easier to read and maintain.
 

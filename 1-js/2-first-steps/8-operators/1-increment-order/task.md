@@ -1,20 +1,14 @@
-# Инкремент, порядок срабатывания
+# The postfix and prefix forms
 
 [importance 5]
 
-Посмотрите, понятно ли вам, почему код ниже работает именно так?
+What are the final values of all variables in the code below?
 
 ```js
-//+ run no-beautify
-let a = 1, b = 1, c, d; 
+let a = 1, b = 1;
 
-c = ++a; alert(c); // 2
-d = b++; alert(d); // 1
-
-c = (2+ ++a); alert(c); // 5
-d = (2+ b++); alert(d); // 4
-
-alert(a); // 3
-alert(b); // 3
+let c = ++a; // ?
+let d = b++; // ?
 ```
+
 

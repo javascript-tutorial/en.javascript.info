@@ -25,8 +25,8 @@ If there's more than one command to execute -- we can use a code block in figure
 
 ```js
 if (year == 2015) {
-  alert( 'You're so smart!' );
-  alert( 'Exactly so!' );
+  alert( "That's correct!" );
+  alert( "You're so smart!" );
 }
 ```
 
@@ -36,9 +36,7 @@ It is recommended to use figure brackets every time with `if`, even if there's o
 
 The `if (…)` operator evaluates the condition in brackets and converts it to boolean type. 
 
-Let's remember the rules.
-
-In the logical context:
+Let's recall the rules. In the logical context:
 <ul>
 <li>A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,</li>
 <li>Other values -- `true`.</li>
@@ -52,7 +50,7 @@ if (0) { // 0 is falsy
 }
 ```
 
-...And this condition -- always works out:
+...And inside this condition -- always works:
 
 ```js
 if (1) { // 1 is truthy
@@ -60,7 +58,7 @@ if (1) { // 1 is truthy
 }
 ```
 
-We can also pass a pre-evaluated logical value to `if`. For example, in a variable like here:
+We can also pass a pre-evaluated logical value to `if`, like here:
 
 ```js
 let cond = (year == 2015); // equality evaluates to true or false
@@ -132,10 +130,10 @@ alert(hasAccess);
 
 The so called "ternary" or "question mark" operator allows to do that shorter and simpler.
 
-The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 arguments. It is actually the one and only operator in JavaScript which has 3 arguments.
+The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 operands. It is actually the one and only operator in JavaScript which has that many.
 
 The syntax is:
-```
+```js
 let result = condition ? value1 : value2
 ```
 
@@ -163,9 +161,10 @@ In the described case it is possible to evade the question mark operator, becaus
 // the same
 let hasAccess = age > 14;
 ```
+
+But that's only in this case. Generally, the question mark can return any value.
 [/smart]
 
-As we can see, the question mark operator has indeed 3 arguments: a condition and two values. 
 ## Multiple '?'
 
 A sequence of question mark `"?"` operators allows to return a value depending on more than one condition.
@@ -185,7 +184,7 @@ alert( message );
 
 It may be difficult at first to grasp what's going on. But looking more carefully we note that it's just an ordinary sequence of tests.
 
-The question mark first tests `age < 3`, if true -- returns `'Hi, baby!'`, otherwise -- goes beyound the colon `":"` and tests `age < 18`. If that's true -- returns `'Hello!'`, otherwise tests `age < 100` and `'Greetings!' if that is so`... At last, if all tests are falsy, the `message` becomes `'What an unusual age!'`.
+The question mark first checks for `age < 3`. If true -- returns `'Hi, baby!'`, otherwise -- goes to the right side of the colon `":"` and checks for `age < 18`. If that's true -- returns `'Hello!'`, otherwise checks for `age < 100` and returns `'Greetings!'` if that is so... At last, if all checks are falsy, the `message` becomes `'What an unusual age!'`.
 
 The same with `if..else`:
 
@@ -215,7 +214,7 @@ let company = prompt('Which company created JavaScript?', '');
 */!*
 ```
 
-Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets evaluated and shows the alert.
+Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
 
 We don't assign a result to a variable here, the `alert` doesn't return anything anyway.
 
@@ -238,7 +237,7 @@ if (company == 'Netscape') {
 */!*
 ```
 
-Our eyes browse the code vertically. The constructs which span several lines are easier to understand than a long horizontal reading here.
+Our eyes scan the code vertically. The constructs which span several lines are easier to understand than a long horizontal instruction set.
 
 The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There's `if` to execute different branches of the code.
 
