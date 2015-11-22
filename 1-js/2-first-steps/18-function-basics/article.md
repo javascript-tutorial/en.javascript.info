@@ -1,4 +1,4 @@
-# Functions
+# Function basics
 
 Quite often we need to perform a similar action in many places of the script.
 
