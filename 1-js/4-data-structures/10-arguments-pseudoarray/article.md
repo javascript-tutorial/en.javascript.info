@@ -203,7 +203,6 @@ var userClone = copy({}, user);
 А вот и реализация:
 
 ```js
-//+ autorun
 function copy() {
   var dst = arguments[0];
 
@@ -424,3 +423,19 @@ function showMessage(text, options) {
 }
 ```
 
+[head]
+<script>
+function copy() {
+  var dst = arguments[0];
+
+  for (var i = 1; i < arguments.length; i++) {
+    var arg = arguments[i];
+    for (var key in arg) {
+      dst[key] = arg[key];
+    }
+  }
+
+  return dst;
+}
+</script>
+[/head]
