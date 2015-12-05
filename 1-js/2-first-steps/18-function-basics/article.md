@@ -1,4 +1,4 @@
-# Function basics
+# Functions
 
 Quite often we need to perform a similar action in many places of the script.
 
@@ -10,9 +10,11 @@ Functions are the main "building blocks" of the program. They allow the code to 
 
 We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
 
-## Definition
+## Function Declaration
 
-An example of a function definition:
+To create a function we can use a *function declaration*.
+
+It looks like this:
 
 ```js
 function showMessage() {
@@ -20,11 +22,11 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then follows the *name of the function*, then a list of *parameters* in the brackets (empty in the example above) and finally the code of the function, also named "the function body".
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* in the brackets (empty in the example above) and finally the code of the function, also named "the function body".
 
 <img src="function_basics.png">
 
-Once defined, the function can be called by it's name.
+Our new function can be called by it's name.
 
 For instance:
 
@@ -40,9 +42,9 @@ showMessage();
 */!*
 ```
 
-The call executes the code of the function. Here we will see the message shown two times.
+The call `showMessage()` executes the code of the function. Here we will see the message two times.
 
-In this example we can see one of the main purposes of the functions: to evade code duplication.
+This example clearly demonstrates one of the main purposes of the functions: to evade code duplication.
 
 If we ever need to change the message or the way it is shown -- it's enough to modify the code in one place: the function which outputs it.
 
@@ -184,7 +186,7 @@ showMessage(from, "Hello");
 alert( from ); // Ann
 ```
 
-## Default parameter values
+### Default values
 
 A function can be called with any number of arguments. If a parameter is not provided, but listed in the declaration, then its value becomes `undefined`.
 
