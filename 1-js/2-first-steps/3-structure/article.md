@@ -65,24 +65,35 @@ For a curious reader who might be interested in a concrete example, check this c
 [1, 2].forEach(alert)
 ```
 
-It shows `1` then `2`. What `[...].forEach` means -- does not matter here (we'll get it later). Now let's insert an `alert` without a semicolon before it:
+It shows `1` then `2`. 
+
+Please don't think about the meaning of `[...].forEach` just for now -- it does not matter here (we'll get it later). 
+
+Now let's prepend an `alert` *without a semicolon* before it:
 
 ```js
 //+ run no-beautify
-alert( "Without a semicolon we get an error here" ) // printed
-[1, 2].forEach(alert) // not printed
+alert( "..." ) // works
+[1, 2].forEach(alert) // doesn't work!
 ```
 
 Now only the phrase is shown, not the numbers. And we can see an error in the developer console. 
 
-That's exactly because JavaScript engine did not insert a semicolon before square brackets `[...]` and misunderstood the code.
-
-Everything's fine if we add a semicolon:
+But everything's fine if we add a semicolon:
 ```js
 //+ run
 alert( "With the semicolon everything works" ); // printed
 [1, 2].forEach(alert)  // printed too
 ```
+
+The error in the former variant occurs because JavaScript engine does not autoinsert a semicolon before square brackets `[...]`, so it was actually treated as a one-line statement:
+
+```js
+//+ run no-beautify
+// without semicolon after alert it becomes
+alert( "..." )[1, 2].forEach(alert) // doesn't work!
+```
+
 [/smart]
 
 As a conclusion, it's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community.
@@ -147,7 +158,7 @@ alert( 'World' );
 ```
 [/warn]
 
-Don't hesitate to comment. They more code is in the project -- the more helpful good comments are. 
+Don't hesitate to comment. 
 
 Comments increase the overall code footprint, but that's not a problem at all, because there are many tools which minify the code before publishing to production server and remove comments in the process.
 
@@ -159,13 +170,12 @@ There are various types of comments, answering different questions:
 <li>Which counter-intuitive or implicit connections it has with other parts of the script?</li>
 </ul>
 
-All these comments are highly valuable. 
+
+Further in the tutorial we'll make more notes about how to write the code better, easier to read and maintain. We'll also talk more about comments.
 
 [smart header="The good code is inherently readable and self-commenting"]
 Please note that the first type of comments ("what the code does") should be used to describe a "high-level" action, like the overall architecture, a function or a chunk of code. It's purpose is to give an overview, so a reader doesn't need to delve into the code and figure out.
 
 Novice programmers sometimes tend to elaborate too much. Please don't. The good code is inherently readable. No need to describe what few lines do. Unless it's something hard to grasp, and *then* it's worth to consider rewriting the code at the first place rather than commenting it.
 [/smart]
-
-Further in the tutorial we'll make more notes about how to write the code better, easier to read and maintain.
 

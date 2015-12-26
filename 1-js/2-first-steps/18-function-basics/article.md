@@ -121,7 +121,7 @@ let userName = 'John';
 
 function showMessage() {
 *!*
-  let userName = "Bob"; // declare a local variable 
+  let userName = "Bob"; // declare a local variable
 */!*
 
   let message = 'Hello, my name is ' + userName;
@@ -137,16 +137,16 @@ alert( userName ); // John, the function did not access the outer variable
 ```
 
 [smart header="Global variables"]
-Variables declared outside of any function, are called *global*.
+Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
 
-Global variables are visible from any function. 
+Global variables are visible from any function.
 
-They should be only used to store the data of project-wide importance. Variables needed by specific tasks should reside in the corresponding functions. 
+They should only be used if the data is so important that it really must be seen from anywhere. 
 [/smart]
 
 ## Parameters
 
-We can pass arbitrary data to the function using it's parameters (also called *function arguments*) .
+We can pass arbitrary data to function using it's parameters (also called *function arguments*) .
 
 In the example below, the function has two parameters: `from` and `text`.
 
@@ -374,7 +374,7 @@ Few examples of breaking this rule:
 <ul>
 <li>`getAge` -- if shows the age to the visitor (should only get).</li>
 <li>`createForm` -- if modifies the document, adds a form to it (should only create it and return).</li>
-<li>`checkPermission` -- if displays the `access granted/denied` message or stores the result of the check anywhere (should only perform the check and return the result).</li>
+<li>`checkPermission` -- if displays the `access granted/denied` message or stores the result of the check (should only perform the check and return the result).</li>
 </ul>
 [/smart]
 
@@ -384,7 +384,7 @@ Functions that are used *very often* sometimes have ultrashort names.
 
 For example, [jQuery](http://jquery.com) framework defines a function `$`, [LoDash](http://lodash.com/) library has it's core function named `_`.
 
-These are exceptions though. Generally the functions names should be concise, but descriptive.
+These are exceptions. Generally functions names should be concise, but descriptive.
 [/smart]
 
 
