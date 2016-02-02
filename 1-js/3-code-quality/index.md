@@ -1,8 +1,8 @@
-# Качество кода
+# Code quality
 
-Для того, чтобы код был качественным, необходимы как минимум:
+In order to keep the code quality, you need at least:
 <ol>
-<li>Умение отладить код и поправить ошибки.</li>
-<li>Хороший стиль кода.</li>
-<li>Тестировать код, желательно -- в автоматическом режиме.</li>
+<li>The ability to debug code and fix bugs.</li>
+<li>Good style code.</li>
+<li>Test code is desirable - in automatic mode.</li>
 </ol>
