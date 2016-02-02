@@ -4,7 +4,7 @@ For a long time JavaScript was evolving without compatibility issues. New featur
 
 That had the benefit of never breaking the existing code. But the back side is that any mistake or an imprefect decision made by JavaScript creators got stuck in the language forever.
 
-It had been so before EcmaScript 5 (ES5) appeared which added new features to the language and modified some of the existing ones. 
+It had been so before ECMAScript 5 (ES5) appeared which added new features to the language and modified some of the existing ones. 
 
 To keep the old code working, most modifications of the pre-existing features are off by default. One need to enable them explicitly with a special directive `"use strict"`. 
 

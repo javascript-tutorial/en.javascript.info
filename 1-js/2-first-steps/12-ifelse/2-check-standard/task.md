@@ -4,7 +4,7 @@
 
 Using the `if..else` construct, write the code which asks: 'What is the "official" name of JavaScript?'
 
-If the visitor enters "EcmaScript", then output "Right!", otherwise -- output: "Didn't know? EcmaScript!"
+If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "Didn't know? ECMAScript!"
 
 <img src="ifelse_task2.png">
 
