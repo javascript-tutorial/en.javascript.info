@@ -147,9 +147,9 @@ But what's great -- eventually all browsers tend to follow the standard. There a
 The trend: browsers, though eager for new features, tend to be compatible with the standard.
 [/summary]
 
-## New EcmaScript
+## New ECMAScript
 
-JavaScript evolves. The upcoming EcmaScript-2016 standard adds more language-level features which make the syntax more capable and expressive.
+JavaScript evolves. The upcoming ECMAScript-2016 standard adds more language-level features which make the syntax more capable and expressive.
 
 Modern browsers improve their engines to raise JavaScript execution script, fix bugs and try to follow the standards.
 
