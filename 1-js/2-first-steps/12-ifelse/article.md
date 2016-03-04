@@ -1,6 +1,8 @@
 # Conditional operators: if, '?'
 
-Sometimes we need to perform different actions basing on a condition. There's an `if` operator for that and also the "question mark" `?` operator for conditional evaluation.
+Sometimes we need to perform different actions basing on a condition. 
+
+There's an `if` operator for that and also the "question mark" operator: `"?"` for conditional evaluation.
 
 [cut]
 
@@ -10,8 +12,7 @@ The "if" operator gets a condition, evaluates it and -- if the result is `true` 
 
 For example:
 
-```js
-//+ run
+```js run
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 *!*
@@ -19,7 +20,7 @@ if (year == 2015) alert( 'You are right!' );
 */!*
 ```
 
-In the example above, the condition is a simple equality: `year == 2015`, but it can be much more complex.
+In the example above, the condition is a simple equality check: `year == 2015`, but it can be much more complex.
 
 If there's more than one command to execute -- we can use a code block in figure brackets:
 
@@ -34,13 +35,12 @@ It is recommended to use figure brackets every time with `if`, even if there's o
 
 ## Boolean conversion
 
-The `if (…)` operator evaluates the condition in brackets and converts it to boolean type. 
+The `if (…)` operator evaluates the condition in brackets and converts it to boolean type.
 
 Let's recall the rules. In the logical context:
-<ul>
-<li>A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,</li>
-<li>Other values -- `true`.</li>
-</ul>
+
+- A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,
+- Other values -- `true`.
 
 So, the code under this condition would never execute:
 
@@ -73,8 +73,7 @@ if (cond) {
 The `if` operator may contain an optional "else" block. It executes when the condition is wrong.
 
 For example:
-```js
-//+ run
+```js run
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 if (year == 2015) {
@@ -90,12 +89,11 @@ Sometimes we'd like to test several variants of a condition. There's an `else if
 
 For example:
 
-```js
-//+ run
+```js run
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
 if (year < 2015) {
-  alert( 'Too early...' ); 
+  alert( 'Too early...' );
 } else if (year > 2015) {
   alert( 'Too late' );
 } else {
@@ -105,20 +103,18 @@ if (year < 2015) {
 
 In the code above JavaScript first checks `year < 2015`, if it is falsy then goes to the next condition `year > 2015`. Any number of `else if` may follow with an optional last `else`.
 
-
 ## Ternary operator '?'
 
 Sometimes we need to assign a variable depending on a condition.
 
 For instance:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 let hasAccess;
 let age = prompt('How old are you?', '');
 
 *!*
-if (age > 14) {
+if (age > 18) {
   hasAccess = true;
 } else {
   hasAccess = false;
@@ -142,36 +138,33 @@ The `condition` is evaluated, if it's truthy then `value1` is returned, otherwis
 For example:
 
 ```js
-let hasAccess = (age > 14) ? true : false;
+let hasAccess = (age > 18) ? true : false;
 ```
 
 We can omit brackets around `age > 14`, because the question mark operator has a low precedence. It executes after comparisons, so:
 
 ```js
 // the same
-let hasAccess = age > 14 ? true : false;
+let hasAccess = age > 18 ? true : false;
 ```
 
 ...But brackets make the code more readable. So it's recommended to put them.
 
-[smart]
+````smart
 In the described case it is possible to evade the question mark operator, because the comparison by itself returns `true/false`:
 
 ```js
 // the same
-let hasAccess = age > 14;
+let hasAccess = age > 18;
 ```
-
-But that's only in this case. Generally, the question mark can return any value.
-[/smart]
+````
 
 ## Multiple '?'
 
 A sequence of question mark `"?"` operators allows to return a value depending on more than one condition.
 
 For instance:
-```js
-//+ run
+```js run
 let age = prompt('age?', 18);
 
 let message = (age < 3) ? 'Hi, baby!' :
@@ -184,9 +177,12 @@ alert( message );
 
 It may be difficult at first to grasp what's going on. But looking more carefully we note that it's just an ordinary sequence of tests.
 
-The question mark first checks for `age < 3`. If true -- returns `'Hi, baby!'`, otherwise -- goes to the right side of the colon `":"` and checks for `age < 18`. If that's true -- returns `'Hello!'`, otherwise checks for `age < 100` and returns `'Greetings!'` if that is so... At last, if all checks are falsy, the `message` becomes `'What an unusual age!'`.
+1. The first question mark checks for `age < 3`. 
+2. If true -- returns `'Hi, baby!'`, otherwise -- goes to the right side of the colon `":"` and checks for `age < 18`. 
+3. If that's true -- returns `'Hello!'`, otherwise checks for `age < 100` and returns `'Greetings!'` if that is so... 
+4. At last, if all checks are falsy, the `message` becomes `'What an unusual age!'`.
 
-The same with `if..else`:
+The same logic using `if..else`:
 
 ```js
 if (age < 3) {
@@ -204,8 +200,7 @@ if (age < 3) {
 
 Sometimes the question mark `'?'` is used as a replacement for `if`:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
 
 *!*
@@ -216,16 +211,15 @@ let company = prompt('Which company created JavaScript?', '');
 
 Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
 
-We don't assign a result to a variable here, the `alert` doesn't return anything anyway.
+We don't assign a result to a variable here, cause the `alert` doesn't return anything anyway, our purpose is only to execute it.
 
-**It is not recommended to use a question mark in this way.**
+**It is not recommended to use the question mark operator in this way.**
 
-The notation seem to be shorter than `if`, that appeals to some programmers. Although it is less readable.
+The notation seem to be shorter than `if`, that appeals to some programmers. But it is less readable.
 
 Here's the same with `if` for comparison:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
 
 *!*

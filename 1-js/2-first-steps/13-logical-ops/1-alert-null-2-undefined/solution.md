@@ -1,7 +1,6 @@
-The answer is `2`, that's the first truthy value. 
+The answer is `2`, that's the first truthy value.
 
-```js
-//+ run
+```js run
 alert( null || 2 || undefined );
 ```
 

@@ -1,24 +1,21 @@
-# Which values get shown by the "for" loop?
+importance: 4
 
-[importance 4]
+---
+
+# Which values get shown by the "for" loop?
 
 For each loop scribe down which values it is going to show.
 
 Then compare with the answer.
 
-<ol>
-<li>The postfix form:
+1. The postfix form:
 
-```js
-for (let i = 0; i < 5; i++) alert( i );
-```
+    ```js
+    for (let i = 0; i < 5; i++) alert( i );
+    ```
+2. The prefix form:
 
-</li>
-<li>The prefix form:
+    ```js
+    for (let i = 0; i < 5; ++i) alert( i );
+    ```
 
-```js
-for (let i = 0; i < 5; ++i) alert( i );
-```
-
-</li>
-</ol>

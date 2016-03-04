@@ -1,7 +1,6 @@
 JavaScript-code:
 
-```js
-//+ demo run
+```js demo run
 let name = prompt("What is your name?", "");
 alert( name );
 ```
@@ -16,7 +15,7 @@ The full page:
 
   <script>
     'use strict';
-    
+
     let name = prompt("What is your name?", "");
     alert( name );
   </script>

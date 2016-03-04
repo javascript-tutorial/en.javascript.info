@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 var arr = [1, 2, 3];
 
 var arr2 = arr; // (*)

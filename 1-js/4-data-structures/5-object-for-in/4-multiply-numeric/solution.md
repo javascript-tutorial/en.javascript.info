@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 var menu = {
   width: 200,
   height: 300,

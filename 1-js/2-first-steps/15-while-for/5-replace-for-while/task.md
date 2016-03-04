@@ -1,11 +1,12 @@
-# Replace "for" with "while"
+importance: 5
 
-[importance 5]
+---
+
+# Replace "for" with "while"
 
 Rewrite the code changing the `for` loop to `while` without altering it's behavior (the output should stay same).
 
-```js
-//+ run
+```js run
 for (let i = 0; i < 3; i++) {
   alert( `number ${i}!` );
 }

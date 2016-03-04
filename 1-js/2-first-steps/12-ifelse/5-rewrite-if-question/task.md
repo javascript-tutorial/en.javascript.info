@@ -1,6 +1,8 @@
-# Rewrite 'if' into '?'
+importance: 5
 
-[importance 5]
+---
+
+# Rewrite 'if' into '?'
 
 Rewrite this `if` using the ternary operator `'?'`:
 

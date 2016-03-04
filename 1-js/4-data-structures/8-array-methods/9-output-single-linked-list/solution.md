@@ -1,7 +1,6 @@
 # Вывод списка в цикле
 
-```js
-//+ run
+```js run
 var list = {
   value: 1,
   next: {
@@ -50,8 +49,7 @@ function printList(list) {
 
 Рекурсивный вариант `printList(list)` следует простой логике: вывести текущее значение `(1)`, а затем пропустить через себя следующее  `(2)`:
 
-```js
-//+ run
+```js run
 var list = {
   value: 1,
   next: {
@@ -83,8 +81,7 @@ printList(list);
 
 Обратный вывод -- почти то же самое, что прямой, просто сначала мы обрабатываем следующее значение, а потом -- текущее:
 
-```js
-//+ run
+```js run
 var list = {
   value: 1,
   next: {
@@ -113,8 +110,7 @@ printReverseList(list);
 
 # Обратный вывод без рекурсии
 
-```js
-//+ run
+```js run
 var list = {
   value: 1,
   next: {
@@ -128,7 +124,6 @@ var list = {
     }
   }
 };
-
 
 function printReverseList(list) {
   var arr = [];

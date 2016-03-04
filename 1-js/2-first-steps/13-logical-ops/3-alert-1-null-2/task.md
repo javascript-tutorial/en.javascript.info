@@ -1,6 +1,8 @@
-# What is the result of AND?
+importance: 5
 
-[importance 5]
+---
+
+# What is the result of AND?
 
 What this code is going to show?
 

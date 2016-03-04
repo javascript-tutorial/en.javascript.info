@@ -1,14 +1,15 @@
-# Имя дня недели
+importance: 5
 
-[importance 5]
+---
+
+# Имя дня недели
 
 Создайте функцию `getWeekDay(date)`, которая выводит текущий день недели в коротком формате 'пн', 'вт',  ... 'вс'.
 
 Например:
 
-```js
-//+ no-beautify
-var date = new Date(2012,0,3);  // 3 января 2012 
+```js no-beautify
+var date = new Date(2012,0,3);  // 3 января 2012
 alert( getWeekDay(date) );      // Должно вывести 'вт'
 ```
 

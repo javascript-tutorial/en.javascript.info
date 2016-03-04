@@ -1,7 +1,8 @@
+importance: 4
+
+---
+
 # Rewrite the function using '?' or '||'
-
-[importance 4]
-
 
 The following function returns `true` if the parameter `age` is greater than `18`.
 
@@ -20,7 +21,7 @@ function checkAge(age) {
 Rewrite it, to perform the same, but without `if`, in a single line.
 
 Make two variants of `checkAge`:
-<ol>
-<li>Using a question mark operator `'?'`</li>
-<li>Using OR `||`</li>
-</ol>
+
+1. Using a question mark operator `'?'`
+2. Using OR `||`
+

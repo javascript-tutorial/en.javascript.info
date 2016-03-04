@@ -1,13 +1,14 @@
-# Сортировка объектов
+importance: 5
 
-[importance 5]
+---
+
+# Сортировка объектов
 
 Напишите код, который отсортирует массив объектов `people` по полю `age`.
 
 Например:
 
-```js
-//+ no-beautify
+```js no-beautify
 var vasya = { name: "Вася", age: 23 };
 var masha = { name: "Маша", age: 18 };
 var vovochka = { name: "Вовочка", age: 6 };

@@ -1,6 +1,8 @@
-# The result of OR AND OR
+importance: 5
 
-[importance 5]
+---
+
+# The result of OR AND OR
 
 What will be the result?
 

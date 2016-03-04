@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function filterRangeInPlace(arr, a, b) {
 
   for (var i = 0; i < arr.length; i++) {

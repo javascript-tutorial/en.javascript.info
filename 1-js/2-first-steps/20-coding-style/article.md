@@ -1,17 +1,18 @@
 # Coding style
 
-Our code must be as clean and easy to read as possible. 
+Our code must be as clean and easy to read as possible.
 
 That is actually an art of programming -- to take a complex task and describe it using a programming language in a way that is both correct and human-readable.
 
 One thing to help is a good code style. In this chapter we cover it's components.
 
 [cut]
+
 ## Syntax
 
-A cheatsheep with the rules (more details below):
+A cheatsheet with the rules (more details below):
 
-<img src="code-style.png">
+![](code-style.png)
 <!--
 ```js
 function pow(x, n) {
@@ -34,6 +35,7 @@ if (n < 0) {
   alert( pow(x, n) );
 }
 ```
+
 -->
 
 Nothing is "carved in stone" here, so let's discuss the rules in detail.
@@ -42,101 +44,92 @@ Nothing is "carved in stone" here, so let's discuss the rules in detail.
 
 In most JavaScript projects figure brackets are written on the same line. A so-called "egyptian" style. There's also a space before an opening bracket.
 
-If the code has only one line, then there are options:
+A corner-case if a single-line `if/for`. Should we use brackets at all? If yes, then where?
+
+Here are the annotated variants, so you can judge about their readability on your own:
 
 <!--
-```js
-//+ no-beautify
+```js no-beautify
 if (n < 0) {alert(`Power ${n} is not supported`);}
-
-
 
 if (n < 0) alert(`Power ${n} is not supported`);
 
-
+if (n < 0) 
+  alert(`Power ${n} is not supported`);
 
 if (n < 0) {
   alert(`Power ${n} is not supported`);
 }
-
 ```
 -->
-<img src="figure-bracket-style.png">
+![](figure-bracket-style.png)
 
-For a real short code like `if (cond) return null`, one line is acceptable... But still a separate line for each statement is usually easier to read.
+As a summary, for a really short code one line is acceptable: like `if (cond) return null`.
+
+But a separate line for each statement in brackets is usually better.
 
 ### Line length
 
-Line length is limited. No one likes to eye-follow a long horizontal line. Doesn't matter if it's a text or a OR'ed list of `if` conditions. It's better to split it.
+The maximal line length should be limited. No one likes to eye-follow a long horizontal line. Doesn't matter if it's a text or an OR'ed list of `if` conditions. It's better to split it.
 
-Maximal line length is agreed on the team-level. It's usually 80 or 120 characters.
+The maximal line length is agreed on the team-level. It's usually 80 or 120 characters.
 
 ### Indents
 
 There are two types of indents:
 
-<ul>
-<li>**A horizontal indent: 2(4) spaces.** 
+- **A horizontal indent: 2(4) spaces.**
 
-Usually spaces are used, because they allow more flexible configurations of indents than the "Tab" symbol.
+    A horizantal identation is made using either spaces or the "Tab" symbol (displayed as 2 or 4 or even 8 spaces, but 8 is too much).
 
-For instance, we can align the arguments with the opening bracket:
+    Which one to choose is a kind of an old holy war. Spaces are a little more common nowadays.
 
-```js
-//+ no-beautify
-show(parameters,
-     aligned,
-     one,
-     after,
-     another);
-```
-</li>
-<li>**A vertical indent, line breaks for splitting the code in logical blocks.** 
+    One of advantages of spaces over tabs is that they allow more flexible configurations of indents than the "Tab" symbol.
 
-Even a single function can often be divided in logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
+    For instance, we can align the arguments with the opening bracket, like this:
 
-```js
-function pow(x, n) {
-  let result = 1;
-  //              <--
-  for (let i = 0; i < n; i++) {
-    result *= x;
-  }
-  //              <--
-  return result;
-}
-```
+    ```js no-beautify
+    show(parameters,
+         aligned,
+         one,
+         after,
+         another
+      ) {
+      // ...
+    }
+    ```
 
-Insert an additional line break where it helps to make the code more readable. There should not be more than 9 lines of code without a vertical indentation.
-</li>
-</ul>
+- **A vertical indent, line breaks for splitting the code in logical blocks.**
+
+    Even a single function can often be divided in logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
+
+    ```js
+    function pow(x, n) {
+      let result = 1;
+      //              <--
+      for (let i = 0; i < n; i++) {
+        result *= x;
+      }
+      //              <--
+      return result;
+    }
+    ```
+
+    Insert an additional line break where it helps to make the code more readable. There should not be more than 9 lines of code without a vertical indentation.
 
 ### A semicolon
 
-Semicolons must be after each statement. Even if could possiblty be skipped.
+A semicolons should be after each statement. Even if could possibly be skipped.
 
 There are languages where a semicolon is truly optional. It's rarely used there.
 
-But in JavaScript a line break is sometimes interpreted as a semicolon and sometimes not. That leaves a place for programming errors, so semicolons must be at place, just as discussed [before](#semicolon).
+But in JavaScript a line break is sometimes interpreted as a semicolon and sometimes not. That leaves a place for programming errors, so semicolons should be at place.
 
-## The Naming
-
-The general rule:
-
-<ul>
-<li>Variable name should be a noun.</li>
-<li>Function name should be a verb, or start with a verbal prefix. There can be exceptions if covered by another rule.</li>
-</ul>
-
-English language and camel-case notation is used.
-
-Also discussed before -- [function naming](#function-naming) and [variables naming](#variable-naming).
-
-## Nesting levels
+### Nesting levels
 
 There should not be too many nesting levels.
 
-Sometimes it's a good idea to [use the "continue"](#continue) directive in the loop to evade extra nesting in `if(..) { ... }`:
+Sometimes it's a good idea to use the ["continue"](info:while-for#continue) directive in the loop to evade extra nesting in `if(..) { ... }`:
 
 Instead of:
 
@@ -178,7 +171,7 @@ function isEven(n) { // returns whether the number is even
 The second one:
 
 ```js
-function isEven(n) { 
+function isEven(n) {
   if (n % 2 == 0) {
     return true;
   }
@@ -191,27 +184,48 @@ function isEven(n) {
 
 If there's a `return` inside the `if` block, then we need no `else` after it.
 
-...Of course we can write even shorter here:
+By the way, the very this function we can be implemented in a shorter way:
 
 ```js
-function isEven(n) { 
+function isEven(n) {
   return !(n % 2);
 }
 ```
 
-...But if the code `!(n % 2)` is less obvious for you than the former variant then use the former one.
+But the code became less obvious.
 
-**The most important for us is not shortness, but simplicity and readability of the code.**
+...Of course we can write even shorter here:
+**The most important not shortness, but simplicity and readability of the code.**
 
-It's quite not always the case that a brief code is simpler to understand.
+A shorter code is not always simpler to understand and maintain.
+
+## The Naming
+
+As a general rule:
+
+- A variable name should be a noun.
+- A function name should be a verb, or start with a verbal prefix. There can be exceptions if covered by another rule.
+
+The camel-case notation is used for long words. 
+
+We discussed that before -- see [function basics](info:function-basics#function-naming) and [variables](info:variables#variable-naming).
+
+A name should be descriptive and long enough, with the exception of:
+  - loop counter variables, `i` is a well-recognized name for a loop counter.
+  - functions/libraries that are well known and used very often.
+  - other cases when the code readability doesn't suffer.
+
+
 
 ## Functions = Comments
 
 Functions should be short and do exactly one thing. If that thing is big, maybe it's worth to split the function into parts.
 
-Sometimes following this rule may be not easy, but it's a definitely good thing. So what's with the comments?
+Sometimes following this rule may be not easy, but it's a definitely good thing. 
 
-A separate function is not only easier to test and debug -- it's very existance is a great comment.
+...So what's here about comments?
+
+A separate function is not only easier to test and debug -- it's very existance is a great comment!
 
 For instance, compare the two functions `showPrimes(n)` below. Each one outputs [prime numbers](https://en.wikipedia.org/wiki/Prime_number) up to `n`.
 
@@ -234,10 +248,10 @@ The second variant uses an additional function `isPrime(n)` to test primality:
 
 ```js
 function showPrimes(n) {
-  
+
   for (let i = 2; i < n; i++) {
     *!*if (!isPrime(i)) continue;*/!*
-     
+
     alert(i);  // a prime
   }
 }
@@ -256,56 +270,50 @@ The second variant is easier to understand isn't it? Instead of the code piece w
 
 There are three way to place the "helper" functions used in the code.
 
-<ol>
-<li>Above the code that uses them:
+1. Above the code that uses them:
 
-```js
-// *!*function declarations*/!*
-function createElement() {
-  ...
-}
+    ```js
+    // *!*function declarations*/!*
+    function createElement() {
+      ...
+    }
 
-function setHandler(elem) {
-  ...
-}
+    function setHandler(elem) {
+      ...
+    }
 
-function walkAround() {
-  ...
-}
+    function walkAround() {
+      ...
+    }
 
-// *!*the code which uses them*/!*
-var elem = createElement();
-setHandler(elem);
-walkAround();
-```
+    // *!*the code which uses them*/!*
+    var elem = createElement();
+    setHandler(elem);
+    walkAround();
+    ```
+2. Code first, then functions
 
-</li>
-<li>Code first, then functions
+    ```js
+    // *!*the code which uses the functions*/!*
+    var elem = createElement();
+    setHandler(elem);
+    walkAround();
 
-```js
-// *!*the code which uses the functions*/!*
-var elem = createElement();
-setHandler(elem);
-walkAround();
+    // --- *!*helper functions*/!* ---
 
-// --- *!*helper functions*/!* ---
+    function createElement() {
+      ...
+    }
 
-function createElement() {
-  ...
-}
+    function setHandler(elem) {
+      ...
+    }
 
-function setHandler(elem) {
-  ...
-}
-
-function walkAround() {
-  ...
-}
-```
-
-</li>
-<li>Mixed, a function is described when it's first used.</li>
-</ol>
+    function walkAround() {
+      ...
+    }
+    ```
+3. Mixed, a function is described when it's first used.
 
 Most of time, the second variant is preferred.
 
@@ -313,13 +321,13 @@ That's because when reading a code, we first want to know "what it does". If the
 
 ## Bad comments
 
-В коде нужны комментарии. 
+В коде нужны комментарии.
 
-Сразу начну с того, каких комментариев быть почти не должно. 
+Сразу начну с того, каких комментариев быть почти не должно.
 
 **Должен быть минимум комментариев, которые отвечают на вопрос "что происходит в коде?"**
 
-Что интересно, в коде начинающих разработчиков обычно комментариев либо нет, либо они как раз такого типа: "что делается в этих строках". 
+Что интересно, в коде начинающих разработчиков обычно комментариев либо нет, либо они как раз такого типа: "что делается в этих строках".
 
 Серьёзно, хороший код и так понятен.
 
@@ -331,40 +339,35 @@ That's because when reading a code, we first want to know "what it does". If the
 
 ## Хорошие комментарии
 
-
 А какие комментарии полезны и приветствуются?
 
-<ul>
-<li>**Архитектурный комментарий -- "как оно, вообще, устроено".** 
+- **Архитектурный комментарий -- "как оно, вообще, устроено".**
 
-Какие компоненты есть, какие технологии использованы, поток взаимодействия. О чём и зачем этот скрипт. Взгляд с высоты птичьего полёта. Эти комментарии особенно нужны, если вы не один, а проект большой.
+    Какие компоненты есть, какие технологии использованы, поток взаимодействия. О чём и зачем этот скрипт. Взгляд с высоты птичьего полёта. Эти комментарии особенно нужны, если вы не один, а проект большой.
 
-Для описания архитектуры, кстати, создан специальный язык [UML](http://ru.wikipedia.org/wiki/Unified_Modeling_Language), красивые диаграммы, но можно и без этого. Главное -- чтобы понятно.
-</li>
-<li>**Справочный комментарий перед функцией -- о том, что именно она делает, какие параметры принимает и что возвращает.** 
+    Для описания архитектуры, кстати, создан специальный язык [UML](http://ru.wikipedia.org/wiki/Unified_Modeling_Language), красивые диаграммы, но можно и без этого. Главное -- чтобы понятно.
+- **Справочный комментарий перед функцией -- о том, что именно она делает, какие параметры принимает и что возвращает.**
 
-Для таких комментариев существует синтаксис [JSDoc](http://en.wikipedia.org/wiki/JSDoc).
+    Для таких комментариев существует синтаксис [JSDoc](http://en.wikipedia.org/wiki/JSDoc).
 
-```js
-/**
- * Возвращает x в степени n, только для натуральных n
- *
- * @param {number} x Число для возведения в степень.
- * @param {number} n Показатель степени, натуральное число.
- * @return {number} x в степени n.
- */
-function pow(x, n) {
-  ...
-}
-```
+    ```js
+    /**
+     * Возвращает x в степени n, только для натуральных n
+     *
+     * @param {number} x Число для возведения в степень.
+     * @param {number} n Показатель степени, натуральное число.
+     * @return {number} x в степени n.
+     */
+    function pow(x, n) {
+      ...
+    }
+    ```
 
-Такие комментарии позволяют сразу понять, что принимает и что делает функция, не вникая в код.
+    Такие комментарии позволяют сразу понять, что принимает и что делает функция, не вникая в код.
 
-Кстати, они автоматически обрабатываются многими редакторами, например [Aptana](http://aptana.com) и редакторами от [JetBrains](http://www.jetbrains.com/), которые  учитывают их при автодополнении, а также выводят их в автоподсказках при наборе кода.
+    Кстати, они автоматически обрабатываются многими редакторами, например [Aptana](http://aptana.com) и редакторами от [JetBrains](http://www.jetbrains.com/), которые  учитывают их при автодополнении, а также выводят их в автоподсказках при наборе кода.
 
-Кроме того, есть инструменты, например [JSDoc 3](https://github.com/jsdoc3/jsdoc), которые умеют  генерировать по таким комментариям документацию в формате HTML. Более подробную информацию об этом можно также найти на сайте [](http://usejsdoc.org/).
-</li>
-</ul>
+    Кроме того, есть инструменты, например [JSDoc 3](https://github.com/jsdoc3/jsdoc), которые умеют  генерировать по таким комментариям документацию в формате HTML. Более подробную информацию об этом можно также найти на сайте <http://usejsdoc.org/>.
 
 **...Но куда более важными могут быть комментарии, которые объясняют не *что*, а *почему* в коде происходит именно это!**
 
@@ -374,46 +377,37 @@ function pow(x, n) {
 
 Например:
 
-<dl>
-<dt>Есть несколько способов решения задачи. Почему выбран именно этот?</dt>
-<dd>
-Например, пробовали решить задачу по-другому, но не получилось -- напишите об этом. Почему вы выбрали именно этот способ решения? Особенно это важно в тех случаях, когда используется не первый приходящий в голову способ, а какой-то другой.
+Есть несколько способов решения задачи. Почему выбран именно этот?
+: Например, пробовали решить задачу по-другому, но не получилось -- напишите об этом. Почему вы выбрали именно этот способ решения? Особенно это важно в тех случаях, когда используется не первый приходящий в голову способ, а какой-то другой.
 
-Без этого возможна, например, такая ситуация:
-<ul>
-<li>Вы открываете код, который был написан какое-то время назад, и видите, что он "неоптимален".</li>
-<li>Думаете: "Какой я был дурак", и переписываете под "более очевидный и правильный" вариант.</li>
-<li>...Порыв, конечно, хороший, да только этот вариант вы уже обдумали раньше. И отказались, а почему -- забыли. В процессе переписывания вспомнили, конечно (к счастью), но результат - потеря времени на повторное обдумывание.</li>
-</ul>
+    Без этого возможна, например, такая ситуация:
 
-Комментарии, которые объясняют выбор решения, очень важны. Они помогают понять происходящее и предпринять правильные шаги при развитии кода.
-</dd>
-<dt>Какие неочевидные возможности обеспечивает этот код? Где ещё они используются?</dt>
-<dd>
-В хорошем коде должно быть минимум неочевидного. Но там, где это есть -- пожалуйста, комментируйте.
-</dd>
-</dl>
+- Вы открываете код, который был написан какое-то время назад, и видите, что он "неоптимален".
+- Думаете: "Какой я был дурак", и переписываете под "более очевидный и правильный" вариант.
+- ...Порыв, конечно, хороший, да только этот вариант вы уже обдумали раньше. И отказались, а почему -- забыли. В процессе переписывания вспомнили, конечно (к счастью), но результат - потеря времени на повторное обдумывание.
 
+    Комментарии, которые объясняют выбор решения, очень важны. Они помогают понять происходящее и предпринять правильные шаги при развитии кода.
 
-[smart header="Комментарии -- это важно"]
+Какие неочевидные возможности обеспечивает этот код? Где ещё они используются?
+: В хорошем коде должно быть минимум неочевидного. Но там, где это есть -- пожалуйста, комментируйте.
+
+```smart header="Комментарии -- это важно"
 Один из показателей хорошего разработчика -- качество комментариев, которые позволяют эффективно поддерживать код, возвращаться к нему после любой паузы и легко вносить изменения.
-[/smart]
+```
 
 ## Руководства по стилю
 
-Когда написанием проекта занимается целая команда, то должен существовать один стандарт кода, описывающий где и когда ставить пробелы, запятые, переносы строк и т.п. 
+Когда написанием проекта занимается целая команда, то должен существовать один стандарт кода, описывающий где и когда ставить пробелы, запятые, переносы строк и т.п.
 
 Сейчас, когда есть столько готовых проектов, нет смысла придумывать целиком своё руководство по стилю. Можно взять уже готовое, и которому, по желанию, всегда можно что-то добавить.
 
 Большинство есть на английском, сообщите мне, если найдёте хороший перевод:
 
-<ul>
-<li>[Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)</li>
-<li>[JQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)</li>
-<li>[Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)</li>
-<li>[Idiomatic.JS](https://github.com/rwldrn/idiomatic.js) (есть [перевод](https://github.com/rwldrn/idiomatic.js/tree/master/translations/ru_RU))</li>
-<li>[Dojo Style Guide](http://dojotoolkit.org/community/styleGuide)</li>
-</ul>
+- [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml)
+- [JQuery Core Style Guidelines](http://docs.jquery.com/JQuery_Core_Style_Guidelines)
+- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+- [Idiomatic.JS](https://github.com/rwldrn/idiomatic.js) (есть [перевод](https://github.com/rwldrn/idiomatic.js/tree/master/translations/ru_RU))
+- [Dojo Style Guide](http://dojotoolkit.org/community/styleGuide)
 
 Для того, чтобы начать разработку, вполне хватит элементов стилей, обозначенных в этой главе. В дальнейшем, посмотрев эти руководства, вы можете выработать и свой стиль, но лучше не делать его особенно "уникальным и неповторимым", себе дороже потом будет с людьми сотрудничать.
 
@@ -423,11 +417,9 @@ function pow(x, n) {
 
 Самые известные -- это:
 
-<ul>
-<li>[JSLint](http://www.jslint.com/) -- проверяет код на соответствие [стилю JSLint](http://www.jslint.com/lint.html), в онлайн-интерфейсе вверху можно ввести код, а внизу различные настройки проверки, чтобы сделать её более мягкой. </li>
-<li>[JSHint](http://www.jshint.com/) -- вариант JSLint с большим количеством настроек.</li>
-<li>[Closure Linter](https://developers.google.com/closure/utilities/) -- проверка на соответствие [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).</li>
-</ul>
+- [JSLint](http://www.jslint.com/) -- проверяет код на соответствие [стилю JSLint](http://www.jslint.com/lint.html), в онлайн-интерфейсе вверху можно ввести код, а внизу различные настройки проверки, чтобы сделать её более мягкой.
+- [JSHint](http://www.jshint.com/) -- вариант JSLint с большим количеством настроек.
+- [Closure Linter](https://developers.google.com/closure/utilities/) -- проверка на соответствие [Google JavaScript Style Guide](http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml).
 
 В частности, JSLint и JSHint интегрированы с большинством редакторов, они гибко настраиваются под нужный стиль и совершенно незаметно улучшают разработку, подсказывая, где и что поправить.
 

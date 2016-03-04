@@ -1,8 +1,7 @@
-Решение заключается в превращении `obj.className` в массив при помощи `split`. 
+Решение заключается в превращении `obj.className` в массив при помощи `split`.
 После этого в нем можно проверить наличие класса, и если нет - добавить.
 
-```js
-//+ run
+```js run
 function addClass(obj, cls) {
   var classes = obj.className ? obj.className.split(' ') : [];
 
@@ -25,6 +24,6 @@ addClass(obj, 'me');
 alert(obj.className) // open menu new me
 ```
 
-P.S. "Альтернативный" подход к проверке наличия класса вызовом `obj.className.indexOf(cls)` был бы неверным. В частности, он найдёт `cls = "menu"` в строке классов `obj.className = "open mymenu"`. 
+P.S. "Альтернативный" подход к проверке наличия класса вызовом `obj.className.indexOf(cls)` был бы неверным. В частности, он найдёт `cls = "menu"` в строке классов `obj.className = "open mymenu"`.
 
 P.P.S. Проверьте, нет ли в вашем решении присвоения `obj.className += " " + cls`. Не добавляет ли оно лишний пробел в случае, если изначально `obj.className = ""`?

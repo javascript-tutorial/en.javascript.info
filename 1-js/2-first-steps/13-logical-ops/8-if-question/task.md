@@ -1,6 +1,8 @@
-# A question about "if"
+importance: 5
 
-[importance 5]
+---
+
+# A question about "if"
 
 Which of these `alert`s are going to execute?
 

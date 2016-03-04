@@ -11,12 +11,11 @@ function find(array, value) {
 }
 ```
 
-Однако, в нем ошибка, т.к. сравнение `==` не различает `0` и `false`. 
+Однако, в нем ошибка, т.к. сравнение `==` не различает `0` и `false`.
 
 Поэтому лучше использовать `===`. Кроме того, в современном стандарте JavaScript существует встроенная функция <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf">Array#indexOf</a>, которая работает именно таким образом. Имеет смысл ей воспользоваться, если браузер ее поддерживает.
 
-```js
-//+ run
+```js run
 function find(array, value) {
   if (array.indexOf) { // если метод существует
     return array.indexOf(value);

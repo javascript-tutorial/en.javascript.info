@@ -20,30 +20,28 @@ Developer tools are really powerful, there are many features, but on this stage 
 
 [cut]
 
-## Google Chrome   
+## Google Chrome
 
-Open the page [bug.html](bug.html). 
+Open the page [bug.html](bug.html).
 
 There's an error in the JavaScript code on it. An ordinary visitor won't see it, so let's open developer tools.
 
-Press the key [key F12] or, if you're on Mac, then [key Cmd+Opt+J].
+Press the key `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
 
 The developer tools will open on the Console tab by default.
 
 It looks somewhat like this:
 
-<img src="chrome.png">
+![](chrome.png)
 
 The exact look depends on your Chrome version. It changes from time to time, but should be similar.
 
-<ul>
-<li>Here we can see the red-colored error message. In this case the script contains a "lalala" command, which was put there just because it is unknown.</li>
-<li>On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.</li>
-</ul>
+- Here we can see the red-colored error message. In this case the script contains a "lalala" command, which was put there just because it is unknown.
+- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.
 
-Below the error message there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands and press enter to run them ([key Shift+Enter] to input multiline commands).
+Below the error message there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands and press enter to run them (`key:Shift+Enter` to input multiline commands).
 
-Now we can see errors and that's enough for the start. We'll be back to developer tools later and cover debugging more in-depth in the chapter [](/debugging-chrome).
+Now we can see errors and that's enough for the start. We'll be back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
 
 ## Safari
 
@@ -51,22 +49,19 @@ For Safari, we need to enable the "Develop menu" first.
 
 There's a checkbox for that at the bottom of the "Advanced" pane of the preferences:
 
-<img src="safari.png">
+![](safari.png)
 
-Now [key Cmd+Opt+C] can toggle the console. Also note that the new top menu item has appeared with many useful options.
+Now `key:Cmd+Opt+C` can toggle the console. Also note that the new top menu item has appeared with many useful options.
 
 ## Other browsers
 
-Most other browsers use [key F12] to open developer tools.
+Most other browsers use `key:F12` to open developer tools.
 
 The look & feel of them is quite similar, once we know how to use one of them (can start with Chrome), can easily switch to another.
 
 ## Summary
 
-<ul>
-  <li>Developer tools allow us to see errors, run commands, examine variables and much more.</li>
-<li>They can be opened with [key F12] for most browsers under Windows. Chrome for Mac needs [key Cmd+Opt+J], Safari: [key Cmd+Opt+C] (need to enable first).
-</li>
-</ul>
+  - Developer tools allow us to see errors, run commands, examine variables and much more.
+- They can be opened with `key:F12` for most browsers under Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
 
 Now we have the environment ready. In the next section we get down to JavaScript.

@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function sum() {
   var result = 0;
 

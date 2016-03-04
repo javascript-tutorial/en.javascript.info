@@ -4,12 +4,10 @@ For the comfortable development we need a good code editor.
 
 It should support at least:
 
-<ol>
-<li>Syntax highlight.</li>
-<li>Autocompletion.</li>
-<li>Folding -- collapsing/opening blocks of code.</li>
-<li>...the more features -- the better.</li>
-</ol>
+1. Syntax highlight.
+2. Autocompletion.
+3. Folding -- collapsing/opening blocks of code.
+4. ...the more features -- the better.
 
 [cut]
 
@@ -21,13 +19,11 @@ An IDE operates on a "whole project": loads it and then can navigate between fil
 
 If you haven't considered selecting an IDE, pleae look at the following variants:
 
-<ul>
-<li>IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.</li>
-<li>Visual Studio is fine if you're a .NET developer.</li>
-<li>Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.</li>
-<li>[Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).</li>
-<li>[Netbeans](http://netbeans.org/)</li>
-</ul>
+- IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.
+- Visual Studio is fine if you're a .NET developer.
+- Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
+- [Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
+- [Netbeans](http://netbeans.org/)
 
 All of them with the exception of Visual Studio are cross-platform.
 
@@ -45,22 +41,19 @@ In practice, "lightweight" editors may have a lot of plugins including directory
 
 The following options deserve your attention:
 
-<ul>
-<li><a href="http://www.sublimetext.com">Sublime Text</a> (cross-platform, shareware).</li>
-<li><a href="https://atom.io/">Atom</a> (cross-platform, free).</li>
-<li><a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, free).</li>
-<li>Vim, Emacs are cool. If you know how to use them.</li>
-</ul>
+- <a href="http://www.sublimetext.com">Sublime Text</a> (cross-platform, shareware).
+- <a href="https://atom.io/">Atom</a> (cross-platform, free).
+- <a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, free).
+- Vim, Emacs are cool. If you know how to use them.
 
 ## My favorites
 
 I believe one should have both an IDE for projects and a lightweight editor for quick and easy file editing.
 
 I'm using:
-<ul>
-<li>[WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I didn't use them.</li>
-<li>As a lightweight editor -- <a href="http://www.sublimetext.com">Sublime Text</a>.</li>
-</ul>
+
+- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I didn't use them.
+- As a lightweight editor -- <a href="http://www.sublimetext.com">Sublime Text</a>.
 
 If you don't know what to choose -- you can consider these ones.
 

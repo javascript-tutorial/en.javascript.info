@@ -1,6 +1,8 @@
-# if (a string with zero)
+importance: 5
 
-[importance 5]
+---
+
+# if (a string with zero)
 
 Will `alert` be shown?
 

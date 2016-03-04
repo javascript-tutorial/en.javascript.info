@@ -1,11 +1,12 @@
-# Comparisons
+importance: 5
 
-[importance 5]
+---
+
+# Comparisons
 
 What will be the result for expressions?
 
-```js
-//+ no-beautify
+```js no-beautify
 5 > 4
 "apple" > "pineapple"
 "2" > "12"

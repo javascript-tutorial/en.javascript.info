@@ -1,7 +1,6 @@
 
 
-```js
-//+ run demo
+```js run demo
 var a = +prompt("Введите первое число", "");
 var b = +prompt("Введите второе число", "");
 

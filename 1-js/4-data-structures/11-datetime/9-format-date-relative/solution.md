@@ -1,7 +1,6 @@
 Для того, чтобы узнать время от `date` до текущего момента - используем вычитание дат.
 
-```js
-//+ run
+```js run
 function formatDate(date) {
   var diff = new Date() - date; // разница в миллисекундах
 
@@ -37,7 +36,7 @@ function formatDate(date) {
   return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
 }
 
-alert( formatDate(new Date(new Date - 1)) ); // только что 
+alert( formatDate(new Date(new Date - 1)) ); // только что
 
 alert( formatDate(new Date(new Date - 30 * 1000)) ); // 30 сек. назад
 

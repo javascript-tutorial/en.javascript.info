@@ -1,9 +1,9 @@
 
-# Using the latest features now 
+# Using the latest features now
 
 The [latest standard](http://www.ecma-international.org/publications/standards/Ecma-262.htm) was approved in June 2015.
 
-As it includes a lot of new features, most browsers implement them partially. You can find the current state of the support at [](https://kangax.github.io/compat-table/es6/).
+As it includes a lot of new features, most browsers implement them partially. You can find the current state of the support at <https://kangax.github.io/compat-table/es6/>.
 
 ## Single-engine app
 
@@ -13,7 +13,7 @@ Most notably, V8 supports many of the new features only if the code is running i
 
 You will find most code in this tutorial using this directive and, because of that, runnable in Chrome.
 
-But what if we're writing a cross-browser application? Different browsers support different subsets of ES-2015. 
+But what if we're writing a cross-browser application? Different browsers support different subsets of ES-2015.
 
 Here comes Babel.JS.
 
@@ -23,30 +23,27 @@ Here comes Babel.JS.
 
 Actually, there are two parts in Babel:
 
-<ol>
-<li>The transpiler program, which rewrites the code. 
+1. The transpiler program, which rewrites the code.
 
-The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily. One just needs to setup the build system itself.</li>
-<li>JavaScript library.
+    The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily. One just needs to setup the build system itself.
+2. JavaScript library.
 
-An additional JavaScript library with modern JavaScript functions for the browsers that do not have them built-in (yet). The library must be attached to each webpage which relies on these functions.</li>
-</ol>
+    An additional JavaScript library with modern JavaScript functions for the browsers that do not have them built-in (yet). The library must be attached to each webpage which relies on these functions.
 
 There is a special "play" mode of Babel.JS which merges both parts in a single in-browser script.
 
 The usage looks like this:
 
-```html
-<!--+ run -->
+```html run
 *!*
 <!-- browser.js is on my server please don't hotlink -->
 <script src="https://en.js.cx/babel-core/browser.min.js"></script>
 */!*
 
 <script type="text/babel">
-  let arr = ["hello", 2]; 
+  let arr = ["hello", 2];
 
-  let [str, times] = arr; 
+  let [str, times] = arr;
 
   alert( str.repeat(times) ); // hellohello
 </script>
@@ -57,16 +54,15 @@ Script `browser.min.js` is attached to the top of the page. It automatically tra
 The size of `browser.min.js` is above 1 megabyte, because it includes the transpiler. Hence such usage is only for "playing" and not recommended for production.
 
 Also:
-<ul>
-<li>There is a "try it" page on [](https://babeljs.io/repl/) which allows to run snippets of code.</li>
-<li>[JSBin](http://jsbin.com) allows to use "ES6/Babel" mode for JS, see [this snippet](http://jsbin.com/daxihelolo/edit?js,output) as an example.</li>
-</ul>
+
+- There is a "try it" page on <https://babeljs.io/repl/> which allows to run snippets of code.
+- [JSBin](http://jsbin.com) allows to use "ES6/Babel" mode for JS, see [this snippet](http://jsbin.com/daxihelolo/edit?js,output) as an example.
 
 # Examples on this site
 
-[warn header="Browser support is required"]
+```warn header="Browser support is required"
 Examples that use ES-2015 will work only if your browser supports it.
-[/warn]
+```
 
 Sometimes it means that when running an example in a non-supporting browser, an error is shown.
 
@@ -80,7 +76,7 @@ And even if your browser does not support some code, you can run it through Babe
 
 That would be fine, because on production everyone's using Babel anyway.
 
-Once again, let's note that the most up-to-date situation with support is reflected on [](https://kangax.github.io/compat-table/es6/).
+Once again, let's note that the most up-to-date situation with support is reflected on <https://kangax.github.io/compat-table/es6/>.
 
 Now we can go coding, but we need a good code editor for that. That is discussed in the next session.
 

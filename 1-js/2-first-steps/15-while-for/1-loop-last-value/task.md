@@ -1,6 +1,8 @@
-# Last loop value
+importance: 3
 
-[importance 3]
+---
+
+# Last loop value
 
 What is be the last value alerted by this code? Why?
 

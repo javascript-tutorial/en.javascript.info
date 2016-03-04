@@ -1,7 +1,6 @@
 Так как окончательная длина строки должна быть `maxlength`, то нужно её обрезать немного короче, чтобы дать место для троеточия.
 
-```js
-//+ run
+```js run
 function truncate(str, maxlength) {
   if (str.length > maxlength) {
     return str.slice(0, maxlength - 3) + '...';
@@ -17,8 +16,7 @@ alert( truncate("Всем привет!", 20) );
 
 Можно было бы написать этот код ещё короче:
 
-```js
-//+ run
+```js run
 function truncate(str, maxlength) {
   return (str.length > maxlength) ?
     str.slice(0, maxlength - 3) + '...' : str;

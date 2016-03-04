@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 function isEmpty(obj) {
   for (var key in obj) {
     return false;

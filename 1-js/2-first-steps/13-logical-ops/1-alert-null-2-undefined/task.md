@@ -1,6 +1,8 @@
-# What's the result of OR?
+importance: 5
 
-[importance 5]
+---
+
+# What's the result of OR?
 
 What the code below is going to output?
 

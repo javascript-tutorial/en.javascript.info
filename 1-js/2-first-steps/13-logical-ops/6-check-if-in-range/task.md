@@ -1,6 +1,8 @@
-# Check the range between
+importance: 3
 
-[importance 3]
+---
+
+# Check the range between
 
 Write an "if" condition to check that `age` is between `14` and `90` inclusively.
 

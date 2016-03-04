@@ -1,6 +1,8 @@
-# Is "else" required?
+importance: 4
 
-[importance 4]
+---
+
+# Is "else" required?
 
 The following function returns `true` if the parameter `age` is greater than `18`.
 

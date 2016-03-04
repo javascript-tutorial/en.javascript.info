@@ -1,4 +1,4 @@
-There are many algorithms for this task. 
+There are many algorithms for this task.
 
 Let's use a nested loop:
 
@@ -12,8 +12,7 @@ For each i in the interval {
 
 The code using a label:
 
-```js
-//+ run
+```js run
 nextPrime:
 for (let i = 2; i < 10; i++) { // for each i...
 

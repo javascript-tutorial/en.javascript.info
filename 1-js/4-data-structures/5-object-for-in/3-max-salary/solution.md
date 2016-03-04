@@ -1,7 +1,6 @@
 
 
-```js
-//+ run
+```js run
 "use strict";
 
 var salaries = {

@@ -1,7 +1,6 @@
 Для сортировки объявим и передадим в `sort` анонимную функцию, которая сравнивает объекты по полю `age`:
 
-```js
-//+ run no-beautify
+```js run no-beautify
 *!*
 // Наша функция сравнения
 function compareAge(personA, personB) {

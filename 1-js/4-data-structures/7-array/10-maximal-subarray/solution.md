@@ -3,8 +3,7 @@
 
 Например, для `[-1, 2, 3, -9, 11]`:
 
-```js
-//+ no-beautify
+```js no-beautify
 // Начиная с -1:
 -1
 -1 + 2
@@ -37,8 +36,7 @@
 
 Решение через вложенный цикл:
 
-```js
-//+ run
+```js run
 function getMaxSubSum(arr) {
   var maxSum = 0; // если совсем не брать элементов, то сумма 0
 
@@ -74,8 +72,7 @@ alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 
 # Быстрое решение
 
-```js
-//+ run
+```js run
 function getMaxSubSum(arr) {
   var maxSum = 0,
     partialSum = 0;
@@ -87,7 +84,6 @@ function getMaxSubSum(arr) {
   return maxSum;
 }
 
-
 alert( getMaxSubSum([-1, 2, 3, -9]) ); // 5
 alert( getMaxSubSum([-1, 2, 3, -9, 11]) ); // 11
 alert( getMaxSubSum([-2, -1, 1, 2]) ); // 3
@@ -96,6 +92,6 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
-Информацию об алгоритме вы также можете прочитать здесь: [](http://e-maxx.ru/algo/maximum_average_segment) и здесь: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem).
+Информацию об алгоритме вы также можете прочитать здесь: <http://e-maxx.ru/algo/maximum_average_segment> и здесь: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem).
 
 Этот алгоритм требует ровно одного прохода по массиву, его сложность имеет оценку `O(n)`.

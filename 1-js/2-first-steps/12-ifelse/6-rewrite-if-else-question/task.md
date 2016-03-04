@@ -1,8 +1,10 @@
+importance: 5
+
+---
+
 # Rewrite 'if..else' into '?'
 
-[importance 5]
-
-Rewrite `if..else` using multiple ternary operators `'?'`. 
+Rewrite `if..else` using multiple ternary operators `'?'`.
 
 For readability, it's recommended to split the code span over lines.
 

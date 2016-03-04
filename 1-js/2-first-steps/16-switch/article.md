@@ -5,12 +5,12 @@ A `switch` statement can replace multiple `if` checks.
 It gives a more descriptive way to compare a value with multiple variants.
 
 [cut]
+
 ## The syntax
 
 It looks like this:
 
-```js
-//+ no-beautify
+```js no-beautify
 switch(x) {
   case 'value1':  // if (x === 'value1')
     ...
@@ -26,20 +26,15 @@ switch(x) {
 }
 ```
 
-<ul>
-<li>The value of `x` is checked for a strict equality to the value from the first `case`, that is: `value1`, then to the second `value2` and so on.
-</li>
-<li>If the equality is found -- `switch` starts to execute the code starting from the corresponding `case`, and to the nearest `break` (or to the end of `switch`).
-</li>
-<li>If no case matched then the `default` code is executed (if exists).</li>
-</ul>
+- The value of `x` is checked for a strict equality to the value from the first `case`, that is: `value1`, then to the second `value2` and so on.
+- If the equality is found -- `switch` starts to execute the code starting from the corresponding `case`, and to the nearest `break` (or to the end of `switch`).
+- If no case matched then the `default` code is executed (if exists).
 
 ## An example
 
 An example of `switch` (the executed code is highlighted):
 
-```js
-//+ run
+```js run
 let a = 2 + 2;
 
 switch (a) {
@@ -67,8 +62,7 @@ Then `4`. That's the match, so the execution starts from `case 4` and till the n
 
 An example without `break`:
 
-```js
-//+ run
+```js run
 let a = 2 + 2;
 
 switch (a) {
@@ -93,13 +87,12 @@ alert( 'Too big' );
 alert( "I don't know such values" );
 ```
 
-[smart header="Any expresion can be a `switch/case` argument"]
+````smart header="Any expresion can be a `switch/case` argument"
 Both `switch` and case allow arbitrary expresions.
 
 For example:
 
-```js
-//+ run
+```js run
 let a = "1";
 let b = 0;
 
@@ -114,7 +107,7 @@ switch (+a) {
     alert('no-no, see the code above, it executes');
 }
 ```
-[/smart]
+````
 
 ## Grouping of "case"
 
@@ -122,9 +115,7 @@ Several variants of `case` can be grouped.
 
 For example, if we want the same code for `case 3` and `case 5`:
 
-
-```js
-//+ run no-beautify
+```js run no-beautify
 let a = 2 + 2;
 
 switch (a) {
@@ -134,7 +125,7 @@ switch (a) {
 
 *!*
   case 3:                    // (*)
-  case 5:                    
+  case 5:
     alert('Wrong!');
     alert('How about to take maths classes?');
     break;
@@ -153,9 +144,7 @@ Let's emphase that the equality check is always strict. The values must be of th
 
 For example, let's consider the code:
 
-
-```js
-//+ run
+```js run
 let arg = prompt("Enter a value?")
 switch (arg) {
   case '0':
@@ -174,10 +163,7 @@ switch (arg) {
 }
 ```
 
-<ol>
-<li>For `0`, `1`, the first `alert` runs.</li>
-<li>For `2` the second `alert` runs.</li>
-<li>But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execite.</li>
-</ol>
-
+1. For `0`, `1`, the first `alert` runs.
+2. For `2` the second `alert` runs.
+3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execite.
 

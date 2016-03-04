@@ -1,6 +1,8 @@
-# Which script executes first?
+importance: 4
 
-[importance 4]
+---
+
+# Which script executes first?
 
 In the questions below, there are two scripts: `small.js` and `big.js`.
 

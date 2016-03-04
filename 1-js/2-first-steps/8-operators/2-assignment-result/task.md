@@ -1,6 +1,8 @@
-# Assignment result
+importance: 3
 
-[importance 3]
+---
+
+# Assignment result
 
 What will be values of `a` and `x` in the example below?
 

@@ -11,8 +11,7 @@ function getDateAgo(date, days) {
 
 Для того чтобы ему соответствовать, создадим копию объекта даты:
 
-```js
-//+ run
+```js run
 function getDateAgo(date, days) {
   var dateCopy = new Date(date);
 
