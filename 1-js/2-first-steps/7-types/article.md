@@ -23,13 +23,12 @@ Besides regular numbers there are so-called "special numeric values" which also 
 
     ```js run
     alert( 1 / 0 ); // Infinity
-    alert( -1 / 0 ); // -Infinity
     ```
 
-    Also we can use it directly:
+    Or just mention it in the code directly:
 
     ```js run
-    alert( Infinity > 123456789 ); // true
+    alert( Infinity ); // Infinity
     ```
 - `NaN` represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
 
@@ -37,7 +36,21 @@ Besides regular numbers there are so-called "special numeric values" which also 
     alert( "not a number" * 2 ); // NaN
     ```
 
-These values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
+    `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
+
+    ```js run
+    alert( "not a number" * 2 + 5 - 9 ); // still NaN
+    ```
+
+    So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
+
+```smart header="Maths is safe"
+Maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
+
+The script will never die. At worst we'll get `NaN` as the result.
+```
+
+Special numeric values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
 
 We'll see more into working with numbers in the chapter <info:number>.
 
@@ -57,7 +70,7 @@ In JavaScript, there are 3 types of quotes.
 
 Double and single quotes are essentially the same.
 
-Backtricks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
+Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
 ```js run
 let name = "John";
@@ -69,15 +82,15 @@ alert( `Hello, ${name}!` ); // Hello, John!
 alert( `the result is ${1 + 2}` ); // the result is 3
 ```
 
-The expression inside `${…}` is evaluated and the result becomes a part of the string.
+The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
+
+We'll cover strings more thoroughly in the chapter <info:string>.
 
 ```smart header="There is no *character* type."
 In some languages, there is a special "character" type for a single character. For example, in the C language it is `char`.
 
-In JavaScript, there is no such type. There's only one type `string` for both a single character and long texts.
+In JavaScript, there is no such type. There's only one type: `string`. A string may consist of only one character or many of them.
 ```
-
-We'll cover strings more thoroughly in the chapter <info:string>.
 
 ## A boolean (logical)
 
@@ -96,7 +109,7 @@ Boolean values also come as the result of comparisons:
 
 ```js run
 let isGreater = 4 > 1;
-alert(isGreater); // true
+alert( isGreater ); // true
 ```
 
 We'll cover booleans more deeply while discussing logical operators.
@@ -174,33 +187,72 @@ alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-Also we can add new information to the user and remove it any time:
+Also we can add new information to the user any time later:
 
 ```js
 user.isAdmin = true; 
+```
+
+...Or remove it with the help of `delete` operator:
+
+```js
 delete user.age;
 ```
 
-Objects in JavaScript are very powerful. This topic is so huge. We'll be closely working with objects since the chapter <info:object> and continue studying them in following parts of the tutorial.
+Any string can be used as a property name. But if it has multiple words, then we should use another kind of notation to access it. Namely, square brackets:
+
+```js
+user["likes to swim?"] = true;
+```
+
+See, the dot requires the property name to be a valid variable identifier. That is: no spaces and other limitations. Square brackets work with any string. 
+
+We can split the code above into two lines by putting the property name into a variable:
+
+```js
+let key = "likes to swim?";
+user[key] = true; // same as above
+```
+
+Objects in JavaScript are very powerful. Here we just started the topic that is really huge. We'll be closely working with objects in the next parts of the tutorial.
 
 ## Symbol type
 
-The `symbol` type stands apart from the others. Symbols are rarely used. Probably we won't need them any time soon, but it's the 7th and the last type of the language. So we must mention it for the sake of completeness.
+The `symbol` type stands apart from the others. Probably we won't need them any time soon, but it's the 7th and the last type of the language. So we must mention it for the sake of completeness.
 
-Type "symbol" represents an unique identifier.
+Type "symbol" represents an unique identifier with a given name.
 
 A value of this type can be created like this:
 
 ```js
+// id is a symbol with the name "id"
 let id = Symbol("id");
 ```
 
-Symbols are used in advanced operations with objects. As of now, it's enough to understand that JavaScript symbols is a separate primitive type used for identifiers. 
+Symbols in JavaScript are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word) in that two symbols with the same name are different:
 
-Symbols in JavaScript are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word). We'll get back to them after in-depth study of objects.
+```js run
+let id1 = Symbol("id");
+let id2 = Symbol("id");
 
+alert(id1 == id2); // false
+```
 
+Symbols is a separate primitive type used for identifiers, which are guaranteed to be unique.
 
+So if we want to create a "hidden" property in an object, only for us, and ensure that no other part of code can occasionally access it, we can create a symbol for it:
+
+```js run
+let user = { name: "John" };
+let id = Symbol("id");
+
+user[id] = "Secret ID Value";
+alert( user[id] ); // we can access the data
+```
+
+Now, if another script wants his own "id" property inside `user`, it can create its own `Symbol("id")`. There will be no conflict, because symbols are always different.
+
+Symbols are widely used by the JavaScript language itself to store "system" properties. We'll find out more details after studying objects.
 
 ## The typeof operator [#type-typeof]
 
@@ -245,7 +297,7 @@ Please note the last two lines, because `typeof` behaves specially there.
 
 ## Type conversions
 
-A variable in JavaScript can contain any data. The same variable can get a string and, a little bit later, be used to store a number:
+A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
 
 ```js
 // no error
@@ -253,7 +305,9 @@ let message = "hello";
 message = 123456;
 ```
 
-...But sometimes we need to convert a value from one type to another. That is useful because each type has it's own features. So we are really going to benefit from storing a number as a number, not a string with it.
+...But sometimes we need to convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or, so to say, an `if (value)` converts it's argument into a boolean to see if it's `true` or `false`.
+
+There are also cases when we need to convert between types to ensure that we store the right data the right way, or to use special features of a certain type.
 
 There are many type conversions in JavaScript, fully listed in [the specification](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion).
 
@@ -262,6 +316,8 @@ Three conversions that happen most often are:
 1. String conversion.
 2. Numeric conversion.
 3. Boolean conversion.
+
+Let's see how and when they happen.
 
 ### String conversion
 
@@ -358,13 +414,16 @@ alert( Boolean(" ") ); // any non-empty string, even whitespaces are true
 
 ## Summary
 
-- There are 7 basic types in JavaScript. Six "primitive" types: `number`, `string`, `boolean`, `null`, `undefined`, `symbol` and an `object` type.
-- The `typeof` operator allows to see which type is stored in the variable, but note that it mistakingly returns `"object"` for `null`.
+There are 7 basic types in JavaScript.
 
-Type conversions usually happen automatically, but there are also functions for the manual conversion:
+- `number` for numbers of any kind, can convert into it using `Number(value)`.
+- `string` for strings and characters, can convert into it using `String(value)`.
+- `boolean` for `true`/`false`, can convert into it using `Boolean(value)`.
+- `null` for unknown values.
+- `undefined` for unassigned values.
+- `object` for complex data structures.
+- `symbol` for unique identifiers.
 
-- String
-- Number
-- Boolean
+The `typeof` operator allows to see which type is stored in the variable, but note that it mistakingly returns `"object"` for `null`.
 
 Now let's study operators and other language constructs that actually form our code.

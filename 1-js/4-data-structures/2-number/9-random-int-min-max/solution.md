@@ -1,75 +1,66 @@
-# Очевидное неверное решение (round)
+# The simple but wrong solution
 
-Самый простой, но неверный способ -- это сгенерировать значение в интервале `min..max` и округлить его `Math.round`, вот так:
+The simplest, but wrong solution would be to generate a value from `min` to `max` and round it:
 
 ```js run
 function randomInteger(min, max) {
-  var rand = min + Math.random() * (max - min)
-  rand = Math.round(rand);
-  return rand;
+  let rnd = min + Math.random() * (max - min); 
+  return Math.round(rnd);
 }
 
 alert( randomInteger(1, 3) );
 ```
 
-Эта функция работает. Но при этом она некорректна: вероятность получить крайние значения `min` и `max` будет в два раза меньше, чем любые другие.
+The function works, but it is incorrect. The probability to get edge values `min` and `max` is two times less than any other.
 
-При многократном запуске этого кода вы легко заметите, что `2` выпадает чаще всех.
+If you run the example above many times, you would easily see that `2` appears the most often.
 
-Это происходит из-за того, что `Math.round()`  получает разнообразные случайные числа из интервала от `1` до `3`, но при округлении до ближайшего целого получится, что:
+That happens because `Math.round()` gets random numbers from the interval `1..3` and rounds them as follows:
 
 ```js no-beautify
-значения из диапазона 1   ... 1.49999..  станут 1
-значения из диапазона 1.5 ... 2.49999..  станут 2
-значения из диапазона 2.5 ... 2.99999..  станут 3
+values from 1    ... to 1.4999999999  become 1
+values from 1.5  ... to 2.4999999999  become 2
+values from 2.5  ... to 2.9999999999  become 3
 ```
 
-Отсюда явно видно, что в `1` (как и `3`) попадает диапазон значений в два раза меньший, чем в `2`. Из-за этого такой перекос.
+Now we can clearly see that `1` gets twice less values than `2`. And the same with `3`.
 
-# Верное решение с round
+# The correct solution
 
-Правильный способ: `Math.round(случайное от min-0.5 до max+0.5)`
+There are many correct solutions to the task. One of them is to adjust interval borders. To ensure the same intervals, we can generate values from `0.5 to 2.5`, thus adding the required probabilities to the edges:
 
 ```js run
 *!*
 function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1)
-    rand = Math.round(rand);
-    return rand;
-  }
+  // now rnd is from  (min-0.5) to (max+0.5)
+  let rnd = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rnd);
+}
 */!*
 
-alert( randomInteger(5, 10) );
+alert( randomInteger(1, 3) );
 ```
 
-В этом случае диапазон будет тот же (`max-min+1`), но учтена механика округления `round`.
-
-# Решение с floor
-
-Альтернативный путь - применить округление `Math.floor()` к случайному числу от `min` до `max+1`.
-
-Например, для генерации целого числа от `1` до `3`, создадим вспомогательное случайное значение от `1` до `4` (не включая `4`).
-
-Тогда `Math.floor()` округлит их так:
-
-```js no-beautify
-1 ... 1.999+ станет 1
-2 ... 2.999+ станет 2
-3 ... 3.999+ станет 3
-```
-
-Все диапазоны одинаковы.
-Итак, код:
+An alternative way could be to use `Math.floor` for a random number from `min` to `max+1`:
 
 ```js run
 *!*
 function randomInteger(min, max) {
-    var rand = min + Math.random() * (max + 1 - min);
-    rand = Math.floor(rand);
-    return rand;
-  }
+  // here rnd is from min to (max+1)
+  let rnd = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
+}
 */!*
 
-alert( randomInteger(5, 10) );
+alert( randomInteger(1, 3) );
 ```
 
+Now all intervals are mapped this way:
+
+```js no-beautify
+values from 1  ... to 1.9999999999  become 1
+values from 2  ... to 2.9999999999  become 2
+values from 3  ... to 3.9999999999  become 3
+```
+
+All intervals have the same length, making the final distribution uniform.

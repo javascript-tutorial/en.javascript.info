@@ -2,8 +2,17 @@ importance: 2
 
 ---
 
-# Случайное целое от min до max
+# A random integer from min to max
 
-Напишите функцию `randomInteger(min, max)` для генерации случайного **целого** числа между `min` и `max`, включая `min,max` как возможные значения.
+Create a function `randomInteger(min, max)` that generates a random *integer* number from `min` to `max` including both `min` and `max` as possible values.
 
-Любое число из интервала `min..max` должно иметь одинаковую вероятность.
+Any number from the interval `min..max` must appear with the same probability.
+
+
+Examples of its work:
+
+```js
+alert( random(1, 5) ); // 1
+alert( random(1, 5) ); // 3
+alert( random(1, 5) ); // 5
+```

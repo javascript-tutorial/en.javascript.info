@@ -2,10 +2,10 @@ importance: 5
 
 ---
 
-# Интерфейс суммы
+# Sum numbers from the visitor
 
-Создайте страницу, которая предлагает ввести два числа и выводит их сумму.
+Create a script that prompts the visitor to enter two numbers and then shows their sum.
 
 [demo]
 
-P.S. Есть "подводный камень" при работе с типами.
+P.S. There is a gotcha with types.
