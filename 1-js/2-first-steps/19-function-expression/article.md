@@ -42,12 +42,11 @@ alert( sayHi ); // shows the function code
 
 Note that there are no brackets after `sayHi` in the last line. 
 
-The function is not called there. There are programming languages where any use of function name causes it's call, but JavaScript is not like that. In JavaScript, a function is a value and we can deal with that as a value, like print string representation, that is the source code.
+The function is not called there. There are programming languages where any use of function name causes it's call, but JavaScript is not like that. In JavaScript, a function is a value and we can deal with that as a value. The code above shows its string representation, that is its source code.
 
+It is a special value of course, in the sense that we can call it using brackets: `"sayHi()"`.
 
-It is a special value though, in the sense that we can call it using brackets: `"sayHi()"`, but only if we explicitly put brackets into the code.
-
-Other actions with functions are also available, in the same fashion as with other values.
+But it's still a value. So we can work with it like with other kinds of values.
 
 We can copy a function to another variable:
 
@@ -59,23 +58,18 @@ function sayHi() {   // (1) create
 let func = sayHi;    // (2) copy
 
 func(); // Hello     // (3) call the copy (it works)!
-
-sayHi = null;        // (4) store null in the old variable
-sayHi();             // error! (now null, the function is overwritten)
-
-func();              // the copy still works
+sayHi(); // Hello    //     this works too (why wouldn't it)
 ```
 
 In more detail:
 1. Function Declaration `(1)` creates the function and puts it into the variable `sayHi`"
 2. Line `(2)` copies it into variable `func`.
 
-    Please note again: there are no brackets after `sayHi`. If they were, then `func = sayHi()` would write  *the result* of the call `sayHi()` into `func`, not the function `sayHi` itself.
-3. At the moment `(3)` the function can be called both as `sayHi()` and `func()`.
-4. ...We can overwrite `sayHi`, it have had the function, but now it stores `null`. Naturally, the call attempt would fail.
-5. But `func` still has the function, it is still callable.
+    Please note again: there are no brackets after `sayHi`. If they were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
+3. Now the function can be called both as `sayHi()` and `func()`.
 
-Note, that we could use a Function Expression in the first line: `let sayHi = function() { ... }`. Everything would work the same.
+
+Note, that we could also have used a Function Expression to declare `sayHi`, in the first line: `let sayHi = function() { ... }`. Everything would work the same.
 
 ```smart header="A function is a value representing an \"action\""
 Regular values like strings or numbers represent the *data*.
@@ -85,54 +79,78 @@ A function can be perceived as an *action*.
 We can copy it between variables and run when we want.
 ```
 
-## Why Function Expression?
+## Function Expression as a method
 
-Now let's go back: we have two ways of declaring a function. Why so? What's about Function Expressions that makes it a good addition?
+Now let's go back: we have two ways of declaring a function. Do we really need both? What's about Function Expressions that makes it a good addition?
 
-**Function Expressions are very convenient for creating an action in-place and passing it along the code.**
+Actually, yes. We'll see many examples below, but let's start with objects.
 
-There is a built-in [setTimeout](https://developer.mozilla.org/en/docs/Web/API/WindowTimers/setTimeout) function in JavaScript, that can schedule a function to run after a given period of time.
+As we remember from the chapter <info:types>, objects are data structures meant to store collections of data.
 
-The syntax is: `setTimeout(func, ms, ...arguments)`:
+Most often, we create objects to represent entities of the real world, like here:
 
-`func`
-: The function to run.
+```js
+let user = {
+  name: "John",
+  age: 30
+};
+```
 
-`ms`
-: The number of milliseconds (1/1000 of a second) to schedule the call after.
-
-`arguments`
-: One of more arguments to pass to the function.
-
-What if we wanted to say "Hello" in a second?
-
-One could write a code like this:
+In the real world, a user can `act`, like: select something from the shopping cart, login, logout etc. For the start, let's teach him to say hello:
 
 ```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+*!*
+user.sayHi = function() {
+  alert("Hello!");
+};
+*/!*
+
+user.sayHi(); // Hello!
+```
+
+You see? We've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
+
+Then we can call it any time. The user now can speak!
+
+That is how a so-called "object-oriented code" is written. We make objects which reflect entities of the real world: like a user, or a document, or a button that is clickable etc.
+
+An object stores its data in regular properties (like `name`, `age` etc) and has functions to express itself. Function properties are usually called *methods*. So, one can say that in the code above "`sayHi` is a method of the object `user`". 
+
+
+
+Of course we could use a Function Declaration for the same purpose:
+
+```js run
+let user = {
+  // ...
+};
+
+*!*
 function sayHi() {
-  alert("Hello!")
-}
+  alert("Hello!");
+};
 
-setTimeout(sayHi, 1000);
+user.sayHi = sayHi;
+*/!*
+
+user.sayHi(); // Hello!
 ```
 
-That would work. But we have declared a function that has no future use.
+That would also work, but is longer. Also we get an "extra" function `sayHi` outside of the `user` object. Here we don't want it.
 
-A Function Expression is much cleaner:
-
-```js run
-setTimeout(function() {
-  alert("Hello!")
-}, 1000);
-```
-
-Such functions are sometimes called "anonymous" meaning that they are defined without a name.  So to say, we can't reuse them, because there is no variable for them. But here it's  exactly what we want.
-
-Creating functions in-place is very natural and in the spirit of JavaScript.
 
 ## Function Expression vs Function Declaration
 
-Let's briefly reformulate the distinction between these two.
+Let's formulate key differences between Function Declarations and Expressions.
+
+### What's where
+
+Here's the exact distinction between these two.
 
 - *Function Declaration:* a function, declared as a separate statement, in the main code flow.
 
@@ -144,7 +162,7 @@ Let's briefly reformulate the distinction between these two.
     ```
 - *Function Expression:* a function, created in the context of an expression.
 
-    Here the function is created in the context of an "assignment expression", it's an expression:
+    Here the function is created in the context of an "assignment expression":
     ```js
     // Function Expression
     let sum = function(a, b) {
@@ -152,29 +170,19 @@ Let's briefly reformulate the distinction between these two.
     }
     ```
 
-    Here the function is created inside another function call:
-
-    ```js 
-    // Function Expression
-    setTimeout(function() {
-      alert("Hello!")
-    }, 1000);
-    ```    
-
 ### Creation time
 
-There are more differences between them besides the syntax.
+Another difference is when they are actualy created by the JavaScript engine.
 
 **Function Expressions are created when the execution reaches them.**
 
-That's rather obvious. Once the execution flow passes to the right side of the assignment -- here we go, the function is made and can be used (assigned, called etc) from now on.
+That's kind of obvious. Once the execution flow passes to the right side of the assignment `let sum = function` -- here we go, the function is made and can be used (assigned, called etc) from now on.
 
 Function Declarations are different. 
 
-**Function Declarations are created before the script or a code block begins to execute and are visible in the whole scropt/block.**
+**Function Declarations are created before the script or a code block begins to execute and are visible in the whole script/block.**
 
-In other words, when JavaScript *prepares* to run the script or a code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an "initialization stage". Then it runs the code.
-
+In other words, when JavaScript *prepares* to run the script or a code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an "initialization stage". 
 
 As a natural effect, a function declared as Function Declaration can be called earlier than it is defined.
 
@@ -190,7 +198,7 @@ function sayHi(name) {
 }
 ```
 
-Function Declaration `sayHi` is created when the script starts and is visible everywhere in it.
+Function Declaration `sayHi` is created when JavaScript is preparing to start the script and is visible everywhere in it.
 
 ...And if there were Function Expression, then it wouldn't work:
 
@@ -204,7 +212,7 @@ let sayHi = function(name) {  // (*)
 };
 ```
 
-Function Expressions are created when the execution reaches them. No magic. That would happen only in the line `(*)`. Too late.
+Now there's no magic. Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
 
 
 ### Visibility
@@ -253,9 +261,9 @@ if (age < 18) {
   welcome();               // \   (runs)
 */!*
                            //  |
-  function welcome() {     //  |
-    alert("Hello!");       //  |  welcome is available everywhere in its block
-  }                        //  |
+  function welcome() {     //  |  
+    alert("Hello!");       //  |  Function Declaration is available 
+  }                        //  |  everywhere in the block when it's declared
                            //  |
 *!*
   welcome();               // /   (runs)
@@ -263,14 +271,17 @@ if (age < 18) {
 
 } else {
                            // \
-  function welcome() {     //  |
-    alert("Greetings!");   //  |  another welcome is limited to its own block
-  }                        //  |
+  function welcome() {     //  |  
+    alert("Greetings!");   //  |  as we don't enter this block, 
+  }                        //  |  this "welcome" is never created
                            // /
 }
 
+// Now we're out of figure brackets,
+// so we can not see Function Declarations made inside of them.
+
 *!*
-welcome(); // Error: outside of the block there's no welcome
+welcome(); // Error: welcome is not defined
 */!*
 ```
 
@@ -306,12 +317,7 @@ Or we could go on to simplify it even further using a question mark operator `?`
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
-  function() {
-    alert("Hello!");
-  } :
-  function() {
-    alert("Greetings!");
-  }
+  function() { alert("Hello!"); } : function() { alert("Greetings!"); }
 
 *!*
 welcome(); // ok now
@@ -319,9 +325,9 @@ welcome(); // ok now
 ```
 
 ```smart header="What to choose: a Declaration or an Expression?"
-As a rule of thumb, a Function Declaration is prefered. It gives more freedom in how to organize our code, because we can call it both above and below. It's also a little bit easier to look up Function Declarations in the text.
+As a rule of thumb, a Function Declaration is prefered. It gives more freedom in how to organize our code, because we can call it both above and below. It's also a little bit easier to look up Function Declarations in the code, they increase readability of the code.
 
-But if a Function Declaration does not suit us for some reason, or we need to create an anonymous function "at-place", then a Function Expression should be used.
+But if a Function Declaration does not suit us for some reason, then a Function Expression should be used.
 ```
 
 ## Summary
