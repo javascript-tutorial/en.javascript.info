@@ -2,13 +2,13 @@ importance: 3
 
 ---
 
-# Первый объект
+# Hello, object
 
-Мини-задача на синтаксис объектов. Напишите код, по строке на каждое действие.
+Write the code, each line for an action:
 
-1. Создайте пустой объект `user`.
-2. Добавьте свойство `name` со значением `Вася`.
-3. Добавьте свойство `surname` со значением `Петров`.
-4. Поменяйте значение `name` на `Сергей`.
-5. Удалите свойство `name` из объекта.
+1. Create an empty object `user`.
+2. Add the property `name` with the value `John`.
+3. Add the property `surname` with the value `Smith`.
+4. Change the value of the `name` to `Pete`.
+5. Remove the property `name` from the object.
 

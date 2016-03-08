@@ -327,18 +327,11 @@ Sometimes `isFinite` is used to validate the string value for being a regular nu
 ```js run
 let num = +prompt("Enter a number", '');
 
+// isFinite will be true only for regular numbers
 alert(`num:${num}, isFinite:${isFinite(num)}`);
 ```
 
-Here `num` is always of a number type, because of the unary plus `+`, but...
-
-- It may be `NaN` if the string is non-numeric. 
-- It may be `Infinity` if the user typed in `"Infinity"`.
-
-The `isFinite` test checks that and returns `true` only if it's a regular number. That's just what we usually need.
-
-Please note that an empty or a space-only string would give `num=0` in the described case. 
-
+Please note that an empty or a space-only string is treated as `0` in the described case. If it's not what's needed, then additional checks are required. 
 
 ## parseInt and parseFloat
 

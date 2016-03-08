@@ -1,26 +1,27 @@
-Мы не можем просто заменить первый символ, т.к. строки в JavaScript неизменяемы.
+We can't "replace" the first character, because strings in JavaScript are immutable.
 
-Но можно пересоздать строку на основе существующей, с заглавным первым символом:
+But we can make a new string based on the existing one, with the uppercased first character:
 
 ```js
-var newStr = str[0].toUpperCase() + str.slice(1);
+let newStr = str[0].toUpperCase() + str.slice(1);
 ```
 
-Однако, есть небольшая проблемка -- в случае, когда строка пуста, будет ошибка.
+There's a small problem though. If `str` is empty, then `str[0]` is undefined, so we'll get an error.
 
-Ведь `str[0] == undefined`, а у `undefined` нет метода `toUpperCase()`.
+There are two variants here:
 
-Выхода два. Первый -- использовать `str.charAt(0)`, он всегда возвращает строку, для пустой строки -- пустую, но не `undefined`. Второй -- отдельно проверить на пустую строку, вот так:
+1. Use `str.charAt(0)`, as it always returns a string (maybe empty).
+2. Add a test for an empty string.
+
+Here's the 2nd variant:
 
 ```js run
 function ucFirst(str) {
-  // только пустая строка в логическом контексте даст false
   if (!str) return str;
 
   return str[0].toUpperCase() + str.slice(1);
 }
 
-alert( ucFirst("вася") );
+alert( ucFirst("john") ); // John
 ```
 
-P.S. Возможны и более короткие решения, использующие методы для работы со строками, которые мы пройдём далее.

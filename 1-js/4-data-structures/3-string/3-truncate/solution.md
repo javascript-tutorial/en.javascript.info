@@ -1,26 +1,11 @@
-Так как окончательная длина строки должна быть `maxlength`, то нужно её обрезать немного короче, чтобы дать место для троеточия.
+The maximal length must be `maxlength`, so we need to cut it a little shorter, to give space for the ellipsis.
+
+Note that there is actually a single unicode character for an ellipsis. That's not three dots.
 
 ```js run
 function truncate(str, maxlength) {
-  if (str.length > maxlength) {
-    return str.slice(0, maxlength - 3) + '...';
-    // итоговая длина равна maxlength
-  }
-
-  return str;
-}
-
-alert( truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) );
-alert( truncate("Всем привет!", 20) );
-```
-
-Можно было бы написать этот код ещё короче:
-
-```js run
-function truncate(str, maxlength) {
-  return (str.length > maxlength) ?
-    str.slice(0, maxlength - 3) + '...' : str;
+  return (str.length > maxlength) ? 
+    str.slice(0, maxlength - 1) + '…' : str;
 }
 ```
 
-P.S. Кстати, в кодироке Unicode существует специальный символ "троеточие": `…` (HTML: `&hellip;`), который можно использовать вместо трёх точек. Если его использовать, то можно отрезать только один символ.

@@ -2,18 +2,16 @@ importance: 5
 
 ---
 
-# Усечение строки
+# Truncate the text
 
-Создайте функцию `truncate(str, maxlength)`, которая проверяет длину строки  `str`, и если она превосходит `maxlength` -- заменяет конец `str` на `"..."`, так чтобы ее длина стала равна `maxlength`.
+Create a function `truncate(str, maxlength)` that checks the length of the `str` and, if it exceeds `maxlength` -- replaces the end of `str` with the ellipsis character `"…"`, to make its length equal to `maxlength`.
 
-Результатом функции должна быть (при необходимости) усечённая строка.
+The result of the function should be the truncated (if needed) string. 
 
-Например:
+For instance:
 
 ```js
-truncate("Вот, что мне хотелось бы сказать на эту тему:", 20) = "Вот, что мне хоте..."
+truncate("What I'd like to tell on this topic is:", 20) = "What I'd like to te…"
 
-truncate("Всем привет!", 20) = "Всем привет!"
+truncate("Hi everyone!", 20) = "Hi everyone!"
 ```
-
-Эта функция имеет применение в жизни. Она используется, чтобы усекать слишком длинные темы сообщений.

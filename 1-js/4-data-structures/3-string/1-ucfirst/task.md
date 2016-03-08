@@ -2,13 +2,11 @@ importance: 5
 
 ---
 
-# Сделать первый символ заглавным
+# Uppercast the first character
 
-Напишите функцию `ucFirst(str)`, которая возвращает строку `str` с заглавным первым символом, например:
+Write a function `ucFirst(str)` that returns the string `str` with the uppercased first character, for instance:
 
 ```js
-ucFirst("вася") == "Вася";
-ucFirst("") == ""; // нет ошибок при пустой строке
+ucFirst("john") == "John";
 ```
 
-P.S. В JavaScript нет встроенного метода для этого. Создайте функцию, используя  `toUpperCase()` и `charAt()`.

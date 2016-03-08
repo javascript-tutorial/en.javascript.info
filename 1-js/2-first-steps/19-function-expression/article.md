@@ -68,16 +68,39 @@ In more detail:
     Please note again: there are no brackets after `sayHi`. If they were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
 3. Now the function can be called both as `sayHi()` and `func()`.
 
-
 Note, that we could also have used a Function Expression to declare `sayHi`, in the first line: `let sayHi = function() { ... }`. Everything would work the same.
+
+Every value in Javascript has the type. What type of value is a function?
+
+**In Javascript, a function is an object.**
+
+We can abuse this by adding properties to it and using them in the code:
+
+```js run
+function sayHi() {
+  alert("Hi");
+  sayHi.counter++;
+}
+sayHi.counter = 0;
+
+sayHi(); // Hi 
+sayHi(); // Hi 
+
+alert( `Called ${sayHi.counter} times` ); // Called 2 times
+```
+
+There are many well-known Javascript libraries that make use of this. They create a function and attach many other functions to it as its properties. For instance, the [jquery](https://jquery.com) library creates a function named `$`, the library [lodash](https://lodash.com) creates a function `_`. So, we have something that can do the job by itself and also carries a bunch of other functionality.
+
 
 ```smart header="A function is a value representing an \"action\""
 Regular values like strings or numbers represent the *data*.
 
 A function can be perceived as an *action*.
 
-We can copy it between variables and run when we want.
+We can copy it between variables and run when we want. We can even add properties to it if we wish.
 ```
+
+
 
 ## Function Expression as a method
 

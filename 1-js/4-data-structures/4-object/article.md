@@ -1,321 +1,483 @@
-# Объекты как ассоциативные массивы
+# Objects as dictionaries
 
-Объекты в JavaScript сочетают в себе два важных функционала.
+Objects in JavaScript combine two functionalities.
 
-Первый -- это  ассоциативный массив: структура, пригодная для хранения любых данных. В этой главе мы рассмотрим использование объектов именно как массивов.
+1. First -- they are "associative arrays": a structure for storing keyed data. 
+2. Second -- they provide features for object-oriented programming. 
 
-Второй -- языковые возможности для объектно-ориентированного программирования. Эти возможности мы изучим в последующих разделах учебника.
+Here we concentrate on the first part: using objects as a data store. That's the required base for studying the second part.
+
+An [associative array](https://en.wikipedia.org/wiki/Associative_array), also called "a hash" or "a dictionary" -- is a data structure for storing arbitrary data in the key-value format.
 
 [cut]
 
-## Ассоциативные массивы
-
-[Ассоциативный массив](http://ru.wikipedia.org/wiki/%D0%90%D1%81%D1%81%D0%BE%D1%86%D0%B8%D0%B0%D1%82%D0%B8%D0%B2%D0%BD%D1%8B%D0%B9_%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2) -- структура данных, в которой можно хранить любые данные в формате ключ-значение.
-
-Её можно легко представить как шкаф с подписанными ящиками. Все данные хранятся в ящичках. По имени можно легко найти ящик и взять то значение, которое в нём лежит.
+We can imagine it as a cabinet with signed files. Every piece of data is stored in it's file. It's easy to find a file by it's name or add/remove a file.
 
 ![](object.png)
 
-В отличие от реальных шкафов, в ассоциативный массив можно в любой момент добавить новые именованные "ящики" или удалить существующие. Далее мы увидим примеры, как это делается.
+## Creation
 
-Кстати, в других языках программирования такую структуру данных также называют *"словарь"* и *"хэш"*.
-
-## Создание объектов
-
-Пустой объект ("пустой шкаф") может быть создан одним из двух синтаксисов:
+An empty object ("empty cabinet") can be created using one of two syntaxes:
 
 ```js
-1. o = new Object();
-2. o = {}; // пустые фигурные скобки
+let obj = new Object(); // works same as below
+let obj = {}; 
 ```
 
-Обычно все пользуются синтаксисом `(2)`, т.к. он короче.
+Usually, the second syntax is prefered, because it's shorter and allows to define properties immediately:
 
-## Операции с объектом
-
-Объект может содержать в себе любые значения, которые называются *свойствами объекта*.  Доступ к свойствам осуществляется по *имени свойства* (иногда говорят *"по ключу"*).
-
-Например, создадим объект `person` для хранения информации о человеке:
-
-```js
-var person = {}; // пока пустой
+```js 
+let user = {
+  name: "John",
+  age: 30,
+  "day of birth": "1 Jan 1990"
+}; 
 ```
 
 ![](object-person-empty.png)
 
-Основные операции с объектами -- это создание, получение и удаление свойств.
+A property name can be only a string. No number/boolean or any other type can serve that purpose.
 
-Для обращения к свойствам используется запись "через точку", вида `объект.свойство`, например:
+Note that complex property names need to be quoted, to evade syntax errors. But normally that's not required.
 
-```js
-// при присвоении свойства в объекте автоматически создаётся "ящик"
-// с именем "name" и в него записывается содержимое 'Вася'
-person.name = 'Вася';
 
-person.age = 25; // запишем ещё одно свойство: с именем 'age' и значением 25
+
+## Add/remove properties
+
+Now we can read/write new properties using the dot notation and remove using the `delete` operator:
+
+```js 
+user.surname = "Smith";
+
+delete user.age;
 ```
 
-![](object-person-1.png)
+## Square brackets
 
-Значения хранятся "внутри" ящиков. Обратим внимание -- любые значения, любых типов: число, строка -- не важно.
+To access a property, there are two syntaxes:
 
-Чтобы прочитать их -- также обратимся через точку:
-```js
-alert( person.name + ': ' + person.age ); // "Вася: 25"
+- The dot notation: `user.name`
+- Square brackets: `user["name"]`
+
+Square brackets are more powerful, because they allow to specify arbitrary string as a property name. In contrast, the dot notation requires the nae to be a valid variable identifier, that is: no spaces, special chracters etc.
+
+But more than that, square brackets is the only choice when the name of the property is in a variable.
+
+For instance:
+
+```js run
+let user = {
+  name: "John", 
+  age: 30
+};
+
+let key = prompt("What do you want to know about the user?", "name");
+
+alert( user[key] ); // John (if enter "name"), 30 for the "age"
 ```
 
-Удаление осуществляется оператором `delete`:
+The square brackets literally say: "take the property name from the variable".
 
-```js
-delete person.age;
+Also it is possible to use square brackets in object definition when the property name is stored in a variable or computed:
+
+```js run
+let fruit = prompt("Which fruit to buy?", "apple");
+
+let bag = {
+  [fruit]: 5,
+};
+
+alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-Осталось только свойство `name`:
+Here, the object `bag` is created with a property with the name from `fruit` variable and the value `5`.
 
-![](object-person-2.png)
+Essentially, that works the same as:
+```js
+let bag = {};
+bag[fruit] = 5; 
+```
 
-Следующая операция:
-<ol start="4">
-<li>**Проверка существования свойства с определенным ключом.**</li>
-</ol>
+...But one statement instead of two.
 
-Для проверки существования свойства в объекте есть оператор `in`.
-
-Его синтаксис: `"prop" in obj`, причем имя свойства -- в виде строки, например:
+We could have used a more complex expression inside square brackets or a quoted string. Anything that would return a property name:
 
 ```js
-if ("name" in person) {
-  alert( "Свойство name существует!" );
+let bag = {
+  [ fruit.toLowerCase() ]: 5 // if fruit is "APPLE" then bag.apple = 5
+};
+```
+
+## Check for existance
+
+A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It's actually a common way to test whether the property exists -- to get it and compare vs undefined:
+
+```js run
+let user = {};
+
+alert( user.noSuchProperty === undefined ); // true means "no such property"
+```
+
+There also exists a special operator `"in"` to check for the existance of a property. 
+
+The syntax is: 
+```js
+"key" in object
+```
+
+For instance:
+
+```js run
+let user = { name: "John", age: 30 };
+
+alert( "age" in user ); // true, user.age exists
+alert( "blabla" in user ); // false, user.blabla doesn't exist
+```
+
+Please note that at the left side of `in` there must be a *string*. The property name must quoted, like `"age"`. 
+
+Without quotes, that would mean a variable containing the actual name to be tested. For instance:
+
+```js run
+let user = { age: 30 };
+
+let key = "age";
+alert( key in user ); // true, takes the name "age" from the variable and tests it
+```
+
+The `in` operator works in the certain case when the previous method doesn't. That is: when an object property stores `undefined`. 
+
+
+```js run
+let obj = { test: undefined };
+
+alert( obj.test ); // undefined, no such property?
+
+alert( "test" in obj ); // true, the property does exist!
+alert( "no-such-property" in obj ); // false, no such property (just for the contrast)
+```
+
+In the code above, the property `obj.test` stores `undefined`, so the first check fails. But the `in` operator puts things right.
+
+Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for unknown values. So the `in` operator is an exotic guest in the code.
+
+
+## The "for..in" loop [#for..in]
+
+To process every object property, there's a special loop: `for..in`.
+
+This syntax construct is a little bit different from the `for(;;)` that we've covered before:
+
+```js
+for (key in obj) {
+  /* ... do something with obj[key] ... */
 }
 ```
 
-Впрочем, чаще используется другой способ -- сравнение значения с `undefined`.
+The loop iterates over properties of `obj`. For each property it's name is writen in the `key` variable and the loop body is called.
 
-Дело в том, что **в JavaScript можно обратиться к любому свойству объекта, даже если его нет**. Ошибки не будет.
-
-Но если свойство не существует, то вернется специальное значение `undefined`:
-
-```js run
-var person = {};
-
-alert( person.lalala ); // undefined, нет свойства с ключом lalala
-```
-
-Таким образом **мы можем легко проверить существование свойства -- получив его и сравнив с `undefined`**:
-
-```js run
-var person = {
-  name: "Василий"
-};
-
-alert( person.lalala === undefined ); // true, свойства нет
-alert( person.name === undefined ); // false, свойство есть.
-```
-
-````smart header="Разница между проверками `in` и `=== undefined`"
-Есть два средства для проверки наличия свойства в объекте: первое -- оператор `in`, второе -- получить его и сравнить его с `undefined`.
-
-Они почти идентичны, но есть одна небольшая разница.
-
-Дело в том, что технически возможно, что *свойство есть и равно `undefined`*:
-
-```js untrusted refresh run
-var obj = {};
-obj.test = undefined; // добавили свойство со значением undefined
-
-*!*
-// проверим наличие свойств test и заведомо отсутствующего blabla
-alert( obj.test === undefined ); // true
-alert( obj.blabla === undefined ); // true
-*/!*
-```
-
-...При этом, как видно из кода, при простом сравнении наличие такого свойства будет неотличимо от его отсутствия.
-
-Но оператор `in` гарантирует правильный результат:
-
-```js untrusted refresh run
-var obj = {};
-obj.test = undefined;
-
-*!*
-alert( "test" in obj ); // true
-alert( "blabla" in obj ); // false
-*/!*
-```
-
-Как правило, в коде мы не будем присваивать `undefined`, чтобы корректно работали обе проверки. А в качестве значения, обозначающего неизвестность и неопределенность, будем использовать `null`.
-````
-
-### Доступ через квадратные скобки
-
-Существует альтернативный синтаксис работы со свойствами, использующий квадратные скобки `объект['свойство']`:
-
-```js run
-var person = {};
-
-person['name'] = 'Вася'; // то же что и person.name = 'Вася'
-```
-
-Записи `person['name']` и `person.name` идентичны, но квадратные скобки позволяют использовать в качестве имени свойства любую строку:
-
-```js run
-var person = {};
-
-person['любимый стиль музыки'] = 'Джаз'; // то же что и person.name = 'Вася'
-```
-
-Такое присвоение было бы невозможно "через точку", так интерпретатор после первого пробела подумает, что свойство закончилось, и далее выдаст ошибку:
-
-```js run
-person.любимый стиль музыки = 'Джаз'; // ??? ошибка
-```
-
-В обоих случаях, **имя свойства обязано быть строкой**. Если использовано значение другого типа -- JavaScript приведет его к строке автоматически.
-
-### Доступ к свойству через переменную
-
-Квадратные скобки также позволяют обратиться к свойству, имя которого хранится в переменной:
-
-```js run
-var person = {
-  age: 25
-};
-var key = 'age';
-
-alert( person[key] ); // выведет person['age']
-```
-
-Вообще, если имя свойства хранится в переменной (`var key = "age"`), то единственный способ к нему обратиться -- это квадратные скобки `person[key]`.
-
-Доступ через точку используется, если мы на этапе написания программы уже знаем название свойства. А если оно будет определено по ходу выполнения, например, введено посетителем и записано в переменную, то единственный выбор -- квадратные скобки.
-
-### Объявление со свойствами
-
-Объект можно заполнить значениями при создании, указав их в фигурных скобках: `{ ключ1: значение1, ключ2: значение2, ... }`.
-
-Такой синтаксис называется *литеральным* (англ. literal).
-
-Следующие два фрагмента кода создают одинаковый объект:
+````smart header="Inline variable declaration: `for (let key in obj)`"
+A variable for property names can be declared right in the loop:
 
 ```js
-var menuSetup = {
+for (*!*let key*/!* in menu) {
+  // ...
+}
+```
+
+The variable `key` will be only visible inside the loop body. Also we could use another variable name, like: `for(let prop in menu)`.
+````
+
+An example of the iteration:
+
+```js run
+let menu = {
   width: 300,
   height: 200,
   title: "Menu"
 };
 
-// то же самое, что:
+for (let key in menu) {
+  // the code will be called for each menu property
+  // ...and show its name and value
 
-var menuSetup = {};
-menuSetup.width = 300;
-menuSetup.height = 200;
-menuSetup.title = 'Menu';
-```
-
-Названия свойств можно перечислять как в кавычках, так и без, если они удовлетворяют ограничениям для имён переменных.
-
-Например:
-
-```js
-var menuSetup = {
-  width: 300,
-  'height': 200,
-  "мама мыла раму": true
-};
-```
-
-В качестве значения можно тут же указать и другой объект:
-
-```js
-var user = {
-  name: "Таня",
-  age: 25,
 *!*
-  size: {
-    top: 90,
-    middle: 60,
-    bottom: 90
-  }
+  alert( `Key:${key}, value:${menu[key]}` );
 */!*
 }
-
-alert(user.name) // "Таня"
-
-alert(user.size.top) // 90
 ```
 
-Здесь значением свойства `size` является объект `{top: 90, middle: 60, bottom: 90 }`.
-## Компактное представление объектов
+Note that we're using the square brackets: `menu[key]`. As we've seen before, if the property name is stored in a variable, then we must use square brackets, not the dot notation.
 
-```warn header="Hardcore coders only"
-Эта секция относится ко внутреннему устройству структуры данных. Она не обязательна к прочтению.
+### Counting properties
+
+How to see how many properties are stored in the object? There's no method for that.
+
+Although, we can count:
+
+```js run
+let menu = {
+  width: 300,
+  height: 200,
+  title: "Menu"
+};
+
+*!*
+let counter = 0;
+
+for (let key in menu) {
+  counter++;
+}
+*/!*
+
+alert( `Total ${counter} properties` ); // Total 3 properties
 ```
 
-Браузер использует специальное "компактное" представление объектов, чтобы сэкономить память в том случае, когда однотипных объектов много.
+In the next chapter we'll study arrays and see that there's a shorter way: `Object.keys(menu).length`.
 
-Например, посмотрим на такой объект:
+### Are objects ordered?
+
+As an example, let's consider an object with the phone codes:
+
+```js run
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+
+for(let code in codes) alert(code); // 1, 41, 44, 49
+```
+
+The object is used to generate HTML `<select>` list. If we're making a site mainly for German audience then we probably want `49` to be the first.
+
+But if we try to loop over the object, we see a totally different picture: USA (1) goes first, then Switzerland (41) and so on.
+
+That's because according to the language stantard objects have no order. The loop is officially allowed to list properties randomly.
+
+But in practice, there's a de-facto agreement among JavaScript engines.
+
+- The numeric properties are sorted.
+- Non-numeric properties are ordered as they appear in the object.
+
+That agreement is not enforced by a standard, but stands strong, because a lot of JavaScript code is already based on it. 
+
+```smart header="Older JS Engines order everything"
+Old JavaScript engines, like IE9-, keep all properties sorted. But this behavior is a relict nowadays.
+```
+
+Now it's easy to see that the properties were iterated in the ascending order, because they are numeric... Of course, object property names are strings, but the Javascript engine detects that it's a number and applies internal optimizations to it, including sorting. That's why we see `1, 41, 44, 49`.
+
+On the other hand, if the keys are non-numeric, then they are listed as they appear, for instance:
+
+```js run
+let user = {
+  name: "John",
+  surname: "Smith"
+};
+user.age = 25; // add one more
+
+*!*
+// as they appear in the object
+*/!*
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}
+```
+
+So, to fix the issue with the phone codes, we can "cheat" by making the codes non-numeric. Adding a plus `"+"` sign before each code is enough.
+
+Like this:
+
+```js run
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+
+for(let code in codes) {
+  // explicitly convert each code to a number if required
+  alert( +code ); // 49, 41, 44, 1
+}
+```
+
+Now it works as intended. 
+
+
+## Copying by reference
+
+One of fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+
+Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+
+For instance:
 
 ```js
-var user = {
-  name: "Vasya",
-  age: 25
+let message = "hello";
+let phrase = message;
+```
+
+As a result we have two independant variables, each one is storing the string `"hello"`.
+
+![](variable-copy-value.png)
+
+Objects are not like that.
+
+**A variable stores not the object itself, but it's "address in memory", in other words "a reference" to it.**
+
+Here's the picture for the object:
+
+```js
+let user = {
+  name: "John"
 };
 ```
 
-Здесь содержится информация о свойстве `name` и его строковом значении, а также о свойстве `age` и его численном значении. Представим, что таких объектов много.
+![](variable-contains-reference.png)
 
-Получится, что информация об именах свойств `name` и `age` дублируется в каждом объекте. Чтобы этого избежать, браузер применяет оптимизацию.
+Note that the object itself is stored somewhere in memory. The variable `user` has a "reference" to it.
 
-**При создании множества объектов одного и того же вида (с одинаковыми полями) интерпретатор выносит описание полей в отдельную структуру. А сам объект остаётся в виде непрерывной области памяти с данными.**
+**When an object variable is copied -- the reference is copied, the object is still single.**
 
-Например, есть много объектов с полями `name` и `age`:
+We can easily grasp it if imagine an object as a cabinet, and a variable is a key to it. We can copy that key to another variable, the cabinet is still single.
 
-```js no-beautify
-{name: "Вася", age: 25}
-{name: "Петя", age: 22}
-{name: "Маша", age: 19}
-...
-```
-
-Для их эффективного хранения будет создана структура, которая описывает данный вид объектов. Выглядеть она будет примерно так: `<string name, number age>`. А сами объекты будут представлены в памяти только данными:
+For instance:
 
 ```js no-beautify
-<структура: string name, number age>
-Вася 25
-Петя 22
-Маша 19
+let user = { name: "John" }; 
+
+let admin = user; // copy the reference
 ```
 
-При добавлении нового объекта такой структуры достаточно хранить значения полей, но не их имена. Экономия памяти -- налицо.
+Now we have two variables, each one with the reference to the same object:
 
-А что происходит, если к объекту добавляется новое свойство? Например, к одному из них добавили свойство `isAdmin`:
+![](variable-copy-reference.png)
+
+Compare it with the primitives' picture. There's only one object, it's not copied. The reference is. 
+
+Just as with copied keys, we can use any variable to open the cabinet and modify its contents:
+
+```js run
+let user = { name: 'John' };
+
+let admin = user;
+
+*!*admin.name*/!* = 'Pete'; // changed by the "admin" reference
+
+alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+```
+
+Quite obvious, if we used one of the keys (`admin`) and changed something inside the cabinet, then if we use another key later (`user`), we find things modified.
+
+### Cloning objects
+
+What if we need to duplicate an object? Create an independant copy, a clone?
+
+That's also doable, but a little bit more difficult, because there's no such method in Javascript. Frankly, that's very rarely needed. 
+
+But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+
+Like this:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+*!*
+let clone = {}; // the new empty object
+
+// let's copy all user properties into it
+for (let key in user) {
+  clone[key] = user[key];
+}
+*/!*
+
+// now clone is a fully independant clone
+clone.name = "Pete"; // changed the data in it
+
+alert( user.name ); // still John
+```
+
+Also we can use the method [Object.assign](mdn:Object/assign) for that:
 
 ```js
-user.isAdmin = true;
+Object.assign(dest[, src1, src2, src3...])
 ```
 
-В этом случае браузер смотрит, есть ли уже структура, под которую подходит такой объект. Если нет -- она создаётся и объект привязывается к ней.
+It assumes that all arguments are objects. It copies the properties of all arguments starting from the 2nd (`src1`, `src2` etc) into the `dest`. Then it returns `dest`.
 
-**Эта оптимизация является примером того, что далеко не всё то, что мы пишем, один-в-один переносится в память.**
+For instance:
+```js 
+let user = { name: "John" };
 
-Современные интерпретаторы очень стараются оптимизировать как код, так и структуры данных. Детали применения и реализации этого способа хранения варьируются от браузера к браузеру. О том, как это сделано в Chrome можно узнать, например, из презентации [Know Your Engines](http://www.slideshare.net/newmovie/know-yourengines-velocity2011). Она была некоторое время назад, но с тех пор мало что изменилось.
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
 
-## Итого
+Object.assign(user, permissions1, permissions2);
 
-Объекты -- это ассоциативные массивы с дополнительными возможностями:
+// now user = { name: "John", canView: true, canEdit: true }
+```
 
-- Доступ к элементам осуществляется:
-<ul>
-<li>Напрямую по ключу `obj.prop = 5`
-- Через переменную, в которой хранится ключ:
+Here we can use it instead of the loop for copying:
 
-    ```js
-    var key = "prop";
-    obj[key] = 5
-    ```
+```js 
+let user = {
+  name: "John",
+  age: 30
+};
 
-<li>Удаление ключей: `delete obj.name`.</li>
-<li>Существование свойства может проверять оператор `in`: `if ("prop" in obj)`, как правило, работает и просто сравнение `if (obj.prop !== undefined)`.</li>
-</ul>
+*!*
+let clone = Object.assign({}, user); 
+*/!*
+```
+
+It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
+
+Up to now we assumed that all properties of `user` are primitive. But actually properties can be references to other objects. What to do with them?
+
+Like this:
+```js run
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+alert( user.sizes.height ); // 182
+```
+
+Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` will be copied by reference. So `clone` and `user` will share the same sizes.
+
+To fix that, we should examine the value of `user[key]` in the cloning loop and if it's an object, then replicate it's structure as well. That is called a "deep cloning". 
+
+There's a standard algorithm for deep cloning that handles this case and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation from the Javascript library [lodash](https://lodash.com). The method is [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+
+## Summary
+
+Objects are associative arrays with several special features.
+
+- Property names are always strings.
+- Values can be of any type
+
+Property access:
+
+- Read/write uses the dot notation: `obj.property` or square brackets `obj["property"]/obj[varWithKey]`.
+- The deletion is made via the `delete` operator.
+- Existance check is made by the comparison vs `undefined` or via the `in` operator.
+- Loop over all properties with the `for..in` loop.
+
+Numeric properties are sorted, otherwise they are iterated in the declaration order. To keep the order for numeric properties, we can prepend them with `+` to make them seem non-numeric.
+
+Copying:
+
+- Objects are assigned and copied by reference. 
 

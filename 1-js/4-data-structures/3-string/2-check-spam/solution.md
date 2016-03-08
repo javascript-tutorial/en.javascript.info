@@ -1,12 +1,10 @@
-Метод `indexOf` ищет совпадение с учетом регистра. То есть, в строке `'xXx'` он не найдет `'XXX'`.
-
-Для проверки приведем к нижнему регистру и строку `str` а затем уже будем искать.
+To make the search case-insensitive, let's bring the stirng to lower case and then search:
 
 ```js run
 function checkSpam(str) {
-  var lowerStr = str.toLowerCase();
+  let lowerStr = str.toLowerCase();
 
-  return !!(~lowerStr.indexOf('viagra') || ~lowerStr.indexOf('xxx'));
+  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
 }
 
 alert( checkSpam('buy ViAgRA now') );

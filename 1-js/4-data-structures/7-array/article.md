@@ -1,79 +1,76 @@
-# Массивы c числовыми индексами
+# Arrays with numeric indexes
 
-*Массив* -- разновидность объекта, которая предназначена для хранения пронумерованных значений и предлагает дополнительные методы для удобного манипулирования такой коллекцией.
+*Array* -- is a special kind of objects, suited to store ordered, numbered collections of values. It provides additional methods to manipulate the collection.
 
-Они обычно используются для хранения упорядоченных коллекций данных, например -- списка товаров на странице, студентов в группе и т.п.
+For instance, we can use arrays to keep a list of students in the group, a list of goods in the catalog etc.
 
 [cut]
 
-## Объявление
+## Definition
 
-Синтаксис для создания нового массива -- квадратные скобки со списком элементов внутри.
-
-Пустой массив:
+There are two syntaxes for creating an empty array:
 
 ```js
-var arr = [];
+let arr = new Array();
+let arr = [];
 ```
 
-Массив `fruits` с тремя элементами:
+Almost all the time, the second syntax is used. We can also list elements in the brackets:
 
 ```js
-var fruits = ["Яблоко", "Апельсин", "Слива"];
+let fruits = ["Apple", "Orange", "Plum"];
 ```
 
-**Элементы нумеруются, начиная с нуля.**
+Array elements are numbered, starting with zero.
 
-Чтобы получить нужный элемент из массива -- указывается его номер в квадратных скобках:
+We can get an element by its number in square brackets:
 
 ```js run
-var fruits = ["Яблоко", "Апельсин", "Слива"];
+let fruits = ["Apple", "Orange", "Plum"];
 
-alert( fruits[0] ); // Яблоко
-alert( fruits[1] ); // Апельсин
-alert( fruits[2] ); // Слива
+alert( fruits[0] ); // Apple
+alert( fruits[1] ); // Orange
+alert( fruits[2] ); // Plum
 ```
 
-Элемент можно всегда заменить:
+We can replace an element:
 
 ```js
-fruits[2] = 'Груша'; // теперь ["Яблоко", "Апельсин", "Груша"]
+fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
 ```
 
-...Или добавить:
+...Or add to the array:
 
 ```js
-fruits[3] = 'Лимон'; // теперь ["Яблоко", "Апельсин", "Груша", "Лимон"]
+fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Plum", "Lemon"]
 ```
 
-Общее число элементов, хранимых в массиве, содержится в его свойстве `length`:
+The total count of the elements in the array is its `length`:
 
 ```js run
-var fruits = ["Яблоко", "Апельсин", "Груша"];
+let fruits = ["Apple", "Orange", "Plum"];
 
 alert( fruits.length ); // 3
 ```
 
-**Через `alert` можно вывести и массив целиком.**
-
-При этом его элементы будут перечислены через запятую:
+**We can also use `alert` to show the whole array.**
 
 ```js run
-var fruits = ["Яблоко", "Апельсин", "Груша"];
+let fruits = ["Apple", "Orange", "Plum"];
 
-alert( fruits ); // Яблоко,Апельсин,Груша
+alert( fruits ); // Apple,Orange,Plum
 ```
 
-**В массиве может храниться любое число элементов любого типа.**
+**An array can store elements of any type.**
 
-В том числе, строки, числа, объекты, вот например:
+For instance:
 
 ```js run no-beautify
-// микс значений
-var arr = [ 1, 'Имя', { name: 'Петя' }, true ];
+// mix of values
+let arr = [ 1, 'Apple', { name: 'John' }, true, function() {} ];
 
-// получить объект из массива и тут же -- его свойство
-alert( arr[2].name ); // Петя
+// get the object at index 2 and then its name
+alert( arr[2].name ); // John
 ```
 
 ## Методы pop/push, shift/unshift
