@@ -2,23 +2,23 @@ importance: 5
 
 ---
 
-# Создание массива
+# Array operations.
 
-Задача из 5 шагов-строк:
+Let's try 5 array operations.
 
-1. Создайте массив `styles` с элементами "Джаз", "Блюз".
-2. Добавьте в конец значение "Рок-н-Ролл"
-3. Замените предпоследнее значение с конца на "Классика". Код замены предпоследнего значения должен работать для массивов любой длины.
-4. Удалите первое значение массива и выведите его `alert`.
-5. Добавьте в начало значения "Рэп" и "Регги".
+1. Create an array `styles` with items "Jazz" and "Blues".
+2. Append "Rock-n-Roll" to the end.
+3. Replace the value in the middle by "Classics". Your code for finding the middle value should work for any arrays with odd length.
+4. Strip off the first value of the array and show it.
+5. Prepend `Rap` and `Reggie` to the array.
 
-Массив в результате каждого шага:
+The array in the process:
 
 ```js no-beautify
-Джаз, Блюз
-Джаз, Блюз, Рок-н-Ролл
-Джаз, Классика, Рок-н-Ролл
-Классика, Рок-н-Ролл
-Рэп, Регги, Классика, Рок-н-Ролл
+Jazz, Blues
+Jazz, Bues, Rock-n-Roll
+Jazz, Classics, Rock-n-Roll
+Classics, Rock-n-Roll
+Rap, Reggie, Classics, Rock-n-Roll
 ```
 

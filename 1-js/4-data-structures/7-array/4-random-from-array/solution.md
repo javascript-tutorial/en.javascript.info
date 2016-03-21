@@ -1,9 +1,11 @@
-Для вывода нужен случайный номер от `0` до `arr.length-1` включительно.
+We need to generate a random integer value from `0` to `arr.length-1`, and then take the element with that index.
+
+Here we go:
 
 ```js run
-var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
+let arr = ["Apple", "Orange", "Pear", "Lemon"];
 
-var rand = Math.floor(Math.random() * arr.length);
+let rand = Math.floor(Math.random() * arr.length);
 
 alert( arr[rand] );
 ```

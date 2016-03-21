@@ -1,234 +1,196 @@
-# Массивы: методы
+# Array methods
 
-В этой главе мы рассмотрим встроенные методы массивов JavaScript.
+Arrays provide a lot of methods. In this chapter we'll study them more in-depth.
 
 [cut]
 
-## Метод split
+## split and join
 
-Ситуация из реальной жизни. Мы пишем сервис отсылки сообщений и посетитель вводит имена тех, кому его отправить: `Маша, Петя, Марина, Василий...`. Но нам-то гораздо удобнее работать с массивом имен, чем с одной строкой.
+The situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of nameswould be much more comfortable than a single string.
 
-К счастью, есть метод `split(s)`, который позволяет превратить строку в массив, разбив ее по разделителю `s`. В примере ниже таким разделителем является строка из запятой и пробела.
+The [str.split(s)](mdn:js/String/split) method turns the string into array splitting it by the given delimiter `s`.
+
+In the example below, we split by a comma and a space:
 
 ```js run
-var names = 'Маша, Петя, Марина, Василий';
+let names = 'Bilbo, Gandalf, Nazgul';
 
-var arr = names.split(', ');
+let arr = names.split(', ');
 
-for (var i = 0; i < arr.length; i++) {
-  alert( 'Вам сообщение ' + arr[i] );
+for (let name of arr) {
+  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
 }
 ```
 
-````smart header="Второй аргумент `split`"
-У метода `split` есть необязательный второй аргумент -- ограничение на количество элементов в массиве. Если их больше, чем указано -- остаток массива будет отброшен:
+The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
 
 ```js run
-alert( "a,b,c,d".split(',', *!*2*/!*) ); // a,b
+let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+
+alert(arr); // Bilbo, Gandalf
+```
+
+````smart header="Split into letters"
+The call to `split(s)` with an empty `s` would split the string into an array of letters:
+
+```js run
+let str = "test";
+
+alert( str.split('') ); // t,e,s,t
 ```
 ````
 
-````smart header="Разбивка по буквам"
-Вызов `split` с пустой строкой разобьёт по буквам:
+The call [arr.join(str)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items glued by `str` beween them.
+
+For instance:
 
 ```js run
-var str = "тест";
+let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
 
-alert( str.split('') ); // т,е,с,т
-```
-````
+let str = arr.join(';');
 
-## Метод join
-
-Вызов `arr.join(str)` делает в точности противоположное `split`. Он берет массив и склеивает его в строку, используя `str` как разделитель.
-
-Например:
-
-```js run
-var arr = ['Маша', 'Петя', 'Марина', 'Василий'];
-
-var str = arr.join(';');
-
-alert( str ); // Маша;Петя;Марина;Василий
+alert( str ); // Bilbo;Gandalf;Nazgul
 ```
 
-````smart header="new Array + join = Повторение строки"
-Код для повторения строки `3` раза:
+## splice
+
+How to delete an element from the array?
+
+The arrays are objects, so we can use a generic `delete` call:
 
 ```js run
-alert( new Array(4).join("ля") ); // ляляля
-```
+var arr = ["I", "go", "home"];
 
-Как видно, `new Array(4)` делает массив без элементов длины 4, который `join` объединяет в строку, вставляя *между его элементами* строку `"ля"`.
+delete arr[1]; // remove "go"
 
-В результате, так как элементы пусты, получается повторение строки. Такой вот небольшой трюк.
-````
-
-## Удаление из массива
-
-Так как массивы являются объектами, то для удаления ключа можно воспользоваться обычным `delete`:
-
-```js run
-var arr = ["Я", "иду", "домой"];
-
-delete arr[1]; // значение с индексом 1 удалено
-
-// теперь arr = ["Я", undefined, "домой"];
+// now arr = ["I",  , "home"];
 alert( arr[1] ); // undefined
 ```
 
-Да, элемент удален из массива, но не так, как нам этого хочется. Образовалась "дырка".
+The element was removed, but the array still has `arr.length == 3`. 
 
-Это потому, что оператор `delete` удаляет пару "ключ-значение". Это -- все, что он делает. Обычно же при удалении из массива мы хотим, чтобы оставшиеся элементы сдвинулись и заполнили образовавшийся промежуток.
+That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
 
-Поэтому для удаления используются специальные методы: из начала -- `shift`, с конца -- `pop`, а из середины -- `splice`, с которым мы сейчас познакомимся.
+So, special methods should be used.
 
-## Метод splice
+The [arr.splice(str)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: add, remove and insert elements.
 
-Метод `splice` -- это универсальный раскладной нож для работы с массивами. Умеет все: удалять элементы, вставлять элементы, заменять элементы -- по очереди и одновременно.
+The syntax is:
 
-Его синтаксис:
+```
+arr.splice(index[, deleteCount, elem1, ..., elemN])
+```
 
-`arr.splice(index[, deleteCount, elem1, ..., elemN])`
-: Удалить `deleteCount` элементов, начиная с номера `index`, а затем вставить `elem1, ..., elemN` на их место. Возвращает массив из удалённых элементов.
+It removes `deleteCount` elements, starting from the index `index`, and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
 
-Этот метод проще всего понять, рассмотрев примеры.
+This method is easy to grasp by examples.
 
-Начнём с удаления:
+Let's start with the deletion:
 
 ```js run
-var arr = ["Я", "изучаю", "JavaScript"];
+let arr = ["I", "study", "JavaScript"];
 
 *!*
-arr.splice(1, 1); // начиная с позиции 1, удалить 1 элемент
+arr.splice(1, 1); // from index 1 remove 1 element
 */!*
 
-alert( arr ); //  осталось ["Я", "JavaScript"]
+alert( arr ); // ["I", "JavaScript"]
 ```
 
-В следующем примере мы удалим 3 элемента и вставим другие на их место:
+In the next example we remove 3 elements and replace them by the other two:
 
 ```js run
-var arr = [*!*"Я", "сейчас", "изучаю",*/!* "JavaScript"];
+let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
 
-// удалить 3 первых элемента и добавить другие вместо них
-arr.splice(0, 3, "Мы", "изучаем")
+// remove 3 first elements and replace them by another
+arr.splice(0, 3, "Let's", "dance")
 
-alert( arr ) // теперь [*!*"Мы", "изучаем"*/!*, "JavaScript"]
+alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
 ```
 
-Здесь видно, что `splice` возвращает массив из удаленных элементов:
+Here we can see that `splice` returns the array of removed elements:
 
 ```js run
-var arr = [*!*"Я", "сейчас",*/!* "изучаю", "JavaScript"];
+let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
 
-// удалить 2 первых элемента
-var removed = arr.splice(0, 2);
+// remove 2 first elements
+let removed = arr.splice(0, 2);
 
-alert( removed ); // "Я", "сейчас" <-- array of removed elements
+alert( removed ); // "I", "study" <-- array of removed elements
 ```
 
-Метод `splice` также может вставлять элементы без удаления, для этого достаточно установить `deleteCount` в `0`:
+The `splice` method is also able to only insert the elements, without any removals. For that we need to set `deleteCount` to `0`:
 
 ```js run
-var arr = ["Я", "изучаю", "JavaScript"];
+let arr = ["I", "study", "JavaScript"];
 
-// с позиции 2
-// удалить 0
-// вставить "сложный", "язык"
-arr.splice(2, 0, "сложный", "язык");
+// from index 2
+// delete 0
+// then insert "complex" and "language"
+arr.splice(2, 0, "complex", "language");
 
-alert( arr ); // "Я", "изучаю", "сложный", "язык", "JavaScript"
+alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 ```
 
-Допускается использование отрицательного номера позиции, которая в этом случае отсчитывается с конца:
+````smart header="Negative indexes allowed"
+Here and in other array methods, negative indexes are allowed. The specify the position from the end of the array, like here:
 
 ```js run
-var arr = [1, 2, 5]
+let arr = [1, 2, 5]
 
-// начиная с позиции индексом -1 (предпоследний элемент)
-// удалить 0 элементов,
-// затем вставить числа 3 и 4
+// from index -1 (one step from the end)
+// delete 0 elements,
+// then insert 3 and 4
 arr.splice(-1, 0, 3, 4);
 
-alert( arr ); // результат: 1,2,3,4,5
+alert( arr ); // 1,2,3,4,5
 ```
+````
 
-## Метод slice
+## sort(fn)
 
-Метод `slice(begin, end)` копирует участок массива от `begin` до `end`, не включая `end`. Исходный массив при этом не меняется.
+The method [arr.sort()](mdn:js/Array/sort) sorts the array *at place*. 
 
-Например:
+For instance:
 
 ```js run
-var arr = ["Почему", "надо", "учить", "JavaScript"];
+let arr = [ 1, 2, 15 ];
 
-var arr2 = arr.slice(1, 3); // элементы 1, 2 (не включая 3)
-
-alert( arr2 ); // надо, учить
-```
-
-Аргументы ведут себя так же, как и в строковом `slice`:
-
-- Если не указать `end` -- копирование будет до конца массива:
-
-    ```js run
-    var arr = ["Почему", "надо", "учить", "JavaScript"];
-
-    alert( arr.slice(1) ); // взять все элементы, начиная с номера 1
-    ```
-- Можно использовать отрицательные индексы, они отсчитываются с конца:
-
-    ```js
-    var arr2 = arr.slice(-2); // копировать от 2го элемента с конца и дальше
-    ```
-- Если вообще не указать аргументов -- скопируется весь массив:
-
-    ```js
-    var fullCopy = arr.slice();
-    ```
-
-```smart header="Совсем как в строках"
-Синтаксис метода `slice` одинаков для строк и для массивов. Тем проще его запомнить.
-```
-
-## Сортировка, метод sort(fn)
-
-Метод `sort()` сортирует массив *на месте*. Например:
-
-```js run
-var arr = [ 1, 2, 15 ];
-
+// the method reorders the content of arr (and returns it)
 arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
 ```
 
-Не заметили ничего странного в этом примере?
+Did you notice anything strange in the outcome?
 
-Порядок стал `1, 15, 2`, это точно не сортировка чисел. Почему?
+The order became `1, 15, 2`. Incorrect. But why?
 
-**Это произошло потому, что по умолчанию `sort` сортирует, преобразуя элементы к строке.**
+**The items are sorted as strings by default.**
 
-Поэтому и порядок у них строковый, ведь `"2" > "15"`.
+Literally, all elements are converted to strings and then compared. So, the lexicographic ordering is applied and indeed `"2" > "15"`.
 
-### Свой порядок сортировки
+To use our own sorting order, we need to supply a function of two arguments as the argument of `arr.sort()`. 
 
-Для указания своего порядка сортировки в метод `arr.sort(fn)` нужно передать функцию `fn` от двух элементов, которая умеет сравнивать их.
+The function should work like this:
+```js
+function compare(a, b) {
+  if (a > b) return 1;
+  if (a == b) return 0;
+  if (a < b) return -1;
+}
+```
 
-Внутренний алгоритм функции сортировки умеет сортировать любые массивы -- апельсинов, яблок, пользователей, и тех и других и третьих -- чего угодно. Но для этого ему нужно знать, как их сравнивать. Эту роль и выполняет `fn`.
-
-Если эту функцию не указать, то элементы сортируются как строки.
-
-Например, укажем эту функцию явно, отсортируем элементы массива как числа:
+For instance:
 
 ```js run
 function compareNumeric(a, b) {
   if (a > b) return 1;
+  if (a == b) return 0;
   if (a < b) return -1;
 }
 
-var arr = [ 1, 2, 15 ];
+let arr = [ 1, 2, 15 ];
 
 *!*
 arr.sort(compareNumeric);
@@ -237,163 +199,292 @@ arr.sort(compareNumeric);
 alert(arr);  // *!*1, 2, 15*/!*
 ```
 
-Обратите внимание, мы передаём в `sort()` именно саму функцию `compareNumeric`, без вызова через скобки. Был бы ошибкой следующий код:
+Now it works as intended.
 
-```js
-arr.sort( compareNumeric*!*()*/!* );  // не сработает
-```
+Let's step aside and thing what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of something. To sort it, we need an *ordering function* that knows how to compare the elements. The default is a string order.
 
-Как видно из примера выше, функция, передаваемая `sort`, должна иметь два аргумента.
+The `arr.sort(fn)` method has a built-in implementation of a sorting algorithm. We don't need to care which one (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of time). It will walk the array, compare its elements using the provided function and reorder them.
 
-Алгоритм сортировки, встроенный в JavaScript, будет передавать ей для сравнения элементы массива. Она должна возвращать:
+So, `arr.sort(fn)` is like a black box for us.
 
-- Положительное значение, если `a > b`,
-- Отрицательное значение, если `a < b`,
-- Если равны -- можно `0`, но вообще -- не важно, что возвращать, их взаимный порядок не имеет значения.
+1. We've got an array of some items to sort.
+2. We call `sort(fn)` providing the function that knows how to compare.
+3. It sorts.
 
-````smart header="Алгоритм сортировки"
-В методе `sort`, внутри самого интерпретатора JavaScript, реализован универсальный алгоритм сортировки. Как правило, это ["\"быстрая сортировка\""](http://algolist.manual.ru/sort/quick_sort.php), дополнительно оптимизированная для небольших массивов.
-
-Он решает, какие пары элементов и когда сравнивать, чтобы отсортировать побыстрее. Мы даём ему функцию -- способ сравнения, дальше он вызывает её сам.
-
-Кстати, те значения, с которыми `sort` вызывает функцию сравнения, можно увидеть, если вставить в неё `alert`:
+By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
   alert( a + " <> " + b );
 });
 ```
+
+The algorithm may compare an element with multiple other elements. But it tries to make as few comparisons as possible.
+
+
+````smart header="A comparison function may return any number"
+Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less". 
+
+That allows to write shorter functions:
+
+```js run
+let arr = [ 1, 2, 15 ];
+
+arr.sort(function(a, b) { return a - b; });
+
+alert(arr);  // *!*1, 2, 15*/!*
+```
 ````
 
-````smart header="Сравнение `compareNumeric` в одну строку"
-Функцию `compareNumeric` для сравнения элементов-чисел можно упростить до одной строчки.
+````smart header="Arrow functions for the best"
+Remember [arrow functions](info:function-expression#arrow-functions)? We can use them here for neater sorting:
 
-```js
-function compareNumeric(a, b) {
-  return a - b;
-}
+```js 
+arr.sort( (a, b) => a - b );
 ```
 
-Эта функция вполне подходит для `sort`, так как возвращает положительное число, если `a > b`, отрицательное, если наоборот, и `0`, если числа равны.
+This would work exactly the same as a longer function expression above.
 ````
 
-## reverse
+## indexOf/lastIndexOf and includes
 
-Метод [arr.reverse()](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/reverse) меняет порядок элементов в массиве на обратный.
+The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) are the same as their string counterparts.
 
-```js run
-var arr = [1, 2, 3];
-arr.reverse();
-
-alert( arr ); // 3,2,1
-```
-
-## concat
-
-Метод [arr.concat(value1, value2, ... valueN)](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/concat) создаёт новый массив, в который копируются элементы из `arr`, а также `value1, value2, ... valueN`.
-
-Например:
+For instance:
 
 ```js run
-var arr = [1, 2];
-*!*
-var newArr = arr.concat(3, 4);
-*/!*
-
-alert( newArr ); // 1,2,3,4
-```
-
-У `concat` есть одна забавная особенность.
-
-Если аргумент `concat` -- массив, то `concat` добавляет элементы из него.
-
-Например:
-
-```js run
-var arr = [1, 2];
-
-*!*
-var newArr = arr.concat([3, 4], 5); // то же самое, что arr.concat(3,4,5)
-*/!*
-
-alert( newArr ); // 1,2,3,4,5
-```
-
-## indexOf/lastIndexOf
-
-Эти методы не поддерживаются в IE8-. Для их поддержки подключите библиотеку [ES5-shim](https://github.com/kriskowal/es5-shim).
-
-Метод ["arr.indexOf(searchElement[, fromIndex])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf) возвращает номер элемента `searchElement` в массиве `arr` или `-1`, если его нет.
-
-Поиск начинается с номера `fromIndex`, если он указан. Если нет -- с начала массива.
-
-**Для поиска используется строгое сравнение `===`.**
-
-Например:
-
-```js run
-var arr = [1, 0, false];
+let arr = [1, 0, false];
 
 alert( arr.indexOf(0) ); // 1
 alert( arr.indexOf(false) ); // 2
 alert( arr.indexOf(null) ); // -1
+
+alert( arr.includes(1) ); // true
 ```
 
-Как вы могли заметить, по синтаксису он полностью аналогичен методу [indexOf для строк](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String/indexOf).
+Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-Метод ["arr.lastIndexOf(searchElement[, fromIndex])"](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/lastIndexOf) ищет справа-налево: с конца массива или с номера `fromIndex`, если он указан.
 
-```warn header="Методы `indexOf/lastIndexOf` осуществляют поиск перебором"
-Если нужно проверить, существует ли значение в массиве -- его нужно перебрать. Только так. Внутренняя реализация `indexOf/lastIndexOf` осуществляет полный перебор, аналогичный циклу `for` по массиву. Чем длиннее массив, тем дольше он будет работать.
-```
+## find 
 
-````smart header="Коллекция уникальных элементов"
-Рассмотрим задачу -- есть коллекция строк, и нужно быстро проверять: есть ли в ней какой-то элемент. Массив для этого не подходит из-за медленного `indexOf`. Но подходит объект! Доступ к свойству объекта осуществляется очень быстро, так что можно сделать все элементы ключами объекта и проверять, есть ли уже такой ключ.
+Imagine we have an array of objects. How do we find an object with the specific condition?
 
-Например, организуем такую проверку для коллекции строк `"div"`, `"a"` и `"form"`:
+Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
 
+The syntax is:
 ```js
-var store = {}; // объект для коллекции
-
-var items = ["div", "a", "form"];
-
-for (var i = 0; i < items.length; i++) {
-  var key = items[i]; // для каждого элемента создаём свойство
-  store[key] = true; // значение здесь не важно
-}
+let result = arr.find(function(item, index, array) {
+  // return true if the item is what we look for
+});
 ```
 
-Теперь для проверки, есть ли ключ `key`, достаточно выполнить `if (store[key])`. Если есть -- можно использовать значение, если нет -- добавить.
+The function is called repetitively for each element of the array:
 
-Такое решение работает только со строками, но применимо к любым элементам, для которых можно вычислить строковый  "уникальный ключ".
-````
+- `item` is the element.
+- `index` is its index.
+- `array` is the array itself.
 
-## Object.keys(obj)
+If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
 
-Ранее мы говорили о том, что свойства объекта можно перебрать в цикле `for..in`.
-
-Если мы хотим работать с ними в виде массива, то к нашим услугам -- замечательный метод [Object.keys(obj)](https://developer.mozilla.org/en-US/docs/JavaScript/Reference/Global_Objects/Object/keys). Он поддерживается везде, кроме IE8-:
+For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
 
 ```js run
-var user = {
-  name: "Петя",
-  age: 30
-}
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
 
-var keys = Object.keys(user);
+let user = users.find(item => item.id == 1);
 
-alert( keys ); // name, age
+alert(user.name); // John
 ```
 
-## Итого
+In real life arrays of objects is a common thing, so the `find` method is very useful.
 
-Методы:
+Note that in the example we provide to `find` a single-argument function `item => item.id == 1`. It could be longer, like `(item, index, array) => ...`, but the additional parameters are optional. In fact, they are rarely used.
 
-- `push/pop`, `shift/unshift`, `splice` -- для добавления и удаления элементов.
-- `join/split` -- для преобразования строки в массив и обратно.
-- `sort` -- для сортировки массива. Если не передать функцию сравнения -- сортирует элементы как строки.
-- `reverse` -- меняет порядок элементов на обратный.
-- `concat` -- объединяет массивы.
-- `indexOf/lastIndexOf` -- возвращают позицию элемента в массиве (не поддерживается в IE8-).
 
-Изученных нами методов достаточно в 95% случаях, но существуют и другие. Для знакомства с ними рекомендуется заглянуть в справочник <a href="http://javascript.ru/Array">Array</a> и [Array в Mozilla Developer Network](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array).
+## filter
+
+The `find` method looks for a single (first) element that makes the function return `true`.
+
+If there may be multiple, we can use [arr.filter(fn)](mdn:js/Array/filter).
+
+The syntax is roughly the same, but it returns an array of matching elements:
+
+```js run
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"}
+];
+
+// returns array of the first two users
+let someUsers = users.filter(item => item.id < 3);
+
+alert(someUsers.length); // 2
+```
+
+## forEach 
+
+The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+
+The syntax:
+```js
+arr.forEach(function(item, index, array) {
+  // ... do something with item
+});
+```
+
+For instance, this shows each element of the array:
+
+```js run
+// for each element call alert
+["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+```
+
+And this code is more elaborate about their positions in the target array:
+
+```js run
+["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+  alert(`${item} is at index ${index} in ${array}`);
+});
+```
+
+The result of the function (if it returns any) is thrown away and ignored.
+
+## map
+
+The [arr.map](mdn:js/Array/map) is used to transform the array.
+
+It calls a function for each element of the array and returns the array of the results.
+
+For instance:
+
+```js run
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length)
+alert(lengths); // 5,7,6
+```
+  
+## reduce/reduceRight
+
+When we need to iterate over an array -- we can use `forEach`.
+
+When we need to iterate and return the data for each element -- we can use `map`.
+
+The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array/reduceRight) also belong to that breed, but are a little bit more intricate. They are used to calculate a single value based on the array. 
+
+The syntax is:
+
+```js
+let value = arr.reduce(function(previousValue, item, index, arr) {
+  // ...
+}, initial);
+```
+
+The function is applied to the elements. You may notice the familiar arguments, starting from the 2nd:
+
+- `item` -- is the current array item.
+- `index` -- is its position.
+- `arr` -- is the array.
+
+So far, like `forEach/map`. But there's one more argument:
+
+- `previousValue` -- is the result of the previous function call, `initial` for the first call.
+
+The easiest way to grasp that is by example.
+
+Here we get a sum of array in one line:
+
+```js run
+let arr = [1, 2, 3, 4, 5]
+
+let result = arr.reduce((sum, current) => sum + current), 0);
+
+alert( result ); // 15
+```
+
+Here we used the most common variant of `reduce` which uses only 2 arguments.
+
+Let's see the details of what's going on.
+
+1. On the first run, `sum` is the initial value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the result is `1`.
+2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
+3. On the 3rd run, `sum = 3` and we add one more element ot it, and so on...
+
+The calculation flow:
+
+![](reduce.png)
+
+Or in the form of a table, where each row represents is a function call on the next array element:
+
+|   |`sum`|`current`|результат|
+|---|-----|---------|---------|
+|the first call|`0`|`1`|`1`|
+|the second call|`1`|`2`|`3`|
+|the third call|`3`|`3`|`6`|
+|the fourth call|`6`|`4`|`10`|
+|the fifth call|`10`|`5`|`15`|
+
+
+As we can see, the result of the previous call becomes the first argument of the next one.
+
+We also can omit the initial value:
+
+```js run
+let arr = [1, 2, 3, 4, 5];
+
+// removed initial value from reduce (no 0)
+let result = arr.reduce((sum, current) => sum + current); 
+
+alert( result ); // 15
+```
+
+The result is the same. That's because if there's no initial, then `reduce` takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+
+The calculation table is the same as above, minus the first row. 
+
+But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error. So it's generally advised to specify the initial value.
+
+The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+
+## Other methods
+
+We covered the most useful methods. But there are other too, for instance:
+
+- [arr.slice(begin, end)](mdn:js/Array/slice) copies the portion of the array.
+
+    It creates a new array and copies elements of `arr` from  `begin` to `end` into it. Both arguments are optional: if `end` is omitted, the copying goes till the end, if `begin` is omitted, then from the very beginning. So `arr.slice()` makes a full copy.
+
+- [arr.concat(arr2, arr3...)](mdn:js/Array/concat) joins the arrays.
+
+  It creates a new array from elements of `arr`, then appends elements from `arr2` to it, then appends elements from `arr3` and so on. 
+
+- [arr.reverse()](mdn:js/Array/reverse) reverses the array.
+
+  It creates a new array with elements from `arr` in the reverse order.
+
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
+
+  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+
+These and other methods are also listed in the [manual](mdn:js/Array).
+
+## Summary
+
+Most often methods:
+
+- `split/join` -- convert a string to array and back.
+- `splice` -- delete and insert elements at the given position.
+- `sort` -- sorts the array.
+- `indexOf/lastIndexOf`, `includes` -- look for the value.
+- `find/filter` -- return first/all values satisfying the given condition.
+- `forEach` -- runs a function for each element.
+- `map` -- transforms the array through the function.
+- `reduce/reduceRight` -- calculates a single value based on array.
+- `slice` -- copy the part of the array.
+
+These methods are used in 95% of cases. For the full list, see the [manual](mdn:js/Array).
+
+The methods are easy to remember when you use them. Please refer to the tasks for some practice.

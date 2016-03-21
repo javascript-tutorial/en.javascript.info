@@ -20,26 +20,52 @@ We can imagine it as a cabinet with signed files. Every piece of data is stored 
 An empty object ("empty cabinet") can be created using one of two syntaxes:
 
 ```js
-let obj = new Object(); // works same as below
-let obj = {}; 
+let user = new Object(); // works the same as below
+let user = {}; 
 ```
 
-Usually, the second syntax is prefered, because it's shorter and allows to define properties immediately:
+![](object-user-empty.png)
+
+Usually, the figure brackets `{...}` syntax is used, because it's shorter. It is called an *object literal*.
+
+We can set properties immediately:
 
 ```js 
 let user = {
   name: "John",
   age: 30,
-  "day of birth": "1 Jan 1990"
+  "likes birds": true
 }; 
 ```
 
-![](object-person-empty.png)
+![](object-user-props.png)
 
-A property name can be only a string. No number/boolean or any other type can serve that purpose.
+A property name can be only a string (or a symbol, but we do not consider them here). We can try using boolean/numeric names, but they will be treated as strings automatically. Note that "complex" property names, like multiword ones, need to be quoted, to evade syntax errors. 
 
-Note that complex property names need to be quoted, to evade syntax errors. But normally that's not required.
 
+````smart header="Any word or a number can be a property"
+If something can be a variable name, then it can be used as a property name without quotes. 
+
+But for variables, there are additional limitations:
+
+- A variable cannot start with a number.
+- Language-reserved words like `let`, `return`, `function` etc are disallowed. 
+
+These are lifted from literal objects. See:
+
+```js run
+let example = {
+  let: 1,      // reserved words can be properties
+  return: 2,   // they even don't need quotes!
+  function: 3
+};
+
+// working fine:
+alert(example.let + example.return + example.function); // 6
+```
+
+So, actually, any number or a valid variable name (even reserved) can be a property and needs no quotes. Quotes allow to use arbitrary strings.
+````
 
 
 ## Add/remove properties
@@ -134,15 +160,15 @@ alert( "age" in user ); // true, user.age exists
 alert( "blabla" in user ); // false, user.blabla doesn't exist
 ```
 
-Please note that at the left side of `in` there must be a *string*. The property name must quoted, like `"age"`. 
+Please note that at the left side of `in` there must be a *property name*. That's usually a quoted string. 
 
-Without quotes, that would mean a variable containing the actual name to be tested. For instance:
+If we omit quotes, that would mean a variable containing the actual name to be tested. For instance:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( key in user ); // true, takes the name "age" from the variable and tests it
+alert( key in user ); // true, takes the value of key and checks for such property
 ```
 
 The `in` operator works in the certain case when the previous method doesn't. That is: when an object property stores `undefined`. 
@@ -257,16 +283,12 @@ But if we try to loop over the object, we see a totally different picture: USA (
 
 That's because according to the language stantard objects have no order. The loop is officially allowed to list properties randomly.
 
-But in practice, there's a de-facto agreement among JavaScript engines.
+But in practice, there's a de-facto agreement among modern JavaScript engines.
 
 - The numeric properties are sorted.
 - Non-numeric properties are ordered as they appear in the object.
 
 That agreement is not enforced by a standard, but stands strong, because a lot of JavaScript code is already based on it. 
-
-```smart header="Older JS Engines order everything"
-Old JavaScript engines, like IE9-, keep all properties sorted. But this behavior is a relict nowadays.
-```
 
 Now it's easy to see that the properties were iterated in the ascending order, because they are numeric... Of course, object property names are strings, but the Javascript engine detects that it's a number and applies internal optimizations to it, including sorting. That's why we see `1, 41, 44, 49`.
 
@@ -318,11 +340,11 @@ Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole 
 For instance:
 
 ```js
-let message = "hello";
+let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independant variables, each one is storing the string `"hello"`.
+As a result we have two independant variables, each one is storing the string `"Hello!"`.
 
 ![](variable-copy-value.png)
 
@@ -358,16 +380,18 @@ Now we have two variables, each one with the reference to the same object:
 
 ![](variable-copy-reference.png)
 
-Compare it with the primitives' picture. There's only one object, it's not copied. The reference is. 
+Compare it with the primitives' picture. There's only one object, it's not copied. 
 
-Just as with copied keys, we can use any variable to open the cabinet and modify its contents:
+Now can use any variable to access the cabinet and modify its contents:
 
 ```js run
 let user = { name: 'John' };
 
 let admin = user;
 
-*!*admin.name*/!* = 'Pete'; // changed by the "admin" reference
+*!*
+admin.name = 'Pete'; // changed by the "admin" reference
+*/!*
 
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
@@ -405,13 +429,17 @@ clone.name = "Pete"; // changed the data in it
 alert( user.name ); // still John
 ```
 
-Also we can use the method [Object.assign](mdn:Object/assign) for that:
+Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+
+The syntax is:
 
 ```js
 Object.assign(dest[, src1, src2, src3...])
 ```
 
-It assumes that all arguments are objects. It copies the properties of all arguments starting from the 2nd (`src1`, `src2` etc) into the `dest`. Then it returns `dest`.
+- `dest` and other arguments (can be as many as needed) are objects
+
+It copies the properties of all arguments starting from the 2nd (`src1`, `src2` etc) into the `dest`. Then it returns `dest`.
 
 For instance:
 ```js 
@@ -420,12 +448,25 @@ let user = { name: "John" };
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
+// copies all properties from permissions1 and permissions2 into user
 Object.assign(user, permissions1, permissions2);
 
 // now user = { name: "John", canView: true, canEdit: true }
 ```
 
-Here we can use it instead of the loop for copying:
+If `dest` already has the property with the same name, it's overwritten:
+
+```js 
+let user = { name: "John" };
+
+// overwrite name, add isAdmin
+Object.assign(user, { name: "Pete", isAdmin: true });
+
+// now user = { name: "Pete", isAdmin: true }
+```
+
+
+Here we can use it to replace the loop for cloning:
 
 ```js 
 let user = {
@@ -459,7 +500,8 @@ Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes`
 
 To fix that, we should examine the value of `user[key]` in the cloning loop and if it's an object, then replicate it's structure as well. That is called a "deep cloning". 
 
-There's a standard algorithm for deep cloning that handles this case and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation from the Javascript library [lodash](https://lodash.com). The method is [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation from the Javascript library [lodash](https://lodash.com). The method is [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+
 
 ## Summary
 

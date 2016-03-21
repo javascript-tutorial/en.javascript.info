@@ -1,48 +1,47 @@
-# Подсказка (медленное решение)
-Можно просто посчитать для каждого элемента массива все суммы, которые с него начинаются.
+# The slow solution 
 
-Например, для `[-1, 2, 3, -9, 11]`:
+We can calculate all possible subsums. 
+
+The simplest way is to take every element and calculate sums of all subarrays starting from it.
+
+For instance, for `[-1, 2, 3, -9, 11]`:
 
 ```js no-beautify
-// Начиная с -1:
+// Starting from -1:
 -1
 -1 + 2
 -1 + 2 + 3
 -1 + 2 + 3 + (-9)
 -1 + 2 + 3 + (-9) + 11
 
-// Начиная с 2:
+// Starting from 2:
 2
 2 + 3
 2 + 3 + (-9)
 2 + 3 + (-9) + 11
 
-// Начиная с 3:
+// Starting from 3:
 3
 3 + (-9)
 3 + (-9) + 11
 
-// Начиная с -9
+// Starting from -9
 -9
 -9 + 11
 
-// Начиная с -11
+// Starting from -11
 -11
 ```
 
-Сделайте вложенный цикл, который на внешнем уровне бегает по элементам массива, а на внутреннем -- формирует все суммы элементов, которые начинаются с текущей позиции.
-
-# Медленное решение
-
-Решение через вложенный цикл:
+The code is actually a nested loop: the external loop over array elements, and the internal counts subsums starting with the current element.
 
 ```js run
 function getMaxSubSum(arr) {
-  var maxSum = 0; // если совсем не брать элементов, то сумма 0
+  let maxSum = 0; // if we take no elements, zero will be returned
 
-  for (var i = 0; i < arr.length; i++) {
-    var sumFixedStart = 0;
-    for (var j = i; j < arr.length; j++) {
+  for (let i = 0; i < arr.length; i++) {
+    let sumFixedStart = 0;
+    for (let j = i; j < arr.length; j++) {
       sumFixedStart += arr[j];
       maxSum = Math.max(maxSum, sumFixedStart);
     }
@@ -58,29 +57,27 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 ```
 
-Такое решение имеет [оценку сложности](http://ru.wikipedia.org/wiki/%C2%ABO%C2%BB_%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B5_%D0%B8_%C2%ABo%C2%BB_%D0%BC%D0%B0%D0%BB%D0%BE%D0%B5) O(n<sup>2</sup>), то есть при увеличении массива в 2 раза алгоритм требует в 4 раза больше времени. На больших массивах (1000, 10000 и более элементов) такие алгоритмы могут приводить к серьёзным "тормозам".
+The solution has a time complexety of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
 
-# Подсказка (быстрое решение)
+For big arrays (1000, 10000 or more items) such algorithms can lead to a seroius sluggishness.
 
-Будем идти по массиву и накапливать в некоторой переменной `s` текущую частичную сумму. Если в какой-то момент s окажется отрицательной, то мы просто присвоим `s=0`. Утверждается, что максимум из всех значений переменной s, случившихся за время работы, и будет ответом на задачу.
+# Fast solution 
 
-**Докажем этот алгоритм.**
+Let's walk the array and keep the current partial sum of elements in the variable `s`. If `s` becomes negative at some point, then assign `s=0`. The maximum of all such `s` will be the answer.
 
-В самом деле, рассмотрим первый момент времени, когда сумма `s` стала отрицательной. Это означает, что, стартовав с нулевой частичной суммы, мы в итоге пришли к отрицательной частичной сумме -- значит, и весь этот префикс массива, равно как и любой его суффикс имеют отрицательную сумму.
-
-Следовательно, от всего этого префикса массива в дальнейшем не может быть никакой пользы: он может дать только отрицательную прибавку к ответу.
-
-# Быстрое решение
+If the description is too vague, please see the code, it's short enough:
 
 ```js run
 function getMaxSubSum(arr) {
-  var maxSum = 0,
-    partialSum = 0;
-  for (var i = 0; i < arr.length; i++) {
-    partialSum += arr[i];
-    maxSum = Math.max(maxSum, partialSum);
-    if (partialSum < 0) partialSum = 0;
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr; i++) { // for each item of arr
+    partialSum += item; // add it to partialSum
+    maxSum = Math.max(maxSum, partialSum); // remember the maximum
+    if (partialSum < 0) partialSum = 0; // zero if negative
   }
+
   return maxSum;
 }
 
@@ -92,6 +89,7 @@ alert( getMaxSubSum([1, 2, 3]) ); // 6
 alert( getMaxSubSum([-1, -2, -3]) ); // 0
 ```
 
-Информацию об алгоритме вы также можете прочитать здесь: <http://e-maxx.ru/algo/maximum_average_segment> и здесь: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem).
+The algorithm requires exactly 1 array pass, so the time complexity is O(n).
 
-Этот алгоритм требует ровно одного прохода по массиву, его сложность имеет оценку `O(n)`.
+You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words. 
+

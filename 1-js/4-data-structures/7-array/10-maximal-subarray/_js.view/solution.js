@@ -1,8 +1,9 @@
 function getMaxSubSum(arr) {
-  var maxSum = 0,
-    partialSum = 0;
-  for (var i = 0; i < arr.length; i++) {
-    partialSum += arr[i];
+  let maxSum = 0;
+  let partialSum = 0;
+
+  for (let item of arr) {
+    partialSum += item;
     maxSum = Math.max(maxSum, partialSum);
     if (partialSum < 0) partialSum = 0;
   }

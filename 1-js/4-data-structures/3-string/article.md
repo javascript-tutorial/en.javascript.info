@@ -139,7 +139,7 @@ alert( `The backslash: \\` ); // The backslash: \
 
     Note that `\n` is a single "special" character, so the length is indeed `3`.
 
-- To get a character, use square brackets `[position]` or the method [str.charAt(position)](mdn:String/charAt). The first character starts from the zero position:
+- To get a character, use square brackets `[position]` or the method [str.charAt(position)](mdn:js/String/charAt). The first character starts from the zero position:
 
     ```js run
     let str = `Hello`;
@@ -198,7 +198,7 @@ In the following sections we'll see more examples of that.
 
 ## Changing the case
 
-Methods [toLowerCase()](mdn:String/toLowerCase) and [toUpperCase()](mdn:String/toUpperCase) change the case:
+Methods [toLowerCase()](mdn:js/String/toLowerCase) and [toUpperCase()](mdn:js/String/toUpperCase) change the case:
 
 ```js run
 alert( 'Interface'.toUpperCase() ); // INTERFACE
@@ -217,7 +217,7 @@ There are multiple ways to look for a substring in a string.
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:String/indexOf). 
+The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf). 
 
 It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing found.
 
@@ -276,7 +276,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```
 
 ```smart header="`str.lastIndexOf(pos)`"
-There is also a similar method [str.lastIndexOf(pos)](mdn:String/lastIndexOf) that searches from the end of the string to its beginning.
+There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of the string to its beginning.
 
 It would list the occurences in the reverse way.
 ```
@@ -339,7 +339,7 @@ Just remember: `if (~str.indexOf(...))` reads as "if found".
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr)](mdn:String/includes) returns `true/false` depending on whether `str` has `substr` as its part.
+The more modern method [str.includes(substr)](mdn:js/String/includes) returns `true/false` depending on whether `str` has `substr` as its part.
 
 That's usually a simpler way to go if we don't need the exact position:
 
@@ -349,7 +349,7 @@ alert( "Widget with id".includes("Widget") ); // true
 alert( "Hello".includes("Bye") ); // false
 ```
 
-The methods [str.startsWith](mdn:String/startsWith) and [str.endsWith](mdn:String/endsWith) do exactly what they promise:
+The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they promise:
 
 ```js run
 alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
@@ -518,7 +518,7 @@ Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](ht
 
 It provides a special method to compare strings in different languages, following their rules.
 
-[str.localeCompare(str2)](mdn:String/localeCompare):
+[str.localeCompare(str2)](mdn:js/String/localeCompare):
 
 - Returns `1` if `str` is greater than `str2` according to the language rules.
 - Returns `-1` if `str` is less than `str2`.
@@ -556,7 +556,7 @@ alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
 
 Note that surrogate pairs are incorrectly processed by the language most of the time. We actually have a single symbol in each of the strings above, but the `length` shows the length of `2`. 
 
-`String.fromCodePoint` and `str.codePointAt` are notable exceptions that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:String/fromCharCode) and [str.charCodeAt](mdn:String/charCodeAt) that do the same, but don't work with surrogate pairs.
+`String.fromCodePoint` and `str.codePointAt` are notable exceptions that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt) that do the same, but don't work with surrogate pairs.
 
 Getting a symbol can also be tricky, because most functions treat surrogate pairs as two characters:
 
@@ -608,7 +608,7 @@ alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
 
 To solve it, there exists a "unicode normalization" algorithm that brings each string to the single "normal" form.
 
-It is implemented by [str.normalize()](mdn:String/normalize).
+It is implemented by [str.normalize()](mdn:js/String/normalize).
 
 ```js run
 alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
@@ -638,7 +638,7 @@ For most practical tasks that information is enough, but if you want to learn mo
 - To look for a substring: use `indexOf`, or `includes/startsWith/endsWith` for simple checks.
 - To compare strings according to the language, use `localeCompare`, otherwise they are compared by character codes.
 
-There are several other helpful methods in strings, like `str.trim()` that removes ("trims") spaces from the beginning and end of the string, see the [manual](mdn:String) for them.
+There are several other helpful methods in strings, like `str.trim()` that removes ("trims") spaces from the beginning and end of the string, see the [manual](mdn:js/String) for them.
 
 Also strings have methods for doing search/replace with regular expressions. But that topic deserves a separate chapter, so we'll return to that later.
 

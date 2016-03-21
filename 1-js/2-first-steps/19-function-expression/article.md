@@ -101,7 +101,6 @@ We can copy it between variables and run when we want. We can even add propertie
 ```
 
 
-
 ## Function Expression as a method
 
 Now let's go back: we have two ways of declaring a function. Do we really need both? What's about Function Expressions that makes it a good addition?
@@ -353,7 +352,96 @@ As a rule of thumb, a Function Declaration is prefered. It gives more freedom in
 But if a Function Declaration does not suit us for some reason, then a Function Expression should be used.
 ```
 
+## Arrow functions basics [#arrow-functions]
+
+Enough with the complexities for now. Let's relax with arrow functions that may add elegance to our code.
+
+They act like a function expression, but look a little bit differently. 
+
+The syntax:
+
+```js
+let func = (arg1, arg2, ...argN) => expression
+```
+
+...Creates a function that gets arguments `arg1..argN`, evaludates the `expression` on the right side with their use and returns its result.
+
+It is roughly the same as:
+
+```js
+let func = function(arg1, arg2, ...argN) {
+  return expression;
+}
+```
+
+Let's see the example:
+
+```js run
+let sum = (a, b) => a + b;
+
+alert( sum(1, 2) ); // 3
+```
+
+For a single argument function, we can omit the brackets, making that even shorter:
+
+```js run
+// brackets () not needed around a single argument n
+let double = n => n*2;
+
+alert( double(3) ); // 6
+```
+
+As you can see, this extra-concise syntax is well-suited for one-line functions. Very handy to create a function in the middle of a more complex expresion.
+
+Note that to the right side of `=>` must be a single valid expression.
+
+If we need something more complex, like multiple statements, we can enclose it in figure brackets. Then use a normal `return` within them.
+
+Like here:
+
+```js run
+let sum = (a, b) => { 
+  let result = a + b;
+*!*
+  return result; // if we use figure brackets, must use return
+*/!*
+}
+
+alert( sum(1, 2) ); // 3
+```
+
+```smart header="More to come"
+Arrow functions have other interesting features in them. We'll get to them later. 
+
+But as for now, we can already use them for one-line actions.
+```
+
+## new Function
+
+And the last syntax for the functions:
+```js
+let func = new Function('a, b', 'return a + b');
+```
+
+The major difference is that it creates a function literally from a string, at run time. See, both arguments are strings. The first one lists the arguments, while the second one is the function body.
+
+All previous declarations required us, programmers, to write the function code in the script.
+
+But `new Function` allows to turn any string into a function, for example we can receive a new function from the server and then execute it:
+
+```js
+let str = ... receive the code from the server dynamically ...
+
+let func = new Function('', str);
+func();
+```
+
+It is used in very specific cases, like when we receive a code from the server as a string, or to dynamically compile a function from a template string. The need for such uses arises at more advanced stages of the development.
+
+
 ## Summary
+
+
 
 - Functions are values. They can be assigned, copied or declared in any place of the code.
 - If the function is declared as a separate statement -- it's called a Function Declaration.
@@ -377,4 +465,14 @@ function f() { ... }
 
 Function Declaration is shorter and more obvious. The additional bonus -- it can be called before the actual declaration.
 
-Use Function Expression to write elegant code when the function must be created at-place, inside another expression or when Function Declaration doesn't fit well for the task.
+**Use Function Expression to write elegant code when the function must be created at-place, inside another expression or when Function Declaration doesn't fit well for the task.**
+
+We also touched two other ways to create a function:
+
+- Arrow functions: `(...args) => expr` or `{ ... }`
+
+    They provide a short way to create a function that evaluates the given `expr`. More to come about them.
+
+- `new Function(args, body)`
+
+    This syntax allows to create a function from a string, that may be composed dynamically during the execution, from the incoming data.

@@ -2,17 +2,10 @@ importance: 3
 
 ---
 
-# Получить случайное значение из массива
+# A random array value
 
-Напишите код для вывода `alert` случайного значения из массива:
-
-```js
-var arr = ["Яблоко", "Апельсин", "Груша", "Лимон"];
-```
-
-P.S. Код для генерации случайного целого от `min` to `max` включительно:
+Write the code to `alert` a random value from the array:
 
 ```js
-var rand = min + Math.floor(Math.random() * (max + 1 - min));
+let arr = ["Apple", "Orange", "Pear", "Lemon"];
 ```
-
