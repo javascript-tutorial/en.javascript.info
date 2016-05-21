@@ -1,4 +1,4 @@
-# TODO: Date and time
+# Date and time
 
 JavaScript has a built-in object [Date](mdn:js/Date) for date/time management.
 
@@ -23,10 +23,16 @@ To create a new `Date` object use one of the following syntaxes:
 : Create a `Date` obeject with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
 
     ```js run
-    // 24 hours after 01.01.1970 UTC+0
+    // 0 means 01.01.1970 UTC+0
+    let Jan01_1970 = new Date(0);
+    alert( Jan01_1970 );
+
+    // now add 24 hours, get 02.01.1970 UTC+0
     let Jan02_1970 = new Date(24 * 3600 * 1000);
     alert( Jan02_1970 );
     ```
+
+    The number of milliseconds is called a *timestamp*. It is a lightweight numeric representation of a date. We can always create a date from the timestamp number using `new Date(timestamp)` and get the timestamp from the existing `Date` object using `date.getTime()` (see below).
 
 `new Date(datestring)`
 : If there is a single argument -- a string, then it is parsed with the `Date.parse` algorithm (see below).
@@ -101,7 +107,7 @@ alert( date.getUTCHours() );
 Besides the given methods, there are two special ones, that do not have a UTC-variant:
 
 `getTime()`
-: Returns a number of milliseconds passed from the January 1st of 1970 UTC+0. The same kind of used in  `new Date(milliseconds)` constructor.
+: Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0. 
 
 `getTimezoneOffset()`
 : Returns the difference between the local time zene and UTC, in minutes:
@@ -363,66 +369,51 @@ The great pack of articles about V8 can be found at <http://mrale.ph>.
 
 ## Date.parse from a string
 
-Все современные браузеры, включая IE9+, понимают даты в упрощённом формате ISO 8601 Extended.
+The method [Date.parse](mdn:js/Date/parse) can read the date from a string.
 
-Этот формат выглядит так: `YYYY-MM-DDTHH:mm:ss.sssZ`, где:
+The format is: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 
-- `YYYY-MM-DD` -- дата в формате год-месяц-день.
-- Обычный символ `T` используется как разделитель.
-- `HH:mm:ss.sss` -- время: часы-минуты-секунды-миллисекунды.
-- Часть `'Z'` обозначает временную зону -- в формате `+-hh:mm`, либо символ `Z`, обозначающий UTC. По стандарту её можно не указывать, тогда UTC, но в Safari с этим ошибка, так что лучше указывать всегда.
+- `YYYY-MM-DD` -- is the date: year-month-day.
+- The ordinary character `T` is used as the delimiter.
+- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
+- The optional `'Z'` part denotes the time zone in the format `+-hh:mm` or a single `Z` that would mean UTC+0.
 
-Также возможны укороченные варианты, например `YYYY-MM-DD` или `YYYY-MM` или даже только `YYYY`.
+Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
 
-Метод `Date.parse(str)` разбирает строку `str` в таком формате и возвращает соответствующее ей количество миллисекунд. Если это невозможно, `Date.parse` возвращает `NaN`.
+The call to `Date.parse(str)` parses the string in the given format and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns `NaN`.
 
-Например:
-
-```js run
-let msUTC = Date.parse('2012-01-26T13:51:50.417Z'); // зона UTC
-
-alert( msUTC ); // 1327571510417 (число миллисекунд)
-```
-
-С таймзоной `-07:00 UTC`:
+For instance:
 
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert( ms ); // 1327611110417 (число миллисекунд)
+alert( ms ); // 1327611110417  (timestam)
 ```
 
-````smart header="Формат дат для IE8-"
-До появления спецификации ECMAScript 5 формат не был стандартизован, и браузеры, включая IE8-, имели свои собственные форматы дат. Частично, эти форматы пересекаются.
-
-Например, код ниже работает везде, включая старые IE:
+We can instantly create a `new Date` object from the timestamp:
 
 ```js run
-let ms = Date.parse("January 26, 2011 13:51:50");
+let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert( ms );
+alert( date );  
 ```
 
-Вы также можете почитать о старых форматах IE в документации к методу  <a href="http://msdn.microsoft.com/en-us/library/k4w173wk%28v=vs.85%29.aspx">MSDN Date.parse</a>.
+## Date.now()
 
-Конечно же, сейчас лучше использовать современный формат. Если же нужна поддержка IE8-, то метод `Date.parse`, как и ряд других современных методов, добавляется библиотекой [es5-shim](https://github.com/kriskowal/es5-shim).
-````
+The call to `Date.now()` returns the current timestamp, or, in other words, the number of milliseconds that passed since 01 Jan 1970 till now.
 
-## Метод Date.now()
+It is semantically equivalent to `new Date().getTime()`, but it does not create an intermediate `Date` object. 
 
-Метод `Date.now()` возвращает дату сразу в виде миллисекунд.
+It is used mostly for convenience or when the performance is critical, like games in JavaScript or other specialized applications.
 
-Технически, он аналогичен вызову `+new Date()`, но в отличие от него не создаёт промежуточный объект даты, а поэтому -- во много раз быстрее.
+## Summary
 
-Его использование особенно рекомендуется там, где производительность при работе с датами критична. Обычно это не на веб-страницах, а, к примеру, в разработке игр на JavaScript.
+- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time". 
+- Months are counted from the zero (yes, January is a zero month).
+- Days of week (for `getDay()`) are also counted from the zero (Sunday).
+- `Date` auto-corrects itself when out-of-range components are set. Good for adding/substracting days/months/hours.
+- Dates can be substructed, giving their difference in milliseconds. That's because a `Date` becomes the timestamp if converted to a number.
+- Use `Date.now()` to get the current timestamp fast.
 
-## Итого
-
-- Дата и время представлены в JavaScript одним объектом: [Date](https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date/). Создать "только время" при этом нельзя, оно должно быть с датой. Список методов `Date` вы можете найти в справочнике [Date](http://javascript.ru/Date) или выше.
-- Отсчёт месяцев начинается с нуля.
-- Отсчёт дней недели (для `getDay()`) тоже начинается с нуля (и это воскресенье).
-- Объект `Date` удобен тем, что автокорректируется. Благодаря этому легко сдвигать даты.
-- При преобразовании к числу объект `Date` даёт количество миллисекунд, прошедших с 1 января 1970 UTC. Побочное следствие -- даты можно вычитать, результатом будет разница в миллисекундах.
-- Для получения текущей даты в миллисекундах лучше использовать `Date.now()`, чтобы не создавать лишний объект `Date` (кроме IE8-)
-- Для бенчмаркинга лучше использовать `performance.now()` (кроме IE9-), он в 1000 раз точнее.
+Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
 
