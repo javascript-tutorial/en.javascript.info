@@ -1,21 +1,16 @@
 # Code editors
 
-For the comfortable development we need a good code editor.
+The code editor is the place where a programmer spends most his time. 
 
-It should support at least:
-
-1. Syntax highlight.
-2. Autocompletion.
-3. Folding -- collapsing/opening blocks of code.
-4. ...the more features -- the better.
+There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
 
 [cut]
 
 ## IDE
 
-The term "IDE" (Integrated Development Environment) -- denotes an advanced editor which can integrate with additional systems, such as bugtrackering, version control etc.
+The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) is a powerful editor with many additional features that usually operates on a "whole project".
 
-An IDE operates on a "whole project": loads it and then can navigate between files, provide autocompletion based on the whole project, do other "project-level" stuff.
+An IDE loads the project (can be many files), and then allows navigate between files, provides autocompletion based on the whole project, does other "project-level" stuff.
 
 If you haven't considered selecting an IDE, pleae look at the following variants:
 
@@ -27,23 +22,23 @@ If you haven't considered selecting an IDE, pleae look at the following variants
 
 All of them with the exception of Visual Studio are cross-platform.
 
-Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best for you.
+Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
 ## Lightweight editors
 
-"Lightweight editors" are not as powerful as IDEs, but they're fast and simple.
+"Lightweight editors" are not as powerful as IDEs, but they're fast, elegant and simple.
 
 They are mainly used to instantly open and edit a file.
 
 The main difference between a "lightweight editor" and an "IDE" is that the latter works on a project-level, meaning it has to load a lot of data to start, and the former one opens just the files. That's much faster.
 
-In practice, "lightweight" editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE. There's no point in arguing what is what.
+In practice, "lightweight" editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE. 
 
 The following options deserve your attention:
 
-- <a href="http://www.sublimetext.com">Sublime Text</a> (cross-platform, shareware).
-- <a href="https://atom.io/">Atom</a> (cross-platform, free).
-- <a href="http://sourceforge.net/projects/notepad-plus/">Notepad++</a> (Windows, free).
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Notepad++](http://sourceforge.net/projects/notepad-plus/) (Windows, free).
 - Vim, Emacs are cool. If you know how to use them.
 
 ## My favorites
@@ -53,7 +48,7 @@ I believe one should have both an IDE for projects and a lightweight editor for 
 I'm using:
 
 - [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I didn't use them.
-- As a lightweight editor -- <a href="http://www.sublimetext.com">Sublime Text</a>.
+- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com).
 
 If you don't know what to choose -- you can consider these ones.
 
