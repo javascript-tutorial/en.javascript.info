@@ -3,7 +3,9 @@
 
 The JavaScript language steadily evolves. The new proposals get analyzed and, if they look worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-It's quite common for the engine to implement only the part of the standard. Different engines have their own ideas about what's to implement first. They may implement proposals that are not approved yet and fail to implement things that are in the spec, because they are less interesting or just harder. A good page to see the current state of support is <https://kangax.github.io/compat-table/es6/> (that's for the future when you know the language).
+It's quite common for an engine to implement only the part of the standard. Each engine has its own idea about what to implement first. It may implement proposals that are not approved yet and fail to implement things that are already in the spec, because they are less interesting or just harder to do. 
+
+A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (remember the link to use in the future when you know the language).
 
 We are going to learn the most up-to-date JavaScript.
 
