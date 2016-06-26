@@ -1,19 +1,19 @@
 
-# Embrace the future!
+# The evolution is in progress
 
 The JavaScript language steadily evolves. The new proposals get analyzed and, if they look worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-It's quite common for an engine to implement only the part of the standard. Each engine has its own idea about what to implement first. It may implement proposals that are not approved yet and fail to implement things that are already in the spec, because they are less interesting or just harder to do. 
+Each engine has its own idea about what to implement first. It may implement proposals that are not approved yet and fail to implement things that are already in the spec, because they are less interesting or just harder to do. 
+
+So it's quite common for an engine to implement only the part of the standard.
 
 A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (remember the link to use in the future when you know the language).
 
-We are going to learn the most up-to-date JavaScript.
-
 ## Babel.JS
 
-...But when we use all the modern features of the language, some engines may fail to support such code.
+When we use all the modern features of the language, some engines may fail to support such code. Just as it was said, not all features are implemented everywhere.
 
-Here comes Babel.JS.
+Here Babel.JS comes to the rescue.
 
 [Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites the modern JavaScript code into the previous standard.
 
