@@ -8,6 +8,8 @@ It gives a more descriptive way to compare a value with multiple variants.
 
 ## The syntax
 
+The `switch` has one or more `case` blocks and an optional default. 
+
 It looks like this:
 
 ```js no-beautify
@@ -111,9 +113,9 @@ switch (+a) {
 
 ## Grouping of "case"
 
-Several variants of `case` can be grouped.
+Several variants of `case` which share the same code can be grouped.
 
-For example, if we want the same code for `case 3` and `case 5`:
+For example, if we want the same code to run for `case 3` and `case 5`:
 
 ```js run no-beautify
 let a = 2 + 2;
@@ -124,7 +126,7 @@ switch (a) {
     break;
 
 *!*
-  case 3:                    // (*)
+  case 3:                    // (*) grouped two cases
   case 5:
     alert('Wrong!');
     alert('How about to take maths classes?');
@@ -136,7 +138,9 @@ switch (a) {
 }
 ```
 
-The grouping is just a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+Now both `3` and `5` show the same message.
+
+The ability to "group" cases a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
 
 ## The type matters
 

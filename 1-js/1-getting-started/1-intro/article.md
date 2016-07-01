@@ -68,7 +68,7 @@ The examples of such restrictions are:
     Modern browsers allow it to work with files, but the access is limited and only provided if the user does certain actions, like "dropping" a file into a browser window or selecting it via an `<input>` tag.
 
     There are ways to interact with camera/microphone and other devices, but they require an explicit user's permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. Such action is allowed. But even in this case, JavaScript from one page may not access the other if they compe from different sites (from a different domain, protocol or port).
+- Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other if they compe from different sites (from a different domain, protocol or port).
 
     That is called a "Same Origin Policy". To workaround that, *both pages* must contain a special JavaScript code that handles data exchange.
 

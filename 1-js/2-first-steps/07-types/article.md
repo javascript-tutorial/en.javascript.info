@@ -44,8 +44,8 @@ Besides regular numbers there are so-called "special numeric values" which also 
 
     So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
 
-```smart header="Maths is safe"
-Maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
+```smart header="Mathematical operations are safe"
+Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
 
 The script will never die. At worst we'll get `NaN` as the result.
 ```
@@ -68,7 +68,7 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backtricks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are essentially the same.
+Double and single quotes are similar, "simple" quotes.
 
 Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
@@ -96,7 +96,7 @@ In JavaScript, there is no such type. There's only one type: `string`. A string 
 
 The boolean type has only two values: `true` and `false`.
 
-This type is commonly used to store the yes/no values.
+This type is commonly used to store yes/no values.
 
 For instance:
 
@@ -108,8 +108,9 @@ checked = false;    // the form field is not checked
 Boolean values also come as the result of comparisons:
 
 ```js run
-let isGreater = 4 > 1;
-alert( isGreater ); // true
+let isGreater = 4 > 1; 
+
+alert( isGreater ); // true (the comparison result is "yes")
 ```
 
 We'll cover booleans more deeply while discussing logical operators.
@@ -132,7 +133,7 @@ The code above states that the `age` is unknown.
 
 ## The "undefined" value
 
-The special value `undefined` stands separately. It makes a type of its own, just like `null`.
+The special value `undefined` stands apart. It makes a type of its own, just like `null`.
 
 The sense of `undefined` is "value is not assigned".
 
@@ -154,21 +155,21 @@ x = undefined;
 alert( x ); // "undefined"
 ```
 
-...But it's not recommended to do that, because such assignment contradicts to the sense of `undefined`.
+...But it's not recommended to do that. Normally, we use `null` to write an "empty" or an "unknown" value into the variable, and `undefined` is only used for checks, to see if the variable is assigned or similar.
 
-Normally, we use `null` to write an "empty" or an "unknown" value into the variable, and `undefined` is only used for checks, to see if the variable is assigned or similar.
-
-## Object type
+## Objects
 
 The `object` type is special.
 
 All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever).
 
-In contrast, objects are used to store *collections* of various data and more complex entities.
+In contrast, objects are used to store *keyed collections* of various data and more complex entities.
 
-An object is defined with the figure brackets `{…}`.
+An object is defined with the figure brackets `{…}` with an optional list of "key: value" pairs. In programming that's sometimes called an "associative array" or a "hash".
 
-For instance, here we create a `user` object with the name and the age:
+A `key` is a string, `value` can be anything.
+
+For instance, here we create a `user` object with two properties: 
 
 ```js
 let user = {
@@ -177,12 +178,14 @@ let user = {
 };
 ```
 
-Now `user` is a complex entity, can be imagine of a shelf with two folders labelled "name" and "age".
+The `user` object can be imagined as an information shelf with two items labelled "name" and "age". 
 
-We can access either via the dot notation:
+![user object](object-user.png)
+
+Both values (also called "fields" or "properties") are accessible using the dot notation:
 
 ```js
-// get parts of the object:
+// get fields of the object:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
@@ -193,13 +196,17 @@ Also we can add new information to the user any time later:
 user.isAdmin = true; 
 ```
 
+![user object 2](object-user-isadmin.png)
+
 ...Or remove it with the help of `delete` operator:
 
 ```js
 delete user.age;
 ```
 
-Any string can be used as a property name. But if it has multiple words, then we should use another kind of notation to access it. Namely, square brackets:
+![user object 3](object-user-delete.png)
+
+If the string which denotes the key (also called a "property name") has multiple words, then we should use square brackets notation to access it:
 
 ```js
 user["likes to swim?"] = true;
@@ -207,29 +214,39 @@ user["likes to swim?"] = true;
 
 See, the dot requires the property name to be a valid variable identifier. That is: no spaces and other limitations. Square brackets work with any string. 
 
-We can split the code above into two lines by putting the property name into a variable:
+
+```js
+// this would give a syntax error
+user.likes to swim? = true;
+```
+
+Another powerful feature of square bracket notation is that they allow to access a property by the name from the variable:
 
 ```js
 let key = "likes to swim?";
 user[key] = true; // same as above
 ```
 
-Objects in JavaScript are very powerful. Here we just started the topic that is really huge. We'll be closely working with objects in the next parts of the tutorial.
+Here we have a variable `key` which contains the property name, probably evaluated or calculated at run-time. 
+
+Most of time, the dot is used to access object properties, but when we need a complex property name or to pass the name as a variable, then -- we go square brackets.
+
+Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
 
 ## Symbol type
 
-The `symbol` type stands apart from the others. Probably we won't need them any time soon, but it's the 7th and the last type of the language. So we must mention it for the sake of completeness.
+The `symbol` type is used in conjunction with objects. Probably we won't need them any time soon, but it's the 7th and the last type of the language, so we must mention it here for the sake of completeness.
 
-Type "symbol" represents an unique identifier with a given name.
+A "symbol" represents an unique identifier with a given name.
 
-A value of this type can be created like this:
+A value of this type can be created using `Symbol(name)`:
 
 ```js
 // id is a symbol with the name "id"
 let id = Symbol("id");
 ```
 
-Symbols in JavaScript are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word) in that two symbols with the same name are different:
+Symbols in JavaScript are different from symbols in Ruby language (if you are familiar with it, please don't get trapped by the same word). Two symbols with the same name are not the same:
 
 ```js run
 let id1 = Symbol("id");
@@ -238,25 +255,46 @@ let id2 = Symbol("id");
 alert(id1 == id2); // false
 ```
 
-Symbols is a separate primitive type used for identifiers, which are guaranteed to be unique.
+Symbols is a special primitive type used for identifiers, which are guaranteed to be unique. So, even if we create many symbols with the same name, they are still unique.
 
-So if we want to create a "hidden" property in an object, only for us, and ensure that no other part of code can occasionally access it, we can create a symbol for it:
+The use case for symbols is to create "concealed" properties of an object, which only make sense locally, that no other part of code can occasionally access or overwrite. 
+
+For instance, if we want to store an "identifier" for the object `user`, we can create a symbol with the name `id` for it:
 
 ```js run
 let user = { name: "John" };
 let id = Symbol("id");
 
-user[id] = "Secret ID Value";
-alert( user[id] ); // we can access the data
+user[id] = "ID Value";
+alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
-Now, if another script wants his own "id" property inside `user`, it can create its own `Symbol("id")`. There will be no conflict, because symbols are always different.
+Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another javascript library, so the scripts are completely unaware for each other.
 
-Symbols are widely used by the JavaScript language itself to store "system" properties. We'll find out more details after studying objects.
+No problem. It can create its own `Symbol("id")`. There will be no conflict, because symbols are always different, even if they have the same name.
+
+Please note that in the same case if we used a string `"id"` instead of a symbol here, then there would be a conflict:
+
+```js run
+let user = { name: "John" };
+
+// our script
+user.id = "ID Value";
+
+// ...if later another script the uses same name for its purposes...
+
+user.id = "ID 2"
+// then boom! overwritten! it did not mean to harm the colleague, but did it!
+```
+
+Two `Symbol("id")` are not equal, that's why they would allow to store values safely.
+
+
+Symbols are widely used by the JavaScript language itself to store "system" properties which we'll learn in later chapters.
 
 ## The typeof operator [#type-typeof]
 
-The `typeof` operator returns the type of the argument.
+The `typeof` operator returns the type of the argument. It's handy in the case when we want to process values of different types differently, or just to make a quick check.
 
 It allows two forms of syntax:
 
@@ -289,10 +327,10 @@ typeof alert // "function"  (2)
 */!*
 ```
 
-Please note the last two lines, because `typeof` behaves specially there.
+Please note the last two lines, because `typeof` behaves a little bit strange there.
 
-1. The result of `typeof null` equals to `"object"`. That is an officially recognized error in `typeof` implementation, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own.
-2. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study more functions in near future. Formally, there is no special type for functions, but `typeof` makes them look different.  That's very convenient in practice.
+1. The result of `typeof null` equals to `"object"`. That is an officially recognized error in `typeof` implementation, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So `typeof` just says it wrong here.
+2. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
 
 
 ## Type conversions
@@ -305,19 +343,19 @@ let message = "hello";
 message = 123456;
 ```
 
-...But sometimes we need to convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or, so to say, an `if (value)` converts it's argument into a boolean to see if it's `true` or `false`.
+...But sometimes we need to convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or, so to say, an `if(value)` test converts the `value` to  boolean type to see if it's `true` or `false`.
 
-There are also cases when we need to convert between types to ensure that we store the right data the right way, or to use special features of a certain type.
+There are also cases when we need to explicitly convert between types to ensure that we store the right data the right way or to use special features of a certain type.
 
 There are many type conversions in JavaScript, fully listed in [the specification](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion).
 
-Three conversions that happen most often are:
+Three conversions that happen the most often:
 
 1. String conversion.
 2. Numeric conversion.
 3. Boolean conversion.
 
-Let's see how and when they happen.
+Let's see how they work and when they happen.
 
 ### String conversion
 
@@ -335,9 +373,12 @@ We can also use a call `String(value)` function for that:
 
 ```js run
 let a = true;
+alert(typeof a); // boolean
 
+*!*
 a = String(a); // now: a = "true"
 alert(typeof a); // string
+*/!*
 ```
 
 The string conversion is obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
@@ -380,7 +421,7 @@ The numeric conversion rules:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| A string | Whitespaces from the start and the end are cut off. Then, if the remaining string is empty, the result is `0`, otherwise – the value is "read" from the string. An error gives `NaN`. |
+| `string` | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is `0`, otherwise –- the number is "read" from the string. An error gives `NaN`. |
 
 Examples:
 
@@ -391,15 +432,17 @@ alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
 
-Please note that `null` and `undefined` behave differently here. A `null` becomes a zero, but `undefined` becomes `NaN`.
+Please note that `null` and `undefined` behave differently here: `null` becomes a zero, while `undefined` becomes `NaN`.
 
 ### Boolean conversion
 
-Boolean conversion is happens automatically in logical operations (to be covered), but also can be performed manually with the call of `Boolean(value)`.
+Boolean conversion is the simplest one.
 
-The conversion rules are simple here:
+It happens in logical operations (later we'll meet `if` tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
 
-- All values that are intuitively "empty" become `false`. These are: `0`, an empty string, `null`, `undefined` and `NaN`.
+The conversion rule:
+
+- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined` and `NaN` become `false`. 
 - Other values become `true`.
 
 ````warn header="Please note: a string `\"0\"` is `true`"

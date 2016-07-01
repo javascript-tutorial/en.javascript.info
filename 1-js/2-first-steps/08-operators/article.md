@@ -10,8 +10,8 @@ In this chapter we concentrate on aspects that are not covered by the school ari
 
 Before we move on, let's make a dip in the common terminology, used in the development.
 
-- *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Another word is "an argument of an operator".
-- An operator is called *unary* if it has a single operand. For example, the unary minus `"-"` reverses the sign of the number:
+- *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes operands are called "arguments".
+- An operator is *unary* if it has a single operand. For example, the unary minus `"-"` reverses the sign of the number:
 
     ```js run
     let x = 1;
@@ -21,16 +21,18 @@ Before we move on, let's make a dip in the common terminology, used in the devel
     */!*
     alert( x ); // -1, unary minus was applied
     ```
-- An operator is called *binary* if it has two operands. The same minus exists in the binary form as well:
+- An operator is *binary* if it has two operands. The same minus exists in the binary form as well:
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus
+    alert( y - x ); // 2, binary minus substracts values
     ```
 
     Formally, we're talking about the two different operators here: the unary minus (single operand, reverses the sign) and the binary minus (two operands, substracts).
 
 ## Strings concatenation, binary +
+
+Now let's get into Javascript specials. 
 
 Usually the plus operator `'+'` sums numbers.
 
@@ -54,18 +56,18 @@ Note that it doesn't matter whether the first operand is a string or the second 
 
 The string concatenation and conversion is the special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
-For instance:
+For instance, substraction and division:
 
 ```js run
 alert( 2 - '1' ); // 1
-alert( 6 / '2' ); // 3
+alert( '6' / '2' ); // 3
 ```
 
 ## Numeric conversion, unary +
 
 The plus `+` exist in two forms. The binary form that we used above and the unary form.
 
-The unary plus or, in other words, the plus `+` applied to a single value, doesn't do anything with numbers, but if the operand is not a number, then it is converted into it.
+The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything with numbers, but if the operand is not a number, then it is converted into it.
 
 For example:
 
@@ -77,14 +79,16 @@ alert( +x ); // 1
 let y = -2;
 alert( +y ); // -2
 
+*!*
 // Converts non-numbers
-alert( +true ); // 1
+alert( +true ); // 1 
 alert( +"" );   // 0
+*/!*
 ```
 
-It actually does the same as `Number()`, but it's shorter.
+It actually does the same as `Number(true)` or `Number("")`, but shorter.
 
-As an example of use, let's imagine that we are getting values from HTML-form fields. Then they are usually strings.
+A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then are usually strings.
 
 What if we want to sum them?
 
@@ -105,16 +109,16 @@ let oranges = "3";
 
 alert( Number(apples) + Number(oranges) ); // 5
 
-// or the shorter variant:
 *!*
-alert( +apples + +oranges ); // 5
+// or the shorter variant:
 // both values converted to numbers before the binary plus
+alert( +apples + +oranges ); // 5
 */!*
 ```
 
 From a mathematician's standpoint the abundance of pluses may seem strange. But from a programmer's standpoint -- there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
 
-Why did unary pluses are applied to values before the binary one? As we're going to see, that's because of their *higher precedence*.
+Why are unary pluses applied to values before the binary one? As we're going to see, that's because of their *higher precedence*.
 
 ## Operators precedence
 
@@ -142,7 +146,7 @@ An extract from the table:
 | 3 | assignment | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `15`, higher than `13` for the ordinary "addition". That's why in the expression `+apples + +oranges` unary pluses worked first, and then the addition.
+As we can see, the "unary plus" has a priority of `15`, higher than `13` for the "addition" (binary plus). That's why in the expression `+apples + +oranges` unary pluses worked first, and then the addition.
 
 ## Assignment
 
@@ -170,10 +174,10 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-The assignments chain is evaluated from right to left: the rightmost expression `2+2` is calculated first, assigned to `c`, then `b = c` works, thus assigning it to `b`, and then `a = b`. At the end, all variables share a single value.
+Assignments always evaluate the right value first, then assign it to the left one. So the chain of assignments is executed from right to left: the rightmost expression `2+2` is calculated first, assigned to `c`, then `b = c` works, thus assigning it to `b`, and then `a = b`. At the end, all variables share a single value.
 
 ````smart header="The assignment operator `\"=\"` returns a value"
-An operator always returns a value. That's obvious for `+` and `*`. But the assignment follows that rule too.
+An operator always returns a value. That's obvious for most of them like an addition `+` or a multiplication `*`. But the assignment follows that rule too.
 
 The call `x = value` writes the `value` into `x` *and then returns it*.
 
@@ -193,7 +197,7 @@ alert( c ); // 0
 
 In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to substract from `3`.
 
-Funny code, isn't it? We should understand how it works, but don't write anything like that ourselves. Such tricks definitely don't make the code neater and more readable.
+Funny code, isn't it? We should understand how it works, but don't write anything like that ourselves. Such tricks definitely don't make the code clearer and more readable.
 ````
 
 ## Remainder %
@@ -235,15 +239,16 @@ So, there are special operators for that:
 Increment/decrement can be applied only to a variable. An attempt to use it on a value like `5++` will give an error.
 ```
 
-Operators `++` and `--` can be put both after and before the variable.
+Operators `++` and `--` can be placed both after and before the variable.
 
-When the operator goes after the variable, it is called a "postfix form": `counter++`. The "prefix form" is when the operator stands before the variable: `++counter`.
+- When the operator goes after the variable, it is called a "postfix form": `counter++`. 
+- The "prefix form" is when the operator stands before the variable: `++counter`.
 
 Both of these records do the same: increase `i` by `1`.
 
-Is there any difference? Yes, but we can see it if we use the result of `++/--`.
+Is there any difference? Yes, but we can only see it if we use the retured value of `++/--`.
 
-As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
+Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
 
 Let's see the examples:
 
@@ -291,7 +296,7 @@ To summarize:
     ```
 
 ````smart header="Increment/decrement among other operators"
-Operators `++/--` can be used inside an expression as well. Their priority is higher than most other arithmetical operations.
+Operators `++/--` can be used inside an expression as well. Their precedence is higher than most other arithmetical operations.
 
 For instance:
 
@@ -336,7 +341,7 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we should delve into the low-level number representation, and it would be suboptimal to do that now. Especially because we won't need them any time soon. A curious reader may read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. But it would be more practical to return to this topic later when a real need arises.
+These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. But it would be more practical to return to this topic later when a real need arises.
 
 ## Modify-in-place
 
@@ -350,7 +355,7 @@ n = n + 5;
 n = n * 2;
 ```
 
-This notation can be shortened using operators `+=` and *=`:
+This notation can be shortened using operators `+=` and `*=`:
 
 ```js run
 let n = 2;
@@ -360,7 +365,7 @@ n *= 2; // now n=14 (same as n = n * 2)
 alert( n ); // 14
 ```
 
-Short "modify-and-assign" operators exist for `+,-,*,/` and bitwise `<<,>>,>>>,&,|,^`.
+Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=` etc.
 
 The modify-and-assign call has the same precedence as a normal assignment, so it executes after most other calculations:
 

@@ -4,9 +4,9 @@ importance: 5
 
 # Type conversions
 
-Let's recap type conversions in the context of operators.
+Let's recap type conversions given in the [previous capter](/types) in the context of operators.
 
-What will be the result for these expressions?
+What will be the result of these evaluation?
 
 ```js no-beautify
 "" + 1 + 0
@@ -15,7 +15,7 @@ true + false
 6 / "3"
 2" * "3"
 4 + 5 + "px"
-$" + 4 + 5
+"$" + 4 + 5
 "4" - 2
 "4px" - 2
 7 / 0

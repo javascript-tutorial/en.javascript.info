@@ -7,7 +7,7 @@ In this chapter we'll create a simple script and see it working.
 ## The "script" tag
 
 ```smart header="What if I want to move faster?"
-In the case if the reader has developed with JavaScript already or has a lot of experience in another language, he can skip detailed explanatins and jump to <info:javascript-specials>. There he can find an essense of important features.
+In the case if you've developed with JavaScript already or have a lot of experience in another language, you can skip detailed explanatins and jump to <info:javascript-specials>. There you can find an essense of important features.
 
 If you have enough time and want to learn things in details then read on :)
 ```

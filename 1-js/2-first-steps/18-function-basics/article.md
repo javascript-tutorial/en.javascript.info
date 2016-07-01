@@ -75,7 +75,7 @@ A function can access an outer variable as well, for example:
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  let message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, ' + *!*userName*/!*;
   alert(message);
 }
 
@@ -90,26 +90,24 @@ For instance:
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  userName = "Bob"; // (1) changed the outer variable
+  *!*userName*/!* = "Bob"; // (1) changed the outer variable
 
-  let message = 'Hello, my name is ' + *!*userName*/!*;
+  let message = 'Hello, ' + *!*userName*/!*;
   alert(message);
 }
 
-alert( userName ); // John before the function call
+alert( userName ); // *!*John*/!* before the function call
 
 showMessage();
 
-*!*
-alert( userName ); // Bob, the value was modified by the function
-*/!*
+alert( userName ); // *!*Bob*/!*, the value was modified by the function
 ```
 
-Let's note that an outer variable is only used if there's no local with the same name.
+Sometimes that happens when we forget `let`. Because the outer variable is only used if there's no local one.
 
-For example, if we had `let` before `userName` in the line (1) then the function would have a local variable `userName` and use it instead of the outer one. This process is called "shadowing".
+For example, if we had `let` before `userName` in the line (1) then the function would have a local variable `userName` and use it instead. This process is called "shadowing".
 
-In the code below the local `userName` shadows the outer one:
+In the code below the local `userName` *shadows* the outer one:
 
 ```js run
 let userName = 'John';
@@ -119,22 +117,22 @@ function showMessage() {
   let userName = "Bob"; // declare a local variable
 */!*
 
-  let message = 'Hello, my name is ' + userName;
+  let message = 'Hello, ' + userName; // *!*Bob*/!*
   alert(message);
 }
 
 // the function will create and use it's own userName
 showMessage();
 
-alert( userName ); // John, the function did not access the outer variable
+alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
 ```
 
 ```smart header="Global variables"
 Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
 
-Global variables are visible from any function.
+Global variables are visible from any function (unless shadowed by locals).
 
-They should only be used if the data is so important that it really must be seen from anywhere.
+Usually, a function declares all variables specific to its task, and global variables only store the data so important that it really must be seen from anywhere. Modern code has little to no globals, most variables reside in their functions.
 ```
 
 ## Parameters

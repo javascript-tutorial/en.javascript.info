@@ -90,7 +90,7 @@ For example, in the code below -- until all rabbits are counted, the bottom `<p>
 
 The behavior is called "synchronous". Usually it causes no problems, but there's an important consequence.
 
-**If the script is external, then until the browser executes it, it can't show the page below.**
+**If a script is external, then until the browser downloads and executes it, a visitor has to wait.**
 
 So, in this document, until `big.js` loads and executes, the `<body>` content is hidden:
 
@@ -107,21 +107,22 @@ So, in this document, until `big.js` loads and executes, the `<body>` content is
 </html>
 ```
 
-The question is -- do we really want to hide the body until the script finishes?
+The question is -- do we really want the visitor to wait until the script finishes?
 
 Most of time, we don't.
 
 Sometimes, a script may contain a very important code that really must be loaded before the rest of the page is parsed (and the scripts below executed). But that's only sometimes.
 
-Usually a visitor should see the page content while the script is loading.
+Usually a visitor should be able to see the page while the script is loading. That's especially true for sites with an important content (like the tutorial) -- even if some interfaces are yet inactive (scripts not loaded yet), the visitor can read the text and navigate.
 
 There are situations when such blocking is even dangerous. For example, when we attach a script from the banner system, or a 3rd-party integration code.
 
 Like this:
 
 ```html run height=100
-Wait. The text belown will shown up only after the script executes.
+Wait. The text below will shown up only after the script executes.
 
+<!-- this banner script takes time to load -->
 <script src="/article/external-script/banner.js?speed=0"></script>
 
 <p>…Important information!</p>
@@ -135,8 +136,8 @@ Our first attempt could be to put all such scripts to the bottom of the `<body>`
 
 But the solution is not perfect:
 
-1. The script won't start loading until the whole page loads. If the page is large, then the delay may be significant. We'd like the browser to start loading a script early, but still do not block the page.
-2. If there is more than one script at the bottom of the page, and the first script is slow, then the second one will have to wait for it. Browser executes only one `<script>` tag in one moment. So scripts queue one after another. That's not always welcome: ads and web analytics scripts should run immediately as they load.
+1. The script won't start loading until the HTML loads. If the HTML is large, then the delay may be significant. We'd like the browser to start loading a script early, but still do not block the page.
+2. If there are many scripts at the bottom of the page, then they queue up. Browser executes only one `<script>` tag in one moment. Please note that it tries to downloads scripts in parallel (for better network utilization), but the execution order is still strictly one after another. So, the first script can block the rest if it's slow. That's not always welcome: some scripts, like ads and web analytics scripts should run independantly and immediately as they load, not block each other. 
 
 And here come the attributes `async` and `defer`.
 
@@ -147,25 +148,15 @@ The `defer` attribute.
 : The script with `defer` also executes asynchronously, like async. But there are two essential differences:
 
 1. The browser guarantees to keep the relative order of "deferred" scripts.
-2. A "deferred" script always executes after HTML-document is fully loaded.
+2. A "deferred" script always executes after the HTML-document is fully loaded.
 
-We'll discuss them more in-depth further in this chapter.
-
-```smart header="Either `async` or `defer`"
-We can't use both `defer` and `async` on a single script. If we do that, `async` takes precedence, `defer` is ignored.
-```
-
-```warn header="Attributes `async/defer` are only for external scripts"
-The attributes `async/defer` work only when set on a script with `src`.
-
-On a script without `src` like <code>&lt;script&gt;...&lt;/script&gt;</code>, they will be ignored.
-```
 
 Let's modify the "blocking script" example that we've seen before, adding `async`:
 
 ```html run height=100
 Wait. The text belown will shown up only after the script executes.
 
+<!-- This banner script take some time to load... But nobody cares. -->
 <script *!*async*/!* src="/article/external-script/banner.js?speed=0"></script>
 
 <p>…Important information!</p>
@@ -173,12 +164,11 @@ Wait. The text belown will shown up only after the script executes.
 
 Now if we run it, we'll see that the whole document is displayed immediately, and the external script runs when it loads.
 
-## Defer vs Async
+Let's see more examples with `defer` and `async` to clearly understand the similarities and the differences.
 
-Please note that there is one similarity and two differences between `defer` and `async`.
+Both attributes allow the browser to show the page without waiting for the script to load. But...
 
-1. **Both attributes allow the browser to show the page without waiting for the script to load.**
-2. **Deferred scripts keep the relative order, while async scripts do not.**
+1. Deferred scripts keep the relative order, while async scripts do not.
 
     For example, in the code below (with `async`) there are two scripts. The one which loads first will run first.
 
@@ -198,7 +188,7 @@ Please note that there is one similarity and two differences between `defer` and
 
     This feature of "deferred" scripts is important when `2.js` relies on the result of `1.js` and we must be sure that the order is determined.
 
-3. **A script with `defer` always waits for the HTML-document to fully load. The `async` script runs immediately as it loads.**
+2. A script with `defer` always waits for the HTML-document to fully load. The `async` script runs immediately as it loads.
 
     For instance, when the document is large, like:
 
@@ -212,25 +202,35 @@ Please note that there is one similarity and two differences between `defer` and
 
     ...Here `async.js` executes when it loads -- possibly, before the document is fully loaded. In contrast, `defer.js` always waits for the full document to be ready.
 
-    The choice between `defer` and `async` here depends on our intentions. Sometimes a script doesn't need the document at all (like a web counter), so it should execute ASAP. In this case `async` is superb.
+    So, if a script doesn't need the rest of the document (like a web counter), then `async` is superb. And in another case a script may need the whole document to do some work with it. Then `defer` is preferable.
 
-    And in another case a script may need the whole document to do some work with it. Then `defer` is preferable.
+
+```smart header="Either `async` or `defer`"
+We can't use both `defer` and `async` on a single script. If we do that, `async` takes precedence, `defer` is ignored.
+```
+
+```warn header="Attributes `async/defer` are only for external scripts"
+The attributes `async/defer` work only when set on a script with `src`.
+
+On a script without `src` like <code>&lt;script&gt;...&lt;/script&gt;</code>, they will be ignored.
+```
+
 
 ## Summary
 
 - Scripts in an external file can be inserted on the page via `<script src="path"></script>`.
-- Normally, the browser doesn't show the document after the script until it executes. Unless the script has `async` or `defer` attributes.
+- The browser doesn't show the content below the script until it executes. Unless the script has `async` or `defer` attributes.
 - Both `async` and `defer` allow the browser to start script loading and then continue to parse/show the page. They only work on external scripts.
 - The difference is that `defer` keeps the relative script order and always executes after the document is fully loaded. In contrast, `async` script executes when it loads, without any conditions.
 
 Before inserting an external `<script src="…">` tag, we should always consider the side-effect of blocking the page rendering. Especially if it's a 3rd-party script. And if we don't want that, then `defer/async` can come in handy.
 
 ````smart header="Running ahead..."
-For an advanced reader who knows that new tags can be added on page dynamically, we'd like to note that dynamic `<script>` tags behave as `async`. In other words, they run as they load.
+For an advanced reader who already knows how to add new tags on the page using DOM: dynamic `<script>` tags behave as `async`. In other words, they run as they load, independantly.
 
-But we can change that. If we set `script.async = false`, then such scripts are run in the load of insertion.
+But we can adjust that. If we set `script.async = false`, then such scripts are run in the load of insertion. That's a way to keep the relative order for dynamically added tags.
 
-The code example:
+For example:
 ```js
 function addScript(src){
   let script = document.createElement('script');
@@ -246,6 +246,6 @@ addScript('2.js'); // but execute in the order of insertion
 addScript('3.js'); // that is: 1 -> 2 -> 3
 ```
 
-We'll cover page dynamic tags and page manipulation in detail later, in the second part of the tutorial.
+We'll surely cover dynamic tags and page manipulation in detail later, in the second part of the tutorial.
 ````
 
