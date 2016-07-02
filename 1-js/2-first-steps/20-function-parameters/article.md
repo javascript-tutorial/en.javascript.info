@@ -237,304 +237,50 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
 ## The spread operator
 
-// TODO!!!
+As we've seen before, the rest operator `...` allows to gather parameters in the array.
 
-Выше мы увидели использование `...` для чтения параметров в объявлении функции. Но этот же оператор можно использовать и при вызове функции, для передачи массива параметров как списка, например:
+But there's a reverse named "the spread operator". It also looks like `...` and works at call-time.
 
-```js run
-'use strict';
-
-let numbers = [2, 3, 15];
-
-// Оператор ... в вызове передаст массив как список аргументов
-// Этот вызов аналогичен Math.max(2, 3, 15)
-let max = Math.max(*!*...numbers*/!*);
-
-alert( max ); // 15
-```
-
-Формально говоря, эти два вызова делают одно и то же:
-
-```js
-Math.max(...numbers);
-Math.max.apply(Math, numbers);
-```
-
-Похоже, что первый -- короче и красивее.
-
-## Деструктуризация в параметрах
-
-
-## Имя "name"
-
-В свойстве `name` у функции находится её имя.
-
-Например:
+The spread operator allows to "unfurl" an array into a list of parameters, like this:
 
 ```js run
-'use strict';
+let fullName = ["Gaius", "Julius", "Caesar"];
 
-function f() {} // f.name == "f"
-
-let g = function g() {}; // g.name == "g"
-
-alert(f.name + ' ' + g.name) // f g
-```
-
-В примере выше показаны Function Declaration и Named Function Expression. В синтаксисе выше довольно очевидно, что у этих функций есть имя `name`. В конце концов, оно указано в объявлении.
-
-Но современный JavaScript идёт дальше, он старается даже анонимным функциям дать разумные имена.
-
-Например, при создании анонимной функции с одновременной записью в переменную или свойство -- её имя равно названию переменной (или свойства).
-
-Например:
-
-```js
-'use strict';
-
-// свойство g.name = "g"
-let g = function() {};
-
-let user = {
-  // свойство user.sayHi.name == "sayHi"
-  sayHi: function() {}
-};
-```
-
-## Функции в блоке
-
-Объявление функции Function Declaration, сделанное в блоке, видно только в этом блоке.
-
-Например:
-
-```js run
-'use strict';
-
-if (true) {
-
-  sayHi(); // работает
-
-  function sayHi() {
-    alert("Привет!");
-  }
-
-}
-sayHi(); // ошибка, функции не существует
-```
-
-То есть, иными словами, такое объявление -- ведёт себя в точности как если бы `let sayHi = function() {…}` было сделано в начале блока.
-
-## Функции через =>
-
-Появился новый синтаксис для задания функций через "стрелку" `=>`.
-
-Его простейший вариант выглядит так:
-```js run
-'use strict';
-
-*!*
-let inc = x => x+1;
-*/!*
-
-alert( inc(1) ); // 2
-```
-
-Эти две записи -- примерно аналогичны:
-
-```js
-let inc = x => x+1;
-
-let inc = function(x) { return x + 1; };
-```
-
-Как видно, `"x => x+1"` -- это уже готовая функция. Слева от `=>` находится аргумент, а справа -- выражение, которое нужно вернуть.
-
-Если аргументов несколько, то нужно обернуть их в скобки, вот так:
-
-```js run
-'use strict';
-
-*!*
-let sum = (a,b) => a + b;
-*/!*
-
-// аналог с function
-// let inc = function(a, b) { return a + b; };
-
-alert( sum(1, 2) ); // 3
-```
-
-Если нужно задать функцию без аргументов, то также используются скобки, в этом случае -- пустые:
-
-```js run
-'use strict';
-
-*!*
-// вызов getTime() будет возвращать текущее время
-let getTime = () => new Date().getHours() + ':' + new Date().getMinutes();
-*/!*
-
-alert( getTime() ); // текущее время
-```
-
-Когда тело функции достаточно большое, то можно его обернуть в фигурные скобки `{…}`:
-
-```js run
-'use strict';
-
-*!*
-let getTime = () => {
-  let date = new Date();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  return hourse + ':' + minutes;
-};
-*/!*
-
-alert( getTime() ); // текущее время
-```
-
-Заметим, что как только тело функции оборачивается в `{…}`, то её результат уже не возвращается автоматически. Такая функция должна делать явный `return`, как в примере выше, если конечно хочет что-либо возвратить.
-
-Функции-стрелки очень удобны в качестве коллбеков, например:
-
-```js run
-`use strict`;
-
-let arr = [5, 8, 3];
-
-*!*
-let sorted = arr.sort( (a,b) => a - b );
-*/!*
-
-alert(sorted); // 3, 5, 8
-```
-
-Такая запись -- коротка и понятна. Далее мы познакомимся с дополнительными преимуществами использования функций-стрелок для этой цели.
-
-## Функции-стрелки не имеют своего this
-
-Внутри функций-стрелок -- тот же `this`, что и снаружи.
-
-Это очень удобно в обработчиках событий и коллбэках, например:
-
-```js run
-'use strict';
-
-let group = {
-  title: "Наш курс",
-  students: ["Вася", "Петя", "Даша"],
-
-  showList: function() {
-*!*
-    this.students.forEach(
-      student => alert(this.title + ': ' + student)
-    )
-*/!*
-  }
+function showName(firstName, secondName, lastName) {
+  alert(firstName);
+  alert(secondName);
+  alert(lastName);
 }
 
-group.showList();
-// Наш курс: Вася
-// Наш курс: Петя
-// Наш курс: Даша
+// The spread operator ... passes an array as a list of arguments
+showName(...fullName);
 ```
 
-Здесь в `forEach` была использована функция-стрелка, поэтому `this.title` в коллбэке -- тот же, что и во внешней функции `showList`. То есть, в данном случае -- `group.title`.
 
-Если бы в `forEach` вместо функции-стрелки была обычная функция, то была бы ошибка:
+Let's see a more real-life example. 
+
+There exist a built-in function [Math.max](mdn:js/Math/max) that takes a list of values and returns the greatest one:
 
 ```js run
-'use strict';
-
-let group = {
-  title: "Наш курс",
-  students: ["Вася", "Петя", "Даша"],
-
-  showList: function() {
-*!*
-    this.students.forEach(function(student) {
-      alert(this.title + ': ' + student); // будет ошибка
-    })
-*/!*
-  }
-}
-
-group.showList();
+alert( Math.max(5, 7, -8, 1) ); // 7
 ```
 
-При запуске будет "попытка прочитать свойство `title` у `undefined`", так как `.forEach(f)` при запуске `f` не ставит `this`. То есть, `this` внутри `forEach` будет `undefined`.
+Imagine we have an array and want to select a maximum from it. Unfortunately, `Math.max` works with a list of parameters, not with arrays, so a direct call `Math.max(arr)` won't work. But we can use the spread operator `...` to pass the array as the list:
 
-```warn header="Функции стрелки нельзя запускать с `new`"
-Отсутствие у функции-стрелки "своего `this`" влечёт за собой естественное ограничение: такие функции нельзя использовать в качестве конструктора, то есть нельзя вызывать через `new`.
-```
-
-```smart header="=> это не то же самое, что `.bind(this)`"
-Есть тонкое различие между функцией стрелкой `=>` и обычной функцией, у которой вызван `.bind(this)`:
-
-- Вызовом `.bind(this)` мы передаём текущий `this`, привязывая его к функции.
-- При `=>` привязки не происходит, так как функция стрелка вообще не имеет контекста `this`. Поиск `this` в ней осуществляется так же, как и поиск обычной переменной, то есть, выше в замыкании. До появления стандарта ES-2015 такое было невозможно.
-```
-
-## Функции-стрелки не имеют своего arguments
-
-В качестве `arguments` используются аргументы внешней "обычной" функции.
-
-Например:
 
 ```js run
-'use strict';
+let arr = [5, 7, -8, 1];
 
-function f() {
-  let showArg = () => alert(arguments[0]);
-  showArg();
-}
-
-f(1); // 1
+alert( Math.max(...arr) ); // 7
 ```
 
-Вызов `showArg()` выведет `1`, получив его из аргументов функции `f`. Функция-стрелка здесь вызвана без параметров, но это не важно: `arguments` всегда берутся из внешней "обычной" функции.
+In short:
+- When `...` occurs in function parameters, it's called a "rest operator" and gathers parameters into the array.
+- When `...` occurs in a function call, it's called a "spread operator" and unfurls an array into the list.
 
-Сохранение внешнего `this` и `arguments` удобно использовать для форвардинга вызовов и создания декораторов.
+Together they help to travel between a list and an array of parameters with ease.
 
-Например, декоратор `defer(f, ms)` ниже получает функцию `f` и возвращает обёртку вокруг неё, откладывающую вызов на `ms` миллисекунд:
 
-```js run
-'use strict';
-
-*!*
-function defer(f, ms) {
-  return function() {
-    setTimeout(() => f.apply(this, arguments), ms)
-  }
-}
-*/!*
-
-function sayHi(who) {
-  alert('Привет, ' + who);
-}
-
-let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("Вася"); // Привет, Вася через 2 секунды
-```
-
-Аналогичная реализация без функции-стрелки выглядела бы так:
-
-```js
-function defer(f, ms) {
-  return function() {
-*!*
-    let args = arguments;
-    let ctx = this;
-*/!*
-    setTimeout(function() {
-      return f.apply(ctx, args);
-    }, ms);
-  }
-}
-```
-
-В этом коде пришлось создавать дополнительные переменные `args` и `ctx` для передачи внешних аргументов и контекста через замыкание.
 
 ## Итого
 
