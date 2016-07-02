@@ -233,6 +233,37 @@ Most of time, the dot is used to access object properties, but when we need a co
 
 Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
 
+## Arrays
+
+As we’ve just seen, objects in Javascript store arbitrary keyed values. 
+
+But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc. It not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t easily access the n-th element in an object. Also we can’t insert a new property “before” the existing ones, and so on. Objects are just not meant for such use.
+
+There exists a special data structure named "an array", to store ordered collections. 
+
+An array is created using square brackets:
+
+```js
+let empty = []; // empty array
+
+let fruits = ["Apple", "Orange", "Plum"]; // array with 3 values
+```
+
+Individual items are accessed using brackets `[]`, the first item has zero index:
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"]; // array with 3 values
+
+alert( fruits[0] ); // Apple
+alert( fruits[1] ); // Orange
+alert( fruits[2] ); // Plum
+
+// how many elements (last index + 1)
+alert( fruits.length ); // 3
+```
+
+Please note that arrays do not form a separate language type. They are based on objects, but have many features of their own including methods to add, remove, extract elements from the array, to sort arrays and more. We'll cover them in the chapter <info:array>.
+
 ## Symbol type
 
 The `symbol` type is used in conjunction with objects. Probably we won't need them any time soon, but it's the 7th and the last type of the language, so we must mention it here for the sake of completeness.
@@ -319,140 +350,24 @@ typeof Symbol("id") // "symbol"
 typeof {} // "object"
 
 *!*
-typeof null // "object"  (1)
+typeof [] // "object"  (1)
 */!*
 
 *!*
-typeof alert // "function"  (2)
+typeof null // "object"  (2)
 */!*
-```
-
-Please note the last two lines, because `typeof` behaves a little bit strange there.
-
-1. The result of `typeof null` equals to `"object"`. That is an officially recognized error in `typeof` implementation, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So `typeof` just says it wrong here.
-2. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
-
-
-## Type conversions
-
-A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
-
-```js
-// no error
-let message = "hello";
-message = 123456;
-```
-
-...But sometimes we need to convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or, so to say, an `if(value)` test converts the `value` to  boolean type to see if it's `true` or `false`.
-
-There are also cases when we need to explicitly convert between types to ensure that we store the right data the right way or to use special features of a certain type.
-
-There are many type conversions in JavaScript, fully listed in [the specification](http://www.ecma-international.org/ecma-262/6.0/index.html#sec-type-conversion).
-
-Three conversions that happen the most often:
-
-1. String conversion.
-2. Numeric conversion.
-3. Boolean conversion.
-
-Let's see how they work and when they happen.
-
-### String conversion
-
-The string conversion happens when we need a string form of a value.
-
-For example, `alert` does it:
-
-```js run
-let a = true;
-
-alert( a ); // "true"
-```
-
-We can also use a call `String(value)` function for that:
-
-```js run
-let a = true;
-alert(typeof a); // boolean
 
 *!*
-a = String(a); // now: a = "true"
-alert(typeof a); // string
+typeof alert // "function"  (3)
 */!*
 ```
 
-The string conversion is obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
+Please note the last lines.
 
-### Numeric conversion
+1. The array is not a type of its own, but a subtype of object, that's why `typeof []` is `"object"`.
+2. The result of `typeof null` equals to `"object"`. That's wrong. It is an officially recognized error in `typeof` implementation, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. 
+3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
 
-Numeric conversion happens in mathematical functions and expressions automatically.
-
-For example, a mathematical operation like division '/' can be applied to non-numbers:
-
-```js run
-alert( "6" / "2" ); // 3, strings become numbers
-```
-
-We can use a `Number(value)` function to convert any `value` to a number:
-
-```js run
-let str = "123";
-alert(typeof str); // string
-
-let n = Number(str); // becomes a number 123
-
-alert(typeof n); // number 
-```
-
-The conversion is usually applied when we have a numeric value coming from a text form field or another string-based source.
-
-If the string is not a number, the result of such conversion is `NaN`, for instance:
-
-```js run
-let age = Number("an arbitrary string instead of a number");
-
-alert(age); // NaN, conversion failed
-```
-
-The numeric conversion rules:
-
-| Value |  Becomes... |
-|-------|-------------|
-|`undefined`|`NaN`|
-|`null`|`0`|
-|<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is `0`, otherwise –- the number is "read" from the string. An error gives `NaN`. |
-
-Examples:
-
-```js run
-alert( Number("   123   ") ); // 123
-alert( Number("123z") );      // NaN (error reading a number at "z")
-alert( Number(true) );        // 1
-alert( Number(false) );       // 0
-```
-
-Please note that `null` and `undefined` behave differently here: `null` becomes a zero, while `undefined` becomes `NaN`.
-
-### Boolean conversion
-
-Boolean conversion is the simplest one.
-
-It happens in logical operations (later we'll meet `if` tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
-
-The conversion rule:
-
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined` and `NaN` become `false`. 
-- Other values become `true`.
-
-````warn header="Please note: a string `\"0\"` is `true`"
-Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript a non-empty string is always `false`, no matter what is in it.
-
-```js run
-alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // any non-empty string, even whitespaces are true
-```
-````
 
 
 ## Summary
@@ -464,9 +379,8 @@ There are 7 basic types in JavaScript.
 - `boolean` for `true`/`false`, can convert into it using `Boolean(value)`.
 - `null` for unknown values.
 - `undefined` for unassigned values.
-- `object` for complex data structures.
 - `symbol` for unique identifiers.
+- `object` for more complex data structures (there exist many, we saw arrays).
 
-The `typeof` operator allows to see which type is stored in the variable, but note that it mistakingly returns `"object"` for `null`.
+The `typeof` operator allows to see which type is stored in the variable. 
 
-Now let's study operators and other language constructs that actually form our code.

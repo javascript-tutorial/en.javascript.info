@@ -139,7 +139,7 @@ for (*!*let*/!* i = 0; i < 3; i++) {
 The variable will be visible only inside the loop.
 ````
 
-## Skipping parts
+### Skipping parts
 
 Any part of the `for` can be skipped.
 
@@ -178,15 +178,9 @@ for (;;) {
 
 Please note that the semicolons `;` must present, otherwise it would be a syntax error.
 
-```smart header="`for..in` and `for..of`"
-There are special constructs: `for..in` and `for..of` for more advanced iterations over objects. 
-
-We'll get to them later, in chapters about objects.
-```
-
 ## Breaking the loop
 
-Normally the loop exists when the condition becomes falsy.
+Normally the loop exits when the condition becomes falsy.
 
 But we can force the exit at any moment. There's a special `break` directive for that.
 
@@ -211,7 +205,7 @@ alert( 'Sum: ' + sum );
 
 The `break` directive is activated in the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after it's loop. Namely, `alert`.
 
-The composition: "infinite loop + break as needed" is a great thing for situations when the condition must be checked not in beginning/end of the loop, but in the middle. Or even in several places of the body.
+The combination: "infinite loop + `break` as needed" is great for situations when the condition must be checked not in beginning/end of the loop, but in the middle. Or even in several places of the body.
 
 ## Continue to the next iteration [#continue]
 
@@ -246,7 +240,7 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-From the technical point of view it's identical. Surely, we can just wrap the code in the `if` block instead of `continue`.
+From the technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
 But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
@@ -254,7 +248,7 @@ But as a side-effect we got one more figure brackets nesting level. If the code 
 ````warn header="No `break/continue` to the right side of '?'"
 Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
 
-For example, if one we took this code:
+For example, if one we take this code:
 
 ```js
 if (i > 5) {
@@ -264,14 +258,14 @@ if (i > 5) {
 }
 ```
 
-...And rewrote it using a question mark:
+...And rewrite it using a question mark:
 
 
 ```js no-beautify
 (i > 5) ? alert(i) : *!*continue*/!*; // continue not allowed here
 ```
 
-...Then it won't work. The code like this will give a syntax error:
+...Then it stops working. The code like this will give a syntax error:
 
 
 That's just another reason not to use a question mark operator `'?'` instead of `if`.
@@ -290,7 +284,7 @@ for (let i = 0; i < 3; i++) {
 
     let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // what if I want to exit from here?
+    // what if I want to exit from here to Done (below)?
 
   }
 }
@@ -355,15 +349,97 @@ label: for(...)
 The call to a `break/continue` is only possible from inside the loop, and the label must be somewhere upwards from the directive.
 ````
 
+## The "for..in" loop
+
+To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we've studied before. 
+
+The syntax:
+
+```js
+for(key in object) {
+  // executes the body for each key among object properties
+}
+```
+
+For instance, let's output all properties of `user`:
+
+```js run
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
+
+for(let key in user) {
+  // keys
+  alert( key );  // name, age, 30
+  // values for the keys
+  alert( user[key] ); // John, 30, true
+}
+```
+
+Note that all "for" constructs allow to declare the looping variable inside the loop, like `let key` here. The name "key" for the variable is not mandatory, we could use any variable name here, usually "key" or "prop" names are used for such iterations.
+
+
+## The "for..of" loop
+
+And the third (the last one) kind of the `for` loop. Again it has a totally different meaning from what we've seen before.
+
+This form iterates over arrays.
+
+Actually, we can do it with the `for(;;)` loop:
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over all elements:
+//   i is the number of the current element
+//   fruits[i] is the value of the current element
+for(let i = 0; i < fruits.length; i++) {
+  alert( fruits[i] ); // Apple, then Orange, then Plum
+}
+```
+
+The "generic" `for(;;)` loop works well even in most outdated browsers.
+
+The `for..of` syntax is shorter:
+
+```js run
+let fruits = ["Apple", "Orange", "Plum"];
+
+// iterates over all elements:
+//    fruit is the value of the current element
+for(let fruit of fruits) {
+  alert( fruit ); 
+}
+```
+
+The `for..of` doesn't give access to the number of the current element, just its value, but in most cases that's enough.
+
+````smart header="Iterables"
+Later we'll learn the concept of *iterable* objects in Javascript. An iterable object must implement special functionality that allows to use `for..of` on it.
+
+There are many iterable objects. For instance, a string is iterable, `for..of` will list characters in the example:
+
+```js run
+for(let char of "test") {
+  alert( char ); t, then e, then s, then t
+}
+```
+````
+
+
 ## Summary
 
-There are 3 types of loops in JavaScript:
+There are 5 types of loops in JavaScript:
 
 - `while` -- the condition is checked before each iteration.
 - `do..while` -- the condition is checked after each iteration.
-- `for` -- the condition is checked before each iteration, additional settings available.
+- `for(;;)` -- the condition is checked before each iteration, additional settings available.
+- `for(key in obj)` -- to iterate over object properties.
+- `for(item of array)` -- to iterate over array items.
 
-To make in "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
+To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
 If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
 

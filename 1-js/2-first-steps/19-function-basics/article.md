@@ -176,61 +176,6 @@ showMessage(from, "Hello"); // *Ann*: Hello
 alert( from ); // Ann
 ```
 
-### Default values
-
-A function can be called with any number of arguments. If a parameter is not provided, but listed in the declaration, then its value becomes `undefined`.
-
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
-
-```js
-showMessage("Ann");
-```
-
-That's not an error. Such call would output `"Ann: undefined"`, because `text === undefined`.
-
-If we want to track when the function is called with a single argument and use a "default" value in this case, then we can check if `text` is defined, like here:
-
-```js run
-function showMessage(from, text) {
-*!*
-  if (text === undefined) {
-    text = 'no text given';
-  }
-*/!*
-
-  alert( from + ": " + text );
-}
-
-showMessage("Ann", "Hello!"); // Ann: Hello!
-*!*
-showMessage("Ann"); // Ann: no text given
-*/!*
-```
-
-There are also other ways to supply "default values" for missing arguments:
-
-- Use operator `||`:
-
-    ```js
-    function showMessage(from, text) {
-      text = text || 'no text given';
-      ...
-    }
-    ```
-
-    This way is shorter, but the argument is considered missing also if it's falsy, like an empty line, `0` or `null`.
-- ES-2015 introduced a neater syntax for default values:
-
-    ```js run
-    function showMessage(from, *!*text = 'no text given'*/!*) {
-      alert( from + ": " + text );
-    }
-
-    showMessage("Ann"); // Ann: no text given
-    ```
-
-    Here `'no text given'` is a string, but it can be any other value or expression, which is only evaluated and assigned if the parameter is missing.
-
 ## Returning a value
 
 A function can return a value back into the calling code as the result.

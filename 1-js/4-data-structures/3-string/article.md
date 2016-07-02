@@ -49,6 +49,30 @@ let guestList = "Guests:  // Error: Unexpected token ILLEGAL
 
 Single and double quotes come from ancient times of language creation, and the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
+Backticks also allow to specify a "template function" at the beginning. 
+
+Its name is put before the first backtick. Then it receives the string and embedded expressions can can process them.
+
+The syntax is: 
+```js run
+function love(string, value1, value2) {
+    alert( string[0] ); // Hello 
+    alert( string[1] ); //  and 
+    alert( value1 ); // Ilya
+    alert( value2 ); // Julia
+    return value1 + ' ♥ ' + value2;
+}
+
+let mom = "Julia";
+let dad = "Ilya";
+
+let str = love`Hello ${mom} and ${dad}`;
+
+alert(str); // 'Julia ♥ Ilya'
+```
+
+In the example above, `love` is the name for the function. It is called with an array 
+
 ## Special characters
 
 It is still possible to create multiline strings with single quotes, using a so-called "newline character" written as `\n`, that denotes a line break:
