@@ -49,29 +49,8 @@ let guestList = "Guests:  // Error: Unexpected token ILLEGAL
 
 Single and double quotes come from ancient times of language creation, and the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
-Backticks also allow to specify a "template function" at the beginning. 
+Backticks also allow to specify a "template function" before the first backtick, the syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more in the [docs](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals). That is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but is rarely used.
 
-Its name is put before the first backtick. Then it receives the string and embedded expressions can can process them.
-
-The syntax is: 
-```js run
-function love(string, value1, value2) {
-    alert( string[0] ); // Hello 
-    alert( string[1] ); //  and 
-    alert( value1 ); // Ilya
-    alert( value2 ); // Julia
-    return value1 + ' ♥ ' + value2;
-}
-
-let mom = "Julia";
-let dad = "Ilya";
-
-let str = love`Hello ${mom} and ${dad}`;
-
-alert(str); // 'Julia ♥ Ilya'
-```
-
-In the example above, `love` is the name for the function. It is called with an array 
 
 ## Special characters
 
@@ -554,7 +533,7 @@ For instance:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-The method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), that allow to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `a` and `á` be treated as the same etc. 
+The method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), that allow to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc. 
 
 ## Internal encoding
 

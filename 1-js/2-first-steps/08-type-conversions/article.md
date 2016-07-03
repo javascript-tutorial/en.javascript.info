@@ -48,6 +48,23 @@ alert(typeof a); // string
 
 The string conversion is obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
 
+For objects it's a little bit trickier. By default, regular objects are converted like this:
+
+```js run
+alert( {} ); [object Object]
+```
+
+Although, some object subtypes have their own way of formatting, for instance, arrays turn into the comma-delimited list of items:
+
+```js run
+let arr = [1,2,3];
+
+alert( arr ); // 1,2,3
+alert( String(arr) === '1,2,3' ); // true
+```
+
+Later we'll see how to create custom rules for string conversions for our objects.
+
 ## Numeric conversion
 
 Numeric conversion happens in mathematical functions and expressions automatically.
@@ -123,7 +140,7 @@ alert( Boolean(" ") ); // any non-empty string, even whitespaces are true
 
 There exist three most widely used type conversions: to string, to number and to boolean.
 
-The conversion to string is usully obvious.
+The conversion to string is usully obvious for primitive values and depends on the object type for objects. For instance, arrays turn into a comma-delimited list of elements. 
 
 To number follows the rules:
 

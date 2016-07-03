@@ -5,7 +5,7 @@ Objects in JavaScript combine two functionalities.
 1. First -- they are "associative arrays": a structure for storing keyed data. 
 2. Second -- they provide features for object-oriented programming. 
 
-Here we concentrate on the first part: using objects as a data store. That's the required base for studying the second part.
+Here we concentrate on the first part: using objects as a data store, and we will study it in-depth. That's the required base for studying the second part.
 
 An [associative array](https://en.wikipedia.org/wiki/Associative_array), also called "a hash" or "a dictionary" -- is a data structure for storing arbitrary data in the key-value format.
 
@@ -15,9 +15,10 @@ We can imagine it as a cabinet with signed files. Every piece of data is stored 
 
 ![](object.png)
 
-## Creation
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+## Object literals
+
+An empty object ("empty cabinet") can be created using one of to syntaxes:
 
 ```js
 let user = new Object(); // works the same as below
@@ -34,51 +35,11 @@ We can set properties immediately:
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true
+  "likes birds": true  // multiword property name must be quoted
 }; 
 ```
 
 ![](object-user-props.png)
-
-A property name can be only a string (or a symbol, but we do not consider them here). We can try using boolean/numeric names, but they will be treated as strings automatically. Note that "complex" property names, like multiword ones, need to be quoted, to evade syntax errors. 
-
-
-````smart header="Any word or a number can be a property"
-If something can be a variable name, then it can be used as a property name without quotes. 
-
-But for variables, there are additional limitations:
-
-- A variable cannot start with a number.
-- Language-reserved words like `let`, `return`, `function` etc are disallowed. 
-
-These are lifted from literal objects. See:
-
-```js run
-let example = {
-  let: 1,      // reserved words can be properties
-  return: 2,   // they even don't need quotes!
-  function: 3
-};
-
-// working fine:
-alert(example.let + example.return + example.function); // 6
-```
-
-So, actually, any number or a valid variable name (even reserved) can be a property and needs no quotes. Quotes allow to use arbitrary strings.
-````
-
-
-## Add/remove properties
-
-Now we can read/write new properties using the dot notation and remove using the `delete` operator:
-
-```js 
-user.surname = "Smith";
-
-delete user.age;
-```
-
-## Square brackets
 
 To access a property, there are two syntaxes:
 
@@ -104,7 +65,9 @@ alert( user[key] ); // John (if enter "name"), 30 for the "age"
 
 The square brackets literally say: "take the property name from the variable".
 
-Also it is possible to use square brackets in object definition when the property name is stored in a variable or computed:
+Also it is handy to use square brackets in an object literal, when the property name is stored in a variable.
+
+That's called a *computed property*:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
@@ -124,19 +87,68 @@ let bag = {};
 bag[fruit] = 5; 
 ```
 
-...But one statement instead of two.
-
 We could have used a more complex expression inside square brackets or a quoted string. Anything that would return a property name:
 
 ```js
+let fruit = 'apple';
 let bag = {
-  [ fruit.toLowerCase() ]: 5 // if fruit is "APPLE" then bag.apple = 5
+  [ fruit.toUpperCase() ]: 5 // bag.APPLE = 5
 };
 ```
 
-## Check for existance
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It's actually a common way to test whether the property exists -- to get it and compare vs undefined:
+````smart header="Property name must be either a string or a symbol"
+We can only use strings or symbols as property names.
+
+Other values are converted to strings, for instance:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+}
+
+alert( obj["0"] ); // test
+```
+
+````
+
+````smart header="Reserved words are allowed as property names"
+A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restruction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+}
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+Basically, any name is allowed. With one exclusion. There's a built-in property named `__proto__` with a special functionality (we'll cover it later), which can't be set to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5;
+alert(obj.__proto__); // [object Object], didn't work as intended
+```
+
+If we want to store *arbitrary* (user-provided) keys, then this can be a source of bugs. There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in a few chapters, it can support arbitrary keys.
+````
+
+## Removing a property
+
+There's a `delete` operator for that:
+
+```js
+delete user.name;
+```
+
+## Existance check
+
+A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
 ```js run
 let user = {};
@@ -171,8 +183,10 @@ let key = "age";
 alert( key in user ); // true, takes the value of key and checks for such property
 ```
 
-The `in` operator works in the certain case when the previous method doesn't. That is: when an object property stores `undefined`. 
+````smart header="The property which equals `undefined`"
+Thee is a case when `"=== undefined"` check fails, but the `"in"` operator works correctly.
 
+It's when an object property stores `undefined`:
 
 ```js run
 let obj = { test: undefined };
@@ -180,155 +194,135 @@ let obj = { test: undefined };
 alert( obj.test ); // undefined, no such property?
 
 alert( "test" in obj ); // true, the property does exist!
-alert( "no-such-property" in obj ); // false, no such property (just for the contrast)
 ```
 
-In the code above, the property `obj.test` stores `undefined`, so the first check fails. But the `in` operator puts things right.
+In the code above, the property `obj.test` stores `undefined`, so the first check fails. 
+But the `in` operator puts things right.
 
 Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for unknown values. So the `in` operator is an exotic guest in the code.
-
-
-## The "for..in" loop [#for..in]
-
-To process every object property, there's a special loop: `for..in`.
-
-This syntax construct is a little bit different from the `for(;;)` that we've covered before:
-
-```js
-for (key in obj) {
-  /* ... do something with obj[key] ... */
-}
-```
-
-The loop iterates over properties of `obj`. For each property it's name is writen in the `key` variable and the loop body is called.
-
-````smart header="Inline variable declaration: `for (let key in obj)`"
-A variable for property names can be declared right in the loop:
-
-```js
-for (*!*let key*/!* in menu) {
-  // ...
-}
-```
-
-The variable `key` will be only visible inside the loop body. Also we could use another variable name, like: `for(let prop in menu)`.
 ````
 
-An example of the iteration:
+## Property shorthands
 
-```js run
-let menu = {
-  width: 300,
-  height: 200,
-  title: "Menu"
-};
+There are two more syntax features to write a shorter code.
 
-for (let key in menu) {
-  // the code will be called for each menu property
-  // ...and show its name and value
+Property value shorthands
+: To create a property from a variable:
 
-*!*
-  alert( `Key:${key}, value:${menu[key]}` );
-*/!*
+  ```js 
+  let name = "John";
+
+  // same as { name: name }
+  let user = { name }; 
+  ```
+
+  If we have a variable and want to add a same-named property, that's the way to write it shorter.
+
+  ```js
+  // can combine normal properties and shorthands
+  let user = { name, age: 30 };
+  ```
+
+Methods definitions
+: For properties that are functions, there's also a shorter syntax.
+
+  ```js 
+  // these two objects are equal
+
+  let user = {
+    sayHi: function() {
+      alert("Hello");
+    }
+  }; 
+
+  let user = {
+    sayHi() { // same as "sayHi: function()"
+      alert("Hello");
+    }
+  }; 
+  ```
+
+  To say the truth, these notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter.
+
+## Loops
+
+We've already seen one of the most popular loops: `for..in`
+
+```js
+for(let key in obj) {
+  // key iterates over object keys
 }
 ```
 
-Note that we're using the square brackets: `menu[key]`. As we've seen before, if the property name is stored in a variable, then we must use square brackets, not the dot notation.
+But there are also ways to get keys, values or or key/value pairs as arrays:
 
-### Counting properties
+- [Object.keys(obj)](mdn:js/Object/keys) -- returns the array of keys.
+- [Object.values(obj)](mdn:js/Object/values) -- returns the array of values.
+- [Object.entries(obj)](mdn:js/Object/entries) -- returns the array of `[key, value]` pairs.
 
-How to see how many properties are stored in the object? There's no method for that.
+For instance:
 
-Although, we can count:
-
-```js run
-let menu = {
-  width: 300,
-  height: 200,
-  title: "Menu"
-};
-
-*!*
-let counter = 0;
-
-for (let key in menu) {
-  counter++;
-}
-*/!*
-
-alert( `Total ${counter} properties` ); // Total 3 properties
-```
-
-In the next chapter we'll study arrays and see that there's a shorter way: `Object.keys(menu).length`.
-
-### Are objects ordered?
-
-As an example, let's consider an object with the phone codes:
-
-```js run
-let codes = {
-  "49": "Germany",
-  "41": "Switzerland",
-  "44": "Great Britain",
-  // ..,
-  "1": "USA"
-};
-
-for(let code in codes) alert(code); // 1, 41, 44, 49
-```
-
-The object is used to generate HTML `<select>` list. If we're making a site mainly for German audience then we probably want `49` to be the first.
-
-But if we try to loop over the object, we see a totally different picture: USA (1) goes first, then Switzerland (41) and so on.
-
-That's because according to the language stantard objects have no order. The loop is officially allowed to list properties randomly.
-
-But in practice, there's a de-facto agreement among modern JavaScript engines.
-
-- The numeric properties are sorted.
-- Non-numeric properties are ordered as they appear in the object.
-
-That agreement is not enforced by a standard, but stands strong, because a lot of JavaScript code is already based on it. 
-
-Now it's easy to see that the properties were iterated in the ascending order, because they are numeric... Of course, object property names are strings, but the Javascript engine detects that it's a number and applies internal optimizations to it, including sorting. That's why we see `1, 41, 44, 49`.
-
-On the other hand, if the keys are non-numeric, then they are listed as they appear, for instance:
-
-```js run
+```js 
 let user = {
   name: "John",
-  surname: "Smith"
+  age: 30
 };
-user.age = 25; // add one more
+```
 
-*!*
-// as they appear in the object
-*/!*
-for (let prop in user) {
-  alert( prop ); // name, surname, age
+- `Object.keys(user) = [name, age]`
+- `Object.values(user) = ["John", 30]`
+- `Object.entries(user) = [ ["name","John"], ["age",30] ]`
+
+
+We can use `Object.values` to iterate over object values:
+
+```js
+for(let value of Object.values(obj)) {
+  // value iterates over object values
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-numeric. Adding a plus `"+"` sign before each code is enough.
+Here `Object.values(obj)` returns the array of properties, and `for..of` iterates over the array.
 
-Like this:
+Also we can combine destructuring with `Object.entries` to iterate over key/value pairs:
+
+```js
+for(let [key, value] of Object.entries(obj)) {
+  // key,value iterate over properties
+}
+```
+
+The example of all 3 loops:
 
 ```js run
-let codes = {
-  "+49": "Germany",
-  "+41": "Switzerland",
-  "+44": "Great Britain",
-  // ..,
-  "+1": "USA"
+let user = { 
+  name: "John", 
+  age: 30 
 };
 
-for(let code in codes) {
-  // explicitly convert each code to a number if required
-  alert( +code ); // 49, 41, 44, 1
+// over keys
+for(let key in user) {
+  alert(key); // name, then age
+  // can get the values with user[key]
+}
+
+// over values
+for(let value of Object.values(user)) {
+  alert(value); // John, then 30
+}
+
+// over key/value pairs
+for(let [key, value] of Object.entries(user)) {
+  alert(key + ':' + value); // name:John, then age:30
 }
 ```
 
-Now it works as intended. 
+
+```smart header="The loops ignore symbolic properties"
+All 3 forms of loops (and the given `Object` methods) ignore properties that use `Symbol(...)` as keys. 
+
+That's actually a wise thing, because symbols are created to make sure that the property can not be accessed accidentaly. There is a separate method named [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys (if we really know what we're doing and insist on that).
+```
 
 
 ## Copying by reference
@@ -398,7 +392,7 @@ alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 
 Quite obvious, if we used one of the keys (`admin`) and changed something inside the cabinet, then if we use another key later (`user`), we find things modified.
 
-### Cloning objects
+## Cloning objects
 
 What if we need to duplicate an object? Create an independant copy, a clone?
 
@@ -503,23 +497,106 @@ To fix that, we should examine the value of `user[key]` in the cloning loop and 
 There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation from the Javascript library [lodash](https://lodash.com). The method is [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
+## Ordering
+
+Are objects ordered? If we loop over an object, do we get all properties in the same order that they are in the `{...}` definition?
+
+The answer is "yes" for non-numeric properties, "no" for others.
+
+As an example, let's consider an object with the phone codes:
+
+```js run
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+
+*!*
+for(let code in codes) alert(code); // 1, 41, 44, 49
+*/!*
+```
+
+The object is used to generate HTML `<select>` list. If we're making a site mainly for German audience then we probably want `49` to be the first.
+
+But if we try to loop over the object, we see a totally different picture: 
+
+- USA (1) goes first
+- then Switzerland (41) and so on.
+
+That's because according to the language stantard objects have no order. The loop is officially allowed to list properties randomly.
+
+But in practice, there's a de-facto agreement among modern JavaScript engines.
+
+- The numeric properties are sorted.
+- Non-numeric properties are ordered as they appear in the object.
+
+That agreement is not enforced by a standard, but stands strong, because a lot of JavaScript code is already based on it. 
+
+Now it's easy to see that the properties were iterated in the ascending order, because they are numeric... Of course, object property names are strings, but the Javascript engine detects that it's a number and applies internal optimizations to it, including sorting. That's why we see `1, 41, 44, 49`.
+
+On the other hand, if the keys are non-numeric, then they are listed as they appear, for instance:
+
+```js run
+let user = {
+  name: "John",
+  surname: "Smith"
+};
+user.age = 25; // add one more
+
+*!*
+// as they appear in the object
+*/!*
+for (let prop in user) {
+  alert( prop ); // name, surname, age
+}
+```
+
+So, to fix the issue with the phone codes, we can "cheat" by making the codes non-numeric. Adding a plus `"+"` sign before each code is enough.
+
+Like this:
+
+```js run
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+
+for(let code in codes) {
+  // explicitly convert each code to a number if required
+  alert( +code ); // 49, 41, 44, 1
+}
+```
+
+Now it works as intended. 
+
+
+
 ## Summary
 
 Objects are associative arrays with several special features.
 
-- Property names are always strings.
-- Values can be of any type
+- Property keys are either strings or symbols.
+- Values can be of any type.
 
 Property access:
 
 - Read/write uses the dot notation: `obj.property` or square brackets `obj["property"]/obj[varWithKey]`.
 - The deletion is made via the `delete` operator.
 - Existance check is made by the comparison vs `undefined` or via the `in` operator.
-- Loop over all properties with the `for..in` loop.
+- Three forms of looping:
+  - `for(key in obj)` for the keys.
+  - `for(value of Object.values(obj))` for the values.
+  - `for([key,value] of Object.entries(obj))` for both.
 
-Numeric properties are sorted, otherwise they are iterated in the declaration order. To keep the order for numeric properties, we can prepend them with `+` to make them seem non-numeric.
-
-Copying:
+- Ordering:
+  - Non-numeric properties keep the order.
+  - Numeric properties are sorted. To keep the order for numeric properties, we can prepend them with `+` to make them look like non-numeric.
 
 - Objects are assigned and copied by reference. 
 

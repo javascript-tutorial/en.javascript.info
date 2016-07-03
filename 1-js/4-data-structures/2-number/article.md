@@ -267,6 +267,16 @@ The reason is the same: loss of precision. There are 64 bits for the number, 52 
 JavaScript doesn't trigger an error in such case. It does the best to fit the number into the format. Unfortunately, the format is not big enough.
 ````
 
+```smart header="Two zeroes"
+Another funny consequence of the internal representation is there are actually two zeroes: `0` and `-0`.
+
+That's because a sign is represented by a single bit, so every number can be positive or negative, including the zero. 
+
+In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
+```
+
+
+
 ## Tests: isFinite and isNaN
 
 Remember the two special numeric values?
@@ -309,6 +319,17 @@ alert( isFinite(num) );
 ```
 
 Please note that an empty or a space-only string is treated as `0` in all numeric functions. If it's not what's needed, then additional checks are required. 
+
+```smart header="Compare with `Object.is`"
+
+There is a special built-in method [Object.is](mdn:js/Object/is) to compare values in "even stricter way" than `===`. 
+
+The call `Object.is(value1, value2)` returns the same result as `value1 === value2` with two exceptions:
+
+1. It can compare with `NaN`, e.g. `Object.is(NaN, NaN) === true`.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`.
+```
+
 
 ## parseInt and parseFloat
 

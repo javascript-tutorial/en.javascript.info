@@ -135,12 +135,12 @@ showName("Julius", "Caesar");
 showName("Ilya"); 
 ```
 
-The downside is that `arguments` looks like an array, but it's not. It does not support many useful array features. It only exists for backwards compatibility. The rest operator is better.
+The downside is that `arguments` looks like an array, but it's not. It does not support many useful array features. It mainly exists for backwards compatibility, usually the rest operator is better.
 ````
 
-## Destructuring in parameters
+## Destructuring parameters
 
-There are times when a function may have many parameters. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+There are times when a function may have many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
 
 Here's a bad way to write such function:
 
@@ -158,7 +158,7 @@ Like this?
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
-That's ugly. And becomes unreadable if we have not 4 but 10 parameters.
+That's ugly. And becomes unreadable if we deal with more parameters.
 
 Destructuring comes to the rescue!
 
@@ -221,7 +221,7 @@ showMenu({});
 showMenu();
 ```
 
-We can fix this of course, by making an empty object a value by default for the whole destructuring thing:
+We can fix this of course, by making `{}` a value by default for the whole destructuring thing:
 
 
 ```js run
@@ -281,8 +281,7 @@ In short:
 Together they help to travel between a list and an array of parameters with ease.
 
 
-
-## Итого
+## Summary TODO
 
 Основные улучшения в функциях:
 

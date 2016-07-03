@@ -378,7 +378,7 @@ for(let key in user) {
 }
 ```
 
-Note that all "for" constructs allow to declare the looping variable inside the loop, like `let key` here. The name "key" for the variable is not mandatory, we could use any variable name here, usually "key" or "prop" names are used for such iterations.
+Note that all "for" constructs allow to declare the looping variable inside the loop, like `key` here. We could use another variable name here instead of `key`, for instance, "prop" is also widely used for iterations.
 
 
 ## The "for..of" loop
@@ -444,4 +444,6 @@ To make an "infinite" loop, usually the `while(true)` construct is used. Such a 
 If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
 
 `Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
+
+To get an array of object property names, there is a method `Object.keys(obj)`.
 

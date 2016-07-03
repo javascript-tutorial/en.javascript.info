@@ -39,7 +39,7 @@ Besides regular numbers there are so-called "special numeric values" which also 
     `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
 
     ```js run
-    alert( "not a number" * 2 + 5 - 9 ); // still NaN
+    alert( "not a number" * 2 + 5 - 9 ); // NaN
     ```
 
     So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
@@ -66,7 +66,7 @@ In JavaScript, there are 3 types of quotes.
 
 1. Double quotes: `"Hello"`.
 2. Single quotes: `'Hello'`.
-3. Backtricks: <code>&#96;Hello&#96;</code>.
+3. Backticks: <code>&#96;Hello&#96;</code>.
 
 Double and single quotes are similar, "simple" quotes.
 
@@ -178,7 +178,7 @@ let user = {
 };
 ```
 
-The `user` object can be imagined as an information shelf with two items labelled "name" and "age". 
+The `user` object can be imagined as a cabinet with two signed files labelled "name" and "age". 
 
 ![user object](object-user.png)
 

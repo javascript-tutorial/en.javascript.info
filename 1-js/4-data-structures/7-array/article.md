@@ -1,12 +1,8 @@
-# Arrays basics
+# Arrays 
 
-As we've seen before, objects in Javascript store arbitrary keyed values. Any string can be a key.
+Arrays is the built-in subtype of objects, suited to store ordered collections.
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc.
-
-It's difficult to use an object here, because it provides no methods to manage the order of elements. We can't easily access the n-th element. Also we can't insert a new property "before" the existing ones, and so on. It's just not meant for such use.
-
-For this purpose, there is a special type of objects in JavaScript, named "an array". 
+In this chapter we'll study them in-detail and learn the methods to manipulate them.
 
 [cut]
 
@@ -91,7 +87,9 @@ A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of mo
 
 In practice we meet it very often. For example, a queue of messages that need to be shown on-screen.
 
-There's another closely related data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). It supports two operations:
+There's another closely related data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). 
+
+It supports two operations:
 
 - `push` adds an element to the end.
 - `pop` takes an element to the end.
@@ -102,9 +100,13 @@ A stack is usually illustrated as a pack of cards: new cards are added to the to
 
 ![](stack.png)
 
-Arrays in Javascript can work both as a queue and as a stack. They allow to add/remove elements both to/from the beginning or the end. In computer science such a data structure is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+Stacks are useful when we need to postpone a thing. Like, if we are busy doing something and get a new task to do, we can put (push) it onto the stack, and do so with all new tasks while we are busy. Later when we're done, we can take (pop) the latest task from the stack, and repeat it every time when we get freed. So, no task gets forgotten and the latest task is always the top to execute.
 
-**The methods that work with the end of the array:**
+Arrays in Javascript can work both as a queue and as a stack. They allow to add/remove elements both to/from the beginning or the end. 
+
+In computer science such data structure is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+
+**Methods that work with the end of the array:**
 
 `pop`
 : Extracts the last element of the array and returns it:
@@ -130,7 +132,7 @@ Arrays in Javascript can work both as a queue and as a stack. They allow to add/
 
     The call `fruits.push(...)` is equal to `fruits[fruits.length] = ...`.
 
-**The methods that work with the beginning of the array:**
+**Methods that work with the beginning of the array:**
 
 `shift`
 : Extracts the first element of the array and returns it:
@@ -168,28 +170,31 @@ alert( fruits );
 
 ## Internals
 
-An array is a special kind of object. Numbers are used as keys. And there are special methods and optimizations to work with ordered collections of data, but at the core it's still an object.
+An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. Numbers are used as keys. 
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object. For instance, it is passed by reference:
+The "extras" are special methods to work with ordered collections of data and also the `length` property but at the core it's still an object.
+
+Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object. 
+
+For instance, it is passed by reference, and modifications are visible from everywhere:
 
 ```js run
 let fruits = ["Banana"]
 
-let arr = fruits;
+let copy = fruits;
 
-alert( arr === fruits ); // the same object
+alert( copy === fruits ); // the same object
  
-arr.push("Pear"); // modify it?
+copy.push("Pear"); // add to copy?
 
-alert( fruits ); // Banana, Pear
-alert( arr === fruits ); // still the same single object
+alert( fruits ); // Banana, Pear - no, we modified fruits (the same object)
 ```
 
-But what really makes arrays special is their internal representation. The engine tries to store it's elements in the contiguous memory area, one after another, just as painted on the illustrations in this chapter. There are other optimizations as well.
+But what really makes arrays special is their internal representation. The engine tries to store it's elements in the contiguous memory area, one after another, just as painted on the illustrations in this chapter. There are other optimizations as well, to make it work really fast.
 
-But things break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
+But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
-For instance, technically we can go like that:
+For instance, technically we can do like that:
 
 ```js
 let fruits = []; // make an array
@@ -199,19 +204,17 @@ fruits[99999] = 5; // assign a property with the index far greater than its leng
 fruits.age = 25; // create a property with an arbitrary name
 ```
 
-That's possible, because are objects at base. We can add any properties to them.
+That's possible, because arrays are objects at base. We can add any properties to them.
 
-But the engine will see that we're working with the array as with a regular object. Array-specific optimizations will be turned off, their benefits disappear.
+But the engine will see that we're working with the array as with a regular object. Array-specific optimizations are not suited for such cases and will be turned off, their benefits disappear.
 
 The ways to misuse an array:
 
 - Add a non-numeric property like `arr.test = 5`. 
-- Make holes, like add `arr[0]` and then `arr[1000]`.
-- Fill the array in reverse order, like `arr[1000]`, `arr[999]` and so on.
+- Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
+- Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
 
-Please think of arrays as about special structures to work with the *ordered data*. They provide special methods for that. And there's the `length` property for that too, which auto-increases and decreases when we add/remove the data.
-
-Arrays are specially suited and carefully tuned inside Javascript engines to work with ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
+Please think of arrays as about special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside Javascript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
 
 ## Performance
 
@@ -253,55 +256,27 @@ fruits.pop(); // take 1 element from the end
 
 The similar thing with the `push` method.
 
+## Loops
 
-## The for..of and other loops
-
-To process all elements, we can use the regular `for` loop:
+We've already seen two suitable variants of `for` loop:
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
 
 *!*
 for (let i = 0; i < arr.length; i++) {
+*/!*
   alert( arr[i] );
 }
-*/!*
-```
-
-That's the most optimized and fastest way to loop over the array.
-
-There's an alternative kind of loops: `for..of`. 
-
-The syntax:
-```js
-for(let item of arr) {
-  // item is an element of arr
-}
-```
-
-Reminds of `for..in`, right? But a totally different beast.
-
-The `for..of` loop works with *iterable* objects. An *iterable* is an object that has a special method named `object[Symbol.iterator]`. We don't need to go any deeper now, because this topic deserves a special chapter and it's going to get it.
-
-For now it's enough to know that arrays and many other data structures in modern browsers are iterable. That is, they have proper built-in methods to work with `for..of`.
-
-So we can loop over an array like this:
-
-```js run
-let arr = ["Apple", "Orange", "Pear"];
 
 *!*
-for (let fruit of arr) {
+for(let item of arr) {
 */!*
-  alert( fruit ); // Apple, Orange, Pear
+  alert( item );
 }
 ```
 
-Looks clean and nice, right?
-
-
-````warn header="Don't use `for..in` for arrays"
-Technically, because arrays are objects, we could use `for..in`:
+Technically, because arrays are objects, it is also possible to use `for..in`:
 
 ```js run
 let arr = ["Apple", "Orange", "Pear"];
@@ -319,15 +294,17 @@ But that's actually a bad idea. There are potential problems with it:
 
     In the browser as well as in other environments, there are many collections of elements that *look like arrays*. That is, they have `length` and indexes properties, but they have *other non-numeric properties too*, which we usually don't need. The `for..in` loop will list them. If we need to work with arrays and those array-like structures, then these "extra" properties can become a problem.
 
-2. The `for (let i=0; i<arr.length; i++)` loop in modern engines runs very fast, 10-100 times faster than `for..in`, because it is specially optimized for arrays.
-````
+2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower.
 
-So, as a generic recipe, please use:
-  - `for(let item of arr)` -- as a nice-looking variant, probably most of time,
-  - `for(let i=0; i<arr.length; i++)` -- as a fastest, old-browser-compatible version,
-  - `for(let i in arr)` -- never.
+So we should never use `for..in` for arrays.
 
+```smart header="Iterable objects"
+Javascript has a generic concept of *iterables* or, in other words, "array-like" objects. 
 
+An array-like object can have methods and properties of its own, but also implement special methods to be useable in `for..of` loop. We'll often meet such objects and meanwhile will learn to implement iterables by ourselves.
+
+TODO ??????????????????HERE ?????????????
+```
 
 
 ## A word about "length"
@@ -377,14 +354,11 @@ If `new Array` is called with a single argument which is a number, then it creat
 Let's see how one can shoot himself in the foot:
 
 ```js run
-let arr = new Array(2, 3);
-alert( arr[0] ); // 2, created an array of [2, 3], all fine
+let arr = new Array(2); // will it create an array of [2] ?
 
-*!*
-arr = new Array(2); // will it create an array of [2] ?
 alert( arr[0] ); // undefined! no elements.
+
 alert( arr.length ); // length 2
-*/!*
 ```
 
 In the code above, `new Array(number)` has all elements `undefined`.
@@ -406,37 +380,9 @@ alert( matrix[1][1] ); // the central element
 ```
 
 
-## Object.keys(obj)
-
-In the section about objects we talked about iterating over properties in a `for..in` loop.
-
-The method [Object.keys(obj)](mdn:js/Object/keys) returns an array of properties in exactly the same order as `for..in`. 
-
-It should be called exactly as given, not `obj.keys()`, but `Object.keys(obj)`.
-
-For instance:
-
-```js run
-let phoneCodeByCountry = {
-  44: "London",
-  7: "Russia",
-  1: "Usa"
-};
-
-let codes = Object.keys(phoneCodeByCountry);
-
-alert( codes ); // 1, 7, 44
-alert( typeof codes[0] ); // string
-```
-
-
-Note that object keys are always converted to strings, the last `typeof` highlights that.
-
-
-
 ## Summary
 
-An array is a special kind of objects, suited to store and manage ordered data items.
+Array is a special kind of objects, suited to store and manage ordered data items.
 
 - The declaration:
 
@@ -461,11 +407,8 @@ We can use an array as a deque with the following operations:
 - `unshift(...items)` adds items to the beginning.
 
 To loop over the elements of the array:
-  - `for(let item of arr)` -- looks nice,
+  - `for(let item of arr)` -- the modern syntax,
   - `for(let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
   - `for(let i in arr)` -- never use.
-
-To get an array of object properties:
-  - `Object.keys(obj)`
 
 That were the "extended basics". There are more methods. In the next chapter we'll study them in detail.

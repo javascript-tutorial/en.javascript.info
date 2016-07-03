@@ -1,8 +1,8 @@
 function sumSalaries(salaries) {
 
   let sum = 0;
-  for (let name in salaries) {
-    sum += salaries[name];
+  for (let salary of Object.values(salaries)) {
+    sum += salary;
   }
 
   return sum;

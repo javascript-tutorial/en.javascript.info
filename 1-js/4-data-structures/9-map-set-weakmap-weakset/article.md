@@ -1,7 +1,7 @@
 
 # Map, Set, WeakMap and WeakSet
 
-Now we have the following data structures:
+Now we know the following complex data structures:
 
 - Objects for storing keyed collections
 - Arrays for storing ordered collections
@@ -39,28 +39,9 @@ alert( map.get('1') ); // 'str1'
 alert( map.size ); // 3
 ```
 
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
-```js
-map.set('1', 'str1')
-  .set(1, 'num1')
-  .set(true, 'bool1');
-```
-
-When a `Map` is created, we can pass an array (or another iterable object) with key-value pairs, like this:
-
-```js
-// array of [key, value] pairs
-let map = new Map([
-  ['1',  'str1'],
-  [1,    'num1'],
-  [true, 'bool1']
-]);
-```
-
-**Map can use objects as keys.**
-
-That can be really helpful.
+**Map can also use objects as keys.**
 
 For instance:
 ```js run
@@ -75,55 +56,87 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. It's difficult to replace the `Map` with a regular `Object` here.
+Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but it would be difficult to replace the `Map` with a regular `Object` in the example above.
 
-
-```smart header="How `Map` compares keys"
-To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as the strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
-
-This algorithm can't be changed to our own.
-```
-
-````smart header="Using an `Object` instead"
-In some cases objects have a special "unique identifier" property. Or we can create it for them. That allows to use an object:
+In the old times, before `Map` existed, people added unique identifiers to objects for that:
 
 ```js run
-// note the id field
+// we add the id field
 let john = { name: "John", *!*id: 1*/!* };
 
 let visitsCounts = {};
 
+// now store the value by id
 visitCounts[john.id] = 123;
 
 alert( visitsCounts[john.id] ); // 123
 ```
 
-That was the main way to go in the past when maps did not exist in the language. But now we have maps. They are more versatile. And they do not require such identifiers to exist.
-````
+...But `Map` is much more elegant.
 
 
-````smart header="`Map` allows *any* keys"
-The important syntax diference from objects is that `Map` values are inserted/removed via methods. 
+```smart header="How `Map` compares keys"
+To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as the strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
 
-```js
-// object vs map syntax
-obj[key] = value;
-map.set(key, value);
+This algorithm can't be changed or customized.
 ```
 
-There's a reason for that. In objects, there is a built-in property named `__proto__`. We'll see the details about it later. Here the important thing is that it should not be overwritten. If it is set to a primitive then the write operation is ignored, so we can say that JavaScript protects it to a certain extent.
+````smart header="`Map` allows *any* strings as keys, `Object` does not"
+In objects, there is a built-in property named `__proto__`. We'll see the details about it later. Here the important thing is that it should not be overwritten. If it is set to a primitive then the write operation is ignored, so we can say that JavaScript protects it to a certain extent.
 
-But if key/value pairs come from the user (like a user naming himself `__proto__`), then we can meet unexpected problems with it. That's actually an endless source of bugs in many well-known JavaScript libraries. `Map`, from the other hand, is totally safe. 
+But if key/value pairs come from the user (like a user naming himself `__proto__`), then we can meet unexpected problems with it. That's actually an endless source of bugs in many well-known JavaScript libraries. `Map`, from the other hand, is totally safe:
+
+```js run
+let map = new Map();
+map.set('__proto__', 123);
+alert( map.get('__proto__') ); // 123
+```
+
 ````
 
+````smart header="Chaining"
 
-### Iteration
+Every `map.set` call returns the map itself, so we can "chain" the calls:
 
-For looping over `map`, there are 3 methods:
+```js
+map.set('1', 'str1')
+  .set(1, 'num1')
+  .set(true, 'bool1');
+```
+````
 
-- `map.keys()` -- returns an iterable object for keys,
-- `map.values()` -- returns an iterable object for values,
-- `map.entries()` -- returns an iterable object for entries `[key, value]`, it's used by default in `for..of`.
+## Map from Object
+
+
+When a `Map` is created, we can pass an array (or another iterable object) with key-value pairs, like this:
+
+```js
+// array of [key, value] pairs
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+```
+
+Note that this is exactly the format of [Object.entries](mdn:js/Object/entries), so we can initialize a map from an object:
+
+```js
+let map = new Map(Object.entries({
+  name: "John",
+  age: 30
+}));
+```
+
+Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs. 
+
+## Iteration over Map
+
+For looping over a `map`, there are 3 methods:
+
+- `map.keys()` -- returns an array-like object for keys,
+- `map.values()` -- returns an array-like object for values,
+- `map.entries()` -- returns an array-like object for entries `[key, value]`, it's used by default in `for..of`.
 
 For instance:
 
@@ -134,12 +147,12 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over vegetables 
+// iterate over keys (vegetables)
 for(let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomateos, onion
 }
 
-// iterate over amounts
+// iterate over values (amounts)
 for(let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
@@ -202,11 +215,9 @@ for(let user of set) {
 }
 ```
 
-The alternative to `Set` could be an array of users. We can check for duplicates on every insertion using [arr.find](mdn:js/Array/find). 
+The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](mdn:js/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
 
-But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
-
-### Iteration
+## Iteration over Set
 
 We can loop over a set either with `for..of` or using `forEach`:
 
@@ -227,28 +238,35 @@ That's made for compatibility with `Map` where `forEach` has three arguments.
 
 ## WeakMap and WeakSet
 
-`WeakSet` -- is a special kind of `Set` that does not prevent JavaScript from memory cleaning. `WeakMap` -- is the same thing for `Map`.
+`WeakSet` is a special kind of `Set` that does not prevent JavaScript from memory cleaning. `WeakMap` is the same thing for `Map`.
 
-That is: usually the JavaScript engine stores something in memory while it can potentially be accessed/used.
+That is: usually the JavaScript engine stores a value in memory while it can potentially be accessed/used.
 
 For instance:
 ```js
-// created an object
 let john = { name: "John" };
 
-// it will be removed from memory now:
+// the object can be accessed, john is the reference
+
+// overwrite the reference
 john = null;
+
+// the object will be removed from memory 
 ```
 
 We'll go into more details later, but the gist is somewhat obvious, right? If nothing references the object, it can be safely removed.
+
+Usually, if an object is in a set or an array or another data structure, and the data structure is in memory, then the object remains in memory too. With the exception of `WeakMap/WeakSet`.
 
 **If an object only exists in `WeakMap/WeakSet`, then it is removed from the memory.**
 
 That's handy for situations when we have a main storage for the objects somewhere and need to keep additional data for them that only exists while the object exists.
 
-For instance, we have users and want to keep a visit count for them. But the visit count is only relevant while the user exists.
+For instance, we have a code that keeps a visit count for each user. And when the user leaves, we don't need to store his visit count any more.
 
-So we can put it into a `WeakMap`:
+One way would be to keep track of leaving users and cleaning up the storage manually.
+
+Another way would be to use `WeakMap`:
 
 ```js run
 let john = { name: "John" };
@@ -269,11 +287,11 @@ alert( visitsCountMap.get(john) ); // undefined
 */!*
 ```
 
-Do you see the difference versus a regular `Map`? If `visitorCountMap` were a `new Map()`, then `john` would remain in it. If users keep coming and leaving, then there would be more and more values flooding the map. 
+Did you notice the difference versus a regular `Map`? If `visitorCountMap` were a `new Map()`, then the object `john` and the corresponding value would remain in it. If users keep coming and leaving, then there would be more and more values flooding the map. 
 
-So, with a regular `Map`, the user deletion becomes a more tedious task: we also need to clean up the additional stores. And it can be a cumbersome task in the more complex case when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals. `WeakMap` comes to the rescue.
+So, with a regular `Map`, the user deletion becomes a more tedious task: we also need to clean up the additional stores. And it can become rather cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals. 
 
-`WeakMap` uses only objects as keys. It has the following methods:
+`WeakMap` uses only objects as keys, not primitive values. It has the following methods:
 
 - `weakMap.get(key)`
 - `weakMap.set(key, value)`

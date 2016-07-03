@@ -6,11 +6,11 @@ Arrays provide a lot of methods. In this chapter we'll study them more in-depth.
 
 ## split and join
 
-The situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of nameswould be much more comfortable than a single string.
+Here's the situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
 
-The [str.split(s)](mdn:js/String/split) method turns the string into array splitting it by the given delimiter `s`.
+The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
 
-In the example below, we split by a comma and a space:
+In the example below, we split by a comma followed by space:
 
 ```js run
 let names = 'Bilbo, Gandalf, Nazgul';
@@ -56,18 +56,20 @@ alert( str ); // Bilbo;Gandalf;Nazgul
 
 How to delete an element from the array?
 
-The arrays are objects, so we can use a generic `delete` call:
+The arrays are objects, so we can try to use `delete`:
 
 ```js run
 var arr = ["I", "go", "home"];
 
 delete arr[1]; // remove "go"
 
-// now arr = ["I",  , "home"];
 alert( arr[1] ); // undefined
+
+// now arr = ["I",  , "home"];
+alert( arr.length ); // 3
 ```
 
-The element was removed, but the array still has `arr.length == 3`. 
+The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`. 
 
 That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
 
@@ -77,11 +79,11 @@ The [arr.splice(str)](mdn:js/Array/splice) method is a swiss army knife for arra
 
 The syntax is:
 
-```
+```js
 arr.splice(index[, deleteCount, elem1, ..., elemN])
 ```
 
-It removes `deleteCount` elements, starting from the index `index`, and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+It starts from the position `index`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
 
 This method is easy to grasp by examples.
 
@@ -96,6 +98,8 @@ arr.splice(1, 1); // from index 1 remove 1 element
 
 alert( arr ); // ["I", "JavaScript"]
 ```
+
+Easy, right? Starting from the index `1` it removed `1` element.
 
 In the next example we remove 3 elements and replace them by the other two:
 
@@ -119,7 +123,7 @@ let removed = arr.splice(0, 2);
 alert( removed ); // "I", "study" <-- array of removed elements
 ```
 
-The `splice` method is also able to only insert the elements, without any removals. For that we need to set `deleteCount` to `0`:
+The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
 
 ```js run
 let arr = ["I", "study", "JavaScript"];
@@ -201,15 +205,9 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Now it works as intended.
 
-Let's step aside and thing what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of something. To sort it, we need an *ordering function* that knows how to compare the elements. The default is a string order.
+Let's step aside and thing what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of *something*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
 
-The `arr.sort(fn)` method has a built-in implementation of a sorting algorithm. We don't need to care which one (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of time). It will walk the array, compare its elements using the provided function and reorder them.
-
-So, `arr.sort(fn)` is like a black box for us.
-
-1. We've got an array of some items to sort.
-2. We call `sort(fn)` providing the function that knows how to compare.
-3. It sorts.
+The `arr.sort(fn)` method has a built-in implementation of sorting algorithm. We don't need to care which how it exactly works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
 
 By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
 
@@ -219,7 +217,7 @@ By the way, if we ever want to know which elements are compared -- nothing preve
 });
 ```
 
-The algorithm may compare an element with multiple other elements. But it tries to make as few comparisons as possible.
+The algorithm may compare an element multiple times in the process, but it tries to make as few comparisons as possible.
 
 
 ````smart header="A comparison function may return any number"
@@ -274,7 +272,7 @@ Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
 The syntax is:
 ```js
 let result = arr.find(function(item, index, array) {
-  // return true if the item is what we look for
+  // should return true if the item is what we are looking for
 });
 ```
 
