@@ -1,3 +1,3 @@
-# Структуры данных
+# Data structures
 
-Изучаем JavaScript: расширенное знакомство со встроенными типами данных, их особенностями.
+More data structures and more in-depth study of the known ones.

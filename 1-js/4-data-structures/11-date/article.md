@@ -2,21 +2,21 @@
 
 JavaScript has a built-in object [Date](mdn:js/Date) for date/time management.
 
-It contains the date, the time, the timezone, everything.
+It contains the date, time, timezone -- everything.
 
 [cut]
 
 ## Creation
 
-To create a new `Date` object use one of the following syntaxes:
+To create a new `Date` object call `new Date()` with one of the following arguments:
 
 
 `new Date()`
-: Create a `Date` object for the current date and time:
+: Without arguments -- create a `Date` object for the current date and time:
 
     ```js run
     let now = new Date();
-    alert( now ); // current date/time
+    alert( now ); // shows current date/time
     ```
 
 `new Date(milliseconds)`
@@ -32,10 +32,18 @@ To create a new `Date` object use one of the following syntaxes:
     alert( Jan02_1970 );
     ```
 
-    The number of milliseconds is called a *timestamp*. It is a lightweight numeric representation of a date. We can always create a date from the timestamp number using `new Date(timestamp)` and get the timestamp from the existing `Date` object using `date.getTime()` (see below).
+    The number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*. 
+
+    It is a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp, there's a `date.getTime()` method (see below).
 
 `new Date(datestring)`
-: If there is a single argument -- a string, then it is parsed with the `Date.parse` algorithm (see below).
+: If there is a single argument and it's a string, then it is parsed with the `Date.parse` algorithm (see below).
+
+
+    ```js run
+    let date = new Date("2017-01-26");
+    alert( date ); // Thu Jan 26 2017 ...
+    ```
 
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only two first arguments are obligatory. 
@@ -147,7 +155,7 @@ alert( today ); // today, 00:00:00 sharp.
 
 ## Autocorrection
 
-The *autocorrection* -- is a very handy property of the `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
 
 For instance:
 
@@ -156,7 +164,7 @@ let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
 alert(date); // ...is 1st Feb 2013!
 ```
 
-**Out-of-range date components are distributed around automatically.**
+**Out-of-range date components are distributed automatically.**
 
 Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
 

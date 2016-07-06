@@ -1,4 +1,4 @@
-# Function expressions
+# Function expressions and more
 
 In JavaScript, a function is a value.
 
@@ -17,7 +17,7 @@ This syntax is called a "Function Declaration".
 ```js
 let sayHi = function() {
   alert( "Hello" );
-}
+};
 ```
 
 The latter syntax is called a "Function Expression".
@@ -70,13 +70,34 @@ That's what happens above in detail:
 Note, that we could also have used a Function Expression to declare `sayHi`, in the first line:
 
 ```js
-let sayHi = function() { ... }
+let sayHi = function() { ... };
 
 let func = sayHi;
 // ...
 ```
 
 Everything would work the same. Even more obvious what's going on, right?
+
+
+````smart header="Why semicolon?"
+There might be a question, why Function Expression has a semicolon `;` at the end, and Function Declaration does not:
+
+```js
+function sayHi() {
+  // ...
+}
+
+let sayHi = function() {
+  // ...
+}*!*;*/!*
+```
+
+The answer is simple:
+- There's no need in `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` and alike.
+- A Function Expression appears in the context of the statement: `let sayHi = value;`. It's not a code block. The semicolon `;` is recommended at the end of statements, no matter what is the `value`. So the semicolon here is not related to Function Expression itself in any way, it just terminates the statement.
+````
+
+
 
 ## Function is an object
 
@@ -134,7 +155,6 @@ A function can be perceived as an *action*.
 
 We can copy it between variables and run when we want. We can even add properties to it if we wish.
 ```
-
 
 ## Function Expression as a method
 
@@ -271,6 +291,7 @@ let sayHi = function(name) {  // (*) no magic any more
 
 Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
 
+
 ### Function Declaration in a block
 
 When Function Declaration is made within a code block, it is visible everywhere inside that block. But not outside of it.
@@ -389,6 +410,112 @@ It's also a little bit easier to look up Function Declarations in the code, they
 But if a Function Declaration does not fit for some reason (we've seen an example), then a Function Expression should be used.
 ```
 
+
+## Named Function Expression
+
+Now the feature that exists for a Function Expression, but not for Function Declaration, and hence may be a reason to use them. 
+
+**We can specify an "internal" name for a Function Expression.**
+
+Compare these two variants:
+
+```js
+let sayHi = function() { // (1)
+  alert('Hello');
+};
+
+let sayHi = function *!*func*/!*() { // (2)
+  alert('Hello');
+};
+```
+
+Both create a function and put it into the variable `sayHi`. And usually we don't specify anything in the `function()`, so the 1st variant works fine.
+
+Although the function can move to another variable. As we've seen it's easy to copy a function and maybe replace the previous value with something else:
+
+```js run
+let sayHi = function() {
+  alert('Hello');
+};
+
+// oh maybe that's better?
+let oldSayHi = sayHi; // keep the old variant here
+sayHi = function() { //  replace with a newer one
+  alert("What's up dude?");
+};
+
+
+oldSayHi(); // Hello 
+sayHi(); // What's up dude?
+```
+
+The problem may occur if a function references *itself* from inside. It happens when the function wants to access its properties (`sayHi.counter` in the example above), or sometimes it wants to call itself one more time.
+
+
+But if the function has moved, then the old name is not relevant any move!
+
+
+Let's see:
+
+```js run
+// create a function
+let sayHi = function() {
+  sayHi.counter++;
+  alert('Hi ' + sayHi.counter);
+};
+sayHi.counter = 0; 
+
+// move it 
+let movedSayHi = sayHi;
+
+// overwrite the old name to make things more obvious
+sayHi = null;
+
+*!*
+movedSayHi(); // Error: Cannot read property 'counter' of null
+*/!*
+```
+
+The optional `name` which we can put into `function name()` is exactly meant to solve this kind of problems.
+
+- It is only visible from inside the function.
+- It always references the current function.
+
+Let's use it to fix the code:
+
+```js run
+// now with the internal name "say"
+*!*
+let sayHi = function say() {
+  say.counter++; 
+  alert('Hi ' + say.counter); // and use it everywhere inside
+};
+*/!*
+sayHi.counter = 0; 
+
+let movedSayHi = sayHi;
+
+sayHi = null;
+
+movedSayHi(); // Hi 1
+movedSayHi(); // Hi 2 (works)
+
+alert(say); // Error (say is undefined, that's normal)
+```
+
+Please note that:
+
+- The name `say` references the current function no matter where it is. That's why it works.
+- The name `say` exists only inside the function. The last line demonstrates that.
+
+So the outer code still uses `sayHi` (or `movedSayHi` later). It doesn't see `say`, actually it doesn't need to see it. The `say` is an "internal function name", how it calls itself privately.
+
+A Function Expression with a name is called *Named Function Expression*.
+
+The "internal name" feature described here is only available for Function Expressions, not to Function Declarations. For Function Declarations, the `function name()` behaves like `sayHi`, there's just no syntax possibility to add a one more "internal" name for them. 
+
+
+
 ## Arrow functions [#arrow-functions]
 
 Enough with the complexities for now. Let's relax with another syntax of functions that can make our code shorter.
@@ -504,11 +631,14 @@ It is used in very specific cases, like when we receive the code from the server
 - Functions are values. They can be assigned, copied or declared in any place of the code.
 - If the function is declared as a separate statement, in the main code flow -- that's called a Function Declaration.
 - If the function is created as a part of an expression -- it's a Function Expression.
-- Function Declarations are processed before the code block is executed. They are visible everywhere in the block. Or in the whole script if not enclosed in a block.
+- Function Declarations are processed before the code block is executed. They are visible everywhere in the block (or the script).
 - Function Expressions are created when the execution flow reaches them.
+- Function Expressions allow to specify an optional name for internal needs (Named Function Expression). 
 
 
-If we simple want to create a function, then in most cases Function Declaration is preferable. Novice programmers sometimes overuse Function Expression by creating many functions with `let func = function()`, but compare, which code is more readable:
+If we simple want to create a function, then in most cases Function Declaration is preferable.
+
+Novice programmers sometimes tend to overuse Function Expression by creating many functions with `let func = function()`, but compare, which code is more readable:
 
 ```js no-beautify
 let f = function() { /* expression */ }
@@ -518,12 +648,14 @@ function f() { /* declaration */ }
 
 Function Declaration is shorter and more obvious. The additional bonus -- it can be called before the actual declaration.
 
-**Use Function Expression to write elegant code when the function must be created at-place, inside another expression or when Function Declaration doesn't fit well for the task.**
+**Use Function Expression only when Function Declaration does not fit the task.**
+
+We've seen a couple of examples of that in the chapter. And will see more in the future.
 
 We also touched two other ways to create a function:
 
 - Arrow functions are handy for one-liners. The come in two flavours:
-    1. Without figure brackets: `(...args) => expression` -- returns the evaluated `expression.
+    1. Without figure brackets: `(...args) => expression` -- returns the evaluated `expression`.
     2. With brackets: `(...args) => { body }` -- need an explicit `return` statement to return something, but can be more complex.
 
 - `new Function(args, body)`

@@ -76,6 +76,21 @@ alert( arr[1].name ); // John
 arr[3](); // hello
 ```
 
+
+````smart header="Trailing comma"
+An array may end with a comma:
+```js 
+let fruits = [
+  "Apple", 
+  "Orange", 
+  "Plum"*!*,*/!*
+];
+```
+
+The "trailing comma" style makes it easier to insert/remove items, because all lines become alike.
+````
+
+
 ## Methods pop/push, shift/unshift
 
 A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
@@ -292,20 +307,11 @@ But that's actually a bad idea. There are potential problems with it:
 
 1. The loop `for..in` iterates over *all properties*, not only the numeric ones.
 
-    In the browser as well as in other environments, there are many collections of elements that *look like arrays*. That is, they have `length` and indexes properties, but they have *other non-numeric properties too*, which we usually don't need. The `for..in` loop will list them. If we need to work with arrays and those array-like structures, then these "extra" properties can become a problem.
+    There are so-called "array-like" objects in the browser and in other environments, that *look like arrays*. That is, they have `length` and indexes properties, and can be used in `for..of`, but they have *other non-numeric properties and methods*, which we usually don't need in the loop. The `for..in` will list them. If we need to work with array-like objects, then these "extra" properties can become a problem.
 
 2. The `for..in` loop is optimized for generic objects, not arrays, and thus is 10-100 times slower.
 
 So we should never use `for..in` for arrays.
-
-```smart header="Iterable objects"
-Javascript has a generic concept of *iterables* or, in other words, "array-like" objects. 
-
-An array-like object can have methods and properties of its own, but also implement special methods to be useable in `for..of` loop. We'll often meet such objects and meanwhile will learn to implement iterables by ourselves.
-
-TODO ??????????????????HERE ?????????????
-```
-
 
 ## A word about "length"
 

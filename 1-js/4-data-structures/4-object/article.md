@@ -18,16 +18,16 @@ We can imagine it as a cabinet with signed files. Every piece of data is stored 
 
 ## Object literals
 
-An empty object ("empty cabinet") can be created using one of to syntaxes:
+An empty object ("empty cabinet") can be created using one of two syntaxes:
 
 ```js
-let user = new Object(); // works the same as below
-let user = {}; 
+let user = new Object(); // "object constructor" syntax
+let user = {};  // "object literal" syntax
 ```
 
 ![](object-user-empty.png)
 
-Usually, the figure brackets `{...}` syntax is used, because it's shorter. It is called an *object literal*.
+Usually, the figure brackets `{...}` are used, they are more powerful shorter. The declaration is called an *object literal*.
 
 We can set properties immediately:
 
@@ -108,8 +108,19 @@ let obj = {
 }
 
 alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
 ```
+````
 
+````smart header="Trailing comma"
+The last property may end with a comma:
+```js 
+let user = {
+  name: "John",
+  age: 30*!*,*/!*
+}
+```
+That is called a "trailing" or "hanging" comma. Makes it easier to add/move/remove property, because all lines become alike.
 ````
 
 ````smart header="Reserved words are allowed as property names"
@@ -391,6 +402,7 @@ alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
 Quite obvious, if we used one of the keys (`admin`) and changed something inside the cabinet, then if we use another key later (`user`), we find things modified.
+
 
 ## Cloning objects
 

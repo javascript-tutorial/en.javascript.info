@@ -1,8 +1,4 @@
 # TODO: Code quality
 
-In order to keep the code quality, you need at least:
-<ol>
-<li>The ability to debug code and fix bugs.</li>
-<li>Good style code.</li>
-<li>Test code is desirable - in automatic mode.</li>
-</ol>
+In this chapter we cover common, but very important things. Probably you'll want to reread some chapters later when you learn more about the language and write more code. 
+
