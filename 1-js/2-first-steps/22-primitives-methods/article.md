@@ -90,6 +90,6 @@ alert(null.test); // error
 
 ## Summary
 
-- Primitives except `null` and `undefined` provide various methods. We plan to study those in the next chapters.
-- Primitives are not objects, but still have methods. Formally, these methods work via temporary objects, but JavaScript engines are tuned to optimize that internally, so they are not expensive to call.
+- Primitives except `null` and `undefined` provide many helpful methods. We plan to study those in the next chapters.
+- Formally, these methods work via temporary objects, but JavaScript engines are tuned to optimize that internally, so they are not expensive to call.
 

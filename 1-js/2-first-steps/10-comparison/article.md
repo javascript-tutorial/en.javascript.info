@@ -69,7 +69,7 @@ For instance, the case matters. A capital letter `"A"` is not equal to the lower
 
 ## Comparison of different types
 
-When compared values belong to different types, they get autoconverted to numbers.
+When compared values belong to different types, they are coerced to numbers.
 
 For example:
 
@@ -187,7 +187,7 @@ We've got such result, because:
 - Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN`. And `NaN` is a special numeric value which returns `false` for all comparisons.
 - The equality check `(3)` returns `false`, because `undefined` only equals `null` and no other value.
 
-### How to live a good life
+### Evade problems
 
 Why did we observe these examples? Should we remember these pecularities all the time? Well, not really. Actually, these tricky things will gradually become familiar over the time, but there's a solid way to evade any problems with them.
 
@@ -195,6 +195,18 @@ Just treat any comparison with `undefined/null` except the strict equality `===`
 
 Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check it separately.
 
+## Comparison with objects
+
+For equality checks two objects are always treated as non-equal. 
+
+```js run
+alert( {} == {} ); // false
+alert( [] == [] ); // false
+```
+
+Note that Javascript does not try to compare the objects by content. The rule is simple: different objects are not equal. 
+
+For other comparisons like `< >` operators, or when an object is compared with a primitive, objects are first converted to primitives, and then the comparison runs as usual.
 
 ## Summary
 

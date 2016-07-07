@@ -4,8 +4,6 @@ importance: 5
 
 # Type conversions
 
-Let's recap type conversions given in the [previous capter](/types) in the context of operators.
-
 What will be the result of these evaluation?
 
 ```js no-beautify

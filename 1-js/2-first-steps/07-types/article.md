@@ -15,6 +15,8 @@ n = 12.345;
 
 A *number* type serves both for integer and floating point numbers.
 
+There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, substraction `-` and so on.
+
 Besides regular numbers there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
 - `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity). It is a value that's greater than any number.
@@ -33,13 +35,13 @@ Besides regular numbers there are so-called "special numeric values" which also 
 - `NaN` represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
 
     ```js run
-    alert( "not a number" * 2 ); // NaN
+    alert( "not a number" / 2 ); // NaN
     ```
 
     `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
 
     ```js run
-    alert( "not a number" * 2 + 5 - 9 ); // NaN
+    alert( "not a number" / 2 + 5 ); // NaN
     ```
 
     So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
@@ -232,6 +234,8 @@ Here we have a variable `key` which contains the property name, probably evaluat
 
 Most of time, the dot is used to access object properties, but when we need a complex property name or to pass the name as a variable, then -- we go square brackets.
 
+Javascript supports object inheritance. There are many types that are based on objects: `Date` for dates, `Array` for ordered data, `Error` for error-reporting and so on. So the word "object" is applicable to a variety of things. The term *plain objects* is used to represent "basic" objects, the ones we create with `{ ... }`.
+
 Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
 
 ## Arrays
@@ -263,7 +267,7 @@ alert( fruits[2] ); // Plum
 alert( fruits.length ); // 3
 ```
 
-Please note that arrays do not form a separate language type. They are based on objects, but have many features of their own including methods to add, remove, extract elements from the array, to sort arrays and more. We'll cover them in the chapter <info:array>.
+Please note that arrays do not form a separate language type. They are based on objects. But they greatly extend them with features of their own, methods to add, remove, extract elements from the array, to sort arrays and more. We'll cover them in the chapter <info:array>.
 
 ## Symbol type
 

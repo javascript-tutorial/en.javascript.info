@@ -235,17 +235,9 @@ Property value shorthands
   ```
 
 Methods definitions
-: For properties that are functions, there's also a shorter syntax.
+: For properties that are functions, we've already seen a shorter syntax.
 
   ```js 
-  // these two objects are equal
-
-  let user = {
-    sayHi: function() {
-      alert("Hello");
-    }
-  }; 
-
   let user = {
     sayHi() { // same as "sayHi: function()"
       alert("Hello");

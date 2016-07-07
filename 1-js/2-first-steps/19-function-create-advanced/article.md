@@ -156,78 +156,12 @@ A function can be perceived as an *action*.
 We can copy it between variables and run when we want. We can even add properties to it if we wish.
 ```
 
-## Function Expression as a method
-
-Now let's step back and reconsider. We have two ways of declaring a function. Do we really need both? What's so good about Function Expressions that makes it useful?
-
-Actually, yes, we do. For example, we can assign functions to object properties using function expressions. 
-
-As we remember from the chapter <info:types>, objects are data structures meant to store collections of data. Most often, we create objects to represent entities of the real world, like users, goodies and so on:
-
-```js
-let user = {
-  name: "John",
-  age: 30
-};
-```
-
-In the real world, a user can `act`: to select something from the shopping cart, to login, to logout etc. For the start, let's teach him to say hello:
-
-```js run
-let user = {
-  name: "John",
-  age: 30
-};
-
-*!*
-user.sayHi = function() {
-  alert("Hello!");
-};
-*/!*
-
-user.sayHi(); // Hello!
-```
-
-You see? We've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
-
-Then we can call it any time. The user now can speak!
-
-That is how a so-called "object-oriented code" is written. We make objects which reflect entities of the real world: like a user, or a document, or a button that is clickable etc.
-
-An object stores its data in regular properties (like `name`, `age` etc) and has functions to express itself. Function properties are usually called *methods*. So, one can say that in the code above "`sayHi` is a method of the object `user`". 
-
-Of course we could use a Function Declaration for the same purpose:
-
-```js run
-let user = {
-  // ...
-};
-
-*!*
-function sayHi() {
-  alert("Hello!");
-};
-
-user.sayHi = sayHi;
-*/!*
-
-user.sayHi(); // Hello!
-```
-
-That would also work, but is longer. Also we get an "extra" function `sayHi` outside of the `user` object. Here we don't want it.
-
-```smart header="Object-oriented programming"
-When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
-
-As of now, we already know how to create an object with `{...}` and how to store data and add a method to it. But we will study it in detail later when we get enough familarity with basic functions of the language. 
-```
-
 
 ## Function Expression vs Function Declaration
 
 Let's formulate the key differences between Function Declarations and Expressions.
 
-Here's the syntax distinction between these two.
+First, the syntax: how to see what is what in the code.
 
 - *Function Declaration:* a function, declared as a separate statement, in the main code flow.
 
@@ -247,7 +181,7 @@ Here's the syntax distinction between these two.
     }
     ```
 
-Another difference is when they are actualy created by the JavaScript engine.
+The more subtle difference is when they are actualy created by the JavaScript engine.
 
 **Function Expressions are created when the execution reaches them and are usable since then.**
 
