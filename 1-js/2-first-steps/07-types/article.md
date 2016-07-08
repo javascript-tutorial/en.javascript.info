@@ -234,7 +234,7 @@ Here we have a variable `key` which contains the property name, probably evaluat
 
 Most of time, the dot is used to access object properties, but when we need a complex property name or to pass the name as a variable, then -- we go square brackets.
 
-Javascript supports object inheritance. There are many types that are based on objects: `Date` for dates, `Array` for ordered data, `Error` for error-reporting and so on. So the word "object" is applicable to a variety of things. The term *plain objects* is used to represent "basic" objects, the ones we create with `{ ... }`.
+Javascript supports object inheritance. There are many types that are based on objects: `Date` for dates, `Array` for ordered data, `Error` for error-reporting and so on. So the word "object" is applicable to a variety of things. The term *plain objects* or just `Object` (capital first) is used to represent "basic" objects, the ones we create with `{ ... }`.
 
 Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
 
@@ -385,7 +385,7 @@ There are 7 basic types in JavaScript.
 - `null` for unknown values.
 - `undefined` for unassigned values.
 - `symbol` for unique identifiers.
-- `object` for more complex data structures (there exist many, we saw arrays).
+- `object` for more complex data structures.
 
 The `typeof` operator allows to see which type is stored in the variable. 
 

@@ -94,7 +94,7 @@ In most projects though, only `toString()` is used, because objects are printed 
 
 If only `toString()` is implemented, then both string and numeric conversions use it.
 
-## Examples for built-ins
+## Array example
 
 Let's check a few examples to finally get the whole picture.
 
@@ -118,61 +118,77 @@ alert( '1,2' + 1 ); // '1,21'
 
 Now the addition has the first operand -- a string, so it converts the second one to a string also. Hence the result.
 
-Now with a plain object:
+## Object, toString for the type
+
+With plain objects it's much more interesting.
+
+An object has both `valueOf()` and `toString()`, but for plain objects `valueOf()` returns the object itself:
 
 ```js run
-alert( +{} ); // NaN
-alert( {} + {} ); // [object Object][object Object]
+let obj = { };
+
+alert( obj === obj.valueOf() ); // true, valueOf returns the object itself  
 ```
 
-Plain objects actually have both `toString()` and `valueOf()`:
+Because `ToPrimitive` ignores `valueOf` if it returns an object, here we can assume that `valueOf` does not exist at all.
 
-................TODO ALG OF OBJECT TOSTRING
+Now `toString`. 
 
-The result of these operations should be somewhat obvious now.
-
-
-
-
-
-
-## [[Class]]
-
-From the chapter <info:types> we know that `typeof` cannot distinguish different kinds of objects. Arrays, plain objects and others are all the same "object" for it.
-
-But there's a semi-hidden way to access the right class.
-
-Most built-in objects 
-
-
-
-
-Here are some built-in objects
-
-Most built-in object implement only `toString()`. From the algorithm string conversion is much more widely used
-
-
-
-
-
-
-The similar thing with the method `valueOf`. It is called when the object is converted to a number.
+From the first sight it's obvious:
 
 ```js run
-let room = {
-  number: 777,
+let obj = { };
 
-  valueOf() {
-    return this.number; 
-  },
-};
-
-alert( +room );  // 777, valueOf is called
+alert( obj ); // [object Object]
 ```
 
-What really sounds strange -- is the name of the method. Why is it called "valueOf", why not "toNumber"?
+But it's much more powerful than that. 
 
-The reason is that `valueOf` is used by default to convert an object to a primitive for operations where a primitive value is required.
+By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), `toString` can work in the context of any value. And it returns `[object ...]` with the type of an object instead of dots.
 
+The algorithm of the `toString()` for plain objects looks like this:
+
+- If `this` value is `undefined`, return `[object Undefined]`
+- If `this` value is `null`, return `[object Null]`
+- ...For arrays return `[object Array]`, for dates return `[object Date]` etc.
+
+
+It even works for environment-specific objects that exist only in the browser (like `window`) or in node.js (like `process`).
+
+All we need to do to get the type of an `obj` -- is to call plain object `toString` passing `this = obj`.
+
+We can do it like this:
+
+```js run
+let s = {}.toString; // copy toString of Object to a variable
+
+// what type is this?
+let arr = [];
+
+// copy Object toString to it:
+arr.toStringPlain = s;
+
+alert( arr.toStringPlain() ); // [object Array] <-- right!
+
+// try getting the type of a browser window object?
+window.toStringPlain = s;
+
+alert( window.toStringPlain() ); // [object Window] <-- it works!
+```
+
+Please note that different objects usually have their own `toString`. As we've seen above, the `toString` of `Array` returns a list of items. So we need to use exactly the `toString` of a plain object -- `{}.toString`. 
+
+To call it in the right context, we copy it into a variable `s` -- in Javascript functions are not hardwired to objects, even built-in ones, so we do it -- and then assign as a property to another object `arr.toStringPlain` (not to override `arr.toString`). That's called *method borrowing*.
+
+Actually, we could evade all complexities using [call](info:object-methods#call-apply) to pass `this`:
+
+```js run
+let arr = [];
+
+alert( {}.toString.call(arr) ); // [object Array]
+alert( {}.toString.call(window) ); // [object Window]
+```
+
+Here we do the same in one line: get the `toString` of a plain object and call it with the right `this` to get its type.
 
 

@@ -264,7 +264,7 @@ Any operation on the Reference Type immediately "resolves" it:
 
 So any operation on the result of dot `'.'` except a direct call discards `this`. 
 
-## Explicit "this" with "call/apply"
+## Explicit "this" with "call/apply" [#call-apply]
 
 We can call a function explicitly providing the value of `"this"`.
 
@@ -335,7 +335,7 @@ So the use of `apply` over `call` is mainly a metter of personal preference. And
 
 There's still a way to bind "this" to a function.
 
-[todo] ????
+[todo] migrate bind here????
 
 
 ## Summary
