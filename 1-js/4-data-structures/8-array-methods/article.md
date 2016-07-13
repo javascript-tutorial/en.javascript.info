@@ -463,9 +463,20 @@ We covered the most useful methods. But there are other too, for instance:
 
   It creates a new array with elements from `arr` in the reverse order.
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) checks the array.
 
   The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+
+- [Array.isArray(value)](mdn:js/Array/isArray) checks if the `value` is an array.
+
+  As we've seen in the chapter <info:types>, the `typeof` operator cannot differ an array from a plain object:
+
+  ```js run
+  alert( typeof {} ); // object
+  alert( typeof [] ); // object
+  ```
+
+  The call `Array.isArray(value)` helps. It returns `true` if `value` is an array, otherwise `false`.
 
 These and other methods are also listed in the [manual](mdn:js/Array).
 

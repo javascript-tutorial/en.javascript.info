@@ -31,7 +31,7 @@ There are two ways to solve it.
         result *= x;
       }
 
-      return result
+      return result;
     }
 
     alert( pow(2, 3) ); // 8
@@ -192,7 +192,7 @@ A new execution context is created, the previous one is pushed on top of the sta
   </li>
 </ul>
 
-The stack has 2 old contexts now.
+There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
 
 ### The exit
 
@@ -245,7 +245,7 @@ As we can see from the illustrations above, recursion depth equals the maximal n
 
 Note the memory requirements. Contexts take memory. In our case, raising to the power of `n` actually requires the memory for `n` contexts, for all lower values of `n`.
 
-A loop-based algorithm is much memory-saving:
+A loop-based algorithm is more memory-saving:
 
 ```js
 function pow(x, n) {
@@ -255,23 +255,248 @@ function pow(x, n) {
     result *= x;
   }
 
-  return result
+  return result;
 }
 ```
 
-The iterative `pow` uses a single context changing `i` and `result` in the process.
+The iterative `pow` uses a single context changing `i` and `result` in the process. Its memory requirements are small, fixed and do not depend on `n`.
 
-**Any recursion can be rewritten as a loop. The loop variant is usually more effective.**
+**Any recursion can be rewritten as a loop. The loop variant usually can be made more effective.**
 
-...But sometimes the rewrite can be non-trivial, especially when function uses different recursive subcalls, when the branching is more intricate. And the optimization benefits may be unneeded and totally not worth that.
+...But sometimes the rewrite is non-trivial, especially when function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts. 
 
-## Итого
+Recursion can give a shorter code, easier to understand and support. Optimizations are not required in every place, mostly we need a good code, that's why it's used.
 
-Рекурсия -- это когда функция вызывает сама себя, как правило, с другими аргументами.
+## Recursive traversals
 
-Существуют много областей применения рекурсивных вызовов. Здесь мы посмотрели на один из них -- решение задачи путём сведения её к более простой (с меньшими аргументами), но также рекурсия используется для работы с "естественно рекурсивными" структурами данных, такими как HTML-документы, для "глубокого" копирования сложных объектов.
+Another great application of the recursion is a recursive traversal.
 
-Есть и другие применения, с которыми мы встретимся по мере изучения JavaScript.
+Imagine, we have an company. The staff structure can be presented as an object:
 
-Здесь мы постарались рассмотреть происходящее достаточно подробно, однако, если пожелаете, допустимо временно забежать вперёд и открыть главу <info:debugging-chrome>, с тем чтобы при помощи отладчика построчно пробежаться по коду и посмотреть стек на каждом шаге. Отладчик даёт к нему доступ.
+```js
+let company = {
+  sales: [{
+    name: 'John',
+    salary: 1000
+  }, {
+    name: 'Alice',
+    salary: 600
+  }],
+
+  development: {
+    sites: [{
+      name: 'Peter',
+      salary: 2000
+    }, {
+      name: 'Alex',
+      salary: 1800
+    }],
+
+    internals: [{
+      name: 'Jack',
+      salary: 1300
+    }]
+  }
+};
+```
+
+In other words, a company has departments. 
+
+- A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
+- Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has the own staff.
+- It is also possible that when a subdepartment grows, it divides further. For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
+
+Now let's say we want to get the sum of all salaries. How can we do that?
+
+An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for..in` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`. ...And then another subloop inside those for 3rd level departments that might appear in the future? Should we stop on level 3 or make 4 levels of loops? At this point the code becomes not just nonuniversal, but also rather ugly (sure, every programmer tried it).
+
+Let's try recursion. We need to write a function that gets an arbitrary department and then either returns the result immediately or simplifies the task.
+
+As we can see, when our function gets a department to sum, there are two possible cases:
+
+1. Either it's a "simple" department with an array of people -- then we can sum the salaries in a simple loop.
+2. Or it's an object with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+
+The (1) is the base of recursion, the trivial case.
+
+The (2) is a recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+
+The algorithm is probably even easier to read from the code:
+
+
+```js run
+let company = { // the same object, compressed for brevity
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+  development: {
+    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+    internals: [{name: 'Jack', salary: 1300}]
+  }
+};
+
+// The function to do the job
+*!*
+function sumSalaries(department) {
+  if (Array.isArray(department)) { // case (1)
+    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
+  } else { // case (2)
+    let sum = 0;
+    for(let subdep of Object.values(department)) {
+      sum += sumSalaries(subdep); // recursively call for subdeps, sum the results
+    }
+    return sum;
+  }
+}
+*/!*
+
+alert(sumSalaries(company)); // 6700
+```
+
+The code is short and easy to understand (hopefully?). That's the power of recursion. It also works for any level of subdepartment nesting. 
+
+Note that it uses smart features that we've covered before:
+
+- Method `arr.reduce` explained in the chapter <info:array-methods> to get the sum of the array.
+- Loop `for(val of Object.values(obj))` to iterate over object values: `Object.values` returns an array of them.
+
+## Recursive structures
+
+A recursive (recursively-defined) data structure is a structure that replicates itself in parts.
+
+We've just seen it in the example of a company structure above.
+
+A company *department* is:
+- Either an array of people.
+- Or an object with *departments*.
+
+A more familiar example for web-developers would be an HTML or XML document.
+
+In the document, an *HTML-tag* may contain a list of:
+- Text pieces.
+- HTML-comments.
+- Other *HTML-tags* (that in turn may contain text pieces/comments or other tags etc).
+
+That's once again a recursive definition.
+
+There exist other structures as well, and we can create them by ourselves where convenient.
+
+### Linked list
+
+
+For instance, we want to store an ordered list of objects. 
+
+The natural choice would be an array:
+
+```js
+let arr = [obj1, obj2, obj3];
+```
+
+...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. 
+
+Actually, the only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. 
+
+So, an array has drawbacks. 
+
+Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
+
+The *linked list element* is recursively defined as an object with:
+- `value`.
+- `next` property referencing the next *list element* if exists or is `null` otherwise.
+
+For instance:
+
+```js
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+```
+
+Graphical representation of the list:
+
+![linked list](linked-list.png)
+
+An alternative code for creation:
+
+```js no-beautify
+let list = { value: 1 };
+list.next = { value: 2 };
+list.next.next = { value: 3 };
+list.next.next.next = { value: 4 };
+```
+
+Here we have multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain.
+
+The data structure is interesting, because it can be easily split into multiple parts. For instance:
+
+```js
+let secondList = list.next.next;
+list.next.next = null;
+```
+
+![linked list split](linked-list-split.png)
+
+Later lists can be easily joined by changing `next` back:
+
+```js
+list.next.next = secondList;
+```
+
+And surely we can insert or remove items in any place.
+
+For instance, to prepend a new value to the `list`:
+
+```js
+let list = { value: 1 };
+list.next = { value: 2 };
+list.next.next = { value: 3 };
+list.next.next.next = { value: 4 };
+
+// now list starts with value:0
+list = { value: 0, next: list };
+```
+
+![linked list](linked-list-0.png)
+
+To remove a value from the middle, change `next` of the previous one:
+
+```js
+list.next = list.next.next;
+```
+
+![linked list](linked-list-remove-1.png)
+
+Now `list.next` jumps over to value `2`. The value `1` is excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+
+We now don't have mass-renumbering and can easily rearrange elements. 
+
+But it's a trade-off, because:
+- We can't easily access an element by a number. We need to start from the first one `list` and go `next` `N` times to get the Nth element.
+- To insert or remove an element from the structure, we must first get the reference to its previous neighbour, and then alter its `next`.
+
+...But sometimes these drawbacks do not matter. For instance, when we need a [deque](https://en.wikipedia.org/wiki/Double-ended_queue): the ordered structure that must allow very fast adding/removing elements from both ends. For that we can add another variable named `tail` to track the last element of the list (and update it when adding/removing elements from the end).
+
+
+
+## Summary
+
+[todo better summary]
+
+Recursion -- is when a function calls itself, usually with other arguments.
+
+There are many applications of recursive calls:
+
+- Solving complex tasks by splitting into one or several simpler tasks.
+- Dealing with [recursively-defined](https://en.wikipedia.org/wiki/Recursive_data_type) data structures, like HTML documents or trees.
+- For "deep" cloning or inspection of complex objects.
+- ...etc
+
 
