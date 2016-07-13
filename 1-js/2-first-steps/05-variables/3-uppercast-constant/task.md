@@ -9,18 +9,16 @@ Examine the following code:
 ```js
 const birthday = '18.04.1982';
 
-const age = calculateAgeBasedOn(birthday);
+const age = someCode(birthday);
 ```
 
-Here we have a constant `birthday` date and the `age` is calculated with the help of a function (its code is not provided cause it doesn't matter here).
+Here we have a constant `birthday` date and the `age` is calculated from `birthday` with the help of some code (it is not provided for shortness, and because details don't matter here).
 
-Would it be right to name both constants using the upper case? Like this:
+Would it be right to use upper case for `birthday`? For `age`? Or even for both?
 
 ```js
-const BIRTHDAY = '18.04.1982';
+const BIRTHDAY = '18.04.1982'; // make uppercase?
 
-const AGE = calculateAgeBasedOn(BIRTHDAY);
+const AGE = someCode(BIRTHDAY); // make uppercase?
 ```
-
-...Or we should use the upper case for only one of them? Or just use lower case everywhere?
 

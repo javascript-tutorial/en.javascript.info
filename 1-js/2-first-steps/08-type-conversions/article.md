@@ -101,35 +101,45 @@ alert( '1' + 2 ); // '12' (string to the left)
 alert( 1 + 2 ); // 3, numbers (for the contrast)
 ```
 
-That only happens when one of arguments is a string, in other cases values are converted to numbers.
+That only happens when one of arguments is a string. Otherwise values are converted to numbers.
 ````
 
 ## ToBoolean
 
 Boolean conversion is the simplest one.
 
-It happens in logical operations (later we'll meet `if` tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
+It happens in logical operations (later we'll meet condition tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
 
 The conversion rule:
 
 - Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined` and `NaN` become `false`. 
 - Other values become `true`. 
 
+For instance:
+
+```js run
+alert( Boolean(1) ); // true
+alert( Boolean(0) ); // false
+
+alert( Boolean("hello") ); // true
+alert( Boolean("") ); // false
+```
+
 ````warn header="Please note: the string with zero `\"0\"` is `true`"
 Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript a non-empty string is always `true`.
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // any non-empty string, even whitespaces are true
+alert( Boolean(" ") ); // also true (any non-empty string is true)
 ```
 ````
 
-````warn header="Empty objects and arrays are truthy"
+````warn header="Empty objects are truthy"
 All objects become `true`:
 
 ```js run
-alert( Boolean([]) ); // true
-alert( Boolean({}) ); // true
+alert( Boolean([]) ); // true, even if empty array
+alert( Boolean({}) ); // true, even if empty object
 ```
 ````
 
@@ -138,9 +148,9 @@ alert( Boolean({}) ); // true
 
 A string or numeric conversion of an object is a two-stage process. The object is first converted to a primitive value, and then ToString/ToNumber rules are applied to it.
 
-The conversion is customizable on a per-object basis, so we'd better deal with it later when we know more about objects. 
+The conversion is customizable on a per-object basis, so we'll study it later when we go deeper into objects. [todo in the chapter?]
 
-For now, let's just see two common rules that we often meet when showing objects.
+Examples:
 
 - When a plain object is converted into a string, is becomes `[object Object]`:
 
@@ -160,8 +170,8 @@ For now, let's just see two common rules that we often meet when showing objects
 
 We'll return to it in the chapter [todo].
 
-```smart header="It was only about ToString/ToNumber"
-For ToBoolean, there is no complexity neither customizability. 
+```smart header="ToBoolean is always true"
+Here `ToBoolean` was not mentioned, because it provides no customizability for objects 
 
 The rule is simple: all objects are truthy.
 ```

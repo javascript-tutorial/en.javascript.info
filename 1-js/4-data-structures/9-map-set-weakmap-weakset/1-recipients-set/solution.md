@@ -22,10 +22,12 @@ readMessages.add(messages[0]);
 alert("Read message 0: " + readMessages.has(messages[0]));
 
 messages.shift();
-// now readMessages has 1 element (or will be cleaned soon)
+// now readMessages has 1 element (technically memory may be cleaned later)
 ```
 
 The `WeakSet` allows to store a set of messages and easily check for the existance of a message in it.
 
 It cleans up itself automatically. The tradeoff is that we can't iterate over it. That's not needed here though.
+
+P.S. `WeakSet` stores one bit of information: "was it read" (yes/no - in set/out of set). To store a date, we can use `WeakMap`.
 

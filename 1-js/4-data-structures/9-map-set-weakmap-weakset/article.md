@@ -246,7 +246,7 @@ For instance:
 ```js
 let john = { name: "John" };
 
-// the object can be accessed, john is the reference
+// the object can be accessed, john is the reference to it
 
 // overwrite the reference
 john = null;
@@ -254,62 +254,93 @@ john = null;
 // the object will be removed from memory 
 ```
 
-We'll go into more details later, but the gist is somewhat obvious, right? If nothing references the object, it can be safely removed.
+We'll go into more details later, but the example here is somewhat obvious, right? If nothing references the object, it can be safely removed.
 
 Usually, if an object is in a set or an array or another data structure, and the data structure is in memory, then the object remains in memory too. With the exception of `WeakMap/WeakSet`.
 
-**If an object only exists in `WeakMap/WeakSet`, then it is removed from the memory.**
+**`WeakMap/WeakSet` does not prevent the object removal from the memory.**
 
-That's handy for situations when we have a main storage for the objects somewhere and need to keep additional data for them that only exists while the object exists.
+For instance, let's start with `WeakMap`. The first difference from `Map` is that its keys can only be objects, not primitive values:
 
-For instance, we have a code that keeps a visit count for each user. And when the user leaves, we don't need to store his visit count any more.
 
-One way would be to keep track of leaving users and cleaning up the storage manually.
+```js run
+let weakMap = new WeakMap();
 
-Another way would be to use `WeakMap`:
+let obj = {};
+
+weakMap.set(obj, "ok"); // works fine (object key)
+
+*!*
+weakMap.set("test", "wops"); // Error, because "test" is a primitive
+*/!*
+```
+
+So it stores data for objects. And the data only exists while the object exists. That's handy for situations when we have a main storage for the objects somewhere and need to keep additional information that is only relevant while the object lives.
+
+Let's see an example. 
+
+For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count any more.
+
+One way would be to keep track of leaving users and clean up the storage manually:
 
 ```js run
 let john = { name: "John" };
 
-// user => visits count
-let visitsCountMap = new WeakMap();
+// map: user => visits count
+let visitsCountMap = new Map();
 
 // john is the key for the map
 visitsCountMap.set(john, 123);
-
-alert( visitsCountMap.get(john) ); // 123
 
 // now john leaves us, we don't need him any more
 john = null;
 
 *!*
-alert( visitsCountMap.get(john) ); // undefined
+// but it's still in the map, we need to clean it!
 */!*
+alert( visitsCountMap.size ); // 1
+// it's also in the memory, because Map uses it as the key
 ```
 
-Did you notice the difference versus a regular `Map`? If `visitorCountMap` were a `new Map()`, then the object `john` and the corresponding value would remain in it. If users keep coming and leaving, then there would be more and more values flooding the map. 
+Another way would be to use `WeakMap`:
 
-So, with a regular `Map`, the user deletion becomes a more tedious task: we also need to clean up the additional stores. And it can become rather cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals. 
+```js 
+let john = { name: "John" };
 
-`WeakMap` uses only objects as keys, not primitive values. It has the following methods:
+let visitsCountMap = new WeakMap();
+
+visitsCountMap.set(john, 123);
+
+// now john leaves us, we don't need him any more
+john = null;
+
+// there are no references except WeakMap, 
+// so the object is removed both from the memory and from visitsCountMap automatically
+```
+
+With a regular `Map`, the user deletion becomes a tedious task: we not only need to remove the user from it's main storage (be it a variable or an array), but also need to clean up the additional stores like `visitsCountMap`. And it can become cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals. 
+
+`WeakMap` can make things simpler, because it is cleaned up automatically.
+
+`WeakMap` has only the following methods:
 
 - `weakMap.get(key)`
 - `weakMap.set(key, value)`
 - `weakMap.delete(key, value)`
 - `weakMap.has(key)`
 
-`WeakMap` does not support methods `clear()` and has no `size` property. Also we can not iterate over it.
+Please note `WeakMap` does not support methods `clear()` and has no `size` property. Also we can not iterate over it.
 
-That's for technical reasons. Once a key is no longer referenced from anywhere, it is removed from the `WeakMap` and from the memory. But technically it's not exactly specified *when the removal happens*.
+That's for technical reasons. If the object is to be removed (like `john` in the code above), then it `WeakMap` will be cleaned up automatically. But technically it's not exactly specified *when the cleanup happens*.
 
-The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or wait and do the cleaning later when more deletions happen. So, technically the current element count of the `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason,  the methods that access the `WeakMap` as a whole are not supported.
+The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically the current element count of the `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason,  the methods that access the `WeakMap` as a whole are not supported.
 
 The same refers to `WeakSet`.
 
 - It keeps a set of objects, an object exists while it is referenced from anywhere else.
-- It only supports `add`, `has` and `delete`, no support for `size` and no iterations.
+- Like `Set`, it supports `add`, `has` and `delete`, but not `size` and no iterations.
 
-The limitations may appear inconvenient, but they actually do not prevent `WeakMap/WeakSet` from doing the main task -- be an "additional" storage of data for objects which are stored/managed at another place.
+The limitations may appear inconvenient, but they actually do not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
 
 ## Summary
 
@@ -319,11 +350,12 @@ The limitations may appear inconvenient, but they actually do not prevent `WeakM
 
     - Any keys, objects can be keys.
     - Iterates in the insertion order.
-    - Additional convenient methods for iterating and cleaning, the `size` property.
+    - Additional convenient methods, the `size` property.
 
 - `Set` -- is a collection of unique values.
 
-    - Unlike an array, does not allow to reorder elements. Keeps the insertion order.
+    - Unlike an array, does not allow to reorder elements.
+    - Keeps the insertion order.
 
 - `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become unaccessible by other means. 
 
@@ -331,5 +363,7 @@ The limitations may appear inconvenient, but they actually do not prevent `WeakM
 
 - `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become unaccessible by other means.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in additional to the "main" object storage. Once the object is removed from the main storage, they clean up aumatically.
+    - Also does not support `size/clear()` and iterations.
+
+`WeakMap` and `WeakSet` are used as "secondary" data structures in additional to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up aumatically.
 

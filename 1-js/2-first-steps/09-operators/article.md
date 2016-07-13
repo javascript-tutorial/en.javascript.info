@@ -214,6 +214,28 @@ alert( 8 % 3 ); // 2 is a remainder of 8 divided by 3
 alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
 ```
 
+## Exponentiation **
+
+The exponentiation operator `**` is a recent addition to the language. Not all browsers support it yet.
+
+For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times. 
+
+For instance:
+
+```js run
+alert( 2 ** 2 ); // 4  (2 * 2)
+alert( 2 ** 3 ); // 8  (2 * 2 * 2)
+alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
+```
+
+The operator works with non-integer numbers of `a` and `b` as well, for instance:
+
+```js run
+alert( 4 ** (1/2) ); // 2 (square root of 4)
+alert( 8 ** (1/3) ); // 2 (cubic root of 8)
+```
+
+
 ## Increment/decrement: ++, --
 
 Increasing or decreasing a number by one is among the most common numerical operations.
@@ -341,7 +363,7 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. But it would be more practical to return to this topic later when a real need arises.
+These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. But it would be more practical to do that when a real need arises.
 
 ## Modify-in-place
 

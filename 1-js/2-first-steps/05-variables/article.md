@@ -1,8 +1,8 @@
 # Variables
 
-Most of the time, script needs to work with the information.
+Most of the time, a script needs to work with the information.
 
-If it's an online-shop -- that's going to be the goods and a shopping cart. If it's a chat -- visitors, messages and so on.
+If it's an online-shop -- that's going to be the goods and a shopping cart. If it's a chat -- users, messages and so on.
 
 Variables are used to store the information.
 
@@ -10,7 +10,7 @@ Variables are used to store the information.
 
 ## A variable
 
-A [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is defined as a "named storage" for the information. We can use variables to store the goods, visitors etc.
+A [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is a basic "named storage" for the information. We can use variables to store the goods, visitors etc.
 
 To create a variable in JavaScript, we need to use the `let` keyword.
 
@@ -30,7 +30,7 @@ message = 'Hello'; // store the string
 */!*
 ```
 
-The string is now saved into the memory area assosiated with that variable. We can access it using the variable name:
+The string is now saved into the memory area assosiated with the variable. We can access it using the variable name:
 
 ```js run
 let message;
@@ -44,8 +44,9 @@ alert( message ); // shows the variable content
 To be concise we can merge the variable declaration and assignment into a single line:
 
 ```js run
-let message = 'Hello!';
-alert( message ); // same as above
+let message = 'Hello!'; // define the variable and assign the value
+
+alert( message ); // Hello!
 ```
 
 We can also declare multiple variables in one line:
@@ -54,7 +55,7 @@ We can also declare multiple variables in one line:
 let user = 'John', age = 25, message = 'Hello';
 ```
 
-That might seem shorter, but it's recommended, for the sake of beter readability, to use a single line per variable.
+That might seem shorter, but it's not recommended. For the sake of beter readability, please use a single line per variable.
 
 The rewritten code is a bit longer, but easier to read:
 
@@ -63,6 +64,24 @@ let user = 'John';
 let age = 25;
 let message = 'Hello';
 ```
+
+Some people also write many variables like that:
+```js no-beautify
+let user = 'John',
+  age = 25,
+  message = 'Hello';
+```
+
+...Or even in comma-first style:
+
+```js no-beautify
+let user = 'John'
+  ,age = 25
+  ,message = 'Hello';
+```
+
+Technically, all these variants do the same. So, it's a matter of personal taste and aestetics.
+
 
 ````smart header="`var` instead of `let`"
 In older scripts you may also find another keyword: `var` instead of `let`:
@@ -231,9 +250,9 @@ myBirthday = '01.01.2001'; // error, can't reassign the constant!
 When a programmer is sure that the variable should never change, he can use `const` to guarantee it, and also to clearly show that fact to everyone.
 
 
-### Uppercases constants
+### Uppercase constants
 
-There is a widespread practice to use constants as aliases for difficult-to-remember and hard-coded prior to execution values. 
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution. 
 
 Such constants are named using capitals and underscores.
 
@@ -250,10 +269,7 @@ let color = COLOR_ORANGE;
 alert( color ); // #FF7F00
 ```
 
-`COLOR_ORANGE` is much easier to understand and remember than `"#FF7F00"`. Also it is much easier to make a typo in `"#FF7F00"` than in `COLOR_ORANGE`. 
-
-The upper case is only used for constants that are "hard-coded" (written in the code before its execution). 
-
+`COLOR_ORANGE` is much easier to remember than `"#FF7F00"`. Also it is much easier to mistype in `"#FF7F00"` than in `COLOR_ORANGE`. And when reading the code -- `COLOR_ORANGE` is much more meaningful. 
 
 ## Name things right
 

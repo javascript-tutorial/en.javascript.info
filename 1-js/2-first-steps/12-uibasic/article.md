@@ -2,6 +2,8 @@
 
 This chapter covers basic UI operations: `alert`, `prompt` and `confirm`. They allow to ask a visitor for the input and show the results.
 
+They are browser-specific. For other environments like Node.JS there are other ways of getting the information. Also they are very simple, so we can use them for the start.
+
 [cut]
 
 ## alert

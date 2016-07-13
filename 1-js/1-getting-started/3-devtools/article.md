@@ -8,11 +8,11 @@ But in the browser, a user doesn't see the errors by default. So, if something g
 
 To see errors and get a lot of other useful information about scripts, browsers have embedded "developer tools".
 
-**It is recommended to use Chrome or Firefox for the development.**
+**Most often developers lean towards Chrome or Firefox for the development.**
 
 Other browsers also provide developer tools, but are usually in a "catching-up" position, compared to Chrome/Firefox which are the best.
 
-If there is an error in the certain browser only, then we can use it's developer tools, but usually -- Chrome/Firefox.
+If there is an error in the certain browser only, then we can always switch to it's developer tools for the concrete problem.
 
 Developer tools are really powerful, there are many features. On this stage let's just look how to open them, look at errors and run JavaScript commands.
 

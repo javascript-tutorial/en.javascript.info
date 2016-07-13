@@ -144,31 +144,33 @@ Let's see more corner cases.
 
 There's a non-intuitive behavior when `null` or `undefined` is compared with other values.
 
-- For a strict equality check `===` these values are different, because each of them belong to a separate type of it's own.
 
-- For a non-strict check `null == undefined`, there's a special rule. These two are a "sweet couple". They equal each other (in the sense of `==`), but no any other value.
+For a strict equality check `===`
+: These values are different, because each of them belong to a separate type of it's own.
 
-- For maths and evaluation of other comparisons including `<`, `>`, `<=`, `>=`, values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`. 
+For a non-strict check `null == undefined`
+: There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but no any other value.
 
-Now let's see funny things that happen when we apply those rules. And then, later, how do not fall into a trap with unobvious language features.
+For maths and evaluation of other comparisons `< > <= >=`
+: Values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`. 
+
+Now let's see funny things that happen when we apply those rules. And, what's more important, how do not fall into a trap with unobvious language features.
 
 ### Strange result: null vs 0
 
 Let's compare `null` with a zero:
 
 ```js run
-alert( null > 0 );  // false
-alert( null == 0 ); // false
-alert( null >= 0 ); // *!*true*/!*
+alert( null > 0 );  // (1) false
+alert( null == 0 ); // (2) false
+alert( null >= 0 ); // (3) *!*true*/!*
 ```
 
 Yeah, mathematically that's strange. The last result states that "`null` is equal or greater than zero". Then one of the comparisons above must be correct, but they are both falsy.
 
-Well, every programmer language has its own unobvious features. That was an example for Javascript.
+The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as `0`. That's why (1) `null >= 0` is true and (3) `null > 0` is false.
 
-The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as `0`. That's why `null >= 0` is true and `null > 0` is false.
-
-From the other hand, equality `==` for `undefined` and `null` works without any conversions. There's just a rule that they equal each other and don't equal anything else. That's why `null == 0` is false.
+From the other hand, the equality check `==` for `undefined` and `null` works by the rule, without any conversions. They equal each other and don't equal anything else. That's why (2) `null == 0` is false.
 
 ### An uncomparable undefined
 
@@ -194,19 +196,6 @@ Why did we observe these examples? Should we remember these pecularities all the
 Just treat any comparison with `undefined/null` except the strict equality `===` with an exceptional care.
 
 Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check it separately.
-
-## Comparison with objects
-
-For equality checks two objects are always treated as non-equal. 
-
-```js run
-alert( {} == {} ); // false
-alert( [] == [] ); // false
-```
-
-Note that Javascript does not try to compare the objects by content. The rule is simple: different objects are not equal. 
-
-For other comparisons like `< >` operators, or when an object is compared with a primitive, objects are first converted to primitives, and then the comparison runs as usual.
 
 ## Summary
 

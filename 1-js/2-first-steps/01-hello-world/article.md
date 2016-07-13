@@ -1,11 +1,18 @@
 # Hello, world!
 
-In this chapter we'll create a simple script and see it working.
+About 98% of the tutorial is core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
+
+But we need something like a "base environment" to run our scripts, and browser is probably a good choice.
+
+So we'll start with attaching a script to the webpage. For other environments like Node.JS there are other ways to run it.
 
 [cut]
 
+[todo remove defer/async from here and move to 2nd part?]
+
 ## The "script" tag
 
+[todo need this? and special (need it too?)]
 ```smart header="What if I want to move faster?"
 In the case if you've developed with JavaScript already or have a lot of experience in another language, you can skip detailed explanatins and jump to <info:javascript-specials>. There you can find an essense of important features.
 

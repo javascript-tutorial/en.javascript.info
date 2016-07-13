@@ -6,7 +6,7 @@ The first overall thing to know is the code structure.
 
 ## Statements
 
-The code consists of [statements](https://en.wikipedia.org/wiki/Statement_(computer_science)) -- syntax constructs and commands to perform actions.
+[Statements](https://en.wikipedia.org/wiki/Statement_(computer_science)) are syntax constructs and commands to perform actions. 
 
 We've already seen a statement `alert('Hello, world!')`, which shows the message.
 
@@ -36,9 +36,9 @@ alert( 'Hello' )
 alert( 'World' )
 ```
 
-In this case JavaScript interprets the line break as a splitter. Just as if there were a semicolon between the lines.
+Here JavaScript interprets the line break as an "implicit" semicolon. That's also called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**But it's important that "in most cases" does not mean "always"!**
+**In most cases a newline implies a simicolon. But "in most cases" does not mean "always"!**
 
 There are cases when a newline does not mean a semicolon, for example:
 
@@ -50,12 +50,12 @@ alert(3 +
 
 The code outputs `6`, because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression". And in this case that's actually fine and comfortable.
 
-**But there are situations where JavaScript "fails" to assume a semicolon break where it is really needed.**
+**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
 
 Errors which come appear in such cases are quite hard to find and fix.
 
 ````smart header="An example of the error"
-For a curious reader who might be interested in a concrete example, check this code out:
+If you're curious to see a concrete example, check this code out:
 
 ```js run
 [1, 2].forEach(alert)
@@ -63,9 +63,9 @@ For a curious reader who might be interested in a concrete example, check this c
 
 It shows `1` then `2`.
 
-No need to think about the meaning of the brackets `[]` and `forEach` just for now -- it does not matter here. Let's just remember the result.
+No need to think about the meaning of the brackets `[]` and `forEach`, for now -- it does not matter. Let's just remember the result.
 
-Now we prepend an `alert` statement *not followed by a semicolon*:
+Now we prepend the code with an `alert` statement *not followed by a semicolon*:
 
 ```js run no-beautify
 alert( "There will be an error" ) // shown
@@ -77,16 +77,16 @@ Now if we run it, only the first `alert` is shown, and then an error.
 But everything's fine if we add a semicolon:
 ```js run
 alert( "All fine now" ); // shown
-[1, 2].forEach(alert)  // then this too
+[1, 2].forEach(alert)  // this works too
 ```
 
-The error in the former variant occurs because JavaScript engine does not assume a semicolon before square brackets `[...]`, so the code is actually treated as a one-line statement:
+The error in the no-semicolon variant occurs because JavaScript engine does not assume a semicolon before square brackets `[...]`, so the code is actually treated as a one-line statement:
 
 ```js run no-beautify
 alert( "There will be an error" )[1, 2].forEach(alert) 
 ```
 
-And in this particular case, that's just wrong. Hence the error.
+And in this particular case, that's just wrong. There must be two independent statements. Hence the error.
 
 ````
 
@@ -154,5 +154,5 @@ Please, don't hesitate to comment your code.
 
 Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to production server. They remove comments, so they do not appear in the working scripts. So, the comments do not have any negative effects on production at all.
 
-Further in the tutorial we'll make more notes about how to write the code better, easier to read and maintain. We'll also talk more about comments.
+Further in the tutorial we'll devote a special chapter to code style, also explaining how to write better comments.
 

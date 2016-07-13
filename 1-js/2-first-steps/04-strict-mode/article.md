@@ -58,10 +58,10 @@ Looking ahead let's just note that `"use strict"` can be put at the start of a f
 
 It is recommended to always start a script with `"use strict"`, for the following reasons:
 
-1. First, because all modern browsers support it, except Internet Explorer 9 and lower.
+1. First, all modern browsers support it. Only outdated ones like Internet Explorer 9 and below do not.
 2. Second, the modern JavaScript actually forces us into the strict mode. There are several modern language features like "classes" and "modules" that enable strict mode automatically. So, it's hard to evade it.
 
-Here in the tutorial all code (except where said otherwise) works in `"use strict"`.  but we'll still note the subtle differences of what happens if you forget it or if the visitor has an outdated browser. So you will also be able to write a code for IE8 and below if you'd like that.
+Here in the tutorial all code (except where said otherwise) works in `"use strict"`.  but we'll still note the subtle differences of what happens if you forget it or if the visitor has an outdated browser. So you will also be able to write a code that also works for old IE if you'd like that.
 
 ## Summary
 

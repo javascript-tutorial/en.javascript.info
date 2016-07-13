@@ -3,7 +3,7 @@
 Objects in JavaScript combine two functionalities.
 
 1. First -- they are "associative arrays": a structure for storing keyed data. 
-2. Second -- they provide features for object-oriented programming. 
+2. Second -- they provide features for object-oriented programming like inheritance. 
 
 Here we concentrate on the first part: using objects as a data store, and we will study it in-depth. That's the required base for studying the second part.
 
@@ -41,14 +41,26 @@ let user = {
 
 ![](object-user-props.png)
 
+
+````smart header="Trailing comma"
+The last property may end with a comma:
+```js 
+let user = {
+  name: "John",
+  age: 30*!*,*/!*
+}
+```
+That is called a "trailing" or "hanging" comma. Makes it easier to add/move/remove properties, because all lines become alike.
+````
+
+## Accessing a property
+
 To access a property, there are two syntaxes:
 
 - The dot notation: `user.name`
 - Square brackets: `user["name"]`
 
-Square brackets are more powerful, because they allow to specify arbitrary string as a property name. In contrast, the dot notation requires the nae to be a valid variable identifier, that is: no spaces, special chracters etc.
-
-But more than that, square brackets is the only choice when the name of the property is in a variable.
+The dot notation requires the name to be a valid variable identifier, that is: no spaces, special chracters etc. Square brackets are more powerful, because they allow to specify an arbitrary string as a property name. Also, square brackets is the only choice when the name of the property is in a variable.
 
 For instance:
 
@@ -60,12 +72,13 @@ let user = {
 
 let key = prompt("What do you want to know about the user?", "name");
 
-alert( user[key] ); // John (if enter "name"), 30 for the "age"
+// access by variable
+alert( user[key] ); // John (if enter "name")
 ```
 
-The square brackets literally say: "take the property name from the variable".
+The square brackets mean: "take the property name from the variable".
 
-Also it is handy to use square brackets in an object literal, when the property name is stored in a variable.
+Square brackets also can be used in an object literal.
 
 That's called a *computed property*:
 
@@ -73,7 +86,7 @@ That's called a *computed property*:
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
-  [fruit]: 5,
+  [fruit]: 5, // the name of the property is taken from the variable fruit
 };
 
 alert( bag.apple ); // 5 if fruit="apple"
@@ -107,21 +120,12 @@ let obj = {
   0: "test" // same as "0": "test"
 }
 
+// bot alerts access the same property (the number 0 is converted to string "0")
 alert( obj["0"] ); // test
 alert( obj[0] ); // test (same property)
 ```
 ````
 
-````smart header="Trailing comma"
-The last property may end with a comma:
-```js 
-let user = {
-  name: "John",
-  age: 30*!*,*/!*
-}
-```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/move/remove property, because all lines become alike.
-````
 
 ````smart header="Reserved words are allowed as property names"
 A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
@@ -138,7 +142,9 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed. With one exclusion. There's a built-in property named `__proto__` with a special functionality (we'll cover it later), which can't be set to a non-object value:
+Basically, any name is allowed, with one exclusion: `__proto__`. 
+
+The built-in property named `__proto__` has a special functionality (we'll cover it later), and it can't be set to a non-object value:
 
 ```js run
 let obj = {};
@@ -146,7 +152,7 @@ obj.__proto__ = 5;
 alert(obj.__proto__); // [object Object], didn't work as intended
 ```
 
-If we want to store *arbitrary* (user-provided) keys, then this can be a source of bugs. There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in a few chapters, it can support arbitrary keys.
+As you we see from the code, an assignment to a primitive is ignored. If we want to store *arbitrary* (user-provided) keys, then such behavior can be the source of bugs and even vulnerabilities, because it's unexpected. There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
 ````
 
 ## Removing a property
@@ -194,23 +200,25 @@ let key = "age";
 alert( key in user ); // true, takes the value of key and checks for such property
 ```
 
-````smart header="The property which equals `undefined`"
-Thee is a case when `"=== undefined"` check fails, but the `"in"` operator works correctly.
+````smart header="Using \"in\" for properties that store `undefined`"
+There is a case when `"=== undefined"` check fails, but the `"in"` operator works correctly.
 
 It's when an object property stores `undefined`:
 
 ```js run
-let obj = { test: undefined };
+let obj = { 
+  test: undefined 
+}; 
 
 alert( obj.test ); // undefined, no such property?
 
 alert( "test" in obj ); // true, the property does exist!
 ```
 
-In the code above, the property `obj.test` stores `undefined`, so the first check fails. 
-But the `in` operator puts things right.
 
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for unknown values. So the `in` operator is an exotic guest in the code.
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 ````
 
 ## Property shorthands
@@ -245,7 +253,6 @@ Methods definitions
   }; 
   ```
 
-  To say the truth, these notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter.
 
 ## Loops
 
@@ -395,12 +402,37 @@ alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 
 Quite obvious, if we used one of the keys (`admin`) and changed something inside the cabinet, then if we use another key later (`user`), we find things modified.
 
+### Comparison with objects
 
-## Cloning objects
+Two objects are equal only when they are one object:
+
+```js run
+let a = {};
+let b = a; // copy the reference
+
+alert( a == b ); // true, both variables reference the same object
+```
+
+We can also think of it like: the variables are "papers with address" of the objects. We copied the address from `a` to `b`. Then when we compare `a == b`, we compare the adresses. If they match, the equality is truthy.
+
+In all other cases objects are non-equal, even if their content is the same.
+
+For instance:
+
+```js run
+let a = {};
+let b = {}; // two independents object
+
+alert( a == b ); // false
+```
+
+For unusual equality checks like: object vs a priimtive, or an object less/greater `< >` than another object, objects are converted to numbers. To say the truth, such comparisons occur very rarely in real code and usually are a result of a mistake.
+
+## Cloning, Object.assign
 
 What if we need to duplicate an object? Create an independant copy, a clone?
 
-That's also doable, but a little bit more difficult, because there's no such method in Javascript. Frankly, that's very rarely needed. 
+That's also doable, but a little bit more difficult, because there's no such method in Javascript. Actually, copying by reference is good most of the time.
 
 But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
 
@@ -498,14 +530,14 @@ Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes`
 
 To fix that, we should examine the value of `user[key]` in the cloning loop and if it's an object, then replicate it's structure as well. That is called a "deep cloning". 
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation from the Javascript library [lodash](https://lodash.com). The method is [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation of it from the Javascript library [lodash](https://lodash.com). The method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 ## Ordering
 
-Are objects ordered? If we loop over an object, do we get all properties in the same order that they are in the `{...}` definition?
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order that they are added in it?
 
-The answer is "yes" for non-numeric properties, "no" for others.
+The short answer is: "no" for integer properties, "yes" for others. The details follow.
 
 As an example, let's consider an object with the phone codes:
 
@@ -519,29 +551,40 @@ let codes = {
 };
 
 *!*
-for(let code in codes) alert(code); // 1, 41, 44, 49
+for(let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
 */!*
 ```
 
-The object is used to generate HTML `<select>` list. If we're making a site mainly for German audience then we probably want `49` to be the first.
+The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
 
-But if we try to loop over the object, we see a totally different picture: 
+But if we run the code, we see a totally different picture: 
 
 - USA (1) goes first
 - then Switzerland (41) and so on.
 
-That's because according to the language stantard objects have no order. The loop is officially allowed to list properties randomly.
+That's because the iteration order is:
 
-But in practice, there's a de-facto agreement among modern JavaScript engines.
+1. Integer properties in the ascending sort order go first.
+2. String properties in the orders of their creation.
+3. Symbol properties in the order of their creation.
 
-- The numeric properties are sorted.
-- Non-numeric properties are ordered as they appear in the object.
+The phone codes were sorted, because they are integer. That's why we see `1, 41, 44, 49`.
 
-That agreement is not enforced by a standard, but stands strong, because a lot of JavaScript code is already based on it. 
+````smart header="Integer properties? What's that?"
+By specification object property names are either strings or symbols. So an "integer property" actually means a string that can be converted to-from integer without a change.
 
-Now it's easy to see that the properties were iterated in the ascending order, because they are numeric... Of course, object property names are strings, but the Javascript engine detects that it's a number and applies internal optimizations to it, including sorting. That's why we see `1, 41, 44, 49`.
+So, "49" is an integer string, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
 
-On the other hand, if the keys are non-numeric, then they are listed as they appear, for instance:
+```js run
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same ⇒ not integer property
+```
+````
+
+On the other hand, if the keys are non-integer, then they are listed as they appear, for instance:
 
 ```js run
 let user = {
@@ -551,14 +594,14 @@ let user = {
 user.age = 25; // add one more
 
 *!*
-// as they appear in the object
+// non-integer properties are listed in the creation order
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-numeric. Adding a plus `"+"` sign before each code is enough.
+So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
 
 Like this:
 
@@ -572,8 +615,7 @@ let codes = {
 };
 
 for(let code in codes) {
-  // explicitly convert each code to a number if required
-  alert( +code ); // 49, 41, 44, 1
+  alert( +code ); // 49, 41, 44, 1 
 }
 ```
 
@@ -599,8 +641,8 @@ Property access:
   - `for([key,value] of Object.entries(obj))` for both.
 
 - Ordering:
-  - Non-numeric properties keep the order.
-  - Numeric properties are sorted. To keep the order for numeric properties, we can prepend them with `+` to make them look like non-numeric.
+  - Integer properties in sorted order first, then strings in creation order, then symbols in creation order.
+  - To keep the order for numeric properties, we can prepend them with `+` to make them look like non-numeric.
 
 - Objects are assigned and copied by reference. 
 
