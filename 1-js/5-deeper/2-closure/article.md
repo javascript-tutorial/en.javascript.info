@@ -196,62 +196,86 @@ The questions may arise:
 
 We'll answer the 1st question and the other ones will also become obvious.
 
-**In Javascript, a function remembers the Lexical Environment where it was created.**
+**The rule: a function looks for a variable lexically from inside to outside.**
 
-Technically, when a function is created, it gets a special hidden property `[[Environment]]` that keeps the reference to the current outer Lexical Environment. And when the function runs, this property is used as the outer lexical reference.
+So, for the example, above, the order will be:
+
+![](lexical-search-order.png)
+
+1. The variable is first searched among the locals of the nested function.
+2. Then in the variables of the outer function.
+3. Then in the outer function... And so on until it reaches globals, then the search stops.
+
+No matter where the function is called, the rule is the same. If a variable is modified, it is modified on the place where it is found, so future accesses will get the updated variant. 
+
+To understand things even better, let's see how it is technically implemented.
+
+## Environments in detail
+
+Technically, when a function is created, it gets a special hidden property `[[Environment]]` that keeps the reference to the Lexical Environment where it is created. So it kind of remembers where it was made. And when the function runs, this property is used as the outer lexical reference, giving the direction for the search.
 
 Let's see how it works in the example above, step-by-step:
 
-1. When the script has just started, there is only global Lexical Environment:
+1. When the script has just started, and the execution flow is at the 1st line, there is only global Lexical Environment:
 
     ![](lexenv-nested-makecounter-1.png)
 
     At this moment there is only `makeCounter` function. And it did not run yet.
 
-2. The call to `makeCounter()` is performed:
+    All functions "on birth" receive a hidden property `[[Environment]]` with the reference to the Lexical Environment of creation. For `makeCounter` that's the global one.
+
+2. The code runs on, and the call to `makeCounter()` is performed:
 
     ![](lexenv-nested-makecounter-2.png)
 
-    The Lexical Environment for the call is created. It stores `count: 0`, the only local variable. The property `[[Environment]]` of `makeCounter` is used as an outer lexical reference.
+    The Lexical Environment for the `makeCounter()` call is created. It stores local variables, in our case `count: 0` is the only local variable. The property `[[Environment]]` of `makeCounter` is used as an outer lexical reference for the new Lexical Environment.
 
     Now we have two Lexical Environments: the first one is global, the second one is for the current `makeCounter` call, and it references the global one.
 
-3. The nested function is created. It gets `[[Environment]]` property referencing the enclosing Lexical Environment (in which it is created).
+3. During the execution of `makeCounter()` the nested function is created. Here a Function Expression is used to define a function. But that doesn't matter. All functions get the `[[Environment]]` property that references the Lexical Environment where they are made. For our new nested function that is the current Lexical Environment of `makeCounter()`:
 
     ![](lexenv-nested-makecounter-3.png)
 
-    Please note that at the inner function was created, but not yet called. The code inside `function() { ... }` is not running. 
+    Please note that at the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running. 
 
     So we still have two Lexical Environments.
 
-4. Now the `counter` variable actually stores that tiny function. When we run `counter()`, the single line of code will be executed: `return count++`. The `makeCounter()` call has already finished, it will  not get the control any more. 
+4. The call to `makeCounter()` is finished, and the result (the tiny nested function) is assigned to the global variable `counter`. When we run `counter()`, the single line of code will be executed: `return count++`.
+
+    The `makeCounter()` call has already finished, its code will not get the control any more. 
 
     ![](lexenv-nested-makecounter-4.png)
 
-    Please note that despite the function is called on the last line, outside of anything, its internal `[[Environment]]` property points back to the Lexical Environment where it was created.
+    Please note that though the `counter()` function is called on the last line, outside of anything, its internal `[[Environment]]` property points back to the Lexical Environment where it was created...
 
 
-5. So, when `counter()` code actually executes, it gets an "empty" Lexical Environment (no local variables), and the `[[Environment]]` property is used for the outer lexical reference.
+5. ...So, when `counter()` code actually executes, it gets an "empty" Lexical Environment (no local variables). But the `[[Environment]]` is used for the outer lexical reference, giving it access to the variables of the former `makeCounter()` call:
 
     ![](lexenv-nested-makecounter-5.png)
 
-    Now when it looks for `count`, it finds it among the variables of the former `makeCounter` call. The funny thing is that `makeCounter()` finished some time ago. But its variables are still alive, and accessible from a nested function.
+    Now if it accesses a variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the former `makeCounter()` call, then the global one.
+
+    When it looks for `count`, it finds it among the variables `makeCounter`, in the nearest outer Lexical Environment. 
+
+    The funny thing is that `makeCounter()` finished some time ago. But its variables are still alive, and accessible from a nested function.
 
 6. The call to `counter()` not only returns the value of `count`, but also increases it. Note that the modification is done "at place". The value of `count` is modified exactly in the environment where it was found.
 
     ![](lexenv-nested-makecounter-6.png)
 
-    When `counter()` finishes, its Lexical Environment is cleared from memory. There are no nested function or other reason to keep it. So we return to the point (4) with the only change -- the new value of `count`. The following calls all do the same.
-
-
-So when a function is called (no matter when, no matter where), it carries the reference to the outer Lexical Environment with it.
-
-For instance, in the beginning of code above, we have only one global Lexical Environment.
+    When `counter()` finishes, its Lexical Environment is cleared from memory. There are no nested function or other reason to keep it. So we return to the previous step with the only change -- the new value of `count`. The following calls all do the same.
 
 
 
+```smart header="Closures"
+There is a general programming term "closure", that developers generally should know.
 
-A *closure* is a function that remembers its outer context and can access them.
+A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible or need to be explicitly specified. But as explained above, in Javascript all functions are closures.
+
+That is: all of them automatically remember where they are created using a hidden `[[Environment]]` property, and all of them can access outer variables.
+
+When on an interview a frontend developer gets a question about "what's a closure?", the valid answer would be a definition of the closure and an explanation that all functions in Javascript are closures, and maybe few more words about technical details: what are Lexical Environments and how they work.
+```
 
 
 
