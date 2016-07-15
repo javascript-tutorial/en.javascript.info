@@ -376,43 +376,15 @@ In the very first chapter about [variables](info:variables), we mentioned three 
 
 Here we only talked about `let`. But `const` behaves totally the same way in terms of Lexical Environments.
 
-The `var` is a completely different beast, coming from old times. It is usually not used in modern scripts, but still lurks in the old ones.
+The `var` is a very different beast, coming from old times. It's generally not used in modern scripts, but still lurks in the old ones.
 
-**A `var` variable only recognizes function and global Lexical Environments, not blocks.**
+If you don't plan meeting such scripts you may even skip this subsection and return if/when this beasts bites 
 
-For instance:
-
-```js
-if (true) {
-  var test = true; // use "var" instead of "let"
-}
-
-*!*
-alert(test); // true, variable lives after if
-*/!*
-```
-
-If we used `let test`, then it wouldn't be visible to `alert`. But `var` variables ignore code blocks, so here we've got a global `test`.
-
-The same thing for loops:
-
-```js
-for(var i = 0; i < 10; i++) {
-  // ...
-}
-
-*!*
-alert(i); // 10, visible after loop, global variable
-*/!*
-```
-
-The only Lexical Environment respected by `var` is function. 
-
-So here it behaves the same way as `let`:
+From the first sight, `var` behaves similar to `let`:
 
 ```js run
 function sayHi() {
-  var phrase = "Hello"; // local variable
+  var phrase = "Hello"; // local variable, "var" instead of "let"
 
   alert(phrase); // Hello
 }
@@ -422,27 +394,125 @@ sayHi();
 alert(phrase); // Error, phrase is not defined
 ```
 
-HOISTED
+...But let's list the differences.
+
+`var` variables only recognize function and global Lexical Environments, they ignore blocks.
+: For instance:
+
+    ```js
+    if (true) {
+      var test = true; // use "var" instead of "let"
+    }
+
+    *!*
+    alert(test); // true, the variable lives after if
+    */!*
+    ```
+
+    If we used `let test`, then it wouldn't be visible to `alert`. But `var` variables ignore code blocks, so here we've got a global `test`.
+
+    The same thing for loops:
+
+    ```js
+    for(var i = 0; i < 10; i++) {
+      // ...
+    }
+
+    *!*
+    alert(i); // 10, "i" is visible after loop, it's a global variable
+    */!*
+    ```
+
+    As we can see, `var` pierces through `if`, `for` or other code blocks. That's because some time ago, in Javascript blocks had no Lexical Environments. And `var` is a reminiscence of that.
+
+`var` declarations are processed when the function starts (or when the script starts for globals).
+: Technically, it means that all `var` variables are defined from the beginning of the function.
+
+    So this code:
+
+    ```js 
+    function sayHi() {
+      phrase = "Hello";
+
+      alert(phrase); 
+
+    *!*
+      var phrase;
+    */!*
+    }
+    ```
+
+    ...Is technically the same as:
+
+    ```js
+    function sayHi() {
+    *!*
+      var phrase;
+    */!*
+      phrase = "Hello";
+
+      alert(phrase); 
+    }
+    ```
+
+    ...Or even like this (remember, code blocks are ignored):
+
+    ```js
+    function sayHi() {
+      phrase = "Hello";
+
+      *!*
+      if (false) {
+        var phrase;
+      }
+      */!*
+    
+      alert(phrase); 
+    }
+    ```
+
+    People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+
+    **The pitfall is that assignments are not hoisted**.
+
+    For instance:
+
+    ```js run
+    function sayHi() {
+      alert(phrase);  
+
+    *!*
+      var phrase = "Hello";
+    */!*
+    }
+
+    sayHi();
+    ```
+
+    The line `var phrase = "Hello"` has two actions in it: variable declaration and assignment.
+
+    The declaration is hoisted, but the assignment is not. The `alert` works, because the variable is defined from the start of the function. But its value is assigned below, so it shows `undefined`.
+
+    The code is essentially the same as:
+
+    ```js run
+    function sayHi() {
+    *!*
+      var phrase;
+    */!*
+
+      alert(phrase); // undefined
+
+      phrase = "Hello";
+    }
+
+    sayHi();
+    ```
+
+The features described above make using `var` inconvenient most of time. Because we can't create block-local variables. And hoisting just creates more space for errors. So, once again, nowadays, `vars` are used exceptionally rarely. But they exist in old scripts.
 
 
 
-
-
-
-
-
-
-
-
-**The `var` variables are "hoisted" to the top of functions.**
-
-In other words, a `var` declaration is processed in the beginning of the function (or the whole script for globals).
-
-It popu
-
-    These 
-
-    So, it is visible outside of blocks, for instance:
 
 ## Global object
 
@@ -455,8 +525,9 @@ As described in the [specification](https://tc39.github.io/ecma262/#sec-lexical-
 The key word here is "some". In practice:
 
 - `Array`, `Object`, `alert`, `prompt` and other built built-in functions and variables and Function Decla
-
-**Function Declarations
+- let not in
+- var is in
+- FDs are in
 
 
 
