@@ -516,11 +516,57 @@ The features described above make using `var` inconvenient most of time. Because
 
 ## Global object
 
-Most Javascript environments support a so-called "global object".
+A *global object* is the object that provides access to built-in functions and values, defined by the specification and the environment.
 
-In browser it is "window", for Node.JS it is "global".
+In a browser it is named "window", for Node.JS it is "global", for other environments it may have another name.
 
-As described in the [specification](https://tc39.github.io/ecma262/#sec-lexical-environments), the global object provides access to *some* global variables.
+So we can call `alert` two ways:
+
+```js run
+alert("Hello");
+
+// the same as
+window.alert("Hello");
+```
+
+Also we can access `Math` as `window.Math`:
+
+```js run
+alert( window.Math.min(5,1,4) ); // 1
+```
+
+Normally no one does so. Using the global object is generally not a good thing, it's recommended to evade that. 
+
+**The global object is not a global Lexical Environment.**
+
+For historical reasons it also gives access to global Function Declarations and `var` variables, but not `let/const` variables:
+
+<!-- can't make runnable in eval, will not work -->
+```js 
+var phrase = "Hello";
+let user = "John";
+
+function sayHi() {
+  alert(phrase + ', ' + user);
+}
+
+alert( window.phrase ); // Hello
+alert( window.sayHi ); // function
+
+*!*
+alert( window.user ); // undefined
+*/!*
+```
+
+In the example above you can clearly see that `let user` is not in `window`.
+
+That's because the idea of a global object as a way to access "all global things" comes from ancient times. In modern scripts its use is not recommended, and modern language features like `let/const` do not make friends with it.
+
+
+TODO
+
+As said ed in the [specification](https://tc39.github.io/ecma262/#sec-lexical-environments), the global object provides access to *some* global variables.
+
 
 The key word here is "some". In practice:
 
