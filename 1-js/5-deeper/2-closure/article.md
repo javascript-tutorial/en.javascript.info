@@ -346,7 +346,7 @@ But properties like `counter.count` have nothing in common with function variabl
 
 Which approach is better?
 
-The main difference is that if the value of `count` lives in a variable, then an external code is unable to access it. Only the nested function may modify it.
+The main difference is that if the value of `count` lives in a variable, then an external code is unable to access it. Only the nested function may modify it. Such variables are sometimes called *private* (to the function).
 
 And if it's bound to function, then such thing is possible:
 
