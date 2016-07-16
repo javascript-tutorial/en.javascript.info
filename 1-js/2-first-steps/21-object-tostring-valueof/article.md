@@ -40,7 +40,7 @@ The `ToPrimitive(obj, "number")` is the same, but `valueOf()` and `toString()` a
 4. If the result is a primitive, return it.
 5. Otherwise `TypeError` (conversion failed)
 
-```smart header="ToPrimitive returns a primitive"
+```smart header="ToPrimitive returns a primitive, but its type is not guaranteed"
 As we can see, the result of `ToPrimitive` is always a primitive, because even if `toString/valueOf` return a non-primitive value, it is ignored.
 
 But it can be any primitive. There's no control whether `toString()` returns exactly a string or, say a boolean.
@@ -96,7 +96,7 @@ If only `toString()` is implemented, then both string and numeric conversions us
 
 ## Array example
 
-Let's check a few examples to finally get the whole picture.
+Let's see few more examples with arrays to get the better picture.
 
 ```js run
 alert( [] + 1 ); // '1'
@@ -108,7 +108,7 @@ The array from the left side of `+` is first converted to primitive using `toPri
 
 For arrays (and most other built-in objects) only `toString` is implemented, and it returns a list of items.
 
-So we'll have:
+So we'll have the following results of conversion:
 
 ```js 
 alert( '' + 1 ); // '1'

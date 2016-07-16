@@ -90,13 +90,13 @@ Now let's add a function:
 
 ![lexical environment](lexical-environment-global-3.png)
 
-Here we see an important moment related to Function Declarations. They are processed when a Lexical Environment is created. For the global Lexical Environment, it means the moment when the script is started. So if we wanted to call `say()` before the declaration, it would work.
+Here we see an important moment related to Function Declarations. They are processed when a Lexical Environment is created. For the global Lexical Environment, it means the moment when the script is started. So `say` exists from the very beginning (and we can call it prior to declaration).
 
 The `let` definition is processed normally, so it is added later.
 
-Now let's run the function.
+Now let's run the function `say()`.
 
-When it runs, a function Lexical Environment is created automatically, for variables and parameters of the current function call:
+When it runs, the new function Lexical Environment is created automatically, for variables and parameters of the current function call:
 
 <!--
 ```js
@@ -121,7 +121,7 @@ We now have two Lexical Environments: the inner (for the function call) and the 
 As we'll see further, functions can be more nested, so the chain of outer references can be longer.
 
 
-Please note that the Lexical Environment for function `say` only exists while the function is executing! There are no local variables or something until the function is actually called. And if the function is called multiple times, then each invocation has it's own Lexical Environment, with local variables and parameters for the current run.
+Please note that the Lexical Environment for function `say` is only created when the function starts executing! And if the function is called multiple times, then each invocation has it's own Lexical Environment, with local variables and parameters for the current run.
 
 **When a code wants to access a variable -- it is first searched in the current Lexical Environment, then in the outer one, and further until the end of the chain.**
 
@@ -219,7 +219,7 @@ The questions may arise:
 
 1. How it works?
 2. What happens if there is a global variable named `count`? Can it confuse the `counter`?
-3. What if we call `makeCounter` multiple times? Are the resulting `counter` functions independant or they share the same count?
+3. What if we call `makeCounter` multiple times? Are the resulting `counter` functions independent or they share the same count?
 
 We'll answer the 1st question and the other ones will also become obvious.
 
@@ -236,6 +236,8 @@ So, for the example, above, the order will be:
 No matter where the function is called, the rule is the same. 
 
 **If a variable is modified, it is modified on the place where it is found, so future accesses will get the updated variant.** 
+
+So `count++` finds the outer variable and increases it "at place" every time, thus returning the next value every time.
 
 The rule is good for eyes and usually enough, but in more complex situations, the more solid understanding of internals may be needed. So here you go.
 
@@ -298,7 +300,7 @@ The `work()` function in the code below uses the `name` from the place of its or
 
 ![](lexenv-nested-work.png)
 
-...But if there were no `name` in `makeWorker()`, then the search would go outside and take the global variable.
+...But if there were no `name` in `makeWorker()`, then the search would go outside and take the global variable as we can see from the chain above.
 
 The same for `counter()` calls. The closest outer variable is always used.
 
@@ -312,14 +314,70 @@ That is: all of them automatically remember where they are created using a hidde
 When on an interview a frontend developer gets a question about "what's a closure?", the valid answer would be a definition of the closure and an explanation that all functions in Javascript are closures, and maybe few more words about technical details: the `[[Envrironment]]` property and how Lexical Environments work.
 ```
 
-[todo What happens with many makeCounter - are they independant? task!]
+### An alternative: function properties
 
+An alternative approach to the counter could be a function property:
+
+```js run
+function makeCounter() {
+
+  function counter() {
+    return counter.count++;
+  };
+
+  counter.count = 0;
+
+  return counter;
+}
+
+let counter = makeCounter();
+alert( counter() ); // 0
+alert( counter() ); // 1
+```
+
+Unlike the previous example, the current `count` is now bound to the function directly, not to its outer Lexical Environment.
+
+
+```smart header="Reminder"
+As we remember, functions are objects in Javascript. So we can store things is them.
+
+But properties like `counter.count` have nothing in common with function variables. Variables never use function properties and vise versa. These are just parallel words.
+```
+
+Which approach is better?
+
+The main difference is that if the value of `count` lives in a variable, then an external code is unable to access it. Only the nested function may modify it.
+
+And if it's bound to function, then such thing is possible:
+
+
+```js run
+function makeCounter() {
+
+  function counter() {
+    return counter.count++;
+  };
+
+  counter.count = 0;
+
+  return counter;
+}
+
+let counter = makeCounter();
+
+*!*
+counter.count = 10;
+alert( counter() ); // 10
+*/!*
+```
+
+Sometimes such possibility can be a plus, but usually we want more control over `count`, and the other way is prefered.
 
 ## Code blocks and loops
 
 A code block has it's own Lexical Environment and hence local variables.
 
-In the example below, initially there's only global Lexical Environment. When the execution goes into `if` block, the new Lexical Environment is created for it:
+In the example below, when the execution goes into `if` block, the new Lexical Environment is created for it:
 
 <!--
 ```js run
@@ -338,17 +396,20 @@ alert(user); // Error, can't see such variable!
 
 ![](lexenv-if.png)
 
-The new Lexical Environment gets the enclosing one as the outer reference, so `phrase` can be found.
+The new Lexical Environment gets the enclosing one as the outer reference, so `phrase` can be found. But all variables and Function Expressions declared inside `if`, will reside in that Lexical Environment.
 
-After `if` finishes, its Lexical Environment is normally destroyed (unless there's a living nested function). That's why the `alert` below doesn't see the `user`.
+After `if` finishes, its Lexical Environment is normally destroyed (unless there's a living nested function). That's why the `alert` below won't see the `user`.
 
-We also can use a "bare" code block to isolate variables.
+**We also can use a "bare" code block to isolate variables.**
 
-For instance, in-browser all scripts share the same global area. So if we write `message` in one script, it becomes available to others. If we don't want that, can use a code block:
+For instance, in-browser all scripts share the same global area. So if we create a global variable in one script, it becomes available to others. That may be a source of conflicts if two scripts use the same variable name and overwrite each other.
+
+If we don't want that, we can use a code block to isolate the whole script or an area in it:
 
 ```js run
 {
-  // All variables here are only visible to the local script
+  // do some job with local variables that should not be seen outside
+
   let message = "Hello";
 
   alert(message); // Hello
@@ -366,7 +427,7 @@ for(let i = 0; i < 10; i++) {
 }
 ```
 
-## The old style: "var"
+## The old "var"
 
 In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
 
@@ -376,9 +437,7 @@ In the very first chapter about [variables](info:variables), we mentioned three 
 
 Here we only talked about `let`. But `const` behaves totally the same way in terms of Lexical Environments.
 
-The `var` is a very different beast, coming from old times. It's generally not used in modern scripts, but still lurks in the old ones.
-
-If you don't plan meeting such scripts you may even skip this subsection and return if/when this beasts bites 
+The `var` is a very different beast, coming from old times. It's generally not used in modern scripts, but still lurks in the old ones. If you don't plan meeting such scripts you may even skip this subsection or postpone until it bites. 
 
 From the first sight, `var` behaves similar to `let`:
 
@@ -396,7 +455,7 @@ alert(phrase); // Error, phrase is not defined
 
 ...But let's list the differences.
 
-`var` variables only recognize function and global Lexical Environments, they ignore blocks.
+`var` variables only live in function and global Lexical Environments, they ignore blocks.
 : For instance:
 
     ```js
@@ -409,7 +468,7 @@ alert(phrase); // Error, phrase is not defined
     */!*
     ```
 
-    If we used `let test`, then it wouldn't be visible to `alert`. But `var` variables ignore code blocks, so here we've got a global `test`.
+    If we used `let test` on the 2nd line, then it wouldn't be visible to `alert`. But `var` variables ignore code blocks, so here we've got a global `test`.
 
     The same thing for loops:
 
@@ -423,10 +482,25 @@ alert(phrase); // Error, phrase is not defined
     */!*
     ```
 
-    As we can see, `var` pierces through `if`, `for` or other code blocks. That's because some time ago, in Javascript blocks had no Lexical Environments. And `var` is a reminiscence of that.
+    If a code block in inside a function, then `var` becomes a function-level variable:
 
-`var` declarations are processed when the function starts (or when the script starts for globals).
-: Technically, it means that all `var` variables are defined from the beginning of the function.
+    ```js 
+    function sayHi() {
+      if (true) {
+        var phrase = "Hello";
+      }
+
+      alert(phrase); // works
+    }
+
+    sayHi(); 
+    alert(phrase); // Error: phrase is not defined
+    ```
+
+    As we can see, `var` pierces through `if`, `for` or other code blocks. That's because long time ago in Javascript blocks had no Lexical Environments. And `var` is a reminiscence of that.
+
+`var` declarations are processed when the function starts (or script starts for globals).
+: In other words, unlike `let/const` that appear at the moment of their declaration, `var` variables are defined from the beginning of the function. 
 
     So this code:
 
@@ -442,7 +516,7 @@ alert(phrase); // Error, phrase is not defined
     }
     ```
 
-    ...Is technically the same as:
+    ...Is technically the same as this:
 
     ```js
     function sayHi() {
@@ -455,7 +529,7 @@ alert(phrase); // Error, phrase is not defined
     }
     ```
 
-    ...Or even like this (remember, code blocks are ignored):
+    ...Or even as this (remember, code blocks are ignored):
 
     ```js
     function sayHi() {
@@ -471,7 +545,9 @@ alert(phrase); // Error, phrase is not defined
     }
     ```
 
-    People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+    People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function. 
+
+    So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function.
 
     **The pitfall is that assignments are not hoisted**.
 
@@ -489,27 +565,30 @@ alert(phrase); // Error, phrase is not defined
     sayHi();
     ```
 
-    The line `var phrase = "Hello"` has two actions in it: variable declaration and assignment.
+    The line `var phrase = "Hello"` has two actions in it: variable declaration `var` and assignment `=`.
 
-    The declaration is hoisted, but the assignment is not. The `alert` works, because the variable is defined from the start of the function. But its value is assigned below, so it shows `undefined`.
-
-    The code is essentially the same as:
+    The declaration is hoisted, but the assignment is not. So the code works essentially as this:
 
     ```js run
     function sayHi() {
     *!*
-      var phrase;
+      var phrase; // variable is declared from the top...
     */!*
 
       alert(phrase); // undefined
 
-      phrase = "Hello";
+    *!*
+      phrase = "Hello"; // ...but assigned when the execution reaches this line.
+    */!*
     }
 
     sayHi();
     ```
 
-The features described above make using `var` inconvenient most of time. Because we can't create block-local variables. And hoisting just creates more space for errors. So, once again, nowadays, `vars` are used exceptionally rarely. But they exist in old scripts.
+The `alert` works, because the variable is defined from the start of the function. But its value is assigned below, so it shows `undefined`.
+
+
+The features described above make using `var` inconvenient most of time. First, we can't create block-local variables. And hoisting just creates more space for errors. So, once again, for new scripts `var` is used exceptionally rarely.
 
 
 
@@ -520,7 +599,7 @@ A *global object* is the object that provides access to built-in functions and v
 
 In a browser it is named "window", for Node.JS it is "global", for other environments it may have another name.
 
-So we can call `alert` two ways:
+For instance, we can call `alert` directly or as a method of `window`:
 
 ```js run
 alert("Hello");
@@ -529,78 +608,141 @@ alert("Hello");
 window.alert("Hello");
 ```
 
-Also we can access `Math` as `window.Math`:
+And the same applies to other built-ins. E.g. we can use `window.Array` instead of `Array`. 
 
-```js run
-alert( window.Math.min(5,1,4) ); // 1
-```
+The global object also carries global Function Declarations and `var` variables. We can read them and write using its properties, for instance:
 
-Normally no one does so. Using the global object is generally not a good thing, it's recommended to evade that. 
-
-**The global object is not a global Lexical Environment.**
-
-For historical reasons it also gives access to global Function Declarations and `var` variables, but not `let/const` variables:
-
-<!-- can't make runnable in eval, will not work -->
-```js 
+<!-- no-strict to move variables out of eval -->
+```js untrusted run no-strict refresh
 var phrase = "Hello";
-let user = "John";
 
 function sayHi() {
-  alert(phrase + ', ' + user);
+  alert(phrase);
 }
 
-alert( window.phrase ); // Hello
-alert( window.sayHi ); // function
+// can read from window
+alert( window.phrase ); // Hello (global var)
+alert( window.sayHi ); // function (global function declaration)
 
-*!*
-alert( window.user ); // undefined
-*/!*
+// can write to window (creates a new sglobal variable)
+window.test = 5;
+
+alert(test); // 5
 ```
 
-In the example above you can clearly see that `let user` is not in `window`.
+...But the global object does not have variables declared with `let/const`:
 
-That's because the idea of a global object as a way to access "all global things" comes from ancient times. In modern scripts its use is not recommended, and modern language features like `let/const` do not make friends with it.
+```js untrusted run no-strict refresh
+*!*let*/!* user = "John";
+alert(user); // John
+
+alert(window.user); // undefined, don't have let
+alert("user" in window); // false
+```
+
+Here you can clearly see that `let user` is not in `window`.
+
+That's because the idea of a global object as a way to access "all global things" comes from ancient times. Nowadays is not considered to be a good thing. Modern language features like `let/const` do not make friends with it, but old ones try to be compatible.
+
+### Uses of "window"
+
+In server-side environments like Node.JS, the `global` object is used exceptionally rarely. Probably it would be fair to say "never".
+
+In-browser `window` is sometimes used for following purposes:
+
+1. To access exactly the global variable if the function has the local one with the same name.
+
+    ```js untrusted run no-strict refresh
+    var user = "Global";
+
+    function sayHi() {
+      var user = "Local";
+
+    *!*
+      alert(window.user); // Global
+    */!*
+    }
+
+    sayHi();
+    ```
+
+    Such use is typically a workaround. Would be better to name variables in a way that does require to write it this way. And note the `var user`. The trick doesn't work with `let` variables.
+
+2. To check if a certain global variable or a builtin exists.
+
+    For instance, we want to check whether a global function `XMLHttpRequest` exists.
+
+    We can't write `if (XMLHttpRequest)`, because if there's no such global, that's an access to undefined variable, an error.
+
+    But we can get it via `window.XMLHttpRequest`:
+
+    ```js run
+    if (window.XMLHttpRequest) { 
+      alert('XMLHttpRequest exists!')
+    }
+    ```
+
+    If there is no such global function then `window.XMLHttpRequest` is just an access to unexisting object property. That's `undefined`, no error, so it works. 
+
+    We can also write the test without `window`:
+
+    ```js
+    if (typeof XMLHttpRequest == 'function') {
+      /* is there a function XMLHttpRequest? */
+      /* this will also use a local XMLHttpRequest if exists */
+    }
+    ```
 
 
-TODO
+3. The rare, special in-browser usage is to take the variable from the right window. 
 
-As said ed in the [specification](https://tc39.github.io/ecma262/#sec-lexical-environments), the global object provides access to *some* global variables.
+    A browser may open multiple windows and tabs. A window may also embed another one in `<iframe>`. Every browser window has its own `window` object and global variables. Javascript allows windows that come from the same site (same protocol, host, port) to access variables from each other. 
 
+    That use is a little bit beyound our scope for now, but it looks like:
+    ```html run
+    <iframe src="/" id="iframe"></iframe>
 
-The key word here is "some". In practice:
+    <script>
+      alert( innerWidth ); // get innerWidth property of the current window (browser only)
+      alert( Array ); // get Array of the current window (javascript core builtin)
 
-- `Array`, `Object`, `alert`, `prompt` and other built built-in functions and variables and Function Decla
-- let not in
-- var is in
-- FDs are in
+      // when the iframe loads...
+      iframe.onload = function() { 
+        // get width of the iframe window
+      *!*
+        alert( iframe.contentWindow.innerWidth );
+      */!*
+        // get the builtin Array from the iframe window
+      *!*
+        alert( iframe.contentWindow.Array );
+      */!*
+      }
+    </script>
+    ```
 
+````smart header="Window and \"this\""
+As we know, usually `this` is used inside an object method to access the object.
 
+But outside of that, sometimes `this` equals `window`:
 
+- The value of the global `this` is `window`:
 
+    ```js run
+    // outside of functions
+    alert( this === window ); // true
+    ```
 
+- When a function with `this` is called in not-strict mode:
+    ```js run no-strict
+    // not in strict mode
+    function f() {
+      alert(this); // [object Window]
+    }
 
-## old
+    f(); // called without an object
+    ```
+    That's for compatibility. With `use strict` in the last example `this` would be `undefined`.
 
+````
 
-- Technically, when a function is created, it gets a special hidden property named `[[Environment]]` that keeps a reference to the current Lexical Environment.
-- When the function is called, a new Lexical Environment is created
-
-
-For `sayHi` to access `name`, it has to go to the global Lexical Environment. 
-
-
-
-variable is a may be visible in the :
-
-- A whole script (global variables)
-
-A whole script or a function or a code block in Javascript may 
-
-A function can access outer variables.
-
-
-- A variable can be defined with `var`, `let` or `const`
--
-that a function can access variables outside of it. 
 

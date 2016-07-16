@@ -1,0 +1,89 @@
+getting-started
+  introduction
+  editor
+  devtools
+first-steps
+  hello-world (intro, scripts blocks rendering)
+  external-script (TODO: move defer/async out to browser part)
+  structure
+  use strict
+  variables (const, name things right)
+  types (objects, arrays create/access props, typeof)
+  type-conversions (conversions string/number/boolean, objects in general words, no toString/valueOf)
+  operators
+  comparison (note about toprimitive)
+  destructuring (Q: move from here? need in objects)
+  uibasic
+  logical-ops
+  while-for (labels, for..in, for..of)
+  switch
+  function-basics (decl, shadowing,  naming)
+  function-parameters (default params, rest, destructuring, spread, TODO, Q: move from here?)
+  function-create-advanced (function is object, FE as a method, user with methods, arrow basics NO THIS, new function)
+  object-methods (this, method syntax, call/apply)
+  object-tostring-valueof (also @@toStringTag)  
+  primitives-methods (on-the-fly objects)
+  javascript-specials (TODO, remove it? migrate all function* to separate chapter?)
+code-quality
+  debugging-chrome (TODO)
+  coding-style (TODO)
+  write-unmaintainable-code (TODO)
+  test-driven-development (TODO)
+  polyfills (TODO)
+data-structures
+  number (rounding, precision, isFinite, isNaN, parse*, Math.*)
+  string (quotes, search, substring, tagged template notice)
+  object (loops++, copying, shorthands)
+    - other information would be too much
+  array (TODO: where is iterable?)
+  array-methods (TODO: tasks)
+    - would be too much
+  date (TODO: tasks)
+  map-set-weakmap-weakset
+  
+-------
+
+    <<< json?
+<<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
+<<< getter setter
+
+
+recursion (
+  running execution context = where + lexical environment = envrec + outer
+  context stack
+  pow task
+  traverse list task
+    task: traverse list back
+)
+closures
+  LE outer
+  returning a function
+  -not function props
+  new Function?
+  counter object?
+
+bind, currying
+decorators
+constructors
+classes
+instanceof
+IIFE ?
+
+<<< memory management?  (AFTER CLOSURES! Сюрприз нельзя получить!!!)
+  
+
+после 4-object сделать 
+  descriptors
+
+
+
+more-features
+  try..catch
+  setTimeout
+  JSON
+
+
+======
+A global environment is a Lexical Environment which does not have an outer environment. The global environment's outer environment reference is null. A global environment's EnvironmentRecord may be prepopulated with identifier bindings and includes an associated global object whose properties provide some of the global environment's identifier bindings.  (window has SOME global env bindings!!!)
+=====
+class A extends Object != class A
