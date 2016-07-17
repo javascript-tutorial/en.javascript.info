@@ -22,7 +22,7 @@ There are two ways to solve it.
 
 1. Iterative thinking -- the `for` loop:
 
-    ```js  run
+    ```js run
     function pow(x, n) {
       let result = 1;
 
@@ -132,7 +132,8 @@ function pow(x, n) {
 alert( pow(2, 3) );
 ```
 
-The line changes, so the context is now:
+
+The variables are same, but the line changes, so the context is now:
 
 <ul class="function-execution-context-list">
   <li>

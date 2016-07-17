@@ -313,6 +313,24 @@ But that's actually a bad idea. There are potential problems with it:
 
 So we should never use `for..in` for arrays.
 
+
+````smart header="`for..of` over `arr.entries()`"
+For "real" arrays and some array-like structures, there's one more way:
+
+```js run
+let arr = ["Apple", "Orange", "Pear"];
+
+*!*
+for (let [i, item] of arr.entries()) {
+*/!*
+  alert( i + ':' + item ); // 0:Apple, then 1:Orange, then 2:Pear
+}
+```
+
+Here [arr.entries](mdn:js/Array/entries) is a built-in method, most array-like structures do not support that.
+````
+
+
 ## A word about "length"
 
 The `length` property automatically updates when we modify the array. It is actually not the *count* of values in the array, but the greatest numeric index plus one.
@@ -413,8 +431,9 @@ We can use an array as a deque with the following operations:
 - `unshift(...items)` adds items to the beginning.
 
 To loop over the elements of the array:
-  - `for(let item of arr)` -- the modern syntax,
   - `for(let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
+  - `for(let item of arr)` -- the modern syntax for items only,
+  - `for(let [i,item] of arr.entries())` -- the modern syntax for indexes together with items,
   - `for(let i in arr)` -- never use.
 
 That were the "extended basics". There are more methods. In the next chapter we'll study them in detail.

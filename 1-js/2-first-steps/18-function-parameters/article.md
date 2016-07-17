@@ -119,13 +119,16 @@ The `...rest` must always be the last.
 
 ````smart header="The `arguments` variable"
 
-In old times, there were no rest operator. But there was a special variable named `arguments` that contained all arguments by their index. It is still supported and can be used like this:
+In old times, there was no rest operator. But there is a special variable named `arguments` that contains all arguments by their index. It is still supported and can be used like this:
 
 ```js run
 function showName() {
   alert( arguments[0] ); 
   alert( arguments[1] ); 
   alert( arguments.length ); 
+
+  // for..of works too
+  // for(let arg of arguments) alert(arg); 
 }
 
 // shows: Julius, Caesar, 2
@@ -135,7 +138,7 @@ showName("Julius", "Caesar");
 showName("Ilya"); 
 ```
 
-The downside is that `arguments` looks like an array, but it's not. It does not support many useful array features. It mainly exists for backwards compatibility, usually the rest operator is better.
+The downside is that though `arguments` looks like an array, but it's not. It does not support many useful array methods that we'll study later, and if they're needed, then the rest operator should be used.
 ````
 
 ## Destructuring parameters
@@ -158,7 +161,7 @@ Like this?
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
-That's ugly. And becomes unreadable if we deal with more parameters.
+That's ugly. And becomes unreadable when we deal with more parameters.
 
 Destructuring comes to the rescue!
 
@@ -235,13 +238,13 @@ showMenu(); // Menu 100 200
 
 In the code above, the whole arguments object is `{}` by default, so there's always something to destructurize.
 
-## The spread operator
+## The spread operator [#spread-operator]
 
 As we've seen before, the rest operator `...` allows to gather parameters in the array.
 
 But there's a reverse named "the spread operator". It also looks like `...` and works at call-time.
 
-The spread operator allows to "unfurl" an array into a list of parameters, like this:
+The spread operator allows to convert an array into a list of parameters, like this:
 
 ```js run
 let fullName = ["Gaius", "Julius", "Caesar"];
@@ -255,7 +258,6 @@ function showName(firstName, secondName, lastName) {
 // The spread operator ... passes an array as a list of arguments
 showName(...fullName);
 ```
-
 
 Let's see a more real-life example. 
 
@@ -276,13 +278,14 @@ alert( Math.max(...arr) ); // 7
 
 In short:
 - When `...` occurs in function parameters, it's called a "rest operator" and gathers parameters into the array.
-- When `...` occurs in a function call, it's called a "spread operator" and unfurls an array into the list.
+- When `...` occurs in a function call, it's called a "spread operator" and converts an array into the list.
 
 Together they help to travel between a list and an array of parameters with ease.
 
 
 ## Summary TODO
 
+[todo]
 Основные улучшения в функциях:
 
 - Можно задавать параметры по умолчанию, а также использовать деструктуризацию для чтения приходящего объекта.

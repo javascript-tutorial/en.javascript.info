@@ -373,7 +373,7 @@ alert( counter() ); // 10
 
 Sometimes such possibility can be a plus, but usually we want more control over `count`, and the other way is prefered.
 
-## Code blocks and loops
+## Code blocks and loops, IIFE
 
 A code block has it's own Lexical Environment and hence local variables.
 
@@ -400,7 +400,16 @@ The new Lexical Environment gets the enclosing one as the outer reference, so `p
 
 After `if` finishes, its Lexical Environment is normally destroyed (unless there's a living nested function). That's why the `alert` below won't see the `user`.
 
-**We also can use a "bare" code block to isolate variables.**
+For a loop, every run has a separate Lexical Environment. The loop variable is its part:
+
+```js run
+for(let i = 0; i < 10; i++) {
+  // Each loop has its own Lexical Environment
+  // {i: value}
+}
+```
+
+We also can use a "bare" code block to isolate variables.
 
 For instance, in-browser all scripts share the same global area. So if we create a global variable in one script, it becomes available to others. That may be a source of conflicts if two scripts use the same variable name and overwrite each other.
 
@@ -418,14 +427,60 @@ If we don't want that, we can use a code block to isolate the whole script or an
 alert(message); // Error: message is not defined
 ```
 
-For a loop, every run has a separate Lexical Environment. The loop variable is its part:
+In old scripts, you can find immediately-invoked function expressions (abbreviated as IIFE) used for this purpose.
+
+They look like this:
 
 ```js run
-for(let i = 0; i < 10; i++) {
-  // Each loop has its own Lexical Environment
-  // {i: value}
-}
+(function() {
+  
+  let message = "Hello";
+
+  alert(message); // Hello
+
+})();
 ```
+
+Here a Function Expression is created and immediately called. So the code executes right now and has its own private variables.
+
+The Function Expression is wrapped with brackets `(function {...})`, because otherwise Javascript would try to read it as Function Declaration:
+
+```js run
+// Error: Unexpected token (
+function() { // <-- JavaScript assumes it is a Function Declarations, but no name
+  
+  let message = "Hello";
+
+  alert(message); // Hello
+
+}();
+```
+
+...And we can't actually use Function Declaration here, because Javascript does not allow them to be called immediately:f
+
+```js run
+// syntax error
+function go() {
+  
+}();
+```
+
+So the brackets are needed to show Javascript that we make a function in the context of another expression. Other means to do that:
+
+```js run
+!function() {
+  alert("Bitwise NOT operator starts the expression");
+}();
+
++function() {
+  alert("Unary plus starts the expression");
+}();
+```
+
+
+
+
+
 
 ## The old "var"
 

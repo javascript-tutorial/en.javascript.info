@@ -134,9 +134,9 @@ Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"],
 
 For looping over a `map`, there are 3 methods:
 
-- `map.keys()` -- returns an array-like object for keys,
-- `map.values()` -- returns an array-like object for values,
-- `map.entries()` -- returns an array-like object for entries `[key, value]`, it's used by default in `for..of`.
+- `map.keys()` -- returns an iterable object for keys,
+- `map.values()` -- returns an iterable object for values,
+- `map.entries()` -- returns an iterable object for entries `[key, value]`, it's used by default in `for..of`.
 
 For instance:
 
@@ -182,7 +182,7 @@ recipeMap.forEach( (value, key, map) => {
 
 The main methods are:
 
-- `new Set([values])` -- creates the set, optionally with an array of values (any iterable will do). 
+- `new Set(iterable)` -- creates the set, optionally from an array of values (any iterable will do). 
 - `set.add(value)` -- adds a value, returns the set itself.
 - `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
@@ -235,6 +235,12 @@ set.forEach((value, valueAgain, set) => {
 Note the funny thing. The `forEach` function in the `Set` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
 
 That's made for compatibility with `Map` where `forEach` has three arguments.
+
+The same methods as `Map` has for iterators are also supported:
+
+- `set.keys()` -- returns an iterable object for values,
+- `set.values()` -- same as `set.keys`, for compatibility with `Map`,
+- `set.entries()` -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
 
 ## WeakMap and WeakSet
 

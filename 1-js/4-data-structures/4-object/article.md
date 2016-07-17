@@ -7,16 +7,16 @@ Objects in JavaScript combine two functionalities.
 
 Here we concentrate on the first part: using objects as a data store, and we will study it in-depth. That's the required base for studying the second part.
 
-An [associative array](https://en.wikipedia.org/wiki/Associative_array), also called "a hash" or "a dictionary" -- is a data structure for storing arbitrary data in the key-value format.
+Let's recap what we know about objects and add a bit more.
+
 
 [cut]
+
+## Object literals
 
 We can imagine it as a cabinet with signed files. Every piece of data is stored in it's file. It's easy to find a file by it's name or add/remove a file.
 
 ![](object.png)
-
-
-## Object literals
 
 An empty object ("empty cabinet") can be created using one of two syntaxes:
 
@@ -40,6 +40,44 @@ let user = {
 ```
 
 ![](object-user-props.png)
+
+In real code we quite often want to create an object with a property from a variable.
+
+For instance:
+
+```js run
+function makeUser(name, age) {
+  return {
+    name: name,
+    age: age;
+  }
+}
+
+let user = makeUser("John", 30);
+alert(user.name); // John
+```
+
+There's a *property value shorthand* to make it shorter. 
+
+Instead of `name: name` we can just write `name`, like this:
+
+```js
+function makeUser(name, age) {
+  return {
+    name,
+    age;
+  }
+}
+```
+
+We can also combine normal properties and shorthands:
+
+```js
+let user = { 
+  name,  // same as name:name
+  age: 30 
+};
+```
 
 
 ````smart header="Trailing comma"
@@ -221,37 +259,6 @@ In the code above, the property `obj.test` technically exists. So the `in` opera
 Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 ````
 
-## Property shorthands
-
-There are two more syntax features to write a shorter code.
-
-Property value shorthands
-: To create a property from a variable:
-
-  ```js 
-  let name = "John";
-
-  // same as { name: name }
-  let user = { name }; 
-  ```
-
-  If we have a variable and want to add a same-named property, that's the way to write it shorter.
-
-  ```js
-  // can combine normal properties and shorthands
-  let user = { name, age: 30 };
-  ```
-
-Methods definitions
-: For properties that are functions, we've already seen a shorter syntax.
-
-  ```js 
-  let user = {
-    sayHi() { // same as "sayHi: function()"
-      alert("Hello");
-    }
-  }; 
-  ```
 
 
 ## Loops
@@ -402,9 +409,9 @@ alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 
 Quite obvious, if we used one of the keys (`admin`) and changed something inside the cabinet, then if we use another key later (`user`), we find things modified.
 
-### Comparison with objects
+### Comparison by reference
 
-Two objects are equal only when they are one object:
+Two object variabls are equal only when reference the same object:
 
 ```js run
 let a = {};
@@ -426,9 +433,9 @@ let b = {}; // two independents object
 alert( a == b ); // false
 ```
 
-For unusual equality checks like: object vs a priimtive, or an object less/greater `< >` than another object, objects are converted to numbers. To say the truth, such comparisons occur very rarely in real code and usually are a result of a mistake.
+For unusual equality checks like: object vs a primitive (`obj == 5`), or an object less/greater than another object (`obj1 > obj2`), objects are converted to numbers. To say the truth, such comparisons occur very rarely in real code and usually are a result of a coding mistake.
 
-## Cloning, Object.assign
+## Cloning and Object.assign
 
 What if we need to duplicate an object? Create an independant copy, a clone?
 

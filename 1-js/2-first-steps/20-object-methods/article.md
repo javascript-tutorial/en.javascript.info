@@ -213,11 +213,9 @@ If you forget `use strict`, then you may see something like "window" in the exam
 That's one of the odd things of the previous standard that `"use strict"` fixes.
 ```
 
-## "this" is for direct calls
+## Reference Type
 
-The value of `this` is only passed the right way if the function is called using a dot `'.'` or square brackets.
-
-A more intricate call would lead to losing `this`, for instance:
+An intricate method call can loose `this`, for instance:
 
 ```js run
 let user = {
@@ -230,21 +228,37 @@ user.hi(); // John (the simple call works)
 
 *!*
 // now let's call user.hi or user.bye depending on the name
-(user.name == "John" ? user.hi : user.bye)(); // undefined
+(user.name == "John" ? user.hi : user.bye)(); // Error!
 */!*
 ```
 
-On the last line the method is retrieved during the execution of the ternary `?`, and immediately called. But `"this"` is lost, the result is not `"John"` how it should be.
+On the last line the method `user.hi` is retrieved during the execution of the ternary `?`, and immediately called with brackets `()`. But that doesn't work right. You can see that the call results in an error, cause the value of `"this"` inside the call becomes `undefined`.
 
-If we want to understand why it happens -- the reason is in the details of how `obj.method()` works.
+If we want to understand why it happens -- the reason is in the details of how `obj.method()` call works.
 
-The method call has two independant operations in it: a dot `'.'` to access the property and brackets `()` to execute it (assuming that's a function).
+The method call has two successive operations in it: 
+- the dot `'.'` retrieves the property
+- brackets `()` execute it (assuming that's a function).
 
-As we've already seen, the function is a value of its own. It does not memorize the object by itself. So to "carry" it to the brackets, Javascript uses a trick -- the dot `'.'` returns not a function, but a value of the special Reference Type.
+So, you might have already asked yourself, why does it work? That is, if we put these operations on separate lines, then `this` is guaranted to be lost:
 
-The Reference Type is a "specification type". It does not exist in real, but used internally to explain how some language features work.
+```js run
+let user = {
+  name: "John",
+  hi() { alert(this.name); }
+}
 
-The value of the Reference Type is a tuple `(base, name, strict)`, where:
+let hi = user.hi;
+hi(); // Error, because this is undefined
+```
+
+...But for a single-line call `user.hi()` all is fine.
+
+That's because a function is a value of its own. It does not carry the object. So to pass it to the brackets, Javascript uses a trick -- the dot `'.'` returns not a function, but a value of the special [Reference Type](https://tc39.github.io/ecma262/#sec-reference-specification-type).
+
+The Reference Type is a "specification type". It does not exist in real, but is used internally. Engines are not required to implement it, just to make sure that code works as described.
+
+The value of the Reference Type is a combination `(base, name, strict)`, where:
 
 - `base` is the object.
 - `name` is the property.
@@ -253,20 +267,25 @@ The value of the Reference Type is a tuple `(base, name, strict)`, where:
 The result of a property access `'.'` is a value of the Reference Type. For `user.sayHi` in strict mode it is:
 
 ```js
-// base name   strict
+// Reference Type value
 (user, "sayHi", true)
 ```
 
-Any operation on the Reference Type immediately "resolves" it:
+Then, when brackets `()` are called on the Reference Type, they receive the full information about the object and it's method, and can set the right `this = base`.
 
-- Brackets `()` get the property `base[name]` and execute it with `this = base`.
-- Other operators just get `base[name]` and use it.
+Any other operation just gets `base[name]` value and uses it, discarding the reference type as a whole. 
 
 So any operation on the result of dot `'.'` except a direct call discards `this`. 
 
+
+That's why the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
+
+
 ## Explicit "this" with "call/apply" [#call-apply]
 
-We can call a function explicitly providing the value of `"this"`.
+The value of `this` does not have to come from the aforementioned rules.
+
+We can explicitly set it to any object using `func.call`.
 
 The syntax is:
 
@@ -285,11 +304,13 @@ let user = { name: "John" };
 let admin = { name: "Admin" };
 
 // use call to pass different objects as "this"
-sayHi.call( user ); // John
-sayHi.call( admin ); // Admin
+sayHi.call( user ); // John 
+sayHi.call( admin ); // Admin 
 ```
 
 The first parameter of `call` is the intended value of `"this"`, the latter are arguments. 
+
+So `sayHi.call(admin)` runs the function `sayHi` with `this = admin`, hence `this.name` in it becomes `"Admin"`.
 
 These calls are roughly equivalent:
 ```js
@@ -297,19 +318,19 @@ func(1, 2, 3);
 func.call(obj, 1, 2, 3)
 ```
 
-...Except that the `call` sets "this" of course!
+They both call `func` with arguments `1`, `2` and `3`. The only difference is that `call` also sets `"this"`.
 
-That's handy when we want to use a function in the context of different objects, but do not want to actually assign it to them.
+The method `func.call` is used when we'd like to use a function in the context of different objects, but do not want to actually assign it to them. We'll see more examples of it soon.
 
 ### "func.apply"
 
-There's also a similar syntax:
+There's also a similar method `func.apply`:
 
 ```js
 func.apply(context, args)
 ```
 
-It does the same as `call`: executes the function providing `context` as `this`, but where `call` awaits a list of arguments, `apply` awaits a single array of arguments.
+It does the same as `call`: executes the function providing `context` as `this`, but where `call` awaits a list of arguments, `apply` awaits an array.
 
 These two calls do the same:
 
@@ -318,9 +339,9 @@ func.call(obj, 1, 2, 3);
 func.apply(obj, [1, 2, 3]);
 ```
 
-In old times `apply` was more powerful, because it allows to form the array of arguments dynamically. 
+In old times `apply` was more powerful, because it allows to create the array of arguments dynamically. Their number is not hardcoded at code-write time.
 
-But in the modern language, we have the spread operator `'...'` and can use it to unfurl an array into the list of for `call`, so these two are equal:
+But in the modern language, we have the spread operator `'...'` and can use it to convert an array into a list of for `call`, so these two are equal:
 
 ```js
 let args = [1, 2, 3];
@@ -329,7 +350,7 @@ func.call(obj, ...args);
 func.apply(obj, args);
 ```
 
-So the use of `apply` over `call` is mainly a metter of personal preference. And it's somewhat better optimized than the spread operator, because it exists longer.
+Nowadays the use of `apply` or `call` is mainly a metter of personal preference. But `apply` is  somewhat better optimized in engines than the call + spread combination, because it exists longer. So it would execute a little bit faster.
 
 ## Binding "this" with "bind"
 

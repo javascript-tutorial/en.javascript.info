@@ -163,6 +163,13 @@ alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (an empty string)
 ```
 
+Also we can iterate over characters using `for..of`:
+
+```js run
+for(let char of "Hello") {
+  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+}
+```
 
 ## Strings are immutable
 
@@ -337,14 +344,21 @@ Just remember: `if (~str.indexOf(...))` reads as "if found".
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr)](mdn:js/String/includes) returns `true/false` depending on whether `str` has `substr` as its part. 
+The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` has `substr` as its part. 
 
-It's the right choice if we need to test for the match, without the position:
+It's the right choice if we need to test for the match, but don't need its position:
 
 ```js run
 alert( "Widget with id".includes("Widget") ); // true
 
 alert( "Hello".includes("Bye") ); // false
+```
+
+The optional second argument of `str.includes` is the position to start searching from:
+
+```js run
+alert( "Midget".includes("id") ); // true
+alert( "Midget".includes("id", 3) ); // false, from position 3 there is no "id"
 ```
 
 The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
@@ -353,7 +367,6 @@ The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js
 alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
 alert( "Widget".endsWith("get") );   // true, "Widget" ends with "get"
 ```
-
 
 ## Getting a substring
 
@@ -561,7 +574,7 @@ Note that surrogate pairs did not exist at the time when Javascript was created,
 
 We actually have a single symbol in each of the strings above, but the `length` shows the length of `2`. 
 
-`String.fromCodePoint` and `str.codePointAt` are notable exceptions that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
+`String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
 
 But, for instance, getting a symbol can be tricky, because surrogate pairs are treated as two characters:
 
@@ -574,7 +587,52 @@ Note that pieces of the surrogate pair have no meaning without each other. So, t
 
 How to solve this problem? First, let's make sure you have it. Not every project deals with surrogate pairs.
 
-But if you do, then search the internet for libraries which implement surrogate-aware versions of `slice`, `indexOf` and other functions. Technically, surrogate pairs are detectable by their codes: the first character has the code in the interval of `0xD800..0xDBFF`, while the second is in `0xDC00..0xDFFF`. So if we see a character with the code, say, `0xD801`, then the next one must be the second part of the surrogate pair. Libraries rely on that to split stirngs right. Unfortunately, there's no single well-known library to advise yet.
+If you do, then there are some more tricks to deal with surrogates:
+
+Use `for..of` to iterate over characters.
+: The `for..of` loop respects surrogate pairs:
+
+    ```js run
+    let str = '𝒳😂';
+    for(let char of str) { // loop over characters of str
+        alert(char); // 𝒳, and then 😂
+    }
+    ```
+
+Create an array of characters using `Array.from(str)`:
+: Here's the trick:
+
+    ```js run
+    let str = '𝒳😂';
+
+    // splits str into array of characters
+    let chars = Array.from(str);
+
+    alert(chars[0]); // 𝒳
+    alert(chars[1]); // 😂
+    alert(chars.length); // 2
+    ```
+
+    The [Array.from](mdn:js/Array/from) takes an array-like object and turns it into a real array. It works with other array-like objects too.
+
+    Technically here it does the same as:
+
+    ```js run
+    let str = '𝒳😂';
+
+    let chars = []; // Array.from internally does the same loop
+    for(let char of str) {
+      chars.push(char); 
+    }
+
+    alert(chars);
+    ```
+
+    ...But is shorter.    
+
+There are probably libraries in the internet that build surrogate-aware versions of other string calls based on that.
+
+Technically, surrogate pairs are also detectable by their codes: the first character has the code in the interval of `0xD800..0xDBFF`, while the second is in `0xDC00..0xDFFF`. So if we see a character with the code, say, `0xD801`, then the next one must be the second part of the surrogate pair. 
 
 ### Diacritical marks
 

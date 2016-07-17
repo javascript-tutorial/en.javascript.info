@@ -1,4 +1,4 @@
-# Function expressions and more
+# Function expressions and arrows
 
 In JavaScript, a function is a value.
 
