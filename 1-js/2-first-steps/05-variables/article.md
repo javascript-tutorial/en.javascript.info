@@ -10,7 +10,7 @@ Variables are used to store the information.
 
 ## A variable
 
-A [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is a basic "named storage" for the information. We can use variables to store the goods, visitors etc.
+A [variable]("https://en.wikipedia.org/wiki/Variable_(computer_science)") is a "named storage" for the information. We can use variables to store goodies, visitors and other data.
 
 To create a variable in JavaScript, we need to use the `let` keyword.
 
@@ -72,12 +72,12 @@ let user = 'John',
   message = 'Hello';
 ```
 
-...Or even in comma-first style:
+...Or even in the "comma-first" style:
 
 ```js no-beautify
 let user = 'John'
-  ,age = 25
-  ,message = 'Hello';
+  , age = 25
+  , message = 'Hello';
 ```
 
 Technically, all these variants do the same. So, it's a matter of personal taste and aestetics.

@@ -548,7 +548,7 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 
 The method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), that allow to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc. 
 
-## Internal encoding
+## Internals, Unicode
 
 ```warn header="Advanced knowledge"
 The section goes deeper into string internals. The knowledge will be useful for you if you plan to deal with emoji, rare mathematical of hieroglyphs characters or other rare symbols. 

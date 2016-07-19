@@ -25,9 +25,9 @@ alert( 'Hello' );
 alert( 'World' );
 ```
 
-## The semicolon [#semicolon]
+## Semicolons [#semicolon]
 
-The semicolon may be omitted in most cases when a line break exists.
+A semicolon may be omitted in most cases when a line break exists.
 
 This would also work:
 
@@ -86,11 +86,10 @@ The error in the no-semicolon variant occurs because JavaScript engine does not 
 alert( "There will be an error" )[1, 2].forEach(alert) 
 ```
 
-And in this particular case, that's just wrong. There must be two independent statements. Hence the error.
-
+And in this particular case, that's just wrong, hence the error. There are other situations when such thing happens.
 ````
 
-It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- it is possible to leave out semicolons most of time. But it's safer, especially for a beginner -- to put them.
+It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of time. But it's safer, especially for a beginner -- to put them.
 
 ## Comments
 

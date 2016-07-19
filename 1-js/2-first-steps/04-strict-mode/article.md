@@ -48,9 +48,9 @@ Only comments may appear above `"use strict"`.
 
 
 ```smart header="`use strict` for functions"
-We will learn [functions](/function-basics) very soon. 
+We will learn functions (a way to group commands) soon. 
 
-Looking ahead let's just note that `"use strict"` can be put at the start of a function instead of the whole script. Then the strict mode is enabled in this function only. But that limitation is exceptionally rarely needed.
+Looking ahead let's just note that `"use strict"` can be put at the start of a function instead of the whole script. Then the strict mode is enabled in that function only. But usually people put it on top of scripts.
 ```
 
 

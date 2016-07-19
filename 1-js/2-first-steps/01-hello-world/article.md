@@ -8,16 +8,7 @@ So we'll start with attaching a script to the webpage. For other environments li
 
 [cut]
 
-[todo remove defer/async from here and move to 2nd part?]
-
 ## The "script" tag
-
-[todo need this? and special (need it too?)]
-```smart header="What if I want to move faster?"
-In the case if you've developed with JavaScript already or have a lot of experience in another language, you can skip detailed explanatins and jump to <info:javascript-specials>. There you can find an essense of important features.
-
-If you have enough time and want to learn things in details then read on :)
-```
 
 JavaScript programs can be inserted in any place of HTML with the help of the `<script>` tag.
 
@@ -50,17 +41,6 @@ You can run the example clicking on a "Play" button in it's right-top corner.
 
 The `<script>` tag contains JavaScript code which is automatically executed when the browser meets the tag.
 
-Please note the execution sequence:
-
-1. Browser starts to parse the document and display the page.
-2. When the browser meets `<script>`, it switches to the JavaScript execution mode. In this mode it executes the script.
-3. The `alert` command shows a message and pauses the execution.
-4. Note that at this moment a part of the page before the script is shown already.
-5. When the script is finished, it gets back to the HTML-mode, and *only then* it shows the rest of the document.
-
-![Rendering order](hello-world-render.png)
-
-A visitor won't see the content after the script until it is executed. In other words, a `<script>` tag blocks rendering.
 
 ## The modern markup
 
@@ -82,11 +62,76 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    These comments were supposed to hide the code from an old browser that did't understand a `<script>` tag. But for all browsers born in the past 15+ years that's not an issue. I only mention it here, because it serves as a pointer. If you see that in a code somewhere -- it's probably really old and probably not worth looking into.
+    These comments were supposed to hide the code from an old browser that did't know about a `<script>` tag. But all browsers born in the past 15+ years don't have any issues. It is only mentioned here, because it serves as a sign. If you see that somewhere -- that code is probably really old and not worth looking into.
+
+
+## External scripts
+
+If we have a lot of JavaScript code, we can it put it into a separate file.
+
+The script file is attached to HTML like this:
+
+```html
+<script src="/path/to/script.js"></script>
+```
+
+Here `/path/to/script.js` is an absolute path to the file with the script (from the site root).
+
+It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` from the current folder.
+
+We can give a full URL al well, for instance:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+```
+
+To attach several scripts, use multiple tags:
+
+```html
+<script src="/js/script1.js"></script>
+<script src="/js/script2.js"></script>
+…
+```
+
+```smart
+As a rule, only simplest scripts are put into HTML. More complex ones reside in separate files.
+
+The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+
+After it, other pages which want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
+
+That saves traffic and makes pages faster.
+```
+
+````warn header="If `src` is set, the script content is ignored."
+A single `<script>` tag may not have both an `src` and the code inside.
+
+This won't work:
+
+```html
+<script *!*src*/!*="file.js">
+  alert(1); // the content is ignored, because src is set
+</script>
+```
+
+We must choose: either it's an external `<script src="…">` or a regular `<script>` with code.
+
+The example above can be split into two scripts to work:
+
+```html
+<script src="file.js"></script>
+<script>
+  alert(1);
+</script>
+```
+````
 
 ## Summary
 
 - We can use a `<script>` tag to add JavaScript code to the page.
 - The `type` and `language` attributes are not required.
-- A `<script>` tag blocks page rendering. Later we'll see how to evade that where needed.
+- Scripts in an external file can be inserted on the page via `<script src="path"></script>`.
+
+
+There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to Javascript language. So we shouldn't distract ourselves from it. We'll be using a browser as a way to run Javascript, very convenient for online reading, but yet one of many.
 

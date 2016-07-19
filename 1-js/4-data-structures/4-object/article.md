@@ -540,11 +540,11 @@ To fix that, we should examine the value of `user[key]` in the cloning loop and 
 There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). We can use a ready implementation of it from the Javascript library [lodash](https://lodash.com). The method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
-## Ordering
+## Ordered like an object
 
 Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order that they are added in it?
 
-The short answer is: "no" for integer properties, "yes" for others. The details follow.
+The short answer is: "ordered like an object": integer properties are sorted, others appear in creation order. The details follow.
 
 As an example, let's consider an object with the phone codes:
 
