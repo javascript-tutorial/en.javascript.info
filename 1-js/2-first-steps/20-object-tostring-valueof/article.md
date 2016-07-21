@@ -5,124 +5,166 @@ In the chapter <info:type-conversions> we've seen the rules for numeric, string 
 
 But we left a gap for objects. Now let's fill it.
 
+
 [cut]
 
-For objects, there's a special additional conversion called [ToPrimitive](https://tc39.github.io/ecma262/#sec-toprimitive).
+## Where and why?
 
-For some built-in objects it is implemented in special way, but mostly comes in two flavors:
+The process of object to primitive conversion can be customized, here we'll see how to implement our own methods for it.
 
-- `ToPrimitive(obj, "string")` for a conversion to string
-- `ToPrimitive(obj, "number")` for a conversion to number
+But first, let's note that conversion of an object to primitive value (a number or a string) is a rare thing in practice.
 
-So, if we convert an object to string, then first `ToPrimitive(obj, "string")` is applied, and then the resulting primitive is converted using primitive rules. The similar thing for a numeric conversion.
+Just think about cases when such conversion happens. For numeric conversion, when we compare an object against a primitive: `user == 18`. But what do we mean here? Maybe to compare the user's age? Then wouldn't it be more obvious to write `user.age == 18`? And read it later too.
 
-What's most interesting in `ToPrimitive` is its customizability.
+Or, for a string conversion... Where does it happen? Usually, when we output an object. But simple ways of output like `alert(user)` are only used for debugging and logging purposes. In projects, the output is more complicated. And it may require additional parameters too, so it should be implemented separately, maybe with methods.
 
-## toString and valueOf
+Most of the time, it's more flexible and gives more readable code to explicitly write an object property or call a method than rely on the conversion.
 
-`ToPrimitive` is customizable via methods `toString()` and `valueOf()`.
+That said, there are still valid reasons why we should know how it works.
 
-The general algorithm of `ToPrimitive(obj, "string")` is:
-
-
-1. Call the method `obj.toString()` if it exists.
-2. If the result is a primitive, return it.
-3. Call the method `obj.valueOf()` if it exists.
-4. If the result is a primitive, return it.
-5. Otherwise `TypeError` (conversion failed)
+- The `alert(user)` kind of output is still used for logging and debugging.
+- The built-in `toString` method of objects allows to get the type of almost anything.
+- Sometimes it just happens (on mistake?), and we should understand what's going on.
 
 
-The `ToPrimitive(obj, "number")` is the same, but `valueOf()` and `toString()` are swapped:
+## ToPrimitive 
 
-1. Call the method `obj.valueOf()` if it exists.
-2. If the result is a primitive, return it.
-3. Call the method `obj.toString()` if it exists.
-4. If the result is a primitive, return it.
-5. Otherwise `TypeError` (conversion failed)
+When an object is used as a primitive, the special internal algorithm named [ToPrimitive](https://tc39.github.io/ecma262/#sec-toprimitive) is invoked.
 
-```smart header="ToPrimitive returns a primitive, but its type is not guaranteed"
-As we can see, the result of `ToPrimitive` is always a primitive, because even if `toString/valueOf` return a non-primitive value, it is ignored.
+It comes in 3 flavours:
 
-But it can be any primitive. There's no control whether `toString()` returns exactly a string or, say a boolean.
-```
+- `ToPrimitive(obj, "string")` 
+- `ToPrimitive(obj, "number")` 
+- `ToPrimitive(obj)`, the so-called "default" flavour
 
-Let's see an example. Here we implement our own string conversion for `user`:
-
-```js run
-let user = {
-
-  name: 'John',
-
-*!*
-  toString() {
-    return `User ${this.firstName}`;
-  }
-*/!*
-
-};
-
-*!*
-alert( user );  // User John
-*/!*
-```
-
-Looks much better than the default `[object Object]`, right?
+When [ToString](https://tc39.github.io/ecma262/#sec-tostring) conversion is applied to objects, it does two steps:
 
 
-Now let's add a custom numeric conversion with `valueOf`:
+1. `let primitive = ToPrimitive(obj, "string")`
+2. `return ToString(primitive)`
+
+In other words, `ToPrimitive` is applied first, then the result (a primitive) is converted to string using [primitive rules](info:type-conversions) that we already know.
+
+When [ToNumber](https://tc39.github.io/ecma262/#sec-tonumber) conversion is applied to objects, it also does two similar steps:
+
+1. `let primitive = ToPrimitive(obj, "number")`
+2. `return ToNumber(primitive)`
+
+Again, `ToPrimitive` is applied first, then the primitive result is converted to number.
+
+The "default" flavour occurs in [binary `+`](https://tc39.github.io/ecma262/#sec-addition-operator-plus-runtime-semantics-evaluation) operator, in [equality test](https://tc39.github.io/ecma262/#sec-abstract-equality-comparison) of an object versus a string, a number or a symbol, and in few other rare cases. It exists mainly for historical reasons to cover few backwards-compatible edge cases. Most of time it does that same as "number", but we should be aware of this case if we're impementing our own conversion method.
+
+So, to understand `ToNumber` and `ToString` for objects, we should redirect ourselves to `ToPrimitive`.
+
+## The new style: Symbol.toPrimitive
+
+The internal `ToPrimitive(obj, hint)` call has two parameters: 
+
+`obj`
+: The object to transform.
+
+`hint`
+: The flavour: one of `"string"`, `"number"` or `"default"`.
+
+If the object has `Symbol.toPrimitive` method implemented, which it is called with the `hint`.
+
+For instance:
 
 ```js run
 let user = {
-
-  name: 'John',
+  name: "John",
   age: 30,
 
-*!*
+  // must return a primitive
+  [Symbol.toPrimitive](hint) {
+    alert(`hint: ${hint}`);
+    return hint == "string" ? this.name : this.age;
+  }
+  
+};
+
+// conversions demo:
+alert(user); // hint: string -> John
+alert(+user); // hint: number -> 30
+alert(user + 1); // hint: default -> 31
+```
+
+
+For modern scripts, `Symbol.toPrimitive` can be enough. Two other methods: `toString` and `valueOf` exist for historical reasons and for backwards compatibility.
+
+
+<!--
+The algorithm basically chooses which one of three methods to call:
+
+1. First: try `obj[Symbol.toPrimitive](hint)` if exists.
+2. Otherwise:
+    1. For `hint == "string"` try to call `obj.toString()` and then `obj.valueOf()`.
+    2. for `hint == "number" or "default"` we try to call `obj.valueOf()` and then `obj.toString()`.
+
+-->
+
+
+### `toString` and `valueOf`
+
+If there is no `Symbol.toPrimitive`, then for string conversions `toString` is tried and then `valueOf`, while for numeric or default conversions the order is `valueOf` -> `toString`.
+
+If the result of either method is not an object, then it is ignored.
+
+For instance, this `user` does the same as above:
+
+
+```js run
+let user = {
+  name: "John",
+  age: 30,
+
+  // for hint="string"
+  toString() {
+    return this.name;
+  },
+
+  // for hint="number" or "default"
   valueOf() {
     return this.age;
   }
-*/!*
 
 };
 
-*!*
-alert( +user );  // 30
-*/!*
+alert(user); // John
+alert(+user); // 30
+alert(user + 1); // 31 (default like number calls valueOf)
 ```
 
-In most projects though, only `toString()` is used, because objects are printed out (especially for debugging) much more often than added/substracted/etc.
+In most practical cases, only `toString` is implemented. Then it is used for both conversions. 
 
-If only `toString()` is implemented, then both string and numeric conversions use it.
+```smart header="Methods must return a primitive, but its type is not guaranteed"
+If `toString/valueOf` return a non-primitive value, it is ignored. For `Symbol.toPrimitive`, it's even stricter: non-primitive is automatically an error. So the result of `ToPrimitive` algorithm as a whole can only be primitive.
 
-## Array example
+But it can be any primitive. There's no control whether `toString()` returns exactly a string or, say, a boolean. 
 
-Let's see few more examples with arrays to get the better picture.
+If `ToPrimitive` is a part of a `ToNumber/ToString` transform, then after it there's one more step to transform the primitive to a string or a number.
+```
+
+````smart header="ToBoolean?"
+
+There is no such thing as `ToBoolean`. All objects (even empty) are `true` in boolean context:
 
 ```js run
-alert( [] + 1 ); // '1'
-alert( [1] + 1 ); // '11'
-alert( [1,2] + 1 ); // '1,21'
+if ({}) alert("true"); // works
 ```
 
-The array from the left side of `+` is first converted to primitive using `toPrimitive(obj, "number")`.
+That is not customizable.
+````
 
-For arrays (and most other built-in objects) only `toString` is implemented, and it returns a list of items.
+## Object: toString for the type
 
-So we'll have the following results of conversion:
+There are many kinds of built-in objects in Javascript. Many of them have own implementations of `toString` and `valueOf`. We'll see them when we get to them.
 
-```js 
-alert( '' + 1 ); // '1'
-alert( '1' + 1 ); // '11'
-alert( '1,2' + 1 ); // '1,21'
-```
+Here let's see the default `toString` and `valueOf` for plain objects.
 
-Now the addition has the first operand -- a string, so it converts the second one to a string also. Hence the result.
+### valueOf
 
-## Object, toString for the type
-
-With plain objects it's much more interesting.
-
-An object has both `valueOf()` and `toString()`, but for plain objects `valueOf()` returns the object itself:
+By default, there is a built-in `valueOf()` for objects, but it returns the object itself:
 
 ```js run
 let obj = { };
@@ -130,9 +172,11 @@ let obj = { };
 alert( obj === obj.valueOf() ); // true, valueOf returns the object itself  
 ```
 
-Because `ToPrimitive` ignores `valueOf` if it returns an object, here we can assume that `valueOf` does not exist at all.
+Because `ToPrimitive` algorithm ignores `valueOf` if it returns an object, we can assume that `valueOf` does not exist at all.
 
-Now `toString`. 
+### toString
+
+The `toString()` is much, much more interesting.
 
 From the first sight it's obvious:
 
@@ -150,45 +194,39 @@ The algorithm of the `toString()` for plain objects looks like this:
 
 - If `this` value is `undefined`, return `[object Undefined]`
 - If `this` value is `null`, return `[object Null]`
-- ...For arrays return `[object Array]`, for dates return `[object Date]` etc.
+- If `this` is a function, return `[object Function]`
+- ...Then some other builtin cases...
+- Otherwise return `[object @@toStringTag]`, where `@@toStringTag` is the value of `obj[Symbol.toStringTag]`.
+- Or, if no `toStringTag`, then return `[object Object]`.
 
+Most environment-specific objects even if they do not belong to Javascript core, like `window` in the browser or `process` in Node.JS, carry `Symbol.toStringTag` property.
 
-It even works for environment-specific objects that exist only in the browser (like `window`) or in node.js (like `process`).
+So this algorithm appears to be really universal.
 
-All we need to do to get the type of an `obj` -- is to call plain object `toString` passing `this = obj`.
-
-We can do it like this:
-
-```js run
-let s = {}.toString; // copy toString of Object to a variable
-
-// what type is this?
-let arr = [];
-
-// copy Object toString to it:
-arr.toStringPlain = s;
-
-alert( arr.toStringPlain() ); // [object Array] <-- right!
-
-// try getting the type of a browser window object?
-window.toStringPlain = s;
-
-alert( window.toStringPlain() ); // [object Window] <-- it works!
-```
-
-Please note that different objects usually have their own `toString`. As we've seen above, the `toString` of `Array` returns a list of items. So we need to use exactly the `toString` of a plain object -- `{}.toString`. 
-
-To call it in the right context, we copy it into a variable `s` -- in Javascript functions are not hardwired to objects, even built-in ones, so we do it -- and then assign as a property to another object `arr.toStringPlain` (not to override `arr.toString`). That's called *method borrowing*.
-
-Actually, we could evade all complexities using [call](info:object-methods#call-apply) to pass `this`:
+To make use of it, we should pass the thing to examine as `this`. We can do it using `func.call`:
 
 ```js run
-let arr = [];
+let s = {}.toString; // copy toString of a plain object to a variable
 
-alert( {}.toString.call(arr) ); // [object Array]
-alert( {}.toString.call(window) ); // [object Window]
+// null example
+alert( s.call(null) ); // [object Null]
+
+// function example
+alert( s.call(alert) ); // [object Function]
+
+// browser object example works too
+alert( s.call(window) ); // [object Window]
+// (because it has Symbol.toStringTag)
+alert( window[Symbol.toStringTag] ); // Window
 ```
 
-Here we do the same in one line: get the `toString` of a plain object and call it with the right `this` to get its type.
+In the example above we copy the "original" `toString` method of a plain object to the variable `s`, and then use it to make sure that we use *exactly that* `toString`. 
+
+We could also call it directly:
+```js run
+alert( {}.toString.call("test") ); // [object String]
+```
+
+
 
 
