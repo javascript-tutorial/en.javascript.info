@@ -44,7 +44,7 @@ In the `user` object, there are two properties:
 1. The first property has the name `"name"` and the value `"John"`. 
 2. The second one has the name `"age"` and the value `30`.
 
-The `user` object can be imagined as a cabinet with two signed files labelled "name" and "age".
+The resulting `user` object can be imagined as a cabinet with two signed files labelled "name" and "age".
  
 ![user object](object-user.png)
 

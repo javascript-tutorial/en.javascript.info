@@ -3,27 +3,34 @@ getting-started
   editor
   devtools
 first-steps
-  hello-world (intro, scripts blocks rendering)
-  external-script (TODO: move defer/async out to browser part)
+  hello-world (intro, ext scripts)
   structure
   use strict
   variables (const, name things right)
-  types (objects, arrays create/access props, typeof)
-  type-conversions (conversions string/number/boolean, objects in general words, no toString/valueOf)
+  types (no objects, but typeof)
+  type-conversions (conversions string/number/boolean, no objects)
   operators
-  comparison (note about toprimitive)
-  destructuring (Q: move from here? need in objects)
+  comparison (no objects)
   uibasic
   logical-ops
-  while-for (labels, for..in, for..of)
+  while-for (labels, no objects)
   switch
-  function-basics (decl, shadowing,  naming)
-  function-parameters (default params, rest, destructuring, spread, TODO, Q: move from here?)
-  function-create-advanced (function is object, FE as a method, user with methods, arrow basics NO THIS, new function)
-  object-methods (this, method syntax, call/apply)
-  object-tostring-valueof (also @@toStringTag)  
-  primitives-methods (on-the-fly objects)
+  function-basics (decl, shadowing,  naming, default params)
+  function-expressions-arrows (function expr, arrow, todo: move new Function out of this?)
   javascript-specials (TODO, remove it? migrate all function* to separate chapter?)
+object-basics
+  object(props, for-in, refs, assign)
+  garbage-collection
+  object-methods (this, method syntax, no call/apply)
+  primitives-methods (on-the-fly objects)
+  symbol
+  object-toprimitive
+  array
+  iterable
+more-syntax
+  function-arguments-rest-spread
+  destructuring-assignment (also func params destructuring)
+  advanced-loops (iterators over objects, arrays)
 code-quality
   debugging-chrome (TODO)
   coding-style (TODO)
@@ -33,20 +40,21 @@ code-quality
 data-structures
   number (rounding, precision, isFinite, isNaN, parse*, Math.*)
   string (quotes, search, substring, tagged template notice)
-  object (loops++, copying, shorthands)
-    - other information would be too much
-  array (TODO: where is iterable?)
-  array-methods (TODO: tasks)
-    - would be too much
+  object 
+    - WHAT HERE?
+    - can add prototypes or more
+  array-methods (TODO: translate tasks)
   date (TODO: tasks)
   map-set-weakmap-weakset
   
 -------
 
-    <<< json?
+<<< json? 
 <<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
 <<< getter setter
-
+<<< NFE?
+<<< function is object ??
+<<< call/apply?
 
 recursion (
   running execution context = where + lexical environment = envrec + outer
@@ -63,7 +71,6 @@ closures
   counter object?
 
 new function
-
 
 
 bind, currying

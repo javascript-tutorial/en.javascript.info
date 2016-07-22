@@ -2,7 +2,7 @@
 
 In Javascript a function is not a "magical language structure", but a special kind of value. 
 
-The syntax that we've used before is called *Function Declaration*:
+The syntax that we used before is called *Function Declaration*:
 
 ```js
 function sayHi() {
@@ -87,8 +87,8 @@ let sayHi = function() {
 ```
 
 The answer is simple:
-- There's no need in `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` and alike.
-- A Function Expression appears in the context of the statement: `let sayHi = value;`. It's not a code block. The semicolon `;` is recommended at the end of statements, no matter what is the `value`. So the semicolon here is not related to Function Expression itself in any way, it just terminates the statement.
+- There's no need in `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.
+- The Function Expression appears in the context of the statement: `let sayHi = value;`. It's not a code block. The semicolon `;` is recommended at the end of statements, no matter what is the `value`. So the semicolon here is not related to Function Expression itself in any way, it just terminates the statement.
 ````
 
 

@@ -431,7 +431,6 @@ alert( "1" + 1 ); // "11"
 alert( "1,2" + 1 ); // "1,21"
 ```
 
-
 ## Summary
 
 Array is a special kind of objects, suited to store and manage ordered data items.
@@ -463,5 +462,5 @@ To loop over the elements of the array:
   - `for(let item of arr)` -- the modern syntax for items only,
   - `for(let i in arr)` -- never use.
 
+We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
 
-That were the "extended basics". There are more methods, and in the future chapter <mdn:array-methods> we will return to them.

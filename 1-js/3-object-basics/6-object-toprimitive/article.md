@@ -23,9 +23,7 @@ Most of the time, it's more flexible and gives more readable code to explicitly 
 That said, there are still valid reasons why we should know how it works.
 
 - The `alert(user)` kind of output is still used for logging and debugging.
-- The built-in `toString` method of objects allows to get the type of almost anything.
 - Sometimes it just happens (on mistake?), and we should understand what's going on.
-
 
 ## ToPrimitive 
 
@@ -166,74 +164,6 @@ if ({}) alert("true"); // works
 
 That is not customizable.
 ````
-
-## Bonus: toString for the type
-
-There are many kinds of built-in objects in Javascript. Many of them have own implementations of `toString` and `valueOf`. We'll see them when we get to them.
-
-But the built-in `toString()` of plain objects is also interesting, it does something very special.
-
-From the first sight it's obvious:
-
-```js run
-let obj = { };
-
-alert( obj ); // [object Object]
-```
-
-But it's much more powerful than that. 
-
-By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), `toString` can work in the context of any value. And it returns `[object ...]` with the kind of the value inside.
-
-The algorithm looks like this:
-
-- If `this` value is `undefined`, return `[object Undefined]`
-- If `this` value is `null`, return `[object Null]`
-- If `this` is a function, return `[object Function]`
-- ...Some other builtin cases for strings, numbers etc...
-- Otherwise if there's a property `obj[Symbol.toStringTag]`, then return it inside `[object...]`.
-- Otherwise, return `[object Object]`.
-
-Most environment-specific objects even if they do not belong to Javascript core, like `window` in the browser or `process` in Node.JS, have `Symbol.toStringTag` property. So this algorithm works for them too.
-
-To make use of it, we should pass the thing to examine as `this`. We can do it using [func.call](info:object-methods#call-apply).
-
-```js run
-let s = {}.toString; // copy toString of a plain object into a variable
-
-// call the algorithm with this = null
-alert( s.call(null) ); // [object Null]
-
-// call the algorithm with this = alert
-alert( s.call(alert) ); // [object Function]
-
-// browser object works too
-alert( s.call(window) ); // [object Window]
-// (because it has Symbol.toStringTag)
-alert( window[Symbol.toStringTag] ); // Window
-```
-
-There might be a question: "Why [object Null]?". Well, of course, `null` is not an object. The wrapper `[object ...]` is the same for historical reasons and for making things universal.
-
-In the example above we copy the "original" `toString` method of a plain object to the variable `s`, and then use it to make sure that we use *exactly that* `toString`. 
-
-We could also call it directly:
-```js run
-alert( {}.toString.call("test") ); // [object String]
-```
-
-So, `{}.toString` can serve as "`typeof` on steroids" -- the more powerful version of type detection that not only distinguishes between basic language types, but also returns the kind of an object. 
-
-Most builtins have `Symbol.toStringTag` property, for our objects we can provide it too:
-
-```js run
-let user = {
-  [Symbol.toStringTag]: "User"
-};
-
-alert( {}.toString.call(user) ); // [object User]
-```
-
 
 
 

@@ -180,8 +180,27 @@ alert(arr.pop()); // World (method works)
 ```js
 // assuming that range is taken from the example above
 let arr = Array.from(range);
-alert(arr); // 1,2,3,4,5 (toString of Array gives a list of items)
+alert(arr); // 1,2,3,4,5 
 ```
+
+The full syntax for `Array.from` allows to provide an optional "mapping" function:
+```js
+Array.from(obj[, mapFn, thisArg])
+```
+
+The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
+
+For instance:
+
+```js
+// assuming that range is taken from the example above
+
+// square each number
+let arr = Array.from(range, num => num * num); 
+
+alert(arr); // 1,4,9,16,25 
+```
+
 
 ## Summary
 
@@ -197,6 +216,6 @@ The modern specification mostly uses iterables instead of arrays where an ordere
 
 Objects that have indexed properties and `length` are called *array-like*. Such objects may also have other properties and methods, but lack built-in methods of arrays.
 
-`Array.from(obj)` makes a real `Array` of an iterable or array-like `obj`, and then we can use array methods on it.
+`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and then we can use array methods on it. The optional arguments `mapFn` and `thisArg` allow to apply a function to each item.
 
 
