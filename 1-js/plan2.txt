@@ -53,8 +53,9 @@ data-structures
 <<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
 <<< getter setter
 <<< NFE?
-<<< function is object ??
+<<< 
 <<< call/apply?
+
 
 recursion (
   running execution context = where + lexical environment = envrec + outer
@@ -63,6 +64,13 @@ recursion (
   traverse list task
     task: traverse list back
 )
+
+<< function is object
+  name property (obj props, methods, assignments - set it)
+  length property
+
+<< NFE
+
 closures
   LE outer
   returning a function
@@ -70,8 +78,9 @@ closures
   new Function?
   counter object?
 
-new function
+<< new function
 
+scheduling: settimeout, setinterval
 
 bind, currying
 decorators

@@ -11,7 +11,7 @@ But what happens when outer variables have change? Does a function get a new val
 
 Also, what happens when a function travels to another place of the code -- will it get access to variables in the new place?
 
-We realy should understand what's going on before doing complex things with functions. There is no general programming answer for that. Different languages behave differently. Here we'll concentrate on Javascript.
+We realy should understand what's going on before doing complex things with functions. There is no general programming answer for that. Different languages behave differently. Here we'll cover Javascript of course.
 
 [cut]
 
@@ -776,27 +776,24 @@ In-browser `window` is sometimes used for following purposes:
     ```
 
 ````smart header="Window and \"this\""
-As we know, usually `this` is used inside an object method to access the object.
+As we know, usually `this` is used inside an object method to access the object. But there are special cases when `this` equals `window`:
 
-But outside of that, sometimes `this` equals `window`:
-
-- The value of the global `this` is `window`:
+1. The value of the global `this` is `window`:
 
     ```js run
     // outside of functions
     alert( this === window ); // true
     ```
 
-- When a function with `this` is called in not-strict mode:
+2. When a function with `this` is called in not-strict mode:
     ```js run no-strict
-    // not in strict mode
+    // not in strict mode (!)
     function f() {
-      alert(this); // [object Window]
+      alert(this); // [object Window] (in strict mode would be undefined)
     }
 
     f(); // called without an object
     ```
-    That's for compatibility. With `use strict` in the last example `this` would be `undefined`.
 
 ````
 
