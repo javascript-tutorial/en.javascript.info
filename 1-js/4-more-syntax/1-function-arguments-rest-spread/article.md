@@ -155,7 +155,7 @@ alert( Math.max(0, ...arr, 2, ...arr2) ); // 15
 When you see `"..."`, there's an easy way to differ spread operator from rest parameters:
 
 - Rest parameters, if it's in the function definition (gathers into array).
-- Spread operator, if anywhere else (expands an array).
+- Spread operator, if in the function call (expands an array).
 ```
 
 Also we can use spread operator to merge arrays:
@@ -195,8 +195,8 @@ alert( Array.from(str) ); // H,e,l,l,o
 
 ## Summary
 
-- When `...` occurs in function parameters, it's "rest parameters" and gathers the rest of the list into the array.
-- When `...` occurs anywhere else, it's called a "spread operator" and expands an array into the list.
+- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list into the array.
+- When `...` occurs in a function call, it's called a "spread operator" and expands an array into the list.
 
 Together they help to travel between a list and an array of parameters with ease.
 

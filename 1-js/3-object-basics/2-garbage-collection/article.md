@@ -151,11 +151,11 @@ Regularly the following "garbage collection" steps are performed:
 
 - The garbage collector takes roots and "marks" them.
 - Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks their references (the same object is not visited twice).
-- ...And so on until there are unvisited references.
+- Then it visits marked objects and marks *their* references, but the same object is not visited twice.
+- ...And so on until there are unvisited references (reachable from the roots).
 - All objects except marked ones are removed.
 
-For instance, if our object structure might look like this:
+For instance, if our object structure looks like this:
 
 ![](garbage-collection-1.png)
 
@@ -182,11 +182,10 @@ Javascript engines apply many optimizations to it, to make it run faster and be 
 Some of the optimizations:
 
 - **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many objects appear, do their job and die fast, so they can be cleaned up more aggressively. Those "new" that survive for long enough, become "old". 
-- **Incremental collection** -- there may be many objects, if we try to clean up the whole object tree at once, it may take some time and introduce visible delays. So the engine tries to split the job into pieces. Then pieces are executed one at a time. That requires some extra bookkeeping in-between to stay consistent.
+- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays. So the engine tries to split the job into pieces. Then pieces are executed one at a time. That requires some extra bookkeeping in-between them to stay consistent.
 - **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
-In-depth understanding of these optimization is also achievable, there's no magic, but it requires a lot of under-the-hood digging. Javascript engines implement them differently. And -- what's even more important, things change, so going that deep is recommended when you already know the language well and really need low-level optimizations for your code.
-
+In-depth understanding of these optimization is also possible, there's no magic, but it requires a lot of under-the-hood digging. Javascript engines implement garbage collection differently. And -- what's even more important, things change, so going really deep "in advance" is probably not worth that. Unless, of course, it is a matter of pure interest. 
 
 ## Summary
 
@@ -197,8 +196,8 @@ The main things to know:
 
 Modern engines implement advanced algorithms of garbage collection.
 
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection). Also you'd better prepare yourself by learning how values are stored in V8. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, things are partially similar, but not the same.
+If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection). Also you'd better prepare yourself by learning how values are stored in V8. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, things are somewhat similar, but not the same.
 
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language. And when you feel that you need that of course. 
+In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
 
 

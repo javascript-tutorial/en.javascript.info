@@ -40,14 +40,12 @@ alert( title ); // Imperator
 In the code above, the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest is also skipped.
 ````
 
-### The rest operator
+### The rest '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using the rest operator `"..."` (three dots):
+If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using the three dots `"..."`:
 
 ```js run
-*!*
-let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-*/!*
+let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
 alert(name1); // Julius
 alert(name2); // Caesar
@@ -55,6 +53,7 @@ alert(name2); // Caesar
 *!*
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic 
+alert(rest.length); // 2
 */!*
 ```
 
@@ -77,14 +76,25 @@ If we want a "default" value to take place of the absent one, we can provide it 
 ```js run
 *!*
 // default values
-let [name="Guest", surname="Anonymous"] = [];
+let [name="Guest", surname="Anonymous"] = ["Julius"];
 */!*
 
-alert(name); // Guest
-alert(surname);  // Anonymous
+alert(name);    // Julius (from array)
+alert(surname); // Anonymous (default used)
 ```
 
-Note that default values can be more complex expressions. They are evaluated only if the value is not provided.
+Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
+
+For instance, here we use `prompt` function for defaults. But it will run only for the second one, as it's not provided:
+
+```js run
+let [name=prompt('name?'), surname=prompt('surname?')] = ["Julius"];
+
+alert(name);    // Julius (from array)
+alert(surname); // whatever prompt gets
+```
+
+
 
 ## Object destructuring
 
@@ -185,7 +195,7 @@ What if the object has more properties than we have variables? Can we assign the
 Unfortunately, the current specification does not support that feature. There is a proposal, but it's not in the standard yet.
 
 ````smart header="Destructuring without `let`"
-In the examples above variables were declared right before the assignment: `let {…} = {…}`. Of course, we could use the existing variables too. But there's a catch.
+In the examples above variables were declared right before the assignment: `let {…} = {…}`. Of course, we could use existing variables as well. But there's a catch.
 
 This won't work:
 ```js run
@@ -206,7 +216,7 @@ The problem is that Javascript treats `{...}` in the main code flow (not inside 
 }
 ```
 
-To show Javascript that it's not a code block, but a something else, we can wrap the whole assignment in brackets `(...)`:
+Of course, we want destructuring assignment, but by syntax rules of Javascript blocks are checked first. To show Javascript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
 
 
 ```js run
@@ -218,6 +228,7 @@ let title, width, height;
 
 alert( title ); // Menu
 ```
+Brackets do not affect the result, but now the `{...}` thing is not in the main code flow, so code block syntax does not apply, and the engine finally understands it right.
 ````
 
 ## Nested destructuring
@@ -232,7 +243,8 @@ let options = {
     width: 100,
     height: 200
   },
-  items: ["Cake", "Donut"]
+  items: ["Cake", "Donut"],
+  extra: true    // something extra that we will not destruct
 }
 
 // destructuring assignment on multiple lines for clarity
@@ -242,7 +254,7 @@ let {
     height
   }, 
   items: [item1, item2], // assign items here
-  title = "Menu" // an extra property (default value is used)
+  title = "Menu" // not present in the object (default value is used)
 } = options;
 
 alert(title);  // Menu
@@ -252,11 +264,13 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-As we can see, the whole `options` object is correctly assigned to variables.
+The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
 
-The left part of the destructuring assignment can combine and nest things as needed.
+![](destructuring-complex.png)
 
-## Destructuring function parameters
+As we can see, the left part of the destructuring assignment can combine and nest things as needed.
+
+## Smart function parameters
 
 There are times when a function may have many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
 
@@ -283,14 +297,16 @@ Destructuring comes to the rescue!
 We can pass parameters as an object, and the function immediately destructurizes them into variables:
 
 ```js run
+// we pass object to function
 let options = {
   title: "My menu",
   items: ["Item1", "Item2"]
 };
 
-*!*
-function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
-*/!*
+// ...and it immediately expands it to variables 
+function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
+  // title, items – taken from options, 
+  // width, height – defaults used
   alert( title + ' ' + width + ' ' + height ); // My Menu 100 200
   alert( items ); // Item1, Item2
 }
@@ -339,7 +355,7 @@ showMenu({});
 showMenu();
 ```
 
-We can fix this by making `{}` a value by default for the whole destructuring thing:
+We can fix this by making `{}` the default value for the whole destructuring thing:
 
 
 ```js run

@@ -65,7 +65,7 @@ recursion (
     task: traverse list back
 )
 
-<< function is object
+<< function name
   name property (obj props, methods, assignments - set it)
   length property
 

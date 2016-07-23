@@ -136,7 +136,7 @@ alert(+user); // 30
 alert(user + 1); // 31 (default like number calls valueOf)
 ```
 
-If we only want a nice debugging output of our object, then we can implement `toString` only. It the absence of `valueOf` it will be used for both conversions.
+If we want a single "catch-all" place for primitive conversions, or only want a nice debugging output of our object, then we can implement `toString` only. It the absence of `valueOf` it will be used for all conversions.
 
 For instance:
 
