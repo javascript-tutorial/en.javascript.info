@@ -98,7 +98,7 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-Look at the trick. The `while` loop just like `for`, makes a new Lexical Environment for each run. So we must make sure that it gets the right value for a `shooter` will access it.
+Look at the trick. The `while` loop, just like `for`, makes a new Lexical Environment for each run. So we must make sure that it gets the right value for a `shooter` will access it.
 
-We copy `let j = i`. This makes a loop-local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+We copy `let j = i`. This makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
 

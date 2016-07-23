@@ -314,65 +314,6 @@ That is: all of them automatically remember where they are created using a hidde
 When on an interview a frontend developer gets a question about "what's a closure?", the valid answer would be a definition of the closure and an explanation that all functions in Javascript are closures, and maybe few more words about technical details: the `[[Envrironment]]` property and how Lexical Environments work.
 ```
 
-### An alternative: function properties
-
-An alternative approach to the counter could be a function property:
-
-```js run
-function makeCounter() {
-
-  function counter() {
-    return counter.count++;
-  };
-
-  counter.count = 0;
-
-  return counter;
-}
-
-let counter = makeCounter();
-alert( counter() ); // 0
-alert( counter() ); // 1
-```
-
-Unlike the previous example, the current `count` is now bound to the function directly, not to its outer Lexical Environment.
-
-
-```smart header="Reminder"
-As we remember, functions are objects in Javascript. So we can store things is them.
-
-But properties like `counter.count` have nothing in common with function variables. Variables never use function properties and vise versa. These are just parallel words.
-```
-
-Which approach is better?
-
-The main difference is that if the value of `count` lives in a variable, then an external code is unable to access it. Only the nested function may modify it. Such variables are sometimes called *private* (to the function).
-
-And if it's bound to function, then such thing is possible:
-
-
-```js run
-function makeCounter() {
-
-  function counter() {
-    return counter.count++;
-  };
-
-  counter.count = 0;
-
-  return counter;
-}
-
-let counter = makeCounter();
-
-*!*
-counter.count = 10;
-alert( counter() ); // 10
-*/!*
-```
-
-Sometimes such possibility can be a plus, but usually we want more control over `count`, and the other way is prefered.
-
 ## Code blocks and loops, IIFE
 
 A code block has it's own Lexical Environment and hence local variables.
@@ -456,16 +397,18 @@ function() { // <-- JavaScript assumes it is a Function Declarations, but no nam
 }();
 ```
 
-...And we can't actually use Function Declaration here, because Javascript does not allow them to be called immediately:f
+...But we can't use Function Declaration here, because Javascript does not allow Function Declarations to be called immediately:
 
 ```js run
-// syntax error
+// syntax error because of brackets below
 function go() {
   
-}();
+}(); // <-- okay for Function Expressions, error for Function Declarations
 ```
 
-So the brackets are needed to show Javascript that we make a function in the context of another expression. Other means to do that:
+So the brackets are needed to show Javascript that the function is created in the context of another expression, and hence it's Function Declaration. 
+
+There are other ways to do that:
 
 ```js run
 !function() {
@@ -476,10 +419,6 @@ So the brackets are needed to show Javascript that we make a function in the con
   alert("Unary plus starts the expression");
 }();
 ```
-
-
-
-
 
 
 ## The old "var"
@@ -604,7 +543,7 @@ alert(phrase); // Error, phrase is not defined
 
     So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function.
 
-    **The pitfall is that assignments are not hoisted**.
+    **The pitfall is that declarations are hoisted, but assignments are not.**
 
     For instance:
 
@@ -622,7 +561,7 @@ alert(phrase); // Error, phrase is not defined
 
     The line `var phrase = "Hello"` has two actions in it: variable declaration `var` and assignment `=`.
 
-    The declaration is hoisted, but the assignment is not. So the code works essentially as this:
+    The declaration is processed at the start of function execution (hoisted), but the assignment is not. So the code works essentially like this:
 
     ```js run
     function sayHi() {
@@ -640,7 +579,7 @@ alert(phrase); // Error, phrase is not defined
     sayHi();
     ```
 
-The `alert` works, because the variable is defined from the start of the function. But its value is assigned below, so it shows `undefined`.
+The `alert` runs without an error, because the variable `phrase` is defined from the start of the function. But its value is assigned below, so it shows `undefined`.
 
 
 The features described above make using `var` inconvenient most of time. First, we can't create block-local variables. And hoisting just creates more space for errors. So, once again, for new scripts `var` is used exceptionally rarely.
@@ -775,7 +714,6 @@ In-browser `window` is sometimes used for following purposes:
     </script>
     ```
 
-````smart header="Window and \"this\""
 As we know, usually `this` is used inside an object method to access the object. But there are special cases when `this` equals `window`:
 
 1. The value of the global `this` is `window`:
@@ -785,7 +723,9 @@ As we know, usually `this` is used inside an object method to access the object.
     alert( this === window ); // true
     ```
 
-2. When a function with `this` is called in not-strict mode:
+    In non-browser environments, it can be any other object, the specification does not say anything more exact.
+
+2. When a function with `this` is called in not-strict mode (forgot `use strict`?):
     ```js run no-strict
     // not in strict mode (!)
     function f() {
@@ -795,6 +735,5 @@ As we know, usually `this` is used inside an object method to access the object.
     f(); // called without an object
     ```
 
-````
-
+    By specification, `this` in this case must be the global object. In non-browser environments it usually has another name, for instance, in Node.JS it is called `global`.
 

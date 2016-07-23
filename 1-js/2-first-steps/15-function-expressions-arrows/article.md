@@ -10,7 +10,11 @@ function sayHi() {
 }
 ```
 
-There is another way of creating a function that is called *Function Expression*:
+There is another way of creating a function that is called *Function Expression*.
+
+[cut]
+
+It looks like this:
 
 ```js
 let sayHi = function() {
@@ -90,6 +94,68 @@ The answer is simple:
 - There's no need in `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.
 - The Function Expression appears in the context of the statement: `let sayHi = value;`. It's not a code block. The semicolon `;` is recommended at the end of statements, no matter what is the `value`. So the semicolon here is not related to Function Expression itself in any way, it just terminates the statement.
 ````
+
+## Anonymous functions
+
+Let's see an example where function expressions come really handy.
+
+We'll write a function `ask(question, yes, no)` with three parameters:
+
+`question`
+: Text of the question
+
+`yes`
+: Function to run if the answer is "Yes"
+
+`no`
+: Function to run if the answer is "No"
+
+The function should ask the `question` and, depending on the user's agreement, call `yes()` or `no()`:
+
+```js run
+*!*
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+*/!*
+
+function showOk() {
+  alert( "You agreed." );
+}
+
+function showCancel() {
+  alert( "You canceled the execution." );
+}
+
+// usage
+ask("Do you agree?", showOk, showCancel);
+```
+
+The code looks kind of too simple, right? Why would anyone need such `ask`?
+
+...It turns out that in the browser such functions are very required, the minor difference is that they ask not with a simple `confirm`, but output a much richer looking question window. But that's another story.
+
+Right now let's see how we can write the same much shorter:
+
+```js run no-beautify
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
+}
+
+*!*
+ask(
+  "Do you agree?",
+  function() { alert("You agreed."); },
+  function() { alert("You canceled the execution."); }
+);
+*/!*
+```
+
+Here functions are declared right inside the `ask(...)` call. They have no name (anonymous) and are not accessible outside of `ask`, but that's just what we need.
+
+Such code appears very naturally, it's in the spirit of Javascript.
 
 
 ```smart header="A function is a value representing an \"action\""
@@ -365,7 +431,7 @@ let sum = (a, b) => {  // the figure bracket opens a multiline function
 *!*
   return result; // if we use figure brackets, must use return
 */!*
-}
+};
 
 alert( sum(1, 2) ); // 3
 ```
@@ -375,29 +441,6 @@ Here we praised arrow functions for shortness. But that's not all! Arrow functio
 
 As for now, we can already use them for one-line actions.
 ```
-
-## new Function
-
-And the last syntax for the functions:
-```js
-let func = new Function('a, b', 'return a + b');
-```
-
-The major difference is that it creates a function literally from a string, at run time. See, both arguments are strings. The first one lists the arguments, while the second one is the function body.
-
-All previous declarations required us, programmers, to write the function code in the script.
-
-But `new Function` allows to turn any string into a function, for example we can receive a new function from the server and then execute it:
-
-```js
-let str = ... receive the code from the server dynamically ...
-
-let func = new Function('', str);
-func();
-```
-
-It is used in very specific cases, like when we receive the code from the server, or to dynamically compile a function from a template. The need for such uses arises at advanced stages of the development.
-
 
 ## Summary
 

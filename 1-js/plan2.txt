@@ -56,6 +56,10 @@ data-structures
 <<< 
 <<< call/apply?
 
+func.name + NFE - together
+closures need function objects
+NFE need recursion
+scheduling needs recursion, closures
 
 recursion (
   running execution context = where + lexical environment = envrec + outer
@@ -65,12 +69,6 @@ recursion (
     task: traverse list back
 )
 
-<< function name
-  name property (obj props, methods, assignments - set it)
-  length property
-
-<< NFE
-
 closures
   LE outer
   returning a function
@@ -78,19 +76,28 @@ closures
   new Function?
   counter object?
 
-<< new function
+
+<<< memory management of closures?  (AFTER CLOSURES! Сюрприз нельзя получить!!!)
+
+
+function-object
+  name property (obj props, methods, assignments - set it)
+  length property
+  custom properties
+
+new function
 
 scheduling: settimeout, setinterval
+  recursive settimeout
 
-bind, currying
-decorators
+<<< bind, fixing context
+
+<<< call/apply, decorators
+
+
 constructors
 classes
 instanceof
-IIFE ?
-
-<<< memory management?  (AFTER CLOSURES! Сюрприз нельзя получить!!!)
-  
 
 после 4-object сделать 
   descriptors

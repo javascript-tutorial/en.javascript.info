@@ -1,7 +1,7 @@
 
 1. For the whole thing to work *anyhow*, the result of `sum` must be function.
 2. That function must keep in memory the current value between calls.
-3. According to the task, the function must become the number when used in `==`. Functions are objects, so as described in the chapter <info:object-tostring-valueof>, they use `valueOf` for such conversion. So we should give it the `valueOf` that returns the right number. Or if we want it to behave the same in a string context too, then `toString`.
+3. According to the task, the function must become the number when used in `==`. Functions are objects, so the conversion happens as described in the chapter <info:object-toprimitive>, and we can provide our own method that returns the number. 
 
 Now the code:
 
@@ -52,5 +52,5 @@ function f(b) {
 }
 ```
 
-This `f` will be used in the next call, again return itself, so many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`.
+This `f` will be used in the next call, again return itself, so many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`. We could also use `Symbol.toPrimitive` or `valueOf` here for the conversion.
 
