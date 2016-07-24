@@ -451,7 +451,9 @@ Let's recap the methods to avoid any confusion:
 
 
 ```smart header="Which one to choose?"
-All of them can do the job. The author finds himself using `slice` almost all the time.
+All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core Javascript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+
+The author finds himself using `slice` almost all the time.
 ```
 
 ## Comparing strings
@@ -526,7 +528,7 @@ The characters are compared by their numeric code. The greater code means that t
 
 ### Correct comparisons
 
-The "right" algorithm to do string comparisons is more complex than it may seem. Because the alphabets are different for different languages. So the same letter may be located differently in different alphabets, that is -- even if it looks the same, different alphabets put it in different place.
+The "right" algorithm to do string comparisons is more complex than it may seem. Because alphabets are different for different languages. The same-looking letter may be located differently in different alphabets.
 
 So, the browser needs to know the language to compare.
 

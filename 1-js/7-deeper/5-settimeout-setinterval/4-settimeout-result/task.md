@@ -2,31 +2,26 @@ importance: 5
 
 ---
 
-# Что выведет setTimeout?
+# What will setTimeout show?
 
-В коде ниже запланирован запуск `setTimeout`, а затем запущена тяжёлая функция `hardWork`, выполнение которой занимает более долгое время, чем интервал до срабатывания таймера.
+In the code below there's a `setTimeout` call scheduled, then a heavy calculation is run, that takes more than 100ms to finish.
 
-Когда сработает `setTimeout`? Выберите нужный вариант:
+When the scheduled function will run?
 
-1. До выполнения `hardWork`.
-2. Во время выполнения `hardWork`.
-3. Сразу же по окончании `hardWork`.
-4. Через 100 мс после окончания `hardWork`.
+1. After the loop.
+2. Before the loop.
+3. In the beginning of the loop.
 
-Что выведет `alert` в коде ниже?
+
+What `alert` is going to show?
 
 ```js
-setTimeout(function() {
-  alert( i );
-}, 100);
+let i = 0;
 
-var i;
+setTimeout(() => alert(i), 100); // ?
 
-function hardWork() {
-  // время выполнения этого кода >100 мс, сам код неважен
-  for (i = 0; i < 1e8; i++) hardWork[i % 2] = i;
+// assume that the time to execute this function is >100ms
+for(let j = 0; j < 100000000; j++) {
+  i++; 
 }
-
-hardWork();
 ```
-

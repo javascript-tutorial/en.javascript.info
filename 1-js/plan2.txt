@@ -72,12 +72,9 @@ recursion (
 closures
   LE outer
   returning a function
-  -not function props
-  new Function?
-  counter object?
-
-
-<<< memory management of closures?  (AFTER CLOSURES! Сюрприз нельзя получить!!!)
+  garbage collection
+  var
+  window
 
 
 function-object
@@ -87,7 +84,7 @@ function-object
 
 new function
 
-scheduling: settimeout, setinterval
+scheduling: settimeout, setinterval [todo tasks]
   recursive settimeout
 
 <<< bind, fixing context

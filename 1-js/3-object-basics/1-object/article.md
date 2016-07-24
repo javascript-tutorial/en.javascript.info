@@ -235,21 +235,15 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, with one exclusion: `__proto__`. 
-
-The built-in property named `__proto__` has a special functionality (we'll cover it later), and it can't be set to a non-object value:
+Basically, any name is allowed, but there's a special one: `"__proto__"`. We can't set it to a non-object value:
 
 ```js run
-let obj = {};
-obj.__proto__ = 5;
+let obj = { __proto__: 5 };
 alert(obj.__proto__); // [object Object], didn't work as intended
 ```
 
-As you we see from the code, an assignment to a primitive is ignored. If we want to store *arbitrary* (user-provided) keys, then such behavior can be the source of bugs and even vulnerabilities, because it's unexpected. There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+Later we'll learn more about that `__proto__` and see how to work around it [todo Object.create(null)]. Also we'll learn another data structure [Map](info:map-set-weakmap-weakset) that doesn't have such problems and supports arbitrary keys.
 ````
-
-
-
 
 ## Existance check
 

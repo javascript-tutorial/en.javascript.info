@@ -1,4 +1,4 @@
-# Scheduling: setTimeout and setInterval [todo]
+# Scheduling: setTimeout and setInterval [todo tasks]
 
 There are two methods to schedule function execution:
 
@@ -207,98 +207,128 @@ And this is the picture for recursive `setTimeout`:
 That's because a new call is planned at the end of the previous one.
 
 ````smart header="Garbage collection"
-Garbage collector does not clean scheduled functions while they are actual.
-
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function form being collected. 
+When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function form being garbage collected, even if there are no other references to it.
 
 ```js
 // the function will stay in memory until the scheduler calls it
 setTimeout(function() {}, 100);
 ```
 
-For `setTimeout` the reference is removed after a single execution. For `setInterval` -- only when `cancelInterval` is called.
+For `setInterval` the function stays in memory until `cancelInterval` is called. 
 
-Так как функция также тянет за собой всё замыкание, то ставшие неактуальными, но не отменённые `setInterval` могут приводить к излишним тратам памяти.
+A function references outer lexical environment, so, while it lives, certain outer variables live too. They may take much more memory than the function itself. That's a good reason to keep an eye on scheduled functions` and cancel them once they are not needed.
 ````
 
-## Минимальная задержка таймера
+## Zero timeout
 
-У браузерного таймера есть минимальная возможная задержка. Она меняется от примерно нуля до 4 мс в современных браузерах. В более старых она может быть больше и достигать 15 мс.
+There's a special use case: `setTimeout(func, 0)`.
 
-По [стандарту](http://www.w3.org/TR/html5/webappapis.html#timers), минимальная задержка составляет 4 мс.  Так что нет разницы между `setTimeout(..,1)` и `setTimeout(..,4)`.
+This plans the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
 
-Посмотреть минимальное разрешение "вживую" можно на следующем примере.
+So the function is planned to run "right after" the current code. In other words, *asynchronously*.
 
-**В примере ниже каждая полоска удлиняется вызовом `setInterval` с указанной на ней задержкой -- от 0 мс (сверху) до 20 мс (внизу).**
+For instance, this outputs "Hello", then immediately "World":
 
-Позапускайте его в различных браузерах. Вы заметите, что несколько первых полосок анимируются с одинаковой скоростью. Это как раз потому, что слишком маленькие задержки таймер не различает.
+```js run
+setTimeout(() => alert("World"), 0);
 
-[iframe border="1" src="setinterval-anim" link edit]
-
-```warn
-В Internet Explorer, нулевая задержка `setInterval(.., 0)` не сработает. Это касается именно `setInterval`, т.е. `setTimeout(.., 0)` работает нормально.
+alert("Hello");
 ```
 
-```smart header="Откуда взялись эти 4 мс?"
-Почему минимальная задержка -- 4 мс, а не 1 мс? Зачем она вообще существует?
+The trick is also used to split a CPU-hungry task.
 
-Это -- "привет" от прошлого. Браузер Chrome как-то пытался убрать минимальную задержку в своих ранних версиях, но оказалось, что существуют сайты, которые используют `setTimeout(..,0)` рекурсивно, создавая тем самым "асинхронный цикл". И, если задержку совсем убрать, то будет 100% загрузка процессора, такой сайт "подвесит" браузер.
+For instance, syntax highlighting script, used to colorize code examples on this page, is quite CPU-heavy. To hightlight the code, it analyzes it, creates many colored highlighting elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", that's unacceptable.
 
-Поэтому, чтобы не ломать существующие скрипты, решили сделать задержку. По возможности, небольшую. На время создания стандарта оптимальным числом показалось 4 мс.
-```
+So we can split the long text to pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on. 
 
-## Реальная частота срабатывания
+As a simpler example -- here's a counting function from `1` to `1000000000`.
 
-В ряде ситуаций таймер будет срабатывать реже, чем обычно. Задержка между вызовами  `setInterval(..., 4)` может быть не 4 мс, а 30 мс или даже 1000 мс.
+If you run it, the CPU will hang. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to scroll and click other buttons on the page -- you'll see that whole Javascript actually is paused, no other actions work until it finishes.
 
-- Большинство браузеров (десктопных в первую очередь) продолжают выполнять `setTimeout/setInterval`, даже если вкладка неактивна.
+```js run
+let i = 0;
 
-    При этом ряд из них (Chrome, FF, IE10) снижают минимальную частоту таймера, до 1 раза в секунду. Получается, что в "фоновой" вкладке будет срабатывать таймер, но редко.
-- При работе от батареи, в ноутбуке -- браузеры тоже могут снижать частоту, чтобы реже выполнять код и экономить заряд батареи. Особенно этим известен IE. Снижение может достигать нескольких раз, в зависимости от настроек.
-- При слишком большой загрузке процессора JavaScript может не успевать обрабатывать таймеры вовремя. При этом некоторые запуски `setInterval` будут пропущены.
+let start = performance.now();
 
-**Вывод: на частоту 4 мс стоит ориентироваться, но не стоит рассчитывать.**
+function count() {
 
-```online
-Посмотрим снижение частоты в действии на небольшом примере.
+  for(let j = 0; j < 1000000000; j++) {
+    i++;
+  }
 
-При клике на кнопку ниже запускается `setInterval(..., 90)`, который выводит список интервалов времени между 25 последними срабатываниями таймера. Запустите его. Перейдите на другую вкладку и вернитесь.
-
-<div id="timer-interval-log"></div>
-
-<button onclick="timerIntervalLog()">Запустить повтор с интервалом в 90 мс</button>
-<button onclick="clearInterval(timerIntervalLogTimer)">Остановить повтор</button>
-
-<script>
-var timerIntervalLogTimer;
-function timerIntervalLog() {
-  var arr = [];
-  var d = new Date;
-  timerIntervalLogTimer = setInterval(function() {
-    var diff = new Date - d;
-    if (diff > 100) diff = '<span style="color:red">'+diff+'</span>';
-    arr.push( diff );
-    if (arr.length > 25) arr.shift();
-    document.getElementById('timer-interval-log').innerHTML = arr;
-    d = new Date;
-  }, 90);
+  alert("Done in " + (performance.now() - start) + 'ms');
 }
-</script>
 
-Если ваш браузер увеличивает таймаут при фоновом выполнении вкладки, то вы увидите увеличенные интервалы, помеченные <span style="color:red">красным</span>.
-
-Кроме того, вы заметите, что таймер не является идеально точным ;)
+count();
 ```
 
-## Разбивка долгих скриптов
+Now the split version:
 
-Нулевой или небольшой таймаут также используют, чтобы разорвать поток выполнения "тяжелых" скриптов.
+```js run
+let i = 0;
 
-Например, скрипт для подсветки синтаксиса должен проанализировать код, создать много цветных элементов для подсветки и добавить их в документ -- на большом файле это займёт много времени, браузер может даже подвиснуть, что неприемлемо.
+let start = performance.now();
 
-Для того, чтобы этого избежать, сложная задача разбивается на части, выполнение каждой части запускается через мини-интервал после предыдущей, чтобы дать браузеру время.
+function count() {
 
-Например, осуществляется анализ и подсветка первых 100 строк, затем через 20 мс -- следующие 100 строк и так далее. При этом можно подстраиваться под CPU посетителя: замерять время на анализ 100 строк и, если процессор хороший, то в следующий раз обработать 200 строк, а если плохой -- то 50. В итоге подсветка будет работать с адекватной быстротой и без тормозов на любых текстах и компьютерах.
+  if (i == 1000000000) {
+    alert("Done in " + (performance.now() - start) + 'ms');
+  } else {
+    setTimeout(count, 0);
+  }
+
+  for(let j = 0; j < 1000000; j++) {
+    i++;
+  }
+
+}
+
+count();
+```
+
+
+Now the browser UI is fully functional. Pauses between `count` executions provide just enough "breath" for the browser to do something else, to react on other user actions.
+
+The notable thing is that both variants are comparable in speed. There's no much difference in the overall counting time.
+
+Note that `setTimeout(count, 0)` is planned before the counting. That's actually a small workaround. The [HTML5 standard](https://www.w3.org/TR/html5/webappapis.html#timers) says: "after five nested timers..., the interval is forced to be at least four milliseconds.". That limitation exists mainly for historical reasons.
+
+
+For us it means that first 5 invocations will run one right after another, and then 4ms delay will be added between them.
+
+Here's the code with `setTimeout` at the end to compare:
+
+```js run
+let i = 0;
+
+let start = performance.now();
+
+function count() {
+
+  for(let j = 0; j < 1000000; j++) {
+    i++;
+  }
+
+  // moved to "after the job"
+*!*
+  if (i == 1000000000) {
+    alert("Done in " + (performance.now() - start) + 'ms');
+  } else {
+    setTimeout(count, 0);
+  }
+*/!*
+
+}
+
+count();
+```
+
+If you run it, easy to notice that it takes significantly more time. Just because of these additional delays. The good thing is that the browser now has even more time between the invocations to go elsewhere.
+
+
+```smart header="Server-side Javascript"
+For server-side Javascript, the "four ms" limitation does not exist. Also, there are other ways to schedule an immediate asynchronous job. In Node.JS that's [process.nextTick](https://nodejs.org/api/process.html) and [setImmediate](https://nodejs.org/api/timers.html).
+```
 
 ## Итого
 

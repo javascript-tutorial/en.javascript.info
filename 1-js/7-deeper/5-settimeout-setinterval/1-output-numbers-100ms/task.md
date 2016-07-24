@@ -2,22 +2,12 @@ importance: 5
 
 ---
 
-# Вывод чисел каждые 100 мс
+# Output every second
 
-Напишите функцию `printNumbersInterval()`, которая последовательно выводит в консоль числа от 1 до 20, с интервалом между числами 100 мс. То есть, весь вывод должен занимать 2000 мс, в течение которых каждые 100 мс в консоли появляется очередное число.
+Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `two`.
 
-Нажмите на кнопку, открыв консоль, для демонстрации:
-<script>
-function printNumbersInterval() {
-  var i = 1;
-  var timerId = setInterval(function() {
-    console.log(i);
-    if (i == 20) clearInterval(timerId);
-    i++;
-  }, 100);
-}
-</script>
-<button onclick="printNumbersInterval()">printNumbersInterval()</button>
-</script>
+Make two variants of the solution.
 
-P.S. Функция должна использовать `setInterval`.
+1. Using `setInterval`.
+2. Using recursive `setTimeout`.
+

@@ -420,6 +420,129 @@ There are other ways to do that:
 }();
 ```
 
+## Garbage collection
+
+Lexical Environment objects that we've been talking about follow same garbage collection rules as regular ones.
+
+So, a Lexical Environment exists while there's a nested function referencing it with its `[[Environment]]`.
+
+- Usually, Lexical Environment is cleaned up after the function run. Even if it has a nested function, for instance:
+
+    ```js
+    function f() {
+      let value = 123;
+
+      function g() {} // g is local
+    }
+
+    f();
+    ```
+
+    Here both `value` and `g` become unreachable after the end of `f()`, and so even though `g` references its outer lexical environment, that doesn't matter.
+
+- But if `g` were returned and kept reachable, then that its reference keeps the outer lexical environment alive as well:
+
+    ```js
+    function f() {
+      let value = 123;
+
+      function g() {}
+
+    *!*
+      return g;
+    */!*
+    }
+
+    let g = f(); // function g will live and keep the outer lexical environment in memory
+    ```
+
+- If `f()` is called many times, and resulting functions are saved, then the corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
+
+    ```js
+    function f() {
+      var value = Math.random();
+
+      return function() {};
+    }
+
+    // 3 functions in array, every of them links to LexicalEnvrironment
+    // from the corresponding f() run
+    let arr = [f(), f(), f()];
+    ```
+- A Lexical Environment object lives until it is reachable. In the code below, after `g` becomes unreachable, it dies with it:
+
+    ```js
+    function f() {
+      var value = 123;
+
+      function g() {}
+
+      return g;
+    }
+
+    let g = f(); // while g is alive
+    // there corresponding Lexical Environment lives
+
+    g = null; // ...and now the memory is cleaned up
+    ```
+
+### Real-life optimizations
+
+As we've seen, in theory while a function is alive, all outer variabels are also retained. 
+
+But in practice, JS engines try to optimize that. They analyze variable usage and if it's easy to see that an outer variable is not used -- it is removed.
+
+In the code above `value` is not used in `g`. So it will be cleaned up from the memory.
+
+**Important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging!**
+
+Try running the example below with the open Developer Tools in Chrome.
+
+When it pauses, in console type `alert(value)`.
+
+```js run
+function f() {
+  var value = Math.random();
+
+  function g() {
+    debugger; // in console: type alert( value ); No such variable!
+  }
+
+  return g;
+}
+
+var g = f();
+g();
+```
+
+As you could see -- there is no such variable! The engine decided that we won't need it and removed it.
+
+That may lead to funny (if not such time-consuming) debugging issues, especially when we can see instead of *our* variable the more outer one:
+
+```js run global
+let value = "Surprise!";
+
+function f() {
+  let value = "the closest value";
+
+  function g() {
+    debugger; // in console: type alert( value ); Surprise!
+  }
+
+  return g;
+}
+
+let g = f();
+g();
+```
+
+```warn header="See ya!"
+This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
+
+That is not a bug of debugger, but a special feature of V8. Maybe it will be changed sometimes. 
+You always can check for it by running examples on this page.
+```
+
 
 ## The old "var"
 
@@ -583,7 +706,6 @@ The `alert` runs without an error, because the variable `phrase` is defined from
 
 
 The features described above make using `var` inconvenient most of time. First, we can't create block-local variables. And hoisting just creates more space for errors. So, once again, for new scripts `var` is used exceptionally rarely.
-
 
 
 

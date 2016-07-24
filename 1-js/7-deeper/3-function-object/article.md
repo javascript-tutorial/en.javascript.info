@@ -170,11 +170,11 @@ alert( counter() ); // 0
 alert( counter() ); // 1
 ```
 
-Unlike the closures, the `count` is now bound to the function directly, not to its outer Lexical Environment.
+Unlike examples from chapter <info:closure>, the `count` is now stored in the function directly, not in its outer Lexical Environment.
 
 Is it worse or better than using the closure?
 
-The main difference is that if the value of `count` lives in an outer variable, then an external code is unable to access it. Only the nested function may modify it. And if it's bound to function, then such thing is possible:
+The main difference is that if the value of `count` lives in an outer variable, then an external code is unable to access it. Only nested functions may modify it. And if it's bound to function, then such thing is possible:
 
 ```js run
 function makeCounter() {
@@ -196,108 +196,136 @@ alert( counter() ); // 10
 */!*
 ```
 
-Sometimes such possibility can be a plus, but usually we want more control over `count`, and hence the closure is more often used.
+So it depends on our aims which variant to choose.
 
 ## Named Function Expression
 
-Compare these two function definitions:
+Named Function Expression or, shortly, NFE, is a term a Function Expression that has a name.
+
+For instance, let's take an ordinary Function Expression:
 
 ```js
-let sayHi = function() { // (1)
-  alert('Hello');
-};
-
-let sayHi = function *!*func*/!*() { // (2)
-  alert('Hello');
+let sayHi = function(who) {
+  alert(`Hello, ${who}`);
 };
 ```
 
-Both create a function and put it into the variable `sayHi`. And usually we use the first variant is fine.
+...And add a name to it:
 
-But if we specify a name right in the Function Expression (2), then it becomes an "internal function name", only visible from inside the function.
-
-Let's see why we may need it.
-
-As we've seen it's easy to copy a function and maybe replace the previous value with something else:
-
-```js run
-let sayHi = function() {
-  alert('Hello');
+```js
+let sayHi = function *!*func*/!*(who) {
+  alert(`Hello, ${who}`);
 };
-
-// oh maybe another word is better? replace it!
-let oldSayHi = sayHi; // keep the old variant here
-sayHi = function() { //  replace with a newer one
-  alert("What's up dude?");
-};
-
-
-oldSayHi(); // Hello 
-sayHi(); // What's up dude?
 ```
 
-The problem may occur if a function references *itself* from inside. It happens when the function wants to access its properties (`sayHi.counter` in the example above), or it wants to recursively call itself one more time.
+What's the role of that additional `"func"` name?
 
-But if the function has moved, then the old name becomes irrelevant! There will be an error.
+First let's note, that we still have a Function Expression. Adding the name `"func"` after `function` did not make it a Function Declaration, because it is still created as a part of an assignment expression.
 
-Here's the code:
+Adding such a name also did not break anything.
+
+The function is still available as `sayHi()`:
+
+```js run 
+let sayHi = function *!*func*/!*(who) {
+  alert(`Hello, ${who}`);
+};
+
+sayHi("John"); // Hello, John
+```
+
+There are two special things about the name `func`:
+
+1. It allows to reference the function from inside itself.
+2. It is not visible outside of the function.
+
+For instance, the function `sayHi` below re-calls itself with `"Guest"` if no `who` is provided:
 
 ```js run
-// create a function
-let sayHi = function() {
-  sayHi.counter++;
-  alert('Hi ' + sayHi.counter);
+let sayHi = function *!*func*/!*(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+*!*
+    func("Guest"); // use func to re-call itself
+*/!*
+  }
 };
-sayHi.counter = 0; 
 
-// move it 
-let movedSayHi = sayHi;
+sayHi(); // Hello, Guest
 
-// overwrite the old name to make things more obvious
+// But this won't work:
+func(); // Error, func is not defined (not visible outside of the function)
+```
+
+Why do we use `func`? Maybe just use `sayHi` for the nested call?
+
+
+Actually, in most cases we can:
+
+```js
+let sayHi = function(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+*!*
+    sayHi("Guest");
+*/!*
+  }
+};
+```
+
+The problem with that code is that the value of `sayHi` may change. The function may go to another variable, and the code will start to give errors:
+
+```js run
+let sayHi = function(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+*!*
+    sayHi("Guest"); // Error: sayHi is not a function
+*/!*
+  }
+};
+
+let welcome = sayHi;
 sayHi = null;
 
-*!*
-movedSayHi(); // Error: Cannot read property 'counter' of null
-*/!*
+welcome(); // Error, the nested sayHi call doesn't work any more!
 ```
 
-The optional name which we can put into the Function Expression is exactly meant to solve this kind of problems.
+That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
 
-- It is only visible from inside the function.
-- It always references the current function.
+The optional name which we can put into the Function Expression is exactly meant to solve this kind of problems.
 
 Let's use it to fix the code:
 
 ```js run
-// now with the internal name "say"
-let sayHi = function *!*say*/!*() {
-  *!*say*/!*.counter++; 
-  alert('Hi ' + *!*say*/!*.counter); // and use it everywhere inside
+let sayHi = function *!*func*/!*(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+*!*
+    func("Guest"); // Now all fine
+*/!*
+  }
 };
-sayHi.counter = 0; 
 
-let movedSayHi = sayHi;
-
+let welcome = sayHi;
 sayHi = null;
 
-movedSayHi(); // Hi 1
-movedSayHi(); // Hi 2 (works)
-
-alert(say); // Error (say is undefined, that's normal)
+welcome(); // Hello, Guest (nested call works)
 ```
 
-Please note that:
+Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it always references the current function.
 
-- The name `say` exists only inside the function. The last line demonstrates that.
-- The name `say` inside the function is always the current function, no matter in which variable it is. That's why it works.
+The outer code still has it's variable `sayHi` or `welcome` later. And `func` is an "internal function name", how it calls itself privately.
 
-So the outer code has it's variable `sayHi` or `movedSayHi` later to call the function. The `say` is an "internal function name", how it calls itself privately.
-
-A Function Expression with a name is called *Named Function Expression*, often abbreviated as NFE.
-
+```smart header="No such thing for Function Declaration"
 The "internal name" feature described here is only available for Function Expressions, not to Function Declarations. For Function Declarations, there's just no syntax possibility to add a one more "internal" name for them. 
 
 Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
+```
 
 ## Summary
 
