@@ -1,3 +1,8 @@
+libs:
+  - lodash
+
+---
+
 # Function bind method to fix this
 
 When using `setTimeout` with object methods or passing object methods along, there's a known problem: "loosing `this`".
@@ -275,6 +280,49 @@ function die() {
 }
 ```
 
+
+## Currying [todo]
+
+Sometimes people mix up partial function application mentioned above with another thing named "currying".
+
+todo: _.partial that fixes argument, not context
+
+Currying is a transform that makes function of multiple arguments `f(a, b, c)` callable as `f(a)(b)(c)`, for instance:
+
+```js run
+function log(date, importance, message) {
+  console.log(`${date.getTime()} [${importance}] ${message}`);
+}
+
+log(new Date(), "DEBUG", "3-arg call");
+
+log = _.curry(log);
+
+// still works this way
+log(new Date(), "DEBUG", "3-arg call");
+
+// but also can call it like this:
+log(new Date())("DEBUG")("3-arg call");
+
+// or get a convenience function:
+let todayLog = log(new Date());
+
+todayLog("INFO", "2-arg call");
+
+// or get a convenience function:
+let todayDebug = todayLog("DEBUG");
+
+todayDebug("1-arg call");
+```
+
+
+
+
+
+
+
+
+
 ## Summary
 
 To safely pass an object method to `setTimeout`, we can bind the context to it.
@@ -288,4 +336,3 @@ let bound = func.bind(context, arg1, arg2...)
 The result is an "exotic object" that passes all calls to `func`, fixing context and arguments (if provided).
 
 We can use it to fix the context (most often case), or also some of the arguments.
-

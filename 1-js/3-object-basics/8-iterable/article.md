@@ -132,7 +132,7 @@ while(true) {
 
 The same works for an array.
 
-## Iterables VS array-likes
+## Iterables VS array-likes [#array-like]
 
 There are two official terms that are similar, but actually very different. Please take care to avoid the confusion.
 
