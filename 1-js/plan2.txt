@@ -27,6 +27,7 @@ object-basics
   object-toprimitive
   array
   iterable
+    <<< json
 more-syntax
   function-arguments-rest-spread
   destructuring-assignment (also func params destructuring)
@@ -37,59 +38,42 @@ code-quality
   write-unmaintainable-code (TODO)
   test-driven-development (TODO)
   polyfills (TODO)
-data-structures
+data-types
   number (rounding, precision, isFinite, isNaN, parse*, Math.*)
   string (quotes, search, substring, tagged template notice)
-  object 
-    - WHAT HERE?
-    - can add prototypes or more
+
+  <<< object-descriptors
+
   array-methods (TODO: translate tasks)
-  date (TODO: tasks)
   map-set-weakmap-weakset
-  
+  date (TODO: tasks)
+deeper
+  recursion 
+    running execution context = where + lexical environment = envrec + outer
+    context stack
+    pow task
+    traverse list task
+      task: traverse list back
+  closures
+    LE outer
+    returning a function
+    garbage collection
+    var
+    window
+  function-object
+    name property (obj props, methods, assignments - set it)
+    length property
+    custom properties
+  new function
+  scheduling: settimeout, setinterval 
+    recursive settimeout
+  call-apply-decorators
+  bind
+
 -------
 
-<<< json? 
 <<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
 <<< getter setter
-<<< NFE?
-<<< 
-<<< call/apply?
-
-func.name + NFE - together
-closures need function objects
-NFE need recursion
-scheduling needs recursion, closures
-
-recursion (
-  running execution context = where + lexical environment = envrec + outer
-  context stack
-  pow task
-  traverse list task
-    task: traverse list back
-)
-
-closures
-  LE outer
-  returning a function
-  garbage collection
-  var
-  window
-
-
-function-object
-  name property (obj props, methods, assignments - set it)
-  length property
-  custom properties
-
-new function
-
-scheduling: settimeout, setinterval [todo tasks]
-  recursive settimeout
-
-<<< bind, fixing context
-
-<<< call/apply, decorators
 
 
 constructors
@@ -108,6 +92,4 @@ more-features
 
 
 ======
-A global environment is a Lexical Environment which does not have an outer environment. The global environment's outer environment reference is null. A global environment's EnvironmentRecord may be prepopulated with identifier bindings and includes an associated global object whose properties provide some of the global environment's identifier bindings.  (window has SOME global env bindings!!!)
-=====
 class A extends Object != class A

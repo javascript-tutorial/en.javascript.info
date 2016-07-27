@@ -14,7 +14,7 @@ let billion = 1000000000;
 
 But in real life we usually dislike writing many zeroes. It's easy to mistype. Also we are lazy. We we usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billions 300 millions. The similar is true for other big numbers.
 
-In JavaScript, we can do almost the same by appending the letter `e` to the number and specifying the zeroes count:
+In JavaScript, we can do almost the same by appending the letter `"e"` to the number and specifying the zeroes count:
 
 ```js run
 let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
@@ -22,7 +22,7 @@ let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
 alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
 ```
 
-In other words, `e` multiplies the number by `1` with the given zeroes count.
+In other words, `"e"` multiplies the number by `1` with the given zeroes count.
 
 ```js
 1e3 = 1 * 1000
@@ -30,13 +30,13 @@ In other words, `e` multiplies the number by `1` with the given zeroes count.
 ```
 
 
-Now let's write something very small. Say, 1 microsecond is one millionth of a second: 
+Now let's write something very small. Say, 1 microsecond (one millionth of a second): 
 
 ```js
 let ms = 0.000001;
 ```
 
-Also the same `e` can help. If we'd like not to write down the zeroes explicitly, the same number is:
+Also the same `"e"` can help. If we'd like not to write down the zeroes explicitly, the same number is:
 
 ```js
 let ms = 1e-6; // six zeroes to the left from 1 
@@ -44,7 +44,7 @@ let ms = 1e-6; // six zeroes to the left from 1
 
 If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
 
-In other words, a negative number after `e` means a division by 1 with the given number of zeries:
+In other words, a negative number after `"e"` means a division by 1 with the given number of zeries:
 
 ```js
 // -3 divides by 1 with 3 zeroes
@@ -75,11 +75,11 @@ let b = 0o377; // octal form of 255
 alert( a == b ); // true, the same number 255 at both sides
 ```
 
-There are only 3 numeral systems with such support. For other numeral systems we should use function `parseInt` (goes later in this chapter).
+There are only 3 numeral systems with such support. For other numeral systems we should use function `parseInt` (later in this chapter).
 
 ## toString(base)
 
-There method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
+The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
 
 For example:
 ```js run
@@ -89,11 +89,11 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
-The `base` can vary from `2` to `36`.
+The `base` can vary from `2` to `36`. By default it's `10`.
 
 Most often use cases are:
 
-- **base=16** is used for colors, character encodings etc, digits can be `0..9` or `A..F`.
+- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
 - **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
 - **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
 
@@ -105,6 +105,8 @@ Most often use cases are:
 Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
 
 If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+
+Also could write `(123456).toString(36)`.
 ```
 
 ## Rounding
@@ -268,7 +270,7 @@ JavaScript doesn't trigger an error in such case. It does the best to fit the nu
 ````
 
 ```smart header="Two zeroes"
-Another funny consequence of the internal representation is there are actually two zeroes: `0` and `-0`.
+Another funny consequence of the internal representation is the existance of two zeroes: `0` and `-0`.
 
 That's because a sign is represented by a single bit, so every number can be positive or negative, including the zero. 
 
@@ -294,7 +296,7 @@ They belong to the type `number`, but are not "normal" numbers, so there are spe
     alert( isNaN("str") ); // true
     ```
 
-    But do we need the function? Can we just use the comparison `=== NaN`? Funny, but no. The value `NaN` is unique in that it does not equal anything including itself:
+    But do we need the function? Can we just use the comparison `=== NaN`? Sorry, but no. The value `NaN` is unique in that it does not equal anything including itself:
 
     ```js run
     alert( NaN === NaN ); // false
@@ -318,16 +320,18 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions. If it's not what's needed, then additional checks are required. 
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`. 
 
 ```smart header="Compare with `Object.is`"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) to compare values in "even stricter way" than `===`. 
+There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
-The call `Object.is(value1, value2)` returns the same result as `value1 === value2` with two exceptions:
+1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing. 
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, it rarely matters, but these values technically are different.
 
-1. It can compare with `NaN`, e.g. `Object.is(NaN, NaN) === true`.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`.
+In all other cases, `Object.is(a, b)` is the same as `a === b`. 
+
+This way of comparison is often used in Javascript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 
@@ -408,8 +412,8 @@ There are more functions and constants in `Math`, including trigonometry, you ca
 
 To write big numbers:
 
-- Append `e` with the zeroes count to the number. Like: `123e6` is `123` with 6 zeroes.
-- A negative number after `e` causes the number to be divided by 1 with given zeroes. That's for one-millionth or such.
+- Append `"e"` with the zeroes count to the number. Like: `123e6` is `123` with 6 zeroes.
+- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. That's for one-millionth or such.
 
 For different numeral systems:
 
