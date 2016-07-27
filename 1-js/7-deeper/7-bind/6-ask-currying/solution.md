@@ -1,72 +1,16 @@
 
-# Решение с bind
 
-Первое решение -- передать в `ask` функции с привязанным контекстом и аргументами.
+1. Either use a wrapper function, an arrow to be concise:
 
-```js run
-"use strict";
+    ```js 
+    askPassword(() => user.login(true), () => user.login(false)); 
+    ```
 
-function ask(question, answer, ok, fail) {
-  var result = prompt(question, '');
-  if (result.toLowerCase() == answer.toLowerCase()) ok();
-  else fail();
-}
+    Now it gets `user` from outer variables and runs it the normal way.
 
-var user = {
-  login: 'Василий',
-  password: '12345',
+2. Or create a partial function from `user.login` that uses `user` as the context and has the correct first argument:
 
-  loginDone: function(result) {
-    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
-  },
 
-  checkPassword: function() {
-*!*
-    ask("Ваш пароль?", this.password, this.loginDone.bind(this, true), this.loginDone.bind(this, false));
-*/!*
-  }
-};
-
-user.checkPassword();
-```
-
-# Решение с локальной переменной
-
-Второе решение -- это скопировать `this` в локальную переменную (чтобы внешняя перезапись не повлияла):
-
-```js run
-"use strict";
-
-function ask(question, answer, ok, fail) {
-  var result = prompt(question, '');
-  if (result.toLowerCase() == answer.toLowerCase()) ok();
-  else fail();
-}
-
-var user = {
-  login: 'Василий',
-  password: '12345',
-
-  loginDone: function(result) {
-    alert( this.login + (result ? ' вошёл в сайт' : ' ошибка входа') );
-  },
-
-  checkPassword: function() {
-    var self = this;
-*!*
-    ask("Ваш пароль?", this.password,
-      function() {
-        self.loginDone(true);
-      },
-      function() {
-        self.loginDone(false);
-      }
-    );
-*/!*
-  }
-};
-
-user.checkPassword();
-```
-
-Оба решения хороши, вариант с `bind` короче.
+    ```js 
+    askPassword(user.login.bind(user, true), user.login.bind(user, false)); 
+    ```

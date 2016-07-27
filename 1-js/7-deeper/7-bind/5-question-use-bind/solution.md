@@ -6,34 +6,28 @@ When it calls them, they naturally assume `this=undefined`.
 Let's `bind` the context:
 
 ```js run
-function ask(question, answer, ok, fail) {
-  var result = prompt(question, '');
-  if (result == answer) ok();
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
   else fail();
 }
 
 let user = {
-  login: 'John',
-  password: '12345',
+  name: 'John',
 
   loginOk() {
-    alert(`${this.login} logged in`);
+    alert(`${this.name} logged in`);
   },
 
   loginFail() {
-    alert(`${this.login} failed to log in`);
+    alert(`${this.name} failed to log in`);
   },
 
-  checkPassword() {
-*!*
-    ask("Your password?", this.password, this.loginOk.bind(this), this.loginFail.bind(this));
-*/!*
-  }
 };
 
-let john = user;
-user = null;
-john.checkPassword();
+*!*
+askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
+*/!*
 ```
 
 Now it works.
@@ -41,9 +35,9 @@ Now it works.
 An alternative solution could be:
 ```js
 //...
-ask("Your password?", this.password, () => user.loginOk(), () => user.loginFail());
+askPassword(() => user.loginOk(), () => user.loginFail());
 ```
 
-...But that code would fail if `user` becomes overwritten. 
+Usually that also works, but may fail in more complex situations where `user` has a chance of being overwritten between the moments of asking and running `() => user.loginOk()`. 
 
 

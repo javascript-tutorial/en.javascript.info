@@ -2,47 +2,32 @@ importance: 5
 
 ---
 
-# Partial application for login [todo solution]
+# Partial application for login
 
 The task is a little more complex variant of <info:task/question-use-bind>. 
 
-We have the same `ask` function, prompting for password. But instead of `user.loginOk()` and `user.loginFail()`, now there's a single method: `user.loginDone(true/false)`, that should be called with `true` for correct input and `false` otherwise.
+The `user` object was modified. Now instead of two functions `loginOk/loginFail`, it has a single function `user.login(true/false)`.
 
-There's a full code below.
+What to pass `askPassword` in the code below, so that it calls `user.login(true)` as `ok` and `user.login(fail)` as `fail`?
 
-Right now, there's a problem. When `user` variable is overwritten by another value, errors start to appear in the highlighted fragment (run it).
-
-How to write it right?
-
-```js run
-function ask(question, answer, ok, fail) {
-  var result = prompt(question, '');
-  if (result == answer) ok();
+```js
+function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
   else fail();
 }
 
 let user = {
-  login: 'John',
-  password: '12345',
+  name: 'John',
 
-  // метод для вызова из ask
-  loginDone(result) {
-    alert( this.login + (result ? ' logged in' : ' failed to log in') );
-  },
-
-  checkPassword() {
-*!*
-    ask("Your password?", this.password, 
-      ()=>user.loginDone(true)
-      ()=>user.loginDone(false)
-    );
-*/!*
+  login(result) {
+    alert( this.name + (result ? ' logged in' : ' failed to log in') );
   }
 };
 
-let john = user;
-user = null;
-john.checkPassword();
+*!*
+askPassword(?, ?); // ?
+*/!*
 ```
 
 Your changes should only modify the highlighted fragment.

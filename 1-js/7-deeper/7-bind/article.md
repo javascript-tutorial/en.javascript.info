@@ -3,7 +3,7 @@ libs:
 
 ---
 
-# Function bind method to fix this
+# Function binding
 
 When using `setTimeout` with object methods or passing object methods along, there's a known problem: "loosing `this`".
 
@@ -11,19 +11,11 @@ Suddenly, `this` just stops working right. The situation is typical for novice d
 
 [cut]
 
-## Loosing "this": demo
+## Loosing "this"
 
-Let's see the problem on example. 
+We already know that in Javascript it's easy to loose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
 
-Normally, `setTimeout` plans the function to execute after the delay.
-
-Here it says "Hello" after 1 second:
-
-```js run
-setTimeout(() => alert("Hello, John!"), 1000);
-```
-
-Now let's do the same with an object method:
+Here's how it may happen with `setTimeout`:
 
 ```js run
 let user = {
@@ -188,6 +180,8 @@ for (let key in user) {
 Javascript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(obj)](http://lodash.com/docs#bindAll) in lodash.
 ````
 
+
+
 ## Partial application
 
 Till now we were only talking about binding `this`. Now let's make a step further.
@@ -248,82 +242,194 @@ In other cases, partial application is useful when we have a very generic functi
 
 For instance, we have a function `send(from, to, text)`. Then, inside a `user` object we may want to use a partial variant of it: `sendTo(to, text)` that sends from the current user.
 
-## Функция ask для задач [todo]
+### Going partial without context
 
-В задачах этого раздела предполагается, что объявлена следующая "функция вопросов" `ask`:
+What if we'd like to fix arguments only, but do not touch the context?
 
-```js
-function ask(question, answer, ok, fail) {
-  var result = prompt(question, '');
-  if (result.toLowerCase() == answer.toLowerCase()) ok();
-  else fail();
-}
-```
+The native `bind` does not allow that. We can't just omit the context and jump to arguments.
 
-Её назначение -- задать вопрос `question` и, если ответ совпадёт с `answer`, то запустить функцию `ok()`, а иначе -- функцию `fail()`.
+Fortunately, a `partial` function for binding only arguments can be easily implemented.
 
-Несмотря на внешнюю простоту, функции такого вида активно используются в реальных проектах. Конечно, они будут сложнее, вместо `alert/prompt` -- вывод красивого  JavaScript-диалога с рамочками, кнопочками и так далее, но это нам сейчас не нужно.
-
-Пример использования:
+Like this:
 
 ```js run
 *!*
-ask("Выпустить птичку?", "да", fly, die);
+function partial(func, ...argsBound) {
+  return function(...args) { // (*)
+    return func.call(this, ...argsBound, ...args); 
+  }
+}
 */!*
 
-function fly() {
-  alert( 'улетела :)' );
-}
+// Usage:
+let user = {
+  firstName: "John",
+  say(time, phrase) {
+    alert(`[${time}] ${phrase}, ${this.firstName}!`);
+  }
+};
 
-function die() {
-  alert( 'птичку жалко :(' );
-}
+user.sayNow = partial(user.say, "10:00"); // fix the first argument
+
+user.sayNow("Hello"); 
+// [10:00] Hello, John!
+// translates to: user.say("10:00", "Hello")
 ```
 
+The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
+- Same `this` as it gets (for `user.sayNow` call it's `user`)
+- Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
+- Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
 
-## Currying [todo]
+
+In other words, the function gets an unaltered context, then partial-bound arguments, then those that come from the call.
+
+So easy to do it the spread operator, right?
+
+Also we can use [_.partial](https://lodash.com/docs#partial) from lodash library.
+
+## Currying 
 
 Sometimes people mix up partial function application mentioned above with another thing named "currying".
 
-todo: _.partial that fixes argument, not context
+[Currying](https://en.wikipedia.org/wiki/Currying) is translating a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
 
-Currying is a transform that makes function of multiple arguments `f(a, b, c)` callable as `f(a)(b)(c)`, for instance:
+Let's make `curry` function that translates `f(a, b)` into `f(a)(b)`:
 
 ```js run
-function log(date, importance, message) {
-  console.log(`${date.getTime()} [${importance}] ${message}`);
+*!*
+function curry(func) {
+  return function(a) {
+    return function(b) {
+      return func(a, b);
+    };
+  };
+}
+*/!*
+
+// usage
+function sum(a, b) {
+  return a + b;
 }
 
-log(new Date(), "DEBUG", "3-arg call");
+let carriedSum = curry(sum);
 
+alert( carriedSum(1)(2) ); // 3
+```
+
+As you can see, the implementation is a series of wrappers. 
+
+- The result of `curry(func)` is a wrapper `function(a)`. 
+- When it is called like `sum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
+- Then `sum(1)(2)` finally calls `function(b)` providing `2`, and it passes the call to the original multi-argument `sum`.
+
+We can make it more universal:
+
+```js run
+function curry(func) {
+
+  return function curried(...args) {
+    if (args.length >= func.length) {
+      return func.apply(this, args); 
+    } else {
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2)); 
+      }
+    }
+  };
+
+}
+
+function sum(a, b, c) {
+  return a + b + c;
+}
+
+let curried = curry(sum);
+
+alert( curried(1)(2)(3) ); // 6
+```
+
+Now it transforms 3-argument `sum` with ease.
+
+The new `curry` is a little more complicated. An attentive look still can make it easy to understand.
+
+The result of `curry(func)` is a wrapper:
+
+```js
+function curried(...args) {
+  if (args.length >= func.length) { // (1)
+    return func.apply(this, args); 
+  } else {
+    return function pass(...args2) { // (2)
+      return curried.apply(this, args.concat(args2)); 
+    }
+  }
+};
+```
+
+1. If passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
+2. Otherwise, `func` is not called yet. Instead, another wrapper is returned, that will take already-received `args` from the closure and try to invoke `curried` with them plus what it gets.
+
+For instance, let's see what happens in the case of `sum(a, b, c)`. Three arguments, so `sum.length = 3`.
+
+For the call `curried(1)(2)(3)`:
+
+1. The first call `curried(1)` remembers `1` in its Lexical Environment, and returns a wrapper `pass`.
+2. The next call becomes `pass(2)`, it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together.
+
+    As the argument count is still less than 3, `curry` returns `pass`, current arguments (now `1` and `2`) are  retained in the Lexical Environment.
+3. Finally, for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
+
+If that's still not obvious, just trace the calls sequence in your mind or on the paper.
+
+We can also use [_.curry](https://lodash.com/docs#curry) from lodash library for the same purpose.
+
+```smart header="Fixed-length functions only"
+The currying process requires the function to have a known fixed number of arguments.
+```
+
+```smart header="A little more than currying"
+By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
+
+But most implementations of currying in Javascript also keep the function callable in the multi-argument variant.
+```
+
+### Currying? What for?
+
+Currying allows to get partial functions easily, without breaking normal function runs.
+
+For instance, we have the logging function `log(date, importance, message)` to nicely output that information (and in real-life it has a lot of other useful features):
+
+```js
+function log(date, importance, message) {
+  alert(`[${date.getHours()}:${date.getMinutes()}] [${importance}] ${message}`);
+}
+
+// let's curry it!
 log = _.curry(log);
 
-// still works this way
+// still works the normal way
 log(new Date(), "DEBUG", "3-arg call");
 
-// but also can call it like this:
+// but also can call it in curried form:
 log(new Date())("DEBUG")("3-arg call");
 
-// or get a convenience function:
+*!*
+// let's get a convenience function for today's logs:
 let todayLog = log(new Date());
+*/!*
 
 todayLog("INFO", "2-arg call");
 
-// or get a convenience function:
+// let's get a convenience function for today's debug messages:
+*!*
 let todayDebug = todayLog("DEBUG");
+*/!*
 
 todayDebug("1-arg call");
 ```
 
-
-
-
-
-
-
-
-
-## Summary
+## Summary [todo]
 
 To safely pass an object method to `setTimeout`, we can bind the context to it.
 
