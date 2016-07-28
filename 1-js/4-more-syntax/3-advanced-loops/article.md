@@ -136,7 +136,9 @@ alert(`Length: ${arr.length}`); // 5, remember, length is the last index + 1
 
 ````
 
+## Summary [todo]
 
+Futher in the chapter <info:map-set-weakmap-weakset> we will meet other data structures `Map` and `Set` that also implement methods `keys()`, `values()` and `entries()`.
 
 
 

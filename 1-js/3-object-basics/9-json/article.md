@@ -1,33 +1,159 @@
-# JSON methods, toJSON
+# JSON methods, toJSON [todo: after Date]
 
-The [JSON](http://en.wikipedia.org/wiki/JSON) is mostly used to represent an object as a string.
+The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) format is used to represent an object as a string.
 
-When we need to send an object over a network -- from the client to server or backwards, this format is used almost all the time.
+When we need to send an object over a network -- from the client to server or in the reverse direction, this format is the most widespread.
 
 Javascript provides built-in methods to convert objects into JSON and back, which also allow a few tricks that make them even more useful.
 
 [cut]
 
-## Формат JSON
+## JSON.stringify
 
-Данные в формате JSON ([RFC 4627](http://tools.ietf.org/html/rfc4627)) представляют собой:
+JSON, despite its name (JavaScript Object Notation) is an independent standard. It is described as [RFC 4627](http://tools.ietf.org/html/rfc4627). Most programming languages have libraries to encode objects in it. So it's easy to use JSON for data exchange when the client uses Javascript and the server is written on Ruby/PHP/Java/Whatever.
 
-- JavaScript-объекты `{ ... }` или
-- Массивы `[ ... ]` или
-- Значения одного из типов:
-    - строки в двойных кавычках,
-    - число,
-    - логическое значение `true`/`false`,
+In Javascript, the native method [JSON.stringify(value)](mdn:js/JSON/stringify) accepts a value and returns it's representation as a string in JSON format.
+
+For instance:
+```js run
+let student = {
+  name: 'John',
+  age: 30,
+  isAdmin: false,
+  courses: ['html', 'css', 'js'],
+  wife: null
+};
+
+let json = JSON.stringify(student);
+
+alert(typeof json); // string 
+alert(json); 
+/*
+{
+  "name": "John",
+  "age": 30,
+  "isAdmin": false,
+  "courses": ["html", "css", "js"],
+  "wife": null
+}
+*/
+```
+
+The JSON-encoded object has several important differences from the original variant:
+
+- Strings use double quotes. No single quotes or backticks in JSON. So `'John'` became `"John"`.
+- Object property names are double-quoted also. Also obligatory. So `name` became `"name"`.
+
+`JSON.stringify` can be applied not only to objects, but to other values: 
+
+```js run
+// a number in JSON is just a number
+alert( JSON.stringify(1) ) // 1
+
+// a string in JSON is still a string, but double-quoted
+alert( JSON.stringify('test') ) // "test"
+
+// double quotes are escaped 
+alert( JSON.stringify('"quoted"') ) // "\"quoted\"" (inner quotes are escaped with \")
+
+// array of objects 
+alert( JSON.stringify([{name: "John"},{name: "Ann"}]) ); // [{"name":"John"},{"name":"Ann"}]
+```
+
+The supported JSON types are:
+
+- Objects `{ ... }` 
+- Arrays `[ ... ]` 
+- Primitives:
+    - strings,
+    - numbers,
+    - boolean values `true/false`,
     - `null`.
 
-Почти все языки программирования имеют библиотеки для преобразования объектов в формат JSON.
+In the examples above we can see them all.
 
-Основные методы для работы с JSON в JavaScript -- это:
+JSON format does not support any other values.
 
-- `JSON.parse` -- читает объекты из строки в формате JSON.
-- `JSON.stringify` -- превращает объекты в строку в формате JSON, используется, когда нужно из JavaScript передать данные по сети.
+For instance, functions and `undefined` values, symbolic properties are skipped by `JSON.stringify`:
 
-## Метод JSON.parse
+```js run
+let user = {
+  sayHi() { // ignored
+    alert("Hello");
+  },
+  [Symbol("id")]: 123, // ignored
+  something: undefined // ignored 
+};
+
+alert( JSON.stringify(user) ); // {} (empty object)
+```
+
+### Custom "toJSON"
+
+Normally, an object is represented with a list of its properties.
+
+But it may provide its own JSON-transformation by implementing method `toJSON`.
+
+For instance:
+
+```js run
+let room = {
+  number: 23
+};
+
+event = {
+  title: "Conference",
+  date: new Date(Date.UTC(2017, 0, 1)),
+  room
+};
+
+alert( JSON.stringify(event) );
+/*
+  {
+    "title":"Conference",
+*!*
+    "date":"2017-01-01T00:00:00.000Z",  // (1)
+*/!*
+    "room": {"number":23}               // (2)
+  }
+*/
+```
+
+Please note that `date` `(1)` became a string. That's because all dates have a built-in `toJSON` method.
+
+
+Обратим внимание на два момента:
+
+1. Дата превратилась в строку. Это не случайно: у всех дат есть встроенный метод `toJSON`. Его результат в данном случае -- строка в таймзоне UTC.
+2. У объекта `room` нет метода `toJSON`. Поэтому он сериализуется перечислением свойств.
+
+    Мы, конечно, могли бы добавить такой метод, тогда в итог попал бы его результат:
+
+    ```js run
+    var room = {
+      number: 23,
+    *!*
+      toJSON: function() {
+          return this.number;
+        }
+    */!*
+    };
+
+    alert( JSON.stringify(room) ); // 23
+    ```
+
+
+
+
+
+If our object wants to provide its own logic for JSON conversion TOJSON
+
+
+The result of `JSON.stringify` is a string. We can send it over the wire or put in the plain data storage.
+
+To turn a JSON-string back into the object, we need another method named [JSON.parse](mdn:js/JSON/parse).
+
+## JSON.parse
 
 Вызов `JSON.parse(str)` превратит строку с данными в формате JSON в JavaScript-объект/массив/значение.
 
