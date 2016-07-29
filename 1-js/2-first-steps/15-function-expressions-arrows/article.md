@@ -385,12 +385,12 @@ let sum = (a, b) => a + b;
 alert( sum(1, 2) ); // 3
 ```
 
-Here the function is same as:
+Here the arrow function is a shorter form of:
 
 ```js
 let sum = function(a, b) {
   return a + b;
-}
+};
 ```
 
 If we have only one argument, then brackets can be omitted, making that even shorter:
@@ -398,7 +398,9 @@ If we have only one argument, then brackets can be omitted, making that even sho
 ```js run
 // same as 
 // let double = function(n) { return n*2 }
+*!*
 let double = n => n*2;
+*/!*
 
 alert( double(3) ); // 6
 ```

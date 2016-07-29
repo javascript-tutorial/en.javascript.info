@@ -18,36 +18,31 @@ first-steps
   function-basics (decl, shadowing,  naming, default params)
   function-expressions-arrows (function expr, arrow, todo: move new Function out of this?)
   javascript-specials (TODO, remove it? migrate all function* to separate chapter?)
-object-basics
-  object(props, for-in, refs, assign)
-  garbage-collection
-  object-methods (this, method syntax, no call/apply)
-  primitives-methods (on-the-fly objects)
-  symbol
-  object-toprimitive
-  array
-  iterable
-    <<< json
-more-syntax
-  function-arguments-rest-spread
-  destructuring-assignment (also func params destructuring)
-  advanced-loops (iterators over objects, arrays)
 code-quality
   debugging-chrome (TODO)
   coding-style (TODO)
   write-unmaintainable-code (TODO)
   test-driven-development (TODO)
   polyfills (TODO)
-data-types
-  number (rounding, precision, isFinite, isNaN, parse*, Math.*)
-  string (quotes, search, substring, tagged template notice)
-
-
-  <<< property-descriptors
-
+object-basics
+  object(props, for-in, refs, assign)
+  garbage-collection
+  object-methods (this, method syntax, no call/apply)
+  constructor-new
+  symbol
+  object-toprimitive
+  << number (rounding, precision, isFinite, isNaN, parse*, Math.*)
+  << string (quotes, search, substring, tagged template notice)
+  array
   array-methods (TODO: translate tasks)
+  iterable
   map-set-weakmap-weakset
   date (TODO: tasks)
+    <<< json?
+more-syntax
+  function-arguments-rest-spread
+  destructuring-assignment (also func params destructuring)
+  advanced-loops (iterators over objects, arrays)
 deeper
   recursion 
     running execution context = where + lexical environment = envrec + outer
@@ -85,9 +80,15 @@ instanceof
   descriptors
 
 
+proxy?
+
+error-handling
+  try..catch 
+  object-oriented error handling (inheritance, rethrow etc)
 
 more-features
   try..catch
+  try..catch in decorators!
   setTimeout
   JSON
 

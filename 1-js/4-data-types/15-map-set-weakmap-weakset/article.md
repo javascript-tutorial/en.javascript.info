@@ -81,18 +81,6 @@ To test values for equivalence, `Map` uses the algorithm [SameValueZero](https:/
 This algorithm can't be changed or customized.
 ```
 
-````smart header="`Map` allows *any* strings as keys, `Object` does not"
-In objects, there is a built-in property named `__proto__`. We'll see the details about it later. Here the important thing is that it should not be overwritten. If it is set to a primitive then the write operation is ignored, so we can say that JavaScript protects it to a certain extent.
-
-But if key/value pairs come from the user (like a user naming himself `__proto__`), then we can meet unexpected problems with it. That's actually an endless source of bugs in many well-known JavaScript libraries. `Map`, from the other hand, is totally safe:
-
-```js run
-let map = new Map();
-map.set('__proto__', 123);
-alert( map.get('__proto__') ); // 123
-```
-
-````
 
 ````smart header="Chaining"
 

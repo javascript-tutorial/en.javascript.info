@@ -1,11 +1,13 @@
 
-# Objects as dictionaries
+# Objects 
 
-The `object` type is special.
+As we know, there are 7 language types in Javascript.
 
-All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever).
+Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
 In contrast, objects are used to store *keyed collections* of various data and more complex entities.
+
+In Javascript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
 [cut]
 
@@ -112,7 +114,7 @@ user[key] = true; // same as above
 
 The square brackets mean: "take the property name from the variable".
 
-The variable can be assigned at run-time, for instance:
+That variable can be assigned at run-time, for instance:
 
 ```js run
 let user = {
@@ -126,9 +128,9 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
-Square brackets also can be used in an object literal.
+### Computed properties
 
-That's called a *computed property*:
+*Computed properties* are square brackets used inside an object literal:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
@@ -142,15 +144,18 @@ let bag = {
 alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-Here, the object `bag` is created with a property with the name from `fruit` variable and the value `5`.
+Here, the object `bag` is created with a property with the name from `fruit` variable and the value `5`. So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
 
 Essentially, that works the same as:
-```js
+```js run
+let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
+
+// take property name from the fruit variable, assign 5 to it
 bag[fruit] = 5; 
 ```
 
-We could have used a more complex expression inside square brackets. Anything that results in a property name:
+We can use more complex expressions inside square brackets. Anything that results in a property name:
 
 ```js
 let fruit = 'apple';
@@ -159,12 +164,51 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are more cumbersome to write. So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we can switch to square brackets.
+Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are more cumbersome to write. So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+
+
+
+````smart header="Trailing comma"
+The last property in the list may end with a comma:
+```js 
+let user = {
+  name: "John",
+  age: 30*!*,*/!*
+}
+```
+That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+````
+
+
+````smart header="Reserved words are allowed as property names"
+A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restruction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+}
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+
+```js run
+let obj = { __proto__: 5 };
+alert(obj.__proto__); // [object Object], didn't work as intended
+```
+
+Later we'll learn more about that `__proto__` and see how to work that problem [todo Object.create(null)]. Also we'll learn another data structure [Map](info:map-set-weakmap-weakset) that doesn't have such problems and supports arbitrary keys.
+````
 
 
 ## Property name shorthand
 
-In real code we quite often want to create an object with a property from a variable.
+In real code we often use existing variables as values for property names.
 
 For instance:
 
@@ -183,7 +227,7 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-There's a special shorthand notation that is shorter. 
+In the example above, properties have same names as variables. There's a special shorthand notation that is shorter. 
 
 Instead of `name:name` we can just write `name`, like this:
 
@@ -207,43 +251,6 @@ let user = {
 };
 ```
 
-
-````smart header="Trailing comma"
-The last property may end with a comma:
-```js 
-let user = {
-  name: "John",
-  age: 30*!*,*/!*
-}
-```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/move/remove properties, because all lines become alike.
-````
-
-
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
-
-But for an object property, there's no such restruction. Any name is fine:
-
-```js run
-let obj = {
-  for: 1,
-  let: 2,
-  return: 3
-}
-
-alert( obj.for + obj.let + obj.return );  // 6
-```
-
-Basically, any name is allowed, but there's a special one: `"__proto__"`. We can't set it to a non-object value:
-
-```js run
-let obj = { __proto__: 5 };
-alert(obj.__proto__); // [object Object], didn't work as intended
-```
-
-Later we'll learn more about that `__proto__` and see how to work around it [todo Object.create(null)]. Also we'll learn another data structure [Map](info:map-set-weakmap-weakset) that doesn't have such problems and supports arbitrary keys.
-````
 
 ## Existance check
 

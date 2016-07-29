@@ -1,4 +1,4 @@
-# Numbers
+# Numbers in-depth
 
 All numbers in JavaScript are stored in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985) also known as "double precision".
 

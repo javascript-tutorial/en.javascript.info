@@ -1,4 +1,4 @@
-# Date and time
+# Date and time [todo: performance.now for future]
 
 JavaScript has a built-in object [Date](mdn:js/Date) for date/time management.
 
@@ -224,11 +224,9 @@ let end = new Date(); // done
 alert( `The loop took ${end - start} ms` );
 ```
 
-### Benchmarking
+## Benchmarking, performance.now
 
-Let's say we have several ways to solve a task, each one described as a function.
-
-How to see which one is faster. That's called a "benchmarking".
+If we want a reliable benchmark of CPU-hungry function, we should be more careful.
 
 For instance, let's consider two functions to walk the array:
 
