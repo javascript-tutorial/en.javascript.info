@@ -227,4 +227,6 @@ They are listed in the specification in the [Well-known symbols](https://tc39.gi
 
 Symbols don't appear in `for..in` loops. As we'll see further, there are other means to get object properties which also ignore symbols, so they remain hidden.
 
-Technically though, there is still a way to discover all symbols of an object with a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols). Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns all keys of an object. So they are not completely hidden and private. But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods is not doing that occasionally, but knows exactly what he's doing.
+Technically though, there is still a way to discover all symbols of an object with a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols). Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns all keys of an object, including symbolic ones. So they are not completely hidden and private. 
+
+But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods probably understands well what he's doing.

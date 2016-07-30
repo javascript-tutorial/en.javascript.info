@@ -87,16 +87,16 @@ The constructor can't be called again, because it is not saved anywhere, just cr
 
 ## Return from constructors
 
-Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, that automatically becomes the result.
+Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.
 
 But if there is a `return` statement, then the rule is simple:
 
 - If `return` is called with object, then it is returned instead of `this`.
 - If `return` is called with a primitive, it's ignored.
 
-In other words, `return` with an object returns that object, with a non-object value -- returns `this` as usual.
+In other words, `return` with an object returns that object, otherwise `this` is returned.
 
-For instance, returning an object:
+For instance, here `return` overrides `this` by returning an object:
 
 ```js run 
 function BigUser() {
@@ -109,23 +109,26 @@ function BigUser() {
 alert( new BigUser().name );  // Godzilla, got that object
 ```
 
-And here's an example with returning a string:
+And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
 
 ```js run 
 function SmallUser() {
 
   this.name = "John";
 
-  return "Mouse"; // <-- returns a primitive
+  return; // finishes the execution, returns this
+
+  // ...
+
 }
 
-alert( new SmallUser().name );  // John, got "this" (mouse disappeared)
+alert( new SmallUser().name );  // John
 ```
 
-Once again, most of time constructors return nothing. Here we mention this special aspect of constructors for completeness.
+Most of time constructors return nothing. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
 ````smart header="Omitting brackets"
-By the way, we can omit brackets after `new` with zero arguments:
+By the way, we can omit brackets after `new`, if it has no arguments:
 
 ```js
 let user = new User; // <-- no brackets
@@ -133,14 +136,14 @@ let user = new User; // <-- no brackets
 let user = new User();
 ```
 
-Omitting brackets here is not considered a "good style", but the syntax is allowed by specification.
+Omitting brackets here is not considered a "good style", but the syntax is permitted by specification.
 ````
 
 ## Methods in constructor
 
-Using constuctor functions to create objects gives a great deal of flexibility. The constructor may have parameters that define how to construct the object, what to put in it.
+Using constuctor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, what to put in it.
 
-Let's add a method.
+Of course, we can add to `this` not only properties, but methods as well.
 
 For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
 
@@ -159,24 +162,22 @@ let john = new User("John");
 john.sayHi(); // My name is: John
 */!*
 
-/*
+/* 
 john = {
    name: "John",
-   sayHi: function
+   sayHi: function() { ... }
 }
 */
 ```
 
 ## Summary
 
-In this chapter we studied the basics of object constructors. 
-
-- Constructor functions are regular functions, but there's a common agreement to name them with capital letter first.
+- Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
 - Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
 
-We can already use constructor functions to make multiple similar objects. But the topic is much wider than described here. So we'll return it later and cover more in-depth.
+We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth. 
 
-Now it's important to understand what `new` is, because Javascript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+As of now, it's important to understand what `new` is, because Javascript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 
 
 

@@ -42,12 +42,6 @@ A function that is the property of an object is called its *method*.
 
 So, here we've got a method `sayHi` of the object `user`.
 
-```smart header="Object-oriented programming"
-When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP". 
-
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture. We will make use of OOP further when we get enough familarity with the language. 
-```
-
 Of course, we could use a Function Declaration to add a method:
 
 ```js run
@@ -70,6 +64,11 @@ user.sayHi(); // Hello!
 
 That would also work, but is longer. Also we get an "extra" function `sayHi` outside of the `user` object. Usually we don't want that.
 
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP". 
+
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture. 
+```
 ### Method shorthand
 
 There exists a shorter syntax for methods in an object literal:
@@ -93,7 +92,7 @@ let user = {
 }; 
 ```
 
-As demonstrated, we can omit a colon with the word `"function"`. 
+As demonstrated, we can omit `"function"` and just write `sayHi()`. 
 
 To say the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
 
@@ -218,6 +217,14 @@ In non-strict mode (if you forgot `use strict`) the value of `this` in such case
 
 Please note that usually a call of a function using `this` without an object is not normal, but rather a programming mistake. If a function has `this`, then it is usually meant to be called in the context of an object.
 
+```smart header="The consequences of unbound `this`"
+If you come from another programming languages, then you are probably used to an idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
+
+The idea of unbound, run-time evaluated `this` has both pluses and minuses. From one side, a function can be reused for different objects. From the other side, it's possible to occasionally loose `this` by making an improper call. 
+
+Here we are not to judge whether this language design decision is good or bad. We will understand how to work with it, how to get benefits and evade problems.
+```
+
 ## Internals: Reference Type
 
 An intricate method call can loose `this`, for instance:
@@ -289,75 +296,6 @@ When brackets `()` are called on the Reference Type, they receive the full infor
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "looses" `this`.
 
 So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
-
-## Methods on primitives [todo: remove]
-
-In JavaScript primitives (strings, numbers etc) also have methods, as if they were objects. Still, primitives are not objects, and this section explains the interesting design solution of Javascript that makes it possible.
-
-Let's formulate the definitive distinction between primitives and objects.
-
-A primitive
-: Is a value of one of 6 primitive types: `string`, `number`, `boolean`, `symbol`, `null` and `undefined`.
-
-An object
-: Can be created with `{}`, for instance: `{name: "John", age: 30}`, is capable of storing multiple values as properties. There are other kinds of objects in JavaScript, e.g. functions are objects, there are objects that work with dates, errors and so on. They have different properties and methods.
-
-But features come at a price!
-
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But properties and methods are useful in programming, Javascript engines try to optimize them, so the price is usually fair.
-
-So here's the paradox faced by the creator of JavaScript:
-
-- There are many things one would want to do with a primitive like a string or a number. Could be great to access them as methods.
-- Primitives must be as fast and lightweight as possible.
-
-The solution looks a little bit awkward, but here it is.
-
-1. Primitives are still primitive. A single lightweight value, as described.
-2. The language allows to access methods and properties of strings, numbers, booleans and symbols.
-3. When it happens, a special "object wrapper" is created, it provides the functionality, and then is destroyed. 
-
-The "object wrappers" are different for each primitive type and are named specifically: `String`, `Number`, `Boolean` and `Symbol`. Thus they provide different sets of methods.
-
-For instance, there exists a method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns the capitalized string.
-
-Here's how it works:
-
-```js run
-let str = "Hello";
-
-alert( str.toUpperCase() ); // HELLO
-```
-
-Simple, right? And here's what actually happens in `str.toUpperCase()`:
-
-1. The string `str` is a primitive. So in the moment of accessing its property a special object is created that both knows the value of the string and has useful methods, like `toUpperCase()`.
-2. That method runs and returns a new string (shown by `alert`).
-3. The special object is destroyed, leaving the primitive `str` alone.
-
-So, primitives can provide methods, but they still remain lightweight.
-
-Of course, a JavaScript engine highly optimizes that process. Internally it may skip creation of the extra object at all. But it must adhere to the specification and behave as if it creates one.
-
-A number has methods of it's own, for instance, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to the given precision:
-
-```js run
-let n = 1.23456;
-
-alert( n.toFixed(2) ); // 1.23
-```
-
-We'll learn more specific methods in next chapters. 
-
-````warn header="null/undefined have no methods"
-Special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
-
-An attempt to access a property of such value would give an error:
-
-```js run
-alert(null.test); // error
-````
-
 
 ## Summary
 

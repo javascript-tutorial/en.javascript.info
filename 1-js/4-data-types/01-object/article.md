@@ -1,17 +1,13 @@
 
 # Objects 
 
-As we know, there are 7 language types in Javascript.
+As we know, there are 7 language types in Javascript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
-Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
-
-In contrast, objects are used to store *keyed collections* of various data and more complex entities.
-
-In Javascript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+In contrast, objects are used to store keyed collections of various data and more complex entities. In Javascript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
 [cut]
 
-An object is defined with the figure brackets `{…}` with an optional list of "key: value" pairs. In programming that's sometimes called an "associative array" or a "hash".
+An object can be created with figure brackets `{…}` with an optional list of "key: value" pairs. In programming that's sometimes called an "associative array" or a "hash".
 
 We can imagine an object as a cabinet with signed files. Every piece of data is stored in it's file by the key. It's easy to find a file by it's name or add/remove a file.
 
@@ -144,14 +140,14 @@ let bag = {
 alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-Here, the object `bag` is created with a property with the name from `fruit` variable and the value `5`. So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Here, the value of `fruit` variable is used as the property name. So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
 
 Essentially, that works the same as:
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable, assign 5 to it
+// take property name from the fruit variable
 bag[fruit] = 5; 
 ```
 
@@ -160,7 +156,7 @@ We can use more complex expressions inside square brackets. Anything that result
 ```js
 let fruit = 'apple';
 let bag = {
-  [ 'apple' + 'Computers' ]: 5 // bag.appleComputers = 5
+  ['apple' + 'Computers']: 5 // bag.appleComputers = 5
 };
 ```
 
