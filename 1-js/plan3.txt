@@ -39,10 +39,12 @@ object-basics
   map-set-weakmap-weakset
   date (TODO: tasks)
     <<< json?
+    << intl
 more-syntax
   function-arguments-rest-spread
   destructuring-assignment (also func params destructuring)
   advanced-loops (iterators over objects, arrays)
+  << try..catch, rethrow using err.name
 deeper
   recursion 
     running execution context = where + lexical environment = envrec + outer
