@@ -85,6 +85,39 @@ let user = new function() {
 The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code for a single complex object only.
 ````
 
+## Dual-use constructors: new.target 
+
+Inside a function, we can check how it is called with `new` or without it, using a special `new.target` property.
+
+It is empty for ordinary runs and equals the function if called with `new`:
+
+```js run
+function User() {
+  alert(new.target);
+}
+
+User(); // undefined
+new User(); // function User { ... }
+```
+
+That can be used to allow both `new` and ordinary syntax work the same:
+
+
+```js run
+function User(name) {
+  if (!new.target) { // if you run me without new
+    return new User(name); // ...I will add new for you
+  }
+
+  this.name = name;
+}
+
+let john = User("John"); // redirects call to new User
+alert(john.name); // John
+```
+
+This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because it makes a bit less obvious what's going on for a person who's familiar with internals of `User`.
+
 ## Return from constructors
 
 Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.

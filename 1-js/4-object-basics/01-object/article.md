@@ -490,13 +490,13 @@ alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 
 The example above demonstrates that there is only one object. Like if we had a cabinet with two keys and used one of them (`admin`) to get into it -- later using the other one (`user`) we will see things modified.
 
-
-
 ### Comparison by reference
 
-The equality `==` and strict equality `===` operators for objects work exactly the same, simple way.
+The equality `==` and strict equality `===` operators for objects work exactly the same.
 
-**Two object variables are equal only when reference the same object.**
+**Two objects are equal only if they are the same object.**
+
+For instance, two variables reference the same object, they are equal:
 
 ```js run
 let a = {};
@@ -506,9 +506,7 @@ alert( a == b ); // true, both variables reference the same object
 alert( a === b ); // true
 ```
 
-In all other cases objects are non-equal, even if their content is the same.
-
-For instance:
+And here two independent objects are not equal, even though both are empty:
 
 ```js run
 let a = {};
@@ -517,9 +515,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-That rule only applies to object vs object equality checks.
-
-For other comparisons like whether an object less/greater than another object (`obj1 > obj2`) or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to say the truth, such comparisons occur very rarely in real code and usually are a result of a coding mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to say the truth, such comparisons occur very rarely in real code and usually are a result of a coding mistake.
 
 ## Cloning and merging, Object.assign
 

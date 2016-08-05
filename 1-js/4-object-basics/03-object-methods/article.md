@@ -214,7 +214,6 @@ In this case `this` is `undefined` in strict mode. If we try to access `this.nam
 
 In non-strict mode (if you forgot `use strict`) the value of `this` in such case will be the *global object* (`"window"` for browser, we'll study it later). This is just a historical thing that `"use strict"` fixes. 
 
-
 Please note that usually a call of a function using `this` without an object is not normal, but rather a programming mistake. If a function has `this`, then it is usually meant to be called in the context of an object.
 
 ```smart header="The consequences of unbound `this`"
@@ -224,7 +223,6 @@ The idea of unbound, run-time evaluated `this` has both pluses and minuses. From
 
 Here we are not to judge whether this language design decision is good or bad. We will understand how to work with it, how to get benefits and evade problems.
 ```
-
 ## Internals: Reference Type
 
 An intricate method call can loose `this`, for instance:

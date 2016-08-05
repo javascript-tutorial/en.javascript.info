@@ -1,16 +1,14 @@
-importance: 3
+importance: 5
 
 ---
 
-# Превратите объект в JSON
+# Turn the object into JSON and back
 
-Превратите объект `leader` из примера ниже в JSON:
+Turn the `leader` into JSON and then read it back into another variable.
 
 ```js
-var leader = {
-  name: "Василий Иванович",
+let user = {
+  name: "John Smith",
   age: 35
 };
 ```
-
-После этого прочитайте получившуюся строку обратно в объект.

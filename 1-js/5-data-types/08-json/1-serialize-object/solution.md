@@ -1,12 +1,13 @@
 
 
 ```js
-var leader = {
-  name: "Василий Иванович",
+let user = {
+  name: "John Smith",
   age: 35
 };
 
-var leaderStr = JSON.stringify(leader);
-leader = JSON.parse(leaderStr);
+*!*
+let user2 = JSON.parse(JSON.stringify(user));
+*/!*
 ```
 

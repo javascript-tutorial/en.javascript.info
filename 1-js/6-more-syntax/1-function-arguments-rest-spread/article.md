@@ -135,12 +135,12 @@ For `Math.max`:
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5
+alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
 ```
 
-Unlike rest parameters, there is no restrictions of now many iterables we use.
+Unlike rest parameters, spread operators can appear as many times as needed within a single call.
 
-Here's example of a combination:
+Here's an example:
 
 ```js run
 let arr = [3, 5, 1];
@@ -171,8 +171,9 @@ let merged = [0, ...arr, 2, ...arr2];
 alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
 ```
 
+In the examples above we used an array to demonstrate the spread operator, but any iterable will do.
 
-In the examples above we used an array, but any iterable will do including strings:
+For instance, here we use spread operator to turn the string into array of characters:
 
 ```js run
 let str = "Hello";
@@ -180,9 +181,9 @@ let str = "Hello";
 alert( [...str] ); // H,e,l,l,o
 ```
 
-The spread operator `...str` actually does the same as `for..of` to gather elements. For a string, `for..of` returns characters one by one. And then it passes them as a list to array initializer `["h","e","l","l","o"]`.
+The spread operator `...str` uses the same iterator mechanism as `for..of` to iterate and gather elements. For a string, `for..of` returns characters, so `...str` becomes `"h","e","l","l","o"`. The list of characters is passed to array initializer `[]`.
 
-If our purpose is only to convert an iterable to array, then we can also use `Array.from`:
+Here we could also use `Array.from` that converts an iterable (a string) into an array:
 
 ```js run
 let str = "Hello";
@@ -191,7 +192,7 @@ let str = "Hello";
 alert( Array.from(str) ); // H,e,l,l,o
 ```
 
-
+The result is the same as `[...str]`. 
 
 ## Summary
 

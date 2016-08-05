@@ -28,23 +28,25 @@ object-basics
   object(props, for-in, refs, assign)
   garbage-collection
   object-methods (this, method syntax, no call/apply)
+  primitives-methods
   constructor-new
   symbol
   object-toprimitive
-  << number (rounding, precision, isFinite, isNaN, parse*, Math.*)
-  << string (quotes, search, substring, tagged template notice)
+data-types
+  number (rounding, precision, isFinite, isNaN, parse*, Math.*)
+  string (quotes, search, substring, tagged template notice)
+  date (TODO: tasks)
   array
   array-methods (TODO: translate tasks)
   iterable
   map-set-weakmap-weakset
-  date (TODO: tasks)
-    <<< json?
+  json
     << intl
 more-syntax
   function-arguments-rest-spread
   destructuring-assignment (also func params destructuring)
   advanced-loops (iterators over objects, arrays)
-  << try..catch, rethrow using err.name
+  try..catch (own errors, rethrowing, window.onerror)
 deeper
   recursion 
     running execution context = where + lexical environment = envrec + outer
@@ -69,6 +71,8 @@ deeper
   bind
 
 -------
+
+
 
 <<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
 <<< getter setter

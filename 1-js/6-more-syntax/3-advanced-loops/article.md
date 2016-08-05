@@ -119,23 +119,24 @@ for(let [key, value] of users.entries()) {
 }
 ```
 
-````smart header="No holes"
+````smart header="Arrays are treated as contiguous, without holes"
 All these methods treat arrays as contiguous. "Holes" are considered `undefined` items.
 
 ```js run
 let arr = [];
-arr[4] = "test";
+arr[4] = "test"; // items till index 4 are assumed to be undefined
 
 *!*
-// all keys till arr.length
+// arr.keys() lists keys contigously from 0 to 4
 */!*
 for(let i of arr.keys()) alert(i); // 0,1,2,3,4
+
 alert(`Length: ${arr.length}`); // 5, remember, length is the last index + 1
 ```
 
 ````
 
-## Over Sets, Maps...
+## Over sets, maps...
 
 As we've seen in the chapter <info:map-set-weakmap-weakset>, `Map` and `Set` also implement methods `keys()`, `values()` and `entries()`.
 

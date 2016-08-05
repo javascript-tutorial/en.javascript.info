@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+<html class='v2' dir='ltr' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+<meta content='IE=EmulateIE7' http-equiv='X-UA-Compatible'/>
+<meta content='width=1100' name='viewport'/>
+<meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+<meta content='blogger' name='generator'/>
+<link href='http://www.nowherenearithaca.com/favicon.ico' rel='icon' type='image/x-icon'/>
+<link href='http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html' rel='canonical'/>
+<link rel="alternate" type="application/atom+xml" title="Nowhere Near Ithaca - Atom" href="http://www.nowherenearithaca.com/feeds/posts/default" />
+<link rel="alternate" type="application/rss+xml" title="Nowhere Near Ithaca - RSS" href="http://www.nowherenearithaca.com/feeds/posts/default?alt=rss" />
+<link rel="service.post" type="application/atom+xml" title="Nowhere Near Ithaca - Atom" href="https://www.blogger.com/feeds/7620301364506750761/posts/default" />
+
+<link rel="alternate" type="application/atom+xml" title="Nowhere Near Ithaca - Atom" href="http://www.nowherenearithaca.com/feeds/4739099319381019739/comments/default" />
+<!--[if IE]><script type="text/javascript" src="https://www.blogger.com/static/v1/jsbin/1803938243-ieretrofit.js"></script>
+<![endif]-->
+<link href='http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s1600/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png' rel='image_src'/>
+<meta content='http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html' property='og:url'/>
+<meta content='http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/w1200-h630-p-nu/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png' property='og:image'/>
+<!--[if IE]> <script> (function() { var html5 = ("abbr,article,aside,audio,canvas,datalist,details," + "figure,footer,header,hgroup,mark,menu,meter,nav,output," + "progress,section,time,video").split(','); for (var i = 0; i < html5.length; i++) { document.createElement(html5[i]); } try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {} })(); </script> <![endif]-->
+<title>Nowhere Near Ithaca: Javascript "Prototype" Confusion, and the Dubiously Useful "instanceof"</title>
+<link type='text/css' rel='stylesheet' href='https://www.blogger.com/static/v1/widgets/2340730481-css_bundle_v2.css' />
+<link type='text/css' rel='stylesheet' href='https://www.blogger.com/dyn-css/authorization.css?targetBlogID=7620301364506750761&zx=30835729-d154-494d-a7b3-dfa51767ecca' />
+<style id='page-skin-1' type='text/css'><!--
+/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Josh Peterson
+URL:      www.noaesthetic.com
+----------------------------------------------- */
+/* Variable definitions
+====================
+<Variable name="keycolor" description="Main Color" type="color" default="#66bbdd"/>
+<Group description="Page Text" selector="body">
+<Variable name="body.font" description="Font" type="font"
+default="normal normal 12px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="body.text.color" description="Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Backgrounds" selector=".body-fauxcolumns-outer">
+<Variable name="body.background.color" description="Outer Background" type="color" default="#66bbdd"/>
+<Variable name="content.background.color" description="Main Background" type="color" default="#ffffff"/>
+<Variable name="header.background.color" description="Header Background" type="color" default="transparent"/>
+</Group>
+<Group description="Links" selector=".main-outer">
+<Variable name="link.color" description="Link Color" type="color" default="#2288bb"/>
+<Variable name="link.visited.color" description="Visited Color" type="color" default="#888888"/>
+<Variable name="link.hover.color" description="Hover Color" type="color" default="#33aaff"/>
+</Group>
+<Group description="Blog Title" selector=".header h1">
+<Variable name="header.font" description="Font" type="font"
+default="normal normal 60px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="header.text.color" description="Title Color" type="color" default="#3399bb" />
+</Group>
+<Group description="Blog Description" selector=".header .description">
+<Variable name="description.text.color" description="Description Color" type="color"
+default="#777777" />
+</Group>
+<Group description="Tabs Text" selector=".tabs-inner .widget li a">
+<Variable name="tabs.font" description="Font" type="font"
+default="normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="tabs.text.color" description="Text Color" type="color" default="#999999"/>
+<Variable name="tabs.selected.text.color" description="Selected Color" type="color" default="#000000"/>
+</Group>
+<Group description="Tabs Background" selector=".tabs-outer .PageList">
+<Variable name="tabs.background.color" description="Background Color" type="color" default="#f5f5f5"/>
+<Variable name="tabs.selected.background.color" description="Selected Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Post Title" selector="h3.post-title, .comments h4">
+<Variable name="post.title.font" description="Font" type="font"
+default="normal normal 22px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+</Group>
+<Group description="Date Header" selector=".date-header">
+<Variable name="date.header.color" description="Text Color" type="color"
+default="#222222"/>
+<Variable name="date.header.background.color" description="Background Color" type="color"
+default="transparent"/>
+</Group>
+<Group description="Post Footer" selector=".post-footer">
+<Variable name="post.footer.text.color" description="Text Color" type="color" default="#666666"/>
+<Variable name="post.footer.background.color" description="Background Color" type="color"
+default="#f9f9f9"/>
+<Variable name="post.footer.border.color" description="Shadow Color" type="color" default="#eeeeee"/>
+</Group>
+<Group description="Gadgets" selector="h2">
+<Variable name="widget.title.font" description="Title Font" type="font"
+default="normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif"/>
+<Variable name="widget.title.text.color" description="Title Color" type="color" default="#000000"/>
+<Variable name="widget.alternate.text.color" description="Alternate Color" type="color" default="#999999"/>
+</Group>
+<Group description="Images" selector=".main-inner">
+<Variable name="image.background.color" description="Background Color" type="color" default="#ffffff"/>
+<Variable name="image.border.color" description="Border Color" type="color" default="#eeeeee"/>
+<Variable name="image.text.color" description="Caption Text Color" type="color" default="#222222"/>
+</Group>
+<Group description="Accents" selector=".content-inner">
+<Variable name="body.rule.color" description="Separator Line Color" type="color" default="#eeeeee"/>
+<Variable name="tabs.border.color" description="Tabs Border Color" type="color" default="#eeeeee"/>
+</Group>
+<Variable name="body.background" description="Body Background" type="background"
+color="#f0f0f0" default="$(color) none repeat scroll top left"/>
+<Variable name="body.background.override" description="Body Background Override" type="string" default=""/>
+<Variable name="body.background.gradient.cap" description="Body Gradient Cap" type="url"
+default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="body.background.gradient.tile" description="Body Gradient Tile" type="url"
+default="url(http://www.blogblog.com/1kt/simple/body_gradient_tile_light.png)"/>
+<Variable name="content.background.color.selector" description="Content Background Color Selector" type="string" default=".content-inner"/>
+<Variable name="content.padding" description="Content Padding" type="length" default="10px"/>
+<Variable name="content.padding.horizontal" description="Content Horizontal Padding" type="length" default="10px"/>
+<Variable name="content.shadow.spread" description="Content Shadow Spread" type="length" default="40px"/>
+<Variable name="content.shadow.spread.webkit" description="Content Shadow Spread (WebKit)" type="length" default="5px"/>
+<Variable name="content.shadow.spread.ie" description="Content Shadow Spread (IE)" type="length" default="10px"/>
+<Variable name="main.border.width" description="Main Border Width" type="length" default="0"/>
+<Variable name="header.background.gradient" description="Header Gradient" type="url" default="none"/>
+<Variable name="header.shadow.offset.left" description="Header Shadow Offset Left" type="length" default="-1px"/>
+<Variable name="header.shadow.offset.top" description="Header Shadow Offset Top" type="length" default="-1px"/>
+<Variable name="header.shadow.spread" description="Header Shadow Spread" type="length" default="1px"/>
+<Variable name="header.padding" description="Header Padding" type="length" default="15px"/>
+<Variable name="header.border.size" description="Header Border Size" type="length" default="1px"/>
+<Variable name="header.bottom.border.size" description="Header Bottom Border Size" type="length" default="1px"/>
+<Variable name="header.border.horizontalsize" description="Header Horizontal Border Size" type="length" default="0"/>
+<Variable name="description.text.size" description="Description Text Size" type="string" default="140%"/>
+<Variable name="tabs.margin.top" description="Tabs Margin Top" type="length" default="0" />
+<Variable name="tabs.margin.side" description="Tabs Side Margin" type="length" default="30px" />
+<Variable name="tabs.background.gradient" description="Tabs Background Gradient" type="url"
+default="url(http://www.blogblog.com/1kt/simple/gradients_light.png)"/>
+<Variable name="tabs.border.width" description="Tabs Border Width" type="length" default="1px"/>
+<Variable name="tabs.bevel.border.width" description="Tabs Bevel Border Width" type="length" default="1px"/>
+<Variable name="date.header.padding" description="Date Header Padding" type="string" default="inherit"/>
+<Variable name="date.header.letterspacing" description="Date Header Letter Spacing" type="string" default="inherit"/>
+<Variable name="date.header.margin" description="Date Header Margin" type="string" default="inherit"/>
+<Variable name="post.margin.bottom" description="Post Bottom Margin" type="length" default="25px"/>
+<Variable name="image.border.small.size" description="Image Border Small Size" type="length" default="2px"/>
+<Variable name="image.border.large.size" description="Image Border Large Size" type="length" default="5px"/>
+<Variable name="page.width.selector" description="Page Width Selector" type="string" default=".region-inner"/>
+<Variable name="page.width" description="Page Width" type="string" default="auto"/>
+<Variable name="main.section.margin" description="Main Section Margin" type="length" default="15px"/>
+<Variable name="main.padding" description="Main Padding" type="length" default="15px"/>
+<Variable name="main.padding.top" description="Main Padding Top" type="length" default="30px"/>
+<Variable name="main.padding.bottom" description="Main Padding Bottom" type="length" default="30px"/>
+<Variable name="paging.background"
+color="#ffffff"
+description="Background of blog paging area" type="background"
+default="transparent none no-repeat scroll top center"/>
+<Variable name="footer.bevel" description="Bevel border length of footer" type="length" default="0"/>
+<Variable name="mobile.background.overlay" description="Mobile Background Overlay" type="string"
+default="transparent none repeat scroll top left"/>
+<Variable name="mobile.background.size" description="Mobile Background Size" type="string" default="auto"/>
+<Variable name="mobile.button.color" description="Mobile Button Color" type="color" default="#ffffff" />
+<Variable name="startSide" description="Side where text starts in blog language" type="automatic" default="left"/>
+<Variable name="endSide" description="Side where text ends in blog language" type="automatic" default="right"/>
+*/
+/* Content
+----------------------------------------------- */
+body {
+font: normal normal 14px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #222222;
+background: #f0f0f0 none repeat scroll top left;
+padding: 0 40px 40px 40px;
+}
+html body .region-inner {
+min-width: 0;
+max-width: 100%;
+width: auto;
+}
+a:link {
+text-decoration:none;
+color: #2288bb;
+}
+a:visited {
+text-decoration:none;
+color: #888888;
+}
+a:hover {
+text-decoration:underline;
+color: #33aaff;
+}
+.body-fauxcolumn-outer .fauxcolumn-inner {
+background: transparent url(http://www.blogblog.com/1kt/simple/body_gradient_tile_light.png) repeat scroll top left;
+_background-image: none;
+}
+.body-fauxcolumn-outer .cap-top {
+position: absolute;
+z-index: 1;
+height: 400px;
+width: 100%;
+background: #f0f0f0 none repeat scroll top left;
+}
+.body-fauxcolumn-outer .cap-top .cap-left {
+width: 100%;
+background: transparent url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll top left;
+_background-image: none;
+}
+.content-outer {
+-moz-box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+-webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .15);
+-goog-ms-box-shadow: 0 0 10px #333333;
+box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+margin-bottom: 1px;
+}
+.content-inner {
+padding: 10px 10px;
+}
+.content-inner {
+background-color: #ffffff;
+}
+/* Header
+----------------------------------------------- */
+.header-outer {
+background: transparent none repeat-x scroll 0 -400px;
+_background-image: none;
+}
+.Header h1 {
+font: italic normal 60px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+color: #000000;
+text-shadow: -1px -1px 1px rgba(0, 0, 0, .2);
+}
+.Header h1 a {
+color: #000000;
+}
+.Header .description {
+font-size: 140%;
+color: #777777;
+}
+.header-inner .Header .titlewrapper {
+padding: 6px 15px;
+}
+.header-inner .Header .descriptionwrapper {
+padding: 0 15px;
+}
+/* Tabs
+----------------------------------------------- */
+.tabs-inner .section:first-child {
+border-top: 1px solid #eeeeee;
+}
+.tabs-inner .section:first-child ul {
+margin-top: -1px;
+border-top: 1px solid #eeeeee;
+border-left: 0 solid #eeeeee;
+border-right: 0 solid #eeeeee;
+}
+.tabs-inner .widget ul {
+background: #f5f5f5 url(http://www.blogblog.com/1kt/simple/gradients_light.png) repeat-x scroll 0 -800px;
+_background-image: none;
+border-bottom: 1px solid #eeeeee;
+margin-top: 0;
+margin-left: -30px;
+margin-right: -30px;
+}
+.tabs-inner .widget li a {
+display: inline-block;
+padding: .6em 1em;
+font: normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #999999;
+border-left: 1px solid #ffffff;
+border-right: 1px solid #eeeeee;
+}
+.tabs-inner .widget li:first-child a {
+border-left: none;
+}
+.tabs-inner .widget li.selected a, .tabs-inner .widget li a:hover {
+color: #000000;
+background-color: #eeeeee;
+text-decoration: none;
+}
+/* Columns
+----------------------------------------------- */
+.main-outer {
+border-top: 0 solid #eeeeee;
+}
+.fauxcolumn-left-outer .fauxcolumn-inner {
+border-right: 1px solid #eeeeee;
+}
+.fauxcolumn-right-outer .fauxcolumn-inner {
+border-left: 1px solid #eeeeee;
+}
+/* Headings
+----------------------------------------------- */
+h2 {
+margin: 0 0 1em 0;
+font: normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif;
+color: #000000;
+text-transform: uppercase;
+}
+/* Widgets
+----------------------------------------------- */
+.widget .zippy {
+color: #999999;
+text-shadow: 2px 2px 1px rgba(0, 0, 0, .1);
+}
+.widget .popular-posts ul {
+list-style: none;
+}
+/* Posts
+----------------------------------------------- */
+.date-header span {
+background-color: transparent;
+color: #222222;
+padding: inherit;
+letter-spacing: inherit;
+margin: inherit;
+}
+.main-inner {
+padding-top: 30px;
+padding-bottom: 30px;
+}
+.main-inner .column-center-inner {
+padding: 0 15px;
+}
+.main-inner .column-center-inner .section {
+margin: 0 15px;
+}
+.post {
+margin: 0 0 25px 0;
+}
+h3.post-title, .comments h4 {
+font: normal bold 24px Georgia, Utopia, 'Palatino Linotype', Palatino, serif;
+margin: .75em 0 0;
+}
+.post-body {
+font-size: 110%;
+line-height: 1.4;
+position: relative;
+}
+.post-body img, .post-body .tr-caption-container, .Profile img, .Image img,
+.BlogList .item-thumbnail img {
+padding: 2px;
+background: #ffffff;
+border: 1px solid #eeeeee;
+-moz-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+-webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, .1);
+}
+.post-body img, .post-body .tr-caption-container {
+padding: 5px;
+}
+.post-body .tr-caption-container {
+color: #222222;
+}
+.post-body .tr-caption-container img {
+padding: 0;
+background: transparent;
+border: none;
+-moz-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+-webkit-box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+box-shadow: 0 0 0 rgba(0, 0, 0, .1);
+}
+.post-header {
+margin: 0 0 1.5em;
+line-height: 1.6;
+font-size: 90%;
+}
+.post-footer {
+margin: 20px -2px 0;
+padding: 5px 10px;
+color: #666666;
+background-color: #f9f9f9;
+border-bottom: 1px solid #eeeeee;
+line-height: 1.6;
+font-size: 90%;
+}
+#comments .comment-author {
+padding-top: 1.5em;
+border-top: 1px solid #eeeeee;
+background-position: 0 1.5em;
+}
+#comments .comment-author:first-child {
+padding-top: 0;
+border-top: none;
+}
+.avatar-image-container {
+margin: .2em 0 0;
+}
+#comments .avatar-image-container img {
+border: 1px solid #eeeeee;
+}
+/* Comments
+----------------------------------------------- */
+.comments .comments-content .icon.blog-author {
+background-repeat: no-repeat;
+background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEgAACxIB0t1+/AAAAAd0SU1FB9sLFwMeCjjhcOMAAAD+SURBVDjLtZSvTgNBEIe/WRRnm3U8RC1neQdsm1zSBIU9VVF1FkUguQQsD9ITmD7ECZIJSE4OZo9stoVjC/zc7ky+zH9hXwVwDpTAWWLrgS3QAe8AZgaAJI5zYAmc8r0G4AHYHQKVwII8PZrZFsBFkeRCABYiMh9BRUhnSkPTNCtVXYXURi1FpBDgArj8QU1eVXUzfnjv7yP7kwu1mYrkWlU33vs1QNu2qU8pwN0UpKoqokjWwCztrMuBhEhmh8bD5UDqur75asbcX0BGUB9/HAMB+r32hznJgXy2v0sGLBcyAJ1EK3LFcbo1s91JeLwAbwGYu7TP/3ZGfnXYPgAVNngtqatUNgAAAABJRU5ErkJggg==);
+}
+.comments .comments-content .loadmore a {
+border-top: 1px solid #999999;
+border-bottom: 1px solid #999999;
+}
+.comments .comment-thread.inline-thread {
+background-color: #f9f9f9;
+}
+.comments .continue {
+border-top: 2px solid #999999;
+}
+/* Accents
+---------------------------------------------- */
+.section-columns td.columns-cell {
+border-left: 1px solid #eeeeee;
+}
+.blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.blog-pager-older-link, .home-link,
+.blog-pager-newer-link {
+background-color: #ffffff;
+padding: 5px;
+}
+.footer-outer {
+border-top: 0 dashed #bbbbbb;
+}
+/* Mobile
+----------------------------------------------- */
+body.mobile  {
+background-size: auto;
+}
+.mobile .body-fauxcolumn-outer {
+background: transparent none repeat scroll top left;
+}
+.mobile .body-fauxcolumn-outer .cap-top {
+background-size: 100% auto;
+}
+.mobile .content-outer {
+-webkit-box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+box-shadow: 0 0 3px rgba(0, 0, 0, .15);
+padding: 0 40px;
+}
+body.mobile .AdSense {
+margin: 0 -40px;
+}
+.mobile .tabs-inner .widget ul {
+margin-left: 0;
+margin-right: 0;
+}
+.mobile .post {
+margin: 0;
+}
+.mobile .main-inner .column-center-inner .section {
+margin: 0;
+}
+.mobile .date-header span {
+padding: 0.1em 10px;
+margin: 0 -10px;
+}
+.mobile h3.post-title {
+margin: 0;
+}
+.mobile .blog-pager {
+background: transparent none no-repeat scroll top center;
+}
+.mobile .footer-outer {
+border-top: none;
+}
+.mobile .main-inner, .mobile .footer-inner {
+background-color: #ffffff;
+}
+.mobile-index-contents {
+color: #222222;
+}
+.mobile-link-button {
+background-color: #2288bb;
+}
+.mobile-link-button a:link, .mobile-link-button a:visited {
+color: #ffffff;
+}
+.mobile .tabs-inner .section:first-child {
+border-top: none;
+}
+.mobile .tabs-inner .PageList .widget-content {
+background-color: #eeeeee;
+color: #000000;
+border-top: 1px solid #eeeeee;
+border-bottom: 1px solid #eeeeee;
+}
+.mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
+border-left: 1px solid #eeeeee;
+}
+.kwd{color:#93C763}
+.com{color:#66747B}
+.typ{color:#678CB1}
+.lit{color:#FACD22}
+.tag{color:#8AC763}
+.atn{color:#E0E2E4}
+.dec{color:purple}
+pre.prettyprint{border:0 solid #888}
+.prettyprint{background:#000}
+li.L0,li.L1,li.L2,li.L3,li.L4,li.L5,li.L6,li.L7,li.L8,li.L9{color:#555;list-style-type:decimal}
+li.L1,li.L3,li.L5,li.L7,li.L9{background:#111}
+.str,.atv{color:#EC7600}
+.pun,.pln{color:#F1F2F3}
+.prettyprinted{word-wrap:break-word;background:#000;border-radius:10px}
+@media print {
+.com{color:#600;font-style:italic}
+.typ{color:#404;font-weight:700}
+.lit{color:#044}
+.pun{color:#440}
+.pln{color:#000}
+.atn{color:#404}
+.str,.atv{color:#060}
+.kwd,.tag{color:#006;font-weight:700}
+}.descriptionwrapper {
+margin-bottom:5px !important;
+}
+.Header h1 {
+margin-bottom:2px !important;
+}
+.titlewrapper {
+line-height:1.01 !important;
+padding-bottom:1px !important;
+}
+.main-inner {
+padding-top:5px !important;
+}
+.post-title {
+margin-top:5px !important;
+}
+--></style>
+<style id='template-skin-1' type='text/css'><!--
+body {
+min-width: 1024px;
+}
+.content-outer, .content-fauxcolumn-outer, .region-inner {
+min-width: 1024px;
+max-width: 1024px;
+_width: 1024px;
+}
+.main-inner .columns {
+padding-left: 0px;
+padding-right: 200px;
+}
+.main-inner .fauxcolumn-center-outer {
+left: 0px;
+right: 200px;
+/* IE6 does not respect left and right together */
+_width: expression(this.parentNode.offsetWidth -
+parseInt("0px") -
+parseInt("200px") + 'px');
+}
+.main-inner .fauxcolumn-left-outer {
+width: 0px;
+}
+.main-inner .fauxcolumn-right-outer {
+width: 200px;
+}
+.main-inner .column-left-outer {
+width: 0px;
+right: 100%;
+margin-left: -0px;
+}
+.main-inner .column-right-outer {
+width: 200px;
+margin-right: -200px;
+}
+#layout {
+min-width: 0;
+}
+#layout .content-outer {
+min-width: 0;
+width: 800px;
+}
+#layout .region-inner {
+min-width: 0;
+width: auto;
+}
+--></style>
+<script src='http://cdn.mathjax.org/mathjax/latest/MathJax.js' type='text/javascript'>    
+    MathJax.Hub.Config({
+        HTML: ["input/TeX","output/HTML-CSS"],
+        TeX: { extensions: ["AMSmath.js","AMSsymbols.js"], 
+               equationNumbers: { autoNumber: "AMS" } },
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX","output/HTML-CSS"],
+        tex2jax: { inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                   displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                   processEscapes: true },
+        "HTML-CSS": { availableFonts: ["TeX"],
+                      linebreaks: { automatic: true } }
+    });
+</script>
+<script type="text/javascript">function a(){var b=window.location.href,c=b.split("?");switch(c.length){case 1:return b+"?m=1";case 2:return 0<=c[1].search("(^|&)m=")?null:b+"&m=1";default:return null}}var d=navigator.userAgent;if(-1!=d.indexOf("Mobile")&&-1!=d.indexOf("WebKit")&&-1==d.indexOf("iPad")||-1!=d.indexOf("Opera Mini")||-1!=d.indexOf("IEMobile")){var e=a();e&&window.location.replace(e)};
+</script></head>
+<body class='loading'>
+<div class='navbar section' id='navbar'><div class='widget Navbar' data-version='1' id='Navbar1'><script type="text/javascript">
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener('load',
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent('onload', function(){ object[attribute] = val; });
+      }
+    }
+  </script>
+<div id="navbar-iframe-container"></div>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type="text/javascript">
+      gapi.load("gapi.iframes:gapi.iframes.style.bubble", function() {
+        if (gapi.iframes && gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: 'https://www.blogger.com/navbar.g?targetBlogID\x3d7620301364506750761\x26blogName\x3dNowhere+Near+Ithaca\x26publishMode\x3dPUBLISH_MODE_HOSTED\x26navbarType\x3dBLUE\x26layoutType\x3dLAYOUTS\x26searchRoot\x3dhttp://www.nowherenearithaca.com/search\x26blogLocale\x3den\x26v\x3d2\x26homepageUrl\x3dhttp://www.nowherenearithaca.com/\x26targetPostID\x3d4739099319381019739\x26blogPostOrPageUrl\x3dhttp://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html\x26vt\x3d3808413806741874143',
+              where: document.getElementById("navbar-iframe-container"),
+              id: "navbar-iframe"
+          });
+        }
+      });
+    </script><script type="text/javascript">
+(function() {
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = '//pagead2.googlesyndication.com/pagead/js/google_top_exp.js';
+var head = document.getElementsByTagName('head')[0];
+if (head) {
+head.appendChild(script);
+}})();
+</script>
+</div></div>
+<div class='body-fauxcolumns'>
+<div class='fauxcolumn-outer body-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content'>
+<div class='content-fauxcolumns'>
+<div class='fauxcolumn-outer content-fauxcolumn-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<div class='content-outer'>
+<div class='content-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left content-fauxborder-left'>
+<div class='fauxborder-right content-fauxborder-right'></div>
+<div class='content-inner'>
+<header>
+<div class='header-outer'>
+<div class='header-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left header-fauxborder-left'>
+<div class='fauxborder-right header-fauxborder-right'></div>
+<div class='region-inner header-inner'>
+<div class='header section' id='header'><div class='widget Header' data-version='1' id='Header1'>
+<div id='header-inner'>
+<div class='titlewrapper'>
+<h1 class='title'>
+<a href='http://www.nowherenearithaca.com/'>Nowhere Near Ithaca</a>
+</h1>
+</div>
+<div class='descriptionwrapper'>
+<p class='description'><span>In search of the Ahh and Aha via Data Visualization.
+<br>
+<a href="mailto:bradflyon@gmail.com">bradflyon@gmail.com</a>
+<br href="nowhere">
+<a href="http://www.nowherenearithaca.com/2014/02/a-summary-of-some-of-my-visualizations.html">A Summary of My Visualizations</a>
+<br>
+<a href="http://learnforeverlearn.com/hm/">About Me</a></span></p>
+</div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='header-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</header>
+<div class='tabs-outer'>
+<div class='tabs-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left tabs-fauxborder-left'>
+<div class='fauxborder-right tabs-fauxborder-right'></div>
+<div class='region-inner tabs-inner'>
+<div class='tabs no-items section' id='crosscol'></div>
+<div class='tabs no-items section' id='crosscol-overflow'></div>
+</div>
+</div>
+<div class='tabs-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='main-outer'>
+<div class='main-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left main-fauxborder-left'>
+<div class='fauxborder-right main-fauxborder-right'></div>
+<div class='region-inner main-inner'>
+<div class='columns fauxcolumns'>
+<div class='fauxcolumn-outer fauxcolumn-center-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-left-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<div class='fauxcolumn-outer fauxcolumn-right-outer'>
+<div class='cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left'>
+<div class='fauxborder-right'></div>
+<div class='fauxcolumn-inner'>
+</div>
+</div>
+<div class='cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<!-- corrects IE6 width calculation -->
+<div class='columns-inner'>
+<div class='column-center-outer'>
+<div class='column-center-inner'>
+<div class='main section' id='main'><div class='widget Blog' data-version='1' id='Blog1'>
+<div class='blog-posts hfeed'>
+
+          <div class="date-outer">
+        
+
+          <div class="date-posts">
+        
+<div class='post-outer'>
+<div class='post hentry' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+<a name='4739099319381019739'></a>
+<h3 class='post-title entry-title' itemprop='name'>
+Javascript "Prototype" Confusion, and the Dubiously Useful "instanceof"
+</h3>
+<div class='post-header'>
+<div class='post-header-line-1'></div>
+</div>
+<div class='post-body entry-content' id='post-body-4739099319381019739' itemprop='articleBody'>
+
+
+<link href="http://yandex.st/highlightjs/7.5/styles/default.min.css" rel="stylesheet">
+<script src="http://yandex.st/highlightjs/7.5/highlight.min.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<style>
+ .main {
+   font-size:18px;
+ }
+
+.descriptionwrapper [href*='learnforever'] {
+
+  display:none !important;
+
+}
+
+
+.command {
+  padding-left:4px;
+  padding-right:4px;
+  border: 1px solid #ddd;
+  border-radius:3px;
+  background:#f8f8f8;
+}
+
+code {
+
+  padding-left:4px;
+  padding-right:4px;
+  border: 1px solid #eee;
+  border-radius:3px;
+  ibackground:#f8f8f8;
+  background:#f9f9f5;
+
+
+  font-size:90%;
+  font-family:inherit;
+
+  iborder-radius:5px;
+  iborder:1px solid #888;
+}
+
+span.keyword, code .keyword {
+    color: rgb(170, 13, 145);
+    font-weight:normal;
+  }
+  code .comment {
+    color: rgb(0,116,0);
+    font-weight:normal;
+  }
+  code .title {
+   color:black; 
+   font-weight:normal;
+  }
+  code .number {color: rgb(28, 0, 207);}
+  code .string {color: rgb(196, 26, 22);}
+
+
+.imageTitle {
+  font-size:100%;
+  text-align:center;
+  font-weight:bold;
+}
+
+.mySection {
+  margin-top:15px;
+  margin-bottom:10px;
+  font-size:120%;
+  font-weight:bold;
+}
+
+.mySubSection {
+  margin-top:15px;
+  margin-bottom:10px;
+  font-size:110%;
+  font-weight:bold;
+}
+
+blockquote {
+  ifont: 14px/22px normal helvetica, sans-serif;
+  font: normal helvetica, sans-serif;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 50px;
+  padding-left: 15px;
+  border-left: 3px solid #ccc;
+} 
+
+blockquote p {
+  ifont-style:italic;
+}
+
+.warning {
+
+  ifont-weight:bold;
+
+}
+
+</style>
+
+<div class="main">
+
+<!--
+<blockquote>
+    <p>Curious madness reigns when different things are named the same.</p>
+</blockquote>
+-->
+
+<p>Recently, I became aware that I was more confused than I realized regarding javascript's use of the word "prototype", as the word is used in two different ways.  
+</p>
+<p>This draft note is the result of pondering on this a bit more.  This pondering also resulted in some clarification (for me) of how the <code>instanceof</code> operator seems to work, and how its utility is doubtful.
+</p>
+
+<a name='more'></a>
+
+<!--
+<div class="mySection">
+  Javascript and its Confusing Use of the Word "prototype"
+</div>
+-->
+
+
+<div class="mySubSection">
+Every object has a prototype, accessed via its "__proto__" property
+</div>
+
+<p>Javascript objects are just bags of named things: properties.  Properties can be other objects, functions (which are also objects), or primitives like numbers and strings.  </p>
+
+<p>Every javascript object has a prototype, which can be accessed directly in most modern browsers via the named property <code>__proto__</code>. </p>
+
+<p>
+When a property named <code>foo</code> is requested from an object <code>obj</code> via <code>obj.foo</code>, first the set of properties for object itself is searched for the property.  If it is not found, then <code>obj.__proto__</code> is searched for a property named <code>foo</code>.  If not found there, then it searches <code>obj.__proto__.__proto__</code>, continuing up the "prototype chain" until it either finds the property or <code>obj.__proto__.__proto__....__proto__</code> is null, and <code>undefined</code> is returned.  
+Note that the javascript engine is supposed to prevent cyclic loops in the prototype chain.
+</p>
+
+
+<p><span class="warning">Again: the name of the property for the prototype of an object is not "prototype"</span>: its name is "__proto__".</p>
+
+<p>That is one part of the potential confusion.</p>
+
+<!--
+-->
+
+<div class="mySubSection">
+Every javascript function <code>f</code> has a property named "prototype" - which is not its prototype
+</div>
+
+
+<p>This is another part of the potential confusion.</p>
+
+<p>
+<span class="warning"><code>f.prototype</code>is not the function's
+        prototype.</span>  
+</p>
+
+<p>
+As for any object, <code>f.__proto__</code> is the function's prototype.
+</p>
+
+<div class="mySubSection">
+What is the purpose of <code>f.prototype</code>?
+</div>
+
+<p>Any function <code>f</code> can be used to generate new objects via <code>newObject = new f(args)</code>.
+When used this way, <code>f</code> is sometimes called the "constructor" for <code>newObject</code>.
+<!--  <span class="warning">Any function can be used as a constructor to make new objects.
+</span>  
+-->
+</p>
+
+<p>When an object is created from a function <code>f</code> via <code>newObject = new f(args)</code>, the new object's prototype <code>__proto__</code>
+property is set to the property named "prototype" of <code>f</code>:  
+<code>newObject.__proto__ = f.prototype </code>.</p>
+
+<p>That is what <code>f.prototype</code> is used for.</p>
+
+<p>Note that there are other ways to create an object with a specified prototype, and in fact these other methods are recommended by some folks, avoiding the "new" keyword altogether.</p>
+
+<div class="mySection">
+Aside: The "constructor" Property
+</div>
+
+<p>While every function can be used as a constructor, there is also a property named "constructor" for some objects.</p>
+
+<p>
+In particular, for any function <code>f</code>,  <code>f.prototype.constructor = f</code>.
+</p>
+
+<p>Since objects created from <code>f</code> via <code>new f(args)</code> have their "__proto__" property initialized to <code>f.prototype</code>, this means that for any object <code>newObject</code> created via <code>newObject = new f(args)</code> for some function <code>f</code>, <code>newObject.constructor</code> will refer to the function used to create the object.  Initially, at least, as you can change the <code>constructor</code> later.
+</p>
+
+<p>Other than a record of the object's ancestry that might be useful in a handful of cases (that I've never encountered), I don't know how the knowledge of the constructor would be generally useful.</p>
+
+
+<div class="mySection">
+  What this has to do with how javascript's <code>instanceof</code> works
+</div>
+
+<p>Javascript has an <code>instanceof</code> operator that returns true or false, and can be called like so:
+<pre><code>obj instanceof f
+</code></pre>
+<p>You can only use a function on the right side: <code>instanceof</code> will throw an error if <code>f</code> is not a function.</p>
+
+<p>The Mozilla Developer network <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">summarizes this operator quite succinctly</a>  (I have used "function" instead of "constructor", since every function can be a constructor):
+
+<blockquote>
+The instanceof operator tests whether an object has in its prototype chain the prototype property of a given function.
+</blockquote>
+
+</p>
+
+<!--
+<p>Note: Remember that every function can be used as a constructor, so "constructor" and "function" are really synonyms here.<p>
+-->
+
+
+<!--
+<p>You might thing this returns true if <code>obj.constructor === someFunction</code>, since that would imply that <code>obj</code> had been created via <code>obj = new someFunction()</code>.  
+</p>
+-->
+<!--Of course, if thinking in a classical OOP way, something could be an instance of something else if its parent class was built fromFunction, or its parent's parent, etc.</p>
+-->
+
+ 
+<p>This is illustrated in the figure below.</p>
+
+
+<!--
+<p>It's actually a stronger comparison check that is performed, as indicated in the figure below.</p>
+-->
+
+<!--
+<div class="separator" style="clear: both; text-align: center;"><a href="http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s1600/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s1600/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png" /></a></div>
+-->
+<div class="separator" style="clear: both; text-align: center;"><a href="http://1.bp.blogspot.com/-x-pC59QdbIQ/VODjCYbRaCI/AAAAAAAACjY/G3CNlkryfWI/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B1.17.53%2BPM.png" imageanchor="1" style="margin-left: 1em; margin-right: 1em;"><img border="0" src="http://1.bp.blogspot.com/-x-pC59QdbIQ/VODjCYbRaCI/AAAAAAAACjY/G3CNlkryfWI/s1600/Screen%2BShot%2B2015-02-15%2Bat%2B1.17.53%2BPM.png" /></a></div>
+
+<div class="imageTitle">
+(<code>obj</code> instanceof <code>f
+</code>) is true
+if <code>f.prototype</code> is equal to
+<br/>
+any <code>__proto__</code> in
+the prototype chain of <code>obj</code>
+</div>
+
+<div class="mySubSection">Do People Use <code>instanceof</code>?</div>
+
+<p>Answer: I think few do.</p>
+
+<!--
+<p>How often to folks even use the <code>instanceof</code> operator?  I don't think very often. 
+</p>
+-->
+
+<p> When <a href="https://twitter.com/bflyon/status/564456480318173185">queried on twitter</a>, both <a href="https://twitter.com/_ericelliott">Eric Elliot</a> and <a href="https://twitter.com/getify">Kyle Simpson</a> (two javascript folks I think a lot of) tweeted back that they never did.  When I <a href="https://news.ycombinator.com/item?id=9031262">asked on hacker news</a>, one commenter said it was a code smell, while another said it was useful when checking if an object is an array (it should be noted that jquery checks the result of a toString call to determine if something is an array).</p>
+
+<p>There are also problems with trying to use <code>instanceof</code> across iframes.</p>
+
+<p><a href="https://twitter.com/kangax">@kangax</a> <a href="http://perfectionkills.com/instanceof-considered-harmful-or-how-to-write-a-robust-isarray/">discourages its use</a> (2009).  He also recommends the same method jquery uses to check if something is an array, btw.<p>
+
+<p>Crockford has remarked (in 2003) about the <a href="https://groups.google.com/forum/#!msg/comp.lang.javascript/XTWYCOwC96I/70rNoQ3L-xoJ">useless instanceof operator</a> (link via kangax's article).<p>
+
+<p>So, I don't foresee using it much myself, but it is personally satisfying to come to a better understanding of it and the surrounding javascript constructs.</p>
+
+
+
+<!--
+<p>This operator will return true if <code>someFunction.prototype</code> is equal to 
+<code>obj.__proto__</code>, or
+<code>obj.__proto__.__proto__</code>, etc.
+</p>
+-->
+
+
+<div class="mySection">
+And be Warned...
+</div>
+
+
+<p>Compared to "standard" OOP that can result in rigid, iron-like structures that complicate change and reuse, javascript with its prototype-based reuse pattern is as firm as a jello: you can change things bit more willy-nilly, if you so desire.</p>
+
+<p>In particular, you can muck with the prototype and constructor properties after-the-fact, and this would likely invalidate the notes above in whatever curious ways you (or the code you are using) has mucked with things.</p>
+
+<!--
+<p>While this malleability complicates cut-and-dry attempts at understanding and explaining, it also results in, as <a href="http://javascript.crockford.com/survey.html">noted by Crockford in 2002</a>, a "powerful and expressive language."  And, imo, there be beauty afoot as well.</p>
+-->
+
+</div>
+<div style='clear: both;'></div>
+</div>
+<div class='post-footer'>
+<div class='post-footer-line post-footer-line-1'><span class='post-author vcard'>
+Posted by
+<span class='fn'>
+<a href='https://plus.google.com/102736576072808601046' itemprop='author' rel='author' title='author profile'>
+B Lyon
+</a>
+</span>
+</span>
+<span class='post-comment-link'>
+</span>
+<span class='post-icons'>
+<span class='item-control blog-admin pid-1612364394'>
+<a href='https://www.blogger.com/post-edit.g?blogID=7620301364506750761&postID=4739099319381019739&from=pencil' title='Edit Post'>
+<img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+</a>
+</span>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-2'><span class='post-labels'>
+Labels:
+<a href='http://www.nowherenearithaca.com/search/label/javascript' rel='tag'>javascript</a>
+</span>
+</div>
+<div class='post-footer-line post-footer-line-3'></div>
+</div>
+</div>
+<script src='https://apis.google.com/js/plusone.js' type='text/javascript'></script>
+<div class='cmt_iframe_holder' data-href='http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html' data-viewtype='FILTERED_POSTMOD'></div>
+</div>
+
+        </div></div>
+      
+</div>
+<div class='blog-pager' id='blog-pager'>
+<span id='blog-pager-newer-link'>
+<a class='blog-pager-newer-link' href='http://www.nowherenearithaca.com/2015/02/are-symbols-in-es6-worth-weight.html' id='Blog1_blog-pager-newer-link' title='Newer Post'>Newer Post</a>
+</span>
+<span id='blog-pager-older-link'>
+<a class='blog-pager-older-link' href='http://www.nowherenearithaca.com/2015/01/animating-family-trees-la-pachinko.html' id='Blog1_blog-pager-older-link' title='Older Post'>Older Post</a>
+</span>
+<a class='home-link' href='http://www.nowherenearithaca.com/'>Home</a>
+</div>
+<div class='clear'></div>
+<div class='post-feeds'>
+<div class='feed-links'>
+Subscribe to:
+<a class='feed-link' href='http://www.nowherenearithaca.com/feeds/4739099319381019739/comments/default' target='_blank' type='application/atom+xml'>Post Comments (Atom)</a>
+</div>
+</div>
+<script type="text/javascript">window.___gcfg = {'lang': 'en'};</script>
+</div><div class='widget PopularPosts' data-version='1' id='PopularPosts1'>
+<h2>Popular Posts</h2>
+<div class='widget-content popular-posts'>
+<ul>
+<li>
+<div class='item-content'>
+<div class='item-thumbnail'>
+<a href='http://www.nowherenearithaca.com/2012/12/simulating-us-birthsdeaths-in-real-time.html' target='_blank'>
+<img alt='' border='0' src='http://4.bp.blogspot.com/--FlFNxOuXB4/VBxaQxKqE4I/AAAAAAAACPQ/jhzjBxnSHHQ/w72-h72-p-nu/Screen%2BShot%2B2014-09-19%2Bat%2B12.27.26%2BPM.png'/>
+</a>
+</div>
+<div class='item-title'><a href='http://www.nowherenearithaca.com/2012/12/simulating-us-birthsdeaths-in-real-time.html'>Simulating US Births/Deaths in Real-Time - a D3 Visualization</a></div>
+<div class='item-snippet'> Note: I have extended this to a visualization for the entire world, which is on googledrive here .   Recently, I was wondering how what it ...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+<li>
+<div class='item-content'>
+<div class='item-thumbnail'>
+<a href='http://www.nowherenearithaca.com/2014/02/a-summary-of-some-of-my-visualizations.html' target='_blank'>
+<img alt='' border='0' src='http://2.bp.blogspot.com/-c1yaJ-Jo9sY/Uwi4WM7omZI/AAAAAAAABh0/NwP5TWroB_A/w72-h72-p-nu/Screen+Shot+2014-02-22+at+9.26.49+AM.png'/>
+</a>
+</div>
+<div class='item-title'><a href='http://www.nowherenearithaca.com/2014/02/a-summary-of-some-of-my-visualizations.html'>A Summary of Some of My Visualizations</a></div>
+<div class='item-snippet'>     The purpose of this page is to summarize in one place some of the interactive visualizations I have worked on. Most of these were built...</div>
+</div>
+<div style='clear: both;'></div>
+</li>
+</ul>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=7620301364506750761&widgetType=PopularPosts&widgetId=PopularPosts1&action=editWidget&sectionId=main' onclick='return _WidgetManager._PopupConfig(document.getElementById("PopularPosts1"));' target='configPopularPosts1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+</div>
+</div>
+<div class='column-left-outer'>
+<div class='column-left-inner'>
+<aside>
+</aside>
+</div>
+</div>
+<div class='column-right-outer'>
+<div class='column-right-inner'>
+<aside>
+<div class='sidebar section' id='sidebar-right-1'><div class='widget Text' data-version='1' id='Text2'>
+<div class='widget-content'>
+<span  iclass="Apple-style-span"  style="icolor: rgb(34, 34, 34); line-height: 16px;font-family:Georgia, Utopia, 'palatino linotype', Palatino, serif;font-size:12px;">"When you start on your journey to Ithaca, then pray that the road is long, full of adventure, full of knowledge... Always keep Ithaca fixed in your mind. To arrive there is your ultimate goal. But do not hurry the voyage at all." (from "Ithaca", by C. P. Cavafy)</span>
+</div>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=7620301364506750761&widgetType=Text&widgetId=Text2&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("Text2"));' target='configText2' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div><div class='widget Label' data-version='1' id='Label1'>
+<h2>Labels</h2>
+<div class='widget-content list-label-widget-content'>
+<ul>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/d3'>d3</a>
+<span dir='ltr'>(59)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/javascript'>javascript</a>
+<span dir='ltr'>(30)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/Exploring...'>Exploring...</a>
+<span dir='ltr'>(16)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/algorithms'>algorithms</a>
+<span dir='ltr'>(7)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/pagerank'>pagerank</a>
+<span dir='ltr'>(5)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/quicksort'>quicksort</a>
+<span dir='ltr'>(4)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/design'>design</a>
+<span dir='ltr'>(3)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/bigrams'>bigrams</a>
+<span dir='ltr'>(2)</span>
+</li>
+<li>
+<a dir='ltr' href='http://www.nowherenearithaca.com/search/label/Summary'>Summary</a>
+<span dir='ltr'>(1)</span>
+</li>
+</ul>
+<div class='clear'></div>
+<span class='widget-item-control'>
+<span class='item-control blog-admin'>
+<a class='quickedit' href='//www.blogger.com/rearrange?blogID=7620301364506750761&widgetType=Label&widgetId=Label1&action=editWidget&sectionId=sidebar-right-1' onclick='return _WidgetManager._PopupConfig(document.getElementById("Label1"));' target='configLabel1' title='Edit'>
+<img alt='' height='18' src='https://resources.blogblog.com/img/icon18_wrench_allbkg.png' width='18'/>
+</a>
+</span>
+</span>
+<div class='clear'></div>
+</div>
+</div></div>
+</aside>
+</div>
+</div>
+</div>
+<div style='clear: both'></div>
+<!-- columns -->
+</div>
+<!-- main -->
+</div>
+</div>
+<div class='main-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+<footer>
+<div class='footer-outer'>
+<div class='footer-cap-top cap-top'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+<div class='fauxborder-left footer-fauxborder-left'>
+<div class='fauxborder-right footer-fauxborder-right'></div>
+<div class='region-inner footer-inner'>
+<div class='foot no-items section' id='footer-1'></div>
+<table border='0' cellpadding='0' cellspacing='0' class='section-columns columns-2'>
+<tbody>
+<tr>
+<td class='first columns-cell'>
+<div class='foot no-items section' id='footer-2-1'></div>
+</td>
+<td class='columns-cell'>
+<div class='foot no-items section' id='footer-2-2'></div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- outside of the include in order to lock Attribution widget -->
+<div class='foot no-items section' id='footer-3'></div>
+</div>
+</div>
+<div class='footer-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</footer>
+<!-- content -->
+</div>
+</div>
+<div class='content-cap-bottom cap-bottom'>
+<div class='cap-left'></div>
+<div class='cap-right'></div>
+</div>
+</div>
+</div>
+<script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace('loading', '');
+      }, 10);
+  </script>
+<script type='text/javascript'>
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-38095489-1']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script');
+          ga.type = 'text/javascript';
+          ga.async = true;
+          ga.src = (document.location.protocol == 'https:' ?
+                    'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+<script>
+//<![CDATA[
+window['PR_SHOULD_USE_CONTINUATION']=true;var prettyPrintOne;var prettyPrint;(function(){var win=window;var FLOW_CONTROL_KEYWORDS=["break,continue,do,else,for,if,return,while"];var C_KEYWORDS=[FLOW_CONTROL_KEYWORDS,"auto,case,char,const,default,"+"double,enum,extern,float,goto,int,long,register,short,signed,sizeof,"+"static,struct,switch,typedef,union,unsigned,void,volatile"];var COMMON_KEYWORDS=[C_KEYWORDS,"catch,class,delete,false,import,"+"new,operator,private,protected,public,this,throw,true,try,typeof"];var CPP_KEYWORDS=[COMMON_KEYWORDS,"alignof,align_union,asm,axiom,bool,"+"concept,concept_map,const_cast,constexpr,decltype,"+"dynamic_cast,explicit,export,friend,inline,late_check,"+"mutable,namespace,nullptr,reinterpret_cast,static_assert,static_cast,"+"template,typeid,typename,using,virtual,where"];var JAVA_KEYWORDS=[COMMON_KEYWORDS,"abstract,boolean,byte,extends,final,finally,implements,import,"+"instanceof,null,native,package,strictfp,super,synchronized,throws,"+"transient"];var CSHARP_KEYWORDS=[JAVA_KEYWORDS,"as,base,by,checked,decimal,delegate,descending,dynamic,event,"+"fixed,foreach,from,group,implicit,in,interface,internal,into,is,let,"+"lock,object,out,override,orderby,params,partial,readonly,ref,sbyte,"+"sealed,stackalloc,string,select,uint,ulong,unchecked,unsafe,ushort,"+"var,virtual,where"];var COFFEE_KEYWORDS="all,and,by,catch,class,else,extends,false,finally,"+"for,if,in,is,isnt,loop,new,no,not,null,of,off,on,or,return,super,then,"+"throw,true,try,unless,until,when,while,yes";var JSCRIPT_KEYWORDS=[COMMON_KEYWORDS,"debugger,eval,export,function,get,null,set,undefined,var,with,"+"Infinity,NaN"];var PERL_KEYWORDS="caller,delete,die,do,dump,elsif,eval,exit,foreach,for,"+"goto,if,import,last,local,my,next,no,our,print,package,redo,require,"+"sub,undef,unless,until,use,wantarray,while,BEGIN,END";var PYTHON_KEYWORDS=[FLOW_CONTROL_KEYWORDS,"and,as,assert,class,def,del,"+"elif,except,exec,finally,from,global,import,in,is,lambda,"+"nonlocal,not,or,pass,print,raise,try,with,yield,"+"False,True,None"];var RUBY_KEYWORDS=[FLOW_CONTROL_KEYWORDS,"alias,and,begin,case,class,"+"def,defined,elsif,end,ensure,false,in,module,next,nil,not,or,redo,"+"rescue,retry,self,super,then,true,undef,unless,until,when,yield,"+"BEGIN,END"];var SH_KEYWORDS=[FLOW_CONTROL_KEYWORDS,"case,done,elif,esac,eval,fi,"+"function,in,local,set,then,until"];var ALL_KEYWORDS=[CPP_KEYWORDS,CSHARP_KEYWORDS,JSCRIPT_KEYWORDS,PERL_KEYWORDS+PYTHON_KEYWORDS,RUBY_KEYWORDS,SH_KEYWORDS];var C_TYPES=/^(DIR|FILE|vector|(de|priority_)?queue|list|stack|(const_)?iterator|(multi)?(set|map)|bitset|u?(int|float)\d*)\b/;var PR_STRING='str';var PR_KEYWORD='kwd';var PR_COMMENT='com';var PR_TYPE='typ';var PR_LITERAL='lit';var PR_PUNCTUATION='pun';var PR_PLAIN='pln';var PR_TAG='tag';var PR_DECLARATION='dec';var PR_SOURCE='src';var PR_ATTRIB_NAME='atn';var PR_ATTRIB_VALUE='atv';var PR_NOCODE='nocode';var REGEXP_PRECEDER_PATTERN='(?:^^\\.?|[+-]|[!=]=?=?|\\#|%=?|&&?=?|\\(|\\*=?|[+\\-]=|->|\\/=?|::?|<<?=?|>>?>?=?|,|;|\\?|@|\\[|~|{|\\^\\^?=?|\\|\\|?=?|break|case|continue|delete|do|else|finally|instanceof|return|throw|try|typeof)\\s*';function combinePrefixPatterns(regexs){var capturedGroupIndex=0;var needToFoldCase=false;var ignoreCase=false;for(var i=0,n=regexs.length;i<n;++i){var regex=regexs[i];if(regex.ignoreCase){ignoreCase=true}else if(/[a-z]/i.test(regex.source.replace(/\\u[0-9a-f]{4}|\\x[0-9a-f]{2}|\\[^ux]/gi,''))){needToFoldCase=true;ignoreCase=false;break}}var escapeCharToCodeUnit={'b':8,'t':9,'n':0xa,'v':0xb,'f':0xc,'r':0xd};function decodeEscape(charsetPart){var cc0=charsetPart.charCodeAt(0);if(cc0!==92){return cc0}var c1=charsetPart.charAt(1);cc0=escapeCharToCodeUnit[c1];if(cc0){return cc0}else if('0'<=c1&&c1<='7'){return parseInt(charsetPart.substring(1),8)}else if(c1==='u'||c1==='x'){return parseInt(charsetPart.substring(2),16)}else{return charsetPart.charCodeAt(1)}}function encodeEscape(charCode){if(charCode<0x20){return(charCode<0x10?'\\x0':'\\x')+charCode.toString(16)}var ch=String.fromCharCode(charCode);return(ch==='\\'||ch==='-'||ch===']'||ch==='^')?"\\"+ch:ch}function caseFoldCharset(charSet){var charsetParts=charSet.substring(1,charSet.length-1).match(new RegExp('\\\\u[0-9A-Fa-f]{4}'+'|\\\\x[0-9A-Fa-f]{2}'+'|\\\\[0-3][0-7]{0,2}'+'|\\\\[0-7]{1,2}'+'|\\\\[\\s\\S]'+'|-'+'|[^-\\\\]','g'));var ranges=[];var inverse=charsetParts[0]==='^';var out=['['];if(inverse){out.push('^')}for(var i=inverse?1:0,n=charsetParts.length;i<n;++i){var p=charsetParts[i];if(/\\[bdsw]/i.test(p)){out.push(p)}else{var start=decodeEscape(p);var end;if(i+2<n&&'-'===charsetParts[i+1]){end=decodeEscape(charsetParts[i+2]);i+=2}else{end=start}ranges.push([start,end]);if(!(end<65||start>122)){if(!(end<65||start>90)){ranges.push([Math.max(65,start)|32,Math.min(end,90)|32])}if(!(end<97||start>122)){ranges.push([Math.max(97,start)&~32,Math.min(end,122)&~32])}}}}ranges.sort(function(a,b){return(a[0]-b[0])||(b[1]-a[1])});var consolidatedRanges=[];var lastRange=[];for(var i=0;i<ranges.length;++i){var range=ranges[i];if(range[0]<=lastRange[1]+1){lastRange[1]=Math.max(lastRange[1],range[1])}else{consolidatedRanges.push(lastRange=range)}}for(var i=0;i<consolidatedRanges.length;++i){var range=consolidatedRanges[i];out.push(encodeEscape(range[0]));if(range[1]>range[0]){if(range[1]+1>range[0]){out.push('-')}out.push(encodeEscape(range[1]))}}out.push(']');return out.join('')}function allowAnywhereFoldCaseAndRenumberGroups(regex){var parts=regex.source.match(new RegExp('(?:'+'\\[(?:[^\\x5C\\x5D]|\\\\[\\s\\S])*\\]'+'|\\\\u[A-Fa-f0-9]{4}'+'|\\\\x[A-Fa-f0-9]{2}'+'|\\\\[0-9]+'+'|\\\\[^ux0-9]'+'|\\(\\?[:!=]'+'|[\\(\\)\\^]'+'|[^\\x5B\\x5C\\(\\)\\^]+'+')','g'));var n=parts.length;var capturedGroups=[];for(var i=0,groupIndex=0;i<n;++i){var p=parts[i];if(p==='('){++groupIndex}else if('\\'===p.charAt(0)){var decimalValue=+p.substring(1);if(decimalValue){if(decimalValue<=groupIndex){capturedGroups[decimalValue]=-1}else{parts[i]=encodeEscape(decimalValue)}}}}for(var i=1;i<capturedGroups.length;++i){if(-1===capturedGroups[i]){capturedGroups[i]=++capturedGroupIndex}}for(var i=0,groupIndex=0;i<n;++i){var p=parts[i];if(p==='('){++groupIndex;if(!capturedGroups[groupIndex]){parts[i]='(?:'}}else if('\\'===p.charAt(0)){var decimalValue=+p.substring(1);if(decimalValue&&decimalValue<=groupIndex){parts[i]='\\'+capturedGroups[decimalValue]}}}for(var i=0;i<n;++i){if('^'===parts[i]&&'^'!==parts[i+1]){parts[i]=''}}if(regex.ignoreCase&&needToFoldCase){for(var i=0;i<n;++i){var p=parts[i];var ch0=p.charAt(0);if(p.length>=2&&ch0==='['){parts[i]=caseFoldCharset(p)}else if(ch0!=='\\'){parts[i]=p.replace(/[a-zA-Z]/g,function(ch){var cc=ch.charCodeAt(0);return'['+String.fromCharCode(cc&~32,cc|32)+']'})}}}return parts.join('')}var rewritten=[];for(var i=0,n=regexs.length;i<n;++i){var regex=regexs[i];if(regex.global||regex.multiline){throw new Error(''+regex);}rewritten.push('(?:'+allowAnywhereFoldCaseAndRenumberGroups(regex)+')')}return new RegExp(rewritten.join('|'),ignoreCase?'gi':'g')}function extractSourceSpans(node,isPreformatted){var nocode=/(?:^|\s)nocode(?:\s|$)/;var chunks=[];var length=0;var spans=[];var k=0;function walk(node){switch(node.nodeType){case 1:if(nocode.test(node.className)){return}for(var child=node.firstChild;child;child=child.nextSibling){walk(child)}var nodeName=node.nodeName.toLowerCase();if('br'===nodeName||'li'===nodeName){chunks[k]='\n';spans[k<<1]=length++;spans[(k++<<1)|1]=node}break;case 3:case 4:var text=node.nodeValue;if(text.length){if(!isPreformatted){text=text.replace(/[ \t\r\n]+/g,' ')}else{text=text.replace(/\r\n?/g,'\n')}chunks[k]=text;spans[k<<1]=length;length+=text.length;spans[(k++<<1)|1]=node}break}}walk(node);return{sourceCode:chunks.join('').replace(/\n$/,''),spans:spans}}function appendDecorations(basePos,sourceCode,langHandler,out){if(!sourceCode){return}var job={sourceCode:sourceCode,basePos:basePos};langHandler(job);out.push.apply(out,job.decorations)}var notWs=/\S/;function childContentWrapper(element){var wrapper=undefined;for(var c=element.firstChild;c;c=c.nextSibling){var type=c.nodeType;wrapper=(type===1)?(wrapper?element:c):(type===3)?(notWs.test(c.nodeValue)?element:wrapper):wrapper}return wrapper===element?undefined:wrapper}function createSimpleLexer(shortcutStylePatterns,fallthroughStylePatterns){var shortcuts={};var tokenizer;(function(){var allPatterns=shortcutStylePatterns.concat(fallthroughStylePatterns);var allRegexs=[];var regexKeys={};for(var i=0,n=allPatterns.length;i<n;++i){var patternParts=allPatterns[i];var shortcutChars=patternParts[3];if(shortcutChars){for(var c=shortcutChars.length;--c>=0;){shortcuts[shortcutChars.charAt(c)]=patternParts}}var regex=patternParts[1];var k=''+regex;if(!regexKeys.hasOwnProperty(k)){allRegexs.push(regex);regexKeys[k]=null}}allRegexs.push(/[\0-\uffff]/);tokenizer=combinePrefixPatterns(allRegexs)})();var nPatterns=fallthroughStylePatterns.length;var decorate=function(job){var sourceCode=job.sourceCode,basePos=job.basePos;var decorations=[basePos,PR_PLAIN];var pos=0;var tokens=sourceCode.match(tokenizer)||[];var styleCache={};for(var ti=0,nTokens=tokens.length;ti<nTokens;++ti){var token=tokens[ti];var style=styleCache[token];var match=void 0;var isEmbedded;if(typeof style==='string'){isEmbedded=false}else{var patternParts=shortcuts[token.charAt(0)];if(patternParts){match=token.match(patternParts[1]);style=patternParts[0]}else{for(var i=0;i<nPatterns;++i){patternParts=fallthroughStylePatterns[i];match=token.match(patternParts[1]);if(match){style=patternParts[0];break}}if(!match){style=PR_PLAIN}}isEmbedded=style.length>=5&&'lang-'===style.substring(0,5);if(isEmbedded&&!(match&&typeof match[1]==='string')){isEmbedded=false;style=PR_SOURCE}if(!isEmbedded){styleCache[token]=style}}var tokenStart=pos;pos+=token.length;if(!isEmbedded){decorations.push(basePos+tokenStart,style)}else{var embeddedSource=match[1];var embeddedSourceStart=token.indexOf(embeddedSource);var embeddedSourceEnd=embeddedSourceStart+embeddedSource.length;if(match[2]){embeddedSourceEnd=token.length-match[2].length;embeddedSourceStart=embeddedSourceEnd-embeddedSource.length}var lang=style.substring(5);appendDecorations(basePos+tokenStart,token.substring(0,embeddedSourceStart),decorate,decorations);appendDecorations(basePos+tokenStart+embeddedSourceStart,embeddedSource,langHandlerForExtension(lang,embeddedSource),decorations);appendDecorations(basePos+tokenStart+embeddedSourceEnd,token.substring(embeddedSourceEnd),decorate,decorations)}}job.decorations=decorations};return decorate}function sourceDecorator(options){var shortcutStylePatterns=[],fallthroughStylePatterns=[];if(options['tripleQuotedStrings']){shortcutStylePatterns.push([PR_STRING,/^(?:\'\'\'(?:[^\'\\]|\\[\s\S]|\'{1,2}(?=[^\']))*(?:\'\'\'|$)|\"\"\"(?:[^\"\\]|\\[\s\S]|\"{1,2}(?=[^\"]))*(?:\"\"\"|$)|\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$))/,null,'\'"'])}else if(options['multiLineStrings']){shortcutStylePatterns.push([PR_STRING,/^(?:\'(?:[^\\\']|\\[\s\S])*(?:\'|$)|\"(?:[^\\\"]|\\[\s\S])*(?:\"|$)|\`(?:[^\\\`]|\\[\s\S])*(?:\`|$))/,null,'\'"`'])}else{shortcutStylePatterns.push([PR_STRING,/^(?:\'(?:[^\\\'\r\n]|\\.)*(?:\'|$)|\"(?:[^\\\"\r\n]|\\.)*(?:\"|$))/,null,'"\''])}if(options['verbatimStrings']){fallthroughStylePatterns.push([PR_STRING,/^@\"(?:[^\"]|\"\")*(?:\"|$)/,null])}var hc=options['hashComments'];if(hc){if(options['cStyleComments']){if(hc>1){shortcutStylePatterns.push([PR_COMMENT,/^#(?:##(?:[^#]|#(?!##))*(?:###|$)|.*)/,null,'#'])}else{shortcutStylePatterns.push([PR_COMMENT,/^#(?:(?:define|e(?:l|nd)if|else|error|ifn?def|include|line|pragma|undef|warning)\b|[^\r\n]*)/,null,'#'])}fallthroughStylePatterns.push([PR_STRING,/^<(?:(?:(?:\.\.\/)*|\/?)(?:[\w-]+(?:\/[\w-]+)+)?[\w-]+\.h(?:h|pp|\+\+)?|[a-z]\w*)>/,null])}else{shortcutStylePatterns.push([PR_COMMENT,/^#[^\r\n]*/,null,'#'])}}if(options['cStyleComments']){fallthroughStylePatterns.push([PR_COMMENT,/^\/\/[^\r\n]*/,null]);fallthroughStylePatterns.push([PR_COMMENT,/^\/\*[\s\S]*?(?:\*\/|$)/,null])}if(options['regexLiterals']){var REGEX_LITERAL=('/(?=[^/*])'+'(?:[^/\\x5B\\x5C]'+'|\\x5C[\\s\\S]'+'|\\x5B(?:[^\\x5C\\x5D]|\\x5C[\\s\\S])*(?:\\x5D|$))+'+'/');fallthroughStylePatterns.push(['lang-regex',new RegExp('^'+REGEXP_PRECEDER_PATTERN+'('+REGEX_LITERAL+')')])}var types=options['types'];if(types){fallthroughStylePatterns.push([PR_TYPE,types])}var keywords=(""+options['keywords']).replace(/^ | $/g,'');if(keywords.length){fallthroughStylePatterns.push([PR_KEYWORD,new RegExp('^(?:'+keywords.replace(/[\s,]+/g,'|')+')\\b'),null])}shortcutStylePatterns.push([PR_PLAIN,/^\s+/,null,' \r\n\t\xA0']);var punctuation=/^.[^\s\w\.$@\'\"\`\/\\]*/;fallthroughStylePatterns.push([PR_LITERAL,/^@[a-z_$][a-z_$@0-9]*/i,null],[PR_TYPE,/^(?:[@_]?[A-Z]+[a-z][A-Za-z_$@0-9]*|\w+_t\b)/,null],[PR_PLAIN,/^[a-z_$][a-z_$@0-9]*/i,null],[PR_LITERAL,new RegExp('^(?:'+'0x[a-f0-9]+'+'|(?:\\d(?:_\\d+)*\\d*(?:\\.\\d*)?|\\.\\d\\+)'+'(?:e[+\\-]?\\d+)?'+')'+'[a-z]*','i'),null,'0123456789'],[PR_PLAIN,/^\\[\s\S]?/,null],[PR_PUNCTUATION,punctuation,null]);return createSimpleLexer(shortcutStylePatterns,fallthroughStylePatterns)}var decorateSource=sourceDecorator({'keywords':ALL_KEYWORDS,'hashComments':true,'cStyleComments':true,'multiLineStrings':true,'regexLiterals':true});function numberLines(node,opt_startLineNum,isPreformatted){var nocode=/(?:^|\s)nocode(?:\s|$)/;var lineBreak=/\r\n?|\n/;var document=node.ownerDocument;var li=document.createElement('li');while(node.firstChild){li.appendChild(node.firstChild)}var listItems=[li];function walk(node){switch(node.nodeType){case 1:if(nocode.test(node.className)){break}if('br'===node.nodeName){breakAfter(node);if(node.parentNode){node.parentNode.removeChild(node)}}else{for(var child=node.firstChild;child;child=child.nextSibling){walk(child)}}break;case 3:case 4:if(isPreformatted){var text=node.nodeValue;var match=text.match(lineBreak);if(match){var firstLine=text.substring(0,match.index);node.nodeValue=firstLine;var tail=text.substring(match.index+match[0].length);if(tail){var parent=node.parentNode;parent.insertBefore(document.createTextNode(tail),node.nextSibling)}breakAfter(node);if(!firstLine){node.parentNode.removeChild(node)}}}break}}function breakAfter(lineEndNode){while(!lineEndNode.nextSibling){lineEndNode=lineEndNode.parentNode;if(!lineEndNode){return}}function breakLeftOf(limit,copy){var rightSide=copy?limit.cloneNode(false):limit;var parent=limit.parentNode;if(parent){var parentClone=breakLeftOf(parent,1);var next=limit.nextSibling;parentClone.appendChild(rightSide);for(var sibling=next;sibling;sibling=next){next=sibling.nextSibling;parentClone.appendChild(sibling)}}return rightSide}var copiedListItem=breakLeftOf(lineEndNode.nextSibling,0);for(var parent;(parent=copiedListItem.parentNode)&&parent.nodeType===1;){copiedListItem=parent}listItems.push(copiedListItem)}for(var i=0;i<listItems.length;++i){walk(listItems[i])}if(opt_startLineNum===(opt_startLineNum|0)){listItems[0].setAttribute('value',opt_startLineNum)}var ol=document.createElement('ol');ol.className='linenums';var offset=Math.max(0,((opt_startLineNum-1))|0)||0;for(var i=0,n=listItems.length;i<n;++i){li=listItems[i];li.className='L'+((i+offset)%10);if(!li.firstChild){li.appendChild(document.createTextNode('\xA0'))}ol.appendChild(li)}node.appendChild(ol)}function recombineTagsAndDecorations(job){var isIE8OrEarlier=/\bMSIE\s(\d+)/.exec(navigator.userAgent);isIE8OrEarlier=isIE8OrEarlier&&+isIE8OrEarlier[1]<=8;var newlineRe=/\n/g;var source=job.sourceCode;var sourceLength=source.length;var sourceIndex=0;var spans=job.spans;var nSpans=spans.length;var spanIndex=0;var decorations=job.decorations;var nDecorations=decorations.length;var decorationIndex=0;decorations[nDecorations]=sourceLength;var decPos,i;for(i=decPos=0;i<nDecorations;){if(decorations[i]!==decorations[i+2]){decorations[decPos++]=decorations[i++];decorations[decPos++]=decorations[i++]}else{i+=2}}nDecorations=decPos;for(i=decPos=0;i<nDecorations;){var startPos=decorations[i];var startDec=decorations[i+1];var end=i+2;while(end+2<=nDecorations&&decorations[end+1]===startDec){end+=2}decorations[decPos++]=startPos;decorations[decPos++]=startDec;i=end}nDecorations=decorations.length=decPos;var sourceNode=job.sourceNode;var oldDisplay;if(sourceNode){oldDisplay=sourceNode.style.display;sourceNode.style.display='none'}try{var decoration=null;while(spanIndex<nSpans){var spanStart=spans[spanIndex];var spanEnd=spans[spanIndex+2]||sourceLength;var decEnd=decorations[decorationIndex+2]||sourceLength;var end=Math.min(spanEnd,decEnd);var textNode=spans[spanIndex+1];var styledText;if(textNode.nodeType!==1&&(styledText=source.substring(sourceIndex,end))){if(isIE8OrEarlier){styledText=styledText.replace(newlineRe,'\r')}textNode.nodeValue=styledText;var document=textNode.ownerDocument;var span=document.createElement('span');span.className=decorations[decorationIndex+1];var parentNode=textNode.parentNode;parentNode.replaceChild(span,textNode);span.appendChild(textNode);if(sourceIndex<spanEnd){spans[spanIndex+1]=textNode=document.createTextNode(source.substring(end,spanEnd));parentNode.insertBefore(textNode,span.nextSibling)}}sourceIndex=end;if(sourceIndex>=spanEnd){spanIndex+=2}if(sourceIndex>=decEnd){decorationIndex+=2}}}finally{if(sourceNode){sourceNode.style.display=oldDisplay}}}var langHandlerRegistry={};function registerLangHandler(handler,fileExtensions){for(var i=fileExtensions.length;--i>=0;){var ext=fileExtensions[i];if(!langHandlerRegistry.hasOwnProperty(ext)){langHandlerRegistry[ext]=handler}else if(win['console']){console['warn']('cannot override language handler %s',ext)}}}function langHandlerForExtension(extension,source){if(!(extension&&langHandlerRegistry.hasOwnProperty(extension))){extension=/^\s*</.test(source)?'default-markup':'default-code'}return langHandlerRegistry[extension]}registerLangHandler(decorateSource,['default-code']);registerLangHandler(createSimpleLexer([],[[PR_PLAIN,/^[^<?]+/],[PR_DECLARATION,/^<!\w[^>]*(?:>|$)/],[PR_COMMENT,/^<\!--[\s\S]*?(?:-\->|$)/],['lang-',/^<\?([\s\S]+?)(?:\?>|$)/],['lang-',/^<%([\s\S]+?)(?:%>|$)/],[PR_PUNCTUATION,/^(?:<[%?]|[%?]>)/],['lang-',/^<xmp\b[^>]*>([\s\S]+?)<\/xmp\b[^>]*>/i],['lang-js',/^<script\b[^>]*>([\s\S]*?)(<\/script\b[^>]*>)/i],['lang-css',/^<style\b[^>]*>([\s\S]*?)(<\/style\b[^>]*>)/i],['lang-in.tag',/^(<\/?[a-z][^<>]*>)/i]]),['default-markup','htm','html','mxml','xhtml','xml','xsl']);registerLangHandler(createSimpleLexer([[PR_PLAIN,/^[\s]+/,null,' \t\r\n'],[PR_ATTRIB_VALUE,/^(?:\"[^\"]*\"?|\'[^\']*\'?)/,null,'\"\'']],[[PR_TAG,/^^<\/?[a-z](?:[\w.:-]*\w)?|\/?>$/i],[PR_ATTRIB_NAME,/^(?!style[\s=]|on)[a-z](?:[\w:-]*\w)?/i],['lang-uq.val',/^=\s*([^>\'\"\s]*(?:[^>\'\"\s\/]|\/(?=\s)))/],[PR_PUNCTUATION,/^[=<>\/]+/],['lang-js',/^on\w+\s*=\s*\"([^\"]+)\"/i],['lang-js',/^on\w+\s*=\s*\'([^\']+)\'/i],['lang-js',/^on\w+\s*=\s*([^\"\'>\s]+)/i],['lang-css',/^style\s*=\s*\"([^\"]+)\"/i],['lang-css',/^style\s*=\s*\'([^\']+)\'/i],['lang-css',/^style\s*=\s*([^\"\'>\s]+)/i]]),['in.tag']);registerLangHandler(createSimpleLexer([],[[PR_ATTRIB_VALUE,/^[\s\S]+/]]),['uq.val']);registerLangHandler(sourceDecorator({'keywords':CPP_KEYWORDS,'hashComments':true,'cStyleComments':true,'types':C_TYPES}),['c','cc','cpp','cxx','cyc','m']);registerLangHandler(sourceDecorator({'keywords':'null,true,false'}),['json']);registerLangHandler(sourceDecorator({'keywords':CSHARP_KEYWORDS,'hashComments':true,'cStyleComments':true,'verbatimStrings':true,'types':C_TYPES}),['cs']);registerLangHandler(sourceDecorator({'keywords':JAVA_KEYWORDS,'cStyleComments':true}),['java']);registerLangHandler(sourceDecorator({'keywords':SH_KEYWORDS,'hashComments':true,'multiLineStrings':true}),['bsh','csh','sh']);registerLangHandler(sourceDecorator({'keywords':PYTHON_KEYWORDS,'hashComments':true,'multiLineStrings':true,'tripleQuotedStrings':true}),['cv','py']);registerLangHandler(sourceDecorator({'keywords':PERL_KEYWORDS,'hashComments':true,'multiLineStrings':true,'regexLiterals':true}),['perl','pl','pm']);registerLangHandler(sourceDecorator({'keywords':RUBY_KEYWORDS,'hashComments':true,'multiLineStrings':true,'regexLiterals':true}),['rb']);registerLangHandler(sourceDecorator({'keywords':JSCRIPT_KEYWORDS,'cStyleComments':true,'regexLiterals':true}),['js']);registerLangHandler(sourceDecorator({'keywords':COFFEE_KEYWORDS,'hashComments':3,'cStyleComments':true,'multilineStrings':true,'tripleQuotedStrings':true,'regexLiterals':true}),['coffee']);registerLangHandler(createSimpleLexer([],[[PR_STRING,/^[\s\S]+/]]),['regex']);function applyDecorator(job){var opt_langExtension=job.langExtension;try{var sourceAndSpans=extractSourceSpans(job.sourceNode,job.pre);var source=sourceAndSpans.sourceCode;job.sourceCode=source;job.spans=sourceAndSpans.spans;job.basePos=0;langHandlerForExtension(opt_langExtension,source)(job);recombineTagsAndDecorations(job)}catch(e){if(win['console']){console['log'](e&&e['stack']?e['stack']:e)}}}function prettyPrintOne(sourceCodeHtml,opt_langExtension,opt_numberLines){var container=document.createElement('pre');container.innerHTML=sourceCodeHtml;if(opt_numberLines){numberLines(container,opt_numberLines,true)}var job={langExtension:opt_langExtension,numberLines:opt_numberLines,sourceNode:container,pre:1};applyDecorator(job);return container.innerHTML}function prettyPrint(opt_whenDone){function byTagName(tn){return document.getElementsByTagName(tn)}var codeSegments=[byTagName('pre'),byTagName('code'),byTagName('xmp')];var elements=[];for(var i=0;i<codeSegments.length;++i){for(var j=0,n=codeSegments[i].length;j<n;++j){elements.push(codeSegments[i][j])}}codeSegments=null;var clock=Date;if(!clock['now']){clock={'now':function(){return+(new Date)}}}var k=0;var prettyPrintingJob;var langExtensionRe=/\blang(?:uage)?-([\w.]+)(?!\S)/;var prettyPrintRe=/\bprettyprint\b/;var prettyPrintedRe=/\bprettyprinted\b/;var preformattedTagNameRe=/pre|xmp/i;var codeRe=/^code$/i;var preCodeXmpRe=/^(?:pre|code|xmp)$/i;function doWork(){var endTime=(win['PR_SHOULD_USE_CONTINUATION']?clock['now']()+250:Infinity);for(;k<elements.length&&clock['now']()<endTime;k++){var cs=elements[k];var className=cs.className;if(prettyPrintRe.test(className)&&!prettyPrintedRe.test(className)){var nested=false;for(var p=cs.parentNode;p;p=p.parentNode){var tn=p.tagName;if(preCodeXmpRe.test(tn)&&p.className&&prettyPrintRe.test(p.className)){nested=true;break}}if(!nested){cs.className+=' prettyprinted';var langExtension=className.match(langExtensionRe);var wrapper;if(!langExtension&&(wrapper=childContentWrapper(cs))&&codeRe.test(wrapper.tagName)){langExtension=wrapper.className.match(langExtensionRe)}if(langExtension){langExtension=langExtension[1]}var preformatted;if(preformattedTagNameRe.test(cs.tagName)){preformatted=1}else{var currentStyle=cs['currentStyle'];var whitespace=(currentStyle?currentStyle['whiteSpace']:(document.defaultView&&document.defaultView.getComputedStyle)?document.defaultView.getComputedStyle(cs,null).getPropertyValue('white-space'):0);preformatted=whitespace&&'pre'===whitespace.substring(0,3)}var lineNums=cs.className.match(/\blinenums\b(?::(\d+))?/);lineNums=lineNums?lineNums[1]&&lineNums[1].length?+lineNums[1]:true:false;if(lineNums){numberLines(cs,lineNums,preformatted)}prettyPrintingJob={langExtension:langExtension,sourceNode:cs,numberLines:lineNums,pre:preformatted};applyDecorator(prettyPrintingJob)}}}if(k<elements.length){setTimeout(doWork,250)}else if(opt_whenDone){opt_whenDone()}}doWork()}var PR=win['PR']={'createSimpleLexer':createSimpleLexer,'registerLangHandler':registerLangHandler,'sourceDecorator':sourceDecorator,'PR_ATTRIB_NAME':PR_ATTRIB_NAME,'PR_ATTRIB_VALUE':PR_ATTRIB_VALUE,'PR_COMMENT':PR_COMMENT,'PR_DECLARATION':PR_DECLARATION,'PR_KEYWORD':PR_KEYWORD,'PR_LITERAL':PR_LITERAL,'PR_NOCODE':PR_NOCODE,'PR_PLAIN':PR_PLAIN,'PR_PUNCTUATION':PR_PUNCTUATION,'PR_SOURCE':PR_SOURCE,'PR_STRING':PR_STRING,'PR_TAG':PR_TAG,'PR_TYPE':PR_TYPE,'prettyPrintOne':win['prettyPrintOne']=prettyPrintOne,'prettyPrint':win['prettyPrint']=prettyPrint};if(typeof define==="function"&&define['amd']){define("google-code-prettify",[],function(){return PR})}})();
+//]]>
+</script>
+<script>
+prettyPrint();
+</script>
+
+
+<!-- 'Αποτελεί δική σας ευθύνη να ενημερώσετε τους επισκέπτες σχετικά με τα cookie που χρησιμοποιούνται στο ιστολόγιο. Ανατρέξτε στη διεύθυνση http://www.blogger.com/go/cookiechoices για περισσότερες λεπτομέρειες.' -->
+<script src="/js/cookiechoices.js" defer></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function(event) {
+    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
+        (window.cookieOptions && cookieOptions.msg) || 'Αυτός ο ιστότοπος χρησιμοποιεί cookie από το Google για την παροχή των υπηρεσιών του, για την εξατομίκευση διαφημίσεων και για την ανάλυση της επισκεψιμότητας. Η Google κοινοποιεί πληροφορίες σχετικά με την από μέρους σας χρήση αυτού του ιστότοπου. Με τη χρήση αυτού του ιστότοπου, αποδέχεστε τη χρήση των cookie.',
+        (window.cookieOptions && cookieOptions.close) || 'Έγινε',
+        (window.cookieOptions && cookieOptions.learn) || 'Μάθετε Περισσότερα',
+        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
+  });
+</script>
+
+<script type="text/javascript" src="https://www.blogger.com/static/v1/widgets/1045850488-widgets.js"></script>
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+<script type='text/javascript'>
+_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d7620301364506750761','//www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html','7620301364506750761');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '7620301364506750761', 'bloggerUrl': 'https://www.blogger.com', 'title': 'Nowhere Near Ithaca', 'pageType': 'item', 'postId': '4739099319381019739', 'url': 'http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html', 'canonicalUrl': 'http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html', 'homepageUrl': 'http://www.nowherenearithaca.com/', 'searchUrl': 'http://www.nowherenearithaca.com/search', 'canonicalHomepageUrl': 'http://www.nowherenearithaca.com/', 'blogspotFaviconUrl': 'http://www.nowherenearithaca.com/favicon.ico', 'enabledCommentProfileImages': true, 'adultContent': false, 'analyticsAccountNumber': 'UA-38095489-1', 'useUniversalAnalytics': false, 'pageName': 'Javascript \x22Prototype\x22 Confusion, and the Dubiously Useful \x22instanceof\x22', 'pageTitle': 'Nowhere Near Ithaca: Javascript \x22Prototype\x22 Confusion, and the Dubiously Useful \x22instanceof\x22', 'encoding': 'UTF-8', 'locale': 'en', 'localeUnderscoreDelimited': 'en', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'languageDirection': 'ltr', 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Nowhere Near Ithaca - Atom\x22 href\x3d\x22http://www.nowherenearithaca.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Nowhere Near Ithaca - RSS\x22 href\x3d\x22http://www.nowherenearithaca.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Nowhere Near Ithaca - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/7620301364506750761/posts/default\x22 /\x3e\n\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Nowhere Near Ithaca - Atom\x22 href\x3d\x22http://www.nowherenearithaca.com/feeds/4739099319381019739/comments/default\x22 /\x3e\n', 'meTag': '', 'openIdOpTag': '', 'postImageThumbnailUrl': 'http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s72-c/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png', 'postImageUrl': 'http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s1600/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png', 'mobileHeadScript': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'ieCssRetrofitLinks': '\x3c!--[if IE]\x3e\x3cscript type\x3d\x22text/javascript\x22 src\x3d\x22https://www.blogger.com/static/v1/jsbin/1803938243-ieretrofit.js\x22\x3e\x3c/script\x3e\n\x3c![endif]--\x3e', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/b1f29a73a8a0bdce', 'plusOneApiSrc': 'https://apis.google.com/js/plusone.js', 'sharing': {'platforms': [{'name': 'Get link', 'key': 'link', 'shareMessage': 'Get link', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Share to Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Share to Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Share to Pinterest', 'target': 'pinterest'}, {'name': 'Google+', 'key': 'googlePlus', 'shareMessage': 'Share to Google+', 'target': 'googleplus'}, {'name': 'Email', 'key': 'email', 'shareMessage': 'Email', 'target': 'email'}], 'googlePlusShareButtonWidth': 300, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27en\x27};\x3c/script\x3e'}}}, {'name': 'features', 'data': {'euCookieNotice': true, 'templateBrowserTheme': true, 'widgetVisibility': true}}, {'name': 'messages', 'data': {'adsGoHere': 'Ads go here', 'archive': 'Archive', 'authorSaid': '%1 said...', 'authorSaidWithLink': '\x3ca href\x3d\x22%2\x22 rel\x3d\x22nofollow\x22\x3e%1\x3c/a\x3e said...', 'blogArchive': 'Blog Archive', 'by': 'By', 'byAuthor': 'By %1', 'byAuthorLink': 'By \x3ca href\x3d\x22%2\x22\x3e%1\x3c/a\x3e', 'comments': 'Comments', 'configurationRequired': 'Configuration required', 'deleteBacklink': 'Delete Backlink', 'deleteComment': 'Delete Comment', 'edit': 'Edit', 'euCookieNotice': 'This site uses cookies from Google to deliver its services, to personalize ads and to analyze traffic. Information about your use of this site is shared with Google. By using this site, you agree to its use of cookies.', 'euCookieResponsibility': 'It is your responsibility to notify your visitors about cookies used on your blog. See http://www.blogger.com/go/cookiechoices for more details.', 'emailAddress': 'Email Address', 'getEmailNotifications': 'Get email notifications', 'gotIt': 'Got it', 'hidden': 'Hidden', 'home': 'Home', 'joinTheConversation': 'Join the conversation', 'keepReading': 'Keep reading', 'labels': 'Labels', 'latestPosts': 'Latest Posts', 'learnMore': 'Learn More', 'loadMorePosts': 'Load more posts', 'loading': 'Loading...', 'myBlogList': 'My Blog List', 'myFavoriteSites': 'My favorite sites', 'myPhoto': 'My photo', 'newer': 'Newer', 'newerPosts': 'Newer Posts', 'newest': 'Newest', 'noResultsFound': 'No results found', 'noTitle': 'No title', 'numberOfComments': '{numComments, plural, \x3d0 {No comments} \x3d1 {1 comment} other {# comments}}', 'older': 'Older', 'olderPosts': 'Older Posts', 'oldest': 'Oldest', 'onlyTeamMembersCanComment': 'Note: Only a member of this blog may post a comment.', 'popularPosts': 'Popular Posts', 'popularPostsFromThisBlog': 'Popular posts from this blog', 'postAComment': 'Post a Comment', 'postedBy': 'Posted by', 'postedByAuthor': 'Posted by %1', 'postedByAuthorLink': 'Posted by \x3ca href\x3d\x22%2\x22\x3e%1\x3c/a\x3e', 'readMore': 'Read more', 'recentPosts': 'Recent posts', 'reportAbuse': 'Report Abuse', 'search': 'Search', 'searchBlog': 'Search blog', 'share': 'Share', 'showAll': 'Show all', 'showLess': 'Show less', 'showMore': 'Show more', 'someOfMyFavoriteSites': 'Some of my favorite sites', 'subscribe': 'Subscribe', 'subscribeTo': 'Subscribe to:', 'subscribeToThisBlog': 'Subscribe to this blog', 'theresNothingHere': 'There\x27s nothing here!', 'viewAll': 'View all', 'visible': 'Visible', 'visitProfile': 'Visit profile', 'widgetNotAvailableInPreview': 'This content is not available in blog preview.', 'widgetNotAvailableOnHttps': 'This content is not yet available over encrypted connections.'}}, {'name': 'skin', 'data': {'vars': {'post_footer_background_color': '#f9f9f9', 'tabs_text_color': '#999999', 'content_shadow_spread': '40px', 'date_header_letterspacing': 'inherit', 'body_background_override': '', 'body_background': '#f0f0f0 none repeat scroll top left', 'description_text_size': '140%', 'mobile_background_size': 'auto', 'header_shadow_spread': '1px', 'image_border_color': '#eeeeee', 'date_header_color': '#222222', 'header_shadow_offset_top': '-1px', 'header_border_horizontalsize': '0', 'widget_title_font': 'normal bold 11px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'tabs_border_color': '#eeeeee', 'tabs_bevel_border_width': '1px', 'body_background_gradient_tile': 'url(http://www.blogblog.com/1kt/simple/body_gradient_tile_light.png)', 'description_text_color': '#777777', 'main_section_margin': '15px', 'post_title_font': 'normal bold 24px Georgia, Utopia, \x27Palatino Linotype\x27, Palatino, serif', 'page_width': 'auto', 'paging_background': 'transparent none no-repeat scroll top center', 'body_text_color': '#222222', 'content_padding': '10px', 'header_background_gradient': 'none', 'post_margin_bottom': '25px', 'header_shadow_offset_left': '-1px', 'tabs_background_color': '#f5f5f5', 'content_background_color': '#ffffff', 'body_background_gradient_cap': 'url(http://www.blogblog.com/1kt/simple/gradients_light.png)', 'main_padding_top': '30px', 'widget_alternate_text_color': '#999999', 'image_text_color': '#222222', 'link_visited_color': '#888888', 'tabs_margin_side': '30px', 'image_border_large_size': '5px', 'content_shadow_spread_webkit': '5px', 'mobile_button_color': '#ffffff', 'tabs_selected_text_color': '#000000', 'main_border_width': '0', 'content_background_color_selector': '.content-inner', 'link_color': '#2288bb', 'post_footer_border_color': '#eeeeee', 'tabs_background_gradient': 'url(http://www.blogblog.com/1kt/simple/gradients_light.png)', 'content_padding_horizontal': '10px', 'header_font': 'italic normal 60px Georgia, Utopia, \x27Palatino Linotype\x27, Palatino, serif', 'startSide': 'left', 'tabs_font': 'normal normal 14px Arial, Tahoma, Helvetica, FreeSans, sans-serif', 'widget_title_text_color': '#000000', 'header_border_size': '1px', 'tabs_selected_background_color': '#eeeeee', 'date_header_margin': 'inherit', 'footer_bevel': '0', 'image_border_small_size': '2px', 'content_shadow_spread_ie': '10px', 'mobile_background_overlay': 'transparent none repeat scroll top left', 'endSide': 'right', 'image_background_color': '#ffffff', 'body_rule_color': '#eeeeee', 'header_bottom_border_size': '1px', 'date_header_padding': 'inherit', 'page_width_selector': '.region-inner', 'body_background_color': '#f0f0f0', 'header_text_color': '#000000', 'main_padding': '15px', 'date_header_background_color': 'transparent', 'tabs_border_width': '1px', 'body_font': 'normal normal 14px Georgia, Utopia, \x27Palatino Linotype\x27, Palatino, serif', 'link_hover_color': '#33aaff', 'header_background_color': 'transparent', 'keycolor': '#66bbdd', 'main_padding_bottom': '30px', 'post_footer_text_color': '#666666', 'tabs_margin_top': '0', 'header_padding': '15px'}, 'override': '.descriptionwrapper {\n  margin-bottom:5px !important;\n}\n\n\n.Header h1 {\n margin-bottom:2px !important;\n}\n\n.titlewrapper {\n line-height:1.01 !important;\npadding-bottom:1px !important;\n}\n\n.main-inner {\n  padding-top:5px !important;\n}\n\n.post-title {\n  margin-top:5px !important;\n}'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Custom', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'title': 'Javascript \x22Prototype\x22 Confusion, and the Dubiously Useful \x22instanceof\x22', 'description': '             Recently, I became aware that I was more confused than I realized regarding javascript\x26#39;s use of the word \x26quot;prototype\x26qu...', 'featuredImage': 'http://3.bp.blogspot.com/-6DxZ4q1TjVY/VN7J4aym7zI/AAAAAAAACjE/1BpYZ28BG40/s1600/Screen%2BShot%2B2015-02-13%2Bat%2B11.03.58%2BPM.png', 'url': 'http://www.nowherenearithaca.com/2015/02/javascript-prototype-confusion-and.html', 'type': 'item', 'isPage': false, 'isPost': true, 'isHomepage': false, 'isArchive': false, 'isSearch': false, 'postId': 4739099319381019739}}]);
+_WidgetManager._RegisterWidget('_NavbarView', new _WidgetInfo('Navbar1', 'navbar', null, document.getElementById('Navbar1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_HeaderView', new _WidgetInfo('Header1', 'header', null, document.getElementById('Header1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_BlogView', new _WidgetInfo('Blog1', 'main', null, document.getElementById('Blog1'), {'cmtInteractionsEnabled': false, 'showBacklinks': true, 'postId': '4739099319381019739', 'legacyCommentModerationUrl': 'https://www.blogger.com/moderate-legacy-comment.g?blogID\x3d7620301364506750761', 'iframeCommentsId': 'gpluscomments', 'viewType': 'FILTERED_POSTMOD', 'lightboxEnabled': true, 'lightboxModuleUrl': 'https://www.blogger.com/static/v1/jsbin/2318976799-lbx.js', 'lightboxCssUrl': 'https://www.blogger.com/static/v1/v-css/368954415-lightbox_bundle.css'}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_PopularPostsView', new _WidgetInfo('PopularPosts1', 'main', null, document.getElementById('PopularPosts1'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_TextView', new _WidgetInfo('Text2', 'sidebar-right-1', null, document.getElementById('Text2'), {}, 'displayModeFull'));
+_WidgetManager._RegisterWidget('_LabelView', new _WidgetInfo('Label1', 'sidebar-right-1', null, document.getElementById('Label1'), {}, 'displayModeFull'));
+</script>
+</body>
+</html>

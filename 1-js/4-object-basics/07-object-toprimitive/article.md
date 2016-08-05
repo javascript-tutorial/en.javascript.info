@@ -16,15 +16,15 @@ The conversion of an object to primitive value (a number or a string) is a rare 
 
 Just think about cases when such conversion may be necessary. For instance, numeric conversion happens when we compare an object against a primitive: `user > 18`. But what such comparison actually means? Are we going to compare `18` against user's age? Then it would be more obvious to write `user.age > 18`. And it's easier to read and understand it too.
 
-Or, for a string conversion... Where does it happen? Usually, when we output an object. But simple ways of object-as-string output like `alert(user)` are only used for debugging and logging purposes. For real stuff, the output is more complicated, we may need to provide it additional parameters. That's why we usually implement it using object methods like `user.format()` or even in more advanced ways.
+Or, for a string conversion... Where does it happen? Usually, when we output an object. But simple ways of object-as-string output like `alert(user)` are only used for debugging and logging purposes. For real stuff, the output is more complicated, we may need to configure it with additional parameters. That's why it is usually implemented with object methods like `user.format()` or even in more advanced ways.
 
 So, most of the time, it's more flexible and gives more readable code to explicitly write an object property or call a method than rely on the conversion.
 
 That said, there are still valid reasons why we should know how to-primitive conversion works.
 
-- Simple object-as-string output may be useable sometimes. Without a customized conversion it will show `[object Object]`.
+- Simple object-as-string output may be useable sometimes.
 - Many built-in objects implement their own to-primitive conversion, we plan to cover that.
-- Sometimes it just happens (on mistake?), and we should understand what's going on.
+- Sometimes an unexpected conversion happens, and we should understand what's going on.
 - Okay, the final one. There are quizzes and questions on interviews that rely on that knowledge. Looks like people think it's a good sigh that person understands Javascript if he knows type conversions well.
 
 ## ToPrimitive 
@@ -78,7 +78,7 @@ There are 3 types (also called "hints") of object-to-primitive conversion:
 
 Please note -- there are only three conversions. That simple. There is no "boolean" (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions. 
 
-To do the conversion, Javascript tries to find and call these three object methods:
+To do the conversion, Javascript tries to find and call three object methods:
 
 1. `Symbol.toPrimitive(hint)` if exists,
 2. Otherwise if hint is `"string"`, try `toString()` and `valueOf()`, whatever exists.
@@ -109,7 +109,7 @@ As we can see from the code, `user` becomes a self-descriptive string or a money
 
 ### toString/valueOf
 
-Methods `toString` and `valueOf` come from the ancient times. That's why they are not symbols. They provide an alternative "old-style" way to implement the conversion.
+Methods `toString` and `valueOf` come from ancient times. That's why they are not symbols. They provide an alternative "old-style" way to implement the conversion.
 
 If there's no `Symbol.toPrimitive` then Javascript tries to find them and try in the order:
 
@@ -166,20 +166,20 @@ There is no control whether `toString()` returns exactly a string, or whether `S
 
 **The only mandatory thing: these methods must return a primitive.**
 
-An operation that was the reason for the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary. 
+An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary. 
 
 For instance:
 
-- All mathematical operations except binary plus apply `ToNumber`:
+- All mathematical operations except binary plus apply `ToNumber` after `ToPrimitive` with `"number"` hint:
 
     ```js run
     let obj = {
-      toString() { // toString used for numeric conversion in the absense of valueOf
+      toString() { // toString handles all ToPrimitive in the absense of other methods
         return "2"; 
       }
     };
 
-    alert(obj * 2); // 4 
+    alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
     ```
 
 - Binary plus first checks if the primitive is a string, and then does concatenation, otherwise performs `ToNumber` and works with numbers.
