@@ -45,7 +45,22 @@ Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` protot
 
 So if `animal` has a lot of useful properties and methods, then they become automatically available in `rabbit`. Such properties are called "inherited".
 
-Here's an example with an inherited method:
+Loops `for..in` also include inherited properties:
+
+```js run
+let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+for(let prop in rabbit) alert(prop); // jumps, eats
+```
+
+If we have a method in `animal`, it can be called on `rabbit`:
 
 ```js run
 let animal = {
@@ -137,7 +152,6 @@ The value `rabbit.walk` is assigned directly into the object.
 Since now, `rabbit.walk()` call finds the method immediately in the object, it doesn't use the prototype:
 
 ![](proto-animal-rabbit-walk-2.png)
-
 
 The only exception from that rule are property setters. If there's a setter in the prototype, it is called instead of blind writing a value into the object.
 

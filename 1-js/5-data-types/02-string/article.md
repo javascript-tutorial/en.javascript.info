@@ -667,7 +667,11 @@ If you want to learn more about normalization rules and variants -- they are des
 - To look for a substring: use `indexOf`, or `includes/startsWith/endsWith` for simple checks.
 - To compare strings according to the language, use `localeCompare`, otherwise they are compared by character codes.
 
-There are several other helpful methods in strings, like `str.trim()` that removes ("trims") spaces from the beginning and end of the string, see the [manual](mdn:js/String) for them.
+There are several other helpful methods in strings:
+
+- [str.trim()]` -- removes ("trims") spaces from the beginning and end of the string.
+- [str.repeat(n)]` -- repeats the string `n` times.
+- ...and others, see the [manual](mdn:js/String) for details.
 
 Also strings have methods for doing search/replace with regular expressions. But that topic deserves a separate chapter, so we'll return to that later.
 

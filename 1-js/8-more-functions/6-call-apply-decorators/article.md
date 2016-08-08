@@ -362,7 +362,7 @@ There are two changes:
 - Then `(**)` uses `func.apply` to pass both the context and all arguments the wrapper got (no matter how many) to the original function.
 
 
-## Borrowing a method
+## Borrowing a method [#method-borrowing]
 
 Now let's make one more minor improvement in the hashing function:
 
