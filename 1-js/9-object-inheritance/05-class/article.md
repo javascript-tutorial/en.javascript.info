@@ -577,10 +577,74 @@ Static methods are often used in database-related classes to search/save/remove 
 
 ### Static methods and inheritance
 
-Todo: picture with function -> prototype and vertical link for functions
+The `class` syntax supports inheritance for static properties too.
+
+For instance:
+
+```js run
+class Animal {
+  
+  constructor(name, speed) {
+    this.speed = speed;
+    this.name = name;
+  }
+
+  run(speed = 0) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
+
+}
+
+// Inherit from Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbits = [
+  new Rabbit("White Rabbit", 10),
+  new Rabbit("Black Rabbit", 5)
+];
+
+rabbits.sort(Rabbit.compare);
+
+rabbits[0].run(); // Black Rabbit runs with speed 5.
+```
+
+That's actually a very interesting feature, because built-in classes don't behave like that.
+
+For instance, `Object` has `Object.defineProperty`, `Object.keys` and so on, but other objects do not inherit them.
+
+Here's the structure for `Date` and `Object`:
+
+![](object-date-inheritance.png)
+
+Both `Object` and `Date` exist independently. Sure, `Date.prototype` inherits from `Object.prototype`, but that's all.
+
+With classes we have one more arrow:
+
+![](animal-rabbit-static.png)
+
+Right, `Rabbit` function now inherits from `Animal` function. And `Animal` function standartly inherits from `Function.prototype` (as other functions do).
+
+Here, let's check:
 
 
-## Todo absent constructor
+```js run
+class Animal {}
+class Rabbit extends Animal {}
 
-for simple classes parse `constructor( ){ }`
-for derived `constructor(... args){ super (...args);}`
+alert(Rabbit.__proto__ == Animal); // true
+
+// and the next step is Function.prototype
+alert(Animal.__proto__ == Function.prototype); // true
+```
+
+This way `Rabbit` has access to all static methods of `Animal`. 
+

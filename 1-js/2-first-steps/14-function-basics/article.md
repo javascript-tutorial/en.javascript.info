@@ -318,6 +318,22 @@ alert( doNothing() === undefined ); // true
 ```
 ````
 
+````warn header="Never line-break between `return` and its value"
+For long expressions, it may be tempting sometimes to put them on a separate line, like this:
+
+```js
+return
+ (some + long + expression + or + whatever * f(a) + f(b))
+```
+That doesn't work, because Javascript assumes a semicolon after `return` in that case:
+
+```js
+return*!*;*/!*
+ (some + long + expression + or + whatever * f(a) + f(b))
+```
+So, it effectively becomes an empty return. We should put the value on the same line instead.
+````
+
 ## Naming a function [#function-naming]
 
 Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible describe what the function does. So that a person who reads the code gets the right clue.
