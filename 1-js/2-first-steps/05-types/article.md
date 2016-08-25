@@ -2,7 +2,7 @@
 
 There are 7 data types in JavaScript.
 
-Here we will get the common understanding of them. In the next chapters we'll talk about each type in detail.
+In this chapter we'll get the common understanding of them. In further chapters we'll talk about each type in detail.
 
 [cut]
 

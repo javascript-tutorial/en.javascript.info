@@ -2,21 +2,21 @@ importance: 5
 
 ---
 
-# Sort objects
+# Map to names
 
-Write the function `getNames(users)` that gets an array of "user" objects with property `name` and returns an array of names.
+You have an array of `user` objects, each one has `user.name`. Write the code that converts it into an array of names.
 
 For instance:
 
 ```js no-beautify
-let john = { name: "John", age: 25 }
-let pete = { name: "Pete", age: 30 }
-let mary = { name: "Mary", age: 28 }
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
 
-let arr = [ john, pete, mary ];
+let users = [ john, pete, mary ];
 
-let names = getNames(arr);
+let names = /* ... your code */
 
-alert( names ) // John, Pete, Mary
+alert( names ); // John, Pete, Mary
 ```
 

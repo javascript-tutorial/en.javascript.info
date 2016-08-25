@@ -1,102 +1,53 @@
-# TODO: Всё вместе: особенности JavaScript 
+# JavaScript specials: all together
 
-В этой главе приводятся основные особенности JavaScript, на уровне базовых конструкций, типов, синтаксиса.
+This chapter aims to list features of JavaScript that we've learned, paying special attention to unobvious moments.
 
-Она будет особенно полезна, если ранее вы программировали на другом языке, ну или как повторение важных моментов раздела.
-
-Всё очень компактно, со ссылками на развёрнутые описания.
+That's especially useful if you came from another language or, just as a recap.
 
 [cut]
 
-## Структура кода
+## Code structure
 
-Операторы разделяются точкой с запятой:
-
-```js run no-beautify
-alert('Привет'); alert('Мир');
-```
-
-Как правило, перевод строки тоже подразумевает точку с запятой. Так тоже будет работать:
+Statements are delimited with a semicolon:
 
 ```js run no-beautify
-alert('Привет')
-alert('Мир')
+alert('Hello'); alert('World');
 ```
 
-...Однако, иногда JavaScript не вставляет точку с запятой. Например:
+Usually, a line-break is also treated as a delimiter, so that would also work:
 
 ```js run no-beautify
-let a = 2
-+3
-
-alert(a); // 5
+alert('Hello')
+alert('World')
 ```
 
-Бывают случаи, когда это ведёт к ошибкам, которые достаточно трудно найти и исправить, например:
+That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
 
 ```js run
-alert("После этого сообщения будет ошибка")
+alert("There will be an error after this message")
 
 [1, 2].forEach(alert)
 ```
 
-Детали того, как работает код выше (массивы `[...]` и `forEach`) мы скоро изучим, здесь важно то, что при установке точки с запятой после `alert` он будет работать корректно.
+Most codestyle guides agree that we should put a semicolon after each statement.
 
-**Поэтому в JavaScript рекомендуется точки с запятой ставить. Сейчас это, фактически, общепринятый стандарт.**
+Semicolons are not required after code blocks `{...}` and syntax constructs with them:
 
-Поддерживаются однострочные комментарии `// ...` и многострочные `/* ... */`:
+```js
+function f() {
+  // no semicolon after function declaration
+}
 
-Подробнее: <info:structure>.
+for(;;) { /* no semicolon */ }
+```
 
-## Переменные и типы
+...But even if we can put a semicolon there, that's not an error, extra semicolons do nothing.
 
-- Объявляются директивой `let`. Могут хранить любое значение:
+More in: <info:structure>.
 
-    ```js
-    let x = 5;
-    x = "Петя";
-    ```
-- Есть 5 "примитивных" типов и объекты:
+## Strict mode
 
-    ```js no-beautify
-    x = 1;             // число
-    x = "Тест";        // строка, кавычки могут быть одинарные или двойные
-    x = true;          // булево значение true/false
-    x = null;          // спец. значение (само себе тип)
-    x = undefined;     // спец. значение (само себе тип)
-    ```
-
-    Также есть специальные числовые значения `Infinity` (бесконечность) и `NaN`.
-
-    Значение `NaN` обозначает ошибку и является результатом числовой операции, если она некорректна.
-- **Значение `null` не является "ссылкой на нулевой адрес/объект" или чем-то подобным. Это просто специальное значение.**
-
-    Оно присваивается, если мы хотим указать, что значение переменной неизвестно.
-
-    Например:
-
-    ```js
-    let age = null; // возраст неизвестен
-    ```
-- **Значение `undefined` означает "переменная не присвоена".**
-
-    Например:
-
-    ```js
-    let x;
-    alert( x ); // undefined
-    ```
-
-    Можно присвоить его и явным образом: `x = undefined`, но так делать не рекомендуется.
-
-    Про объекты мы поговорим в главе <info:object>, они в JavaScript сильно отличаются от большинства других языков.
-- В имени переменной могут быть использованы любые буквы или цифры, но цифра не может быть первой. Символы доллар `$` и подчёркивание `_` допускаются наравне с буквами.
-
-Подробнее: <info:variables>, <info:types-intro>.
-
-## Строгий режим
-
-Для того, чтобы интерпретатор работал в режиме максимального соответствия современному стандарту, нужно начинать скрипт директивой `'use strict';`
+To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
 
 ```js
 'use strict';
@@ -104,90 +55,118 @@ alert("После этого сообщения будет ошибка")
 ...
 ```
 
-Эта директива может также указываться в начале функций. При этом функция будет выполняться в режиме соответствия, а на внешний код такая директива не повлияет.
+The directive must be at the top of a script or at the beginning of a function.
 
-Одно из важных изменений в современном стандарте -- все переменные нужно объявлять через `let`. Есть и другие, которые мы изучим позже, вместе с соответствующими возможностями языка.
+Without `"use strict"`, everything still works, but some features behave in old-fasion, "compatible" way. We'd generally prefer the modern behavior. 
 
-## Взаимодействие с посетителем
+Later we'll get acquanted with advanced features of the language that enable strict mode implicitly.
 
-Простейшие функции для взаимодействия с посетителем в браузере:
+More in: <info:strict-mode>.
 
-["prompt(вопрос[, по_умолчанию])"](https://developer.mozilla.org/en/DOM/window.prompt)
-: Задать `вопрос` и возвратить введённую строку, либо `null`, если посетитель нажал "Отмена".
+## Variables
 
-["confirm(вопрос)"](https://developer.mozilla.org/en/DOM/window.confirm)
-: Задать `вопрос` и предложить кнопки "Ок", "Отмена". Возвращает, соответственно,  `true/false`.
+Can be declared using:
 
-["alert(сообщение)"](https://developer.mozilla.org/en/DOM/window.alert)
-: Вывести сообщение на экран.
+- `let` (block-level visibility)
+- `const` (can't be changed)
+- `var` (old-style, will see later)
 
-Все эти функции являются *модальными*, т.е. не позволяют посетителю взаимодействовать со страницей до ответа.
+A variable name can include:
+- Letters and digits, but the first character may not be a digit. 
+- Characters `$` and `_` are normal, on par with letters.
+- Non-latin alphabets and hieroglyphs are also allowed, but commonly not used.
 
-Например:
+Variables are dynamically typed -- they can store any value:
 
-```js run
-let userName = prompt("Введите имя?", "Василий");
-let isTeaWanted = confirm("Вы хотите чаю?");
-
-alert( "Посетитель: " + userName );
-alert( "Чай: " + isTeaWanted );
+```js
+let x = 5;
+x = "John";
 ```
 
-Подробнее: <info:uibasic>.
+There are 7 data types: 
 
-## Особенности операторов
+- `number` for both floating-point and integer numbers,
+- `string` for strings,
+- `boolean` for logical values: `true/false`,
+- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
+- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
+- `object` and `symbol` -- for complex data structures and unique identifiers, we didn't learn them yet.
 
-- **Для сложения строк используется оператор `+`.**
+More in: <info:variables>, <info:types>.
 
-    Если хоть один аргумент -- строка, то другой тоже приводится к строке:
+## Interaction
+
+We're using a browser as a working environment, so basic UI functions will be:
+
+[`prompt(question[, default])`](mdn:api/Window/prompt)
+: Ask a `question`, and return either what the visitor entered or `null` if he pressed "cancel".
+
+[`confirm(question)`](mdn:api/Window/confirm)
+: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
+
+[`alert(message)`](mdn:api/Window/alert)
+: Output a `message`.
+
+All these functions are *modal*, they pause the code execution and prevent the visitor from interaction with the page until he answers.
+
+For instance:
+
+```js run
+let userName = prompt("Your name?", "Alice");
+let isTeaWanted = confirm("Do you want some tea?");
+
+alert( "Visitor: " + userName );
+alert( "Tea wanted: " + isTeaWanted );
+```
+
+More in: <info:uibasic>.
+
+## Operators
+
+JavaScript supports following operators:
+
+Arithmetical
+: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
+
+    Binary plus `+` contatenates strings.
+
+    If any of the operands is a string -- the other one is converted to string too:
 
     ```js run
-    alert( 1 + 2 ); // 3, число
-    alert( '1' + 2 ); // '12', строка
-    alert( 1 + '2' ); // '12', строка
+    alert( '1' + 2 ); // '12', string
+    alert( 1 + '2' ); // '12', string
     ```
-- **Сравнение `===` проверяет точное равенство, включая одинаковый тип.** Это самый очевидный и надёжный способ сравнения.
 
-    **Остальные сравнения `== < <= > >=` осуществляют числовое приведение типа:**
+Assignments
+: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
+
+Bitwise
+: Bitwise operators work with integers on bit-level: see the [docs](mdn:JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+
+Ternary
+: The only operator with three parameters:  `cond ? resultA : result B`
+
+Logical operators
+: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped. 
+
+Comparisons
+: Equality check `===` immediately fails if types are different. 
+
+    Other comparisons perform type conversions, usually to a number:
 
     ```js run
     alert( 0 == false ); // true
     alert( true > 0 ); // true
     ```
 
-    Исключение -- сравнение двух строк (см. далее).
+    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else. 
 
-    **Исключение: значения `null` и `undefined` ведут себя в сравнениях не как ноль.**
-<ul>
-<li>Они равны `null == undefined` друг другу и не равны ничему ещё. В частности, не равны нулю.
-- В других сравнениях (кроме `===`) значение `null` преобразуется к нулю, а `undefined` -- становится `NaN` ("ошибка").
+    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
 
-Такое поведение может привести к неочевидным результатам, поэтому лучше всего использовать для сравнения с ними `===`. Оператор `==` тоже можно, если не хотите отличать `null` от `undefined`.
+Others
+: There are few others, like a comma operator.
 
-Например, забавное следствие этих правил для `null`:
-
-```js run no-beautify
-alert( null > 0 );  // false, т.к. null преобразовано к 0
-alert( null >= 0 ); // true, т.к. null преобразовано к 0
-alert( null == 0 ); // false, в стандарте явно указано, что null равен лишь undefined
-```
-
-С точки зрения здравого смысла такое невозможно. Значение `null` не равно нулю и не больше, но при этом `null >= 0` возвращает `true`!
-</li>
-</ol>
-
-<li>**Сравнение строк -- лексикографическое, символы сравниваются по своим unicode-кодам.**
-
-Поэтому получается, что строчные буквы всегда больше, чем прописные:
-
-```js run
-alert( 'а' > 'Я' ); // true
-```
-
-</li>
-</ul>
-
-Подробнее: <info:operators>, <info:comparison>.
+More in: <info:operators>, <info:comparison>.
 
 ## Логические операторы
 

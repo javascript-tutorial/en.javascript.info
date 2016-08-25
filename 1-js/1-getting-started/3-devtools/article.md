@@ -10,11 +10,11 @@ To see errors and get a lot of other useful information about scripts, browsers 
 
 **Most often developers lean towards Chrome or Firefox for the development.**
 
-Other browsers also provide developer tools, but are usually in a "catching-up" position, compared to Chrome/Firefox which are the best.
+Other browsers also provide developer tools, but are usually in a "catching-up" position, compared to Chrome/Firefox which are the best. 
 
-If there is an error in the certain browser only, then we can always switch to it's developer tools for the concrete problem.
+Sometimes, it may be required to switch to another browser, if a problem is browser-specific, but that's rare.
 
-Developer tools are really powerful, there are many features. On this stage let's just look how to open them, look at errors and run JavaScript commands.
+Developer tools are really powerful, there are many features. Here, for the start, we'll learn how to open them, look at errors and run JavaScript commands.
 
 [cut]
 

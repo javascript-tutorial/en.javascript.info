@@ -114,6 +114,9 @@ Class definition sets `enumerable` flag to `false` for all methods in the `"prot
 If there's no `constructor` in the `class` construct, then an empty function is generated, same as `constructor() {}`. So things still work the same way.
 ```
 
+```smart header="Classes always `use strict`"
+All code inside the class construct is automatically in the strict mode. 
+```
 
 ## Class Expression
 

@@ -18,7 +18,7 @@ If you haven't considered selecting an IDE, pleae look at the following variants
 - Visual Studio is fine if you're a .NET developer.
 - Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
 - [Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
-- [Netbeans](http://netbeans.org/)
+- [Netbeans](http://netbeans.org/).
 
 All of them with the exception of Visual Studio are cross-platform.
 
@@ -30,9 +30,9 @@ Most IDEs are paid, but have a trial period. Their cost is usually negligible co
 
 They are mainly used to instantly open and edit a file.
 
-The main difference between a "lightweight editor" and an "IDE" is that the latter works on a project-level, meaning it has to load a lot of data to start, and the former one opens just the files. That's much faster.
+The main difference between a "lightweight editor" and an "IDE" is that IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
 
-In practice, "lightweight" editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE. 
+In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE. 
 
 The following options deserve your attention:
 
@@ -43,7 +43,7 @@ The following options deserve your attention:
 
 ## My favorites
 
-I believe one should have both an IDE for projects and a lightweight editor for quick and easy file editing.
+The personal preference of the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
 
 I'm using:
 
@@ -54,7 +54,7 @@ If you don't know what to choose -- you can consider these ones.
 
 ## Let's not argue
 
-The editors in the lists above are those that me or my friends -- good developers use for a long time and are happy with.
+The editors in the lists above are those that me or my friends -- good developers are using for a long time and are happy with.
 
 There are other great editors in our big world, please choose the one you like the most.
 

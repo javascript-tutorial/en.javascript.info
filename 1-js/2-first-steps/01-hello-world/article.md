@@ -1,10 +1,10 @@
 # Hello, world!
 
-About 98% of the tutorial is core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
+The tutorial that you're reading is about core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
 
-But we need something like a "base environment" to run our scripts, and browser is probably a good choice.
+But we need a working environment to run our scripts, and browser is probably a good choice. Also we'll use few browser-specific commands like `alert`, but will keep their amount to the minimum.
 
-So we'll start with attaching a script to the webpage. For other environments like Node.JS there are other ways to run it.
+So we'll start with attaching a script to the webpage. For other environments like Node.JS there are other, probably even easier ways to run it.
 
 [cut]
 
@@ -134,4 +134,3 @@ The example above can be split into two scripts to work:
 
 
 There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to Javascript language. So we shouldn't distract ourselves from it. We'll be using a browser as a way to run Javascript, very convenient for online reading, but yet one of many.
-

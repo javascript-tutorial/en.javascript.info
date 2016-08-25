@@ -1,17 +1,13 @@
-```js run no-beautify
-function getNames(arr) {
-  return arr.map(item => item.name);
-}
+```js run
 
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
 
-let john = { name: "John", age: 25 }
-let pete = { name: "Pete", age: 30 }
-let mary = { name: "Mary", age: 28 }
+let users = [ john, pete, mary ];
 
-let arr = [ john, pete, mary ];
+let names = users.map(item => item.name);
 
-let names = getNames(arr);
-
-alert( names ) // John, Pete, Mary
+alert( names ); // John, Pete, Mary
 ```
 
