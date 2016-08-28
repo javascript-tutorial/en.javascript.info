@@ -1,29 +1,29 @@
 describe("getWeekDay", function() {
-  it("3 января 2014 - пятница", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 3)), 'пт');
+  it("3 January 2014 - friday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 3)), 'FR');
   });
 
-  it("4 января 2014 - суббота", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 4)), 'сб');
+  it("4 January 2014 - saturday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 4)), 'SA');
   });
 
-  it("5 января 2014 - воскресенье", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 5)), 'вс');
+  it("5 January 2014 - sunday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 5)), 'SU');
   });
 
-  it("6 января 2014 - понедельник", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 6)), 'пн');
+  it("6 January 2014 - monday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 6)), 'MO');
   });
 
-  it("7 января 2014 - вторник", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 7)), 'вт');
+  it("7 January 2014 - tuesday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 7)), 'TU');
   });
 
-  it("8 января 2014 - среда", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 8)), 'ср');
+  it("8 January 2014 - wednesday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 8)), 'WE');
   });
 
-  it("9 января 2014 - четверг", function() {
-    assert.equal(getWeekDay(new Date(2014, 0, 9)), 'чт');
+  it("9 January 2014 - thursday", function() {
+    assert.equal(getWeekDay(new Date(2014, 0, 9)), 'TH');
   });
 });

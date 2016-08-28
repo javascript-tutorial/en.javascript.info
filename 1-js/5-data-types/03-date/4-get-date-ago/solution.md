@@ -1,4 +1,4 @@
-Из даты `date` нужно вычесть указанное количество дней.  Это просто:
+The idea is simple: to substract given number of days from `date`:
 
 ```js
 function getDateAgo(date, days) {
@@ -7,22 +7,21 @@ function getDateAgo(date, days) {
 }
 ```
 
-Ситуацию осложняет то, что исходный объект даты не должен меняться. Это разумное требование, оно позволит избежать сюрпризов.
+...But the function should not change `date`. That's an important thing, because the outer code which gives us the date does not expect it to change.
 
-Для того чтобы ему соответствовать, создадим копию объекта даты:
+To implement it let's clone the date, like this:
 
 ```js run
 function getDateAgo(date, days) {
-  var dateCopy = new Date(date);
+  let dateCopy = new Date(date);
 
   dateCopy.setDate(date.getDate() - days);
   return dateCopy.getDate();
 }
 
-var date = new Date(2015, 0, 2);
+let date = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 января 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 декабря 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 января 2014)
+alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
+alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
+alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
 ```
-

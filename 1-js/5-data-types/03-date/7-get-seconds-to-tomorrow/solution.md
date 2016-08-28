@@ -1,16 +1,15 @@
-Для получения оставшихся до конца дня миллисекунд нужно из "завтра 00ч 00мин 00сек" вычесть текущее время.
+To get the number of milliseconds till tomorrow, we can from "tomorrow 00:00:00" substract the current date.
 
-Чтобы сгенерировать "завтра" -- увеличим текущую дату на 1 день:
+First, we generate that "tomorrow", and then do it:
 
 ```js run
 function getSecondsToTomorrow() {
-  var now = new Date();
+  let now = new Date();
 
-  // создать объект из завтрашней даты, без часов-минут-секунд
-  var tomorrow = new Date(now.getFullYear(), now.getMonth(), *!*now.getDate()+1*/!*);
+  // tomorrow date
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), *!*now.getDate()+1*/!*);
 
-  var diff = tomorrow - now; // разница в миллисекундах
-  return Math.round(diff / 1000); // перевести в секунды
+  let diff = tomorrow - now; // difference in ms
+  return Math.round(diff / 1000); // convert to seconds
 }
 ```
-

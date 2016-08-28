@@ -1,26 +1,26 @@
-Для вывода достаточно сгенерировать объект `Date`, соответствующий началу дня, т.е. "сегодня" 00 часов 00 минут 00 секунд, и вычесть его из текущей даты.
+To get the number of seconds, we can generate a date using the current day and time 00:00:00, then substract it from "now".
 
-Полученная разница -- это как раз количество миллисекунд от начала дня, которое достаточно поделить на `1000`, чтобы получить секунды:
+The difference is the number of milliseconds from the beginning of the day, that we should divide by 1000 to get seconds:
 
 ```js run
 function getSecondsToday() {
-  var now = new Date();
+  let now = new Date();
 
-  // создать объект из текущей даты, без часов-минут-секунд
-  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  // create an object using the current day/month/year
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  var diff = now - today; // разница в миллисекундах
-  return Math.round(diff / 1000); // перевести в секунды
+  let diff = now - today; // ms difference
+  return Math.round(diff / 1000); // make seconds
 }
 
 alert( getSecondsToday() );
 ```
 
-Альтернативное решение -- получить часы/минуты/секунды и преобразовать их все в секунды:
+An alternative solution would be to get hours/minutes/seconds and convert them to seconds:
 
 ```js run
 function getSecondsToday() {
-  var d = new Date();
+  let d = new Date();
   return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
 };
 ```

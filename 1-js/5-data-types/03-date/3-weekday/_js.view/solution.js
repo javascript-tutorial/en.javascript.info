@@ -2,7 +2,7 @@ function getLocalDay(date) {
 
   var day = date.getDay();
 
-  if (day == 0) { // день 0 становится 7
+  if (day == 0) { // weekday 0 (sunday) is 7 in european
     day = 7;
   }
 
