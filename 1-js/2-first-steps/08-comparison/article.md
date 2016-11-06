@@ -31,7 +31,7 @@ let result = 5 > 4; // assign the result of the comparison
 alert( result ); // true
 ```
 
-## Strings comparison
+## String comparison
 
 To see which string is greater than the other, the so-called "dictionary" or "lexicographical" order is used.
 
@@ -47,7 +47,7 @@ alert( 'Bee' > 'Be' ); // true
 
 The algorithm to compare two strings is simple:
 
-1. Compare the first characters of both strings.
+1. Compare first characters of both strings.
 2. If the first one is greater(or less), then the first string is greater(or less) than the second and we're done.
 3. Otherwise if first characters are equal, compare the second characters the same way.
 4. Repeat until the end of any string.
@@ -61,15 +61,15 @@ Strings `"Glow"` and `"Glee"` are compared character-by-character:
 2. `l` is the same as `l`.
 3. `o` is greater than `e`. Stop here. The first string is greater.
 
-```smart header="Not a dictionary, but Unicode"
+```smart header="Not a real dictionary, but Unicode order"
 The comparison algorithm given above is roughly equivalent to the one used in book dictionaries or phone books. But it's not exactly the same.
 
-For instance, the case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? Actually, the lowercase `"a"` is. Why? Because the lowercase character has a greater index in the internal encoding table (Unicode). We'll get back to specific details and consequences in the chapter <info:string>.
+For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? Actually, the lowercase `"a"` is. Why? Because the lowercase character has a greater index in the internal encoding table (Unicode). We'll get back to specific details and consequences in the chapter <info:string>.
 ```
 
 ## Comparison of different types
 
-When compared values belong to different types, they are coerced to numbers.
+When compared values belong to different types, they are converted to numbers.
 
 For example:
 
@@ -140,7 +140,7 @@ The string equality check operator is a bit longer to write, but makes more obvi
 
 ## Comparison with null and undefined
 
-Let's see more corner cases. 
+Let's see more corner cases.
 
 There's a non-intuitive behavior when `null` or `undefined` is compared with other values.
 
@@ -152,7 +152,7 @@ For a non-strict check `null == undefined`
 : There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but no any other value.
 
 For maths and evaluation of other comparisons `< > <= >=`
-: Values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`. 
+: Values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`.
 
 Now let's see funny things that happen when we apply those rules. And, what's more important, how do not fall into a trap with unobvious language features.
 
@@ -204,4 +204,3 @@ Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`,
 - When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
 - Values `null` and `undefined` equal `==` each other and do not equal any other value.
 - Be careful when using comparisons like `>` or `<` with variables that can occasionaly be `null/undefined`. Making a separate check for `null/undefined` is a good idea.
-

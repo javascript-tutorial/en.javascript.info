@@ -48,9 +48,9 @@ Only comments may appear above `"use strict"`.
 
 
 ```smart header="`use strict` for functions"
-We will learn functions (a way to group commands) soon. 
+We will learn functions (a way to group commands) soon.
 
-Looking ahead let's just note that `"use strict"` can be put at the start of a function instead of the whole script. Then the strict mode is enabled in that function only. But usually people put it on top of scripts.
+Looking ahead let's just note that `"use strict"` can be put at the start of a function (most kinds of functions) instead of the whole script. Then strict mode is enabled in that function only. But usually people use it for the whole script.
 ```
 
 
@@ -66,5 +66,6 @@ Here in the tutorial all code (except where said otherwise) works in `"use stric
 ## Summary
 
 - The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some builtin features.
-- Several modern features of the language enable `"use strict"` implicitly.
-- It's recommended to start scripts with `"use strict"`.
+- Several modern features of the language enable `"use strict"` implicitly, so it's quite hard to evade it.
+
+It's always recommended to start scripts with `"use strict"`. All examples in this book assume so, unless (very rarely) specified otherwise.

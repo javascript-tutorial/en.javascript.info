@@ -95,49 +95,70 @@ for (begin; condition; step) {
 }
 ```
 
-Let's see these parts in an example. The loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
+Let's see these parts in an example. For instance, the loop below runs `alert(i)` for `i` from `0` up to (but not including) `3`:
 
 ```js run
-let i;
-
-for (i = 0; i < 3; i++) { // shows 0, then 1, then 2
-  alert( i );
+for (let i = 0; i < 3; i++) { // shows 0, then 1, then 2
+  alert(i);
 }
 ```
 
-Let's split the last example into parts:
+Let's examine the last example part-by-part:
 
-begin: `i=0`
-: Executes once upon entering the loop.
+| part  |          |                                                                            |
+|-------|----------|----------------------------------------------------------------------------|
+| begin | `i=0`    | Executes once upon entering the loop.                                      |
+| condition | `i<3`| Checked before every loop iteration, if fails the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy                         |
+| step| `i++`      | Executes after the body on each iteration, but before the condition check. |
 
-condition: `i<3`
-: Checked before every loop iteration, if fails the loop stops.
 
-body: `alert(i)`
-: Runs again and again while the condition is truthy
-
-step: `i++`
-: Executes after the body on each iteration, but before the condition check.
-
-The execution flow is:
+The general loop algorithm works like this:
 ```
 Begin
-  → (if condition → run body and run step)
-  → (if condition → run body and run step)
-  → ... repeat until the condition is falsy.
+→ (if condition → run body and run step)
+→ ... repeat while the condition is truthy
+```
+
+If you are new to loops, then maybe it would help if you go back to the example and reproduce how it runs step-by-step on a piece of paper.
+
+That's what exactly happens in our case:
+
+```js
+// for (let i = 0; i < 3; i++) alert(i)
+
+// begin
+let i = 0
+// if condition → run body and run step
+if (i < 3) { alert(i); i++ }
+// repeat while the condition is truthy
+if (i < 3) { alert(i); i++ }
+if (i < 3) { alert(i); i++ }
+// ...finish, because now i == 3
 ```
 
 ````smart header="Inline variable declaration"
-We can declare a "counter" variable right in the beginning of the loop.
+Here the "counter" variable `i` is declared right in the the loop. That's called an "inline" variable declaration. Such variable is visible only inside the loop.
 
-```js run no-beautify
+```js run
 for (*!*let*/!* i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
+alert(i); // error, no such variable
 ```
 
-The variable will be visible only inside the loop.
+We can use an existing variable as well:
+
+```js run
+let i = 0;
+for (i = 0; i < 3; i++) { // use an existing variable
+  alert(i); // 0, 1, 2
+}
+alert(i); // 3, visible, because declared outside of the loop
+```
+
 ````
+
 
 ### Skipping parts
 
@@ -148,14 +169,12 @@ For example, we can omit `begin` if we don't need to do anything at the loop sta
 Like here:
 
 ```js run
-let i = 0;
+let i = 0; // imagine we have i already declared and assigned
 
-for (; i < 3; i++) {
+for (; i < 3; i++) { // no need for "begin"
   alert( i ); // 0, 1, 2
 }
 ```
-
-It would work same as `for(let i=0; ...)`.
 
 We can also remove the `step` part:
 
@@ -164,9 +183,10 @@ let i = 0;
 
 for (; i < 3;) {
   alert( i );
-  // the loop became identical to while (i<3)
 }
 ```
+
+The loop became identical to `while (i<3)`.
 
 We can actually remove everything, thus creating an infinite loop:
 
@@ -176,7 +196,7 @@ for (;;) {
 }
 ```
 
-Please note that the semicolons `;` must present, otherwise it would be a syntax error.
+Please note that the two `for` semicolons `;` must present, otherwise it would be a syntax error.
 
 ## Breaking the loop
 
@@ -218,7 +238,7 @@ The loop above uses `continue` to output only odd values:
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
-  // if true, skip the remaining part of the body 
+  // if true, skip the remaining part of the body
   *!*if (i % 2 == 0) continue;*/!*
 
   alert(i); // 1, then 3, 5, 7, 9
@@ -362,4 +382,3 @@ To make an "infinite" loop, usually the `while(true)` construct is used. Such a 
 If we don't want to do anything more on this iteration and would like to forward on to the next one -- the `continue` directive does it.
 
 `Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
-

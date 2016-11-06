@@ -1,5 +1,7 @@
 # JavaScript specials: all together
 
+[todo finish me. is this needed?]
+
 This chapter aims to list features of JavaScript that we've learned, paying special attention to unobvious moments.
 
 That's especially useful if you came from another language or, just as a recap.
@@ -57,7 +59,7 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 
 The directive must be at the top of a script or at the beginning of a function.
 
-Without `"use strict"`, everything still works, but some features behave in old-fasion, "compatible" way. We'd generally prefer the modern behavior. 
+Without `"use strict"`, everything still works, but some features behave in old-fasion, "compatible" way. We'd generally prefer the modern behavior.
 
 Later we'll get acquanted with advanced features of the language that enable strict mode implicitly.
 
@@ -72,7 +74,7 @@ Can be declared using:
 - `var` (old-style, will see later)
 
 A variable name can include:
-- Letters and digits, but the first character may not be a digit. 
+- Letters and digits, but the first character may not be a digit.
 - Characters `$` and `_` are normal, on par with letters.
 - Non-latin alphabets and hieroglyphs are also allowed, but commonly not used.
 
@@ -83,7 +85,7 @@ let x = 5;
 x = "John";
 ```
 
-There are 7 data types: 
+There are 7 data types:
 
 - `number` for both floating-point and integer numbers,
 - `string` for strings,
@@ -147,10 +149,10 @@ Ternary
 : The only operator with three parameters:  `cond ? resultA : result B`
 
 Logical operators
-: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped. 
+: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped.
 
 Comparisons
-: Equality check `===` immediately fails if types are different. 
+: Equality check `===` immediately fails if types are different.
 
     Other comparisons perform type conversions, usually to a number:
 
@@ -159,7 +161,7 @@ Comparisons
     alert( true > 0 ); // true
     ```
 
-    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else. 
+    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
     Greater/less comparisons compare strings character-by-character, other types are converted to a number.
 

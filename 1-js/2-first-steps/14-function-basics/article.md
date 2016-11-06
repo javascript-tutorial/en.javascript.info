@@ -141,9 +141,8 @@ We can pass arbitrary data to function using it's parameters (also called *funct
 
 In the example below, the function has two parameters: `from` and `text`.
 
-```js run no-beautify
+```js run
 function showMessage(*!*from, text*/!*) { // arguments: from, text
-
   alert(from + ': ' + text);
 }
 
@@ -153,7 +152,7 @@ showMessage('Ann', "What's up?"); // Ann: What's up?
 */!*
 ```
 
-When the function is called, the values in the brackets are copied to local variables `from` and `next`. 
+When the function is called, the values in the brackets are copied to local variables `from` and `next`.
 
 Please note that because the function can modify them. The changes are made to copies, so they won't affect anything outside:
 
@@ -188,9 +187,31 @@ showMessage("Ann");
 
 That's not an error. Such call would output `"Ann: undefined"`, because `text === undefined`.
 
-If we want to track when the function is called with a single argument and use a "default" value in this case, then we can check if `text` is defined, like here:
+If we want to use a "default" `text` in this case, then we can specify it after `=`:
 
 ```js run
+function showMessage(from, *!*text = 'no text given'*/!*) {
+  alert( from + ": " + text );
+}
+
+showMessage("Ann"); // Ann: no text given
+```
+
+Here `'no text given'` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+
+```js run
+function showMessage(from, text = anotherFunction()) {
+  // anotherFunction() only executed if no text given
+}
+```
+
+
+````smart header="Default parameters old-style"
+Old editions of Javascript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+
+For instance, an explicit check for being `undefined`:
+
+```js
 function showMessage(from, text) {
 *!*
   if (text === undefined) {
@@ -200,43 +221,19 @@ function showMessage(from, text) {
 
   alert( from + ": " + text );
 }
-
-showMessage("Ann", "Hello!"); // Ann: Hello!
-*!*
-showMessage("Ann"); // Ann: no text given
-*/!*
 ```
 
-There are also other ways to supply "default values" for missing arguments:
+...Or operator `||`:
 
-- Use operator `||`:
+```js
+function showMessage(from, text) {
+  // the argument is considered missing if it's falsy
+  text = text || 'no text given';
+  ...
+}
+```
+````
 
-    ```js
-    function showMessage(from, text) {
-      text = text || 'no text given';
-      ...
-    }
-    ```
-
-    This way is shorter, but the argument is considered missing even if it exists, but is falsy, like an empty line, `0` or `null`.
-
-- Specify the default value after `=`:
-
-    ```js run
-    function showMessage(from, *!*text = 'no text given'*/!*) {
-      alert( from + ": " + text );
-    }
-
-    showMessage("Ann"); // Ann: no text given
-    ```
-
-    Here `'no text given'` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
-
-    ```js run
-    function showMessage(from, text = anotherFunction()) {
-      // anotherFunction() runs if no text given
-    }
-    ```
 
 ## Returning a value
 
@@ -266,7 +263,7 @@ function checkAge(age) {
   } else {
 *!*
     return confirm('Got a permission from the parents?');
-*/!* 
+*/!*
   }
 }
 
@@ -338,7 +335,7 @@ So, it effectively becomes an empty return. We should put the value on the same 
 
 Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible describe what the function does. So that a person who reads the code gets the right clue.
 
-It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes. 
+It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
 
 For instance, functions that start with `"show"` -- usually show something.
 
@@ -410,4 +407,3 @@ Function naming:
 - There is a bunch of commonly adapted verbal prefixes like `create…`, `show…`, `get…`, `check…` etc which can help. The main point is to be consistent about their meaning.
 
 Functions are the main building blocks of scripts. Now we covered the basics, so we actually can start creating and using them. But that's only the beginning of the path. We are going to return to them many times, going more deeply in their advanced features.
-

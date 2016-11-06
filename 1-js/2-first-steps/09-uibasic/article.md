@@ -1,8 +1,10 @@
 # Interaction: alert, prompt, confirm
 
-This chapter covers basic UI operations: `alert`, `prompt` and `confirm`. They allow to ask a visitor for the input and show the results.
+This part of the tutorial aims to cover Javascript "as is", without environment-specific tweaks.
 
-They are browser-specific. For other environments like Node.JS there are other ways of getting the information. Also they are very simple, so we can use them for the start.
+But still we use a browser as the demo environment. So we should know at least few user-interface functions.
+
+In this chapter we'll get familiar with the browser-specific functions `alert`, `prompt` and `confirm`.
 
 [cut]
 
@@ -11,7 +13,7 @@ They are browser-specific. For other environments like Node.JS there are other w
 Syntax:
 
 ```js
-alert(message)
+alert(message);
 ```
 
 This shows a message and pauses the script execution until the user presses "OK".
@@ -29,27 +31,27 @@ The small window with the message is called a *modal window*. The word "modal" m
 Function `prompt` accepts two arguments:
 
 ```js no-beautify
-result = prompt(title, default);
+result = prompt(title[, default]);
 ```
 
-It shows a modal window with the given `title`, a field for text, initially filled with the `default` string and buttons OK/CANCEL.
+It shows a modal window with a field for text and buttons OK/CANCEL.
 
-The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or the `key:Esc` key.
+`title`
+: Is a modal window title
 
-The call to `prompt` returns the text from the field or `null` if te input is canceled.
+`default`
+: An optional second parameter, the initial value for the text field.
 
-```warn header="Safari does not return `null`"
-Safari returns an empty string instead of `null` on cancellation. So we can't be sure whether the user actually entered an empty line or he cancelled the input.
+The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
 
-A compatible practice is to treat both an empty line and `null` the same, as a cancellation.
-```
+The call to `prompt` returns the text from the field or `null` if the input is canceled.
 
 As with `alert`, the `prompt` window is modal.
 
 ```js run
 let age = prompt('How old are you?', 100);
 
-alert(`You are ${age} years old!`); // You are 100 years old! 
+alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
 ````warn header="IE: always supply a `default`"
@@ -96,7 +98,7 @@ alert( isBoss ); // true is OK is pressed
 `prompt`
 : shows a message asking the user to input text. It returns the text or, if CANCEL or `key:Esc` is clicked, all browsers except Safari return `null`.
 
-`confirm` 
+`confirm`
 : shows a message and waits the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
 
 There are two limitations shared by all the methods above:

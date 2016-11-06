@@ -46,7 +46,7 @@ To be concise we can merge the variable declaration and assignment into a single
 ```js run
 let message = 'Hello!'; // define the variable and assign the value
 
-alert( message ); // Hello!
+alert(message); // Hello!
 ```
 
 We can also declare multiple variables in one line:
@@ -55,11 +55,11 @@ We can also declare multiple variables in one line:
 let user = 'John', age = 25, message = 'Hello';
 ```
 
-That might seem shorter, but it's not recommended. For the sake of beter readability, please use a single line per variable.
+That might seem shorter, but it's not recommended. For the sake of better readability, please use a single line per variable.
 
-The rewritten code is a bit longer, but easier to read:
+The multiline variant is a bit longer, but easier to read:
 
-```js no-beautify
+```js
 let user = 'John';
 let age = 25;
 let message = 'Hello';
@@ -80,7 +80,7 @@ let user = 'John'
   , message = 'Hello';
 ```
 
-Technically, all these variants do the same. So, it's a matter of personal taste and aestetics.
+Technically, all these variants do the same. So, it's a matter of personal taste and aesthetics.
 
 
 ````smart header="`var` instead of `let`"
@@ -103,7 +103,7 @@ For instance, the variable `message` can be imagined as a box labelled `"message
 
 ![](variable.png)
 
-We can put any value into the box. 
+We can put any value into the box.
 
 Also we can change it. The value can be changed as many times as needed:
 
@@ -211,12 +211,12 @@ let return = 5; // also can't name it "return", error!
 
 ````warn header="An assignment without `use strict`"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value. This still works now in if we don't put `use strict`, the behavior is kept for compatibility with old scripts. 
+Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value. This still works now in if we don't put `use strict`, the behavior is kept for compatibility with old scripts.
 
 ```js run no-strict
 num = 5; // the variable "num" is created if didn't exist
 
-alert(num); // 5 
+alert(num); // 5
 ```
 
 That's a bad practice of course, it gives an error in the strict mode:
@@ -252,7 +252,7 @@ When a programmer is sure that the variable should never change, he can use `con
 
 ### Uppercase constants
 
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution. 
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
 
 Such constants are named using capitals and underscores.
 
@@ -269,19 +269,29 @@ let color = COLOR_ORANGE;
 alert( color ); // #FF7F00
 ```
 
-`COLOR_ORANGE` is much easier to remember than `"#FF7F00"`. Also it is much easier to mistype in `"#FF7F00"` than in `COLOR_ORANGE`. And when reading the code -- `COLOR_ORANGE` is much more meaningful. 
+`COLOR_ORANGE` is much easier to remember than `"#FF7F00"`. Also it is much easier to mistype in `"#FF7F00"` than in `COLOR_ORANGE`. And when reading the code -- `COLOR_ORANGE` is much more meaningful.
+
+When should we use capitals for a constant, and when -- name them normally? Let's make that clear.
+
+Being a "constant" just means that the value never changes. But there are constants that are known prior to execution (like a hexadimal value for red), and there are those that are *calculated* during the execution, but do not change since then.
+
+```js
+const ordinaryConst = /* an expression that uses the current date */;
+// the expression value is not known prior to execution
+// such a constant must be named normally
+```
+
+In other words, capital-named constants are only used as aliases for "hard-coded" values.  
 
 ## Name things right
 
-Talking about variables, there's an exteremely important thing.
+Talking about variables, there's one more exteremely important thing.
 
 Please name the variables sensibly.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can obviously show which code is written by a beginner and which by an experienced guru.
 
-In a real project, most of the time is spent on modifying and extending the existing code, rather than writing something completely new.
-
-And when we return to the code after some time of doing something else, it's much easier to find the information that is well-labelled. Or, in other words, when the variables are named right.
+In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate of it. And when we return to the code after some time of doing something else, it's much easier to find the information that is well-labelled. Or, in other words, when the variables have good names.
 
 Please spend some time thinking about the right name for a variable before declaring it. That will repay you a lot.
 
@@ -290,7 +300,7 @@ Few good-to-follow rules are:
 - Use human-readable names like `userName` or `shoppingCart`.
 - Stay away from abbreviations or short names `a`, `b`, `c`, unless you really know what you're doing.
 - Make the name maximally descriptive and concise. Examples of bad names are `data` and `value`. Such a name says nothing. It is only ok to use them if it's exceptionally obvious from the context which data or value is meant.
-- Agree on terms within the team and in your own mind. If a site visitor is called a "user" then we should name variables like `currentUser` or `newUser`, but not `currentVisitor` or a `newManInTown`.
+- Agree on terms within the team and in your own mind. If a site visitor is called a "user" then we should name related variables like `currentUser` or `newUser`, but not `currentVisitor` or a `newManInTown`.
 
 Sounds simple? Indeed it is. But creating good descriptive-and-concise names in practice is not. Go for it.
 
@@ -301,7 +311,7 @@ As the result, the variable is like a box where people throw different things wi
 
 Such a programmer saves a little bit on variable declaration, but looses ten times more on debugging the code.
 
-An extra variable is good, not evil. 
+An extra variable is good, not evil.
 
 Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for values of different types can even help the engine to optimize better.
 ```

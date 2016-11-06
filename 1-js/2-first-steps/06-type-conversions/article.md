@@ -1,24 +1,18 @@
 # Type Conversions
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
+Most of time, operators and functions automatically convert a value to the right type. That's called "type coercion".
 
-```js
-// no error
-let message = "hello";
-message = 123456;
-```
+For example, `alert` automatically converts any value to a string, to show it. Or mathematical operations convert values to numbers.
 
-...But some operations implicitly convert a value from one type to another. For example, `alert` automatically converts any value to a string, to show it. Or mathematical operations convert values to numbers. That is called *type coercion*.
-
-There are also cases when we need to explicitly convert between types to ensure that we store the right data the right way or to use special features of a certain type.
+There are also cases when we need to explicitly convert a value to put things right.
 
 [cut]
 
-```smart header="No objects here"
-In this chapter we don't cover objects yet. They provide special facilities for conversion, interesting, but we'd better understand primitives first, then extend to objects in the next steps.
+```smart header="Not covering objects yet"
+In this chapter we don't cover objects yet. Here we study primitives first, and then we'll add objects in the chapter [todo].
 ```
 
-[todo where? link?]
+[todo where we cover them? link?]
 
 ## ToString
 
@@ -64,7 +58,7 @@ alert(typeof str); // string
 
 let n = Number(str); // becomes a number 123
 
-alert(typeof n); // number 
+alert(typeof n); // number
 ```
 
 The explicit conversion is usually required when we read a value coming from a text form field or another string-based source, but we expect a number to be entered.
@@ -116,12 +110,12 @@ That only happens when one of arguments is a string. Otherwise values are conver
 
 Boolean conversion is the simplest one.
 
-It happens in logical operations (later we'll meet condition tests and other kinds), but also can be performed manually with the call of `Boolean(value)`.
+It happens in logical operations (later we'll meet condition tests and other kinds of them), but also can be performed manually with the call of `Boolean(value)`.
 
 The conversion rule:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined` and `NaN` become `false`. 
-- Other values become `true`. 
+- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined` and `NaN` become `false`.
+- Other values become `true`.
 
 For instance:
 
@@ -145,33 +139,39 @@ alert( Boolean(" ") ); // also true (any non-empty string is true)
 
 ## Summary
 
+There exist three most widely used type conversions: to string, to number and to boolean.
 
-- `ToString` -- happens in output, can be called with `String(value)`.
+`ToString`
+: Happens when we output something, can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
-The conversion to string is usully obvious for primitive values.
+`ToNumber`
+: Happens in math operations, can be performed with `Number(value)`.
 
-- `ToNumber` -- happens in math operations, can be called with `Number(value)`.
+    The conversion follows the rules:
 
-The conversion follows the rules:
+    | Value |  Becomes... |
+    |-------|-------------|
+    |`undefined`|`NaN`|
+    |`null`|`0`|
+    |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
+    | `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string is  `0`. An error gives `NaN`. |
 
-| Value |  Becomes... |
-|-------|-------------|
-|`undefined`|`NaN`|
-|`null`|`0`|
-|<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string is  `0`. An error gives `NaN`. |
+ToBoolean
+: Happens in logical operations, or can be performed with `Boolean(value)`.
 
-- ToBoolean -- happens in logical operatiosn, can be called with `Boolean(value)`.
+    Follows the rules:
 
-| Value |  Becomes... |
-|-------|-------------|
-|`0`, `null`, `undefined`, `NaN`, `""` |`false`|
-|any other value| `true` |
+    | Value |  Becomes... |
+    |-------|-------------|
+    |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
+    |any other value| `true` |
+
 
 Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
 
 - `undefined` is `NaN` as a number.
 - `"0"` is true as a boolean.
 
-Objects are not covered here, we'll return to them in the special object-only chapter. 
+Objects are not covered here, we'll return to them in the special chapter, devoted exclusively to objects.
 
+[todo link?]

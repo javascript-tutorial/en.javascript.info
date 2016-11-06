@@ -1,8 +1,16 @@
 # Data types
 
-There are 7 data types in JavaScript.
+A variable in JavaScript can contain any data. A variable can at one moment be a string and later recieve a numeric value:
 
-In this chapter we'll get the common understanding of them. In further chapters we'll talk about each type in detail.
+```js
+// no error
+let message = "hello";
+message = 123456;
+```
+
+Such languages are called "dynamically typed", meaning that there are language types, but variables are not bound to any of them.
+
+There are 7 basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
 
 [cut]
 
@@ -19,7 +27,7 @@ There are many operations for numbers, e.g. multiplication `*`, division `/`, ad
 
 Besides regular numbers there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
-- `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity). It is a value that's greater than any number.
+- `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. It is a special value that's greater than any number.
 
     We can get it as a result of division by zero:
 
@@ -44,12 +52,12 @@ Besides regular numbers there are so-called "special numeric values" which also 
     alert( "not a number" / 2 + 5 ); // NaN + 5 is still NaN
     ```
 
-    So, in a long mathematical expression if we have `NaN` in one place, it propagates to the whole result.
+    So, if there's `NaN` somewhere in a mathematical expression, it propagates to the whole result.
 
 ```smart header="Mathematical operations are safe"
-Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc. 
+Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
 
-The script will never stop with a fatal error ("die"). At worst we'll get `NaN` as the result. 
+The script will never stop with a fatal error ("die"). At worst we'll get `NaN` as the result.
 ```
 
 Special numeric values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
@@ -80,7 +88,7 @@ let name = "John";
 // embed variable
 alert( `Hello, ${name}!` ); // Hello, John!
 
-// embed expression 
+// embed expression
 alert( `the result is ${1 + 2}` ); // the result is 3
 ```
 
@@ -98,24 +106,24 @@ In JavaScript, there is no such type. There's only one type: `string`. A string 
 
 The boolean type has only two values: `true` and `false`.
 
-This type is commonly used to store yes/no values.
+This type is commonly used to store yes/no values: `true` means "yes, correct", and `false` means the "no, incorrect".
 
 For instance:
 
-```js no-beautify
-let checked = true; // the form field is checked
-checked = false;    // the form field is not checked
+```js
+let checked1 = true;  // yes, the form field is checked
+let checked2 = false; // no, the form field is not checked
 ```
 
 Boolean values also come as the result of comparisons:
 
 ```js run
-let isGreater = 4 > 1; 
+let isGreater = 4 > 1;
 
 alert( isGreater ); // true (the comparison result is "yes")
 ```
 
-We'll cover booleans more deeply while discussing logical operators.
+We'll cover booleans more deeply later while discussing [logical operators](/logical-ops).
 
 ## The "null" value
 
@@ -131,13 +139,13 @@ In JavaScript `null` is not a "reference to a non-existing object" or a "null po
 
 It's just a special value which has the sense of "nothing", "empty" or "value unknown".
 
-The code above states that the `age` is unknown or empty for some reason. 
+The code above states that the `age` is unknown or empty for some reason.
 
 ## The "undefined" value
 
 The special value `undefined` stands apart. It makes a type of its own, just like `null`.
 
-The sense of `undefined` is "value is not assigned". 
+The sense of `undefined` is "value is not assigned".
 
 If a variable is declared, but not assigned, then its value is exactly `undefined`:
 
@@ -163,15 +171,11 @@ alert( x ); // "undefined"
 
 The `object` type is special.
 
-All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever).
+All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections data and more complex entities. We'll deal with them later after we know enough about primitives.
 
-In contrast, objects are used to store collections data and more complex entities. We'll deal with them later after we know enough about primitives.
-
-The `symbol` type is used to create unique identifiers, mainly used to store data in objects. We'll return to them as soon as we cover objects.
-
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but we'd better study them after covering objects.
 
 [todo when ? chapter?]
-[todo move tasks]
 
 ## The typeof operator [#type-typeof]
 [todo we need typeof in types]
@@ -213,7 +217,7 @@ typeof alert // "function"  (3)
 
 The last three lines may be a little unobvious so here's explanations:
 
-1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here it servers as an example, nothing more.
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here it serves just as an example of an object.
 2. The result of `typeof null` equals to `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in the language.
 3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
 
@@ -230,13 +234,10 @@ There are 7 basic types in JavaScript.
 - `object` for more complex data structures.
 - `symbol` for unique identifiers.
 
-The `typeof` operator allows to see which type is stored in the variable. 
+The `typeof` operator allows to see which type is stored in the variable.
 
 - Two forms: `typeof x` or `typeof(x)`.
 - Returns a string with the name of the type, like `"string"`.
 - Mistreats `null` as an `object` -- the old official error in the language.
 
 In nearest chapters we'll concentrate on understanding how to operate on primitives and once we're familiar with that, then we'll move on to objects.
-
-
-

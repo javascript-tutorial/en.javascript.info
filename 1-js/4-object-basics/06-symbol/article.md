@@ -9,7 +9,7 @@ Till now we only saw strings. Now let's see the advantages that symbols can give
 
 ## Symbols
 
-"Symbol" value represents an unique identifier with a given name. 
+"Symbol" value represents an unique identifier with a given name.
 
 A value of this type can be created using `Symbol(name)`:
 
@@ -31,18 +31,18 @@ alert(id1 == id2); // false
 */!*
 ```
 
-If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. Javascript symbols are different. 
+If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. Javascript symbols are different.
 
 
-## "Private" properties
+## "Hidden" properties
 
-Symbols allow to create concealed, "private" properties of an object, that no other part of code can occasionally access or overwrite. 
+Symbols allow to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
 For instance, if we want to store an "identifier" for the object `user`, we can create a symbol with the name `id` for it:
 
 ```js run
 let user = { name: "John" };
-let id = Symbol("id"); 
+let id = Symbol("id");
 
 user[id] = "ID Value";
 alert( user[id] ); // we can access the data using the symbol as the key
@@ -50,11 +50,11 @@ alert( user[id] ); // we can access the data using the symbol as the key
 
 Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another Javascript library, so the scripts are completely unaware for each other.
 
-No problem. It can create its own `Symbol("id")`. 
+No problem. It can create its own `Symbol("id")`.
 
 Their script:
 
-```js 
+```js
 // ...
 let id = Symbol("id");
 
@@ -77,7 +77,7 @@ user.id = "Their id value"
 // boom! overwritten! it did not mean to harm the colleague, but did it!
 ```
 
-### Symbols in literal
+### Symbols in a literal
 
 If we want to use a symbol in an object literal, we need square brackets.
 
@@ -93,9 +93,9 @@ let user = {
 */!*
 };
 ```
-That's because we use the value from the variable `id`, not the string "id".
+That's because we need the value from the variable `id` as the key, not the string "id".
 
-### Symbols are not in loop
+### Symbols skipped by for..in
 
 Symbolic properties do not participate in `for..in` loop.
 
@@ -114,7 +114,7 @@ for(let key in user) alert(key); // name, age (no symbols)
 */!*
 
 // the direct access by the global symbol works
-alert( "Direct: " + user[Symbol.for("id")] ); 
+alert( "Direct: " + user[Symbol.for("id")] );
 ```
 
 That's a part of the general "hiding" concept. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
@@ -132,8 +132,7 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-There's no paradox here. That's the expected behavior, because when we clone an object, we expect symbolic properties (like `id`) to be copied as well.
-
+There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want symbolic properties (like `id`) to be copied as well.
 
 ````smart header="Property keys of other types are coerced to strings"
 We can only use strings or symbols as keys in objects. Other types are coerced to strings.
@@ -155,7 +154,7 @@ alert( obj[0] ); // test (same property)
 
 Normally, all symbols are different. But sometimes we want same-named symbols to be the same.
 
-For instance, different parts of our application want to access symbol `"id"` meaning the exactly the same property.
+For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
 
 To achieve that, there exists a *global symbol registry*. We can create symbols in it and and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
 
@@ -177,7 +176,7 @@ alert( name === nameAgain ); // true
 Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
 
 ```smart header="That sounds like Ruby"
-In some programming languages, like Ruby, there's a single symbol per name. 
+In some programming languages, like Ruby, there's a single symbol per name.
 
 In Javascript, as we can see, that's right for global symbols.
 ```
@@ -221,7 +220,7 @@ They are listed in the specification in the [Well-known symbols](https://tc39.gi
 - `Symbol.toPrimitive`
 - ...and so on.
 
-For instance, `Symbol.toPrimitive` allows to describe object to primitive conversion. We'll see its use very soon. 
+For instance, `Symbol.toPrimitive` allows to describe object to primitive conversion. We'll see its use very soon.
 
 Other symbols will also become familiar when we study the corresponding language features.
 
@@ -229,11 +228,11 @@ Other symbols will also become familiar when we study the corresponding language
 
 - Symbol is a primitive type for unique identifiers.
 - Symbols are created with `Symbol(name)` call.
-- Symbols are useful if we want to create a field that only those who know the symbol can access. 
+- Symbols are useful if we want to create a field that only those who know the symbol can access.
 - Symbols don't appear in `for..in` loops.
 - Symbols created with `Symbol(name)` are always different, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls return the same symbol.
 - There are system symbols used by Javascript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors.
 
-Technically, symbols are not 100% hidden. There is a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not completely hidden and private. 
+Technically, symbols are not 100% hidden. There is a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden.
 
 But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods probably understands well what he's doing.

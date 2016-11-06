@@ -6,7 +6,7 @@ The first overall thing to know is the code structure.
 
 ## Statements
 
-[Statements](https://en.wikipedia.org/wiki/Statement_(computer_science)) are syntax constructs and commands to perform actions. 
+Statements are syntax constructs and commands that perform actions.
 
 We've already seen a statement `alert('Hello, world!')`, which shows the message.
 
@@ -48,11 +48,11 @@ alert(3 +
 + 2);
 ```
 
-The code outputs `6`, because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression". And in this case that's actually fine and comfortable.
+The code outputs `6`, because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", no semicolon required. And in this case that works as intended.
 
 **But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
 
-Errors which come appear in such cases are quite hard to find and fix.
+Errors which occur in such cases are quite hard to find and fix.
 
 ````smart header="An example of the error"
 If you're curious to see a concrete example, check this code out:
@@ -65,25 +65,29 @@ It shows `1` then `2`.
 
 No need to think about the meaning of the brackets `[]` and `forEach`, for now -- it does not matter. Let's just remember the result.
 
-Now we prepend the code with an `alert` statement *not followed by a semicolon*:
+Now let's put an `alert` before the code. And *not* finish it with a semicolon:
 
 ```js run no-beautify
 alert( "There will be an error" ) // shown
-[1, 2].forEach(alert) // doesn't work!
+
+[1, 2].forEach(alert) // doesn't work any more!
 ```
 
 Now if we run it, only the first `alert` is shown, and then an error.
 
-But everything's fine if we add a semicolon:
+But everything is fine again if we add a semicolon after `alert`:
 ```js run
 alert( "All fine now" ); // shown
+
 [1, 2].forEach(alert)  // this works too
 ```
 
-The error in the no-semicolon variant occurs because JavaScript engine does not assume a semicolon before square brackets `[...]`, so the code is actually treated as a one-line statement:
+The error in the no-semicolon variant occurs because automatic semicolon insertion rules are complex, and in particular, JavaScript does not imply a semicolon before square brackets `[...]`.
+
+And, because the semicolon is not auto-inserted, the code is treated as a single statement, like this:
 
 ```js run no-beautify
-alert( "There will be an error" )[1, 2].forEach(alert) 
+alert( "There will be an error" )[1, 2].forEach(alert)
 ```
 
 And in this particular case, that's just wrong, hence the error. There are other situations when such thing happens.
@@ -133,11 +137,11 @@ alert( 'World' );
 ```
 
 ```smart header="Use hotkeys!"
-In most editors a line of code can be commented out by `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a code and press the hotkey).
+In most editors a line of code can be commented out by `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a code and press the hotkey). For Mac try `key:Cmd` instead of `key:Ctrl`.
 ```
 
 ````warn header="Nested comments are not supported!"
-There may not be comments inside comments.
+There may not be `/*...*/` inside another `/*...*/`.
 
 This code will die with an error:
 
@@ -155,3 +159,4 @@ Comments increase the overall code footprint, but that's not a problem at all. T
 
 Further in the tutorial we'll devote a special chapter to code style, also explaining how to write better comments.
 
+[todo is there such a chapter?]

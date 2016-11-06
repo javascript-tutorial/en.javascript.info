@@ -8,11 +8,11 @@ What happens when something is not needed any more? How Javascript engine discov
 
 ## Reachability
 
-The main concept of memory management in Javascript is *reachability*. 
+The main concept of memory management in Javascript is *reachability*.
 
-Simply put, "reachable" values are those that are accessible now or in the future. They are guaranteed to be stored in memory.
+Simply put, "reachable" values are those that are accessible or useable somehow. They are guaranteed to be stored in memory.
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons. 
+1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
 
     For instance:
 
@@ -21,11 +21,13 @@ Simply put, "reachable" values are those that are accessible now or in the futur
     - Global variables.
     - (there are some other, internal ones as well)
 
-    These values are called *roots*. 
+    These values are called *roots*.
 
-2. Any other value is retained in memory only while it's reachable from a root by a reference of by a chain of references.
+2. Any other value is considered reachable if it's reachable from a root by a reference of by a chain of references.
 
-There's a background process that runs by the engine itself called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
+    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references -- are also reachable. Detailed examples to follow.
+
+There's a background process in the Javascript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
 
 ## A simple example
 
@@ -70,7 +72,7 @@ let admin = user;
 ![](memory-user-john-admin.png)
 
 Now if we do the same:
-```js 
+```js
 user = null;
 ```
 
@@ -104,7 +106,7 @@ The resulting memory structure:
 
 ![](family.png)
 
-As of now, all objects are reachable. 
+As of now, all objects are reachable.
 
 Now let's remove two references:
 
@@ -143,7 +145,7 @@ The in-memory picture becomes:
 
 This example demonstrates how important the concept of reachability is.
 
-It's obvious that John and Ann are still linked, both have incoming references. But that's not enough. 
+It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
 
 The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
 
@@ -153,19 +155,19 @@ The basic garbage collection algorithm is called "mark-and-sweep".
 
 Regularly the following "garbage collection" steps are performed:
 
-- The garbage collector takes roots and "marks" them.
+- The garbage collector takes roots and "marks" (remembers) them.
 - Then it visits and "marks" all references from them.
 - Then it visits marked objects and marks *their* references. All visited objects are remembered, not to visit the same object twice in the future.
-
 - ...And so on until there are unvisited references (reachable from the roots).
 - All objects except marked ones are removed.
 
-
-For instance, if our object structure looks like this:
+For instance, let our object structure look like this:
 
 ![](garbage-collection-1.png)
 
-Then the first step marks the roots:
+We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
+
+The first step marks the roots:
 
 ![](garbage-collection-2.png)
 
@@ -183,15 +185,17 @@ Now the objects that could not be visited in the process are considered unreacha
 
 That's the concept how garbage collection works.
 
-Javascript engines apply many optimizations to it, to make it run faster and be more hidden behind the scenes. 
+Javascript engines apply many optimizations to make it run faster and not affect the execution.
 
 Some of the optimizations:
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many objects appear, do their job and die fast, so they can be cleaned up more aggressively. Those "new" that survive for long enough, become "old". 
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays. So the engine tries to split the job into pieces. Then pieces are executed one at a time. That requires some extra bookkeeping between them.
+- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many objects appear, then do their job and die fast, so they can be cleaned up aggressively. Those that survive for long enough, become "old".
+- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the job into pieces. Then pieces are executed one at a time. That requires some extra bookkeeping between them to track changes.
 - **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
-Detailed learning of these optimization is also possible, but it requires a lot of under-the-hood digging. Javascript engines implement garbage collection differently. And -- what's even more important, things change, so going really deep "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below. 
+There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques.
+
+And -- what's even more important, things change as engines develop, so going really deep "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
 
 ## Summary
 
@@ -203,8 +207,10 @@ The main things to know:
 
 Modern engines implement advanced algorithms of garbage collection.
 
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection), and [V8 blog](http://v8project.blogspot.com/) also publishes articles about changes in memory management from time to time. Also you'd better prepare yourself by learning about V8 in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+A general book "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones at al) covers some of them.
+
+If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection). 
+
+[V8 blog](http://v8project.blogspot.com/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects. 
 
 In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
-
-
