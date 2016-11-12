@@ -1,4 +1,4 @@
-# Strings 
+# Strings
 
 In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
 
@@ -62,7 +62,7 @@ let guestList = "Guests:\n * John\n * Pete\n * Mary";
 alert(guestList); // a multiline list of guests
 ```
 
-So to speak, these two lines describe the same: 
+So to speak, these two lines describe the same:
 
 ```js run
 alert( "Hello\nWorld" ); // two lines using a "newline symbol"
@@ -92,7 +92,7 @@ alert( "\u{20331}" ); // 𠌱, a rare chinese hieroglyph (long unicode)
 alert( "\u{1F60D}"); // a smiling face sumbol (another long unicode)
 ```
 
-All special characters start with a backslash character `\`. It is also called an "escaping character". 
+All special characters start with a backslash character `\`. It is also called an "escaping character".
 
 We should also use it if we want to insert the quote into the string.
 
@@ -107,7 +107,7 @@ See, we have to prepend the inner quote by the backslash `\'`, because otherwise
 Of course, that refers only for the quotes that are same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
 
 ```js run
-alert( `I'm the Walrus!` ); // I'm the Walrus! 
+alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
 Note that the backslash `\` serves for the correct reading of the string by Javascript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
@@ -123,7 +123,7 @@ alert( `The backslash: \\` ); // The backslash: \
 ## String length
 
 
-The `length` property has the string length: 
+The `length` property has the string length:
 
 ```js run
 alert( `My\n`.length ); // 3
@@ -134,7 +134,7 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 ```warn header="`length` is a property"
 People with background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add brackets after it. 
+Please note that `str.length` is a numeric property, not a function. There is no need to add brackets after it.
 ```
 
 ## Accessing characters
@@ -173,7 +173,7 @@ for(let char of "Hello") {
 
 ## Strings are immutable
 
-Strings can't be changed in JavaScript. It is impossible to change a character. 
+Strings can't be changed in JavaScript. It is impossible to change a character.
 
 Let's try to see that it doesn't work:
 
@@ -219,7 +219,7 @@ There are multiple ways to look for a substring in a string.
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf). 
+The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
 It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing found.
 
@@ -249,7 +249,7 @@ If we're interested in all occurences, we can run `indexOf` in a loop. Every new
 
 
 ```js run
-let str = 'As sly as a fox, as strong as an ox'; 
+let str = 'As sly as a fox, as strong as an ox';
 
 let target = 'as'; // let's look for it
 
@@ -258,7 +258,7 @@ while (true) {
   let foundPos = str.indexOf(target, pos);
   if (foundPos == -1) break;
 
-  alert( `Found at ${foundPos}` ); 
+  alert( `Found at ${foundPos}` );
   pos = foundPos + 1; // continue the search from the next position
 }
 ```
@@ -302,7 +302,7 @@ let str = "Widget with id";
 
 *!*
 if (str.indexOf("Widget") != -1) {
-*/!* 
+*/!*
     alert("We found it"); // works now!
 }
 ```
@@ -310,7 +310,7 @@ if (str.indexOf("Widget") != -1) {
 ````smart header="The bitwise NOT trick"
 One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
 
-For 32-bit integers the call `~n` means exactly the same as `-(n+1)` (due to IEEE-754 format). 
+For 32-bit integers the call `~n` means exactly the same as `-(n+1)` (due to IEEE-754 format).
 
 For instance:
 
@@ -344,7 +344,7 @@ Just remember: `if (~str.indexOf(...))` reads as "if found".
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` has `substr` as its part. 
+The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` has `substr` as its part.
 
 It's the right choice if we need to test for the match, but don't need its position:
 
@@ -373,7 +373,7 @@ alert( "Widget".endsWith("get") );   // true, "Widget" ends with "get"
 There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
 
 `str.slice(start [, end])`
-: Returns the part of the string from `start` to (but not including) `end`. 
+: Returns the part of the string from `start` to (but not including) `end`.
 
     For instance:
 
@@ -398,12 +398,12 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     // start at the 4th position from the right, end at the 1st from the right
     alert( str.slice(-4, -1) ); // gif
     ```
-    
+
 
 `str.substring(start [, end])`
 : Returns the part of the string *between* `start` and `end`.
 
-    Almost the same as `slice`, but allows `start` to be greater than `end`. 
+    Almost the same as `slice`, but allows `start` to be greater than `end`.
 
     For instance:
 
@@ -421,7 +421,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     ```
 
-    Negative arguments are (unlike slice) not supported, they are treated as `0`. 
+    Negative arguments are (unlike slice) not supported, they are treated as `0`.
 
 
 `str.substr(start [, length])`
@@ -511,14 +511,14 @@ let str = '';
 for (let i = 65; i <= 220; i++) {
   str += String.fromCodePoint(i);
 }
-alert( str ); 
+alert( str );
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 
 See? Capital character go first, then few special ones, then lowercase characters.
 
-Now it becomes obvious why `a > Z`. 
+Now it becomes obvious why `a > Z`.
 
 The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
 
@@ -548,21 +548,21 @@ For instance:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-The method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), that allow to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc. 
+The method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), that allow to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc.
 
 ## Internals, Unicode
 
 ```warn header="Advanced knowledge"
-The section goes deeper into string internals. The knowledge will be useful for you if you plan to deal with emoji, rare mathematical of hieroglyphs characters or other rare symbols. 
+The section goes deeper into string internals. The knowledge will be useful for you if you plan to deal with emoji, rare mathematical of hieroglyphs characters or other rare symbols.
 
 You can skip the section if you don't plan to support them.
 ```
 
 ### Surrogate pairs
 
-Most symbols have a 2-byte code. Letters of most european languages, numbers, even most hieroglyphs have a 2-byte representation. 
+Most symbols have a 2-byte code. Letters of most european languages, numbers, even most hieroglyphs have a 2-byte representation.
 
-But 2 bytes only allow 65536 combinations that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair". 
+But 2 bytes only allow 65536 combinations that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair".
 
 The length of such symbols is `2`:
 
@@ -574,7 +574,7 @@ alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
 
 Note that surrogate pairs did not exist at the time when Javascript was created, and thus are not correctly processed by the language!
 
-We actually have a single symbol in each of the strings above, but the `length` shows the length of `2`. 
+We actually have a single symbol in each of the strings above, but the `length` shows the length of `2`.
 
 `String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
 
@@ -651,7 +651,7 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-In real, that is not always so. The reason is that symbol `Ṩ` is "common enough", so UTF-16 creators included it into the main table and gave it the code. 
+In real, that is not always so. The reason is that symbol `Ṩ` is "common enough", so UTF-16 creators included it into the main table and gave it the code.
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix to the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical reasons the information from this section is enough.
 
@@ -659,7 +659,7 @@ If you want to learn more about normalization rules and variants -- they are des
 ## Summary
 
 - There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions.
-- Strings in JavaScript are encoded using UTF-16. 
+- Strings in JavaScript are encoded using UTF-16.
 - We can use special characters like `\n` and insert letters by their unicode using `\u...`.
 - To get a character: use `[]`.
 - To get a substring: use `slice` or `substring`.
@@ -669,9 +669,8 @@ If you want to learn more about normalization rules and variants -- they are des
 
 There are several other helpful methods in strings:
 
-- [str.trim()]` -- removes ("trims") spaces from the beginning and end of the string.
-- [str.repeat(n)]` -- repeats the string `n` times.
+- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
+- `str.repeat(n)` -- repeats the string `n` times.
 - ...and others, see the [manual](mdn:js/String) for details.
 
 Also strings have methods for doing search/replace with regular expressions. But that topic deserves a separate chapter, so we'll return to that later.
-

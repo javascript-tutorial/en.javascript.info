@@ -226,7 +226,7 @@ As we see from the code, the assignment to a primitive `5` is ignored. If we wan
 ````
 
 
-## Property name shorthand
+## Property value shorthand
 
 In real code we often use existing variables as values for property names.
 
@@ -269,7 +269,6 @@ let user = {
   age: 30
 };
 ```
-
 
 ## Existance check
 

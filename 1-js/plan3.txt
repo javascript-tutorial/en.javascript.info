@@ -15,8 +15,8 @@ first-steps
   logical-ops
   while-for (labels, no objects)
   switch
-  function-basics (decl, shadowing,  naming, default params)
-  function-expressions-arrows (function expr, arrow, todo: move new Function out of this?)
+  function-basics (decl, shadowing, naming, default params)
+  function-expressions-arrows (function expr, arrow)
   javascript-specials (TODO, remove it? migrate all function* to separate chapter?)
 code-quality
   debugging-chrome (TODO)
@@ -27,12 +27,12 @@ code-quality
 object-basics
   object(props, for-in, refs, assign)
   garbage-collection
-  object-methods (this, method syntax, no call/apply)
-  primitives-methods
-  constructor-new
   symbol
+  object-methods (this, method syntax, no call/apply)
   object-toprimitive
+  constructor-new
 data-types
+  primitives-methods
   number (rounding, precision, isFinite, isNaN, parse*, Math.*)
   string (quotes, search, substring, tagged template notice)
   date (TODO: tasks)
@@ -41,14 +41,13 @@ data-types
   iterable
   map-set-weakmap-weakset
   json
-    << intl
 more-syntax
   function-arguments-rest-spread
   destructuring-assignment (also func params destructuring)
   advanced-loops (iterators over objects, arrays)
   try..catch (own errors, rethrowing, window.onerror)
 deeper
-  recursion 
+  recursion
     running execution context = where + lexical environment = envrec + outer
     context stack
     pow task
@@ -65,7 +64,7 @@ deeper
     length property
     custom properties
   new function
-  scheduling: settimeout, setinterval 
+  scheduling: settimeout, setinterval
     recursive settimeout
   call-apply-decorators
   bind
@@ -73,7 +72,7 @@ deeper
 -------
 
 
-
+<< intl
 <<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
 <<< getter setter
 
@@ -82,14 +81,14 @@ constructors
 classes
 instanceof
 
-после 4-object сделать 
+после 4-object сделать
   descriptors
 
 
 proxy?
 
 error-handling
-  try..catch 
+  try..catch
   object-oriented error handling (inheritance, rethrow etc)
 
 more-features

@@ -1,6 +1,8 @@
 # Methods of primitives
 
-JavaScript allows to work with primitives (strings, numbers etc) as if they were objects. They also have methods and such. Of course, primitives are not objects (and here we plan to make it even more clear), but can be used like them.
+JavaScript allows to work with primitives (strings, numbers etc) as if they were objects.
+
+They also provide methods to call and such. We are going to study them soon, but first let's see how it works, because, of course, primitives are not objects (and here we plan to make it even more clear).
 
 [cut]
 
@@ -10,13 +12,13 @@ A primitive
 : Is a value of a primitive type. There are 6 primitive types: `string`, `number`, `boolean`, `symbol`, `null` and `undefined`.
 
 An object
-: Is capable of storing multiple values as properties. 
+: Is capable of storing multiple values as properties.
 Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript, e.g. functions are objects.
 
 One of the best thing about objects is that we can store a function as one of properties:
 
 ```js run
-let john = { 
+let john = {
   name: "John",
   sayHi: function() {
     alert("Hi buddy!");
@@ -45,7 +47,7 @@ The solution looks a little bit awkward, but here it is.
 
 1. Primitives are still primitive. A single value, as desired.
 2. The language allows to access methods and properties of strings, numbers, booleans and symbols.
-3. When it happens, a special "object wrapper" is created that provides the functionality and then is destroyed. 
+3. When it happens, a special "object wrapper" is created that provides the functionality and then is destroyed.
 
 The "object wrappers" are different for each primitive type and are named specifically: `String`, `Number`, `Boolean` and `Symbol`. Thus they provide different sets of methods.
 
@@ -77,7 +79,7 @@ let n = 1.23456;
 alert( n.toFixed(2) ); // 1.23
 ```
 
-We'll see more specific methods in chapters <info:number> and <info:string>. 
+We'll see more specific methods in chapters <info:number> and <info:string>.
 
 ````warn header="null/undefined have no methods"
 Special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
@@ -92,4 +94,3 @@ alert(null.test); // error
 
 - Primitives except `null` and `undefined` provide many helpful methods. We plan to study those in the next chapters.
 - Formally, these methods work via temporary objects, but JavaScript engines are very well tuned to optimize that internally, so they are not expensive to call.
-
