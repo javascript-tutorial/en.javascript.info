@@ -4,20 +4,20 @@ In programming, we often want to take something and extend it.
 
 For instance, we have a `user` object with its properties and methods, and want to make `admin` and `guest` as slightly modified variants of it. We'd like to reuse what we have in `user`, not copy/reimplement its methods, just build a new object on top of it.
 
-*Inheritance* is a language feature that helps in that.
+*Prototypal inheritance* is a language feature that helps in that.
 
 
 [cut]
 
 ## [[Prototype]]
 
-In Javascript, object have a special hidden property `[[Prototype]]`, that is either `null` or references another object. That object is called "a prototype":
+In Javascript, objects have a special hidden property `[[Prototype]]`, that is either `null` or references another object. That object is called "a prototype":
 
 ![prototype](object-prototype-empty.png)
 
-That `[[Prototype]]` has a "magical" meaning. When we look for a property in `object`, and it's missing, Javascript automatically takes it from the prototype. In programming, such thing is called a "prototypal inheritance". Many cool language features and approaches are based on it.
+That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, Javascript automatically takes it from the prototype. In programming, such thing is called a "prototypal inheritance". Many cool language features and approaches are based on it.
 
-The property `[[Prototype]]` is hidden, but there are many ways to set it.
+The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
 One of them is to use `__proto__`, like this:
 
@@ -34,7 +34,7 @@ rabbit.__proto__ = animal;
 */!*
 ```
 
-Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. Later we'll talk more about other ways of setting it, but for the start it'll do just fine.
+Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. We'll talk about other ways of setting it later, as for now `__proto__` will do just fine.
 
 So now if we look for something in `rabbit` and it's missing, Javascript automatically takes it from `animal`.
 
@@ -49,7 +49,7 @@ let rabbit = {
 };
 
 *!*
-rabbit.__proto__ = animal;
+rabbit.__proto__ = animal; // (*)
 */!*
 
 // we can find both properties in rabbit now:
@@ -59,30 +59,15 @@ alert( rabbit.eats ); // true
 alert( rabbit.jumps ); // true
 ```
 
-Here `__proto__` sets `animal` to be a prototype of `rabbit`.
+Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
 
-When `alert` tries to read property `rabbit.eats`, it can find it `rabbit`, so it follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
+Then, when `alert` tries to read property `rabbit.eats`, it can find it `rabbit`, so it follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
 
 ![](proto-animal-rabbit.png)
 
 Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypally inherits from `animal`".
 
 So if `animal` has a lot of useful properties and methods, then they become automatically available in `rabbit`. Such properties are called "inherited".
-
-Loops `for..in` also include inherited properties:
-
-```js run
-let animal = {
-  eats: true
-};
-
-let rabbit = {
-  jumps: true,
-  __proto__: animal
-};
-
-for(let prop in rabbit) alert(prop); // jumps, eats
-```
 
 If we have a method in `animal`, it can be called on `rabbit`:
 
@@ -175,7 +160,7 @@ Since now, `rabbit.walk()` call finds the method immediately in the object and e
 
 ![](proto-animal-rabbit-walk-2.png)
 
-The situation is a bit different for accessor properties: these properties behave more like  functions. For instance, check out `admin.fullName` property in the code below:
+The assignment handling is different for accessor properties, because these properties behave more like functions. For instance, check out `admin.fullName` property in the code below:
 
 ```js run
 let user = {
@@ -203,16 +188,16 @@ alert(admin.name); // Alice
 alert(admin.surname); // Cooper
 ```
 
-Here the property `admin.fullName` has a setter in the prototype `user`. So it is not written into `admin`. Instead, the inherited setter is called.
+Here in the line `(*)` the property `admin.fullName` has a setter in the prototype `user`. So it is not written into `admin`. Instead, the inherited setter is called.
 
 So, the general rule would be:
 
-1. If an assigned property has a setter in the prototype, then use it.
+1. For accessor properties use a setter (from the prototype chain).
 2. Otherwise assign directly to the object.
 
 ## The value of "this"
 
-An interesting question may arise in the example above: what's the value of `this` inside `set fullName`? Where the properties `this.name` and `this.surname` are written: `user` or `admin`?
+An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where the properties `this.name` and `this.surname` are written: `user` or `admin`?
 
 The answer is simple: `this` is not affected by prototypes at all.
 

@@ -1,8 +1,8 @@
-# Object prototype and methods
+# Object.prototype and methods
 
 The `"prototype"` property is widely used by the core of Javascript itself. All built-in constructor functions use it.
 
-We'll see how it works for plain objects first, and then for more complex ones.
+We'll see how it is for plain objects first, and then for more complex ones.
 
 Let's say we output an empty object:
 
@@ -11,7 +11,7 @@ let obj = {};
 alert( obj ); // "[object Object]" ?
 ```
 
-Where's the code that generates `"[object Object]"`? That's a built-in `toString` method, but where is it? The object is empty!
+Where's the code that generates the string `"[object Object]"`? That's a built-in `toString` method, but where is it? The `obj` is empty!
 
 ...But the short notation `obj = {}` is the same as `obj = new Object()`, where `Object` -- is a built-in object constructor function. And that function has `Object.prototype` that references a huge object with `toString` and other functions.
 
@@ -25,7 +25,22 @@ When `new Object()` is called (or a literal object `{...}` is created), the `[[P
 
 Afterwards when `obj.toString()` is called -- the method is taken from `Object.prototype`.
 
-## Loops, obj.hasOwnProperty
+We can check it like this:
+
+```js run
+let obj = {};
+
+alert(obj.__proto__ === Object.prototype); // true
+// obj.toString === obj.__proto__toString == Object.prototype.toString
+```
+
+Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
+
+```js run
+alert(Object.prototype.__proto__); // null
+```
+
+## Getting all properties
 
 There are many ways to get keys/values from an object:
 
@@ -48,15 +63,17 @@ let rabbit = {
 };
 
 *!*
+// only own keys
 alert(Object.keys(rabbit)); // jumps
 */!*
 
 *!*
+// inherited keys too
 for(let prop in rabbit) alert(prop); // jumps, then eats
 */!*
 ```
 
-If we insist on using `for..in` for looping, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+If we want to differ inherited properties, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
 
 So we can filter out inherited properties (or do something else with them):
 
@@ -75,11 +92,11 @@ for(let prop in rabbit) {
   alert(`${prop}: ${isOwn}`); // jumps:true, then eats:false
 }
 ```
-Here we have the following inheritance chain: `rabbit`, then `animal`, then `Object.prototype`, the implicit prototype of `animal`, and only `null` above it:
+Here we have the following inheritance chain: `rabbit`, then `animal`, then `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
 
 ![](rabbit-animal-object.png)
 
-So when `rabbit.hasOwnProperty` is called, the method `hasOwnProperty` is taken from `Object.prototype`. Why `hasOwnProperty` itself does not appear in `for..in` loop? That's simple: it's not enumerable.
+So when `rabbit.hasOwnProperty` is called, the method `hasOwnProperty` is taken from `Object.prototype`. Why `hasOwnProperty` itself does not appear in `for..in` loop? The answer is simple: it's not enumerable just like all other properties of `Object.prototype`.
 
 As a take-away, let's remember that if we want inherited properties -- we should use `for..in`, and otherwise we can use other iteration methods or add the `hasOwnProperty` check.
 
@@ -128,13 +145,13 @@ Why so?
 
 That's for historical reasons.
 
-- The `"prototype"` property of constructor functions works since very ancient times.
-- Later in the year 2012: `Object.create` appeared in the standard. But it only allowed to create objects with the given prototype. So browsers implemented a more powerful, but non-standard `__proto__` accessor that allowed to get/set prototype at any time.
+- The `"prototype"` property of a constructor function works since very ancient times.
+- Later in the year 2012: `Object.create` appeared in the standard. It allowed to create objects with the given prototype, but that was all. So browsers implemented a more powerful, but non-standard `__proto__` accessor that allowed to get/set a prototype at any time.
 - Later in the year 2015: `Object.setPrototypeOf` and `Object.getPrototypeOf` were added to the standard, and also `__proto__` became a part of the Annex B of the standard (optional for non-browser environments), because almost all browsers implemented it.
 
 And now we have all these ways at our disposal.
 
-Please note: for most practical tasks, prototype chains are fixed: `rabbit` inherits from `animal`, and that is not going to change. And Javascript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation. But it is possible.
+But please note: for most practical tasks, prototype chains are fixed: `rabbit` inherits from `animal`, and that is not going to change. And Javascript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation. But it is possible.
 
 ## "Very plain" objects
 
@@ -165,7 +182,7 @@ So, what's going and and how to evade the problem?
 
 First, we can just switch to using `Map`, then everything's fine.
 
-But `Object` also can server well here, because language creators gave a thought to that problem long ago.
+But `Object` also can serve us well here, because language creators gave a thought to that problem long ago.
 
 The `__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
 
@@ -194,9 +211,9 @@ alert(obj[key]); // "some value"
 
 So, there is no inherited getter/setter for `__proto__`. Now it is processed as a regular data property, so the example above works right.
 
-We can call such object "very plain", because they are even simpler than regular plain object `{...}`.
+We can call such object "very plain" or "pure dictionary objects", because they are even simpler than regular plain object `{...}`.
 
-A downside is that such objects lack all built-in object methods, e.g. `toString`:
+A downside is that such objects lack any built-in object methods, e.g. `toString`:
 
 ```js run
 *!*
@@ -208,9 +225,24 @@ alert(obj); // Error (no toString)
 
 ...But that's usually fine for associative arrays. If needed, we can add a `toString` of our own.
 
-Please note that most object-related methods are `Object.something(...)`, like `Object.keys(obj)` -- they are not in the prototype, so they will keep working on such objects.
+Please note that most object-related methods are `Object.something(...)`, like `Object.keys(obj)` -- they are not in the prototype, so they will keep working on such objects:
 
 
-## Summary [todo]
+```js run
+let chineseDictionary = Object.create(null);
+chineseDictionary.hello = "ni hao";
+chineseDictionary.bye = "zai jian";
 
-Here in the tutorial I use `__proto__` for shorter and more readable examples. Also all modern engines support it. But in the long run, `Object.getPrototypeOf/setPrototypeOf` is safer.
+alert(Object.keys(chineseDictionary)); // hello,bye
+```
+
+
+## Summary
+
+The `"prototype"` property of constructor functions is essential for Javascript built-in methods.
+
+In this chapter we saw how it works for objects:
+
+-
+
+In the next chapter we'll see the bigger picture: how other built-ins rely on it to inherit from each other.
