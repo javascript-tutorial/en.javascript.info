@@ -1,6 +1,10 @@
 # Destructuring assignment
 
-*Destructuring assignment* is a special syntax that allows to "unpack" arrays or objects into a bunch of variables, that are sometimes more convenient to work. Destructuring also works great with complex functions that have a lot of parameters, default values etc.
+The two most used data structures in Javascript are `Object` and `Array`.
+
+Objects allow to pack many pieces of information into a single entity and arrays allow to store ordered collections. So we can make an object or an array and handle it as a single thing, maybe pass to a function call.
+
+*Destructuring assignment* is a special syntax that allows to "unpack" arrays or objects into a bunch of variables, as sometimes they are more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and soon we'll see how these are handled too.
 
 [cut]
 
@@ -94,7 +98,9 @@ let user = {
 };
 
 // loop over keys-and-values
+*!*
 for(let [key, value] of Object.entries(user)) {
+*/!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
 ```
@@ -106,7 +112,9 @@ let user = new Map();
 user.set("name", "John");
 user.set("age", "30");
 
+*!*
 for(let [key, value] of user.entries()) {
+*/!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
 ```

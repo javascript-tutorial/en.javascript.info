@@ -1,340 +1,466 @@
-# Наследование классов в JavaScript
 
-Наследование на уровне объектов в JavaScript, как мы видели, реализуется через ссылку `__proto__`.
+# Class inheritance, super
 
-Теперь поговорим о наследовании на уровне классов, то есть когда объекты, создаваемые, к примеру, через `new Admin`, должны иметь все методы, которые есть у объектов, создаваемых через `new User`, и ещё какие-то свои.
+Classes can extend one another. There's a nice syntax, technically based on the prototypal inheritance.
+
+To inherit from another class, we should specify `"extends"` and the parent class before the brackets `{..}`.
 
 [cut]
 
-## Наследование Array от Object
-
-Для реализации наследования в наших классах мы будем использовать тот же подход, который принят внутри JavaScript.
-
-Взглянем на него ещё раз на примере `Array`, который наследует от `Object`:
-
-![](class-inheritance-array-object.png)
-
-- Методы массивов `Array` хранятся в `Array.prototype`.
-- `Array.prototype` имеет прототипом `Object.prototype`.
-
-Поэтому когда экземпляры класса `Array` хотят получить метод массива -- они берут его из своего прототипа, например `Array.prototype.slice`.
-
-Если же нужен метод объекта, например, `hasOwnProperty`, то его в `Array.prototype` нет, и он берётся из `Object.prototype`.
-
-Отличный способ "потрогать это руками" -- запустить в консоли команду `console.dir([1,2,3])`.
-
-Вывод в Chrome будет примерно таким:
-
-![](console_dir_array.png)
-
-Здесь отчётливо видно, что сами данные и `length` находятся в массиве, дальше в `__proto__` идут методы для массивов `concat`, то есть `Array.prototype`, а далее -- `Object.prototype`.
-
-```smart header="`console.dir` для доступа к свойствам"
-Обратите внимание, я использовал именно `console.dir`, а не `console.log`, поскольку `log` зачастую выводит объект в виде строки, без доступа к свойствам.
-```
-
-## Наследование в наших классах
-
-Применим тот же подход для наших классов: объявим класс `Rabbit`, который будет наследовать от `Animal`.
-
-Вначале создадим два этих класса по отдельности, они пока что будут совершенно независимы.
-
-`Animal`:
-
-```js
-function Animal(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-Animal.prototype.run = function(speed) {
-  this.speed += speed;
-  alert( this.name + ' бежит, скорость ' + this.speed );
-};
-
-Animal.prototype.stop = function() {
-  this.speed = 0;
-  alert( this.name + ' стоит' );
-};
-```
-
-`Rabbit`:
-
-```js
-function Rabbit(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-Rabbit.prototype.jump = function() {
-  this.speed++;
-  alert( this.name + ' прыгает' );
-};
-
-var rabbit = new Rabbit('Кроль');
-```
-
-Для того, чтобы наследование работало, объект `rabbit = new Rabbit` должен использовать свойства и методы из своего прототипа `Rabbit.prototype`, а если их там нет, то -- свойства и метода родителя, которые хранятся в `Animal.prototype`.
-
-Если ещё короче -- порядок поиска свойств и методов должен быть таким: `rabbit -> Rabbit.prototype -> Animal.prototype`, по аналогии с тем, как это сделано для объектов и массивов.
-
-Для этого можно поставить ссылку `__proto__` с `Rabbit.prototype` на `Animal.prototype`.
-
-Можно сделать это так:
-```js
-Rabbit.prototype.__proto__ = Animal.prototype;
-```
-
-Однако, прямой доступ к `__proto__` не поддерживается в IE10-, поэтому для поддержки этих браузеров мы используем функцию `Object.create`. Она либо встроена либо легко эмулируется во всех браузерах.
-
-Класс `Animal` остаётся без изменений, а `Rabbit.prototype` мы будем создавать с нужным прототипом, используя `Object.create`:
-
-```js no-beautify
-function Rabbit(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-*!*
-// задаём наследование
-Rabbit.prototype = Object.create(Animal.prototype);
-*/!*
-
-// и добавим свой метод (или методы...)
-Rabbit.prototype.jump = function() { ... };
-```
-
-Теперь выглядеть иерархия будет так:
-
-![](class-inheritance-rabbit-animal.png)
-
-В `prototype` по умолчанию всегда находится свойство `constructor`, указывающее на функцию-конструктор. В частности, `Rabbit.prototype.constructor == Rabbit`. Если мы рассчитываем использовать это свойство, то при замене `prototype` через `Object.create` нужно его явно сохранить:
-
-```js
-Rabbit.prototype = Object.create(Animal.prototype);
-Rabbit.prototype.constructor = Rabbit;
-```
-
-## Полный код наследования
-
-Для наглядности -- вот итоговый код с двумя классами `Animal` и `Rabbit`:
-
-```js
-// 1. Конструктор Animal
-function Animal(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-// 1.1. Методы -- в прототип
-
-Animal.prototype.stop = function() {
-  this.speed = 0;
-  alert( this.name + ' стоит' );
-}
-
-Animal.prototype.run = function(speed) {
-  this.speed += speed;
-  alert( this.name + ' бежит, скорость ' + this.speed );
-};
-
-// 2. Конструктор Rabbit
-function Rabbit(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-// 2.1. Наследование
-Rabbit.prototype = Object.create(Animal.prototype);
-Rabbit.prototype.constructor = Rabbit;
-
-// 2.2. Методы Rabbit
-Rabbit.prototype.jump = function() {
-  this.speed++;
-  alert( this.name + ' прыгает, скорость ' + this.speed );
-}
-```
-
-Как видно, наследование задаётся всего одной строчкой, поставленной в правильном месте.
-
-Обратим внимание: `Rabbit.prototype = Object.create(Animal.prototype)` присваивается сразу после объявления конструктора, иначе он перезатрёт уже записанные в прототип методы.
-
-````warn header="Неправильный вариант: `Rabbit.prototype = new Animal`"
-В некоторых устаревших руководствах предлагают вместо `Object.create(Animal.prototype)` записывать в прототип `new Animal`, вот так:
-
-```js
-// вместо Rabbit.prototype = Object.create(Animal.prototype)
-Rabbit.prototype = new Animal();
-```
-
-Частично, он рабочий, поскольку иерархия прототипов будет такая же, ведь `new Animal` -- это объект с прототипом `Animal.prototype`, как и `Object.create(Animal.prototype)`. Они в этом плане идентичны.
-
-Но у этого подхода важный недостаток. Как правило мы не хотим создавать `Animal`, а хотим только унаследовать его методы!
-
-Более того, на практике создание объекта может требовать обязательных аргументов, влиять на страницу в браузере, делать запросы к серверу и что-то ещё, чего мы хотели бы избежать. Поэтому рекомендуется использовать вариант с `Object.create`.
-````
-
-## Вызов конструктора родителя
-
-Посмотрим внимательно на конструкторы `Animal` и `Rabbit` из примеров выше:
-
-```js
-function Animal(name) {
-  this.name = name;
-  this.speed = 0;
-}
-
-function Rabbit(name) {
-  this.name = name;
-  this.speed = 0;
-}
-```
-
-Как видно, объект `Rabbit` не добавляет никакой особенной логики при создании, которой не было в `Animal`.
-
-Чтобы упростить поддержку кода, имеет смысл не дублировать код конструктора `Animal`, а напрямую вызвать его:
-
-```js
-function Rabbit(name) {
-  Animal.apply(this, arguments);
-}
-```
-
-Такой вызов запустит функцию `Animal` в контексте текущего объекта, со всеми аргументами, она выполнится и запишет в `this` всё, что нужно.
-
-Здесь можно было бы использовать и `Animal.call(this, name)`, но `apply` надёжнее, так как работает с любым количеством аргументов.
-
-## Переопределение метода
-
-Итак, `Rabbit` наследует `Animal`. Теперь если какого-то метода нет в `Rabbit.prototype` -- он будет взят из `Animal.prototype`.
-
-В `Rabbit` может понадобиться задать какие-то методы, которые у родителя уже есть. Например, кролики бегают не так, как остальные животные, поэтому переопределим метод `run()`:
-
-```js
-Rabbit.prototype.run = function(speed) {
-  this.speed++;
-  this.jump();
-};
-```
-
-Вызов `rabbit.run()` теперь будет брать `run` из своего прототипа:
-
-![](class-inheritance-rabbit-run-animal.png)
-
-### Вызов метода родителя внутри своего
-
-Более частая ситуация -- когда мы хотим не просто заменить метод на свой, а взять метод родителя и расширить его. Скажем, кролик бежит так же, как и другие звери, но время от времени подпрыгивает.
-
-Для вызова метода родителя можно обратиться к нему напрямую, взяв из прототипа:
-
-```js
- Rabbit.prototype.run = function() {
-*!*
-   // вызвать метод родителя, передав ему текущие аргументы
-   Animal.prototype.run.apply(this, arguments);
-*/!*
-   this.jump();
- }
-```
-
-Обратите внимание на вызов через `apply` и явное указание контекста.
-
-Если вызвать просто `Animal.prototype.run()`, то в качестве `this` функция `run` получит `Animal.prototype`, а это неверно, нужен текущий объект.
-
-## Итого
-
-- Для наследования нужно, чтобы "склад методов потомка" (`Child.prototype`) наследовал от "склада метода родителей" (`Parent.prototype`).
-
-    Это можно сделать при помощи `Object.create`:
-
-    Код:
-
-    ```js
-    Rabbit.prototype = Object.create(Animal.prototype);
-    ```
-- Для того, чтобы наследник создавался так же, как и родитель, он вызывает конструктор родителя в своём контексте, используя `apply(this, arguments)`, вот так:
-
-    ```js
-    function Rabbit(...) {
-      Animal.apply(this, arguments);
-    }
-    ```
-- При переопределении метода родителя в потомке, к исходному методу можно обратиться, взяв его напрямую из прототипа:
-
-    ```js
-    Rabbit.prototype.run = function() {
-      var result = Animal.prototype.run.apply(this, ...);
-      // result -- результат вызова метода родителя
-    }
-    ```
-
-Структура наследования полностью:
+Here `Rabbit` inherits from `Animal`:
 
 ```js run
-*!*
-// --------- Класс-Родитель ------------
-*/!*
-// Конструктор родителя пишет свойства конкретного объекта
-function Animal(name) {
-  this.name = name;
-  this.speed = 0;
+class Animal {
+
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+
+  run(speed) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  stop() {
+    this.speed = 0;
+    alert(`${this.name} stopped.`);
+  }
+
 }
 
-// Методы хранятся в прототипе
-Animal.prototype.run = function() {
-  alert(this.name + " бежит!")
-}
-
 *!*
-// --------- Класс-потомок -----------
-*/!*
-// Конструктор потомка
-function Rabbit(name) {
-  Animal.apply(this, arguments);
+// Inherit from Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
 }
-
-// Унаследовать
-*!*
-Rabbit.prototype = Object.create(Animal.prototype);
 */!*
 
-// Желательно и constructor сохранить
-Rabbit.prototype.constructor = Rabbit;
+let rabbit = new Rabbit("White Rabbit");
 
-// Методы потомка
-Rabbit.prototype.run = function() {
-  // Вызов метода родителя внутри своего
-  Animal.prototype.run.apply(this);
-  alert( this.name + " подпрыгивает!" );
-};
-
-// Готово, можно создавать объекты
-var rabbit = new Rabbit('Кроль');
-rabbit.run();
+rabbit.run(5); // White Rabbit runs with speed 5.
+rabbit.hide(); // White Rabbit hides!
 ```
 
-Такое наследование лучше функционального стиля, так как не дублирует методы в каждом объекте.
+The `extends` keyword actually adds a `[[Prototype]]` reference from `Rabbit.prototype` to `Animal.prototype`, just as you expect it to be, and as we've seen before.
 
-Кроме того, есть ещё неявное, но очень важное архитектурное отличие.
+![](animal-rabbit-extends.png)
 
-Зачастую вызов конструктора имеет какие-то побочные эффекты, например влияет на документ. Если конструктор родителя имеет какое-то поведение, которое нужно переопределить в потомке, то в функциональном стиле это невозможно.
+So now `rabbit` has access both to its own methods and to methods of `Animal`.
 
-Иначе говоря, в функциональном стиле в процессе создания `Rabbit` нужно обязательно вызывать `Animal.apply(this, arguments)`, чтобы получить методы родителя -- и если этот `Animal.apply` кроме добавления методов говорит: "Му-у-у!", то это проблема:
+````smart header="Any expression is allowed after `extends`"
+Class syntax allows to specify not just a class, but any expression after `extends`.
+
+For instance, a function call that generates the parent class:
+
+```js run
+function f(phrase) {
+  return class {
+    sayHi() { alert(phrase) }
+  }
+}
+
+*!*
+class User extends f("Hello") {}
+*/!*
+
+new User().sayHi(); // Hello
+```
+Here `class User` inherits from the result of `f("Hello")`.
+
+That may be useful for advanced programming patterns when we use functions to generate classes depending on many conditions and can inherit from them.
+````
+
+## Overriding a method
+
+Now let's move forward and override a method. As of now, `Rabbit` inherits the `stop` method that sets `this.speed = 0` from `Animal`.
+
+If we specify our own `stop` in `Rabbit`, then it will be used instead:
 
 ```js
-function Animal() {
-  this.walk = function() {
-    alert('walk')
-  };
-  alert( 'Му-у-у!' );
-}
-
-function Rabbit() {
-  Animal.apply(this, arguments); // как избавиться от мычания, но получить walk?
+class Rabbit extends Animal {
+  stop() {
+    // ...this will be used for rabbit.stop()
+  }
 }
 ```
 
-...Которой нет в прототипном подходе, потому что в процессе создания `new Rabbit` мы вовсе не обязаны вызывать конструктор родителя. Ведь методы находятся в прототипе.
 
-Поэтому прототипный подход стоит предпочитать функциональному как более быстрый и универсальный. А что касается красоты синтаксиса -- она сильно лучше в новом стандарте ES6, которым можно пользоваться уже сейчас, если взять транслятор [babeljs](https://babeljs.io/).
+...But usually we don't want to totally replace a parent method, but rather to build on top of it, tweak or extend its functionality. We do something in our method, but call the parent method before/after it or in the process.
 
+Classes provide `"super"` keyword for that.
+
+- `super.method(...)` to call a parent method.
+- `super(...)` to call a parent constructor (inside our constructor only).
+
+For instance, let our rabbit autohide when stopped:
+
+```js run
+class Animal {
+
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+
+  run(speed) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  stop() {
+    this.speed = 0;
+    alert(`${this.name} stopped.`);
+  }
+
+}
+
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+
+*!*
+  stop() {
+    super.stop(); // call parent stop
+    hide(); // and then hide
+  }
+*/!*
+}
+
+let rabbit = new Rabbit("White Rabbit");
+
+rabbit.run(5); // White Rabbit runs with speed 5.
+rabbit.stop(); // White Rabbit stopped. White rabbit hides!
+```
+
+Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the process.
+
+## Custom constructor
+
+With constructors, things are is a little bit tricky.
+
+Till now, `Rabbit` had no its own `constructor`.
+
+According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following `constructor` is generated:
+
+```js
+class Rabbit extends Animal {
+  // generated for extending classes without own constructors
+*!*
+  constructor(...args) {
+    super(...args);
+  }
+*/!*
+}
+```
+
+As we can see, it basically calls the parent `constructor` passing it all the arguments. That happens if we don't write a constructor of our own.
+
+Now let's add a custom constructor to `Rabbit`. It will specify the `earLength` in addition to `name`:
+
+```js run
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+  // ...
+}
+
+class Rabbit extends Animal {
+
+*!*
+  constructor(name, earLength) {
+    this.speed = 0;
+    this.name = name;
+    this.earLength = earLength;
+  }
+*/!*
+
+  // ...
+}
+
+*!*
+// Doesn't work!
+let rabbit = new Rabbit("White Rabbit", 10); // Error: this is not defined.
+*/!*
+```
+
+Wops! We've got an error. Now we can't create rabbits. What went wrong?
+
+The short answer is: constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.
+
+...But why? What's going on here? Indeed, the requirement seems strange.
+
+Of course, there's an explanation. Let's get into details, so you'd really understand what's going on.
+
+In JavaScript, there's a distinction between a "constructor function of an inheriting class" and all others. In an inheriting class, the corresponding constructor function is labelled with a special internal property `[[ConstructorKind]]:"derived"`.
+
+The difference is:
+
+- When a normal constructor runs, it creates an empty object as `this` and continues with it.
+- But when a derived constructor runs, it doesn't do it. It expects the parent constructor to do this job.
+
+So if we're making a constructor of our own, then we must call `super`, because otherwise the object with `this` reference to it won't be created. And we'll get an error.
+
+For `Rabbit` to work, we need to call `super()` before using `this`, like here:
+
+```js run
+class Animal {
+
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+
+  // ...
+}
+
+class Rabbit extends Animal {
+
+  constructor(name, earLength) {
+*!*
+    super(name);
+*/!*
+    this.earLength = earLength;
+  }
+
+  // ...
+}
+
+*!*
+// now fine
+let rabbit = new Rabbit("White Rabbit", 10);
+alert(rabbit.name); // White Rabbit
+alert(rabbit.earLength); // 10
+*/!*
+```
+
+
+## Super: internals, [[HomeObject]]
+
+Let's get a little deeper under the hood of `super`. There are some interesting things by the way.
+
+First to say, from all that we've learned till now, it's impossible for `super` to work.
+
+Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how it can get that method?
+
+Maybe it can just take it from `[[Prototype]]` of `this`? Unfortunately, no.
+
+Let's try to do it. Without classes, using plain objects for sheer simplicity.
+
+Here, `rabbit.eat()` should call `animal.eat()`.
+
+```js run
+let animal = {
+  name: "Animal",
+  eat() {
+    alert(this.name + " eats.");
+  }
+};
+
+let rabbit = {
+  __proto__: animal,
+  name: "Rabbit",
+  eat() {
+*!*
+    this.__proto__.eat.call(this); // (*)
+*/!*
+  }
+};
+
+rabbit.eat(); // Rabbit eats.
+```
+
+At the line `(*)` we take `eat` from the prototype (`animal`) and call it in the context of the current object. Please note that `.call(this)` is important here, because a simple `this.__proto__.eat()` would execute parent `eat` in the context of the prototype, not the current object.
+
+And here it works.
+
+Now let's add one more object to the chain. We'll see how things break:
+
+```js run
+let animal = {
+  name: "Animal",
+  eat() {
+    alert(this.name + " eats.");
+  }
+};
+
+let rabbit = {
+  __proto__: animal,
+  eat() {
+    // bounce around rabbit-style and call parent
+    this.__proto__.eat.call(this);
+  }
+};
+
+let longEar = {
+  __proto__: rabbit,
+  eat() {
+    // do something with long ears and call parent  
+    this.__proto__.eat.call(this);
+  }
+};
+
+*!*
+longEar.eat(); // Error: Maximum call stack size exceeded
+*/!*
+```
+
+Doesn't work any more! If we trace `longEar.eat()` call, it becomes obvious, why:
+
+1. Inside `longEar.eat()`, we pass the call up to `rabbit.eat` giving it the same `this=longEar`.
+2. Inside `rabbit.eat`, we want to pass the call even higher in the chain, but `this=longEar`, so `this.__proto__.eat` is `rabbit.eat`!
+3. ...So `rabbit.eat` calls itself in the endless loop, because it can't ascend any further.
+
+![](this-super-loop.png)
+
+There problem is unsolvable, because `this` must always be the calling object itself, no matter which parent method is called. So its prototype will always be the immediate parent of the object. We can't go up the chain.
+
+### `[[HomeObject]]`
+
+To provide the solution, JavaScript adds one more special internal property for functions: `[[HomeObject]]`.
+
+**When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.**
+
+This actually violates the idea of "unbound" functions, because methods remember their objects. And `[[HomeObject]]` can't be changed, so this bound is forever. So that's a very important change in the language.
+
+But this change is safe. `[[HomeObject]]` is used only for calling parent methods in `super`, to resolve the prototype. So it doesn't break compatibility.
+
+Let's see how it works for `super` -- again, using plain objects:
+
+```js run
+let animal = {
+  name: "Animal",
+  eat() {         // [[HomeObject]] == animal
+    alert(this.name + " eats.");
+  }
+};
+
+let rabbit = {
+  __proto__: animal,
+  name: "Rabbit",
+  eat() {         // [[HomeObject]] == rabbit
+    super.eat();
+  }
+};
+
+let longEar = {
+  __proto__: rabbit,
+  name: "Long Ear",
+  eat() {         // [[HomeObject]] == longEar
+    super.eat();
+  }
+};
+
+*!*
+longEar.eat();  // Long Ear eats.
+*/!*
+```
+
+Every method remembers its object in the internal `[[HomeObject]]` property. Then `super` uses it to resolve the parent prototype.
+
+`[[HomeObject]]` is defined for methods defined both in classes and in plain objects. But for objects, methods must be specified exactly the given way: as `method()`, not as `"method: function()"`.
+
+In the example below a non-method syntax is used for comparison. `[[HomeObject]]` property is not set and the inheritance doesn't work:
+
+```js run
+let animal = {
+  eat: function() { // should be the short syntax: eat() {...}
+    // ...
+  }
+};
+
+let rabbit = {
+  __proto__: animal,
+  eat: function() {
+    super.eat();
+  }
+};
+
+*!*
+rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
+*/!*
+```
+
+## Static methods and inheritance
+
+The `class` syntax supports inheritance for static properties too.
+
+For instance:
+
+```js run
+class Animal {
+
+  constructor(name, speed) {
+    this.speed = speed;
+    this.name = name;
+  }
+
+  run(speed = 0) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+
+  static compare(animalA, animalB) {
+    return animalA.speed - animalB.speed;
+  }
+
+}
+
+// Inherit from Animal
+class Rabbit extends Animal {
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbits = [
+  new Rabbit("White Rabbit", 10),
+  new Rabbit("Black Rabbit", 5)
+];
+
+rabbits.sort(Rabbit.compare);
+
+rabbits[0].run(); // Black Rabbit runs with speed 5.
+```
+
+Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` will be called.
+
+How does it work? Again, using prototypes. As you might have already guessed, extends also gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
+
+
+![](animal-rabbit-static.png)
+
+So, `Rabbit` function now inherits from `Animal` function. And `Animal` function normally has `[[Prototype]]` referencing `Function.prototype`, because it doesn't `extend` anything.
+
+Here, let's check that:
+
+```js run
+class Animal {}
+class Rabbit extends Animal {}
+
+// for static propertites and methods
+alert(Rabbit.__proto__ == Animal); // true
+
+// and the next step is Function.prototype
+alert(Animal.__proto__ == Function.prototype); // true
+
+// that's in addition to the "normal" prototype chain for object methods
+alert(Rabbit.prototype.__proto__ === Animal.prototype);
+```
+
+This way `Rabbit` has access to all static methods of `Animal`.
+
+Please note that built-in classes don't have such static `[[Prototype]]` reference. For instance, `Object` has `Object.defineProperty`, `Object.keys` and so on, but `Array`, `Date` etc do not inherit them.
+
+Here's the picture structure for `Date` and `Object`:
+
+![](object-date-inheritance.png)
+
+Note, there's no link between `Date` and `Object`. Both `Object` and `Date` exist independently. `Date.prototype` inherits from `Object.prototype`, but that's all.
+
+Such difference exists for historical reasons: there was no thought about class syntax and inheriting static methods at the dawn of JavaScript language.

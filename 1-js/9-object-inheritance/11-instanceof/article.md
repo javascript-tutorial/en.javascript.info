@@ -1,6 +1,6 @@
-# Проверка класса: "instanceof"
+# Class checking: "instanceof"
 
-Оператор `instanceof` позволяет проверить, какому классу принадлежит объект, с учетом прототипного наследования.
+The `instanceof` operator allows to check if an object belongs to the certain class. The inheritance is also taken into account.
 
 [cut]
 
