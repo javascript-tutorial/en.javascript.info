@@ -54,7 +54,7 @@ Here's the overall picture (for 3 built-ins to fit):
 
 ![](native-prototypes-classes.png)
 
-Let's check the prototypes: is the picture correct?
+Let's check the prototypes manually:
 
 ```js run
 let arr = [1, 2, 3];
@@ -82,43 +82,29 @@ As we've seen before, `Object.prototype` has `toString` as well, but `Array.prot
 ![](native-prototypes-array-tostring.png)
 
 
-Functions also work the same way. They are objects of a built-in `Function` constructor, and their methods: `call/apply` and others are taken from `Function.prototype`. Functions have their own `toString` too.
+In-browser tools like Chrome developer console also show inheritance (may need to use `console.dir` for built-in objects):
+
+![](console_dir_array.png)
+
+Other built-in objects also work the same way. Even functions. They are objects of a built-in `Function` constructor, and their methods: `call/apply` and others are taken from `Function.prototype`. Functions have their own `toString` too.
+
+```js run
+function f() {}
+
+alert(f.__proto__ == Function.prototype); // true
+alert(f.__proto__.__proto__ == Object.prototype); // true, inherit from objects
+```
+
+## Primitives
 
 The most intricate thing happens with strings, numbers and booleans.
 
-As we remember, they are not objects. But if we try to access their properties, then temporary wrapper objects are created using built-in constructors `String`, `Number`, `Boolean`, they provide the methods and disappear. These objects are created invisibly to us and most engines optimize them out, but the specification describes it exactly this way. Methods of these objects also reside in prototypes, available as `String.prototype`, `Number.prototype` and `Boolean.prototype`.
+As we remember, they are not objects. But if we try to access their properties, then temporary wrapper objects are created using built-in constructors `String`, `Number`, `Boolean`, they provide the methods and disappear.
 
-````warn header="Constructors `String/Number/Boolean` are for internal use only"
-Technically, we can create "wrapper objects" for primitives manually using `new Number(1)`. But things will go crazy in many places.
-
-For instance:
-
-```js run
-alert( typeof 1 ); // "number"
-
-alert( typeof new Number(1) ); // "object"!
-```
-
-And, because it's an object:
-
-```js run
-let zero = new Number(0);
-
-if (zero) { // zero is true, because it's an object
-  alert( "zero is true in the boolean context?!?" );
-}
-```
-
-The same functions `String/Number/Boolean` without `new` have a totally different behavior: they convert a value to the corresponding type: to a string, a number, or a boolean.
-
-This is totally valid:
-```js
-let num = Number("123"); // convert a string to number
-```
-````
+These objects are created invisibly to us and most engines optimize them out, but the specification describes it exactly this way. Methods of these objects also reside in prototypes, available as `String.prototype`, `Number.prototype` and `Boolean.prototype`.
 
 ```warn header="Values `null` and `undefined` have no object wrappers"
-Special values `null` and `undefined` stand apart. They have no object wrappers, so methods and properties are not available for them.
+Special values `null` and `undefined` stand apart. They have no object wrappers, so methods and properties are not available for them. And there are no corresponding prototypes too.
 ```
 
 ## Changing native prototypes [#native-prototype-change]

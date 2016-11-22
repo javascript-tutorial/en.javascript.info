@@ -212,10 +212,19 @@ So when `rabbit.hasOwnProperty` is called, the method `hasOwnProperty` is taken 
 
 As a take-away, let's remember that if we want inherited properties -- we should use `for..in`, and otherwise we can use other iteration methods or add the `hasOwnProperty` check.
 
-## Summary [todo]
+## Summary
 
-The `"prototype"` property of constructor functions is essential for Javascript built-in methods.
+Here's a brief list of methods we discussed in this chapter -- as a recap:
 
-In this chapter we saw how it works for objects:
+- [Object.create(proto[, descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` (can be `null`) and optional property descriptors.
+- [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- returns the `[[Prototype]]` of `obj` (same as `__proto__` getter).
+- [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- sets the `[[Prototype]]` of `obj` to `proto` (same as `__proto__` setter).
+- [Object.keys(obj)](mdn:js/Object/keys) / [Object.values(obj)](mdn:js/Object/values) / [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of enumerable own string property names/values/key-value pairs.
+- [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) -- returns an array of all own symbolic property names.
+- [Object.getOwnPropertyNames(obj)](mdn:js/Object/getOwnPropertyNames) -- returns an array of all own string property names.
+- [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) -- returns an array of all own property names.
+- [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
 
-In the next chapter we'll see the bigger picture: how other built-ins rely on it to inherit from each other.
+We also made it clear that `__proto__` is a getter/setter for `[[Prototype]]` and resides in `Object.prototype`, just as other methods.
+
+`Object.create(null)` doesn't have any object properties and methods, and `__proto__` also doesn't exist for it.

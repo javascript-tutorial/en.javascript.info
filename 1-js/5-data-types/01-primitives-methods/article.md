@@ -81,6 +81,39 @@ alert( n.toFixed(2) ); // 1.23
 
 We'll see more specific methods in chapters <info:number> and <info:string>.
 
+
+````warn header="Constructors `String/Number/Boolean` are for internal use only"
+Some languages like Java allow to create "wrapper objects" for primitives explicitly using syntax like `new Number(1)` or `new Boolean(false)`.
+
+In Javascript that's also possible for historical reasons, but highly not recommended. Things will go crazy in many places.
+
+For instance:
+
+```js run
+alert( typeof 1 ); // "number"
+
+alert( typeof new Number(1) ); // "object"!
+```
+
+And, because `zero` is an object:
+
+```js run
+let zero = new Number(0);
+
+if (zero) { // zero is true, because it's an object
+  alert( "zero is truthy?!?" );
+}
+```
+
+From the other side, using same functions `String/Number/Boolean` without `new` is a totally sane and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+
+This is totally valid:
+```js
+let num = Number("123"); // convert a string to number
+```
+````
+
+
 ````warn header="null/undefined have no methods"
 Special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
 

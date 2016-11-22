@@ -219,10 +219,11 @@ Please note that usually a call of a function using `this` without an object is 
 ```smart header="The consequences of unbound `this`"
 If you come from another programming languages, then you are probably used to an idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
 
-The idea of unbound, run-time evaluated `this` has both pluses and minuses. From one side, a function can be reused for different objects. From the other side, greater flexibility opens  a place for mistakes. 
+The idea of unbound, run-time evaluated `this` has both pluses and minuses. From one side, a function can be reused for different objects. From the other side, greater flexibility opens  a place for mistakes.
 
 Here we are not to judge whether this language design decision is good or bad. We will understand how to work with it, how to get benefits and evade problems.
 ```
+
 ## Internals: Reference Type
 
 An intricate method call can loose `this`, for instance:
@@ -294,6 +295,27 @@ When brackets `()` are called on the Reference Type, they receive the full infor
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "looses" `this`.
 
 So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
+
+````warn header="Arrow functions do not have `this`"
+Arrow functions are special: they don't have "own" `this`. If we reference `this` from such function, it's taken from the outer "normal" function.
+
+For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
+
+```js run
+let user = {
+  firstName: "Ilya",
+  sayHi() {
+    let arrow = () => alert(this.firstName);
+    arrow();
+  }
+};
+
+user.sayHi(); // Ilya
+```
+
+That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll dig more deeply into what's going on. 
+
+````
 
 ## Summary
 

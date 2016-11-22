@@ -39,7 +39,7 @@ let f = user.sayHi;
 setTimeout(f, 1000); // lost user context
 ```
 
-The method `setTimeout` is a little special: it sets `this=window` for the function call. So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases as we'll see, usually `this` just becomes `undefined`.
+The method `setTimeout` in-browser is a little special: it sets `this=window` for the function call (for Node.JS, `this` becomes the timer object, but doesn't really matter here). So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases as we'll see, usually `this` just becomes `undefined`.
 
 The task is quite typical -- we want to pass an object method somewhere else (here -- to the scheduler) where it will be called. How to make sure that it will be called in the right context?
 
@@ -494,4 +494,4 @@ But most implementations of currying in Javascript are advanced, as described: t
 
 - *Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. Javascript implementations usually both keep the function callable normally and return the partial if arguments count is not enough.
 
-    Currying is convenient when we want to have easy partials. We saw an example with logging: the universal function `log(date, importance, message)` after currying gives us partials when called with one argument like `log(date)` or two arguments `log(date, importance)`.
+    Currying is great when we want easy partials. As we've seen in the logging example: the universal function `log(date, importance, message)` after currying gives us partials when called with one argument like `log(date)` or two arguments `log(date, importance)`.  

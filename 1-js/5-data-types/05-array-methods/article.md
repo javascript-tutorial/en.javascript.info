@@ -606,7 +606,7 @@ alert(typeof {}); // object
 alert(typeof []); // same
 ```
 
-There's a special method for that [Array.isArray(value)](mdn:js/Array/isArray) that returns `true` if the `value` is an array, and `false` otherwise.
+...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -614,24 +614,23 @@ alert(Array.isArray({})); // false
 alert(Array.isArray([])); // true
 ```
 
-```smart header="`Array.isArray` vs other type-checks"
-You remembeare other ways to check for 
-
 ## Methods: "thisArg"
 
 Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
 
-The full syntax is:
+In the sections above that parameter is not explained, because it's rarely used.
+
+But for completeness here's the full syntax:
 
 ```js
-let result = arr.find(func, thisArg);
-let results = arr.filter(func, thisArg);
-// etc, thisArg goes after the function
+arr.find(func, thisArg);
+arr.filter(func, thisArg);
+arr.map(func, thisArg);
+// ...
+// thisArg is the optional last argument
 ```
 
-It is used sparingly, but we have to cover it here for the sake of completeness.
-
-The value of `thisArg` parameter becomes `this` for the function.
+The value of `thisArg` parameter becomes `this` for `func`.
 
 For instance, here we use an object method as a filter:
 
@@ -657,7 +656,7 @@ let youngerUsers = users.filter(user.younger, user);
 alert(youngerUsers.length); // 2
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we did't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would be an instant error.
+In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we did't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
 
 ## Other methods
 
@@ -676,7 +675,7 @@ These and other methods are also listed in the [manual](mdn:js/Array).
 
 ## Summary
 
-Most often methods:
+Most used array methods:
 
 - `split/join` -- convert a string to array and back.
 - `splice` -- delete and insert elements at the given position.

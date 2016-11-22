@@ -2,21 +2,19 @@ importance: 5
 
 ---
 
-# Странное поведение instanceof
+# Strange instanceof
 
-Почему `instanceof` в коде ниже возвращает `true`, ведь объект `a` явно создан не `B()`?
+Why `instanceof` below returns `true`? We can easily see that `a` is not created by `B()`.
 
 ```js run
 function A() {}
-
 function B() {}
 
 A.prototype = B.prototype = {};
 
-var a = new A();
+let a = new A();
 
 *!*
 alert( a instanceof B ); // true
 */!*
 ```
-

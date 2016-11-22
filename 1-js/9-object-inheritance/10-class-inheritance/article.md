@@ -138,7 +138,28 @@ rabbit.stop(); // White Rabbit stopped. White rabbit hides!
 
 Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the process.
 
-## Custom constructor
+````smart header="Arrow functions have no `super`"
+As was mentioned in the chapter <info:arrow-functions>, arrow functions do not have `super`.
+
+If accessed, it's taken from the outer function. For instance:
+```js
+class Rabbit extends Animal {
+  stop() {
+    setTimeout(() => super.stop(), 1000); // call parent stop after 1sec
+  }
+}
+```
+
+The `super` in the arrow function is the same as in `stop()`, so it works as intended. If we specified a "regular" function here, there would be an error:
+
+```js
+// Unexpected super
+setTimeout(function() { super.stop() }, 1000); 
+```
+````
+
+
+## Overriding constructor
 
 With constructors, things are is a little bit tricky.
 
@@ -242,17 +263,17 @@ alert(rabbit.earLength); // 10
 
 ## Super: internals, [[HomeObject]]
 
-Let's get a little deeper under the hood of `super`. There are some interesting things by the way.
+Let's get a little deeper under the hood of `super`. We'll see some interesting things by the way.
 
 First to say, from all that we've learned till now, it's impossible for `super` to work.
 
-Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how it can get that method?
+Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve that  method? In other words, we need to take the `method` from the parent prototype of the current object. How, technically, we (or a Javascript engine) can do it?
 
-Maybe it can just take it from `[[Prototype]]` of `this`? Unfortunately, no.
+Maybe we can get it `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that won't work.
 
 Let's try to do it. Without classes, using plain objects for sheer simplicity.
 
-Here, `rabbit.eat()` should call `animal.eat()`.
+Here, `rabbit.eat()` should call `animal.eat()` method of the parent object:
 
 ```js run
 let animal = {
@@ -292,16 +313,16 @@ let animal = {
 let rabbit = {
   __proto__: animal,
   eat() {
-    // bounce around rabbit-style and call parent
-    this.__proto__.eat.call(this);
+    // ...bounce around rabbit-style and call parent (animal) method
+    this.__proto__.eat.call(this); // (*)
   }
 };
 
 let longEar = {
   __proto__: rabbit,
   eat() {
-    // do something with long ears and call parent  
-    this.__proto__.eat.call(this);
+    // ...do something with long ears and call parent (rabbit) method
+    this.__proto__.eat.call(this); // (**)
   }
 };
 
@@ -310,10 +331,34 @@ longEar.eat(); // Error: Maximum call stack size exceeded
 */!*
 ```
 
-Doesn't work any more! If we trace `longEar.eat()` call, it becomes obvious, why:
+The code doesn't work any more! We can see the error trying to call `longEar.eat()`.
+
+It may be not that obvious, but if we trace `longEar.eat()` call, then we can see why. In both lines `(*)` and `(**)` the value of `this` is the current object (`longEar`). That's essential: all object methods get the current object as `this`, not a prototype or something.
+
+So, in both lines `(*)` and `(**)` the value of `this.__proto__` is exactly the same: `rabbit`. They both call `rabbit.eat` without going up the chain.
+
+In other words:
 
 1. Inside `longEar.eat()`, we pass the call up to `rabbit.eat` giving it the same `this=longEar`.
+    ```js
+    // inside longEar.eat() we have this = longEar
+    this.__proto__.eat.call(this) // (**)
+    // becomes
+    longEar.__proto__.eat.call(this)
+    // or
+    rabbit.eat.call(this);
+    ```
 2. Inside `rabbit.eat`, we want to pass the call even higher in the chain, but `this=longEar`, so `this.__proto__.eat` is `rabbit.eat`!
+
+    ```js
+    // inside rabbit.eat() we also have this = longEar
+    this.__proto__.eat.call(this) // (*)
+    // becomes
+    longEar.__proto__.eat.call(this)
+    // or (again)
+    rabbit.eat.call(this);
+    ```
+
 3. ...So `rabbit.eat` calls itself in the endless loop, because it can't ascend any further.
 
 ![](this-super-loop.png)
@@ -464,3 +509,66 @@ Here's the picture structure for `Date` and `Object`:
 Note, there's no link between `Date` and `Object`. Both `Object` and `Date` exist independently. `Date.prototype` inherits from `Object.prototype`, but that's all.
 
 Such difference exists for historical reasons: there was no thought about class syntax and inheriting static methods at the dawn of JavaScript language.
+
+## Natives are extendable
+
+Built-in classes like Array, Map and others are extendable also.
+
+For instance, here `PowerArray` inherits from the native `Array`:
+
+```js run
+// add one more method to it (can do more)
+class PowerArray extends Array {
+  isEmpty() {
+    return this.length == 0;
+  }
+}
+
+let arr = new PowerArray(1, 2, 5, 10, 50);
+alert(arr.isEmpty()); // false
+
+let filteredArr = arr.filter(item => item >= 10);
+alert(filteredArr); // 10, 50
+alert(filteredArr.isEmpty()); // false
+```
+
+Please note one very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type. They rely on the `constructor` property to do so.
+
+In the example above,
+```js
+arr.constructor === PowerArray
+```
+
+So when `arr.filter()` is called, it internally creates the new array of results exactly as `new PowerArray`. And we can keep using its methods further down the chain.
+
+Even more, we can customize that behavior. The static getter `Symbol.species`, if exists, returns the constructor to use in such cases.
+
+For example, here due to `Symbol.species` built-in methods like `map`, `filter` will return "normal" arrays:
+
+```js run
+class PowerArray extends Array {
+  isEmpty() {
+    return this.length == 0;
+  }
+
+*!*
+  // built-in methods will use this as the constructor
+  static get [Symbol.species]() {
+    return Array;
+  }
+*/!*
+}
+
+let arr = new PowerArray(1, 2, 5, 10, 50);
+alert(arr.isEmpty()); // false
+
+// filter creates new array using arr.constructor[Symbol.species] as constructor
+let filteredArr = arr.filter(item => item >= 10);
+
+*!*
+// filteredArr is not PowerArray, but Array
+*/!*
+alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
+```
+
+We can use it in more advanced keys to strip extended functionality from resulting values if not needed. Or, maybe, to extend it even further.

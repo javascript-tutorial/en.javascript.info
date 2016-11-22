@@ -1,82 +1,209 @@
 # Class checking: "instanceof"
 
-The `instanceof` operator allows to check if an object belongs to the certain class. The inheritance is also taken into account.
+The `instanceof` operator allows to check whether an object belongs to a certain class. It also takes inheritance into account.
+
+Such a check may be necessary in many cases, here we'll use it for building a *polymorphic* function, the one that treats arguments differently depending on their type.
 
 [cut]
 
-## Алгоритм работы instanceof [#ref-instanceof]
+## The instanceof operator [#ref-instanceof]
 
-Вызов `obj instanceof Constructor` возвращает `true`, если объект принадлежит классу `Constructor` или классу, наследующему от него.
+The syntax is:
+```js
+obj instanceof Class
+```
 
-Пример использования:
+It returns `true` if `obj` belongs to the `Class` (or a class inheriting from it).
+
+For instance:
 
 ```js run
-function Rabbit() {}
+class Rabbit {}
+let rabbit = new Rabbit();
 
+// is it an object of Rabbit class?
 *!*
-// создаём объект
-*/!*
-var rabbit = new Rabbit();
-
-// проверяем -- этот объект создан Rabbit?
-*!*
-alert( rabbit instanceof Rabbit ); // true, верно
+alert( rabbit instanceof Rabbit ); // true
 */!*
 ```
 
-Массив `arr` принадлежит классу `Array`, но также и является объектом `Object`. Это верно, так как массивы наследуют от объектов:
+It also works with constructor functions:
 
 ```js run
-var arr = [];
+*!*
+// instead of class
+function Rabbit() {}
+*/!*
+
+alert( new Rabbit() instanceof Rabbit ); // true
+```
+
+...And with built-in classes like `Array`:
+
+```js run
+let arr = [1, 2, 3];
 alert( arr instanceof Array ); // true
 alert( arr instanceof Object ); // true
 ```
 
-Как это часто бывает в JavaScript, здесь есть ряд тонкостей. Проверка происходит через сравнение прототипов, поэтому в некоторых ситуациях может даже ошибаться!
+Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypally inherits from `Object`.
 
-**Алгоритм проверки `obj instanceof Constructor`:**
+The `instanceof` operator examines the prototype chain for the check, and is also fine-tunable using the static method `Symbol.hasInstance`.
 
-1. Получить `obj.__proto__`
-2. Сравнить `obj.__proto__` с `Constructor.prototype`
-3. Если не совпадает, тогда заменить `obj` на `obj.__proto__` и повторить проверку на шаге 2 до тех пор, пока либо не найдется совпадение (результат `true`), либо цепочка прототипов не закончится (результат `false`).
+The algorithm of `obj instanceof Class` works roughly as follows:
 
-В проверке `rabbit instanceof Rabbit` совпадение происходит на первом же шаге этого алгоритма, так как: `rabbit.__proto__ == Rabbit.prototype`.
+1. If there's a static method `Symbol.hasInstance`, then use it. Like this:
 
-А если рассмотреть `arr instanceof Object`, то совпадение будет найдено на следующем шаге, так как `arr.__proto__.__proto__ == Object.prototype`.
+    ```js run
+    // assume anything that canEat is an animal
+    class Animal {
+      static [Symbol.hasInstance](obj) {
+        if (obj.canEat) return true;
+      }
+    }
 
-Забавно, что сама функция-конструктор не участвует в процессе проверки! Важна только цепочка прототипов для проверяемого объекта.
+    let obj = { canEat: true };
+    alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
+    ```
 
-Это может приводить к забавному результату и даже ошибкам в проверке при изменении `prototype`, например:
+2. Most classes do not have `Symbol.hasInstance`. In that case, check if `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
+
+    In other words, compare:
+    ```js
+    obj.__proto__ == Class.prototype
+    obj.__proto__.__proto__ == Class.prototype
+    obj.__proto__.__proto__.__proto__ == Class.prototype
+    ...
+    ```
+
+    In the example above `Rabbit.prototype == rabbit.__proto__`, so that gives the answer immediately.
+
+    In the case of an inheritance, `rabbit` is an instance of the parent class as well:
+
+    ```js run
+    class Animal {}
+    class Rabbit extends Animal {}
+
+    let rabbit = new Rabbit();
+    *!*
+    alert(rabbit instanceof Animal); // true
+    */!*
+    // rabbit.__proto__ == Rabbit.prototype
+    // rabbit.__proto__.__proto__ == Animal.prototype (match!)
+    ```
+
+By the way, there's also a method [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf), that returns `true` if `objA` is somewhere in the chain of prototypes for `objB`. So the test of `obj instanceof Class` can be rephrased as `Class.prototype.isPrototypeOf(obj)`.
+
+Please note: that's funny, but the `Class` constructor itself does not participate in the check! Only the chain of prototypes and `Class.prototype` matters.
+
+That can lead to interesting consequences when `prototype` is changed.
+
+Like here:
 
 ```js run
-// Создаём объект rabbit, как обычно
 function Rabbit() {}
-var rabbit = new Rabbit();
+let rabbit = new Rabbit();
 
-// изменили prototype...
+// changed the prototype
 Rabbit.prototype = {};
 
-// ...instanceof перестал работать!
+// ...not a rabbit any more!
 *!*
 alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
-Стоит ли говорить, что это один из доводов для того, чтобы никогда не менять `prototype`? Так сказать, во избежание.
+That's one of reasons to evade changing `prototype`. Just to keep safe.
 
-```warn header="Не друзья: `instanceof` и фреймы"
-Оператор `instanceof` не срабатывает, когда значение приходит из другого окна или фрейма.
+## Bonus: Object toString for the type
 
-Например, массив, который создан в ифрейме и передан родительскому окну -- будет массивом *в том ифрейме*, но не в родительском окне. Проверка `instanceof Array` в родительском окне вернёт `false`.
+We already know that plain objects are converted to string as `[object Object]`:
 
-Вообще, у каждого окна и фрейма -- своя иерархия объектов и свой `window` .
+```js run
+let obj = {};
 
-Как правило, эта проблема возникает со встроенными объектами, в этом случае используется проверка внутреннего свойства `[[Class]]`, которое подробнее описано в главе <info:class-instanceof>.
+alert(obj); // [object Object]
+alert(obj.toString()); // the same
 ```
 
-## Итого
+That's their implementation of `toString`. But there's a hidden feature thank makes `toString` actually much more powerful than that. We can use it as an extended `typeof` and an alternative for `instanceof`.
 
-- Оператор `obj instanceof Func` проверяет тот факт, что `obj` является результатом вызова `new Func`. Он учитывает цепочку `__proto__`, поэтому наследование поддерживается.
-- Оператор `instanceof` не сможет проверить тип значения, если объект создан в одном окне/фрейме, а проверяется в другом. Это потому, что в каждом окне -- своя иерархия объектов. Для точной проверки типов встроенных объектов можно использовать свойство `[[Class]]`.
+Sounds strange? Indeed. Let's demistify.
 
-Оператор `instanceof` особенно востребован в случаях, когда мы работаем с иерархиями классов. Это наилучший способ проверить принадлежность тому или иному классу с учётом наследования.
+By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), the built-in `toString` can be extracted from the object and executed in the context of any other value. And its result depends on that value.
+
+- For a number, it will be `[object Number]`
+- For a boolean, it will be `[object Boolean]`
+- For `null`: `[object Null]`
+- For `undefined`: `[object Undefined]`
+- For arrays: `[object Array]`
+- ...etc (customizable).
+
+Let's demonstrate:
+
+```js run
+// copy toString method into a variable for convenience
+let objectToString = Object.prototype.toString;
+
+// what type is this?
+let arr = [];
+
+alert( objectToString.call(arr) ); // [object Array]
+```
+
+Here we used [call](mdn:js/function/call) as described in the chapter [](info:call-apply-decorators) to execute the function `objectToString` in the context `this=arr`.
+
+Internally, the `toString` algorithm examines `this` and returns the corresponding result. More examples:
+
+```js run
+let s = Object.prototype.toString;
+
+alert( s.call(123) ); // [object Number]
+alert( s.call(null) ); // [object Null]
+alert( s.call(alert) ); // [object Function]
+```
+
+### Symbol.toStringTag
+
+The behavior of Object `toString` can be customized using a special object property `Symbol.toStringTag`.
+
+For instance:
+
+```js run
+let user = {
+  [Symbol.toStringTag]: 'User'
+};
+
+alert( {}.toString.call(user) ); // [object User]
+```
+
+For most environment-specific objects, there is such a property. Here are few browser specific examples:
+
+```js run
+// toStringTag for the envinronment-specific object and class:
+alert( window[Symbol.toStringTag]); // window
+alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
+
+alert( {}.toString.call(window) ); // [object Window]
+alert( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
+```
+
+As you can see, the result is exactly `Symbol.toStringTag` (if exists), wrapped into `[object ...]`.
+
+At the end we have "typeof on steroids" that not only works for primitive data types, but also for built-in objects and even can be customized.
+
+It can be used instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
+
+## Summary
+
+Let's recap the type-checking methods that we know:
+
+|               | works for   |  returns      |
+|---------------|-------------|---------------|
+| `typeof`      | primitives  |  string       |
+| `{}.toString` | primitives, built-in objects, objects with `Symbol.toStringTag`   |       string |
+| `instanceof`  | objects     |  true/false   |
+
+As we can see, `{}.toString` is technically a "more advanced" `typeof`.
+
+And `instanceof` operator really shines when we are working with a class hierarchy and want to check for the class taking into account inheritance.

@@ -107,6 +107,23 @@ Also, it always has all arguments in it, we can't capture them partially, like w
 
 So when we need these features, then rest parameters are preferred.
 
+````smart header="Arrow functions do not have `\"arguments\"`"
+If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
+
+Here's an example:
+
+```js run
+function f() {
+  let showArg = () => alert(arguments[0]);
+  showArg();
+}
+
+f(1); // 1
+```
+As we remember, arrow functions don't have own `this`. Now we know they don't have the special `arguments` object too.
+
+````
+
 ## Spread operator [#spread-operator]
 
 We've just seen how to get an array from the list of parameters.

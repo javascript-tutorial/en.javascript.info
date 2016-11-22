@@ -1,77 +1,116 @@
-# Примеси
+# Mixins
 
-В JavaScript невозможно унаследовать от двух и более объектов. Ссылка `__proto__` -- только одна.
+In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]`.
 
-Но потребность такая существует -- к примеру, мы написали код, релизующий методы работы с шаблонизатором или методы по обмену событиями, и хочется легко и непринуждённо добавлять эти возможности к любому классу.
+But sometimes we need such kind of thing. For instance, we have a code that implements events exchange or templating, and we'd like to be able to add these capabilities to any class easily.
 
-Обычно это делают через примеси.
+What can help here is *mixins* or *traits*.
 
-Примесь (англ. mixin) -- класс или объект, реализующий какое-либо чётко выделенное поведение. Используется для уточнения поведения других классов, не предназначен для самостоятельного использования.
+A *mixin* is a class or an object that implements a certain behavior. We do not use it alone, but rather use to complement other classes.
+[cut]
 
-<!--break-->
+## A mixin example
 
-## Пример примеси
+The simplest way to make a mixin -- is to make an object with useful methods, that we can just copy into the prototype.
 
-Самый простой вариант примеси -- это объект с полезными методами, которые мы просто копируем в нужный прототип.
-
-Например:
+For instance:
 
 ```js run
 *!*
-// примесь
+// mixin
 */!*
-var sayHiMixin = {
-  sayHi: function() {
-    alert("Привет " + this.name);
+let sayHiMixin = {
+  sayHi() {
+    alert("Hello " + this.name);
   },
-  sayBye: function() {
-    alert("Пока " + this.name);
+  sayBye() {
+    alert("Bye " + this.name);
   }
 };
 
 *!*
-// использование:
+// usage:
 */!*
-function User(name) {
-  this.name = name;
+class User {
+  constructor(name) {
+    this.name = name;
+  }
 }
 
-// передать методы примеси
-for(var key in sayHiMixin) User.prototype[key] = sayHiMixin[key];
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
 
-// User "умеет" sayHi
-new User("Вася").sayHi(); // Привет Вася
+// now User can say hi
+new User("Dude").sayHi(); // Hi Dude!
 ```
 
-Как видно из примера, методы примеси активно используют `this` и предназначены именно для запуска в контексте "объекта-носителя примеси".
+Mixins also can inherit from each other.
 
-Если какие-то из методов примеси не нужны -- их можно перезаписать своими после копирования.
+For instance, here `sayHiMixin` inherits from `sayMixin`:
 
-## Примесь для событий
+```js run
+let sayMixin = {
+  say(phrase) {
+    alert(phrase);
+  }
+};
 
-Теперь пример из реальной жизни.
+let sayHiMixin = {
+  __proto__: sayMixin, // can use other prototype-setting methods instead
+*!*
+  // call parent method
+*/!*
+  sayHi() {
+    super.say("Hello " + this.name);
+  },
+  sayBye() {
+    super.say("Bye " + this.name);
+  }
+};
 
-Важный аспект, который может понадобиться объектам -- это умение работать с событиями.
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
 
-То есть, чтобы объект мог специальным вызовом генерировать "уведомление о событии", а на эти уведомления другие объекты могли "подписываться", чтобы их получать.
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
 
-Например, объект "Пользователь" при входе на сайт может генерировать событие `"login"`, а другие объекты, например "Календарь" может такие уведомления получать и подгружать информацию о пользователе.
+// now User can say hi
+new User("Dude").sayHi(); // Hi Dude!
+```
 
-Или объект "Меню" может при выборе пункта меню генерировать событие `"select"` с информацией о выбранном пункте меню, а другие объекты -- подписавшись на это событие, будут узнавать об этом.
+Please note that the call to `super.say()` from a mixin looks for the method in the prototype of that mixin, not the class.
 
-События -- это средство "поделиться информацией" с неопределённым кругом заинтересованных лиц. А там уже кому надо -- тот среагирует.
+That's because methods from `sayHiMixin` have `[[HomeObject]]` set to `sayHiMixin`. So `super` actually means `sayHiMixin.__proto__`, that is `sayMixin`.
 
-Примесь `eventMixin`, реализующая события:
+## EventMixin
 
-```js
-var eventMixin = {
+Now a mixin for the real life.
+
+The important feature of many objects is working with events.
+
+That is: an object should have a method to "generate an event" when something important happens to him, and other objects should be able to "subscribe" to receive such notifications.
+
+An event must have a name and, if necessary, the attached data.
+
+For instance, an object `user` can generate an event `"login"` when the visitor logs in. And an object `calendar` may want to receive such notifications and load the information about that visitor.
+
+Or, the object `menu` can generate the event `"select"` when a menu item is selected, and other objects may want to get that information and react on that event.
+
+Events is a way to "share information" with anyone who wants it.
+
+The `eventMixin` to implement the corresponding methods:
+
+```js run
+let eventMixin = {
 
   /**
-   * Подписка на событие
-   * Использование:
+   * Subscribe to event, usage:
    *  menu.on('select', function(item) { ... }
   */
-  on: function(eventName, handler) {
+  on(eventName, handler) {
     if (!this._eventHandlers) this._eventHandlers = {};
     if (!this._eventHandlers[eventName]) {
       this._eventHandlers[eventName] = [];
@@ -80,13 +119,13 @@ var eventMixin = {
   },
 
   /**
-   * Прекращение подписки
-   *  menu.off('select',  handler)
+   * Cancel the subscription, usage:
+   *  menu.off('select', handler)
    */
-  off: function(eventName, handler) {
-    var handlers = this._eventHandlers && this._eventHandlers[eventName];
+  off(eventName, handler) {
+    let handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
-    for(var i=0; i<handlers.length; i++) {
+    for(let i = 0; i < handlers.length; i++) {
       if (handlers[i] == handler) {
         handlers.splice(i--, 1);
       }
@@ -94,72 +133,57 @@ var eventMixin = {
   },
 
   /**
-   * Генерация события с передачей данных
-   *  this.trigger('select', item);
+   * Generate the event and attach the data to it
+   *  this.trigger('select', data1, data2);
    */
-  trigger: function(eventName /*, ... */) {
-
+  trigger(eventName, ...args) {
     if (!this._eventHandlers || !this._eventHandlers[eventName]) {
-      return; // обработчиков для события нет
+      return; // no handlers for that event name
     }
 
-    // вызвать обработчики
-    var handlers = this._eventHandlers[eventName];
-    for (var i = 0; i < handlers.length; i++) {
-      handlers[i].apply(this, [].slice.call(arguments, 1));
-    }
-
+    // call the handlers
+    this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
   }
 };
 ```
 
-Здесь есть три метода:
+There are 3 methods here:
 
-1. `.on(имя события, функция)` -- назначает функцию к выполнению при наступлении события с данным именем. Такие функции хранятся в защищённом свойстве объекта `_eventHandlers`.
-2. `.off(имя события, функция)` -- удаляет функцию из списка предназначенных к выполнению.
-3. `.trigger(имя события, аргументы)` -- генерирует событие, при этом вызываются все назначенные на него функции, и им передаются аргументы.
+1. `.on(eventName, handler)` -- assigns the function `handler` to run when the event with that name happens. The handlers are stored in `_eventHandlers` property.
+2. `.off(eventName, handler)` -- removes the function from the handlers list.
+3. `.trigger(eventName, ...args)` -- generates the event: all assigned handlers are called and `args` are passed as arguments to them.
 
-Использование:
 
-```js
-// Класс Menu с примесью eventMixin
-function Menu() {
-  // ...
+Usage:
+
+```js run
+// Make a class
+class Menu {
+  choose(value) {
+    this.trigger("select", value);
+  }
 }
+// Add the mixin
+Object.assign(Menu.prototype, eventMixin);
 
-for(var key in eventMixin) {
-  Menu.prototype[key] = eventMixin[key];
-}
+let menu = new Menu();
 
-// Генерирует событие select при выборе значения
-Menu.prototype.choose = function(value) {
+// call the handler on selection:
 *!*
-  this.trigger("select", value);
-*/!*
-}
-
-// Создадим меню
-var menu = new Menu();
-
-// При наступлении события select вызвать эту функцию
-*!*
-menu.on("select", function(value) {
-  alert("Выбрано значение " + value);
-});
+menu.on("select", value => alert("Value selected: " + value));
 */!*
 
-// Запускаем выбор (событие select вызовет обработчики)
-menu.choose("123");
+// the choice has happened!
+menu.choose("123"); // value selected
 ```
 
-...То есть, смысл событий -- обычно в том, что объект, в процессе своей деятельности, внутри себя (`this.trigger`) генерирует уведомления, на которые внешний код через `menu.on(...)` может быть подписан. И узнавать из них ценную информацию о происходящем, например -- что выбран некий пункт меню.
+Now if we have the code interested to react on user selection, we can bind it with `menu.on(...)`.
 
-Один раз написав методы `on/off/trigger` в примеси, мы затем можем использовать их во множестве прототипов.
+And the mixin can be added to as many classes as we'd like.
 
-## Итого
+## Summary [todo]
 
 - Примесь -- объект, содержащий методы и свойства для реализации конкретного функционала.
 Возможны вариации этого приёма проектирования. Например, примесь может предусматривать конструктор, который должен запускаться в конструкторе объекта. Но как правило просто набора методов хватает.
 - Для добавления примеси в класс -- её просто "подмешивают" в прототип.
 - "Подмешать" можно сколько угодно примесей, но если имена методов в разных примесях совпадают, то возможны конфликты. Их уже разрешать -- разработчику. Например, можно заменить конфликтующий метод на свой, который будет решать несколько задач сразу. Конфликты при грамотно оформленных примесях возникают редко.
-

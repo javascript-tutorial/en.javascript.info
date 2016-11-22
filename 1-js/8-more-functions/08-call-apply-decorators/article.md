@@ -434,7 +434,6 @@ Taken from the specification almost "as-is":
 
 So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. It's intentionally written in a way that allows any array-like `this` (not a coincidence, many methods follow this practice). That's why it also works with `this=arguments`.
 
-
 ## Summary
 
 *Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.

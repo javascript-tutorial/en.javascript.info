@@ -1,7 +1,7 @@
 
-Both nested functions are created within the same Lexical Environment.
+Surely it will work just fine.
 
-So they share the same `count`:
+Both nested functions are created within the same outer Lexical Environment, so they share access to the same `count` variable:
 
 ```js run
 function Counter() {
@@ -10,6 +10,7 @@ function Counter() {
   this.up = function() {
     return ++count;
   };
+  
   this.down = function() {
     return --count;
   };

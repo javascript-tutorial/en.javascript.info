@@ -1,7 +1,7 @@
-Да, это выглядит достаточно странно, поскольку объект `a` не создавался функцией `B`.
+Yeah, looks strange indeed.
 
-Но методу `instanceof` на самом деле вообще не важна функция. Он смотрит на её `prototype` и сверяет его с цепочкой `__proto__` объекта.
+But `instanceof` does not care about the function, but rather about its `prototype`, that it matches against the prototype chain.
 
-В данном случае `a.__proto__ == B.prototype`, поэтому `instanceof` возвращает `true`.
+And here `a.__proto__ == B.prototype`, so `instanceof` returns `true`.
 
-По логике `instanceof` именно прототип задаёт "тип объекта", поэтому `instanceof` работает именно так.
+So, by the logic of `instanceof`, the `prototype` actually defines the type, not the constructor function.

@@ -108,15 +108,13 @@ That's handy when we have an object, don't know which constructor was used for i
 
 ...But probably the most important thing about `"constructor"` is that...
 
-**JavaScript itself does not use the `"constructor"` property at all.**
+**JavaScript itself does not ensure the right `"constructor"` at all.**
 
-Yes, it exists in the default `"prototype"` for functions, but that's literally all about it. No language function relies on it and nothing controls its validity.
-
-It is created automatically, but what happens with it later -- is totally on us.
+Yes, it exists in the default `"prototype"` for functions, but that's all. It is created automatically, but what happens with it later -- is totally on us.
 
 In particular, if we replace the default prototype by assigning our own `Rabbit.prototype = { jumps: true }`, then there will be no `"constructor"` in it.
 
-Such assignment won't break native methods or syntax, because nothing in the language uses the `"constructor"` property. But we may want to keep `"constructor"` for convenience by adding properties to the default `"prototype"` instead of overwriting it as a whole:
+But we may want to keep `"constructor"` for convenience by adding properties to the default `"prototype"` instead of overwriting it as a whole:
 
 ```js
 function Rabbit() {}
