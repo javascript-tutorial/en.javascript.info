@@ -72,31 +72,6 @@ deeper
 -------
 
 
-<< intl
-<<< descriptors (TODO: LATER, need JSON to output, better after inheritance to explain getOwnProps)
-<<< getter setter
-
-
-constructors
-classes
-instanceof
-
-после 4-object сделать
-  descriptors
-
-
+intl?
 proxy?
-
-error-handling
-  try..catch
-  object-oriented error handling (inheritance, rethrow etc)
-
-more-features
-  try..catch
-  try..catch in decorators!
-  setTimeout
-  JSON
-
-
-======
-class A extends Object != class A
+eval?
