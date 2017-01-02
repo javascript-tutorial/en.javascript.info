@@ -43,13 +43,13 @@ Besides regular numbers there are so-called "special numeric values" which also 
 - `NaN` represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
 
     ```js run
-    alert( "not a number" / 2 ); // NaN
+    alert( "not a number" / 2 ); // NaN, such division is erroneous
     ```
 
     `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
 
     ```js run
-    alert( "not a number" / 2 + 5 ); // NaN + 5 is still NaN
+    alert( "not a number" / 2 + 5 ); // NaN
     ```
 
     So, if there's `NaN` somewhere in a mathematical expression, it propagates to the whole result.
@@ -66,6 +66,8 @@ We'll see more into working with numbers in the chapter <info:number>.
 
 ## A string
 
+A string in Javascript must be quoted.
+
 ```js
 let str = "Hello";
 let str2 = 'Single quotes are ok too';
@@ -78,7 +80,7 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are similar, "simple" quotes.
+Double and single quotes are "simple" quotes. They mark the beginning and the end of the string, that's all. There's no difference between them in Javascript.
 
 Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
@@ -94,10 +96,15 @@ alert( `the result is ${1 + 2}` ); // the result is 3
 
 The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
 
+Please note that other quotes do not allow such embedding!
+```js run
+alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
+```
+
 We'll cover strings more thoroughly in the chapter <info:string>.
 
 ```smart header="There is no *character* type."
-In some languages, there is a special "character" type for a single character. For example, in the C language it is `char`.
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is `char`.
 
 In JavaScript, there is no such type. There's only one type: `string`. A string may consist of only one character or many of them.
 ```
@@ -111,8 +118,8 @@ This type is commonly used to store yes/no values: `true` means "yes, correct", 
 For instance:
 
 ```js
-let checked1 = true;  // yes, the form field is checked
-let checked2 = false; // no, the form field is not checked
+let nameChecked = true; // yes, the form field name is checked
+let ageChecked = false; // no, the form field age is not checked
 ```
 
 Boolean values also come as the result of comparisons:

@@ -380,6 +380,59 @@ For example, [jQuery](http://jquery.com) framework defines a function `$`, [LoDa
 These are exceptions. Generally functions names should be concise, but descriptive.
 ```
 
+## Functions == Comments
+
+Functions should be short and do exactly one thing. If that thing is big, maybe it's worth to split the function into parts.
+
+Sometimes following this rule may be not easy, but it's a definitely good thing.
+
+...So why functions equal comments?
+
+A separate function is not only easier to test and debug -- its very existence is a great comment!
+
+For instance, compare the two functions `showPrimes(n)` below. Each one outputs [prime numbers](https://en.wikipedia.org/wiki/Prime_number) up to `n`.
+
+The first variant uses a label:
+
+```js
+function showPrimes(n) {
+  nextPrime: for (let i = 2; i < n; i++) {
+
+    for (let j = 2; j < i; j++) {
+      if (i % j == 0) continue nextPrime;
+    }
+
+    alert( i ); // a prime
+  }
+}
+```
+
+The second variant uses an additional function `isPrime(n)` to test for primality:
+
+```js
+function showPrimes(n) {
+
+  for (let i = 2; i < n; i++) {
+    *!*if (!isPrime(i)) continue;*/!*
+
+    alert(i);  // a prime
+  }
+}
+
+function isPrime(n) {
+  for (let i = 2; i < n; i++) {
+    if ( n % i == 0) return false;
+  }
+  return true;
+}
+```
+
+The second variant is easier to understand isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
+
+```summary
+So the idea is: functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
+```
+
 ## Summary
 
 A function declaration looks like this:

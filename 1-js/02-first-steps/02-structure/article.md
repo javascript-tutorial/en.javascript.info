@@ -1,6 +1,6 @@
 # Code structure
 
-The first overall thing to know is the code structure.
+The first thing to study is the building blocks of the code.
 
 [cut]
 
@@ -54,8 +54,8 @@ The code outputs `6`, because JavaScript does not insert semicolons here. It is 
 
 Errors which occur in such cases are quite hard to find and fix.
 
-````smart header="An example of the error"
-If you're curious to see a concrete example, check this code out:
+````smart header="An example of an error"
+If you're curious to see a concrete example of such an error, check this code out:
 
 ```js run
 [1, 2].forEach(alert)
@@ -63,34 +63,37 @@ If you're curious to see a concrete example, check this code out:
 
 It shows `1` then `2`.
 
-No need to think about the meaning of the brackets `[]` and `forEach`, for now -- it does not matter. Let's just remember the result.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them, for now -- it does not matter. Let's just remember the result.
 
-Now let's put an `alert` before the code. And *not* finish it with a semicolon:
+Now let's add an `alert` before the code. And *not* finish it with a semicolon:
 
 ```js run no-beautify
-alert( "There will be an error" ) // shown
+alert( "There will be an error" ) 
 
-[1, 2].forEach(alert) // doesn't work any more!
+[1, 2].forEach(alert) 
 ```
 
 Now if we run it, only the first `alert` is shown, and then an error.
 
 But everything is fine again if we add a semicolon after `alert`:
 ```js run
-alert( "All fine now" ); // shown
+alert( "All fine now" ); 
 
-[1, 2].forEach(alert)  // this works too
+[1, 2].forEach(alert)  
 ```
+
+Now we have the "All fine now" message and then `1` and `2`.
+
 
 The error in the no-semicolon variant occurs because automatic semicolon insertion rules are complex, and in particular, JavaScript does not imply a semicolon before square brackets `[...]`.
 
-And, because the semicolon is not auto-inserted, the code is treated as a single statement, like this:
+And, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement, like this:
 
 ```js run no-beautify
 alert( "There will be an error" )[1, 2].forEach(alert)
 ```
 
-And in this particular case, that's just wrong, hence the error. There are other situations when such thing happens.
+But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such thing happens.
 ````
 
 It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of time. But it's safer, especially for a beginner -- to put them.
@@ -105,12 +108,12 @@ Comments can be put into any place of the script. They don't affect the executio
 
 The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
 
-Like this:
+Like here:
 ```js run
-// This shows "Hello" (the comment occupies a line of its own)
+// This comment occupies a line of its own
 alert( 'Hello' );
 
-alert( 'World' ); // ...this shows "World" (the comment follows a statement)
+alert( 'World' ); // This comment follows the statement
 ```
 
 **Multiline comments start with a slash and a star <code>"/&#42;"</code> and end with a star and a slash <code>"&#42;/"</code>.**
@@ -125,7 +128,7 @@ alert( 'Hello' );
 alert( 'World' );
 ```
 
-The content of comments is ignored, so if we put a code inside <code>/&#42; ... &#42;/</code> or after `//` it won't execute.
+The content of comments is ignored, so if we put a code inside <code>/&#42; ... &#42;/</code> it won't execute.
 
 Sometimes it comes handy to temporarily disable a part of the code:
 

@@ -1,10 +1,8 @@
-# JavaScript specials: all together
+# Javascript specials
 
-[todo finish me. is this needed?]
+This chapter aims to list features of JavaScript that we've learned, paying special attention to subtle moments.
 
-This chapter aims to list features of JavaScript that we've learned, paying special attention to unobvious moments.
-
-That's especially useful if you came from another language or, just as a recap.
+That's especially useful if you came from another language or just as a recap.
 
 [cut]
 
@@ -37,13 +35,13 @@ Semicolons are not required after code blocks `{...}` and syntax constructs with
 
 ```js
 function f() {
-  // no semicolon after function declaration
+  // no semicolon needed after function declaration
 }
 
-for(;;) { /* no semicolon */ }
+for(;;) { /* no semicolon after the loop */ }
 ```
 
-...But even if we can put a semicolon there, that's not an error, extra semicolons do nothing.
+...But even if we can put an "extra" semicolon somewhere, that's not an error, it will be ignored.
 
 More in: <info:structure>.
 
@@ -61,7 +59,7 @@ The directive must be at the top of a script or at the beginning of a function.
 
 Without `"use strict"`, everything still works, but some features behave in old-fasion, "compatible" way. We'd generally prefer the modern behavior.
 
-Later we'll get acquanted with advanced features of the language that enable strict mode implicitly.
+Advanced features of the language (like classes that we'll study in the future) that enable strict mode implicitly.
 
 More in: <info:strict-mode>.
 
@@ -94,7 +92,13 @@ There are 7 data types:
 - `undefined` -- a type with a single value `undefined`, meaning "not assigned",
 - `object` and `symbol` -- for complex data structures and unique identifiers, we didn't learn them yet.
 
-More in: <info:variables>, <info:types>.
+The `typeof` operator returns the type for a value, with two special behaviors:
+```js
+typeof null == "object" // error in the language
+typeof function(){} == "function" // functions are treated specially
+```
+
+More in: <info:variables> and <info:types>.
 
 ## Interaction
 
@@ -117,8 +121,8 @@ For instance:
 let userName = prompt("Your name?", "Alice");
 let isTeaWanted = confirm("Do you want some tea?");
 
-alert( "Visitor: " + userName );
-alert( "Tea wanted: " + isTeaWanted );
+alert( "Visitor: " + userName ); // Alice
+alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
 More in: <info:uibasic>.
@@ -130,7 +134,7 @@ JavaScript supports following operators:
 Arithmetical
 : Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Binary plus `+` contatenates strings.
+    Binary plus `+` concatenates strings.
 
     If any of the operands is a string -- the other one is converted to string too:
 
@@ -143,7 +147,8 @@ Assignments
 : There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
 Bitwise
-: Bitwise operators work with integers on bit-level: see the [docs](mdn:JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+: Bitwise operators work with integers on bit-level: see the [docs](mdn:JavaScript/Refereno
+  ce/Operators/Bitwise_Operators) when they are needed.
 
 Ternary
 : The only operator with three parameters:  `cond ? resultA : result B`
@@ -152,189 +157,140 @@ Logical operators
 : Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped.
 
 Comparisons
-: Equality check `===` immediately fails if types are different.
-
-    Other comparisons perform type conversions, usually to a number:
+: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
 
     ```js run
     alert( 0 == false ); // true
-    alert( true > 0 ); // true
+    alert( 0 == '' ); // true
     ```
+
+    Other comparisons convert to a number as well.
+
+    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it, so:
+
+
 
     Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
     Greater/less comparisons compare strings character-by-character, other types are converted to a number.
 
-Others
+Logical operators
 : There are few others, like a comma operator.
 
-More in: <info:operators>, <info:comparison>.
+More in: <info:operators>, <info:comparison>, <info:logical-ops>.
 
-## Логические операторы
+## Loops
 
-В JavaScript есть логические операторы: И (обозначается `&&`), ИЛИ (обозначается `||`) и НЕ (обозначается `!`). Они интерпретируют любое значение как логическое.
-
-Не стоит путать их с [побитовыми операторами](/bitwise-operators) И, ИЛИ, НЕ, которые тоже есть в JavaScript и работают с числами на уровне битов.
-
-Как и в большинстве других языков, в логических операторах используется "короткий цикл" вычислений. Например, вычисление выражения `1 && 0 && 2` остановится после первого И `&&`, т.к. понятно что результат будет ложным (ноль интерпретируется как `false`).
-
-**Результатом логического оператора служит последнее значение в коротком цикле вычислений.**
-
-Можно сказать и по-другому: значения хоть и интерпретируются как логические, но то, которое в итоге определяет результат, возвращается без преобразования.
-
-Например:
-
-```js run
-alert( 0 && 1 ); // 0
-alert( 1 && 2 && 3 ); // 3
-alert( null || 1 || 2 ); // 1
-```
-
-Подробнее: <info:logical-ops>.
-
-## Циклы
-
-- Поддерживаются три вида циклов:
+- We covered 3 types of loops:
 
     ```js
     // 1
-    while (условие) {
+    while (condition) {
       ...
     }
 
     // 2
     do {
       ...
-    } while (условие);
+    } while (condition);
 
     // 3
-    for let i = 0; i < 10; i++) {
+    for(let i = 0; i < 10; i++) {
       ...
     }
     ```
-- Переменную можно объявлять прямо в цикле, но видна она будет и за его пределами.
-- Поддерживаются директивы `break/continue` для выхода из цикла/перехода на следующую итерацию.
 
-    Для выхода одновременно из нескольких уровней цикла можно задать метку.
+- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
+- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
 
-    Синтаксис: "`имя_метки:`", ставится она только перед циклами и блоками, например:
+Details in: <info:while-for>.
 
-    ```js
-    *!*outer:*/!*
-    for(;;) {
-        ...
-      for(;;) {
-        ...
-        *!*break outer;*/!*
-      }
-    }
-    ```
+Later we'll study more types of loops to deal with objects.
 
-    Переход на метку возможен только изнутри цикла, и только на внешний блок по отношению к данному циклу. В произвольное место программы перейти нельзя.
+## The "switch" construct
 
-Подробнее: <info:while-for>.
+The "switch" construct can replace multiple `if` checks. It uses `===` for comparisons.
 
-## Конструкция switch
-
-При сравнениях в конструкции `switch` используется оператор `===`.
-
-Например:
+For instance:
 
 ```js run
-let age = prompt('Ваш возраст', 18);
+let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert( 'Никогда не сработает' ); // результат prompt - строка, а не число
+    alert("Won't work"); // the result of prompt is a string, not a number число
 
-  case "18": // вот так - сработает!
-    alert( 'Вам 18 лет!' );
+  case "18":
+    alert("This works!"");
     break;
 
   default:
-    alert( 'Любое значение, не совпавшее с case' );
+    alert("Any value not equal to one above");
 }
 ```
 
-Подробнее: <info:switch>.
+Details in: <info:switch>.
 
-## Функции
+## Functions
 
-Синтаксис функций в JavaScript:
+We covered 3 ways to create a function in Javascript:
 
-```js run
-// function имя(список параметров) { тело }
-function sum(a, b) {
-  let result = a + b;
+1. Function Declaration: the function in the main code flow
 
-  return result;
-}
+    ```js
+    function sum(a, b) {
+      let result = a + b;
 
-// использование:
-alert( sum(1, 2) ); // 3
-```
-
-- `sum` -- имя функции, ограничения на имя функции -- те же, что и на имя переменной.
-- Переменные, объявленные через `let` внутри функции, видны везде внутри этой функции, блоки `if`, `for` и т.п. на видимость не влияют.
-- Параметры копируются в локальные переменные `a`, `b`.
-- Функция без `return` считается возвращающей `undefined`. Вызов  `return` без значения также возвращает `undefined`:
-
-    ```js run no-beautify
-    function f() { }
-    alert( f() ); // undefined
+      return result;
+    }
     ```
 
-Подробнее: <info:function-basics>.
+2. Function Expression: the function in the context of an expression
 
-## Function Declaration и Expression
+    ```js
+    let sum = function(a, b) {
+      let result = a + b;
 
-Функция в JavaScript является обычным значением.
+      return result;
+    }
+    ```
 
-Её можно создать в любом месте кода и присвоить в переменную, вот так:
+    Function expression can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
 
-```js run
-let sum = function(a, b) {
-  let result = a + b;
+3. Arrow functions:
 
-  return result;
-}
+    ```js
+    // expression at the right side
+    let sum = (a, b) => a + b;
 
-alert( sum(1, 2) ); // 3
-```
+    // or multiline syntax with { ... }, need return here:
+    let sum = (a, b) => {
+      // ...
+      return a + b;
+    }
 
-Такой синтаксис, при котором функция объявляется в контексте выражения (в данном случае, выражения присваивания), называется Function Expression, а обычный синтаксис, при котором функция объявляется в основном потоке кода -- Function Declaration.
+    // without arguments
+    let sayHi = () => alert("Hello");
 
-Функции, объявленные через Function Declaration, отличаются от Function Expression тем, что интерпретатор создаёт их при входе в область видимости (в начале выполнения скрипта), так что они работают до объявления.
+    // with a single argument
+    let double = n => n * 2;
+    ```
 
-Обычно это удобно, но может быть проблемой, если нужно объявить функцию в зависимости от условия. В этом случае, а также в других ситуациях, когда хочется создать функцию "здесь и сейчас", используют Function Expression.
 
-Детали: <info:function-declaration-expression>.
+- Functions may have local variables -- those declared inside its body. Such variables are only visible inside the function.
+- Parameters can have default values: `function sum(a=1, b=2) {...}`.
+- Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
-## Named Function Expression
 
-Если объявление функции является частью какого-либо выражения, например `let f = function...` или любого другого, то это Function Expression.
+| Function Declaration | Function Expression |
+|----------------------|---------------------|
+| visible in the whole code block | created when the execution reaches it |
+|   - | can have a name, visible only inside the function |
 
-В этом случае функции можно присвоить "внутреннее" имя, указав его после `function`. Оно будет видно только внутри этой функции и позволяет обратиться к функции изнутри себя. Обычно это используется для рекурсивных вызовов.
+More: see <info:function-basics>, <info:function-expressions-arrows>.
 
-Например, создадим функцию для вычисления факториала как Function Expression и дадим ей имя `me`:
+## More to come
 
-```js run
-let factorial = function me(n) {
-  return (n == 1) ? n : n * me(n - 1);
-}
+That was a brief list of Javascript specials that we need to know to code well.
 
-alert( factorial(5) ); // 120
-*!*
-alert( me ); // ошибка, нет такой переменной
-*/!*
-```
-
-Ограничение видимости для имени не работает в IE8-, но вызов с его помощью работает во всех браузерах.
-
-Более развёрнуто: <info:named-function-expression>.
-
-## Итого
-
-В этой главе мы повторили основные особенности JavaScript, знание которых необходимо для обхода большинства "граблей", да и просто для написания хорошего кода.
-
-Это, конечно, лишь основы. Дальше вы узнаете много других особенностей и приёмов программирования на этом языке.
+As of now that were only basics. Further in the tutorial you'll find more specials and advanced features of Javascript.

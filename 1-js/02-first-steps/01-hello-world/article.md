@@ -1,10 +1,10 @@
 # Hello, world!
 
-The tutorial that you're reading is about core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
+The tutorial that you're reading is about the core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
 
-But we need a working environment to run our scripts, and browser is probably a good choice. Also we'll use few browser-specific commands like `alert`, but will keep their amount to the minimum.
+But we need a working environment to run our scripts, and, just because this book is online, the browser is probably a good choice. We'll use a few browser-specific commands like `alert`, but will keep their amount to the minimum.
 
-So we'll start with attaching a script to the webpage. For other environments like Node.JS there are other, probably even easier ways to run it.
+So here we'll see how to attach a script to the webpage, that's simple enough. For server-side environments  you can just execute it with a command like `"node my.js"` for Node.JS.
 
 [cut]
 
