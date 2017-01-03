@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-  <meta charset="utf-8">
-
-  <!-- подключаем стили Mocha, для отображения результатов -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
-  <!-- подключаем библиотеку Mocha -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
-  <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+  <!-- add mocha css, to show results -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
+  <!-- add mocha framework code -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
   <script>
+    // enable bdd-style testing
     mocha.setup('bdd');
   </script>
-
-  <!-- подключаем chai -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
-  <!-- в chai есть много всего, выносим assert в глобальную область -->
+  <!-- add chai -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
   <script>
-    var assert = chai.assert;
+    // chai has a lot of stuff, let's make assert global
+    let assert = chai.assert;
   </script>
 </head>
 
@@ -25,9 +21,9 @@
 
   <script>
     function pow(x, n) {
-      var result = 1;
+      let result = 1;
 
-      for (var i = 0; i < n; i++) {
+      for (let i = 0; i < n; i++) {
         result *= x;
       }
 
@@ -35,13 +31,13 @@
     }
   </script>
 
-  <!-- в этом скрипте находятся спеки -->
+  <!-- the script with tests (describe, it...) -->
   <script src="test.js"></script>
 
-  <!-- в элементе с id="mocha" будут результаты тестов -->
+  <!-- the element with id="mocha" will contain test results -->
   <div id="mocha"></div>
 
-  <!-- запустить тесты! -->
+  <!-- run tests! -->
   <script>
     mocha.run();
   </script>

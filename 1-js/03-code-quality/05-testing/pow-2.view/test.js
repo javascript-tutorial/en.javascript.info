@@ -1,11 +1,11 @@
 describe("pow", function() {
 
-  it("при возведении 2 в 3ю степень результат 8", function() {
+  it("2 raised to power 3 is 8", function() {
     assert.equal(pow(2, 3), 8);
   });
 
-  it("при возведении 3 в 4ю степень равен 81", function() {
-    assert.equal(pow(3, 4), 81);
+  it("3 raised to power 3 is 27", function() {
+    assert.equal(pow(3, 3), 27);
   });
 
 });

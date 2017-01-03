@@ -457,6 +457,6 @@ Function naming:
 
 - A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
 - A function is an action, so function names are usually verbal.
-- There is a bunch of commonly adapted verbal prefixes like `create…`, `show…`, `get…`, `check…` etc which can help. The main point is to be consistent about their meaning.
+- There exist many widespread function prefixes like `create…`, `show…`, `get…`, `check…` and so on. Use them to hint what a function does.
 
 Functions are the main building blocks of scripts. Now we covered the basics, so we actually can start creating and using them. But that's only the beginning of the path. We are going to return to them many times, going more deeply in their advanced features.

@@ -1,13 +1,13 @@
 describe("pow", function() {
 
   function makeTest(x) {
-    var expected = x * x * x;
-    it("при возведении " + x + " в степень 3 результат: " + expected, function() {
+    let expected = x * x * x;
+    it(`${x} in the power 3 is ${expected}`, function() {
       assert.equal(pow(x, 3), expected);
     });
   }
 
-  for (var x = 1; x <= 5; x++) {
+  for (let x = 1; x <= 5; x++) {
     makeTest(x);
   }
 

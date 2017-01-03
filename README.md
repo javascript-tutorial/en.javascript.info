@@ -3,7 +3,7 @@
 
 This repository hosts the content of the JavaScript Tutorial, to be available on [https://javascript.info](https://javascript.info).
 
-The backend is written using [io.js](https://iojs.org/en/index.html). It is in the separate repo: [https://github.com/iliakan/javascript-tutorial-server](https://github.com/iliakan/javascript-tutorial-server), here is the text only.
+The backend is written using [node.js](https://nodejs.org). It is in the separate repo: [https://github.com/iliakan/javascript-tutorial-server](https://github.com/iliakan/javascript-tutorial-server), here is the text only.
 
 Please use this repository to file issues and suggest PRs for the text.
 

@@ -1,26 +1,26 @@
 describe("pow", function() {
 
-  describe("возводит x в степень n", function() {
+  describe("raises x to power n", function() {
 
     function makeTest(x) {
-      var expected = x * x * x;
-      it("при возведении " + x + " в степень 3 результат: " + expected, function() {
+      let expected = x * x * x;
+      it(`${x} in the power 3 is ${expected}`, function() {
         assert.equal(pow(x, 3), expected);
       });
     }
 
-    for (var x = 1; x <= 5; x++) {
+    for (let x = 1; x <= 5; x++) {
       makeTest(x);
     }
 
   });
 
-  it("при возведении в отрицательную степень результат NaN", function() {
-    assert(isNaN(pow(2, -1)));
+  it("if n is negative, the result is NaN", function() {
+    assert.isNaN(pow(2, -1));
   });
 
-  it("при возведении в дробную степень результат NaN", function() {
-    assert(isNaN(pow(2, 1.5)));
+  it("if n is not integer, the result is NaN", function() {
+    assert.isNaN(pow(2, 1.5));
   });
 
 });
