@@ -226,6 +226,12 @@ Here we are not to judge whether this language design decision is good or bad. W
 
 ## Internals: Reference Type
 
+```warn header="In-depth language feature"
+This section covers advanced topic that may interest those who want to know Javascript better.
+
+If you want to go on faster, it can be skipped or postponed.
+```
+
 An intricate method call can loose `this`, for instance:
 
 ```js run
@@ -296,7 +302,8 @@ Any other operation like assignment `hi = user.hi` discards the reference type a
 
 So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
 
-````warn header="Arrow functions do not have `this`"
+## Arrow functions have no "this"
+
 Arrow functions are special: they don't have "own" `this`. If we reference `this` from such function, it's taken from the outer "normal" function.
 
 For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
@@ -313,13 +320,18 @@ let user = {
 user.sayHi(); // Ilya
 ```
 
-That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll dig more deeply into what's going on. 
+That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll dig more deeply into what's going on.
 
-````
 
 ## Summary
 
-[todo]
+- Functions that are stored in object properties are called "methods".
+- Methods allow objects to "act" like `object.doSomething()`.
+- Methods can reference the object as `this`.
 
-- Primitives except `null` and `undefined` provide many helpful methods. We plan to study those in the next chapters.
-- Formally, these methods work via temporary objects, but JavaScript engines are very well tuned to optimize that internally, so they are not expensive to call.
+The value of `this` is defined at run-time.
+- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
+- That function can be copied between objects.
+- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+
+Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function -- it is taken from outside.

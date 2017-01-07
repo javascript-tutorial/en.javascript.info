@@ -1,2 +1,1 @@
-# Object basics
-
+# Objects: the basics
