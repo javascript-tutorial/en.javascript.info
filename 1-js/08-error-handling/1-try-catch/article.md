@@ -30,9 +30,11 @@ It works like this:
 2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and then jumps over `catch`.
 3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) contains an error object with details about what's happened.
 
-**So, an error inside `try` does not kill the script: we have a chance to handle it in `catch`.**
+![](try-catch-flow.png)
 
-Let's see the examples.
+So, an error inside the `try {…}` block does not kill the script: we have a chance to handle it in `catch`.
+
+Let's see more examples.
 
 - An errorless example: shows `alert` `(1)` and `(2)`:
 
@@ -45,7 +47,7 @@ Let's see the examples.
 
       alert('End of try runs');   // *!*(2) <--*/!*
 
-    } catch(e) {
+    } catch(err) {
 
       alert('Catch is ignored, because there are no errors'); // (3)
 
@@ -53,7 +55,7 @@ Let's see the examples.
 
     alert("...Then the execution continues");
     ```
-- An example with error: shows `(1)` and `(3)`:
+- An example with an error: shows `(1)` and `(3)`:
 
     ```js run
     try {
@@ -66,50 +68,15 @@ Let's see the examples.
 
       alert('End of try (never reached)');  // (2)
 
-    } catch(e) {
+    } catch(err) {
 
-      alert(`Error: ${e.name}`); // *!*(3) <--*/!*
+      alert(`Error has occured!`); // *!*(3) <--*/!*
 
     }
 
     alert("...Then the execution continues");
     ```
 
-Please note that if the code structure is violated, like a figure bracket is left unclosed, then `try..catch` can't help. Such errors are fatal, the engine just cannot run the code.
-
-There is a better term for errors that we are catching: "an exceptional situation" or just "an exception". It's much more precise, meaning exactly the situation when a already-running and well-formed code meets a problem.
-
-For all built-in errors, the error object inside `catch` block has two main properties:
-
-`name`
-: Error name. For an undefined variable that's `"ReferenceError"`.
-
-`message`
-: Textual message about error details.
-
-There are other non-standard properties in most environments. One of most widely used and supported everywhere is:
-
-`stack`
-: Current call stack: a string with information about the sequence of nested calls that led to the error. Used for debugging purposes.
-
-
-````warn header="`try..catch` only works in synchronous code"
-If an exception happens in the future code, like those inside `setTimeout`, then `try..catch` won't catch it:
-
-```js run
-try {
-  setTimeout(function() {
-    noSuchVariable; // script will die here
-  }, 1000);
-} catch (e) {
-  alert( "won't work" );
-}
-```
-
-That's because at the moment of running the function from `setTimeout`, the current script will have already been finished, the engine will have left `try..catch` contruct.
-
-To catch an exception inside a scheduled function, `try..catch` must be inside that function.
-````
 
 ````warn header="`try..catch` only works for runtime errors"
 For `try..catch` to work, the code must be runnable. In other words, it should be valid Javascript.
@@ -124,10 +91,82 @@ try {
 }
 ```
 
-The Javascript engine first reads the code, and then runs it. The errors that occur on the reading phrase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code as a whole, and `try..catch` is a part of it.
+The Javascript engine first reads the code, and then runs it. The errors that occur on the reading phrase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
 
-So, `try..catch` can only handle errors that occur in the valid code. Such errors are called "runtime" errors.
+So, `try..catch` can only handle errors that occur in the valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
 ````
+
+
+````warn header="`try..catch` works synchronously"
+If an exception happens in a "scheduled" code, like in `setTimeout`, then `try..catch` won't catch it:
+
+```js run
+try {
+  setTimeout(function() {
+    noSuchVariable; // script will die here
+  }, 1000);
+} catch (e) {
+  alert( "won't work" );
+}
+```
+
+That's because `try..catch` actually wraps the `setTimeout` call that schedules the function. But the function itself is executed later, when the engine has already have left `try..catch` contruct.
+
+To catch an exception inside a scheduled function, `try..catch` must be inside that function:
+```js run
+setTimeout(function() {
+  try {    
+    noSuchVariable; // try..catch handles the error!
+  } catch (e) {
+    alert( "error is caught here!" );
+  }
+}, 1000);
+```
+````
+
+## Error object
+
+When an error occurs, Javascript generates an object containing the details about it. The object is then passed as an argument to `catch`:
+
+```js
+try {
+  // ...
+} catch(err) { // <-- the "error object", could use another word instead of err
+  // ...
+}
+```
+
+For all built-in errors, the error object inside `catch` block has two main properties:
+
+`name`
+: Error name. For an undefined variable that's `"ReferenceError"`.
+
+`message`
+: Textual message about error details.
+
+There are other non-standard properties available in most environments. One of most widely used and supported is:
+
+`stack`
+: Current call stack: a string with information about the sequence of nested calls that led to the error. Used for debugging purposes.
+
+For instance:
+
+```js run untrusted
+try {
+*!*
+  lalala; // error, variable is not defined!
+*/!*
+} catch(err) {
+  alert(err.name); // ReferenceError
+  alert(err.message); // lalala is not defined
+  alert(err.stack); // ReferenceError: lalala is not defined at ...
+
+  // Can also show an error as a whole
+  // The error is converted to string as "name: message"
+  alert(err); // ReferenceError: lalala is not defined
+}
+```
+
 
 ## Using "try..catch"
 
@@ -137,12 +176,14 @@ As we already know, JavaScript supports method [JSON.parse(str)](mdn:js/JSON/par
 
 Usually it's used to decode the data received over the network, from the server or another source.
 
-We receive them and call `JSON.parse`, like this:
+We receive it and call `JSON.parse`, like this:
 
 ```js run
 let json = '{"name":"John", "age": 30}'; // data from the server
 
-let user = JSON.parse(json); // reading the object
+*!*
+let user = JSON.parse(json); // convert the text representation to JS object
+*/!*
 
 // now user is an object with properties from the string
 alert( user.name ); // John
@@ -153,11 +194,9 @@ More detailed information about JSON you can find in the chapter <info:json>.
 
 **If `json` is malformed, `JSON.parse` generates an error, so the script "dies".**
 
-Are we satisfied with that? Of course, not!
+Should we be satisfied with that? Of course, not!
 
-This way if something's wrong with the data, the visitor will never know that (unless he opens developer console).
-
-And people really really don't like when something "just dies" without any error message.
+This way if something's wrong with the data, the visitor will never know that (unless he opens developer console). And people really really don't like when something "just dies" without any error message.
 
 Let's use `try..catch` to handle the error:
 
@@ -167,25 +206,27 @@ let json = "{ bad json }";
 try {
 
 *!*
-  let user = JSON.parse(json); // <-- error happens
+  let user = JSON.parse(json); // <-- when an error occurs...
 */!*
   alert( user.name ); // doesn't work
 
 } catch (e) {
 *!*
   // ...the execution jumps here
-  alert( "Our apologies, the data has errors, we'll try to request them one more time." );
+  alert( "Our apologies, the data has errors, we'll try to request it one more time." );
   alert( e.name );
   alert( e.message );
 */!*
 }
 ```
 
-Here we use `alert` only to output the message, but we can do much more: do a network request, suggest an alternative way to the visitor, send the information about the error to logging facility... All much better than just dying.
+Here we use `catch` block only to show the message, but we can do much more: a new network request, suggest an alternative to the visitor, send the information about the error to a logging facility... All much better than just dying.
 
 ## Throwing own errors
 
-Imagine for a minute that `json` is syntactically correct... But doesn't have a required `"name"` property:
+What if `json` is syntactically correct... But doesn't have a required `"name"` property?
+
+Like this:
 
 ```js run
 let json = '{ "age": 30 }'; // incomplete data
@@ -216,14 +257,18 @@ The syntax is:
 throw <error object>
 ```
 
-Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it's better to use objects, preferrably with `name` and `message` properties.
+Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it's better to use objects, preferrably with `name` and `message` properties (to stay somewhat compatible with built-in errors).
 
-Javascript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create objects as well.
+Javascript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create error objects as well.
 
 Their syntax is:
 
 ```js
 let error = new Error(message);
+// or
+let error = new SyntaxError(message);
+let error = new ReferenceError(message);
+// ...
 ```
 
 For built-in errors (not for any objects, just for errors), the `name` property is exactly the name of the constructor. And `message` is taken from the argument.
@@ -231,10 +276,10 @@ For built-in errors (not for any objects, just for errors), the `name` property 
 For instance:
 
 ```js run
-let error = new Error("Things happen :k");
+let error = new Error("Things happen o_O");
 
 alert(error.name); // Error
-alert(error.message); // Things happen :k
+alert(error.message); // Things happen o_O
 ```
 
 Let's see what kind of error `JSON.parse` generates:
@@ -252,7 +297,7 @@ try {
 
 As we can see, that's a `SyntaxError`.
 
-...And in our case, the absense of `name` can be treated as a syntax error also, assuming that users follow a sort of "schema" that requires the existance of `"name"`.
+...And in our case, the absense of `name` could be treated as a syntax error also, assuming that users must have a `"name"`.
 
 So let's throw it:
 
@@ -282,53 +327,50 @@ Now `catch` became a single place for all error handling: both for `JSON.parse` 
 
 ## Rethrowing
 
-In the example above we implemented error handling for incorrect data. But is it possible that another unexpected error happens in `try {...}` block?
+In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a variable is undefined or something else, not just that "incorrect data" thing.
 
-Of course, it is! Normally, a code is a bag with errors. It's typical that even in an open-source utility like `ssh` that is used by millions for decades -- suddenly a crazy bug is discovered that leads to terrible hacks. Not to mention other similar cases.
-
-In our case, `catch` block is meant to process "incorrect data" errors. But right now it catches everything.
-
-For instance, say, we made a programming error, a mistype:
+Like this:
 
 ```js run
+let json = '{ "age": 30 }'; // incomplete data
+
 try {
+  user = JSON.parse(json); // <-- forgot to put "let" before user
 
   // ...
-  JSON.papaparse(); // a mistype, no such function
-
-} catch(e) {
-  alert( "JSON Error: " + e.message ); // JSON Error: JSON.papaparse is not a function
+} catch(err) {
+  alert("JSON Error: " + err); // JSON Error: ReferenceError: user is not defined
+  // (not JSON Error actually)
 }
 ```
 
-By nature, `catch` gets all errors from `try`. Here it got an unexpected type of error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
+Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a crazy bug may be discovered that leads to terrible hacks (like it happened with `ssh` tool).
 
-Fortunately, we can find out which error we've got, for instance by its `name`:
+In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
+
+Fortunately, we can find out which error we get, for instance from its `name`:
 
 ```js run
 try {
-
-  // ...
-  JSON.papaparse(); // JSON.papaparse is not a function
-
+  user = { /*...*/ };
 } catch(e) {
 *!*
-  alert(e.name); // "TypeError" for trying to call undefined property
+  alert(e.name); // "ReferenceError" for accessing an undefined variable
 */!*
 }
 ```
 
 The rule is simple:
 
-**Catch should only process errors that it knows and throw all others.**
+**Catch should only process errors that it knows and "rethrow" all others.**
 
-The technique is called "rethrowing":
+The "rethrowing" technique can be explained in more detail as:
 
 1. Catch gets all errors.
-2. In `catch(e) {...}` block we analyze the error object `e`.
-2. If we don't know how to handle it, then do `throw e`.
+2. In `catch(err) {...}` block we analyze the error object `err`.
+2. If we don't know how to handle it, then do `throw err`.
 
-In the code below, `catch` only handles `SyntaxError`:
+In the code below, we use rethrowing so that `catch` only handles `SyntaxError`:
 
 ```js run
 let json = '{ "age": 30 }'; // incomplete data
@@ -352,14 +394,16 @@ try {
   if (e.name == "SyntaxError") {
     alert( "JSON Error: " + e.message );
   } else {
-    throw e;
+    throw e; // rethrow (*)
   }
 */!*
 
 }
 ```
 
-The error made inside `catch` block "falls out" of `try..catch` and can be either caught by an outer `try..catch` construct (if exists) or kills the script.
+The error throwin in the line `(*)` from inside `catch` block "falls out" of `try..catch` and can be either caught by an outer `try..catch` construct (if exists), or it kills the script.
+
+So the `catch` block actually handles only errors that it knows how to deal with and "skips" all others.
 
 The example below demonstrates how such errors can be caught by one more level of `try..catch`:
 

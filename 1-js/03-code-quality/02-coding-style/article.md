@@ -307,4 +307,6 @@ Also you can see [the manual](http://eslint.org/docs/user-guide/getting-started)
 
 All syntax rules from this chapter and the style guides aim to increase readability.
 
-When you read style guides and think about "how to write better", the sole criterion is "does the code become more readable and easier to understand?" Then it becomes easier to pick up the best practices for that. Or even abandon some in cases when you see that they don't help.
+All of them are debatable.
+
+When we think about "how to write better?", the sole criterion is "what makes the code  more readable and easier to understand? what helps to evade errors?" The answer helps to pick up best practices. And maybe to abandon some in case if they don't contribute.
