@@ -460,7 +460,7 @@ The extended syntax looks like this:
 }
 ```
 
-Try to run this?
+Try running this code:
 
 ```js run
 try {
@@ -473,16 +473,18 @@ try {
 }
 ```
 
-The code has two variants:
+The code has two ways of execution:
 
-1. If say answer "Yes" to error, then `try -> catch -> finally`.
-2. If say "No", then `try -> finally`.
+1. If you answer "Yes" to "Make an error?", then `try -> catch -> finally`.
+2. If you say "No", then `try -> finally`.
 
 The `finally` clause is often used when we start doing something before `try..catch` and want to finalize it in any case of outcome.
 
 For instance, we want to measure time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what is there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
 
-The `finally` clause is a great place to finish the measurements no matter how the function finishes.
+The `finally` clause is a great place to finish the measurements no matter what.
+
+Here `finally` guarantees that the time will be measured correctly in both situations -- in case of a successful execution of `fib` and in case of an error in it:
 
 ```js run
 let num = +prompt("Enter a positive integer number?", 35)
@@ -513,21 +515,19 @@ alert(result || "error occured");
 alert( `execution took ${diff}ms` );
 ```
 
-Here `finally` guarantees that the time will be measured correctly in both situations -- in case of a successful execution of `fib` and in case of an error in it.
+You can check by running the code with entering `35` into `prompt` -- it executes normally, `finally` after `try`. And then enter `-1` -- there will be an immediate error, an the execution will take `0ms`. Both measurements are done correctly.
 
-You can check that by running the code with `num=35` -- executes normally, `finally` after `try`, and then with `num=-1`, there will be an immediate error, an the execution will take `0ms`.
-
-In other words, there may be two ways to exist from a function: either a `return` or `throw`. The `finally` handles them both.
+In other words, there may be two ways to exit a function: either a `return` or `throw`. The `finally` clause handles them both.
 
 
-```smart header="Variables are local to try..catch..finally clauses"
+```smart header="Variables are local inside `try..catch..finally`"
 Please note that `result` and `diff` variables in the code above are declared *before* `try..catch`.
 
-Otherwise, if `let` were made inside the `{...}` clause, it would only be visible inside of it.
+Otherwise, if `let` were made inside the `{...}` block, it would only be visible inside of it.
 ```
 
 ````smart header="`finally` and `return`"
-Finally clause works for *any* exit from `try..catch`. That includes the `return` directive.
+Finally clause works for *any* exit from `try..catch`. That includes an explicit `return`.
 
 In the example below, there's a `return` in `try`. In this case, `finally` is executed just before the control returns to the outer code.
 
@@ -535,7 +535,9 @@ In the example below, there's a `return` in `try`. In this case, `finally` is ex
 function func() {
 
   try {
+*!*
     return 1;
+*/!*
 
   } catch (e) {
     /* ... */
@@ -556,7 +558,7 @@ The `try..finally` construct, without `catch` clause, is also useful. We apply i
 
 ```js
 function func() {
-  // start doing something that needs completion
+  // start doing something that needs completion (like measurements)
   try {
     // ...
   } finally {
@@ -564,7 +566,7 @@ function func() {
   }
 }
 ```
-In the code above, an error inside `try` always falls out, because there's no `catch`. But `finally` triggers before that.
+In the code above, an error inside `try` always falls out, because there's no `catch`. But `finally` works before the execution flow jumps outside.
 ````
 
 ## Global catch
@@ -573,9 +575,9 @@ In the code above, an error inside `try` always falls out, because there's no `c
 The information from this section is not a part of the core Javascript.
 ```
 
-Let's imagine we've got a fatal error outside of `try..catch`, and the script died.
+Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error that no `try..catch` doesn't know how to handle, or something else terrible.
 
-Is there a way to react on it? We may want to log the error, show something to the user (normally he doesn't see the error message) etc.
+Is there a way to react on such happening? We may want to log the error, show something to the user (normally he doesn't see the error message) etc.
 
 There is none in the specification, but environments usually provide it, because it's really handy. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
 
@@ -617,9 +619,9 @@ For instance:
 </script>
 ```
 
-The role of the global handler is usually not to recover the script execution -- that's probably impossible, but to send the error message to developers.
+The role of the global handler `window.onerror` is usually not to recover the script execution -- that's probably impossible in case of programming errors, but to send the error message to developers.
 
-There are also web-services that provide error-logging facilities, like <https://errorception.com> or <http://www.muscula.com>. They give a script with custom `window.onerror` function, and once inserted into a page, it reports about all errors it gets to their server. Afterwards developers can browse them and get notifications on email about fresh errors.
+There are also web-services that provide error-logging facilities for such cases, like <https://errorception.com> or <http://www.muscula.com>. They give a script with custom `window.onerror` function, and once inserted into a page, it reports about all errors it gets to their server. Afterwards developers can browse them and get notifications on email about fresh errors.
 
 ## Summary
 
