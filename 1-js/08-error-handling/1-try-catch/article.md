@@ -575,11 +575,11 @@ In the code above, an error inside `try` always falls out, because there's no `c
 The information from this section is not a part of the core Javascript.
 ```
 
-Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error that no `try..catch` doesn't know how to handle, or something else terrible.
+Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or something else terrible.
 
-Is there a way to react on such happening? We may want to log the error, show something to the user (normally he doesn't see the error message) etc.
+Is there a way to react on such a happening? We may want to log the error, show something to the user (normally he doesn't see error messages) etc.
 
-There is none in the specification, but environments usually provide it, because it's really handy. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
+There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
 
 The syntax:
 
@@ -621,7 +621,14 @@ For instance:
 
 The role of the global handler `window.onerror` is usually not to recover the script execution -- that's probably impossible in case of programming errors, but to send the error message to developers.
 
-There are also web-services that provide error-logging facilities for such cases, like <https://errorception.com> or <http://www.muscula.com>. They give a script with custom `window.onerror` function, and once inserted into a page, it reports about all errors it gets to their server. Afterwards developers can browse them and get notifications on email about fresh errors.
+There are also web-services that provide error-logging for such cases, like <https://errorception.com> or <http://www.muscula.com>.
+
+They work like this:
+
+1. We register at the service and get a piece of JS (or a script URL) from them to insert on pages.
+2. That JS script has a custom `window.onerror` function.
+3. When an error occurs, it sends a network request about it to the service.
+4. We can log in to the service web interface and see errors.
 
 ## Summary
 
