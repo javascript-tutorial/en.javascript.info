@@ -97,8 +97,8 @@ CSSOM specification
 : Describes styles, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
 
 HTML specification
-: Describes HTML language and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>.
+: Describes HTML language (tags etc) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
 
 Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is the most complex part.
 
-Please note the links above, because there's so many stuff to learn, it's impossible to cover and remember everything. When you'd like to read about a property or a method -- can go <https://developer.mozilla.org/en-US/search>, but looking up the corresponding spec is even better. Longer to read, but will make your fundamental knowledge stronger.
+Please note the links above, because there's so many stuff to learn, it's impossible to cover and remember everything. When you'd like to read about a property or a method -- can go <https://developer.mozilla.org/en-US/search>, but looking up the corresponding spec may be better. Longer to read, but will make your fundamental knowledge stronger.

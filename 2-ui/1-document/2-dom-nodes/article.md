@@ -69,9 +69,12 @@ var node = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"
 drawHtmlTree(node, 'div.domtree', 690, 210);
 </script>
 
-```smart
-From here on, spaces and line-breaks on DOM pictures will only be shown for "space-only" nodes that have no other text.
+```smart header="Starting/ending spaces and line breaks are usually not shown in DOM tools"
+Tools working with DOM usually do not show spaces at start/end of the text and line-breaks between nodes. That's because they are mainly used to decorate HTML, and do not affect (in most cases) how it is shown.
+
+On our DOM pictures we'll omit them too where they are not important, to keep things short.
 ```
+
 
 ## Autocorrection
 
@@ -83,7 +86,7 @@ Like, if the HTML file is a single word `"Hello"`, the browser will wrap it into
 
 **While generating DOM, browser automatically processes errors in the document, closes tags and so on.**
 
-Such a document:
+Such an "invalid" document:
 
 ```html no-beautify
 <p>Hello
@@ -92,14 +95,14 @@ Such a document:
 <li>Dad
 ```
 
-...Will make a respectable DOM, as the browser knows how to read tags (from the spec):
+...Will become a normal DOM, as the browser read tags and restores the missing parts:
 
 <div class="domtree"></div>
 
 <script>
 var node = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"P","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Hello"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Mom"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"and"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Dad"}]}]}]}
 
-drawHtmlTree(node, 'div.domtree', 690, 400);
+drawHtmlTree(node, 'div.domtree', 690, 360);
 </script>
 
 ````warn header="Tables always have `<tbody>`"
@@ -120,7 +123,7 @@ var node = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":1
 drawHtmlTree(node,  'div.domtree', 600, 200);
 </script>
 
-Do you see? The `<tbody>` has appeared out of nowhere. Should keep in mind while working with tables to evade surprises.
+You see? The `<tbody>` has appeared out of nowhere. Should keep in mind while working with tables to evade surprises.
 ````
 
 ## Other node types
@@ -155,49 +158,76 @@ Here we see a new tree node type -- *comment node*.
 
 We may think -- why a comment is added to the DOM? It doesn't affect the visual representation anyway. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
 
-**Everything in HTML has its place in DOM.**
+**Everything in HTML, even comments, becomes a part of DOM.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. The pictures above don't show that fact, because we are not going to touch that node, but it's there.
+Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, but it's there.
 
 The `document` object that represents the whole document is, formally, a DOM node as well.
 
-There are 12 node types. In practice we only work with 4 of them:
+There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we mainly work with 4 of them:
 
 1. `document` -- the "entry point" into DOM.
 2. element nodes -- HTML-tags, the tree building blocks.
 3. text nodes -- they contain text.
 4. comments -- sometimes we can put the information there, that won't be shown, but JS can read it from DOM.
 
-If you want to explore how DOM changes with the document, please consider the [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in/modify the document, and it will show up DOM at instant.
+## See it yourself
 
-## Power of DOM
+To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up DOM at instant.
 
-Why besides nice pictures do we need DOM? To manipulate the page -- read the information from HTML, create and modify elements.
+## In the browser inspector
 
-The `<html>` node is accessible as `document.documentElement`, and `<body>` -- as `document.body`.
+Another way to explore DOM is to use browser developer tools. Actually, that's what we use when developing.
 
-Then we can do something with the node.
+To do so, open the web-page [elks.html](elks.html), turn on browser developer tools and switch to Elements tab.
 
-Like changing the color:
-```js run
-document.body.style.background = 'yellow';
-alert('The body is now yellow');
+Should look like this:
 
-// return back in 3 seconds
-setTimeout(() => document.body.style.background = '', 3000);
-```
+![](elks.png)
 
-...But actually much more.
+So you can see the DOM, click on elements, see the details about them and so on.
 
-In the next chapters we're going to learn it.
+Please note that the DOM structure show in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of time we are interested in element nodes.
+
+Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button allows to choose a node from the webpage using a mouse (or alike) and "inspect" it. Works great when we have a huge HTML page and would like to see the DOM of a particular place in it.
+
+Another way to do it would be just right-clicking on a webpage and selecting "Inspect element" in the context menu.
+
+![](inspect.png)
+
+The right part has tabs:
+- Styles -- to see CSS applied to the current element rule by rule, including built-in rules (gray). Almost everything can be edited at-place including the dimensions/margins/paddings of the box below.
+- Computed -- to see CSS applied to the element by property: for each property we can see a rule that gives it (including CSS inheritance and such).
+- ...there are other less used tabs as well.
+
+The best way to study them is to click around. Again, please note that most values are in-place editable.
+
+## Interaction with console
+
+As we explore the DOM, open/close nodes, we also may want to apply Javascript to it. Like get a node and some code on it, to see how it works. There are few tips to travel between nodes in Elements tab and the console.
+
+Press `key:Esc` -- it will open console right below the Elements tab.
+
+Now, the most recently selected element is available as `$0`, the previous one as `$1` etc.
+
+We can run commands on them, like `$0.style.background = 'red'` here:
+
+![](domconsole0.png)
+
+From the other side, if we're in console and have a node in a variable, then we can use the command `inspect(node)` to see it in the Elements pane. Or we can just output it and explore "at-place".
+
+![](domconsole1.png)
+
+From the next chapter on we'll study how to access and modify the DOM using Javascript. The browser developer tools are the great help in debugging things.
 
 ## Summary
 
-- DOM-модель -- это внутреннее представление HTML-страницы в виде дерева.
-- Все элементы страницы, включая теги, текст, комментарии, являются узлами DOM.
-- У элементов DOM есть свойства и методы, которые позволяют изменять их.
-- IE8- не генерирует пробельные узлы.
+An HTML/XML document are represented inside the browser as the DOM tree.
 
-Кстати, DOM-модель используется не только в JavaScript, это известный способ представления XML-документов.
+- Tags become element nodes and form the structure.
+- Text becomes text nodes.
+- ...etc, everything in HTML has its place in DOM, even comments.
 
-В следующих главах мы познакомимся с DOM более плотно.
+We can use developer tools to inspect DOM and modify it manually. There's an extensive documentation about Chrome developer tools at <https://developers.google.com/web/tools/chrome-devtools>, but the best way to learn it is to click here and there, see various menus: most options are obvious. And then later, when you know most stuff, read the docs and pick up the rest. 
+
+DOM nodes have properties and methods that allow to modify them. We'll get down to it in further chapters.
