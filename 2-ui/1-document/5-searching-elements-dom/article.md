@@ -43,8 +43,8 @@ For instance:
 </script>
 ```
 
-```smart header="There must be only one"
-By the specification the value of `id` must be unique. There may be only one element in the document with the given `id`.
+```smart header="There can be only one"
+By the specification the value of `id` must be unique. There can be only one element in the document with the given `id`.
 
 If there are multiple elements with the same `id`, then the behavior is unpredictable. The browser may return any of them at random. So please stick to the rule and keep `id` unique.
 ```
@@ -239,39 +239,62 @@ For instance:
 </script>
 ```
 
-## XPath в современных браузерах
+## Live collections
 
-Для полноты картины рассмотрим ещё один способ поиска, который обычно используется в XML. Это <a href="http://www.w3.org/TR/xpath/">язык запросов XPath</a>.
+All methods `getElementsBy*` return a *live* collection. They always reflect the current state of the document.
 
-Он очень мощный, во многом мощнее CSS, но сложнее. Например, запрос для поиска элементов `H2`, содержащих текст `"XPath"`, будет выглядеть так: `//h2[contains(., "XPath")]`.
+For instance, here in the first script the length is `1`, because the browser only processed the first div. Then later it's 2:
 
-Все современные браузеры, кроме IE, поддерживают XPath с синтаксисом, близким к [описанному в MDN](https://developer.mozilla.org/en/XPath).
+```html run
+<div>First div</div>
 
-Найдем заголовки с текстом `XPath` в текущем документе:
+<script>
+  let divs = document.getElementsByTagName('div');
+  alert(divs.length); // 1
+</script>
 
-```js run no-beautify
-var result = document.evaluate("//h2[contains(., 'XPath')]", document.documentElement, null,
-  XPathResult.ORDERED_NODE_SNAPSHOT_TYPE, null);
+<div>Second div</div>
 
-for (var i = 0; i < result.snapshotLength; i++) {
-  alert( result.snapshotItem(i).outerHTML );
-}
+<script>
+*!*
+  alert(divs.length); // 2
+*/!*
+</script>
 ```
 
-IE тоже поддерживает XPath, но эта поддержка не соответствует стандарту и работает только для XML-документов, например, полученных с помощью `XMLHTTPRequest` (AJAX).  Для обычных же HTML-документов XPath в IE не поддерживается.
+In contrast, `querySelectorAll` returns a *static* collection. It's like a fixed array of elements.
 
-Так как XPath сложнее и длиннее CSS, то используют его очень редко.
+If we use it instead, then both scripts output `1`:
 
-## Итого
 
-Есть 6 основных методов поиска элементов DOM:
+```html run
+<div>First div</div>
+
+<script>
+  let divs = document.querySelectorAll('div');
+  alert(divs.length); // 1
+</script>
+
+<div>Second div</div>
+
+<script>
+*!*
+  alert(divs.length); // 1
+*/!*
+</script>
+```
+
+## Summary
+
+There are 6 main methods to search for nodes in DOM:
+
 <table>
 <thead>
 <tr>
-<td>Метод</td>
-<td>Ищет по...</td>
-<td>Ищет внутри элемента?</td>
-<td>Поддержка</td>
+<td>Method</td>
+<td>Finds by...</td>
+<td>Can call on element?</td>
+<td>Live?</td>
 </tr>
 </thead>
 <tbody>
@@ -279,45 +302,44 @@ IE тоже поддерживает XPath, но эта поддержка не 
 <td><code>getElementById</code></td>
 <td><code>id</code></td>
 <td>-</td>
-<td>везде</td>
+<td>-</td>
 </tr>
 <tr>
 <td><code>getElementsByName</code></td>
 <td><code>name</code></td>
 <td>-</td>
-<td>везде</td>
+<td>✔</td>
 </tr>
 <tr>
 <td><code>getElementsByTagName</code></td>
-<td>тег или <code>'*'</code></td>
+<td>tag or <code>'*'</code></td>
 <td>✔</td>
-<td>везде</td>
+<td>✔</td>
 </tr>
 <tr>
 <td><code>getElementsByClassName</code></td>
-<td>классу</td>
+<td>class</td>
 <td>✔</td>
-<td>кроме IE8-</td>
+<td>✔</td>
 </tr>
 <tr>
 <td><code>querySelector</code></td>
-<td>CSS-селектор</td>
+<td>CSS-selector</td>
 <td>✔</td>
-<td>везде</td>
+<td>-</td>
 </tr>
 <tr>
 <td><code>querySelectorAll</code></td>
-<td>CSS-селектор</td>
+<td>CSS-selector</td>
 <td>✔</td>
-<td>везде</td>
+<td>-</td>
 </tr>
 </tbody>
 </table>
 
-Практика показывает, что в 95% ситуаций достаточно `querySelector/querySelectorAll`. Хотя более специализированные методы `getElement*` работают чуть быстрее, но разница в миллисекунду-другую редко играет роль.
+Please note that methods `getElementById` and `getElementsByName` can only be called in the context of the document: `document.getElementById(...)`. Other methods can be called on elements, like `elem.querySelectorAll(...)` -- and will search in their subtrees.
 
-Кроме того:
+Besides:
 
-- Есть метод `elem.matches(css)`, который проверяет, удовлетворяет ли элемент CSS-селектору. Он поддерживается большинством браузеров в префиксной форме (`ms`, `moz`, `webkit`).
-- Метод `elem.closest(css)` ищет ближайший элемент выше по иерархии DOM, подходящий под CSS-селектор css. Сам элемент тоже включается в поиск.
-- Язык запросов XPath поддерживается большинством браузеров, кроме IE, даже 9-й версии, но `querySelector` удобнее. Поэтому XPath используется редко.
+- There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
+- There is `elem.closest(css)` to look for a nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.

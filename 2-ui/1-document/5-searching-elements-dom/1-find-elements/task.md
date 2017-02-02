@@ -2,19 +2,17 @@ importance: 4
 
 ---
 
-# Поиск элементов
+# Search for elements
 
-Ниже находится документ с таблицей и формой.
+Here's the document with the table and form.
 
-Найдите (получите в переменную) в нём:
+How to find?
 
-1. Все элементы `label` внутри таблицы. Должно быть 3 элемента.
-2. Первую ячейку таблицы (со словом `"Возраст"`).
-3. Вторую форму в документе.
-4. Форму с именем `search`, без использования её позиции в документе.
-5. Элемент `input` в форме с именем `search`. Если их несколько, то нужен первый.
-6. Элемент с именем `info[0]`, без точного знания его позиции в документе.
-7. Элемент с именем `info[0]`, внутри формы с именем `search-person`.
+1. The table with `id="age-table"`.
+2. All `label` elements inside that table (there should be 3 of them).
+3. The first `td` in that table (with the word "Age").
+4. The `form` with the name `search`.
+5. The first `input` in that form.
+6. The last `input` in that form.
 
-Используйте для этого консоль браузера, открыв страницу [table.html](table.html) в отдельном окне.
-
+Open the page [table.html](table.html) in a separate window and make use of browser tools for that.

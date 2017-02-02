@@ -1,27 +1,36 @@
-Есть много вариантов решения, вот некоторые из них:
+There are many ways to do it.
+
+Here are some of them:
 
 ```js
-// 1
-document.getElementById('age-table').getElementsByTagName('label');
+// 1. The table with `id="age-table"`.
+let table = document.getElementById('age-table')
 
-// 2
-document.getElementById('age-table').getElementsByTagName('td')[0];
-// в современных браузерах можно одним запросом:
-var result = document.querySelector('#age-table td');
+// 2. All label elements inside that table
+table.getElementsByTagName('label')
+// or
+document.querySelectorAll('#age-table label')
 
-// 3
-document.getElementsByTagName('form')[1];
+// 3. The first td in that table (with the word "Age").
+table.rows[0].cells[0]
+// or
+table.getElementsByTagName('td')[0]
+// or
+table.querySelector('td')
 
-// 4
-document.querySelector('form[name="search"]');
+// 4. The form with the name "search".
+// assuming there's only one element with name="search"
+let form = document.getElementsByName('search')[0]
+// or, form specifically
+document.querySelector('form[name="search"]')
 
-// 5
-document.querySelector('form[name="search"] input')
+// 5. The first input in that form.
+form.getElementsByTagName('input')
+// or
+form.querySelector('input')
 
-// 6
-document.getElementsByName("info[0]")[0];
-
-// 7
-document.querySelector('form[name="search-person"] [name="info[0]"]');
+// 6. The last input in that form.
+// there's no direct query for that
+let inputs = form.querySelectorAll('input') // search all
+inputs[inputs.length-1] // take last
 ```
-

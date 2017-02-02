@@ -1,37 +1,32 @@
 <!DOCTYPE HTML>
 <html>
-
-<head>
-  <meta charset="utf-8">
-</head>
-
 <body>
   <form name="search">
-    <label>Поиск по сайту:
+    <label>Search the site:
       <input type="text" name="search">
     </label>
-    <input type="submit" value="Искать!">
+    <input type="submit" value="Search!">
   </form>
 
   <hr>
 
   <form name="search-person">
-    Поиск по посетителям:
+    Search the visitors:
     <table id="age-table">
       <tr>
-        <td>Возраст:</td>
+        <td>Age:</td>
         <td id="age-list">
           <label>
-            <input type="radio" name="age" value="young">до 18</label>
+            <input type="radio" name="age" value="young">less than 18</label>
           <label>
             <input type="radio" name="age" value="mature">18-50</label>
           <label>
-            <input type="radio" name="age" value="senior">более 50</label>
+            <input type="radio" name="age" value="senior">more than 50</label>
         </td>
       </tr>
 
       <tr>
-        <td>Дополнительно:</td>
+        <td>Additionally:</td>
         <td>
           <input type="text" name="info[0]">
           <input type="text" name="info[1]">
@@ -41,8 +36,7 @@
 
     </table>
 
-    <input type="submit" value="Искать!">
+    <input type="submit" value="Search!">
   </form>
 </body>
-
 </html>
