@@ -1,4 +1,4 @@
-# Searching: getElement*, querySelector* and others
+# Searching with getElement*, querySelector* and others
 
 DOM navigation properties are great when elements are close to each other. What if they are not? How to get an arbitrary element of the page?
 
@@ -111,7 +111,7 @@ Another widespread novice mistake is to write like:
 document.getElementsByTagName('input').value = 5;
 ```
 
-That won't work, because we take a *collection* of inputs and assign the value to it, rather to elements inside it.
+That won't work, because it takes a *collection* of inputs and assigns the value to it, rather to elements inside it.
 
 We should either iterate over the collection or get an element by the number, and then assign, like this:
 
@@ -121,7 +121,7 @@ document.getElementsByTagName('input')[0].value = 5;
 ```
 ````
 
-Other methods:
+There are also other rarely used methods of this kind:
 
 - `document.getElementsByName(name)` returns elements with the given `name` attribute. Rarely used.
 - `elem.getElementsByClassName(className)` returns elements that have the given CSS class. Elements may have other classes too.
@@ -179,7 +179,7 @@ Pseudo-classes in the CSS selector like `:hover` and `:active` are also supporte
 
 The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but that's looking for *all* elements and picking the first, much slower than only looking for the first one.
+In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster.
 
 ## matches
 
@@ -241,9 +241,11 @@ For instance:
 
 ## Live collections
 
-All methods `getElementsBy*` return a *live* collection. They always reflect the current state of the document.
+All methods `"getElementsBy*"` return a *live* collection. Such collections always reflect the current state of the document.
 
-For instance, here in the first script the length is `1`, because the browser only processed the first div. Then later it's 2:
+For instance, here in the first script the length is `1`, because the browser only processed the first div.
+
+Then later after the second `div` it's 2:
 
 ```html run
 <div>First div</div>
@@ -284,6 +286,10 @@ If we use it instead, then both scripts output `1`:
 </script>
 ```
 
+Now we can easily see the difference. The static collection did not increase after the appearance of a new `div` in the document.
+
+Here we used separate scripts to illustrate how the element addition affects the collection. Soon we'll see more ways to alter DOM.
+
 ## Summary
 
 There are 6 main methods to search for nodes in DOM:
@@ -292,8 +298,8 @@ There are 6 main methods to search for nodes in DOM:
 <thead>
 <tr>
 <td>Method</td>
-<td>Finds by...</td>
-<td>Can call on element?</td>
+<td>Searches by...</td>
+<td>Can call on an element?</td>
 <td>Live?</td>
 </tr>
 </thead>
@@ -337,9 +343,11 @@ There are 6 main methods to search for nodes in DOM:
 </tbody>
 </table>
 
-Please note that methods `getElementById` and `getElementsByName` can only be called in the context of the document: `document.getElementById(...)`. Other methods can be called on elements, like `elem.querySelectorAll(...)` -- and will search in their subtrees.
+Please note that methods `getElementById` and `getElementsByName` can only be called in the context of the document: `document.getElementById(...)`. But not on an element: `elem.getElementById(...)` would cause an error.
 
-Besides:
+Other methods can be called on elements too. For instance `elem.querySelectorAll(...)` will search inside `elem` (in the DOM subtree).
+
+Besides that:
 
 - There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
 - There is `elem.closest(css)` to look for a nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
