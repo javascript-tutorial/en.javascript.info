@@ -2,11 +2,13 @@ importance: 3
 
 ---
 
-# Поставьте класс ссылкам
+# Add the class to external links
 
-Сделайте желтыми внешние ссылки, добавив им класс `external`.
+Make all external links yellow by adding them the class `"external"`.
 
-Все ссылки без `href`, без протокола и начинающиеся с `http://internal.com` считаются внутренними.
+A link is external if:
+- It's `href` has `://` in it
+- But doesn't start with `http://internal.com`.
 
 ```html run
 <style>
@@ -15,7 +17,7 @@ importance: 3
   }
 </style>
 
-<a name="list">список</a>
+<a name="list">the list</a>
 <ul>
   <li><a href="http://google.com">http://google.com</a></li>
   <li><a href="/tutorial">/tutorial.html</a></li>
@@ -26,7 +28,6 @@ importance: 3
 </ul>
 ```
 
-Результат:
+The result should be:
 
 [iframe border=1 height=180 src="solution"]
-

@@ -9,11 +9,9 @@
     }
   </style>
 </head>
-
 <body>
 
-
-  <a name="list">список</a>
+  <a name="list">the list</a>
   <ul>
     <li><a href="http://google.com">http://google.com</a></li>
     <li><a href="/tutorial">/tutorial.html</a></li>
@@ -23,16 +21,12 @@
     <li><a href="http://internal.com/test">http://internal.com/test</a></li>
   </ul>
 
-
   <script>
-    var css = 'a[href*="://"]:not([href^="http://internal.com"])';
-    var links = document.querySelectorAll(css);
+    let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
+    let links = document.querySelectorAll(selector);
 
-    for (var i = 0; i < links.length; i++) {
-      links[i].classList.add('external');
-    }
+    links.forEach(link => link.classList.add('external'))
   </script>
 
 </body>
-
 </html>
