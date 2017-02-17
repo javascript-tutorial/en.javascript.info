@@ -351,3 +351,6 @@ Besides that:
 
 - There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
 - There is `elem.closest(css)` to look for a nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
+
+And let's mention one more method here to check for the child-parent relationship:
+-  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA`. Or when it's the same element.

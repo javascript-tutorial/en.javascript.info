@@ -18,18 +18,23 @@ The root object is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), then
 
 ![](dom-class-hierarchy.png)
 
-The main classes are:
+The classes are:
 
-- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) is an "abstract" class. Objects of that class are never created. It serves as a base, because all DOM nodes support so-called "events", we'll study them later.
-- [Node](http://dom.spec.whatwg.org/#interface-node) is also an "abstract" class, serving as a base  for DOM nodes. It provides the core tree functionality like  `parentNode`, `nextSibling`, `childNodes` and so on. That class is abstract as well. Objects of bare `Node` are never created. But there are concrete node classes that inherit from it, namely: `Text` for text nodes, `Element` for element nodes and more exotic classes like `Comment` for comment nodes.
-- [Element](http://dom.spec.whatwg.org/#interface-element) is for DOM elements: not only for HTML, but also XML and SVG documents. It provides element-level navigation like `nextElementSibling`, `children` and searching methods like `getElementsByTagName`, `querySelector`.
+- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) is the root "abstract" class. Objects of that class are never created. It serves as a base, because all DOM nodes support so-called "events", we'll study them later.
+- [Node](http://dom.spec.whatwg.org/#interface-node) is also an "abstract" class, serving as a base  for DOM nodes. It provides the core tree functionality like  `parentNode`, `nextSibling`, `childNodes` and so on. Objects of bare `Node` are never created. But there are concrete node classes that inherit from it, namely: `Text` for text nodes, `Element` for element nodes and few more exotic ones like `Comment` for comment nodes.
+- [Element](http://dom.spec.whatwg.org/#interface-element) is a base class for DOM elements. It provides element-level navigation like `nextElementSibling`, `children` and searching methods like `getElementsByTagName`, `querySelector`. In the browser there may be not only HTML, but also XML and SVG documents. The `Element` class serves as a base for `SVGElement`, `XMLElement` and `HTMLElement`.
 - [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) is finally the class for HTML elements. It is inherited by various HTML elements:
     - For `<input>` -- `HTMLInputElement`
     - For `<body>` -- `HTMLBodyElement`
     - For `<a>` -- `HTMLAnchorElement`... and so on, that have their own specific properties.
 
 
-For instance, DOM element that corresponds to `<input>` is of the [HTMLInputElement]((https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) class. The class provides input-specific properties and methods and inherits more common stuff from `HTMLElement`. In turn, it provides HTML element functionality and inherits more generic methods from `Element` and so on.
+So, the full set of properties and methods of a given node comes as the result of the inheritance.
+
+For instance, `<input>` element is of the [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) class:
+- `HTMLInputElement` provides input-specific properties and inherits the common HTML element properties from `HTMLElement`.
+- Then it has common element properties, because `HTMLElement` inherits from `Element`.
+- Then it has common DOM node properties from `Node` and so on.
 
 To see the DOM node class, we can check its constructor name or just `toString` it:
 
@@ -48,7 +53,7 @@ alert( document.body instanceof Node ); // true
 alert( document.body instanceof EventTarget ); // true
 ```
 
-As we can see, DOM nodes are regular Javascript objects. They use prototype-style classes for inheritance. That's easy to see by outputting an element with `console.dir(elem)`. There you can see `Node.prototype`, `Element.prototype` and so on.
+As we can see, DOM nodes are regular Javascript objects. They use prototype-style classes for inheritance. That's easy to see by outputting an element with `console.dir(elem)`. There you can see `HTMLElement.prototype`, `Element.prototype` and so on.
 
 ```smart header="`console.dir(elem)` versus `console.log(elem)`"
 Most browsers support two commands: `console.log` and `console.dir`. For Javascript objects these commands usually do the same.
@@ -71,18 +76,18 @@ Here's an excerpt from it, with comments:
 // The colon means that it inherits from HTMLElement
 interface HTMLInputElement: HTMLElement {
 
-  // such elements have string properties
+  // string properties
   // accept, alt, autocomplete, value
   attribute DOMString accept;
   attribute DOMString alt;
   attribute DOMString autocomplete;
   attribute DOMString value;
 
-  // and the boolean property autofocus
+  // and the boolean property: autofocus
   attribute boolean autofocus;
   ...
   // and also the method select(),
-  // that returns no value ("void")
+  // "void" means that that returns no value
   void select();
   ...
 }
@@ -97,7 +102,7 @@ It has a numeric value:
 - `elem.nodeType == 1` for element nodes,
 - `elem.nodeType == 3` for text nodes,
 - `elem.nodeType == 9` for the document object,
-- there are few other values in [the docs](https://dom.spec.whatwg.org/#node).
+- there are few other values in [the specification](https://dom.spec.whatwg.org/#node).
 
 For instance:
 

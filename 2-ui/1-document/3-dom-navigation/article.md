@@ -179,13 +179,13 @@ alert( document.body.previousSibling ); // HTMLHeadElement
 
 Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
 
-But for many tasks we don't want text or comment nodes. We want to manipulate on element nodes that represent tags.
+But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and structure of the page.
 
-So let's check out more navigation links that only take *element nodes* into account:
+So let's see more navigation links that only take *element nodes* into account:
 
 ![](dom-links-elements.png)
 
-The links look like those given above, just with `Element` word inside:
+The links are similar to those given above, just with `Element` word inside:
 
 - `children` -- only those children that are element nodes.
 - `firstElementChild`, `lastElementChild` -- first and last element children.
@@ -230,26 +230,26 @@ Let's modify one of examples above: replace `childNodes` with `children`. Now it
 </html>
 ```
 
-## More links, tables [#dom-navigation-tables]
+## More links: tables [#dom-navigation-tables]
 
-Till now we described the basic navigation properties. Certain DOM element types may provide more, specific to their type, for better convenience.
+Till now we described the basic navigation properties. Certain types of DOM elements may provide more, specific to their type, for better convenience.
 
 Tables are a great example and important particular case of that.
 
-`<table>` elements support these properties:
+**`<table>`** elements support these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
 - `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
 
-`<thead>`, `<tfoot>`, `<tbody>` elements provide:
+**`<thead>`, `<tfoot>`, `<tbody>`** elements provide:
 - `tbody.rows` -- the collection of `<tr>` inside them.
 
-`<tr>`:
+**`<tr>`:**
 - `tr.cells` -- the collection of `<td>` and `<th>` cells inside the given `<tr>`.
 - `tr.sectionRowIndex` -- the number of the given `<tr>` inside the enclosing `<thead>/<tbody>`.
 - `tr.rowIndex` -- the number of the `<tr>` in the table.
 
-`<td>` and `<th>`:
+**`<td>` and `<th>`:**
 - `td.cellIndex` -- the number of the cell inside the enclosing `<tr>`.
 
 An example of usage:
@@ -265,8 +265,8 @@ An example of usage:
 </table>
 
 <script>
-// get the content of the first row, second cell
-alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
+  // get the content of the first row, second cell
+  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
 </script>
 ```
 
@@ -276,9 +276,11 @@ There are also additional navigation properties for HTML forms. We'll look at th
 
 # Summary
 
-The main navigation sets are:
+Given a DOM node, we can go to its immediate neighbours using navigation properties.
 
-- `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling` -- for all nodes.
-- `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling` -- if we take only element nodes into account.
+There are two main sets of them:
+
+- For all nodes: `parentNode`, `childNodes`, `firstChild`, `lastChild`, `previousSibling`, `nextSibling`.
+- For element nodes only: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
 
 Some types of DOM elements, e.g. tables, provide additional properties and collections to access their content.

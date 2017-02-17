@@ -1,4 +1,4 @@
-# DOM: attributes and properties [todo]
+# DOM: attributes and properties 
 
 The browser "reads" HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
 
