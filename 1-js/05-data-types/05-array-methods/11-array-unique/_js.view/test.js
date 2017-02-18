@@ -1,15 +1,15 @@
 describe("unique", function() {
-  it("убирает неуникальные элементы из массива", function() {
-    var strings = ["кришна", "кришна", "харе", "харе",
-      "харе", "харе", "кришна", "кришна", "8-()"
+  it("removes non-unique elements", function() {
+    let strings = ["Hare", "Krishna", "Hare", "Krishna",
+      "Krishna", "Krishna", "Hare", "Hare", ":-O"
     ];
 
-    assert.deepEqual(unique(strings), ["кришна", "харе", "8-()"]);
+    assert.deepEqual(unique(strings), ["Hare", "Krishna", ":-O"]);
   });
 
-  it("не изменяет исходный массив", function() {
-    var strings = ["кришна", "кришна", "харе", "харе"];
+  it("does not change the source array", function() {
+    let strings = ["Krishna", "Krishna", "Hare", "Hare"];
     unique(strings);
-    assert.deepEqual(strings, ["кришна", "кришна", "харе", "харе"]);
+    assert.deepEqual(strings, ["Krishna", "Krishna", "Hare", "Hare"]);
   });
 });

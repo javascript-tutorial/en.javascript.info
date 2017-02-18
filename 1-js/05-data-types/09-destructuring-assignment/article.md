@@ -251,7 +251,7 @@ let options = {
 let {width=100, height=200, title} = options;
 */!*
 
-alert(title);  // Меню
+alert(title);  // Menu
 alert(width);  // 100
 alert(height); // 200
 ```

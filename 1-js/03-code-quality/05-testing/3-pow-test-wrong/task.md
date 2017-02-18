@@ -2,23 +2,23 @@ importance: 5
 
 ---
 
-# Что не так в тесте?
+# What's wrong in the test?
 
-Что не так в этом тесте функции `pow`?
+What's wrong in the test of `pow` below?
 
 ```js
-it("Возводит x в степень n", function() {
-  var x = 5;
+it("Raises x to the power n", function() {
+  let x = 5;
 
-  var result = x;
+  let result = x;
   assert.equal(pow(x, 1), result);
 
-  var result *= x;
+  result *= x;
   assert.equal(pow(x, 2), result);
 
-  var result *= x;
+  result *= x;
   assert.equal(pow(x, 3), result);
 });
 ```
 
-P.S. Синтаксически он верен и работает, но спроектирован неправильно.
+P.S. Syntactically it's correct and passes.

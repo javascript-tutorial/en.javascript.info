@@ -37,7 +37,7 @@ For instance, this code calls `sayHi()` after one second:
 
 ```js run
 function sayHi() {
-  alert( 'Привет' );
+  alert('Hello');
 }
 
 *!*
@@ -353,7 +353,7 @@ For server-side Javascript, that limitation does not exist. Also, there are othe
 
 ## Summary
 
-- Methods `setInterval(func, delay, ...args)` и `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
+- Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
 - To cancel execution, we should `clearInterval/clearTimeout` on the value returned by `setInterval/setTimeout`.
 - Nested `setTimeout` calls give more flexible control over the execution than `setInterval`. They also can guarantee the minimal time *between* the execution.
 - Zero-timeout is sometimes used to schedule the call "as soon as possible".

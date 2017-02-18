@@ -103,8 +103,6 @@ sayHiDeferred("John"); // Hello, John after 2 seconds
 
 The same without an arrow function would look like:
 
-Аналогичная реализация без функции-стрелки выглядела бы так:
-
 ```js
 function defer(f, ms) {
   return function(...args) {

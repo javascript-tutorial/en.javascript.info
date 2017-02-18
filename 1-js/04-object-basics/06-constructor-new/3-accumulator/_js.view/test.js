@@ -1,8 +1,4 @@
-describe("Accumulator(1)", function() {
-  var accumulator;
-  before(function() {
-    accumulator = new Accumulator(1);
-  });
+describe("Accumulator", function() {
 
   beforeEach(function() {
     sinon.stub(window, "prompt")
@@ -12,26 +8,23 @@ describe("Accumulator(1)", function() {
     prompt.restore();
   });
 
-  it("начальное значение 1", function() {
+  it("initial value is the argument of the constructor", function() {
+    let accumulator = new Accumulator(1);
+
     assert.equal(accumulator.value, 1);
   });
 
-  it("после ввода 0 значение 1", function() {
+  it("after reading 0, the value is 1", function() {
+    let accumulator = new Accumulator(1);
     prompt.returns("0");
     accumulator.read();
     assert.equal(accumulator.value, 1);
   });
 
-  it("после ввода 1 значение 2", function() {
+  it("after reading 1, the value is 2", function() {
+    let accumulator = new Accumulator(1);
     prompt.returns("1");
     accumulator.read();
     assert.equal(accumulator.value, 2);
   });
-
-  it("после ввода 2 значение 4", function() {
-    prompt.returns("2");
-    accumulator.read();
-    assert.equal(accumulator.value, 4);
-  });
-
 });

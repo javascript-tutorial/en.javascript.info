@@ -1,17 +1,13 @@
 function Calculator() {
 
-  var methods = {
-    "-": function(a, b) {
-      return a - b;
-    },
-    "+": function(a, b) {
-      return a + b;
-    }
+  let methods = {
+    "-": (a, b) => a - b,
+    "+": (a, b) => a + b
   };
 
   this.calculate = function(str) {
 
-    var split = str.split(' '),
+    let split = str.split(' '),
       a = +split[0],
       op = split[1],
       b = +split[2]

@@ -1,8 +1,12 @@
-Этот тест демонстрирует один из соблазнов, которые ожидают начинающего автора тестов.
+The test demonstrates one of temptations a developer meets when writing tests.
 
-Вместо того, чтобы написать три различных теста, он изложил их в виде одного потока вычислений, с несколькими `assert`.
+What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
 
-Иногда так написать легче и проще, однако при ошибке в тесте гораздо менее очевидно, что же пошло не так.
+Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
+
+If an error happens inside a complex execution flow, then we'll have to figure out what was the data at that point.
+
+TODO
 
 Если в сложном тесте произошла ошибка где-то посередине потока вычислений, то придётся выяснять, какие конкретно были входные и выходные данные на этот момент, то есть по сути -- отлаживать код самого теста.
 

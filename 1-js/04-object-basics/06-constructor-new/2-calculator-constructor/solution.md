@@ -17,10 +17,9 @@ function Calculator() {
   };
 }
 
-var calculator = new Calculator();
+let calculator = new Calculator();
 calculator.read();
 
-alert( "Сумма=" + calculator.sum() );
-alert( "Произведение=" + calculator.mul() );
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
 ```
-

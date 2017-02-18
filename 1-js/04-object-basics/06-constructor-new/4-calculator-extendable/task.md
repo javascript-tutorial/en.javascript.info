@@ -2,41 +2,35 @@ importance: 5
 
 ---
 
-# Создайте калькулятор
+# Create an extendable calculator
 
-Напишите конструктор `Calculator`, который создаёт расширяемые объекты-калькуляторы.
+Create a constructor function `Calculator` that creates "extendable" calculator objects.
 
-Эта задача состоит из двух частей, которые можно решать одна за другой.
+The task consists of two parts.
 
-1. Первый шаг задачи: вызов `calculate(str)` принимает строку, например "1 + 2", с жёстко заданным форматом "ЧИСЛО операция ЧИСЛО" (по одному пробелу вокруг операции), и возвращает результат. Понимает плюс `+` и минус `-`.
+1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
 
-    Пример использования:
+    Usage example:
 
     ```js
-    var calc = new Calculator;
+    let calc = new Calculator;
 
     alert( calc.calculate("3 + 7") ); // 10
     ```
-2. Второй шаг -- добавить калькулятору метод `addMethod(name, func)`, который учит калькулятор новой операции. Он получает имя операции `name` и функцию от двух аргументов `func(a,b)`, которая должна её реализовывать.
+2. Then add the method `addOperator(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
 
-    Например, добавим операции умножить `*`, поделить `/` и возвести в степень `**`:
+    For instance, let's add the multiplication `*`, division `/` and power `**`:
 
     ```js
-    var powerCalc = new Calculator;
-    powerCalc.addMethod("*", function(a, b) {
-      return a * b;
-    });
-    powerCalc.addMethod("/", function(a, b) {
-      return a / b;
-    });
-    powerCalc.addMethod("**", function(a, b) {
-      return Math.pow(a, b);
-    });
+    let powerCalc = new Calculator;
+    powerCalc.addMethod("*", (a, b) => a * b);
+    powerCalc.addMethod("/", (a, b) => a / b);
+    powerCalc.addMethod("**", (a, b) => a ** b);
 
-    var result = powerCalc.calculate("2 ** 3");
+    let result = powerCalc.calculate("2 ** 3");
     alert( result ); // 8
     ```
 
-- Поддержка скобок и сложных математических выражений в этой задаче не требуется.
-- Числа и операции могут состоять из нескольких символов. Между ними ровно один пробел.
-- Предусмотрите обработку ошибок. Какая она должна быть - решите сами.
+- No brackets or complex expressions in this task.
+- The numbers and the operator are delimited with exactly one space.
+- There may be error handling if you'd like to add it.

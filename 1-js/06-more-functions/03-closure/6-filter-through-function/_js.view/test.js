@@ -19,4 +19,3 @@ describe("inBetween", function() {
     assert.isFalse(filter(0));
   });
 });
-

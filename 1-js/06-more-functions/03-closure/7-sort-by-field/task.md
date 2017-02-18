@@ -8,7 +8,7 @@ We've got an array of objects to sort:
 
 ```js
 let users = [
-  { name: "John", age: 20, surname: "Johnson" }, 
+  { name: "John", age: 20, surname: "Johnson" },
   { name: "Pete", age: 18, surname: "Peterson" },
   { name: "Ann", age: 19, surname: "Hathaway" }
 ];
@@ -20,7 +20,7 @@ The usual way to do that would be:
 // by name (Ann, John, Pete)
 users.sort((a, b) => a.name > b.name ? 1 : -1);
 
-// по age (Pete, Ann, John)
+// by age (Pete, Ann, John)
 users.sort((a, b) => a.age > b.age ? 1 : -1);
 ```
 

@@ -2,7 +2,7 @@ function Accumulator(startingValue) {
   this.value = startingValue;
 
   this.read = function() {
-    this.value += +prompt('Сколько добавлять будем?', 0);
+    this.value += +prompt('How much to add?', 0);
   };
 
 }

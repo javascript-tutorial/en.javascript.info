@@ -1,78 +1,39 @@
-# Решение перебором (медленное)
-
-Пройдём по массиву вложенным циклом.
-
-Для каждого элемента мы будем искать, был ли такой уже. Если был -- игнорировать:
+Let's walk the array items:
+- For each item we'll check if the resulting array already has that item.
+- If it is so, then ignore, otherwise add to results.
 
 ```js run
 function unique(arr) {
-  var result = [];
+  let result = [];
 
-  nextInput:
-    for (var i = 0; i < arr.length; i++) {
-      var str = arr[i]; // для каждого элемента
-      for (var j = 0; j < result.length; j++) { // ищем, был ли он уже?
-        if (result[j] == str) continue nextInput; // если да, то следующий
-      }
+  for (let str of arr) {
+    if (!result.includes(str) {
       result.push(str);
     }
+  }
 
   return result;
 }
 
-var strings = ["кришна", "кришна", "харе", "харе",
-  "харе", "харе", "кришна", "кришна", "8-()"
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
 ];
 
-alert( unique(strings) ); // кришна, харе, 8-()
+alert( unique(strings) ); // Hare, Krishna, :-O
 ```
 
-Давайте посмотрим, насколько быстро он будет работать.
+The code works, but there's a potential performance problem in it.
 
-Предположим, в массиве `100` элементов. Если все они одинаковые, то `result` будет состоять из одного элемента и вложенный цикл будет выполняться сразу. В этом случае всё хорошо.
+The method `result.includes(str)` internally walks the array `result` and compares each element against `str` to find the match.
 
-А если все, или почти все элементы разные?
+So if there are `100` elements in `result` and no one matches `str`, then it will walk the whole `result` and do exactly `100` comparisons. And if `result` is large, like `10000`, then there would be `10000` comparisons.
 
-В этом случае для каждого элемента понадобится обойти весь текущий массив результатов, после чего -- добавить в этот массив.
+That's not a problem by itself, because Javascript engines are very fast, so walk `10000` array is a matter of microseconds.
 
-1. Для первого элемента -- это обойдётся в `0` операций доступа к элементам `result` (он пока пустой).
-2. Для второго элемента -- это обойдётся в `1` операцию доступа к элементам `result`.
-3. Для третьего элемента -- это обойдётся в `2` операции доступа к элементам `result`.
-4. ...Для n-го элемента -- это обойдётся в `n-1` операций доступа к элементам `result`.
+But we do such test for each element of `arr`, in the `for` loop.
 
-Всего <code>0 + 1 + 2 + ... + n-1 = (n-1)*n/2 = n<sup>2</sup>/2 - n/2</code> (как сумма арифметической прогрессии), то есть количество операций растёт примерно как квадрат от `n`.
+So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 millions of comparisons. That's a lot.
 
-Это очень быстрый рост. Для `100` элементов -- `4950` операций, для `1000` -- `499500` (по формуле выше).
+So the solution is only good for small arrays.
 
-Поэтому такое решение подойдёт только для небольших массивов. Вместо вложенного `for` можно использовать и `arr.indexOf`, ситуация от этого не поменяется, так как `indexOf` тоже ищет перебором.
-
-# Решение с объектом (быстрое)
-
-Наилучшая техника для выбора уникальных строк -- использование вспомогательного объекта `obj`. Ведь название свойства в объекте, с одной стороны -- строка, а с другой -- всегда уникально. Повторная запись в свойство с тем же именем перезапишет его.
-
-Например, если `"харе"` попало в объект один раз (`obj["харе"] = true`), то второе такое же присваивание ничего не изменит.
-
-Решение ниже создаёт объект `obj = {}` и записывает в него все строки как имена свойств. А затем собирает свойства из объекта в массив через `for..in`. Дубликатов уже не будет.
-
-```js run
-function unique(arr) {
-  var obj = {};
-
-  for (var i = 0; i < arr.length; i++) {
-    var str = arr[i];
-*!*
-    obj[str] = true; // запомнить строку в виде свойства объекта
-*/!*
-  }
-
-  return Object.keys(obj); // или собрать ключи перебором для IE8-
-}
-
-var strings = ["кришна", "кришна", "харе", "харе",
-  "харе", "харе", "кришна", "кришна", "8-()"
-];
-
-alert( unique(strings) ); // кришна, харе, 8-()
-```
-
-Так что можно положить все значения как ключи в объект, а потом достать.
+Further in the chapter <info:map-set-weakmap-weakset> we'll see how to optimize it.

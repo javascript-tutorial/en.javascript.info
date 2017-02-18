@@ -2,26 +2,24 @@ importance: 5
 
 ---
 
-# Создать Accumulator при помощи конструктора
+# Create new Accumulator
 
-Напишите *функцию-конструктор* `Accumulator(startingValue)`.
-Объекты, которые она создает, должны хранить текущую сумму и прибавлять к ней то, что вводит посетитель.
+Create a constructor function `Accumulator(startingValue)`.
 
-Более формально, объект должен:
+Object that it creates should:
 
-- Хранить текущее значение в своём свойстве `value`. Начальное значение свойства `value` ставится конструктором равным `startingValue`.
-- Метод `read()` вызывает `prompt`, принимает число и прибавляет его к свойству `value`.
+- Store the "current value" in the property `value`. The starting value is set to the argument of the constructor `startingValue`.
+- The `read()` method should use `prompt` to read a new number and add it to `value`.
 
-Таким образом, свойство `value` является текущей суммой всего, что ввел посетитель при вызовах метода `read()`, с учетом начального значения `startingValue`.
+In other words, the `value` property is the sum of all user-entered values with the initial value  `startingValue`.
 
-Ниже вы можете посмотреть работу кода:
+Here's the demo of the code:
 
 ```js
-var accumulator = new Accumulator(1); // начальное значение 1
-accumulator.read(); // прибавит ввод prompt к текущему значению
-accumulator.read(); // прибавит ввод prompt к текущему значению
-alert( accumulator.value ); // выведет текущее значение
+let accumulator = new Accumulator(1); // initial value 1
+accumulator.read(); // adds the user-entered value
+accumulator.read(); // adds the user-entered value
+alert(accumulator.value); // shows the sum of these values
 ```
 
 [demo]
-

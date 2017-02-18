@@ -1,10 +1,11 @@
 function unique(arr) {
-  var obj = {};
+  let result = [];
 
-  for (var i = 0; i < arr.length; i++) {
-    var str = arr[i];
-    obj[str] = true; // запомнить строку в виде свойства объекта
+  for (let str of arr) {
+    if (!result.includes(str)) {
+      result.push(str);
+    }
   }
 
-  return Object.keys(obj); // или собрать ключи перебором для IE8-
+  return result;
 }
