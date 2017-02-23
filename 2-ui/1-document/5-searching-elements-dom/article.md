@@ -215,27 +215,20 @@ In other words, the method `closest` goes up from the element and checks each of
 For instance:
 
 ```html run
-<ul>
-  <li class="chapter">Chapter I
-    <ul>
-      <li class="subchapter">Chapter <span class="num">1.1</span></li>
-      <li class="subchapter">Chapter <span class="num">1.2</span></li>
-    </ul>
-  </li>
+<h1>Contents</h1>
+
+<ul class="book">
+  <li class="chapter">Chapter 1</li>
+  <li class="chapter">Chapter 1</li>
 </ul>
 
 <script>
-  let numSpan = document.querySelector('.num');
+  let chapter = document.querySelector('.chapter'); // LI
 
-  // nearest li
-  alert(numSpan.closest('li').className) // subchapter
+  alert(chapter.closest('.book')); // UL above our this LI
 
-  // nearest chapter
-  alert(numSpan.closest('.chapter').className) // chapter
-
-  // nearest span
-  // (the numSpan is the span itself, so it's the result)
-  alert(numSpan.closest('span') === numSpan) // true
+  alert(chapter.closest('h1')); // null
+  // because h1 is not an ancestor
 </script>
 ```
 

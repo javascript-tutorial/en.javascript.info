@@ -394,6 +394,54 @@ Let's make our message to disappear after a second:
 </script>
 ```
 
+## A word about "document.write"
+
+There's one more, quite ancient method of adding something to a web-page: `document.write`.
+
+The syntax:
+
+```html run
+<p>Somewhere in the page...</p>
+*!*
+<script>
+  document.write('<b>Hello from JS</b>');
+</script>
+*/!*
+<p>The end</p>
+```
+
+The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible.
+
+The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
+
+In modern scripts we can rarely see it, because of the important limitation.
+
+**The call to `document.write` only works while the page is loading.**
+
+If we call it after it, the existing document will be erased.
+
+For instance:
+
+```html run
+<p>After one second the contents of this page will be replaced...</p>
+*!*
+<script>
+  // document.write after 1 second
+  setTimeout(() => document.write('<b>...By this.</b>'), 1000);
+</script>
+*/!*
+```
+
+The method `document.write` works at the "reading HTML" phase. It appends something to the page and the browser consumes it along with the rest of HTML.
+
+So it's kind of unusable at "after loaded" stage, unlike other DOM methods we covered above.
+
+That was the downside.
+
+The upside -- it works blazingly fast, because it writes directly into the text, without interfering with complex DOM structures.
+
+So if we need to add a lot of text into HTML dynamically, and we're at page loading phase, and the speed matters, it may help. But in practice that's a really rare use case. Mostly we can see this method in scripts just because they are old.
+
 ## Summary
 
 Methods to create new nodes:
@@ -429,3 +477,8 @@ Insertion and removal of nodes:
   - `"afterend"` -- insert `html` right after `elem`.
 
   Also there are similar methods `elem.insertAdjacentText` and `elem.insertAdjacentElement`, they  insert text strings and elements, but they are rarely used.
+
+- To append HTML to the page before it has finished loading:
+  - `document.write(html)`
+
+  After the page is loaded such call erases the document. Mostly seen in old scripts.

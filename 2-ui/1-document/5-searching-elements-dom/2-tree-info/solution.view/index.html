@@ -1,44 +1,38 @@
 <!DOCTYPE HTML>
 <html>
-
-<head>
-  <meta charset="utf-8">
-</head>
-
 <body>
 
   <ul>
-    <li>Животные
+    <li>Animals
       <ul>
-        <li>Млекопитающие
+        <li>Mammals
           <ul>
-            <li>Коровы</li>
-            <li>Ослы</li>
-            <li>Собаки</li>
-            <li>Тигры</li>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
           </ul>
         </li>
-        <li>Другие
+        <li>Other
           <ul>
-            <li>Змеи</li>
-            <li>Птицы</li>
-            <li>Ящерицы</li>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Рыбы
+    <li>Fishes
       <ul>
-        <li>Аквариумные
+        <li>Aquarium
           <ul>
-            <li>Гуппи</li>
-            <li>Скалярии</li>
+            <li>Guppy</li>
+            <li>Angelfish</li>
           </ul>
-
         </li>
-        <li>Морские
+        <li>Sea
           <ul>
-            <li>Морская форель</li>
+            <li>Sea trout</li>
           </ul>
         </li>
       </ul>
@@ -46,21 +40,18 @@
   </ul>
 
   <script>
-    var lis = document.getElementsByTagName('li');
+    for (let li of document.querySelector('li')) {
+      // get the title from the text node
+      let title = li.firstChild.data;
 
-    for (i = 0; i < lis.length; i++) {
-      // получить название из текстового узла
-      var title = lis[i].firstChild.data;
+      title = title.trim(); // remove extra spaces from ends
 
-      title = title.trim(); // убрать лишние пробелы с концов
+      // get the descendants count
+      let count = li.getElementsByTagName('li').length;
 
-      // получить количество детей
-      var childCount = lis[i].getElementsByTagName('li').length;
-
-      alert(title + ': ' + childCount);
+      alert(title + ': ' + count);
     }
   </script>
 
 </body>
-
 </html>

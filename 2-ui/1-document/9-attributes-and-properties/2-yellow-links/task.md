@@ -2,21 +2,17 @@ importance: 3
 
 ---
 
-# Add the class to external links
+# Make external links yellow
 
-Make all external links yellow by adding them the class `"external"`.
+Make all external links yellow by altering their `style` property.
 
 A link is external if:
 - It's `href` has `://` in it
 - But doesn't start with `http://internal.com`.
 
-```html run
-<style>
-  .external {
-    background-color: yellow
-  }
-</style>
+Example:
 
+```html run
 <a name="list">the list</a>
 <ul>
   <li><a href="http://google.com">http://google.com</a></li>
@@ -26,6 +22,12 @@ A link is external if:
   <li><a href="http://nodejs.org">http://nodejs.org</a></li>
   <li><a href="http://internal.com/test">http://internal.com/test</a></li>
 </ul>
+
+<script>
+  // setting style for a single link
+  let link = document.querySelector('a');
+  link.style.color = 'yellow';
+</script>
 ```
 
 The result should be:

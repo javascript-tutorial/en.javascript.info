@@ -130,7 +130,7 @@ The example above can be split into two scripts to work:
 
 - We can use a `<script>` tag to add JavaScript code to the page.
 - The `type` and `language` attributes are not required.
-- Scripts in an external file can be inserted on the page via `<script src="path"></script>`.
+- A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
 
 
 There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to Javascript language. So we shouldn't distract ourselves from it. We'll be using a browser as a way to run Javascript, very convenient for online reading, but yet one of many.

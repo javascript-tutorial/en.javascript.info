@@ -218,7 +218,7 @@ let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number число
+    alert("Won't work"); // the result of prompt is a string, not a number 
 
   case "18":
     alert("This works!"");

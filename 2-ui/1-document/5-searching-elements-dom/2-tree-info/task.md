@@ -2,14 +2,13 @@ importance: 5
 
 ---
 
-# Дерево
+# Count descendants
 
-Есть дерево из тегов `<ul>/<li>`.
+There's a tree structured as nested `ul/li`.
 
-Напишите код, который для каждого элемента `<li>` выведет:
+Write the code that for each `<li>` shows:
 
-1. Текст непосредственно в нём (без подразделов).
-2. Количество вложенных в него элементов `<li>` -- всех, с учётом вложенных.
+1. What's the text inside it (without the subtree)
+2. The number of nested `<li>` -- all descendants, including the deeply nested ones.
 
 [demo src="solution"]
-

@@ -4,28 +4,47 @@ What we have here is actually 3 tests, but layed out as a single function with 3
 
 Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
 
-If an error happens inside a complex execution flow, then we'll have to figure out what was the data at that point.
+If an error happens inside a complex execution flow, then we'll have to figure out the data at that point. We'll actually have to *debug the test*.
 
-TODO
+It would be much better to break the test into multiple `it` blocks with clearly written inputs and outputs.
 
-Если в сложном тесте произошла ошибка где-то посередине потока вычислений, то придётся выяснять, какие конкретно были входные и выходные данные на этот момент, то есть по сути -- отлаживать код самого теста.
-
-Гораздо лучше будет разбить тест на несколько блоков `it`, с чётко прописанными входными и выходными данными.
-
+Like this:
 ```js
-describe("Возводит x в степень n", function() {
-  it("5 в степени 1 равно 5", function() {
+describe("Raises x to power n", function() {
+  it("5 in the power of 1 equals 5", function() {
     assert.equal(pow(5, 1), 5);
   });
 
-  it("5 в степени 2 равно 25", function() {
+  it("5 in the power of 2 equals 25", function() {
     assert.equal(pow(5, 2), 25);
   });
 
-  it("5 в степени 3 равно 125", function() {
+  it("5 in the power of 3 equals 125", function() {
     assert.equal(pow(5, 3), 125);
   });
 });
 ```
 
-Можно использовать цикл для генерации блоков `it`, в этом случае важно, чтобы сам код такого цикла был достаточно простым. Иногда проще записать несколько блоков `it` вручную, как сделано выше, чем "городить огород" из синтаксических конструкций.
+We replaced the single `it` with `describe` and a group of `it` blocks. Now if something fails we would see clearly what the data was.
+
+Also we can isolate a single test and run it in standalone mode by writing `it.only` instead of `it`:
+
+
+```js
+describe("Raises x to power n", function() {
+  it("5 in the power of 1 equals 5", function() {
+    assert.equal(pow(5, 1), 5);
+  });
+
+*!*
+  // Mocha will run only this block
+  it.only("5 in the power of 2 equals 25", function() {
+    assert.equal(pow(5, 2), 25);
+  });
+*/!*
+
+  it("5 in the power of 3 equals 125", function() {
+    assert.equal(pow(5, 3), 125);
+  });
+});
+```

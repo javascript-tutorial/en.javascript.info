@@ -1,4 +1,4 @@
-# DOM: attributes and properties 
+# DOM: attributes and properties
 
 The browser "reads" HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
 
@@ -204,7 +204,18 @@ DOM properties are not always strings. For instance, `input.checked` property (f
 </script>
 ```
 
-Javascript enforces the right type for a DOM property.
+There are more advanced examples. As we've already seen, `style` property is an object:
+
+```html run
+<div id="div" style="color:red;font-size:120%">Hello</div>
+
+<script>
+  alert(div.getAttribute('style')); // color:red;font-size:120%
+
+  alert(div.style); // [object CSSStyleDeclaration]
+  alert(div.style.color); // red
+</script>
+```
 
 **But even if a DOM property type is a string, it may differ from the attribute.**
 
@@ -225,50 +236,6 @@ Here we can see that:
 
 Let's note again: if we need the value exactly as written in the HTML, we need to use `getAttribute`.
 
-
-## className and classList
-
-The `"class"` attribute is truly special, as there are two properties that correspond to it:
-1. `className` -- the string, same value as in the attribute. In the old times, there was a problem to use a reserved word such as `"class"` as an object property (now it's ok). So `className` was chosen instead.
-2. `classList` -- a special object with methods to `add/remove/toggle` classes. That's for better convenience.
-
-For instance:
-
-```html run
-<body class="main page">
-  <script>
-    // className: get the classes
-    alert( document.body.className ); // main page
-
-    // className: change the classes
-    document.body.className = "class1 class2";
-
-    // classList: add one more class
-    document.body.classList.add('class3');
-    alert(document.body.className); // class1 class2 class 3
-  </script>
-</body>
-```
-
-So we can operate both on the full class string using `className` or on individual classes using `classList`. What we choose depends on our needs.
-
-Methods of `classList`:
-
-- `elem.classList.contains("class")` -- returns `true/false`, checks for the given class.
-- `elem.classList.add/remove("class")` -- adds/removes the class.
-- `elem.classList.toggle("class")` -- if the class exists, then removes it, otherwise adds it.
-
-Besides that, `classList` is iterable, so we can list all classes like this:
-
-```html run
-<body class="main page">
-  <script>
-    for(let name of document.body.classList) {
-      alert(name); // main, then page
-    }
-  </script>
-</body>
-```
 
 ## Non-standard attributes, dataset
 
@@ -333,15 +300,7 @@ That's because an attribute is more convenient to manage. If we want to change t
 div.setAttribute('order-state', 'canceled');
 ```
 
-For classes we would have to clean the current state and add the new one. More cumbersome:
-
-```js
-// two lines, and we need to know the old class to clean it
-div.classList.remove('order-state-new');
-div.classList.add('order-state-canceled');
-```
-
-...But there's a problem here. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected side-effects.
+...But there may be a possible problem here. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected side-effects.
 
 To evade conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 
@@ -432,7 +391,3 @@ Some use cases:
 
 - We want to access a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
 - We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance `href` property is always a full URL, and we may want to get the "original" value.
-
-Also please note that for `class` attribute there are two DOM properties:
-- `className` -- the string value.
-- `classList` -- the object for easier management of individual classes.

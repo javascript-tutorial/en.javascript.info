@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Дерево
+# Show descendants in a tree
 
 There's a tree organized as nested `ul/li`.
 

@@ -1,18 +1,19 @@
-Сделаем цикл по узлам `<li>`:
+Let's make a loop over `<li>`:
 
 ```js
-var lis = document.getElementsByTagName('li');
-
-for (i = 0; i < lis.length; i++) {
+for (let li of document.querySelector('li')) {
   ...
 }
 ```
 
-В цикле для каждого `lis[i]` можно получить текст, используя свойство `firstChild`. Ведь первым в `<li>` является как раз текстовый узел, содержащий текст названия.
+In the loop we need to get the text inside every `li`. We can read it directly from the first child node, that is the text node:
 
-Также можно получить количество потомков, используя `lis[i].getElementsByTagName('li')`.
+```js
+for (let li of document.querySelector('li')) {
+  let title = li.firstChild.data;
 
-Напишите код с этой подсказкой.
+  // title is the text in <li> before any other nodes
+}
+```
 
-Если уж не выйдет -- тогда откройте решение.
-
+Then we can get the number of descendants `li.getElementsByTagName('li')`.

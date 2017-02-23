@@ -11,7 +11,7 @@ Write the code to select the element with `data-widget-name` attribute from the 
 <html>
 <body>
 
-  <div data-widget-name="menu">Выберите жанр</div>
+  <div data-widget-name="menu">Choose the genre</div>
 
   <script>
     /* your code */

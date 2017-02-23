@@ -1,14 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <style>
-    .external {
-      background-color: yellow;
-    }
-  </style>
-</head>
 <body>
 
   <a name="list">the list</a>
@@ -25,7 +16,7 @@
     let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
     let links = document.querySelectorAll(selector);
 
-    links.forEach(link => link.classList.add('external'))
+    links.forEach(link => link.style.color = 'yellow');
   </script>
 
 </body>

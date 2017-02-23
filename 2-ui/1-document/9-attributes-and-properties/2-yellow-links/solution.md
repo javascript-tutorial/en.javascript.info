@@ -18,7 +18,7 @@ for (let link of links) {
 
   if (href.startsWith('http://internal.com')) continue; // internal
 
-  link.classList.add('external');
+  link.style.color = 'yellow';
 }
 ```
 
@@ -32,5 +32,5 @@ Please note: we use `link.getAttribute('href')`. Not `link.href`, because we nee
 let selector = 'a[href*="://"]:not([href^="http://internal.com"])';
 let links = document.querySelectorAll(selector);
 
-links.forEach(link => link.classList.add('external'));
+links.forEach(link => link.style.color = 'yellow');
 ```
