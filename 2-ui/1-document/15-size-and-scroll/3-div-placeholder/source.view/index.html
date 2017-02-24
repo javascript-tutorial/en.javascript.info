@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #moving-div {
+      border: 5px groove green;
+      background-color: yellow;
+      padding: 5px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  Before Before Before
+
+  <div id="moving-div">
+    Text Text Text
+    <br> Text Text Text
+    <br>
+  </div>
+
+  After After After
+
+  <script>
+    // .. Add your code here 
+
+    var div = document.getElementById('moving-div')
+    div.style.position = 'absolute'
+    div.style.right = div.style.top = 0
+  </script>
+
+</body>
+
+</html>

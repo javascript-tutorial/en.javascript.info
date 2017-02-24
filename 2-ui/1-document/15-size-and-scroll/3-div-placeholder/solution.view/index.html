@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #moving-div {
+      border: 5px groove green;
+      padding: 5px;
+      margin: 10px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  Before Before Before
+
+  <div id="moving-div">
+    Text Text Text
+    <br> Text Text Text
+    <br>
+  </div>
+
+  After After After
+
+  <script>
+    var div = document.getElementById('moving-div')
+
+    var placeHolder = document.createElement('div')
+    placeHolder.style.height = div.offsetHeight + 'px'
+
+    var computedStyle = div.currentStyle || getComputedStyle(div, null)
+
+    placeHolder.style.marginTop = computedStyle.marginTop // full prop name
+    placeHolder.style.marginBottom = computedStyle.marginBottom
+
+    // highlight it for demo purposes 
+    placeHolder.style.backgroundColor = '#C0C0C0'
+
+    document.body.insertBefore(placeHolder, div)
+
+    div.style.position = 'absolute'
+    div.style.right = div.style.top = 0
+  </script>
+
+
+</body>
+
+</html>

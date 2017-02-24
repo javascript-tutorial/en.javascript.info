@@ -290,6 +290,6 @@ To change the styles:
 
 - The `style.cssText` property corresponds to the whole `"style"` attribute, the full string of styles.
 
-To read the resolved styles (after all CSS is applied and final values are calculated):
+To read the resolved styles (with respect to all classes, after all CSS is applied and final values are calculated):
 
 - The `getComputedStyles(elem[, pseudo])` returns the style-like object with them. Read-only.
