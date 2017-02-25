@@ -2,20 +2,19 @@ importance: 5
 
 ---
 
-# Поместите мяч в центр поля
+# Place the ball in the field center
 
-Поместите мяч в центр поля.
-
-Исходный документ выглядит так:
+Here's how the source document looks:
 
 [iframe src="source" edit link height=180]
 
-**Используйте JavaScript, чтобы поместить мяч в центр:**
+What are coordinates of the field center?
+
+Calculate them and use to place the ball into the center of the field:
 
 [iframe src="solution" height=180]
 
-- Менять CSS нельзя, мяч должен переносить в центр ваш скрипт, через установку нужных стилей элемента.
-- JavaScript-код должен работать при разных размерах мяча (`10`, `20`, `30` пикселей) без изменений.
-- JavaScript-код должен работать при различных размерах и местоположениях поля на странице без изменений. Также он не должен зависеть от ширины рамки поля `border`.
+- The element should be moved by JavaScript, not CSS.
+- The code should work with any ball size (`10`, `20`, `30` pixels) and any field size, not be bound to the given values.
 
-P.S. Да, центрирование можно сделать при помощи чистого CSS, но задача именно на JavaScript. Далее будут другие темы и более сложные ситуации, когда JavaScript будет уже точно необходим, это -- своего рода "разминка".
+P.S. Sure, centering could be done with CSS, but here we want exactly JavaScript. Further we'll meet other topics and more complex situations when JavaScript must be used. Here we do a "warm-up".

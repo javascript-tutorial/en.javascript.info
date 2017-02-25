@@ -1,22 +1,20 @@
-Создадим элемент с прокруткой, но без `border` и `padding`. Тогда разница между его полной шириной `offsetWidth` и внутренней `clientWidth` будет равна как раз прокрутке:
+To get the scrollbar width, we can create an element with the scroll, but without borders and paddings.
+
+Then the difference between its full width `offsetWidth` and the inner content area width `clientWidth` will be exactly the scrollbar:
 
 ```js run
-// создадим элемент с прокруткой
-var div = document.createElement('div');
+// create a div with the scroll
+let div = document.createElement('div');
 
 div.style.overflowY = 'scroll';
 div.style.width = '50px';
 div.style.height = '50px';
 
-// при display:none размеры нельзя узнать
-// нужно, чтобы элемент был видим,
-// visibility:hidden - можно, т.к. сохраняет геометрию
-div.style.visibility = 'hidden';
+// must put it in the document, otherwise sizes will be 0
+document.body.append(div);
+let scrollWidth = div.offsetWidth - div.clientWidth;
 
-document.body.appendChild(div);
-var scrollWidth = div.offsetWidth - div.clientWidth;
-document.body.removeChild(div);
+div.remove();
 
-alert( scrollWidth );
+alert(scrollWidth);
 ```
-

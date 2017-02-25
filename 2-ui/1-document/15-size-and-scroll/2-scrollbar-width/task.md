@@ -2,8 +2,10 @@ importance: 3
 
 ---
 
-# Узнать ширину полосы прокрутки
+# What is the scrollbar width?
 
-Напишите код, который возвращает ширину стандартной полосы прокрутки. Именно самой полосы, где ползунок. Обычно она равна `16px`, в редких и мобильных браузерах может колебаться от `14px` до `18px`, а кое-где даже равна `0px`.
+Write the code that returns the width of a standard scrollbar.
 
-P.S. Ваш код должен работать на любом HTML-документе, независимо от его содержимого.
+For Windows it usually varies between `12px` and `20px`, but if the browser reserves no space for it, then it may be `0px`.
+
+P.S. The code should work in any HTML document, do not depend on its content.

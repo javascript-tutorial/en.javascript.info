@@ -3,7 +3,7 @@
 To show elements at arbitrary places in the page we should:
 
 1. First, know CSS positioning.
-2. Second, know how to handle "geometrical" properties in Javascript.
+2. Second, know how to handle "geometry" properties in Javascript.
 
 [cut]
 
@@ -204,6 +204,8 @@ If you click the element below, the code `elem.scrollTop += 10` executes. That m
 
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Click<br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
 ```
+
+Setting `scrollTop` to `0` or `Infinity` will make the element scroll to the top/bottom respectively.
 ````
 
 ## Don't take width/height from CSS
@@ -246,29 +248,27 @@ As we've seen a scrollbar takes the space from the content in some browsers. So 
 ...But some browsers also take that into account in `getComputedStyle(elem).width`. That is: some of them return real inner width and some of them -- CSS width. Such cross-browser differences is a reason not to use `getComputedStyle`, but rather rely on geometry propeties.
 
 ```online
-Если ваш браузер показывает полосу прокрутки (например, под Windows почти все браузеры так делают), то вы можете протестировать это сами, нажав на кнопку в ифрейме ниже.
+If your browser reserves the space for a scrollbar (most browsers for Windows do), then you can test it below.
 
 [iframe src="cssWidthScroll" link border=1]
 
-У элемента с текстом в стилях указано `width:300px`.
+The element with text has CSS `width:300px`.
 
-На момент написания этой главы при тестировании в Chrome под Windows `alert` выводил `283px`, а в Firefox -- `300px`. При этом оба браузера показывали прокрутку. Это из-за того, что Firefox возвращал именно CSS-ширину, а Chrome -- реальную ширину, за вычетом прокрутки.
+Desktop Windows Firefox, Chrome, Edge all reserve the space for the scrollbar. But  Firefox shows `300px`, while Chrome and Edge show less. That's because Firefox returns the CSS width and other browsers return the "real" width.
 ```
 
-Описанные разночтения касаются только чтения свойства `getComputedStyle(...).width` из JavaScript, визуальное отображение корректно в обоих случаях.
+Please note that the described difference are only about reading `getComputedStyle(...).width` from JavaScript, visually everything is correct.
 
-## Итого
+## Summary
 
-У элементов есть следующие метрики:
+Elements have the following geometry properties:
 
-- `offsetParent` -- "родитель по дереву рендеринга" -- ближайшая ячейка таблицы, body для статического позиционирования или ближайший позиционированный элемент для других типов позиционирования.
-- `offsetLeft/offsetTop` -- позиция в пикселях левого верхнего угла блока, относительно его `offsetParent`.
-- `offsetWidth/offsetHeight` -- "внешняя" ширина/высота блока, включая рамки.
-- `clientLeft/clientTop` -- отступ области содержимого от левого-верхнего угла элемента. Если операционная система располагает вертикальную прокрутку справа, то равны ширинам левой/верхней рамки, если же слева (ОС на иврите, арабском), то `clientLeft` включает в себя прокрутку.
-- `clientWidth/clientHeight` -- ширина/высота содержимого вместе с полями `padding`, но без полосы прокрутки.
-- `scrollWidth/scrollHeight` -- ширина/высота содержимого, включая прокручиваемую область. Включает в себя `padding` и не включает полосы прокрутки.
-- `scrollLeft/scrollTop` -- ширина/высота прокрученной части документа, считается от верхнего левого угла.
+- `offsetParent` -- is the nearest positioned ancestor or `td`, `th`, `table`, `body`.
+- `offsetLeft/offsetTop` -- coordinates relative to the left-upper edge of `offsetParent`.
+- `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
+- `clientLeft/clientTop` -- the distance from the left-upper outer corner to its left-upper inner corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
+- `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
+- `scrollWidth/scrollHeight` -- the width/height of the content including the scrolled out part. Also includes paddings, but not the scrollbar.
+- `scrollLeft/scrollTop` -- width/height of the scrolled out part of the element, starting from its left-upper corner.
 
-Все свойства, доступны только для чтения, кроме `scrollLeft/scrollTop`. Изменение этих свойств заставляет браузер прокручивать элемент.
-
-В этой главе мы считали, что страница находится в режиме соответствия стандартам. В режиме совместимости -- некоторые старые браузеры требуют `document.body` вместо `documentElement`, в остальном всё так же. Конечно, по возможности, стоит использовать только режим соответствия стандарту.
+All properties are read-only except `scrollLeft/scrollTop`. They make the browser scroll the element if changed.
