@@ -9,7 +9,7 @@
       background-color: #00FF00;
       position: relative;
     }
-    
+
     #ball {
       position: absolute;
     }
@@ -20,15 +20,12 @@
 
 
   <div id="field">
-    <img src="https://js.cx/clipart/ball.svg" width="40" height="40" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    <img src="https://en.js.cx/clipart/ball.svg" width="40" height="40" id="ball"> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
   </div>
 
 
   <script>
-    var ball = document.getElementById('ball')
-    var field = document.getElementById('field')
-
     // ball.offsetWidth=0 before image loaded! 
     // to fix: set width
     ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'

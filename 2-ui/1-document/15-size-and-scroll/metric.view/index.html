@@ -8,7 +8,7 @@
       margin: 0;
       padding: 0;
     }
-    
+
     #example {
       width: 300px;
       height: 200px;
@@ -16,7 +16,7 @@
       border: 25px solid #E8C48F;
       padding: 20px;
     }
-    
+
     .key {
       cursor: pointer;
       text-decoration: underline;
@@ -43,26 +43,22 @@
   </div>
 
 
-  <div id="mouse-wrap">Координаты мыши: <span id="mouse">...</span></div>
+  <div id="mouse-wrap">Mouse coordinates: <span id="mouse">...</span></div>
   <div id="info"></div>
 
 
   <script>
-    var example = document.getElementById('example')
+    let props = {
+      geometry: ['clientLeft', 'clientTop', 'clientWidth', 'clientHeight', 'offsetWidth', 'offsetHeight', 'scrollWidth', 'scrollHeight'],
+      scroll: ['scrollLeft', 'scrollTop'],
+      offsetParent: ['offsetParent', 'offsetLeft', 'offsetTop']
+    };
 
-    var info = document.getElementById('info')
-
-    var props = {
-      'размеры': ['clientLeft', 'clientTop', 'clientWidth', 'clientHeight', 'offsetWidth', 'offsetHeight', 'scrollWidth', 'scrollHeight'],
-      'прокрутка': ['scrollLeft', 'scrollTop'],
-      'позиционирование по рендерингу': ['offsetParent', 'offsetLeft', 'offsetTop']
-    }
-
-    info.innerHTML = '<h3>Нажмите для просмотра значения:</h3>';
-    for (var k in props) {
-      info.innerHTML += '<h4>' + k + '</h4>';
-      var prop = props[k];
-      for (var i = 0; i < prop.length; i++) {
+    info.innerHTML = '<h3>Click to see the value:</h3>';
+    for (let k in props) {
+      info.innerHTML += `<h4>${k}</h4>`;
+      let prop = props[k];
+      for (let i = 0; i < prop.length; i++) {
         info.innerHTML += "<span class='key'>" + prop[i] + '</span>: <span id="' + prop[i] + '">&nbsp;</span>' + " "
         i++;
         if (i < prop.length) {
@@ -74,11 +70,11 @@
     }
 
     document.onclick = function(event) {
-      var target = event.target;
+      let target = event.target;
       if (!target.classList.contains('key')) return;
 
-      var prop = target.innerHTML;
-      var value = example[prop];
+      let prop = target.innerHTML;
+      let value = example[prop];
       value = value.tagName || value;
       document.getElementById(prop).innerHTML = value;
     };
@@ -90,5 +86,4 @@
   </script>
 
 </body>
-
 </html>
