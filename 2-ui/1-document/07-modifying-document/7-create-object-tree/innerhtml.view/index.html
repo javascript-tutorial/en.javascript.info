@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <div id="container"></div>
+
+  <script>
+    let data = {
+      "Fish": {
+        "trout": {},
+        "salmon": {}
+      },
+
+      "Tree": {
+        "Huge": {
+          "sequoia": {},
+          "oak": {}
+        },
+        "Flowering": {
+          "redbud": {},
+          "magnolia": {}
+        }
+      }
+    };
+
+    function createTree(container, obj) {
+      container.innerHTML = createTreeText(obj);
+    }
+
+    function createTreeText(obj) { // отдельная рекурсивная функция
+      let li = '';
+      for (let key in obj) {
+        li += '<li>' + key + createTreeText(obj[key]) + '</li>';
+      }
+      if (li) {
+        let ul = '<ul>' + li + '</ul>'
+      }
+      return ul || '';
+    }
+
+    let container = document.getElementById('container');
+    createTree(container, data);
+  </script>
+</body>
+</html>

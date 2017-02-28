@@ -1,0 +1,27 @@
+body {
+  padding: 20px 0 0 20px;
+  cursor: pointer;
+}
+
+#field {
+  overflow: hidden;
+  width: 200px;
+  height: 150px;
+  border-top: 10px solid black;
+  border-right: 10px solid gray;
+  border-bottom: 10px solid gray;
+  border-left: 10px solid black;
+  background-color: #00FF00;
+  font: 10px/1.2 monospace;
+}
+
+.triangle-right {
+  position: relative;
+  width: 0;
+  height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 20px solid red;
+  text-indent: -20px;
+  font: 12px/1 monospace;
+}
