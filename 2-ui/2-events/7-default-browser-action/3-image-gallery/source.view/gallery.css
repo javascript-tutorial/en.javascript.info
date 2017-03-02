@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+  font: 75%/120% Arial, Helvetica, sans-serif;
+}
+
+h2 {
+  font: bold 190%/100% Arial, Helvetica, sans-serif;
+  margin: 0 0 .2em;
+}
+
+h2 em {
+  font: normal 80%/100% Arial, Helvetica, sans-serif;
+  color: #999999;
+}
+
+#largeImg {
+  border: solid 1px #ccc;
+  width: 550px;
+  height: 400px;
+  padding: 5px;
+}
+
+#thumbs a {
+  border: solid 1px #ccc;
+  width: 100px;
+  height: 100px;
+  padding: 3px;
+  margin: 2px;
+  float: left;
+}
+
+#thumbs a:hover {
+  border-color: #FF9900;
+}
