@@ -1,4 +1,4 @@
-var form = document.querySelector('form');
+let form = document.querySelector('form');
 
 form.onclick = function(event) {
   event.target.style.backgroundColor = 'yellow';
