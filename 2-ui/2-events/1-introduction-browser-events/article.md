@@ -325,6 +325,50 @@ Try the code below. In most browsers only the second handler works, not the firs
 ```
 ````
 
+
+## Event object
+
+To properly handle an event we'd want to know more about what's happened. Not just a "click" or a "keypress", but what were the pointer coordinates? Which key was pressed? And so on.
+
+When an event happens, the browser creates an *event object*, puts details into it and passes it as an argument to the handler.
+
+Here's an example of getting mouse coordinates from the event object:
+
+```html run
+<input type="button" value="Click me" id="elem">
+
+<script>
+  elem.onclick = function(*!*event*/!*) {
+    // show event type, element and coordinates of the click
+    alert(event.type + " на " + event.currentTarget);
+    alert(event.clientX + ":" + event.clientY);
+  };
+</script>
+```
+
+Some properties of `event` object:
+
+`event.type`
+: Event type, here it's `"click"`.
+
+`event.currentTarget`
+: Element that handled the event. That's exactly the same as `this`, unless you bind `this` to something else, and then `event.currentTarget` becomes useful.
+
+`event.clientX / event.clientY`
+: Window-relative coordinates of the cursor, for mouse events.
+
+There are more properties. They depend on the event type, so we'll study them later when come to different events in details.
+
+````smart header="The event object is also accessible from HTML"
+If we assign a handler in HTML, we can also use the `event` object, like this:
+
+```html autorun height=60
+<input type="button" onclick="*!*alert(event.type)*/!*" value="Event type">
+```
+
+That's possible because when the browser reads the attribute, it creates a handler like this:  `function(event) { alert(event.type) }`. That is: its first argument is called `"event"`, and the body is taken from the attribute.
+````
+
 ## Summary
 
 There are 3 ways to assign event handlers:
@@ -338,5 +382,7 @@ HTML attributes are used sparingly, because JavaScript in the middle of an HTML 
 DOM properties are ok to use, but we can't assign more than one handler of the particular event. In many cases that limitation is not pressing.
 
 The last way is the most flexible, but it is also the longest to write. There are few events that only work with it, for instance `transtionend` and `DOMContentLoaded` (to be covered).
+
+When a handler is called, it gets an event objects as the first argument. It contains details about what's happened. We'll see more of them later.
 
 As of now we're just starting to work with events. More details in the next chapters.

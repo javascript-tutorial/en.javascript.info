@@ -1,0 +1,38 @@
+.arrow {
+  padding: 0;
+  background: #ddd;
+  border-radius: 15px;
+  border: 1px solid gray;
+  font-size: 24px;
+  line-height: 24px;
+  color: #444;
+  display: block;
+}
+
+.arrow:focus {
+  outline: none;
+}
+
+.arrow:hover {
+  background: #ccc;
+  cursor: pointer;
+}
+
+ul {
+  height: 130px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0; 
+}
+
+ul img {
+  width: 130px;
+  height: 130px;
+  display: block; /* removes extra space near images */
+}
+
+ul li {
+  display: inline-block; /* removes extra space between list items
+}
