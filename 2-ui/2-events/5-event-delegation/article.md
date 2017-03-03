@@ -1,18 +1,19 @@
-# Делегирование событий
 
-Всплытие событий позволяет реализовать один из самых важных приёмов разработки -- *делегирование*.
+# Event delegation
 
-Он заключается в том, что если у нас есть много элементов, события на которых нужно обрабатывать похожим образом, то вместо того, чтобы назначать обработчик каждому -- мы ставим один обработчик на их общего предка. Из него можно получить целевой элемент `event.target`, понять на каком именно потомке произошло событие и обработать его.
+Capturing and bubbling allow to implement one of most powerful event handling patterns called *event delegation*.
 
-## Пример "Ба Гуа"
+The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them -- we put a single handler on their common ancestor.
 
-Рассмотрим пример -- <a href="http://en.wikipedia.org/wiki/Ba_gua">диаграмму "Ба Гуа"</a>. Это таблица, отражающая древнюю китайскую философию.
+In the handler we get `event.target`, see where the event actually happened and handle it.
 
-Вот она:
+Let's see an example -- the [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) reflecting the ancient Chinese philosophy.
+
+Here it is:
 
 [iframe height=350 src="bagua" edit link]
 
-Её HTML (схематично):
+The HTML is like this:
 
 ```html
 <table>
@@ -24,170 +25,133 @@
     <td>...</td>
     <td>...</td>
   </tr>
-  <tr>...еще 2 строки такого же вида...</tr>
-  <tr>...еще 2 строки такого же вида...</tr>
+  <tr>...2 more lines of this kind...</tr>
+  <tr>...2 more lines of this kind...</tr>
 </table>
 ```
 
-В этой таблице всего 9 ячеек, но могло быть и 99, и даже 9999, не важно.
+The table has 9 cells, but there could be 99 or 9999, doesn't matter.
 
-**Наша задача -- реализовать подсветку ячейки `<td>` при клике.**
+**Our task is to highlight a cell `<td>` on click.**
 
-Вместо того, чтобы назначать обработчик для каждой ячейки, которых может быть очень много -- мы повесим *единый обработчик* на элемент `<table>`.
+Instead of assign an `onclick` handler to each `<td>` (can be many) -- we'll setup the "catch-all" handler on `<table>` element.
 
-Он будет использовать `event.target`, чтобы получить элемент, на котором произошло событие, и подсветить его.
+It will use `event.target` to get the clicked element and highlight it.
 
-Код будет таким:
+The code:
 
 ```js
-var selectedTd;
+let selectedTd;
 
 *!*
 table.onclick = function(event) {
-  var target = event.target; // где был клик?
+  var target = event.target; // where was the click?
 
-  if (target.tagName != 'TD') return; // не на TD? тогда не интересует
+  if (target.tagName != 'TD') return; // not on TD? Then we're not interested
 
-  highlight(target); // подсветить TD
+  highlight(target); // highlight it
 };
 */!*
 
-function highlight(node) {
-  if (selectedTd) {
+function highlight(td) {
+  if (selectedTd) { // remove the existing highlight if any
     selectedTd.classList.remove('highlight');
   }
-  selectedTd = node;
-  selectedTd.classList.add('highlight');
+  selectedTd = td;
+  selectedTd.classList.add('highlight'); // highlight the new td
 }
 ```
 
-Такому коду нет разницы, сколько ячеек в таблице. Обработчик всё равно один. Я могу добавлять, удалять `<td>` из таблицы, менять их количество -- моя подсветка будет стабильно работать, так как обработчик стоит на `<table>`.
+Such a code doesn't care how many cells there are in the table. We can add/remove `<td>` dynamically at any time and the highlighting will still work.
 
-Однако, у текущей версии кода есть недостаток.
+Still, there's a drawback.
 
-**Клик может быть не на том теге, который нас интересует, а внутри него.**
+The click may occur no on the `<td>`, but inside it.
 
-В нашем случае, если взглянуть на HTML таблицы внимательно, видно, что ячейка содержит вложенные теги, например `<strong>`:
+In our case if we take a look inside the HTML, we can see nested tags inside `<td>`, like `<strong>`:
 
 ```html
 <td>
 *!*
   <strong>Northwest</strong>
 */!*
-  ...Metal..Silver..Elders...
+  ...
 </td>
 ```
 
-Естественно, клик может произойти внутри `<td>`, на элементе `<strong>`. Такой клик будет пойман единым обработчиком, но `target` у него будет не `<td>`, а `<strong>`:
+Naturally, if a click happens on that `<strong>` then it becomes the value of `event.target`.
 
 ![](bagua-bubble.png)
 
-Внутри обработчика `table.onclick` мы должны по `event.target` разобраться, в каком именно `<td>` был клик.
+In the handler `table.onclick` we should take such `event.target` and find out whether the click was inside `<td>` or not.
 
-Для этого мы, используя ссылку `parentNode`, будем идти вверх по иерархии родителей от `event.target` и выше и проверять:
-
-- Если нашли `<td>`, значит это то что нужно.
-- Если дошли до элемента `table` и при этом `<td>` не найден, то наверное клик был вне `<td>`, например на элементе заголовка таблицы.
-
-Улучшенный обработчик `table.onclick` с циклом `while`,  который это делает:
+Here's the improved code:
 
 ```js
 table.onclick = function(event) {
-  var target = event.target;
+  let td = event.target.closest('td'); // (1)
 
-  // цикл двигается вверх от target к родителям до table
-  while (target != table) {
-    if (target.tagName == 'TD') {
-      // нашли элемент, который нас интересует!
-      highlight(target);
-      return;
-    }
-    target = target.parentNode;
-  }
+  if (!td) return; // (2)
 
-  // возможна ситуация, когда клик был вне <td>
-  // если цикл дошёл до table и ничего не нашёл,
-  // то обработчик просто заканчивает работу
-}
+  if (!table.contains(td)) return; // (3)
+
+  highlight(td); // (4)
+};
 ```
 
-````smart
-Кстати, в проверке `while` можно бы было использовать `this` вместо `table`:
+Explanations:
+1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
+2. If `event.target` is not inside any `<td>`, then the call returns `null`, and we don't have to do anything.
+3. In case of nested tables, `event.target` may be a `<td>` outside of the current table. So we check if that's actually *our* `<td>`.
+4. And, if it is so, highlight it.
 
-```js
-while (target != this) {
-  // ...
-}
-```
+## Delegation example: actions in markup
 
-Это тоже будет работать, так как в обработчике `table.onclick` значением `this` является текущий элемент, то есть `table`.
-````
+The event delegation may be used to optimize event handling. We use a single handler for similar actions on many elements. Like we did it for highlighting `<td>`.
 
-Можно для этого использовать и метод `closest`, при поддержке браузером:
+But we can also use a single handler as an entry point for many different things.
 
-```js
-table.onclick = function(event) {
-  var target = event.target;
+For instance, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`....
 
-  var td = target.closest('td');
-  if (!td) return; // клик вне <td>, не интересует
-
-  // если клик на td, но вне этой таблицы (возможно при вложенных таблицах)
-  // то не интересует
-  if (!table.contains(td)) return;
-
-  // нашли элемент, который нас интересует!
-  highlight(td);
-}
-```
-
-## Применение делегирования: действия в разметке
-
-Обычно делегирование -- это средство оптимизации интерфейса. Мы используем один обработчик для *схожих* действий на однотипных элементах.
-
-Выше мы это делали для обработки кликов на `<td>`.
-
-**Но делегирование позволяет использовать обработчик и для абсолютно разных действий.**
-
-Например, нам нужно сделать меню с разными кнопками: "Сохранить", "Загрузить", "Поиск" и т.д. И есть объект с соответствующими методами: `save`, `load`, `search` и т.п...
-
-Первое, что может прийти в голову -- это найти каждую кнопку и назначить ей свой обработчик среди методов объекта.
-
-Но более изящно решить задачу можно путем добавления одного обработчика на всё меню, а для каждой кнопки в специальном атрибуте, который мы назовем `data-action` (можно придумать любое название, но `data-*` является валидным в HTML5), укажем, что она должна вызывать:
+The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
 
 ```html
-<button *!*data-action="save"*/!*>Нажмите, чтобы Сохранить</button>
+<button *!*data-action="save"*/!*>Click to Save</button>
 ```
 
-Обработчик считывает содержимое атрибута и выполняет метод. Взгляните на рабочий пример:
+The handler reads the attribute and executes the method. Take a look at the working example:
 
-```html autorun height=60
+```html autorun height=60 run
 <div id="menu">
-  <button data-action="save">Сохранить</button>
-  <button data-action="load">Загрузить</button>
-  <button data-action="search">Поиск</button>
+  <button data-action="save">Save</button>
+  <button data-action="load">Load</button>
+  <button data-action="search">Search</button>
 </div>
 
 <script>
-  function Menu(elem) {
-    this.save = function() {
-      alert( 'сохраняю' );
-    };
-    this.load = function() {
-      alert( 'загружаю' );
-    };
-    this.search = function() {
-      alert( 'ищу' );
-    };
+  class Menu {
+    constructor(elem) {
+      this._elem = elem;
+      elem.onclick = this.onClick.bind(this); // (*)
+    }
 
-    var self = this;
+    save() {
+      alert('saving');
+    }
 
-    elem.onclick = function(e) {
-      var target = e.target;
+    load() {
+      alert('loading');
+    }
+
+    search() {
+      alert('searching');
+    }
+
+    onClick(event) {
 *!*
-      var action = target.getAttribute('data-action');
+      let action = event.target.dataset.action;
       if (action) {
-        self[action]();
+        this[action]();
       }
 */!*
     };
@@ -197,38 +161,109 @@ table.onclick = function(event) {
 </script>
 ```
 
-Обратите внимание, как используется трюк с `var self = this`, чтобы сохранить ссылку на объект `Menu`. Иначе обработчик просто бы не смог вызвать методы `Menu`, потому что его собственный `this` ссылается на элемент.
+Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the menu object, and `this[action]` would not be what we need.
 
-Что в этом случае нам дает использование делегирования событий?
-
-```compare
-+ Не нужно писать код, чтобы присвоить обработчик каждой кнопке. Меньше кода, меньше времени, потраченного на инициализацию.
-+ Структура HTML становится по-настоящему гибкой. Мы можем добавлять/удалять кнопки в любое время.
-+ Данный подход является семантичным. Также можно использовать классы `.action-save`, `.action-load` вместо атрибута `data-action`.
-```
-
-## Итого
-
-Делегирование событий -- это здорово! Пожалуй, это один из самых полезных приёмов для работы с DOM. Он отлично подходит, если есть много элементов, обработка которых очень схожа.
-
-Алгоритм:
-
-1. Вешаем обработчик на контейнер.
-2. В обработчике: получаем `event.target`.
-3. В обработчике: если `event.target` или один из его родителей в контейнере (`this`) -- интересующий нас элемент -- обработать его.
-
-Зачем использовать:
+So, what the delegation gives us here?
 
 ```compare
-+ Упрощает инициализацию и экономит память: не нужно вешать много обработчиков.
-+ Меньше кода: при добавлении и удалении элементов не нужно ставить или снимать обработчики.
-+ Удобство изменений: можно массово добавлять или удалять элементы путём изменения `innerHTML`.
++ We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
++ The HTML structure is flexible, we can add/remove buttons at any time.
 ```
 
-Конечно, у делегирования событий есть свои ограничения.
+We could also use classes `.action-save`, `.action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
+
+## The "behavior" pattern
+
+We can also use event delegation to add "behaviors" to elements *declaratively*, with special attributes and classes.
+
+The pattern has two parts:
+1. We add a special attribute to an element.
+2. A document-wide handler tracks events, and if an event happens on an attributed element -- performs the action.
+
+### Counter
+
+For instance, here the attribute `data-counter` adds a behavior: "increase on click" to buttons:
+
+```html run autorun height=60
+Counter: <input type="button" value="1" data-counter>
+One more counter: <input type="button" value="2">
+
+<script>
+  document.addEventListener('click', function(event) {
+
+    if (event.target.dataset.counter != undefined) { // if the attribute exists...
+      event.target.value++;
+    }
+
+  });
+</script>
+```
+
+If we click a button -- its value is increased. Not buttons, but the general approach is important here.
+
+There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
+
+```warn header="For document-level handlers -- always `addEventListener`"
+When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.onclick`, because the latter will cause conflicts: new handlers overwrite old ones.
+
+For real projects it's normal that there are many handlers on `document` set by different parts of the code.
+```
+
+### Toggler
+
+One more example. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+
+```html autorun run height=60
+<button *!*data-toggle-id="subscribe-mail"*/!*>
+  Show the subscription form
+</button>
+
+<form id="subscribe-mail" hidden>
+  Your mail: <input type="email">
+</form>
+
+<script>
+*!*
+  document.addEventListener('click', function(event) {
+    let id = event.target.dataset.toggleId;
+    if (!id) return;
+
+    let elem = document.getElementById(id);
+
+    elem.hidden = !elem.hidden;
+  });
+*/!*
+</script>
+```
+
+Let's note once again what we did. Now, to add toggling functionality to an element -- there's no need to know JavaScript, just use the attribute `data-toggle-id`.
+
+That may become really convenient -- no need to write JavaScript for every such element. Just use the behavior. The document-level handler makes it work for any element of the page.
+
+
+## Summary
+
+Event delegation is really cool! It's one of the most helpful patterns for DOM events.
+
+It's often used to add same handling for many similar elements, but not only for that.
+
+The algorithm:
+
+1. Put a single handler on the container.
+2. In the handler -- check the source element `event.target`.
+3. If the event happened inside an element that interests us, then handle the event.
+
+Benefits:
 
 ```compare
-- Во-первых, событие должно всплывать. Нельзя, чтобы какой-то промежуточный обработчик вызвал `event.stopPropagation()` до того, как событие доплывёт до нужного элемента.
-- Во-вторых, делегирование создает дополнительную нагрузку на браузер, ведь обработчик запускается, когда событие происходит в любом месте контейнера, не обязательно на элементах, которые нам  интересны. Но обычно эта нагрузка настолько пустяковая, её даже не стоит принимать во внимание.
++ Simplifies initialization and saves memory: no need to add many handlers.
++ Less code: when adding or removing elements, no need to add/remove handlers.
++ DOM modifications: we can mass add/remove elements with `innerHTML` and alike.
 ```
 
+The delegation has its limitations of course:
+
+```compare
+- First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
+- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter if they interest us or not. But usually the load is negligible, so we don't take it into account.
+```

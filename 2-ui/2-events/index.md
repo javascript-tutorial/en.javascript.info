@@ -1,3 +1,3 @@
-# Основы работы с событиями
+# Events
 
-Введение в браузерные события, общие свойства всех событий и приёмы работы с ними.
+An introduction to browser events, event properties and handling patterns.

@@ -50,7 +50,7 @@ The process is called "bubbling", because events "bubble" from the inner element
 ```warn header="*Almost* all events bubble."
 The key word in this phrase is "almost".
 
-For instance, a `focus` event does not bubble. There are other examples too. But still it's an exception, rather then a rule, most events do bubble.
+For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather then a rule, most events do bubble.
 ```
 
 ## event.target
@@ -135,14 +135,14 @@ That is: for a click on `<td>` the event first goes through the ancestors chain 
 
 **Before we only talked about bubbling, because the capturing stage is rarely used. Normally it is invisible to us.**
 
-Handlers added using `on...`-property or using HTML attributes don't know anything about capturing, they only work at the bubbling stage.
+Handlers added using `on...`-property or using HTML attributes don't know anything about capturing, they only run on the 2nd and 3rd stages.
 
 To catch an event on the capturing stage, we need to use the 3rd argument of `addEventListener`:
 
 - If it's `true`, then the handler is set on the capturing stage.
 - If it's `false` (default), then on the bubbling stage.
 
-Formally, there are 3 stages, but the stage `2` (reached the element) has no special processing, because handlers on both capturing and bubbling stages run on the element itself.
+Note that while formally there are 3 stages, the 2nd stage (reached the element) is not handled separately: handlers on both capturing and bubbling stages do that.
 
 Let's see it in action:
 
@@ -174,29 +174,26 @@ Please note that `TD` shows up two times: at the end of capturing and at the sta
 
 There's a property `event.eventPhrase` that tells us the number of the stage on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
-## TODO: ADD DELEGATION HERE
+## Summary
 
-## Итого
+The event handling process:
 
-Алгоритм:
+- When an event happens -- the most nested element where it happens gets labeled as the "source element" (`event.target`).
+- Then the event first moves from the document root down the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way.
+- Then the event moves from `event.target` up to the root, calling handlers assigned using  `on*` and `addEventListener(...., false)`.
 
-- При наступлении события -- элемент, на котором оно произошло, помечается как "целевой" (`event.target`).
-- Далее событие сначала двигается вниз от корня документа к `event.target`, по пути вызывая обработчики, поставленные через `addEventListener(...., true)`.
-- Далее событие двигается от `event.target` вверх к корню документа, по пути вызывая обработчики, поставленные через `on*` и `addEventListener(...., false)`.
+Each handler can access `event` object properties:
 
-Каждый обработчик имеет доступ к свойствам события:
+- `event.target` -- the deepest element that originated the event.
+- `event.currentTarget` (=`this`) -- the current element the handles the event (the one that has the handler on it)
+- `event.eventPhase` -- the current phase (capturing=1, bubbling=3).
 
-- `event.target` -- самый глубокий элемент, на котором произошло событие.
-- `event.currentTarget` (=`this`) -- элемент, на котором в данный момент сработал обработчик (до которого "доплыло" событие).
-- `event.eventPhase` -- на какой фазе он сработал (погружение =1, всплытие = 3).
+Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it, maybe for completely different things.
 
-Любой обработчик может остановить событие вызовом `event.stopPropagation()`, но делать это не рекомендуется, так как в дальнейшем это событие может понадобиться, иногда для самых неожиданных вещей.
+The capturing stage is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
 
-В современной разработке стадия погружения используется очень редко.
+In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then (if needed) higher-level powers, and so on.
 
-Этому есть две причины:
+The same for event handlers. The code that set the handler on a particular element knows maximum  details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last.
 
-1. Историческая -- так как IE лишь с версии 9 в полной мере поддерживает современный стандарт.
-2. Разумная -- когда происходит событие, то разумно дать возможность первому сработать обработчику на самом элементе, поскольку он наиболее конкретен. Код, который поставил обработчик именно на этот элемент, знает максимум деталей о том, что это за элемент, чем он занимается.
-
-    Далее имеет смысл передать обработку события родителю -- он тоже понимает, что происходит, но уже менее детально, далее -- выше, и так далее, до самого объекта `document`, обработчик на котором реализовывает самую общую функциональность уровня документа.
+Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.
