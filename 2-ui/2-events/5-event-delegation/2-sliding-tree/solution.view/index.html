@@ -6,7 +6,7 @@
     .tree span:hover {
       font-weight: bold;
     }
-    
+
     .tree span {
       cursor: pointer;
     }
@@ -16,38 +16,37 @@
 
 <body>
 
-  <ul class="tree">
-    <li>Животные
+  <ul class="tree" id="tree">
+    <li>Animals
       <ul>
-        <li>Млекопитающие
+        <li>Mammals
           <ul>
-            <li>Коровы</li>
-            <li>Ослы</li>
-            <li>Собаки</li>
-            <li>Тигры</li>
+            <li>Cows</li>
+            <li>Donkeys</li>
+            <li>Dogs</li>
+            <li>Tigers</li>
           </ul>
         </li>
-        <li>Другие
+        <li>Other
           <ul>
-            <li>Змеи</li>
-            <li>Птицы</li>
-            <li>Ящерицы</li>
+            <li>Snakes</li>
+            <li>Birds</li>
+            <li>Lizards</li>
           </ul>
         </li>
       </ul>
     </li>
-    <li>Рыбы
+    <li>Fishes
       <ul>
-        <li>Аквариумные
+        <li>Aquarium
           <ul>
-            <li>Гуппи</li>
-            <li>Скалярии</li>
+            <li>Guppy</li>
+            <li>Angelfish</li>
           </ul>
-
         </li>
-        <li>Морские
+        <li>Sea
           <ul>
-            <li>Морская форель</li>
+            <li>Sea trout</li>
           </ul>
         </li>
       </ul>
@@ -55,29 +54,22 @@
   </ul>
 
   <script>
-    var tree = document.getElementsByTagName('ul')[0];
-
-    var treeLis = tree.getElementsByTagName('li');
-
-    /* wrap all textNodes into spans */
-    for (var i = 0; i < treeLis.length; i++) {
-      var li = treeLis[i];
-
-      var span = document.createElement('span');
-      li.insertBefore(span, li.firstChild);
-      span.appendChild(span.nextSibling);
+    // move all text into <span>
+    // they occupy exactly the place necessary for the text,
+    for (let li of tree.querySelectorAll('li')) {
+      let span = document.createElement('span');
+      li.prepend(span);
+      span.append(span.nextSibling); // move the text node into span
     }
 
-    /* catch clicks on whole tree */
+    // catch clicks on whole tree
     tree.onclick = function(event) {
-      var target = event.target;
 
-      if (target.tagName != 'SPAN') {
+      if (event.target.tagName != 'SPAN') {
         return;
       }
 
-      /* now we know the SPAN is clicked */
-      var childrenContainer = target.parentNode.getElementsByTagName('ul')[0];
+      let childrenContainer = target.parentNode.querySelector('ul');
       if (!childrenContainer) return; // no children
 
       childrenContainer.hidden = !childrenContainer.hidden;
@@ -85,5 +77,4 @@
   </script>
 
 </body>
-
 </html>

@@ -240,6 +240,9 @@ Let's note once again what we did. Now, to add toggling functionality to an elem
 
 That may become really convenient -- no need to write JavaScript for every such element. Just use the behavior. The document-level handler makes it work for any element of the page.
 
+We can combine multiple behaviors on a single element as well.
+
+The "behavior" pattern can be an alternative of mini-fragments of JavaScript.
 
 ## Summary
 

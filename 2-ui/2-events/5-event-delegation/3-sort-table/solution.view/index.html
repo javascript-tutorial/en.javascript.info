@@ -4,13 +4,19 @@
 <head>
   <meta charset="utf-8">
   <style>
-    th {
-      cursor: pointer;
-    }
-    
-    th:hover {
-      background: yellow;
-    }
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
   </style>
 </head>
 
@@ -19,57 +25,54 @@
   <table id="grid">
     <thead>
       <tr>
-        <th data-type="number">Возраст</th>
-        <th data-type="string">Имя</th>
+        <th data-type="number">Age</th>
+        <th data-type="string">Name</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>5</td>
-        <td>Вася</td>
+        <td>John</td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Петя</td>
+        <td>Pete</td>
       </tr>
       <tr>
         <td>12</td>
-        <td>Женя</td>
+        <td>Ann</td>
       </tr>
       <tr>
         <td>9</td>
-        <td>Маша</td>
+        <td>Eugene</td>
       </tr>
       <tr>
         <td>1</td>
-        <td>Илья</td>
+        <td>Ilya</td>
       </tr>
     </tbody>
   </table>
 
   <script>
-    // сортировка таблицы
-    // использовать делегирование!
-    // должно быть масштабируемо:
-    // код работает без изменений при добавлении новых столбцов и строк
-
-    var grid = document.getElementById('grid');
 
     grid.onclick = function(e) {
       if (e.target.tagName != 'TH') return;
 
-      // Если TH -- сортируем
-      sortGrid(e.target.cellIndex, e.target.getAttribute('data-type'));
+      let th = e.target;
+      // if TH, then sort
+      // cellIndex is the number of th:
+      //   0 for the first column
+      //   1 for the second column, etc
+      sortGrid(th.cellIndex, th.dataset.type);
     };
 
     function sortGrid(colNum, type) {
-      var tbody = grid.getElementsByTagName('tbody')[0];
+      let tbody = grid.querySelector('tbody');
 
-      // Составить массив из TR
-      var rowsArray = [].slice.call(tbody.rows);
+      let rowsArray = Array.from(tbody.rows);
 
-      // определить функцию сравнения, в зависимости от типа
-      var compare;
+      // compare(a, b) compares two rows, need for sorting
+      let compare;
 
       switch (type) {
         case 'number':
@@ -87,20 +90,9 @@
       // сортировать
       rowsArray.sort(compare);
 
-      // Убрать tbody из большого DOM документа для лучшей производительности
-      grid.removeChild(tbody);
-
-      // добавить результат в нужном порядке в TBODY
-      // они автоматически будут убраны со старых мест и вставлены в правильном порядке
-      for (var i = 0; i < rowsArray.length; i++) {
-        tbody.appendChild(rowsArray[i]);
-      }
-
-      grid.appendChild(tbody);
-
+      tbody.append(...rowsArray);
     }
   </script>
 
 </body>
-
 </html>

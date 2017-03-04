@@ -4,13 +4,19 @@
 <head>
   <meta charset="utf-8">
   <style>
-    th {
-      cursor: pointer;
-    }
-    
-    th:hover {
-      background: yellow;
-    }
+    table {
+       border-collapse: collapse;
+     }
+     th, td {
+       border: 1px solid black;
+       padding: 4px;
+     }
+     th {
+       cursor: pointer;
+     }
+     th:hover {
+       background: yellow;
+     }
   </style>
 </head>
 
@@ -19,38 +25,37 @@
   <table id="grid">
     <thead>
       <tr>
-        <th data-type="number">Возраст</th>
-        <th data-type="string">Имя</th>
+        <th data-type="number">Age</th>
+        <th data-type="string">Name</th>
       </tr>
     </thead>
     <tbody>
       <tr>
         <td>5</td>
-        <td>Вася</td>
+        <td>John</td>
       </tr>
       <tr>
         <td>2</td>
-        <td>Петя</td>
+        <td>Pete</td>
       </tr>
       <tr>
         <td>12</td>
-        <td>Женя</td>
+        <td>Ann</td>
       </tr>
       <tr>
         <td>9</td>
-        <td>Маша</td>
+        <td>Eugene</td>
       </tr>
       <tr>
         <td>1</td>
-        <td>Илья</td>
+        <td>Ilya</td>
       </tr>
     </tbody>
   </table>
 
   <script>
-    /* ваш код */
+    // ...your code...
   </script>
 
 </body>
-
 </html>
