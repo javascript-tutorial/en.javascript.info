@@ -1,16 +1,16 @@
-Дело в том, что обработчик из атрибута `onclick` делается браузером как функция с заданным телом.
+When the browser reads the `on*` attribute like `onclick`, it creates the handler from its content.
 
-То есть, в данном случае он будет таким:
+For `onclick="handler()"` the function will be:
 
 ```js
 function(event) {
-  handler() // тело взято из атрибута onclick
+  handler() // the content of onclick
 }
 ```
 
-При этом возвращаемое `handler` значение никак не используется и не влияет на результат.
+Now we can see that the value returned by `handler()` is not used and does not affect the result.
 
-Рабочий вариант:
+The fix is simple:
 
 ```html run
 <script>
@@ -23,7 +23,7 @@ function(event) {
 <a href="http://w3.org" onclick="*!*return handler()*/!*">w3.org</a>
 ```
 
-Также можно использовать объект события для вызова `event.preventDefault()`, например:
+Also we can use `event.preventDefault()`, like this:
 
 ```html run
 <script>
@@ -37,4 +37,3 @@ function(event) {
 
 <a href="http://w3.org" onclick="*!*handler(event)*/!*">w3.org</a>
 ```
-

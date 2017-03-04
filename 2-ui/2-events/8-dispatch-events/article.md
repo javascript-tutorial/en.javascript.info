@@ -1,48 +1,167 @@
-# Генерация событий на элементах
+# Custom events
 
-Можно не только назначать обработчики на события, но и генерировать их самому.
+We can not only assign handlers, but also generate events form JavaScript.
 
-Мы будем использовать это позже для реализации компонентной архитектуры, при которой элемент, представляющий собой, к примеру, меню, генерирует события, к этому меню относящиеся -- `select` (выбран пункт меню) или `open` (меню раскрыто), и другие.
+Custom events can be used to create "graphical components". For instance, a root element of the menu may trigger events telling what happens with the menu: `open` (menu open),  `select` (an item is selected) and so on.
 
-Кроме того, события можно генерировать для целей автоматического тестирования.
+Also we can generate built-in events like `click`, `mousedown` etc, that may be good for testing.
 
 [cut]
 
-## Конструктор Event
+## Event constructor
 
-Вначале рассмотрим современный способ генерации событий, по стандарту [DOM 4](http://www.w3.org/TR/dom/#introduction-to-dom-events). Он поддерживается всеми браузерами, кроме IE11-. А далее рассмотрим устаревшие варианты, поддерживаемые IE.
+Events form a hierarchy, just like DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
 
-Объект события в нём создаётся при помощи встроенного конструктора [Event](http://www.w3.org/TR/dom/#event).
-
-Синтаксис:
+We can create `Event` objects like this:
 
 ```js
-var event = new Event(тип события[, флаги]);
+let event = new Event(event type[, flags]);
 ```
 
-Где:
+Arguments:
 
-- *Тип события* -- может быть как своим, так и встроенным, к примеру `"click"`.
-- *Флаги* -- объект вида `{ bubbles: true/false, cancelable: true/false }`, где свойство `bubbles` указывает, всплывает ли событие, а `cancelable` -- можно ли отменить действие по умолчанию.
+- *event type* -- may be any string, like `"click"` or our own like `"hey-ho!"`.
+- *flags* -- the object with two optional properties:
+  - `bubbles: true/false` -- if `true`, then the event bubbles.
+  - `cancelable: true/false` -- if `true`, then the "default action"  may be prevented. Later we'll see what it means for custom events.
 
-    Флаги по умолчанию: `{bubbles: false, cancelable: false}`.
+  By default both flags are false: `{bubbles: false, cancelable: false}`.
 
-## Метод dispatchEvent
+## The method dispatchEvent
 
-Затем, чтобы инициировать событие, запускается `elem.dispatchEvent(event)`.
+After an event object is created, we should "run" it on an element using the call  `elem.dispatchEvent(event)`.
 
-При этом событие срабатывает наравне с браузерными, то есть обычные браузерные обработчики на него отреагируют. Если при создании указан флаг `bubbles`, то оно будет всплывать.
+Then handlers react on it as if it were a regular built-in event. If the event was created with the `bubbles` flag, then it bubbles.
 
-При просмотре примера ниже кнопка обработчик `onclick` на кнопке сработает сам по себе, событие генерируется скриптом:
+In the example below the `click` event is initiated in JavaScript. The handler works same way as if the button was clicked:
 
 ```html run no-beautify
-<button id="elem" onclick="alert('Клик');">Автоклик</button>
+<button id="elem" onclick="alert('Click!');">Autoclick</button>
 
 <script>
-  var event = new Event("click");
+  let event = new Event("click");
   elem.dispatchEvent(event);
 </script>
 ```
+
+```smart header="event.isTrusted"
+There is a way to tell a "real" user event from a script-generated one.
+
+The property `event.isTrusted` is `true` for events that come from real user actions and `false` for script-generated events.
+```
+
+## Bubbling example
+
+We can create a bubbling event with the name `"hello"` and catch it on `document`.
+
+All we need is to set `bubbles` to `true`:
+
+```html run no-beautify
+<h1 id="elem">Hello from the script!</h1>
+
+<script>
+  // catch on document...
+  document.addEventListener("hello", function(event) { // (1)
+    alert("Hello from " + event.target.tagName); // Hello from H1
+  });
+
+  // ...dispatch on elem!
+  let event = new Event("hello", {bubbles: true}); // (2)
+  elem.dispatchEvent(event);
+</script>
+```
+
+Notes:
+
+1. We must use `addEventListener` for our custom events, because `on<event>` only exists for built-in events.
+2. Must set `bubbles`, otherwise the event won't bubble up.
+
+The bubbling mechanics is the same for built-in (`click`) and custom (`hello`) events. There are also capturing and bubbling stages.
+
+## MouseEvent, KeyboardEvent and others
+
+Here's a short list of classes for UI Events from the [UI Event specification](https://www.w3.org/TR/uievents):
+
+- `UIEvent`
+- `FocusEvent`
+- `MouseEvent`
+- `WheelEvent`
+- `KeyboardEvent`
+- ...
+
+We should use them instead of `new Event` if we want to create such events. For instance, `new MouseEvent("click")`.
+
+The right constructor allows to specify standard properties for that type of event.
+
+Like `clientX/clientY` for a mouse event:
+
+```js run
+let event = new MouseEvent("click", {
+  bubbles: true,
+  cancelable: true,
+  clientX: 100,
+  clientY: 100
+});
+
+*!*
+alert(event.clientX); // 100
+*/!*
+```
+
+Please note: the generic `Event` constructor does not allow that.
+
+Let's try:
+
+```js run
+let event = new Event("click", {
+  bubbles: true, // only bubbles and cancelable
+  cancelable: true, // work in the Event constructor
+  clientX: 100,
+  clientY: 100
+});
+
+*!*
+alert(event.clientX); // undefined, the unknown property is ignored!
+*/!*
+```
+
+Technically, we can work around that by assigning directly `event.clientX=100` after creation. So that's a matter of convenience and following the rules. Browser-generated events always have the right type.
+
+The full list of properties for different UI events is in the specification, for instance  [MouseEvent](https://www.w3.org/TR/uievents/#mouseevent).
+
+## Custom events
+
+For our own, custom events like `"hello"` we should use `new CustomEvent`. Technically [CustomEvent](https://dom.spec.whatwg.org/#customevent) is the same as `Event`, with one exception.
+
+In the second argument (object) we can add an additional property `detail` for any custom information that we want to pass with the event.
+
+For instance:
+
+```html run
+<h1 id="elem">Hello for John!</h1>
+
+<script>
+  elem.addEventListener("hello", function(event) {
+    alert(*!*event.detail.name*/!*);
+  });
+
+  let event = new CustomEvent("hello", {
+*!*
+    detail: { name: "John" }
+*/!*
+  });
+
+  elem.dispatchEvent(event);
+</script>
+```
+
+The `detail` can be anything. Once again, technically we can assign any properties into a regular `Event` object after its creation. But `CustomEvent` clearly states that the event is not built-in, but our own. And reserves the special `detail` field, so that we can write to it safely, without conflicts with standard event properties.
+
+
+
+
+
+
 
 ## Отмена действия по умолчанию
 
@@ -92,324 +211,9 @@ var event = new Event(тип события[, флаги]);
 </script>
 ```
 
-```smart header="Как отличить реальное нажатие от скриптового?"
-В целях безопасности иногда хорошо бы знать -- инициировано ли действие посетителем или это кликнул скрипт.
 
-Единственный способ, которым код может отличить реальное нажатие от программного, является проверка свойства `event.isTrusted`.
 
-Оно на момент написания статьи поддерживается IE и Firefox и равно `true`, если посетитель кликнул сам, и всегда `false` -- если событие инициировал скрипт.
-```
 
-## Другие свойства событий
-
-При создании события браузер автоматически ставит следующие свойства:
-
-- `isTrusted: false` -- означает, что событие сгенерировано скриптом,  это свойство изменить невозможно.
-- `target: null` --  это свойство ставится автоматически позже при `dispatchEvent`.
-- `type: тип события` -- первый аргумент `new Event`.
-- `bubbles`, `cancelable` -- по второму аргументу `new Event`.
-
-Другие свойства события, если они нужны, например координаты для события мыши -- можно присвоить в объект события позже, например:
-
-```js no-beautify
-var event = new Event("click", {bubbles: true, cancelable: false});
-event.clientX = 100;
-event.clientY = 100;
-```
-
-## Пример со всплытием
-
-Сгенерируем совершенно новое событие `"hello"` и поймаем его на `document`.
-
-Всё, что для этого нужно -- это флаг `bubbles`:
-
-```html run no-beautify
-<h1 id="elem">Привет от скрипта!</h1>
-
-<script>
-  document.addEventListener("hello", function(event) { // (1)
-    alert("Привет");
-    event.preventDefault();  // (2)
-  }, false);
-
-  var event = new Event("hello", {bubbles: true, cancelable: true}); // (3)
-  if (elem.dispatchEvent(event) === false) {
-    alert('Событие было отменено preventDefault');
-  }
-</script>
-```
-
-Обратите внимание:
-
-1. Обработчик события `hello` стоит на `document`. Мы его поймаем на всплытии.
-2. Вызов `event.preventDefault()` приведёт к тому, что `dispatchEvent` вернёт `false`.
-3. Чтобы событие всплывало и его можно было отменить, указан второй аргумент `new Event`.
-
-Никакой разницы между встроенными событиями (`click`) и своими (`hello`) здесь нет, их можно сгенерировать и запустить совершенно одинаково.
-
-## Конструкторы MouseEvent, KeyboardEvent и другие
-
-Для некоторых конкретных типов событий есть свои, специфические, конструкторы.
-
-Вот список конструкторов для различных событий интерфейса которые можно найти в спецификации [UI Event](http://www.w3.org/TR/uievents/):
-
-- `UIEvent`
-- `FocusEvent`
-- `MouseEvent`
-- `WheelEvent`
-- `KeyboardEvent`
-- `CompositionEvent`
-
-Вместо `new Event("click")` можно вызвать `new MouseEvent("click")`.
-
-**Специфический конструктор позволяет указать стандартные свойства для данного типа события.**
-
-Например, `clientX/clientY` для события мыши:
-
-```js run
-var e = new MouseEvent("click", {
-  bubbles: true,
-  cancelable: true,
-  clientX: 100,
-  clientY: 100
-});
-
-*!*
-alert( e.clientX ); // 100
-*/!*
-```
-
-Это нельзя было бы сделать с обычным конструктором `Event`:
-
-```js run
-var e = new Event("click", {
-  bubbles: true,
-  cancelable: true,
-  clientX: 100,
-  clientY: 100
-});
-
-*!*
-alert( e.clientX ); // undefined, свойство не присвоено!
-*/!*
-```
-
-Обычный конструктор `Event` не знает про "мышиные" свойства, поэтому их игнорирует.
-
-Впрочем, использование конкретного конструктора не является обязательным, можно обойтись `Event`, а свойства записать в объект отдельно, после конструктора. Здесь это скорее вопрос удобства и желания следовать правилам. События, которые генерирует браузер, всегда имеют правильный тип.
-
-Полный список свойств по типам событий вы найдёте в спецификации, например для `MouseEvent`: [MouseEvent Constructor](http://www.w3.org/TR/uievents/#constructor-mouseevent).
-
-## Свои события
-
-Для генерации своих, нестандартных, событий, хоть и можно использовать конструктор `Event`, но существует и специфический конструктор [CustomEvent](http://www.w3.org/TR/dom/#customevent).
-
-Технически, он абсолютно идентичен `Event`, кроме небольшой детали: у второго аргумента-объекта есть дополнительное свойство `detail`, в котором можно указывать информацию для передачи в событие.
-
-Например:
-
-```html run
-<h1 id="elem">Привет для Васи!</h1>
-
-<script>
-  elem.addEventListener("hello", function(event) {
-    alert( *!*event.detail.name*/!* );
-  }, false);
-
-  var event = new CustomEvent("hello", {
-*!*
-    detail: { name: "Вася" }
-*/!*
-  });
-
-  elem.dispatchEvent(event);
-</script>
-```
-
-Надо сказать, что никто не мешает и в обычное `Event` записать любые свойства. Но `CustomEvent` более явно говорит, что событие не встроенное, а своё, и выделяет отдельно "информационное" поле `detail`, в которое можно записать что угодно без конфликта со стандартными свойствами объекта.
-
-## Старое API для IE9+
-
-Способ генерации событий, описанный выше, не поддерживается в IE11-, там нужен другой, более старый способ, описанный в стандарте [DOM 3 Events](http://www.w3.org/TR/DOM-Level-3-Events).
-
-В нём была предусмотрена [иерархия событий](http://www.w3.org/TR/DOM-Level-3-Events/#event-interfaces), с различными методами инициализации.
-
-Она поддерживается как современными браузерами, так и IE9+. Там используется немного другой синтаксис, но по возможностям -- всё то же самое, что и в современном стандарте.
-
-Можно использовать этот немного устаревший способ, если нужно поддерживать IE9+. Далее мы на его основе создадим полифилл.
-
-Объект события создаётся вызовом `document.createEvent`:
-
-```js
-var event = document.createEvent(eventInterface);
-```
-
-Аргументы:
-
-- `eventInterface` -- это тип события, например `MouseEvent`, `FocusEvent`, `KeyboardEvent`. В [секции 5 DOM 3 Events](http://www.w3.org/TR/DOM-Level-3-Events/#events-module) есть подробный список, какое событие к какому интерфейсу относится.
-
-На практике можно всегда использовать самый общий интерфейс: `document.createEvent("Event")`.
-
-Далее событие нужно инициализировать:
-
-```js
-event.initEvent(type, boolean bubbles, boolean cancelable);
-```
-
-Аргументы:
-
-- `type` -- тип события, например `"click"`.
-- `bubbles` -- всплывает ли событие.
-- `cancelable` -- можно ли отменить событие.
-
-Эти два кода аналогичны:
-
-```js
-// современный стандарт
-var event = new Event("click", {
-  bubbles: true,
-  cancelable: true
-});
-
-// старый стандарт
-var event = document.createEvent("Event");
-event.initEvent("click", true, true);
-```
-
-Единственная разница -- старый стандарт поддерживается IE9+.
-
-Этот пример с событием `hello` будет работать во всех браузерах, кроме IE8-:
-
-```html run
-<h1 id="elem">Привет от скрипта!</h1>
-
-<script>
-  document.addEventListener("hello", function(event) {
-    alert( "Привет" );
-    event.preventDefault();
-  }, false);
-
-*!*
-  var event = document.createEvent("Event");
-  event.initEvent("hello", true, true);
-*/!*
-
-  if (elem.dispatchEvent(event) === false) {
-    alert( 'Событие было отменено preventDefault' );
-  }
-</script>
-```
-
-````smart header="`initMouseEvent`, `initKeyboardEvent` и другие..."
-У конкретных типов событий, например `MouseEvent`, `KeyboardEvent`, есть методы, которые позволяют указать стандартные свойства.
-
-Они называются по аналогии: `initMouseEvent`, `initKeyboardEvent`.
-
-Их можно использовать вместо базового `initEvent`, если хочется, чтобы свойства событий соответствовали встроенным браузерным.
-
-Выглядят они немного страшновато, например (взято из [спецификации](http://www.w3.org/TR/DOM-Level-3-Events/#idl-interface-MouseEvent-initializers)):
-
-```js
-void initMouseEvent(
-  DOMString typeArg, // тип
-  boolean bubblesArg, // всплывает?
-  boolean cancelableArg, // можно отменить?
-  AbstractView ? viewArg, // объект window, null означает текущее окно
-  long detailArg, // свойство detail и другие...
-  long screenXArg,
-  long screenYArg,
-  long clientXArg,
-  long clientYArg,
-  boolean ctrlKeyArg,
-  boolean altKeyArg,
-  boolean shiftKeyArg,
-  boolean metaKeyArg,
-  unsigned short buttonArg,
-  EventTarget ? relatedTargetArg);
-};
-```
-
-Для инициализации мышиного события нужно обязательно указать *все* аргументы, например:
-
-```html run
-<button id="elem">Автоклик</button>
-
-<script>
-  elem.onclick = function(e) {
-    alert( 'Клик на координатах ' + e.clientX + ':' + e.clientY );
-  };
-
-  var event = document.createEvent("MouseEvent");
-*!*
-  event.initMouseEvent("click", true, true, null, 0, 0, 0, 100, 100, true, true, true, null, 1, null);
-*/!*
-  elem.dispatchEvent(event);
-</script>
-```
-
-Браузер, по стандарту, может сгенерировать отсутствующие свойства самостоятельно, например `pageX`, но это нужно проверять в конкретных случаях, иногда это не работает или работает некорректно, так что лучше указать все.
-````
-
-## Полифилл CustomEvent
-
-Для поддержки `CustomEvent` в IE9+ можно сделать небольшой полифилл:
-
-```js
-try {
-  new CustomEvent("IE has CustomEvent, but doesn't support constructor");
-} catch (e) {
-
-  window.CustomEvent = function(event, params) {
-    var evt;
-    params = params || {
-      bubbles: false,
-      cancelable: false,
-      detail: undefined
-    };
-    evt = document.createEvent("CustomEvent");
-    evt.initCustomEvent(event, params.bubbles, params.cancelable, params.detail);
-    return evt;
-  };
-
-  CustomEvent.prototype = Object.create(window.Event.prototype);
-}
-```
-
-Здесь мы сначала проверяем -- в IE9-11 есть `CustomEvent`, но его нельзя создать через `new`, будет ошибка. В этом случае заменяем браузерную реализацию на свою, совместимую.
-
-## Антистандарт: IE8-
-
-В совсем старом IE были "свои" методы `document.createEventObject()` и `elem.fireEvent()`.
-
-Пример с ними для IE8:
-
-```html run
-<button id="elem">Автоклик</button>
-
-<script>
-  document.body.onclick = function() {
-    alert( "Клик, event.type=" + event.type );
-    return false;
-  };
-
-*!*
-  var event = document.createEventObject();
-  if (!elem.fireEvent("onclick", event)) {
-    alert( 'Событие было отменено' );
-  }
-*/!*
-</script>
-```
-
-**При помощи `fireEvent` можно сгенерировать только встроенные события.**
-
-Если указать `"hello"` вместо `"onclick"` в примере выше -- будет ошибка.
-
-Параметры `bubbles` и `cancelable` настраивать нельзя, браузер использует стандартные для данного типа событий.
-
-Существуют полифиллы для генерации произвольных событий и для IE8-, но они, по сути, полностью подменяют встроенную систему обработки событий браузером. И кода это требует тоже достаточно много.
-
-Альтернатива -- фреймворк, например jQuery, который также реализует свою мощную систему работы с событиями, доступную через методы jQuery.
 
 ## Итого
 
@@ -426,4 +230,3 @@ try {
 - Либо как явный и грубый хак, чтобы заставить работать сторонние библиотеки, в которых не предусмотрены другие средства взаимодействия.
 - Либо для автоматического тестирования, чтобы скриптом "нажать на кнопку" и посмотреть, произошло ли нужное действие.
 - Либо при создании своих "элементов интерфейса". Например, никто не мешает при помощи JavaScript создать из `<div class="calendar">` красивый календарь и генерировать на нём событие `change` при выборе даты. Эту тему мы разовьём позже.
-

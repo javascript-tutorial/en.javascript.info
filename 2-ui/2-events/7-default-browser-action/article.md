@@ -1,145 +1,116 @@
-# Действия браузера по умолчанию
+# Browser actions
 
-Многие события автоматически влекут за собой действие браузера.
+Many events automatically lead to browser actions.
 
-Например:
+For instance:
 
-- Клик по ссылке инициирует переход на новый URL.
-- Нажатие на кнопку "отправить" в форме -- отсылку ее на сервер.
-- Двойной клик на тексте -- инициирует его выделение.
+- A click on a link -- initiates going to its URL.
+- A click on submit button inside a form -- initiates its submission to the server.
+- Pressing a mouse button over a text and moving it -- selects the text.
 
-Если мы обрабатываем событие в JavaScript, то зачастую такое действие браузера нам не нужно. К счастью, его можно отменить.
+If we handle an event in JavaScript, often we don't want browser actions. Fortunately, it can be prevented.
 
 [cut]
 
-## Отмена действия браузера
+## Preventing browser actions
 
-Есть два способа отменить действие браузера:
+There are two ways to tell the browser we don't want it to act:
 
-- **Основной способ -- это воспользоваться объектом события. Для отмены действия браузера существует стандартный метод `event.preventDefault()`.**
-- Если же обработчик назначен через `onсобытие` (не через `addEventListener`), то можно просто вернуть `false` из обработчика.
+- The main way is to use the `event` object. There's a method `event.preventDefault()`.
+- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can just return `false` from it.
 
-В следующем примере при клике по ссылке переход не произойдет:
+In the example below there a click to links don't lead to URL change:
 
 ```html autorun height=60 no-beautify
-<a href="/" onclick="return false">Нажми здесь</a>
-или
-<a href="/" onclick="event.preventDefault()">здесь</a>
+<a href="/" onclick="return false">Click here</a>
+or
+<a href="/" onclick="event.preventDefault()">here</a>
 ```
 
-```warn header="Возвращать `true` не нужно"
-Обычно значение, которое возвращает обработчик события, игнорируется.
+```warn header="Not necessary to return `true`"
+The value returned by an event handler is usually ignored.
 
-Единственное исключение -- это `return false` из обработчика, назначенного через `onсобытие`.
+The only exception -- is `return false` from a handler assigned using `on<event>`.
 
-Иногда в коде начинающих разработчиков можно увидеть `return` других значений. Но они не нужны и никак не обрабатываются.
+In all other cases, the return is not needed and it's not processed anyhow.
 ```
 
-### Пример: меню
+### Example: the menu
 
-Рассмотрим задачу, когда нужно создать меню для сайта, например такое:
+Consider a site menu, like this:
 
 ```html
 <ul id="menu" class="menu">
-  <li><a href="/php">PHP</a></li>
   <li><a href="/html">HTML</a></li>
   <li><a href="/javascript">JavaScript</a></li>
-  <li><a href="/flash">Flash</a></li>
+  <li><a href="/css">CSS</a></li>
 </ul>
 ```
 
-Данный пример при помощи CSS может выводиться так:
+Here's how it looks with some CSS:
 
 [iframe height=70 src="menu" link edit]
 
-HTML-разметка сделана так, что все элементы меню являются не кнопками, а ссылками, то есть тегами `<a>`.
+Menu items are links `<a>`, not buttons. There are several benefits, for instance:
 
-Это потому, что некоторые посетители очень любят сочетание "правый клик - открыть в новом окне".  Да, мы можем использовать и `<button>` и `<span>`, но если правый клик не работает -- это их огорчает. Кроме того, если на сайт зайдёт поисковик, то по ссылке из `<a href="...">` он перейдёт, а выполнить сложный JavaScript и получить результат -- вряд ли захочет.
+- Many people like to use "right click" -- "open in a new window". If we use `<button>` or `<span>`, that doesn't work.
+- Search engines follow `<a href="...">` links while indexing.
 
-Поэтому в разметке мы используем именно `<a>`, но обычно клик будет обрабатываться полностью в JavaScript, а стандартное действие браузера (переход по ссылке) -- отменяться.
+So we use `<a>` in the markup. But normally we intend to handle clicks in JavaScript. So we should prevent the default browser action.
 
-Например, вот так:
+Like here:
 
 ```js
 menu.onclick = function(event) {
   if (event.target.nodeName != 'A') return;
 
-  var href = event.target.getAttribute('href');
-  alert( href ); // может быть подгрузка с сервера, генерация интерфейса и т.п.
+  let href = event.target.getAttribute('href');
+  alert( href ); // ...can be loading from the server, UI generation etc
 
 *!*
-  return false; // отменить переход по url
+  return false; // prevent browser action (don't go to the URL)
 */!*
 };
 ```
 
-В конце `return false`, иначе браузер перейдёт по адресу из `href`.
+If we omit `return false`, then after our code executes the browser will do its "default action" -- following to the URL in `href`.
 
-Так как мы применили делегирование, то меню может увеличиваться, можно добавить вложенные списки `ul/li`, стилизовать их при помощи CSS -- обработчик не потребует изменений.
+By the way, using event delegation here makes our menu flexible. We can add nested lists and style them using CSS to "slide down".
 
-## Другие действия браузера
+## Other browser actions
 
-Действий браузера по умолчанию достаточно много.
+There are many default browser actions.
 
-Вот некоторые примеры событий, которые вызывают действие браузера:
+Here are more events that cause browser actions:
 
-- `mousedown` -- нажатие кнопкой мыши в то время как курсор находится на тексте начинает его выделение.
-- `click` на `<input type="checkbox">` -- ставит или убирает галочку.
-- `submit` -- при нажатии на `<input type="submit">`  в форме данные отправляются на сервер.
-- `wheel` -- движение колёсика мыши инициирует прокрутку.
-- `keydown` -- при нажатии клавиши в поле ввода появляется символ.
-- `contextmenu` -- при правом клике показывается контекстное меню браузера.
+- `mousedown` -- starts the selection (move the mouse to select).
+- `click` on `<input type="checkbox">` -- checks/unchecks the `input`.
+- `submit` -- clicking an `<input type="submit">` or hitting `key:Enter` inside a form field causes this event to happen, and the browser submits the form after it.
+- `wheel` -- rolling a mouse wheel event has scrolling as the default action.
+- `keydown` -- pressing a key may lead to adding a character into a field, or other actions.
+- `contextmenu` -- the event happens on a right-click, the action is to show the browser context menu.
 - ...
 
-Все эти действия можно отменить, если мы хотим обработать событие исключительно при помощи JavaScript.
+All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
 
-````warn header="События могут быть связаны между собой"
-Некоторые события естественным образом вытекают друг из друга.
+````warn header="Events may be related"
+Certain events flow one into another.
 
-Например, нажатие мышкой `mousedown` на поле ввода `<input>` приводит к фокусировке внутрь него. Если отменить действие `mousedown`, то и фокуса не будет.
+For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there's no focus.
 
-Попробуйте нажать мышкой на первый `<input>` -- произойдёт событие `onfocus`. Это обычная ситуация.
+Try to click on the first `<input>` below -- the `focus` event happens. That's normal.
 
-Но если нажать на второй, то фокусировки не произойдёт.
+But if you click the second one, there's no focus.
 
 ```html run autorun
-<input value="Фокус работает" onfocus="this.value=''">
-<input *!*onmousedown="return false"*/!* onfocus="this.value=''" value="Кликни меня">
+<input value="Focus works" onfocus="this.value=''">
+<input *!*onmousedown="return false"*/!* onfocus="this.value=''" value="Click me">
 ```
 
-Это потому, что отменено стандартное действие при `onmousedown`.
-
-...С другой стороны, во второй `<input>` можно перейти с первого нажатием клавиши `key:Tab`, и тогда фокусировка сработает. То есть, дело здесь именно в `onmousedown="return false"`.
+That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd.
 ````
 
-## Особенности IE8-
+## Summary
 
-В IE8- для отмены действия по умолчанию нужно назначить свойство `event.returnValue = false`.
-
-Кроссбраузерный код для отмены действия по умолчанию:
-
-```js
-element.onclick = function(event) {
-  event = event || window.event;
-
-  if (event.preventDefault) { // если метод существует
-    event.preventDefault(); // то вызвать его
-  } else { // иначе вариант IE8-:
-    event.returnValue = false;
-  }
-}
-```
-
-Можно записать в одну строку:
-
-```js no-beautify
-...
-event.preventDefault ? event.preventDefault() : (event.returnValue=false);
-...
-```
-
-## Итого
-
-- Браузер имеет встроенные действия при ряде событий -- переход по ссылке, отправка формы и т.п. Как правило, их можно отменить.
-- Есть два способа отменить действие по умолчанию: первый -- использовать `event.preventDefault()` (IE8-: `event.returnValue=false`), второй -- `return false` из обработчика. Второй способ работает только если обработчик назначен через `onсобытие`.
-
+- Browser has default actions for many events -- following a link, submitting a form etc.
+- To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on<event>`.

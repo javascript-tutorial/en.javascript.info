@@ -1,28 +1,5 @@
-Это -- классическая задача на тему делегирования.
+That's a great use of the event delegation pattern.
 
-В реальной жизни, мы можем перехватить событие и создать AJAX-запрос к серверу, который сохранит информацию о том, по какой ссылке ушел посетитель.
+In real life instead of asking we can send a "logging" request to the server that saves the information about where the visitor left. Or we can load the content and show it right in the page (if allowable).
 
-Мы перехватываем событие на `contents` и поднимаемся до `parentNode` пока не получим `A` или не упремся в контейнер.
-
-```js
-contents.onclick = function(evt) {
-  var target = evt.target;
-
-  function handleLink(href) {
-    var isLeaving = confirm('Уйти на ' + href + '?');
-    if (!isLeaving) return false;
-  }
-
-  while (target != this) {
-    if (target.nodeName == 'A') {
-*!*
-      return handleLink(target.getAttribute('href')); // (*)
-*/!*
-    }
-    target = target.parentNode;
-  }
-};
-```
-
-В строке `(*)` используется атрибут, а не свойство `href`, чтобы показать в `confirm` именно то, что написано в HTML-атрибуте, так как свойство может отличаться, оно обязано содержать полный валидный адрес.
-
+All we need is to catch the `contents.onclick` and use `confirm` to ask the user. A good idea would be to use `link.getAttribute('href')` instead of `link.href` for the URL. See the solution for details.
