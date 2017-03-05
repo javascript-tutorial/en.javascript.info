@@ -77,24 +77,10 @@ If we omit `return false`, then after our code executes the browser will do its 
 
 By the way, using event delegation here makes our menu flexible. We can add nested lists and style them using CSS to "slide down".
 
-## Other browser actions
 
-There are many default browser actions.
+## Prevent futher events
 
-Here are more events that cause browser actions:
-
-- `mousedown` -- starts the selection (move the mouse to select).
-- `click` on `<input type="checkbox">` -- checks/unchecks the `input`.
-- `submit` -- clicking an `<input type="submit">` or hitting `key:Enter` inside a form field causes this event to happen, and the browser submits the form after it.
-- `wheel` -- rolling a mouse wheel event has scrolling as the default action.
-- `keydown` -- pressing a key may lead to adding a character into a field, or other actions.
-- `contextmenu` -- the event happens on a right-click, the action is to show the browser context menu.
-- ...
-
-All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
-
-````warn header="Events may be related"
-Certain events flow one into another.
+Certain events flow one into another. If we prevent the first event, there will be no second.
 
 For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there's no focus.
 
@@ -107,10 +93,129 @@ But if you click the second one, there's no focus.
 <input *!*onmousedown="return false"*/!* onfocus="this.value=''" value="Click me">
 ```
 
-That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd.
-````
+That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
+
+
+## event.defaultPrevented
+
+The property `event.defaultPrevented` is `true` if the default action was prevented, and `false` otherwise.
+
+There's an interesting use case for it.
+
+You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()`  and why stopping bubbling is bad?
+
+Sometimes we can use `event.defaultPrevented` instead.
+
+Let's see a practical example where stopping the bubbling looks necessary, but actually we can do well without it.
+
+By default the browser on `contextmenu` event (right mouse click) shows a context menu with standard options. We can prevent it and show our own, like this:
+
+```html autorun height=50 no-beautify run
+<button>Right-click for browser context menu</button>
+
+<button *!*oncontextmenu="alert('Draw our menu'); return false"*/!*>
+  Right-click for our context menu
+</button>
+```
+
+Now let's say we want to implement our own document-wide context menu, with our options. And inside the document we may have other elements with their own context menus:
+
+```html autorun height=80 no-beautify run
+<p>Right-click here for the document context menu</p>
+<button id="elem">Right-click here for the button context menu</button>
+
+<script>
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert("Button context menu");
+  };
+
+  document.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert("Document context menu");
+  };
+</script>
+```
+
+The problem is that when we click on `elem`, we get two menus: the button-level and (the event bubbles up) the document-level menu.
+
+How to fix it? One of solutions is to think like: "We fully handle the event in the button handler, let's stop it" and use `event.stopPropagation()`:
+
+```html autorun height=80 no-beautify run
+<p>Right-click for the document menu</p>
+<button id="elem">Right-click for the button menu (fixed with event.stopPropagation)</button>
+
+<script>
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+*!*
+    event.stopPropagation();
+*/!*
+    alert("Button context menu");
+  };
+
+  document.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert("Document context menu");
+  };
+</script>
+```
+
+Now the button-level menu works as intended. But the price is high. We forever deny access to information about right-clicks for any outer code, including counters that gather statistics and so on. That's quite unwise.
+
+An alternative solution would be to check in the `document` handler if the default action was prevented? If it is so, then the event was handled, and we don't need to react on it.
+
+
+```html autorun height=80 no-beautify run
+<p>Right-click for the document menu (fixed with event.defaultPrevented)</p>
+<button id="elem">Right-click for the button menu</button>
+
+<script>
+  elem.oncontextmenu = function(event) {
+    event.preventDefault();
+    alert("Button context menu");
+  };
+
+  document.oncontextmenu = function(event) {
+*!*
+    if (event.defaultPrevented) return;
+*/!*
+
+    event.preventDefault();
+    alert("Document context menu");
+  };
+</script>
+```
+
+Now everything also works correctly. If we have nested elements, and each of them has a context menu of its own, that would also work. Just make sure to check for `event.defaultPrevented` in each `contextmenu` handler.
+
+```smart header="event.stopPropagation() and event.preventDefault()"
+As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (also known as `return false`) are two different things. They are not related to each other.
+```
+
+```smart header="Nested context menus architecture"
+There are also alternative ways to implement nested context menus. One of them is to have a special global object with a method that handles `document.oncontextmenu`, and also methods that allow to store various "lower-level" handlers in it.
+
+The object will catch any right-click, look through stored handlers and run the appropriate one.
+
+But then each piece of code that wants a context menu should know about that object and use its help instead of the own `contextmenu` handler.
+```
+
 
 ## Summary
 
-- Browser has default actions for many events -- following a link, submitting a form etc.
-- To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on<event>`.
+There are many default browser actions:
+
+- `mousedown` -- starts the selection (move the mouse to select).
+- `click` on `<input type="checkbox">` -- checks/unchecks the `input`.
+- `submit` -- clicking an `<input type="submit">` or hitting `key:Enter` inside a form field causes this event to happen, and the browser submits the form after it.
+- `wheel` -- rolling a mouse wheel event has scrolling as the default action.
+- `keydown` -- pressing a key may lead to adding a character into a field, or other actions.
+- `contextmenu` -- the event happens on a right-click, the action is to show the browser context menu.
+- ...there are more...
+
+All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
+
+To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on<event>`.
+
+If the default action was prevented, the value of `event.defaultPrevented` becomes `true`, otherwise it's `false`.

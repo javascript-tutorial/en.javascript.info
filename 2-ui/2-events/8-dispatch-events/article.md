@@ -15,19 +15,19 @@ Events form a hierarchy, just like DOM element classes. The root is the built-in
 We can create `Event` objects like this:
 
 ```js
-let event = new Event(event type[, flags]);
+let event = new Event(event type[, options]);
 ```
 
 Arguments:
 
 - *event type* -- may be any string, like `"click"` or our own like `"hey-ho!"`.
-- *flags* -- the object with two optional properties:
+- *options* -- the object with two optional properties:
   - `bubbles: true/false` -- if `true`, then the event bubbles.
   - `cancelable: true/false` -- if `true`, then the "default action"  may be prevented. Later we'll see what it means for custom events.
 
-  By default both flags are false: `{bubbles: false, cancelable: false}`.
+  By default both are false: `{bubbles: false, cancelable: false}`.
 
-## The method dispatchEvent
+## dispatchEvent
 
 After an event object is created, we should "run" it on an element using the call  `elem.dispatchEvent(event)`.
 
@@ -73,8 +73,8 @@ All we need is to set `bubbles` to `true`:
 
 Notes:
 
-1. We must use `addEventListener` for our custom events, because `on<event>` only exists for built-in events.
-2. Must set `bubbles`, otherwise the event won't bubble up.
+1. We should use `addEventListener` for our custom events, because `on<event>` only exists for built-in events, `document.onhello` doesn't work.
+2. Must set `bubbles:true`, otherwise the event won't bubble up.
 
 The bubbling mechanics is the same for built-in (`click`) and custom (`hello`) events. There are also capturing and bubbling stages.
 
@@ -137,7 +137,7 @@ In the second argument (object) we can add an additional property `detail` for a
 
 For instance:
 
-```html run
+```html run refresh
 <h1 id="elem">Hello for John!</h1>
 
 <script>
@@ -155,29 +155,29 @@ For instance:
 </script>
 ```
 
-The `detail` can be anything. Once again, technically we can assign any properties into a regular `Event` object after its creation. But `CustomEvent` clearly states that the event is not built-in, but our own. And reserves the special `detail` field, so that we can write to it safely, without conflicts with standard event properties.
+The `detail` property can have any data.
 
+Once again, technically we can assign any properties into a regular `new Event` object after its creation. But `CustomEvent` provides the special `detail` field, so that we can write to it safely, without conflicts with standard event properties.
 
+Also using the right class tells something about "what kind of event" it is, and `CustomEvent` is  better for that matter. So we should use it for our events.
 
+## event.preventDefault()
 
+We can call `event.preventDefault()` on a script-generated event if `cancelable:true` flag is specified.
 
+Of course, if the event has a non-standard name, then it's not known to the browser, and there's no "default browser action" for it.
 
+But the event-generating code may plan some actions after `dispatchEvent`.
 
-## Отмена действия по умолчанию
+The call of `event.preventDefault()` is a way for the handler to send a signal that those actions shouldn't be performed.
 
-На сгенерированном событии, как и на встроенном браузерном, обработчик может вызвать метод `event.preventDefault()`. Тогда `dispatchEvent` возвратит `false`.
+In that case the call to `elem.dispatchEvent(event)` returns `false`. And the event-generating code knows that the processing shouldn't continue.
 
-Остановимся здесь подробнее. Обычно `preventDefault()` вызов предотвращает действие браузера. В случае, если событие придумано нами, имеет нестандартное имя -- никакого действия браузера, конечно, нет.
+For instance, in the example below there's a `hide()` function. It generates the `"hide"` event on the element `#rabbit`, notifying all interested parties that the rabbit is going to hide.
 
-Но код, который генерирует событие, может предусматривать какие-то ещё действия после `dispatchEvent`.
+A handler set by `rabbit.addEventListener('hide',...)` will learn about that and, if it wants, can prevent that action by calling `event.preventDefault()`. Then the rabbit won't hide:
 
-Вызов `event.preventDefault()` является возможностью для обработчика события сообщить в сгенерировавший событие код, что эти действия продолжать не надо.
-
-В примере ниже есть функция `hide()`, которая при вызове генерирует событие `hide` на элементе `#rabbit`, уведомляя всех интересующихся, что кролик собирается спрятаться.
-
-Любой обработчик может узнать об этом, подписавшись на событие через `rabbit.addEventListener('hide',...)` и, при желании, отменить действие по умолчанию через `event.preventDefault()`. Тогда кролик не исчезнет:
-
-```html run
+```html run refresh
 <pre id="rabbit">
   |\   /|
    \|_|/
@@ -187,46 +187,49 @@ The `detail` can be anything. Once again, technically we can assign any properti
 </pre>
 
 <script>
-
+  // hide() will be called automatically in 2 seconds
   function hide() {
-    var event = new Event("hide", {
-      cancelable: true
+    let event = new Event("hide", {
+      cancelable: true // without that flag preventDefault doesn't work
     });
     if (!rabbit.dispatchEvent(event)) {
-      alert( 'действие отменено обработчиком' );
+      alert('the action was prevented by a handler');
     } else {
       rabbit.hidden = true;
     }
   }
 
   rabbit.addEventListener('hide', function(event) {
-    if (confirm("Вызвать preventDefault?")) {
+    if (confirm("Call preventDefault?")) {
       event.preventDefault();
     }
   });
 
-  // прячемся через 2 секунды
+  // hide in 2 seconds
   setTimeout(hide, 2000);
 
 </script>
 ```
 
+## Summary
 
+To generate an event, we first need to create an event object.
 
+The generic `Event(name, options)` constructor accepts an arbitrary event name and the `options` object with two properties:
+  - `bubbles:true` if the event should bubble.
+  - `cancelable:true` is the `event.preventDefault()` should work.
 
+Other constructors of native events like `MouseEvent`, `KeyboardEvent` and so on accept properties specific to that event type. For instance, `clientX` for mouse events.
 
-## Итого
+For custom events we should use `CustomEvent` constructor. It has an additional option named `detail`, we should assign the event-specific data to it. Then all handlers can access it as `event.detail`.
 
-- Все браузеры, кроме IE9-11, позволяют генерировать любые события, следуя стандарту DOM4.
-- В IE9+ поддерживается более старый стандарт, можно легко сделать полифилл, например для `CustomEvent` он рассмотрен в этой главе.
-- IE8- может генерировать только встроенные события.
+Despite the technical possibility to generate browser events like `click` or `keydown`, we should use with the great care.
 
-Несмотря на техническую возможность генерировать встроенные браузерные события типа `click` или `keydown` -- пользоваться ей стоит с большой осторожностью.
+We shouldn't generate browser events as a hacky way to run handlers. That's a bad architecture most of the time.
 
-В 98% случаев, когда разработчик начинающего или среднего уровня хочет сгенерировать *встроенное* событие -- это вызвано "кривой" архитектурой кода, и взаимодействие нужно на уровне выше.
+Native events might be generated:
 
-Как правило события имеет смысл генерировать:
+- As a dirty hack to make 3rd-party libraries work the needed way, if they don't provide other means of interaction.
+- For automated testing, to "click the button" in the script and see if the interface reacts correctly.
 
-- Либо как явный и грубый хак, чтобы заставить работать сторонние библиотеки, в которых не предусмотрены другие средства взаимодействия.
-- Либо для автоматического тестирования, чтобы скриптом "нажать на кнопку" и посмотреть, произошло ли нужное действие.
-- Либо при создании своих "элементов интерфейса". Например, никто не мешает при помощи JavaScript создать из `<div class="calendar">` красивый календарь и генерировать на нём событие `change` при выборе даты. Эту тему мы разовьём позже.
+Custom events with our own names are often generated for architectural purposes, to signal what happens inside our menus, sliders, carousels etc.
