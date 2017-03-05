@@ -152,7 +152,7 @@ They include the content width together with paddings, but without the scrollbar
 
 ![](metric-client-width-height.png)
 
-On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so its exactly the sum of what's inside the borders: CSS-высота `200px` plus top and bottom paddings (`2*20px`) total `240px`.
+On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so its exactly the sum of what's inside the borders: CSS-height `200px` plus top and bottom paddings (`2*20px`) total `240px`.
 
 Now `clientWidth` -- here the content width is not `300px`, but `284px`, because `16px` are occupied by the scrollbbar. So the sum is `284px` plus left and right paddings, total `324px`.
 

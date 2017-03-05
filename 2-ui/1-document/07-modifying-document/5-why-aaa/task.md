@@ -2,7 +2,7 @@ importance: 1
 
 ---
 
-# Why "ааа" remains?
+# Why "aaa" remains?
 
 Run the example. Why `table.remove()` does not delete the text `"aaa"`?
 

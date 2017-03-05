@@ -48,7 +48,7 @@ For instance, to assign a `click` handler for an `input`, we can use `onclick`, 
 
 On mouse click, the code inside `onclick` runs.
 
-Please note that inside `onclick` we use single quotes, because the attribute itself is in double quotes. If we fforget that the code is inside the attribute and use double quotes inside, like this:  `onclick="alert("Клик!")"`, then it won't work right.
+Please note that inside `onclick` we use single quotes, because the attribute itself is in double quotes. If we fforget that the code is inside the attribute and use double quotes inside, like this:  `onclick="alert("Click!")"`, then it won't work right.
 
 An HTML-attribute is not a convenient place to write a lot of code, so we'd better create a JavaScript function and call it there.
 
@@ -340,7 +340,7 @@ Here's an example of getting mouse coordinates from the event object:
 <script>
   elem.onclick = function(*!*event*/!*) {
     // show event type, element and coordinates of the click
-    alert(event.type + " на " + event.currentTarget);
+    alert(event.type + " at " + event.currentTarget);
     alert(event.clientX + ":" + event.clientY);
   };
 </script>

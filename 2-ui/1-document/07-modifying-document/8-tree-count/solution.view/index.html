@@ -43,12 +43,12 @@
     let lis = document.getElementsByTagName('li');
 
     for (let li of lis) {
-      // получить количество детей
-      let childCount = li.getElementsByTagName('li').length;
-      if (!childCount) continue;
+      // get the count of all <li> below this <li>
+      let descendantsCount = li.getElementsByTagName('li').length;
+      if (!descendantsCount) continue;
 
-      // добавить кол-во детей к текстовому узлу
-      li.firstChild.data += ' [' + childCount + ']';
+      // add directly to the text node (append to the text)
+      li.firstChild.data += ' [' + descendantsCount + ']';
     }
   </script>
 

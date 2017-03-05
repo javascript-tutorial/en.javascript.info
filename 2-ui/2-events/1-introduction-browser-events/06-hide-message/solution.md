@@ -1,10 +1,13 @@
 
-1. Изменим HTML/CSS, чтобы кнопка была в нужном месте сообщения. Кнопка -- это тег `<button>`, поэтому понадобится несколько стилей.
+To add the button we can use either `position:absolute` (and make the pane `position:relative`) or `float:right`. The `float:right` has the benefit that the button never overlaps the text, but `position:absolute` gives more freedom. So the choice is yours.
 
-    Расположить кнопку справа можно при помощи `position:relative` для `pane`, а для кнопки `position:absolute + right/top`. Так как `position:absolute` вынимает элемент из потока, то кнопка может частично оказаться "сверху" текста заголовка, перекрыв его конец. Чтобы этого не произошло, можно добавить `padding-right` к заголовку.
+Then for each pane the code can be like:
+```js
+pane.insertAdjacentHTML("afterbegin", '<button class="remove-button">[x]</button>');
+```
 
-    Если использовать `float:right`, то кнопка никогда не перекроет текст. Это, пожалуй хорошо.
+Then the `<button>` becomes `pane.firstChild`, so we can add a handler to it like this:
 
-    С другой стороны, потенциальным преимуществом способа с `position` по сравнению с `float` в данном случае является возможность поместить элемент кнопки в HTML *после текста*, а не до него.
-2. Для того, чтобы получить кнопку из контейнера, используем `querySelectorAll`. На каждую кнопку повесим обработчик, который будет убирать родителя. Найти родителя можно через `parentNode`.
-
+```js
+pane.firstChild.onclick = () => pane.remove();
+```

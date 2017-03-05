@@ -90,7 +90,7 @@ We can do the same for the page:
 
 It should work.
 
-But there's a simpler, more universal solution: special methods  [window.scrollBy(x,y)](mdn:api/Window/scrollBy) и [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
+But there's a simpler, more universal solution: special methods  [window.scrollBy(x,y)](mdn:api/Window/scrollBy) and [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
 
 - The method `scrollBy(x,y)` scrolls the page relative to its current position. For instance, `scrollBy(0,10)` scrolls the page `10px` down.
 
