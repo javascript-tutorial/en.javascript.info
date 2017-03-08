@@ -1,0 +1,23 @@
+#green {
+  height: 50px;
+  width: 160px;
+  background: green;
+}
+
+#red {
+  height: 20px;
+  width: 110px;
+  background: red;
+  color: white;
+  font-weight: bold;
+  padding: 5px;
+  text-align: center;
+  margin: 20px;
+}
+
+#text {
+  font-size: 12px;
+  height: 200px;
+  width: 360px;
+  display: block;
+}

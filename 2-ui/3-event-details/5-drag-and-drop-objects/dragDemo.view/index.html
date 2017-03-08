@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.polyfill.io/v1/polyfill.js?features=Element.prototype.closest"></script>
+  <script src="DragManager.js"></script>
+  <link rel="stylesheet" href="dragDemo.css">
+  <script>
+    DragManager.onDragCancel = function(dragObject) {
+      dragObject.avatar.rollback();
+    };
+
+    DragManager.onDragEnd = function(dragObject, dropElem) {
+      dragObject.elem.style.display = 'none';
+      dropElem.classList.add('computer-smile');
+      setTimeout(function() {
+        dropElem.classList.remove('computer-smile');
+      }, 200);
+    };
+  </script>
+</head>
+
+<body>
+
+  <div style="height:64px">
+    <img src="https://js.cx/browsers/chrome.svg" class="draggable">
+    <img src="https://js.cx/browsers/firefox.svg" class="draggable">
+    <img src="https://js.cx/browsers/ie.svg" class="draggable">
+    <img src="https://js.cx/browsers/opera.svg" class="draggable">
+    <img src="https://js.cx/browsers/safari.svg" class="draggable">
+  </div>
+
+  <p>Браузер переносить сюда:</p>
+
+  <div class="computer droppable">
+  </div>
+
+</body>
+
+</html>

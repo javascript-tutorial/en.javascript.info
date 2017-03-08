@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+</head>
+
+<body style="height: 200px">
+
+  <p>Drag the ball.</p>
+
+  <img src="https://js.cx/clipart/ball.svg" style="cursor:pointer" width="40" height="40" id="ball">
+
+
+  <script>
+    ball.onmousedown = function(event) { // (1) start the process
+
+      // (2) prepare to moving: make absolute and top by z-index
+      ball.style.position = 'absolute';
+      ball.style.zIndex = 1000;
+      document.body.appendChild(ball);
+      // ...and put that absolutely positioned ball under the cursor
+      moveAt(event.pageX, event.pageY);
+
+      // centers the ball at (pageX, pageY) coordinates
+      function moveAt(pageX, pageY) {
+        ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
+        ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
+      }
+
+      function onMouseMove(event) {
+        moveAt(event.pageX, event.pageY);
+      }
+
+      // (3) move the ball on mousemove
+      document.addEventListener('mousemove', onMouseMove);
+
+      // (4) drop the ball, remove unneeded handlers
+      ball.onmouseup = function() {
+        document.removeEventListener('mousemove', onMouseMove);
+        ball.onmouseup = null;
+      };
+
+    };
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#field {
+  background: url(https://js.cx/drag-heroes/field.png);
+  width: 800px;
+  height: 600px;
+  float: left;
+}
+/* герои и мяч (переносимые элементы) */
+
+.hero {
+  background: url(https://js.cx/drag-heroes/heroes.png);
+  width: 130px;
+  height: 128px;
+  float: left;
+}
+
+#hero1 {
+  background-position: 0 0;
+}
+
+#hero2 {
+  background-position: 0 -128px;
+}
+
+#hero3 {
+  background-position: -120px 0;
+}
+
+#hero4 {
+  background-position: -125px -128px;
+}
+
+#hero5 {
+  background-position: -248px -128px;
+}
+
+#hero6 {
+  background-position: -244px 0;
+}
+
+.draggable {
+  cursor: pointer;
+}

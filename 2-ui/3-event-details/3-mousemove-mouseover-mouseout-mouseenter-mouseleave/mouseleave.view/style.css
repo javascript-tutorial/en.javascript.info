@@ -1,0 +1,21 @@
+#blue {
+  background: blue;
+  width: 160px;
+  height: 160px;
+  position: relative;
+}
+
+#red {
+  background: red;
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  left: 45px;
+  top: 45px;
+}
+
+#text {
+  display: block;
+  height: 100px;
+  width: 400px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #container {
+      width: 200px;
+      height: 200px;
+      border: 1px solid black;
+      background: #0FF;
+      overflow: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  Прокрутка: <span id="delta">0</span>
+  <div id="container">
+    Прокрути надо мной.
+  </div>
+
+  <script>
+    var elem = document.getElementById('container');
+
+    if (elem.addEventListener) {
+      if ('onwheel' in document) {
+        // IE9+, FF17+
+        elem.addEventListener("wheel", onWheel);
+      } else if ('onmousewheel' in document) {
+        // устаревший вариант события
+        elem.addEventListener("mousewheel", onWheel);
+      } else {
+        // Firefox < 17
+        elem.addEventListener("MozMousePixelScroll", onWheel);
+      }
+    } else { // IE8-
+      elem.attachEvent("onmousewheel", onWheel);
+    }
+
+
+    // Это решение предусматривает поддержку IE8-
+    function onWheel(e) {
+      e = e || window.event;
+
+      // deltaY, detail содержат пиксели
+      // wheelDelta не дает возможность узнать количество пикселей
+      // onwheel || MozMousePixelScroll || onmousewheel
+      var delta = e.deltaY || e.detail || e.wheelDelta;
+
+      var info = document.getElementById('delta');
+
+      info.innerHTML = +info.innerHTML + delta;
+
+      e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+    }
+  </script>
+</body>
+
+</html>

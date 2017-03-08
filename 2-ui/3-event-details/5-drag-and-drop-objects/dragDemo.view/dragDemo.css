@@ -1,0 +1,15 @@
+.computer {
+  width: 93px;
+  height: 98px;
+  background: url(https://js.cx/clipart/computer.gif) no-repeat;
+  padding: 5px;
+  font-style: italic;
+}
+
+.computer-smile {
+  background: url(https://js.cx/clipart/computer-smile.gif) no-repeat;
+}
+
+.draggable {
+  cursor: pointer;
+}
