@@ -8,13 +8,17 @@
 
 <body>
 
-  <h2>Расставьте супергероев по полю.</h2>
+  <h2>Place superheroes around the soccer field.</h2>
 
-  <p>Супергерои и мяч -- это элементы с классом "draggable". Сделайте так, чтобы их можно было переносить.</p>
+  <p>Superheroes and the ball are elements with the class "draggable". Make them really draggable.</p>
 
-  <p>Важно: если супергероя подносят к низу или верху страницы, она должна автоматически прокручиваться. Если страница помещается на вашем экране целиком и не имеет вертикальной прокрутки -- сделайте окно браузера меньше, чтобы протестировать эту возможность.</p>
+  <p>Important: limit dragging by the window. If a draggable reaches window top or bottom, then the page should scroll to let us drag it further.</p>
 
-  <p>Да, и ещё: супергерои ни при каких условиях не должны попасть за край экрана.</p>
+  <p>If your screen is big enough to fit the whole document -- make the window smaller to get vertical scrolling, so that you could test it.</p>
+
+  <p>In this task it's enough to handle vertical scrolling. There's no horizontal scrolling usually, and it's handled the similar way if needed.</p>
+
+  <p>And one more thing: heroes may never leave the page. If they reach the edge of the document, no dragging outside of it.</p>
 
   <div id="field">
 
@@ -27,7 +31,7 @@
   <div class="hero draggable" id="hero5"></div>
   <div class="hero draggable" id="hero6"></div>
 
-  <img src="https://js.cx/drag-heroes/ball.png" class="draggable">
+  <img src="https://en.js.cx/clipart/ball.svg" class="draggable">
 
   <div style="clear:both"></div>
 

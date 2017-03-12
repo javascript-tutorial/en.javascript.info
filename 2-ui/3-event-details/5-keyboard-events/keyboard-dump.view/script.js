@@ -6,14 +6,14 @@ function handle(e) {
   if (form.elements[e.type + 'Ignore'].checked) return;
 
   var text = e.type +
-    ' keyCode=' + e.keyCode +
-    ' which=' + e.which +
-    ' charCode=' + e.charCode +
-    ' char=' + String.fromCharCode(e.keyCode || e.charCode) +
-    (e.shiftKey ? ' +shift' : '') +
-    (e.ctrlKey ? ' +ctrl' : '') +
-    (e.altKey ? ' +alt' : '') +
-    (e.metaKey ? ' +meta' : '') + "\n";
+    ' key=' + e.key +
+    ' code=' + e.code +
+    (e.shiftKey ? ' shiftKey' : '') +
+    (e.ctrlKey ? ' ctrlKey' : '') +
+    (e.altKey ? ' altKey' : '') +
+    (e.metaKey ? ' metaKey' : '') +
+    (e.repeat ? ' (repeat)' : '') +
+    "\n";
 
   if (area.value && Date.now() - lastTime > 250) {
     area.value += new Array(81).join('-') + '\n';

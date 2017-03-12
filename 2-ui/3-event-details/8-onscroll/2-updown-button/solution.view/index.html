@@ -1,6 +1,5 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
   <style>
     body,
@@ -10,15 +9,15 @@
       padding: 0;
       margin: 0;
     }
-    
+
     #matrix {
       width: 400px;
       margin: auto;
       overflow: auto;
       text-align: justify;
     }
-    
-    #updown {
+
+    #arrowTop {
       height: 9px;
       width: 14px;
       color: green;
@@ -27,14 +26,11 @@
       left: 10px;
       cursor: pointer;
     }
-    
-    #updown.up::before {
+
+    #arrowTop::before {
       content: '▲';
     }
-    
-    #updown.down::before {
-      content: '▼';
-    }
+
   </style>
   <meta charset="utf-8">
 </head>
@@ -43,60 +39,23 @@
 
   <div id="matrix">
     <script>
-      for (var i = 0; i < 2000; i++) document.writeln(i)
+      for (let i = 0; i < 2000; i++) document.writeln(i)
     </script>
   </div>
 
-  <div id="updown"></div>
+  <div id="arrowTop" hidden></div>
 
   <script>
-    var updownElem = document.getElementById('updown');
 
-    var pageYLabel = 0;
+    arrowTop.onclick = function() {
+      window.scrollTo(pageXOffset, 0);
+      // after scrollTo, there will be a "scroll" event, so the arrow will hide automatically
+    };
 
-    updownElem.onclick = function() {
-      var pageY = window.pageYOffset || document.documentElement.scrollTop;
-
-      switch (this.className) {
-        case 'up':
-          pageYLabel = pageY;
-          window.scrollTo(0, 0);
-          this.className = 'down';
-          break;
-
-        case 'down':
-          window.scrollTo(0, pageYLabel);
-          this.className = 'up';
-      }
-
-    }
-
-    window.onscroll = function() {
-      var pageY = window.pageYOffset || document.documentElement.scrollTop;
-      var innerHeight = document.documentElement.clientHeight;
-
-      switch (updownElem.className) {
-        case '':
-          if (pageY > innerHeight) {
-            updownElem.className = 'up';
-          }
-          break;
-
-        case 'up':
-          if (pageY < innerHeight) {
-            updownElem.className = '';
-          }
-          break;
-
-        case 'down':
-          if (pageY > innerHeight) {
-            updownElem.className = 'up';
-          }
-          break;
-
-      }
-    }
+    window.addEventListener('scroll', function() {
+      arrowTop.hidden = (pageYOffset < document.documentElement.clientHeight);
+    });
   </script>
-</body>
 
+</body>
 </html>

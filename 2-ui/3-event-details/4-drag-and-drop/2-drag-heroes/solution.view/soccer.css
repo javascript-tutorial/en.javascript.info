@@ -1,16 +1,16 @@
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
 }
 
 #field {
-  background: url(https://js.cx/drag-heroes/field.png);
+  background: url(field.svg);
   width: 800px;
-  height: 600px;
+  height: 500px;
   float: left;
 }
-/* герои и мяч (переносимые элементы) */
+
+/* heroes and the ball (dragables) */
 
 .hero {
   background: url(https://js.cx/drag-heroes/heroes.png);

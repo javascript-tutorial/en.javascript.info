@@ -1,8 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-
 <head>
-  <meta charset="utf-8">
   <style>
     body,
     html {
@@ -11,31 +9,45 @@
       padding: 0;
       margin: 0;
     }
-    
+
     #matrix {
       width: 400px;
       margin: auto;
       overflow: auto;
       text-align: justify;
     }
+
+    #arrowTop {
+      height: 9px;
+      width: 14px;
+      color: green;
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+    }
+
+    #arrowTop::before {
+      content: '▲';
+    }
+
   </style>
   <meta charset="utf-8">
 </head>
 
 <body>
 
-  Символы для стрелок: ▲ ▼
-
   <div id="matrix">
     <script>
-      for (var i = 0; i < 2000; i++) document.writeln(i)
+      for (let i = 0; i < 2000; i++) document.writeln(i)
     </script>
   </div>
 
-  <script>
-    // ... ваш код
-    // при необходимости, в документ можно добавить элементы и стили
-  </script>
-</body>
+  <div id="arrowTop"></div>
 
+  <script>
+    // ... your code ...
+  </script>
+
+</body>
 </html>

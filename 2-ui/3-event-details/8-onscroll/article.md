@@ -1,29 +1,39 @@
-# Прокрутка: событие scroll
+# Scrolling 
 
-Событие `onscroll` происходит, когда элемент прокручивается.
+Scroll events allow to react on a page or element scrolling. There are quite a few good things we can do here.
 
-В отличие от события `onwheel` (колесико мыши), его могут генерировать только прокручиваемые элементы или окно `window`. Но зато оно генерируется всегда, при любой прокрутке, не обязательно "мышиной".
+For instance:
+- Show/hide additional controls or information depending on where in the document the user is.
+- Load more data when the user scrolls down till the end of the page.
 
 [cut]
 
-Например, следующая функция при прокрутке окна выдает количество прокрученных пикселей:
+Here's a small function to show the current scroll:
 
 ```js autorun
-window.onscroll = function() {
-  var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-  document.getElementById('showScroll').innerHTML = scrolled + 'px';
+window.addEventListener('scroll', function() {
+  document.getElementById('showScroll').innerHTML = pageYOffset + 'px';
 }
 ```
 
-В действии:
-Текущая прокрутка = <b id="showScroll">прокрутите окно</b>
+```online
+In action:
 
-Каких-либо особенностей события здесь нет, разве что для его использования нужно отлично представлять, как получить текущее значение прокрутки или прокрутить документ. Об этом мы говорили ранее, в главе <info:metrics>.
+Current scroll = <b id="showScroll">scroll the window</b>
+```
 
-Некоторые области применения `onscroll`:
+The `scroll` event works both on the `window` and on scrollable elements.
 
-- Показ дополнительных элементов навигации при прокрутке.
-- Подгрузка и инициализация элементов интерфейса, ставших видимыми после прокрутки.
+## Prevent scrolling
 
-Вашему вниманию предлагаются несколько задач, которые вы можете решить сами или посмотреть использование `onscroll` на их примере.
+How do we make something unscrollable? We can't prevent scrolling by using `event.preventDefault()` in `onscroll` listener, because it triggers *after* the scroll has already happened.
 
+But we can prevent scrolling by `event.preventDefault()` on an event that causes the scroll.
+
+For instance:
+- `wheel` event -- a mouse wheel roll (a "scrolling" touchpad action generates it too).
+- `keydown` event for `key:pageUp` and `key:pageDown`.
+
+Sometimes that may help. But there are more ways to scroll, so it's quite hard to handle all of them. So it's more reliable to use CSS to make something unscrollable, like `overflow` property.
+
+Here are few tasks that you can solve or look through to see the applications on `onscroll`.

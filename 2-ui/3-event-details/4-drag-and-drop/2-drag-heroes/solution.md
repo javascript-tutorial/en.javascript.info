@@ -1,5 +1,5 @@
-В решении этой задачи для переноса мы используем координаты относительно окна и `position:fixed`. Так проще.
+To drag the element we can use `position:fixed`, it makes coordinates easier to manage. At the end we should switch it back to `position:absolute`.
 
-А по окончании -- прибавляем прокрутку и делаем `position:absolute`, чтобы элемент был привязан к определённому месту в документе, а не в окне. Можно было и сразу `position:absolute` и оперировать в абсолютных координатах, но код был бы немного длиннее.
+Then, when coordinates are at window top/bottom, we use `window.scrollTo` to scroll it.
 
-Детали решения расписаны в комментариях в исходном коде.
+More details in the code, in comments.

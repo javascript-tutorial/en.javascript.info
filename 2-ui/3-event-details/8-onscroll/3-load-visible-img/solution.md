@@ -1,19 +1,21 @@
-Функция должна по текущей прокрутке определять, какие изображения видимы, и загружать их.
+The `onscroll` handler should check which images are visible and show them.
 
-Она должна срабатывать не только при прокрутке, но и при загрузке. Вполне достаточно для этого -- указать ее вызов в скрипте под страницей, вот так:
+We also may want to run it when the page loads, to detect immediately visible images prior to any scrolling and load them.
+
+If we put it at the `<body>` bottom, then it runs when the page content is loaded.
 
 ```js
-...страница...
+// ...the page content is above...
 
 function isVisible(elem) {
 
-  var coords = elem.getBoundingClientRect();
+  let coords = elem.getBoundingClientRect();
 
-  var windowHeight = document.documentElement.clientHeight;
+  let windowHeight = document.documentElement.clientHeight;
 
-  // верхняя граница elem в пределах видимости ИЛИ нижняя граница видима
-  var topVisible = coords.top > 0 && coords.top < windowHeight;
-  var bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
+  // top elem edge is visible OR bottom elem edge is visible
+  let topVisible = coords.top > 0 && coords.top < windowHeight;
+  let bottomVisible = coords.bottom < windowHeight && coords.bottom > 0;
 
   return topVisible || bottomVisible;
 }
@@ -24,11 +26,6 @@ window.onscroll = showVisible;
 */!*
 ```
 
-При запуске функция ищет все видимые картинки с `realsrc` и перемещает значение `realsrc` в `src`. Обратите внимание, т.к. атрибут `realsrc` нестандартный, то для доступа к нему мы используем `get/setAttribute`. А `src` -- стандартный, поэтому можно обратиться по DOM-свойству.
+For visible images we can take `img.dataset.src` and assign it to `img.src` (if not did it yet).
 
-**Функция проверки видимости `isVisible(elem)` получает координаты текущей видимой области и сравнивает их с элементом.**
-
-Для видимости достаточно, чтобы координаты верхней(или нижней) границы элемента находились между границами видимой области.
-
-В решении также указан вариант с `isVisible`, который расширяет область видимости на +-1 страницу (высота страницы -- `document.documentElement.clientHeight`).
-
+P.S. The solution also has a variant of `isVisible` that "pre-loads" images that are within 1 page  above/below (the page height is `document.documentElement.clientHeight`).

@@ -1,20 +1,16 @@
-importance: 3
+importance: 5
 
 ---
 
-# Кнопка вверх-вниз
+# Up/down button
 
-Создайте кнопку навигации, которая помогает при прокрутке страницы.
+Create a "to the top" button to help with page scrolling.
 
-Работать должна следующим образом:
+It should work like this:
+- While the page is not scrolled down at least for the window height -- it's invisible.
+- When the page is scrolled down more than the window height -- there appears an "upwards" arrow in the left-top corner. If the page is scrolled back, it disappears.
+- When the arrow is clicked, the page scrolls to the top.
 
-- Пока страница промотана меньше чем на высоту экрана вниз -- кнопка не видна.
-- При промотке страницы вниз больше, чем на высоту экрана, появляется кнопка "стрелка вверх".
-- При нажатии на нее страница прыгает вверх, но не только. Дополнительно, кнопка меняется на "стрелка вниз" и при клике возвратит на старое место. Если же в этом состоянии посетитель сам прокрутит вниз больше, чем один экран, то она вновь изменится на "стрелка вверх".
-
-Должен получиться удобный навигационный помощник.
-
-Посмотрите, как оно должно работать, в ифрейме ниже. Прокрутите ифрейм, навигационная стрелка появится слева-сверху.
+Like this:
 
 [iframe border="1" height="200" link src="solution"]
-

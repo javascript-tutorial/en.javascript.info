@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" 
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="22cm" height="14cm" viewBox="0 0 1150 720" stroke="white" version="1.1"
+     xmlns="http://www.w3.org/2000/svg">
+     <!--图纸区-->
+     <rect x="0" y="0" width="1150" height="720" fill="green" />
+     <!--球场框和中线-->
+     <path d="M 575,20 L 50,20 50,700 1100,700 1100,20 575,20 575,700 z" stroke="white" stroke-width="2" fill="green" />
+     <!--中线-->
+     <circle cx="575" cy="360" r="91.5" stroke="white" stroke-width="2" fill-opacity="0" />
+     <circle cx="575" cy="360" r="2" stroke="white" fill="white" />
+     <!--罚球点-->
+     <circle cx="160" cy="360" r="2" stroke="white" fill="white" />
+     <circle cx="990" cy="360" r="2" stroke="white" fill="white" />
+     <!--球门-->
+     <path d="M 50,324.4 L 40,324.4 40, 396.6 50 396.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 1100,324.4 L 1110,324.4 1110,396.6 1100,396.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <!--球门区-->
+     <path d="M 50,269.4 L 105,269.4 105,451.6 50 451.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 1100,269.4 L 1045,269.4 1045,451.6 1100,451.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <!--禁区 -->
+     <path d="M 50,159.4 L 215,159.4 215,561.6 50 561.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 1100,159.4 L 935,159.4 935,561.6 1100,561.6 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 215,286.875 A 91.5,91.5 0 0,1 215,433.125 z" stroke="white" stroke-width="2" fill="green" />
+     <path d="M 935,286.875 A 91.5,91.5 0 0,0 935,433.125 z" stroke="white" stroke-width="2" fill="green" />
+     <!--角球弧-->
+     <path d="M 50,30 A 10,10 0 0,0 60,20 L 50,20 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 60,700 A 10,10 0 0,0 50,690 L 50,700 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 1100,690 A 10,10 0 0,0 1090,700 L 1100,700 z" stroke="white" stroke-width="2" fill-opacity="0" />
+     <path d="M 1090,20 A 10,10 0 0,0 1100,30 L 1100,20 z" stroke="white" stroke-width="2" fill-opacity="0" />
+</svg>

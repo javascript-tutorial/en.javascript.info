@@ -2,49 +2,29 @@ importance: 4
 
 ---
 
-# Загрузка видимых изображений
+# Load visible images
 
-Задача, которая описана ниже, демонстрирует результативный метод оптимизации страницы.
+Let's say we have a slow-speed client and want to save his mobile traffic.
 
-С целью экономии трафика и более быстрой загрузки страницы изображения на ней заменяются на "макеты".
-
-Вместо такого изображения:
+For that purpose we decide not to show images immediately, but rather replace them with placeholders, like this:
 
 ```html
-<img src="yozhik.jpg" width="128" height="128">
+<img *!*src="placeholder.svg"*/!* width="128" height="128" *!*data-src="real.jpg"*/!*>
 ```
 
-![|width="128" height="128"](https://js.cx/clipart/yozhik.jpg)
+So, initially all images are `placeholder.svg`. When the page scrolls to the position where the user can see the image -- we change `src` to the one in `data-src`, and so the image loads.
 
-Стоит вот такое:
-
-```html
-<img *!*src="1.gif"*/!* width="128" height="128" *!*realsrc="yozhik.jpg"*/!*>
-```
-
-![|width="128" height="128"](https://js.cx/lazyimg/1.gif)
-
-То есть настоящий URL находится в атрибуте `realsrc` (название атрибута можно выбрать любое). А в `src` поставлен серый GIF размера 1x1, и так как `width/height` правильные, то он растягивается, так что вместо изображения виден серый прямоугольник.
-
-При этом, чтобы браузер загрузил изображение, нужно заменить значение `src` на то, которое находится в `realsrc`.
-
-Если страница большая, то замена больших изображений на такие макеты существенно убыстряет полную загрузку страницы. Это особенно заметно в случае, когда на странице много анонсов новостей с картинками или изображений товаров, из которых многие находятся за пределами прокрутки.
-
-Кроме того, для мобильных устройств JavaScript может подставлять URL уменьшенного варианта картинки.
-
-Напишите код, который при прокрутке окна загружает ставшие видимыми изображения.
-
-То есть, как только изображение попало в видимую часть документа -- в `src` нужно прописать правильный URL из `realsrc`.
-
-Пример работы вы можете увидеть в `iframe` ниже, если прокрутите его:
+Here's an example in `iframe`:
 
 [iframe src="solution"]
 
-Особенности реализации:
+Scroll it to see images load "on-demand".
 
-- При начальной загрузке некоторые изображения должны быть видны сразу, до прокрутки. Код должен это учитывать.
-- Некоторые изображения могут быть обычными, без `realsrc`. Их код не должен трогать вообще.
-- Также код не должен перегружать уже показанное изображение.
-- Желательно предусмотреть загрузку изображений не только видимых сейчас, но и на страницу вперед и назад от текущего места.
+Requirements:
+- When the page loads, those images that are on-screen should load immediately, prior to any scrolling.
+- Some images may be regular, without `data-src`. The code should not touch them.
+- Once an image is loaded, it should not reload any more when scrolled in/out.
 
-P.S. Горизонтальной прокрутки нет.
+P.S. If you can, make a more advanced solution that would "preload" images that are one page below/after the current position.
+
+P.P.S. Only vertical scroll is to be handled, no horizontal scrolling.
