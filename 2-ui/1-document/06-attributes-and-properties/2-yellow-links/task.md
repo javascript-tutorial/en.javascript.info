@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Make external links yellow
+# Make external links orange
 
-Make all external links yellow by altering their `style` property.
+Make all external links orange by altering their `style` property.
 
 A link is external if:
 - It's `href` has `://` in it
@@ -26,7 +26,7 @@ Example:
 <script>
   // setting style for a single link
   let link = document.querySelector('a');
-  link.style.color = 'yellow';
+  link.style.color = 'orange';
 </script>
 ```
 

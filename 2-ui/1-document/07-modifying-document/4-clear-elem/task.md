@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# clear
+# Clear the element
 
-Create a function `clear(elem)` that removes everything from element.
+Create a function `clear(elem)` that removes everything from the element.
 
-```html run
+```html run height=60
 <ol id="elem">
   <li>Hello</li>
   <li>World</li>

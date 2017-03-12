@@ -1,17 +1,19 @@
 # Styles and classes
 
-Before we get to Javascript ways of dealing with styles and classes -- here's an important rule.
+Before we get to Javascript ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
 
-There are generally two ways to style an element, both in HTML and Javascript:
+There are generally two ways to style an element:
 
 1. Create a class in CSS and add it: `<div class="...">`
 2. Write properties directly into `style`: `<div style="...">`.
 
 [cut]
 
-CSS is always the preferred way, both in HTML and Javascript. We should only use `style` if classes "can't handle it".
+CSS is always the preferred way -- not only for HTML, but in Javascript as well.
 
-For instance, `style` is acceptable if we calculated coordinates for an element dynamically and want to set them from Javascript, like here:
+We should only manipulate the `style` property if classes "can't handle it".
+
+For instance, `style` is acceptable if we calculate coordinates of an element dynamically and want to set them from Javascript, like this:
 
 ```js
 let top = /* complex calculations */;
@@ -26,9 +28,9 @@ For other cases, like making the text red, adding a background icon -- describe 
 
 Changing a class is one of the most often actions in scripts.
 
-In the ancient time, there was a limitation in Javascript: a reserved word like `"class"` could not be an object property. That limitation does not exist now, but at that time it was impossible to use `elem.class`.
+In the ancient time, there was a limitation in Javascript: a reserved word like `"class"` could not be an object property. That limitation does not exist now, but at that time it was impossible to have a `"class"` property, like `elem.class`.
 
-So instead of `elem.class` we have `elem.className` property. It's the string with all classes, the same value as in the `"class"` attribute.
+So for classes the similar-looking property `"className"` was introduced: the `elem.className` corresponds to the `"class"` attribute.
 
 For instance:
 
@@ -40,7 +42,9 @@ For instance:
 </body>
 ```
 
-Adding/removing a class is a widespread operation. Using a string for such purpose is cumbersome, so there's another property for that: `elem.classList`.
+If we assign something to `elem.className`, it replaces the whole strings of classes. Sometimes that's what we need, but often we want to add/remove a single class.
+
+There's another property for that: `elem.classList`.
 
 The `elem.classList` is a special object with methods to `add/remove/toggle` classes.
 
@@ -49,7 +53,11 @@ For instance:
 ```html run
 <body class="main page">
   <script>
+*!*
+    // add a class
     document.body.classList.add('article');
+*/!*
+
     alert(document.body.className); // main page article
   </script>
 </body>
@@ -104,25 +112,25 @@ button.style.WebkitBorderRadius = '5px';
 That is: a dash `"-"` becomes an uppercase.
 ````
 
-## Resetting the style
+## Resetting the style property
 
-To "reset" the style property, we should assign an empty line to it. For instance, if we set a `width` and now want to remove it, then `elem.style.width=""`.
+Sometimes we want to assign a style property, and later remove it.
 
 For instance, to hide an element, we can set `elem.style.display = "none"`.
 
-And to show it back, we should not set another `display` like `elem.style.display = "block"`. To return the "default" `display`: `elem.style.display = ""`.
+Then later we may want to remove the `style.display` as if it were not set. Instead of `delete elem.style.display` we should assign an empty line to it: `elem.style.display = ""`.
 
 ```js run
-// if we run this code, the <body> would "blink"
-document.body.style.display = "none";
+// if we run this code, the <body> "blinks"
+document.body.style.display = "none"; // hide
 
-setTimeout(() => document.body.style.display = "", 1000);
+setTimeout(() => document.body.style.display = "", 1000); // back to normal
 ```
 
-If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style` property.
+If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style` property at all.
 
 ````smart header="Full rewrite with `style.cssText`"
-Normally, `style.*` assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object.
+Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
 
 To set the full style as a string, there's a special property `style.cssText`:
 
@@ -141,27 +149,27 @@ To set the full style as a string, there's a special property `style.cssText`:
 </script>
 ```
 
-We rarely use it, because such a setting removes all existing styles: not adds, but rather replaces them. But still can be done for new elements when we know we don't delete something important.
+We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we don't delete something important.
 
-The same can be accomplished by setting an attribute: `div.setAttribute('style', "color: red...")`.
+The same can be accomplished by setting an attribute: `div.setAttribute('style', 'color: red...')`.
 ````
 
 ## Mind the units
 
-CSS units must exist in values. We should not set `elem.style.top` to `10`, but rather to `10px`. Otherwise it wouldn't work.
+CSS units must be provided in style values.
 
-For instance:
+For instance, we should not set `elem.style.top` to `10`, but rather to `10px`. Otherwise it wouldn't work:
 
 ```html run height=100
 <body>
   <script>
   *!*
-    // won't work!
+    // doesn't work!
     document.body.style.margin = 20;
-    alert(document.body.style.margin); // '' (empty string)
+    alert(document.body.style.margin); // '' (empty string, the assignment is ignored)
   */!*
 
-    // now the right way
+    // now add the CSS unit (px) - and it works
     document.body.style.margin = '20px';
     alert(document.body.style.margin); // 20px
 
@@ -171,7 +179,7 @@ For instance:
 </body>
 ```
 
-Please note how the browser "unpacks" the property `style.margin` and infers `style.marginLeft` and `style.marginTop` (and other partial margins) from it.
+Please note how the browser "unpacks" the property `style.margin` in the last lines and infers `style.marginLeft` and `style.marginTop` (and other partial margins) from it.
 
 ## Computed styles: getComputedStyle
 
@@ -179,11 +187,11 @@ Modifying a style is easy. But how to *read* it?
 
 For instance, we want to know the size, margins, the color of an element. How to do it?
 
-**The `style` property contains only the style in the `"style"` attribute, without any CSS cascade.**
+**The `style` property operates only on the value of the `"style"` attribute, without any CSS cascade.**
 
-So we can't read anything that comes from CSS classes.
+So we can't read anything that comes from CSS classes using `elem.style`.
 
-For instance, here `style` won't see the margin:
+For instance, here `style` doesn't see the margin:
 
 ```html run height=60 no-beautify
 <head>
@@ -201,7 +209,7 @@ For instance, here `style` won't see the margin:
 </body>
 ```
 
-...But what if we need, say, increase the margin by 20px? We want the current value for that.
+...But what if we need, say, increase the margin by 20px? We want the current value for the start.
 
 There's another method for that: `getComputedStyle`.
 
@@ -230,7 +238,7 @@ For instance:
   <script>
     let computedStyle = getComputedStyle(document.body);
 
-    // now can read the margin and the color from it
+    // now we can read the margin and the color from it
 
     alert( computedStyle.marginTop ); // 5px
     alert( computedStyle.color ); // rgb(255, 0, 0)
@@ -242,20 +250,20 @@ For instance:
 ```smart header="Computed and resolved values"
 There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values):
 
-1. A *computed* style value is the one after all CSS rules and CSS inheritance is applied. If can look like `width: auto` or `font-size: 125%`.
-2. A *resolved* style value is the one finally applied to the element. The browser takes the computed value and makes all units fixed and absolute, for instance: `width: 212px` or `font-size: 16px`. In some browsers values can have a floating point.
+1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the  result of the CSS cascade. If can look like `width:auto` or `font-size:125%`.
+2. A *resolved* style value is the one finally applied to the element. Values like `auto` or `125%` are still abstract. The browser takes the computed value and makes all units fixed and absolute, for instance: `width:212px` or `font-size:16px`. For geometry properties resolved values may have a floating point, like `width:50.5px`.
 
-Long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient.
+Long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
 
-So nowadays `getComputedStyle` actually returns the final, resolved value.
+So nowadays `getComputedStyle` actually returns the final, resolved value in absolute units.
 ```
 
 ````warn header="`getComputedStyle` requires the full property name"
 We should always ask for the exact property that we want, like `paddingLeft` or `marginTop` or `borderTopWidth`. Otherwise the correct result is not guaranteed.
 
-For instance, if properties `paddingLeft/paddingTop` come from the different CSS classes, then what should we get for `getComputedStyle(elem).padding`?
+For instance, if there are properties `paddingLeft/paddingTop`, then what should we get for `getComputedStyle(elem).padding`? Nothing, or maybe a "generated" value from known paddings? There's no standard rule here.
 
-Some browsers (Chrome) show `10px` in the document below, and some of them (Firefox) --  do not:
+There are other inconsistencies. As an example, some browsers (Chrome) show `10px` in the document below, and some of them (Firefox) --  do not:
 
 ```html run
 <style>
@@ -275,12 +283,13 @@ Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
 
-Javascript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to see if a link was visited and hence to break the privacy.
+Javascript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to test if a link was visited and hence to break the privacy.
 ```
 
 ## Summary
 
 To manage classes, there are two DOM properties:
+
 - `className` -- the string value, good to manage the whole set of classes.
 - `classList` -- the object with methods `add/remove/toggle/contains`, good for individual classes.
 

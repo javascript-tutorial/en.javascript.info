@@ -10,7 +10,7 @@ The call should create a calendar for the given year/month and put it inside `el
 
 The calendar should be a table, where a week is `<tr>`, and a day is `<td>`. The table top should be `<th>` with weekday names: the first day should be Monday, and so on till Sunday.
 
-For instance, `createCalendar(cal, 2012, 9)` should generate in <code>&lt;div id='cal'&gt;&lt;/div&gt;</code> the following calendar:
+For instance, `createCalendar(cal, 2012, 9)` should generate in element `cal` the following calendar:
 
 [iframe height=210 src="solution"]
 

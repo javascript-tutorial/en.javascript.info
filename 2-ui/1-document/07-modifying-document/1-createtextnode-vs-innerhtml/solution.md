@@ -1,6 +1,6 @@
 Answer: **1 and 3**.
 
-Both commands result in adding `text` "as text" into the `elem`.
+Both commands result in adding the `text` "as text" into the `elem`.
 
 Here's an example:
 

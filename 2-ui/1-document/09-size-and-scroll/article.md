@@ -1,15 +1,15 @@
 # Element size and scrolling
 
-To show elements at arbitrary places in the page we should:
+There are many Javascript properties that allow to read information about element width, height and other geometry features.
 
-1. First, know CSS positioning.
-2. Second, know how to handle "geometry" properties in Javascript.
+We often need them when moving or positioning elements in Javascript, to correctly calculate coordinates.
 
 [cut]
 
+
 ## Sample element
 
-For the example we'll use the element with the border, padding and scrolling:
+As a sample element to demonstrate properties we'll use the one given below:
 
 ```html no-beautify
 <div id="example">
@@ -26,7 +26,7 @@ For the example we'll use the element with the border, padding and scrolling:
 </style>
 ```
 
-It has no margins, because they are irrelevant here for us, as they are not the part of the element itself.
+It has the border, padding and scrolling. The full set of features. There are no margins, as they are not the part of the element itself, and there are no special properties for them.
 
 The element looks like this:
 
@@ -37,11 +37,11 @@ You can [open the document in the sandbox](sandbox:metric).
 ```smart header="Mind the scrollbar"
 The picture above demonstrates the most complex case when the element has a scrollbar. Some browsers (not all) reserve the space for it by taking it from the content.
 
-So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary for devices and browsers) then only `300-16 = 284px` remains. Our code should work well if the scrollbar exists and occupies some place, so we consider it the case here.
+So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary between devices and browsers) then only `300-16 = 284px` remains, and we should take it into account. That's why examples from this chapter assume that there's a scrollbar. If there's no scrollbar, then things are just a bit simpler.
 ```
 
 ```smart header="The `padding-bottom` may be filled with text"
-Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then the browsers show it at `padding-bottom`.
+Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`, so you can see that in examples. But the padding is still there, unless specified otherwise.
 ```
 
 ## Geometry
@@ -52,21 +52,21 @@ Here's the overall picture:
 
 ![](metric-all.png)
 
-All properties hardly fit in the picture, but as we'll see soon, their values are simple and easy to understand.
+They are many properties, it's difficult to fit them all in the single picture, but their values are simple and easy to understand.
 
-Let's start exploring them from the outer side of the element.
+Let's start exploring them from the outside of the element.
 
 ## offsetParent, offsetLeft/Top
 
-These properties are rarely needed. But still they are the "most outer" geometry properties, so we'll start with them.
+These properties are rarely needed, but still they are the "most outer" geometry properties, so we'll start with them.
 
 The `offsetParent` is the nearest ancestor that is:
 
-1. CSS-positioned (`position` is `absolute`, `relative` or `fixed`).
-2. or `<td>`, `<th>`, `<table>`.
-2. or `<body>`
+1. CSS-positioned (`position` is `absolute`, `relative` or `fixed`),
+2. or `<td>`, `<th>`, `<table>`,
+2. or `<body>`.
 
-The `offsetParent` alone has no use. But `offsetLeft/offsetTop` provide x/y coordinates relative to it's left-upper corner.
+In most practical cases we can use `offsetParent` to get the nearest CSS-positioned ancestor. And `offsetLeft/offsetTop` provide x/y coordinates relative to it's left-upper corner.
 
 In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` are shifts from its left-upper corner (`180`):
 
@@ -108,7 +108,9 @@ For our sample element:
 ````smart header="Geometry properties for not shown elements are zero/null"
 Geometry properties are calculated only for shown elements.
 
-If an element (or any of its ancestors) has `display:none` or is not in the document, then `offsetParent` is `null` and `offsetWidth`, `offsetHeight` and other numeric properties are `0`.
+If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero or `null` depending on what it is.
+
+For example, `offsetParent` is `null`, and `offsetWidth`, `offsetHeight` are `0`.
 
 We can use this to check if an element is hidden, like this:
 
@@ -118,7 +120,7 @@ function isHidden(elem) {
 }
 ```
 
-Should keep in mind that such `isHidden` returns `true` for elements that are on-screen, but have zero sizes (like an empty `<div>`).
+Please note that such `isHidden` returns `true` for elements that are on-screen, but have zero sizes (like an empty `<div>`).
 ````
 
 ## clientTop/Left
@@ -138,7 +140,7 @@ In our example:
 
 What's the difference?
 
-It becomes visible when the document is right-to-left (OS in arabic or hebrew languages). The scrollbar is then not on the right, but on the left, and then `clientLeft` also includes the scrollbar width.
+It becomes visible when the document is right-to-left (the operation system is in arabic or hebrew languages). The scrollbar is then not on the right, but on the left, and then `clientLeft` also includes the scrollbar width.
 
 In that case `clientLeft` in our example would be not `25`, but with the scrollbar width `25+16=41`:
 

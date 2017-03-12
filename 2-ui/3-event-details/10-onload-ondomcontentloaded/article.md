@@ -1,38 +1,38 @@
-# Загрузка документа: DOMContentLoaded, load, beforeunload, unload
+# Page loading: DOMContentLoaded, load, beforeunload, unload [todo: where put async defer scripts? in DOM?]
 
-Процесс загрузки HTML-документа, условно, состоит из трёх стадий:
+The process of loading an HTML document may be split into three stages:
 
-- `DOMContentLoaded` -- браузер полностью загрузил HTML и построил DOM-дерево.
-- `load` -- браузер загрузил все ресурсы.
-- `beforeunload/unload` -- уход со страницы.
+- `DOMContentLoaded` -- the browser fully loaded HTML and built DOM.
+- `load` -- the browser loaded all resources (images, styles etc).
+- `beforeunload/unload` -- leaving the page.
 
-Все эти стадии очень важны. На каждую можно повесить обработчик, чтобы совершить полезные действия:
+We can set a handler on every stage:
 
-- `DOMContentLoaded` -- означает, что все DOM-элементы разметки уже созданы, можно их искать, вешать обработчики, создавать интерфейс, но при этом, возможно, ещё не догрузились какие-то картинки или стили.
-- `load` -- страница и все ресурсы загружены, используется редко, обычно нет нужды ждать этого момента.
-- `beforeunload/unload` -- можно проверить, сохранил ли посетитель изменения, уточнить, действительно ли он хочет покинуть страницу.
+- `DOMContentLoaded` event -- DOM is ready, we can lookup DOM nodes, initialize the interface. But images and styles may be not yet loaded.
+- `load` event -- the page and additional resources are loaded, it's rarely used, because usually we don't want to wait for that moment.
+- `beforeunload/unload` event -- we can check if the user saved changes he did in the page, ask him whether he's sure.
 
-Далее мы рассмотрим важные детали этих событий.
+Let's explore the details of these events.
 
 [cut]
 
 ## DOMContentLoaded
 
-Событие `DOMContentLoaded` происходит на `document` и поддерживается во всех браузерах, кроме IE8-. Про поддержку аналогичного функционала в старых IE мы поговорим в конце главы.
+The `DOMContentLoaded` event happens on the `document` object.
 
-Обработчик на него вешается только через `addEventListener`:
+We must use `addEventListener` to catch it:
 
 ```js
 document.addEventListener("DOMContentLoaded", ready);
 ```
 
-Пример:
+For instance:
 
 ```html run height=150
 <script>
   function ready() {
-    alert( 'DOM готов' );
-    alert( "Размеры картинки: " + img.offsetWidth + "x" + img.offsetHeight );
+    alert('DOM is ready');
+    alert(`Image sizes: ${img.offsetWidth}x${img.offsetHeight}`);
   }
 
 *!*
@@ -40,16 +40,29 @@ document.addEventListener("DOMContentLoaded", ready);
 */!*
 </script>
 
-<img id="img" src="https://js.cx/clipart/yozhik.jpg?speed=1">
+<img id="img" src="https://en.js.cx/clipart/hedgehog.jpg?speed=1&cache=0">
 ```
 
-В примере выше обработчик `DOMContentLoaded` сработает сразу после загрузки документа, не дожидаясь получения картинки.
+In the example the `DOMContentLoaded` handler runs when the document is loaded, not waits for the page load. So `alert` shows zero sizes.
 
-Поэтому на момент вывода `alert` и сама картинка будет невидна и её размеры -- неизвестны (кроме случая, когда картинка взята из кеша браузера).
+At the first sight `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. But there are few pecularities.
 
-В своей сути, событие `onDOMContentLoaded` -- простое, как пробка. Полностью создано DOM-дерево -- и вот событие. Но с ним связан ряд существенных тонкостей.
+### DOMContentLoaded and scripts
 
-### DOMContentLoaded и скрипты
+If there are `<script>...</script>` tags in the document, then the browser must execute them "at place" while building DOM.
+
+External scripts `<script src="...">` also put "DOM building" to pause while the script is loading and executing.
+
+The exceptions are external scripts with `async` or `defer` attributes.
+
+- An async external script `<script async src="...">` is loaded and executed fully asynchronously, it doesn't pause anything.
+- A deferred external script `<script defer src="...">` is loaded and executed fully asynchronously, it doesn't pause anything, with two differences from `async`:
+  1. If there are many external scripts with `defer`
+  2. lba
+
+
+
+
 
 Если в документе есть теги `<script>`, то браузер обязан их выполнить до того, как построит DOM. Поэтому событие `DOMContentLoaded` ждёт загрузки и выполнения таких скриптов.
 
@@ -201,4 +214,3 @@ document.documentElement.doScroll("left");
 - Событие `window.onload` используют редко, поскольку обычно нет нужды ждать подгрузки *всех* ресурсов. Если же нужен конкретный ресурс (картинка или ифрейм), то можно поставить событие `onload` непосредственно на нём, мы посмотрим, как это сделать, далее.
 - Событие `window.onunload` почти не используется, как правило, оно бесполезно -- мало что можно сделать, зная, что окно браузера прямо сейчас закроется.
 - Гораздо чаще применяется `window.onbeforeunload` -- это де-факто стандарт для того, чтобы проверить, сохранил ли посетитель данные, действительно ли он хочет покинуть страницу. В системах редактирования документов оно используется повсеместно.
-

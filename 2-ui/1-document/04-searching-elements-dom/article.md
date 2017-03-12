@@ -1,4 +1,4 @@
-# Searching with getElement*, querySelector* and others
+# Searching with getElement*, querySelector* and other methods
 
 DOM navigation properties are great when elements are close to each other. What if they are not? How to get an arbitrary element of the page?
 
@@ -20,42 +20,61 @@ We can use it to access the element, like this:
   alert(elem); // DOM-element with id="elem"
   alert(window.elem); // accessing global variable like this also works
 
-  // for elem-content the name has dash inside, so the "simple" variable access won't work
-  alert(window['elem-content']); // but still possible to access with [...]
+  // for elem-content things are a bit more complex
+  // that has a dash inside, so it can't be a variable name
+  alert(window['elem-content']); // ...but accessable using square brackets [...]
 </script>
 ```
 
-The behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), but it is supported mainly for compatibility, because relies on global variables. The browser tries to help us by mixing namespaces of JS and DOM, but there may be conflicts.
+That's unless we declare the same-named variable by our own:
+
+```html run untrusted height=0
+<div id="elem"></div>
+
+<script>
+  let elem = 5;
+
+  alert(elem); // the variable overrides the element
+</script>
+```
+
+The behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), but it is supported mainly for compatibility. The browser tries to help us by mixing namespaces of JS and DOM. Good for very simple scripts, but there may be name conflicts. Also, when we look in JS and don't have HTML in view, it's not obvious where the variable comes from.
 
 The better alternative is to use a special method `document.getElementById(id)`.
 
 For instance:
 
 ```html run
-<div id="*!*elem*/!*">
-  <div id="*!*elem-content*/!*">Element</div>
+<div id="elem">
+  <div id="elem-content">Element</div>
 </div>
 
 <script>
+*!*
   let elem = document.getElementById('elem');
+*/!*
 
   elem.style.background = 'red';
 </script>
 ```
 
-```smart header="There can be only one"
-By the specification the value of `id` must be unique. There can be only one element in the document with the given `id`.
+Here in the tutorial we'll often use `id` to directly reference an element, but that's only to keep things short. In real life `document.getElementById` is the preferred method.
 
-If there are multiple elements with the same `id`, then the behavior is unpredictable. The browser may return any of them at random. So please stick to the rule and keep `id` unique.
+```smart header="There can be only one"
+The `id` must be unique. There can be only one element in the document with the given `id`.
+
+If there are multiple elements with the same `id`, then the behavior of corresponding methods is unpredictable. The browser may return any of them at random. So please stick to the rule and keep `id` unique.
 ```
 
-I will often use `id` to directly reference an element in examples, but that's only to keep things short. In real life `document.getElementById` is definitely the preferred method.
+```warn header="Only `document.getElementById`, not `anyNode.getElementById`"
+The method `getElementById` that can be called only on `document` object. It looks for the given `id` in the whole document.
+```
 
 ## getElementsBy*
 
-There are also other methods of this kind:
+There are also other methods to look for nodes:
 
-`elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` can also be `*` for any.
+- `elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` parameter can also be a star `"*"` for "any tags".
 
 For instance:
 ```js
@@ -63,7 +82,7 @@ For instance:
 let divs = document.getElementsByTagName('div');
 ```
 
-Unlike `getElementById` that can be called only on `document`, this method can look inside any element.
+This method is callable in the context of any DOM element.
 
 Let's find all `input` inside the table:
 
@@ -100,7 +119,7 @@ Let's find all `input` inside the table:
 ```warn header="Don't forget the `\"s\"` letter!"
 Novice developers sometimes forget the letter `"s"`. That is, they try to call `getElementByTagName` instead of <code>getElement<b>s</b>ByTagName</code>.
 
-The `"s"` letter is only absent in `getElementById`, because we look for a single element. But `getElementsByTagName` returns a collection.
+The `"s"` letter is absent in `getElementById`, because it returns a single element. But `getElementsByTagName` returns a collection of elements, so there's `"s"` inside.
 ```
 
 ````warn header="It returns a collection, not an element!"
@@ -123,8 +142,8 @@ document.getElementsByTagName('input')[0].value = 5;
 
 There are also other rarely used methods of this kind:
 
-- `document.getElementsByName(name)` returns elements with the given `name` attribute. Rarely used.
 - `elem.getElementsByClassName(className)` returns elements that have the given CSS class. Elements may have other classes too.
+- `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. Exists for historical reasons, very rarely used, we mention it here only for completeness.
 
 For instance:
 
@@ -138,14 +157,15 @@ For instance:
   // find by name attribute
   let form = document.getElementsByName('my-form')[0];
 
+  // find by class inside the form
   let articles = form.getElementsByClassName('article');
-  alert( articles.length ); // 2, will find both elements with class "article"
+  alert(articles.length); // 2, found two elements with class "article"
 </script>
 ```
 
 ## querySelectorAll [#querySelectorAll]
 
-Now the heavy artillery.
+Now goes the heavy artillery.
 
 The call to `elem.querySelectorAll(css)` returns all elements inside `elem` matching the given CSS selector. That's the most often used and powerful method.
 
@@ -171,23 +191,26 @@ Here we look for all `<li>` elements that are last children:
 </script>
 ```
 
+This method is indeed powerful, because any CSS selector can be used.
+
 ```smart header="Can use pseudo-classes as well"
 Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is  over now (in nesting order: from the outmost `<html>` to the most nested one).
 ```
+
 
 ## querySelector [#querySelector]
 
 The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster.
+In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and shorter to write.
 
 ## matches
 
 Previous methods were searching the DOM.
 
-The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` fits the CSS-selector. It returns `true` or `false`.
+The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
 
-The method comes handy when we are walking over elements (like in array or something) and trying to filter those that interest us.
+The method comes handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
 
 For instance:
 
@@ -196,6 +219,7 @@ For instance:
 <a href="http://ya.ru">...</a>
 
 <script>
+  // can be any collection instead of document.body.children
   for (let elem of document.body.children) {
 *!*
     if (elem.matches('a[href$="zip"]')) {
@@ -208,37 +232,44 @@ For instance:
 
 ## closest
 
-The method `elem.closest(css)` looks the nearest ancestor (parent or his parent and so on) that matches the CSS-selector. The `elem` itself is also included in the search.
+All elements that are directly above the given one are called its *ancestors*.
 
-In other words, the method `closest` goes up from the element and checks each of them. If it matches, then stops the search and returns it.
+In other words, ancestors are: parent, the parent of parent, its parent and so on. The ancestors together form the chain of parents from the element to the top.
+
+The method `elem.closest(css)` looks the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
+
+In other words, the method `closest` goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned.
 
 For instance:
 
 ```html run
 <h1>Contents</h1>
 
-<ul class="book">
-  <li class="chapter">Chapter 1</li>
-  <li class="chapter">Chapter 1</li>
-</ul>
+<div class="contents">
+  <ul class="book">
+    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Chapter 1</li>
+  </ul>
+</div>
 
 <script>
   let chapter = document.querySelector('.chapter'); // LI
 
-  alert(chapter.closest('.book')); // UL above our this LI
+  alert(chapter.closest('.book')); // UL
+  alert(chapter.closest('.contents')); // DIV
 
-  alert(chapter.closest('h1')); // null
-  // because h1 is not an ancestor
+  alert(chapter.closest('h1')); // null (because h1 is not an ancestor)
 </script>
 ```
 
 ## Live collections
 
-All methods `"getElementsBy*"` return a *live* collection. Such collections always reflect the current state of the document.
+All methods `"getElementsBy*"` return a *live* collection. Such collections always reflect the current state of the document and "auto-update" when it changes.
 
-For instance, here in the first script the length is `1`, because the browser only processed the first div.
+In the example below, there are two scripts.
 
-Then later after the second `div` it's 2:
+1. The first one creates a reference to the collection of `<div>`. As of now, it's length is `1`.
+2. The second scripts runs after the browser meets one more `<div>`, so it's length is `2`.
 
 ```html run
 <div>First div</div>
@@ -281,7 +312,7 @@ If we use it instead, then both scripts output `1`:
 
 Now we can easily see the difference. The static collection did not increase after the appearance of a new `div` in the document.
 
-Here we used separate scripts to illustrate how the element addition affects the collection. Soon we'll see more ways to alter DOM.
+Here we used separate scripts to illustrate how the element addition affects the collection, but any DOM manipulations affect them. Soon we'll see more of them.
 
 ## Summary
 
@@ -346,4 +377,4 @@ Besides that:
 - There is `elem.closest(css)` to look for a nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
 
 And let's mention one more method here to check for the child-parent relationship:
--  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA`. Or when it's the same element.
+-  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`.

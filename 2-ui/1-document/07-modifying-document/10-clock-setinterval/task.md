@@ -6,4 +6,4 @@ importance: 4
 
 Create a colored clock like here:
 
-[iframe src="solution" height=100]
+[iframe src="solution" height=60]

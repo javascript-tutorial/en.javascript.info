@@ -1,16 +1,16 @@
 # DOM: attributes and properties
 
-The browser "reads" HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
+When the browser loads the page, it "reads" (another word: "parses") HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
 
 For instance, if the tag is `<body id="page">`, then the DOM object will have `body.id="page"`.
 
-But the mapping is not one-to-one! In this chapter we'll see that DOM properties and attributes are linked, but they are still different things.
+But the mapping is not one-to-one! In this chapter we'll see that DOM properties and attributes are linked, but they may be different.
 
 [cut]
 
 ## DOM properties
 
-We've already seen built-in DOM properties. But technically no one limits us -- we can add own own.
+We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add own own.
 
 DOM nodes are regular Javascript objects. We can alter them.
 
@@ -46,11 +46,10 @@ document.documentElement.sayHi(); // Hello, I'm HTML
 document.body.sayHi(); // Hello, I'm BODY
 ```
 
-So, DOM properties:
+So, DOM properties and methods behave just like those of regular Javascript objects:
 
-- Can have any value.
-- Are case-sensitive (`elem.nodeType`, not `elem.NoDeTyPe`).
-- Work, because DOM nodes are objects.
+- They can have any value.
+- They are case-sensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
 
 ## HTML attributes
 
@@ -71,9 +70,9 @@ For instance:
 </body>
 ```
 
-Please note that a standard attribute for one element can be unknown for another one.
+Please note that a standard attribute for one element can be unknown for another one. For instance, `"type"` is standard for `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), but not for `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Standard attributes are described in the specification for the corresponding class.
 
-Standard attributes are described in the specification for the corresponding class. For instance, `"type"` is standard for `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), but not for `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)):
+Here we can see it:
 ```html run
 <body id="body" type="...">
   <input id="input" type="text">
@@ -95,9 +94,9 @@ Sure. All attributes are accessible using following methods:
 - `elem.setAttribute(name, value)` -- sets the value.
 - `elem.removeAttribute(name)` -- removes the attribute.
 
-Also one can read all attributes using `elem.attributes`. It's a collection of [Attr](https://dom.spec.whatwg.org/#attr) objects, each one with `name` and `value`.
-
 These methods operate exactly with what's written in HTML.
+
+Also one can read all attributes using `elem.attributes`: a collection of objects that belong to a built-in [Attr](https://dom.spec.whatwg.org/#attr) class. It's enough to know that each of them has  `name` and `value` properties.
 
 Here's a demo of reading a non-standard property:
 
@@ -143,7 +142,7 @@ Please note:
 3. All attributes including ones that we set are seen in `innerHTML`.
 4. The `attributes` collection is iterable and has all attributes with `name` and `value`.
 
-## Property-attribute sync
+## Property-attribute synchronization
 
 When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vise-versa.
 
@@ -189,7 +188,7 @@ In the example above:
 - Changing the attribute `value` updates the property.
 - But the property change does not affect the attribute.
 
-Speaking about `value`, that actually can come in handy, because the user may modify `value` as he wants, and so do we. Then, if we want to recover the "original" value from HTML, it's in the attribute.
+That actually can come in handy, because the user may modify `value`, then, if we want to recover the "original" value from HTML, it's in the attribute.
 
 ## DOM properties are typed
 
@@ -199,29 +198,31 @@ DOM properties are not always strings. For instance, `input.checked` property (f
 <input id="input" type="checkbox" checked> checkbox
 
 <script>
-  alert(input.getAttribute('checked')); // empty string
-  alert(input.checked); // true
+  alert(input.getAttribute('checked')); // the attribute value is: empty string
+  alert(input.checked); // the property value is: true
 </script>
 ```
 
-There are more advanced examples. As we've already seen, `style` property is an object:
+There are other examples. The `style` attribute is a string, but `style` property is an object:
 
 ```html run
 <div id="div" style="color:red;font-size:120%">Hello</div>
 
 <script>
+  // string
   alert(div.getAttribute('style')); // color:red;font-size:120%
 
+  // object
   alert(div.style); // [object CSSStyleDeclaration]
   alert(div.style.color); // red
 </script>
 ```
 
-**But even if a DOM property type is a string, it may differ from the attribute.**
+But even if a DOM property type is a string, it may differ from the attribute.
 
-For instance, the `href` DOM property is always a full URL (by the standard), even if the attribute has a relative URL or just a `#hash` part.
+For instance, the `href` DOM property is always a full URL (by the standard), even if the attribute has a relative URL or just a `#hash`.
 
-Here we can see that:
+Here's an example:
 
 ```html height=30 run
 <a id="a" href="#hello">link</a>
@@ -230,42 +231,49 @@ Here we can see that:
   alert(a.getAttribute('href')); // #hello
 
   // property
-  alert(a.href ); // full URL like http://site.com/page#hello
+  alert(a.href ); // full URL in the form http://site.com/page#hello
 </script>
 ```
 
-Let's note again: if we need the value exactly as written in the HTML, we need to use `getAttribute`.
+If we need the value of `href` or anything else exactly as written in the HTML, we need to use `getAttribute`.
 
 
 ## Non-standard attributes, dataset
 
-When writing HTML, we use a lot of standard attributes. But what about non-standard, custom ones? May they be useful? What for?
+When writing HTML, we use a lot of standard attributes. But what about non-standard, custom ones? First, let's see whether they are useful or not? What for?
 
-Sometimes they are used to pass custom data from HTML to Javascript, or "mark" elements like this:
+Sometimes non-standard attributes are used to pass custom data from HTML to Javascript, or "mark" elements.
+
+Like this:
 
 ```html run
-<!-- marking to show the "name" here -->
+<!-- mark the div to show "name" here -->
 <div *!*show-info="name"*/!*></div>
+<!-- and age here -->
+<div *!*show-info="age"*/!*></div>
 
 <script>
   // the code finds an element with the mark and shows what's requested
-  let info = {
-    name: "Pete"
+  let user = {
+    name: "Pete",
+    age: 25
   };
 
-  let div = document.querySelector('[show-info]');
-
-  // insert info.name into the div
-  div.innerHTML = info[div.getAttribute('show-info')]; // Pete
+  for(let div of document.querySelectorAll('[show-info]')) {
+    // insert the corresponding info into the field
+    let field = div.getAttribute('show-info');
+    div.innerHTML = user[field]; // Pete, then age
+  }
 </script>
 ```
 
-Also, they can be used to style the element.
+Also they can be used to style an element.
 
 For instance, here for the order state the attribute `order-state` is used:
 
 ```html run
 <style>
+  /* styles rely on the custom attribute "order-state" */
   .order[order-state="new"] {
     color: green;
   }
@@ -294,19 +302,19 @@ For instance, here for the order state the attribute `order-state` is used:
 
 Why the attribute was chosen in the example above, not classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
 
-That's because an attribute is more convenient to manage. If we want to change the order state, we can modify it like this:
+That's because an attribute is more convenient to manage. The state can be changed as easy as:
 
 ```js
 div.setAttribute('order-state', 'canceled');
 ```
 
-...But there may be a possible problem here. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected side-effects.
+But there may be a possible problem. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected side-effects in case of such conflict.
 
 To evade conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 
 **All attributes starting with "data-" are reserved for programmers' use. They are available in `dataset` property.**
 
-So, if an `elem` has an attribute named `"data-about"`, it's available as `elem.dataset.about`.
+For instance, if an `elem` has an attribute named `"data-about"`, it's available as `elem.dataset.about`.
 
 Like this:
 
@@ -341,41 +349,29 @@ Here's a rewritten "order state" example:
 </div>
 
 <script>
+  // read
   alert(order.dataset.orderState); // new
+
+  // modify
   order.dataset.orderState = "pending";
 </script>
 ```
 
-Using `data-*` attributes for custom purposes is a valid, safe way.
+Using `data-*` attributes is a valid, safe way to pass custom data.
 
-Please note that we can not only read, but modify data-attributes. Then CSS updates the view accordingly: in the example above the last line changes the color to blue.
+Please note that we can not only read, but also modify data-attributes. Then CSS updates the view accordingly: in the example above the last line changes the color to blue.
 
 ## Summary
 
 - Attributes -- is what's written in HTML.
 - Properties -- is what's in DOM objects.
 
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Properties</th>
-<th>Attributes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Type</td>
-<td>Any value, standard properties have types described in the spec</td>
-<td>A string</td>
-</tr>
-<tr>
-<td>Name</td>
-<td>Name is case-sensitive</td>
-<td>Name is case-insensitive</td>
-</tr>
-</tbody>
-</table>
+A small comparison:
+
+|            | Properties | Attributes |
+|------------|------------|------------|
+|Type|Any value, standard properties have types described in the spec|A string|
+|Name|Name is case-sensitive|Name is case-insensitive|
 
 Methods to work with attributes are:
 
@@ -385,9 +381,7 @@ Methods to work with attributes are:
 - `elem.removeAttribute(name)` -- to remove the attribute.
 - `elem.attributes` is a collection of all attributes.
 
-We use those in cases when DOM properties do not suit us and we need exactly attributes for some reasons.
+We use attributes when DOM properties do not suit us and we need exactly attributes for some reasons, for instance:
 
-Some use cases:
-
-- We want to access a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
+- We need a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
 - We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance `href` property is always a full URL, and we may want to get the "original" value.
