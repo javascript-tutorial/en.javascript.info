@@ -1,16 +1,16 @@
-# Page loading: DOMContentLoaded, load, beforeunload, unload [todo: where put async defer scripts? in DOM?]
+# Page lifecycle: DOMContentLoaded, load, beforeunload, unload
 
-The process of loading an HTML document may be split into three stages:
+The lifecycle of an HTML page has three important events:
 
-- `DOMContentLoaded` -- the browser fully loaded HTML and built DOM.
+- `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may be not yet loaded.  
 - `load` -- the browser loaded all resources (images, styles etc).
-- `beforeunload/unload` -- leaving the page.
+- `beforeunload/unload` -- when the user is leaving the page.
 
-We can set a handler on every stage:
+Each event may be useful:
 
-- `DOMContentLoaded` event -- DOM is ready, we can lookup DOM nodes, initialize the interface. But images and styles may be not yet loaded.
-- `load` event -- the page and additional resources are loaded, it's rarely used, because usually we don't want to wait for that moment.
-- `beforeunload/unload` event -- we can check if the user saved changes he did in the page, ask him whether he's sure.
+- `DOMContentLoaded` event -- DOM is ready, so the handler can lookup DOM nodes, initialize the interface.
+- `load` event -- additional resources are loaded, we can get image sizes (if not specified in HTML/CSS) etc.
+- `beforeunload/unload` event -- the user is leaving: we can check if the user saved the changes and  ask him whether he really wants to leave.
 
 Let's explore the details of these events.
 
@@ -28,11 +28,13 @@ document.addEventListener("DOMContentLoaded", ready);
 
 For instance:
 
-```html run height=150
+```html run height=200 refresh
 <script>
   function ready() {
     alert('DOM is ready');
-    alert(`Image sizes: ${img.offsetWidth}x${img.offsetHeight}`);
+
+    // image is not yet loaded (unless was cached), so the size is 0x0
+    alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
   }
 
 *!*
@@ -40,7 +42,7 @@ For instance:
 */!*
 </script>
 
-<img id="img" src="https://en.js.cx/clipart/hedgehog.jpg?speed=1&cache=0">
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
 ```
 
 In the example the `DOMContentLoaded` handler runs when the document is loaded, not waits for the page load. So `alert` shows zero sizes.
@@ -49,168 +51,113 @@ At the first sight `DOMContentLoaded` event is very simple. The DOM tree is read
 
 ### DOMContentLoaded and scripts
 
-If there are `<script>...</script>` tags in the document, then the browser must execute them "at place" while building DOM.
+When the browser initially loads HTML and comes across a `<script>...</script>` in the text, it can't continue building DOM. It must execute the script right now. So `DOMContentLoaded` may only happen after all such scripts are executed.
 
-External scripts `<script src="...">` also put "DOM building" to pause while the script is loading and executing.
+External scripts (with `src`) also put DOM building to pause while the script is loading and executing. So `DOMContentLoaded` waits for external scripts as well.
 
-The exceptions are external scripts with `async` or `defer` attributes.
+The only exception are external scripts with `async` and `defer` attributes. They tell the browser to continue processing without waiting for the scripts. So the user can see the page before scripts finish loading, good for performance.
 
-- An async external script `<script async src="...">` is loaded and executed fully asynchronously, it doesn't pause anything.
-- A deferred external script `<script defer src="...">` is loaded and executed fully asynchronously, it doesn't pause anything, with two differences from `async`:
-  1. If there are many external scripts with `defer`
-  2. lba
+```smart header="A word about `async` and `defer`"
+Attributes `async` and `defer` work only for external scripts. They are ignored if there's no `src`.
 
+Both of them tell the browser that it may go on working with the page, and load the script "in background", then run the script when it loads. So the script doesn't block DOM building and page rendering.
 
+There are two differences between them.
 
+|         | `async` | `defer` |
+|---------|---------|---------|
+| Order | Scripts with `async` execute *in the load-first order*. Their document order doesn't matter -- which loads first runs first. | Scripts with `defer` always execute *in the document order* (as they go in the document). |
+| `DOMContentLoaded` | Scripts with `async` may load and execute *before `DOMContentLoaded`*: if they are small, and the document is big, they load faster. | Scripts with `defer` always execute *after `DOMContentLoaded`*: they wait for it if needed. |
 
+So `async` is used for totally independent scripts, and `defer` is used where we want some order.
 
-Если в документе есть теги `<script>`, то браузер обязан их выполнить до того, как построит DOM. Поэтому событие `DOMContentLoaded` ждёт загрузки и выполнения таких скриптов.
+```
 
-Исключением являются скрипты с атрибутами `async` и `defer`, которые подгружаются асинхронно.
+### DOMContentLoaded and styles
 
-**Побочный эффект: если на странице подключается скрипт с внешнего ресурса (к примеру, реклама), и он тормозит, то событие `DOMContentLoaded` и связанные с ним действия могут сильно задержаться.**
+External style sheets don't affect DOM, and so `DOMContentLoaded` does not wait for them.
 
-Современные системы рекламы используют атрибут `async`, либо вставляют скрипты через DOM: `document.createElement('script')...`, что работает так же как `async`: такой скрипт выполняется полностью независимо от страницы и от других скриптов -- сам ничего не ждёт и ничего не блокирует.
-
-### DOMContentLoaded и стили
-
-Внешние стили никак не влияют на событие `DOMContentLoaded`. Но есть один нюанс.
-
-**Если после стиля идёт скрипт, то этот скрипт обязан дождаться, пока стиль загрузится:**
+But there's a pitfall: if we have a script after the style, then that script must wait for the stylesheet to execute:
 
 ```html
 <link type="text/css" rel="stylesheet" href="style.css">
 <script>
-  // сработает после загрузки style.css
+  // the script doesn't not execute until the stylesheet is loaded
+  alert(getComputedStyle(document.body).marginTop);
 </script>
 ```
 
-Такое поведение прописано в стандарте. Его причина -- скрипт может захотеть получить информацию со страницы, зависящую от стилей, например, ширину элемента, и поэтому обязан дождаться загрузки `style.css`.
+The reason is that the script may want to get coordinates and other style-dependent properties of elements, like in the example above. Naturally, it has to wait for styles to load.
 
-**Побочный эффект -- так как событие `DOMContentLoaded` будет ждать выполнения скрипта, то оно подождёт и загрузки стилей, которые идут перед `<script>`.**
+As `DOMContentLoaded` waits for scripts, it now waits for styles before them as well.
 
-### Автозаполнение
+### Built-in browser autofill
 
-Firefox/Chrome/Opera автозаполняют формы по `DOMContentLoaded`.
+Firefox, Chrome and Opera autofill forms on `DOMContentLoaded`.
 
-Это означает, что если на странице есть форма для ввода логина-пароля, то браузер введёт в неё запомненные значения только по `DOMContentLoaded`.
+For instance, if the page has a form with login and password, and the browser remembered the values, then on `DOMContentLoaded` it may try to autofill them (if approved by the user).
 
-**Побочный эффект: если `DOMContentLoaded` ожидает множества скриптов и стилей, то автозаполнение не сработает до полной их загрузки.**
+So if `DOMContentLoaded` is postponed by long-loading scripts, then autofill also awaits. You probably saw that on some sites (if you use browser autofill) -- the login/password fields don't get autofilled immediately, but there's a delay till the page fully loads. That's actually the delay until the `DOMContentLoaded` event.
 
-Конечно, это довод в пользу того, чтобы не задерживать `DOMContentLoaded`, в частности -- использовать у скриптов атрибуты `async` и `defer`.
+One of minor benefits in using `async` and `defer` for external scripts -- they don't block `DOMContentLoaded` and don't delay browser autofill.
 
 ## window.onload [#window-onload]
 
-Событие `onload` на `window` срабатывает, когда загружается *вся* страница, включая ресурсы на ней -- стили, картинки, ифреймы и т.п.
+The `load` event on the `window` object triggers when the whole page is loaded including styles, images and other resources.
 
-Пример ниже выведет `alert` лишь после полной загрузки окна, включая `IFRAME` и картинку:
+The example below correctly shows image sizes, because `window.onload` waits for all images:
 
-```html run
+```html run height=200 refresh
 <script>
-*!*
   window.onload = function() {
-    alert( 'Документ и все ресурсы загружены' );
+    alert('Page loaded');
+
+    // image is loaded at this time
+    alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
   };
-*/!*
 </script>
-<iframe src="https://example.com/" style="height:60px"></iframe>
-<img src="https://js.cx/clipart/yozhik.jpg?speed=1">
+
+<img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
 ```
 
 ## window.onunload
 
-Когда человек уходит со страницы или закрывает окно, на `window` срабатывает событие `unload`. В нём можно сделать что-то, не требующее ожидания, например, закрыть вспомогательные popup-окна, но отменить сам переход нельзя.
+When a visitor leaves the page, the `unload` event triggers on `window`. We can do something there that doesn't involve a delay, like closing related popup windows. But we can't cancel the transition to another page.
 
-Это позволяет другое событие -- `onbeforeunload`, которое поэтому используется гораздо чаще.
+For that we should use another event -- `onbeforeunload`.
 
 ## window.onbeforeunload [#window.onbeforeunload]
 
-Если посетитель инициировал переход на другую страницу или нажал "закрыть окно", то обработчик `onbeforeunload` может приостановить процесс и спросить подтверждение.
+If a visitor initiated leaving the page or tries to close the window, the `beforeunload` handler can ask for additional confirmation.
 
-Для этого ему нужно вернуть строку, которую браузеры покажут посетителю, спрашивая -- нужно ли переходить.
+It needs to return the string with the question. The browser will show it.
 
-Например:
+For instance:
 
 ```js
 window.onbeforeunload = function() {
-  return "Данные не сохранены. Точно перейти?";
+  return "There are unsaved changes. Leave now?";
 };
 ```
 
-```warn header="Firefox игнорирует текст, он показывает своё сообщение"
-Firefox игнорирует текст, а всегда показывает своё сообщение. Это сделано в целях большей безопасности посетителя, чтобы его нельзя было ввести в заблуждение сообщением.
-```
-
 ```online
-Кликните на кнопку в `IFRAME'е` ниже, чтобы поставить обработчик, а затем по ссылке, чтобы увидеть его в действии:
+Click on the button in `<iframe>` below to set the handler, and then click the link to see it in action:
 
-[iframe src="window-onbeforeunload" border="1" height="80" link]
+[iframe src="window-onbeforeunload" border="1" height="80" link edit]
 ```
 
-## Эмуляция DOMContentLoaded для IE8-
-
-Прежде чем что-то эмулировать, заметим, что альтернативой событию `onDOMContentLoaded` является вызов функции `init` из скрипта в самом конце `BODY`, когда основная часть DOM уже готова:
-
-```html
-<body>
-  ...
-  <script>
-    init();
-  </script>
-</body>
+```warn header="Some browsers ignore the text and show their own message instead"
+Some browsers like Chrome and Firefox ignore the string and shows its own message instead. That's for sheer safety, to protect the user from potentially misleading and hackish messages.
 ```
 
-Причина, по которой обычно предпочитают именно событие -- одна: удобство. Вешается обработчик и не надо ничего писать в конец `BODY`.
+## Summary
 
-### Мини-скрипт documentReady
-Если вы всё же хотите использовать `onDOMContentLoaded` кросс-браузерно, то нужно либо подключить какой-нибудь фреймворк -- почти все предоставляют такой функционал, либо использовать функцию из мини-библиотеки [jquery.documentReady.js](https://github.com/Couto/jquery.parts/blob/master/jquery.documentReady.js).
+Page lifecycle events:
 
-Несмотря на то, что в названии содержится слово "jquery", эта библиотечка не требует [jQuery](http://jquery.com). Наоборот, она представляет собой единственную функцию с названием `$`, вызов которой `$(callback)` добавляет обработчик `callback` на `DOMContentLoaded` (можно вызывать много раз), либо, если документ уже загружен -- выполняет его тут же.
+- `DOMContentLoaded` event triggers on `document` when DOM is ready. We can apply Javascript to elements at this stage.
+  - All scripts are executed except those that are external with `async` or `defer`
+  - Images and other resources may still continue loading.
 
-Пример использования:
-
-```html run
-<script src="https://js.cx/script/jquery.documentReady.js"></script>
-
-<script>
-*!*
-  $(function() {
-    alert( "DOMContentLoaded" );
-  });
-*/!*
-</script>
-
-<img src="https://js.cx/clipart/yozhik.jpg?speed=1">
-<div>Текст страницы</div>
-```
-
-Здесь `alert` сработает до загрузки картинки, но после создания DOM, в частности, после появления текста. И так будет для всех браузеров, включая даже очень старые IE.
-
-````smart header="Как именно эмулируется `DOMContentLoaded`?"
-Технически, эмуляция `DOMContentLoaded` для старых IE осуществляется очень забавно.
-
-Основной приём -- это попытка прокрутить документ вызовом:
-
-```js
-document.documentElement.doScroll("left");
-```
-
-Метод `doScroll` работает только в IE и "методом тыка" было обнаружено, что он бросает исключение, если DOM не полностью создан.
-
-Поэтому библиотека пытается вызвать прокрутку, если не получается -- через `setTimeout(.., 1)` пытается прокрутить его ещё раз, и так до тех пор, пока действие не перестанет вызывать ошибку. На этом этапе документ считается загрузившимся.
-
-Внутри фреймов и в очень старых браузерах такой подход может ошибаться, поэтому дополнительно ставится резервный обработчик на `onload`, чтобы уж точно сработал.
-````
-
-## Итого
-
-- Самое востребованное событие из описанных -- без сомнения, `DOMContentLoaded`. Многие страницы сделаны так, что инициализуют интерфейсы именно по этому событию.
-
-    Это удобно, ведь можно в `<head>` написать скрипт, который будет запущен в момент, когда все DOM-элементы доступны.
-
-    С другой стороны, следует иметь в виду, что событие `DOMContentLoaded` будет ждать не только, собственно, HTML-страницу, но и внешние скрипты, подключенные тегом `<script>` без атрибутов `defer/async`, а также стили перед такими скриптами.
-
-    Событие `DOMContentLoaded` не поддерживается в IE8-, но почти все фреймворки умеют его эмулировать. Если нужна отдельная функция только для кросс-браузерного аналога `DOMContentLoaded` -- можно использовать [jquery.documentReady.js](https://github.com/Couto/jquery.parts/blob/master/jquery.documentReady.js).
-- Событие `window.onload` используют редко, поскольку обычно нет нужды ждать подгрузки *всех* ресурсов. Если же нужен конкретный ресурс (картинка или ифрейм), то можно поставить событие `onload` непосредственно на нём, мы посмотрим, как это сделать, далее.
-- Событие `window.onunload` почти не используется, как правило, оно бесполезно -- мало что можно сделать, зная, что окно браузера прямо сейчас закроется.
-- Гораздо чаще применяется `window.onbeforeunload` -- это де-факто стандарт для того, чтобы проверить, сохранил ли посетитель данные, действительно ли он хочет покинуть страницу. В системах редактирования документов оно используется повсеместно.
+- `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
+- `beforeload` event on `window` triggers when the user wants to leave the page. If it returns a string, the browser shows a question whether the user really wants to leave or not.
+- `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used.

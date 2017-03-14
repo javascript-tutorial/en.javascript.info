@@ -250,12 +250,12 @@ For instance:
 ```smart header="Computed and resolved values"
 There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values):
 
-1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the  result of the CSS cascade. If can look like `width:auto` or `font-size:125%`.
-2. A *resolved* style value is the one finally applied to the element. Values like `auto` or `125%` are still abstract. The browser takes the computed value and makes all units fixed and absolute, for instance: `width:212px` or `font-size:16px`. For geometry properties resolved values may have a floating point, like `width:50.5px`.
+1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the  result of the CSS cascade. If can look like `height:1em` or `font-size:125%`.
+2. A *resolved* style value is the one finally applied to the element. Values like `1em` or `125%` are relative. The browser takes the computed value and makes all units fixed and absolute, for instance: `height:20px` or `font-size:16px`. For geometry properties resolved values may have a floating point, like `width:50.5px`.
 
 Long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
 
-So nowadays `getComputedStyle` actually returns the final, resolved value in absolute units.
+So nowadays `getComputedStyle` actually returns the resolved value of the property.
 ```
 
 ````warn header="`getComputedStyle` requires the full property name"

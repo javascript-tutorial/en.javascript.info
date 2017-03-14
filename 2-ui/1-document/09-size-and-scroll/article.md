@@ -154,7 +154,7 @@ They include the content width together with paddings, but without the scrollbar
 
 ![](metric-client-width-height.png)
 
-On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so its exactly the sum of what's inside the borders: CSS-height `200px` plus top and bottom paddings (`2*20px`) total `240px`.
+On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so it's exactly the sum of what's inside the borders: CSS-height `200px` plus top and bottom paddings (`2*20px`) total `240px`.
 
 Now `clientWidth` -- here the content width is not `300px`, but `284px`, because `16px` are occupied by the scrollbbar. So the sum is `284px` plus left and right paddings, total `324px`.
 
@@ -167,7 +167,7 @@ So when there's no padding we can use `clientWidth/clientHeight` to get the cont
 ## scrollWidth/Height
 
 - Properties `clientWidth/clientHeight` only account for the visible part of the element.
-- Properties `scrollWidth/scrollHeight` add the scrolled out (hidden) part:
+- Properties `scrollWidth/scrollHeight` also include the scrolled out (hidden) part:
 
 ![](metric-scroll-width-height.png)
 
@@ -176,14 +176,17 @@ On the picture above:
 - `scrollHeight = 723` -- is the full inner height of the content area including the scrolled out part.
 - `scrollWidth = 324` -- is the full inner width, here we have no horizontal scroll, so it equals `clientWidth`.
 
-We can use these properties to open the element wide to its full width/height, by the code:
+We can use these properties to expand the element wide to its full width/height.
+
+Like this:
 
 ```js
+// expand the element to the full content height
 element.style.height = element.scrollHeight + 'px';
 ```
 
 ```online
-Click the button to open wide the element:
+Click the button to expand the element:
 
 <div id="element" style="width:300px;height:200px; padding: 0;overflow: auto; border:1px solid black;">text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text</div>
 
@@ -192,33 +195,33 @@ Click the button to open wide the element:
 
 ## scrollLeft/scrollTop
 
-Properties `scrollLeft/scrollTop` show how much is hidden behind the scroll. It's the width/height of the hidden, scrolled out part of the element.
+Properties `scrollLeft/scrollTop` are the width/height of the hidden, scrolled out part of the element.
 
-On the picture below we can see `scrollHeight` and `scrollTop` for a block with a vertical scroll:
+On the picture below we can see `scrollHeight` and `scrollTop` for a block with a vertical scroll.
 
 ![](metric-scroll-top.png)
 
+In other words, `scrollTop` is "how much is scrolled up".
+
 ````smart header="`scrollLeft/scrollTop` can be modified"
-Unlike most other geometry properties that are read-only, `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
+Most geometry properties that are read-only, but `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
 
 ```online
-If you click the element below, the code `elem.scrollTop += 10` executes. That makes the element content scroll `10px` below.
+If you click the element below, the code `elem.scrollTop+=10` executes. That makes the element content scroll `10px` below.
 
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Click<br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
 ```
 
-Setting `scrollTop` to `0` or `Infinity` will make the element scroll to the top/bottom respectively.
+Setting `scrollTop` to `0` or `Infinity` will make the element scroll to the very top/bottom respectively.
 ````
 
 ## Don't take width/height from CSS
 
-We've just covered geometry properties of DOM elements. They are normally used to get widths, heights and distances.
+We've just covered geometry properties of DOM elements. They are normally used to get widths, heights and calculate distances.
 
-Now let's see what we should not use.
+But as we know from the chapter <info:styles-and-classes>, we can read CSS-height and width using `getComputedStyle`.
 
-As we know from the chapter <info:styles-and-classes>, we can read CSS-height and width using `getComputedStyle`.
-
-So we can try to read the width of an element like this:
+So why not to read the width of an element like this?
 
 ```js run
 let elem = document.body;
@@ -226,9 +229,9 @@ let elem = document.body;
 alert( getComputedStyle(elem).width ); // show CSS width for elem
 ```
 
-Why we should use geometry properties instead?
+Why we should use geometry properties instead? There are two reasons:
 
-1. First, CSS `width/height` depend on another property -- `box-sizing` that defines "what is" CSS width and height. A change in `box-sizing` for purposes of CSS may break such JavaScript.
+1. First, CSS width/height depend on another property: `box-sizing` that defines "what is" CSS width and height. A change in `box-sizing` for CSS purposes may break such JavaScript.
 2. Second, CSS `width/height` may be `auto`, for instance for an inline element:
 
     ```html run
@@ -243,11 +246,9 @@ Why we should use geometry properties instead?
 
     From the CSS standpoint, `width:auto` is perfectly normal, but in JavaScript we need an exact size in `px` that we can use in calculations. So here CSS width is useless at all.
 
-And there's one more reason. A scrollbar is the reason of many problems. The devil is in the detail. Sometimes the code that works fine without a scrollbar starts to bug with it.
+And there's one more reason: a scrollbar. Sometimes the code that works fine without a scrollbar starts to bug with it, because a scrollbar takes the space from the content in some browsers. So the real width available for the content is *less* than CSS width. And `clientWidth/clientHeight` take that into account.
 
-As we've seen a scrollbar takes the space from the content in some browsers. So the real width available for the content is *less* than CSS width. And `clientWidth/clientHeight` take that into account.
-
-...But some browsers also take that into account in `getComputedStyle(elem).width`. That is: some of them return real inner width and some of them -- CSS width. Such cross-browser differences is a reason not to use `getComputedStyle`, but rather rely on geometry propeties.
+...But with `getComputedStyle(elem).width` the situation is different. Some browsers (e.g. Chrome) return the real inner width, minus the scrollbar, and some of them (e.g. Firefox) -- CSS width (ignore the scrollbar). Such cross-browser differences is the reason not to use `getComputedStyle`, but rather rely on geometry propeties.
 
 ```online
 If your browser reserves the space for a scrollbar (most browsers for Windows do), then you can test it below.
@@ -256,7 +257,7 @@ If your browser reserves the space for a scrollbar (most browsers for Windows do
 
 The element with text has CSS `width:300px`.
 
-Desktop Windows Firefox, Chrome, Edge all reserve the space for the scrollbar. But  Firefox shows `300px`, while Chrome and Edge show less. That's because Firefox returns the CSS width and other browsers return the "real" width.
+On a Desktop Windows OS, Firefox, Chrome, Edge all reserve the space for the scrollbar. But  Firefox shows `300px`, while Chrome and Edge show less. That's because Firefox returns the CSS width and other browsers return the "real" width.
 ```
 
 Please note that the described difference are only about reading `getComputedStyle(...).width` from JavaScript, visually everything is correct.

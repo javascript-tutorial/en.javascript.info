@@ -1,6 +1,6 @@
 # Window sizes and scroll
 
-How to find out the browser window width? How to get the full height of the document, including the scrolled out part? How to scroll the page from JavaScript?
+How to find out the width of the browser window? How to get the full height of the document, including the scrolled out part? How to scroll the page using JavaScript?
 
 From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and pecularities important enough to consider.
 
@@ -13,39 +13,38 @@ Properties `clientWidth/clientHeight` of `document.documentElement` is exactly w
 ![](document-client-width-height.png)
 
 ```online
-For instance, the button below shows the height of your window:
+For instance, this button shows the height of your window:
+
 <button onclick="alert(document.documentElement.clientHeight)">alert(document.documentElement.clientHeight)</button>
 ```
 
 ````warn header="Not `window.innerWidth/Height`"
 Browsers also support properties `window.innerWidth/innerHeight`. They look like what we want. So what's the difference?
 
-Properties `clientWidth/clientHeight`, if there's a scrollbar occupying some space, return the width/height inside it. In other words, they return width/height of the visible part of the document, available for the content.
+If there's a scrollbar occupying some space, `clientWidth/clientHeight` provide the width/height inside it. In other words, they return width/height of the visible part of the document, available for the content.
 
 And `window.innerWidth/innerHeight` ignore the scrollbar.
 
-If there's a scrollbar and it occupies some space, then these two lines show different values:
+If there's a scrollbar, and it occupies some space, then these two lines show different values:
 ```js run
 alert( window.innerWidth ); // full window width
 alert( document.documentElement.clientWidth ); // window width minus the scrollbar
 ```
 
-In most cases we need the *available* window width: to draw or position something. That is: inside scrollbars if there are any. So we should use `documentElement.clientWidth`.
+In most cases we need the *available* window width: to draw or position something. That is: inside scrollbars if there are any. So we should use `documentElement.clientHeight/Width`.
 ````
 
 ```warn header="`DOCTYPE` is important"
 Please note: top-level geometry properties may work a little bit differently when there's no `<!DOCTYPE HTML>` in HTML. Odd things are possible.
 
-In modern HTML we should always write it. Generally that's not a JavaScript question, but here it affects JavaScript as well.
+In modern HTML we should always write `DOCTYPE`. Generally that's not a JavaScript question, but here it affects JavaScript as well.
 ```
 
 ## Width/height of the document
 
-Theoretically, as the visibble part of the document is `documentElement.clientWidth/Height`, the full size should be  `documentElement.scrollWidth/scrollHeight`.
+Theoretically, as the root document element is `documentElement.clientWidth/Height`, and it encloses all the content, we could measure its full size as `documentElement.scrollWidth/scrollHeight`.
 
-That's correct for regular elements.
-
-But for the whole page these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! For regular elements that's a nonsense.
+These properties work well for regular elements. But for the whole page these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! For regular elements that's a nonsense.
 
 To have a reliable full window size, we should take the maximum of these properties:
 
@@ -63,11 +62,11 @@ Why so? Better don't ask. These inconsistencies come from ancient times, not a "
 
 ## Get the current scroll [#page-scroll]
 
-Regular elements have their current scroll state in `scrollLeft/scrollTop`.
+Regular elements have their current scroll state in `elem.scrollLeft/scrollTop`.
 
-What's with the page? Most browsers provide that for the whole page in `documentElement.scrollLeft/Top`, but Chrome/Safari/Opera have bugs (like [157855](https://code.google.com/p/chromium/issues/detail?id=157855), [106133](https://bugs.webkit.org/show_bug.cgi?id=106133)) and we should use  `document.body` instead of `document.documentElement` there.
+What's with the page? Most browsers provide `documentElement.scrollLeft/Top` for the document scroll, but Chrome/Safari/Opera have bugs (like [157855](https://code.google.com/p/chromium/issues/detail?id=157855), [106133](https://bugs.webkit.org/show_bug.cgi?id=106133)) and we should use  `document.body` instead of `document.documentElement` there.
 
-Luckily, we don't have to remember that at all, because of the special properties `window.pageXOffset/pageYOffset`:
+Luckily, we don't have to remember these pecularities at all, because of the special properties `window.pageXOffset/pageYOffset`:
 
 ```js run
 alert('Current scroll from the top: ' + window.pageYOffset);
@@ -79,7 +78,9 @@ These properties are read-only.
 ## Scrolling: scrollTo, scrollBy, scrollIntoView [#window-scroll]
 
 ```warn
-To scroll the page from JavaScript, its DOM must be fully loaded.
+To scroll the page from JavaScript, its DOM must be fully built.
+
+For instance, if we try to scroll the page from the script in `<head>`, it won't work.
 ```
 
 Regular elements can be scrolled by changing `scrollTop/scrollLeft`.
@@ -88,9 +89,7 @@ We can do the same for the page:
 - For all browsers except Chrome/Safari/Opera: modify  `document.documentElement.scrollTop/Left`.
 - In Chrome/Safari/Opera: use `document.body.scrollTop/Left` instead.
 
-It should work.
-
-But there's a simpler, more universal solution: special methods  [window.scrollBy(x,y)](mdn:api/Window/scrollBy) and [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
+It should work, but smells like cross-browser incompatibilities. Not good. Fortunately, there's a simpler, more universal solution: special methods  [window.scrollBy(x,y)](mdn:api/Window/scrollBy) and [window.scrollTo(pageX,pageY)](mdn:api/Window/scrollTo).
 
 - The method `scrollBy(x,y)` scrolls the page relative to its current position. For instance, `scrollBy(0,10)` scrolls the page `10px` down.
 
@@ -107,16 +106,16 @@ But there's a simpler, more universal solution: special methods  [window.scrollB
     <button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
     ```
 
-These properties are cross-browser.
+These methods work for all browsers the same way.
 
 ## scrollIntoView
 
 For completeness, let's cover one more method:  [elem.scrollIntoView(top)](mdn:api/Element/scrollIntoView).
 
-The call to `elem.scrollIntoView(top)` scrolls the page to make `elem` visible. It has one argument `top`:
+The call to `elem.scrollIntoView(top)` scrolls the page to make `elem` visible. It has one argument:
 
-- if `top=true` (that's the default), then the page will be scrolled to make `elem` appear on the top of the window, upper side of the element aligned with the window top.
-- if `top=false`, then the element bottom is aligned with the window bottom.
+- if `top=true` (that's the default), then the page will be scrolled to make `elem` appear on the top of the window. The upper edge of the element is aligned with the window top.
+- if `top=false`, then the page scrolls to make `elem` appear at the bottom. The bottom edge of the element is aligned with the window bottom.
 
 ```online
 The button below scrolls the page to make itself show at the window top:
@@ -130,7 +129,7 @@ And this button scrolls the page to show it at the bottom:
 
 ## Forbid the scrolling
 
-Sometimes we need to make the document "unscrollable". For instance, when we need to show a large message over it, and we want the visitor to interact with that message, not with the document.
+Sometimes we need to make the document "unscrollable". For instance, when we need to cover it with a large message requiring immediate attention, and we want the visitor to interact with that message, not with the document.
 
 To make the document unscrollable, its enough to set `document.body.style.overflow = "hidden"`. The page will freeze on its current scroll.
 
@@ -148,7 +147,7 @@ We can use the same technique to "freeze" the scroll for other elements, not jus
 
 The drawback of the method is that the scrollbar disappears. If it occupied some space, then that space is now free, and the content "jumps" to fill it.
 
-That looks a bit odd, but can be worked around if we compare `clientWidth` before and after the freeze, and if it increased (the content area became wider) then add `padding` to `document.body`.
+That looks a bit odd, but can be worked around if we compare `clientWidth` before and after the freeze, and if it increased (the scrollbar disappeared) then add `padding` to `document.body` in place of the scrollbar, to keep the content width same.
 
 ## Summary
 
@@ -168,8 +167,8 @@ Geometry:
 Scrolling:
 
 - Read the current scroll: `window.pageYOffset/pageXOffset`.
-- Scroll the page:
+- Change the current scroll:
 
     - `window.scrollTo(pageX,pageY)` -- absolute coordinates,
-    - `window.scrollBy(x,y)` -- scroll relative the current place?
-    - `elem.scrollIntoView(top)` -- scroll to make `elem` visible.
+    - `window.scrollBy(x,y)` -- scroll relative the current place,
+    - `elem.scrollIntoView(top)` -- scroll to make `elem` visible (align with the top/bottom of the window).

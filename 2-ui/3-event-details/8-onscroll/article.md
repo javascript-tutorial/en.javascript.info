@@ -1,4 +1,4 @@
-# Scrolling 
+# Scrolling
 
 Scroll events allow to react on a page or element scrolling. There are quite a few good things we can do here.
 
@@ -13,7 +13,7 @@ Here's a small function to show the current scroll:
 ```js autorun
 window.addEventListener('scroll', function() {
   document.getElementById('showScroll').innerHTML = pageYOffset + 'px';
-}
+});
 ```
 
 ```online
