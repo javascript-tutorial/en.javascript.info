@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    .placeholder {
+      color: blue;
+      font-family: Georgia;
+    }
+    
+    .placeholder-tooltip {
+      color: blue;
+      font-family: Georgia;
+      position: fixed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <p>Красивый placeholder:</p>
+
+  <input type="email" data-placeholder="E-mail">
+
+
+  <script>
+    var input = document.querySelector('[data-placeholder]');
+
+    showPlaceholder(input);
+
+    // Показать placeholder внутри input
+    // Также можно сделать это при помощи вёрстки, отдельным элементом
+    function showPlaceholder(input) {
+      input.classList.add('placeholder');
+      input.value = input.dataset.placeholder;
+    }
+
+    // Показать подсказку над элементом (будет вместо placeholder)
+    function showTooltip(input) {
+      var tooltip = document.createElement('span');
+      tooltip.innerHTML = input.dataset.placeholder;
+      tooltip.className = 'placeholder-tooltip';
+      tooltip.style.fontSize = getComputedStyle(input).fontSize;
+      tooltip.style.left = input.getBoundingClientRect().left + 'px';
+      document.body.appendChild(tooltip);
+      tooltip.style.top = input.getBoundingClientRect().top - tooltip.offsetHeight - 4 + 'px';
+      input.tooltip = tooltip;
+    }
+
+    input.onfocus = function() {
+      if (input.classList.contains('placeholder')) {
+        input.classList.remove('placeholder');
+        input.value = '';
+      }
+
+      showTooltip(input);
+    };
+
+    input.onblur = function() {
+      document.body.removeChild(input.tooltip);
+      delete input.tooltip;
+
+      // показываем placeholder обратно, если input пуст
+      if (input.value == '') {
+        showPlaceholder(input);
+      }
+    };
+  </script>
+
+
+</body>
+
+</html>

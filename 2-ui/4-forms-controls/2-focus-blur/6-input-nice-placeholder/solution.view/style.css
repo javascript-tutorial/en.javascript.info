@@ -1,0 +1,17 @@
+body {
+  font: 14px/14px Arial, sans-serif;
+}
+
+input {
+  font: 14px/14px Arial, sans-serif;
+  width: 12em;
+  padding: 0;
+  margin: 0;
+}
+
+#placeholder {
+  font: 14px/14px Arial, sans-serif;
+  position: absolute;
+  margin: -1.2em 0 0 0.2em;
+  color: red;
+}

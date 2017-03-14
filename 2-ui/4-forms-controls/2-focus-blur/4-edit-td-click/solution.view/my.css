@@ -1,0 +1,23 @@
+.edit-td .edit-area {
+  border: none;
+  margin: 0;
+  padding: 0;
+  display: block;
+  resize: none;
+  /* remove resizing handle in Firefox */
+  
+  outline: none;
+  /* remove outline on focus in Chrome */
+  
+  overflow: auto;
+  /* remove scrollbar in IE */
+}
+
+.edit-controls {
+  position: absolute;
+}
+
+.edit-td {
+  position: relative;
+  padding: 0;
+}
