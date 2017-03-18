@@ -2,20 +2,19 @@ importance: 5
 
 ---
 
-# Добавьте опцию к селекту
+# Add an option to select
 
-Есть селект:
+There's a `<select>`:
 
 ```html
-<select>
-  <option value="Rock">Рок</option>
-  <option value="Blues" selected>Блюз</option>
+<select id="genres">
+  <option value="rock">Rock</option>
+  <option value="blues" selected>Blues</option>
 </select>
 ```
 
-При помощи JavaScript:
+Use Javascript to:
 
-1. Выведите значение и текст текущей выбранной опции.
-2. Добавьте опцию: `<option value="Classic">Классика</option>`.
-3. Сделайте её выбранной.
-
+1. Show the value and the text of the selected option.
+2. Add an option: `<option value="classic">Classic</option>`.
+3. Make it selected.

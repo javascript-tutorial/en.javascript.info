@@ -150,6 +150,86 @@ Click on the button in `<iframe>` below to set the handler, and then click the l
 Some browsers like Chrome and Firefox ignore the string and shows its own message instead. That's for sheer safety, to protect the user from potentially misleading and hackish messages.
 ```
 
+## readyState
+
+What happens if we set the `DOMContentLoaded` handler after the document is loaded?
+
+Naturally, it never runs.
+
+There are cases when we are not sure whether the document is ready or not, for instance an external script with `async` attribute loads and runs asynchronously. Depending on the network, it may load and execute before the document is complete or after that, we can't be sure. So we should be able to know the current state of the document.
+
+The `document.readyState` property gives us information about it. There are 3 possible values:
+
+- `"loading"` -- the document is loading.
+- `"interactive"` -- the document was fully read.
+- `"complete"` -- the document was fully read and all resources (like images) are loaded too.
+
+So we can check `document.readyState` and setup a handler or execute the code immediately if it's ready.
+
+Like this:
+
+```js
+function work() { /*...*/ }
+
+if (document.readyState == 'loading') {
+  document.addEventListener('DOMContentLoaded', work);
+} else {
+  work();
+}
+```
+
+There's a `readystatechange` event that triggers when the state changes, so we can print all these states like this:
+
+```js run
+// current state
+console.log(document.readyState);
+
+// print state changes
+document.addEventListener('readystatechange', () => console.log(document.readyState));
+```
+
+The `readystatechange` event is an alternative mechanics of tracking the document loading state, it appeared long ago. Nowadays, it is rarely used, but let's cover it for completeness.
+
+What is the place of `readystatechange` among other events?
+
+To see the timing, here's a document with `<iframe>`, `<img>` and handlers that log events:
+
+```html
+<script>
+  function log(text) { /* output the time and message */ }
+  log('initial readyState:' + document.readyState);
+
+  document.addEventListener('readystatechange', () => log('readyState:' + document.readyState));
+  document.addEventListener('DOMContentLoaded', () => log('DOMContentLoaded'));
+
+  window.onload = () => log('window onload');
+</script>
+
+<iframe src="iframe.html" onload="log('iframe onload')"></iframe>
+
+<img src="http://en.js.cx/clipart/train.gif" id="img">
+<script>
+  img.onload = () => log('img onload');
+</script>
+```
+
+The working example is [in the sandbox](sandbox:readystate).
+
+The typical output:
+1. [1] initial readyState:loading
+2. [2] readyState:interactive
+3. [2] DOMContentLoaded
+4. [3] iframe onload
+5. [4] readyState:complete
+6. [4] img onload
+7. [4] window onload
+
+The numbers in square brackets denote the approximate time of when it happens. The real time is a bit greater, but events labeled with the same digit happen approximately at the same time (+- a few ms).
+
+- `document.readyState` becomes `interactive` right before `DOMContentLoaded`. These two events actually mean the same.
+- `document.readyState` becomes `complete` when all resources (`iframe` and `img`) are loaded. Here we can see that it happens in about the same time as `img.onload` (`img` is the last resource) and `window.onload`. Switching to `complete` state means the same as `window.onload`. The difference is that `window.onload` always works after all other `load` handlers.
+
+
 ## Summary
 
 Page lifecycle events:
@@ -157,7 +237,10 @@ Page lifecycle events:
 - `DOMContentLoaded` event triggers on `document` when DOM is ready. We can apply Javascript to elements at this stage.
   - All scripts are executed except those that are external with `async` or `defer`
   - Images and other resources may still continue loading.
-
 - `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
 - `beforeload` event on `window` triggers when the user wants to leave the page. If it returns a string, the browser shows a question whether the user really wants to leave or not.
 - `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used.
+- `document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
+  - `loading` -- the document is loading.
+  - `interactive` -- the document is parsed, happens at about the same time as `DOMContentLoaded`, but before it.
+  - `complete` -- the document and resources are loaded, happens at about the same time as `window.onload`, but before it.

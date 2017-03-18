@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <link type="text/css" rel="stylesheet" href="my.css">
+  <meta charset="utf-8">
+</head>
+
+<body>
+
+  <ul>
+    <li>Click the div to edit.</li>
+    <li>Enter or blur saves the result.</li>
+  </ul>
+
+  HTML is allowed.
+
+  <div id="view" class="view">Text</div>
+
+  <script>
+    let area = null;
+    let view = document.getElementById('view');
+
+    view.onclick = function() {
+      editStart();
+    };
+
+    function editStart() {
+      area = document.createElement('textarea');
+      area.className = 'edit';
+      area.value = view.innerHTML;
+
+      area.onkeydown = function(event) {
+        if (event.key == 'Enter') {
+          this.blur();
+        }
+      };
+
+      area.onblur = function() {
+        editEnd();
+      };
+
+      view.replaceWith(area);
+      area.focus();
+    }
+
+    function editEnd() {
+      view.innerHTML = area.value;
+      area.replaceWith(view);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+.view,
+.edit {
+  height: 150px;
+  width: 400px;
+  font-family: arial;
+  font-size: 14px;
+  display: block;
+}
+
+.view {
+  /* padding + border = 3px */
+  padding: 2px;
+  border: 1px solid black;
+}
+
+.edit {
+  /* replace padding with border (still 3px not to shift the contents) */
+  border: 3px solid blue;
+  padding: 0px;
+}
+
+.edit:focus {
+  outline: none;
+  /* remove focus border in Safari */
+}

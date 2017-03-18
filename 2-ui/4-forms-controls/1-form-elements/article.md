@@ -1,9 +1,8 @@
-# Form properties and methods [todo]
+# Form properties and methods
 
 Forms and control elements, such as `<input>` have a lot of special properties and events.
 
 Working with forms can be much more convenient if we know them.
-
 
 [cut]
 
@@ -35,7 +34,7 @@ For instance:
   // get the element
   let elem = form.elements.one; // <input name="one"> element
 
-  alert( elem.value ); // 1
+  alert(elem.value); // 1
 </script>
 ```
 
@@ -151,126 +150,139 @@ For instance:
 </script>
 ```
 
-## Values: input and textarea
+## Form elements
 
-Normally, we can read the value as `input.value` or `input.checked` (for radio)
+Let's talk about form controls, pay attention to their specific features.
 
-Для большинства типов `input` значение ставится/читается через свойство `value`.
+### input and textarea
 
-```js
-input.value = "Новое значение";
-textarea.value = "Новый текст";
-```
+Normally, we can access the value as `input.value` or `input.checked` for checkboxes.
 
-```warn header="Не используйте `textarea.innerHTML`"
-Для элементов `textarea` также доступно свойство `innerHTML`, но лучше им не пользоваться: оно хранит только HTML, изначально присутствовавший в элементе, и не меняется при изменении значения.
-```
-
-Исключения -- `input type="checkbox"` и `input type="radio"`
-
-**Текущее "отмеченное" состояние для `checkbox` и `radio` находится в свойстве `checked` (`true/false`).**
+Like this:
 
 ```js
-if (input.checked) {
-  alert( "Чекбокс выбран" );
-}
+input.value = "New value";
+textarea.value = "New text";
+
+input.checked = true; // for a checkbox or radio button
 ```
 
-## Элементы select и option
-
-Селект в JavaScript можно установить двумя путями: поставив значение  `select.value`, либо установив свойство `select.selectedIndex` в номер нужной опции.:
-
-```js
-select.selectedIndex = 0; // первая опция
+```warn header="Use `textarea.value`, not `textarea.innerHTML`"
+Please note that we should never use `textarea.innerHTML`: it stores only the HTML that was initially on the page, not the current value.
 ```
 
-Установка `selectedIndex = -1` очистит выбор.
+### select and option
 
-**Список элементов-опций доступен через `select.options`.**
+A `<select>` element has 3 important properties:
 
-Если `select` допускает множественный выбор (атрибут `multiple`), то значения можно получить/установить, сделав цикл по `select.options`. При этом выбранные опции будут иметь свойство `option.selected = true`.
+1. `select.options` -- the collection of `<option>` elements,
+2. `select.value` -- the value of the chosen option,
+3. `select.selectedIndex` -- the number of the selected option.
 
-Пример:
+So we have three ways to set the value of a `<select>`:
+
+1. Find the needed `<option>` and set `option.selected` to `true`.
+2. Set `select.value` to the value.
+3. Set `select.selectedIndex` to the number of the option.
+
+The first way is the most obvious, but `(2)` and `(3)` are usually more convenient.
+
+Here is an example:
 
 ```html run
-<form name="form">
-  <select name="genre" *!*multiple*/!*>
-    <option value="blues" selected>Мягкий блюз</option>
-    <option value="rock" selected>Жёсткий рок</option>
-    <option value="classic">Классика</option>
-  </select>
-</form>
+<select id="select">
+  <option value="apple">Apple</option>
+  <option value="pear">Pear</option>
+  <option value="banana">Banana</option>
+</select>
 
 <script>
-var form = document.forms[0];
-var select = form.elements.genre;
-
-for (var i = 0; i < select.options.length; i++) {
-  var option = select.options[i];
-*!*
-  if(option.selected) {
-    alert( option.value );
-  }
-*/!*
-}
+  // all three lines do the same thing
+  select.options[2].selected = true;
+  select.selectedIndex = 2;
+  select.value = 'banana';
 </script>
 ```
 
-Спецификация: [the select element](https://html.spec.whatwg.org/multipage/forms.html#the-select-element).
+Unlike most other controls, `<select multiple>` allows multiple choice. In that case we need to walk over `select.options` to get all selected values.
 
-````smart header="`new Option`"
-В стандарте [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) есть любопытный короткий синтаксис для создания элемента с тегом `option`:
+Like this:
+
+```html run
+<select id="select" *!*multiple*/!*>
+  <option value="blues" selected>Blues</option>
+  <option value="rock" selected>Rock</option>
+  <option value="classic">Classic</option>
+</select>
+
+<script>
+  // get all selected values from multi-select
+  let selected = Array.from(select.options)
+    .filter(option => option.selected)
+    .map(option => option.value);
+
+  alert(selected); // blues,rock  
+</script>
+```
+
+The full specification of the `<select>` element is available at <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
+
+### new Option
+
+In the specification of [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Параметры:
+Parameters:
 
-- `text` -- содержимое,
-- `value` -- значение,
-- `defaultSelected` и `selected` поставьте в `true`, чтобы сделать элемент выбранным.
+- `text` -- the text inside the option,
+- `value` -- the option value,
+- `defaultSelected` -- if `true`, then `selected` attribute is created,
+- `selected` -- if `true`, then the option is selected.
 
-Его можно использовать вместо `document.createElement('option')`, например:
-
-```js
-var option = new Option("Текст", "value");
-// создаст <option value="value">Текст</option>
-```
-
-Такой же элемент, но выбранный:
+For instance:
 
 ```js
-var option = new Option("Текст", "value", true, true);
+let option = new Option("Text", "value");
+// creates <option value="value">Текст</option>
 ```
-````
 
-```smart header="Дополнительные свойства `option`"
-У элементов `option` также есть особые свойства, которые могут оказаться полезными (см. [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element)):
+The same element selected:
+
+```js
+let option = new Option("Text", "value", true, true);
+```
+
+```smart header="Additional properties of `<option>`"
+Option elements have additional properties:
 
 `selected`
-: выбрана ли опция
+: Is the option selected.
 
 `index`
-: номер опции в списке селекта
+: The number of the option among the others in its `<select>`.
 
 `text`
-: Текстовое содержимое опции (то, что видит посетитель).
+: Text content of the option (seen by what the visitor).
 ```
 
-## Итого
+## Summary
 
-Свойства для навигации по формам:
+Form navigation:
 
 `document.forms`
-: Форму можно получить как `document.forms[name/index]`.
+: A form is available as `document.forms[name/index]`.
 
-`form.elements`
-: Элементы в форме: `form.elements[name/index]`. Каждый элемент имеет ссылку на форму в свойстве `form`. Свойство `elements` также есть у `<fieldset>`.
+`form.elements`  
+: Form elements are available as `form.elements[name/index]`, or can use just `form[name/index]`. The `elements` property also works for `<fieldset>`.
 
-Значение элементов читается/ставится через `value` или `checked`.
+`element.form`
+: Elements reference their form in the `form` property.
 
-Для элемента `select` можно задать опцию по номеру через `select.selectedIndex` и перебрать опции через `select.options`. При этом выбранные опции (в том числе при мультиселекте) будут иметь свойство `option.selected = true`.
+Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
 
+For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is at <https://html.spec.whatwg.org/multipage/forms.html>.
 
-Спецификация: [HTML5 Forms](https://html.spec.whatwg.org/multipage/forms.html).
+These are the basics to start working with forms. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
