@@ -1,14 +1,14 @@
-# Найдите цвет в формате #abc или #abcdef
+# Find color in the format #abc or #abcdef
 
-Напишите регулярное выражение, которое находит цвет в формате `#abc` или `#abcdef`. То есть, символ `#`, после которого идут 3 или 6 шестнадцатиричных символа.
+Write a regexp that matches colors in the format `#abc` or `#abcdef`. That is: `#` followed by 3 or 6 hexadimal digits.
 
-Пример использования:
+Usage example:
 ```js
-var re = /* ваш регэксп */
+let reg = /your regexp/g;
 
-var str = "color: #3f3; background-color: #AA00ef; and: #abcd";
+let str = "color: #3f3; background-color: #AA00ef; and: #abcd";
 
-alert( str.match(re) ); // #3f3 #AA0ef
+alert( str.match(reg) ); // #3f3 #AA0ef
 ```
 
-P.S. Значения из любого другого количества букв, кроме 3 и 6, такие как `#abcd`, не должны подходить под регэксп.
+P.S. Should be exactly 3 or 6 hex digits: values like `#abcd` should not match.

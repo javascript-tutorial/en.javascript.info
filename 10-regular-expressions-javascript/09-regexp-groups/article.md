@@ -1,6 +1,6 @@
 # Bracket groups
 
-A part of the pattern can be enclosed in parentheses `pattern:(...)`. That's called a "bracket expression" or a "bracket group".
+A part of the pattern can be enclosed in parentheses `pattern:(...)`. That's called a "capturing group".
 
 That has two effects:
 
@@ -11,129 +11,133 @@ That has two effects:
 
 ## Example
 
-В примере ниже, шаблон `pattern:(go)+` находит один или более повторяющихся `pattern:'go'`:
+In the example below the pattern `pattern:(go)+` finds one or more `match:'go'`:
 
 ```js run
 alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
 ```
 
-Без скобок, шаблон `pattern:/go+/` означал бы `subject:g`, после которого идёт одна или более `subject:o`, например: `match:goooo`. А скобки "группируют" `pattern:(go)` вместе.
+Without parentheses, the pattern `pattern:/go+/` means `subject:g`, followed by `subject:o` repeated one or more times. For instance, `match:goooo` or `match:gooooooooo`.
 
-## Содержимое группы
+Parentheses group the word `pattern:(go)` together.
 
-Скобки нумеруются слева направо. Поисковой движок запоминает содержимое каждой скобки и позволяет обращаться к нему -- в шаблоне и строке замены и, конечно же, в результатах.
 
-Например, найти HTML-тег можно шаблоном `pattern:<.*?>`.
+## Contents of parentheses  
 
-После поиска мы захотим что-то сделать с результатом. Для удобства заключим содержимое `<...>` в скобки: `pattern:<(.*?)>`. Тогда оно будет доступно отдельно.
+Parentheses are numbered from left to right. The search engine remembers the content of each and allows to reference it in the pattern or in the replacement string.
 
-При поиске методом [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) в результирующем массиве будет сначала всё совпадение, а далее -- скобочные группы. В шаблоне `pattern:<(.*?)>` скобочная группа только одна:
+For instance, we can find an HTML-tag using a (simplified) pattern `pattern:<.*?>`. Usually we'd want to do something with the result after it.
+
+If we enclose the inner contents of `<...>` into parentheses, then we can access it like this:
 
 ```js run
-var str = '<h1>Привет, мир!</h1>';
-var reg = /<(.*?)>/;
+let str = '<h1>Hello, world!</h1>';
+let reg = /<(.*?)>/;
 
-alert( str.match(reg) ); // массив: <h1>, h1
+alert( str.match(reg) ); // Array: ["<h1>", "h1"]
 ```
 
-Заметим, что метод [String#match](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/String/match) выдаёт скобочные группы только при поиске без флага `/.../g`. В примере выше он нашёл только первое совпадение `match:<h1>`, а закрывающий `match:</h1>` не нашёл, поскольку без флага `/.../g` ищется только первое совпадение.
+The call to [String#match](mdn:js/String/match) returns groups only if the regexp has no `pattern:/.../g` flag.
 
-Для того, чтобы искать и с флагом `/.../g` и со скобочными группами, используется метод [RegExp#exec](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/RegExp/exec):
+If we need all matches with their groups then we can use [RegExp#exec](mdn:js/RegExp/exec) method as described in <info:regexp-methods>:
 
 ```js run
-var str = '<h1>Привет, мир!</h1>';
-var reg = /<(.*?)>/g;
+let str = '<h1>Hello, world!</h1>';
 
-var match;
+// two matches: opening <h1> and closing </h1> tags
+let reg = /<(.*?)>/g;
 
-while ((match = reg.exec(str)) !== null) {
-  // сначала выведет первое совпадение: <h1>,h1
-  // затем выведет второе совпадение: </h1>,/h1
+let match;
+
+while (match = reg.exec(str)) {
+  // first shows the match: <h1>,h1
+  // then shows the match: </h1>,/h1
   alert(match);
 }
 ```
 
-Теперь найдено оба совпадения `pattern:<(.*?)>`, каждое -- массив из полного совпадения и скобочных групп (одна в данном случае).
+Here we have two matches for `pattern:<(.*?)>`, each of them is an array with the full match and groups.
 
-## Вложенные группы
-Скобки могут быть и вложенными. В этом случае нумерация также идёт слева направо.
+## Nested groups
 
-Например, при поиске тега в `subject:<span class="my">` нас может интересовать:
+Parentheses can be nested. In this case the numbering also goes from left to right.
 
-1. Содержимое тега целиком: `span class="my"`.
-2. В отдельную переменную для удобства хотелось бы поместить тег: `span`.
-3. Также может быть удобно отдельно выделить атрибуты `class="my"`.
+For instance, when searching a tag in `subject:<span class="my">` we may be interested in:
 
-Добавим скобки в регулярное выражение:
+1. The tag content as a whole: `match:span class="my"`.
+2. The tag name: `match:span`.
+3. The tag attributes: `match:class="my"`.
+
+Let's add parentheses for them:
 
 ```js run
-var str = '<span class="my">';
+let str = '<span class="my">';
 
-var reg = /<(([a-z]+)\s*([^>]*))>/;
+let reg = /<(([a-z]+)\s*([^>]*))>/;
 
-alert( str.match(reg) ); // <span class="my">, span class="my", span, class="my"
+let result = str.match(reg);
+alert(result); // <span class="my">, span class="my", span, class="my"
 ```
 
-Вот так выглядят скобочные группы:
+Here's how groups look:
 
 ![](regexp-nested-groups.png)
 
-На нулевом месте -- всегда совпадение полностью, далее -- группы. Нумерация всегда идёт слева направо, по открывающей скобке.
+At the zero index of the `result` is always the full match.
 
-В данном случае получилось, что группа 1 включает в себя содержимое групп 2 и 3. Это совершенно нормальная ситуация, которая возникает, когда нужно выделить что-то отдельное внутри большей группы.
+Then groups, numbered from left to right. Whichever opens first gives the first group `result[1]`. Here it encloses the whole tag content.
 
-**Даже если скобочная группа необязательна и не входит в совпадение, соответствующий элемент массива существует (и равен `undefined`).**
+Then in `result[2]` goes the group from the second opening `pattern:(` till the corresponding `pattern:)` -- tag name, then we don't group spaces, but group attributes for `result[3]`.
 
-Например, рассмотрим регэксп `pattern:a(z)?(c)?`. Он ищет `"a"`, за которой не обязательно идёт буква `"z"`, за которой необязательно идёт буква `"c"`.
+**If a group is optional and doesn't exist in the match, the corresponding `result` index is present (and equals `undefined`).**
 
-Если напустить его на строку из одной буквы `"a"`, то результат будет таков:
+For instance, let's consider the regexp `pattern:a(z)?(c)?`. It looks for `"a"` optionally followed by `"z"` optionally followed by `"c"`.
+
+If we run it on the string with a single letter `subject:a`, then the result is:
 
 ```js run
-var match = 'a'.match(/a(z)?(c)?/)
+let match = 'a'.match(/a(z)?(c)?/);
 
 alert( match.length ); // 3
-alert( match[0] ); // a
+alert( match[0] ); // a (whole match)
 alert( match[1] ); // undefined
 alert( match[2] ); // undefined
 ```
 
-Массив получился длины `3`, но все скобочные группы -- `undefined`.
+The array has the length of `3`, but all groups are empty.
 
-А теперь более сложная ситуация, строка `subject:ack`:
+And here's a more complex match for the string `subject:ack`:
 
 ```js run
-var match = 'ack'.match(/a(z)?(c)?/)
+let match = 'ack'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
-alert( match[0] ); // ac, всё совпадение
-alert( match[1] ); // undefined, для (z)? ничего нет
+alert( match[0] ); // ac (whole match)
+alert( match[1] ); // undefined, because there's nothing for (z)?
 alert( match[2] ); // c
 ```
 
-Длина массива результатов по-прежнему `3`. Она постоянна. А вот для скобочной группы `pattern:(z)?` в ней ничего нет, поэтому результат: `["ac", undefined, "c"]`.
+The array length is permanent: `3`. But there's nothing for the group `pattern:(z)?`, so the result is `["ac", undefined, "c"]`.
 
-## Исключение из запоминания через ?:
+## Non-capturing groups with ?:
 
-Бывает так, что скобки нужны, чтобы квантификатор правильно применился, а вот запоминать их содержимое в массиве не нужно.
+Sometimes we need parentheses to correctly apply a quantifier, but we don't want their contents in the array.
 
-Скобочную группу можно исключить из запоминаемых и нумеруемых, добавив в её начало `pattern:?:`.
+A group may be excluded by adding `pattern:?:` in the beginning.
 
-Например, мы хотим найти `pattern:(go)+`, но содержимое скобок (`go`) в отдельный элемент массива выделять не хотим.
+For instance, if we want to find `pattern:(go)+`, but don't want to put remember the contents (`go`) in a separate array item, we can write: `pattern:(?:go)+`.
 
-Для этого нужно сразу после открывающей скобки поставить `?:`, то есть: `pattern:(?:go)+`.
-
-Например:
+In the example below we only get the name "John" as a separate member of the `results` array:
 
 ```js run
-var str = "Gogo John!";
+let str = "Gogo John!";
 *!*
-var reg = /(?:go)+ (\w+)/i;
+// exclude Gogo from capturing
+let reg = /(?:go)+ (\w+)/i;
 */!*
 
-var result = str.match(reg);
+let result = str.match(reg);
 
 alert( result.length ); // 2
 alert( result[1] ); // John
 ```
-
-В примере выше массив результатов имеет длину `2` и содержит только полное совпадение и результат `pattern:(\w+)`. Это удобно в тех случаях, когда содержимое скобок нас не интересует.
