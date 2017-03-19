@@ -48,7 +48,7 @@ alert( result.input ); // "Fame is the thirst of youth" (the string)
 
 The array may have more than one element.
 
-**If a part of the pattern is delimited by brackets `(...)`, then it becomes a separate element of the array.**
+**If a part of the pattern is delimited by parentheses `(...)`, then it becomes a separate element of the array.**
 
 For instance:
 
@@ -58,18 +58,18 @@ lar str = "JavaScript is a programming language";
 let result = str.match( *!*/JAVA(SCRIPT)/i*/!* );
 
 alert( result[0] ); // JavaScript (the whole match)
-alert( result[1] ); // script (the part of the match that corresponds to the brackets)
+alert( result[1] ); // script (the part of the match that corresponds to the parentheses)
 alert( result.index ); // 0
 alert( result.input ); // JavaScript is a programming language
 ```
 
 Due to the `i` flag the search is case-insensitive, so it finds `match:JavaScript`. The part of the match that corresponds to `pattern:SCRIPT` becomes a separate array item.
 
-We'll be back to brackets later in the chapter [todo]. They are great for search-and-replace.
+We'll be back to parentheses later in the chapter <info:regexp-groups>. They are great for search-and-replace.
 
 ## str.match(reg) with "g" flag
 
-When there's a `"g"` flag, then `str.match` returns an array of all matches. There are no additional properties in that array, and brackets do not create any elements.
+When there's a `"g"` flag, then `str.match` returns an array of all matches. There are no additional properties in that array, and parentheses do not create any elements.
 
 For instance:
 
@@ -81,9 +81,7 @@ let result = str.match( *!*/ho/ig*/!* );
 alert( result ); // HO, Ho, ho (all matches, case-insensitive)
 ```
 
-With brackets nothing changes, here we go:
-
-
+With parentheses nothing changes, here we go:
 
 ```js run
 let str = "HO-Ho-ho!";
@@ -95,7 +93,7 @@ alert( result ); // HO, Ho, ho
 
 So, with `g` flag the `result` is a simple array of matches. No additional properties.
 
-If we want to get information about match positions and use brackets then we should use  [RegExp#exec](mdn:js/RegExp/exec) method that we'll cover below.
+If we want to get information about match positions and use parentheses then we should use  [RegExp#exec](mdn:js/RegExp/exec) method that we'll cover below.
 
 ````warn header="If there are no matches, the call to `match` returns `null`"
 Please note, that's important. If there were no matches, the result is not an empty array, but `null`.
@@ -155,7 +153,7 @@ We can use special characters in it:
 |`$&`|the whole match|
 |<code>$&#096;</code>|a part of the string before the match|
 |`$'`|a part of the string after the match|
-|`$n`|if `n` is a 1-2 digit number, then it means the contents of n-th brackets counting fro left to right|
+|`$n`|if `n` is a 1-2 digit number, then it means the contents of n-th parentheses counting fro left to right|
 
 For instance let's use `$&` to replace all entries of `"John"` by `"Mr.John"`:
 
@@ -167,7 +165,7 @@ alert(str.replace(/John/g, 'Mr.$&'));
 // "Mr.John Doe, Mr.John Smith and Mr.John Bull.";
 ```
 
-Brackets are very often used together with `$1`, `$2`, like this:
+Parentheses are very often used together with `$1`, `$2`, like this:
 
 ```js run
 let str = "John Smith";
@@ -195,11 +193,11 @@ In the example above the function just returns the next number every time, but u
 The function is called with arguments `func(str, p1, p2, ..., pn, offset, s)`:
 
 1. `str` -- the match,
-2. `p1, p2, ..., pn` -- contents of brackets (if there are any),
+2. `p1, p2, ..., pn` -- contents of parentheses (if there are any),
 3. `offset` -- position of the match,
 4. `s` -- the source string.
 
-If there are no brackets in the regexp, then the function always has 3 arguments: `func(str, offset, s)`.
+If there are no parentheses in the regexp, then the function always has 3 arguments: `func(str, offset, s)`.
 
 Let's use it to show full information about matches:
 
@@ -219,11 +217,11 @@ alert( 'Result: ' + result ); // Result: ho-ho-ho
 // Found ho at position 6 in string HO-Ho-ho
 ```
 
-In the example below there are two brackets, so `replacer` is called with 5 arguments: `str` is the full match, then brackets, and then `offset` and `s`:
+In the example below there are two parentheses, so `replacer` is called with 5 arguments: `str` is the full match, then parentheses, and then `offset` and `s`:
 
 ```js run
 function replacer(str, name, surname, offset, s) {
-  // name is the first bracket, surname is the second one
+  // name is the first parentheses, surname is the second one
   return surname + ", " + name;
 }
 
@@ -264,10 +262,10 @@ alert( str.search(*!*/love/i*/!*) != -1 ); // false
 We've already seen these searching methods:
 
 - `search` -- looks for the position of the match,
-- `match` -- if there's no `g` flag, returns the first match with brackets,
-- `match` -- if there's a `g` flag -- returns all matches, without separating brackets.
+- `match` -- if there's no `g` flag, returns the first match with parentheses,
+- `match` -- if there's a `g` flag -- returns all matches, without separating parentheses.
 
-The `regexp.exec` method is a bit harder to use, but it allows to search all matches with brackets and positions.
+The `regexp.exec` method is a bit harder to use, but it allows to search all matches with parentheses and positions.
 
 It behaves differently depending on whether the regexp has the `g` flag.
 
@@ -276,7 +274,7 @@ It behaves differently depending on whether the regexp has the `g` flag.
 
 As we can see, the method gives us nothing new if we use it without the `g` flag, because `str.match` does exactly the same.
 
-But the `g` flag allows to get all matches with their positions and bracket groups.
+But the `g` flag allows to get all matches with their positions and parentheses groups.
 
 Here's the example how subsequent `regexp.exec` calls return matches one by one:
 
@@ -316,7 +314,7 @@ alert( matchThree ); // null (no match)
 alert( regexp.lastIndex ); // 0 (reset)
 ```
 
-As we can see, each `regexp.exec` call returns the match in a "full format": as an array with brackets, `index` and `input` properties.
+As we can see, each `regexp.exec` call returns the match in a "full format": as an array with parentheses, `index` and `input` properties.
 
 The main use case for `regexp.exec` is to find all matches in a loop:
 
