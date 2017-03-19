@@ -54,7 +54,7 @@ Should look like this:
 
 ![](chrome-sources-breakpoint.png)
 
-A *breakpoint* is a point of code where the debugger will automatically pause the Javascript execution.
+A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
 
 While the code is paused, we can examine current variables, execute commands in the console etc. That is -- debug it.
 
@@ -128,7 +128,7 @@ There are buttons for it at the right-top:
     The execution has resumed, reached another breakpoint inside `say()` and paused there.    Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *not go into the function*, hotkey `key:F10`.
-: If we click it now, `alert` will be shown. The important thing is that if `alert` were not native, but a Javascript function, then the execution would "step over it", skipping the function internals.
+: If we click it now, `alert` will be shown. The important thing is that if `alert` were not native, but a JavaScript function, then the execution would "step over it", skipping the function internals.
 
 <span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
 : The same as the previous one, but "steps in" nested functions. Clicking this will step through all script actions one by one.

@@ -34,7 +34,7 @@ There exist many built-in objects, including those that work with dates, errors,
 
 But features come at a price!
 
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But properties and methods are useful in programming, Javascript engines try to optimize them, so the price is usually fair.
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But properties and methods are useful in programming, JavaScript engines try to optimize them, so the price is usually fair.
 
 ## A primitive as an object
 
@@ -85,7 +85,7 @@ We'll see more specific methods in chapters <info:number> and <info:string>.
 ````warn header="Constructors `String/Number/Boolean` are for internal use only"
 Some languages like Java allow to create "wrapper objects" for primitives explicitly using syntax like `new Number(1)` or `new Boolean(false)`.
 
-In Javascript that's also possible for historical reasons, but highly not recommended. Things will go crazy in many places.
+In JavaScript that's also possible for historical reasons, but highly not recommended. Things will go crazy in many places.
 
 For instance:
 

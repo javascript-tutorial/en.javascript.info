@@ -182,7 +182,7 @@ For instance, for ESLint you should do the following:
 
 1. Install Node.JS (can take from the <http://nodejs.org>).
 2. Install ESLint with the command `npm install -g eslint`.
-3. Create a config file named `.eslintrc` in the root of your Javascript project (in the folder that contains all your files).
+3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
 
 Here's an example of `.eslintrc`:
 

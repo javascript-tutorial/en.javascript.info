@@ -29,9 +29,9 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 ## JSON.stringify
 
-The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for Javascript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses Javascript and the server is written on Ruby/PHP/Java/Whatever.
+The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
 
-Javascript provides methods: 
+JavaScript provides methods: 
 
 - `JSON.stringify` to convert objects into JSON.
 - `JSON.parse` to convert JSON back into an object.
@@ -102,7 +102,7 @@ alert( JSON.stringify(true) ); // true
 alert( JSON.stringify([1, 2, 3]) ); // [1,2,3]
 ```
 
-JSON is data-only cross-language specification, so some Javascript-specific object properties are skipped by `JSON.stringify`.
+JSON is data-only cross-language specification, so some JavaScript-specific object properties are skipped by `JSON.stringify`.
 
 Namely:
 
@@ -292,7 +292,7 @@ The third argument of `JSON.stringify(value, replacer, spaces)` is the number of
 
 Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `spacer` argument is used exclusively for a nice output.
 
-Here `spacer = 2` tells Javascript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
+Here `spacer = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
 
 ```js run
 let user = {
@@ -463,7 +463,7 @@ It looks like this:
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 ```
 
-...And now we reed to *deserialize* it, to turn back into Javascript object.
+...And now we reed to *deserialize* it, to turn back into JavaScript object.
 
 Let's do it by calling `JSON.parse`:
 
@@ -522,6 +522,6 @@ alert( schedule.meetups[1].date.getDate() ); // works!
 
 - JSON is a data format that has its own independent standard and libraries for most programming languages.
 - JSON supports plain objects, arrays, strings, numbers, booleans and `null`.
-- Javascript provides methods [JSON.stringify](mdn:js/JSON/stringify) to serialize into JSON and [JSON.parse](mdn:js/JSON/parse) to read from JSON.
+- JavaScript provides methods [JSON.stringify](mdn:js/JSON/stringify) to serialize into JSON and [JSON.parse](mdn:js/JSON/parse) to read from JSON.
 - Both methods support transformer functions for smart reading/writing.
 - If an object has `toJSON`, then it is called by `JSON.stringify`.

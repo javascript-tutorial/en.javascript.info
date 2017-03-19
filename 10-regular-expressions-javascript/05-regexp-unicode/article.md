@@ -23,7 +23,7 @@ So characters like `a` and `≈` occupy 2 bytes, and those rare ones take 4.
 
 The unicode is made in such a way that the 4-byte characters only have a meaning as a whole.
 
-In the past Javascript did not know about that, and many string methods still have problems. For instance, `length` thinks that here are two characters:
+In the past JavaScript did not know about that, and many string methods still have problems. For instance, `length` thinks that here are two characters:
 
 ```js run
 alert('😄'.length); // 2

@@ -36,4 +36,4 @@ Modify the code of `up` and `down` to make the calls chainable, like this:
 ladder.up().up().down().showStep(); // 1
 ```
 
-Such approach is widely used across Javascript libraries.
+Such approach is widely used across JavaScript libraries.

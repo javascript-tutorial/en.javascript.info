@@ -1,14 +1,14 @@
 # Garbage collection
 
-Memory management in Javascript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
+Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
 
-What happens when something is not needed any more? How Javascript engine discovers that and cleans up?
+What happens when something is not needed any more? How JavaScript engine discovers that and cleans up?
 
 [cut]
 
 ## Reachability
 
-The main concept of memory management in Javascript is *reachability*.
+The main concept of memory management in JavaScript is *reachability*.
 
 Simply put, "reachable" values are those that are accessible or useable somehow. They are guaranteed to be stored in memory.
 
@@ -27,7 +27,7 @@ Simply put, "reachable" values are those that are accessible or useable somehow.
 
     For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references -- are also reachable. Detailed examples to follow.
 
-There's a background process in the Javascript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
+There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that became unreachable.
 
 ## A simple example
 
@@ -185,7 +185,7 @@ Now the objects that could not be visited in the process are considered unreacha
 
 That's the concept how garbage collection works.
 
-Javascript engines apply many optimizations to make it run faster and not affect the execution.
+JavaScript engines apply many optimizations to make it run faster and not affect the execution.
 
 Some of the optimizations:
 

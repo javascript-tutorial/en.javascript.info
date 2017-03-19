@@ -13,7 +13,7 @@ window.open('http://javascript.info/')
 
 ## Popup blocking
 
-Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: Javascript is able to send requests for server, so popups are rarely used. But sometimes they are still handy.
+Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: JavaScript is able to send requests for server, so popups are rarely used. But sometimes they are still handy.
 
 In the past evil sites abused popups a lot. A bad page could open tons of popup windows with ads. So now most browsers try to block popups and protect the user.
 
@@ -41,13 +41,13 @@ The difference is that Firefox treats a timeout of 2000ms or less are acceptable
 
 ## Modern usage
 
-As of now, we have many methods to load and show data on-page with Javascript. But there are still situations when a popup works best.
+As of now, we have many methods to load and show data on-page with JavaScript. But there are still situations when a popup works best.
 
 For instance, many shops use online chats for consulting people. A visitor clicks on the button, it runs `window.open` and opens the popup with the chat.
 
 Why a popup is good here, why not in-page?
 
-1. A popup is a separate window with its own independent Javascript environment. So a chat service doesn't need to integrate with scripts of the main shop site.
+1. A popup is a separate window with its own independent JavaScript environment. So a chat service doesn't need to integrate with scripts of the main shop site.
 2. A popup is very simple to attach to a site, little to no overhead. It's only a small button, without additional scripts.
 3. A popup may persist even if the user left the page. For example, a consult advices the user to visit the page of a new "Super-Cooler" goodie. The user goes there in the main window without leaving the chat.
 
@@ -135,7 +135,7 @@ For windows with URLs from another sites, we are able to change the location by 
 
 ## Accessing the opener window   
 
-A popup may access the "opener" window as well. A Javascript in it may use `window.opener` to access the window that opened it. It is `null` for all windows except popups.
+A popup may access the "opener" window as well. A JavaScript in it may use `window.opener` to access the window that opened it. It is `null` for all windows except popups.
 
 So both the main window and the popup have a reference to each other. Thay may modify each other freely assuming that they come from the same origin. If that's not so, then there are still means to communicate, to be covered later [todo when].
 

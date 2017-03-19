@@ -2,9 +2,9 @@
 
 Regular expressions is a powerful way of searching and replacing inside a string.
 
-In Javascript regular expressions are implemented using objects of a built-in `RegExp` class and integrated with strings.
+In JavaScript regular expressions are implemented using objects of a built-in `RegExp` class and integrated with strings.
 
-Please note that regular expressions vary between programming languages. In this tutorial we concentrate on Javascript. Of course there's a lot in common, but they are a somewhat different in Perl, Ruby, PHP etc.
+Please note that regular expressions vary between programming languages. In this tutorial we concentrate on JavaScript. Of course there's a lot in common, but they are a somewhat different in Perl, Ruby, PHP etc.
 
 [cut]
 
@@ -27,7 +27,7 @@ regexp = /pattern/; // no flags флагов
 regexp = /pattern/gmi; // with flags g,m and i (to be covered soon)
 ```
 
-Slashes `"/"` tell Javascript that we are creating a regular expression. They play the same role as quotes for strings.
+Slashes `"/"` tell JavaScript that we are creating a regular expression. They play the same role as quotes for strings.
 
 ## Usage
 
@@ -36,7 +36,7 @@ To search inside a string, we can use method [search](mdn:js/String/search).
 Here's an example:
 
 ```js run
-let str = "I love Javascript!"; // will search here
+let str = "I love JavaScript!"; // will search here
 
 let regexp = /love/;
 alert( str.search(regexp) ); // 2
@@ -47,7 +47,7 @@ The `str.search` method looks for the pattern `pattern:/love/` and returns the p
 The code above is the same as:
 
 ```js run
-let str = "I love Javascript!"; // will search here
+let str = "I love JavaScript!"; // will search here
 
 let substr = 'love';
 alert( str.search(substr) ); // 2
@@ -78,7 +78,7 @@ let search = prompt("What you want to search?", "love");
 let regexp = new RegExp(search);
 
 // find whatever the user wants
-alert( "I love Javascript".search(regexp));
+alert( "I love JavaScript".search(regexp));
 ```
 ````
 
@@ -87,7 +87,7 @@ alert( "I love Javascript".search(regexp));
 
 Regular expressions may have flags that affect the search.
 
-There are only 5 of them in Javascript:
+There are only 5 of them in JavaScript:
 
 `i`
 : With this flag the search is case-insensitive: no difference between `А` and `а` (see the example below).
@@ -113,7 +113,7 @@ The simplest flag is `i`.
 An example with it:
 
 ```js run
-let str = "I love Javascript!";
+let str = "I love JavaScript!";
 
 alert( str.search(/LOVE/) ); // -1 (not found)
 alert( str.search(/LOVE/i) ); // 2

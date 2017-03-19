@@ -11,11 +11,11 @@ For instance, we have a `user` object with its properties and methods, and want 
 
 ## [[Prototype]]
 
-In Javascript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":
+In JavaScript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":
 
 ![prototype](object-prototype-empty.png)
 
-That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, Javascript automatically takes it from the prototype. In programming, such thing is called a "prototypal inheritance". Many cool language features and approaches are based on it.
+That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called a "prototypal inheritance". Many cool language features and approaches are based on it.
 
 The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
@@ -36,7 +36,7 @@ rabbit.__proto__ = animal;
 
 Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. We'll talk about other ways of setting it later, as for now `__proto__` will do just fine.
 
-So now if we look for something in `rabbit` and it's missing, Javascript automatically takes it from `animal`.
+So now if we look for something in `rabbit` and it's missing, JavaScript automatically takes it from `animal`.
 
 For instance:
 
@@ -126,7 +126,7 @@ alert(longEar.jumps); // true (from rabbit)
 
 There are actually only two limitations:
 
-1. The references can't go in circles. Javascript will throw an error if we try to assign `__proto__` in circle.
+1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in circle.
 2. The value of `__proto__` can be either an object or `null`. All other values (like primitives) are ignored.
 
 Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
@@ -246,8 +246,8 @@ In other words, methods are shared, but the state will be not.
 
 ## Summary
 
-- In Javascript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
+- In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
 - We can use `obj.__proto__` to access it (there are other ways too, to be covered soon).
 - The object references by `[[Prototype]]` is called a "prototype".
-- If we want to read a property of `obj` or call a method, and it doesn't exist, then Javascript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
+- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
 - If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current objects even if they are inherited.

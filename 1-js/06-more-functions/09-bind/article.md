@@ -13,7 +13,7 @@ Suddenly, `this` just stops working right. The situation is typical for novice d
 
 ## Loosing "this"
 
-We already know that in Javascript it's easy to loose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
+We already know that in JavaScript it's easy to loose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
 
 Here's how it may happen with `setTimeout`:
 
@@ -195,7 +195,7 @@ for (let key in user) {
 }
 ```
 
-Javascript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(obj)](http://lodash.com/docs#bindAll) in lodash.
+JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(obj)](http://lodash.com/docs#bindAll) in lodash.
 ````
 
 
@@ -479,7 +479,7 @@ The currying requires the function to have a known fixed number of arguments.
 ```smart header="A little more than currying"
 By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
 
-But most implementations of currying in Javascript are advanced, as described: they also keep the function callable in the multi-argument variant.
+But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
 ```
 
 ## Summary
@@ -492,6 +492,6 @@ But most implementations of currying in Javascript are advanced, as described: t
 
     Partials are convenient when we don't want to repeat the same argument over and over again. Like if we have a `send(from, to)` function, and `from` should always be the same for our task, we can get a partial and go on with it.
 
-- *Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. Javascript implementations usually both keep the function callable normally and return the partial if arguments count is not enough.
+- *Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if arguments count is not enough.
 
     Currying is great when we want easy partials. As we've seen in the logging example: the universal function `log(date, importance, message)` after currying gives us partials when called with one argument like `log(date)` or two arguments `log(date, importance)`.  

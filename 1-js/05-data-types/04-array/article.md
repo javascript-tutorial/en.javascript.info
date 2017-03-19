@@ -123,7 +123,7 @@ A stack is usually illustrated as a pack of cards: new cards are added to the to
 
 For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
 
-Arrays in Javascript can work both as a queue and as a stack. They allow to add/remove elements both to/from the beginning or the end. 
+Arrays in JavaScript can work both as a queue and as a stack. They allow to add/remove elements both to/from the beginning or the end. 
 
 In computer science the data structure that allows it is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
 
@@ -235,7 +235,7 @@ The ways to misuse an array:
 - Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
 - Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
 
-Please think of arrays as about special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside Javascript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
+Please think of arrays as about special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
 
 ## Performance
 

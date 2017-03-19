@@ -79,7 +79,7 @@ Let's see more examples.
 
 
 ````warn header="`try..catch` only works for runtime errors"
-For `try..catch` to work, the code must be runnable. In other words, it should be valid Javascript.
+For `try..catch` to work, the code must be runnable. In other words, it should be valid JavaScript.
 
 It won't work if the code is syntactically wrong, for instance it has unmatched figure brackets:
 
@@ -91,7 +91,7 @@ try {
 }
 ```
 
-The Javascript engine first reads the code, and then runs it. The errors that occur on the reading phrase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
+The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phrase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
 
 So, `try..catch` can only handle errors that occur in the valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
 ````
@@ -126,7 +126,7 @@ setTimeout(function() {
 
 ## Error object
 
-When an error occurs, Javascript generates an object containing the details about it. The object is then passed as an argument to `catch`:
+When an error occurs, JavaScript generates an object containing the details about it. The object is then passed as an argument to `catch`:
 
 ```js
 try {
@@ -259,7 +259,7 @@ throw <error object>
 
 Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it's better to use objects, preferrably with `name` and `message` properties (to stay somewhat compatible with built-in errors).
 
-Javascript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create error objects as well.
+JavaScript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create error objects as well.
 
 Their syntax is:
 
@@ -321,7 +321,7 @@ try {
 }
 ```
 
-In the line `(*)` the `throw` operator generates `SyntaxError` with the given `message`, the same way as Javascript would generate itself. The execution of `try` immediately stops and the control flow jumps into `catch`.
+In the line `(*)` the `throw` operator generates `SyntaxError` with the given `message`, the same way as JavaScript would generate itself. The execution of `try` immediately stops and the control flow jumps into `catch`.
 
 Now `catch` became a single place for all error handling: both for `JSON.parse` and other cases.
 
@@ -572,7 +572,7 @@ In the code above, an error inside `try` always falls out, because there's no `c
 ## Global catch
 
 ```warn header="Environment-specific"
-The information from this section is not a part of the core Javascript.
+The information from this section is not a part of the core JavaScript.
 ```
 
 Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or something else terrible.

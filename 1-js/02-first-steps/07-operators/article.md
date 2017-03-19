@@ -32,7 +32,7 @@ Before we move on, let's grasp the common terminology.
 
 ## Strings concatenation, binary +
 
-Now let's see special features of Javascript operators, beyond school arithmetics.
+Now let's see special features of JavaScript operators, beyond school arithmetics.
 
 Usually the plus operator `'+'` sums numbers.
 

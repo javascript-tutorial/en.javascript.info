@@ -74,11 +74,11 @@ The word boundary `pattern:\b` -- is a special character class.
 
 It does not denote a character, but rather a boundary between characters.
 
-For instance, `pattern:\bJava\b` matches `match:Java` in the string `subject:Hello, Java!`, but not in the script `subject:Hello, Javascript!`.
+For instance, `pattern:\bJava\b` matches `match:Java` in the string `subject:Hello, Java!`, but not in the script `subject:Hello, JavaScript!`.
 
 ```js run
 alert( "Hello, Java!".match(/\bJava\b/) ); // Java
-alert( "Hello, Javascript!".match(/\bJava\b/) ); // null
+alert( "Hello, JavaScript!".match(/\bJava\b/) ); // null
 ```
 
 The boundary has "zero width" in a sense that usually a character class means a character in the result (like a wordly or a digit), but not in this case.
@@ -108,7 +108,7 @@ alert( "Hello, Java!".match(/\Java!\b/) ); // null
 
 Once again let's note that `pattern:\b` makes the searching engine to test for the boundary, so that `pattern:Java\b` finds `match:Java` only when followed by a word boundary, but it does not add a letter to the result.
 
-Usually we use `\b` to find standalone English words. So that if we want `"Java"` language then `pattern:\bJava\b` finds exactly a standalone word and ignores it when it's a part of `"Javascript"`.
+Usually we use `\b` to find standalone English words. So that if we want `"Java"` language then `pattern:\bJava\b` finds exactly a standalone word and ignores it when it's a part of `"JavaScript"`.
 
 Another example: a regexp `pattern:\b\d\d\b` looks for standalone two-digit numbers. In other words, it requires that before and after `pattern:\d\d` must be a symbol different from `\w` (or beginning/end of the string).
 

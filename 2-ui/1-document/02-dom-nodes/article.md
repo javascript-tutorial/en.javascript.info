@@ -8,7 +8,7 @@ libs:
 
 The essential part of HTML is tags, right?
 
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children". And the text inside it is an object as well. All these objects are accessible using Javascript, we'll see that now.
+According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children". And the text inside it is an object as well. All these objects are accessible using JavaScript, we'll see that now.
 
 ## An example of DOM
 
@@ -48,7 +48,7 @@ For instance, the `<title>` tag has the text `"About elks"`.
 
 Please note the special characters in text nodes:
 
-- a newline: `↵` (in Javascript known as `\n`)
+- a newline: `↵` (in JavaScript known as `\n`)
 - a space: `␣`
 
 Spaces and newlines -- are totally valid characters, they form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains come spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
@@ -221,7 +221,7 @@ The best way to study them is to click around. Most values are in-place editable
 
 ## Interaction with console
 
-As we explore the DOM, we also may want to apply Javascript to it. Like: get a node and run some code to modify it, to see how it looks. Here are few tips to travel between the Elements tab and the console.
+As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see how it looks. Here are few tips to travel between the Elements tab and the console.
 
 - Select the first `<li>` in the Elements tab.
 - Press `key:Esc` -- it will open console right below the Elements tab.
@@ -238,7 +238,7 @@ Or we can just output it in the console and explore "at-place", like `document.b
 
 ![](domconsole1.png)
 
-That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using Javascript.
+That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using JavaScript.
 
 The browser developer tools are a great help in development: we can explore DOM, try things and see what goes wrong.
 

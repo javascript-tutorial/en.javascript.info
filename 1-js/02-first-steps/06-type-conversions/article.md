@@ -167,4 +167,4 @@ Most of these rules are easy to understand and memorize. The notable exceptions 
 - `undefined` is `NaN` as a number.
 - `"0"` is true as a boolean.
 
-Objects are not covered here, we'll return to them later in the chapter <info:object-toprimitive>, devoted exclusively to objects, after we learn more basic things about Javascript.
+Objects are not covered here, we'll return to them later in the chapter <info:object-toprimitive>, devoted exclusively to objects, after we learn more basic things about JavaScript.

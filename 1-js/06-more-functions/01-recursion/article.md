@@ -98,7 +98,7 @@ function pow(x, n) {
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it there will be exactly `n`.
 
-The maximal recursion depth is limited by Javascript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help to alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help to alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
@@ -164,7 +164,7 @@ To calculate `x*pow(x, n-1)`, we need to make a subcall of `pow` with new argume
 
 ### pow(2, 2)
 
-To do a nested call, Javascript remembers the current execution context in the *execution context stack*.
+To do a nested call, JavaScript remembers the current execution context in the *execution context stack*.
 
 Here we call the same function `pow`, but it absolutely doesn't matter. The process is the same for all functions:
 

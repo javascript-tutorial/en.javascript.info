@@ -51,7 +51,7 @@ That's for historical reasons.
 
 And now we have all these ways at our disposal.
 
-But please note: for most practical tasks, prototype chains are fixed: `rabbit` inherits from `animal`, and that is not going to change. And Javascript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation. But it is possible.
+But please note: for most practical tasks, prototype chains are fixed: `rabbit` inherits from `animal`, and that is not going to change. And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation. But it is possible.
 
 ## "Very plain" objects
 
@@ -74,7 +74,7 @@ Here if the user types in `__proto__`, the assignment is ignored! That's because
 
 We did not intend to implement such behavior, right? So that's a bug. Here the consequences are not terrible. But in more complex cases the prototype may indeed be changed, so the execution may go wrong in totally unexpected ways.
 
-What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when Javascript is used on server-side.
+What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
 Such thing happens only with `__proto__`. All other properties are "assignable" normally.
 

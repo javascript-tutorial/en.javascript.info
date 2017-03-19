@@ -331,7 +331,7 @@ There is a special built-in method [Object.is](mdn:js/Object/is) that compares v
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`. 
 
-This way of comparison is often used in Javascript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 

@@ -6,7 +6,7 @@ Let's revisit arrow functions.
 
 Arrow functions are not just a "shorthand" for writing small stuff.
 
-Javascript is full of situations where we need to write a small function, that's executed somewhere else.
+JavaScript is full of situations where we need to write a small function, that's executed somewhere else.
 
 For instance:
 
@@ -14,7 +14,7 @@ For instance:
 - `setTimeout(func)` -- `func` is executed by the built-in scheduler.
 - ...there are more.
 
-It's very in the spirit of Javascript to create a function and pass it somewhere.
+It's very in the spirit of JavaScript to create a function and pass it somewhere.
 
 And in such functions we usually don't want to leave the current context.
 

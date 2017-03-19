@@ -90,7 +90,7 @@ User(); // Error: Class constructor User cannot be invoked without 'new'
 ```smart header="Outputting a class"
 If we output it like `alert(User)`, some engines show `"class User..."`, while others show `"function User..."`.
 
-Please don't be confused: the string representation may vary, but that's still a function, there is no separate "class" entity in Javascript language.
+Please don't be confused: the string representation may vary, but that's still a function, there is no separate "class" entity in JavaScript language.
 ```
 
 ```smart header="Class methods are non-enumerable"

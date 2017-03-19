@@ -31,7 +31,7 @@ alert(id1 == id2); // false
 */!*
 ```
 
-If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. Javascript symbols are different.
+If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
 
 
 ## "Hidden" properties
@@ -48,7 +48,7 @@ user[id] = "ID Value";
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
-Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another Javascript library, so the scripts are completely unaware for each other.
+Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another JavaScript library, so the scripts are completely unaware for each other.
 
 No problem. It can create its own `Symbol("id")`.
 
@@ -178,7 +178,7 @@ Symbols inside the registry are called *global symbols*. If we want an applicati
 ```smart header="That sounds like Ruby"
 In some programming languages, like Ruby, there's a single symbol per name.
 
-In Javascript, as we can see, that's right for global symbols.
+In JavaScript, as we can see, that's right for global symbols.
 ```
 
 ### Symbol.keyFor
@@ -210,7 +210,7 @@ For non-global symbols, the name is only used for debugging purposes.
 
 ## System symbols
 
-There exist many "system" symbols that Javascript uses internally, and we can use them to fine-tune various aspects of our objects.
+There exist many "system" symbols that JavaScript uses internally, and we can use them to fine-tune various aspects of our objects.
 
 They are listed in the specification in the [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) table:
 
@@ -231,7 +231,7 @@ Other symbols will also become familiar when we study the corresponding language
 - Symbols are useful if we want to create a field that only those who know the symbol can access.
 - Symbols don't appear in `for..in` loops.
 - Symbols created with `Symbol(name)` are always different, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls return the same symbol.
-- There are system symbols used by Javascript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors.
+- There are system symbols used by JavaScript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors.
 
 Technically, symbols are not 100% hidden. There is a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden.
 

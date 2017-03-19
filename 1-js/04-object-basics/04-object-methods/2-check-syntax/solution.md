@@ -15,7 +15,7 @@ The error message in most browsers does not give understanding what went wrong.
 
 **The error appears because a semicolon is missing after `user = {...}`.**
 
-Javascript does not assume a semicolon before a bracket `(user.go)()`, so it reads the code like:
+JavaScript does not assume a semicolon before a bracket `(user.go)()`, so it reads the code like:
 
 ```js no-beautify
 let user = { go:... }(user.go)()

@@ -1,6 +1,6 @@
 # Destructuring assignment
 
-The two most used data structures in Javascript are `Object` and `Array`.
+The two most used data structures in JavaScript are `Object` and `Array`.
 
 Objects allow to pack many pieces of information into a single entity and arrays allow to store ordered collections. So we can make an object or an array and handle it as a single thing, maybe pass to a function call.
 
@@ -326,7 +326,7 @@ let title, width, height;
 {title, width, height} = {title: "Menu", width: 200, height: 100};
 ```
 
-The problem is that Javascript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
+The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
 
 ```js run
 {
@@ -337,7 +337,7 @@ The problem is that Javascript treats `{...}` in the main code flow (not inside 
 }
 ```
 
-To show Javascript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
+To show JavaScript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
 
 ```js run
 let title, width, height;

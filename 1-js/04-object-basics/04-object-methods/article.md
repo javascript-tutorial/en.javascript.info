@@ -11,7 +11,7 @@ let user = {
 
 And, in the real world, a user can `act`: to select something from the shopping cart, to login, to logout etc.
 
-Let's implement the same in Javascript using functions in properties.
+Let's implement the same in JavaScript using functions in properties.
 
 [cut]
 
@@ -164,7 +164,7 @@ If we used `this.name` instead of `user.name` inside the `alert`, then the code 
 
 ## "this" is not bound
 
-In Javascript, "this" keyword behaves unlike most other programming languages. First, it can be used in any function.
+In JavaScript, "this" keyword behaves unlike most other programming languages. First, it can be used in any function.
 
 There's no syntax error in the code like that:
 
@@ -227,7 +227,7 @@ Here we are not to judge whether this language design decision is good or bad. W
 ## Internals: Reference Type
 
 ```warn header="In-depth language feature"
-This section covers advanced topic that may interest those who want to know Javascript better.
+This section covers advanced topic that may interest those who want to know JavaScript better.
 
 If you want to go on faster, it can be skipped or postponed.
 ```
@@ -279,7 +279,7 @@ hi(); // Error, because this is undefined
 
 That's because a function is a value of its own. It does not carry the object. So `hi = user.hi` saves it into the variable, and then on the last line it is completely standalone.
 
-**To make `user.hi()` calls work, Javascript uses a trick -- the dot `'.'` returns not a function, but a value of the special [Reference Type](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
+**To make `user.hi()` calls work, JavaScript uses a trick -- the dot `'.'` returns not a function, but a value of the special [Reference Type](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
 
 The Reference Type is a "specification type". We can't explicitly use it, but it is used internally by the language.
 

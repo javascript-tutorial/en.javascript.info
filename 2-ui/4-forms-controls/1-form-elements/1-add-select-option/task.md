@@ -13,7 +13,7 @@ There's a `<select>`:
 </select>
 ```
 
-Use Javascript to:
+Use JavaScript to:
 
 1. Show the value and the text of the selected option.
 2. Add an option: `<option value="classic">Classic</option>`.

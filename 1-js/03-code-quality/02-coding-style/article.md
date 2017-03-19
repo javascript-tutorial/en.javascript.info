@@ -258,7 +258,7 @@ There are many open style guides, so there we could just accept the one we like 
 
 There exist more there in the wild.
 
-As you become more mature in Javascript programming, you might want to read them all to pick up the common principles.
+As you become more mature in JavaScript programming, you might want to read them all to pick up the common principles.
 
 ## Style checkers
 
@@ -280,7 +280,7 @@ Here are simple steps to start using it:
 
 1. Install [Node.JS](https://nodejs.org/), necessary to run them.
 2. Install eslint: `npm i -g eslint` (npm is Node.JS package installer).
-3. Create a config file `.eslintrc` in your Javascript project (the dot at the start is mandatory).
+3. Create a config file `.eslintrc` in your JavaScript project (the dot at the start is mandatory).
 
 An example of `.eslintrc`:
 

@@ -1,8 +1,8 @@
 # Element size and scrolling
 
-There are many Javascript properties that allow to read information about element width, height and other geometry features.
+There are many JavaScript properties that allow to read information about element width, height and other geometry features.
 
-We often need them when moving or positioning elements in Javascript, to correctly calculate coordinates.
+We often need them when moving or positioning elements in JavaScript, to correctly calculate coordinates.
 
 [cut]
 

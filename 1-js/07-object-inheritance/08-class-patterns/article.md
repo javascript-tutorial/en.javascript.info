@@ -9,7 +9,7 @@ There's a special syntax construct and a keyword `class` in JavaScript. But befo
 
 In JavaScript there are several well-known programming patterns to make classes even without using the `class` keyword. And here we'll talk about them first.
 
-The `class` construct will be described in the next chapter, but in Javascript it's a "syntax sugar" and an extension of one of the patterns that we'll study here.
+The `class` construct will be described in the next chapter, but in JavaScript it's a "syntax sugar" and an extension of one of the patterns that we'll study here.
 
 [cut]
 
@@ -108,7 +108,7 @@ We already can see benefits over the functional pattern:
 
 So the prototypal pattern is more memory-efficient.
 
-...But not only that. Prototypes allow us to setup the inheritance, precisely the same way as built-in Javascript constructors do. Functional pattern allows to wrap a function into another function, and kind-of emulate inheritance this way, but that's far less effective, so here we won't go into details to save our time.
+...But not only that. Prototypes allow us to setup the inheritance, precisely the same way as built-in JavaScript constructors do. Functional pattern allows to wrap a function into another function, and kind-of emulate inheritance this way, but that's far less effective, so here we won't go into details to save our time.
 
 ## Prototype-based inheritance for classes
 
@@ -200,7 +200,7 @@ Here's what the code does:
 
 ## Summary
 
-The term "class" comes from the object-oriented programming. In Javascript it usually means the functional class pattern or the prototypal pattern. The prototypal pattern is more powerful and memory-efficient, so it's recommended to stick to it.
+The term "class" comes from the object-oriented programming. In JavaScript it usually means the functional class pattern or the prototypal pattern. The prototypal pattern is more powerful and memory-efficient, so it's recommended to stick to it.
 
 According to the prototypal pattern:
 1. Methods are stored in `Class.prototype`.

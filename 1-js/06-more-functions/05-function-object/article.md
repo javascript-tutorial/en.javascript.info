@@ -1,11 +1,11 @@
 
 # Function object, NFE
 
-As we already know, functions in Javascript are values.
+As we already know, functions in JavaScript are values.
 
-Every value in Javascript has the type. What type of value is a function?
+Every value in JavaScript has the type. What type of value is a function?
 
-In Javascript, a function is an object.
+In JavaScript, a function is an object.
 
 A good way to imagine functions is as callable "action objects". We can not only call them, but also treat them as objects: add/remove properties, pass by reference etc.
 
@@ -127,7 +127,7 @@ function ask(question, ...handlers) {
 ask("Question?", () => alert('You said yes'), result => alert(result));
 ```
 
-This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in Javascript libraries.
+This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in JavaScript libraries.
 
 ## Custom properties
 
@@ -347,7 +347,7 @@ Here we covered their properties:
 
 If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
 
-Also, functions may carry additional properties. Many well-known Javascript libraries make a great use of this feature.
+Also, functions may carry additional properties. Many well-known JavaScript libraries make a great use of this feature.
 
 They create a "main" function and attach many other "helper" functions to it. For instance, the [jquery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`. And then adds `_.clone`, `_.keyBy` and other properties to (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to less pollute the global space, so that a single library gives only one global variable. That lowers the chance of possible naming conflicts.
 

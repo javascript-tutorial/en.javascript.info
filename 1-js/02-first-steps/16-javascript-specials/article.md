@@ -1,4 +1,4 @@
-# Javascript specials
+# JavaScript specials
 
 This chapter aims to list features of JavaScript that we've learned, paying special attention to subtle moments.
 
@@ -233,7 +233,7 @@ Details in: <info:switch>.
 
 ## Functions
 
-We covered 3 ways to create a function in Javascript:
+We covered 3 ways to create a function in JavaScript:
 
 1. Function Declaration: the function in the main code flow
 
@@ -291,6 +291,6 @@ More: see <info:function-basics>, <info:function-expressions-arrows>.
 
 ## More to come
 
-That was a brief list of Javascript specials that we need to know to code well.
+That was a brief list of JavaScript specials that we need to know to code well.
 
-As of now that were only basics. Further in the tutorial you'll find more specials and advanced features of Javascript.
+As of now that were only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.

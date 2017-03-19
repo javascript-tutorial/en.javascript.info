@@ -110,7 +110,7 @@ Of course, that refers only for the quotes that are same as the enclosing ones. 
 alert( `I'm the Walrus!` ); // I'm the Walrus!
 ```
 
-Note that the backslash `\` serves for the correct reading of the string by Javascript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
+Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
 
 But what if we need exactly a backslash `\` in the string?
 
@@ -451,7 +451,7 @@ Let's recap the methods to avoid any confusion:
 
 
 ```smart header="Which one to choose?"
-All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core Javascript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
 
 The author finds himself using `slice` almost all the time.
 ```
@@ -572,7 +572,7 @@ alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
 alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
 ```
 
-Note that surrogate pairs did not exist at the time when Javascript was created, and thus are not correctly processed by the language!
+Note that surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
 
 We actually have a single symbol in each of the strings above, but the `length` shows the length of `2`.
 

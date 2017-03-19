@@ -1,6 +1,6 @@
 # Native prototypes
 
-The `"prototype"` property is widely used by the core of Javascript itself. All built-in constructor functions use it.
+The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
 
 We'll see how it is for plain objects first, and then for more complex ones.
 
@@ -123,7 +123,7 @@ During the process of development we may have ideas which new built-in methods w
 
 Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them overwrites the other one.
 
-In modern programming, there is only one case when modifying native prototypes is approved. That's polyfills. In other words, if there's a method in Javascript specification that is not yet supported by our Javascript engine (or any of those that we want to support), then may implement it manually and populate the built-in prototype with it.
+In modern programming, there is only one case when modifying native prototypes is approved. That's polyfills. In other words, if there's a method in JavaScript specification that is not yet supported by our JavaScript engine (or any of those that we want to support), then may implement it manually and populate the built-in prototype with it.
 
 For instance:
 
@@ -177,4 +177,4 @@ That's more efficient, because evades creation of an extra array object `[]`. Fr
     - The methods are stored in the prototype (`Array.prototype`, `Object.prototype`, `Date.prototype` etc).
     - The object itself stores only the data (array items, object properties, the date).
 - Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype`, `Boolean.prototype`. There are no wrapper objects only for `undefined` and `null`.
-- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. Probably the only allowable cause is when we add-in a new standard, but not yet supported by the engine Javascript method.
+- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. Probably the only allowable cause is when we add-in a new standard, but not yet supported by the engine JavaScript method.

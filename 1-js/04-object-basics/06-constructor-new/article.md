@@ -210,7 +210,7 @@ john = {
 
 We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth. 
 
-As of now, it's important to understand what `new` is, because Javascript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+As of now, it's important to understand what `new` is, because JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 
 
 

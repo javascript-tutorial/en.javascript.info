@@ -2,9 +2,9 @@
 
 # Global object
 
-When Javascript was created, there was an idea of a "global object" that provides all global variables and functions. It was planned that multiple in-browser scripts would use that single global object and share variables through it.
+When JavaScript was created, there was an idea of a "global object" that provides all global variables and functions. It was planned that multiple in-browser scripts would use that single global object and share variables through it.
 
-Since then, Javascript greatly evolved, and that idea of linking code through global variables became much less appealing. In modern Javascript, the concept of modules too its place.
+Since then, JavaScript greatly evolved, and that idea of linking code through global variables became much less appealing. In modern JavaScript, the concept of modules too its place.
 
 But the global object still remains in the specification.
 
@@ -119,7 +119,7 @@ Usually, it's not a good idea to use it, but here are some examples you can meet
 
 3. To take the variable from the right window. That's probably the most valid use case.
 
-    A browser may open multiple windows and tabs. A window may also embed another one in `<iframe>`. Every browser window has its own `window` object and global variables. Javascript allows windows that come from the same site (same protocol, host, port) to access variables from each other.
+    A browser may open multiple windows and tabs. A window may also embed another one in `<iframe>`. Every browser window has its own `window` object and global variables. JavaScript allows windows that come from the same site (same protocol, host, port) to access variables from each other.
 
     That use is a little bit beyound our scope for now, but it looks like:
     ```html run

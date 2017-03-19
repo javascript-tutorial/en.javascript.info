@@ -1,6 +1,6 @@
 # Styles and classes
 
-Before we get to Javascript ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
+Before we get to JavaScript ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
 
 There are generally two ways to style an element:
 
@@ -9,11 +9,11 @@ There are generally two ways to style an element:
 
 [cut]
 
-CSS is always the preferred way -- not only for HTML, but in Javascript as well.
+CSS is always the preferred way -- not only for HTML, but in JavaScript as well.
 
 We should only manipulate the `style` property if classes "can't handle it".
 
-For instance, `style` is acceptable if we calculate coordinates of an element dynamically and want to set them from Javascript, like this:
+For instance, `style` is acceptable if we calculate coordinates of an element dynamically and want to set them from JavaScript, like this:
 
 ```js
 let top = /* complex calculations */;
@@ -28,7 +28,7 @@ For other cases, like making the text red, adding a background icon -- describe 
 
 Changing a class is one of the most often actions in scripts.
 
-In the ancient time, there was a limitation in Javascript: a reserved word like `"class"` could not be an object property. That limitation does not exist now, but at that time it was impossible to have a `"class"` property, like `elem.class`.
+In the ancient time, there was a limitation in JavaScript: a reserved word like `"class"` could not be an object property. That limitation does not exist now, but at that time it was impossible to have a `"class"` property, like `elem.class`.
 
 So for classes the similar-looking property `"className"` was introduced: the `elem.className` corresponds to the `"class"` attribute.
 
@@ -283,7 +283,7 @@ Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
 
-Javascript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to test if a link was visited and hence to break the privacy.
+JavaScript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to test if a link was visited and hence to break the privacy.
 ```
 
 ## Summary

@@ -63,10 +63,10 @@ alert( document.body instanceof Node ); // true
 alert( document.body instanceof EventTarget ); // true
 ```
 
-As we can see, DOM nodes are regular Javascript objects. They use prototype-based classes for inheritance. That's easy to see by outputting an element with `console.dir(elem)`. There you can see `HTMLElement.prototype`, `Element.prototype` and so on.
+As we can see, DOM nodes are regular JavaScript objects. They use prototype-based classes for inheritance. That's easy to see by outputting an element with `console.dir(elem)`. There you can see `HTMLElement.prototype`, `Element.prototype` and so on.
 
 ```smart header="`console.dir(elem)` versus `console.log(elem)`"
-Most browsers support two commands in their developer tools: `console.log` and `console.dir`. They output their arguments to the console. For Javascript objects these commands usually do the same.
+Most browsers support two commands in their developer tools: `console.log` and `console.dir`. They output their arguments to the console. For JavaScript objects these commands usually do the same.
 
 But for DOM elements they are different:
 
@@ -77,7 +77,7 @@ Try it on `document.body`.
 ```
 
 ````smart header="IDL in the spec"
-In the specification classes are described using not Javascript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
+In the specification classes are described using not JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
 
 The most important difference is that all properties are given with their types. For instance, `DOMString`, `boolean` and so on.
 
@@ -353,7 +353,7 @@ For text nodes we can imagine a reason to read or modify them, but why comments?
 <!-- /if -->
 ```
 
-...Then Javascript can read it and process embedded instructions.
+...Then JavaScript can read it and process embedded instructions.
 
 ## textContent: pure text
 
@@ -407,14 +407,14 @@ In most cases, we expect the text from a user, and want to treat it as text. We 
 
 The "hidden" attribute and the DOM property specifies whether the element is visible or not.
 
-We can use it in HTML or assign using Javascript, like this:
+We can use it in HTML or assign using JavaScript, like this:
 
 ```html run height="80"
 <div>Both divs below are hidden</div>
 
 <div hidden>With the attribute "hidden"</div>
 
-<div id="elem">Javascript assigned the property "hidden"</div>
+<div id="elem">JavaScript assigned the property "hidden"</div>
 
 <script>
   elem.hidden = true;

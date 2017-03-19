@@ -66,7 +66,7 @@ We'll see more into working with numbers in the chapter <info:number>.
 
 ## A string
 
-A string in Javascript must be quoted.
+A string in JavaScript must be quoted.
 
 ```js
 let str = "Hello";
@@ -80,7 +80,7 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are "simple" quotes. They mark the beginning and the end of the string, that's all. There's no difference between them in Javascript.
+Double and single quotes are "simple" quotes. They mark the beginning and the end of the string, that's all. There's no difference between them in JavaScript.
 
 Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 

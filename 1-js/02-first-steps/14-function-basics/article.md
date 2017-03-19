@@ -207,7 +207,7 @@ function showMessage(from, text = anotherFunction()) {
 
 
 ````smart header="Default parameters old-style"
-Old editions of Javascript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
 
 For instance, an explicit check for being `undefined`:
 
@@ -322,7 +322,7 @@ For long expressions, it may be tempting sometimes to put them on a separate lin
 return
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-That doesn't work, because Javascript assumes a semicolon after `return` in that case:
+That doesn't work, because JavaScript assumes a semicolon after `return` in that case:
 
 ```js
 return*!*;*/!*

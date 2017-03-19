@@ -12,7 +12,7 @@ In other words, a *mixin* is a class that implements a certain behavior. But we 
 
 ## A mixin example
 
-The simplest way to make a mixin in Javascript -- is to make an object with useful methods, that we can just copy into the prototype.
+The simplest way to make a mixin in JavaScript -- is to make an object with useful methods, that we can just copy into the prototype.
 
 For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
 
@@ -192,7 +192,7 @@ And the `eventMixin` can add such behavior to as many classes as we'd like, with
 
 *Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
 
-In Javascript that can be implemented as copying them into the prototype.
+In JavaScript that can be implemented as copying them into the prototype.
 
 We can use mixins as a way to augment a class by multiple behaviors like event-handling that we overlooked above.
 

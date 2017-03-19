@@ -53,17 +53,17 @@ The array may have more than one element.
 For instance:
 
 ```js run
-lar str = "Javascript is a programming language";
+lar str = "JavaScript is a programming language";
 
 let result = str.match( *!*/JAVA(SCRIPT)/i*/!* );
 
-alert( result[0] ); // Javascript (the whole match)
+alert( result[0] ); // JavaScript (the whole match)
 alert( result[1] ); // script (the part of the match that corresponds to the brackets)
 alert( result.index ); // 0
-alert( result.input ); // Javascript is a programming language
+alert( result.input ); // JavaScript is a programming language
 ```
 
-Due to the `i` flag the search is case-insensitive, so it finds `match:Javascript`. The part of the match that corresponds to `pattern:SCRIPT` becomes a separate array item.
+Due to the `i` flag the search is case-insensitive, so it finds `match:JavaScript`. The part of the match that corresponds to `pattern:SCRIPT` becomes a separate array item.
 
 We'll be back to brackets later in the chapter [todo]. They are great for search-and-replace.
 
@@ -243,7 +243,7 @@ The `test` method looks for any match and returns `true/false` whether he found 
 So it's basically the same as `str.search(reg) != -1`, for instance:
 
 ```js run
-let str = "I love Javascript";
+let str = "I love JavaScript";
 
 // these two tests do the same
 alert( *!*/love/i*/!*.test(str) ); // true
@@ -281,7 +281,7 @@ But the `g` flag allows to get all matches with their positions and bracket grou
 Here's the example how subsequent `regexp.exec` calls return matches one by one:
 
 ```js run
-let str = "A lot about Javascript at https://javascript.info";
+let str = "A lot about JavaScript at https://javascript.info";
 
 let regexp = /JAVA(SCRIPT)/ig;
 
@@ -289,7 +289,7 @@ let regexp = /JAVA(SCRIPT)/ig;
 // Look for the first match
 */!*
 let matchOne = regexp.exec(str);
-alert( matchOne[0] ); // Javascript
+alert( matchOne[0] ); // JavaScript
 alert( matchOne[1] ); // script
 alert( matchOne.index ); // 12 (the position of the match)
 alert( matchOne.input ); // the same as str
@@ -321,7 +321,7 @@ As we can see, each `regexp.exec` call returns the match in a "full format": as 
 The main use case for `regexp.exec` is to find all matches in a loop:
 
 ```js run
-let str = 'A lot about Javascript at https://javascript.info';
+let str = 'A lot about JavaScript at https://javascript.info';
 
 let regexp = /javascript/ig;
 
@@ -338,7 +338,7 @@ The loop continues until `regexp.exec` returns `null` that means "no more matche
 We can force `regexp.exec` to start searching from the given position by setting `lastIndex` manually:
 
 ```js run
-let str = 'A lot about Javascript at https://javascript.info';
+let str = 'A lot about JavaScript at https://javascript.info';
 
 let regexp = /javascript/ig;
 regexp.lastIndex = 30;

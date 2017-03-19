@@ -227,7 +227,7 @@ In other words, an empty `"sandbox"` attribute puts the strictest limitations po
 
 See [the manual](mdn:/HTML/Element/iframe) for more.
 
-The example below demonstrates a sandboxed iframe with some Javascript and a form. Neither one works:
+The example below demonstrates a sandboxed iframe with some JavaScript and a form. Neither one works:
 
 [codetabs src="sandbox" height=140]
 

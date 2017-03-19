@@ -1,7 +1,7 @@
 
 # Closure
 
-Javascript is a very function-oriented language, it gives a lot of freedom. A function can be created at one moment, then passed as a value to another variable or function and called from a totally different place much later.
+JavaScript is a very function-oriented language, it gives a lot of freedom. A function can be created at one moment, then passed as a value to another variable or function and called from a totally different place much later.
 
 We know that a function can access variables outside of it. And this feature is used quite often.
 
@@ -9,7 +9,7 @@ But what happens when outer variables change? Does a function get a new value or
 
 Also, what happens when a variable with the function travels to another place of the code and is called from there -- will it get access to outer variables in the new place?
 
-There is no general programming answer for these questions. Different languages behave differently. Here we'll cover Javascript.
+There is no general programming answer for these questions. Different languages behave differently. Here we'll cover JavaScript.
 
 [cut]
 
@@ -65,7 +65,7 @@ Let's formulate two questions for the seed, and then study internal mechanics pi
 
 To understand what's going on, let's first discuss what a "variable" technically is.
 
-In Javascript, every running function, code block and the script as a whole have an associated object named *Lexical Environment*.
+In JavaScript, every running function, code block and the script as a whole have an associated object named *Lexical Environment*.
 
 The Lexical Environment object consists of two parts:
 
@@ -186,7 +186,7 @@ And if a function is called multiple times, then each invocation will have its o
 ```
 
 ```smart header="Lexical Environment is a specification object"
-"Lexical Environment" is a specification object. We can't get this object in our code and manipulate it directly. Javascript engines also may optimize it, discard variables that are  unused in the code and perform other stuff.
+"Lexical Environment" is a specification object. We can't get this object in our code and manipulate it directly. JavaScript engines also may optimize it, discard variables that are  unused in the code and perform other stuff.
 ```
 
 
@@ -361,11 +361,11 @@ So, the result is `"Pete"` here.
 ```smart header="Closures"
 There is a general programming term "closure", that developers generally should know.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in Javascript all functions are naturally closures (there is only one exclusion, to be covered in <info:new-function>).
+A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript all functions are naturally closures (there is only one exclusion, to be covered in <info:new-function>).
 
 That is: they automatically remember where they are created using a hidden `[[Environment]]` property, and all of them can access outer variables.
 
-When on an interview a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in Javascript are closures, and maybe few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
+When on an interview a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
 ```
 
 ## Code blocks and loops, IIFE
@@ -439,7 +439,7 @@ They look like this:
 
 Here a Function Expression is created and immediately called. So the code executes right now and has its own private variables.
 
-The Function Expression is wrapped with brackets `(function {...})`, because when Javascript meets `"function"` in the main code flow, it understands it as a start of Function Declaration. But a Function Declaration must have a name, so there will be an error:
+The Function Expression is wrapped with brackets `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as a start of Function Declaration. But a Function Declaration must have a name, so there will be an error:
 
 ```js run
 // Error: Unexpected token (
@@ -452,7 +452,7 @@ function() { // <-- JavaScript cannot find function name, meets ( and gives erro
 }();
 ```
 
-We can say "okay, let it be Function Declaration, let's add a name", but it won't work. Javascript does not allow Function Declarations to be called immediately:
+We can say "okay, let it be Function Declaration, let's add a name", but it won't work. JavaScript does not allow Function Declarations to be called immediately:
 
 ```js run
 // syntax error because of brackets below
@@ -461,9 +461,9 @@ function go() {
 }(); // <-- can't call Function Declaration immediately
 ```
 
-So the brackets are needed to show Javascript that the function is created in the context of another expression, and hence it's a Function Expression. Needs no name and can be called immediately.
+So the brackets are needed to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression. Needs no name and can be called immediately.
 
-There are other ways to tell Javascript that we mean Function Expression:
+There are other ways to tell JavaScript that we mean Function Expression:
 
 ```js run
 // Ways to create IIFE
@@ -555,7 +555,7 @@ Lexical Environment objects that we've been talking about are subjects to same m
 
 As we've seen, in theory while a function is alive, all outer variabels are also retained.
 
-But in practice, Javascript engines try to optimize that. They analyze variable usage and if it's easy to see that an outer variable is not used -- it is removed.
+But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's easy to see that an outer variable is not used -- it is removed.
 
 **An important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging.**
 
@@ -677,7 +677,7 @@ alert(phrase); // Error, phrase is not defined
     alert(phrase); // Error: phrase is not defined
     ```
 
-    As we can see, `var` pierces through `if`, `for` or other code blocks. That's because long time ago in Javascript blocks had no Lexical Environments. And `var` is a reminiscence of that.
+    As we can see, `var` pierces through `if`, `for` or other code blocks. That's because long time ago in JavaScript blocks had no Lexical Environments. And `var` is a reminiscence of that.
 
 `var` declarations are processed when the function starts (or script starts for globals).
 : In other words, `var` variables are defined from the beginning of the function.

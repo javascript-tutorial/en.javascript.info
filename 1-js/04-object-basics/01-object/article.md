@@ -1,9 +1,9 @@
 
 # Objects
 
-As we know, there are 7 language types in Javascript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+As we know, there are 7 language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In Javascript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
 [cut]
 
@@ -544,7 +544,7 @@ So, copying an object variable creates one more reference to the same object.
 
 But what if we need to duplicate an object? Create an independant copy, a clone?
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in Javascript. Actually, that's rarely needed, copying by reference is good most of the time.
+That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed, copying by reference is good most of the time.
 
 But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
 
@@ -661,7 +661,7 @@ alert(clone.sizes.width); // 51, see the result from the other one
 
 To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate it's structure as well. That is called a "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). Not to reinvent the wheel, we can use a working implementation of it from the Javascript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). Not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 
@@ -688,7 +688,7 @@ To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)
 
 What we've studied in this chapter is called a "plain object", or just `Object`.
 
-There are many other kinds of objects in Javascript:
+There are many other kinds of objects in JavaScript:
 
 - `Array` to store ordered data collections,
 - `Date` to store the information about the date and time,

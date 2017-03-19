@@ -36,7 +36,7 @@ Enough words. Let's see the example.
 
 Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
 
-That task is quite simple, there's even a `**` operator in Javascript that can do that, but here we concentrate not on the function itself, but on the development flow, that can be applied to more complex tasks as well.
+That task is quite simple, there's even a `**` operator in JavaScript that can do that, but here we concentrate not on the function itself, but on the development flow, that can be applied to more complex tasks as well.
 
 Before creating the code of `pow`, we can imagine what the function should do and describe it using BDD.
 
@@ -304,7 +304,7 @@ The basic functionality of `pow` is complete. The first iteration of the develop
 
 As it was said, the function `pow(x, n)` is meant to work with positive integer values `n`.
 
-To indicate a mathematical error, Javascript functions usually return `NaN`. Let's do the same for invalid values of `n`.
+To indicate a mathematical error, JavaScript functions usually return `NaN`. Let's do the same for invalid values of `n`.
 
 Let's first add the behavior to the spec(!):
 
@@ -408,4 +408,4 @@ In real life that's sometimes not that easy. Sometimes it's difficult to write a
 
 Later in the tutorial you will meet many tasks with tests baked-in. So you will more practical examples.
 
-Writing tests requires good Javascript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.
+Writing tests requires good JavaScript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.

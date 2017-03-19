@@ -1,14 +1,14 @@
 # Browser environment, specs
 
-The Javascript language was initially created for web browsers. But as of now, it evolved and became a language with many uses and platforms.
+The JavaScript language was initially created for web browsers. But as of now, it evolved and became a language with many uses and platforms.
 
-A platform may be either a browser or a web-server or a washing machine or another *host*. Each of them provides platform-specific functionality. The Javascript standard called that a *host environment*.
+A platform may be either a browser or a web-server or a washing machine or another *host*. Each of them provides platform-specific functionality. The JavaScript standard called that a *host environment*.
 
 That host environment provides additional objects and functions to the language core. Web browsers provide means to control web pages. Node.JS provides server-side features. There are other host environments too.
 
 [cut]
 
-Here's a bird-eye view of what we have when Javascript runs in a web-browser:
+Here's a bird-eye view of what we have when JavaScript runs in a web-browser:
 
 ![](windowObjects.png)
 

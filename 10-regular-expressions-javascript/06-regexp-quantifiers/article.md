@@ -114,7 +114,7 @@ Regexp "open HTML-tag without attributes" (improved): `pattern:/<[a-z][a-z0-9]*>
     ```
 
 Regexp "opening or closing HTML-tag without attributes": `pattern:/<\/?[a-z][a-z0-9]*>/i`
-: We added an optional slash `pattern:/?` before the tag. Had to escape it with a backslash, otherwise Javascript would think it is the pattern end.
+: We added an optional slash `pattern:/?` before the tag. Had to escape it with a backslash, otherwise JavaScript would think it is the pattern end.
 
     ```js run
     alert( "<h1>Hi!</h1>".match(/<\/?[a-z][a-z0-9]*>/gi) ); // <h1>, </h1>

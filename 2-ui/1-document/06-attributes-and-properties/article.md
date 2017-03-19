@@ -12,7 +12,7 @@ But the mapping is not one-to-one! In this chapter we'll see that DOM properties
 
 We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add own own.
 
-DOM nodes are regular Javascript objects. We can alter them.
+DOM nodes are regular JavaScript objects. We can alter them.
 
 For instance, let's create a new property in `document.body`:
 
@@ -46,7 +46,7 @@ document.documentElement.sayHi(); // Hello, I'm HTML
 document.body.sayHi(); // Hello, I'm BODY
 ```
 
-So, DOM properties and methods behave just like those of regular Javascript objects:
+So, DOM properties and methods behave just like those of regular JavaScript objects:
 
 - They can have any value.
 - They are case-sensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
@@ -242,7 +242,7 @@ If we need the value of `href` or anything else exactly as written in the HTML, 
 
 When writing HTML, we use a lot of standard attributes. But what about non-standard, custom ones? First, let's see whether they are useful or not? What for?
 
-Sometimes non-standard attributes are used to pass custom data from HTML to Javascript, or "mark" elements.
+Sometimes non-standard attributes are used to pass custom data from HTML to JavaScript, or "mark" elements.
 
 Like this:
 

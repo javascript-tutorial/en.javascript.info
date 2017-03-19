@@ -28,7 +28,7 @@ The method `result.includes(str)` internally walks the array `result` and compar
 
 So if there are `100` elements in `result` and no one matches `str`, then it will walk the whole `result` and do exactly `100` comparisons. And if `result` is large, like `10000`, then there would be `10000` comparisons.
 
-That's not a problem by itself, because Javascript engines are very fast, so walk `10000` array is a matter of microseconds.
+That's not a problem by itself, because JavaScript engines are very fast, so walk `10000` array is a matter of microseconds.
 
 But we do such test for each element of `arr`, in the `for` loop.
 

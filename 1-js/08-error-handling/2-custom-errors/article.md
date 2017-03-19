@@ -4,7 +4,7 @@ When we develop something, we often need our own error classes to reflect specif
 
 Our errors should inherit from basic `Error` class and support basic error properties like `message`, `name` and, preferably, `stack`. But they also may have other properties of their own, e.g. `HttpError` objects may have `statusCode` property with a value like `404` or `403` or `500`.
 
-Technically, we can use standalone classes for our errors, because Javascript allows to use `throw` with any argument. But if we inherit from `Error`, then it becomes possible to use `obj instanceof Error` check to identify error objects. So it's better to inherit from it.
+Technically, we can use standalone classes for our errors, because JavaScript allows to use `throw` with any argument. But if we inherit from `Error`, then it becomes possible to use `obj instanceof Error` check to identify error objects. So it's better to inherit from it.
 
 As we build our application, our own errors naturally form a hierarchy, for instance `HttpTimeoutError` may inherit from `HttpError`. Examples will follow soon.
 
@@ -24,7 +24,7 @@ That's called "data validation" -- we need to ensure that the data has all the n
 Our `ValidationError` should inherit from the built-in `Error` class. To better understand what we're extending -- here's the approximate code for built-in [Error class](https://tc39.github.io/ecma262/#sec-error-message):
 
 ```js
-// "pseudocode" for the built-in Error class defined by Javascript itself
+// "pseudocode" for the built-in Error class defined by JavaScript itself
 class Error {
   constructor(message) {
     this.message = message;
@@ -61,7 +61,7 @@ try {
 
 Please note:
 
-1. In the line `(1)` we call the parent constructor to set the message. Javascript requires us to call `super` in the child constructor.
+1. In the line `(1)` we call the parent constructor to set the message. JavaScript requires us to call `super` in the child constructor.
 2. The parent constructor sets the `name` property to `"Error"`, so here we reset it to the right value.
 
 Let's try to use it in `readUser(json)`:

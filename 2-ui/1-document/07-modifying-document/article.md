@@ -32,7 +32,7 @@ Here's how it will look:
 */!*
 ```
 
-That was an HTML example. Now let's create the same `div` with Javascript (assuming that the styles are still in the HTML or an external CSS).
+That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS).
 
 ## Creating an element
 
@@ -410,7 +410,7 @@ The syntax:
 <p>The end</p>
 ```
 
-The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use Javascript to create a full-fledged webpage and write it.
+The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use JavaScript to create a full-fledged webpage and write it.
 
 The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 

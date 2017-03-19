@@ -234,7 +234,7 @@ The numbers in square brackets denote the approximate time of when it happens. T
 
 Page lifecycle events:
 
-- `DOMContentLoaded` event triggers on `document` when DOM is ready. We can apply Javascript to elements at this stage.
+- `DOMContentLoaded` event triggers on `document` when DOM is ready. We can apply JavaScript to elements at this stage.
   - All scripts are executed except those that are external with `async` or `defer`
   - Images and other resources may still continue loading.
 - `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.

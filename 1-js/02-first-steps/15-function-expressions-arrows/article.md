@@ -1,6 +1,6 @@
 # Function expressions and arrows
 
-In Javascript a function is not a "magical language structure", but a special kind of value.
+In JavaScript a function is not a "magical language structure", but a special kind of value.
 
 The syntax that we used before is called *Function Declaration*:
 
@@ -159,7 +159,7 @@ ask(
 
 Here functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask`, but that's just what we want here.
 
-Such code appears in our scripts very naturally, it's in the spirit of Javascript.
+Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
 
 
 ```smart header="A function is a value representing an \"action\""

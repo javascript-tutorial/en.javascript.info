@@ -1,6 +1,6 @@
 # Hello, world!
 
-The tutorial that you're reading is about the core Javascript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
+The tutorial that you're reading is about the core JavaScript, that is platform-independant. So you'll be able to learn how to use Node.JS and other things based on that knowledge.
 
 But we need a working environment to run our scripts, and, just because this book is online, the browser is probably a good choice. We'll use a few browser-specific commands like `alert`, but will keep their amount to the minimum.
 
@@ -133,4 +133,4 @@ The example above can be split into two scripts to work:
 - A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
 
 
-There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to Javascript language. So we shouldn't distract ourselves from it. We'll be using a browser as a way to run Javascript, very convenient for online reading, but yet one of many.
+There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to JavaScript language. So we shouldn't distract ourselves from it. We'll be using a browser as a way to run JavaScript, very convenient for online reading, but yet one of many.

@@ -73,7 +73,7 @@ So that would look really odd to the user, and he will stop.
 
 ## Old-school defences (weak)
 
-The oldest defence method is the piece of Javascript that forbids to open the page in a frame (so-called "framebusting").
+The oldest defence method is the piece of JavaScript that forbids to open the page in a frame (so-called "framebusting").
 
 Like this:
 

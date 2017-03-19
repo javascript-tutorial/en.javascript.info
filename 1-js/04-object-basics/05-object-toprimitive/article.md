@@ -24,7 +24,7 @@ Still, there are still valid reasons why we should know how to-primitive convers
 - Simple object-as-string output (`alert` and alike) is useable sometimes.
 - Many built-in objects implement their own to-primitive conversion, we need to know how to work with that.
 - Sometimes an unexpected conversion happens, and we should understand what's going on.
-- The final one. There are quizzes and questions on interviews that rely on that knowledge. Looks like people think it's a good sign that person understands Javascript if he knows type conversions well.
+- The final one. There are quizzes and questions on interviews that rely on that knowledge. Looks like people think it's a good sign that person understands JavaScript if he knows type conversions well.
 
 ## ToPrimitive
 
@@ -81,7 +81,7 @@ When a built-in function (like `alert` or mathematical functions) or an operator
 
 Please note -- there are only three hints. That simple. There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
 
-**To do the conversion, Javascript tries to find and call three object methods:**
+**To do the conversion, JavaScript tries to find and call three object methods:**
 
 1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
 2. Otherwise if hint is `"string"`
@@ -126,7 +126,7 @@ As we can see from the code, `user` becomes a self-descriptive string or a money
 
 Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
 
-If there's no `Symbol.toPrimitive` then Javascript tries to find them and try in the order:
+If there's no `Symbol.toPrimitive` then JavaScript tries to find them and try in the order:
 
 - `toString -> valueOf` for "string" hint.
 - `valueOf -> toString` otherwise.

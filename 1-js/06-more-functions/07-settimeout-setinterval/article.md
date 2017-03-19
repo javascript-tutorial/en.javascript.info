@@ -7,7 +7,7 @@ There are two methods for it:
 - `setTimeout` allows to run a function once after the given interval of time.
 - `setInterval` allows to run of the function regularly with the given interval between the runs.
 
-These methods are not a part of Javascript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.JS.
+These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.JS.
 
 
 [cut]
@@ -57,7 +57,7 @@ setTimeout(sayHi, 1000, "John", "Hello"); // Hello, John
 */!*
 ```
 
-If the first argument is a string, then Javascript creates a function from it.
+If the first argument is a string, then JavaScript creates a function from it.
 
 So, this will also work:
 
@@ -245,7 +245,7 @@ So we can split the long text to pieces. First 100 lines, then plan another 100 
 
 As a simpler example -- here's a counting function from `1` to `1000000000`.
 
-If you run it, the CPU will hang. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to scroll and click other buttons on the page -- you'll see that whole Javascript actually is paused, no other actions work until it finishes.
+If you run it, the CPU will hang. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to scroll and click other buttons on the page -- you'll see that whole JavaScript actually is paused, no other actions work until it finishes.
 
 ```js run
 let i = 0;
@@ -348,7 +348,7 @@ setTimeout(function run() {
 
 First timers run immediately (just as written in the spec), and then the delay comes into play. That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
 
-For server-side Javascript, that limitation does not exist. Also, there are other ways to schedule an immediate asynchronous job. In Node.JS that's [process.nextTick](https://nodejs.org/api/process.html) and [setImmediate](https://nodejs.org/api/timers.html).
+For server-side JavaScript, that limitation does not exist. Also, there are other ways to schedule an immediate asynchronous job. In Node.JS that's [process.nextTick](https://nodejs.org/api/process.html) and [setImmediate](https://nodejs.org/api/timers.html).
 ````
 
 ## Summary

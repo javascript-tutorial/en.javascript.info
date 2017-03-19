@@ -1,6 +1,6 @@
 # Rest parameters and spread operator
 
-Many Javascript built-in functions support on arbitrary number of arguments.
+Many JavaScript built-in functions support on arbitrary number of arguments.
 
 For instance:
 

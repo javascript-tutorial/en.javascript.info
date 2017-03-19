@@ -35,7 +35,7 @@ alert( "1\2".match(/\\/) ); // '\'
 
 ## A slash
 
-The slash symbol `'/'` is not a special character, but in Javascript it is used to open and close the regexp: `pattern:/...pattern.../`, so we should escape it too.
+The slash symbol `'/'` is not a special character, but in JavaScript it is used to open and close the regexp: `pattern:/...pattern.../`, so we should escape it too.
 
 Here's what a search for a slash `'/'` looks like:
 
