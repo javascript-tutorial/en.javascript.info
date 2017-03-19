@@ -2,32 +2,32 @@ importance: 5
 
 ---
 
-# Модальное диалоговое окно
+# Modal form
 
-Создайте функцию `showPrompt(text, callback)`, которая выводит форму для ввода с сообщением `text` и кнопками `ОК/Отмена`.
+Create a function `showPrompt(html, callback)` that shows a form with the message `html`, an input field and buttons `OK/CANCEL`.
 
-- При отправке формы (OK/ввод в текстовом поле) -- должна вызываться функция `callback` со значением поля.
-- При нажатии на `Отмена` или на клавишу `key:Esc` -- должна вызываться функция `callback(null)`. Клавиша `key:Esc` должна закрывать форму всегда, даже если поле для ввода сообщения не в фокусе.
+- A user should type something into a text field and press `key:Enter` or the OK button, then `callback(value)` is called with the value he entered.
+- Otherwise if the user presses `key:Esc` or CANCEL, then `callback(null)` is called.
 
-Особенности реализации:
+In both cases that ends the input process and removes the form.
 
-- Форма должна показываться в центре окна (и оставаться в центре при изменении его размеров, а также при прокрутке окна!).
-- Текст может состоять из нескольких строк, возможен любой HTML
-- При показе формы остальные элементы страницы использовать нельзя, не работают другие кнопки и т.п, это окно -- *модальное*.
-- При показе формы -- сразу фокус на `INPUT` для ввода.
-- Нажатия `key:Tab`/`key:Shift+Tab` переключают в цикле только по полям формы, они не позволяют переключиться на другие элементы страницы.
+Requirements:
+
+- The form should be in the center of the window.
+- The form is *modal*. In other words, no interaction with the rest of the page is possible until the user closes it.
+- When the form is shown, the focus should be inside the `<input>` for the user.
+- Keys `key:Tab`/`key:Shift+Tab` should shift the focus between form fields, don't allow it to leave for other page elements.
 
 Пример использования:
 
 ```js
-showPrompt("Введите что-нибудь<br>... умное :)", function(value) {
-  alert( value );
+showPrompt("Enter something<br>...smart :)", function(value) {
+  alert(value);
 });
 ```
 
-Демо в ифрейме:
+A demo in the iframe:
 
 [iframe src="solution" height=160 border=1]
 
-Исходный HTML/CSS для формы с готовым fixed-позиционированием - в песочнице.
-
+P.S. The source document has HTML/CSS for the form with fixed positioning, but it's up to you to make it modal.

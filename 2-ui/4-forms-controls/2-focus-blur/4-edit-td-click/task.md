@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Редактирование TD по клику
+# Edit TD on click
 
-Сделать ячейки таблицы `td` редактируемыми по клику.
+Make table cells editable on click.
 
-- При клике -- ячейка `<td>` превращается в редактируемую, можно менять HTML. Размеры ячеек при этом не должны меняться.
-- В один момент может редактироваться одна ячейка.
-- При редактировании под ячейкой появляются кнопки для приема и отмена редактирования, только клик на них заканчивает редактирование.
+- On click -- the cell should became "editable" (textarea appears inside), we can change HTML. There should be no resize, all geometry should remain the same.
+- Buttons OK and CANCEL appear below the cell to finish/cancel the editing.
+- Only one cell may be editable at a moment. While a `<td>` is in "edit mode", clicks on other cells are ignored.
+- The table may have many cells. Use event delegation.
 
-Демо:
+The demo:
 
-[iframe src="solution"]
-
+[iframe src="solution" height=400]

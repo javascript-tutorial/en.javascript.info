@@ -1,185 +1,79 @@
-# Изменение: change, input, cut, copy, paste
+# Handling change, input, cut, copy, paste
 
-На элементах формы происходят события клавиатуры и мыши, но есть и несколько других, особенных событий.
+Let's discuss various events that accompany data updates.
 
-## Событие change
+## Event: change
 
-Событие [change](http://www.w3.org/TR/html5/forms.html#event-input-change) происходит по окончании изменении значения элемента формы, когда это изменение зафиксировано.
+The [change](http://www.w3.org/TR/html5/forms.html#event-input-change) event triggers when the element has finished changing.
 
-Для текстовых элементов это означает, что событие произойдёт не при каждом вводе, а при потере фокуса.
+For text inputs that means that the event occurs when it looses focus.
 
-Например, пока вы набираете что-то в текстовом поле ниже -- события нет. Но как только вы уведёте фокус на другой элемент, например, нажмёте кнопку -- произойдет событие `onchange`.
+For instance, while we are typing in the text field below -- there's no event. But when we move the focus somewhere else, for instance, click on a button -- there will be a `change` event:
 
-```html autorun height=40
+```html autorun height=40 run
 <input type="text" onchange="alert(this.value)">
-<input type="button" value="Кнопка">
+<input type="button" value="Button">
 ```
 
-Для остальных же элементов: `select`, `input type=checkbox/radio` оно срабатывает сразу при выборе значения.
+For other elements: `select`, `input type=checkbox/radio` it triggers right after the selection changes.
 
-```warn header="Поздний `onchange` в IE8-"
-В IE8- `checkbox/radio` при изменении мышью не инициируют событие сразу, а ждут потери фокуса.
+## Event: input
 
-Для того, чтобы видеть изменения `checkbox/radio` тут же -- в IE8- нужно повесить обработчик на событие `click` (оно произойдет и при изменении значения с клавиатуры) или воспользоваться событием `propertychange`, описанным далее.
-```
+The `input` event triggers every time a value is modified.
 
-## Событие input
+For instance:
 
-Событие `input` срабатывает *тут же* при изменении значения текстового элемента и поддерживается всеми браузерами, кроме IE8-.
-
-В IE9 оно поддерживается частично, а именно -- *не возникает при удалении символов* (как и `onpropertychange`).
-
-Пример использования (не работает в IE8-):
-
-```html autorun height=40
-<input type="text"> oninput: <span id="result"></span>
+```html autorun height=40 run
+<input type="text" id="input"> oninput: <span id="result"></span>
 <script>
-  var input = document.body.children[0];
-
   input.oninput = function() {
-    document.getElementById('result').innerHTML = input.value;
+    result.innerHTML = input.value;
   };
 </script>
 ```
 
-В современных браузерах `oninput` -- самое главное событие для работы с элементом формы. Именно его, а не `keydown/keypress` следует использовать.
+If we want to handle every modification of an `<input>` then this event is the best choice.
 
-Если бы ещё не проблемы со старыми IE... Впрочем, их можно решить при помощи события `propertychange`.
+Unlike keyboard events it works on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
 
-## IE10-, событие propertychange
+```smart header="Can't prevent anything in `oninput`"
+The `input` event occurs after the value is modified.
 
-Это событие происходит только в IE10-, при любом изменении свойства. Оно позволяет отлавливать изменение тут же. Оно нестандартное, и его основная область использования -- исправление недочётов обработки событий в старых IE.
-
-Если поставить его на `checkbox` в IE8-, то получится "правильное" событие `change`:
-
-```html autorun height=40
-<input type="checkbox"> Чекбокс с "onchange", работающим везде одинаково
-<script>
-  var checkbox = document.body.children[0];
-
-  if ("onpropertychange" in checkbox) {
-    // старый IE
-*!*
-    checkbox.onpropertychange = function() {
-      // проверим имя изменённого свойства
-      if (event.propertyName == "checked") {
-        alert( checkbox.checked );
-      }
-    };
-*/!*
-  } else {
-    // остальные браузеры
-    checkbox.onchange = function() {
-      alert( checkbox.checked );
-    };
-  }
-</script>
+So we can't use `event.preventDefault()` there -- it's just too late, there would be no effect.
 ```
 
-Это событие также срабатывает при изменении значения текстового элемента. Поэтому его можно использовать в старых IE вместо `oninput`.
+## Events: cut, copy, paste
 
-К сожалению, в IE9 у него недочёт: оно не срабатывает при удалении символов. Поэтому сочетания `onpropertychange` + `oninput` недостаточно, чтобы поймать любое изменение поля в старых IE. Далее мы рассмотрим пример, как это можно сделать иначе.
+These events occur on cutting/copying/pasting a value.
 
-## События cut, copy, paste
+They belong to [ClipboardEvent](https://www.w3.org/TR/clipboard-apis/#clipboard-event-interfaces) class and provide access to the data that is copied/pasted.
 
-Эти события используются редко. Они происходят при вырезании/вставке/копировании значения.
+We also can use `event.preventDefault()` to abort the action.
 
-К сожалению, кросс-браузерного способа получить данные, которые вставляются/копируются, не существует, поэтому их основное применение -- это отмена соответствующей операции.
+For instance, the code below prevents all such events and shows what we are trying to cut/copy/paste:
 
-Например, вот так:
-
-```html autorun height=40
-<input type="text" id="input"> event: <span id="result"></span>
+```html autorun height=40 run
+<input type="text" id="input">
 <script>
   input.oncut = input.oncopy = input.onpaste = function(event) {
-    result.innerHTML = event.type + ' ' + input.value;
+    alert(event.type + ' - ' + event.clipboardData.getData('text/plain'));
     return false;
   };
 </script>
 ```
 
-## Пример: поле с контролем СМС
+Technically, we can copy/paste everything. For instance, we can copy and file in the OS file manager, and paste it.
 
-Как видим, событий несколько и они взаимно дополняют друг друга.
+There's a list of methods [in the specification](https://www.w3.org/TR/clipboard-apis/#dfn-datatransfer) to work with different data types, read/write to the clipboard.
 
-Посмотрим, как их использовать, на примере.
+But please note that clipboard is a "global" OS-level thing. Most browsers allow read/write access to the clipboard only in the scope of certain user actions for the safety. Also it is forbidden to create "custom" clipboard events in all browsers except Firefox.
 
-Сделаем поле для СМС, рядом с которым должно показываться число символов, обновляющееся при каждом изменении поля.
+## Summary
 
-Как такое реализовать?
+Data change events:
 
-Событие `input` идеально решит задачу во всех браузерах, кроме IE9-. Собственно, если IE9- нам не нужен, то на этом можно и остановиться.
-
-### IE9-
-
-В IE8- событие `input` не поддерживается, но, как мы видели ранее, есть `onpropertychange`, которое может заменить его.
-
-Что же касается IE9 -- там поддерживаются и `input` и `onpropertychange`, но они оба не работают при удалении символов. Поэтому мы будем отслеживать удаление при помощи `keyup` на `key:Delete`  и `key:BackSpace` . А вот удаление командой "вырезать" из меню -- сможет отловить лишь `oncut`.
-
-Получается вот такая комбинация:
-
-```html autorun run height=60
-<input type="text" id="sms"> символов: <span id="result"></span>
-<script>
-  function showCount() {
-    result.innerHTML = sms.value.length;
-  }
-
-  sms.onkeyup = sms.oninput = showCount;
-  sms.onpropertychange = function() {
-    if (event.propertyName == "value") showCount();
-  }
-  sms.oncut = function() {
-    setTimeout(showCount, 0); // на момент oncut значение еще старое
-  };
-</script>
-```
-
-Здесь мы добавили вызов `showCount` на все события, которые могут приводить к изменению значения. Да, иногда изменение будет обрабатываться несколько раз, но зато с гарантией. А лишние вызовы легко убрать, например, при помощи `throttle`-декоратора, описанного в задаче <info:task/throttle>.
-
-**Есть и совсем другой простой, но действенный вариант: через `setInterval` регулярно проверять значение и, если оно слишком длинное, обрезать его.**
-
-Чтобы сэкономить ресурсы браузера, мы можем начинать отслеживание по `onfocus`, а прекращать -- по `onblur`, вот так:
-
-```html autorun height=60
-<input type="text" id="sms"> символов: <span id="result"></span>
-
-<script>
-  var timerId;
-
-  sms.onfocus = function() {
-
-    var lastValue = sms.value;
-    timerId = setInterval(function() {
-      if (sms.value != lastValue) {
-        showCount();
-        lastValue = sms.value;
-      }
-    }, 20);
-  };
-
-  sms.onblur = function() {
-    clearInterval(timerId);
-  };
-
-  function showCount() {
-    result.innerHTML = sms.value.length;
-  }
-</script>
-```
-
-Обратим внимание -- весь этот "танец с бубном" нужен только для поддержки IE8-, в которых не поддерживается `oninput` и IE9, где `oninput` не работает при удалении.
-
-## Итого
-
-События изменения данных:
-
-| Событие | Описание | Особенности |
+| Event | Description | Specials |
 |---------|----------|-------------|
-| `change`| Изменение значения любого элемента формы. Для текстовых элементов срабатывает при потере фокуса. | В IE8- на чекбоксах ждет потери фокуса, поэтому для мгновенной реакции ставят также <code>onclick</code>-обработчик или <code>onpropertychange</code>. |
-| `input` | Событие срабатывает только на текстовых элементах. Оно не ждет потери фокуса, в отличие от <code>change</code>. | В IE8- не поддерживается, в IE9 не работает при удалении символов. |
-| `propertychange` | Только для IE10-. Универсальное событие для отслеживания изменения свойств элементов. Имя изменённого свойства содержится в `event.propertyName`. Используют для мгновенной реакции на изменение значения в старых IE. | В IE9 не срабатывает при удалении символов. |
-| `cut/copy/paste` | Срабатывают при вставке/копировании/удалении текста. Если в их обработчиках отменить действие браузера, то вставки/копирования/удаления не произойдёт. | Вставляемое значение получить нельзя: на момент срабатывания события в элементе всё ещё *старое* значение, а новое недоступно. |
-
-Ещё особенность: в IE8- события `change`, `propertychange`, `cut` и аналогичные не всплывают. То есть, обработчики нужно назначать на сам элемент, без делегирования.
-
+| `change`| A value was changed. | For text inputs triggers on focus loss. |
+| `input` | For text inputs on every change. | Triggers immediately unlike `change`. |
+| `cut/copy/paste` | Cut/copy/paste actions. | The action can be prevented. The `event.clipbordData` property gives read/write access to the clipboard. |

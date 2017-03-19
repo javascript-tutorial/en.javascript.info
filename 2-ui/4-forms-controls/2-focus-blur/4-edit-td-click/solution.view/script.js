@@ -1,32 +1,25 @@
-var table = document.getElementById('bagua-table');
+let table = document.getElementById('bagua-table');
 
-var editingTd;
+let editingTd;
 
 table.onclick = function(event) {
 
-  var target = event.target;
+  // 3 possible targets
+  let target = event.target.closest('.edit-cancel,.edit-ok,td');
 
-  while (target != table) {
-    if (target.className == 'edit-cancel') {
-      finishTdEdit(editingTd.elem, false);
-      return;
-    }
+  if (!table.contains(target)) return;
 
-    if (target.className == 'edit-ok') {
-      finishTdEdit(editingTd.elem, true);
-      return;
-    }
+  if (target.className == 'edit-cancel') {
+    finishTdEdit(editingTd.elem, false);
+  } else if (target.className == 'edit-ok') {
+    finishTdEdit(editingTd.elem, true);
+  } else if (target.nodeName == 'TD') {
+    if (editingTd) return; // already editing
 
-    if (target.nodeName == 'TD') {
-      if (editingTd) return; // already editing
-
-      makeTdEditable(target);
-      return;
-    }
-
-    target = target.parentNode;
+    makeTdEditable(target);
   }
-}
+
+};
 
 function makeTdEditable(td) {
   editingTd = {
@@ -34,9 +27,9 @@ function makeTdEditable(td) {
     data: td.innerHTML
   };
 
-  td.classList.add('edit-td'); // td, not textarea! the rest of rules will cascade
+  td.classList.add('edit-td'); // td is in edit state, CSS also styles the area inside
 
-  var textArea = document.createElement('textarea');
+  let textArea = document.createElement('textarea');
   textArea.style.width = td.clientWidth + 'px';
   textArea.style.height = td.clientHeight + 'px';
   textArea.className = 'edit-area';
@@ -57,6 +50,6 @@ function finishTdEdit(td, isOk) {
   } else {
     td.innerHTML = editingTd.data;
   }
-  td.classList.remove('edit-td'); // remove edit class
+  td.classList.remove('edit-td'); 
   editingTd = null;
 }

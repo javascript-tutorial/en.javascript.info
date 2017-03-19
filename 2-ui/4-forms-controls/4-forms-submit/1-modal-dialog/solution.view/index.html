@@ -3,96 +3,49 @@
 
 <head>
   <meta charset="utf-8">
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-    }
-    
-    #prompt-form {
-      display: inline-block;
-      padding: 5px 5px 5px 70px;
-      width: 200px;
-      border: 1px solid black;
-      background: white url(https://js.cx/clipart/prompt.png) no-repeat left 5px;
-      vertical-align: middle;
-    }
-    
-    #prompt-form-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-      display: none;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-    }
-    
-    #prompt-form-container:before {
-      display: inline-block;
-      height: 100%;
-      content: '';
-      vertical-align: middle;
-    }
-    
-    #cover-div {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9000;
-      width: 100%;
-      height: 100%;
-      background-color: gray;
-      opacity: 0.3;
-    }
-    
-    #prompt-form input[name="text"] {
-      display: block;
-      margin: 5px;
-      width: 180px;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body style="height:3000px">
 
-  <h1>Нажмите на кнопку ниже</h1>
+  <h2>Click the button below</h2>
 
-  <input type="button" value="Нажмите для показа формы ввода" id="show-button">
+  <input type="button" value="Click to show the form" id="show-button">
 
 
   <div id="prompt-form-container">
     <form id="prompt-form">
       <div id="prompt-message"></div>
       <input name="text" type="text">
-      <input type="submit" value="Ок">
-      <input type="button" name="cancel" value="Отмена">
+      <input type="submit" value="Ok">
+      <input type="button" name="cancel" value="Cancel">
     </form>
   </div>
 
   <script>
-    // Показать полупрозрачный DIV, затеняющий всю страницу 
-    // (а форма будет не в нем, а рядом с ним, чтобы не полупрозрачная) 
+    // Show a half-transparent DIV to "shadow" the page
+    // (the form is not inside, but near it, because it shouldn't be half-transparent)
     function showCover() {
-      var coverDiv = document.createElement('div');
+      let coverDiv = document.createElement('div');
       coverDiv.id = 'cover-div';
-      document.body.appendChild(coverDiv);
+
+      // make the page unscrollable while the modal form is open
+      document.body.style.overflowY = 'hidden';
+
+      document.body.append(coverDiv);
     }
 
     function hideCover() {
-      document.body.removeChild(document.getElementById('cover-div'));
+      document.getElementById('cover-div').remove();
+      document.body.style.overflowY = '';
     }
 
     function showPrompt(text, callback) {
       showCover();
-      var form = document.getElementById('prompt-form');
-      var container = document.getElementById('prompt-form-container');
+      let form = document.getElementById('prompt-form');
+      let container = document.getElementById('prompt-form-container');
       document.getElementById('prompt-message').innerHTML = text;
-      form.elements.text.value = '';
+      form.text.value = '';
 
       function complete(value) {
         hideCover();
@@ -102,54 +55,51 @@
       }
 
       form.onsubmit = function() {
-        var value = form.elements.text.value;
-        if (value == '') return false; // игнорировать пустой submit
+        let value = form.text.value;
+        if (value == '') return false; // ignore empty submit
 
         complete(value);
         return false;
       };
 
-      form.elements.cancel.onclick = function() {
+      form.cancel.onclick = function() {
         complete(null);
       };
 
       document.onkeydown = function(e) {
-        if (e.keyCode == 27) { // escape
+        if (e.key == 'Escape') {
           complete(null);
         }
       };
 
-      var lastElem = form.elements[form.elements.length - 1];
-      var firstElem = form.elements[0];
+      let lastElem = form.elements[form.elements.length - 1];
+      let firstElem = form.elements[0];
 
       lastElem.onkeydown = function(e) {
-        if (e.keyCode == 9 && !e.shiftKey) {
+        if (e.key == 'Tab' && !e.shiftKey) {
           firstElem.focus();
           return false;
         }
       };
 
       firstElem.onkeydown = function(e) {
-        if (e.keyCode == 9 && e.shiftKey) {
+        if (e.key == 'Tab' && e.shiftKey) {
           lastElem.focus();
           return false;
         }
       };
-
 
       container.style.display = 'block';
       form.elements.text.focus();
     }
 
     document.getElementById('show-button').onclick = function() {
-      showPrompt("Введите что-нибудь<br>...умное :)", function(value) {
-        alert("Вы ввели: " + value);
+      showPrompt("Enter something<br>...smart :)", function(value) {
+        alert("You entered: " + value);
       });
     };
   </script>
 
 
-
 </body>
-
 </html>

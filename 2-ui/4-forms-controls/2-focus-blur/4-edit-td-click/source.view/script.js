@@ -1,3 +1,3 @@
-var table = document.getElementById('bagua-table');
+let table = document.getElementById('bagua-table');
 
-/* ваш код */
+/* your code */

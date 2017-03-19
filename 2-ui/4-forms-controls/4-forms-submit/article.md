@@ -1,56 +1,67 @@
-# Формы: отправка, событие и метод submit
+# Form submission: event and method submit
 
-Событие `submit` возникает при отправке формы. Наиболее частое его применение -- это *валидация* (проверка) формы перед отправкой.
+The `submit` event triggers when the form is submitted, it is usually used to validate the form before sending it to the server or to abort the submission and process it in Javascript.
 
-Метод `submit` позволяет инициировать отправку формы из JavaScript, без участия пользователя. Далее мы рассмотрим детали их использования.
+The method `form.submit()` allows to initiate form sending from JavaScript. We can use it to dynamically create and send our own forms to server.
+
+Let's see more details of them.
 
 [cut]
 
-## Событие submit
+## Event: submit
 
-Чтобы отправить форму на сервер, у посетителя есть два способа:
+There are two main ways to submit a form:
 
-1. **Первый -- это нажать кнопку `<input type="submit">` или `<input type="image">`.**
-2. **Второй -- нажать Enter, находясь на каком-нибудь поле.**
+1. The first -- to click `<input type="submit">` or `<input type="image">`.
+2. The second -- press `key:Enter` on an input field.
 
-Какой бы способ ни выбрал посетитель -- будет сгенерировано событие `submit`. Обработчик в нём может проверить данные и, если они неверны, то вывести ошибку и сделать `event.preventDefault()` -- тогда форма не отправится на сервер.
+Both actions lead to `submit` event on the form. The handler can check the data, and if there are errors, show them and call `event.preventDefault()`, then the form won't be sent to the server.
 
-Например, в таком HTML оба способа выведут `alert`, форма не будет отправлена:
+In the form below:
+1. Go into the text field and press `key:Enter`.
+2. Click `<input type="submit">`.
 
-```html autorun height=80 no-beautify
+Both actions show `alert` and the form is not sent anywhere due to `return false`:
+
+```html autorun height=60 no-beautify
 <form onsubmit="alert('submit!');return false">
-  Первый: Enter в текстовом поле <input type="text" value="Текст"><br>
-  Второй: Нажать на "Отправить": <input type="submit" value="Отправить">
+  First: Enter in the input field <input type="text" value="text"><br>
+  Second: Click "submit": <input type="submit" value="Submit">
 </form>
 ```
 
-Ожидаемое поведение:
+````smart header="Relation between `submit` and `click`"
+When a form is sent using `key:Enter` on an input field, a `click` event triggers on the `<input type="submit">`.
 
-1. Перейдите в текстовое поле и нажмите Enter, будет событие, но форма не отправится на сервер благодаря `return false` в обработчике.
-2. То же самое произойдет при клике на `<input type="submit">`.
+That's rather funny, because there was no click at all.
 
-````smart header="Взаимосвязь событий `submit` и `click`"
-При отправке формы путём нажатия Enter на текстовом поле, на элементе `<input type="submit">` везде, кроме IE8-, генерируется событие `click`.
-
-Это довольно забавно, учитывая что клика-то и не было.
-
-```html autorun height=80
-<form onsubmit="alert('submit');return false">
- <input type="text" size="30" value="При нажатии Enter будет click">
+Here's the demo:
+```html autorun height=60
+<form onsubmit="return false">
+ <input type="text" size="30" value="Focus here and press enter">
  <input type="submit" value="Submit" *!*onclick="alert('click')"*/!*>
 </form>
 ```
+
 ````
 
-```warn header="В IE8- событие `submit` не всплывает"
-В IE8- событие `submit` не всплывает. Нужно вешать обработчик `submit` на сам элемент формы, без использования делегирования.
+## Method: submit
+
+To submit a form to the server manually, we can call `form.submit()`.
+
+Then the `submit` event is not generated. It is assumed that if the programmer calls `form.submit()`, then the script already did all related processing.
+
+Sometimes that's used to manually create and send a form, like this:
+
+```js run
+let form = document.createElement('form');
+form.action = 'https://google.com/search';
+form.method = 'GET';
+
+form.innerHTML = '<input name="q" value="test">';
+
+// the form must be in the document to submit it
+document.body.append(form);
+
+form.submit();
 ```
-
-## Метод submit
-
-Чтобы отправить форму на сервер из JavaScript -- нужно вызвать на элементе формы метод `form.submit()`.
-
-При этом само событие `submit` не генерируется. Предполагается, что если программист вызывает метод `form.submit()`, то он выполнил все проверки.
-
-Это используют, в частности, для искусственной генерации и отправки формы.
-

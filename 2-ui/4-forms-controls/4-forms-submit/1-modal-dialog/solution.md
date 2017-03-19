@@ -1,8 +1,4 @@
-Модальное окно делается путём добавления к документу `DIV`, полностью перекрывающего документ и имеющего больший `z-index`.
-
-В результате все клики будут доставаться этому `DIV'у`:
-
-Стиль:
+A modal window can be implemented using a half-transparent `<div id="cover-div">` that covers the whole window, like this:
 
 ```css
 #cover-div {
@@ -17,5 +13,8 @@
 }
 ```
 
-Самой форме можно дать еще больший `z-index`, чтобы она была над `DIV'ом`. Мы не помещаем форму в контейнер, чтобы она не унаследовала полупрозрачность.
+Because the `<div>` covers everything, it gets all clicks, not the page below it.
 
+Also we can prevent page scroll by setting `body.style.overflowY='hidden'`.
+
+The form should be not in the `<div>`, but next to it, because we don't want it to have `opacity`.

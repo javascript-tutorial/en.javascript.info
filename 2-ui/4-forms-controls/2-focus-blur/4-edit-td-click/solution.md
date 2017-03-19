@@ -1,6 +1,5 @@
 
-1. При клике -- заменяем `innerHTML` ячейки на `<textarea>` с размерами "под ячейку", без рамки.
-2. В `textarea.value` присваиваем содержимое ячейки.
-3. Фокусируем посетителя на ячейке вызовом `focus()`.
-4. Показываем кнопки OK/CANCEL под ячейкой.
-
+1. On click -- replace `innerHTML` of the cell by `<textarea>` with same sizes and no border. Can use Javascript or CSS to set the right size.
+2. Set `textarea.value` to `td.innerHTML`.
+3. Focus on the textarea.
+4. Show buttons OK/CANCEL under the cell, handle clicks on them.
