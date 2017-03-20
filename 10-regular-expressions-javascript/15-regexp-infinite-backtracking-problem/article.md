@@ -233,45 +233,40 @@ Decreasing the count of `pattern:\d+` can not help to find a match, there's no m
 (1234)(56789)z
 ```
 
-Если вернуться к более реальному примеру `pattern:<(\s*\w+=\w+\s*)*>` то
-сам алгоритм поиска, который у нас в голове, предусматривает, что мы "просто" ищем тег, а потом пары `атрибут=значение` (сколько получится).
+Let's get back to more real-life example: `pattern:<(\s*\w+=\w+\s*)*>`. We want it to find pairs `name=value` (as many as it can). There's no need in backtracking here.
 
-Никакого "отката" здесь не нужно.
+In other words, if it found many `name=value` pairs and then can't find `>`, then there's no need to decrease the count of repetitions. Even if we match one pair less, it won't give us the closing `>`:
 
-В современных регулярных выражениях для решения этой проблемы придумали "possessive" (сверхжадные? неоткатные? точный перевод пока не устоялся) квантификаторы, которые вообще не используют бэктрегинг.
+Modern regexp engines support so-called "possessive" quantifiers for that. They are like greedy, but don't backtrack at all. Pretty simple, they capture whatever they can, and the search continues. There's also another tool called "atomic groups" that forbid backtracking inside parentheses.
 
-То есть, они даже проще, чем "жадные" -- берут максимальное количество символов и всё. Поиск продолжается дальше. При несовпадении никакого возврата не происходит.
+Unfortunately, but both these features are not supported by JavaScript.
 
-Это, с одной стороны, уменьшает количество возможных результатов, но, с другой стороны, в ряде случаев очевидно, что возврат (уменьшение количество повторений квантификатора) результата не даст. А только потратит время, что как раз и доставляет проблемы. Как раз такие ситуации и описаны выше.
+Although we can get a similar affect using lookahead. There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups).
 
-Есть и другое средство -- "атомарные скобочные группы", которые запрещают перебор внутри скобок, по сути позволяя добиваться того же, что и сверхжадные квантификаторы,
+The pattern to take as much repetitions as possible without backtracking is: `pattern:(?=(a+))\1`.
 
-К сожалению, в JavaScript они не поддерживаются.
+In other words, the lookahead `pattern:?=` looks for the maximal count `pattern:a+` from the current position. And then they are "consumed into the result" by the backreference `pattern:\1`.
 
-Однако, можно получить подобный эффект при помощи предпросмотра. Подробное описание соответствия с учётом синтаксиса сверхжадных квантификаторов и атомарных групп есть в статьях [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) и [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups), здесь же мы останемся в рамках синтаксиса JavaScript.
+There will be no backtracking, because lookahead does not backtrack. If it found like 5 times of `pattern:a+` and the further match failed, then it doesn't go back to 4.
 
-Взятие максимального количества повторений `a+` без отката выглядит так: `pattern:(?=(a+))\1`.
-
-То есть, иными словами, предпросмотр `pattern:?=` ищет максимальное количество повторений `pattern:a+`, доступных с текущей позиции. А затем они "берутся в результат" обратной ссылкой `pattern:\1`. Дальнейший поиск -- после найденных повторений.
-
-Откат в этой логике в принципе не предусмотрен, поскольку предпросмотр "откатываться" не умеет. То есть, если предпросмотр нашёл 5 штук `pattern:a+`, и в результате поиск не удался, то он не будет откатываться на 4 повторения. Эта возможность в предпросмотре отсутствует, а в данном случае она как раз и не нужна.
-
-Исправим регэксп для поиска тега с атрибутами `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`, описанный в начале главы. Используем предпросмотр, чтобы запретить откат на меньшее количество пар `атрибут=значение`:
+Let's fix the regexp for a tag with attributes from the beginning of the chapter`pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`. We'll use lookahead to prevent backtracking of `name=value` pairs:
 
 ```js run
-// регэксп для пары атрибут=значение
-let attr = /(\s*\w+=(\w+|"[^"]*")\s*)/
+// regexp to search name=value
+let attrReg = /(\s*\w+=(\w+|"[^"]*")\s*)/
 
-// используем его внутри регэкспа для тега
-let reg = new RegExp('<\\w+(?=(' + attr.source + '*))\\1>', 'g');
+// use it inside the regexp for tag
+let reg = new RegExp('<\\w+(?=(' + attrReg.source + '*))\\1>', 'g');
 
 let good = '...<a test="<>" href="#">... <b>...';
 
-let bad = "<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b\
-  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b";
+let bad = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
+  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
 alert( good.match(reg) ); // <a test="<>" href="#">, <b>
-alert( bad.match(reg) ); // null (нет результатов, быстро)
+alert( bad.match(reg) ); // null (no results, fast!)
 ```
 
-Отлично, всё работает! Нашло как длинный тег `match:<a test="<>" href="#">`, так и одинокий `match:<b>`.
+Great, it works! We found a long tag  `match:<a test="<>" href="#">` and a small one `match:<b>` and didn't hang the engine.
+
+Please note the `attrReg.source` property. `RegExp` objects provide access to their source string in it. That's convenient when we want to insert one regexp into another.
