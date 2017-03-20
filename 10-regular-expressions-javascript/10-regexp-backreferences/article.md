@@ -1,63 +1,62 @@
-# Обратные ссылки: \n и $n
+# Backreferences: \n and $n
 
-Скобочные группы можно не только получать в результате.
-
-Движок регулярных выражений запоминает их содержимое, и затем его можно использовать как в самом паттерне, так и в строке замены.
+Capturing groups may be accessed not only in the result, but in the replacement string, and in the pattern too.
 
 [cut]
 
-## Группа в строке замены
+## Group in replacement: $n
 
-Ссылки в строке замены имеют вид `$n`, где `n` -- это номер скобочной группы.
+When we are using `replace` method, we can access n-th group in the replacement string using `$n`.
 
-Вместо `$n` подставляется содержимое соответствующей скобки:
+For instance:
 
 ```js run
-var name = "Александр Пушкин";
+let name = "John Smith";
 
-name = name.replace(/([а-яё]+) ([а-яё]+)/i, *!*"$2, $1"*/!*);
-alert( name ); // Пушкин, Александр
+name = name.replace(/(\w+) (\w+)/i, *!*"$2, $1"*/!*);
+alert( name ); // Smith, John
 ```
 
-В примере выше вместо `pattern:$2` подставляется второе найденное слово, а вместо `pattern:$1` -- первое.
+Here `pattern:$1` in the replacement string means "substitute the content of the first group here", and `pattern:$2` means "substitute the second group here".
 
-## Группа в шаблоне
+Referencing a group in the replacement string allows us to reuse the existing text during the replacement.
 
-Выше был пример использования содержимого групп в строке замены. Это удобно, когда нужно реорганизовать содержимое или создать новое с использованием старого.
+## Group in pattern: \n
 
-Но к скобочной группе можно также обратиться в самом поисковом шаблоне, ссылкой вида `\номер`.
+A group can be referenced in the pattern using `\n`.
 
-Чтобы было яснее, рассмотрим это на реальной задаче -- необходимо найти в тексте строку в кавычках. Причём кавычки могут быть одинарными `subject:'...'` или двойными `subject:"..."` -- и то и другое должно искаться корректно.
+To make things clear let's consider a task. We need to find a quoted string: either a single-quoted  `subject:'...'` or a double-quoted `subject:"..."` -- both variants need to match.
 
-Как такие строки искать?
+How to look for them?
 
-Можно в регэкспе предусмотреть произвольные кавычки: `pattern:['"](.*?)['"]`. Такой регэксп найдёт строки вида `match:"..."`, `match:'...'`, но он даст неверный ответ в случае, если одна кавычка ненароком оказалась внутри другой, как например в строке `subject:"She's the one!"`:
+We can put two kinds of quotes in the pattern: `pattern:['"](.*?)['"]`. That finds strings like  `match:"..."` and `match:'...'`, but it gives incorrect matches when one quote appears inside another one, like the string `subject:"She's the one!"`:
 
 ```js run
-var str = "He said: \"She's the one!\".";
+let str = "He said: \"She's the one!\".";
 
-var reg = /['"](.*?)['"]/g;
+let reg = /['"](.*?)['"]/g;
 
-// Результат не соответствует замыслу
+// The result is not what we expect
 alert( str.match(reg) ); // "She'
 ```
 
-Как видно, регэксп нашёл открывающую кавычку `match:"`, затем текст, вплоть до новой кавычки `match:'`, которая закрывает соответствие.
+As we can see, the pattern found an opening quote `match:"`, then the text is consumed lazily till the other quote `match:'`, that closes the match.
 
-Для того, чтобы попросить регэксп искать закрывающую кавычку -- такую же, как открывающую, мы обернём её в скобочную группу и используем обратную ссылку на неё:
+To make sure that the pattern looks for the closing quote exactly the same as the opening one, let's make a group of it and use the backreference:
 
 ```js run
-var str = "He said: \"She's the one!\".";
+let str = "He said: \"She's the one!\".";
 
-var reg = /(['"])(.*?)\1/g;
+let reg = /(['"])(.*?)\1/g;
 
 alert( str.match(reg) ); // "She's the one!"
 ```
 
-Теперь работает верно! Движок регулярных выражений, найдя первое скобочное выражение -- кавычку `pattern:(['"])`, запоминает его и далее `pattern:\1` означает "найти то же самое, что в первой скобочной группе".
+Now everything's correct! The regular expression engine finds the first quote `pattern:(['"])` and remembers the content of `pattern:(...)`, that's the first capturing group.
 
-Обратим внимание на два нюанса:
+Further in the pattern `pattern:\1` means "find the same text as in the first group".
 
-- Чтобы использовать скобочную группу в строке замены -- нужно использовать ссылку вида `$1`, а в шаблоне -- обратный слэш: `\1`.
-- Чтобы в принципе иметь возможность обратиться к скобочной группе -- не важно откуда, она не должна быть исключена из запоминаемых при помощи `?:`. Скобочные группы вида `(?:...)` не участвуют в нумерации.
+Please note:
 
+- To reference a group inside a replacement string -- we use `$1`, while in the pattern -- a backslash `\1`.
+- If we use `?:` in the group, then we can't reference it. Groups that are excluded from capturing `(?:...)` are not remembered by the engine.
