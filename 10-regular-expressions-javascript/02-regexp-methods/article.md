@@ -345,6 +345,42 @@ alert( regexp.exec(str).index ); // 34, the search starts from the 30th position
 ```
 ````
 
+## The "y" flag [#y-flag]
+
+The `y` flag means that the search should find a match exactly at the position specified by the property `regexp.lastIndex` and only there.
+
+In other words, normally the search is made in the whole string: `pattern:/javascript/` looks for "javascript" everywhere in the string.
+
+But when a regexp has the `y` flag, then it only looks for the match at the position specified in `regexp.lastIndex` (`0` by default).
+
+For instance:
+
+```js run
+let str = "I love JavaScript!";
+
+let reg = /javascript/iy;
+
+alert( reg.lastIndex ); // 0 (default)
+alert( str.match(reg) ); // null, not found at position 0
+
+reg.lastIndex = 7;
+alert( str.match(reg) ); // JavaScript (right, that word starts at position 7)
+
+// for any other reg.lastIndex the result is null
+```
+
+The regexp `pattern:/javascript/iy` can only be found if we set `reg.lastIndex=7`, because due to `y` flag the engine only tries to find it in the single place within a string -- from the `reg.lastIndex` position.
+
+So, what's the point? Where do we apply that?
+
+The reason is performance.
+
+The `y` flag works great for parsers -- programs that need to "read" the text and build in-memory syntax structure or perform actions from it. For that we move along the text and apply regular expressions to see what we have next: a string? A number? Something else?
+
+The `y` flag allows to apply a regular expression (or many of them one-by-one) exactly at the given position and when we understand what's there, we can move on -- step by step examining the text.
+
+Without the flag the regexp engine always searches till the end of the text, that takes time, especially if the text is large. So our parser would be very slow. The `y` flag is exactly the right thing here.
+
 ## Summary, recipes
 
 Methods become much easier to understand if we separate them by their use in real-life tasks.
@@ -365,4 +401,9 @@ To search and replace:
 To split the string:
 : - `str.split(str|reg)`
 
-Now we know the methods and can use regular expressions. But we need to learn their syntax and capabilities, so let's move on.
+We also covered two flags:
+
+- The `g` flag to find all matches (global search),
+- The `y` flag to search at exactly the given position inside the text.
+
+Now we know the methods and can use regular expressions. But we need to learn their syntax, so let's move on.

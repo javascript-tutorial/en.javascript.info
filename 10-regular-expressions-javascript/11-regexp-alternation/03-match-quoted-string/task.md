@@ -1,25 +1,32 @@
-# Найдите строки в кавычках
+# Find quoted strings
 
-Найдите в тексте при помощи регэкспа строки в двойных кавычках `subject:"..."`.
+Create a regexp to find strings in double quotes `subject:"..."`.
 
-В строке поддерживается экранирование при помощи слеша -- примерно в таком же виде, как в обычных строках JavaScript. То есть, строка может содержать любые символы, экранированные слэшем, в частности: `subject:\"`, `subject:\n`, и даже сам слэш в экранированном виде: `subject:\\`.
+The important part is that strings should support escaping, in the same way as JavaScript strings do. For instance, quotes can be inserted as `subject:\"` a newline as `subject:\n`, and the slash itself as `subject:\\`.
 
-Здесь особо важно, что двойная кавычка после слэша не оканчивает строку, а считается её частью. В этом и состоит основная сложность задачи, которая без этого условия была бы элементарной.
-
-Пример совпадающих строк:
 ```js
-.. *!*"test me"*/!* ..  (обычная строка)
-.. *!*"Скажи \"Привет\"!"*/!* ... (строка с кавычками внутри)
-.. *!*"\r\n\\"*/!* ..  (строка со спец. символами и слэшем внутри)
+let str = "Just like \"here\".";
 ```
 
-Заметим, что в JavaScript такие строки удобнее всего задавать в одинарных кавычках, и слеши придётся удвоить (в одинарных кавычках они являются экранирующими символами):
+For us it's important that an escaped quote `subject:\"` does not end a string.
 
-Пример задания тестовой строки в JavaScript:
+So we should look from one quote to the other ignoring escaped quotes on the way.
+
+That's the essential part of the task, otherwise it would be trivial.
+
+Examples of strings to match:
+```js
+.. *!*"test me"*/!* ..  
+.. *!*"Say \"Hello\"!"*/!* ... (escaped quotes inside)
+.. *!*"\\"*/!* ..  (double slash inside)
+.. *!*"\\ \""*/!* ..  (double slash and an escaped quote inside)
+```
+
+In JavaScript we need to double the slashes to pass them right into the string, like this:
+
 ```js run
-var str = ' .. "test me" .. "Скажи \\"Привет\\"!" .. "\\r\\n\\\\" .. ';
+let str = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
 
-// эта строка будет такой:
-alert(str); //  .. "test me" .. "Скажи \"Привет\"!" .. "\r\n\\" ..
+// the in-memory string
+alert(str); //  .. "test me" .. "Say \"Hello\"!" .. "\\ \"" ..
 ```
-

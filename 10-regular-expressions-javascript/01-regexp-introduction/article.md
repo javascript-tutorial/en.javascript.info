@@ -102,8 +102,7 @@ There are only 5 of them in JavaScript:
 : Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
 
 `y`
-: Sticky mode (covered in [todo])
-
+: Sticky mode (covered in the [next chapter](info:regexp-methods#y-flag))
 
 
 ## The "i" flag

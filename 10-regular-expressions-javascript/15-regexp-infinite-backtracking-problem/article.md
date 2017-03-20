@@ -1,129 +1,127 @@
-# Чёрная дыра бэктрекинга
+# Infinite backtracking problem
 
-Некоторые регулярные выражения, с виду являясь простыми, могут выполняться оооочень долго, и даже "подвешивать" интерпретатор JavaScript.
+Some regular expressions are looking simple, but can execute veeeeeery long time, and even "hang" the JavaScript engine.
 
-Рано или поздно, с этим сталкивается любой разработчик, потому что нечаянно создать такое регулярное выражение -- легче лёгкого.
+Sooner or later all developers occasionally meets this behavior.
 
-Типична ситуация, когда регулярное выражение до поры до времени работает нормально, и вдруг на каком-то тексте как начнёт "подвешивать" интерпретатор и есть 100% процессора.
+The typical situation -- a regular expression works fine for some time, and then starts to "hang" the script and make it consume 100% of CPU.
 
-Это может стать уязвимостью. Например, если JavaScript выполняется на сервере, то при разборе данных, присланных посетителем, он может зависнуть, если использует подобный регэксп. На клиенте тоже возможно подобное, при использовании регэкспа для подсветки синтаксиса.
+That may even be a vulnerability. For instance, if JavaScript is on the server and uses regular expressions on user data. There were many vulnerabilities of that kind even in widely distributed systems.
 
-Такие уязвимости "убивали" почтовые сервера и системы обмена сообщениями и до появления JavaScript, и наверно будут "убивать" и после его исчезновения. Так что мы просто обязаны с ними разобраться.
+So the problem is definitely worth to deal with.
 
 [cut]
 
-## Пример
+## Example
 
-План изложения у нас будет таким:
+The plan will be like this:
 
-1. Сначала посмотрим на проблему в реальной ситуации.
-2. Потом упростим реальную ситуацию до "корней" и увидим, откуда она берётся.
+1. First we see the problem how it may occur.
+2. Then we simplify the situation and see why it occurs.
+3. Then we fix it.
 
-Рассмотрим, например, поиск по HTML.
+For instance let's consider searching tags in HTML.
 
-Мы хотим найти теги с атрибутами, то есть совпадения вида `subject:<a href="..." class=doc ...>`.
+We want to find all tags, with or without attributes -- like `subject:<a href="..." class="doc" ...>`. We need the regexp to work reliably, because HTML comes from the internet and can be messy.
 
-Самый простой способ это сделать -- `pattern:<[^>]*>`. Но он же и не совсем корректный, так как тег может выглядеть так: `subject:<a test="<>" href="#">`. То есть, внутри "закавыченного" атрибута может быть символ `>`. Простейший регэксп на нём остановится и найдёт `match:<a test="<>`.
+In particular, we need it to match tags like `<a test="<>" href="#">` -- with `<` and `>` in attributes. That's allowed by [HTML standard](https://html.spec.whatwg.org/multipage/syntax.html#syntax-attributes).
 
-Соответствие:
-```
-<[^>]*....>
-<a test="<>" href="#">
-```
-
-А нам нужен весь тег.
-
-Для того, чтобы правильно обрабатывать такие ситуации, нужно учесть их в регулярном выражении. Оно будет иметь вид `pattern:<тег (ключ=значение)*>`.
-
-Если перевести на язык регэкспов, то: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`:
-
-1. `pattern:<\w+` -- начало тега
-2. `pattern:(\s*\w+=(\w+|"[^"]*")\s*)*` -- произвольное количество пар вида `слово=значение`, где "значение" может быть также словом `pattern:\w+`, либо строкой в кавычках `pattern:"[^"]*"`.
-
-Мы пока не учитываем все детали грамматики HTML, ведь строки возможны и в 'одинарных' кавычках, но на данный момент этого достаточно. Главное, что регулярное выражение получилось в меру простым и понятным.
-
-Испытаем полученный регэксп в действии:
+Now we can see that a simple regexp like `pattern:<[^>]+>` doesn't work, because it stops at the first `>`, and we need to ignore `<>` inside an attribute.
 
 ```js run
-var reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
+// the match doesn't reach the end of the tag - wrong!
+alert( '<a test="<>" href="#">'.match(/<[^>]+>/) ); // <a test="<>
+```
 
-var str='...<a test="<>" href="#">... <b>...';
+We need the whole tag.
+
+To correctly handle such situations we need a more complex regular expression. It will have the form  `pattern:<tag (key=value)*>`.
+
+In the regexp language that is: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`:
+
+1. `pattern:<\w+` -- is the tag start,
+2. `pattern:(\s*\w+=(\w+|"[^"]*")\s*)*` -- is an arbitrary number of pairs `word=value`, where the value can be either a word `pattern:\w+` or a quoted string `pattern:"[^"]*"`.
+
+That doesn't yet support the details of HTML grammer, for instance strings can be in 'single' quotes, but these can be added later, so that's somewhat close to real life. For now we want the regexp to be simple.
+
+Let's try it in action:
+
+```js run
+let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
+
+let str='...<a test="<>" href="#">... <b>...';
 
 alert( str.match(reg) ); // <a test="<>" href="#">, <b>
 ```
 
-Отлично, всё работает! Нашло как длинный тег `match:<a test="<>" href="#">`, так и одинокий `match:<b>`.
+Great, it works! It found both the long tag `match:<a test="<>" href="#">` and the short one `match:<b>`.
 
-А теперь -- демонстрация проблемы.
+Now let's see the problem.
 
-Если запустить пример ниже, то он может подвесить браузер:
+If you run the example below, it may hang the browser (or another JavaScript engine):
 
 ```js run
-var reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
+let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
 
-var str = "<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  \
-a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b";
+let str = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  
+  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
 *!*
-// Этот поиск будет выполняться очень, очень долго
+// The search will take a long long time
 alert( str.match(reg) );
 */!*
 ```
 
-Некоторые движки регулярных выражений могут в разумное время разобраться с таким поиском, но большинство -- нет.
+Some regexp engines can handle that search, but most of them don't.
 
-В чём дело? Почему несложное регулярное выражение на такой небольшой строке "виснет" наглухо?
+What's the matter? Why a simple regular expression on such a small string "hangs"?
 
-Упростим ситуацию, удалив тег и возможность указывать строки в кавычках:
+Let's simplify the situation by removing the tag and quoted strings, we'll look only for attributes:
 
 ```js run
-// только атрибуты, разделённые пробелами
-var reg = /<(\s*\w+=\w+\s*)*>/g;
+// only search for space-delimited attributes
+let reg = /<(\s*\w+=\w+\s*)*>/g;
 
-var str = "<a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  \
-a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b";
+let str = `<a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
+  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
 *!*
-// Этот поиск будет выполняться очень, очень долго
+// the search will take a long, long time
 alert( str.match(reg) );
 */!*
 ```
 
-То же самое.
+The same.
 
-На этом мы закончим с демонстрацией "практического примера" и перейдём к разбору происходящего.
+Here we end the demo of the problem and start looking into what's going on.
 
-## Бектрекинг
+## Backtracking
 
-В качестве ещё более простого регулярного выражения, рассмотрим `pattern:(\d+)*$`.
+To make an example even simpler, let's consider `pattern:(\d+)*$`.
 
-В большинстве движков регэкспов, например в Chrome или IE, этот поиск выполняется очень долго (осторожно, может "подвесить" браузер):
+In most regexp engines that search takes a very long time (careful -- can hang):
 
 ```js run
 alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
 ```
 
-В чём же дело, что не так с регэкспом?
+So what's wrong with the regexp?
 
-Внимательный читатель, посмотрев на него, наверняка удивится, ведь он "какой-то странный". Квантификатор `pattern:*` здесь выглядит лишним.
+Actually, it looks a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+$`.
 
-Если хочется найти число, то с тем же успехом можно искать `pattern:\d+$`.
+Yes, the regexp is artificial, but the reason why it is slow is the same as those we saw above. So let's understand it.
 
-Да, этот регэксп носит искусственный характер, но, разобравшись с ним, мы поймём и практический пример, данный выше. Причина их медленной работы одинакова.
+What happen during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
 
-В целом, с регэкспом "всё так", синтаксис вполне допустимый. Проблема в том, как выполняется поиск по нему.
-
-Посмотрим, что происходит при поиске в строке `subject:123456789z`:
-
-1. Первым делом, движок регэкспов пытается найти `pattern:\d+`. Плюс `pattern:+` является жадным по умолчанию, так что он хватает все цифры, какие может:
+1. First, the regexp engine tries to find a number `pattern:\d+`. The plus `pattern:+` is greedy by default, so it consumes all digits:
 
     ```
     \d+.......
     (123456789)z
     ```
-2. Затем движок пытается применить звёздочку вокруг скобок `pattern:(\d+)*`, но больше цифр нет, так что звёздочка не даёт повторений.
+2. Then it tries to apply the start around the parentheses `pattern:(\d+)*`, but there are no more digits, so it the star doesn't give anything.
 
-    Затем в шаблоне идёт символ конца строки `pattern:$`, а в тексте -- символ `subject:z`.
+    Then the pattern has the string end anchor `pattern:$`, and in the text we have `subject:z`.
 
     ```
                X
@@ -131,17 +129,17 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
     (123456789)z
     ```
 
-    Соответствия нет.
-3. Так как соответствие не найдено, то "жадный" плюс `pattern:+` отступает на один символ (бэктрекинг).
+    No match!
+3. There's no match, so the greedy quantifier `pattern:+` decreases the count of repetitions (backtracks).
 
-    Теперь `\d+` -- это все цифры, за исключением последней:
+    Now `\d+` is not all digits, but all except the last one:
     ```
     \d+.......
     (12345678)9z
     ```
-4. После бэктрекинга, `pattern:\d+` содержит всё число, кроме последней цифры. Движок снова пытается найти совпадение, уже с новой позиции (`9`).
+4. Now the engine tries to continue the search from the new position (`9`).
 
-    Звёздочка `pattern:(\d+)*` теперь может быть применена -- она даёт число `match:9`:
+    The start `pattern:(\d+)*` can now be applied -- it gives the number `match:9`:
 
     ```
 
@@ -149,7 +147,7 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
     (12345678)(9)z
     ```
 
-    Движок пытается найти `$`, но это ему не удаётся -- на его пути опять `z`:
+    The engine tries to match `$` again, but fails, because meets `subject:z`:
 
     ```
                  X
@@ -157,8 +155,8 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
     (12345678)(9)z
     ```
 
-    Так как совпадения нет, то поисковой движок отступает назад ещё раз.
-5. Теперь первое число `pattern:\d+` будет содержать 7 цифр, а остаток строки `subject:89` становится вторым `pattern:\d+`:
+    There's no match, so the engine will continue backtracking.
+5. Now the first number `pattern:\d+` will have 7 digits, and the rest of the string `subject:89` becomes the second `pattern:\d+`:
 
     ```
                  X
@@ -166,16 +164,16 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
     (1234567)(89)z
     ```
 
-    Увы, всё ещё нет соответствия для `pattern:$`.
+    ...Still no match for `pattern:$`.
 
-    Поисковой движок снова должен отступить назад. При этом последний жадный квантификатор отпускает символ. В данном случае это означает, что укорачивается второй `pattern:\d+`, до одного символа `subject:8`, и звёздочка забирает следующий `subject:9`.
+    The search engine backtracks again. Backtracking generally works like this: the last greedy quantifier decreases the number of repetitions until it can. Then the previous greedy quantifier decreases, and so on. In our case the last greedy quantifier is the second `pattern:\d+`, from `subject:89` to `subject:8`, and then the star takes `subject:9`:
 
     ```
                    X
     \d+......\d+\d+
     (1234567)(8)(9)z
     ```
-6. ...И снова неудача. Второе и третье `pattern:\d+` отступили по-максимуму, так что сокращается снова первое число, до `subject:123456`, а звёздочка берёт оставшееся:
+6. ...Fail again. The second and third `pattern:\d+` backtracked to the end, so the first quantifier shortens the match to `subject:123456`, and the star takes the rest:
 
     ```
                  X
@@ -183,46 +181,49 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
     (123456)(789)z
     ```
 
-    Снова нет совпадения. Процесс повторяется, последний жадный квантификатор `pattern:+` отпускает один символ (`9`):
+    Again no match. The process repeats: the last greedy quantifier releases one character (`9`):
 
     ```
                    X
     \d+.....\d+ \d+
     (123456)(78)(9)z
     ```
-7. ...И так далее.
+7. ...And so on.
 
-Получается, что движок регулярных выражений перебирает все комбинации из `123456789` и их подпоследовательности. А таких комбинаций очень много.
+The regular expression engine goes through all combinations of `123456789` and their subsequences. There are a lot of them, that's why it takes so long.
 
-На этом месте умный читатель может воскликнуть: "Во всём виноват бэктрекинг? Давайте включим ленивый режим -- и не будет никакого бэктрекинга!"
+A smart guy can say here: "Backtracking? Let's turn on the lazy mode -- and no more backtracking!".
 
-Что ж, заменим `pattern:\d+` на `pattern:\d+?` и посмотрим (аккуратно, может подвесить браузер):
+Let's replace `pattern:\d+` with `pattern:\d+?` and see if it works (careful, can hang the browser)
 
 ```js run
+// sloooooowwwwww
 alert( '12345678901234567890123456789123456789z'.match(/(\d+?)*$/) );
 ```
 
-Не помогло!
+No, it doesn't.
 
-**Ленивые регулярные выражения делают то же самое, но в обратном порядке.**
+Lazy quantifiers actually do the same, but in the reverse order. Just think about how the search engine would work in this case.
 
-Просто подумайте о том, как будет в этом случае работать поисковой движок.
+Some regular expression engines have tricky built-in checks to detect infinite backtracking or other means to work around them, but there's no universal solution.
 
-Некоторые движки регулярных выражений содержат хитрые проверки и конечные автоматы, которые позволяют избежать бесконечного перебора или кардинально ускорить его, но не все движки и не всегда.
+In the example above, when we search `pattern:<(\s*\w+=\w+\s*)*>` in the string `subject:<a=b  a=b  a=b  a=b` -- the similar thing happens.
 
-Возвращаясь к примеру выше -- при поиске `pattern:<(\s*\w+=\w+\s*)*>` в строке `subject:<a=b  a=b  a=b  a=b` происходит то же самое.
+The string has no `>` at the end, so the match is impossible, but the regexp engine does not know about it. The search backtracks trying different combinations of `pattern:(\s*\w+=\w+\s*)`:
 
-Поиск успешно начинается, выбирается некая комбинация из `pattern:\s*\w+=\w+\s*`, которая, так как в конце нет `>`, оказывается не подходящей. Движок честно отступает, пробует другую комбинацию -- и так далее.
+```
+(a=b a=b a=b) (a=b)
+(a=b a=b) (a=b a=b)
+...
+```
 
-## Что делать?
+## How to fix?
 
-Проблема -- в сверхмноговариантном переборе.
+The problem -- too many variants in backtracking even if we don't need them.
 
-Движок регулярных выражений перебирает кучу возможных вариантов скобок там, где это не нужно.
+For instance, in the pattern `pattern:(\d+)*$` we (people) can easily see that `pattern:(\d+)` does not need to backtrack.
 
-Например, в регэкспе `pattern:(\d+)*$` нам (людям) очевидно, что в `pattern:(\d+)` откатываться не нужно. От того, что вместо одного `pattern:\d+` у нас два независимых `pattern:\d+\d+`, ничего не изменится.
-
-Без разницы:
+Decreasing the count of `pattern:\d+` can not help to find a match, there's no matter between these two:
 
 ```
 \d+........
@@ -259,14 +260,14 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+?)*$/) );
 
 ```js run
 // регэксп для пары атрибут=значение
-var attr = /(\s*\w+=(\w+|"[^"]*")\s*)/
+let attr = /(\s*\w+=(\w+|"[^"]*")\s*)/
 
 // используем его внутри регэкспа для тега
-var reg = new RegExp('<\\w+(?=(' + attr.source + '*))\\1>', 'g');
+let reg = new RegExp('<\\w+(?=(' + attr.source + '*))\\1>', 'g');
 
-var good = '...<a test="<>" href="#">... <b>...';
+let good = '...<a test="<>" href="#">... <b>...';
 
-var bad = "<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b\
+let bad = "<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b\
   a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b";
 
 alert( good.match(reg) ); // <a test="<>" href="#">, <b>
@@ -274,4 +275,3 @@ alert( bad.match(reg) ); // null (нет результатов, быстро)
 ```
 
 Отлично, всё работает! Нашло как длинный тег `match:<a test="<>" href="#">`, так и одинокий `match:<b>`.
-

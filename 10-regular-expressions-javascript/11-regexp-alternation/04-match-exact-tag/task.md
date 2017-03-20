@@ -1,14 +1,13 @@
-# Найдите тег style
+# Find the full tag
 
-Напишите регулярное выражение, которое будет искать в тексте тег `<style>`. Подходят как обычный тег `<style>`, так и вариант с атрибутами `<style type="...">`.
+Write a regexp to find the tag `<style...>`. It should match the full tag: it may have no attributes  `<style>` or have several of them `<style type="..." id="...">`.
 
-Но регулярное выражение не должно находить `<styler>`!
+...But the regexp should not match `<styler>`!
 
-Использование:
+For instance:
 
 ```js
-var re = ваш регэксп
+let reg = /your regexp/g;
 
-alert( "<style> <styler> <style test>".match(re) ); // <style>, <style test>
+alert( '<style> <styler> <style test="...">'.match(reg) ); // <style>, <style test="...">
 ```
-

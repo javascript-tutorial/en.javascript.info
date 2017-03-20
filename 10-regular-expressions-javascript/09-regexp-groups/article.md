@@ -1,4 +1,4 @@
-# Bracket groups
+# Capturing groups
 
 A part of the pattern can be enclosed in parentheses `pattern:(...)`. That's called a "capturing group".
 
@@ -20,6 +20,35 @@ alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
 Without parentheses, the pattern `pattern:/go+/` means `subject:g`, followed by `subject:o` repeated one or more times. For instance, `match:goooo` or `match:gooooooooo`.
 
 Parentheses group the word `pattern:(go)` together.
+
+Let's make something more complex -- a regexp to match an email.
+
+Examples of emails:
+
+```
+my@mail.com
+john.smith@site.com.uk
+```
+
+The pattern: `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`.
+
+- The first part before `@` may include wordly characters, a dot and a dash `pattern:[-.\w]+`, like `match:john.smith`.
+- Then `pattern:@`
+- And then the domain. May be a second-level domain `site.com` or with subdomains like `host.site.com.uk`. We can match it as "a word followed by a dot" repeated one or more times for subdomains: `match:mail.` or `match:site.com.`, and then "a word" for the last part: `match:.com` or `match:.uk`.
+
+    The word followed by a dot is `pattern:(\w+\.)+` (repeated). The last word should not have a dot at the end, so it's just `\w{2,20}`. The quantifier `pattern:{2,20}` limits the length, because domain zones are like `.uk` or `.com` or `.museum`, but can't be longer than 20 characters.
+
+    So the domain pattern is `pattern:(\w+\.)+\w{2,20}`. Now we replace `\w` with `[\w-]`, because dashes are also allowed in domains, and we get the final result.
+
+That regexp is not perfect, but usually works. It's short and good enough to fix errors or occasional mistypes.
+
+For instance, here we can find all emails in the string:
+
+```js run
+let reg = /[-.\w]+@([\w-]+\.)+[\w-]{2,20}/g;
+
+alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com,his@site.com.uk
+```
 
 
 ## Contents of parentheses  

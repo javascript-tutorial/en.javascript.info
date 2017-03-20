@@ -1,85 +1,78 @@
-# Многострочный режим, флаг "m"
+# Multiline mode, flag "m"
 
-Многострочный режим включается, если у регэкспа есть флаг `pattern:/m`.
+The multiline mode is enabled by the flag `pattern:/.../m`.
 
 [cut]
 
-В этом случае изменяется поведение `pattern:^` и `pattern:$`.
+It only affects the behavior of `pattern:^` and `pattern:$`.
 
-В многострочном режиме якоря означают не только начало/конец текста, но и начало/конец строки.
+In the multiline mode they match not only at the beginning and end of the string, but also at start/end of line.
 
-## Начало строки ^
+## Line start ^
 
-В примере ниже текст состоит из нескольких строк. Паттерн `pattern:/^\d+/gm` берёт число с начала каждой строки:
+In the example below the text has multiple lines. The pattern `pattern:/^\d+/gm` takes a number from the beginning of each one:
 
 ```js run
-var str = '1е место: Винни\n' +
-  '2е место: Пятачок\n' +
-  '33е место: Слонопотам';
+let str = `1st place: Winnie
+2nd place: Piglet
+33rd place: Eeyore`;
 
 *!*
 alert( str.match(/^\d+/gm) ); // 1, 2, 33
 */!*
 ```
 
-Обратим внимание -- без флага `pattern:/m` было бы найдено только первое число:
+Without the flag  `pattern:/.../m` only the first number is matched:
+
 
 ```js run
-var str = '1е место: Винни\n' +
-  '2е место: Пятачок\n' +
-  '33е место: Слонопотам';
+let str = `1st place: Winnie
+2nd place: Piglet
+33rd place: Eeyore`;
 
+*!*
 alert( str.match(/^\d+/g) ); // 1
+*/!*
 ```
 
-Это потому что в обычном режиме каретка `pattern:^` -- это только начало текста, а в многострочном -- начало любой строки.
+That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of a line.
 
-Движок регулярных выражений двигается по тексту, и как только видит начало строки, начинает искать там `pattern:\d+`.
+The regular expression engine moves along the text and looks for a string start `pattern:^`, when finds -- continues to match the rest of the pattern `pattern:\d+`.
 
-## Конец строки $
+## Line end $
 
-Символ доллара `pattern:$` ведёт себя аналогично.
+The dollar sign `pattern:$` behaves similarly.
 
-Регулярное выражение `pattern:[а-я]+$` в следующем примере находит последнее слово в каждой строке:
+The regular expression `pattern:\w+$` finds the last word in every line
 
 ```js run
-var str = '1е место: Винни\n' +
-  '2е место: Пятачок\n' +
-  '33е место: Слонопотам';
+let str = `1st place: Winnie
+2nd place: Piglet
+33rd place: Eeyore`;
 
-alert( str.match(/[а-я]+$/gim) ); // Винни,Пятачок,Слонопотам
+alert( str.match(/\w+$/gim) ); // Winnie,Piglet,Eeyore
 ```
 
-Без флага `pattern:m` якорь `pattern:$` обозначал бы конец всего текста, и было бы найдено только последнее слово.
+Without the `pattern:/.../m` flag the dollar `pattern:$` would only match the end of the whole string, so only the very last word would be found.
 
-````smart header="Якорь `$` против `\n`"
-Для того, чтобы найти конец строки, можно использовать не только `$`, но и символ `\n`.
+## Anchors ^$ versus \n
 
-Но, в отличие от `$`, символ `\n` во-первых берёт символ в результат, а во-вторых -- не совпадает в конце текста (если, конечно, последний символ -- не конец строки).
+To find a newline, we can use not only `pattern:^` and `pattern:$`, but also the newline character `\n`.
 
-Посмотрим, что будет с примером выше, если вместо `pattern:[а-я]+$` использовать `pattern:[а-я]+\n`:
+The first difference is that unlike anchors, the character `\n` "consumes" the newline character and adds it to the result.
+
+For instance, here we use it instead of `pattern:$`:
 
 ```js run
-var str = '1е место: Винни\n' +
-  '2е место: Пятачок\n' +
-  '33е место: Слонопотам';
+let str = `1st place: Winnie
+2nd place: Piglet
+33rd place: Eeyore`;
 
-alert( str.match(/[а-я]+\n/gim) );
-/*
-Винни
-,Пятачок
-*/
+alert( str.match(/\w+\n/gim) ); // Winnie\n,Piglet\n
 ```
 
-Всего два результата: `match:Винни\n` (с символом перевода строки) и `match:Пятачок\n`. Последнее слово "Слонопотам" здесь не даёт совпадения, так как после него нет перевода строки.
-````
+Here every match is a word plus a newline character.
 
-## Итого
+And one more difference -- the newline `\n` does not match at the string end. That's why `Eeyore` is not found in the example above.
 
-В мультистрочном режиме:
-
-- Символ `^` означает начало строки.
-- Символ `$` означает конец строки.
-
-Оба символа являются проверками, они не добавляют ничего к результату. Про них также говорят, что "они имеют нулевую длину".
-
+So, anchors are usually better, they are closer to what we want to get.
