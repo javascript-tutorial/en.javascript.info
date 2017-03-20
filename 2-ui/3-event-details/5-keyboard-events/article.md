@@ -4,7 +4,7 @@ Let's study keyboard events.
 
 Before we start, please note that on modern devices there are other ways to "input something" then just a keyboard. For instance, people use speech recognition (tap microphone, say something, see it entered) or copy/paste with a mouse.
 
-So if we want to track any input into an `<input>` field, then keyboard events is not enough. There's another event named `input` to handle changes of an `<input>` field, by any means. And it may be a better choice for such task. We'll cover it a bit later [todo link].
+So if we want to track any input into an `<input>` field, then keyboard events is not enough. There's another event named `input` to handle changes of an `<input>` field, by any means. And it may be a better choice for such task. We'll cover it later in the chapter <info:events-change-input>.
 
 Keyboard events should be used when we want to handle keyboard actions (virtual keyboard usually also counts). For instance, to react on arrow keys `key:Up` and `key:Down` or hotkeys (including combinations of keys).
 
