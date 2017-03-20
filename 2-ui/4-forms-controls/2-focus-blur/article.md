@@ -42,7 +42,8 @@ Your email please: <input type="email" id="input">
 };
 
 *!*input.onfocus*/!* = function() {
-  if (this.classList.contains('invalid')) { // сбросить состояние "ошибка", если оно есть
+  if (this.classList.contains('invalid')) {
+    // remove the "error" indication, because the user wants to re-enter something
     this.classList.remove('invalid');
     error.innerHTML = "";
   }

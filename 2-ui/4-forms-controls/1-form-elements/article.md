@@ -246,7 +246,7 @@ For instance:
 
 ```js
 let option = new Option("Text", "value");
-// creates <option value="value">Текст</option>
+// creates <option value="value">Text</option>
 ```
 
 The same element selected:

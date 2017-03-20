@@ -78,11 +78,12 @@
     }
 
     document.onmouseout = function() {
-      // возможно такое, что mouseout сработал, а мы все еще внутри элемента (всплытие)
-      // но в этом случае сразу же будет и mouseover,
-      // то есть подсказка будет уничтожена и тут же показана заново
+      // it is possible that mouseout triggered, but we're still inside the element (cause of bubbling)
+      // but in this case we'll have an immediate mouseover,
+      // so the tooltip will be destroyed and shown again
       //
-      // это лишние расходы, их можно избежать дополнительными проверками
+      // that's an overhead, but here it's not visible
+      // can be fixed with additional checks
       if (tooltip) {
         tooltip.remove();
         tooltip = false;

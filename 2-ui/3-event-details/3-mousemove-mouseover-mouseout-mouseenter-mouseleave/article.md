@@ -171,16 +171,17 @@ Here's the full example with all details:
 
 [codetabs height=380 src="mouseenter-mouseleave-delegation-2"]
 
-Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't better. Only `<td>` as a whole is highlighted unlike the example before. 
+Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't better. Only `<td>` as a whole is highlighted unlike the example before.
 ```
 
 
-## Итого
+## Summary
 
-У `mouseover, mousemove, mouseout` есть следующие особенности:
+We covered events `mouseover`, `mouseout`, `mousemove`, `mouseenter` and `mouseleave`.
 
-- При быстром движении мыши события `mouseover, mousemove, mouseout` могут пропускать промежуточные элементы.
-- События `mouseover` и `mouseout` -- единственные, у которых есть вторая цель: `relatedTarget` (`toElement/fromElement` в IE).
-- События `mouseover/mouseout` подразумевают, что курсор находится над одним, самым глубоким элементом. Они срабатывают при переходе с родительского элемента на дочерний.
+Things that are good to note:
 
-События `mouseenter/mouseleave` не всплывают и не учитывают переходы внутри элемента.
+- A fast mouse move can make `mouseover, mousemove, mouseout` to skip intermediate elements.
+- Events `mouseover/out` and `mouseenter/leave` have an additional target: `relatedTarget`. That's the element that we are coming from/to, complementary to `target`.
+- Events `mouseover/out` trigger even when we go from the parent element to a child element. They assume that the mouse can be only over one element at one time -- the deepest one.
+- Events `mouseenter/leave` do not bubble and do not trigger when the mouse goes to a child element. They only track whether the mouse comes inside and outside the element as a whole.

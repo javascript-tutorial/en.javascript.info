@@ -58,7 +58,7 @@ class HoverIntent {
       this.elem.removeEventListener('mousemove', this.onMouseMove);
       clearInterval(this.checkSpeedInterval);
       if (this.isHover) {
-        // если была остановка над элементом
+        // if there was a stop over the element
         this.out.call(this.elem, event);
         this.isHover = false;
       }
