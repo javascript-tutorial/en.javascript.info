@@ -93,7 +93,7 @@ When the pattern contains `pattern:\b`, it tests that the position in string fit
 - String end, and the last string character is `\w`.
 - Inside the string: from one side is `\w`, from the other side -- not `\w`.
 
-For instance, in the string `subject:Hello, Java!` the following positions fit `\b`:
+For instance, in the string `subject:Hello, Java!` the following positions match `\b`:
 
 ![](hello-java-boundaries.png)
 

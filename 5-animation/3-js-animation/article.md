@@ -1,97 +1,108 @@
-# JS-Анимация
+# JavaScript animations [todo]
 
-JavaScript-анимация применяется там, где не подходит CSS.
+JavaScript animations can handle things that CSS can't.
 
-Например, по сложной траектории, с временной функцией, выходящей за рамки кривых Безье, на canvas. Иногда её используют для анимации в старых IE.
+For instance, moving along a complex path, with a timing function different from Bezier curves, or an animation on a canvas.
 
 [cut]
 
 ## setInterval
 
-С точки зрения HTML/CSS, анимация -- это постепенное изменение стиля  DOM-элемента. Например, увеличение координаты `style.left` от `0px` до `100px` сдвигает элемент.
+From the HTML/CSS point of view, an animation is a gradual change of the style property. For instance, changing `style.left` from `0px` to `100px` moves the element.
 
-Если увеличивать `left` от `0` до `100` при помощи `setInterval`, делая по 50 изменений в секунду, то это будет выглядеть как плавное перемещение. Тот же принцип, что и в кино: для непрерывной анимации достаточно 24 или больше вызовов `setInterval` в секунду.
+And if we increase it in `setInterval`, by making 50 small changes per second, then it looks smooth. That's the same principle as in the cinema: 24 or more frames per second is enough to make it look smooth.
 
-Псевдо-код для анимации выглядит так:
+The pseudo-code can look like this:
 
 ```js
-let fps = 50; // 50 кадров в секунду
+let fps = 50; // 50 frames per second
 let timer = setInterval(function() {
-  if (время вышло) clearInterval(timer);
-  else немного увеличить left
+  if (animation complete) clearInterval(timer);
+  else increase style.left
 }, 1000 / fps)
 ```
 
+The more complete example of the animation:
 Более полный пример кода анимации:
 
 ```js
-let start = Date.now(); // сохранить время начала
+let start = Date.now(); // remember start time
 
 let timer = setInterval(function() {
-  // вычислить сколько времени прошло с начала анимации
+  // how much time passed from the start?
   let timePassed = Date.now() - start;
 
   if (timePassed >= 2000) {
-    clearInterval(timer); // конец через 2 секунды
+    clearInterval(timer); // finish the animation after 2 seconds
     return;
   }
 
-  // рисует состояние анимации, соответствующее времени timePassed
+  // draw the animation at the moment timePassed
   draw(timePassed);
 
 }, 20);
 
-// в то время как timePassed идёт от 0 до 2000
-// left принимает значения от 0 до 400px
+// as timePassed goes from 0 to 2000
+// left gets values from 0px to 400px
 function draw(timePassed) {
   train.style.left = timePassed / 5 + 'px';
 }
 ```
 
-Кликните для демонстрации:
+Click for the demo:
 
 [codetabs height=200 src="move"]
 
 ## requestAnimationFrame
 
-Если у нас не один такой `setInterval`, а несколько в разных местах кода, то браузеру нужно в те же 20 мс работать со страницей уже несколько раз. А ведь кроме `setInterval` есть ещё другие действия, к примеру, прокрутка страницы, которую тоже надо нарисовать.
+Let's imagine we have several simultaneous animations.
 
-Если все действия по перерисовке производить независимо, то будет выполняться много двойной работы.
+If we run them separately, each one with its own `setInterval(..., 20)`, then the browser would have to repaint much more often than every `20ms`.
 
-Гораздо выгоднее с точки зрения производительности -- сгруппировать все перерисовки в одну и запускать их централизованно, все вместе.
+Each `setInterval` triggers once per `20ms`, but they are independent, so we have several independent runs within `20ms`.
 
-Для этого в JavaScript-фреймворках, которые поддерживают анимацию, есть единый таймер:
+These several independant actions should be grouped together, because it's easier for the browser to redraw things once per `20ms`.
+
+In other words, this:
 
 ```js
 setInterval(function() {
-  /* отрисовать все анимации */
-}, 20);
+  animate1();
+  animate2();
+  animate3();
+}, 20)
 ```
 
-...Все анимации, которые запускает такой фреймворк, добавляются в общий список, и раз в 20 мс единый таймер проверяет его, запускает текущие, удаляет завершившиеся.
+...Is lighter than this:
 
-Современные браузеры, кроме IE9-, поддерживают стандарт [Animation timing](http://www.w3.org/TR/animation-timing/), который представляет собой дальнейший шаг в этом направлении. Он позволяет синхронизировать наши анимации со встроенными механизмами обновления страницы. То есть, сгруппированы будут не только наши, но и CSS-анимации и другие браузерные перерисовки.
+```js
+setInterval(animate1, 20);
+setInterval(animate2, 20);
+setInterval(animate3, 20);
+```
 
-При этом графический ускоритель будет использован максимально эффективно, и исключена повторная обработка одних и тех же участков страницы. А значит -- меньше будет загрузка CPU, да и сама анимация станет более плавной.
+There's one more thing to keep in mind. Sometimes when CPU is overloaded or for other reasons it may be better to trigger redraws less often. Not 20, but maybe 200ms.
 
-Для этого используется функция [requestAnimationFrame](http://www.w3.org/TR/animation-timing/#dom-windowanimationtiming-requestanimationframe).
+There's a standard [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`.
 
-Синтаксис:
+It addresses all those issues and even more.
+
+The syntax:
 ```js
 let requestId = requestAnimationFrame(callback)
 ```
 
-Такой вызов планирует запуск `callback` в ближайшее время, когда браузер сочтёт возможным осуществить анимацию.
+That schedules the `callback` function to run in the closest time when the browser wants to do animation.
 
-Если запланировать в `callback` какое-то рисование, то оно будет сгруппировано с другими `requestAnimationFrame` и с внутренними перерисовками браузера.
+If we do changes in elements in `callback` then they will be grouped together with other `requestAnimationFrame` callbacks and with CSS animations. So there will be one repaint instead of many.
 
-Возвращаемое значение `requestId` служит для отмены запуска:
+The returned value `requestId` can be used to cancel the call:
 ```js
-// отменить запланированное выше выполнение callback
+// cancel the scheduled execution of callback
 cancelAnimationFrame(requestId);
 ```
 
-Функция `callback` получает один аргумент -- время, прошедшее с начала загрузки страницы, результат вызова [performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).
+The `callback` function получает один аргумент -- время, прошедшее с начала загрузки страницы, результат вызова [performance.now()](https://developer.mozilla.org/en-US/docs/Web/API/Performance/now).
 
 Как правило, запуск `callback` происходит очень скоро. Если у процессора большая загрузка или батарея у ноутбука почти разряжена -- то пореже.
 
@@ -493,4 +504,3 @@ function animate(options) {
 - Нестандартные задачи и требования, не укладывающиеся в рамки CSS.
 - Поддержка IE9-.
 - Графика, рисование на canvas.
-
