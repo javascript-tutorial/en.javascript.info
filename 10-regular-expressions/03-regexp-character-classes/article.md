@@ -116,6 +116,11 @@ Another example: a regexp `pattern:\b\d\d\b` looks for standalone two-digit numb
 alert( "1 23 456 78".match(/\b\d\d\b/g) ); // 23,78
 ```
 
+```warn header="Word boundary doesn't work for non-English alphabets"
+The word boundary check `\b` tests for a boundary between `\w` and something else. But `\w` means an English letter (or a digit or an underscore), so the test won't work for other characters (like cyrillic or hieroglyphs).
+```
+
+
 ## Reverse classes
 
 For every character class there exists a "reverse class", denoted with the same letter, but uppercased.

@@ -28,7 +28,7 @@ It does two things:
 
     <!-- no-strict to move variables out of eval -->
     ```js untrusted run no-strict refresh
-    let phrase = "Hello";
+    var phrase = "Hello";
 
     function sayHi() {
       alert(phrase);
@@ -75,10 +75,10 @@ Usually, it's not a good idea to use it, but here are some examples you can meet
 1. To access exactly the global variable if the function has the local one with the same name.
 
     ```js untrusted run no-strict refresh
-    let user = "Global";
+    var user = "Global";
 
     function sayHi() {
-      let user = "Local";
+      var user = "Local";
 
     *!*
       alert(window.user); // Global
