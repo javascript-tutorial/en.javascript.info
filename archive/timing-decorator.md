@@ -59,14 +59,14 @@ alert( `Total time: ${timers.fibo.toFixed(3)}ms` ); // total count of fibo calls
 Его реализация:
 
 ```js run
-var timers = {};
+let timers = {};
 
 // прибавит время выполнения f к таймеру timers[timer]
 function timingDecorator(f, timer) {
   return function() {
-    var start = performance.now();
+    let start = performance.now();
 
-    var result = f.apply(this, arguments); // (*)
+    let result = f.apply(this, arguments); // (*)
 
     if (!timers[timer]) timers[timer] = 0;
     timers[timer] += performance.now() - start;
@@ -76,7 +76,7 @@ function timingDecorator(f, timer) {
 }
 
 // функция может быть произвольной, например такой:
-var fibonacci = function f(n) {
+let fibonacci = function f(n) {
   return (n > 2) ? f(n - 1) + f(n - 2) : 1;
 }
 
@@ -99,7 +99,7 @@ alert( timers.fibo + 'мс' );
 Обратим внимание на строку `(*)` внутри декоратора, которая и осуществляет передачу вызова:
 
 ```js
-var result = f.apply(this, arguments); // (*)
+let result = f.apply(this, arguments); // (*)
 ```
 
 Этот приём называется "форвардинг вызова" (от англ. forwarding): текущий контекст и аргументы через `apply` передаются в функцию `f`, так что изнутри `f` всё выглядит так, как была вызвана она напрямую, а не декоратор.

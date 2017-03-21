@@ -1,0 +1,12 @@
+#digit {
+  width: .5em;
+  overflow: hidden;
+  font: 32px "Courier New", monospace;
+}
+
+#stripe.animate {
+  margin-left: -174px;
+  transition-property: margin-left;
+  transition-duration: 9s;
+  transition-timing-function: linear;
+}

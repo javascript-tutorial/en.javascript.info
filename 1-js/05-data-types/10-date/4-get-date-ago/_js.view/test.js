@@ -18,8 +18,8 @@ describe("getDateAgo", function() {
   });
 
   it("does not modify the given date", function() {
-    var date = new Date(2015, 0, 2);
-    var dateCopy = new Date(date);
+    let date = new Date(2015, 0, 2);
+    let dateCopy = new Date(date);
     getDateAgo(dateCopy, 100);
     assert.equal(date.getTime(), dateCopy.getTime());
   });

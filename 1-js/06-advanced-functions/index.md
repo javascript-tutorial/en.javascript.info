@@ -1,0 +1,1 @@
+# Advanced working with functions

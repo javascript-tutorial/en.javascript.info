@@ -27,7 +27,7 @@
     // let's create another img with the same src and check that we have its width immediately
     function testLoaded() {
       let widthSum = 0;
-      for (var i = 0; i < sources.length; i++) {
+      for (let i = 0; i < sources.length; i++) {
         let img = document.createElement('img');
         img.src = sources[i];
         widthSum += img.width;

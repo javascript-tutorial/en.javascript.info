@@ -1,4 +1,4 @@
-# Using "new" to create objects
+# Constructor, operator "new" 
 
 The regular `{...}` syntax allows to create one object. But often we need to create many similar objects.
 
@@ -62,7 +62,7 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also reads well. 
+Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also reads well.
 
 That's the main purpose of constructors -- to implement reusable object creation code.
 
@@ -85,7 +85,7 @@ let user = new function() {
 The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code for a single complex object only.
 ````
 
-## Dual-use constructors: new.target 
+## Dual-use constructors: new.target
 
 Inside a function, we can check how it is called with `new` or without it, using a special `new.target` property.
 
@@ -131,7 +131,7 @@ In other words, `return` with an object returns that object, otherwise `this` is
 
 For instance, here `return` overrides `this` by returning an object:
 
-```js run 
+```js run
 function BigUser() {
 
   this.name = "John";
@@ -144,7 +144,7 @@ alert( new BigUser().name );  // Godzilla, got that object
 
 And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
 
-```js run 
+```js run
 function SmallUser() {
 
   this.name = "John";
@@ -195,7 +195,7 @@ let john = new User("John");
 john.sayHi(); // My name is: John
 */!*
 
-/* 
+/*
 john = {
    name: "John",
    sayHi: function() { ... }
@@ -208,9 +208,6 @@ john = {
 - Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
 - Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
 
-We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth. 
+We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth.
 
 As of now, it's important to understand what `new` is, because JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
-
-
-

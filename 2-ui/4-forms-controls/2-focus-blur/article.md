@@ -91,9 +91,21 @@ If we enter something into the input and then try to use `key:Tab` or click away
 
 Please note that we can't "prevent loosing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
 
+```warn header="JavaScript-initiated focus loss"
+A focus loss can occur for many reasons.
+
+One of them is when the visitor clicks somewhere else. But also JavaScript itself may cause it, for instance:
+
+- An `alert` moves focus to itself, so it causes the focus loss at the element (`blur` event), and when the `alert` is dismissed, the focus comes back (`focus` event).
+- If an element is removed from DOM, then it also causes the focus loss. If it is reinserted later, then the focus doesn't return.
+
+These features sometimes cause `focus/blur` handlers to misbehave -- to trigger when they are not needed.
+
+The best recipe is to be careful when using these events. If we want to track user-initiated focus-loss, then we should evade causing it by ourselves.
+```
 ## Allow focusing on any element: tabindex
 
-By default many element do not support focusing.
+By default many elements do not support focusing.
 
 The list varies between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
 
@@ -130,6 +142,10 @@ Click the first item and press Tab. Keep track of the order. Please note that ma
 ```
 
 The order is like this: `1 - 2 - 0` (zero is always the last). Normally, `<li>` does not support focusing, but `tabindex` full enables it, along with events and styling with `:focus`.
+
+```smart header="`elem.tabIndex` works too"
+We can add `tabindex` from JavaScript by using the `elem.tabIndex` property. That has the same effect.
+```
 
 ## Delegation: focusin/focusout
 

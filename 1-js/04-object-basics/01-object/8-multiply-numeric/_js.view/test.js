@@ -1,6 +1,6 @@
 describe("multiplyNumeric", function() {
   it("multiplies all numeric properties by 2", function() {
-    var menu = {
+    let menu = {
       width: 200,
       height: 300,
       title: "My menu"
@@ -14,5 +14,5 @@ describe("multiplyNumeric", function() {
   it("returns nothing", function() {
     assert.isUndefined( multiplyNumeric({}) );
   });
-  
+
 });

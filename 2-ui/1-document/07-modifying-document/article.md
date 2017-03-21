@@ -1,4 +1,4 @@
-# Modifying DOM
+# Modifying the document
 
 DOM modifications is the key to create "live" pages.
 

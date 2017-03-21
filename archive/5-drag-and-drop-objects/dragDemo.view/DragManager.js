@@ -1,4 +1,4 @@
-var DragManager = new function() {
+let DragManager = new function() {
 
   /**
    * составной объект для хранения информации о переносе:
@@ -9,15 +9,15 @@ var DragManager = new function() {
    *   shiftX/shiftY - относительный сдвиг курсора от угла элемента
    * }
    */
-  var dragObject = {};
+  let dragObject = {};
 
-  var self = this;
+  let self = this;
 
   function onMouseDown(e) {
 
     if (e.which != 1) return;
 
-    var elem = e.target.closest('.draggable');
+    let elem = e.target.closest('.draggable');
     if (!elem) return;
 
     dragObject.elem = elem;
@@ -33,8 +33,8 @@ var DragManager = new function() {
     if (!dragObject.elem) return; // элемент не зажат
 
     if (!dragObject.avatar) { // если перенос не начат...
-      var moveX = e.pageX - dragObject.downX;
-      var moveY = e.pageY - dragObject.downY;
+      let moveX = e.pageX - dragObject.downX;
+      let moveY = e.pageY - dragObject.downY;
 
       // если мышь передвинулась в нажатом состоянии недостаточно далеко
       if (Math.abs(moveX) < 3 && Math.abs(moveY) < 3) {
@@ -50,7 +50,7 @@ var DragManager = new function() {
 
       // аватар создан успешно
       // создать вспомогательные свойства shiftX/shiftY
-      var coords = getCoords(dragObject.avatar);
+      let coords = getCoords(dragObject.avatar);
       dragObject.shiftX = dragObject.downX - coords.left;
       dragObject.shiftY = dragObject.downY - coords.top;
 
@@ -75,7 +75,7 @@ var DragManager = new function() {
   }
 
   function finishDrag(e) {
-    var dropElem = findDroppable(e);
+    let dropElem = findDroppable(e);
 
     if (!dropElem) {
       self.onDragCancel(dragObject);
@@ -87,8 +87,8 @@ var DragManager = new function() {
   function createAvatar(e) {
 
     // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
-    var avatar = dragObject.elem;
-    var old = {
+    let avatar = dragObject.elem;
+    let old = {
       parent: avatar.parentNode,
       nextSibling: avatar.nextSibling,
       position: avatar.position || '',
@@ -110,7 +110,7 @@ var DragManager = new function() {
   }
 
   function startDrag(e) {
-    var avatar = dragObject.avatar;
+    let avatar = dragObject.avatar;
 
     // инициировать начало переноса
     document.body.appendChild(avatar);
@@ -123,7 +123,7 @@ var DragManager = new function() {
     dragObject.avatar.hidden = true;
 
     // получить самый вложенный элемент под курсором мыши
-    var elem = document.elementFromPoint(event.clientX, event.clientY);
+    let elem = document.elementFromPoint(event.clientX, event.clientY);
 
     // показать переносимый элемент обратно
     dragObject.avatar.hidden = false;
@@ -147,7 +147,7 @@ var DragManager = new function() {
 
 
 function getCoords(elem) { // кроме IE8-
-  var box = elem.getBoundingClientRect();
+  let box = elem.getBoundingClientRect();
 
   return {
     top: box.top + pageYOffset,

@@ -11,7 +11,7 @@ alert( eval("2+2") ); // 4
 Код решения:
 
 ```js run demo
-var expr, res;
+let expr, res;
 
 while (true) {
   expr = prompt("Введите выражение?", '2-');

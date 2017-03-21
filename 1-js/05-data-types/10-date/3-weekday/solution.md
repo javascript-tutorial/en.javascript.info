@@ -1,7 +1,7 @@
 ```js run
 function getLocalDay(date) {
 
-  var day = date.getDay();
+  let day = date.getDay();
 
   if (day == 0) { // 0 becomes 7
     day = 7;

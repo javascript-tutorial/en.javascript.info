@@ -22,7 +22,7 @@ How to delete an element from the array?
 The arrays are objects, so we can try to use `delete`:
 
 ```js run
-var arr = ["I", "go", "home"];
+let arr = ["I", "go", "home"];
 
 delete arr[1]; // remove "go"
 

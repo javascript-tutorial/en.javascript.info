@@ -56,7 +56,7 @@
 Код обработчика `mousedown`:
 
 ```js
-var dragObject = {};
+let dragObject = {};
 
 document.onmousedown = function(e) {
 
@@ -64,7 +64,7 @@ document.onmousedown = function(e) {
     return; // то он не запускает перенос
   }
 
-  var elem = e.target.closest('.draggable');
+  let elem = e.target.closest('.draggable');
 
   if (!elem) return; // не нашли, клик вне draggable-объекта
 
@@ -169,8 +169,8 @@ document.onmousemove = function(e) {
   if ( !dragObject.avatar ) { // если перенос не начат...
 
     // посчитать дистанцию, на которую переместился курсор мыши
-    var moveX = e.pageX - dragObject.downX;
-    var moveY = e.pageY - dragObject.downY;
+    let moveX = e.pageX - dragObject.downX;
+    let moveY = e.pageY - dragObject.downY;
     if ( Math.abs(moveX) < 3 && Math.abs(moveY) < 3 ) {
       return; // ничего не делать, мышь не передвинулась достаточно далеко
     }
@@ -183,7 +183,7 @@ document.onmousemove = function(e) {
 
     // аватар создан успешно
     // создать вспомогательные свойства shiftX/shiftY
-    var coords = getCoords(dragObject.avatar);
+    let coords = getCoords(dragObject.avatar);
     dragObject.shiftX = dragObject.downX - coords.left;
     dragObject.shiftY = dragObject.downY - coords.top;
 
@@ -210,8 +210,8 @@ document.onmousemove = function(e) {
 function createAvatar(e) {
 
   // запомнить старые свойства, чтобы вернуться к ним при отмене переноса
-  var avatar = dragObject.elem;
-  var old = {
+  let avatar = dragObject.elem;
+  let old = {
     parent: avatar.parentNode,
     nextSibling: avatar.nextSibling,
     position: avatar.position || '',
@@ -237,7 +237,7 @@ function createAvatar(e) {
 
 ```js
 function startDrag(e) {
-  var avatar = dragObject.avatar;
+  let avatar = dragObject.avatar;
 
   document.body.appendChild(avatar);
   avatar.style.zIndex = 9999;
@@ -275,7 +275,7 @@ document.onmouseup = function(e) {
 
 ```js
 function finishDrag(e) {
-  var dropElem = *!*findDroppable(e)*/!*;
+  let dropElem = *!*findDroppable(e)*/!*;
 
   if (dropElem) {
     ... успешный перенос ...
@@ -299,7 +299,7 @@ function finishDrag(e) {
 function findDroppable(event) {
 
   // взять элемент на данных координатах
-  var elem = document.elementFromPoint(event.clientX, event.clientY);
+  let elem = document.elementFromPoint(event.clientX, event.clientY);
 
   // найти ближайший сверху droppable
   return elem.closest('.droppable');
@@ -328,7 +328,7 @@ function findDroppable(event) {
   dragObject.avatar.hidden = true;
 
   // получить самый вложенный элемент под курсором мыши
-  var elem = document.elementFromPoint(event.clientX, event.clientY);
+  let elem = document.elementFromPoint(event.clientX, event.clientY);
 
   // показать переносимый элемент обратно
   dragObject.avatar.hidden = false;
@@ -351,11 +351,11 @@ function findDroppable(event) {
 Для его создания используем не обычный синтаксис `{...}`, а вызов `new function`. Это позволит прямо при создании объявить дополнительные переменные и функции в замыкании, которыми могут пользоваться методы объекта, а также назначить обработчики:
 
 ```js no-beautify
-var DragManager = new function() {
+let DragManager = new function() {
 
-  var dragObject = {};
+  let dragObject = {};
 
-  var self = this; // для доступа к себе из обработчиков
+  let self = this; // для доступа к себе из обработчиков
 
   function onMouseDown(e) { ... }
   function onMouseMove(e) { ... }

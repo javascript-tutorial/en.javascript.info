@@ -1,4 +1,4 @@
-# Handling change, input, cut, copy, paste
+# Events: change, input, cut, copy, paste
 
 Let's discuss various events that accompany data updates.
 

@@ -20,7 +20,7 @@ function aclean(arr) {
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)
 */!*
-    map.set(sorted, word); 
+    map.set(sorted, word);
   }
 
   return Array.from(map.values());
@@ -36,7 +36,7 @@ Letter-sorting is done by the chain of calls in the line `(*)`.
 For convenience let's split it into multiple lines:
 
 ```js
-var sorted = arr[i] // PAN
+let sorted = arr[i] // PAN
   .toLowerCase() // pan
   .split('') // ['p','a','n']
   .sort() // ['a','n','p']
@@ -61,10 +61,10 @@ That's how the solution can look:
 
 ```js run
 function aclean(arr) {
-  var obj = {};
+  let obj = {};
 
-  for (var i = 0; i < arr.length; i++) {
-    var sorted = arr[i].toLowerCase().split("").sort().join("");
+  for (let i = 0; i < arr.length; i++) {
+    let sorted = arr[i].toLowerCase().split("").sort().join("");
     obj[sorted] = arr[i];
   }
 
@@ -75,7 +75,3 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
 alert( aclean(arr) );
 ```
-
-
-
-

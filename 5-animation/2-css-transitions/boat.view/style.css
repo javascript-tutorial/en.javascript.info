@@ -1,0 +1,13 @@
+#boat {
+  margin-left: 0;
+  cursor: pointer;
+  transition: margin-left 3s ease-in-out;
+}
+/* переворот картинки через CSS */
+
+.back {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: fliph;
+  /* IE9- */
+}

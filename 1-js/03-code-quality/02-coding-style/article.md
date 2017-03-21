@@ -212,7 +212,7 @@ If you are writing several "helper" functions and the code to use them, then the
     }
 
     // *!*the code which uses them*/!*
-    var elem = createElement();
+    let elem = createElement();
     setHandler(elem);
     walkAround();
     ```
@@ -220,7 +220,7 @@ If you are writing several "helper" functions and the code to use them, then the
 
     ```js
     // *!*the code which uses the functions*/!*
-    var elem = createElement();
+    let elem = createElement();
     setHandler(elem);
     walkAround();
 

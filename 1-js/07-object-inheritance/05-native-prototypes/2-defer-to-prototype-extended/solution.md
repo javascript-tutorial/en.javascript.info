@@ -2,7 +2,7 @@
 
 ```js run
 Function.prototype.defer = function(ms) {
-  var f = this;
+  let f = this;
   return function(...args) {
     setTimeout(() => f.apply(this, args), ms);
   }

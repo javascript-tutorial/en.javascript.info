@@ -1,4 +1,4 @@
-# Window sizes and scroll
+# Window sizes and scrolling
 
 How to find out the width of the browser window? How to get the full height of the document, including the scrolled out part? How to scroll the page using JavaScript?
 

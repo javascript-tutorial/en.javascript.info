@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://js.cx/libs/animate.js"></script>
+</head>
+
+<body>
+
+
+  <div id="path">
+    <div id="brick"></div>
+  </div>
+
+  <script>
+    brick.onclick = function() {
+      animate({
+        duration: 3000,
+        timing: function elastic(x, timeFraction) {
+          return Math.pow(2, 10 * (timeFraction - 1)) * Math.cos(20 * Math.PI * x / 3 * timeFraction)
+        }.bind(null, 1.5),
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  </script>
+
+
+</body>
+
+</html>

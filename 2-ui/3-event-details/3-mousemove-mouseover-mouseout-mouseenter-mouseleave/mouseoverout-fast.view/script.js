@@ -1,7 +1,7 @@
  green.onmouseover = green.onmouseout = green.onmousemove = handler;
 
  function handler(event) {
-   var type = event.type;
+   let type = event.type;
    while (type < 11) type += ' ';
 
    log(type + " target=" + event.target.id)
@@ -14,14 +14,14 @@
    lastMessage = "";
  }
 
- var lastMessageTime = 0;
- var lastMessage = "";
- var repeatCounter = 1;
+ let lastMessageTime = 0;
+ let lastMessage = "";
+ let repeatCounter = 1;
 
  function log(message) {
    if (lastMessageTime == 0) lastMessageTime = new Date();
 
-   var time = new Date();
+   let time = new Date();
 
    if (time - lastMessageTime > 500) {
      message = '------------------------------\n' + message;
