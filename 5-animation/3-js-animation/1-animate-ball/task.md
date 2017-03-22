@@ -2,9 +2,8 @@ importance: 5
 
 ---
 
-# Анимируйте мяч
+# Animate the bouncing ball
 
-Сделайте так, чтобы мяч подпрыгивал. Кликните по мячу, чтобы увидеть, как это должно выглядеть.
+Make a bouncing ball. Click to see how it should look:
 
 [iframe height=250 src="solution"]
-

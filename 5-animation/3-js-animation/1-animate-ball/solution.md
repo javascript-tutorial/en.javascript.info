@@ -1,10 +1,12 @@
-В HTML/CSS, падение мяча можно отобразить изменением свойства `ball.style.top` от 0 и до значения, соответствующего нижнему положению.
+To bounce we can use CSS property `top` and `position:absolute` for the ball inside the field with `position:relative`.
 
-Нижняя граница элемента `field`, в котором находится мяч, имеет значение  `field.clientHeight`. Но свойство `top` относится к верху мяча, поэтому оно меняется до `field.clientHeight - ball.clientHeight`.
+The bottom coordinate of the field is `field.clientHeight`. But the `top` property gives coordinates for the top of the ball, the edge position is `field.clientHeight - ball.clientHeight`.
 
-Для создания анимационного эффекта лучше всего подойдет функция `bounce` в режиме `easeOut`.
+So we animate the `top` from `0` to `field.clientHeight - ball.clientHeight`.
 
-Следующий код даст нам нужный результат:
+Now to get the "bouncing" effect we can use the timing function `bounce` in `easeOut` mode.
+
+Here's the final code for the animation:
 
 ```js
 let to = field.clientHeight - ball.clientHeight;
@@ -12,9 +14,8 @@ let to = field.clientHeight - ball.clientHeight;
 animate({
   duration: 2000,
   timing: makeEaseOut(bounce),
-  draw: function(progress) {
+  draw(progress) {
     ball.style.top = to * progress + 'px'
   }
 });
 ```
-

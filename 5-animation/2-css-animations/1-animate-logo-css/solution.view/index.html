@@ -14,7 +14,7 @@
       height: 24px;
       transition: all 3s;
     }
-    
+
     #flyjet.growing {
       width: 400px;
       height: 240px;
@@ -24,7 +24,7 @@
 
 <body>
 
-  <img id="flyjet" src="https://js.cx/clipart/flyjet.jpg">
+  <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
 
   <script>
     flyjet.onclick = function() {
@@ -34,7 +34,7 @@
       flyjet.addEventListener('transitionend', function() {
         if (!ended) {
           ended = true;
-          alert('Готово!');
+          alert('Done!');
         }
       });
 

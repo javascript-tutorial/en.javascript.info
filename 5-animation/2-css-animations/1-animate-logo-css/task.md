@@ -2,14 +2,13 @@ importance: 5
 
 ---
 
-# Анимировать самолёт (CSS)
+# Animate a plane (CSS)
 
-Реализуйте анимацию, как в демке ниже (клик на картинку):
+Show the animation like on the picture below (click the plane):
 
 [iframe src="solution" height=300]
 
-- Изображение растёт при клике с 40x24px до 400x240px .
-- Продолжительность анимации: 3 секунды.
-- По окончании вывести "Готово!".
-- Если в процессе анимации были дополнительные клики -- они не должны ничего "сломать".
-
+- The picture grows on click from 40x24px to 400x240px.
+- The animation takes 3 seconds.
+- At the end output: "Done!".
+- During the animation process, there may be more clicks. They shouldn't "break" anything.

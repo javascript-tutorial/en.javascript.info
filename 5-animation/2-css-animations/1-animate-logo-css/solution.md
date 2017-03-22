@@ -1,16 +1,17 @@
 
-CSS-код для анимации одновременно `width` и `height`:
+CSS to animate both `width` and `height`:
 ```css
-/* исходный класс */
+/* original class */
 
 #flyjet {
   transition: all 3s;
 }
-/* JS добавляет .growing *.
+
+/* JS adds .growing */
 #flyjet.growing {
   width: 400px;
   height: 240px;
 }
 ```
 
-Небольшая тонкость с окончанием анимации. Соответствующее событие `transitionend` сработает два раза -- по одному для каждого свойства. Поэтому, если не предпринять дополнительных шагов, сообщение из обработчика может быть выведено 2 раза.
+Please note that `transitionend` triggers two times -- once for every property. So if we don't perform an additional check then the message would show up 2 times.

@@ -1,17 +1,18 @@
-В задаче <info:task/animate-ball> создаётся подпрыгивающий мяч. Нам нужно всего лишь добавить еще одну анимацию для `elem.style.left`.
+In the task <info:task/animate-ball> we had only one property to animate. Now we need one more: `elem.style.left`.
 
-Горизонтальная координата меняется по другому закону, нежели вертикальная. Она не "подпрыгивает", а постоянно увеличивается, постепенно сдвигая мяч вправо.
+The horizontal coordinate changes by another law: it does not "bounce", but gradually increases shifting the ball to the right.
 
-Поэтому мы не можем добавить её в тот же `animate`, нужно делать отдельный.
+We can write one more `animate` for it.
 
-В качестве временной функции для перемещения вправо мы могли бы применить для неё `linear`, но тогда горизонтальное движение будет отставать от скачков мяча. Более красиво будет что-то типа `makeEaseOut(quad)`.
+As the time function we could use `linear`, but something like `makeEaseOut(quad)` looks much better.
 
-Код:
+The code:
 
 ```js
 let height = field.clientHeight - ball.clientHeight;
 let width = 100;
 
+// animate top (bouncing)
 animate({
   duration: 2000,
   timing: makeEaseOut(bounce),
@@ -20,6 +21,7 @@ animate({
   }
 });
 
+// animate left (moving to the right)
 animate({
   duration: 2000,
   timing: makeEaseOut(quad),
@@ -28,4 +30,3 @@ animate({
   }
 });
 ```
-

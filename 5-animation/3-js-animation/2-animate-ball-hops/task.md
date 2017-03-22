@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Анимируйте падение мяча с отскоками вправо
+# Animate the ball bouncing to the left
 
-Заставьте мяч падать вправо. Кликните, чтобы увидеть в действии.
+Make the ball bounce to the left. Like this:
 
 [iframe height=250 src="solution"]
 
-Напишите код, который будет анимировать мяч. Дистанция вправо составляет `100px`.
+Write the animation code. The distance to the right is `100px`.
 
-В качестве исходного кода возьмите решение предыдущей задачи <info:task/animate-ball>.
+Take the solution of the previous task <info:task/animate-ball> as the source.
