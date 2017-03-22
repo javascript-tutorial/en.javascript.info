@@ -23,7 +23,6 @@ let timer = setInterval(function() {
 ```
 
 The more complete example of the animation:
-Более полный пример кода анимации:
 
 ```js
 let start = Date.now(); // remember start time

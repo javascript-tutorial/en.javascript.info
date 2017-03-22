@@ -3,11 +3,9 @@
   cursor: pointer;
   transition: margin-left 3s ease-in-out;
 }
-/* переворот картинки через CSS */
 
+/* flipping the picture with CSS */
 .back {
-  -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
   filter: fliph;
-  /* IE9- */
 }

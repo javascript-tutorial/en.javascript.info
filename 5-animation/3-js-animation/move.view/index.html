@@ -17,10 +17,9 @@
 
   <script>
     train.onclick = function() {
-      let start = Date.now(); // сохранить время начала
+      let start = Date.now();
 
       let timer = setInterval(function() {
-        // вычислить сколько времени прошло из opts.duration
         let timePassed = Date.now() - start;
 
         train.style.left = timePassed / 5 + 'px';

@@ -4,7 +4,7 @@ A "bb-tag" looks like `[tag]...[/tag]`, where `tag` is one of: `b`, `url` or `qu
 
 For instance:
 ```
-[b]текст[/b]
+[b]text[/b]
 [url]http://google.com[/url]
 ```
 

@@ -23,7 +23,7 @@ regexp = new RegExp("pattern", "flags");
 ...And the short one, using slashes `"/"`:
 
 ```js
-regexp = /pattern/; // no flags флагов
+regexp = /pattern/; // no flags
 regexp = /pattern/gmi; // with flags g,m and i (to be covered soon)
 ```
 
@@ -90,7 +90,7 @@ Regular expressions may have flags that affect the search.
 There are only 5 of them in JavaScript:
 
 `i`
-: With this flag the search is case-insensitive: no difference between `А` and `а` (see the example below).
+: With this flag the search is case-insensitive: no difference between `A` and `a` (see the example below).
 
 `g`
 : With this flag the search looks for all matches, without it -- only the first one (we'll see uses in the next chapter).

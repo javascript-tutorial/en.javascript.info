@@ -41,7 +41,7 @@ Try to move points using a mouse in the example below:
 
 [iframe src="demo.svg?nocpath=1&p=0,0,0.5,0,0.5,1,1,1" height=370]
 
-**As you can notice, the curve stretches along the tangential lines 1 -> 2 и 3 -> 4.**
+**As you can notice, the curve stretches along the tangential lines 1 -> 2 and 3 -> 4.**
 
 After some practice it becomes obvious how to place points to get the needed curve. And by connecting several curves we can get practically anything.
 

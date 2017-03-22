@@ -1,3 +1,3 @@
-# Анимация 
+# Animation
 
-CSS анимации. Контроль над ними из JavaScript. Анимации на чистом JavaScript.
+CSS and JavaScript animations.

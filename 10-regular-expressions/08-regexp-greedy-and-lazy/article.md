@@ -237,7 +237,7 @@ Let's modify the pattern by making the quantifier `pattern:.*?` lazy:
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
 let reg = /<a href=".*?" class="doc">/g;
 
-// Сработало!
+// Works!
 alert( str.match(reg) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
 ```
 

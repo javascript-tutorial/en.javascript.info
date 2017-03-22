@@ -6,7 +6,7 @@ Several characters or character classes inside square brackets `[…]` mean to "
 
 ## Sets
 
-For instance, `pattern:[еао]` means any of the 3 characters: `'а'`, `'е'`, or `'о'`.
+For instance, `pattern:[eao]` means any of the 3 characters: `'a'`, `'e'`, or `'o'`.
 
 That's calles a *set*. Sets can be used in a regexp along with regular characters:
 
@@ -26,8 +26,8 @@ alert( "Voila".match(/V[oi]la/) ); // null, no matches
 
 The pattern assumes:
 
-- `pattern:В`,
-- then *одну* of the letters `pattern:[oi]`,
+- `pattern:V`,
+- then *one* of the letters `pattern:[oi]`,
 - then `pattern:la`.
 
 So there would be a match for `match:Vola` or `match:Vila`.
@@ -70,7 +70,7 @@ They are denoted by a caret character `^` at the start and match any character *
 
 For instance:
 
-- `pattern:[^аеуо]` -- any character except  `'a'`, `'e'`, `'y'` or `'o'`.
+- `pattern:[^aeyo]` -- any character except  `'a'`, `'e'`, `'y'` or `'o'`.
 - `pattern:[^0-9]` -- any character except a digit, the same as `\D`.
 - `pattern:[^\s]` -- any non-space character, same as `\S`.
 
