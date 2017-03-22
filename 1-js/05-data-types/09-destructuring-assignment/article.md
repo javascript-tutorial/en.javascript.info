@@ -441,7 +441,7 @@ function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}
 showMenu(options);
 ```
 
-We can also use the more complex destructuring with nestings and colon mappings:
+We can also use more complex destructuring with nested objects and colon mappings:
 
 ```js run
 let options = {

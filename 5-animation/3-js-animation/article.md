@@ -22,7 +22,7 @@ let timer = setInterval(function() {
 }, 1000 / fps)
 ```
 
-The more complete example of the animation:
+More complete example of the animation:
 
 ```js
 let start = Date.now(); // remember start time
