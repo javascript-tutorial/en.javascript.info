@@ -38,7 +38,7 @@ alert( 'World' )
 
 Here JavaScript interprets the line break as an "implicit" semicolon. That's also called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**In most cases a newline implies a simicolon. But "in most cases" does not mean "always"!**
+**In most cases a newline implies a semicolon. But "in most cases" does not mean "always"!**
 
 There are cases when a newline does not mean a semicolon, for example:
 
