@@ -4,7 +4,9 @@ importance: 5
 
 # Searching algorithm
 
-We have object:
+The task has two parts.
+
+We have an object:
 
 ```js
 let head = {
@@ -25,9 +27,5 @@ let pockets = {
 };
 ```
 
-The task has two parts:
-
-1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets -> bed -> table -> head`.
-
-    For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `head`).
+1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets` -> `bed` -> `table` -> `head`. For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `head`).
 2. Answer the question: is it faster to get `glasses` as `pocket.glasses` or `head.glasses`? Benchmark if needed.

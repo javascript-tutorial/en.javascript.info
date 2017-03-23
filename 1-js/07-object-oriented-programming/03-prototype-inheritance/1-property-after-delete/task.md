@@ -4,9 +4,9 @@ importance: 5
 
 # Working with prototype
 
-Here's the code that creates a pair of object, then alters them.
+Here's the code that creates a pair of objects, then modifies them.
 
-Which values will be shown in the process?
+Which values are shown in the process?
 
 ```js
 let animal = {

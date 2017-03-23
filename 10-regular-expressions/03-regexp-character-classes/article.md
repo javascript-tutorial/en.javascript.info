@@ -8,7 +8,7 @@ A character class is a special notation that matches any symbol from the set.
 
 For instance, there's a "digit" class. It's written as `\d`. We put it in the pattern, and during the search any digit matches it.
 
-That is: a regexp `pattern:/\d/` looks for a digit:
+For instance, the regexp `pattern:/\d/` looks for a single digit:
 
 ```js run
 let str = "+7(903)-123-45-67";

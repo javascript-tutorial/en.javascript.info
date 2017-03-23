@@ -4,8 +4,8 @@ We may decide to execute a function not right now, but at a certain time later. 
 
 There are two methods for it:
 
-- `setTimeout` allows to run a function once after the given interval of time.
-- `setInterval` allows to run a function regularly with the given interval between the runs.
+- `setTimeout` allows to run a function once after the interval of time.
+- `setInterval` allows to run a function regularly with the interval between the runs.
 
 These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.JS.
 
@@ -168,6 +168,7 @@ let timerId = setTimeout(function request() {
   ...send request...
 
   if (request failed due to server overload) {
+    // increase the interval to the next run
     delay *= 2;
   }
 
@@ -179,7 +180,7 @@ let timerId = setTimeout(function request() {
 
 And if we regulary have CPU-hungry tasks, then we can measure the time taken by the execition and plan the next call sooner or later.
 
-**Recursive `setTimeout` guarantees a delay before the executions, `setInterval` -- does not.**
+**Recursive `setTimeout` guarantees a delay between the executions, `setInterval` -- does not.**
 
 Let's compare two code fragments. The first one uses `setInterval`:
 

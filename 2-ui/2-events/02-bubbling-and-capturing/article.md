@@ -61,12 +61,12 @@ A handler on a parent element can always get the details about where it actually
 
 Note the differences from `this` (=`event.currentTarget`):
 
-- `event.target` -- is the "source" element that initiated the event, it doesn't change through the bubbling process.
+- `event.target` -- is the "target" element that initiated the event, it doesn't change through the bubbling process.
 - `this` -- is the "current" element, the one that has a currently running handler on it.
 
 For instance, if we have a single handler `form.onclick`, then it can "catch" all clicks inside the form. No matter where the click happened, it bubbles up to `<form>` and runs the handler.
 
-In that handler:
+In `form.onclick` handler:
 
 - `this` (`=event.currentTarget`) is the `<form>` element, because the handler runs on it.
 - `event.target` is the concrete element inside the form that actually was clicked.
@@ -75,11 +75,11 @@ Check it out:
 
 [codetabs height=220 src="bubble-target"]
 
-It's surely possible that `event.target` equals `this` -- when the click was directly on `<form>`.
+It's possible that `event.target` equals `this` -- when the click is made directly on the `<form>` element.
 
 ## Stopping bubbling
 
-A bubbling event goes from the source element straight up. Normally it goes till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on its path.
+A bubbling event goes from the target element straight up. Normally it goes upwards till `<html>`, and then to `document` object, and some events even reach `window`, calling all handlers on the path.
 
 But any handler may decide that the event has been fully processed and stop the bubbling.
 
@@ -96,9 +96,9 @@ For instance, here `body.onclick` doesn't work if you click on `<button>`:
 ```smart header="event.stopImmediatePropagation()"
 If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
 
-In other words, `event.stopPropagation()` stops the move upwards, but on the current element all handlers will run.
+In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
 
-To completely stop all bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After its call no other handlers execute.
+To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
 ```
 
 ```warn header="Don't stop bubbling without a need!"
@@ -108,79 +108,87 @@ Sometimes `event.stopPropagation()` creates hidden pitfalls that later may becom
 
 For instance:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that outer parts don't trigger. Everything works.
-2. Later we decide to catch clicks inside the whole window, to track users' behavior (where people click). Some counters do that. Usually a counter code does that by `document.addEventListener('click', ...)`.
-3. Our statistics won't work over the area where clicks are stopped by `stopPropagation`. We've got a "dead zone".
+1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that outer parts don't trigger.
+2. Later we decide to catch clicks inside the whole window, to track users' behavior (where people click). Some counters do that. Usually a counter code does that by `document.addEventListener('click'…)`.
+3. Our counter won't work over the area where clicks are stopped by `stopPropagation`. We've got a "dead zone".
 
-There are usually many ways to do things and keep bubbling. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one.
+There's usually no real need to prevent the bubbling. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
 ```
-
 
 
 ## Capturing
 
-There's another "stage" of event processing called "capturing". It is rarely used in the code, but sometimes can be useful.
+There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
 
-The standard [DOM Events 3](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 stages of event processing:
+The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
 
-1. Capturing stage -- an event goes down to the element.
-2. Target stage -- an event reached the source element.
-3. Bubbling stage -- the event bubbles up from the element.
+1. Capturing phase -- the event goes down to the element.
+2. Target phase -- the event reached the target element.
+3. Bubbling phase -- the event bubbles up from the element.
 
-Here's the picture of a click on `<td>` inside a table:
+Here's the picture of a click on `<td>` inside a table, taken from the specification:
 
 ![](eventflow.png)
 
 That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing), then it reaches the target, and then it goes up (bubbles), calling handlers on its way.
 
-**Before we only talked about bubbling, because the capturing stage is rarely used. Normally it is invisible to us.**
+**Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
 
-Handlers added using `on...`-property or using HTML attributes don't know anything about capturing, they only run on the 2nd and 3rd stages.
+Handlers added using `on<event>`-property or using HTML attributes or using `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
 
-To catch an event on the capturing stage, we need to use the 3rd argument of `addEventListener`:
+To catch an event on the capturing phase, we need to set the 3rd argument of `addEventListener` to `true`.
 
-- If it's `true`, then the handler is set on the capturing stage.
-- If it's `false` (default), then on the bubbling stage.
+Actually, there are two possible values for that optional last argument:
 
-Note that while formally there are 3 stages, the 2nd stage (reached the element) is not handled separately: handlers on both capturing and bubbling stages do that.
+- If it's `false` (default), then the handler is set on the bubbling phrase.
+- If it's `true`, then the handler is set on the capturing phrase.
+
+Note that while formally there are 3 phrases, the 2nd phrase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phrases trigger at that phase.
+
+Handlers on the target element trigger last on the capturing state, and then trigger first on the bubbling stage.
 
 Let's see it in action:
 
-```html run autorun height=100 edit
-<table border="1">
-<tr>
-  <td>Shady Grove</td>
-  <td>Aeolian</td>
-</tr>
-<tr>
-  <td>Over the River, Charlie</td>
-  <td>Dorian</td>
-</tr>
-</table>
+```html run autorun height=140 edit
+<style>
+  body * {
+    margin: 10px;
+    border: 1px solid blue;
+  }
+</style>
+
+<form>FORM
+  <div>DIV
+    <p>P</p>
+  </div>
+</form>
 
 <script>
   for(let elem of document.querySelectorAll('*')) {
-      elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
-      elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
+    elem.addEventListener("click", e => alert(`Capturing: ${elem.tagName}`), true);
+    elem.addEventListener("click", e => alert(`Bubbling: ${elem.tagName}`));
   }
 </script>
 ```
 
 The code sets click handlers on *every* element in the document to see which ones are working.
 
-If you click on `<td>`, then the sequence is: `HTML` -> `BODY` -> `TABLE` -> `TBODY` -> `TR` -> `TD` (capturing stage, the first listener), and then `TD` -> `TR` -> `TBODY` -> `TABLE` -> `BODY` -> `HTML` (bubbling stage, the second listener).
+If you click on `<td>`, then the sequence is:
 
-Please note that `TD` shows up two times: at the end of capturing and at the start of bubbling.
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phrase, the first listener), and then:
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phrase, the second listener).
 
-There's a property `event.eventPhrase` that tells us the number of the stage on which the event was caught. But it's rarely used, because we usually know it in the handler.
+Please note that `P` shows up two times: at the end of capturing and at the start of bubbling.
+
+There's a property `event.eventPhrase` that tells us the number of the phrase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
 ## Summary
 
 The event handling process:
 
-- When an event happens -- the most nested element where it happens gets labeled as the "source element" (`event.target`).
+- When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
 - Then the event first moves from the document root down the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way.
-- Then the event moves from `event.target` up to the root, calling handlers assigned using  `on*` and `addEventListener(...., false)`.
+- Then the event moves from `event.target` up to the root, calling handlers assigned using  `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false`.
 
 Each handler can access `event` object properties:
 
@@ -188,11 +196,11 @@ Each handler can access `event` object properties:
 - `event.currentTarget` (=`this`) -- the current element the handles the event (the one that has the handler on it)
 - `event.eventPhase` -- the current phase (capturing=1, bubbling=3).
 
-Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it, maybe for completely different things.
+Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
 
-The capturing stage is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
+The capturing phrase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then (if needed) higher-level powers, and so on.
+In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
 
 The same for event handlers. The code that set the handler on a particular element knows maximum  details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last.
 

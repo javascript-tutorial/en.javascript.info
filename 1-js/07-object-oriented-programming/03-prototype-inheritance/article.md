@@ -6,7 +6,6 @@ For instance, we have a `user` object with its properties and methods, and want 
 
 *Prototypal inheritance* is a language feature that helps in that.
 
-
 [cut]
 
 ## [[Prototype]]
@@ -15,7 +14,7 @@ In JavaScript, objects have a special hidden property `[[Prototype]]` (as named 
 
 ![prototype](object-prototype-empty.png)
 
-That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called a "prototypal inheritance". Many cool language features and approaches are based on it.
+That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". Many cool language features and programming techniques are based on it.
 
 The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
@@ -34,9 +33,9 @@ rabbit.__proto__ = animal;
 */!*
 ```
 
-Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. We'll talk about other ways of setting it later, as for now `__proto__` will do just fine.
+Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. We'll talk about other ways of setting it later, but for now `__proto__` will do just fine.
 
-So now if we look for something in `rabbit` and it's missing, JavaScript automatically takes it from `animal`.
+If we look for a property in `rabbit`, and it's missing, JavaScript automatically takes it from `animal`.
 
 For instance:
 
@@ -54,14 +53,14 @@ rabbit.__proto__ = animal; // (*)
 
 // we can find both properties in rabbit now:
 *!*
-alert( rabbit.eats ); // true
+alert( rabbit.eats ); // true (**)
 */!*
 alert( rabbit.jumps ); // true
 ```
 
 Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
 
-Then, when `alert` tries to read property `rabbit.eats`, it can find it `rabbit`, so it follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
+Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rabbit`, so JavaScript follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
 
 ![](proto-animal-rabbit.png)
 
@@ -126,21 +125,25 @@ alert(longEar.jumps); // true (from rabbit)
 
 There are actually only two limitations:
 
-1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in circle.
+1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
 2. The value of `__proto__` can be either an object or `null`. All other values (like primitives) are ignored.
 
 Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
 
 ## Read/write rules
 
-The prototype is only used for reading properties, write/delete for data properties works directly with the object.
+The prototype is only used for reading properties.
+
+For data properties (not getters/setters) write/delete operations work directly with the object.
 
 In the example below, we assign its own `walk` method to `rabbit`:
 
 ```js run
 let animal = {
   eats: true,
-  walk() { /* unused by rabbit, because (see below) it has its own */  }
+  walk() {
+    /* this method won't be used by rabbit */  
+  }
 };
 
 let rabbit = {
@@ -160,18 +163,22 @@ Since now, `rabbit.walk()` call finds the method immediately in the object and e
 
 ![](proto-animal-rabbit-walk-2.png)
 
-The assignment handling is different for accessor properties, because these properties behave more like functions. For instance, check out `admin.fullName` property in the code below:
+For getters/setters -- if we read/write a property, they are looked up in the prototype and invoked.
+
+For instance, check out `admin.fullName` property in the code below:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith",
 
-*!*
   set fullName(value) {
     [this.name, this.surname] = value.split(" ");
   }
-*/!*
+
+  get fullName() {
+    return `${this.name} ${this.surname}`;
+  }
 };
 
 let admin = {
@@ -179,21 +186,13 @@ let admin = {
   isAdmin: true
 };
 
-// setter triggers!
-*!*
-admin.fullName = "Alice Cooper";
-*/!*
+alert(admin.fullName); // John Smith (*)
 
-alert(admin.name); // Alice
-alert(admin.surname); // Cooper
+// setter triggers!
+admin.fullName = "Alice Cooper"; // (**)
 ```
 
-Here in the line `(*)` the property `admin.fullName` has a setter in the prototype `user`. So it is not written into `admin`. Instead, the inherited setter is called.
-
-So, the general rule would be:
-
-1. For accessor properties use a setter (from the prototype chain).
-2. Otherwise assign directly to the object.
+Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property is has a setter in the prototype, so it is called.
 
 ## The value of "this"
 
@@ -201,7 +200,7 @@ An interesting question may arise in the example above: what's the value of `thi
 
 The answer is simple: `this` is not affected by prototypes at all.
 
-**No matter where a method is found: in an object or its prototype. In a method call, `this` is always the object before the dot.**
+**No matter where the method is found: in an object or its prototype. In a method call, `this` is always the object before the dot.**
 
 So, the setter actually uses `admin` as `this`, not `user`.
 
@@ -240,14 +239,14 @@ The resulting picture:
 
 ![](proto-animal-rabbit-walk-3.png)
 
-If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to its methods. But `this` in each method would be the corresponding object, not `animal`.
+If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
 
-In other words, methods are shared, but the state will be not.
+As a result, methods are shared, but the object state is not.
 
 ## Summary
 
 - In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
 - We can use `obj.__proto__` to access it (there are other ways too, to be covered soon).
-- The object references by `[[Prototype]]` is called a "prototype".
+- The object referenced by `[[Prototype]]` is called a "prototype".
 - If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
-- If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current objects even if they are inherited.
+- If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
