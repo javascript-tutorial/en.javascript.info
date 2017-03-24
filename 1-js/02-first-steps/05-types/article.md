@@ -8,9 +8,9 @@ let message = "hello";
 message = 123456;
 ```
 
-Such languages are called "dynamically typed", meaning that there are language types, but variables are not bound to any of them.
+Programming languages that allow such thing are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
 
-There are 7 basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
+There are 7 basic data types in JavaScript. Here we'll study the basics, and in next chapters we'll talk about each of them in detail.
 
 [cut]
 
@@ -21,11 +21,11 @@ let n = 123;
 n = 12.345;
 ```
 
-A *number* type serves both for integer and floating point numbers.
+The *number* type serves both for integer and floating point numbers.
 
 There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, substraction `-` and so on.
 
-Besides regular numbers there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
+Besides regular numbers, there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
 - `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. It is a special value that's greater than any number.
 
@@ -80,23 +80,23 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are "simple" quotes. They mark the beginning and the end of the string, that's all. There's no difference between them in JavaScript.
+Double and single quotes are "simple" quotes. There's no difference between them in JavaScript.
 
 Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
 ```js run
 let name = "John";
 
-// embed variable
-alert( `Hello, ${name}!` ); // Hello, John!
+// embed a variable
+alert( `Hello, *!*${name}*/!*!` ); // Hello, John!
 
-// embed expression
-alert( `the result is ${1 + 2}` ); // the result is 3
+// embed an expression
+alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 ```
 
 The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
 
-Please note that other quotes do not allow such embedding!
+Please note that this only can be done in backticks, other quotes do not allow such embedding!
 ```js run
 alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
 ```
@@ -109,7 +109,7 @@ In some languages, there is a special "character" type for a single character. F
 In JavaScript, there is no such type. There's only one type: `string`. A string may consist of only one character or many of them.
 ```
 
-## A boolean (logical)
+## A boolean (logical type)
 
 The boolean type has only two values: `true` and `false`.
 
@@ -118,11 +118,11 @@ This type is commonly used to store yes/no values: `true` means "yes, correct", 
 For instance:
 
 ```js
-let nameChecked = true; // yes, the form field name is checked
-let ageChecked = false; // no, the form field age is not checked
+let nameFieldChecked = true; // yes, name field is checked
+let ageFieldChecked = false; // no, age field is not checked
 ```
 
-Boolean values also come as the result of comparisons:
+Boolean values also come as a result of comparisons:
 
 ```js run
 let isGreater = 4 > 1;
@@ -130,11 +130,11 @@ let isGreater = 4 > 1;
 alert( isGreater ); // true (the comparison result is "yes")
 ```
 
-We'll cover booleans more deeply later while discussing [logical operators](/logical-ops).
+We'll cover booleans more deeply later in the chapter <info:logical-operators>.
 
 ## The "null" value
 
-The special `null` value does not belong to any type described above.
+The special `null` value does not belong to any type of those described above.
 
 It forms a separate type of its own, which contains only the `null` value:
 
@@ -152,24 +152,24 @@ The code above states that the `age` is unknown or empty for some reason.
 
 The special value `undefined` stands apart. It makes a type of its own, just like `null`.
 
-The sense of `undefined` is "value is not assigned".
+The meaning of `undefined` is "value is not assigned".
 
 If a variable is declared, but not assigned, then its value is exactly `undefined`:
 
 ```js run
 let x;
 
-alert( x ); // shows "undefined"
+alert(x); // shows "undefined"
 ```
 
-Technically, it is possible to assign to `undefined`:
+Technically, it is possible to assign any variable to `undefined`:
 
 ```js run
 let x = 123;
 
 x = undefined;
 
-alert( x ); // "undefined"
+alert(x); // "undefined"
 ```
 
 ...But it's not recommended to do that. Normally, we use `null` to write an "empty" or an "unknown" value into the variable, and `undefined` is only used for checks, to see if the variable is assigned or similar.
@@ -178,9 +178,9 @@ alert( x ); // "undefined"
 
 The `object` type is special.
 
-All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections data and more complex entities. We'll deal with them later after we know enough about primitives.
+All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections data and more complex entities. We'll deal with them later in the chapter <info:object> after we know enough about primitives.
 
-The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but we'd better study them after covering objects.
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but it's better to study them after objects.
 
 ## The typeof operator [#type-typeof]
 
@@ -193,7 +193,7 @@ It supports two forms of syntax:
 
 In other words, it works both with the brackets or without them. The result is the same.
 
-The call to `typeof x` returns a string, which has the type name:
+The call to `typeof x` returns a string with the type name:
 
 ```js
 typeof undefined // "undefined"
@@ -219,22 +219,22 @@ typeof alert // "function"  (3)
 */!*
 ```
 
-The last three lines may be a little unobvious so here's explanations:
+The last three lines may need additional explanations:
 
 1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here it serves just as an example of an object.
-2. The result of `typeof null` equals to `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in the language.
-3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the near future and see that actually functions belong to the object type. But `typeof` treats them differently. That's very convenient in practice.
+2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in the language.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the next chapters, and we'll see that there's no special "function" type in the language. Functions belong to the object type. But `typeof` treats them differently. Formally, it's incorrect, but very convenient in practice.
 
 
 ## Summary
 
 There are 7 basic types in JavaScript.
 
-- `number` for numbers of any kind, can convert into it using `Number(value)`.
-- `string` for strings and characters, can convert into it using `String(value)`.
-- `boolean` for `true`/`false`, can convert into it using `Boolean(value)`.
-- `null` for unknown values (a standalone type that has a single value `null`).
-- `undefined` for unassigned values (a standalone type that has a single value `undefined`).
+- `number` for numbers of any kind: integer or floating-point.
+- `string` for strings. A string may have one more more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
 - `object` for more complex data structures.
 - `symbol` for unique identifiers.
 
@@ -242,6 +242,6 @@ The `typeof` operator allows to see which type is stored in the variable.
 
 - Two forms: `typeof x` or `typeof(x)`.
 - Returns a string with the name of the type, like `"string"`.
-- Mistreats `null` as an `object` -- the old official error in the language.
+- For `null` returns `"object"` -- that's the error in the language, it's not an object in fact.
 
-In nearest chapters we'll concentrate on understanding how to operate on primitives and once we're familiar with that, then we'll move on to objects.
+In the next chapters we'll concentrate on primitive values and once we're familiar with that, then we'll move on to objects.

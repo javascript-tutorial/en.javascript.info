@@ -4,9 +4,8 @@ For a long time JavaScript was evolving without compatibility issues. New featur
 
 That had the benefit of never breaking the existing code. But the back side is that any mistake or an imprefect decision made by JavaScript creators got stuck in the language forever.
 
-It had been so before ECMAScript 5 (ES5) appeared which added new features to the language and modified some of the existing ones.
+It had been so before 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
 
-To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
 
 [cut]
 
@@ -61,7 +60,7 @@ It is recommended to always start a script with `"use strict"`, for the followin
 1. First, all modern browsers support it. Only outdated ones like Internet Explorer 9 and below do not.
 2. Second, the modern JavaScript actually forces us into the strict mode. There are several modern language features like "classes" and "modules" that enable strict mode automatically. So, it's hard to evade it.
 
-Here in the tutorial all code (except where said otherwise) works in `"use strict"`.  but we'll still note the subtle differences of what happens if you forget it or if the visitor has an outdated browser. So you will also be able to write a code that also works for old IE if you'd like that.
+Here in the tutorial all code (where not explicitly noted otherwise) works in `"use strict"`. We concentrate on modern JavaScript. But there will be notes about what happens without `"use strict"`, so that you can understand what's going on if you forget it or if you're working with an outdated script that doesn't have it.
 
 ## Summary
 

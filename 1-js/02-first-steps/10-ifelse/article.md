@@ -1,6 +1,6 @@
 # Conditional operators: if, '?'
 
-Sometimes we need to perform different actions basing on a condition. 
+Sometimes we need to perform different actions basing on a condition.
 
 There's an `if` operator for that and also the "question mark" operator: `"?"` for conditional evaluation.
 
@@ -35,9 +35,9 @@ It is recommended to use figure brackets every time with `if`, even if there's o
 
 ## Boolean conversion
 
-The `if (…)` operator evaluates the condition in brackets and converts it to boolean type.
+The `if (…)` operator evaluates the expression in parentheses and converts it to the boolean type.
 
-Let's recall the rules. In the logical context:
+Let's recall the conversion rules:
 
 - A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,
 - Other values -- `true`.
@@ -58,7 +58,7 @@ if (1) { // 1 is truthy
 }
 ```
 
-We can also pass a pre-evaluated logical value to `if`, like here:
+We can also pass a pre-evaluated boolean value to `if`, like here:
 
 ```js
 let cond = (year == 2015); // equality evaluates to true or false
@@ -101,7 +101,9 @@ if (year < 2015) {
 }
 ```
 
-In the code above JavaScript first checks `year < 2015`, if it is falsy then goes to the next condition `year > 2015`. Any number of `else if` may follow with an optional last `else`.
+In the code above JavaScript first checks `year < 2015`, if it is falsy then goes to the next condition `year > 2015`, and otherwise shows the last `alert`.
+
+There can be more `else if` blocks. The ending `else` is optional.
 
 ## Ternary operator '?'
 
@@ -110,21 +112,21 @@ Sometimes we need to assign a variable depending on a condition.
 For instance:
 
 ```js run no-beautify
-let hasAccess;
+let accessAllowed;
 let age = prompt('How old are you?', '');
 
 *!*
 if (age > 18) {
-  hasAccess = true;
+  accessAllowed = true;
 } else {
-  hasAccess = false;
+  accessAllowed = false;
 }
 */!*
 
-alert(hasAccess);
+alert(accessAllowed);
 ```
 
-The so called "ternary" or "question mark" operator allows to do that shorter and simpler.
+The so-called "ternary" or "question mark" operator allows to do that shorter and simpler.
 
 The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 operands. It is actually the one and only operator in JavaScript which has that many.
 
@@ -138,24 +140,25 @@ The `condition` is evaluated, if it's truthy then `value1` is returned, otherwis
 For example:
 
 ```js
-let hasAccess = (age > 18) ? true : false;
+let accessAllowed = (age > 18) ? true : false;
 ```
 
-We can omit brackets around `age > 14`, because the question mark operator has a low precedence. It executes after comparisons, so:
+Technically, we can omit parentheses around `age > 14`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
 
 ```js
-// the same
-let hasAccess = age > 18 ? true : false;
+// the comparison operator "age > 18" executes first anyway
+// (no need to wrap it into parentheses)
+let accessAllowed = age > 18 ? true : false;
 ```
 
-...But brackets make the code more readable. So it's recommended to put them.
+...But parentheses make the code more readable. So it's recommended to put them.
 
 ````smart
-In the described case it is possible to evade the question mark operator, because the comparison by itself returns `true/false`:
+In the example above it's possible to evade the question mark operator, because the comparison by itself returns `true/false`:
 
 ```js
 // the same
-let hasAccess = age > 18;
+let accessAllowed = age > 18;
 ```
 ````
 
@@ -175,12 +178,12 @@ let message = (age < 3) ? 'Hi, baby!' :
 alert( message );
 ```
 
-It may be difficult at first to grasp what's going on. But looking more carefully we note that it's just an ordinary sequence of tests.
+It may be difficult at first to grasp what's going on. But after a closer look we can see that it's just an ordinary sequence of tests.
 
-1. The first question mark checks for `age < 3`. 
-2. If true -- returns `'Hi, baby!'`, otherwise -- goes to the right side of the colon `":"` and checks for `age < 18`. 
-3. If that's true -- returns `'Hello!'`, otherwise checks for `age < 100` and returns `'Greetings!'` if that is so... 
-4. At last, if all checks are falsy, the `message` becomes `'What an unusual age!'`.
+1. The first question mark checks whether `age < 3`.
+2. If true -- returns `'Hi, baby!'`, otherwise -- goes after the colon `":"` and checks for `age < 18`.
+3. If that's true -- returns `'Hello!'`, otherwise -- goes after the next colon `":"` and checks for `age < 100`.
+4. If that's true -- returns `'Greetings!'`, otherwise -- goes after the last colon `":"` and returns `'What an unusual age!'`.
 
 The same logic using `if..else`:
 
@@ -211,7 +214,7 @@ let company = prompt('Which company created JavaScript?', '');
 
 Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
 
-We don't assign a result to a variable here, cause the `alert` doesn't return anything anyway, our purpose is only to execute it.
+We don't assign a result to a variable here, the idea is to execute different code depending on the condition.
 
 **It is not recommended to use the question mark operator in this way.**
 
@@ -234,4 +237,3 @@ if (company == 'Netscape') {
 Our eyes scan the code vertically. The constructs which span several lines are easier to understand than a long horizontal instruction set.
 
 The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There's `if` to execute different branches of the code.
-

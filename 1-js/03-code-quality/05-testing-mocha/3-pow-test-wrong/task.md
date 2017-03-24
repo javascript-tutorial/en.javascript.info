@@ -21,4 +21,4 @@ it("Raises x to the power n", function() {
 });
 ```
 
-P.S. Syntactically it's correct and passes.
+P.S. Syntactically the test is correct and passes.

@@ -98,7 +98,7 @@ That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/mo
 
 ## Square brackets
 
-For multiword properties, the dot access won't work:
+For multiword properties, the dot access doesn't work:
 
 ```js run
 // this would give a syntax error

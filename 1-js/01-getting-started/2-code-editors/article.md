@@ -1,6 +1,6 @@
 # Code editors
 
-The code editor is the place where a programmer spends most his time. 
+A code editor is the place where a programmer spends most of his time. 
 
 There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
 
@@ -32,7 +32,7 @@ They are mainly used to instantly open and edit a file.
 
 The main difference between a "lightweight editor" and an "IDE" is that IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
 
-In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE. 
+In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
 
 The following options deserve your attention:
 

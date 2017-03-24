@@ -5,7 +5,7 @@ Many comparison operators we know from maths:
 - Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
 - Equality check is written as `a == b` (please note the double equation sign `'='`. A single symbol `a = b` would mean an assignment).
-- Not equals. In maths the sign is <code>&ne;</code>, in JavaScript we use an assignment with an exclamation before it: <code>a != b</code>.
+- Not equals. In maths the notation is <code>&ne;</code>, in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
 
 [cut]
 
@@ -24,7 +24,7 @@ alert( 2 == 1 ); // false (wrong)
 alert( 2 != 1 ); // true (correct)
 ```
 
-A result of a comparison can be assigned to a variable, just like any value:
+A comparison result can be assigned to a variable, just like any value:
 
 ```js run
 let result = 5 > 4; // assign the result of the comparison
@@ -48,7 +48,7 @@ alert( 'Bee' > 'Be' ); // true
 The algorithm to compare two strings is simple:
 
 1. Compare first characters of both strings.
-2. If the first one is greater(or less), then the first string is greater(or less) than the second and we're done.
+2. If the first one is greater(or less), then the first string is greater(or less) than the second. We're done.
 3. Otherwise if first characters are equal, compare the second characters the same way.
 4. Repeat until the end of any string.
 5. If both strings ended simultaneously, then they are equal. Otherwise the longer string is greater.
@@ -120,7 +120,7 @@ The same thing with an empty string:
 alert( '' == false ); // true
 ```
 
-That's the natural consequence of what we've seen before. Operands of different types are converted to a number. An empty string, just like `false`, becomes a zero.
+That's because operands of different types are converted to a number by the assignment operator `=`. An empty string, just like `false`, becomes a zero.
 
 What to do if we'd like to differentiate `0` from `false`?
 
@@ -136,11 +136,11 @@ alert( 0 === false ); // false, because the types are different
 
 There also exists a "strict non-equality" operator `!==`, as an analogy for `!=`.
 
-The string equality check operator is a bit longer to write, but makes more obvious what's going on.
+The string equality check operator is a bit longer to write, but makes it obvious what's going on and leaves less space for errors.
 
 ## Comparison with null and undefined
 
-Let's see more corner cases.
+Let's see more edge cases.
 
 There's a non-intuitive behavior when `null` or `undefined` is compared with other values.
 
@@ -148,13 +148,21 @@ There's a non-intuitive behavior when `null` or `undefined` is compared with oth
 For a strict equality check `===`
 : These values are different, because each of them belong to a separate type of it's own.
 
-For a non-strict check `null == undefined`
+    ```js run
+    alert( null === undefined ); // false
+    ```
+
+For a non-strict check `==`
 : There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but no any other value.
 
-For maths and evaluation of other comparisons `< > <= >=`
+    ```js run
+    alert( null == undefined ); // true
+    ```
+
+For maths and other comparisons `< > <= >=`
 : Values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`.
 
-Now let's see funny things that happen when we apply those rules. And, what's more important, how do not fall into a trap with unobvious language features.
+Now let's see funny things that happen when we apply those rules. And, what's more important, how do not fall into a trap with these features.
 
 ### Strange result: null vs 0
 
@@ -195,7 +203,7 @@ Why did we observe these examples? Should we remember these pecularities all the
 
 Just treat any comparison with `undefined/null` except the strict equality `===` with an exceptional care.
 
-Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check it separately.
+Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check for them separately.
 
 ## Summary
 

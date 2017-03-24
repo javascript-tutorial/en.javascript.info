@@ -16,4 +16,4 @@ Create a web-page that prompts for `x` and `n`, and then shows the result of `po
 
 [demo]
 
-P.S. In this task the function is allowed to support only natural values of `n`: integers up from `1`.
+P.S. In this task the function should support only natural values of `n`: integers up from `1`.

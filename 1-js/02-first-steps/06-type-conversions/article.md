@@ -2,37 +2,31 @@
 
 Most of time, operators and functions automatically convert a value to the right type. That's called "type coercion".
 
-For example, `alert` automatically converts any value to a string, to show it. Or mathematical operations convert values to numbers.
+For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
 
 There are also cases when we need to explicitly convert a value to put things right.
 
 [cut]
 
-```smart header="Not covering objects yet"
-In this chapter we don't cover objects yet. Here we study primitives first, and then we'll see what happens with objects in the chapter <info:object-toprimitive>.
+```smart header="Not talking about objects yet"
+In this chapter we don't cover objects yet. Here we study primitives first. Later, after we learn objects, we'll see how object conversion works in the chapter <info:object-toprimitive>.
 ```
 
 ## ToString
 
 The string conversion happens when we need a string form of a value.
 
-For example, `alert` does it:
-
-```js run
-let a = true;
-
-alert(a); // "true"
-```
+For example, `alert(value)` does it to show the value.
 
 We can also use a call `String(value)` function for that:
 
 ```js run
-let a = true;
-alert(typeof a); // boolean
+let value = true;
+alert(typeof value); // boolean
 
 *!*
-a = String(a); // now: a = "true"
-alert(typeof a); // string
+value = String(value); // now value is a string "true"
+alert(typeof value); // string
 */!*
 ```
 
@@ -42,7 +36,7 @@ The string conversion is mostly obvious. A `false` becomes `"false"`, `null` bec
 
 Numeric conversion happens in mathematical functions and expressions automatically.
 
-For example, when division '/' is applied to non-numbers:
+For example, when division `/` is applied to non-numbers:
 
 ```js run
 alert( "6" / "2" ); // 3, strings are converted to numbers
@@ -54,12 +48,12 @@ We can use a `Number(value)` function to explicitly convert a `value`:
 let str = "123";
 alert(typeof str); // string
 
-let n = Number(str); // becomes a number 123
+let num = Number(str); // becomes a number 123
 
-alert(typeof n); // number
+alert(typeof num); // number
 ```
 
-The explicit conversion is usually required when we read a value coming from a text form field or another string-based source, but we expect a number to be entered.
+The explicit conversion is usually required when we read a value from a string-based source like a text form, but we expect a number to be entered.
 
 If the string is not a valid number, the result of such conversion is `NaN`, for instance:
 
@@ -69,7 +63,7 @@ let age = Number("an arbitrary string instead of a number");
 alert(age); // NaN, conversion failed
 ```
 
-The numeric conversion rules:
+Numeric conversion rules:
 
 | Value |  Becomes... |
 |-------|-------------|
@@ -97,8 +91,6 @@ Then it concatenates (joins) them:
 ```js run
 alert( 1 + '2' ); // '12' (string to the right)
 alert( '1' + 2 ); // '12' (string to the left)
-
-alert( 1 + 2 ); // 3, numbers (for the contrast)
 ```
 
 That only happens when one of arguments is a string. Otherwise values are converted to numbers.
@@ -130,14 +122,14 @@ Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript a non-empt
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // also true (any non-empty string is true)
+alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 ```
 ````
 
 
 ## Summary
 
-There exist three most widely used type conversions: to string, to number and to boolean.
+There are three most widely used type conversions: to string, to number and to boolean.
 
 **`ToString`** -- occurs when we output something, can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
@@ -164,7 +156,7 @@ Follows the rules:
 
 Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
 
-- `undefined` is `NaN` as a number.
-- `"0"` is true as a boolean.
+- `undefined` is `NaN` as a number, not `0`.
+- `"0"` and space-only strings like `"   "` are true as a boolean.
 
-Objects are not covered here, we'll return to them later in the chapter <info:object-toprimitive>, devoted exclusively to objects, after we learn more basic things about JavaScript.
+Objects are not covered here, we'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects, after we learn more basic things about JavaScript.

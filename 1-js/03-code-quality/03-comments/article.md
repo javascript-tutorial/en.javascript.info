@@ -2,11 +2,11 @@
 
 Comments are generally a good thing. But novices in programming generally get that wrong. They write comments explaining "what is going on in the code".
 
-**But the amount of such "explanatory" comments should be minimal.**
+But the amount of such "explanatory" comments should be minimal.
 
 Seriously, a good code should be easy to understand without them.
 
-There's a great rule about that: "if the code is not clear without a comment, then may be it should be rewritten instead".
+There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
 
 [cut]
 
@@ -19,10 +19,10 @@ function showPrimes(n) {
 
 *!*
     // check if i is a prime number
-*/!*
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
     }
+*/!*
 
     alert(i);
   }
@@ -96,14 +96,14 @@ function addJuice(container) {
 
 That's readable without comments. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
 
-In reality, we can't totally evade "explanatory" comments. There are complex algorithms. And there are smart code tweaks made for optimization. But generally we should try to keep the code as simple as possible, and apply those only when needed.
+In reality, we can't totally evade "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
 
 ## Good comments
 
 Which comments are good?
 
 Describe the architecture
-: That's the list of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
 
 Document a function usage
 : There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
@@ -122,7 +122,7 @@ Document a function usage
     }
     ```
 
-    Such comments allow to understand the purpose of the function and use it the right way. Even without looking in its code.
+    Such comments allow to understand the purpose of the function and use it the right way without looking in its code.
 
     By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
 
@@ -134,16 +134,14 @@ Why the task is solved this way?
     If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
 
     Without such comments the following situation is possible:
-    1. You (or your colleague) open the code written some time ago, and see it's "suboptimal".
+    1. You (or your colleague) open the code written some time ago, and see that it's "suboptimal".
     2. You think: "How stupid I was then, and how much smarter I'm now", and rewrite using the "more obvious and correct" variant.
-    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. Hopefully, you revert to the correct variant, but the time was spent.
+    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. You even dimly remember why, because you already tried it long ago. You revert to the correct variant, but the time was wasted.
 
-    Comments that explain the solution are very important. They help to understand what happens and continue development the right way.
+    Comments that explain the solution are very important. They help to continue development the right way.
 
 Any subtle features of the code? Where they are used?
-: If the code has anything subtle, it's definitely worth commenting.
-
-One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
+: If the code has anything subtle and counter-obvious, it's definitely worth commenting.
 
 ## Style guides
 
@@ -212,6 +210,8 @@ For that reason even if you're not concerned about styles, using a linter is rea
 
 ## Summary
 
-Code style is important, especially in the team. When other people look at your code, the impression is largely defined by the style. Good code is easier to read and understand.
+One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
+
+Code style is important too, especially in the team. When other people look at your code, the impression is largely defined by the style. Good code is easier to read and understand.
 
 Speaking about style rules: quotes, spaces etc, we should keep in mind that all of them are good *only* if they make the code better. More readable, easier to maintain. That's the main thing to keep in mind when choosing the style or discussing which one is better.

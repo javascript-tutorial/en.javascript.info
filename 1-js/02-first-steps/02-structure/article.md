@@ -15,14 +15,14 @@ We can have as many statements in the code as we want. Another statement can be 
 For example, here we split the message into two:
 
 ```js run no-beautify
-alert( 'Hello' ); alert( 'World' );
+alert('Hello'); alert('World');
 ```
 
 Usually each statement is written on a separate line -- thus the code becomes more readable:
 
 ```js run no-beautify
-alert( 'Hello' );
-alert( 'World' );
+alert('Hello');
+alert('World');
 ```
 
 ## Semicolons [#semicolon]
@@ -32,8 +32,8 @@ A semicolon may be omitted in most cases when a line break exists.
 This would also work:
 
 ```js run no-beautify
-alert( 'Hello' )
-alert( 'World' )
+alert('Hello')
+alert('World')
 ```
 
 Here JavaScript interprets the line break as an "implicit" semicolon. That's also called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
@@ -61,23 +61,21 @@ If you're curious to see a concrete example of such an error, check this code ou
 [1, 2].forEach(alert)
 ```
 
-It shows `1` then `2`.
-
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them, for now -- it does not matter. Let's just remember the result.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later, for now -- it does not matter. Let's just remember the result: it shows `1`, then `2`.
 
 Now let's add an `alert` before the code. And *not* finish it with a semicolon:
 
 ```js run no-beautify
-alert( "There will be an error" ) 
+alert("There will be an error")
 
-[1, 2].forEach(alert) 
+[1, 2].forEach(alert)
 ```
 
-Now if we run it, only the first `alert` is shown, and then an error.
+Now if we run it, only the first `alert` is shown, and then we have an error!
 
 But everything is fine again if we add a semicolon after `alert`:
 ```js run
-alert( "All fine now" ); 
+alert("All fine now");
 
 [1, 2].forEach(alert)  
 ```
@@ -85,12 +83,12 @@ alert( "All fine now" );
 Now we have the "All fine now" message and then `1` and `2`.
 
 
-The error in the no-semicolon variant occurs because automatic semicolon insertion rules are complex, and in particular, JavaScript does not imply a semicolon before square brackets `[...]`.
+The error in the no-semicolon variant occurs because JavaScript does not imply a semicolon before square brackets `[...]`.
 
-And, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement, like this:
+So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement, that's how the engine sees it:
 
 ```js run no-beautify
-alert( "There will be an error" )[1, 2].forEach(alert)
+alert("There will be an error")[1, 2].forEach(alert)
 ```
 
 But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such thing happens.
@@ -111,9 +109,9 @@ The rest of the line is a comment. It may occupy a full line of its own or follo
 Like here:
 ```js run
 // This comment occupies a line of its own
-alert( 'Hello' );
+alert('Hello');
 
-alert( 'World' ); // This comment follows the statement
+alert('World'); // This comment follows the statement
 ```
 
 **Multiline comments start with a slash and a star <code>"/&#42;"</code> and end with a star and a slash <code>"&#42;/"</code>.**
@@ -124,8 +122,8 @@ Like this:
 /* An example with two messages.
 This is a multiline comment.
 */
-alert( 'Hello' );
-alert( 'World' );
+alert('Hello');
+alert('World');
 ```
 
 The content of comments is ignored, so if we put a code inside <code>/&#42; ... &#42;/</code> it won't execute.
@@ -134,9 +132,9 @@ Sometimes it comes handy to temporarily disable a part of the code:
 
 ```js run
 /* Commenting out the code
-alert( 'Hello' );
+alert('Hello');
 */
-alert( 'World' );
+alert('World');
 ```
 
 ```smart header="Use hotkeys!"

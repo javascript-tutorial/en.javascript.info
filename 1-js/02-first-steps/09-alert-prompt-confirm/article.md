@@ -24,7 +24,7 @@ For example:
 alert("Hello");
 ```
 
-The small window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until he deals with the window. In this case -- until he presses "OK".
+The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until he deals with the window. In this case -- until he presses "OK".
 
 ## prompt
 
@@ -34,19 +34,19 @@ Function `prompt` accepts two arguments:
 result = prompt(title[, default]);
 ```
 
-It shows a modal window with a field for text and buttons OK/CANCEL.
+It shows a modal window with a text message, an input field for the visitor and buttons OK/CANCEL.
 
 `title`
-: Is a modal window title
+: The text to show to the visitor.
 
 `default`
-: An optional second parameter, the initial value for the text field.
+: An optional second parameter, the initial value for the input field.
 
-The visitor may type something in the field and press OK. Or he can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
+The visitor may type something in the prompt input field and press OK. Or he can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
 
-The call to `prompt` returns the text from the field or `null` if the input is canceled.
+The call to `prompt` returns the text from the field or `null` if the input was canceled.
 
-As with `alert`, the `prompt` window is modal.
+For instance:
 
 ```js run
 let age = prompt('How old are you?', 100);
@@ -92,6 +92,8 @@ alert( isBoss ); // true is OK is pressed
 
 ## Summary
 
+We covered 3 browser-specific functions to interact with the visitor:
+
 `alert`
 : shows a message.
 
@@ -100,6 +102,8 @@ alert( isBoss ); // true is OK is pressed
 
 `confirm`
 : shows a message and waits the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
+
+All these methods are modal: they pause the script execution and don't let the visitor to interact with the rest of the page until he dismisses them.
 
 There are two limitations shared by all the methods above:
 

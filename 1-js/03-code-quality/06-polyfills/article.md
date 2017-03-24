@@ -1,57 +1,57 @@
 
 # Polyfills
 
-The JavaScript language steadily evolves. The new proposals get analyzed and, if they look worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+The JavaScript language steadily evolves. The new proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-Each JS engine has its own idea about what to implement first. It may implement proposals that are not approved yet and fail to implement things that are already in the spec, because they are less interesting or just harder to do. 
+Teams behind JavaScript engines have their own ideas about what to implement first. It may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
 
 So it's quite common for an engine to implement only the part of the standard.
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (remember the link to use in the future when you know the language).
+A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
 ## Babel.JS
 
-When we use all the modern features of the language, some engines may fail to support such code. Just as it was said, not all features are implemented everywhere.
+When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
 
 Here Babel.JS comes to the rescue.
 
-[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites the modern JavaScript code into the previous standard.
+[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites modern JavaScript code into the previous standard.
 
 Actually, there are two parts in Babel:
 
-1. The transpiler program, which rewrites the code.
+1. First, the transpiler program, which rewrites the code. The developer run it on his own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/) provide means to run transpiler automatically on every code change, so that doesn't involve any time loss from our side.
 
-    The transpiler runs on a developer's computer. It rewrites the code, which is then bundled by a project build system (like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/)). Most build systems can support Babel easily.
+2. Second, the polyfill.
 
-2. The polyfill.
+    The transpiler rewrites the code, so syntax features are covered. But for new functions we need to a special script that implements them. JavaScript is a highly dynamic language, scripts may not just add new functions, but also modify built-in ones, so that they behave according to the modern standard.
 
-    For some functions we also need add a special script that should run before our scripts and  introduce modern functions that the engine may not support by itself. There's a term "polyfill" for such scripts. 
+    There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
 
-    The two interesting variants are [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big and the [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need. 
+    Two interesting polyfills are:
+    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
+    - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
 
-The transpiler and/or polyfill may be not needed if we orient towards more-or-less modern engines and don't use rarely supported features.
+So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
+
+If we orient towards modern engines and do not use features except those supported everywhere, then we don't need to use Babel.JS.
 
 ## Examples in the tutorial
 
-```warn header="Browser support is required"
-Examples that use modern JS will work only if your browser supports it.
-```
 
 ````online
-Most examples are runnable at-place, like here:
+Most examples are runnable at-place, like this:
 
 ```js run
 alert('Press the "Play" button in the upper-right corner to run');
 ```
 
-...But if it uses a feature that your browser does not support, an error is shown.
+Examples that use modern JS will work only if your browser supports it.
+```
 
-That doesn't mean that the example is wrong! It's just the browser lacking the support for certain features yet.
-````
+```offline
+As you're reading the offline version, examples are not runnable. But they usually work :)
+```
 
-[Chrome Canary](https://www.google.com/chrome/browser/canary.html) is good for more examples.
+[Chrome Canary](https://www.google.com/chrome/browser/canary.html) is good for all examples, but other modern browsers are mostly fine too.
 
 Note that on production we can use Babel to translate the code into suitable for less recent browsers, so there will be no such limitation, the code will run everywhere.
-
-Now we can go coding, so let's choose a good code editor.
-

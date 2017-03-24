@@ -1,6 +1,6 @@
-To be precise, the `if` must use a strict comparison `'==='`.
+To precisely match the functionality of `switch`, the `if` must use a strict comparison `'==='`.
 
-In reality though, probably a simple `'=='` would do.
+For given strings though, a simple `'=='` works too.
 
 ```js no-beautify
 if(browser == 'Edge') {
@@ -17,4 +17,4 @@ if(browser == 'Edge') {
 
 Please note: the construct `browser == 'Chrome' || browser == 'Firefox' …` is split into multiple lines for better readability.
 
-But the `switch` is still neater and more descriptive.
+But the `switch` construct is still cleaner and more descriptive.

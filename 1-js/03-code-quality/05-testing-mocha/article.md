@@ -1,32 +1,32 @@
 # Automated testing with mocha
 
-Automated testing will be used further on in tasks. It's actually a part of the "educational minimum" of a developer.
+Automated testing will be used further in tasks.
+
+It's actually a part of the "educational minimum" of a developer.
 
 [cut]
 
 ## Why we need tests?
 
-When we write a function, we usually can imagine what it should do, which parameters yield which results.
+When we write a function, we usually can imagine what it should do: which parameters give which results.
 
 During the development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
 
-If something's wrong -- then fix the code, run again, check the result -- and so on till it works.
+If something's wrong -- then we fix the code, run again, check the result -- and so on till it works.
 
-But such manual "re-runs" are rather imperfect.
+But such manual "re-runs" are imperfect.
 
-**When testing a code manually -- it's easy to miss something.**
+**When testing a code by manual re-runs -- it's easy to miss something.**
 
-For instance, we're composing a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
+For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
 
-That's actually fair. When we develop something, we keep a lot of possible use cases and mind. But it's hard to expect from programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+That's very typical. When we develop something, we keep a lot of possible use cases and mind. But it's hard to expect from programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
 **Automated testing means that tests are written separately, in addition to the code. They can be executed easily and check all the main use cases.**
 
 ## Behavior Driven Development (BDD)
 
-Let's get down to a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD. That approach is used among many projects.
-
-BDD is not just about testing. That's more.
+Let's use a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD. That approach is used among many projects. BDD is not just about testing. That's more.
 
 **BDD is three things in one: tests AND documentation AND examples.**
 
@@ -36,9 +36,9 @@ Enough words. Let's see the example.
 
 Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
 
-That task is quite simple, there's even a `**` operator in JavaScript that can do that, but here we concentrate not on the function itself, but on the development flow, that can be applied to more complex tasks as well.
+That task is just an example: there's `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
 
-Before creating the code of `pow`, we can imagine what the function should do and describe it using BDD.
+Before creating the code of `pow`, we can imagine what the function should do and describe it.
 
 Such description is called a *specification* or, in short, a spec, and looks like this:
 
@@ -55,10 +55,10 @@ describe("pow", function() {
 A spec has three main building blocks that you can see above:
 
 `describe("title", function() { ... })`
-: What functionality we're describing. Uses to group "working horses" -- the `it` blocks. In our case we're describing the function `pow`.
+: What functionality we're describing. Uses to group "workers" -- the `it` blocks. In our case we're describing the function `pow`.
 
 `it("title", function() { ... })`
-: In the title of `it` we *in a human-readable way* describe the particular use case, and then goes a function that tests it.
+: In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
 
 `assert.equal(value1, value2)`
 : The code inside `it` block, if the implementation is correct, should execute without errors.
@@ -73,24 +73,27 @@ The flow of development usually looks like this:
 
 1. An initial spec is written, with tests for the most basic functionality.
 2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) together with assertion framework (we'll pick [Chai](http://chaijs.com/)), the spec and the implementation.  Functions `describe` and `it` actually belong to Mocha and `assert.*` come from Chai. If there are errors, we make corrections till everything works.
+3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. Errors are displayed. We make corrections till everything works.
 4. Now we have a working initial implementation with tests.
 5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
-6. Go to 3, alter the implementation till everything works, and repeat the same till the functionality is ready.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
 
-So, the development is *iterative*. We write the spec, implement it, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
+So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
 
-In our case, the first step is complete: we have an initial spec. So let's make an implementation. But before that let's make a "zero" run of the spec, just to see that tests are working (they will all fail).
+In our case, the first step is complete: we have an initial spec for `pow`. So let's make an implementation. But before that let's make a "zero" run of the spec, just to see that tests are working (they will all fail).
 
 ## The spec in action
 
 Here in the tutorial we'll be using the following JavaScript libraries for tests:
 
-- [Mocha](http://mochajs.org/) -- the main framework with common testing functions including `describe` and `it`.
+- [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
 - [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- to emulate built-in functions, to spy over functions and more, we'll need it much later.
+- [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
 
 These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
+
+The full HTML page with these frameworks and `pow` spec:
 
 ```html src="index.html"
 ```
@@ -107,9 +110,9 @@ The result:
 
 [iframe height=250 src="pow-1" border=1 edit]
 
-As of now, the tests fail. That's logical: we have an empty function code in `pow`.
+As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
-For the future, let's note that for browser there exist advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup environment for many tests. But right now, for a single function, our test page is more than enough.
+For future, let's note that for there are advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup many different tests.
 
 ## Initial implementation
 
@@ -129,7 +132,7 @@ Wow, now it works!
 
 What we've done -- is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
 
-Here we can see a typical situation: tests pass, but the function works wrong. That happens. Our spec is imperfect. We need to add more use cases to it.
+...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
 
 Let's add one more test to see if `pow(3, 4) = 81`.
 
@@ -167,7 +170,7 @@ We can select one of two ways to organize the test here:
 
 The principal difference is that when `assert` triggers an error, the `it` block immediately terminates. So, in the first variant if the first `assert` fails, then we'll never see the result of the second `assert`.
 
-**Making tests separate is useful to get more information about what's going on.**
+Making tests separate is useful to get more information about what's going on, so the second variant is better.
 
 And besides that, there's one more rule good to follow.
 
@@ -175,13 +178,13 @@ And besides that, there's one more rule good to follow.
 
 If we look at the test and see two independent checks in it -- better to split it into two simpler ones.
 
-For these reasons, the second variant is preferable.
+So let's continue with the second variant.
 
 The result:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-As we could expect, the second test failed. Sure, the function returns `8` while the `assert` expects `27`.
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `27`.
 
 ## Improving the implementation
 
@@ -224,7 +227,7 @@ The result:
 
 ## Nested describe
 
-We're going to add more tests. But before that let's note that the helper function `makeTest` and `for` should be grouped together. We won't need `makeTest` in other tests, it's needed only in `for`: their common task is to check how `pow` raises into the given power.
+We're going to add even more tests. But before that let's note that the helper function `makeTest` and `for` should be grouped together. We won't need `makeTest` in other tests, it's needed only in `for`: their common task is to check how `pow` raises into the given power.
 
 Grouping is done with a nested `describe`:
 
@@ -258,10 +261,10 @@ The nested `describe` defines a new "subgroup" of tests. In the output we can se
 
 [iframe height=250 src="pow-4" edit border="1"]
 
-In the future we can add more `it` and `describe` with helper functions of their own.
+In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
 
 ````smart header="`before/after` and `beforeEach/afterEach`"
-A `describe` can have `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
+We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
 
 For instance:
 
@@ -280,20 +283,20 @@ describe("test", function() {
 });
 ```
 
-The `=>` denotes, as you may recall, [arrow functions](info:function-expressions-arrows#arrow-functions). The running sequence will be:
+The running sequence will be:
 
 ```
-Testing started – before all tests
-Before a test – enter a test
+Testing started – before all tests (before)
+Before a test – enter a test (beforeEach)
 1
-After a test – exit a test
-Before a test – enter a test
+After a test – exit a test   (afterEach)
+Before a test – enter a test (beforeEach)
 2
-After a test – exit a test
-Testing finished – after all tests
+After a test – exit a test   (afterEach)
+Testing finished – after all tests (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox"]
+[edit src="beforeafter" title="Open the example in the sandbox."]
 
 Usually, `beforeEach/afterEach` (`before/each`) are used to perform initialization, zero out counters or do something else between the tests (or test groups).
 ````
@@ -369,9 +372,7 @@ Now it works, all tests pass:
 
 [iframe height=300 src="pow-full" edit border="1"]
 
-[edit src="pow-full" title="Open the full final example in the sandbox"]
-
-
+[edit src="pow-full" title="Open the full final example in the sandbox."]
 
 ## Summary
 
@@ -385,27 +386,27 @@ The spec can be used in three ways:
 
 With the spec, we can safely improve, change, even rewrite the function from the scratch and make sure it still works right.
 
-That's especially important when a function is used in many places. When we change such a function -- there's just no way to manually check if every place that uses them still works right.
+That's especially important in large projects when a function is used in many places. When we change such a function -- there's just no way to manually check if every place that uses them still works right.
 
-In practice that leads to one of the consequences:
+Without tests, people have two ways:
 
-1. Functions still get changed, refactored no matter what. And then probably users meet bugs and report them. If we can afford that.
-2. Or people become afraid to modify such functions, if the punishment for errors is harsh. Then it becomes old, overgrown with cobwebs, no one wants to get into it.
+1. To perform the change, no matter what. And then our users meet bugs and report them. If we can afford that.
+2. Or people become afraid to modify such functions, if the punishment for errors is harsh. Then it becomes old, overgrown with cobwebs, no one wants to get into it, and that's not good.
 
 **Automatically tested code is contrary to that!**
 
-If the project is covered with tests -- there's just no such problem. We can run tests and a lot of checks are made in a matter of seconds.
+If the project is covered with tests -- there's just no such problem. We can run tests and see a lot of checks made in a matter of seconds.
 
 **Besides, a well-tested code has better architecture.**
 
-Naturally, that's because it's easier to change and improve. But not only that.
+Naturally, that's because it's easier to change and improve it. But not only that.
 
-To write tests, the code should be organized in such a way that every function has a clearly described task to do, well-defined input and output. That means a good architecture from the beginning.
+To write tests, the code should be organized in such a way that every function has a clearly described task, well-defined input and output. That means a good architecture from the beginning.
 
-In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But generally writing tests makes development faster and more stable.
+In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But in general writing tests makes development faster and more stable.
 
 ## What now?
 
-Later in the tutorial you will meet many tasks with tests baked-in. So you will more practical examples.
+Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
 
 Writing tests requires good JavaScript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.

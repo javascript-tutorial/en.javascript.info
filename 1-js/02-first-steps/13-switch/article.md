@@ -8,7 +8,7 @@ It gives a more descriptive way to compare a value with multiple variants.
 
 ## The syntax
 
-The `switch` has one or more `case` blocks and an optional default. 
+The `switch` has one or more `case` blocks and an optional default.
 
 It looks like this:
 
@@ -142,7 +142,7 @@ Now both `3` and `5` show the same message.
 
 The ability to "group" cases a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
 
-## The type matters
+## Type matters
 
 Let's emphase that the equality check is always strict. The values must be of the same type to match.
 
@@ -170,4 +170,3 @@ switch (arg) {
 1. For `0`, `1`, the first `alert` runs.
 2. For `2` the second `alert` runs.
 3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execite.
-

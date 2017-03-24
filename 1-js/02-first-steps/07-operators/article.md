@@ -1,6 +1,6 @@
 # Operators
 
-Many operators are known to us from the school program. It is an addition `+`, a multiplication `*`, a substraction `-` and so on.
+Many operators are known to us from school. It is an addition `+`, a multiplication `*`, a substraction `-` and so on.
 
 In this chapter we concentrate on aspects that are not covered by the school arithmetic.
 
@@ -32,7 +32,7 @@ Before we move on, let's grasp the common terminology.
 
 ## Strings concatenation, binary +
 
-Now let's see special features of JavaScript operators, beyond school arithmetics.
+Now let's see special features of JavaScript operators that are beyond school arithmetics.
 
 Usually the plus operator `'+'` sums numbers.
 
@@ -126,7 +126,7 @@ If an expression has more than one operator, the execution order is defined by t
 
 From the school we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
 
-Brackets override any precedence, so if we're not satisfied with the order, we can use them, like: `(1 + 2) * 2`.
+Parentheses override any precedence, so if we're not satisfied with the order, we can use them, like: `(1 + 2) * 2`.
 
 There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
 
@@ -173,14 +173,14 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-Assignments always evaluate the right value first, then assign it to the left one. So the chain of assignments is executed from right to left: the rightmost expression `2+2` is calculated first, assigned to `c`, then `b = c` works, thus assigning it to `b`, and then `a = b`. At the end, all variables share a single value.
+Chained assignments evaluate from right to left. First the rightmost expression `2+2` is evaluated then assigned to the variables on the left: `c`, `b` and `a`. At the end, all variables share a single value.
 
 ````smart header="The assignment operator `\"=\"` returns a value"
 An operator always returns a value. That's obvious for most of them like an addition `+` or a multiplication `*`. But the assignment operator follows that rule too.
 
 The call `x = value` writes the `value` into `x` *and then returns it*.
 
-So it is actually possible to use an assignment as the part of a more complex expression:
+Here's the demo that uses an assignment as the part of a more complex expression:
 
 ```js run
 let a = 1;
@@ -196,7 +196,7 @@ alert( c ); // 0
 
 In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to substract from `3`.
 
-Funny code, isn't it? We should understand how it works, because sometimes we can see it in 3rd-party libraries, but don't write anything like that ourselves. Such tricks definitely don't make the code clearer and more readable.
+Funny code, isn't it? We should understand how it works, because sometimes we can see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make the code clearer and readable.
 ````
 
 ## Remainder %
@@ -215,7 +215,7 @@ alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
 
 ## Exponentiation **
 
-The exponentiation operator `**` is a recent addition to the language. Not all browsers support it yet.
+The exponentiation operator `**` is a recent addition to the language.
 
 For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times.
 
@@ -227,13 +227,12 @@ alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
 
-The operator works with non-integer numbers of `a` and `b` as well, for instance:
+The operator works for non-integer numbers of `a` and `b` as well, for instance:
 
 ```js run
-alert( 4 ** (1/2) ); // 2 (square root of 4)
-alert( 8 ** (1/3) ); // 2 (cubic root of 8)
+alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's maths)
+alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 ```
-
 
 ## Increment/decrement: ++, --
 
@@ -271,7 +270,7 @@ Is there any difference? Yes, but we can only see it if we use the retured value
 
 Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
 
-Let's see the examples:
+To see the difference -- here's the example:
 
 ```js run
 let counter = 1;
@@ -303,7 +302,7 @@ To summarize:
     ++counter;
     alert( counter ); // 2, the lines above did the same
     ```
-- If we'd like to use the result of the operator right now, then we need the prefix form:
+- If we'd like to increase the value *and* use the result of the operator right now, then we need the prefix form:
 
     ```js run
     let counter = 0;
@@ -362,7 +361,7 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. But it would be more practical to do that when a real need arises.
+These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. It would be more practical to do that when a real need arises.
 
 ## Modify-in-place
 
@@ -388,18 +387,19 @@ alert( n ); // 14
 
 Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=` etc.
 
-The modify-and-assign call has the same precedence as a normal assignment, so it executes after most other calculations:
+Such operators have the same precedence as a normal assignment, so they run after most other calculations:
 
 ```js run
 let n = 2;
+
 n *= 3 + 5;
 
-alert( n ); // 16  (same as n *= 8)
+alert( n ); // 16  (right part evaluated first, same as n *= 8)
 ```
 
 ## Comma
 
-The comma operator `','` is one of most rare and unusual ones. Sometimes it's used to write shorter code, so we need to know it in order understand what's going on.
+The comma operator `','` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
 
 The comma operator allows to evaluate several expressions, dividing them with a comma `','`. Each of them is evaluated, but result of only the last one is returned.
 
@@ -415,17 +415,23 @@ alert( a ); // 7 (the result of 3+4)
 
 Here, the first expression `1+2` is evaluated, and it's result is thrown away, then `3+4` is evaluated and returned as the result.
 
+```smart header="Comma has a very low precedence"
+Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
+
+Without them: `a=1+2,3+4` evaluates `+` first, summing the numbers into `a=3,7`, then the assignment operator `=` assigns `a=3`, and then the number after the comma `7` is not processed anyhow, so it's ignored.
+```
+
 Why do we need such an operator which throws away everything except the last part?
 
-Usually it is used in more complex constructs to put several actions in one line.
+Sometimes people use it in more complex constructs to put several actions in one line.
 
 For example:
 
 ```js
 // three operations in one line
-for (*!*a = 1, b = 3, c = a*b*/!*; a < 10; a++) {
+for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
  ...
 }
 ```
 
-Such tricks are used in many JavaScript frameworks, that's why we mention about them. But usually they don't benefit to code readability, so take care.
+Such tricks are used in many JavaScript frameworks, that's why we mention about them. But usually they don't improve the code readability, so we should think well before writing like that.

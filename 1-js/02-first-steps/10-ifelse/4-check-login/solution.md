@@ -1,7 +1,7 @@
 
 
 ```js run demo
-let userName = prompt('Who's there?', '');
+let userName = prompt("Who's there?", '');
 
 if (userName == 'Admin') {
 

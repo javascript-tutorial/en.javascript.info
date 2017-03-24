@@ -38,13 +38,15 @@ if (n < 0) {
 
 -->
 
-Nothing is "carved in stone" here, so let's discuss the rules in detail.
+Now let's discuss the rules and reasons for them in detail.
+
+Nothing is "carved in stone" here. Everything is optional and can be changed: these are coding rules, not religious dogmas.
 
 ### Figure brackets
 
-In most JavaScript projects figure brackets are written on the same line. A so-called "egyptian" style. There's also a space before an opening bracket.
+In most JavaScript projects figure brackets are written on the same line, not on the new line. A so-called "egyptian" style. There's also a space before an opening bracket.
 
-A corner-case if a single-line `if/for`. Should we use brackets at all? If yes, then where?
+An edge case is a single-line `if/for`. Should we use brackets at all? If yes, then where?
 
 Here are the annotated variants, so you can judge about their readability on your own:
 
@@ -64,9 +66,9 @@ if (n < 0) {
 -->
 ![](figure-bracket-style.png)
 
-As a summary, for a really short code one line is acceptable: like `if (cond) return null`.
-
-But a separate line for each statement in brackets is usually better.
+As a summary:
+- For a really short code one line is acceptable: like `if (cond) return null`.
+- But a separate line for each statement in brackets is usually better.
 
 ### Line length
 
@@ -80,7 +82,7 @@ There are two types of indents:
 
 - **A horizontal indent: 2(4) spaces.**
 
-    A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is a kind of an old holy war. Spaces are a little more common nowadays.
+    A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is a kind of an old holy war. Spaces are more common nowadays.
 
     One of advantages of spaces over tabs is that they allow more flexible configurations of indents than the "Tab" symbol.
 
@@ -97,7 +99,7 @@ There are two types of indents:
     }
     ```
 
-- **A vertical indent, line breaks for splitting the code in logical blocks.**
+- **A vertical indent: empty lines for splitting the code in logical blocks.**
 
     Even a single function can often be divided in logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
 
@@ -113,7 +115,7 @@ There are two types of indents:
     }
     ```
 
-    Insert an additional line break where it helps to make the code more readable. There should not be more than 9 lines of code without a vertical indentation.
+    Insert an extra newline where it helps to make the code more readable. There should not be more than 9 lines of code without a vertical indentation.
 
 ### A semicolon
 
@@ -121,7 +123,7 @@ A semicolons should be after each statement. Even if could possibly be skipped.
 
 There are languages where a semicolon is truly optional. It's rarely used there.
 
-But in JavaScript a line break is sometimes interpreted as a semicolon and sometimes not. That leaves a place for programming errors, so semicolons should be at place.
+But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors, so semicolons should be at place.
 
 ### Nesting levels
 
@@ -189,7 +191,7 @@ function pow(x, n) {
 }
 ```
 
-...But the second one is more readable, because the "edge case" is handled early on, and then we have the "main" code flow, without an additional nesting.
+...But the second one is more readable, because the "edge case" of `n < 0` is handled early on, and then we have the "main" code flow, without an additional nesting.
 
 ## Functions below the code
 
@@ -238,7 +240,7 @@ If you are writing several "helper" functions and the code to use them, then the
       ...
     }
     ```
-3. Mixed, a function is described when it's first used.
+3. Mixed, a function is described where it's first used.
 
 Most of time, the second variant is preferred.
 
@@ -246,11 +248,11 @@ That's because when reading a code, we first want to know "what it does". If the
 
 ## Style guides
 
-There are many peculiar details in the code style.
+There are many details in the code style.
 
 As the team becomes bigger, a common agreement on them becomes the "team style guide".
 
-There are many open style guides, so there we could just accept the one we like the most.
+There are many open style guides, for instance:
 
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
@@ -258,17 +260,17 @@ There are many open style guides, so there we could just accept the one we like 
 
 There exist more there in the wild.
 
-As you become more mature in JavaScript programming, you might want to read them all to pick up the common principles.
+You can browse them and choose something as a base. As you become more mature in JavaScript programming, you might want to read them all to pick up the common principles.
 
 ## Style checkers
 
-There are great tools that can check the code style automatically. They are called "linters".
+There are tools that can check the code style automatically. They are called "linters".
 
-Please note, they not only check the style, but sometimes help to find bugs, like a typo in variable name or a function.
+The great thing about them is that style-checking also finds some bugs, like a typo in variable name or a function.
 
-So it's really beneficial to install one. Even if you don't want to stick to a "code style". They help to find typos -- and that's already good enough.
+So it's recommended to install one, even if you don't want to stick to a "code style". They help to find typos -- and that's already good enough.
 
-Most well known are:
+Most well-known tools are:
 
 - [JSLint](http://www.jslint.com/) -- one of the oldest open-source solutions.
 - [JSHint](http://www.jshint.com/) -- the more "featured" variant of JSLint.
@@ -278,7 +280,7 @@ All of them can do the job. The author uses [ESLint](http://eslint.org/).
 
 Here are simple steps to start using it:
 
-1. Install [Node.JS](https://nodejs.org/), necessary to run them.
+1. Install [Node.JS](https://nodejs.org/).
 2. Install eslint: `npm i -g eslint` (npm is Node.JS package installer).
 3. Create a config file `.eslintrc` in your JavaScript project (the dot at the start is mandatory).
 
@@ -309,4 +311,4 @@ All syntax rules from this chapter and the style guides aim to increase readabil
 
 All of them are debatable.
 
-When we think about "how to write better?", the sole criterion is "what makes the code  more readable and easier to understand? what helps to evade errors?" The answer helps to pick up best practices. And maybe to abandon some in case if they don't contribute.
+When we think about "how to write better?", the sole criterion is "what makes the code  more readable and easier to understand? what helps to evade errors?" 

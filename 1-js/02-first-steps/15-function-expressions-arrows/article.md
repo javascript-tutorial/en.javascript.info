@@ -2,6 +2,8 @@
 
 In JavaScript a function is not a "magical language structure", but a special kind of value.
 
+[cut]
+
 The syntax that we used before is called *Function Declaration*:
 
 ```js
@@ -10,9 +12,7 @@ function sayHi() {
 }
 ```
 
-There is another way of creating a function that is called *Function Expression*.
-
-[cut]
+There is another syntax of creating a function that is called *Function Expression*.
 
 It looks like this:
 
@@ -22,9 +22,10 @@ let sayHi = function() {
 };
 ```
 
-The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
+Here the function is created and assigned to the variable explicitly, like any other value. No matter, how the function is defined -- it's just a value, stored in the variable `sayHi`.
 
-No matter, how the function is defined -- it's just a value, stored in the variable `sayHi`.
+
+The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
 
 We can even print out that value using `alert`:
 
@@ -38,9 +39,11 @@ alert( sayHi ); // shows the function code
 */!*
 ```
 
-Note that there are no brackets after `sayHi` in the last line, because we do not intend to run the function. There are programming languages where any mention of a function name causes it's call, but JavaScript is not like that. In JavaScript, a function is a value and we can deal with that as a value. The code above shows its string representation, that is its source code.
+Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes the execution, but JavaScript is not like that.
 
-It is a special value of course, in the sense that we can call it using brackets: `"sayHi()"`.
+In JavaScript, a function is a value and we can deal with that as a value. The code above shows its string representation, that is the source code.
+
+It is a special value of course, in the sense that we can call it like `sayHi()`.
 
 But it's still a value. So we can work with it like with other kinds of values.
 
@@ -53,8 +56,8 @@ function sayHi() {   // (1) create
 
 let func = sayHi;    // (2) copy
 
-func(); // Hello     // (3) call the copy (it works)!
-sayHi(); // Hello    //     this works too (why wouldn't it)
+func(); // Hello     // (3) run the copy (it works)!
+sayHi(); // Hello    //     this still works too (why wouldn't it)
 ```
 
 That's what happens above in detail:
@@ -62,7 +65,7 @@ That's what happens above in detail:
 1. Function Declaration `(1)` creates the function and puts it into the variable named `sayHi`.
 2. Line `(2)` copies it into variable `func`.
 
-    Please note again: there are no brackets after `sayHi`. If they were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
+    Please note again: there are no parentheses after `sayHi`. If they were, then `func = sayHi()` would write  *the result of the call* `sayHi()` into `func`, not *the function* `sayHi` itself.
 3. Now the function can be called both as `sayHi()` and `func()`.
 
 Note, that we could also have used a Function Expression to declare `sayHi`, in the first line:
@@ -77,7 +80,7 @@ let func = sayHi;
 Everything would work the same. Even more obvious what's going on, right?
 
 
-````smart header="Why semicolon?"
+````smart header="Why there's a semicolon at the end?"
 There might be a question, why Function Expression has a semicolon `;` at the end, and Function Declaration does not:
 
 ```js
@@ -97,7 +100,7 @@ The answer is simple:
 
 ## Callback functions
 
-Let's see an example where function expressions come really handy.
+Let's see more examples of passing functions as values and using function expressions.
 
 We'll write a function `ask(question, yes, no)` with three parameters:
 
@@ -110,7 +113,7 @@ We'll write a function `ask(question, yes, no)` with three parameters:
 `no`
 : Function to run if the answer is "No"
 
-The function should ask the `question` and, depending on the user's agreement, call `yes()` or `no()`:
+The function should ask the `question` and, depending on the user's answer, call `yes()` or `no()`:
 
 ```js run
 *!*
@@ -128,15 +131,15 @@ function showCancel() {
   alert( "You canceled the execution." );
 }
 
-// usage
+// usage: functions showOk, showCancel are passed as arguments to ask
 ask("Do you agree?", showOk, showCancel);
 ```
 
-The code looks kind of too simple, right? Why would anyone need such `ask`?
+Before we'll explore how we can write it in a much shorter way, let's note that in the browser (and on the server-side in some cases) such functions are quite popular.
 
-...It turns out that in the browser (and on the server-side in some cases) such functions are quite popular. The major difference between a real-life implementation and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser such a function usually draws a nice-looking question window. But that's another story.
+The major difference between a real-life implementation and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser such a function usually draws a nice-looking question window. But that's another story.
 
-The arguments of `ask` are called *callback functions* or just *callbacks*. The idea is that we pass the functions and expect them to be "called back" in certain circumstances.
+**The arguments of `ask` are called *callback functions* or just *callbacks*. The idea is that we pass a function and expect it to be "called back" in certain circumstances.**
 
 So, `showOk` becomes the callback for the "yes" answer and `showCancel` -- for the "no" answer.
 
@@ -157,7 +160,7 @@ ask(
 */!*
 ```
 
-Here functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask`, but that's just what we want here.
+Here functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask` (because they are not assigned to variables), but that's just what we want here.
 
 Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
 
@@ -185,9 +188,9 @@ First, the syntax: how to see what is what in the code.
       return a + b;
     }
     ```
-- *Function Expression:* a function, created in the context of an expression.
+- *Function Expression:* a function, created inside an expression or inside another syntax construct.
 
-    Here the function is created in the context of an "assignment expression =":
+    Here the function is created at the right side of the "assignment expression =":
     ```js
     // Function Expression
     let sum = function(a, b) {
@@ -195,19 +198,19 @@ First, the syntax: how to see what is what in the code.
     }
     ```
 
-The more subtle difference is when they are actualy created by the JavaScript engine.
+The more subtle difference is *when* a function is created by JavaScript engine.
 
-**Function Expressions are created when the execution reaches them and are usable since then.**
+**Function Expression is created when the execution reaches it and is usable since then.**
 
-That's kind of obvious. Once the execution flow passes to the right side of the assignment `let sum = function` -- here we go, the function is created and can be used (assigned, called etc) from now on.
+Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called etc) from now on.
 
 Function Declarations are different.
 
-**Function Declarations are usable in the whole script/code block.**
+**Function Declaration is usable in the whole script/code block.**
 
-In other words, when JavaScript *prepares* to run the script/code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+In other words, when JavaScript *prepares* to run the script or a code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
 
-And after all Function Declarations are processed, it actually executes it.
+And after all Function Declarations are processed, the execution goes on.
 
 As a natural effect, a function declared as Function Declaration can be called earlier than it is defined.
 
@@ -244,9 +247,9 @@ Function Expressions are created when the execution reaches them. That would hap
 
 When Function Declaration is made within a code block, it is visible everywhere inside that block. But not outside of it.
 
-Sometimes that's handy to declare a local function, only needed in that only block. But can also be a problem.
+Sometimes that's handy to declare a local function only needed in that only block. But that feature may also cause problems.
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get in run time. And then use it sometimes later.
+For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get in run time. And then we plan to use it sometimes later.
 
 The code below doesn't work:
 
@@ -286,7 +289,7 @@ if (age < 18) {
                            //  |
   function welcome() {     //  |  
     alert("Hello!");       //  |  Function Declaration is available
-  }                        //  |  everywhere in the block when it's declared
+  }                        //  |  everywhere in the block where it's declared
                            //  |
 *!*
   welcome();               // /   (runs)
@@ -295,12 +298,12 @@ if (age < 18) {
 } else {
                            // \
   function welcome() {     //  |  
-    alert("Greetings!");   //  |  in this if test we don't enter this block,
+    alert("Greetings!");   //  |  if age=16, the the execution does not go here,
   }                        //  |  so this "welcome" is never created
                            // /
 }
 
-// Now we're out of figure brackets,
+// Here we're out of figure brackets,
 // so we can not see Function Declarations made inside of them.
 
 *!*
@@ -308,7 +311,7 @@ welcome(); // Error: welcome is not defined
 */!*
 ```
 
-What can we do to make `welcome` visible outside?
+What can we do to make `welcome` visible outside of `if`?
 
 The right thing would be to use a Function Expression and assign `welcome` to the variable which is declared outside of `if` and has the proper visibility:
 
@@ -321,13 +324,13 @@ if (age < 18) {
 
   welcome = function() {
     alert("Hello!");
-  }
+  };
 
 } else {
 
   welcome = function() {
     alert("Greetings!");
-  }
+  };
 
 }
 
@@ -336,13 +339,14 @@ welcome(); // ok now
 */!*
 ```
 
-Or we could go on to simplify it even further using a question mark operator `?`:
+Or we could simplify it even further using a question mark operator `?`:
 
 ```js run
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
-  function() { alert("Hello!"); } : function() { alert("Greetings!"); }
+  function() { alert("Hello!"); } :
+  function() { alert("Greetings!"); };
 
 *!*
 welcome(); // ok now
@@ -350,22 +354,19 @@ welcome(); // ok now
 ```
 
 
-```smart header="What to choose: a Declaration or an Expression?"
-As a rule of thumb, a Function Declaration is prefered. It gives more freedom in how to organize our code, because we can call it both above and below.
+```smart header="What to choose: Function Declaration or Function Expression?"
+As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax, the one we used before. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
 
-It's also a little bit easier to look up Function Declarations in the code, they increase readability of the code.
+It's also a little bit easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
 
-But if a Function Declaration does not fit for some reason (we've seen an example), then a Function Expression should be used.
+...But if Function Declaration does not suit us for some reason (we've seen an example above), then Function Expression should be used.
 ```
 
 
 ## Arrow functions [#arrow-functions]
 
-Enough with the complexities for now. Let's relax with another syntax of functions that can make our code shorter.
+There's one more syntax for creating functions -- very simple and concise. It's called "arrow functions", because it looks like this:
 
-Arrow functions act like a function expression, but look a little bit differently.
-
-The syntax is:
 
 ```js
 let func = (arg1, arg2, ...argN) => expression
@@ -380,6 +381,8 @@ let func = function(arg1, arg2, ...argN) {
   return expression;
 }
 ```
+
+...But much shorter.
 
 Let's see the example:
 
@@ -397,7 +400,7 @@ let sum = function(a, b) {
 };
 ```
 
-If we have only one argument, then brackets can be omitted, making that even shorter:
+If we have only one argument, then parentheses can be omitted, making that even shorter:
 
 ```js run
 // same as
@@ -409,7 +412,7 @@ let double = n => n*2;
 alert( double(3) ); // 6
 ```
 
-If there are no arguments, we can put empty brackets:
+If there are no arguments, we can put empty parentheses:
 
 ```js run
 let sayHi = () => alert("Hello!");
@@ -424,7 +427,9 @@ For instance, here's the rewritten example with `welcome()`:
 ```js run
 let age = prompt("What is your age?", 18);
 
-let welcome = (age < 18) ? () => alert('Hello') : () => alert("Greetings!");
+let welcome = (age < 18) ?
+  () => alert('Hello') :
+  () => alert("Greetings!");
 
 welcome(); // ok now
 ```
@@ -453,7 +458,7 @@ alert( sum(1, 2) ); // 3
 ```
 
 ```smart header="More to come"
-Here we praised arrow functions for shortness. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
+Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
 
 As for now, we can already use them for one-line actions and callbacks.
 ```
@@ -461,18 +466,17 @@ As for now, we can already use them for one-line actions and callbacks.
 ## Summary
 
 - Functions are values. They can be assigned, copied or declared in any place of the code.
-- If the function is declared as a separate statement, in the main code flow -- that's called a Function Declaration.
-- If the function is created as a part of an expression -- it's a Function Expression.
+- If the function is declared as a separate statement, in the main code flow -- that's called "Function Declaration".
+- If the function is created as a part of an expression -- it's "Function Expression".
 - Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
 - Function Expressions are created when the execution flow reaches them.
-- Function Expressions allow to specify an optional name for internal needs (Named Function Expression).
 
 
-In most cases Function Declaration is preferable, because it is visible prior to the declaration itself. And is usually more readable.
+In most cases when we need to declare a function, Function Declaration is preferable, because it is visible prior to the declaration itself. That gives more flexibility in code organization. And is usually more readable.
 
 So we should use Function Expression only when Function Declaration does not fit the task. We've seen a couple of examples of that in the chapter. And will see more in the future.
 
 Arrow functions are handy for one-liners. The come in two flavors:
 
-1. Without figure brackets: `(...args) => expression` -- returns the evaluated `expression`. The right side must be a single expression.
-2. With figure brackets: `(...args) => { body }` -- they need an explicit `return` statement to return something, but can be more complex and contain multiple statements.
+1. Without figure brackets: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
+2. With figure brackets: `(...args) => { body }` -- brackets allow to write multiple statements inside the function, but we need an explicit `return` to return something.

@@ -1,8 +1,6 @@
 # JavaScript specials
 
-This chapter aims to list features of JavaScript that we've learned, paying special attention to subtle moments.
-
-That's especially useful if you came from another language or just as a recap.
+This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
 
 [cut]
 
@@ -31,14 +29,16 @@ alert("There will be an error after this message")
 
 Most codestyle guides agree that we should put a semicolon after each statement.
 
-Semicolons are not required after code blocks `{...}` and syntax constructs with them:
+Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
 
 ```js
 function f() {
   // no semicolon needed after function declaration
 }
 
-for(;;) { /* no semicolon after the loop */ }
+for(;;) {
+  // no semicolon needed after the loop
+}
 ```
 
 ...But even if we can put an "extra" semicolon somewhere, that's not an error, it will be ignored.
@@ -59,7 +59,7 @@ The directive must be at the top of a script or at the beginning of a function.
 
 Without `"use strict"`, everything still works, but some features behave in old-fasion, "compatible" way. We'd generally prefer the modern behavior.
 
-Advanced features of the language (like classes that we'll study in the future) that enable strict mode implicitly.
+Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
 
 More in: <info:strict-mode>.
 
@@ -67,8 +67,8 @@ More in: <info:strict-mode>.
 
 Can be declared using:
 
-- `let` (block-level visibility)
-- `const` (can't be changed)
+- `let`
+- `const` (constant, can't be changed)
 - `var` (old-style, will see later)
 
 A variable name can include:
@@ -92,7 +92,7 @@ There are 7 data types:
 - `undefined` -- a type with a single value `undefined`, meaning "not assigned",
 - `object` and `symbol` -- for complex data structures and unique identifiers, we didn't learn them yet.
 
-The `typeof` operator returns the type for a value, with two special behaviors:
+The `typeof` operator returns the type for a value, with two exceptions:
 ```js
 typeof null == "object" // error in the language
 typeof function(){} == "function" // functions are treated specially
@@ -125,7 +125,7 @@ alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-More in: <info:uibasic>.
+More in: <info:alert-prompt-confirm>.
 
 ## Operators
 
@@ -134,9 +134,7 @@ JavaScript supports following operators:
 Arithmetical
 : Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Binary plus `+` concatenates strings.
-
-    If any of the operands is a string -- the other one is converted to string too:
+    Binary plus `+` concatenates strings. And if any of the operands is a string -- the other one is converted to string too:
 
     ```js run
     alert( '1' + 2 ); // '12', string
@@ -147,11 +145,10 @@ Assignments
 : There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
 Bitwise
-: Bitwise operators work with integers on bit-level: see the [docs](mdn:JavaScript/Refereno
-  ce/Operators/Bitwise_Operators) when they are needed.
+: Bitwise operators work with integers on bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
 
 Ternary
-: The only operator with three parameters:  `cond ? resultA : result B`
+: The only operator with three parameters: `cond ? resultA : result B`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
 
 Logical operators
 : Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped.
@@ -168,8 +165,6 @@ Comparisons
 
     The strict equality operator `===` doesn't do the conversion: different types always mean different values for it, so:
 
-
-
     Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
     Greater/less comparisons compare strings character-by-character, other types are converted to a number.
@@ -177,7 +172,7 @@ Comparisons
 Logical operators
 : There are few others, like a comma operator.
 
-More in: <info:operators>, <info:comparison>, <info:logical-ops>.
+More in: <info:operators>, <info:comparison>, <info:logical-operators>.
 
 ## Loops
 
@@ -218,7 +213,7 @@ let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Won't work"); // the result of prompt is a string, not a number 
+    alert("Won't work"); // the result of prompt is a string, not a number
 
   case "18":
     alert("This works!"");
@@ -291,6 +286,4 @@ More: see <info:function-basics>, <info:function-expressions-arrows>.
 
 ## More to come
 
-That was a brief list of JavaScript specials that we need to know to code well.
-
-As of now that were only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+That was a brief list of JavaScript features. As of now we studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
