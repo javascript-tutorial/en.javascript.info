@@ -140,10 +140,10 @@ To catch an event on the capturing phase, we need to set the 3rd argument of `ad
 
 Actually, there are two possible values for that optional last argument:
 
-- If it's `false` (default), then the handler is set on the bubbling phrase.
-- If it's `true`, then the handler is set on the capturing phrase.
+- If it's `false` (default), then the handler is set on the bubbling phase.
+- If it's `true`, then the handler is set on the capturing phase.
 
-Note that while formally there are 3 phrases, the 2nd phrase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phrases trigger at that phase.
+Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
 
 Handlers on the target element trigger last on the capturing state, and then trigger first on the bubbling stage.
 
@@ -175,12 +175,12 @@ The code sets click handlers on *every* element in the document to see which one
 
 If you click on `<td>`, then the sequence is:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phrase, the first listener), and then:
-2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phrase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phase, the first listener), and then:
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
 
 Please note that `P` shows up two times: at the end of capturing and at the start of bubbling.
 
-There's a property `event.eventPhrase` that tells us the number of the phrase on which the event was caught. But it's rarely used, because we usually know it in the handler.
+There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
 ## Summary
 
@@ -198,7 +198,7 @@ Each handler can access `event` object properties:
 
 Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
 
-The capturing phrase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
+The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
 
 In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
 
