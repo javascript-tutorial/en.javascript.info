@@ -173,7 +173,7 @@ Let's see it in action:
 
 The code sets click handlers on *every* element in the document to see which ones are working.
 
-If you click on `<td>`, then the sequence is:
+If you click on `<p>`, then the sequence is:
 
 1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phase, the first listener), and then:
 2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
