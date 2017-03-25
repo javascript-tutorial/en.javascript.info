@@ -18,14 +18,14 @@ When JavaScript was created, it initially had another name: "LiveScript". But Ja
 But as it evolved, JavaScript became a fully independent language, with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine). 
+At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
 The browser has an embedded engine, sometimes it's also called a "JavaScript virtual machine".
 
 Different engines have different "codenames", for example:
 
-- [V8]("https://en.wikipedia.org/wiki/V8_(JavaScript_engine)") -- in Chrome and Opera.
-- [Gecko]("https://en.wikipedia.org/wiki/Gecko_(software)") -- in Firefox.
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
+- [Gecko](https://en.wikipedia.org/wiki/Gecko_(software)) -- in Firefox.
 - ...There are other codenames like "Trident", "Chakra" for different versions of IE, "Nitro" and "SquirrelFish" for Safari etc.
 
 These terms above are good to remember, because they are used in developer articles in the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
@@ -35,7 +35,7 @@ These terms above are good to remember, because they are used in developer artic
 Engines are complicated. But the basics are easy.
 
 1. The script is written and distributed as a plain text (can be compressed/optimized by so-called "javascript minifiers").
-2. The engine (embedded if it's a browser) reads the script ("parses") and converts ("compiles") it to the machine language. 
+2. The engine (embedded if it's a browser) reads the script ("parses") and converts ("compiles") it to the machine language.
 3. And then it runs, pretty fast.
 
 The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data which flows through it and applies optimizations to the machine-code basing on that knowledge.
@@ -104,7 +104,7 @@ That's normal, because projects and requirements are different for everyone.
 
 So recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
-The modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language, autoconverting it "under the hood". 
+The modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language, autoconverting it "under the hood".
 
 Examples of such languages:
 
@@ -119,4 +119,3 @@ There are more. Of course even if we use one of those languages, we should also 
 - JavaScript was initially created as a browser-only language, but now used in many other environments as well.
 - At this moment, JavaScript as a unique position as a most widely adopted browser language with full integration with HTML/CSS.
 - There are over languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
-

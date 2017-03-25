@@ -538,6 +538,43 @@ alert( a == b ); // false
 
 For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to say the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
 
+### Const object
+
+An object declared as `const` *can* be changed.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.age = 25; // (*)
+*/!*
+
+alert(user.age); // 25
+```
+
+It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes the value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+
+The `const` would give an error if we try to set `user` to something else, for instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+// Error (can't reassign user)
+*/!*
+user = {
+  name: "Pete"
+};
+```
+
+...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-flags-descriptors>.
+
 ## Cloning and merging, Object.assign
 
 So, copying an object variable creates one more reference to the same object.
@@ -661,7 +698,7 @@ alert(clone.sizes.width); // 51, see the result from the other one
 
 To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate it's structure as well. That is called a "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). Not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). Not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 
