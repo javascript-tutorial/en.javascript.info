@@ -66,7 +66,7 @@ Such a code doesn't care how many cells there are in the table. We can add/remov
 
 Still, there's a drawback.
 
-The click may occur no on the `<td>`, but inside it.
+The click may occur not on the `<td>`, but inside it.
 
 In our case if we take a look inside the HTML, we can see nested tags inside `<td>`, like `<strong>`:
 
