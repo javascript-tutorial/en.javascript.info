@@ -58,4 +58,4 @@ The editors in the lists above are those that me or my friends -- good developer
 
 There are other great editors in our big world, please choose the one you like the most.
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habbits, personal preferences.
+The choice of an editor, like any other tool, is individual and depends on your projects, habits, personal preferences.
