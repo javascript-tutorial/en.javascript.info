@@ -8,7 +8,7 @@ That can be done using constructor functions and the `"new"` operator.
 
 ## Constructor function
 
-Constructor functions technically are regular functions. There are two agreements though:
+Constructor functions technically are regular functions. There are two conventions though:
 
 1. They are named with capital letter first.
 2. They should be executed only with `"new"` operator.
