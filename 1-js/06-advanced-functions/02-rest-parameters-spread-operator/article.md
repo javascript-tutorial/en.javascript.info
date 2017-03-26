@@ -53,10 +53,11 @@ Here the first two arguments go into variables and the rest goes to `titles` arr
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
-  // the rest = ["Consul", "Imperator"]
-  alert( rest[0] ); // Consul
-  alert( rest[1] ); // Imperator
-  alert( rest.length ); // 2
+  // the rest go into titles array
+  // i.e. titles = ["Consul", "Imperator"]
+  alert( titles[0] ); // Consul
+  alert( titles[1] ); // Imperator
+  alert( titles.length ); // 2
 }
 
 showName("Julius", "Caesar", "Consul", "Imperator");
