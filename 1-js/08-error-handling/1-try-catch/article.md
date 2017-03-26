@@ -243,7 +243,7 @@ try {
 }
 ```
 
-Here `JSON.parse` runs normally, but the absense of `"name"` is actually an error for us.
+Here `JSON.parse` runs normally, but the absence of `"name"` is actually an error for us.
 
 To unify error handling, we'll use `throw` operator.
 
