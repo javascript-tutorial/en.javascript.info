@@ -21,7 +21,7 @@ The constructor function below can be considered a class according to the defini
 ```js run
 function User(name) {
   this.sayHi = function() {
-    alert(name;
+    alert(name);
   };
 }
 
