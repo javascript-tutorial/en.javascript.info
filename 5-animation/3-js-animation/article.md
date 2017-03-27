@@ -60,7 +60,7 @@ If we run them separately, each one with its own `setInterval(..., 20)`, then th
 
 Each `setInterval` triggers once per `20ms`, but they are independent, so we have several independent runs within `20ms`.
 
-These several independant actions should be grouped together, because it's easier for the browser to redraw things once per `20ms`.
+These several independent actions should be grouped together, because it's easier for the browser to redraw things once per `20ms`.
 
 In other words, this:
 
@@ -148,13 +148,13 @@ function animate({timing, draw, duration}) {
 }
 ```
 
-Function `animate` accepts 3 parameters that essentially describe the animation:
+Function `animate` accepts 3 parameters that essentially describes the animation:
 
 `duration`
 : Total time of animation. Like, `1000`.
 
 `timing(timeFraction)`
-: Timing function, like CSS-property `transition-timing-function` that takes gets the fraction of time that passed (`0` at start, `1` at the end) and returns the animation completion (like `y` on the Bezier curve).
+: Timing function, like CSS-property `transition-timing-function` that gets the fraction of time that passed (`0` at start, `1` at the end) and returns the animation completion (like `y` on the Bezier curve).
 
     For instance, a linear function means that the animation goes on uniformly with the same speed:
 
@@ -204,7 +204,7 @@ animate({
 });
 ```
 
-Unlike CSS animation, we can make any timing function and any drawing function here. The timing function is not limited by Bezier curves. And `draw` can go beyound properties, create new elements for like fireworks animation or something.
+Unlike CSS animation, we can make any timing function and any drawing function here. The timing function is not limited by Bezier curves. And `draw` can go beyond properties, create new elements for like fireworks animation or something.
 
 ## Timing functions
 
@@ -276,7 +276,7 @@ function back(x, timeFraction) {
 
 ![](back.png)
 
-For animation we use it with a concrete value of `x`. Example for `x = 1.5`:
+For animation we use it with a specific value of `x`. Example for `x = 1.5`:
 
 [iframe height=40 src="back" link]
 
