@@ -35,7 +35,7 @@ Let's formulate two questions for the seed, and then study internal mechanics pi
 
     Such situations are common in both browser and server-side development. A function may be scheduled to execute later than it is created: on user action or after a network request etc.
 
-    So, the the question is: does it pick up latest changes?
+    So, the question is: does it pick up latest changes?
 
 
 2. The function `makeWorker` makes another function and returns it. That new function can be called from somewhere else. Will it have access to outer variables from its creation place or the invocation place or maybe both?
