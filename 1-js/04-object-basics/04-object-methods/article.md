@@ -157,7 +157,7 @@ let user = {
 let admin = user;
 user = null; // overwrite to make things obvious
 
-admin.sayHi(); // wops! inside sayHi(), the old name is used! error!
+admin.sayHi(); // Woops! inside sayHi(), the old name is used! error!
 ```
 
 If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.

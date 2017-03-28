@@ -8,7 +8,7 @@ JavaScript gives exceptional flexibility when dealing with functions. They can b
 
 Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
 
-If the function is called often, we may want to cache (remember) the results for different `x` to evade spending extra-time on recalculations. 
+If the function is called often, we may want to cache (remember) the results for different `x` to evade spending extra-time on recalculations.
 
 But instead of adding that functionality into `slow()` we'll create a wrapper. As we'll see, there are many benefits of doing so.
 
@@ -106,7 +106,7 @@ alert( worker.slow(1) ); // the original method works
 worker.slow = cachingDecorator(worker.slow); // now make it caching
 
 *!*
-alert( worker.slow(2) ); // WOPS! Error: Cannot read property 'someMethod' of undefined
+alert( worker.slow(2) ); // WOOPS! Error: Cannot read property 'someMethod' of undefined
 */!*
 ```
 
@@ -241,7 +241,7 @@ There are many solutions possible:
 
 1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
 2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
-3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make a one value from many. 
+3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make a one value from many.
 
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.

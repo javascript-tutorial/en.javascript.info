@@ -47,13 +47,13 @@ class ValidationError extends Error {
 }
 
 function test() {
-  throw new ValidationError("Wops!");
+  throw new ValidationError("Woops!");
 }
 
 try {
   test();
 } catch(err) {
-  alert(err.message); // Wops!
+  alert(err.message); // Woops!
   alert(err.name); // ValidationError
   alert(err.stack); // a list of nested calls with line numbers for each
 }

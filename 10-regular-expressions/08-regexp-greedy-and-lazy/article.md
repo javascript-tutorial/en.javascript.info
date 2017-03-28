@@ -218,7 +218,7 @@ alert( str.match(reg) ); // <a href="link" class="doc">
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
 let reg = /<a href=".*" class="doc">/g;
 
-// Wops! Two links in one match!
+// Woops! Two links in one match!
 alert( str.match(reg) ); // <a href="link1" class="doc">... <a href="link2" class="doc">
 ```
 

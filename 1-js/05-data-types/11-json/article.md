@@ -23,7 +23,7 @@ alert(user); // {name: "John", age: 30}
 
 ...But in the process of development, new properties are added, old properties are renamed and removed. Updating such `toString` every time can become a pain. We could try to loop over properties in it, but what is the object is complex and has nested objects in properties? We'd need to implement their conversion as well. And, if we're sending the object over a network, then we also need to supply the code to "read" our object on the receiving side.
 
-Luckily, there's no need to write the code to handle all this. The task has been solved already. 
+Luckily, there's no need to write the code to handle all this. The task has been solved already.
 
 [cut]
 
@@ -31,7 +31,7 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
 
-JavaScript provides methods: 
+JavaScript provides methods:
 
 - `JSON.stringify` to convert objects into JSON.
 - `JSON.parse` to convert JSON back into an object.
@@ -477,7 +477,7 @@ alert( meetup.date.getDate() ); // Error!
 */!*
 ```
 
-Wops! An error!
+Woops! An error!
 
 The value of `meetup.date` is a string, not a `Date` object. How `JSON.parse` may know that it should transform that string into a `Date`?
 

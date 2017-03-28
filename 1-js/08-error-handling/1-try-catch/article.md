@@ -612,7 +612,7 @@ For instance:
 */!*
 
   function readData() {
-    badFunc(); // wops, something went wrong!
+    badFunc(); // Woops, something went wrong!
   }
 
   readData();

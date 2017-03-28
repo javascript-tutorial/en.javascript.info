@@ -154,7 +154,7 @@ The `super` in the arrow function is the same as in `stop()`, so it works as int
 
 ```js
 // Unexpected super
-setTimeout(function() { super.stop() }, 1000); 
+setTimeout(function() { super.stop() }, 1000);
 ```
 ````
 
@@ -210,7 +210,7 @@ let rabbit = new Rabbit("White Rabbit", 10); // Error: this is not defined.
 */!*
 ```
 
-Wops! We've got an error. Now we can't create rabbits. What went wrong?
+Woops! We've got an error. Now we can't create rabbits. What went wrong?
 
 The short answer is: constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.
 

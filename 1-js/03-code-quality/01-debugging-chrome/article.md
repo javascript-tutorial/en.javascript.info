@@ -46,7 +46,7 @@ For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing,
 
 ## Breakpoints
 
-Let's examine what's going on within the code. In `hello.js`, click at the line number `4`. Yes, right on the `"4"` digit, not on the code.
+Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at the line number `4`. Yes, right on the `"4"` digit, not on the code.
 
 Contratulations! You've set a breakpoint. Please also click on the number for line `8`.
 
