@@ -7,7 +7,7 @@ To make `toString` non-enumerable, let's define it using a property descriptor. 
 *!*
 let dictionary = Object.create(null, {
   toString: { // define toString property
-    value() { // with function value
+    value() { // the value is a function
       return Object.keys(this).join();
     }
   }
@@ -26,3 +26,4 @@ for(let key in dictionary) {
 alert(dictionary); // "apple,__proto__"
 ```
 
+When we create a property using a descriptor, its flags are `false` by default. So in the code above, `dictionary.toString` is non-enumerable.

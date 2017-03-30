@@ -66,9 +66,37 @@ From the other hand, `sayHi` is the external, *public* method. The external code
 
 This way we can hide internal implementation details and helper methods from the outer code. Only what's assigned to `this` becomes visible outside.
 
+## Factory class pattern
+
+We can create a class without using `new` at all.
+
+Like this:
+
+```js run
+function User(name, birthday) {
+  // only visible from other methods inside User
+  function calcAge() {
+    new Date().getFullYear() - birthday.getFullYear();
+  }
+
+  return {
+    sayHi() {
+      alert(name + ', age:' + calcAge());
+    }
+  };
+}
+
+*!*
+let user = User("John", new Date(2000,0,1));
+*/!*
+user.sayHi(); // John
+```
+
+As we can see, the function `User` returns an object with public properties and methods. The only benefit of this method is that we can omit `new`: write `let user = User(...)` instead of `let user = new User(...)`. In other aspects it's almost the same as the functional pattern.
+
 ## Prototype-based classes
 
-Functional class pattern is rarely used, because prototypes are generally better.
+Prototype-based classes is the most important and generally the best. Functional and factory class patterns are rarely used in practice.
 
 Soon you'll see why.
 
@@ -96,21 +124,23 @@ let user = new User("John", new Date(2000,0,1));
 user.sayHi(); // John
 ```
 
-- The constructor `User` only initializes the current object state.
-- Methods reside in `User.prototype`.
+The code structure:
 
-Here methods are technically not inside `function User`, so they do not share a common lexical environment.
+- The constructor `User` only initializes the current object state.
+- Methods are added to `User.prototype`.
+
+As we can see, methods are lexically not inside `function User`, they do not share a common lexical environment. If we declare variables inside `function User`, then they won't be visible to methods.
 
 So, there is a widely known agreement that internal properties and methods are prepended with an underscore `"_"`. Like `_name` or `_calcAge()`. Technically, that's just an agreement, the outer code still can access them. But most developers recognize the meaning of `"_"` and try not to touch prefixed properties and methods in the external code.
 
-We already can see benefits over the functional pattern:
+Here are the advantages over the functional pattern:
 
-- In the functional pattern, each object has its own copy of methods like `this.sayHi = function() {...}`.
-- In the prototypal pattern, there's a common `User.prototype` shared between all user objects.
+- In the functional pattern, each object has its own copy of every method. We assign a separate copy of `this.sayHi = function() {...}` and other methods in the constructor.
+- In the prototypal pattern, all methods are in `User.prototype` that is shared between all user objects. An object itself only stores the data.
 
 So the prototypal pattern is more memory-efficient.
 
-...But not only that. Prototypes allow us to setup the inheritance, precisely the same way as built-in JavaScript constructors do. Functional pattern allows to wrap a function into another function, and kind-of emulate inheritance this way, but that's far less effective, so here we won't go into details to save our time.
+...But not only that. Prototypes allow us to setup the inheritance in a really efficient way. Built-in JavaScript objects all use prototypes. Also there's a special syntax construct: "class" that provides nice-looking syntax for them. And there's more, so let's go on with them.
 
 ## Prototype-based inheritance for classes
 
@@ -150,17 +180,19 @@ let animal = new Animal("My animal");
 
 Right now they are fully independent.
 
-But naturally `Rabbit` is a "subtype" of `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
+But we'd want `Rabbit` to extend `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
 
 What does it mean in the language on prototypes?
 
-Right now `rabbit` objects have access to `Rabbit.prototype`. We should add `Animal.prototype` to it. So the chain would be `rabbit -> Rabbit.prototype -> Animal.prototype`.
+Right now methods for `rabbit` objects are in `Rabbit.prototype`. We'd like `rabbit` to use `Animal.prototype` as a "fallback", if the method is not found in `Rabbit.prototype`.
+
+So the prototype chain should be `rabbit` -> `Rabbit.prototype` -> `Animal.prototype`.
 
 Like this:
 
 ![](class-inheritance-rabbit-animal.png)
 
-The code example:
+The code to implement that:
 
 ```js run
 // Same Animal as before
@@ -194,9 +226,9 @@ rabbit.eat(); // rabbits can eat too
 rabbit.jump();
 ```
 
-The line `(*)` sets up the prototype chain. So that `rabbit` first searches methods in `Rabbit.prototype`, then `Animal.prototype`. And then, just for completeness, the search may continue in `Object.prototype`, because `Animal.prototype` is a regular plain object, so it inherits from it. But that's not painted for brevity.
+The line `(*)` sets up the prototype chain. So that `rabbit` first searches methods in `Rabbit.prototype`, then `Animal.prototype`. And then, just for completeness, let's mention that if the method is not found in `Animal.prototype`, then the search continues in `Object.prototype`, because `Animal.prototype` is a regular plain object, so it inherits from it.
 
-Here's what the code does:
+So here's the full picture:
 
 ![](class-inheritance-rabbit-animal-2.png)
 

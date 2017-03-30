@@ -4,7 +4,7 @@ importance: 5
 
 # Add toString to the dictionary
 
-There's an object `dictionary`, suited to store any `key/value` pairs.
+There's an object `dictionary`, created as `Object.create(null)`, to store any `key/value` pairs.
 
 Add method `dictionary.toString()` into it, that should return a comma-delimited list of keys. Your `toString` should not show up in `for..in` over the object.
 
@@ -14,7 +14,7 @@ Here's how it should work:
 let dictionary = Object.create(null);
 
 *!*
-// your code to add toString
+// your code to add dictionary.toString method
 */!*
 
 // add some data

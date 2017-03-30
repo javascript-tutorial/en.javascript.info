@@ -12,7 +12,7 @@ function Rabbit(name) {
 }
 Rabbit.prototype.sayHi = function() {
   alert(this.name);
-}
+};
 
 let rabbit = new Rabbit("Rabbit");
 ```
