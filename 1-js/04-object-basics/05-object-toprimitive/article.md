@@ -1,41 +1,32 @@
 
 # Object to primitive conversion
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives.
+What happens when objects are added `obj1 + obj2`, substracted `obj1 - obj2` or printed using `alert(obj)`?
 
-But we left a gap for objects. Now let's close it. And, in the process, we'll see some  built-in methods and the example of a built-in symbol.
+There are special methods in objects that do the conversion.
+
+In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to close it.
 
 [cut]
 
-## Where and why?
-
-The process of object to primitive conversion can be customized, here we'll see how to implement our own methods for it. But first, let's see when it happens.
-
-That's because the conversion of an object to primitive value (a number or a string) is a rare thing in practice.
-
 For objects, there's no to-boolean conversion, because all objects are `true` in a boolean context. So there are only string and numeric conversions.
 
-For instance, numeric conversion happens in most mathematical functions. But do we run maths on an object as a whole? Rarely the case. It also occurs when we compare an object against a primitive: `user > 18`. But should we write like that? What such comparison actually means? Maybe we want to compare `18` against the age of the `user`? Then it would be more obvious to write `user.age > 18`. And it's easier to read and understand it too.
+The numeric conversion happens when we substract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be substracted, and the result of `date1 - date2` is the time difference between two dates.
 
-As for the string conversion... Where does it occur? Usually, when we output an object like `alert(obj)`. But `alert` and similar ways to show an object are only used for debugging and logging purposes. For real stuff, the output is more complicated. It is usually implemented with special object methods like `user.format(...)` or in more advanced ways.
-
-Still, there are still valid reasons why we should know how to-primitive conversion works:
-
-- Simple object-as-string output (`alert` and alike) is useable sometimes.
-- Many built-in objects implement their own to-primitive conversion, we need to know how to work with that.
-- Sometimes an unexpected conversion happens, and we should understand what's going on.
-- The final one. There are quizzes and questions on interviews that rely on that knowledge. Looks like people think it's a good sign that person understands JavaScript if he knows type conversions well.
+As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
 ## ToPrimitive
 
-When an object is used in the context where a primitive is required, it is converted to primitive using the `ToPrimitive` algorithm, thoroughly described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
+When an object is used in the context where a primitive is required, for instance, in an `alert` or mathematical operations, it's converted to a primitive value using the `ToPrimitive` algorithm ([specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
 
-That algorithm joins all conversion cases and allows to customize them in a special object method.
+That algorithm allows to customize the conversion using in a special object method.
 
-When a built-in function (like `alert` or mathematical functions) or an operator (like an addition or substraction) get an object as their argument, they initiate the to-primitive conversion using one of 3 so-called "hints":
+Depending on the context, the conversion has a so-called "hint".
+
+There are 3 variants:
 
 `"string"`
-: When an operation expects a string, for object-to-string conversions, like:
+: When an operation expects a string, for object-to-string conversions, like `alert`:
 
     ```js
     // output
@@ -46,7 +37,7 @@ When a built-in function (like `alert` or mathematical functions) or an operator
     ```
 
 `"number"`
-: When an operation expects a number, for object-to-number conversions, like:
+: When an operation expects a number, for object-to-number conversions, like maths:
 
     ```js
     // explicit conversion
@@ -63,9 +54,7 @@ When a built-in function (like `alert` or mathematical functions) or an operator
 `"default"`
 : Occurs in rare cases when the operator is "not sure" what type to expect.
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them).
-
-    Or when an object is compared with a string, number or a symbol using `==`, then also the `"default"` hint is used.
+    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol.
 
     ```js
     // binary plus
@@ -75,7 +64,7 @@ When a built-in function (like `alert` or mathematical functions) or an operator
     if (user == 1) { ... };
     ```
 
-    Seems right to use that hint for binary addition `+` and equality check `==`, because they operate both on strings and numbers. Although, there's some inconsistency here. The greater/less operator `<>` can work with both strings and numbers too. Still, it uses "number" hint, not "default". That's for historical reasons.
+    The greater/less operator `<>` can work with both strings and numbers too. Still, it uses "number" hint, not "default". That's for historical reasons.
 
     In practice, all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And probably we should do the same.
 
@@ -185,11 +174,11 @@ An operation that initiated the conversion gets that primitive, and then continu
 
 For instance:
 
-- Mathematical operations (except binary plus) apply `ToNumber` after `ToPrimitive` with `"number"` hint:
+- Mathematical operations (except binary plus) perform `ToNumber` conversion:
 
     ```js run
     let obj = {
-      toString() { // toString handles all ToPrimitive in the absense of other methods
+      toString() { // toString handles all conversions in the absense of other methods
         return "2";
       }
     };
@@ -197,7 +186,7 @@ For instance:
     alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
     ```
 
-- Binary plus first checks if the primitive is a string, and then does concatenation, otherwise performs `ToNumber` and works with numbers.
+- Binary plus performs checks the primitive -- if it's a string, then it does concatenation, otherwise performs `ToNumber` and works with numbers.
 
     String example:
     ```js run
@@ -221,9 +210,10 @@ For instance:
     alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
     ```
 
-```smart header="Minor notes"
-- If `Symbol.toPrimitive` exists, it *must* return an primitive, otherwise there will be an error.
-- Methods `toString` or `valueOf` *should* return a primitive: if any of them returns and object, then it is ignored (like if the method didn't exist). That's the historical behavior.
+```smart header="Historical notes"
+For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but the object is ignored (like if the method didn't exist).
+
+In contrast, `Symbol.toPrimitive` *must* return an primitive, otherwise there will be an error.
 ```
 
 ## Summary
@@ -231,11 +221,11 @@ For instance:
 The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
 
 There are 3 types (hints) of it:
-- `"string"`
-- `"number"`
-- `"default"`
+- `"string"` (for `alert` and other string conversions)
+- `"number"` (for maths)
+- `"default"` (few operators)
 
-So, operations use the hint depending on what they expect to get. The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects it works the same way as `"number"`, so in practice the last two are often merged together.
+The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects `"default"` hint is handled the same way as `"number"`, so in practice the last two are often merged together.
 
 The conversion algorithm is:
 

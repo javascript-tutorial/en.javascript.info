@@ -16,7 +16,7 @@ The `class` construct will be described in the next chapter, but in JavaScript i
 
 ## Functional class pattern
 
-The constructor function below can be considered a class according to the definition:
+The constructor function below can be considered a "class" according to the definition:
 
 ```js run
 function User(name) {
@@ -60,9 +60,11 @@ let user = new User("John", new Date(2000,0,1));
 user.sayHi(); // John
 ```
 
-In this code variables `name`, `birthday` and the function `calcAge()` are internal, *private* to the object. They are only visible from inside of it. The external code that creates the `user` only can see a *public* method `sayHi`.
+In this code variables `name`, `birthday` and the function `calcAge()` are internal, *private* to the object. They are only visible from inside of it.
 
-In works, because functional classes provide a shared lexical environment (of `User`) for private variables and methods.
+From the other hand, `sayHi` is the external, *public* method. The external code that creates `user` can access it.
+
+This way we can hide internal implementation details and helper methods from the outer code. Only what's assigned to `this` becomes visible outside.
 
 ## Prototype-based classes
 

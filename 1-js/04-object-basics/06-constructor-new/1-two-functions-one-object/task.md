@@ -2,7 +2,7 @@ importance: 2
 
 ---
 
-# Two functions -- one object
+# Two functions – one object
 
 Is it possible to create functions `A` and `B` such as `new A()==new B()`?
 

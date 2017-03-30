@@ -1,4 +1,4 @@
-# Constructor, operator "new" 
+# Constructor, operator "new"
 
 The regular `{...}` syntax allows to create one object. But often we need to create many similar objects.
 
@@ -210,4 +210,10 @@ john = {
 
 We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth.
 
-As of now, it's important to understand what `new` is, because JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+
+```smart header="Objects, we'll be back!"
+In this chapter we only cover the basics about objects. They are essential for learning more about data types and functions in the next chapters.
+
+After the learn that, in the chapter <info:object-oriented-programming> we return to objects and cover them in-depth, including inheritance and classes.
+```
