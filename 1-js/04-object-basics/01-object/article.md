@@ -352,7 +352,7 @@ let user = {
 
 for(let key in user) {
   // keys
-  alert( key );  // name, age, 30
+  alert( key );  // name, age, isAdmin
   // values for the keys
   alert( user[key] ); // John, 30, true
 }
