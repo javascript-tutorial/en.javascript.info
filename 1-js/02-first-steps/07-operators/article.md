@@ -56,7 +56,7 @@ See, it doesn't matter whether the first operand is a string or the second one. 
 
 The string concatenation and conversion is the special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
-For instance, substraction and division:
+For instance, subtraction and division:
 
 ```js run
 alert( 2 - '1' ); // 1
