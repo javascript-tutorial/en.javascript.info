@@ -24,7 +24,7 @@ function sayHi() {
   alert("Hello");
 }
 
-alert(window.f); // global function is a property of window
+alert(window.sayHi); // global function is a property of window
 ```
 
 And here we use it as a browser window, to see the window height:
