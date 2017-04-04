@@ -52,7 +52,7 @@ function sayHi(phrase, who) {
 }
 
 *!*
-setTimeout(sayHi, 1000, "John", "Hello"); // Hello, John
+setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John
 */!*
 ```
 
