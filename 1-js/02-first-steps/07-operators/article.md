@@ -140,7 +140,7 @@ An extract from the [precedence table](https://developer.mozilla.org/en/JavaScri
 | 14 | multiplication | `*` |
 | 14 | division | `/` |
 | 13 | addition (binary) | `+` |
-| 13 | substraction | `-` |
+| 13 | subtraction | `-` |
 | ... | ... | ... |
 | 3 | assignment | `=` |
 | ... | ... | ... |
