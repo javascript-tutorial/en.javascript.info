@@ -1,0 +1,10 @@
+<script>
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    let img = document.createElement('img');
+    img.src = src;
+    img.onload = () => resolve(img);
+    img.onerror = () => reject(new Error("Image load failed: " + src));
+  });
+}
+</script>
