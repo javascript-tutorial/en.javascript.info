@@ -27,17 +27,17 @@ Four points curve:
 If you look closely at these curves, you can immediately notice:
 
 1. **Points are not always on curve.** That's perfectly normal, later we'll see how the curve is built.
-2. **Curve order equals the number of points minus one**.
+2. **The curve order equals the number of points minus one**.
 For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for three points -- cubic curve.
 3. **A curve is always inside the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of control points:**
 
     ![](bezier4-e.png) ![](bezier3-e.png)
 
-    Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either.
+Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection or convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
 
 The main value of Bezier curves for drawing -- by moving the points the curve is changing *in intuitively obvious way*.
 
-Try to move points using a mouse in the example below:
+Try to move control points using a mouse in the example below:
 
 [iframe src="demo.svg?nocpath=1&p=0,0,0.5,0,0.5,1,1,1" height=370]
 
@@ -53,13 +53,11 @@ Here are some examples:
 
 A Bezier curve can be described using a mathematical formula.
 
-As we'll see soon -- there's no need to know it. But for completeness -- here you go.
+As we'll see soon -- there's no need to know it. But for completeness -- here it is.
 
-We have coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on.
+Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
 
-Then the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
-
-- For two points:
+- The formula for a 2-points curve:
 
     <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
 - For three points:
@@ -71,24 +69,33 @@ Then the curve coordinates are described by the equation that depends on the par
 
 These are vector equations.
 
-We can rewrite them coordinate-by-coordinate, for instance the 3-point variant:
+We can rewrite them coordinate-by-coordinate, for instance the 3-point curve:
 
 - <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
 - <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
 
-Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points, and `t` runs from `0` to `1`. The set of values `(x,y)` for each `t` forms the curve.
+Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points.
+
+For instance, if control points are  `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations are:
+
+- <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = 1</code>
+- <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
+
+Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve.
 
 That's probably too scientific, not very obvious why curves look like that, and how they depend on control points.
 
-Another drawing algorithm may be easier to understand.
+So here's the drawing algorithm that may be easier to understand.
 
 ## De Casteljau's algorithm
 
 [De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) is identical to the mathematical definition of the curve, but visually shows how it is built.
 
-Let's explain it on the 3-points example.
+Let's see it on the 3-points example.
 
-Here's the demo. Points can be moved by the mouse. Press the "play" button to run it.
+Here's the demo, and the explanation follow.
+
+Points can be moved by the mouse. Press the "play" button to run it.
 
 [iframe src="demo.svg?p=0,0,0.5,1,1,0&animate=1" height=370]
 
@@ -111,7 +118,7 @@ Here's the demo. Points can be moved by the mouse. Press the "play" button to ru
 | ------------------------ | ---------------------- |
 | ![](bezier3-draw1.png)   | ![](bezier3-draw2.png) |
 
-4. On the <span style="color:#167490">new</span> segment we take a point on the distance proportional to `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
+4. Now the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
 
 5. As `t` runs from `0` to `1`, every value of `t` adds a point to the curve. The set of such points forms the Bezier curve. It's red and parabolic on the pictures above.
 
@@ -130,9 +137,14 @@ The algorithm:
     - On the blue segment we take a point proportional to `t`. On the example above it's <span style="color:red">red</span>.
 - These points together form the curve.
 
-The algorithm is recursive. For each `t` from `0` to `1` we have first N segments, then take points of them and connect -- N-1 segments and so on till we have one point. These make the curve.
+The algorithm is recursive and can be generalized for any number of control points.
 
-Press the "play" button in the example above to see it in action.
+Given N of control points, we connect them to get initially N-1 segments.
+
+Then for each `t` from `0` to `1`:
+- Take a point on each of segment on the distance proportional to `t` and connect them -- there will be N-2 segments.
+- Take a point on each of these segments on the distance proportional to `t` and connect -- there will be N-3 segments, and so on...
+- Till we have one point. These points make the curve.
 
 Move examples of curves:
 
@@ -150,10 +162,10 @@ Not smooth Bezier curve:
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
-As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But on practice they are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler for support and in calculations.
+As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But in practice they are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
 
 ```smart header="How to draw a curve *through* given points?"
-We use control points for a Bezier curve. As we can see, they are not on the curve. Or, to be precise, the first and the last one do belong to curve, but others don't.
+We use control points for a Bezier curve. As we can see, they are not on the curve. Or, to be precise, the first and the last ones do belong to curve, but others don't.
 
 Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
 
