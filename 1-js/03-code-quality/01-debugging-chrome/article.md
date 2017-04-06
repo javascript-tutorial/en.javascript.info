@@ -118,7 +118,7 @@ Please open the informational dropdowns to the right (labelled with arrows). The
 
 ## Tracing the execution
 
-Now let's time to *trace* the script.
+Now it's time to *trace* the script.
 
 There are buttons for it at the top of the right pane. Let's engage them.
 
