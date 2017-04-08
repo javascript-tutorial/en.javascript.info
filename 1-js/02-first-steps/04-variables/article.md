@@ -28,7 +28,7 @@ message = 'Hello'; // store the string
 */!*
 ```
 
-The string is now saved into the memory area assosiated with the variable. We can access it using the variable name:
+The string is now saved into the memory area associated with the variable. We can access it using the variable name:
 
 ```js run
 let message;
