@@ -5,11 +5,38 @@ Many things that we do in JavaScript are asynchronous. We initiate a process, bu
 
 The most obvious example is `setTimeout`, but there are others, like making network requests, performing animations and so on.
 
-Let's see a couple of examples, so that we can discover a problem, and then solve it using "promises".
-
 [cut]
 
 ## Callbacks
+
+Consider a function `loadScript` that loads a script:
+
+```js
+function loadScript(src) {
+  let script = document.createElement('script');
+  script.src = src;
+}
+```
+
+When the `<script>` tag is created and `src` is assigned, the browser loads the script and executes it. So, the function works. We can use it like this:
+
+```js
+loadScript('/my/script.js');
+```
+
+The function is asynchronous: the script starts loading now, but finishes later, maybe after a few seconds. So, the question is: how can we track the load end? As of now, the function provides no such way.
+
+We'd like to invoke our code after the script is loaded. One of the easiest ways is to add a second argument to `loadScript`: the function that would run on load end.
+
+
+How can hook on "load completion"?
+
+
+From ancient times, Javascript allowed to use callback functions for asynchronous
+Most asychronous
+In this chapter we cover how to write callback-based asynchronous code.
+Let's see a couple of examples, so that we can discover a problem, and then solve it using "promises".
+
 
 Remember resource load/error events? They are covered in the chapter <info:onload-onerror>.
 

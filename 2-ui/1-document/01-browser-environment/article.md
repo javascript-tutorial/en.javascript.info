@@ -35,7 +35,7 @@ alert(window.innerHeight); // some number
 
 ## Document Object Model (DOM)
 
-The `document` object gives access to a page contents. We can change or create literally anything.
+The `document` object gives access to the page content. We can change or create literally anything.
 
 For instance:
 ```js run
