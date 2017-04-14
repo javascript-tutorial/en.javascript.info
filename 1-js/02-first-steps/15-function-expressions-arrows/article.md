@@ -372,7 +372,7 @@ There's one more syntax for creating functions -- very simple and concise. It's 
 let func = (arg1, arg2, ...argN) => expression
 ```
 
-...This creates a function `func` that has arguments `arg1..argN`, evaludates the `expression` on the right side with their use and returns its result.
+...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
 
 In other words, it's roughly the same as:
 
