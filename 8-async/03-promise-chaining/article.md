@@ -206,18 +206,160 @@ loadScript("/article/promise-chaining/one.js")
 
 Once again, the `.catch` handles it.
 
-**Throwing an exception is also considered an error.**
 
-For instance:
+### Implicit try..catch
+
+Throwing an exception is considered a rejection.
+
+For instance, this code:
 
 ```js run
 new Promise(function(resolve, reject) {
+*!*
   throw new Error("Whoops!");
+*/!*
 }).catch(function(error) {
   alert(error.message); // Whoops!
 });
+```
 
-## Inheriting from promise, thenables, error handling?
+...Works the same way as:
+
+```js run
+new Promise(function(resolve, reject) {
+*!*
+  reject(new Error("Whoops!"));
+*/!*  
+}).catch(function(error) {
+  alert(error.message); // Whoops!
+});
+```
+
+Like there's an invisible `try..catch` around the whole code of the function, that catches errors.
+
+That works not only in the executor, but in handlers as well, for instance:
+
+```js run
+new Promise(function(resolve, reject) {
+  resolve("ok")
+}).then(function(result) {
+*!*
+    throw new Error("Whoops!");
+*/!*
+})
+.catch(function(error) {
+  alert(error.message); // Whoops!
+});
+```
+
+
+### Rethrowing
+
+As we already noticed, `.catch` is like `try..catch`. We may have as many `.then` as we want, and then use a single `.catch` at the end to handle errors in all of them.
+
+In a regular `try..catch` we can analyze the error and maybe rethrow it can't handle. The same thing is possible for promises.
+
+A handler in `.catch` can finish in two ways:
+
+1. It can return a value or don't return anything. Then the execution continues "normally", the next `.then(onResolved)` handler is called.
+2. It can throw an error. Then the execution goes the "error" path, and the closest rejection handler is called.
+
+Here is an example of the first behavior (the error is handled):
+
+```js run
+// the execution: catch -> then
+new Promise(function(resolve, reject) {
+
+  throw new Error("Whoops!");
+
+}).catch(function(error) {
+
+  alert("Handled it!");
+*!*
+  return "result"; // return, the execution goes the "normal way"
+*/!*
+
+*!*
+}).then(alert); // result shown
+*/!*
+```
+
+...And here's an example of "rethrowing":
+
+
+```js run
+// the execution: catch -> catch -> then
+new Promise(function(resolve, reject) {
+
+  throw new Error("Whoops!");
+
+}).catch(function(error) {
+
+  alert("Can't handle!");
+*!*
+  throw error; // throwing this or another error jumps to the next catch
+*/!*
+
+}).catch(error => {
+
+  alert("Trying to handle again...");
+  // don't return anything => execution goes the normal way
+
+}).then(alert); // undefined
+```
+
+### Unhandled rejections
+
+What if we forget to handle an error?
+
+Like here:
+
+```js untrusted run refresh
+new Promise(function() {
+  errorHappened(); // Error here (no such function)
+});
+```
+
+Or here:
+
+```js untrusted run refresh
+new Promise(function() {
+  throw new Error("Whoops!");
+}).then(function() {
+  // ...something...
+}).then(function() {
+  // ...something else...
+}).then(function() {
+  // ...but no catch after it!
+});
+```
+
+Technically, when an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is none.
+
+Usually that means that the code is bad. Most JavaScript engines track such situations and generate a global error. In the browser we can catch it using `window.addEventListener('unhandledrejection')` (as specified in the [HTML standard](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections)):
+
+
+```js run
+// open in a new window to see in action
+
+window.addEventListener('unhandledrejection', function(event) {
+  alert(event.promise); // the promise that generated the error
+  alert(event.reason); // the error itself (Whoops!)
+});
+
+new Promise(function() {
+  throw new Error("Whoops!");
+}).then(function() {
+  // ...something...
+}).then(function() {
+  // ...something else...
+}).then(function() {
+  // ...but no catch after it!
+});
+```
+
+In non-browser environments there's also a similar event, so we can always track unhandled errors in promises.
+
 
 An object that has a method called `.then` is called a "thenable".
 
@@ -227,61 +369,43 @@ JavaScript specification also checks the value returned by a handler for being a
 
 For instance, native promises give no way to "abort" the execution. The `loadScript` above cannot "cancel" script loading, just because there's no `.abort` method on promises, we can only listen for the state change using `.then/catch`.
 
-Let's
+## Extending promises, thenables
+
+Promises are very simple by design. One of the thing they miss is the ability to cancel the process.
+
+For instance, `loadScript(src)` in previous examples returns a promise that allows to track success/failure of the loading. But can we abort it? No.
+
+We can inherit from `Promise` to introduce such functionality, like this:
 
 
-
-
-
-
-
-
-## Error handling
-
-
-
-
-
+// TODO: NOT WORKING AS INTENDED?
 
 ```js run
-new Promise(function(resolve, reject) {
-  setTimeout(() => resolve(1), 1000);
-}).then(function(result) {
+function loadScript(src) {
+  let script = document.createElement('script');
+  script.src = src;
 
-  throw new Error("Whoops!");
+  let promise = new Promise(function(resolve, reject) {    
+    script.onload = () => resolve(script);
+*!*
+    script.onerror = err => reject(new Error("Script load error: " + src)); // (*)
+*/!*
+  });
 
-}).catch(function(error) {
+  document.head.append(script);
+  promise.abort = () => script.remove();
+  return promise;
+}
 
-  alert(error.message); // Whoops!
-
-});
+let promise = loadScript("/article/promise-chaining/one.js");
+promise.then(alert);
+promise.abort();
 ```
 
 
 
 
-The idea is :
-
-- A callback in `.then` may return a result.
-
-
-One of main purposes of promises is to make asyn
-The main purpose of promises
-Promises
-
-Promises can be chained. That allows actions to follow one after another.
-
-Here's a simple example first:
-
-```js
-let promise = new Promise(function(resolve, reject) {
-  setTimeout(() => resolve(""))
-})
 
 
 
-What if we want to
-The main idea behind promises
-Promises can be used for asynchronous tasks that eventually finish with a result or an error.
-
-We already have `loadScript`
+## Inheriting from promise, thenables, promise api, async/await
