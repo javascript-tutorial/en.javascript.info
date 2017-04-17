@@ -347,7 +347,7 @@ counter++;
 
 ## Bitwise operators
 
-Bitwise operators treat arguments as 32-bit interger numbers and work on the level on their binary representation.
+Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
 
 These operators are not JavaScript-specific. They are supported in most programming languages.
 
