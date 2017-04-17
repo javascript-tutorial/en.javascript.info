@@ -110,21 +110,9 @@ Now we have the same 1 -> 2 > 4 output, but with 1 second delay between each.
 
 When we return `new Promise(…)`, the next `.then` in the chain is executed when it settles and gets its result.
 
-Let's use it to `loadScript` multiple scripts one by one:
+Let's use it with `loadScript` to load multiple scripts one by one, in sequence:
 
 ```js run
-function loadScript(src) {  
-  return new Promise(function(resolve, reject) {
-    let script = document.createElement('script');
-    script.src = src;
-
-    script.onload = () => resolve(script);
-    script.onerror = () => reject(new Error("Script load error: " + src));
-
-    document.head.append(script);
-  });
-}
-
 loadScript("/article/promise-chaining/one.js")
   .then(function(script) {
     return loadScript("/article/promise-chaining/two.js");
@@ -139,7 +127,95 @@ loadScript("/article/promise-chaining/one.js")
   });
 ```
 
+
 The code totally evades the pyramid of doom. We can add more asynchronous actions to the chain, and the code is still "flat".
+
+## Error handling
+
+In case of an error, the closest `onRejected` handler down the chain is called.
+
+Let's recall that a rejection (error) handler may be assigned with two syntaxes:
+
+- `.then(...,onRejected)`, as a second argument of `.then`.
+- `.catch(onRejected)`, a shorthand for `.then(null, onRejected)`.
+
+In the example below we use the second syntax to catch all errors in the script load chain:
+
+```js run
+function loadScript(src) {  
+  return new Promise(function(resolve, reject) {
+    let script = document.createElement('script');
+    script.src = src;
+
+    script.onload = () => resolve(script);
+*!*
+    script.onerror = () => reject(new Error("Script load error: " + src)); // (*)
+*/!*
+
+    document.head.append(script);
+  });
+}
+
+*!*
+loadScript("/article/promise-chaining/ERROR.js")
+*/!*
+  .then(function(script) {
+    return loadScript("/article/promise-chaining/two.js");
+  })
+  .then(function(script) {
+    return loadScript("/article/promise-chaining/three.js");
+  })
+  .then(function(script) {
+    // use variables declared in scripts
+    // to show that they indeed loaded
+    alert("Done: " + (one + two + three));
+  })
+*!*
+  .catch(function(error) { // (**)
+    alert(error.message);
+  });
+*/!*
+```
+
+In the code above the first `loadScript` call fails, because `ERROR.js` doesn't exist. The initial error is generated in the line `(*)`, then the first error handler in the chain is called, that is `(**)`.
+
+Now the same thing, but the error occurs in the second script:
+
+
+```js run
+loadScript("/article/promise-chaining/one.js")
+  .then(function(script) {
+*!*
+    return loadScript("/article/promise-chaining/ERROR.js");
+*/!*
+  })
+  .then(function(script) {
+    return loadScript("/article/promise-chaining/three.js");
+  })
+  .then(function(script) {
+    // use variables declared in scripts
+    // to show that they indeed loaded
+    alert("Done: " + (one + two + three));
+  })
+*!*
+  .catch(function(error) {
+    alert(error.message);
+  });
+*/!*
+```
+
+Once again, the `.catch` handles it.
+
+**Throwing an exception is also considered an error.**
+
+For instance:
+
+```js run
+new Promise(function(resolve, reject) {
+  throw new Error("Woops!");
+}).catch(function(error) {
+  alert(error.message); // Whoops
+});
 
 ## Inheriting from promise, thenables, error handling?
 

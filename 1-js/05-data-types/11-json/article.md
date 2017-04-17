@@ -477,7 +477,7 @@ alert( meetup.date.getDate() ); // Error!
 */!*
 ```
 
-Woops! An error!
+Whoops! An error!
 
 The value of `meetup.date` is a string, not a `Date` object. How `JSON.parse` may know that it should transform that string into a `Date`?
 

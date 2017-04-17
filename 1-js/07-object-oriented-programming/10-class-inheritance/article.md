@@ -210,7 +210,7 @@ let rabbit = new Rabbit("White Rabbit", 10); // Error: this is not defined.
 */!*
 ```
 
-Woops! We've got an error. Now we can't create rabbits. What went wrong?
+Whoops! We've got an error. Now we can't create rabbits. What went wrong?
 
 The short answer is: constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.
 

@@ -287,7 +287,7 @@ let obj = {};
 weakMap.set(obj, "ok"); // works fine (object key)
 
 *!*
-weakMap.set("test", "Woops"); // Error, because "test" is a primitive
+weakMap.set("test", "Whoops"); // Error, because "test" is a primitive
 */!*
 ```
 
