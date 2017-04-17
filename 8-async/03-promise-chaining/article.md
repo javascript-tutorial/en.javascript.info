@@ -212,9 +212,9 @@ For instance:
 
 ```js run
 new Promise(function(resolve, reject) {
-  throw new Error("Woops!");
+  throw new Error("Whoops!");
 }).catch(function(error) {
-  alert(error.message); // Whoops
+  alert(error.message); // Whoops!
 });
 
 ## Inheriting from promise, thenables, error handling?
@@ -248,11 +248,11 @@ new Promise(function(resolve, reject) {
   setTimeout(() => resolve(1), 1000);
 }).then(function(result) {
 
-  throw new Error("Woops!");
+  throw new Error("Whoops!");
 
 }).catch(function(error) {
 
-  alert(error.message); // Woops!
+  alert(error.message); // Whoops!
 
 });
 ```

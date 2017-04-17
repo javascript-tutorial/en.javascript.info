@@ -106,7 +106,7 @@ alert( worker.slow(1) ); // the original method works
 worker.slow = cachingDecorator(worker.slow); // now make it caching
 
 *!*
-alert( worker.slow(2) ); // WOOPS! Error: Cannot read property 'someMethod' of undefined
+alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined
 */!*
 ```
 

@@ -44,7 +44,7 @@ Or, in case of an error:
 ```js
 let promise = new Promise(function(resolve, *!*reject*/!*) {
   // after 1 second signal that the job is finished with an error
-  setTimeout(() => reject(new Error("Woops!")), 1000);
+  setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 ```
 
@@ -82,10 +82,10 @@ promise.then(result => alert(result));
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  setTimeout(() => reject(new Error("Woops!")), 1000);
+  setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
-// shows "Woops!" after 1 second
+// shows "Whoops!" after 1 second
 promise.catch(error => alert(error.message));
 ```
 
