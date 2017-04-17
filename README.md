@@ -9,13 +9,13 @@ Please use this repository to file issues and suggest PRs for the text.
 
 Every chapter, article or a task has its folder.
 
-The folder has the name `N-url`, where `N` is a number for the sorting and `url` — is the URL-name for the material.
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `url` is the URL part with title of the material.
 
-The kind of the material is defined by the file inside the folder:
+The type of the material is defined by the file inside the folder:
 
-  - `index.md` means a chapter
-  - `article.md` means an article
-  - `task.md` means a task (+must also have `solution.md` with the solution)
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
 
 Each of these files starts from the `# Main header`.
 
