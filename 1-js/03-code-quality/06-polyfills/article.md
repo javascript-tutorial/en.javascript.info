@@ -1,9 +1,9 @@
 
 # Polyfills
 
-The JavaScript language steadily evolves. The new proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-Teams behind JavaScript engines have their own ideas about what to implement first. It may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
+Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
 
 So it's quite common for an engine to implement only the part of the standard.
 
@@ -23,7 +23,7 @@ Actually, there are two parts in Babel:
 
 2. Second, the polyfill.
 
-    The transpiler rewrites the code, so syntax features are covered. But for new functions we need to add a special script that implements them. JavaScript is a highly dynamic language, scripts may not just add new functions, but also modify built-in ones, so that they behave according to the modern standard.
+    The transpiler rewrites the code, so syntax features are covered. But for new functions we need to write a special script that implements them. JavaScript is a highly dynamic language, scripts may not just add new functions, but also modify built-in ones, so that they behave according to the modern standard.
 
     There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
 
