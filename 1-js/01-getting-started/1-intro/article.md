@@ -8,7 +8,7 @@ Let's see what's so special about JavaScript, what we can achieve with it and wh
 
 The programs in this language are called *scripts*. They can be written right in the HTML and execute automatically as the page loads.
 
-Scripts are provided and executed a plain text. They don't need a special preparation or a compilation to run.
+Scripts are provided and executed as a plain text. They don't need a special preparation or a compilation to run.
 
 In this aspect, JavaScript is very different from another language called [Java](http://en.wikipedia.org/wiki/Java).
 
@@ -26,7 +26,7 @@ Different engines have different "codenames", for example:
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
 - [Gecko](https://en.wikipedia.org/wiki/Gecko_(software)) -- in Firefox.
-- ...There are other codenames like "Trident", "Chakra" for different versions of IE, "Nitro" and "SquirrelFish" for Safari etc.
+- ...There are other codenames like "Trident", "Chakra" for different versions of IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari etc.
 
 These terms above are good to remember, because they are used in developer articles in the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
 
@@ -72,7 +72,7 @@ The examples of such restrictions are:
 
     That is called a "Same Origin Policy". To workaround that, *both pages* must contain a special JavaScript code that handles data exchange.
 
-    The limitation is again for a user's safety. A page from `http://anysite.com` which a user has opened occasionaly must not be able to open or access another browser tab with the URL `http://gmail.com` and steal information from there.
+    The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened occasionaly must not be able to open or access another browser tab with the URL `http://gmail.com` and steal information from there.
 - JavaScript can easily communicate over the net to the server where the current page came from. But it's ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 
 ![](limitations.png)
@@ -109,13 +109,13 @@ The modern tools make the transpilation very fast and transparent, actually allo
 Examples of such languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby guys like it.
-- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. Developed by Microsoft.
-- [Dart](https://www.dartlang.org/) is a standalone language that has it's own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of browsers require it to be transpiled to JavaScript just like the ones above.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. It is developed by Microsoft.
+- [Dart](https://www.dartlang.org/) is a standalone language that has it's own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
 
 There are more. Of course even if we use one of those languages, we should also know JavaScript, to really understand what we're doing.
 
 ## Summary
 
-- JavaScript was initially created as a browser-only language, but now used in many other environments as well.
-- At this moment, JavaScript as a unique position as a most widely adopted browser language with full integration with HTML/CSS.
-- There are over languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+- JavaScript was initially created as a browser-only language, but now it is used in many other environments as well.
+- At this moment, JavaScript has a unique position as a most widely adopted browser language with full integration with HTML/CSS.
+- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
