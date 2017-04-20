@@ -167,7 +167,7 @@ recipeMap.forEach( (value, key, map) => {
 
 ## Set
 
-`Set` -- is a collection of values, where each value may occur.
+`Set` -- is a collection of values, where each value may occur only once.
 
 The main methods are:
 
