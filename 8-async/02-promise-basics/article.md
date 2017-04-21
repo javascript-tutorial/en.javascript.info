@@ -1,13 +1,16 @@
 # Promise
 
-A promise is an object of the built-in `Promise` class. It has the meaning of the "delayed result".
 
-The promise object has two inernal fields in it:
+```compare plus="Plus" minus="Minus"
++ One
+- two
+```
 
-- `state` -- one of: "pending", "fulfilled", "rejected".
-- `result` -- when `new Promise` is created.
+A promise is an object of the built-in `Promise` class.
 
+The promise object has two main internal properties: `state` and the `result`.
 
+The idea is that we have one place in the code that creates a promise object and manages its state and result ("producing" code), and other places that await for the result and then make use of it ("consuming" code).
 
 The constructor syntax is:
 
@@ -17,9 +20,18 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The function passed to `new Promise` is called *executor*. It is called automatically and immediately when the promise is created.
+The function passed to `new Promise` is called *executor*. When the promise is created, it is called automatically.
 
-So, if you run this, the output is shown immediately:
+The purpose of that function is to do a job and then change the state of the promise by calling one of:
+
+- `resolve(value)` -- to indicate that the job finished successfully: sets `state` to `"fulfilled"`, and `result` to `value`.
+- `reject(error)` -- to indicate that an error occured: sets `state` to `"rejected"` and `result` to `error`.
+
+![](promise-resolve-reject.png)
+
+Let's see examples.
+
+First, a simplest executor, just to see how it works:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -28,14 +40,12 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The string description of `resolve` and `reject` may differ between engines, but they both are functions provided by JavaScript itself. We don't need to create them.
+We can see two things here:
 
-The executor should do a job, like loading a script, and at the end, it should call one of:
+1. The executor is called immediately by `new Promise`.
+2. Both functions `resolve` and `reject` are provided by JavaScript itself. We don't need to create them. Their string representation may vary between JavaScript engines.
 
-- `resolve(result)` -- to indicate that the job finished successfully with the `result`.
-- `reject(error)` -- to indicate that an error occured, and `error` should be the `Error` object (technically can be any value).
-
-Like this:
+Now let's wait 1 second and then resolve the promise:
 
 ```js
 let promise = new Promise(function(*!*resolve*/!*, reject) {
@@ -46,7 +56,9 @@ let promise = new Promise(function(*!*resolve*/!*, reject) {
 });
 ```
 
-Or, in case of an error:
+![](promise-resolve-1.png)
+
+Here we wait 1 second and then reject the promise with an error:
 
 ```js
 let promise = new Promise(function(resolve, *!*reject*/!*) {
@@ -55,71 +67,121 @@ let promise = new Promise(function(resolve, *!*reject*/!*) {
 });
 ```
 
-## Promise state
+![](promise-reject-1.png)
 
-The promise object has an internal state. The `Promise` constructor sets it to "pending". Then it may change in two ways.
+The promise that was either resolved or rejected is called "settled".
 
-When `resolve` is called, the state becomes "fulfilled". When `reject` is called, the state becomes "rejected":
+We must call only one `resolve` or `reject`. And that's final.
 
-![](promiseInit.png)
+All calls of `resolve` and `reject` after the first one are ignored:
 
-```smart
-The promise that is either resolved or rejected is also called "settled" (as opposed to "pending").
+```js
+let promise = new Promise(function(resolve, reject) {
+  resolve("done");
+
+  reject(new Error("…")); // ignored
+  setTimeout(() => resolve("…")); // ignored
+});
 ```
 
-The external code may add "handlers" to run when the promise becomes settled.
+The idea is that a job may have only one result or an error.
 
-There are two methods for that:
+There are other data structures for jobs that have many results, for instance streams and queues. But they are not supproted by JavaScript language core and lack certain features that promises provide.
 
-- `promise.then(onResolve)` schedules the function `onResolve` to call when the promise is fulfilled, and it gets the result.
-- `promise.catch(onReject)` schedules the function `onReject` to call when the promise is rejected, and it gets the error.
+```smart header="Reject with `Error` objects"
+Technically we can call `resolve` and `reject` with any value. But it's recommended to use `Error` objects in `reject` (or inherited from them).
+```
 
-For instance, here's how to react on the successful job completion:
+````smart header="Resolve/reject can be immediate"
+In practice an executor usually does something asynchronously, but it doesn't have to. We can call `resolve` or `reject` immediately, like this:
+
+```js
+let promise = new Promise(function(resolve, reject) {
+  resolve(123);
+});
+```
+
+````
+
+
+## Consumers: ".then" and ".catch"
+
+A promise object allows to add "handlers" to run when it becomes settled.
+
+The syntax is:
+
+```js
+promise.then(
+  function(result) { /* process a sucessful result */ },
+  function(error) { /* process an error */ }
+);
+```
+
+The first argument of `then` runs on `resolve` and gets the result, and the second one -- on `reject` and gets the error.
+
+For example:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve("done!"), 1000);
 });
 
-// shows "done!" after 1 second
-promise.then(result => alert(result));
+// resolve runs the first function in .then
+promise.then(
+*!*
+  result => alert(result), // shows "done!" after 1 second
+*/!*
+  error => alert(error) // doesn't run
+);
 ```
-
-...And here's the reacton on an error:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
-// shows "Whoops!" after 1 second
-promise.catch(error => alert(error.message));
+// reject runs the second function in .then
+promise.then(
+  result => alert(result), // doesn't run
+*!*
+  error => alert(error) // shows "Error: Whoops!" after 1 second
+*/!*
+);
 ```
 
-
-Also we can call `promise.then(onResolve, onReject)` to set both handlers at once. Technically, `promise.catch(func)` works the same way as `promise.then(null, func)`.
+If we're interested only in successful completions, then we can provide only one argument to `.then`:
 
 ```js run
-let promise = new Promise(function(resolve, reject) {
+let promise = new Promise(resolve => {
   setTimeout(() => resolve("done!"), 1000);
 });
 
 *!*
-// set both success and error handlers
-promise.then(
-  result => alert(result),
-  error => alert(error)
-);
+promise.then(alert); // shows "done!" after 1 second
 */!*
 ```
 
-So, when we want to do something asynchronously, we can create a promise with the proper executor to do a job, and then add handlers to it. They run when it finishes.
+If we're interested only in errors, then we can use `.then(null, function)` or a special shorthand: `.catch`
 
-Let's see more examples to explore the benefits over the callback-based approach.
+
+```js run
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => reject(new Error("Whoops!")), 1000);
+});
+
+*!*
+// same as promise.then(null, alert)
+promise.catch(alert); // shows "Error: Whoops!" after 1 second
+*/!*
+```
+
+Now let's see more practical examples to explore the benefits over the callback-based approach.
 
 ## Example: loadScript
 
-We have the `loadScript` function for loading a script from the previous chapter, here's the callback-based variant:
+We have the `loadScript` function for loading a script from the previous chapter.
+
+Here's the callback-based variant:
 
 ```js
 function loadScript(src, callback) {
@@ -135,7 +197,7 @@ function loadScript(src, callback) {
 
 Let's rewrite it using promises.
 
-The call to `loadScript(src)` below returns a promise that resolves/rejects when the loading is complete:
+The new function `loadScript` will not require a callback. Instead it will create and return a promise object that settles when the loading is complete. The outer code can add handlers to it using `.then`:
 
 ```js run
 function loadScript(src) {  
@@ -159,13 +221,20 @@ promise.then(
   error => alert(`Error: ${error.message}`);
 );
 
-promise.then(script => alert('One more handler to do something else with the script'));
+promise.then(script => alert('One more handler to do something else!'));
 ```
 
-We can immediately see some benefits over the callback-based syntax in the example above:
+We can immediately see few benefits over the callback-based syntax in the example above.
+
+| Callbacks | Promises |
+|-----------|----------|
+| We must have `callback` function when calling `loadScript`. So we must know what to do with the result *before* we make a call for it. | Promises allow us to code more naturally. First we run `loadScript`, then code what we do with the result. |
+|There can be only one callback. | We can call `.then` as many times as we want. |
+
+
+We can call `promise.then` at any time. Maybe much later, when we really need that script.
 
 1. We can call `promise.then` as many times as want, so we can add any number of handlers.
-2. We can call `promise.then` at any time. Maybe much later, when we really need that script.
 3. The `promise` object can be passed around, new handlers can be added where needed in other parts of the code.
 
 So promises give us flexibility. But there's more. We can chain promises and use `async` functions and so on. We'll see that in the next chapters.
