@@ -13,7 +13,7 @@ function checkAge(age) {
   if (age > 18) {
     return true;
   } else {
-    return confirm('Did parents allow you?');
+    return confirm('Do you have your parents permission to access this page?');
   }
 }
 ```
@@ -24,4 +24,3 @@ Make two variants of `checkAge`:
 
 1. Using a question mark operator `'?'`
 2. Using OR `||`
-

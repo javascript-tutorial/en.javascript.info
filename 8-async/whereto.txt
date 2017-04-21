@@ -1,0 +1,58 @@
+
+## Extending promises, thenables
+
+Promises are very simple by design. One of the thing they miss is the ability to cancel the process.
+
+For instance, `loadScript(src)` in previous examples returns a promise that allows to track success/failure of the loading. But can we abort it? No.
+
+We can inherit from `Promise` to introduce such functionality, like this:
+
+
+```js run
+function loadScript(src) {
+  let script = document.createElement('script');
+  alert(1);
+  script.src = src;
+
+  let promise = new Promise(function(resolve, reject) {
+    script.onload = () => { alert('onload'); resolve(script); }
+*!*
+    script.onerror = err => reject(new Error("Script load error: " + src)); // (*)
+*/!*
+  });
+
+  alert(2);
+
+  document.head.append(script);
+  alert(3);
+  promise.abort = () => {
+    script.src = 'javascript:""
+    ';
+  };
+  return promise;
+}
+
+let promise = loadScript("/article/promise-chaining/one.js?speed=0");
+promise.then(alert);
+promise.abort();
+alert(4);
+```
+
+
+
+
+
+
+
+## Inheriting from promise, thenables, promise api, async/await
+
+--------
+
+
+An object that has a method called `.then` is called a "thenable".
+
+Instead of checking if something is `instanceof Promise`, we should usually check it for being thenable, and if it is, then treat it as a promise ("duck typing").
+
+JavaScript specification also checks the value returned by a handler for being a thenable, not exactly a promise, when it decides whether to pass it along the chain or wait for the result. So in the examples above we could use custom thenables instead of `Promise` instances.
+
+For instance, native promises give no way to "abort" the execution. The `loadScript` above cannot "cancel" script loading, just because there's no `.abort` method on promises, we can only listen for the state change using `.then/catch`.

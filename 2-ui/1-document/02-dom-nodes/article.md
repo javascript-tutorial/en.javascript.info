@@ -6,9 +6,13 @@ libs:
 
 # DOM tree
 
-The essential part of HTML is tags, right?
+The backbone of an HTML document is tags.
 
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children". And the text inside it is an object as well. All these objects are accessible using JavaScript, we'll see that now.
+According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children" of the enclosing one.
+
+The text inside a tag it is an object as well.
+
+All these objects are accessible using JavaScript.
 
 ## An example of DOM
 

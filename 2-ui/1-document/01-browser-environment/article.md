@@ -1,10 +1,10 @@
 # Browser environment, specs
 
-The JavaScript language was initially created for web browsers. But as of now, it evolved and became a language with many uses and platforms.
+The JavaScript language was initially created for web browsers. Since then, it evolved and became a language with many uses and platforms.
 
-A platform may be either a browser or a web-server or a washing machine or another *host*. Each of them provides platform-specific functionality. The JavaScript standard called that a *host environment*.
+A platform may be either a browser or a web-server or a washing machine or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
-That host environment provides additional objects and functions to the language core. Web browsers provide means to control web pages. Node.JS provides server-side features. There are other host environments too.
+A host environment provides platform-specific objects and functions additionally to the language core. Web browsers give means to control web pages. Node.JS provides server-side features, and so on.
 
 [cut]
 
@@ -12,10 +12,10 @@ Here's a bird-eye view of what we have when JavaScript runs in a web-browser:
 
 ![](windowObjects.png)
 
-The "root object" called `window` has two roles:
+There's a "root" object called `window`. It has two roles:
 
-1. First, it is a [global object](info:global-object) for JavaScript code.
-2. Second, it represents the "browser window" object, provides methods to control it.
+1. First, it is a global object for JavaScript code, as described in the chapter <info:global-object>.
+2. Second, it represents the "browser window" and provides methods to control it.
 
 For instance, here we use it as a global object:
 
@@ -24,18 +24,21 @@ function sayHi() {
   alert("Hello");
 }
 
-alert(window.sayHi); // global function is a property of window
+// global functions are accessible as properties of window
+alert(window.sayHi);
 ```
 
 And here we use it as a browser window, to see the window height:
 
 ```js run
-alert(window.innerHeight); // some number
+alert(window.innerHeight); // inner window height
 ```
+
+There are more window-specific methods and properties, we'll cover them later.
 
 ## Document Object Model (DOM)
 
-The `document` object gives access to the page content. We can change or create literally anything.
+The `document` object gives access to the page content. We can change or create anything on the page using it.
 
 For instance:
 ```js run
@@ -46,24 +49,20 @@ document.body.style.background = 'red';
 setTimeout(() => document.body.style.background = '', 1000);
 ```
 
-Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification.
-
-There are two working groups who develop it:
+Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. By chance, there are two working groups who develop it:
 
 1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
 2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), publishing at <https://dom.spec.whatwg.org>.
 
-As it happens, the two groups don't always agree, so we have like 2 sets of standards. But they are in tight contact and eventually things merge. So the documentation that you can find on the given resources is very similar, like 99%. There are very minor differences, but you probably won't notice them.
+As it happens, the two groups don't always agree, so we have like 2 sets of standards. But they are in the tight contact and eventually things merge. So the documentation that you can find on the given resources is very similar, there's like 99% match. There are very minor differences, you probably won't notice them.
 
-I find <https://dom.spec.whatwg.org> more pleasant to use, and so recommend it.
+Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
 
-In the ancient past, once there was no standard at all -- each browser did whatever it wanted. So different browsers had different sets methods and properties for the same thing, and developers had to write different code for each of them. Dark times indeed.
+In the ancient past, there was no standard at all -- each browser implemented whatever it wanted. So different browsers had different sets methods and properties for the same thing, and developers had to write different code for each of them. Dark, messy times.
 
 Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But in this tutorial we'll use modern stuff: there's no need to learn old things until you really need those (chances are high you won't).
 
-Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was DOM Level 1, then it was extended by DOM Level 2, then DOM Level 3, and now it's DOM Level 4.
-
-People from WhatWG group got tired of version and are calling that just "DOM", without a number. So will do we.
+Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's DOM Level 4. People from WhatWG group got tired of version and are calling that just "DOM", without a number. So will do we.
 
 ```smart header="DOM is not only for browsers"
 The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
@@ -72,9 +71,9 @@ For instance, server-side tools that download HTML pages and process them. They 
 ```
 
 ```smart header="CSSOM for styling"
-CSS styles and stylesheets are structured not like HTML. So there's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how CSS styles and rules can be represented as objects, how to read and write them.
+CSS rules and stylesheets are structured not like HTML. So there's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, how to read and write them.
 
-Usually we take a style somewhere from the document and apply it to the document, so CSSOM is used together with DOM. But CSSOM is applied not often, because we rarely need to modify CSS rules from JavaScript, so we won't cover it right now.
+CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
 ```
 
 ## BOM (part of HTML spec)
@@ -95,7 +94,7 @@ if (confirm("Go to wikipedia?")) {
 }
 ```
 
-Functions `alert/confirm/prompt` -- are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
 
 
 ```smart header="HTML specification"
@@ -112,11 +111,13 @@ DOM specification
 : Describes the document structure, manipulations and events, see <https://dom.spec.whatwg.org>.
 
 CSSOM specification
-: Describes styles, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
+: Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
 
 HTML specification
 : Describes HTML language (tags etc) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
 
 Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is the most complex part.
 
-Please note the links above, because there's so many stuff to learn, it's impossible to cover and remember everything. When you'd like to read about a property or a method -- the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice one, but reading the corresponding spec may be better. More complex and longer to read, but will make your fundamental knowledge sound and complete.
+Please note the links above, because there's so many stuff to learn, it's impossible to cover and remember everything.
+
+When you'd like to read about a property or a method -- the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice one, but reading the corresponding spec may be better: more complex and longer to read, but will make your fundamental knowledge sound and complete.

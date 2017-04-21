@@ -1,13 +1,6 @@
 
 # Callback hell
 
-Many things that we do in JavaScript are asynchronous. We initiate a process, but it finishes later.
-
-The most obvious example is `setTimeout`, but there are others, like making network requests, performing animations and so on.
-
-[cut]
-
-## Callbacks
 
 Consider this function `loadScript(src)` that loads a script:
 
@@ -28,19 +21,28 @@ We can use it like this:
 loadScript('/my/script.js');
 ```
 
-The function is asynchronous: the script starts loading now, but finishes later.
+The function is *asynchronous*: the script starts loading now, but finishes later.
 
-```smart header="Synchronous vs asynchronous"
 "Synchonous" and "asynchronous" are general programming terms, not specific to JavaScript.
 
-A *synchronous* action suspends the execution until it's completed. For instance, `alert` and `prompt` are synchronous: the program may not continue until they are finished.
+A *synchronous* action suspends the execution until it's completed. For instance, a call to `alert` or `prompt` is synchronous: the program may not continue until it's finished.
 
-An *asynchronous* action allows the program to continue while it's in progress. For instance, `loadScript` in the example above initiates the script loading, but does not suspend the execution. Other commands may execute while the script is loading.
+```js
+let age = prompt("How old are you", 20);
+// the execution of the code below awaits for the prompt to finish
 ```
 
-As of now, `loadScript` provides no way to track the load end. How can we execute our own code after the script is loaded?
+An *asynchronous* action allows the program to continue while it's in progress. For instance, a call to `loadScript` is asynchronous. It initiates the script loading, but does not suspend the execution. Other commands may execute while the script is loading:
 
-Let's allow that by adding a custom function as a second argument to `loadScript`, that should execute at that moment:
+```js
+loadScript('/my/script.js');
+// the execution does not wait for the script loading to finish,
+// it just goes on
+```
+
+As of now, `loadScript` provides no way to track the load completion. The script loads and eventually runs.
+
+Let's add a `callback` function as a second argument to `loadScript`, that should execute at when the script is loaded.
 
 ```js
 function loadScript(src, callback) {
@@ -53,15 +55,25 @@ function loadScript(src, callback) {
 }
 ```
 
-Now when we want to load a script and then do something, we can call:
+Now we're able to load a script and run our code that can use new functions from it, like here:
 
-```js
-loadScript('/my/script.js', function(script) {
-  alert(`Cool, the ${script.src} is loaded, let's use it`);
+```js run
+function loadScript(src, callback) {
+  let script = document.createElement('script');
+  script.src = src;
+  script.onload = () => callback(script);
+  document.head.append(script);
+}
+
+*!*
+loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', function(script) {
+  alert(`Cool, the ${script.src} is loaded`);
+  alert( _ ); // function declared in the loaded script
 });
+*/!*
 ```
 
-...And it works, shows the `alert` after the script is loaded.
+That's called a "callback style" of asynchronous programming. A function that does something asynchronously provides a callback argument where we put the code to run after it's complete.
 
 ## Callback in callback
 
@@ -92,24 +104,22 @@ loadScript('/my/script.js', function(script) {
 
   loadScript('/my/script2.js', function(script) {
 
-    if (something) {
 *!*
-      loadScript('/my/script3.js', function(script) {
-        // ...continue after all scripts are loaded
-      });
+    loadScript('/my/script3.js', function(script) {
+      // ...continue after all scripts are loaded
+    });
 */!*
-    }
 
   })
 
 });
 ```
 
-As you can see, a new asynchronous action means one more nesting level.
+As we can see, a new asynchronous action means one more nesting level. So the code becomes deeper and deeper.
 
 ## Handling errors
 
-In this example we didn't consider errors. What if a script loading failed with an error? Our callback should be able to react on that.
+In examples above we didn't consider errors. What if a script loading failed with an error? Our callback should be able to react on that.
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
@@ -140,11 +150,13 @@ loadScript('/my/script.js', function(error, script) {
 });
 ```
 
-The first argument of `callback` is reserved for errors, and the second argument is for the successful result.
+The convention is:
+1. The first argument of `callback` is reserved for an error if it occurs.
+2. The second argument (and successive ones if needed) are for the successful result.
+
+So the single `callback` function is used both for reporting errors and passing back results.
 
 ## Pyramid of doom
-
-What we've just seen is called a "callback-based" approach to asynchronous programming. We pass a function, and it should run after the process is complete: with an error or a successful result.
 
 From the first look it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
 
@@ -191,4 +203,38 @@ That's sometimes called "callback hell" or "pyramid of doom".
 
 The pyramid grows to the right with every asynchronous action. Soon it spirales out of control.
 
-Fortunately, there are ways to evade such pyramids. One of them is using "promises", we'll study them in the next chapters.
+In simple cases we can evade the problem by making every action a standalone function, like this:
+
+```js
+loadScript('1.js', step1);
+
+function step1(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', step2);
+  }
+}
+
+function step2(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('3.js', step3);
+  }
+}
+
+function step3(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...continue after all scripts are loaded (*)
+  }
+};
+```
+
+See? There's no deep nesting now, because we moved every function to the top. But the code looks like a torn apart spreadsheet. We need to eye-jump between pieces while reading it. The functions `step*` have no use, they are only created to evade the "pyramid of doom".
+
+Luckily, there are other ways to evade such pyramids. Most modern code makes use of "promises", we'll study them in the next chapter.

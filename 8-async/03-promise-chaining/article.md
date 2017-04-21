@@ -253,7 +253,7 @@ new Promise(function(resolve, reject) {
 ```
 
 
-### Rethrowing
+## Rethrowing
 
 As we already noticed, `.catch` is like `try..catch`. We may have as many `.then` as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
@@ -308,7 +308,7 @@ new Promise(function(resolve, reject) {
 }).then(alert); // undefined
 ```
 
-### Unhandled rejections
+## Unhandled rejections
 
 What if we forget to handle an error?
 
@@ -343,6 +343,7 @@ Usually that means that the code is bad. Most JavaScript engines track such situ
 // open in a new window to see in action
 
 window.addEventListener('unhandledrejection', function(event) {
+  // the event object has two special properties:
   alert(event.promise); // the promise that generated the error
   alert(event.reason); // the error itself (Whoops!)
 });
@@ -359,53 +360,3 @@ new Promise(function() {
 ```
 
 In non-browser environments there's also a similar event, so we can always track unhandled errors in promises.
-
-
-An object that has a method called `.then` is called a "thenable".
-
-Instead of checking if something is `instanceof Promise`, we should usually check it for being thenable, and if it is, then treat it as a promise ("duck typing").
-
-JavaScript specification also checks the value returned by a handler for being a thenable, not exactly a promise, when it decides whether to pass it along the chain or wait for the result. So in the examples above we could use custom thenables instead of `Promise` instances.
-
-For instance, native promises give no way to "abort" the execution. The `loadScript` above cannot "cancel" script loading, just because there's no `.abort` method on promises, we can only listen for the state change using `.then/catch`.
-
-## Extending promises, thenables
-
-Promises are very simple by design. One of the thing they miss is the ability to cancel the process.
-
-For instance, `loadScript(src)` in previous examples returns a promise that allows to track success/failure of the loading. But can we abort it? No.
-
-We can inherit from `Promise` to introduce such functionality, like this:
-
-
-// TODO: NOT WORKING AS INTENDED?
-
-```js run
-function loadScript(src) {
-  let script = document.createElement('script');
-  script.src = src;
-
-  let promise = new Promise(function(resolve, reject) {    
-    script.onload = () => resolve(script);
-*!*
-    script.onerror = err => reject(new Error("Script load error: " + src)); // (*)
-*/!*
-  });
-
-  document.head.append(script);
-  promise.abort = () => script.remove();
-  return promise;
-}
-
-let promise = loadScript("/article/promise-chaining/one.js");
-promise.then(alert);
-promise.abort();
-```
-
-
-
-
-
-
-
-## Inheriting from promise, thenables, promise api, async/await

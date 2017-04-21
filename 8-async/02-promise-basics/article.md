@@ -2,6 +2,13 @@
 
 A promise is an object of the built-in `Promise` class. It has the meaning of the "delayed result".
 
+The promise object has two inernal fields in it:
+
+- `state` -- one of: "pending", "fulfilled", "rejected".
+- `result` -- when `new Promise` is created.
+
+
+
 The constructor syntax is:
 
 ```js
