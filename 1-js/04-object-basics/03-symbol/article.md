@@ -113,8 +113,8 @@ let user = {
 for(let key in user) alert(key); // name, age (no symbols)
 */!*
 
-// the direct access by the global symbol works
-alert( "Direct: " + user[Symbol.for("id")] );
+// the direct access by the symbol works
+alert( "Direct: " + user[id] );
 ```
 
 That's a part of the general "hiding" concept. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.

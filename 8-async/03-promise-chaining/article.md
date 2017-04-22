@@ -3,17 +3,14 @@
 
 Let's formulate the problem mentioned in the chapter <info:callback-hell>:
 
-- We have a sequence of tasks to be done one after another. For instance, loading scripts. The next task may need  the result of the previous one.
+- We have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts.
 - How to code it well?
 
-Promises can cover that need in two ways:
+Promises allow a couple of recipes to do that.
 
-1. Promises chaining.
-2. Async functions.
+[cut]
 
-Let's see the first way in this chapter and the second one in the next.
-
-Promises chaining looks like this:
+In this chapter we cover promise chaining. It looks like this:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -36,12 +33,17 @@ new Promise(function(resolve, reject) {
   return result * 2;
 
 });
-// ...
 ```
 
-As we can see, a call to `promise.then` returns a promise, that we can use again for `.then`. A value returned by `.then` becomes a result in the next `.then`. So in the example above we have a sequence of results: `1` -> `2` -> `4`.
+As we can see:
+- A call to `promise.then` returns a promise, that we can use for the next `.then` (chaining).
+- A value returned by `.then` handler becomes a result in the next `.then`.
 
-Please note that chaining `.then` is not the same as many `.then` on a single promise, like below:
+![](promise-then-chain.png)
+
+So in the example above we have a sequence of results: `1` -> `2` -> `4`.
+
+Please note the difference between chained `.then` and many `.then` on a single promise, like below:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -65,6 +67,8 @@ promise.then(function(result) {
 ```
 
 In the code above, all `.then` are on the same promise, so all of them get the same result -- the result of that promise. And all `alert` show the same: 1.
+
+![](promise-then-many.png)
 
 If we want to use the value returned by a handler of `.then`, then we should add a new `.then` after it (to chain).
 

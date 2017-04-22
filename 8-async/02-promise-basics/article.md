@@ -1,11 +1,5 @@
 # Promise
 
-
-```compare plus="Plus" minus="Minus"
-+ One
-- two
-```
-
 A promise is an object of the built-in `Promise` class.
 
 The promise object has two main internal properties: `state` and the `result`.
@@ -224,98 +218,59 @@ promise.then(
 promise.then(script => alert('One more handler to do something else!'));
 ```
 
-We can immediately see few benefits over the callback-based syntax in the example above.
+We can immediately see few benefits over the callback-based syntax:
 
-| Callbacks | Promises |
-|-----------|----------|
-| We must have `callback` function when calling `loadScript`. So we must know what to do with the result *before* we make a call for it. | Promises allow us to code more naturally. First we run `loadScript`, then code what we do with the result. |
-|There can be only one callback. | We can call `.then` as many times as we want. |
-
-
-We can call `promise.then` at any time. Maybe much later, when we really need that script.
-
-1. We can call `promise.then` as many times as want, so we can add any number of handlers.
-3. The `promise` object can be passed around, new handlers can be added where needed in other parts of the code.
-
-So promises give us flexibility. But there's more. We can chain promises and use `async` functions and so on. We'll see that in the next chapters.
-
-Read the notes below for better understanding of promise objects.
-
-````warn header="Once a promise settles, it can't be changed"
-When either `resolve` or `reject` is called -- the state change is final. The argument of `resolve/reject` is saved in the promise object.
-
-Future calls of `resolve/reject` are ignored, so there's no way to "re-resolve" or "re-reject" a promise.
-
-For instance, here only the first `resolve` works:
-
-```js run
-let promise = new Promise(function(resolve, reject) {
-  resolve("done!"); // immediately fulfill with the result: "done"
-
-  // a subsequent resolve is ignored
-  setTimeout(() => resolve("..."), 1000);
-  // a subsequent reject is ignored
-  setTimeout(() => reject(new Error("..."), 2000));  
-});
-
-promise.then(result => alert(result), () => alert("Never runs"));
-```
-````
-
-
-````smart header="A promise may resolve immediately, doesn't have to be asynchronous"
-As we've seen from the example above, a promise may call resolve/reject without delay:
-
-```js run
-new Promise(function(resolve, reject) {
-  resolve("done!"); // immediately fulfill with the result: "done"
-}).then(alert);
+```compare minus="Callbacks" plus="Promises"
+- We must have `callback` function available when calling `loadScript`. So we must know what to do with the result *before* we make a call for it.
+- There can be only one callback.
++ Promises allow us to code more naturally. First we run `loadScript`, and `.then` code what we do with the result.
++ We can call `.then` as many times as we want.
 ```
 
-That's normal, sometimes it turns out that there's no asynchronous job to be done. For instance, if we have a cached result.
-````
+
+So promises give us better code flow and flexibility. But there's more.  We'll see that in the next chapters.
 
 ````smart header="On settled promises `then` runs immediately"
 We can add `.then/catch` at any time.
 
-If the promise has not settled yet, then it will wait for the result.
-
-Otherwise, if the promise has already resolved/rejected, then subsequent `promise.then/catch` handlers are executed immediately.
-
-To be precise -- they are still asynchronous, but run as soon as possible, similar to `setTimeout(...,0)`.
-
-For instance, here we'll first see "code end", and then "done!":
+If the promise has not settled yet, then it will wait for the result. Otherwise, if the promise has already settled, then `promise.then/catch` handlers run immediately:
 
 ```js run
-// the promise is in the "resolved" state immediately
-let promise = new Promise(function(resolve, reject) {
-  resolve("done!");
-});
+let promise = new Promise(resolve => resolve("done!")); // immediately resolve
 
-// the handler runs as soon as possible, but asynchronously, like setTimeout(...,0)
-promise.then(alert);
+promise.then(alert); // done! (without delay)
+```
 
-alert('code end');
+
+To be precise -- handlers are always asynchronous, but if the promise is settled they run as soon as possible, similar to `setTimeout(...,0)`.
+
+For instance, here we'll first see "code end" `(1)`, and then "done!" `(2)`:
+
+```js run
+let promise = new Promise(resolve => resolve("done!"));
+
+// alert runs as soon as possible, but asynchronously,
+// like if it were wrapped in setTimeout(..., 0);
+promise.then(alert); // (2)
+
+alert('code end'); // (1)
 ```
 
 ````
 
-````smart header="Functions resolve/reject have only one argument"
+````smart header="Functions resolve/reject accept at most one argument"
 Functions `resolve/reject` accept only one argument.
 
-We can call them without any arguments too. The call `resolve()` makes the result `undefined`:
+We can call them without any arguments too, that's the same as passing `undefined`:
 
 ```js run
-let promise = new Promise(function(resolve, reject) {
-  resolve();
-});
+let promise = new Promise(resolve => resolve());
 
-promise.then(result => alert(result)); // undefined
+promise.then(alert); // undefined
 ```
 
-...But if we pass many arguments: `resolve(1, 2, 3)`, then all arguments after the first one are ignored. A promise may have only one value as a result/error.
-
-Use objects and destructuring if you need to pass many values, like this:
+...But if we pass many arguments: `resolve(1, 2, 3)`, then all arguments after the first one are ignored.
+The idea is that a promise may have only one result (or an error). Use objects and destructuring if you need to pass many values, like this:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
