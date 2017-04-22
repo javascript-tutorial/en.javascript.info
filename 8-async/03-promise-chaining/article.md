@@ -43,7 +43,7 @@ As we can see:
 
 So in the example above we have a sequence of results: `1` -> `2` -> `4`.
 
-Please note the difference between chained `.then` and many `.then` on a single promise, like below:
+Please note the technically we can also add many `.then` to a single promise, without any chaining, like here:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -66,17 +66,19 @@ promise.then(function(result) {
 });
 ```
 
-In the code above, all `.then` are on the same promise, so all of them get the same result -- the result of that promise. And all `alert` show the same: 1.
+...But that's a totally different thing. All `.then` on the same promise get the same result -- the result of that promise:
 
 ![](promise-then-many.png)
 
-If we want to use the value returned by a handler of `.then`, then we should add a new `.then` after it (to chain).
+So in the code above all `alert` show the same: 1.
+
+In practice chaining is used far more often than adding many handlers to the same promise.
 
 ## Returning promises
 
-Normally, the value returned by a handler is passed to the next `.then`. But there's an exception. If the returned value is a promise, then further execution is suspended till it settles. And then the result of that promise is used.
+Normally, a value returned by a handler is passed to the next `.then`. But there's an exception. If the returned value is a promise, then further execution is suspended till it settles. And then the result of that promise is given to the next `.then`.
 
-Let's see it in action here:
+For instance:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -110,11 +112,11 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Now we have the same 1 -> 2 > 4 output, but with 1 second delay between each.
+Here each `.then` returns `new Promise(…)`. JavaScript awaits for it to settle and then passes on the result.
 
-When we return `new Promise(…)`, the next `.then` in the chain is executed when it settles and gets its result.
+So the output is again 1 -> 2 > 4, but with 1 second delay between `alert` calls.
 
-Let's use it with `loadScript` to load multiple scripts one by one, in sequence:
+Let's use it with `loadScript` to load scripts one by one, in sequence:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -132,7 +134,7 @@ loadScript("/article/promise-chaining/one.js")
 ```
 
 
-The code totally evades the pyramid of doom. We can add more asynchronous actions to the chain, and the code is still "flat".
+We can add more asynchronous actions to the chain, and the code is still "flat", no "pyramid of doom".
 
 ## Error handling
 
