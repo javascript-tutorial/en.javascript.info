@@ -463,7 +463,7 @@ It looks like this:
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 ```
 
-...And now we reed to *deserialize* it, to turn back into JavaScript object.
+...And now we need to *deserialize* it, to turn back into JavaScript object.
 
 Let's do it by calling `JSON.parse`:
 
