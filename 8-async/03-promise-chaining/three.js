@@ -1,1 +1,3 @@
-let three = 3;
+function three() {
+  alert(3);
+}

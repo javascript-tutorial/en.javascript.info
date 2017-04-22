@@ -1,1 +1,3 @@
-let two = 2;
+function two() {
+  alert(2);
+}

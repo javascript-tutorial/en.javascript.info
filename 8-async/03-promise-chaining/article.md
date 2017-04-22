@@ -116,6 +116,31 @@ Here each `.then` returns `new Promise(…)`. JavaScript awaits for it to settle
 
 So the output is again 1 -> 2 > 4, but with 1 second delay between `alert` calls.
 
+````smart header="Thenables"
+To be precise, any object that has a method `.then` is treated as a promise here. So that we could use a custom "promise-compatible" object in the chain. Such objects are called "thenable".
+
+Here's an example:
+
+```js run
+let thenable = {
+  then(resolve, reject) {
+    setTimeout(() => resolve(result * 2), 1000);
+  }
+};
+
+new Promise(resolve => resolve(1))
+  .then(result => {
+    return thenable;
+  })
+  .then(alert); // shows 2 after 1000ms
+```
+In practice we rarely need thenables, because if we want to make our own promise-compatible objects, then we can  inherit from the native `Promise` class.
+
+But that's still good, because gives us additional flexibility. We don't *have* to inherit from `Promise`. In particular, that allows to use a custom implementations of promises coming from 3rd-party libraries along with native promises.
+````
+
+## Example: loadScript
+
 Let's use it with `loadScript` to load scripts one by one, in sequence:
 
 ```js run
@@ -127,41 +152,27 @@ loadScript("/article/promise-chaining/one.js")
     return loadScript("/article/promise-chaining/three.js");
   })
   .then(function(script) {
-    // use variables declared in scripts
+    // use functions declared in scripts
     // to show that they indeed loaded
-    alert("Done: " + (one + two + three));
+    one();
+    two();
+    three();
   });
 ```
 
+Here each `loadScript` call returns a promise, and the next `.then` awaits until it resolves. So scripts are loaded one after another.
 
-We can add more asynchronous actions to the chain, and the code is still "flat", no "pyramid of doom".
+We can add more asynchronous actions to the chain, and the code is still "flat", no signs of "pyramid of doom".
 
 ## Error handling
 
-In case of an error, the closest `onRejected` handler down the chain is called.
+Asynchronous actions do not always succeed. For instance, `loadScript` fails if there's no such script.
 
-Let's recall that a rejection (error) handler may be assigned with two syntaxes:
+Luckily, chaining is great for handling errors. When a promise rejects, the control jumps to the closest rejection handler down the chain.
 
-- `.then(...,onRejected)`, as a second argument of `.then`.
-- `.catch(onRejected)`, a shorthand for `.then(null, onRejected)`.
-
-In the example below we use the second syntax to catch all errors in the script load chain:
+In the example below we append `.catch` to handle all errors in the scripts loading chain:
 
 ```js run
-function loadScript(src) {  
-  return new Promise(function(resolve, reject) {
-    let script = document.createElement('script');
-    script.src = src;
-
-    script.onload = () => resolve(script);
-*!*
-    script.onerror = () => reject(new Error("Script load error: " + src)); // (*)
-*/!*
-
-    document.head.append(script);
-  });
-}
-
 *!*
 loadScript("/article/promise-chaining/ERROR.js")
 */!*
@@ -172,20 +183,18 @@ loadScript("/article/promise-chaining/ERROR.js")
     return loadScript("/article/promise-chaining/three.js");
   })
   .then(function(script) {
-    // use variables declared in scripts
-    // to show that they indeed loaded
-    alert("Done: " + (one + two + three));
+    alert('done!');
   })
 *!*
-  .catch(function(error) { // (**)
+  .catch(function(error) { // (*)
     alert(error.message);
   });
 */!*
 ```
 
-In the code above the first `loadScript` call fails, because `ERROR.js` doesn't exist. The initial error is generated in the line `(*)`, then the first error handler in the chain is called, that is `(**)`.
+In the code above the first `loadScript` call fails, because `ERROR.js` doesn't exist. The control jumps to the closest error handler `(*)`.
 
-Now the same thing, but the error occurs in the second script:
+The same error handler is called if an error occurs in the second script:
 
 
 ```js run
@@ -199,9 +208,7 @@ loadScript("/article/promise-chaining/one.js")
     return loadScript("/article/promise-chaining/three.js");
   })
   .then(function(script) {
-    // use variables declared in scripts
-    // to show that they indeed loaded
-    alert("Done: " + (one + two + three));
+    alert('done!');
   })
 *!*
   .catch(function(error) {
@@ -210,12 +217,14 @@ loadScript("/article/promise-chaining/one.js")
 */!*
 ```
 
-Once again, the `.catch` handles it.
+The `.catch` works like in a `try..catch` block. We may have as many `.then` as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
 
-### Implicit try..catch
+## Implicit try..catch
 
-Throwing an exception is considered a rejection.
+Promises automatically take care about errors thrown inside them.
+
+That's like an executor and handlers have invisible `try..catch` around them. If an error happens, it's considered a rejection.
 
 For instance, this code:
 
@@ -229,7 +238,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-...Works the same way as:
+...Works the same way as this:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -241,35 +250,57 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Like there's an invisible `try..catch` around the whole code of the function, that catches errors.
+The `Promise` constructor automatically catches the error and treats it as a rejection.
 
-That works not only in the executor, but in handlers as well, for instance:
+That works not only in the executor, but in handlers as well. If we `throw` inside `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
+
+Here's an example:
 
 ```js run
 new Promise(function(resolve, reject) {
-  resolve("ok")
+  resolve("ok");
 }).then(function(result) {
 *!*
-    throw new Error("Whoops!");
+  // .then returns a rejected promise
+  throw new Error("Whoops!");
 */!*
-})
-.catch(function(error) {
+}).catch(function(error) {
+  // and the error is handled here
   alert(error.message); // Whoops!
 });
 ```
 
+That's so not only for `throw`, but for any errors, including programming errors as well:
+
+```js run
+new Promise(function(resolve, reject) {
+  resolve("ok");
+}).then(function(result) {
+*!*
+  blabla(); // no such function
+*/!*
+}).catch(function(error) {
+  alert(error.message); // blabla is not defined
+});
+```
+
+To summarize, a `.then` handler can finish in three ways:
+
+1. It can return a value (or undefined if there's no `return`). Then the promise returned by `.then` becomes fulfilled, and the next handler is called with that value.
+2. It can throw an error. Then the promise returned by `.then` becomes rejected and the closest rejection handler is called.
+3. It can return a promise. Then JavaScript awaits its result and goes on with it.
+
+![](promise-handler-variants.png)
 
 ## Rethrowing
 
-As we already noticed, `.catch` is like `try..catch`. We may have as many `.then` as we want, and then use a single `.catch` at the end to handle errors in all of them.
+As we already noticed, `.catch` behaves like `try..catch`. We may have as many `.then` as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
-In a regular `try..catch` we can analyze the error and maybe rethrow it can't handle. The same thing is possible for promises.
+In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
 
-A handler in `.catch` can finish in two ways:
+An error handler has the same 3 outcomes as described above. So if we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we finish normally, then it continues to TODO
 
-1. It can return a value or don't return anything. Then the execution continues "normally", the next `.then(onResolved)` handler is called.
-2. It can throw an error. Then the execution goes the "error" path, and the closest rejection handler is called.
-
+TODO TODO
 Here is an example of the first behavior (the error is handled):
 
 ```js run
