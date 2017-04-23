@@ -67,9 +67,9 @@ There are two differences between them.
 |         | `async` | `defer` |
 |---------|---------|---------|
 | Order | Scripts with `async` execute *in the load-first order*. Their document order doesn't matter -- which loads first runs first. | Scripts with `defer` always execute *in the document order* (as they go in the document). |
-| `DOMContentLoaded` | Scripts with `async` may load and execute *before `DOMContentLoaded`*: if they are small, and the document is big, they load faster. | Scripts with `defer` always execute *after `DOMContentLoaded`*: they wait for it if needed. |
+| `DOMContentLoaded` | Scripts with `async` may load and execute while the document has not yet been fully downloaded. | Scripts with `defer` execute after the document is loaded and parsed (they wait if needed), right before `DOMContentLoaded`. |
 
-So `async` is used for totally independent scripts, and `defer` is used where we want some order.
+So `async` is used for totally independent scripts.
 
 ```
 
