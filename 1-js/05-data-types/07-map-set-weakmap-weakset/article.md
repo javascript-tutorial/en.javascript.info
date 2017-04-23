@@ -31,7 +31,7 @@ map.set('1', 'str1');   // a string key
 map.set(1, 'num1');     // a numeric key
 map.set(true, 'bool1'); // a boolean key
 
-// remember the regular Object? it would keys to string
+// remember the regular Object? it would convert keys to string
 // Map keeps the type, so these two are different:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
@@ -253,7 +253,7 @@ john = null;
 
 Usually, properties of an object or elements of an array or another data structure are considered reachable and kept in memory while that data structure is in memory.
 
-In a regular `Map`, if we store an object as the key or as a value -- does not matter, then it is stored there even if there are no more references to it.
+In a regular `Map`, it does not matter if we store an object as a key or as a value.It is kept in memory even if there are no more references to it.
 
 For instance:
 ```js
