@@ -14,7 +14,7 @@ For instance:
 - `setTimeout(func)` -- `func` is executed by the built-in scheduler.
 - ...there are more.
 
-It's very in the spirit of JavaScript to create a function and pass it somewhere.
+It's in the very spirit of JavaScript to create a function and pass it somewhere.
 
 And in such functions we usually don't want to leave the current context.
 
