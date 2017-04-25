@@ -36,9 +36,10 @@ In practice, lightweight editors may have a lot of plugins including directory-l
 
 The following options deserve your attention:
 
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
 - [Atom](https://atom.io/) (cross-platform, free).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
-- [Notepad++](http://sourceforge.net/projects/notepad-plus/) (Windows, free).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
 - Vim, Emacs are cool, if you know how to use them.
 
 ## My favorites
