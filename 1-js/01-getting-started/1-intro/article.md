@@ -41,7 +41,7 @@ Engines are complicated. But the basics are easy.
 The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data which flows through it and applies optimizations to the machine-code basing on that knowledge.
 ```
 
-## What in-browser JavaScript can do?
+## What can in-browser JavaScript do?
 
 The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
@@ -57,7 +57,7 @@ For instance, in-browser JavaScript is able to:
 - Get and set cookies, ask questions to the visitor, show messages.
 - Remember the data on the browser side ("local storage").
 
-## What in-browser JavaScript can NOT do?
+## What can in-browser JavaScript NOT do?
 
 JavaScript abilities in the browser are limited for the sake of the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
 
@@ -73,13 +73,13 @@ The examples of such restrictions are:
     That is called a "Same Origin Policy". To workaround that, *both pages* must contain a special JavaScript code that handles data exchange.
 
     The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened occasionaly must not be able to open or access another browser tab with the URL `http://gmail.com` and steal information from there.
-- JavaScript can easily communicate over the net to the server where the current page came from. But it's ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
+- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 
 ![](limitations.png)
 
 Such limits do not exist if JavaScript is used outside of the browser, for example on a server. Modern browsers also allow installing plugin/extensions which may get extended permissions.
 
-## Why JavaScript is unique?
+## What makes JavaScript unique?
 
 There are at least *three* great things about JavaScript:
 
@@ -93,7 +93,7 @@ Combined, these 3 things only exist in JavaScript and no other browser technolog
 
 That's what makes JavaScript unique. That's why it is the most widespread way of creating browser interfaces.
 
-While planning to learn a new technology, it's beneficial to check it's perspectives. So let's move on to the modern trends that include new languages and browser abilities.
+While planning to learn a new technology, it's beneficial to check its perspectives. So let's move on to the modern trends that include new languages and browser abilities.
 
 
 ## Languages "over" JavaScript
@@ -110,7 +110,7 @@ Examples of such languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby guys like it.
 - [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. It is developed by Microsoft.
-- [Dart](https://www.dartlang.org/) is a standalone language that has it's own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
 
 There are more. Of course even if we use one of those languages, we should also know JavaScript, to really understand what we're doing.
 
