@@ -30,32 +30,35 @@ A *synchronous* action suspends the execution until it's completed. For instance
 ```js
 let age = prompt("How old are you", 20);
 // the execution of the code below awaits for the prompt to finish
+// the script hangs
 ```
 
 An *asynchronous* action allows the program to continue while it's in progress. For instance, a call to `loadScript` is asynchronous. It initiates the script loading, but does not suspend the execution. Other commands may execute while the script is loading:
 
 ```js
 loadScript('/my/script.js');
-// the execution does not wait for the script loading to finish,
-// it just goes on
+// the execution of the code below *does not* wait for the script loading to finish,
+// it just continues
 ```
 
-As of now, `loadScript` provides no way to track the load completion. The script loads and eventually runs.
+As of now, the `loadScript` function loads the script, doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when happens, to use additional functions and variables from that script.
 
-Let's add a `callback` function as a second argument to `loadScript`, that should execute at when the script is loaded.
+Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
 
 ```js
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
 
+*!*
   script.onload = () => callback(script);
+*/!*
 
   document.head.append(script);
 }
 ```
 
-Now we're able to load a script and run our code that can use new functions from it, like here:
+Now we're able to load a script and then run our code that can use new functions from it, like here:
 
 ```js run
 function loadScript(src, callback) {
@@ -73,7 +76,9 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', f
 */!*
 ```
 
-That's called a "callback style" of asynchronous programming. A function that does something asynchronously provides a callback argument where we put the code to run after it's complete.
+That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
+
+Here it was used for `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 
@@ -151,10 +156,10 @@ loadScript('/my/script.js', function(error, script) {
 ```
 
 The convention is:
-1. The first argument of `callback` is reserved for an error if it occurs.
-2. The second argument (and successive ones if needed) are for the successful result.
+1. The first argument of `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
+2. The second argument and successive ones if needed are for the successful result. Then `callback(null, result1, result2…)` is called.
 
-So the single `callback` function is used both for reporting errors and passing back results.
+So the single `callback` function is used both for reporting errors and passing back results. That's called "error-first callback" style. Or we could use different functions for successful and erroneous completion.
 
 ## Pyramid of doom
 
@@ -203,6 +208,8 @@ That's sometimes called "callback hell" or "pyramid of doom".
 
 The pyramid grows to the right with every asynchronous action. Soon it spirales out of control.
 
+So this way of coding appears not so good.
+
 In simple cases we can evade the problem by making every action a standalone function, like this:
 
 ```js
@@ -235,6 +242,10 @@ function step3(error, script) {
 };
 ```
 
-See? There's no deep nesting now, because we moved every function to the top. But the code looks like a torn apart spreadsheet. We need to eye-jump between pieces while reading it. The functions `step*` have no use, they are only created to evade the "pyramid of doom".
+See? It does the same, and there's no deep nesting now, because we moved every function to the top. But the code looks like a torn apart spreadsheet. We need to eye-jump between pieces while reading it. It's not very readable, especially if you are not familiar with it and don't know where to eye-jump.
 
-Luckily, there are other ways to evade such pyramids. Most modern code makes use of "promises", we'll study them in the next chapter.
+Also the functions `step*` have no use, they are only created to evade the "pyramid of doom".
+
+So we'd like to have a better way of coding for complex asynchronous actions.
+
+Luckily, there are other ways to evade such pyramids. For instance, we can use "promises", described in the next chapter.

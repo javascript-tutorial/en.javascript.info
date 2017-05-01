@@ -186,7 +186,7 @@ Function `animate` accepts 3 parameters that essentially describes the animation
 
 Let's animate the element `width` from `0` to `100%` using our function.
 
-Click for the demo:
+Click on the element for the demo:
 
 [codetabs height=60 src="width"]
 
@@ -410,9 +410,7 @@ As we can see, the graph of the first half of the animation is the scaled down `
 
 ## More interesting "draw"
 
-Instead of moving the element we can do something else. All we need is to write the write `draw`
-
-### Typing in the text
+Instead of moving the element we can do something else. All we need is to write the write the proper `draw`.
 
 Here's the animated "bouncing" text typing:
 
@@ -420,9 +418,11 @@ Here's the animated "bouncing" text typing:
 
 ## Summary
 
-JavaScript animation is implemented with the help of `requestAnimationFrame`.
+JavaScript animation should be implemented via `requestAnimationFrame`. That built-in method allows to setup a callback function to run when the browser will be preparing a repaint. Usually that's very soon, but the exact time depends on the browser.
 
-The helper `animate` function:
+When a page is in the background, there are no repaints at all, so the callback won't run: the animation will be suspended and won't consume resources. That's great.
+
+Here's the helper `animate` function to setup most animations:
 
 ```js
 function animate({timing, draw, duration}) {

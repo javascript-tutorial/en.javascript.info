@@ -139,7 +139,7 @@ Please note:
 
 1. `getAttribute('About')` -- the first letter is uppercase here, and in HTML it's all lowercase. But that doesn't matter: attribute names are case-insensitive.
 2. We can assign anything to an attribute, but that becomes a string. So here we have `"123"` as the value.
-3. All attributes including ones that we set are seen in `innerHTML`.
+3. All attributes including ones that we set are visible in `outerHTML`.
 4. The `attributes` collection is iterable and has all attributes with `name` and `value`.
 
 ## Property-attribute synchronization

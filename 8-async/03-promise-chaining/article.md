@@ -6,11 +6,13 @@ Let's formulate the problem mentioned in the chapter <info:callback-hell>:
 - We have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts.
 - How to code it well?
 
-Promises allow a couple of recipes to do that.
+Promises provide a couple of recipes to do that.
 
 [cut]
 
-In this chapter we cover promise chaining. It looks like this:
+In this chapter we cover promise chaining.
+
+It looks like this:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -35,15 +37,26 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-As we can see:
-- A call to `promise.then` returns a promise, that we can use for the next `.then` (chaining).
-- A value returned by `.then` handler becomes a result in the next `.then`.
+The result is passed along the chain of `.then`, so we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
 
 ![](promise-then-chain.png)
 
-So in the example above we have a sequence of results: `1` -> `2` -> `4`.
+A call to `promise.then` returns a promise, so that we can call next `.then` on it. Here's a shorter code to illustrate that:
 
-Please note the technically we can also add many `.then` to a single promise, without any chaining, like here:
+```js run
+let p = new Promise((resolve, reject) => { /*...*/ });
+
+function handler() { /*...*/ }
+let p2 = p.then(handler);
+
+*!*
+alert(p2); // [object Promise]
+*/!*
+```
+
+When the `handler` is called, the value that it returns becomes the result of that promise `p2`. So if we add `p2.then`, the next handler receives that result, and so on.
+
+Please note: technically we can also add many `.then` to a single promise, without any chaining, like here:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -76,7 +89,9 @@ In practice chaining is used far more often than adding many handlers to the sam
 
 ## Returning promises
 
-Normally, a value returned by a handler is passed to the next `.then`. But there's an exception. If the returned value is a promise, then further execution is suspended till it settles. And then the result of that promise is given to the next `.then`.
+Normally, a value returned by a handler is passed to the next `.then` "as is". But there's an exception.
+
+If the returned value is a promise, then further execution is suspended until it settles. And then the result of that promise is given to the next `.then` handler.
 
 For instance:
 
@@ -116,27 +131,31 @@ Here each `.then` returns `new Promise(…)`. JavaScript awaits for it to settle
 
 So the output is again 1 -> 2 > 4, but with 1 second delay between `alert` calls.
 
+That feature allows to insert asynchronous actions into the chain.
+
 ````smart header="Thenables"
 To be precise, any object that has a method `.then` is treated as a promise here. So that we could use a custom "promise-compatible" object in the chain. Such objects are called "thenable".
 
 Here's an example:
 
 ```js run
-let thenable = {
+class Thenable {
+  constructor(result, delay) {
+    this.result = result;
+  }
   then(resolve, reject) {
-    setTimeout(() => resolve(result * 2), 1000);
+    setTimeout(() => resolve(this.result * 2), delay);
   }
 };
 
 new Promise(resolve => resolve(1))
   .then(result => {
-    return thenable;
+    return new Thenable(result, 1000);
   })
   .then(alert); // shows 2 after 1000ms
 ```
-In practice we rarely need thenables, because if we want to make our own promise-compatible objects, then we can  inherit from the native `Promise` class.
 
-But that's still good, because gives us additional flexibility. We don't *have* to inherit from `Promise`. In particular, that allows to use a custom implementations of promises coming from 3rd-party libraries along with native promises.
+We also can inherit from the native `Promise` class, but technically we don't have to. That allows to use custom implementations of promises from 3rd-party libraries along with native promises.
 ````
 
 ## Example: loadScript
@@ -298,10 +317,9 @@ As we already noticed, `.catch` behaves like `try..catch`. We may have as many `
 
 In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
 
-An error handler has the same 3 outcomes as described above. So if we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we finish normally, then it continues to TODO
+If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we finish normally, then it continues to the closest successful `.then` handler.
 
-TODO TODO
-Here is an example of the first behavior (the error is handled):
+In the example below the error is fully handled, and the execution continues normally:
 
 ```js run
 // the execution: catch -> then
@@ -316,7 +334,7 @@ new Promise(function(resolve, reject) {
   return "result"; // return, the execution goes the "normal way"
 */!*
 
-*!*
+*!
 }).then(alert); // result shown
 */!*
 ```
@@ -371,18 +389,16 @@ new Promise(function() {
 });
 ```
 
-Technically, when an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is none.
+Technically, when an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above.
 
 Usually that means that the code is bad. Most JavaScript engines track such situations and generate a global error. In the browser we can catch it using `window.addEventListener('unhandledrejection')` (as specified in the [HTML standard](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections)):
 
 
 ```js run
-// open in a new window to see in action
-
 window.addEventListener('unhandledrejection', function(event) {
   // the event object has two special properties:
-  alert(event.promise); // the promise that generated the error
-  alert(event.reason); // the error itself (Whoops!)
+  alert(event.promise); // [object Promise] - the promise that generated the error
+  alert(event.reason); // Error: Whoops! - the unhandled error object
 });
 
 new Promise(function() {
@@ -396,4 +412,38 @@ new Promise(function() {
 });
 ```
 
-In non-browser environments there's also a similar event, so we can always track unhandled errors in promises.
+In non-browser environments there are also a similar events, so we can always track unhandled errors in promises.
+
+## Summary
+
+- A call to `.then/catch` returns a promise, so we can chain them.
+- There are 3 possible outcomes of a handler:
+    1. Return normally -- the result is passed to the closest successful handler down the chain.
+    2. Throw an error -- it is passed to the closest rejection handler down the chain.
+    3. Return a promise -- the chain waits till it settles, and then its result is used.
+
+That allows to put a "queue" of actions into the chain.
+
+Here's a more complex example. The function `showMessage` loads a message and shows it:
+
+```js run
+function showMessage() {
+  return new Promise(function(resolve, reject) {
+    alert('loading...');
+    return loadScript('/article/promise-chaining/getMessage.js');
+  }).then(function(script) {
+    let message = getMessage(); // getMessage function comes from the script
+    return animateMessage(message);
+  }).catch(function(err) { /*...*/ });
+}
+
+function animateMessage(message) {
+  return new Promise(function(resolve, reject) {
+    // should be asynchronous animation
+    alert(message);
+    resolve();  
+  });
+}
+
+showMessage();
+```
