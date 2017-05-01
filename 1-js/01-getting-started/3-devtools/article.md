@@ -1,14 +1,14 @@
 # Developer console
 
-A code is error-prone. You are quite likely to have errors... Oh what I'm talking? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+Code is prone to errors. You are quite likely to have errors... Oh, what am I'm talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
 But in the browser, a user doesn't see the errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
 
 To see errors and get a lot of other useful information about scripts, browsers have embedded "developer tools".
 
-Most often developers lean towards Chrome or Firefox for the development, because developer tools are best there. Other browsers also provide developer tools, sometimes with special features, but usually are in "catching-up" position. So most people have a "favorite" browser and switch to others if a problem is browser-specific.
+Most often developers lean towards Chrome or Firefox for the development, because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catching-up" to Chrome or Firefox. So most people have a "favorite" browser and switch to others if a problem is browser-specific.
 
-Developer tools are really powerful, there are many features. Here, for the start, we'll learn how to open them, look at errors and run JavaScript commands.
+Developer tools are really powerful, there are many features. To start, we'll learn how to open them, look at errors and run JavaScript commands.
 
 [cut]
 
@@ -26,7 +26,7 @@ It looks somewhat like this:
 
 ![chrome](chrome.png)
 
-The exact look depends on your Chrome version. It changes from time to time, but should be similar.
+The exact message you see will depend on your version of Chrome. It changes from time to time, but should be similar.
 
 - Here we can see the red-colored error message. In this case the script contains an unknown "lalala" command.
 - On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.
