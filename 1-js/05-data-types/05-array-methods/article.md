@@ -213,7 +213,7 @@ The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/
 
 - `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otheriwse `-1`.
 - `arr.lastIndexOf(item, from)` -- same, but looks from right to left.
-- `arr.includes(item, from)` -- looks for `item` starting fron index `from`, returns `true` if found.
+- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
 
 For instance:
 
