@@ -253,7 +253,7 @@ john = null;
 
 Usually, properties of an object or elements of an array or another data structure are considered reachable and kept in memory while that data structure is in memory.
 
-In a regular `Map`, it does not matter if we store an object as a key or as a value.It is kept in memory even if there are no more references to it.
+In a regular `Map`, it does not matter if we store an object as a key or as a value. It's kept in memory even if there are no more references to it.
 
 For instance:
 ```js
