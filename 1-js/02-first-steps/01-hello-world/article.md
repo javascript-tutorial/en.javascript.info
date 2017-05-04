@@ -2,7 +2,7 @@
 
 The tutorial that you're reading is about core JavaScript, which is platform-independent. Further on, you will learn Node.JS and other platforms that use it.
 
-But, we need a working environment to run our scripts, and, just because this book is online, the browser a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum, so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
+But, we need a working environment to run our scripts, and, just because this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum, so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
 
 So first, let's see how to attach a script to the webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
 
@@ -68,9 +68,9 @@ Comments before and after scripts.
 
 ## External scripts
 
-If we have a lot of JavaScript code, we can it put it into a separate file.
+If we have a lot of JavaScript code, we can put it into a separate file.
 
-The script file is attached to HTML like this:
+The script file is attached to HTML with `src` attribute:
 
 ```html
 <script src="/path/to/script.js"></script>
@@ -80,7 +80,7 @@ Here `/path/to/script.js` is an absolute path to the file with the script (from 
 
 It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` from the current folder.
 
-We can give a full URL al well, for instance:
+We can give a full URL as well, for instance:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
@@ -99,13 +99,13 @@ As a rule, only simplest scripts are put into HTML. More complex ones reside in 
 
 The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 
-After it, other pages which want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
+After this, other pages which want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
 
 That saves traffic and makes pages faster.
 ```
 
 ````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag may not have both an `src` and the code inside.
+A single `<script>` tag may not have both, `src` attribute and the code inside.
 
 This won't work:
 
