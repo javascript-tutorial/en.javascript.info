@@ -209,7 +209,7 @@ let return = 5; // also can't name it "return", error!
 
 ````warn header="An assignment without `use strict`"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value, without `let`. This still works now in if we don't put `use strict`, the behavior is kept for compatibility with old scripts.
+Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value, without `let`. This still works now if we don't put `use strict`, the behavior is kept for compatibility with old scripts.
 
 ```js run no-strict
 // note: no "use strict" in this example
@@ -303,11 +303,11 @@ Please spend some time thinking about the right name for a variable before decla
 Some good-to-follow rules are:
 
 - Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names `a`, `b`, `c`, unless you really know what you're doing.
+- Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
 - Make the name maximally descriptive and concise. Examples of bad names are `data` and `value`. Such a name says nothing. It is only ok to use them if it's exceptionally obvious from the context which data or value is meant.
 - Agree on terms within the team and in your own mind. If a site visitor is called a "user" then we should name related variables like `currentUser` or `newUser`, but not `currentVisitor` or a `newManInTown`.
 
-Sounds simple? Indeed it is. But creating good descriptive-and-concise names in practice is not. Go for it.
+Sounds simple? Indeed it is, but creating good descriptive-and-concise names in practice is not. Go for it.
 
 ```smart header="Reuse or create?"
 And the last note. There are some lazy programmers who, instead of declaring a new variable, tend to reuse the existing ones.
@@ -327,6 +327,6 @@ We can declare variables to store data. That can be done using `var` or `let` or
 
 - `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
 - `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case if you'll need them.
-- `const` -- is like `let`, but the variable can't be changed.
+- `const` -- is like `let`, but the value of variable can't be changed.
 
 Variables should be named in a way that allows to easily understand what's inside.
