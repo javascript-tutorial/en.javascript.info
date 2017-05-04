@@ -185,7 +185,6 @@ let json = JSON.stringify(value[, replacer, space])
 
 value
 : A value to encode.
-
 replacer
 : Array of properties to encode or a mapping function `function(key, value)`.
 
@@ -242,9 +241,9 @@ alert( JSON.stringify(meetup, *!*['title', 'participants', 'place', 'name', 'num
 */
 ```
 
-Now everything excepts `occupiedBy` is serialized. But the list of properties is quite long.
+Now everything except `occupiedBy` is serialized. But the list of properties is quite long.
 
-Fortunately, we can use a function instead the array as `replacer`.
+Fortunately, we can use a function instead of an array as the `replacer`.
 
 The function will be called for every `(key,value)` pair and should return the "replaced" value, which will be used instead of the original one.
 
