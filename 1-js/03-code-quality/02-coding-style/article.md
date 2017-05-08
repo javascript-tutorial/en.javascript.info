@@ -248,21 +248,22 @@ That's because when reading a code, we first want to know "what it does". If the
 
 ## Style guides
 
-There are many details in the code style.
+A style guide contains general rules about "how to write": which quotes to use, how many spaces to indent, where to put line breaks etc. A lot of minor things.
 
-As the team becomes bigger, a common agreement on them becomes the "team style guide".
+In total, when all members of a team use the same style guide, the code looks uniform. No matter who of the team wrote it, still the same style.
 
-There are many open style guides, for instance:
+Surely, a team may think out a style guide themselves. But as of now, there's no need to. There are many tried, worked out style guides, easy to adopt.
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
+For instance:
+
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
+- (there are more)
 
-There exist more there in the wild.
+If you're a novice developer, then you could start with the cheatsheet above in the chapter, and later browse the style guides to pick up the common principles and maybe choose one.
 
-You can browse them and choose something as a base. As you become more mature in JavaScript programming, you might want to read them all to pick up the common principles.
-
-## Style checkers
+## Automated linters
 
 There are tools that can check the code style automatically. They are called "linters".
 
@@ -272,43 +273,53 @@ So it's recommended to install one, even if you don't want to stick to a "code s
 
 Most well-known tools are:
 
-- [JSLint](http://www.jslint.com/) -- one of the oldest open-source solutions.
-- [JSHint](http://www.jshint.com/) -- the more "featured" variant of JSLint.
-- [ESLint](http://eslint.org/) -- the newest breed.
+- [JSLint](http://www.jslint.com/) -- one of the first linters.
+- [JSHint](http://www.jshint.com/) -- more settings than JSHint.
+- [ESLint](http://eslint.org/) -- probably the newest one.
 
 All of them can do the job. The author uses [ESLint](http://eslint.org/).
 
-Here are simple steps to start using it:
+Most linters are integrated with editors: just enable the plugin in the editor and configure the style.
+
+For instance, for ESLint you should do the following:
 
 1. Install [Node.JS](https://nodejs.org/).
-2. Install eslint: `npm i -g eslint` (npm is Node.JS package installer).
-3. Create a config file `.eslintrc` in your JavaScript project (the dot at the start is mandatory).
+2. Install ESLint with the command `npm install -g eslint` (npm is Node.JS package installer).
+3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
 
-An example of `.eslintrc`:
+Here's an example of `.eslintrc`:
 
 ```js
 {
   "extends": "eslint:recommended",
   "env": {
     "browser": true,
+    "node": true,
     "es6": true
   },
   "rules": {
     "no-console": 0,
-    "no-constant-condition": ["error", { "checkLoops": false }]
   },
   "indent": 2
 }
 ```
 
+Here the directive `"extends"` denotes that we base on the "eslint:recommended" set of settings, and then we specify our own.
+
 Then install/enable the plugin for your editor that integrates with ESLint. The majority of editors have it.
 
-Also you can see [the manual](http://eslint.org/docs/user-guide/getting-started) for advanced examples, rules and options of ESLint.
+It is possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+
+Using a linter has the great side-effect. Linters catch typos. For instance, when an undefined variable is accessed, a linter detects it and (if integrated with an editor) highlights. In most cases that's a mistype. So we can fix it right ahead.
+
+For that reason even if you're not concerned about styles, using a linter is highly recommended.
+
+Also certain IDEs support built-in linting, but not so tunable as ESLint.
 
 ## Summary
 
-All syntax rules from this chapter and the style guides aim to increase readability.
+All syntax rules from this chapter and the style guides aim to increase readability, so all of them are debatable.
 
-All of them are debatable.
+When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to evade errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
 
-When we think about "how to write better?", the sole criterion is "what makes the code  more readable and easier to understand? what helps to evade errors?" 
+Read style guides to see the latest ideas about that and follow those that you find the best.

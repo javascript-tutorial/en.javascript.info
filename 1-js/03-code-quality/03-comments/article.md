@@ -143,75 +143,8 @@ Why the task is solved this way?
 Any subtle features of the code? Where they are used?
 : If the code has anything subtle and counter-obvious, it's definitely worth commenting.
 
-## Style guides
-
-A style guide contains general rules about "how to write": which quotes to use, how many spaces to indent, where to put line breaks etc. A lot of minor things.
-
-In total, when all members of a team use the same style guide, the code looks uniform. No matter who of the team wrote it, still the same style.
-
-Surely, a team may think out a style guide themselves. But as of now, there's no need to. There are many tried, worked out style guides, easy to adopt.
-
-For instance:
-
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
-- [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
-- [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
-- (there are more)
-
-If you're a novice developer, then you could start with the cheatsheet in the chapter <info:coding-style>, and later browse the style guides to see what looks best.
-
-Also consider the automatic style checkers, described below.
-
-## Automated style linters
-
-There are tools that automate style checking, called "linters".
-
-Most known are:
-
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSHint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
-
-The author of this chapter uses ESLint.
-
-Most linters are integrated with editors: just enable the plugin in the editor and configure the style.
-
-For instance, for ESLint you should do the following:
-
-1. Install Node.JS (can take from the <http://nodejs.org>).
-2. Install ESLint with the command `npm install -g eslint`.
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
-
-Here's an example of `.eslintrc`:
-
-```js
-{
-  "extends": "eslint:recommended",
-  "env": {
-    "browser": true,
-    "node": true,
-    "es6": true
-  },
-  "rules": {
-    "no-console": 0,
-  },
-  "indent": 2
-}
-```
-
-Here the directive `"extends"` denotes that we base on the "eslint:recommended" set of settings, and then we specify our own.
-
-It is possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
-
-Using a linter has the great side-effect. Linters catch typos. For instance, when an undefined variable is accessed, a linter detects it and (if integrated with an editor) highlights. In most cases that's a mistype. So we can fix it right ahead.
-
-For that reason even if you're not concerned about styles, using a linter is really recommended.
-
-
 ## Summary
 
 One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
 
-Code style is important too, especially in the team. When other people look at your code, the impression is largely defined by the style. Good code is easier to read and understand.
-
-Speaking about style rules: quotes, spaces etc, we should keep in mind that all of them are good *only* if they make the code better. More readable, easier to maintain. That's the main thing to keep in mind when choosing the style or discussing which one is better.
+Comments are also used for auto-documenting tools: they read them and generate HTML-docs (or in another format).
