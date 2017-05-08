@@ -1,6 +1,6 @@
 # Developer console
 
-Code is prone to errors. You are quite likely to have errors... Oh, what am I'm talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+A code is prone to errors. You are quite likely to have errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
 But in the browser, a user doesn't see the errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
 
@@ -26,7 +26,7 @@ It looks somewhat like this:
 
 ![chrome](chrome.png)
 
-The exact message you see will depend on your version of Chrome. It changes from time to time, but should be similar.
+The exact look of developer tools depends on your version of Chrome. It changes from time to time, but should be similar.
 
 - Here we can see the red-colored error message. In this case the script contains an unknown "lalala" command.
 - On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.
