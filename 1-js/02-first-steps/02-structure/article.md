@@ -102,7 +102,7 @@ As the time goes, the program becomes more and more complex. It becomes necessar
 
 Comments can be put into any place of the script. They don't affect the execution, because the engine simply ignores them.
 
-**One-line comments start with the two slash characters `//`.**
+**One-line comments start with the two forward slash characters `//`.**
 
 The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
 
@@ -114,7 +114,7 @@ alert('Hello');
 alert('World'); // This comment follows the statement
 ```
 
-**Multiline comments start with a slash and a star <code>"/&#42;"</code> and end with a star and a slash <code>"&#42;/"</code>.**
+**Multiline comments start with a forward slash and an asterisk <code>"/&#42;"</code> and end with an asterisk and a forward slash <code>"&#42;/"</code>.**
 
 Like this:
 
@@ -156,6 +156,6 @@ alert( 'World' );
 
 Please, don't hesitate to comment your code.
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to production server. They remove comments, so they do not appear in the working scripts. So, the comments do not have any negative effects on production at all.
+Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to production server. They remove comments, so comments do not appear in the working scripts. So, the comments do not have any negative effects on production at all.
 
-Further in the tutorial there will be a chapter <info:coding-style> that also explains how to write better comments.
+Further in the tutorial, there will be a chapter <info:coding-style> that also explains how to write better comments.
