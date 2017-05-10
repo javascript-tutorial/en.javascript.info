@@ -418,7 +418,7 @@ Remember [arrow functions](info:function-expression#arrow-functions)? We can use
 arr.sort( (a, b) => a - b );
 ```
 
-This works exactly the same as the other, longer, versions above.
+This works exactly the same as the other, longer, version above.
 ````
 
 ### reverse
