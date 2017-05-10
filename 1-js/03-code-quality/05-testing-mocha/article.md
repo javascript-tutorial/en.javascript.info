@@ -384,7 +384,7 @@ The spec can be used in three ways:
 2. **Docs** -- the titles of `describe` and `it` tell what the function does.
 3. **Examples** -- the tests are actually working examples showing how a function can be used.
 
-With the spec, we can safely improve, change, even rewrite the function from the scratch and make sure it still works right.
+With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
 
 That's especially important in large projects when a function is used in many places. When we change such a function -- there's just no way to manually check if every place that uses them still works right.
 

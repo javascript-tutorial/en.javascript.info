@@ -4,7 +4,7 @@ importance: 3
 
 # Is array copied?
 
-What this code is going to show?
+What is this code going to show?
 
 ```js
 let fruits = ["Apples", "Pear", "Orange"];

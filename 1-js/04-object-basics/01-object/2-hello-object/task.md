@@ -4,7 +4,7 @@ importance: 5
 
 # Hello, object
 
-Write the code, each line for an action:
+Write the code, one line for each action:
 
 1. Create an empty object `user`.
 2. Add the property `name` with the value `John`.

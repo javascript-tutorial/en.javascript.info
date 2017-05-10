@@ -12,7 +12,7 @@ Imagine, we need to write a billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-But in real life we usually dislike writing many zeroes. It's easy to mistype. Also we are lazy. We we usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billions 300 millions. The similar is true for other big numbers.
+But in real life we usually dislike writing many zeroes. It's easy to mistype. Also we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billions 300 millions. The similar is true for other big numbers.
 
 In JavaScript, we can do almost the same by appending the letter `"e"` to the number and specifying the zeroes count:
 
@@ -44,7 +44,7 @@ let ms = 1e-6; // six zeroes to the left from 1
 
 If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
 
-In other words, a negative number after `"e"` means a division by 1 with the given number of zeries:
+In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
 ```js
 // -3 divides by 1 with 3 zeroes
