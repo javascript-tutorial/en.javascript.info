@@ -140,7 +140,7 @@ The value of `rest` is the array of the remaining array elements. We can use any
 
 ### Default values
 
-The there are less values in the array than variables in the assignment -- there will be no error, absent values are considered undefined:
+If there are fewer values in the array than variables in the assignment -- there will be no error, absent values are considered undefined:
 
 ```js run
 *!*
@@ -150,7 +150,7 @@ let [firstName, surname] = [];
 alert(firstName); // undefined
 ```
 
-If we want a "default" value to take place of the absent one, we can provide it using `=`:
+If we want a "default" value to replace the missing one, we can provide it using `=`:
 
 ```js run
 *!*

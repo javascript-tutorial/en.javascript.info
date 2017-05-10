@@ -46,7 +46,7 @@ fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
 ...Or add a new one to the array:
 
 ```js
-fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Plum", "Lemon"]
+fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Pear", "Lemon"]
 ```
 
 The total count of the elements in the array is its `length`:
@@ -211,7 +211,7 @@ arr.push("Pear"); // modify the array by reference
 alert( fruits ); // Banana, Pear - 2 items now
 ```
 
-...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as painted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
+...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
@@ -225,7 +225,7 @@ fruits[99999] = 5; // assign a property with the index far greater than its leng
 fruits.age = 25; // create a property with an arbitrary name
 ```
 
-That's possible, because arrays are objects at base. We can add any properties to them.
+That's possible, because arrays are objects at their base. We can add any properties to them.
 
 But the engine will see that we're working with the array as with a regular object. Array-specific optimizations are not suited for such cases and will be turned off, their benefits disappear.
 
@@ -235,7 +235,7 @@ The ways to misuse an array:
 - Make holes, like: add `arr[0]` and then `arr[1000]` (and nothing between them).
 - Fill the array in the reverse order, like `arr[1000]`, `arr[999]` and so on.
 
-Please think of arrays as about special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
+Please think of arrays as special structures to work with the *ordered data*. They provide special methods for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use them this way. And if you need arbitrary keys, chances are high that you actually require a regular object `{}`.
 
 ## Performance
 
@@ -344,7 +344,7 @@ Note that we usually don't use arrays like that.
 
 Another interesting thing about the `length` property is that it's writable.
 
-If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process is irreversable, here's the example:
+If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process is irreversible, here's the example:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];

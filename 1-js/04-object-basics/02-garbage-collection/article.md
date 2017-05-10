@@ -117,9 +117,9 @@ delete family.mother.husband;
 
 ![](family-delete-refs.png)
 
-It's not enough to delete any one of them, because all objects would still be reachable.
+It's not enough to delete only one of these two references, because all objects would still be reachable.
 
-But if we delete both, then we can see that John has no incoming references any more:
+But if we delete both, then we can see that John has no incoming reference any more:
 
 ![](family-no-father.png)
 

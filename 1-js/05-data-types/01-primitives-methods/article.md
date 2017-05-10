@@ -15,7 +15,7 @@ An object
 : Is capable of storing multiple values as properties.
 Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript, e.g. functions are objects.
 
-One of the best thing about objects is that we can store a function as one of properties:
+One of the best things about objects is that we can store a function as one of properties:
 
 ```js run
 let john = {
@@ -85,7 +85,7 @@ We'll see more specific methods in chapters <info:number> and <info:string>.
 ````warn header="Constructors `String/Number/Boolean` are for internal use only"
 Some languages like Java allow to create "wrapper objects" for primitives explicitly using syntax like `new Number(1)` or `new Boolean(false)`.
 
-In JavaScript that's also possible for historical reasons, but highly not recommended. Things will go crazy in many places.
+In JavaScript that's also possible for historical reasons, but highly **not recommended**. Things will go crazy in many places.
 
 For instance:
 
@@ -95,7 +95,7 @@ alert( typeof 1 ); // "number"
 alert( typeof new Number(1) ); // "object"!
 ```
 
-And, because `zero` is an object:
+And, because in what follows `zero` is an object, the alert will show up:
 
 ```js run
 let zero = new Number(0);
@@ -105,7 +105,7 @@ if (zero) { // zero is true, because it's an object
 }
 ```
 
-From the other side, using same functions `String/Number/Boolean` without `new` is a totally sane and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+From the other side, using the same functions `String/Number/Boolean` without `new` is a totally sane and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
 
 This is totally valid:
 ```js

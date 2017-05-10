@@ -221,11 +221,11 @@ In non-strict mode (if one forgets `use strict`) the value of `this` in such cas
 Please note that usually a call of a function that uses `this` without an object is not normal, but rather a programming mistake. If a function has `this`, then it is usually meant to be called in the context of an object.
 
 ```smart header="The consequences of unbound `this`"
-If you come from another programming languages, then you are probably used to an idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
+If you come from another programming language, then you are probably used to the idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
 
-In JavaScript `this` is "free", its value is evaluated at the call time and depends not on where the method was declared, but rather on what's the object "before dot".
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what's the object "before the dot".
 
-The concept of run-time evaluated `this` has both pluses and minuses. From one side, a function can be reused for different objects. From the other side, greater flexibility opens  a place for mistakes.
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the the other hand, greater flexibility opens a place for mistakes.
 
 Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and evade problems.
 ```
@@ -238,7 +238,7 @@ This section covers an advanced topic, to understand certain edge-cases better.
 If you want to go on faster, it can be skipped or postponed.
 ```
 
-An intricate method call can loose `this`, for instance:
+An intricate method call can lose `this`, for instance:
 
 ```js run
 let user = {
@@ -322,7 +322,7 @@ So, as the result, the value of `this` is only passed the right way if the funct
 
 ## Arrow functions have no "this"
 
-Arrow functions are special: they don't have "own" `this`. If we reference `this` from such function, it's taken from the outer "normal" function.
+Arrow functions are special: they don't have their "own" `this`. If we reference `this` from such a function, it's taken from the outer "normal" function.
 
 For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
 
