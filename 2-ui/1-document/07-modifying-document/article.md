@@ -309,7 +309,7 @@ We could do a function and put the code there. But the alternative way would be 
 
 Sometimes when we have a big element, that may be faster and simpler.
 
-- The call `elem.cloneNode(true)` creates a "deep" clone of the element -- with all attributes and subelements. If we call `elem.clonseNode(false)`, then the clone is made without child elements.
+- The call `elem.cloneNode(true)` creates a "deep" clone of the element -- with all attributes and subelements. If we call `elem.cloneNode(false)`, then the clone is made without child elements.
 
 An example of copying the message:
 
