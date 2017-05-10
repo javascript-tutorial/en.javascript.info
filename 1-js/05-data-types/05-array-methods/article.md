@@ -423,17 +423,18 @@ This works exactly the same as a longer function expression above.
 
 ### reverse
 
-The method [arr.reverse](mdn:js/Array/reverse) creates a new array with the reverse order.
+The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
 
 For instance:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
+arr.reverse();
 
-alert( arr.reverse() ); // 5,4,3,2,1
+alert( arr ); // 5,4,3,2,1
 ```
 
-The original array is not modified.
+It also returns the array `arr` after the reversal.
 
 ### split and join
 
