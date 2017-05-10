@@ -221,7 +221,7 @@ There are multiple ways to look for a substring in a string.
 
 The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
-It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing found.
+It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
 
 For instance:
 
@@ -337,7 +337,7 @@ if (~str.indexOf("Widget")) {
 }
 ```
 
-It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in the old code, so we should understand it.
+It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
 ````
@@ -476,7 +476,7 @@ Although, there are some oddities.
 
     That may lead to strange results if we sort country names. Usually people would await for `Zealand` to be after `Österreich` in the list.
 
-To understand what happens, let's review the internal representaion of strings in JavaScript.
+To understand what happens, let's review the internal representation of strings in JavaScript.
 
 All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
 
@@ -496,7 +496,7 @@ All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Th
     alert( String.fromCodePoint(90) ); // Z
     ```
 
-    We can also add unicode charactes by their codes using `\u` followed by the hex code:
+    We can also add unicode characters by their codes using `\u` followed by the hex code:
 
     ```js run
     // 90 is 5a in hexadecimal system

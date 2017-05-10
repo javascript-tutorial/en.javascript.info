@@ -1,4 +1,4 @@
-The test demonstrates one of temptations a developer meets when writing tests.
+The test demonstrates one of the temptations a developer meets when writing tests.
 
 What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
 

@@ -87,7 +87,7 @@ The constructor can't be called again, because it is not saved anywhere, just cr
 
 ## Dual-use constructors: new.target
 
-Inside a function, we can check how it is called with `new` or without it, using a special `new.target` property.
+Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
 It is empty for ordinary runs and equals the function if called with `new`:
 
@@ -116,7 +116,7 @@ let john = User("John"); // redirects call to new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because it makes a bit less obvious what's going on for a person who's familiar with internals of `User`.
+This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because it makes a bit less obvious what's going on for a person who's familiar with the internals of `User`.
 
 ## Return from constructors
 
@@ -158,7 +158,7 @@ function SmallUser() {
 alert( new SmallUser().name );  // John
 ```
 
-Most of time constructors return nothing. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+Most of the time constructors return nothing. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
 ````smart header="Omitting brackets"
 By the way, we can omit brackets after `new`, if it has no arguments:
@@ -208,7 +208,7 @@ john = {
 - Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
 - Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
 
-We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return it later and cover more in-depth.
+We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return to it later and cover it more in-depth.
 
 JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 

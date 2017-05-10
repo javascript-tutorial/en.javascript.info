@@ -330,7 +330,7 @@ alert(lengths); // 5,7,6
 
 ### sort(fn)
 
-The method [arr.sort](mdn:js/Array/sort) sorts the array *at place*.
+The method [arr.sort](mdn:js/Array/sort) sorts the array *in place*.
 
 For instance:
 
@@ -384,7 +384,7 @@ Now it works as intended.
 
 Let's step aside and thing what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of *something*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
 
-The `arr.sort(fn)` method has a built-in implementation of sorting algorithm. We don't need to care which how it exactly works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+The `arr.sort(fn)` method has a built-in implementation of sorting algorithm. We don't need to care how it exactly works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
 
 By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
 
@@ -418,7 +418,7 @@ Remember [arrow functions](info:function-expression#arrow-functions)? We can use
 arr.sort( (a, b) => a - b );
 ```
 
-This works exactly the same as a longer function expression above.
+This works exactly the same as the other, longer, version above.
 ````
 
 ### reverse
@@ -657,7 +657,7 @@ let youngerUsers = users.filter(user.younger, user);
 alert(youngerUsers.length); // 2
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we did't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
 
 ## Other methods
 

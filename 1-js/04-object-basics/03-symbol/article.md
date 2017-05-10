@@ -158,7 +158,7 @@ For instance, different parts of our application want to access symbol `"id"` me
 
 To achieve that, there exists a *global symbol registry*. We can create symbols in it and and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
 
-To can create or read a symbol in the registry, use `Symbol.for(name)`.
+In order to create or read a symbol in the registry, use `Symbol.for(name)`.
 
 For instance:
 

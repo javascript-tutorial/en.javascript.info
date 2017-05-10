@@ -13,7 +13,7 @@ Iterables are widely used by the core JavaScript, as we'll see many operators an
 
 We can easily grasp the concept of iterables by making one of our own.
 
-For instance, we have an object, that is not an array, but looks a suitable for `for..of`.
+For instance, we have an object, that is not an array, but looks suitable for `for..of`.
 
 Like a `range` object that represents an interval of numbers:
 
@@ -34,7 +34,7 @@ To make the `range` iterable (and thus let `for..of` work) we need to add a meth
 - When `for..of` wants the next value, it calls `next()` on that object.
 - The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
 
-Here's the full impelementation for `range`:
+Here's the full implementation for `range`:
 
 ```js run
 let range = {
@@ -138,7 +138,7 @@ for(let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
-But to understand things a little bit more deeper let's see how to create an iterator explicitly. We'll do that same as `for..of`, but with direct calls.
+But to understand things a little bit more deeper let's see how to create an iterator explicitly. We'll do that the same way as `for..of`, but with direct calls.
 
 For instance, this code gets a string iterator and calls it "manually":
 
@@ -168,7 +168,7 @@ There are two official terms that look similar, but are very different. Please b
 
 Naturally, they can combine. For instance, strings are both iterable and array-like.
 
-But an iterable may be not array-like and vise versa.
+But an iterable may be not array-like and vice versa.
 
 For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
 
@@ -187,7 +187,7 @@ for(let item of arrayLike) {}
 */!*
 ```
 
-What they share in common -- both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such object and want to work with it as with an array.
+What they share in common -- both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
 
 ## Array.from
 
@@ -236,7 +236,7 @@ let arr = Array.from(range, num => num * num);
 alert(arr); // 1,4,9,16,25
 ```
 
-We can also use `Array.from` to turn a string into array of characters:
+We can also use `Array.from` to turn a string into an array of characters:
 
 ```js run
 let str = '𝒳😂';
@@ -249,7 +249,7 @@ alert(chars[1]); // 😂
 alert(chars.length); // 2
 ```
 
-Unlike `str.split`, it relies on iterable nature of the string and so, just like `for..of`, correctly works with surrogate pairs.
+Unlike `str.split`, it relies on the iterable nature of the string and so, just like `for..of`, correctly works with surrogate pairs.
 
 Technically here it does the same as:
 
@@ -266,7 +266,7 @@ alert(chars);
 
 ...But is shorter.    
 
-We can even built surrogate-aware `slice` on it:
+We can even build surrogate-aware `slice` on it:
 
 ```js run
 function slice(str, start, end) {

@@ -35,7 +35,7 @@ let user = {     // an object
 };
 ```
 
-A property has a key (also known as "name" and "identifier") before the colon `":"` and a value to the right of it.
+A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
 
 In the `user` object, there are two properties:
 
@@ -125,7 +125,7 @@ delete user["likes birds"];
 
 Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 
-Square brackets are also provide a way to access a property by the name from the variable:
+Square brackets also provide a way to obtain the property name as the result of any expression - as opposed to a litteral string - like from a variable as follows:
 
 ```js
 let key = "likes birds";
@@ -134,7 +134,7 @@ let key = "likes birds";
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in similar way.
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
 
 For instance:
 
@@ -270,7 +270,7 @@ let user = {
 };
 ```
 
-## Existance check
+## Existence check
 
 A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
@@ -296,7 +296,7 @@ alert( "age" in user ); // true, user.age exists
 alert( "blabla" in user ); // false, user.blabla doesn't exist
 ```
 
-Please note that at the left side of `in` there must be a *property name*. That's usually a quoted string.
+Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
 If we omit quotes, that would mean a variable containing the actual name to be tested. For instance:
 
@@ -698,7 +698,7 @@ alert(clone.sizes.width); // 51, see the result from the other one
 
 To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate it's structure as well. That is called a "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). Not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 

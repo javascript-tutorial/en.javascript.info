@@ -18,7 +18,7 @@ Here the precision loss made the number a little bit greater, so it rounded up.
 
 **How can we fix the problem with `6.35` if we want it to be rounded the right way?**
 
-We should use bring it closer to an integer prior to rounding:
+We should bring it closer to an integer prior to rounding:
 
 ```js run
 alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000

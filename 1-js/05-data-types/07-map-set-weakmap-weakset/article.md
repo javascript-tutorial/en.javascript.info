@@ -153,7 +153,7 @@ for(let entry of recipeMap) { // the same as of recipeMap.entries()
 ```
 
 ```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` guarantees that unlike a regular `Object`.
+The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
 ```
 
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
@@ -371,7 +371,7 @@ john = null;
 // so the object is removed both from the memory and from visitsCountMap automatically
 ```
 
-With a regular `Map`, cleaning up after a user left becomes a tedious task: we not only need to remove the user from its main storage (be it a variable or an array), but also need to clean up the additional stores like `visitsCountMap`. And it can become cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals.
+With a regular `Map`, cleaning up after a user has left becomes a tedious task: we not only need to remove the user from its main storage (be it a variable or an array), but also need to clean up the additional stores like `visitsCountMap`. And it can become cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals.
 
 `WeakMap` can make things simpler, because it is cleaned up automatically. The information in it like visits count in the example above lives only while the key object exists.
 
