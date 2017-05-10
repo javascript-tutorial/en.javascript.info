@@ -388,8 +388,8 @@ Let's make our message disappear after a second:
 
   document.body.append(div);
 *!*
-  setTimeout(div => div.remove(), 1000);
-  // or setTimeout(div => document.body.removeChild(div), 1000);
+  setTimeout(() => div.remove(), 1000);
+  // or setTimeout(() => document.body.removeChild(div), 1000);
 */!*
 </script>
 ```
