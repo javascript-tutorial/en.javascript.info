@@ -372,7 +372,7 @@ Few examples of breaking this rule:
 - `createForm` -- would be bad if it modifies the document, adding a form to it (should only create it and return).
 - `checkPermission` -- would be bad if displays the `access granted/denied` message (should only perform the check and return the result).
 
-These examples assume common meanings of prefixes. What they mean for you is determined by you and your team. Maybe it's pretty normal for your code to behave differently. But you should to have a firm understanding what a prefix means, what a prefixed function can and what it can not do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
+These examples assume common meanings of prefixes. What they mean for you is determined by you and your team. Maybe it's pretty normal for your code to behave differently. But you should have a firm understanding of what a prefix means, what a prefixed function can and what it cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
 ```
 
 ```smart header="Ultrashort function names"

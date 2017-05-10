@@ -90,7 +90,7 @@ alert( "I don't know such values" );
 ```
 
 ````smart header="Any expresion can be a `switch/case` argument"
-Both `switch` and case allow arbitrary expresions.
+Both `switch` and case allow arbitrary expressions.
 
 For example:
 
@@ -101,14 +101,15 @@ let b = 0;
 switch (+a) {
 *!*
   case b + 1:
-    alert( 1 );
+    alert("this runs, because +a is 1, exactly equals b+1");
     break;
 */!*
 
   default:
-    alert('no-no, see the code above, it executes');
+    alert("this doesn't run");
 }
 ```
+Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
 ````
 
 ## Grouping of "case"
@@ -129,7 +130,7 @@ switch (a) {
   case 3:                    // (*) grouped two cases
   case 5:
     alert('Wrong!');
-    alert('Why don't you take a math class?');
+    alert("Why don't you take a math class?");
     break;
 */!*
 
@@ -144,7 +145,7 @@ The ability to "group" cases a side-effect of how `switch/case` works without `b
 
 ## Type matters
 
-Let's emphase that the equality check is always strict. The values must be of the same type to match.
+Let's emphasize that the equality check is always strict. The values must be of the same type to match.
 
 For example, let's consider the code:
 
@@ -169,4 +170,4 @@ switch (arg) {
 
 1. For `0`, `1`, the first `alert` runs.
 2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execite.
+3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
