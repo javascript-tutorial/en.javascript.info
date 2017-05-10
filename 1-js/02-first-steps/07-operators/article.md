@@ -234,7 +234,9 @@ alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's mat
 alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 ```
 
-## Increment/decrement: ++, --
+## Increment/decrement
+
+<!-- Can't use -- in title, because built-in parse turns it into – -->
 
 Increasing or decreasing a number by one is among the most common numerical operations.
 

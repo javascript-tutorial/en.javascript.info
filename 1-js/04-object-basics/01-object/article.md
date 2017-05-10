@@ -1,7 +1,7 @@
 
 # Objects
 
-As we know, there are 7 language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+As we know from the chapter <info:types>, there are 7 language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
 In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
@@ -573,7 +573,7 @@ user = {
 };
 ```
 
-...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-flags-descriptors>.
+...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
 
 ## Cloning and merging, Object.assign
 

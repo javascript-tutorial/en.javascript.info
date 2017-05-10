@@ -11,7 +11,7 @@ What are results of these expressions?
 "" - 1 + 0
 true + false
 6 / "3"
-2" * "3"
+"2" * "3"
 4 + 5 + "px"
 "$" + 4 + 5
 "4" - 2

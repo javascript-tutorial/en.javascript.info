@@ -180,7 +180,7 @@ The reason is that an equality check `==` and comparisons `> < >= <=` work diffe
 
 From the other hand, the equality check `==` for `undefined` and `null` works by the rule, without any conversions. They equal each other and don't equal anything else. That's why (2) `null == 0` is false.
 
-### An uncomparable undefined
+### An incomparable undefined
 
 The value `undefined` shouldn't participate in comparisons at all:
 
