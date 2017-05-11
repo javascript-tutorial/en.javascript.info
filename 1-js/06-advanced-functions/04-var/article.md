@@ -49,7 +49,7 @@ alert(test); // true, the variable lives after if
 
 If we used `let test` on the 2nd line, then it wouldn't be visible to `alert`. But `var` ignores code blocks, so we've got a global `test`.
 
-The same thing for loops: `var` can not be block or loop-local:
+The same thing for loops: `var` cannot be block- or loop-local:
 
 ```js
 for(var i = 0; i < 10; i++) {
@@ -130,7 +130,7 @@ function sayHi() {
 
 People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
 
-So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` there variable exists.
+So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
 
 **Declarations are hoisted, but assignments are not.**
 
@@ -153,7 +153,7 @@ The line `var phrase = "Hello"` has two actions in it:
 1. Variable declaration `var`
 2. Variable assignment `=`.
 
-The declaration is processed at the start of function execution ("hoisted"), but the assignment always works at the place where it is. So the code works essentially like this:
+The declaration is processed at the start of function execution ("hoisted"), but the assignment always works at the place where it appears. So the code works essentially like this:
 
 ```js run
 function sayHi() {

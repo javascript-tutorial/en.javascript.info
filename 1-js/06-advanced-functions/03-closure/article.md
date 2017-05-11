@@ -70,7 +70,7 @@ In JavaScript, every running function, code block and the script as a whole have
 The Lexical Environment object consists of two parts:
 
 1. *Environment Record* -- an object that has all local variables as its properties (and some other information like the value of `this`).
-2. An reference to the *outer lexical environment*, usually the one associated with the code lexically right outside of it (outside of the current figure brackets).
+2. A reference to the *outer lexical environment*, usually the one associated with the code lexically right outside of it (outside of the current figure brackets).a
 
 So, a "variable" is just a property of the special internal object, Environment Record. "To get or change a variable" means "to get or change the property of that object".
 
@@ -80,18 +80,18 @@ For instance, in this simple code, there is only one Lexical Environment:
 
 This is a so-called global Lexical Environment, associated with the whole script. For browsers, all `<script>` tags share the same global environment.
 
-On the picture above the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer one, so that's `null`.
+On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer one, so that's `null`.
 
 Here's the bigger picture of how `let` variables work:
 
 ![lexical environment](lexical-environment-global-2.png)
 
-Rectangles at the right side demonstrate how the global Lexical Environment changes during the execution:
+Rectangles ont the right-hand side demonstrate how the global Lexical Environment changes during the execution:
 
 1. When the script starts, the Lexical Environment is empty.
 2. The `let phrase` definition appears. Now it initially has no value, so `undefined` is stored.
-3. The `phrase` is assigned.
-4. The `phrase` changes the value.
+3. `phrase` is assigned.
+4. `phrase` refers to a new value.
 
 Everything looks simple for now, right?
 
@@ -135,7 +135,7 @@ Here's the picture of Lexical Environments when the execution is inside `say("Jo
 
 During the function call we have two Lexical Environments: the inner one (for the function call) and the outer one (global):
 
-- The inner Lexical Environment corresponds to the current `say` execution. It has a single variable: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
+- The inner Lexical Environment corresponds to the current execution of  `say`. It has a single variable: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
 - The outer Lexical Environment is the global Lexical Environment.
 
 The inner Lexical Environment one has the `outer` reference to the outer one.
@@ -254,7 +254,7 @@ alert( counter() ); // 2
 
 Let's go on with the `makeCounter` example. It creates the "counter" function that returns the next number on each invocation. Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator), and more. So the example is not exactly "artificial".
 
-How the counter works?
+How does the counter work?
 
 When the inner function runs, the variable in `count++` is searched from inside out.
 
@@ -358,7 +358,7 @@ For a more in-depth understanding, here's what's going on in the `makeCounter` e
 
     Generally, a Lexical Environment object lives until there is a function which may use it. And when there are none, it is cleared.
 
-6. The call to `counter()` not only returns the value of `count`, but also increases it. Note that the modification is done "at place". The value of `count` is modified exactly in the environment where it was found.
+6. The call to `counter()` not only returns the value of `count`, but also increases it. Note that the modification is done "in place". The value of `count` is modified exactly in the environment where it was found.
 
     ![](lexenv-nested-makecounter-6.png)
 
@@ -437,7 +437,7 @@ After the loop, `i` is not visible.
 
 We also can use a "bare" code block `{…}` to isolate variables into a "local scope".
 
-For instance, in a web browser all scripts share the same global area. So if we create a global variable in one script, it becomes available to others. But that become a source of conflicts if two scripts use the same variable name and overwrite each other.
+For instance, in a web browser all scripts share the same global area. So if we create a global variable in one script, it becomes available to others. But that becomes a source of conflicts if two scripts use the same variable name and overwrite each other.
 
 That may happen if the variable name is a widespread word, and script authors are unaware of each other.
 
@@ -590,7 +590,7 @@ Lexical Environment objects that we've been talking about are subjects to same m
 
 ### Real-life optimizations
 
-As we've seen, in theory while a function is alive, all outer variabels are also retained.
+As we've seen, in theory while a function is alive, all outer variables are also retained.
 
 But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's easy to see that an outer variable is not used -- it is removed.
 
@@ -639,6 +639,6 @@ g();
 ```warn header="See ya!"
 This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
 
-That is not a bug of debugger, but a special feature of V8. Maybe it will be changed sometimes.
+That is not a bug of debugger, but a special feature of V8. Maybe it will be changed some time.
 You always can check for it by running examples on this page.
 ```

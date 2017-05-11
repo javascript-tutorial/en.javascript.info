@@ -21,7 +21,7 @@ let user = {
 alert(user); // {name: "John", age: 30}
 ```
 
-...But in the process of development, new properties are added, old properties are renamed and removed. Updating such `toString` every time can become a pain. We could try to loop over properties in it, but what is the object is complex and has nested objects in properties? We'd need to implement their conversion as well. And, if we're sending the object over a network, then we also need to supply the code to "read" our object on the receiving side.
+...But in the process of development, new properties are added, old properties are renamed and removed. Updating such `toString` every time can become a pain. We could try to loop over properties in it, but what if the object is complex and has nested objects in properties? We'd need to implement their conversion as well. And, if we're sending the object over a network, then we also need to supply the code to "read" our object on the receiving side.
 
 Luckily, there's no need to write the code to handle all this. The task has been solved already.
 
@@ -68,7 +68,7 @@ alert(json);
 
 The method `JSON.stringify(student)` takes the object and converts it into a string.
 
-The resulting `json` string is a called *JSON-encoded* or *serialized* or *stringified* object. We are ready to send it over the wire or put into plain data store.
+The resulting `json` string is a called *JSON-encoded* or *serialized* or *stringified* or *marshalled* object. We are ready to send it over the wire or put into plain data store.
 
 
 Please note that JSON-encoded object has several important differences from the object literal:
@@ -185,6 +185,7 @@ let json = JSON.stringify(value[, replacer, space])
 
 value
 : A value to encode.
+
 replacer
 : Array of properties to encode or a mapping function `function(key, value)`.
 
@@ -478,9 +479,9 @@ alert( meetup.date.getDate() ); // Error!
 
 Whoops! An error!
 
-The value of `meetup.date` is a string, not a `Date` object. How `JSON.parse` may know that it should transform that string into a `Date`?
+The value of `meetup.date` is a string, not a `Date` object. How could `JSON.parse` know that it should transform that string into a `Date`?
 
-Let's pass to `JSON.parse` the reviving function that returns all values "as is", but `date` wll become a `Date`:
+Let's pass to `JSON.parse` the reviving function that returns all values "as is", but `date` will become a `Date`:
 
 ```js run
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';

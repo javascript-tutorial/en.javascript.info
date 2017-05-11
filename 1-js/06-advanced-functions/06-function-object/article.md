@@ -44,7 +44,7 @@ function f(sayHi = function() {}) {
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment is figured out from the context.
+In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
 
 Object methods have names too:
 
@@ -104,7 +104,7 @@ When a user answers, it calls the handlers. We can pass two kinds of handlers:
 - A zero-argument function, then it is only called for a positive answer.
 - A function with arguments, then it is called in any case and gets the answer.
 
-The idea is that we have a simple no-arguments handler syntax for positive cases (most often variant), but allow to provide universal handlers as well.
+The idea is that we have a simple no-arguments handler syntax for positive cases (most frequent variant), but allow to provide universal handlers as well.
 
 To call `handlers` the right way, we examine the `length` property:
 
@@ -155,7 +155,7 @@ alert( `Called ${sayHi.counter} times` ); // Called 2 times
 ```warn header="A property is not a variable"
 A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables never use function properties and vise versa. These are just parallel words.
+We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables never use function properties and vice versa. These are just parallel words.
 ```
 
 Function properties can replace the closure sometimes. For instance, we can rewrite the counter example from the chapter <info:closure> to use a function property:

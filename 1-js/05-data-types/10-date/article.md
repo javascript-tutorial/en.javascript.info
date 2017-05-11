@@ -19,7 +19,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     ```
 
 `new Date(milliseconds)`
-: Create a `Date` obeject with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
+: Create a `Date` object with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
 
     ```js run
     // 0 means 01.01.1970 UTC+0
@@ -70,7 +70,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
 ## Access date components
 
-The are many methods to access the year, month and so on from the `Date` object. But they can be easily remembered when categorized.
+There are many methods to access the year, month and so on from the `Date` object. But they can be easily remembered when categorized.
 
 `getFullYear()`
 : Get the year (4 digits)
@@ -116,7 +116,7 @@ Besides the given methods, there are two special ones, that do not have a UTC-va
 : Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
 
 `getTimezoneOffset()`
-: Returns the difference between the local time zene and UTC, in minutes:
+: Returns the difference between the local time zone and UTC, in minutes:
 
     ```js run
     // if you are in timezone UTC-1, outputs 60
@@ -227,7 +227,7 @@ alert( `The loop took ${end - start} ms` );
 
 ## Date.now()
 
-If we only want to measure the difference, we don't need `Date` object.
+If we only want to measure the difference, we don't need the `Date` object.
 
 There's a special method `Date.now()` that returns the current timestamp.
 
@@ -403,10 +403,10 @@ alert(date);
 ## Summary
 
 - Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from the zero (yes, January is a zero month).
-- Days of week in `getDay()` are also counted from the zero (that's Sunday).
+- Months are counted from zero (yes, January is a zero month).
+- Days of week in `getDay()` are also counted from zero (that's Sunday).
 - `Date` auto-corrects itself when out-of-range components are set. Good for adding/substracting days/months/hours.
-- Dates can be substructed, giving their difference in milliseconds. That's because a `Date` becomes the timestamp if converted to a number.
+- Dates can be substracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp if converted to a number.
 - Use `Date.now()` to get the current timestamp fast.
 
 Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
