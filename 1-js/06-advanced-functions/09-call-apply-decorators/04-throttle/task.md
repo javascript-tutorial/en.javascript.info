@@ -6,7 +6,7 @@ importance: 5
 
 Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper, passing the call to `f` at maximum once per `ms` milliseconds. Those calls that fall into the "cooldown" period, are ignored.
 
-**The differnce from `debounce` -- if an ignored call is the last during the cooldown, then it executes at the end of the delay.**
+**The difference with `debounce` -- if an ignored call is the last during the cooldown, then it executes at the end of the delay.**
 
 Let's check the real-life application to better understand that requirement and to see where it comes from.
 
