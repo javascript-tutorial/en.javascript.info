@@ -102,7 +102,7 @@ In old times, rest parameters did not exist in the language, and `arguments` was
 
 And it still works, we can use it.
 
-But the downside is that though `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't say call `arguments.map(...)`.
+But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't say call `arguments.map(...)`.
 
 Also, it always has all arguments in it, we can't capture them partially, like we did with rest parameters.
 
@@ -121,7 +121,7 @@ function f() {
 
 f(1); // 1
 ```
-As we remember, arrow functions don't have own `this`. Now we know they don't have the special `arguments` object too.
+As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
 
 ````
 

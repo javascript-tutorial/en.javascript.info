@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Ask loosing this
+# Ask losing this
 
 The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
 

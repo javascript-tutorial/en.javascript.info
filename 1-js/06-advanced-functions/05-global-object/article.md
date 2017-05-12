@@ -24,7 +24,7 @@ It does two things:
 
     The same applies to other built-ins. E.g. we can use `window.Array` instead of `Array`.
 
-2. Provides access to global Function Declarations and `var` variables. We can read them and write using its properties, for instance:
+2. Provides access to global Function Declarations and `var` variables. We can read and write them using its properties, for instance:
 
     <!-- no-strict to move variables out of eval -->
     ```js untrusted run no-strict refresh
@@ -38,7 +38,7 @@ It does two things:
     alert( window.phrase ); // Hello (global var)
     alert( window.sayHi ); // function (global function declaration)
 
-    // can write to window (creates a new sglobal variable)
+    // can write to window (creates a new global variable)
     window.test = 5;
 
     alert(test); // 5
@@ -57,7 +57,7 @@ alert("user" in window); // false
 ```smart header="The global object is not a global Environment Record"
 In versions of ECMAScript prior to ES-2015, there were no `let/const` variables, only `var`. And global object was used as a global Environment Record (wordings were a bit different, but that's the gist).
 
-But starting from ES-2015, these entities are split apart. There's a global Lexical Environment with its Environment Record. And there's a global object that provides *some* of global variables.
+But starting from ES-2015, these entities are split apart. There's a global Lexical Environment with its Environment Record. And there's a global object that provides *some* of the global variables.
 
 As a practical difference, global `let/const` variables are definitively properties of the global Environment Record, but they do not exist in the global object.
 
@@ -121,7 +121,7 @@ Usually, it's not a good idea to use it, but here are some examples you can meet
 
     A browser may open multiple windows and tabs. A window may also embed another one in `<iframe>`. Every browser window has its own `window` object and global variables. JavaScript allows windows that come from the same site (same protocol, host, port) to access variables from each other.
 
-    That use is a little bit beyound our scope for now, but it looks like:
+    That use is a little bit beyond our scope for now, but it looks like:
     ```html run
     <iframe src="/" id="iframe"></iframe>
 
@@ -158,7 +158,7 @@ Sometimes, the value of `this` is exactly the global object. That's rarely used,
 
     Other, non-browser environments, may use another value for `this` in such cases.
 
-2. When a function with `this` is called in not-strict mode, it gets the global object as `this`:
+2. When a function with `this` is called in non-strict mode, it gets the global object as `this`:
     ```js run no-strict
     // not in strict mode (!)
     function f() {
