@@ -159,7 +159,7 @@ rabbit.walk = function() {
 rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
 
-Since now, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
+From now on, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
 
 ![](proto-animal-rabbit-walk-2.png)
 
@@ -192,7 +192,7 @@ alert(admin.fullName); // John Smith (*)
 admin.fullName = "Alice Cooper"; // (**)
 ```
 
-Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property is has a setter in the prototype, so it is called.
+Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property has a setter in the prototype, so it is called.
 
 ## The value of "this"
 

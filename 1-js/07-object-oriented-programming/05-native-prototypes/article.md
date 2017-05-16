@@ -169,7 +169,7 @@ function showArgs() {
 }
 ```
 
-That's more efficient, because evades creation of an extra array object `[]`. From the other side -- more letters to write it.
+That's more efficient, because it avoids the creation of an extra array object `[]`. On the other hand, it is longer to write.
 
 ## Summary
 
