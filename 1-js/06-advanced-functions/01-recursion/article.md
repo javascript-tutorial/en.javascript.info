@@ -96,9 +96,9 @@ function pow(x, n) {
 ```
 ````
 
-The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it there will be exactly `n`.
+The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help to alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
@@ -230,7 +230,7 @@ function pow(x, n) {
 
 There are no more nested calls, so the function finishes, returning `2`.
 
-As the function finishes, its execution context is not needed any more, so it's removed from the memory. The previous one is restored off-top of the stack:
+As the function finishes, its execution context is not needed any more, so it's removed from the memory. The previous one is restored off the top of the stack:
 
 
 <ul class="function-execution-context-list">

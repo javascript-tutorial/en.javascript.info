@@ -158,7 +158,7 @@ The `setTimeout` above schedules next call right at the end of the current one `
 
 Recursive `setTimeout` is more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
 
-For instance, we need to write a service that each 5 seconds sends a request to server asking for data, but in case if the server is overloaded, it should increase the interval to 10, 20, 60 seconds...
+For instance, we need to write a service that each 5 seconds sends a request to server asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
 
 Here's the pseudocode:
 ```js
@@ -226,7 +226,7 @@ And here is the picture for recursive `setTimeout`:
 That's because a new call is planned at the end of the previous one.
 
 ````smart header="Garbage collection"
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function form being garbage collected, even if there are no other references to it.
+When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
 
 ```js
 // the function stays in memory until the scheduler calls it
@@ -391,7 +391,7 @@ For server-side JavaScript, that limitation does not exist, and there exist othe
 
 Another benefit for in-browser scripts is that they can show a progress bar or something to the user. That's because the browser usually does all "repainting" after the script is complete.
 
-So if we do a single huge function then even it changes something, the changes are not reflected in the document till it finishes.
+So if we do a single huge function then even if it changes something, the changes are not reflected in the document till it finishes.
 
 Here's the demo:
 ```html run

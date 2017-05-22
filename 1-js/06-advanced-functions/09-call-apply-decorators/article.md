@@ -8,7 +8,7 @@ JavaScript gives exceptional flexibility when dealing with functions. They can b
 
 Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
 
-If the function is called often, we may want to cache (remember) the results for different `x` to evade spending extra-time on recalculations.
+If the function is called often, we may want to cache (remember) the results for different `x` to avoid spending extra-time on recalculations.
 
 But instead of adding that functionality into `slow()` we'll create a wrapper. As we'll see, there are many benefits of doing so.
 
@@ -110,11 +110,11 @@ alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of 
 */!*
 ```
 
-The error occurs in the line `(*)` that tries to access `this.someMethod` and fails. Guess you can see, why?
+The error occurs in the line `(*)` that tries to access `this.someMethod` and fails. Can you see why?
 
-The reason is that the wrapper calls the original function as `func(x)` in the line `(**)`. And, when called like this, the function gets `this = undefined`.
+The reason is that the wrapper calls the original function as `func(x)` in the line `(**)`. And, when called like that, the function gets `this = undefined`.
 
-As if we run:
+We would observe a similar symptom if we tried to run:
 
 ```js
 let func = worker.slow;
@@ -133,7 +133,7 @@ The syntax is:
 func.call(context, arg1, arg2, ...)
 ```
 
-It runs the `func` providing the first argument as `this`, and the next as the arguments.
+It runs `func` providing the first argument as `this`, and the next as the arguments.
 
 To put it simple, these two calls do almost the same:
 ```js
@@ -173,7 +173,7 @@ say.call( user, "Hello" ); // John: Hello
 ```
 
 
-For our case, we can use `call` in the wrapper to pass the context to the original function:
+In our case, we can use `call` in the wrapper to pass the context to the original function:
 
 
 ```js run
@@ -210,7 +210,7 @@ alert( worker.slow(2) ); // works, doesn't call the original (cached)
 
 Now everything is fine.
 
-To put all clear, let's see more deeply how `this` is passed along:
+To make it all clear, let's see more deeply how `this` is passed along:
 
 1. After the decoration `worker.slow` is now the wrapper `function (x) { ... }`.
 2. So when `worker.slow(2)` is executed, the wrapper gets `2` as an argument and `this=worker` (it's the object before dot).
@@ -305,11 +305,11 @@ If we look more closely, there's a minor difference between such uses of `call` 
 - The spread operator `...` allows to pass *iterable* `args` as the list to `call`.
 - The `apply` accepts only *array-like* `args`.
 
-So, these calls complement to each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
+So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
 
 And if `args` is both iterable and array-like, like a real array, then we technically could use any of them, but `apply` will probably be faster, because it's a single operation. Most JavaScript engines internally optimize is better than a pair `call + spread`.
 
-One of most important uses of `apply` is passing the call to another function, like this:
+One of the most important uses of `apply` is passing the call to another function, like this:
 
 ```js
 let wrapper = function() {
@@ -438,7 +438,7 @@ So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. 
 
 *Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
 
-It is generally safe to replace a function or a method with decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one need to be careful if he uses them. Some decorators provide their own properties.
+It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one need to be careful if one uses them. Some decorators provide their own properties.
 
 Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
 
@@ -458,4 +458,4 @@ let wrapper = function() {
 We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to arguments. The alternative is to use rest parameters object that is a real array.
 
 
-There are many decorators there in the wilds. Check how well you got them by solving the tasks of this chapter.
+There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.

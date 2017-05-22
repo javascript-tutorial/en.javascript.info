@@ -105,7 +105,7 @@ The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that call
 - Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
 - Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
 
-So easy to do it the spread operator, right?
+So easy to do it with the spread operator, right?
 
 Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
 
@@ -160,7 +160,7 @@ function curry(f) {
 
 Advanced currying allows both to keep the function callable normally and to get partials easily. To understand the benefits we definitely need a worthy real-life example.
 
-For instance, we have the logging function `log(date, importance, message)` that formats and output the information. In real projects such functions also have many other useful features like: sending it over the network or filtering:
+For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions also have many other useful features like: sending it over the network or filtering:
 
 ```js
 function log(date, importance, message) {
@@ -205,7 +205,7 @@ todayDebug("message"); // [HH:mm] DEBUG message
 ```
 
 So:
-1. We didn't loose anything after currying: `log` is still callable normally.
+1. We didn't lose anything after currying: `log` is still callable normally.
 2. We were able to generate partial functions that are convenient in many cases.
 
 ## Advanced curry implementation

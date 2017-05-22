@@ -24,7 +24,7 @@ users.sort((a, b) => a.name > b.name ? 1 : -1);
 users.sort((a, b) => a.age > b.age ? 1 : -1);
 ```
 
-Can we make it even more verbose, like this?
+Can we make it even less verbose, like this?
 
 ```js
 users.sort(byField('name'));

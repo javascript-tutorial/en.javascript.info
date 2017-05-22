@@ -5,15 +5,15 @@ libs:
 
 # Function binding
 
-When using `setTimeout` with object methods or passing object methods along, there's a known problem: "loosing `this`".
+When using `setTimeout` with object methods or passing object methods along, there's a known problem: "losing `this`".
 
 Suddenly, `this` just stops working right. The situation is typical for novice developers, but happens with experienced ones as well.
 
 [cut]
 
-## Loosing "this"
+## Losing "this"
 
-We already know that in JavaScript it's easy to loose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
+We already know that in JavaScript it's easy to lose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
 
 Here's how it may happen with `setTimeout`:
 
@@ -72,7 +72,7 @@ setTimeout(() => user.sayHi(), 1000); // Hello, John!
 
 Looks fine, but a slight vulnerability appears in our code structure.
 
-What is before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, the it will call the wrong object!
+What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, the it will call the wrong object!
 
 
 ```js run
