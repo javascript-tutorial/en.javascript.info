@@ -2,4 +2,4 @@ development: true
 
 ---
 
-# Promises, async/await
+# The art of async programming: promises, async/await
