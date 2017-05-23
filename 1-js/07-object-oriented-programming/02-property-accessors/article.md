@@ -55,7 +55,7 @@ alert(user.fullName); // John Smith
 */!*
 ```
 
-From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we **read** it normally: the getter runs behind the scenes.
+From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we *read* it normally: the getter runs behind the scenes.
 
 As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error.
 
