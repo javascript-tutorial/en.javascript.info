@@ -68,7 +68,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 `descriptor`
 : Property descriptor to apply.
 
-If the property exist, it updates its flags, otherwise, it creates the property with the given value and flags. Please note, that if a flag is not supplied, it is assumed `false`.
+If the property exists, `defineProperty` updates its flags. Otherwise, it creates the property with the given value and flags; in that case, if a flag is not supplied, it is assumed `false`.
 
 For instance, here a property `name` is created with all falsy flags:
 
@@ -96,7 +96,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
  */
 ```
 
-Compare it with "normally created" user.name above: now all flags are falsy. If that's not what we want then we'd better to set them to `true` in the `descriptor`.
+Compare it with "normally created" `user.name` above: now all flags are falsy. If that's not what we want then we'd better set them to `true` in `descriptor`.
 
 Now let's see effects of the flags by example.
 
@@ -209,7 +209,7 @@ Math.PI = 3; // Error
 // delete Math.PI won't work either
 ```
 
-Making a property non-configurable is one-way road. We cannot change it back, because `defineProperty` doesn't work on non-configurable properties.
+Making a property non-configurable is a one-way road. We cannot change it back, because `defineProperty` doesn't work on non-configurable properties.
 
 Here we are making `user.name` a "forever sealed" constant:
 
@@ -266,7 +266,7 @@ So, we can set many properties at once.
 
 To get many descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
 
-Together with `Object.defineProperties` it can be used as an "flags-aware" way of cloning an object:
+Together with `Object.defineProperties` it can be used as a "flags-aware" way of cloning an object:
 
 ```js
 let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
