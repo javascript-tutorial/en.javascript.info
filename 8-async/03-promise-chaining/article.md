@@ -189,9 +189,44 @@ This code does the same: loads 3 scripts in sequence. But it "grows to the right
 
 Sometimes it's ok to write `.then` directly, because the nested function has access to the outer scope `(*)`, but that's an exception rather than a rule.
 
+
+````smart header="Thenables"
+To be precise, `.then` may return an arbitrary "thenable" object, and it will be treated the same way as a promise.
+
+A "thenable" object is any object with a method `.then`.
+
+The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have extended set of methods, but also be compatible with native promises, because they implement `.then`.
+
+Here's an example of a thenable object:
+
+```js run
+class Thenable {
+  constructor(result, delay) {
+    this.result = result;
+  }
+  // then method has the similar signature to promises
+  then(resolve, reject) {
+    // resolve with double this.result after the delay
+    setTimeout(() => resolve(this.result * 2), delay);
+  }
+};
+
+new Promise(resolve => resolve(1))
+  .then(result => {
+    return new Thenable(result, 1000); // (*)
+  })
+  .then(alert); // shows 2 after 1000ms
+```
+
+JavaScript checks the object returned by the handler in the line `(*)`: it it has a callable method named `then`,  then it waits until that method is called, and the result is passed further.
+
+That allows to integrate side objects with promise chains without having to inherit from `Promise`.
+````
+
+
 ## Bigger example: fetch
 
-In frontend programming promises are often used for network requests. So let's make an example of that.
+In frontend programming promises are often used for network requests. So let's see an extended example of that.
 
 We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load the information about the user from the remote server. The method is quite complex, it has many optional parameters, but the basic usage is quite simple:
 
@@ -199,17 +234,18 @@ We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load th
 let promise = fetch(url);
 ```
 
-Makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but before the full response is downloaded.
+This makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but before the full response is downloaded.
 
-To read the full response, we should call a method `response.text()`: it returns a promise that resolves with the full response text when it's downloaded from the remote server.
+To read the full response, we should call a method `response.text()`: it returns a promise that resolves  when the full text downloaded from the remote server, and has that text as a result.
 
-The code below makes a request to `user.json` and then loads it as text from the server:
+The code below makes a request to `user.json` and loads its text from the server:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
-  // .then runs when the remote server responds
+  // .then below runs when the remote server responds
   .then(function(response) {
-    // response.text() is the new promise that resolves when the server finishes sending data
+    // response.text() returns a new promise that resolves with the full response text
+    // when we finish downloading it
     return response.text();
   })
   .then(function(text) {
@@ -223,12 +259,15 @@ There is also a method `response.json()` that reads the remote data and parses i
 We'll also use arrow functions for brevity:
 
 ```js run
+// same as above, but response.json() parses the remote content as JSON
 fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
   .then(user => alert(user.name)); // iliakan
 ```
 
-Now let's do something with it. For instance, we can make one more request to github, load the user profile and show the avatar:
+Now let's do something with the loaded user.
+
+For instance, we can make one more request to github, load the user profile and show the avatar:
 
 ```js run
 // 1. Make a request for user.json
@@ -250,9 +289,9 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works. But there's a potential problem in it.
+The code works. But there's a potential problem in it, a typical error of those who begin to use promises.
 
-Look at the line `(*)`: how can we do something *after* the avatar is removed? For instance, we'd like to show a form for editing that user or something else.
+Look at the line `(*)`: how can we do something *after* the avatar is removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
 
 To make the chain extendable, we need to return a promise that resolves when the avatar finishes showing.
 
@@ -265,6 +304,7 @@ fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
 *!*
   .then(githubUser => new Promise(function(resolve, reject) {
+*/!*
     let img = document.createElement('img');
     img.src = githubUser.avatar_url;
     img.className = "promise-avatar-example";
@@ -272,17 +312,20 @@ fetch('/article/promise-chaining/user.json')
 
     setTimeout(() => {
       img.remove();
+*!*
       resolve(githubUser);
+*/!*
     }, 3000);
   }))
-  */!*
   // triggers after 3 seconds
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
 Now when `setTimeout` runs the function, it calls `resolve(githubUser)`, thus passing the control to the next `.then` in the chain and passing forward the user data.
 
-As a rule, an asynchronous action should always return a promise. That makes possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
+As a rule, an asynchronous action should always return a promise.
+
+That makes possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
 
 Finally, we can split the code into reusable functions:
 
@@ -311,6 +354,7 @@ function showAvatar(githubUser) {
   });
 }
 
+// Use them:
 loadJson('/article/promise-chaining/user.json')
   .then(user => loadGithubUser(user.name))
   .then(showAvatar)
@@ -476,15 +520,102 @@ new Promise(function(resolve, reject) {
 
 The handler `(*)` catches the error and just can't handle it, because it's not `URIError`, so it throws it again. Then the execution jumps to the next `.catch` down the chain `(**)`.
 
+In the section below we'll see a practical example of rethrowing.
+
+## Fetch error handling example
+
+Let's improve error handling for the user-loading example.
+
+The promise returned by [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) rejects when it's impossible to make a request. For instance, a remote server is not available, or the URL is malformed. But if the remote server responds with error 404, or even error 500, then it's considered a valid response.
+
+What if the server returns a non-JSON page with error 500 in the line `(*)`? What if there's no such user, and github returns a page with error 404 at `(**)`?
+
+```js run
+fetch('no-such-user.json') // (*)
+  .then(response => response.json())
+  .then(user => fetch(`https://api.github.com/users/${user.name}`)) // (**)
+  .then(response => response.json())
+  .catch(alert); // SyntaxError: Unexpected token < in JSON at position 0
+  // ...
+```
+
+
+As of now, the code tries to load the response as JSON no matter what and dies with a syntax error. You can see that by running the example above, as the file `no-such-user.json` doesn't exist.
+
+That's not good, because the error just falls through the chain, without details: what failed and where.
+
+So let's add one more step: we should check the `response.status` property that has HTTP status, and if it's not 200, then throw an error.
+
+```js run
+class HttpError extends Error { // (1)
+  constructor(response) {
+    super(`${response.status} for ${response.url}`);
+    this.name = 'HttpError';
+    this.response = response;
+  }
+}
+
+function loadJson(url) { // (2)
+  return fetch(url)
+    .then(response => {
+      if (response.status == 200) {
+        return response.json();
+      } else {
+        throw new HttpError(response);
+      }
+    })
+}
+
+loadJson('no-such-user.json') // (3)
+  .catch(alert); // HttpError: 404 for .../no-such-user.json
+```
+
+1. We make a custom class for HTTP Errors to distinguish them from other types of errors. Besides, the new class has a constructor that accepts the `response` object and saves it in the error. So error-handling code will be able to access it.
+2. Then we put together the requesting and error-handling code into a function that fetches the `url` *and* treats any non-200 status as an error. That's convenient, because we often need such logic.
+3. Now `alert` shows better message.
+
+The great thing about having our own class for errors is that we can easily check for it in error-handling code.
+
+For instance, we can make a request, and then if we get 404 -- ask the user to modify the information.
+
+The code below loads a user with the given name from github. If there's no such user, then it asks for the correct name:
+
+```js run
+function demoGithubUser() {
+  let name = prompt("Enter a name?", "iliakan");
+
+  return loadJson(`https://api.github.com/users/${name}`)
+    .then(user => {
+      alert(`Full name: ${user.name}.`); // (1)
+      return user;
+    })
+    .catch(err => {
+*!*
+      if (err instanceof HttpError && err.response.status == 404) { // (2)
+*/!*
+        alert("No such user, please reenter.");
+        return demoGithubUser();
+      } else {
+        throw err;
+      }
+    });
+}
+
+demoGithubUser();
+```
+
+Here:
+
+1. If `loadJson` returns a valid user object, then the name is shown `(1)`, and the user is returned, so that we can add more user-related actions to the chain. In that case the `.catch` below is ignored, everything's very simple and fine.
+2. Otherwise, in case of an error, we check it in the line `(2)`. Only if it's indeed the HTTP error, and the status is 404 (Not found), we ask the user to reenter. For other errors -- we don't know how to handle, so we just rethrow them.
+
 ## Unhandled rejections
 
-...But what if we forget to append an error handler to the end of the chain?
-
-Like here:
+What happens when an error is not handled? For instance, after the rethrow as in the example above. Or if we forget to append an error handler to the end of the chain, like here:
 
 ```js untrusted run refresh
 new Promise(function() {
-  errorHappened(); // Error here (no such function)
+  noSuchFunction(); // Error here (no such function)
 });
 ```
 
@@ -502,32 +633,29 @@ new Promise(function() {
 });
 ```
 
-Technically, when an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above.
+In theory, nothing should happen. In case of an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
-Usually that means that the code is bad. Indeed, how come that there's no error handling?
+In practice, that means that the code is bad. Indeed, how come that there's no error handling?
 
-Most JavaScript engines track such situations and generate a global error in that case. In the browser we can catch it using `window.addEventListener('unhandledrejection')` as specified in the [HTML standard](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections):
-
+Most JavaScript engines track such situations and generate a global error in that case. In the browser we can catch it using the event `unhandledrejection`:
 
 ```js run
+*!*
 window.addEventListener('unhandledrejection', function(event) {
   // the event object has two special properties:
   alert(event.promise); // [object Promise] - the promise that generated the error
   alert(event.reason); // Error: Whoops! - the unhandled error object
 });
+*/!*
 
 new Promise(function() {
   throw new Error("Whoops!");
-}).then(function() {
-  // ...something...
-}).then(function() {
-  // ...something else...
-}).then(function() {
-  // ...but no catch after it!
-});
+}); // no catch to handle the error
 ```
 
-Now if an error has occured, and there's no `.catch`, the event `unhandledrejection` triggers, and our handler can do something with the exception. Once again, such situation is usually a programming error.
+The event is the part of the [HTML standard](https://html.spec.whatwg.org/multipage/webappapis.html#unhandled-promise-rejections). Now if an error occurs, and there's no `.catch`, the `unhandledrejection` handler triggers: the `event` object has the information about the error, so we can do something with it.
+
+Usually such errors are unrecoverable, so our best way out is to inform the user about the problem and probably report about the incident to the server.
 
 In non-browser environments like Node.JS there are other similar ways to track unhandled errors.
 
@@ -549,6 +677,6 @@ The smaller picture of how handlers are called:
 
 In the examples of error handling above the `.catch` was always the last in the chain. In practice though, not every promise chain has a `.catch`. Just like regular code is not always wrapped in `try..catch`.
 
-We should place `.catch` exactly in the places where we want to handle errors and know how to handle them.
+We should place `.catch` exactly in the places where we want to handle errors and know how to handle them. Using custom error classes can help to analyze errors and rethrow those that we can't handle.
 
-For errors that are outside of that scope we should have the `unhandledrejection` event handler. Such unknown errors are usually unrecoverable, so all we should do is to inform the user and probably report to our server about the incident.
+For errors that fall outside of our scope we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments). Such unknown errors are usually unrecoverable, so all we should do is to inform the user and probably report to our server about the incident.

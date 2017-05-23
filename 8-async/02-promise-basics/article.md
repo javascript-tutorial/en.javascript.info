@@ -113,8 +113,8 @@ let promise = new Promise(function(resolve, reject) {
 For instance, it happens when we start to do a job and then see that everything has already been done. Technically that's fine: we have a resolved promise right now.
 ````
 
-````smart header="Promise properties are internal"
-Properties of promise objects like `state` and `result` are internal. We can't directly access them from our code.
+```smart header="The `state` and `result` are internal"
+Properties `state` and `result` of a promise object are internal. We can't directly access them from our code, but we can use methods `.then/catch` for that, they are described below.
 ```
 
 ## Consumers: ".then" and ".catch"
@@ -200,10 +200,25 @@ If a promise is pending, `.then/catch` handlers wait for the result. Otherwise, 
 // an immediately resolved promise
 let promise = new Promise(resolve => resolve("done!"));
 
-promise.then(alert); // done! (without a delay)
+promise.then(alert); // done! (shows up right now)
 ```
 
 That's good for jobs that may sometimes require time and sometimes finish immediately. The handler is guaranteed to run in both cases.
+
+To be precise, `.then/catch` queue up and are taken from the queue asynchronously when the current code finishes, like `setTimeout(..., 0)`.
+
+So here the `alert` call is "queued" and runs immediately after the code finishes:
+
+```js run
+// an immediately resolved promise
+let promise = new Promise(resolve => resolve("done!"));
+
+promise.then(alert); // done! (right after the current code finishes)
+
+alert("code finished"); // this alert shows first
+```
+
+In practice the time for the code to finish execution is usually negligible. But the code after `.then` always executes before the `.then` handler (even in the case of a pre-resolved promise), that could matter.
 ````
 
 Now let's see more practical examples to see how promises can help us in writing asynchronous code.

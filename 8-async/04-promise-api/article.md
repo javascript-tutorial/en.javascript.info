@@ -1,6 +1,65 @@
 # Promise API
 
-There are helpful static methods in the `Promise` class. There are only 4 of them, so we'll quickly cover them here.
+There are 4 static methods in the `Promise` class. We'll quickly cover their use cases here.
+
+## Promise.resolve
+
+The syntax:
+
+```js
+let promise = Promise.resolve(value);
+```
+
+Returns a resolved promise with the given `value`.
+
+Same as:
+
+```js
+let promise = new Promise(resolve => resolve(value));
+```
+
+The method is used when we already have a value, but would like to have it "wrapped" into a promise.
+
+For instance, the `loadCached` function below fetches the `url` and remembers the result, so that future calls on the same URL return it immediately:
+
+```js
+function loadCached(url) {
+  let cache = loadCached.cache || (loadCached.cache = new Map());
+
+  if (cache.has(url)) {
+*!*
+    return Promise.resolve(cache.get(url)); // (*)
+*/!*
+  }
+
+  return fetch(url)
+    .then(response => response.text())
+    .then(text => {
+      cache[url] = text;
+      return text;
+    });
+}
+```
+
+We can use `loadCached(url).then(…)`, because the function is guaranteed to return a promise. That's the purpose `Promise.resolve` in the line `(*)`: it makes sure the interface unified. We can always use `.then` after `loadCached`.
+
+## Promise.reject
+
+The syntax:
+
+```js
+let promise = Promise.reject(error);
+```
+
+Create a rejected promise with the `error`.
+
+Same as:
+
+```js
+let promise = new Promise((resolve, reject) => reject(error));
+```
+
+We cover it here for completeness, rarely used in real code.
 
 ## Promise.all
 
@@ -12,42 +71,109 @@ The syntax is:
 let promise = Promise.all(iterable);
 ```
 
-It takes an `iterable` object with promises, for instance an array and returns a new promise that resolves with the array of their results when all of them are settled, or rejects with the first encountered error if any.
+It takes an `iterable` object with promises, for instance an array and returns a new promise that resolves with when all of them are settled and has an array of results.
+
+For instance, the `Promise.all` below settles after 3 seconds, and the result is an array `[1, 2, 3]`:
+
+```js run
+Promise.all([
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(2), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 1000))
+]).then(alert); // 1,2,3 after all promises are ready
+```
+
+Please note that the relative order is the same. Even though the first promise takes the longest time to resolve, it is still first in the array of results.
+
+A more real-life example with fetching user information for an array of github users by their names:
+
+```js run
+let names = ['iliakan', 'remy', 'jresig'];
+
+// map every url to the promise fetch(github url)
+let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
+
+// Promise.all waits until all jobs are resolved
+Promise.all(requests)
+  .then(responses => {
+    // all responses are ready, we can show HTTP status codes
+    for(let response of responses) {
+      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+    }
+
+    return responses;
+  })
+  // map array of responses into array of response.json() and wrap them info Promise.all
+  .then(responses => Promise.all(responses.map(r => r.json())))
+  // all JSON answers are parsed: users is the array of them
+  .then(users => users.forEach(user => alert(user.name)));
+```
+
+If any of the promises is rejected, `Promise.all` also rejects with that error.
 
 For instance:
 
+
 ```js run
-// loads 3 scripts in parallel and returns an array of them
 Promise.all([
-  loadScript('/article/promise-api/one.js'),
-  loadScript('/article/promise-api/two.js'),
-  loadScript('/article/promise-api/three.js')
-]).then(scripts => {
-  alert(`scripts loaded: ${scripts}`);
-});
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
+*!*
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+*/!*
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).catch(alert); // Error: Whoops!
 ```
 
+Here the `.catch` runs after 2 seconds, when the second promise rejects, and the rejection error becomes the outcome of the whole `Promise.all`.
 
+The important detail is that promises provide no way to "cancel" or "abort" their execution. So in the example above all promises finally settle, but in case of an error all results are ignored, "thrown away".
 
-- the returned `promise` awaits for al
+````smart header="`Promise.all` wraps non-promise arguments into `Promise.resolve`"
+Normally, `Promise.all(iterable)` accepts an iterable of promise objects. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
 
-In the previous chapter we saw how to run things sequentially. Promises also
+For instance, here the results are `[1, 2, 3]`:
 
-- Promise.all
-- Promise.race
-- Promise.reject
-- Promise.resolve
+```js run
+Promise.all([
+  new Promise((resolve, reject) => {
+    setTimeout(() => resolve(1), 1000)
+  }),
+  2, // treated as Promise.resolve(2)
+  3  // treated as Promise.resolve(3)
+]).then(alert); // 1, 2, 3
+```
 
-Let's meet more functions and methods for promises.
+So we are able to pass non-promise values to `Promise.all` where convenient.
 
+````
 
+## Promise.race
 
-Keywords `async` and `await` provide a more elegant way to write the code using promises.
+Similar to `Promise.all` takes an iterable of promises, but instead of waiting for all of them to finish -- waits for the first result (or error), and goes on with it.
 
-## Async functions
+The syntax is:
 
-The `async` function is like a regular one, but it wraps a returned value in a `Promise`.
+```js
+let promise = Promise.race(iterable);
+```
 
+For instance, here the result will be `1`:
 
+```js run
+Promise.race([
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(alert); // 1
+```
 
-Nowadays, promises are de-facto standard for asynchronous actions, when we need to
+So, the first result/error becomes the result of the whole `Promise.race`, and further results/errors are ignored.
+
+## Summary
+
+There are 4 static methods of `Promise` class:
+
+1. `Promise.resolve(value)` -- makes a resolved promise with the given value,
+2. `Promise.reject(error)` -- makes a rejected promise with the given error,
+3. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, then it becomes the error of `Promise.all`, and all other results are ignored.
+4. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
