@@ -14,7 +14,7 @@ As we know already, `new F()` creates a new object. But what we didn't use yet `
 
 That property is used by the JavaScript itself to set `[[Prototype]]` for new objects.
 
-**When a new object is created with `new F()`, the `[[Prototype]]` of it is set to `F.prototype`.**
+**When a new object is created with `new F()`, the object's `[[Prototype]]` is set to `F.prototype`.**
 
 Please note that `F.prototype` here means a regular property named `"prototype"` on `F`. It sounds something similar to the term "prototype", but here we really mean a regular property with this name.
 

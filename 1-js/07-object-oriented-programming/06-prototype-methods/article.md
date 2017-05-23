@@ -1,7 +1,7 @@
 
 # Methods for prototypes
 
-In this chapter we cover additional methods to work with the prototype.
+In this chapter we cover additional methods to work with a prototype.
 
 There are also other ways to get/set a prototype, besides those that we already know:
 
