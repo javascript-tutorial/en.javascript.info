@@ -55,7 +55,7 @@ alert(user.fullName); // John Smith
 */!*
 ```
 
-From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't **call** `user.fullName` as a function, we **read** it normally: the getter runs behind the scenes.
+From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we **read** it normally: the getter runs behind the scenes.
 
 As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error.
 
@@ -97,7 +97,7 @@ Sometimes it's normal that there's only a setter or only a getter. But the prope
 
 ## Accessor descriptors
 
-Descriptors for accessor properties are different - as compared with data properties.
+Descriptors for accessor properties are different -- as compared with data properties.
 
 For accessor properties, there is no `value` and `writable`, but instead there are `get` and `set` functions.
 
