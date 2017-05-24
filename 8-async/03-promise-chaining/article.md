@@ -201,26 +201,26 @@ Here's an example of a thenable object:
 
 ```js run
 class Thenable {
-  constructor(result, delay) {
-    this.result = result;
+  constructor(num) {
+    this.num = num;
   }
-  // then method has the similar signature to promises
   then(resolve, reject) {
-    // resolve with double this.result after the delay
-    setTimeout(() => resolve(this.result * 2), delay);
+    alert(resolve); // function() { native code }
+    // resolve with this.num*2 after the 1 secound
+    setTimeout(() => resolve(this.num * 2), 1000); // (**)
   }
-};
+}
 
 new Promise(resolve => resolve(1))
   .then(result => {
-    return new Thenable(result, 1000); // (*)
+    return new Thenable(result); // (*)
   })
   .then(alert); // shows 2 after 1000ms
 ```
 
-JavaScript checks the object returned by the handler in the line `(*)`: it it has a callable method named `then`,  then it waits until that method is called, and the result is passed further.
+JavaScript checks the object returned by `.then` handler in the line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
 
-That allows to integrate side objects with promise chains without having to inherit from `Promise`.
+This feature allows to integrate custom objects with promise chains without having to inherit from `Promise`.
 ````
 
 
