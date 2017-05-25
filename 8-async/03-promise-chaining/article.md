@@ -637,7 +637,9 @@ In theory, nothing should happen. In case of an error happens, the promise state
 
 In practice, that means that the code is bad. Indeed, how come that there's no error handling?
 
-Most JavaScript engines track such situations and generate a global error in that case. In the browser we can catch it using the event `unhandledrejection`:
+Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
+
+In the browser we can catch it using the event `unhandledrejection`:
 
 ```js run
 *!*
