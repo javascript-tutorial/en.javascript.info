@@ -208,7 +208,7 @@ john = {
 - Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
 - Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
 
-We can use constructor functions to make multiple similar objects. But the topic is much deeper than described here. So we'll return to it later and cover it more in-depth.
+We can use constructor functions to make multiple similar objects. 
 
 JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 
