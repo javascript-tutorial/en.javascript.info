@@ -53,7 +53,7 @@ The whole thing works, because a call to `promise.then` returns a promise, so th
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
 
-To make things clear, here's the start of the chain:
+To make these words more clear, here's the start of the chain:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -62,13 +62,14 @@ new Promise(function(resolve, reject) {
 
 }).then(function(result) {
 
-  alert(result); // 1
-  return result * 2; // (1)
+  alert(result);
+  return result * 2; // <-- (1)
 
 }) // <-- (2)
+// .then…
 ```
 
-The value returned by `.then` is a promise, so we can add another `.then` at `(2)`. When the value is returned in `(1)`, that promise becomes resolved, so the next handler triggers with it.
+The value returned by `.then` is a promise, that's why we are able to add another `.then` at `(2)`. When the value is returned in `(1)`, that promise becomes resolved, so the next handler runs with the value.
 
 Unlike the chaining, technically we can also add many `.then` to a single promise, like this:
 
@@ -105,7 +106,7 @@ In practice we rarely need multiple handlers for one promise. Chaining is used m
 
 Normally, a value returned by a `.then` handler is immediately passed to the next handler. But there's an exception.
 
-If the returned value is a promise, then the further execution is suspended until it settles. And then the result of that promise is given to the next `.then` handler.
+If the returned value is a promise, then the further execution is suspended until it settles. After that, the result of that promise is given to the next `.then` handler.
 
 For instance:
 
@@ -139,7 +140,7 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result is passed on to handler of the second `.then` in the line `(**)`, that shows `2` and so on.
+Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result*2`) is passed on to handler of the second `.then` in the line `(**)`. It shows `2` and does the same thing.
 
 So the output is again 1 -> 2 > 4, but now with 1 second delay between `alert` calls.
 
@@ -176,7 +177,7 @@ Please note that technically it is also possible to write `.then` directly after
 loadScript("/article/promise-chaining/one.js").then(function(script1) {
   loadScript("/article/promise-chaining/two.js").then(function(script2) {
     loadScript("/article/promise-chaining/three.js").then(function(script3) {
-      // this function has access to variables script1, script2 and script3 (*)
+      // this function has access to variables script1, script2 and script3
       one();
       two();
       three();
@@ -187,7 +188,7 @@ loadScript("/article/promise-chaining/one.js").then(function(script1) {
 
 This code does the same: loads 3 scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks. Use chaining (return promises from `.then`) to evade it.
 
-Sometimes it's ok to write `.then` directly, because the nested function has access to the outer scope `(*)`, but that's an exception rather than a rule.
+Sometimes it's ok to write `.then` directly, because the nested function has access to the outer scope (here the most nested callback has access to all variables `scriptX`), but that's an exception rather than a rule.
 
 
 ````smart header="Thenables"
@@ -234,9 +235,9 @@ We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load th
 let promise = fetch(url);
 ```
 
-This makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but before the full response is downloaded.
+This makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but *before the full response is downloaded*.
 
-To read the full response, we should call a method `response.text()`: it returns a promise that resolves  when the full text downloaded from the remote server, and has that text as a result.
+To read the full response, we should call a method `response.text()`: it returns a promise that resolves  when the full text downloaded from the remote server, with that text as a result.
 
 The code below makes a request to `user.json` and loads its text from the server:
 
@@ -254,7 +255,7 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient.
+There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
 
 We'll also use arrow functions for brevity:
 
@@ -270,7 +271,7 @@ Now let's do something with the loaded user.
 For instance, we can make one more request to github, load the user profile and show the avatar:
 
 ```js run
-// 1. Make a request for user.json
+// Make a request for user.json
 fetch('/article/promise-chaining/user.json')
   // Load it as json
   .then(response => response.json())
@@ -289,13 +290,13 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works. But there's a potential problem in it, a typical error of those who begin to use promises.
+The code works, see comments about the details, but it should be quite self-descriptive. Although, there's a potential problem in it, a typical error of those who begin to use promises.
 
-Look at the line `(*)`: how can we do something *after* the avatar is removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
+Look at the line `(*)`: how can we do something *after* the avatar has finished showing and gets removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
 
 To make the chain extendable, we need to return a promise that resolves when the avatar finishes showing.
 
-Here's how:
+Like this:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
@@ -321,7 +322,7 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
-Now when `setTimeout` runs the function, it calls `resolve(githubUser)`, thus passing the control to the next `.then` in the chain and passing forward the user data.
+Now right after `setTimeout` runs `img.remove()`, it calls `resolve(githubUser)`, thus passing the control to the next `.then` in the chain and passing forward the user data.
 
 As a rule, an asynchronous action should always return a promise.
 

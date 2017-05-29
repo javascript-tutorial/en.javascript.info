@@ -34,7 +34,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-So, `async` ensures that the function returns a promise, wraps non-promises in it. Simple enough, right? But not only that. There's another keyword `await` that works only inside `async` functions, and is pretty cool.
+So, `async` ensures that the function returns a promise, wraps non-promises in it. Simple enough, right? But not only that. There's another keyword `await` that works only inside `async` functions, and it's pretty cool.
 
 ## Await
 
@@ -67,10 +67,9 @@ f();
 
 The function execution "pauses" at the line `(*)` and resumes when the promise settles, with `result` becoming its result. So the code above shows "done!" in one second.
 
-
 Let's emphasize that: `await` literally makes JavaScript wait until the promise settles, and then go on with the result. That doesn't cost any CPU resources, because the engine can do other jobs meanwhile: execute other scripts, handle events etc.
 
-It's just a more elegant syntax of getting promise result than `promise.then`, easier to read and write.
+It's just a more elegant syntax of getting the promise result than `promise.then`, easier to read and write.
 
 ````warn header="Can't use `await` in regular functions"
 If we try to use `await` in non-async function, that would be a syntax error:
@@ -84,13 +83,13 @@ function f() {
 }
 ```
 
-We can get such error when forgot to put `async` before a function. As said, `await` only works inside `async function`.
+We can get such error in case if we forget to put `async` before a function. As said, `await` only works inside `async function`.
 ````
 
 Let's take `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
 
 1. First we'll need to replace `.then` calls by `await`.
-2. And the function should become `async` for them to work.
+2. And we should make the function `async` for them to work.
 
 ```js run
 async function showAvatar() {
@@ -122,7 +121,7 @@ showAvatar();
 
 Pretty clean and easy to read, right?
 
-Please note that we can't write `await` in top-level code. That wouldn't work:
+Please note that we can't write `await` in the top-level code. That wouldn't work:
 
 ```js run
 // syntax error in top-level code
@@ -130,12 +129,12 @@ let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 ```
 
-...We need to wrap "awaiting" commands into an async function instead.
+So we need to have a wrapping async function for the code that awaits.
 
-````smart header="Await accepts thenables"
-Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may be promise-compatible: if it supports `.then`, that's enough to use with `await`.
+````smart header="`await` accepts thenables"
+Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may be not a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
 
-For instance:
+For instance, here `await` accepts `new Thenable(1)`:
 ```js run
 class Thenable {
   constructor(num) {
@@ -157,9 +156,30 @@ async function f() {
 f();
 ```
 
-If `await` gets an object with `.then`, it calls that method providing native functions `resolve`, `reject` as arguments. Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
+If `await` gets a non-promise object with `.then`, it calls that method providing native functions `resolve`, `reject` as arguments. Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
 
+````smart header="Async methods"
+A class method can also be async, just put `async` before it.
+
+Like here:
+
+```js run
+class Waiter {
+*!*
+  async wait() {
+*/!*
+    return await Promise.resolve(1);
+  }
+}
+
+new Waiter()
+  .wait()
+  .then(alert); // 1
+```
+The meaning is the same: it ensures that the returned value is a promise and enables `await`.
+
+````
 ## Error handling
 
 If a promise resolves normally, then `await promise` returns the result. But in case of a rejection it throws the error, just if there were a `throw` statement at that line.
@@ -237,14 +257,14 @@ If we forget to add `.catch` there, then we get an unhandled promise error (and 
 
 
 ```smart header="`async/await` and `promise.then/catch`"
-When we use `async/await`, we rarely need `.then`, because `await` handles the waiting for us. And we can use a regular `try..catch` instead of `.catch`, that's usually (not always) more convenient.
+When we use `async/await`, we rarely need `.then`, because `await` handles the waiting for us. And we can use a regular `try..catch` instead of `.catch`. That's usually (not always) more convenient.
 
-But at the top-level of the code, when we're calling the outmost `async` function, we're syntactically unable to use `await` (as we're not in an `async` function yet), so it's a normal practice to add `.then/catch` to handle the final result or falling-through errors.
+But at the top level of the code, when we're outside of any `async` function, we're syntactically unable to use `await`, so it's a normal practice to add `.then/catch` to handle the final result or falling-through errors.
 
 Like in the line `(*)` of the example above.
 ```
 
-````smart header="Async/await works well with `Promise.all`"
+````smart header="`async/await` works well with `Promise.all`"
 When we need to wait for multiple promises, we can wrap them in `Promise.all` and then `await`:
 
 ```js
