@@ -163,7 +163,7 @@ setTimeout(function() { super.stop() }, 1000);
 
 With constructors, things are is a little bit tricky.
 
-Till now, `Rabbit` had no its own `constructor`.
+Till now, `Rabbit` did not have its own `constructor`.
 
 According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following `constructor` is generated:
 
@@ -271,7 +271,7 @@ Yeah, indeed, let's ask ourselves, how it could technically work? When an object
 
 Maybe we can get it `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that won't work.
 
-Let's try to do it. Without classes, using plain objects for sheer simplicity.
+Let's try to do it. Without classes, using plain objects for the sake of simplicity.
 
 Here, `rabbit.eat()` should call `animal.eat()` method of the parent object:
 
