@@ -117,7 +117,7 @@ alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
-That's one of reasons to evade changing `prototype`. Just to keep safe.
+That's one of reasons to avoid changing `prototype`. Just to keep safe.
 
 ## Bonus: Object toString for the type
 

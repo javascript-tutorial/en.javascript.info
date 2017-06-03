@@ -43,7 +43,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that the two examples are alike. So, what exactly the `class` does? We may think that it defines a new language-level entity, but that would be wrong.
+It's easy to see that the two examples are alike. So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
 
 The `class User {...}` here actually does two things:
 
@@ -98,11 +98,11 @@ Class definition sets `enumerable` flag to `false` for all methods in the `"prot
 ```
 
 ```smart header="What if there's no constructor?"
-If there's no `constructor` in the `class` construct, then an empty function is generated, same as if write `constructor() {}`.
+If there's no `constructor` in the `class` construct, then an empty function is generated, same as if we had written `constructor() {}`.
 ```
 
 ```smart header="Classes always `use strict`"
-All code inside the class construct is automatically in the strict mode.
+All code inside the class construct is automatically in strict mode.
 ```
 
 ### Getters/setters
@@ -273,7 +273,7 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // Body
 ```
 
-Here `Article.compare` stands "over" the articles, as a meants to compare them.
+Here `Article.compare` stands "over" the articles, as a means to compare them.
 
 Another example would be a so-called "factory" method, that creates an object with specific parameters.
 

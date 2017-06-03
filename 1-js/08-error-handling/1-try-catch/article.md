@@ -110,7 +110,7 @@ try {
 }
 ```
 
-That's because `try..catch` actually wraps the `setTimeout` call that schedules the function. But the function itself is executed later, when the engine has already have left `try..catch` contruct.
+That's because `try..catch` actually wraps the `setTimeout` call that schedules the function. But the function itself is executed later, when the engine has already have left the `try..catch` construct.
 
 To catch an exception inside a scheduled function, `try..catch` must be inside that function:
 ```js run
@@ -222,7 +222,7 @@ try {
 
 Here we use `catch` block only to show the message, but we can do much more: a new network request, suggest an alternative to the visitor, send the information about the error to a logging facility... All much better than just dying.
 
-## Throwing own errors
+## Throwing our own errors
 
 What if `json` is syntactically correct... But doesn't have a required `"name"` property?
 
@@ -245,7 +245,7 @@ try {
 
 Here `JSON.parse` runs normally, but the absence of `"name"` is actually an error for us.
 
-To unify error handling, we'll use `throw` operator.
+To unify error handling, we'll use the `throw` operator.
 
 ### "Throw" operator
 
@@ -344,7 +344,7 @@ try {
 }
 ```
 
-Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a crazy bug may be discovered that leads to terrible hacks (like it happened with `ssh` tool).
+Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a crazy bug may be discovered that leads to terrible hacks (like it happened with the `ssh` tool).
 
 In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
 
@@ -368,7 +368,7 @@ The "rethrowing" technique can be explained in more detail as:
 
 1. Catch gets all errors.
 2. In `catch(err) {...}` block we analyze the error object `err`.
-2. If we don't know how to handle it, then do `throw err`.
+2. If we don't know how to handle it, then we do `throw err`.
 
 In the code below, we use rethrowing so that `catch` only handles `SyntaxError`:
 
@@ -401,7 +401,7 @@ try {
 }
 ```
 
-The error throwin in the line `(*)` from inside `catch` block "falls out" of `try..catch` and can be either caught by an outer `try..catch` construct (if exists), or it kills the script.
+The error throwing on line `(*)` from inside `catch` block "falls out" of `try..catch` and can be either caught by an outer `try..catch` construct (if it exists), or it kills the script.
 
 So the `catch` block actually handles only errors that it knows how to deal with and "skips" all others.
 
@@ -480,7 +480,7 @@ The code has two ways of execution:
 
 The `finally` clause is often used when we start doing something before `try..catch` and want to finalize it in any case of outcome.
 
-For instance, we want to measure time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what is there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
+For instance, we want to measure time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what if there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
 
 The `finally` clause is a great place to finish the measurements no matter what.
 
@@ -577,7 +577,7 @@ The information from this section is not a part of the core JavaScript.
 
 Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or something else terrible.
 
-Is there a way to react on such a happening? We may want to log the error, show something to the user (normally he doesn't see error messages) etc.
+Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally he doesn't see error messages) etc.
 
 There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
 
