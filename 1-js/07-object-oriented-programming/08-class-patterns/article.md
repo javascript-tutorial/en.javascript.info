@@ -47,7 +47,7 @@ function User(name, birthday) {
 *!*
   // only visible from other methods inside User
   function calcAge() {
-    new Date().getFullYear() - birthday.getFullYear();
+    return new Date().getFullYear() - birthday.getFullYear();
   }
 */!*
 
@@ -76,7 +76,7 @@ Like this:
 function User(name, birthday) {
   // only visible from other methods inside User
   function calcAge() {
-    new Date().getFullYear() - birthday.getFullYear();
+    return new Date().getFullYear() - birthday.getFullYear();
   }
 
   return {

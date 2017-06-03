@@ -294,7 +294,7 @@ class Article {
 */!*
 }
 
-let article = article.createTodays();
+let article = Article.createTodays();
 
 alert( articles.title ); // Todays digest
 ```
