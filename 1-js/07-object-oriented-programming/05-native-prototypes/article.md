@@ -156,7 +156,7 @@ function showArgs() {
 */!*
 }
 
-showList("John", "Pete", "Alice"); // John - Pete - Alice
+showArgs("John", "Pete", "Alice"); // John - Pete - Alice
 ```
 
 Because `join` resides in `Array.prototype`, we can call it from there directly and rewrite it as:
