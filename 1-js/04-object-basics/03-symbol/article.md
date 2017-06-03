@@ -33,6 +33,30 @@ alert(id1 == id2); // false
 
 If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
 
+````warn header="Symbols don't auto-convert to a string"
+Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
+
+For instance, this `alert` will show an error:
+
+```js run
+let id = Symbol("id");
+*!*
+alert(id); // TypeError: Cannot convert a Symbol value to a string
+*/!*
+```
+
+If we really want to show a symbol, we need to call `.toString()` on it, like here:
+```js run
+let id = Symbol("id");
+*!*
+alert(id.toString()); // Symbol(id), now it works
+*/!*
+```
+
+That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
+````
+
+
 
 ## "Hidden" properties
 
@@ -95,7 +119,7 @@ let user = {
 ```
 That's because we need the value from the variable `id` as the key, not the string "id".
 
-### Symbols skipped by for..in
+### Symbols are skipped by for..in
 
 Symbolic properties do not participate in `for..in` loop.
 
@@ -132,7 +156,7 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want symbolic properties (like `id`) to be copied as well.
+There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
 
 ````smart header="Property keys of other types are coerced to strings"
 We can only use strings or symbols as keys in objects. Other types are coerced to strings.
