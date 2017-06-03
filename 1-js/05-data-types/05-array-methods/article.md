@@ -717,7 +717,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
 For the full list, see the [manual](mdn:js/Array).
 
-From the first sight it may seem that there are too many methods, difficult to remember. But you have to.
+From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier than it seems.
 
 Look through the cheatsheet just to be aware of them. Then do the tasks of this chapter to practice, so that you have experience with most methods.
 
