@@ -694,7 +694,7 @@ Most used array methods:
 - `splice` -- delete and insert elements at the given position.
 - `sort` -- sorts the array.
 - `indexOf/lastIndexOf`, `includes` -- look for the value.
-- `find/filter` -- return first/all values satisfying the given condition.
+- `find/filter` -- return first/all values satisfying the given condition, `findIndex` is like `find`, but returns the index instead of a value.
 - `forEach` -- runs a function for each element.
 - `map` -- transforms the array through the function.
 - `reduce/reduceRight` -- calculates a single value based on array.
