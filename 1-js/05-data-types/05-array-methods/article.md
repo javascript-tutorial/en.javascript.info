@@ -671,9 +671,41 @@ alert(youngerUsers.length); // 2
 
 In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
 
-## Other methods
+## Summary
 
-We covered the most useful methods. But there are few others:
+A cheatsheet of array methods:
+
+- To add/remove elements:
+  - `push(...items)` -- adds items to the end,
+  - `pop()` -- extracts an item from the end,
+  - `shift()` -- extracts an item from the beginning,
+  - `unshift(...items)` -- adds items to the beginning.
+  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
+  - `slice(start, end)` -- creates a new array, copies elements from position `start` till `end` (not inclusive) into it.
+  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+
+- To search among elements:
+  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
+  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
+  - `find/filter(func)` -- filter elements of through the function, return first/all values that make it return `true`.
+  - `findIndex` is like `find`, but returns the index instead of a value.
+
+- To transform the array:
+  - `map(func)` -- creates a new array from results of calling `func` for every element.
+  - `sort(func)` -- sorts the array in-place, then returns it.
+  - `reverse()` -- reverses the array in-place, then returns it.
+  - `split/join` -- convert a string to array and back.
+  - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+
+- To iterate over elements:
+  - `forEach(func)` -- calls `func` for every element, does not return anything.
+
+- Additionally:
+  - `Array.isArray(arr)` checks `arr` for being an array.
+
+Of all these methods only `sort`, `reverse` and `splice` modify the array itself, the other ones only return a value.
+
+These methods are the most used ones, they cover 99% of use cases. But there are few others:
 
 - [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) checks the array.
 
@@ -683,23 +715,10 @@ We covered the most useful methods. But there are few others:
 
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
 
-These and other methods are also listed in the [manual](mdn:js/Array).
+For the full list, see the [manual](mdn:js/Array).
 
+From the first sight it may seem that there are too many methods, difficult to remember. But you have to.
 
-## Summary
+Look through the cheatsheet just to be aware of them. Then do the tasks of this chapter to practice, so that you have experience with most methods.
 
-Most used array methods:
-
-- `split/join` -- convert a string to array and back.
-- `splice` -- delete and insert elements at the given position.
-- `sort` -- sorts the array.
-- `indexOf/lastIndexOf`, `includes` -- look for the value.
-- `find/filter` -- return first/all values satisfying the given condition, `findIndex` is like `find`, but returns the index instead of a value.
-- `forEach` -- runs a function for each element.
-- `map` -- transforms the array through the function.
-- `reduce/reduceRight` -- calculates a single value based on array.
-- `slice` -- copy the part of the array.
-
-These methods are used in 95% of cases. For the full list, see the [manual](mdn:js/Array).
-
-The methods are easy to remember when you use them. Please refer to the tasks for some practice.
+Afterwards whether you need to do something with an array, and you don't know how -- come here, look at the cheatsheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.

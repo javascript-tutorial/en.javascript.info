@@ -16,4 +16,4 @@ camelize("list-style-image") == 'listStyleImage';
 camelize("-webkit-transition") == 'WebkitTransition';
 ```
 
-
+P.S. Hint: use `split` to split the string into an array, transform it and `join` back.
