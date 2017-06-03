@@ -234,13 +234,13 @@ function sum(a, b, c) {
 let curriedSum = curry(sum);
 
 // still callable normally
-alert( curried(1, 2, 3) ); // 6
+alert( curriedSum(1, 2, 3) ); // 6
 
 // get the partial with curried(1) and call it with 2 other arguments
-alert( curried(1)(2,3) ); // 6
+alert( curriedSum(1)(2,3) ); // 6
 
 // full curried form
-alert( curried(1)(2)(3) ); // 6
+alert( curriedSum(1)(2)(3) ); // 6
 ```
 
 The new `curry` may look complicated, but it's actually pretty easy to understand.
