@@ -20,7 +20,7 @@ If you haven't considered selecting an IDE, look at the following variants:
 - [Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
 
-All of them with the exception of Visual Studio are cross-platform.
+All of them with the exception of Visual Studio are cross-platform. Visual Studio is now available for Mac and for Windows (https://www.visualstudio.com/vs/visual-studio-mac/)
 
 Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
