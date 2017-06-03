@@ -1,6 +1,6 @@
-# The slow solution 
+# The slow solution
 
-We can calculate all possible subsums. 
+We can calculate all possible subsums.
 
 The simplest way is to take every element and calculate sums of all subarrays starting from it.
 
@@ -61,7 +61,7 @@ The solution has a time complexety of [O(n<sup>2</sup>)](https://en.wikipedia.or
 
 For big arrays (1000, 10000 or more items) such algorithms can lead to a seroius sluggishness.
 
-# Fast solution 
+# Fast solution
 
 Let's walk the array and keep the current partial sum of elements in the variable `s`. If `s` becomes negative at some point, then assign `s=0`. The maximum of all such `s` will be the answer.
 
@@ -72,7 +72,7 @@ function getMaxSubSum(arr) {
   let maxSum = 0;
   let partialSum = 0;
 
-  for (let item of arr; i++) { // for each item of arr
+  for (let item of arr) { // for each item of arr
     partialSum += item; // add it to partialSum
     maxSum = Math.max(maxSum, partialSum); // remember the maximum
     if (partialSum < 0) partialSum = 0; // zero if negative
@@ -91,5 +91,4 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 
 The algorithm requires exactly 1 array pass, so the time complexity is O(n).
 
-You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words. 
-
+You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.

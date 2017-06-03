@@ -519,7 +519,7 @@ let arr = [1, 2, 3, 4, 5]
 
 let result = arr.reduce((sum, current) => sum + current), 0);
 
-alert( result ); // 15
+alert(result); // 15
 ```
 
 Here we used the most common variant of `reduce` which uses only 2 arguments.
@@ -562,10 +562,22 @@ The result is the same. That's because if there's no initial, then `reduce` take
 
 The calculation table is the same as above, minus the first row.
 
-But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error. So it's generally advised to specify the initial value.
+But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error.
+
+Here's an example:
+
+```js run
+let arr = [];
+
+// Error: Reduce of empty array with no initial value
+// if the initial value existed, reduce would return it for the empty arr.
+arr.reduce((sum, current) => sum + current);
+```
+
+
+So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
-
 
 
 ## Iterate: forEach
@@ -615,13 +627,13 @@ alert(Array.isArray({})); // false
 alert(Array.isArray([])); // true
 ```
 
-## Methods: "thisArg"
+## Most methods support "thisArg"
 
 Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
 
-In the sections above that parameter is not explained, because it's rarely used.
+That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
 
-But for completeness here's the full syntax:
+Here's the full syntax of these methods:
 
 ```js
 arr.find(func, thisArg);
@@ -633,7 +645,7 @@ arr.map(func, thisArg);
 
 The value of `thisArg` parameter becomes `this` for `func`.
 
-For instance, here we use an object method as a filter:
+For instance, here we use an object method as a filter and `thisArg` comes in handy:
 
 ```js run
 let user = {

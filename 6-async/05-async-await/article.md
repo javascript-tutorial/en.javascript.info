@@ -119,9 +119,10 @@ async function showAvatar() {
 showAvatar();
 ```
 
-Pretty clean and easy to read, right?
+Pretty clean and easy to read, right? Much better than before.
 
-Please note that we can't write `await` in the top-level code. That wouldn't work:
+````smart header="`await` won't work in the top-level code"
+People who are just starting to use `await` tend to forget that, but we can't write `await` in the top-level code. That wouldn't work:
 
 ```js run
 // syntax error in top-level code
@@ -129,8 +130,8 @@ let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 ```
 
-So we need to have a wrapping async function for the code that awaits.
-
+So we need to have a wrapping async function for the code that awaits. Just as in the example above.
+````
 ````smart header="`await` accepts thenables"
 Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may be not a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
 

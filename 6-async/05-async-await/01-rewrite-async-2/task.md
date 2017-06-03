@@ -1,9 +1,9 @@
 
 # Rewrite "rethrow" async/await
 
-Rewrite the "rethrow" example from the chapter <info:promise-chaining> using `async/await` instead of `.then/catch`.
+Below you can find the "rethrow" example from the chapter <info:promise-chaining>. Rewrite it using `async/await` instead of `.then/catch`.
 
-And get rid of recursion in favour of a loop in `demoGithubUser`: with `async/await` that becomes possible and is easier to develop later on.
+And get rid of the recursion in favour of a loop in `demoGithubUser`: with `async/await` that becomes easy to do.
 
 ```js run
 class HttpError extends Error {
