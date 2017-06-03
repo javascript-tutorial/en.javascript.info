@@ -9,13 +9,13 @@ So it's quite common for an engine to implement only the part of the standard.
 
 A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
-## Babel.JS
+## Babel
 
 When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
 
-Here Babel.JS comes to the rescue.
+Here Babel comes to the rescue.
 
-[Babel.JS](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites modern JavaScript code into the previous standard.
+[Babel](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites modern JavaScript code into the previous standard.
 
 Actually, there are two parts in Babel:
 
@@ -33,7 +33,7 @@ Actually, there are two parts in Babel:
 
 So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
 
-If we orient towards modern engines and do not use features except those supported everywhere, then we don't need to use Babel.JS.
+If we orient towards modern engines and do not use features except those supported everywhere, then we don't need to use Babel.
 
 ## Examples in the tutorial
 
