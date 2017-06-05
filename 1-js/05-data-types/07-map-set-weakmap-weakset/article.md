@@ -67,7 +67,7 @@ let john = { name: "John", *!*id: 1*/!* };
 let visitsCounts = {};
 
 // now store the value by id
-visitCounts[john.id] = 123;
+visitsCounts[john.id] = 123;
 
 alert( visitsCounts[john.id] ); // 123
 ```
