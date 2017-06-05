@@ -3,6 +3,8 @@
 
 This repository hosts the content of the JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
 
+For links to other languages see [https://github.com/iliakan/javascript-tutorial](https://github.com/iliakan/javascript-tutorial).
+
 Please use this repository to file issues and suggest PRs for the text.
 
 ## Structure
