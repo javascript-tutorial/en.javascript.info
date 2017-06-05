@@ -83,7 +83,7 @@ class User {
 Object.assign(User.prototype, sayHiMixin);
 
 // now User can say hi
-new User("Dude").sayHi(); // Hi Dude!
+new User("Dude").sayHi(); // Hello Dude!
 ```
 
 Please note that the call to the parent method `super.say()` from `sayHiMixin` looks for the method in the prototype of that mixin, not the class.
