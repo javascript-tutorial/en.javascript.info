@@ -97,7 +97,7 @@ document.addEventListener('keydown', function(event) {
 
 If a key is being pressed for a long enough time, it starts to repeat: the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
 
-For all repeating keys the event object has `event.return` property set to `true`.
+For all repeating keys the event object has `event.repeat` property set to `true`.
 
 
 ## Default actions
