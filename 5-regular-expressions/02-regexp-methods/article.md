@@ -53,7 +53,7 @@ The array may have more than one element.
 For instance:
 
 ```js run
-lar str = "JavaScript is a programming language";
+let str = "JavaScript is a programming language";
 
 let result = str.match( *!*/JAVA(SCRIPT)/i*/!* );
 
