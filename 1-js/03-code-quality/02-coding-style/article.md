@@ -119,7 +119,7 @@ There are two types of indents:
 
 ### A semicolon
 
-A semicolons should be after each statement. Even if could possibly be skipped.
+A semicolon should be present after each statement. Even if it could be possibly be skipped.
 
 There are languages where a semicolon is truly optional. It's rarely used there.
 
