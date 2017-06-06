@@ -87,7 +87,7 @@ For example:
 ```js run
 let isBoss = confirm("Are you the boss?");
 
-alert( isBoss ); // true is OK is pressed
+alert( isBoss ); // true if OK is pressed
 ```
 
 ## Summary
