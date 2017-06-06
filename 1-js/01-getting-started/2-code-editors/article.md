@@ -15,12 +15,12 @@ An IDE loads the project (can be many files), and then allows to navigate betwee
 If you haven't considered selecting an IDE, look at the following variants:
 
 - IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.
-- Visual Studio is fine if you're a .NET developer.
+- Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
 - Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
 - [Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
 
-All of them with the exception of Visual Studio are cross-platform. Visual Studio is now available for Mac and for Windows (https://www.visualstudio.com/vs/visual-studio-mac/)
+All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux. 
 
 Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
