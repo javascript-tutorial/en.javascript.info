@@ -385,7 +385,7 @@ These are exceptions. Generally functions names should be concise, but descripti
 
 ## Functions == Comments
 
-Functions should be short and do exactly one thing. If that thing is big, maybe it's worth to split the function into few smaller functions. Sometimes following this rule may be not easy, but it's a definitely good thing.
+Functions should be short and do exactly one thing. If that thing is big, maybe it's worth to split the function into few smaller functions. Sometimes following this rule may not be that easy, but it's a definitely good thing.
 
 A separate function is not only easier to test and debug -- its very existence is a great comment!
 
