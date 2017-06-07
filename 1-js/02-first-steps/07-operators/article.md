@@ -268,7 +268,7 @@ Operators `++` and `--` can be placed both after and before the variable.
 
 Both of these records do the same: increase `i` by `1`.
 
-Is there any difference? Yes, but we can only see it if we use the retured value of `++/--`.
+Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
 
 Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
 
