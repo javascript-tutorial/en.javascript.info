@@ -231,7 +231,7 @@ The last three lines may need additional explanations:
 There are 7 basic types in JavaScript.
 
 - `number` for numbers of any kind: integer or floating-point.
-- `string` for strings. A string may have one more more characters, there's no separate single-character type.
+- `string` for strings. A string may have one or more characters, there's no separate single-character type.
 - `boolean` for `true`/`false`.
 - `null` for unknown values -- a standalone type that has a single value `null`.
 - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
