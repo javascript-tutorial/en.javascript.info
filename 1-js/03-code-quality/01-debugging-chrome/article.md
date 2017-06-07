@@ -48,7 +48,7 @@ For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing,
 
 Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at the line number `4`. Yes, right on the `"4"` digit, not on the code.
 
-Contratulations! You've set a breakpoint. Please also click on the number for line `8`.
+Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
 
 Should look like this (blue is where you should click):
 
@@ -56,7 +56,7 @@ Should look like this (blue is where you should click):
 
 A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
 
-While the code is paused, we can examine current variables, execute commands in the console etc. In other words, to debug it.
+While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
 
 We can always find a list of breakpoints in the right pane. That's useful when we have many breakpoints in various files. It allows to:
 - Quickly jump to the breakpoint in the code (by clicking on it in the right pane).
@@ -97,7 +97,7 @@ As the breakpoint is set, the execution pauses at the 4th line:
 
 ![](chrome-sources-debugger-pause.png)
 
-Please open the informational dropdowns to the right (labelled with arrows). They allow to examine the current code state:
+Please open the informational dropdowns to the right (labelled with arrows). They allow you to examine the current code state:
 
 1. **`Watch` -- shows current values for any expressions.**
 
