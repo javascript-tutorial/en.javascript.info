@@ -1,7 +1,7 @@
 
 # Object.keys, values, entries
 
-Let's step away from the indivitual data structures and talk about the iterations over them. 
+Let's step away from the individual data structures and talk about the iterations over them. 
 
 In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
 
@@ -63,8 +63,9 @@ for(let value of Object.values(user)) {
 }
 ```
 
-```smart header="`Object.keys/values/entries` ignore symbolic properties"
-Just like `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+## Object.keys/values/entries ignore symbolic properties
+
+Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
 Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, the method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) returns *all* keys.
 ```
