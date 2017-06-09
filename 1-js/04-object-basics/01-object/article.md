@@ -125,7 +125,7 @@ delete user["likes birds"];
 
 Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 
-Square brackets also provide a way to obtain the property name as the result of any expression - as opposed to a litteral string - like from a variable as follows:
+Square brackets also provide a way to obtain the property name as the result of any expression - as opposed to a literal string - like from a variable as follows:
 
 ```js
 let key = "likes birds";
