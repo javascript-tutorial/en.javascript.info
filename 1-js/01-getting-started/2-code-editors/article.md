@@ -10,14 +10,14 @@ There are two archetypes: IDE and lightweight editors. Many people feel comforta
 
 The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As said, that's not just an editor, but a full-scale "development environment".
 
-An IDE loads the project (can be many files), and then allows to navigate between files, provides autocompletion based on the whole project, integrates with version management system (like [git](https://git-scm.com/)), with testing environment and other "project-level" stuff.
+An IDE loads the project (can be many files), and then allows navigation between files, provides autocompletion based on the whole project, integrates with version management system (like [git](https://git-scm.com/)), with testing environment and other "project-level" stuff.
 
 If you haven't considered selecting an IDE, look at the following variants:
 
 - IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
 - Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
-- [Komodo IDE](http://www.activestate.com/komodo-ide) and it's lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
+- [Komodo IDE](http://www.activestate.com/komodo-ide) and its lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
 
 All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux. 
