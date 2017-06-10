@@ -29,9 +29,9 @@ It looks somewhat like this:
 The exact look of developer tools depends on your version of Chrome. It changes from time to time, but should be similar.
 
 - Here we can see the red-colored error message. In this case the script contains an unknown "lalala" command.
-- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occured.
+- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occurred.
 
-Below the error message there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands and press `key:Enter` to run them (`key:Shift+Enter` to input multiline commands).
+Below the error message there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands and press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
 
 Now we can see errors and that's enough for the start. We'll be back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
 
