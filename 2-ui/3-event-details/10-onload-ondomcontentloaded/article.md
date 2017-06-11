@@ -238,7 +238,7 @@ Page lifecycle events:
   - All scripts are executed except those that are external with `async` or `defer`
   - Images and other resources may still continue loading.
 - `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
-- `beforeload` event on `window` triggers when the user wants to leave the page. If it returns a string, the browser shows a question whether the user really wants to leave or not.
+- `beforeunload` event on `window` triggers when the user wants to leave the page. If it returns a string, the browser shows a question whether the user really wants to leave or not.
 - `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used.
 - `document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
   - `loading` -- the document is loading.
