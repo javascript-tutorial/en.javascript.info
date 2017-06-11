@@ -59,6 +59,7 @@ It is recommended to always start a script with `"use strict"`, for the followin
 
 1. First, all modern browsers support it. Only outdated ones like Internet Explorer 9 and below do not.
 2. Second, the modern JavaScript actually forces us into the strict mode. There are several modern language features like "classes" and "modules" that enable strict mode automatically. So, it's hard to evade it.
+3. Third, "use strict" has a couple of very helpful features with regards to variables and object attributes, which you will learn in later sections. Succinctly, it addresses some of the problems that could be caused due to some older features of JavaScript.
 
 Here in the tutorial, all code (where not explicitly noted otherwise) works in `"use strict"`. We concentrate on modern JavaScript. But there will be notes about what happens without `"use strict"`, so that you can understand what's going on if you forget it or if you're working with an outdated script that doesn't have it.
 
@@ -68,3 +69,4 @@ Here in the tutorial, all code (where not explicitly noted otherwise) works in `
 - Several modern features of the language enable `"use strict"` implicitly, so it's quite hard to evade it.
 
 It's always recommended to start scripts with `"use strict"`. All examples in this book assume so, unless (very rarely) specified otherwise.
+
