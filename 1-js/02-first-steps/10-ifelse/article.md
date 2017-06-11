@@ -67,6 +67,63 @@ if (cond) {
   ...
 }
 ```
+## Truthy and Falsy
+Something to note is that you shouldn't confuse the terms 'truthy' and 'falsy' with true and false. They are two different things. For example:
+
+```js run
+if(true) {
+  alert("Hello.");
+}
+```
+This is not the same as:
+
+```js run
+var a = 1;
+if(a) {
+  alert("Hello.");
+}
+```
+A 'truthy' value is something that evaluates to `true` when in a boolean context. Essentially, a truthy value is something that returns true when you evaluate it as a boolean in a conditional statement. It's something that's easier understood with an example:
+
+```js run
+let lang = "JavaScript";
+if(lang) {
+  alert("I'm learning JavaScript!");
+}
+```
+JavaScript has a *lot* of truthy values. It's easier to remember the falsey values because the list is very small:
+
+```js
+false
+NaN
+undefined
+null
+0
+""
+```
+You can make your code much more concise by using truthy values in place of comparisions with undefined/null. For example:
+
+```js run
+if( intelligence == undefined){
+...
+}
+```
+This can be replaced with a truthy value:
+
+```js run
+if(intelligence){
+...
+}
+```
+
+One thing that has to be noted though, is that evaluating with truthy and falsey, checks against the whole set of falsey values in JavaScript. Concretely, if you want to check if one of your variables is not `0`,`NaN`,`undefined`,`null`,`false` or `""`, you can use truthy and falsey. However, if you want to check if your variable is not `null` but could possibly be an empty string `""` then your truthy value check is going to return `true` but your normal conditional statement would contradict it:
+
+```js
+if( cake == "") {
+...
+}
+```
+So, keep in mind that using truthy/falsy evaluates it against the whole set of falsy values, and if you want your variable to hold one of those falsey values at some point in your code, then it would be better to evaluate it verbosely.
 
 ## The "else" clause
 
