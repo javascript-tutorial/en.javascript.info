@@ -45,7 +45,6 @@ alert("some code");
 Only comments may appear above `"use strict"`.
 ````
 
-
 ```smart header="`use strict` for functions"
 We will learn functions (a way to group commands) soon.
 
@@ -59,6 +58,7 @@ It is recommended to always start a script with `"use strict"`, for the followin
 
 1. First, all modern browsers support it. Only outdated ones like Internet Explorer 9 and below do not.
 2. Second, the modern JavaScript actually forces us into the strict mode. There are several modern language features like "classes" and "modules" that enable strict mode automatically. So, it's hard to evade it.
+3. The last, but not the least: strict mode is the modern mode. Makes the language a little bit better in few aspects. We'll see that as we study more language features.
 
 Here in the tutorial, all code (where not explicitly noted otherwise) works in `"use strict"`. We concentrate on modern JavaScript. But there will be notes about what happens without `"use strict"`, so that you can understand what's going on if you forget it or if you're working with an outdated script that doesn't have it.
 
@@ -67,4 +67,4 @@ Here in the tutorial, all code (where not explicitly noted otherwise) works in `
 - The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features.
 - Several modern features of the language enable `"use strict"` implicitly, so it's quite hard to evade it.
 
-It's always recommended to start scripts with `"use strict"`. All examples in this book assume so, unless (very rarely) specified otherwise.
+It's always recommended to start scripts with `"use strict"`. All examples in this tutorial assume so, unless (very rarely) specified otherwise.

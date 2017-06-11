@@ -159,14 +159,14 @@ alert( clone[id] ); // 123
 There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
 
 ````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are coerced to strings.
+We can only use strings or symbols as keys in objects. Other types are converted to strings.
 
-For instance:
+For instance, a number `0` becomes a string `"0"` when used as a property key:
 
 ```js run
 let obj = {
   0: "test" // same as "0": "test"
-}
+};
 
 // both alerts access the same property (the number 0 is converted to string "0")
 alert( obj["0"] ); // test
@@ -176,11 +176,11 @@ alert( obj[0] ); // test (same property)
 
 ## Global symbols
 
-Normally, all symbols are different. But sometimes we want same-named symbols to be the same.
+As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities.
 
 For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
 
-To achieve that, there exists a *global symbol registry*. We can create symbols in it and and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
 
 In order to create or read a symbol in the registry, use `Symbol.for(name)`.
 
@@ -230,7 +230,9 @@ alert( Symbol.keyFor(Symbol.for("name")) ); // name, global symbol
 alert( Symbol.keyFor(Symbol("name2")) ); // undefined, non-global symbol
 ```
 
-For non-global symbols, the name is only used for debugging purposes.
+So, for global symbols the name may be indeed helpful, as we can get a symbol by id.
+
+And for non-global symbols the name is only used for debugging purposes, like printing out a symbol.
 
 ## System symbols
 

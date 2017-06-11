@@ -108,11 +108,11 @@ Sometimes `event.stopPropagation()` creates hidden pitfalls that later may becom
 
 For instance:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that outer parts don't trigger.
-2. Later we decide to catch clicks inside the whole window, to track users' behavior (where people click). Some counters do that. Usually a counter code does that by `document.addEventListener('click'…)`.
-3. Our counter won't work over the area where clicks are stopped by `stopPropagation`. We've got a "dead zone".
+1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that outer menu don't trigger.
+2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
+3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. We've got a "dead zone".
 
-There's usually no real need to prevent the bubbling. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
+There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
 ```
 
 
@@ -138,14 +138,14 @@ Handlers added using `on<event>`-property or using HTML attributes or using `add
 
 To catch an event on the capturing phase, we need to set the 3rd argument of `addEventListener` to `true`.
 
-Actually, there are two possible values for that optional last argument:
+There are two possible values for that optional last argument:
 
 - If it's `false` (default), then the handler is set on the bubbling phase.
 - If it's `true`, then the handler is set on the capturing phase.
 
 Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
 
-Handlers on the target element trigger last on the capturing state, and then trigger first on the bubbling stage.
+If one puts a handler on the target element -- it triggers last on the capturing state, and first on the bubbling stage.
 
 Let's see it in action:
 

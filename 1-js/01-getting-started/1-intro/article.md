@@ -28,9 +28,9 @@ Different engines have different "codenames", for example:
 - [Gecko](https://en.wikipedia.org/wiki/Gecko_(software)) -- in Firefox.
 - ...There are other codenames like "Trident", "Chakra" for different versions of IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari etc.
 
-These terms above are good to remember, because they are used in developer articles in the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
+The terms above are good to remember, because they are used in developer articles in the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
 
-```smart header="How the engines work?"
+```smart header="How engines work?"
 
 Engines are complicated. But the basics are easy.
 
@@ -38,7 +38,7 @@ Engines are complicated. But the basics are easy.
 2. The engine (embedded if it's a browser) reads the script ("parses") and converts ("compiles") it to the machine language.
 3. And then it runs, pretty fast.
 
-The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data which flows through it and applies optimizations to the machine-code basing on that knowledge.
+The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data which flows through it and applies optimizations to the machine-code basing on that knowledge. That's why the code runs fast.
 ```
 
 ## What can in-browser JavaScript do?
@@ -57,7 +57,7 @@ For instance, in-browser JavaScript is able to:
 - Get and set cookies, ask questions to the visitor, show messages.
 - Remember the data on the browser side ("local storage").
 
-## What can in-browser JavaScript NOT do?
+## What in-browser JavaScript can NOT do?
 
 JavaScript abilities in the browser are limited for the sake of the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
 
@@ -91,7 +91,7 @@ There are at least *three* great things about JavaScript:
 
 Combined, these 3 things only exist in JavaScript and no other browser technology.
 
-That's what makes JavaScript unique. That's why it is the most widespread way of creating browser interfaces.
+That's what makes JavaScript unique. That's why it's the most widespread tool to create browser interfaces.
 
 While planning to learn a new technology, it's beneficial to check its perspectives. So let's move on to the modern trends that include new languages and browser abilities.
 
