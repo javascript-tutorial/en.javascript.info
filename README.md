@@ -1,7 +1,11 @@
 
 # The JavaScript Tutorial
 
-This repository hosts the content of the JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+
+Other languages:
+- Russian: [https://github.com/iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru).
+- Chinese: the ongoing translation at [https://github.com/iliakan/javascript-tutorial-cn](https://github.com/iliakan/javascript-tutorial-cn), go ahead to join.
 
 Please use this repository to file issues and suggest PRs for the text.
 

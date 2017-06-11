@@ -89,7 +89,7 @@ There are at least *three* great things about JavaScript:
 + Supported by all major browsers and enabled by default.
 ```
 
-Combined, these 3 things only exist in JavaScript and no other browser technology.
+Combined, these 3 things exist only in JavaScript and no other browser technology.
 
 That's what makes JavaScript unique. That's why it's the most widespread tool to create browser interfaces.
 
