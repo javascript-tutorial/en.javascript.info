@@ -10,28 +10,30 @@ The idea is that if we have two windows open: one from `john-smith.com`, and ano
 
 Two URLs are said to have the "same origin" if they have the same protocol, domain and port.
 
-These URLs have the same origin:
+These URLs all share the same origin:
 
 - `http://site.com`
 - `http://site.com/`
 - `http://site.com/my/page.html`
 
-These ones are not:
+These ones do not:
 
-- `http://www.site.com` (another domain: `www.` matters)
-- `http://site.org` (another domain: `.org` matters)
-- `https://site.com` (another protocol: `https`)
-- `http://site.com:8080` (another port: `8080`)
+- <code>http://<b>www.</b>site.com</code> (another domain: `www.` matters)
+- <code>http://<b>site.org</b></code> (another domain: `.org` matters)
+- <code><b>https://</b>site.com</code> (another protocol: `https`)
+- <code>http://site.com:<b>8080</b></code> (another port: `8080`)
 
 If we have a reference to another window (a popup or iframe), and that window comes from the same origin, then we can do everything with it.
 
-Otherwise, we can only change its location. Please note: not *read*, but modify it, redirect it to another place. That's possible, because such action does not reveal any data. Also such windows windows may exchange messages. Soon about that later.
+If it comes from another origin, then we can only change its location. Please note: not *read* the location, but *modify* it, redirect it to another place. That's safe, because the URL may contain sensitive parameters, so reading it from another origin is prohibited, but changing is not.
+
+Also such windows windows may exchange messages. Soon about that later.
 
 ````warn header="Exclusion: subdomains may be same-origin"
 
 There's an important exclusion in the same-origin policy.
 
-If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com`, and assign to `document.domain` their common second-level domain `site.com`, then limitations are removed.
+If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com`, we can use JavaScript to assign to `document.domain` their common second-level domain `site.com`. Then these windows are treated as having the same origin.
 
 In other words, all such documents (including the one from `site.com`) should have the code:
 
@@ -40,49 +42,51 @@ document.domain = 'site.com';
 ```
 
 Then they can interact without limitations.
+
+That's only possible for pages with the same second-level domain.
 ````
 
-## Managing iframes
+## Accessing an iframe contents
 
-An `<iframe>` is a two-faced beast. From one side it's a tag, just like `<script>` or `<img>`. From another side it's a window-in-window.
+An `<iframe>` is a two-faced beast. From one side it's a tag, just like `<script>` or `<img>`. From the other side it's a window-in-window.
 
-The embedded window has a separate `window` and `document` objects, scripts and so on.
+The embedded window has a separate `document` and `window` objects.
 
-We can access them:
+We can access them like using the properties:
 
 - `iframe.contentWindow` is a reference to the window inside the `<iframe>`.
-- `iframe.contentDocument` is a reference to the document inside it.
+- `iframe.contentDocument` is a reference to the document inside the `<iframe>`.
 
-When we access an embedded window, the browser checks if the iframe has the same origin. If that's not so then the access to almost everything is denied.
+When we access an embedded window, the browser checks if the iframe has the same origin. If that's not so then the access is denied (with exclusions noted above).
 
-For instance:
+For instance, here's an `<iframe>` from another origin:
 
 ```html run
 <iframe src="https://example.com" id="iframe"></iframe>
 
 <script>
   iframe.onload = function() {
-    // can get the reference to the inner window
+    // we can get the reference to the inner window
     let iframeWindow = iframe.contentWindow;
 
     try {
       // ...but not to the document inside it
       let doc = iframe.contentDocument;
     } catch(e) {
-      alert(e); // Security Error
+      alert(e); // Security Error (another origin)
     }
 
-    // also can't read iframe.contentWindow.location:
+    // also we can't read the URL of the page in it
     try {
       alert(iframe.contentWindow.location);
     } catch(e) {
       alert(e); // Security Error
     }
 
-    // ...but can modify it!
+    // ...but we can change it (and thus load something else into the iframe)!
     iframe.contentWindow.location = '/'; // works
 
-    iframe.onload = null; // run this code only once
+    iframe.onload = null; // clear the handler, to run this code only once
   };
 </script>
 ```
@@ -98,7 +102,7 @@ The `iframe.onload` event is actually the same as `iframe.contentWindow.onload`.
 ...But `iframe.onload` is always available, while `iframe.contentWindow.onload` needs the same origin.
 ```
 
-And here's an example with the same origin:
+And now an example with the same origin. We can do anything with the embedded window:
 
 ```html run
 <iframe src="/" id="iframe"></iframe>
@@ -111,7 +115,7 @@ And here's an example with the same origin:
 </script>
 ```
 
-### Wait until the iframe loads
+### Please wait until the iframe loads
 
 When an iframe is created, it immediately has a document. But that document is different from the one that finally loads into it!
 
@@ -126,6 +130,7 @@ Here, look:
   iframe.onload = function() {
     let newDoc = iframe.contentDocument;
 *!*
+    // the loaded document is not the same as initial!
     alert(oldDoc == newDoc); // false
 */!*
   };
@@ -134,9 +139,9 @@ Here, look:
 
 That's actually a well-known pitfall for novice developers. We shouldn't work with the document immediately, because that's the *wrong document*. If we set any event handlers on it, they will be ignored.
 
-...But the `onload` event triggers when the whole iframe with all resources is loaded. What if we want to act sooner, on `DOMContentLoaded`?
+...But the `onload` event triggers when the whole iframe with all resources is loaded. What if we want to act sooner, on `DOMContentLoaded` of the embedded document?
 
-We can try to catch the moment when a new document appears, and then setup necessary handlers, like this:
+That's not possible if the iframe comes from another origin. But for the same origin we can try to catch the moment when a new document appears, and then setup necessary handlers, like this:
 
 ```html run
 <iframe src="/" id="iframe"></iframe>
@@ -148,19 +153,19 @@ We can try to catch the moment when a new document appears, and then setup neces
   let timer = setInterval(() => {
     if (iframe.contentDocument == oldDoc) return;
 
-    // yeah, now set handlers and do whatever we want
-    clearInterval(timer);
-
+    // new document, let's set handlers
     iframe.contentDocument.addEventListener('DOMContentLoaded', () => {
       iframe.contentDocument.body.prepend('Hello, world!');
     });
+
+    clearInterval(timer); // cancel setInterval, don't need it any more
   }, 100);
 </script>
 ```
 
 Let me know in comments if you know a better solution here.
 
-### window.frames
+## window.frames
 
 An alternative way to get a window object for `<iframe>` -- is to get it from the named collection  `window.frames`:
 
@@ -202,16 +207,18 @@ if (window == top) { // current window == window.top?
 }
 ```
 
-### The sandbox attribute
+## The sandbox attribute
 
-The `sandbox` attribute allows to run untrusted content inside an `<iframe>`. It "sandboxes" the iframe by treating it as coming from another origin and forbidding certain actions.
+The `sandbox` attribute allows to forbid certain actions inside an `<iframe>`, to run an untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
 
-There are many restrictions. By default, for `<iframe sandbox src="...">` all of them are applied. But if we specify them in a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`, then they are lifted.
+By default, for `<iframe sandbox src="...">` the "default set" of restrictions is applied to the iframe. But we can provide a space-separated list of "excluded" limitations as a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`. The listed limitations are not applied.
 
-In other words, an empty `"sandbox"` attribute puts the strictest limitations possible, but we can put a space-delimited list of those that we want to lift:
+In other words, an empty `"sandbox"` attribute puts the strictest limitations possible, but we can put a space-delimited list of those that we want to lift.
+
+Here's a list of limitations:
 
 `allow-same-origin`
-: By default `"sandbox"` forces the browser to treat the `iframe` as coming from another origin, even if it's `src` points to the same site. This option removes that feature.
+: By default `"sandbox"` forces the "different origin" policy for the iframe. In other words, it makes the browser to treat the `iframe` as coming from another origin, even if its `src` points to the same site. With all implied restrictions for scripts. This option removes that feature.
 
 `allow-top-navigation`
 : Allows the `iframe` to change `parent.location`.
@@ -227,13 +234,15 @@ In other words, an empty `"sandbox"` attribute puts the strictest limitations po
 
 See [the manual](mdn:/HTML/Element/iframe) for more.
 
-The example below demonstrates a sandboxed iframe with some JavaScript and a form. Neither one works:
+The example below demonstrates a sandboxed iframe with the default set of restrictions: `<iframe sandbox src="...">`. It has some JavaScript and a form.
+
+Please note that nothing works. So the default set is really harsh:
 
 [codetabs src="sandbox" height=140]
 
 
 ```smart
-The purpose of the `"sandbox"` attribute is to add restrictions. It cannot remove them. In particular, it can't relax same-origin restrictions if the iframe comes from another origin.
+The purpose of the `"sandbox"` attribute is only to *add more* restrictions. It cannot remove them. In particular, it can't relax same-origin restrictions if the iframe comes from another origin.
 ```
 
 ## Cross-window messaging
@@ -249,18 +258,16 @@ The window that wants to send a message calls [postMessage](mdn:api/Window.postM
 Arguments:
 
 `data`
-: The data to send. Can be any object, the data is cloned using the "structured cloning algorithm". IE supports only strings, so we can `JSON.stringify` complex objects.
+: The data to send. Can be any object, the data is cloned using the "structured cloning algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
 
 `targetOrigin`
-: Allow only a window from the given origin to get the message.
+: Specifies the origin for the target window, so that only a window from the given origin will get the message.
 
-The `targetOrigin` is a safety measure. If the target window comes from another origin, we can't read it's `location`. We can't be sure which site is open in it right now, the user could navigate away.
+The `targetOrigin` is a safety measure. Remember, if the target window comes from another origin, we can't read it's `location`. So we can't be sure which site is open in the intended window right now: the user could navigate away.
 
-Specifying `targetOrigin` ensures that the window only receives the data if it's still at that site. Good when the data is secure.
+Specifying `targetOrigin` ensures that the window only receives the data if it's still at that site. Good when the data is sensitive.
 
-If we don't want that check, we can set `targetOrigin` to `*`.
-
-For instance:
+For instance, here `win` will only receive the message if it has a document from the origin `http://example.com`:
 
 ```html no-beautify
 <iframe src="http://example.com" name="example">
@@ -269,18 +276,32 @@ For instance:
   let win = window.frames.example;
 
   win.postMessage("message", "http://example.com");
-  // win.postMessage("message", "*");
 </script>
 ```
 
+If we don't want that check, we can set `targetOrigin` to `*`.
+
+```html no-beautify
+<iframe src="http://example.com" name="example">
+
+<script>
+  let win = window.frames.example;
+
+*!*
+  win.postMessage("message", "*");
+*/!*
+</script>
+```
+
+
 ### onmessage
 
-To receive a message, the window should have a handler on the `message` event.
+To receive a message, the target window should have a handler on the `message` event. It triggers when `postMessage` is called (and `targetOrigin` check is successful).
 
 The event object has special properties:
 
 `data`
-: The data from `postMessage`
+: The data from `postMessage`.
 
 `origin`
 : The origin of the sender, for instance `http://javascript.info`.
@@ -315,23 +336,23 @@ There's totally no delay between `postMessage` and the `message` event. That hap
 
 To call methods and access the content of another window, we should first have a reference to it.
 
-For popups:
+For popups we have two properties:
 - `window.open` -- opens a new window and returns a reference to it,
 - `window.opener` -- a reference to the opener window from a popup
 
-For iframes:
-- `window.frames` is a collection of nested window objects,
+For iframes, we can access parent/children windows using:
+- `window.frames` -- a collection of nested window objects,
 - `window.parent`, `window.top` are the references to parent and top windows,
 - `iframe.contentWindow` is the window inside an `<iframe>` tag.
 
-Then if they come from the same origin (host, port, protocol), then windows can do whatever they want with each other.
+If windows share the same origin (host, port, protocol), then windows can do whatever they want with each other.
 
 Otherwise, only possible actions are:
 - Change the location of another window (write-only access).
 - Post a message to it.
 
 Exclusions are:
-- Windows share the same main domain: `a.site.com` and `b.site.com`. Then setting `document.domain='site.com'` in both of them puts them into "same origin".
+- Windows that share the same second-level domain: `a.site.com` and `b.site.com`. Then setting `document.domain='site.com'` in both of them puts them into the "same origin" state.
 - If an iframe has a `sandbox` attribute, it is forcefully put into the "different origin" state, unless the `allow-same-origin` is specified in the attribute value. That can be used to run untrusted code in iframes from the same site.
 
 The `postMessage` interface allows two windows to talk with security checks:
