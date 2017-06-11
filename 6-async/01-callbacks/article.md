@@ -223,7 +223,7 @@ That's sometimes called "callback hell" or "pyramid of doom".
 
 ![](callback-hell.png)
 
-The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirales out of control.
+The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
 
 So this way of coding isn't very good.
 
