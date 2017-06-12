@@ -178,7 +178,7 @@ Yeah, mathematically that's strange. The last result states that "`null` is equa
 
 The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as `0`. That's why (3) `null >= 0` is true and (1) `null > 0` is false.
 
-From the other hand, the equality check `==` for `undefined` and `null` works by the rule, without any conversions. They equal each other and don't equal anything else. That's why (2) `null == 0` is false.
+On the other hand, the equality check `==` for `undefined` and `null` works by the rule, without any conversions. They equal each other and don't equal anything else. That's why (2) `null == 0` is false.
 
 ### An incomparable undefined
 
@@ -192,7 +192,7 @@ alert( undefined == 0 ); // false (3)
 
 Why does it dislike a zero so much? Always false!
 
-We've got such result, because:
+We've got these results because:
 
 - Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN`. And `NaN` is a special numeric value which returns `false` for all comparisons.
 - The equality check `(3)` returns `false`, because `undefined` only equals `null` and no other value.
@@ -201,7 +201,7 @@ We've got such result, because:
 
 Why did we observe these examples? Should we remember these pecularities all the time? Well, not really. Actually, these tricky things will gradually become familiar over the time, but there's a solid way to evade any problems with them.
 
-Just treat any comparison with `undefined/null` except the strict equality `===` with an exceptional care.
+Just treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
 
 Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you are really sure what you're doing. If a variable can have such values, then check for them separately.
 

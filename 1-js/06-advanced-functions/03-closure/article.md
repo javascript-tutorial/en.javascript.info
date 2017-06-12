@@ -15,7 +15,7 @@ Different languages behave differently here, in this chapter we cover JavaScript
 
 ## A couple of questions
 
-Let's formulate two questions for the seed, and then study internal mechanics piece-by-piece, so that you'll be able to answer these questions and more complex ones in the future.
+Let's formulate two questions for the seed, and then study the internal mechanics piece-by-piece, so that you'll be able to answer these questions and more complex ones in the future.
 
 1. The function `sayHi` uses an external variable `name`. When the function runs, which value of these two it's going to use?
 
@@ -176,7 +176,7 @@ sayHi(); // Pete
 
 The execution flow of the code above:
 
-1. The global Lexical Envrionment has `name: "John"`.
+1. The global Lexical Environment has `name: "John"`.
 2. At the line `(*)` the global variable is changed, now it has `name: "Pete"`.
 3. When the function `say()`, is executed and takes `name` from outside. Here that's from the global Lexical Environment where it's already `"Pete"`.
 
@@ -565,7 +565,7 @@ Lexical Environment objects that we've been talking about are subjects to same m
       return function() { alert(value); };
     }
 
-    // 3 functions in array, every of them links to LexicalEnvrironment
+    // 3 functions in array, every of them links to Lexical Environment
     // from the corresponding f() run
     //         LE   LE   LE
     let arr = [f(), f(), f()];
