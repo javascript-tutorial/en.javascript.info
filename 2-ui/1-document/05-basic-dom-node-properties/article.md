@@ -8,13 +8,11 @@ In this chapter we'll see more into what they are and their most used properties
 
 ## DOM node classes
 
-DOM nodes have different properties depending on their class. For instance, element nodes corresponding to tag `<a>` have link-related properties, and those corresponding to `<input>` have input-related and so on.
+DOM nodes have different properties depending on their class. For instance, an element node corresponding to tag `<a>` has link-related properties, and the one corresponding to `<input>` has input-related properties and so on. Text nodes are not the same as element nodes. But there are also common properties and methods between all of them, because all classes of DOM nodes form a single hierarchy.
 
-Text nodes are not the same as element nodes: they have properties of their own.
+Each DOM node belongs to the corresponding built-in class.
 
-But there are also common properties and methods between all of them, because of the inheritance. Each DOM node belongs to the corresponding built-in class. These classes form a hierarchy.
-
-The root is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), that is inherited by  [Node](http://dom.spec.whatwg.org/#interface-node), and other DOM nodes inherit from it.
+The root of the hierarchy is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), that is inherited by  [Node](http://dom.spec.whatwg.org/#interface-node), and other DOM nodes inherit from it.
 
 Here's the picture, explanations to follow:
 
@@ -22,10 +20,10 @@ Here's the picture, explanations to follow:
 
 The classes are:
 
-- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) is the root "abstract" class. Objects of that class are never created. It serves as a base, so that all DOM nodes support so-called "events", we'll study them later.
-- [Node](http://dom.spec.whatwg.org/#interface-node) is also an "abstract" class, serving as a base  for DOM nodes. It provides the core tree functionality: `parentNode`, `nextSibling`, `childNodes` and so on (they are getters). Objects of `Node` class are never created. But there are concrete node classes that inherit from it, namely: `Text` for text nodes, `Element` for element nodes and more exotic ones like `Comment` for comment nodes.
-- [Element](http://dom.spec.whatwg.org/#interface-element) is a base class for DOM elements. It provides element-level navigation like `nextElementSibling`, `children` and searching methods like `getElementsByTagName`, `querySelector`. In the browser there may be not only HTML, but also XML and SVG documents. The `Element` class serves as a base for more specific classes: `SVGElement`, `XMLElement` and `HTMLElement`.
-- [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) is finally the basic class for all HTML elements. It is inherited by various HTML elements:
+- [EventTarget](https://dom.spec.whatwg.org/#eventtarget) -- is the root "abstract" class. Objects of that class are never created. It serves as a base, so that all DOM nodes support so-called "events", we'll study them later.
+- [Node](http://dom.spec.whatwg.org/#interface-node) -- is also an "abstract" class, serving as a base  for DOM nodes. It provides the core tree functionality: `parentNode`, `nextSibling`, `childNodes` and so on (they are getters). Objects of `Node` class are never created. But there are concrete node classes that inherit from it, namely: `Text` for text nodes, `Element` for element nodes and more exotic ones like `Comment` for comment nodes.
+- [Element](http://dom.spec.whatwg.org/#interface-element) -- is a base class for DOM elements. It provides element-level navigation like `nextElementSibling`, `children` and searching methods like `getElementsByTagName`, `querySelector`. In the browser there may be not only HTML, but also XML and SVG documents. The `Element` class serves as a base for more specific classes: `SVGElement`, `XMLElement` and `HTMLElement`.
+- [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#htmlelement) -- is finally the basic class for all HTML elements. It is inherited by various HTML elements:
     - [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) -- the class for `<input>` elements,
     - [HTMLBodyElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlbodyelement) -- the class for `<body>` elements,
     - [HTMLAnchorElement](https://html.spec.whatwg.org/multipage/semantics.html#htmlanchorelement) -- the class for `<a>` elements
@@ -33,15 +31,16 @@ The classes are:
 
 So, the full set of properties and methods of a given node comes as the result of the inheritance.
 
-For instance, `<input>` element is of the [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) class:
-- `HTMLInputElement` itself provides input-specific properties.
-- It inherits the common HTML element methods (and getters/setters) from `HTMLElement` class.
-- Then it supports common element methods, because `HTMLElement` inherits from `Element`.
-- Then it supports common DOM node properties, because it inherits from `Node`.
-- Finally, it supports events (to be covered), because it inherits from `EventTarget`.
-- (and for completeness: `EventTarget` inherits from `Object`)
+For example, let's consider the DOM object for an `<input>` element. It belongs to [HTMLInputElement](https://html.spec.whatwg.org/multipage/forms.html#htmlinputelement) class. It gets properties and methods as a superposition of:
 
-To see the DOM node class name, we can remember that an object usually has the `constructor` property. It references to the class constructor, so the `constructor.name` is what we need:
+- `HTMLInputElement` -- this class provides input-specific properties, and inherits from...
+- `HTMLElement` -- it provides common HTML element methods (and getters/setters) and inherits from...
+- `Element` -- provides generic element methods and inherits from...
+- `Node` -- provides common DOM node properties and inherits from...
+- `EventTarget` -- gives the support for events (to be covered),
+- ...and finally it inherits from `Object`, so "pure object" methods like `hasOwnProperty` are also available.
+
+To see the DOM node class name, we can recall that an object usually has the `constructor` property. It references to the class constructor, and `constructor.name` is its name:
 
 ```js run
 alert( document.body.constructor.name ); // HTMLBodyElement
@@ -53,7 +52,7 @@ alert( document.body.constructor.name ); // HTMLBodyElement
 alert( document.body ); // [object HTMLBodyElement]
 ```
 
-We also can use `instanceof` to check the inheritance chain:
+We also can use `instanceof` to check the inheritance:
 
 ```js run
 alert( document.body instanceof HTMLBodyElement ); // true
@@ -63,7 +62,9 @@ alert( document.body instanceof Node ); // true
 alert( document.body instanceof EventTarget ); // true
 ```
 
-As we can see, DOM nodes are regular JavaScript objects. They use prototype-based classes for inheritance. That's easy to see by outputting an element with `console.dir(elem)`. There you can see `HTMLElement.prototype`, `Element.prototype` and so on.
+As we can see, DOM nodes are regular JavaScript objects. They use prototype-based classes for inheritance.
+
+That's also easy to see by outputting an element with `console.dir(elem)` in a browser. There in the console you can see `HTMLElement.prototype`, `Element.prototype` and so on.
 
 ```smart header="`console.dir(elem)` versus `console.log(elem)`"
 Most browsers support two commands in their developer tools: `console.log` and `console.dir`. They output their arguments to the console. For JavaScript objects these commands usually do the same.
@@ -79,19 +80,20 @@ Try it on `document.body`.
 ````smart header="IDL in the spec"
 In the specification classes are described using not JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
 
-The most important difference is that all properties are given with their types. For instance, `DOMString`, `boolean` and so on.
+In IDL all properties are prepended with their types. For instance, `DOMString`, `boolean` and so on.
 
 Here's an excerpt from it, with comments:
 
 ```js
 // Define HTMLInputElement
 *!*
-// The colon means that it inherits from HTMLElement
+// The colon ":" means that HTMLInputElement inherits from HTMLElement
 */!*
 interface HTMLInputElement: HTMLElement {
+  // here go properties and methods of <input> elements
 
 *!*
-  // "DOMString" means that the property is a string
+  // "DOMString" means that these properties are strings
 */!*
   attribute DOMString accept;
   attribute DOMString alt;
@@ -158,14 +160,14 @@ alert( document.body.tagName ); // BODY
 
 Is there any difference between tagName and nodeName?
 
-Actually, yes, the difference is reflected in their names, but is indeed a bit subtle.
+Sure, the difference is reflected in their names, but is indeed a bit subtle.
 
 - The `tagName` property exists only for `Element` nodes.
 - The `nodeName` is defined for any `Node`:
     - for elements it means the same as `tagName`.
     - for other node types (text, comment etc) it has a string with the node type.
 
-So `tagName` can only be used for elements, while `nodeName` can say something about other node types.
+In other words, `tagName` is only supported by element nodes (as it originates from `Element` class), while `nodeName` can say something about other node types.
 
 For instance let's compare `tagName` and `nodeName` for the `document` and a comment node:
 
@@ -193,7 +195,7 @@ The browser has two modes of processing documents: HTML and XML. Usually the HTM
 
 In HTML mode `tagName/nodeName` is always uppercased: it's `BODY` either for `<body>` or `<BoDy>`.
 
-In XML mode the case is kept "as is", but it's rarely used.
+In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
 ```
 
 
@@ -287,7 +289,9 @@ Here's an example:
 </script>
 ```
 
-Unlike `innerHTML`, writing to `outerHTML` does not change the element. Instead, it replaces it as a whole in the outer context. Yeah, sounds strange, and strange it is. Take a look.
+**Beware: unlike `innerHTML`, writing to `outerHTML` does not change the element. Instead, it replaces it as a whole in the outer context.**
+
+Yeah, sounds strange, and strange it is, that's why we make a separate note about it here. Take a look.
 
 Consider the example:
 
