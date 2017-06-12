@@ -141,7 +141,7 @@ It may be interesting to know that there also exist [functional](https://en.wiki
 
 In such languages, once the value is stored "in the box" -- it's there forever. If we need to store something else -- the language forces to create a new box (declare a new variable), we can't reuse the old one.
 
-Though it may seem a little bit odd at the first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation infers certain benefits. Studying of such a language (even if not planning to use it soon) is recommended to broaden the mind.
+Though it may seem a little bit odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation infers certain benefits. Studying of such a language (even if not planning to use it soon) is recommended to broaden the mind.
 ```
 
 ## Variable naming [#variable-naming]
@@ -277,7 +277,7 @@ Benefits:
 
 When should we use capitals for a constant, and when -- name them normally? Let's make that clear.
 
-Being a "constant" just means that the value never changes. But there are constants that are known prior to execution (like a hexadimal value for red), and there are those that are *calculated* in run-time, during the execution, but do not change after the assignment.
+Being a "constant" just means that the value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red), and there are those that are *calculated* in run-time, during the execution, but do not change after the assignment.
 
 For instance:
 ```js
@@ -290,7 +290,7 @@ In other words, capital-named constants are only used as aliases for "hard-coded
 
 ## Name things right
 
-Talking about variables, there's one more exteremely important thing.
+Talking about variables, there's one more extremely important thing.
 
 Please name the variables sensibly. Take time to think if needed.
 
