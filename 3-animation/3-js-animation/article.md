@@ -15,11 +15,11 @@ And if we increase it in `setInterval`, by making 50 small changes per second, t
 The pseudo-code can look like this:
 
 ```js
-let fps = 50; // 50 frames per second
+let delay = 1000 / 50; // in 1 second 50 frames
 let timer = setInterval(function() {
   if (animation complete) clearInterval(timer);
   else increase style.left
-}, 1000 / fps)
+}, delay)
 ```
 
 More complete example of the animation:
@@ -54,13 +54,13 @@ Click for the demo:
 
 ## requestAnimationFrame
 
-Let's imagine we have several simultaneous animations.
+Let's imagine we have several animations running simultaneously.
 
 If we run them separately, each one with its own `setInterval(..., 20)`, then the browser would have to repaint much more often than every `20ms`.
 
 Each `setInterval` triggers once per `20ms`, but they are independent, so we have several independent runs within `20ms`.
 
-These several independent actions should be grouped together, because it's easier for the browser to redraw things once per `20ms`.
+These several independent redraws should be grouped together, to make it easier for the browser.
 
 In other words, this:
 
@@ -80,11 +80,11 @@ setInterval(animate2, 20);
 setInterval(animate3, 20);
 ```
 
-There's one more thing to keep in mind. Sometimes when CPU is overloaded or for other reasons it may be better to trigger redraws less often. Not 20, but maybe 200ms.
+There's one more thing to keep in mind. Sometimes when CPU is overloaded, or there are other reasons to  redraw less often. For instance, if the browser tab is hidden, then there's totally no point in drawing.
 
 There's a standard [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`.
 
-It addresses all those issues and even more.
+It addresses all these issues and even more.
 
 The syntax:
 ```js

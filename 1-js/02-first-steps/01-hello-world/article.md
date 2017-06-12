@@ -37,7 +37,7 @@ For instance:
 ```
 
 ```online
-You can run the example clicking on a "Play" button in it's right-top corner.
+You can run the example by clicking on the "Play" button in its right-top corner.
 ```
 
 The `<script>` tag contains JavaScript code which is automatically executed when the browser meets the tag.
@@ -49,7 +49,7 @@ The `<script>` tag has a few attributes that are rarely used nowadays, but we ca
 
  The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
 
- : The old standard HTML4 required a script to have the type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default, no attribute is required.
+ : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default, no attribute is required.
 
  The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
   : This attribute was meant to show the language of the script. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.
@@ -95,7 +95,7 @@ To attach several scripts, use multiple tags:
 ```
 
 ```smart
-As a rule, only simplest scripts are put into HTML. More complex ones reside in separate files.
+As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
 
 The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 

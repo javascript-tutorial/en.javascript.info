@@ -37,10 +37,10 @@ It is recommended to use figure brackets every time with `if`, even if there's o
 
 The `if (…)` operator evaluates the expression in parentheses and converts it to the boolean type.
 
-Let's recall the conversion rules:
+Let's recall the conversion rules from the chapter <info:type-conversions>:
 
-- A number `0`, an empty string `""`, `null`, `undefined` and `NaN` are `false`,
-- Other values -- `true`.
+- A number `0`, an empty string `""`, `null`, `undefined` and `NaN` become `false`. Because of that they are called "falsy" values.
+- Other values become `true`, so they are called "truthy".
 
 So, the code under this condition would never execute:
 

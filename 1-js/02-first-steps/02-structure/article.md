@@ -114,7 +114,7 @@ alert('Hello');
 alert('World'); // This comment follows the statement
 ```
 
-**Multiline comments start with a forward slash and an asterisk <code>"/&#42;"</code> and end with an asterisk and a forward slash <code>"&#42;/"</code>.**
+**Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
 
 Like this:
 
