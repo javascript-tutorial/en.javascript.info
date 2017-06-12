@@ -143,7 +143,7 @@ user.name = "Alice"; // Error
 
 ## Non-enumerable
 
-Now let's a custom `toString` to `user`.
+Now let's add a custom `toString` to `user`.
 
 Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add `toString` of our own, then by default it shows up in `for..in`.
 
