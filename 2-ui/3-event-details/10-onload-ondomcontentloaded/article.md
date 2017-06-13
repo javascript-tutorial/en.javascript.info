@@ -47,7 +47,7 @@ For instance:
 
 In the example the `DOMContentLoaded` handler runs when the document is loaded, not waits for the page load. So `alert` shows zero sizes.
 
-At the first sight `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. But there are few pecularities.
+At the first sight `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. But there are few peculiarities.
 
 ### DOMContentLoaded and scripts
 

@@ -5,7 +5,7 @@ The browser allows to track the loading of external resources -- scripts, iframe
 There are two events for it:
 
 - `onload` -- successful load,
-- `onerror` -- an error occured.
+- `onerror` -- an error occurred.
 
 ## Loading a script
 

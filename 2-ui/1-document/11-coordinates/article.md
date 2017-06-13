@@ -50,7 +50,7 @@ Also:
 
 - Coordinates may be decimal fractions. That's normal, internally browser uses them for calculations. We don't have to round them when setting to `style.position.left/top`, the browser is fine with fractions.
 - Coordinates may be negative. For instance, if the page is scrolled down and the `elem` top is now above the window then `elem.getBoundingClientRect().top` is negative.
-- Some browsers (like Chrome) also add to the result `getBoundingClientRect` properties `width` and `height`. We can get them also by substraction: `height=bottom-top`, `width=right-left`.
+- Some browsers (like Chrome) also add to the result `getBoundingClientRect` properties `width` and `height`. We can get them also by subtraction: `height=bottom-top`, `width=right-left`.
 
 ```warn header="Coordinates right/bottom are different from CSS properties"
 If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed` -- also the position relative to the viewport.

@@ -78,7 +78,7 @@ If we omit `return false`, then after our code executes the browser will do its 
 By the way, using event delegation here makes our menu flexible. We can add nested lists and style them using CSS to "slide down".
 
 
-## Prevent futher events
+## Prevent further events
 
 Certain events flow one into another. If we prevent the first event, there will be no second.
 

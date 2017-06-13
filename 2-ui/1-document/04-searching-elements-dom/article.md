@@ -22,7 +22,7 @@ We can use it to access the element, like this:
 
   // for elem-content things are a bit more complex
   // that has a dash inside, so it can't be a variable name
-  alert(window['elem-content']); // ...but accessable using square brackets [...]
+  alert(window['elem-content']); // ...but accessible using square brackets [...]
 </script>
 ```
 
@@ -194,7 +194,7 @@ Here we look for all `<li>` elements that are last children:
 This method is indeed powerful, because any CSS selector can be used.
 
 ```smart header="Can use pseudo-classes as well"
-Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is  over now (in nesting order: from the outmost `<html>` to the most nested one).
+Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is  over now (in nesting order: from the outermost `<html>` to the most nested one).
 ```
 
 

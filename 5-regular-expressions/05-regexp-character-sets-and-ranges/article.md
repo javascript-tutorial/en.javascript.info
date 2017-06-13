@@ -8,7 +8,7 @@ Several characters or character classes inside square brackets `[…]` mean to "
 
 For instance, `pattern:[eao]` means any of the 3 characters: `'a'`, `'e'`, or `'o'`.
 
-That's calles a *set*. Sets can be used in a regexp along with regular characters:
+That's called a *set*. Sets can be used in a regexp along with regular characters:
 
 ```js run
 // find [t or m], and then "op"
@@ -93,7 +93,7 @@ In square brackets the vast majority of special characters can be used without e
 - A caret `pattern:'^'` if not in the beginning (where it means exclusion).
 - And the opening square bracket `pattern:'['`.
 
-In other words, all special charactere are allowed except where they mean something for square brackets.
+In other words, all special characters are allowed except where they mean something for square brackets.
 
 A dot `"."` inside square brackets means just a dot. The pattern `pattern:[.,]` would look for one of characters: either a dot or a comma.
 
