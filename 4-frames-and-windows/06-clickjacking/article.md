@@ -194,7 +194,7 @@ A hacker can post a link to his evil page in a message or lure visitors to his p
 
 From one side -- the attack is "not deep": all a hacker can do is one click. But from another side, if the hacker knows that after the click another control appears, then it may use cunning messages to make the user to click on it as well.
 
-The attack is quite dangerous, because when we engineer the UI we usually don't think that a hacker can click on behalf of the visitor. So vulnerabilities can be found in totally unexpeced places.
+The attack is quite dangerous, because when we engineer the UI we usually don't think that a hacker can click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
 
 - It's recommended to use `X-Frame-Options: SAMEORIGIN` on pages that are totally not meant to be shown inside iframes (or just for the whole site).
 - Use a covering `<div>` if we want to allow our pages to be shown in iframes, and still stay safe.

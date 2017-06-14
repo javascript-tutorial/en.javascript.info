@@ -2,7 +2,7 @@
 
 Alternation is the term in regular expression that is actually a simple "OR".
 
-In a regular expression it is denoted with a vertial line character `pattern:|`.
+In a regular expression it is denoted with a vertical line character `pattern:|`.
 
 [cut]
 

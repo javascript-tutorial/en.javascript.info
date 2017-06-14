@@ -194,7 +194,7 @@ But that doesn't work.
 
 The problem is that, while we're dragging, the draggable element is always above other elements. And mouse events only happen on the top element, not on those below it.
 
-For instance, below are two `<div>` elements, red on top of blue. There'no way to catch an event on the blue one, because the red is on top:
+For instance, below are two `<div>` elements, red on top of blue. There's no way to catch an event on the blue one, because the red is on top:
 
 ```html run autorun height=60
 <style>

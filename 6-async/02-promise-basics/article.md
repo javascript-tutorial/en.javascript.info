@@ -34,7 +34,7 @@ When the executor finishes the job, it should call one of:
 - `resolve(value)` -- to indicate that the job finished successfully:
     - sets `state` to `"fulfilled"`,
     - sets `result` to `value`.
-- `reject(error)` -- to indicate that an error occured:
+- `reject(error)` -- to indicate that an error occurred:
     - sets `state` to `"rejected"`,
     - sets `result` to `error`.
 
@@ -128,7 +128,7 @@ The syntax of `.then` is:
 
 ```js
 promise.then(
-  function(result) { /* handle a sucessful result */ },
+  function(result) { /* handle a successful result */ },
   function(error) { /* handle an error */ }
 );
 ```

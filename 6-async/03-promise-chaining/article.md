@@ -207,7 +207,7 @@ class Thenable {
   }
   then(resolve, reject) {
     alert(resolve); // function() { native code }
-    // resolve with this.num*2 after the 1 secound
+    // resolve with this.num*2 after the 1 second
     setTimeout(() => resolve(this.num * 2), 1000); // (**)
   }
 }
@@ -513,7 +513,7 @@ new Promise(function(resolve, reject) {
   /* never runs here */
 }).catch(error => { // (**)
 
-  alert(`The unknown error has occured: ${error}`);
+  alert(`The unknown error has occurred: ${error}`);
   // don't return anything => execution goes the normal way
 
 });

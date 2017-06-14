@@ -21,7 +21,7 @@ alert( str.search( *!*/a/i*/!* ) ); // 0 (the first position)
 
 **The important limitation: `search` always looks for the first match.**
 
-We can't find next positions using `search`, there's just no syntax for that. But there are other mathods that can.
+We can't find next positions using `search`, there's just no syntax for that. But there are other methods that can.
 
 ## str.match(reg), no "g" flag
 

@@ -14,7 +14,7 @@ There are important peculiarities when working with focus events. We'll do the b
 
 ## Events focus/blur
 
-The `focus` event is called on focusing, and `blur` -- when the element loooses the focus.
+The `focus` event is called on focusing, and `blur` -- when the element looses the focus.
 
 Let's use them for validation of an input field.
 
