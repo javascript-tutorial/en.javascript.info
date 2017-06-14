@@ -314,7 +314,7 @@ And the last note. There are some lazy programmers who, instead of declaring a n
 
 As the result, the variable is like a box where people throw different things without changing the sticker. What is inside it now? Who knows... We need to come closer and check.
 
-Such a programmer saves a little bit on variable declaration, but looses ten times more on debugging the code.
+Such a programmer saves a little bit on variable declaration, but loses ten times more on debugging the code.
 
 An extra variable is good, not evil.
 

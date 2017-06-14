@@ -82,7 +82,7 @@ do {
 } while (i < 3);
 ```
 
-This form of syntax is rarely used. Usually, if there's no special reason, the other  form is preferred: `while(…) {…}`.
+This form of syntax is rarely used except when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other  form is preferred: `while(…) {…}`.
 
 ## The "for" loop
 
