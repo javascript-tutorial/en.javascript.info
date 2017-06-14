@@ -43,7 +43,7 @@ Most used are:
 : A space symbol: that includes spaces, tabs, newlines.
 
 `\w` ("w" is from "word")
-: A "wordly" character: either a letter of English alphabet or a digit or an underscore. Non-english letters (like cyricllic or hindi) do not belong to `\w`.
+: A "wordly" character: either a letter of English alphabet or a digit or an underscore. Non-english letters (like cyrillic or hindi) do not belong to `\w`.
 
 For instance, `pattern:\d\s\w` means a digit followed by a space character followed by a wordly character, like `"1 Z"`.
 

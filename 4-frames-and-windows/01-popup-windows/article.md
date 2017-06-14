@@ -137,7 +137,7 @@ For windows with URLs from another sites, we are able to change the location by 
 
 A popup may access the "opener" window as well. A JavaScript in it may use `window.opener` to access the window that opened it. It is `null` for all windows except popups.
 
-So both the main window and the popup have a reference to each other. Thay may modify each other freely assuming that they come from the same origin. If that's not so, then there are still means to communicate, to be covered in the next chapter <info:cross-window-communication>.
+So both the main window and the popup have a reference to each other. They may modify each other freely assuming that they come from the same origin. If that's not so, then there are still means to communicate, to be covered in the next chapter <info:cross-window-communication>.
 
 ## Closing a popup
 

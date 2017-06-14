@@ -89,7 +89,7 @@ So, if an attribute is non-standard, there won't be DOM-property for it. Is ther
 
 Sure. All attributes are accessible using following methods:
 
-- `elem.hasAttribute(name)` -- checks for existance.
+- `elem.hasAttribute(name)` -- checks for existence.
 - `elem.getAttribute(name)` -- gets the value.
 - `elem.setAttribute(name, value)` -- sets the value.
 - `elem.removeAttribute(name)` -- removes the attribute.
@@ -376,7 +376,7 @@ A small comparison:
 
 Methods to work with attributes are:
 
-- `elem.hasAttribute(name)` -- to check for existance.
+- `elem.hasAttribute(name)` -- to check for existence.
 - `elem.getAttribute(name)` -- to get the value.
 - `elem.setAttribute(name, value)` -- to set the value.
 - `elem.removeAttribute(name)` -- to remove the attribute.

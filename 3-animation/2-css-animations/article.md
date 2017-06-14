@@ -164,7 +164,7 @@ The train in the example below goes from left to right with the permanent speed 
 
 [codetabs src="train-linear"]
 
-The CSS `transition` is bazed on that curve:
+The CSS `transition` is based on that curve:
 
 ```css
 .train {
@@ -225,7 +225,7 @@ But it looks a bit differently.
 
 **A Bezier curve can make the animation "jump out" of its range.**
 
-The control points on the curve can have any `y` coordinates: even negative or huge. Then the Bezier curve would also jump very low or high, making the animation go beyound its normal range.
+The control points on the curve can have any `y` coordinates: even negative or huge. Then the Bezier curve would also jump very low or high, making the animation go beyond its normal range.
 
 In the example below the animation code is:
 ```css
@@ -359,7 +359,7 @@ The event object for `transitionend` has few specific properties:
 : The property that has finished animating. Can be good if we animate multiple properties simultaneously.
 
 `event.elapsedTime`
-: The time (in secods) that the animation took, without `transition-delay`.
+: The time (in seconds) that the animation took, without `transition-delay`.
 
 ## Keyframes
 

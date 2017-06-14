@@ -2,7 +2,7 @@
 
 How to find out the width of the browser window? How to get the full height of the document, including the scrolled out part? How to scroll the page using JavaScript?
 
-From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and pecularities important enough to consider.
+From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
 
 [cut]
 
@@ -66,7 +66,7 @@ Regular elements have their current scroll state in `elem.scrollLeft/scrollTop`.
 
 What's with the page? Most browsers provide `documentElement.scrollLeft/Top` for the document scroll, but Chrome/Safari/Opera have bugs (like [157855](https://code.google.com/p/chromium/issues/detail?id=157855), [106133](https://bugs.webkit.org/show_bug.cgi?id=106133)) and we should use  `document.body` instead of `document.documentElement` there.
 
-Luckily, we don't have to remember these pecularities at all, because of the special properties `window.pageXOffset/pageYOffset`:
+Luckily, we don't have to remember these peculiarities at all, because of the special properties `window.pageXOffset/pageYOffset`:
 
 ```js run
 alert('Current scroll from the top: ' + window.pageYOffset);

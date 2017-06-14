@@ -44,7 +44,7 @@ To find a match, the regular expression engine uses the following algorithm:
 
 These common words do not make it obvious why the regexp fails, so let's elaborate how the search works for the pattern `pattern:".+"`.
 
-1. The first pattern characeter is a quote `pattern:"`.
+1. The first pattern character is a quote `pattern:"`.
 
     The regular expression engine tries to find it on 0-th position of the source string, but there's `subject:a` there, so no match.
 
@@ -100,7 +100,7 @@ For our task we want another thing. That's what the lazy quantifier mode is for.
 
 ## Lazy mode
 
-The lazy mode of quantifier is an opposite to the gredy mode. It means: "repeat minimal number of times".
+The lazy mode of quantifier is an opposite to the greedy mode. It means: "repeat minimal number of times".
 
 We can enable it by putting a question mark `pattern:'?'` after the quantifier, so that it becomes  `pattern:*?` or `pattern:+?` or even `pattern:??` for `pattern:'?'`.
 
@@ -146,7 +146,7 @@ To clearly understand the change, let's trace the search step by step.
 
 In this example we saw how the lazy mode works for `pattern:+?`. Quantifiers `pattern:+?` and `pattern:??` work the similar way -- the regexp engine increases the number of repetitions only if the rest of the pattern can't match on the given position.
 
-**Lazyness is only enabled for the quantifier with `?`.**
+**Laziness is only enabled for the quantifier with `?`.**
 
 Other quantifiers remain greedy.
 
@@ -241,7 +241,7 @@ let reg = /<a href=".*?" class="doc">/g;
 alert( str.match(reg) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
 ```
 
-Now it works, there are two maches:
+Now it works, there are two matches:
 
 ```html
 <a href="....." class="doc">    <a href="....." class="doc">
@@ -268,7 +268,7 @@ Why it happens?
 
     The quantifier `pattern:.*?` consumes characters until it meets `match:class="doc">`.
 
-    ...And where can it find it? If we look at the text, then we can see that the only `match:class="doc">` is beyound the link, in the tag `<p>`.
+    ...And where can it find it? If we look at the text, then we can see that the only `match:class="doc">` is beyond the link, in the tag `<p>`.
 
 3. So we have match:
 
@@ -277,7 +277,7 @@ Why it happens?
     <a href="link1" class="wrong">... <p style="" class="doc">
     ```
 
-So the lazyness did not work for us here.
+So the laziness did not work for us here.
 
 We need the pattern to look for `<a href="...something..." class="doc">`, but both greedy and lazy variants have problems.
 

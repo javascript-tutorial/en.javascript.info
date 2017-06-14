@@ -295,4 +295,4 @@ The `await` keyword before a promise makes JavaScript wait until that promise se
 
 Together they provide a great framework to write asynchronous code that is easy both to read and write.
 
-With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outmost scope) we have to use these methods. Also `Promise.all` is a nice thing to wait for many tasks simultaneously.
+With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also `Promise.all` is a nice thing to wait for many tasks simultaneously.

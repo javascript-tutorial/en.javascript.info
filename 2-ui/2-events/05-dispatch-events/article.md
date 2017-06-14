@@ -279,7 +279,7 @@ For custom events we should use `CustomEvent` constructor. It has an additional 
 
 Despite the technical possibility to generate browser events like `click` or `keydown`, we should use with the great care.
 
-We shouldn't generate browser events as a hacky way to run handlers. That's a bad architecture most of the time.
+We shouldn't generate browser events as it's a hacky way to run handlers. That's a bad architecture most of the time.
 
 Native events might be generated:
 
