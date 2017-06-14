@@ -145,9 +145,7 @@ user.name = "Alice"; // Error
 
 Now let's add a custom `toString` to `user`.
 
-Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add `toString` of our own, then by default it shows up in `for..in`.
-
-...But if we don't like it, then we can set `enumerable:false`. Then it won't appear in `for..in` loop, just like the built-in one:
+Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add `toString` of our own, then by default it shows up in `for..in`, like this:
 
 ```js run
 let user = {
@@ -159,6 +157,17 @@ let user = {
 
 // By default, both our properties are listed:
 for(let key in user) alert(key); // name, toString
+```
+
+If we don't like it, then we can set `enumerable:false`. Then it won't appear in `for..in` loop, just like the built-in one:
+
+```js run
+let user = {
+  name: "John",
+  toString() {
+    return this.name;
+  }
+};
 
 Object.defineProperty(user, "toString", {
 *!*
@@ -167,7 +176,7 @@ Object.defineProperty(user, "toString", {
 });
 
 *!*
-// Now toString disappears:
+// Now our toString disappears:
 */!*
 for(let key in user) alert(key); // name
 ```
@@ -178,11 +187,9 @@ Non-enumerable properties are also excluded from `Object.keys`:
 alert(Object.keys(user)); // name
 ```
 
-
-
 ## Non-configurable
 
-The non-configurable flag (`configurable:false`) is usually set for built-in objects and properties.
+The non-configurable flag (`configurable:false`) is sometimes preset for built-in objects and properties.
 
 A non-configurable property can not be deleted or altered with `defineProperty`.
 

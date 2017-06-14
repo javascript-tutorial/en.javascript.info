@@ -399,24 +399,25 @@ Here's an example with explanations:
 </style>
 ```
 
-There are many articles about `@keyframes` and a [detailed specification](https://drafts.csswg.org/css-animations/), so we won't go into more details here.
+There are many articles about `@keyframes` and a [detailed specification](https://drafts.csswg.org/css-animations/).
 
-Probably you won't need it often, unless everything is in the constant move on your sites.
+Probably you won't need `@keyframes` often, unless everything is in the constant move on your sites.
 
 ## Summary
 
-CSS animations allow to smoothly (or not) animate changes to one or multiple CSS properties.
+CSS animations allow to smoothly (or not) animate changes of one or multiple CSS properties.
 
 They are good for most animation tasks. We're also able to use JavaScript for animations, the next chapter is devoted to that.
 
 Limitations of CSS animations compared to JavaScript animations:
 
-```compare
-- JavaScript animations are more flexible. They can implement any animation logic, like "explosion" of an element. We can create new elements in JavaScript for purposes of animation.
-+ Simple things done simple.
-+ Fast and easy for CPU.
+```compare plus="CSS animations" minus="JavaScript animations"
++ Simple things done simply.
++ Fast and lightweight for CPU.
+- JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
+- Not just property changes. We can create new elements in JavaScript for purposes of animation.
 ```
 
-The vast majority of animations uses the described CSS properties. And maybe the `transitionend` event to bind some JavaScript after it.
+The majority of animations can be implemented using CSS as described in this chapter. And  `transitionend` event allows to run JavaScript after the animation, so it integrates fine with the code.
 
 But in the next chapter we'll do some JavaScript animations to cover more complex cases.

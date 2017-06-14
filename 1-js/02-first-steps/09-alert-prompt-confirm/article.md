@@ -2,9 +2,7 @@
 
 This part of the tutorial aims to cover JavaScript "as is", without environment-specific tweaks.
 
-But still we use a browser as the demo environment. So we should know at least few user-interface functions.
-
-In this chapter we'll get familiar with the browser-specific functions `alert`, `prompt` and `confirm`.
+But still we use a browser as the demo environment. So we should know at least few user-interface functions. In this chapter we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
 
 [cut]
 

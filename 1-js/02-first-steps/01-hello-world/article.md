@@ -63,7 +63,7 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    These comments were supposed to hide the code from an old browser that didn't know about a `<script>` tag. But all browsers born in the past 15+ years don't have any issues. It is only mentioned here, because it serves as a sign. If you see that somewhere -- that code is probably really old and not worth looking into.
+    These comments were supposed to hide the code from an old browser that didn't know about a `<script>` tag. But all browsers born in the past 15+ years don't have any issues. We mention it here, because such comments serve as a sign. If you see that somewhere -- that code is probably really old and not worth looking into.
 
 
 ## External scripts
@@ -105,7 +105,7 @@ That saves traffic and makes pages faster.
 ```
 
 ````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag may not have both, `src` attribute and the code inside.
+A single `<script>` tag may not have both `src` attribute and the code inside.
 
 This won't work:
 
