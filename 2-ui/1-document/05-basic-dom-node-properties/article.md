@@ -472,7 +472,7 @@ Each DOM node belongs to a certain class. The classes form a hierarchy. The full
 Main DOM node properties are:
 
 `nodeType`
-: Node type. We can get it from the DOM object class, but often we need just to see is it a text or element node. The `nodeType` property is good for that. It has numeric values, most important are: `1` -- for elements,`3` -- for text nodes. Read-only.
+: Node type. We can get it from the DOM object class, but often we need just to see if it is a text or element node. The `nodeType` property is good for that. It has numeric values, most important are: `1` -- for elements,`3` -- for text nodes. Read-only.
 
 `nodeName/tagName`
 : For elements, tag name (uppercased unless XML-mode). For non-element nodes `nodeName` describes what is it. Read-only.
