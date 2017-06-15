@@ -153,7 +153,7 @@ These methods are "old school": they exist from the ancient times and we can mee
 
 For instance, how to insert *html* if we have it as a string? Or, given a node, how to insert another node *before* it? Of course, all that is doable, but not in an elegant way.
 
-So there exist two other sets of insertion methods to handle all cases easily.
+So there exists two other sets of insertion methods to handle all cases easily.
 
 ### prepend/append/before/after
 
