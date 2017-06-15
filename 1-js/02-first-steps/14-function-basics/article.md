@@ -79,7 +79,7 @@ function showMessage() {
   alert(message);
 }
 
-showMessage(); // Hello, my name is John
+showMessage(); // Hello, John
 ```
 
 The function has full access to the outer variable. It can modify it as well.
