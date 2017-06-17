@@ -9,8 +9,8 @@ Here's a list of the most useful DOM events, just to take a look at:
 **Mouse events:**
 - `click` -- when the mouse clicks on an element (touchscreen devices generate it on a tap).
 - `contextmenu` -- when the mouse right-clicks on an element.
-- `mouseover` -- when the mouse cursor comes over an element.
-- `mousedown` and `mouseup` -- when the mouse button is pressed and released over an element.
+- `mouseover` / `mouseout` -- when the mouse cursor comes over / leaves an element.
+- `mousedown` / `mouseup` -- when the mouse button is pressed / released over an element.
 - `mousemove` -- when the mouse is moved.
 
 **Form element events:**
@@ -26,7 +26,7 @@ Here's a list of the most useful DOM events, just to take a look at:
 **CSS events:**
 - `transitionend` -- when a CSS-animation finishes.
 
-There are many other events.
+There are many other events. We'll get into more details of particular events in next chapters.
 
 ## Event handlers
 
@@ -325,7 +325,6 @@ Try the code below. In most browsers only the second handler works, not the firs
 ```
 ````
 
-
 ## Event object
 
 To properly handle an event we'd want to know more about what's happened. Not just a "click" or a "keypress", but what were the pointer coordinates? Which key was pressed? And so on.
@@ -341,7 +340,7 @@ Here's an example of getting mouse coordinates from the event object:
   elem.onclick = function(*!*event*/!*) {
     // show event type, element and coordinates of the click
     alert(event.type + " at " + event.currentTarget);
-    alert(event.clientX + ":" + event.clientY);
+    alert("Coordinates: " + event.clientX + ":" + event.clientY);
   };
 </script>
 ```
@@ -369,6 +368,88 @@ If we assign a handler in HTML, we can also use the `event` object, like this:
 That's possible because when the browser reads the attribute, it creates a handler like this:  `function(event) { alert(event.type) }`. That is: its first argument is called `"event"`, and the body is taken from the attribute.
 ````
 
+
+## Object handlers: handleEvent
+
+We can assign an object as an event handler using `addEventListener`. When an event occurs, its `handleEvent` method is called with it.
+
+For instance:
+
+
+```html run
+<button id="elem">Click me</button>
+
+<script>
+  elem.addEventListener('click', {
+    handleEvent(event) {
+      alert(event.type + " at " + event.currentTarget);
+    }
+  });
+</script>
+```
+
+In other words, when `addEventListener` receives and object as the handler, it calls `object.handleEvent(event)` in case of an event.
+
+We could also use a class for that:
+
+
+```html run
+<button id="elem">Click me</button>
+
+<script>
+  class Menu {
+    handleEvent(event) {
+      switch(event.type) {
+        case 'mousedown':
+          elem.innerHTML = "Mouse button pressed";
+          break;
+        case 'mouseup':
+          elem.innerHTML += "...and released.";
+          break;
+      }
+    }
+  }
+
+*!*
+  let menu = new Menu();
+  elem.addEventListener('mousedown', menu);
+  elem.addEventListener('mouseup', menu);
+*/!*
+</script>
+```
+
+Here the same object handles both events. Please note that we need to explicitly setup the listeners. The `menu` object only gets `mousedown` and `mouseup` here, not any other types of events.
+
+The method `handleEvent` does not have to handle everything by itself. It can call the corresponding event-specific instead, like this:
+
+```html run
+<button id="elem">Click me</button>
+
+<script>
+  class Menu {
+    handleEvent(event) {
+      // mousedown -> onMousedown
+      let method = 'on' + event.type[0].toUpperCase() + event.type.slice(1);
+      this[method](event);
+    }
+
+    onMousedown() {
+      elem.innerHTML = "Mouse button pressed";
+    }
+
+    onMouseup() {
+      elem.innerHTML += "...and released.";
+    }
+  }
+
+  let menu = new Menu();
+  elem.addEventListener('mousedown', menu);
+  elem.addEventListener('mouseup', menu);
+</script>
+```
+
+Now event handlers are clearly separated, that may be easier to support.
+
 ## Summary
 
 There are 3 ways to assign event handlers:
@@ -383,6 +464,8 @@ DOM properties are ok to use, but we can't assign more than one handler of the p
 
 The last way is the most flexible, but it is also the longest to write. There are few events that only work with it, for instance `transtionend` and `DOMContentLoaded` (to be covered).
 
-When a handler is called, it gets an event objects as the first argument. It contains details about what's happened. We'll see more of them later.
+Also `addEventListener` supports objects as event handlers. In that case the method `handleEvent` is called in case of the event.
 
-As of now we're just starting to work with events. More details in the next chapters.
+When a handler is called, it gets an event object as the first argument that contains the details about what's happened.
+
+We'll learn more about events in general and about different types of events in the next chapters.

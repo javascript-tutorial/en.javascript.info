@@ -1,6 +1,6 @@
 # Constructor, operator "new"
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects.
+The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
 
 That can be done using constructor functions and the `"new"` operator.
 
@@ -32,7 +32,7 @@ alert(user.isAdmin); // false
 When a function is executed as `new User(...)`, it does the following steps:
 
 1. A new empty object is created and assigned to `this`.
-2. The function executes. Usually it modifies `this`, adds new properties to it.
+2. The function body executes. Usually it modifies `this`, adds new properties to it.
 3. The value of `this` is returned.
 
 In other words, `new User(...)` does something like:
@@ -43,7 +43,7 @@ function User(name) {
   // this = {};  (implicitly)
 */!*
 
-  // we add properties to this
+  // add properties to this
   this.name = name;
   this.isAdmin = false;
 
@@ -62,7 +62,7 @@ let user = {
 };
 ```
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also reads well.
+Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
 
 That's the main purpose of constructors -- to implement reusable object creation code.
 
@@ -82,26 +82,28 @@ let user = new function() {
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code for a single complex object only.
+The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
 ````
 
-## Dual-use constructors: new.target
+## Dual-syntax constructors: new.target
 
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
-It is empty for ordinary runs and equals the function if called with `new`:
+It is empty for regulsar calls and equals the function if called with `new`:
 
 ```js run
 function User() {
   alert(new.target);
 }
 
+// without new:
 User(); // undefined
+
+// with new:
 new User(); // function User { ... }
 ```
 
-That can be used to allow both `new` and ordinary syntax work the same:
-
+That can be used to allow both `new` and regular syntax work the same:
 
 ```js run
 function User(name) {
@@ -116,7 +118,7 @@ let john = User("John"); // redirects call to new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because it makes a bit less obvious what's going on for a person who's familiar with the internals of `User`.
+This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because omitting `new` makes a bit less obvious what's going on. With `new` we all know that the new object is being created, that's a good thing.
 
 ## Return from constructors
 
@@ -127,7 +129,7 @@ But if there is a `return` statement, then the rule is simple:
 - If `return` is called with object, then it is returned instead of `this`.
 - If `return` is called with a primitive, it's ignored.
 
-In other words, `return` with an object returns that object, otherwise `this` is returned.
+In other words, `return` with an object returns that object, in all other cases `this` is returned.
 
 For instance, here `return` overrides `this` by returning an object:
 
@@ -139,7 +141,7 @@ function BigUser() {
   return { name: "Godzilla" };  // <-- returns an object
 }
 
-alert( new BigUser().name );  // Godzilla, got that object
+alert( new BigUser().name );  // Godzilla, got that object ^^
 ```
 
 And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
@@ -158,7 +160,7 @@ function SmallUser() {
 alert( new SmallUser().name );  // John
 ```
 
-Most of the time constructors return nothing. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
 ````smart header="Omitting brackets"
 By the way, we can omit brackets after `new`, if it has no arguments:
@@ -208,12 +210,12 @@ john = {
 - Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
 - Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
 
-We can use constructor functions to make multiple similar objects. 
+We can use constructor functions to make multiple similar objects.
 
 JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 
 ```smart header="Objects, we'll be back!"
-In this chapter we only cover the basics about objects. They are essential for learning more about data types and functions in the next chapters.
+In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
 
 After we learn that, in the chapter <info:object-oriented-programming> we return to objects and cover them in-depth, including inheritance and classes.
 ```
