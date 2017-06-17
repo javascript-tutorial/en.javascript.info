@@ -4,8 +4,8 @@ The simplest, but wrong solution would be to generate a value from `min` to `max
 
 ```js run
 function randomInteger(min, max) {
-  let rnd = min + Math.random() * (max - min); 
-  return Math.round(rnd);
+  let rand = min + Math.random() * (max - min); 
+  return Math.round(rand);
 }
 
 alert( randomInteger(1, 3) );
@@ -32,9 +32,9 @@ There are many correct solutions to the task. One of them is to adjust interval 
 ```js run
 *!*
 function randomInteger(min, max) {
-  // now rnd is from  (min-0.5) to (max+0.5)
-  let rnd = min - 0.5 + Math.random() * (max - min + 1);
-  return Math.round(rnd);
+  // now rand is from  (min-0.5) to (max+0.5)
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
 }
 */!*
 
@@ -46,8 +46,8 @@ An alternative way could be to use `Math.floor` for a random number from `min` t
 ```js run
 *!*
 function randomInteger(min, max) {
-  // here rnd is from min to (max+1)
-  let rnd = min + Math.random() * (max + 1 - min);
+  // here rand is from min to (max+1)
+  let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
 */!*

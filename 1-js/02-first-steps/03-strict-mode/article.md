@@ -6,7 +6,6 @@ That had the benefit of never breaking the existing codes. But the downside was 
 
 It had been so until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
 
-
 [cut]
 
 ## "use strict"
@@ -22,13 +21,12 @@ For example
 ...
 ```
 
-```warn header="There's no way to cancel `use strict`"
-There is no directive `"no use strict"` or alike, that would return the old behavior.
+We will learn functions (a way to group commands) soon.
 
-Once we enter the strict mode, there's no return.
-```
+Looking ahead let's just note that `"use strict"` can be put at the start of a function (most kinds of functions) instead of the whole script. Then strict mode is enabled in that function only. But usually people use it for the whole script.
 
-````warn header="Ensure that 'use strict' is at the top"
+
+````warn header="Ensure that \"use strict\" is at the top"
 Please make sure that `"use strict"` is on the top of the script, otherwise the strict mode may not be enabled.
 
 There is no strict mode here:
@@ -45,26 +43,21 @@ alert("some code");
 Only comments may appear above `"use strict"`.
 ````
 
-```smart header="`use strict` for functions"
-We will learn functions (a way to group commands) soon.
+```warn header="There's no way to cancel `use strict`"
+There is no directive `"no use strict"` or alike, that would return the old behavior.
 
-Looking ahead let's just note that `"use strict"` can be put at the start of a function (most kinds of functions) instead of the whole script. Then strict mode is enabled in that function only. But usually people use it for the whole script.
+Once we enter the strict mode, there's no return.
 ```
 
+## Always "use strict"
 
-## Start with "use strict"
+The differences of `"use strict"` versus the "default" mode are still to be covered.
 
-It is recommended to always start a script with `"use strict"`, for the following reasons:
+In the next chapters, as we learn language features, we'll make notes about the differences of the strict mode. Luckily, there are not so many. And they actually make our life better.
 
-1. First, all modern browsers support it. Only outdated ones like Internet Explorer 9 and below do not.
-2. Second, the modern JavaScript actually forces us into the strict mode. There are several modern language features like "classes" and "modules" that enable strict mode automatically. So, it's hard to evade it.
-3. The last, but not the least: strict mode is the modern mode. Makes the language a little bit better in few aspects. We'll see that as we study more language features.
+At this point of time it's enough to know about it in general:
 
-Here in the tutorial, all code (where not explicitly noted otherwise) works in `"use strict"`. We concentrate on modern JavaScript. But there will be notes about what happens without `"use strict"`, so that you can understand what's going on if you forget it or if you're working with an outdated script that doesn't have it.
-
-## Summary
-
-- The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features.
-- Several modern features of the language enable `"use strict"` implicitly, so it's quite hard to evade it.
-
-It's always recommended to start scripts with `"use strict"`. All examples in this tutorial assume so, unless (very rarely) specified otherwise.
+1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details as we study.
+2. The strict mode is enabled by `"use strict"` at the top. Also there are several language features like "classes" and "modules" that enable strict mode automatically.
+3. The strict mode is supported by all modern browsers.
+4. It's always recommended to start scripts with `"use strict"`. All examples in this tutorial assume so, unless (very rarely) specified otherwise.

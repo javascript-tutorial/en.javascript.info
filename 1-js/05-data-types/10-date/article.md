@@ -72,16 +72,16 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
 There are many methods to access the year, month and so on from the `Date` object. But they can be easily remembered when categorized.
 
-`getFullYear()`
+[getFullYear()](mdn:js/Date/getFullYear)
 : Get the year (4 digits)
 
-`getMonth()`
+[getMonth()](mdn:js/Date/getMonth)
 : Get the month, **from 0 to 11**.
 
-`getDate()`
+[getDate()](mdn:js/Date/getDate)
 : Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
 
-`getHours(), getMinutes(), getSeconds(), getMilliseconds()`
+[getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
 : Get the corresponding time components.
 
 ```warn header="Not `getYear()`, but `getFullYear()`"
@@ -90,12 +90,12 @@ Many JavaScript engines implement a non-standard method `getYear()`. This method
 
 Additionally, we can get a day of week:
 
-`getDay()`
+[getDay()](mdn:js/Date/getDay)
 : Get the day of week, from `0` (Sunday) to `6` (Saturday). The first day is always Sunday, in some countries that's not so, but can't be changed.
 
 **All the methods above return the components relative to the local time zone.**
 
-There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: `getUTCFullYear()`, `getUTCMonth()`, `getUTCDay()`. Just insert the `"UTC"` right after `"get"`.
+There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
 
 If your local time zone is shifted relative to UTC, then the code below shows different hours:
 
@@ -112,10 +112,10 @@ alert( date.getUTCHours() );
 
 Besides the given methods, there are two special ones, that do not have a UTC-variant:
 
-`getTime()`
+[getTime()](mdn:js/Date/getTime)
 : Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
 
-`getTimezoneOffset()`
+[getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
 : Returns the difference between the local time zone and UTC, in minutes:
 
     ```js run
@@ -129,14 +129,14 @@ Besides the given methods, there are two special ones, that do not have a UTC-va
 
 The following methods allow to set date/time components:
 
-- `setFullYear(year [, month, date])`
-- `setMonth(month [, date])`
-- `setDate(date)`
-- `setHours(hour [, min, sec, ms])`
-- `setMinutes(min [, sec, ms])`
-- `setSeconds(sec [, ms])`
-- `setMilliseconds(ms)`
-- `setTime(milliseconds)` (sets the whole date by milliseconds since 01.01.1970 UTC)
+- [`setFullYear(year [, month, date])`](mdn:js/Date/setFullYear)
+- [`setMonth(month [, date])`](mdn:js/Date/setMonth)
+- [`setDate(date)`](mdn:js/Date/setDate)
+- [`setHours(hour [, min, sec, ms])`](mdn:js/Date/setHours)
+- [`setMinutes(min [, sec, ms])`](mdn:js/Date/setMinutes)
+- [`setSeconds(sec [, ms])`](mdn:js/Date/setSeconds)
+- [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
+- [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
 
 Every one of them except `setTime()` has a UTC-variant, for instance: `setUTCHours()`.
 

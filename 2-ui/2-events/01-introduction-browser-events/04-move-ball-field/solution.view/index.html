@@ -45,8 +45,8 @@
       // the ball has position:absolute, the field: position:relative
       // so ball coordinates are relative to the field inner left-upper corner
       let ballCoords = {
-        top: event.clientY - fieldInnerCoords.top - field.clientTop - ball.clientHeight / 2,
-        left: event.clientX - fieldInnerCoords.left - field.clientLeft - ball.clientWidth / 2
+        top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+        left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
       };
 
       // prevent crossing the top field boundary
