@@ -235,7 +235,7 @@ The combination: "infinite loop + `break` as needed" is great for situations whe
 
 ## Continue to the next iteration [#continue]
 
-The `continue` directive is a "lighter version" of `break`. It doesn't stop the whole loop. Instead if stops the current iteration and forces the loop to start a new one (if the condition allows).
+The `continue` directive is a "lighter version" of `break`. It doesn't stop the whole loop. Instead it stops the current iteration and forces the loop to start a new one (if the condition allows).
 
 We can use it if we're done on the current iteration and would like to move on to the next.
 
