@@ -274,7 +274,7 @@ So it's recommended to install one, even if you don't want to stick to a "code s
 Most well-known tools are:
 
 - [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSHint.
+- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
 - [ESLint](http://eslint.org/) -- probably the newest one.
 
 All of them can do the job. The author uses [ESLint](http://eslint.org/).
