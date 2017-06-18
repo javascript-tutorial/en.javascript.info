@@ -390,7 +390,18 @@ A few examples:
     alert( Math.random() ); // 0.5435252343232
     alert( Math.random() ); // ... (any random numbers)
     ```
-
+: Returning a random number between two numbers `max` and `min` can be done with this line of code
+    
+    ```js
+    function getRandomLimited(max, min){
+    return Math.random() * (max - min) + min;
+    }
+    ```
+: As an example:
+    ```js run
+    alert( Math.random() * (10 - 5) + 5); //produces a random number between 5 and 10 EXCLUDING 10
+    ```
+    
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
 : Return the greatest/smallest from the arbitrary number of arguments.
 
