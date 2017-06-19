@@ -23,7 +23,7 @@ Simply put, "reachable" values are those that are accessible or useable somehow.
 
     These values are called *roots*.
 
-2. Any other value is considered reachable if it's reachable from a root by a reference of by a chain of references.
+2. Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
 
     For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references -- are also reachable. Detailed examples to follow.
 
