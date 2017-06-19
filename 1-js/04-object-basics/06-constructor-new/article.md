@@ -89,7 +89,7 @@ The constructor can't be called again, because it is not saved anywhere, just cr
 
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
-It is empty for regulsar calls and equals the function if called with `new`:
+It is empty for regular calls and equals the function if called with `new`:
 
 ```js run
 function User() {
