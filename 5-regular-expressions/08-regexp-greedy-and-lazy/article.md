@@ -39,20 +39,20 @@ That can be described as "greediness is the cause of all evil".
 To find a match, the regular expression engine uses the following algorithm:
 
 - For every position in the string
-    - Match the pattern symbol-by-symbol using classes and quantifiers.
+    - Match the pattern at that position.
     - If there's no match, go to the next position.
 
 These common words do not make it obvious why the regexp fails, so let's elaborate how the search works for the pattern `pattern:".+"`.
 
 1. The first pattern character is a quote `pattern:"`.
 
-    The regular expression engine tries to find it on 0-th position of the source string, but there's `subject:a` there, so no match.
+    The regular expression engine tries to find it at the zero position of the source string `subject:a "witch" and her "broom" is one`, but there's `subject:a` there, so there's immediately no match.
 
-    Then it advances: goes to the 1st, 2nd positions in the source string and tries to find the pattern there, and finally finds the quote at the 3rd position:
+    Then it advances: goes to the next positions in the source string and tries to find the first character of the pattern there, and finally finds the quote at the 3rd position:
 
     ![](witch_greedy1.png)
 
-2. The quote is detected, and then the engine tries to find a match for the rest of the pattern.
+2. The quote is detected, and then the engine tries to find a match for the rest of the pattern. It tries to see if the rest of the subject string conforms to `pattern:.+"`.
 
     In our case the next pattern character is `pattern:.` (a dot). It denotes "any character except a newline", so the next string letter `match:'w'` fits:
 

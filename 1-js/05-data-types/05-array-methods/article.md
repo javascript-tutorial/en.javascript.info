@@ -517,7 +517,7 @@ Here we get a sum of array in one line:
 ```js run
 let arr = [1, 2, 3, 4, 5]
 
-let result = arr.reduce((sum, current) => sum + current), 0);
+let result = arr.reduce((sum, current) => sum + current, 0);
 
 alert(result); // 15
 ```
