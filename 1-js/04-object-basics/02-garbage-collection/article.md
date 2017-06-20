@@ -175,7 +175,7 @@ Then their references are marked:
 
 ![](garbage-collection-3.png)
 
-...And their refences, while possible:
+...And their references, while possible:
 
 ![](garbage-collection-4.png)
 
