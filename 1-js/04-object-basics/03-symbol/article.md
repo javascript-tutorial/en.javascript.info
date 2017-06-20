@@ -252,11 +252,19 @@ Other symbols will also become familiar when we study the corresponding language
 
 ## Summary
 
-- Symbol is a primitive type for unique identifiers.
-- Symbols are created with `Symbol(name)` call.
-- Symbols are useful if we want to create a field that only those who know the symbol can access.
-- Symbols don't appear in `for..in` loops.
-- Symbols created with `Symbol(name)` are always different, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls return the same symbol.
-- There are system symbols used by JavaScript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors.
+`Symbol` is a primitive type for unique identifiers.
+
+Symbols are created with `Symbol(name)` call.
+
+Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls of `Symfol.for` return exactly the same symbol.
+
+Symbols have two main use cases:
+
+1. "Hidden" object properties.
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally listed. Also it won't be accessed directly, because another script does not have our symbol, so it will not occasionally intervene into its actions.
+
+    So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
+
+2. There are many system symbols used by JavaScript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
 
 Technically, symbols are not 100% hidden. There is a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods probably understands well what he's doing.

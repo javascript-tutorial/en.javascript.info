@@ -23,7 +23,7 @@ For instance, take a look at this ternary operator `'?'`:
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` will probably have a merry time. Then come to you, seeking for an answer.
+Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
 
 Tell him that shorter is always better. Initiate him into the paths of ninja.
 
@@ -36,11 +36,11 @@ completed.
 
 Another way to code faster (and much worse!) is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
 
-A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using the "search" of the editor. And even if someone does, he won't be able to "decipher" what the name `a` or `b` means.
+A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, he won't be able to "decipher" what the name `a` or `b` means.
 
 ...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are so much more exotic letters. For instance, `x` or `y`.
 
-An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, he won't be able to figure out fast that the variable is the loop counter.
+An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, he won't be able to figure out fast that the variable named `x` is the loop counter.
 
 ## Use abbreviations
 
@@ -53,7 +53,7 @@ Like this:
 - `browser` -> `brsr`.
 - ...etc
 
-Only the one with a truly good intuition will be able to understand all such names. Try to shorten everything. Only a worthy person will be able to uphold the development of such code.
+Only the one with a truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
 
 ## Soar high. Be abstract.
 
@@ -68,15 +68,15 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
 - **The ideal name for a variable is `data`.** Use it everywhere where you can. Indeed, every variable holds *data*, right?
 
-    ...But what to do if `data` is already taken? Try `value`, it's also universal. A variable always has a *value*, correct?
+    ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
 
 - **Name the variable by its type: `str`, `num`...**
 
-    ...But will that make the code worse? Actually, yes!
+    Give them a try. A young ninja may wonder -- do such names make the code worse? Actually, yes!
 
     From one hand, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code -- he'll be surprised to see that there's actually no information at all!
 
-    Actually, the value type is easy to see by debugging. But what's the meaning of the variable? Which string/number it stores? There's just no way to figure out without a good meditation!
+    Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number it stores? There's just no way to figure out without a good meditation!
 
 - **...But what if there are no more such names?** Just add a letter: `item1, item2, elem5, data1`...
 
@@ -97,19 +97,19 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
 ```
 
-Use *similar* names for *same* things, that makes life more interesting and shows your creativity to the public.
+Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
 
-For instance, the function prefixes. If a function shows a message on the screen -- start it with `display…`, like `displayMessage`. And then if another function shows something else, like a user name, start it with `show…` (like `showName`).
+For instance, consider function prefixes. If a function shows a message on the screen -- start it with `display…`, like `displayMessage`. And then if another function shows on the screen something else, like a user name, start it with `show…` (like `showName`).
 
 Insinuate that there's a subtle difference difference between such functions, while there is none.
 
-Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how more interesting and diverse the code became.
+Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how much more interesting and diverse the code became.
 
 ...And now the hat trick!
 
 For two functions with important differences -- use the same prefix!
 
-For instance, the function `printPage(page)` will use a printer. And the function `printText(text)` will put the text on-screen. Let an unfamiliar reader think well over things: "Where does `printMessage(message)` put the message? To a printer or on the screen?". To make it really shine, `printMessage(message)` should output it in the new window!
+For instance, the function `printPage(page)` will use a printer. And the function `printText(text)` will put the text on-screen. Let an unfamiliar reader think well over similarly named function `printMessage`: "Where does it put the message? To a printer or on the screen?". To make it really shine, `printMessage(message)` should output it in the new window!
 
 ## Reuse names
 
@@ -126,7 +126,7 @@ Instead, reuse existing names. Just write new values into them.
 
 In a function try to use only variables passed as parameters.
 
-That would make it impossible to identify what's exactly in the variable *now*. And also where it comes from. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
 
 **An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
 
@@ -148,7 +148,7 @@ Deadly effective even against an experienced ninja. Seen in code regularly.
 
 ## Underscores for fun
 
-Put underscores `_` and `__` before variable names. Like `_name` or `__value`. It would be great if only you know their meaning. Or, better, without meaning at all.
+Put underscores `_` and `__` before variable names. Like `_name` or `__value`. It would be great if only you knew their meaning. Or, better, add them just for fun, without particular meaning at all. Or different meanings in different places.
 
 You kill two rabbits with one shot. First, the code becomes longer and less readable, and the second, a fellow developer may spend a long time trying to figure out what the underscores mean.
 
@@ -189,13 +189,13 @@ Then he'll try to work with `user` it assuming that it's the external variable, 
 
 ## Side-effects everywhere!
 
-There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. That's called "no side-effects".
+There are functions that look like they don't change anything. Like `isReady()`, `checkPermission()`, `findTags()`... They are assumed to carry out calculations, find and return the data, without changing anything outside of them. In other words, without "side-effects".
 
-**A really beautiful trick -- is to add a "useful" action to them, besides the main task.**
+**A really beautiful trick is to add a "useful" action to them, besides the main task.**
 
-The expression of dazed surprise on the face of your colleague when he see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+The expression of dazed surprise on the face of your colleague when he sees a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
 
-**Another way to surprise -- is to return a non-standard result.**
+**Another way to surprise is to return a non-standard result.**
 
 Show your original thinking! Let the call of `checkPermission` return not `true/false`, but a complex object with the results of the check.
 
