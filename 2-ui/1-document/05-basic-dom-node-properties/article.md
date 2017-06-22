@@ -258,7 +258,7 @@ Technically, these two lines do the same:
 elem.innerHTML += "...";
 // is a shorter way to write:
 *!*
-elem.innerHTML = elem.HTML + "..."
+elem.innerHTML = elem.innerHTML + "..."
 */!*
 ```
 
