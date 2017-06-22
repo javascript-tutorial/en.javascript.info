@@ -4,7 +4,7 @@ The caret `pattern:'^'` and dollar `pattern:'$'` characters have special meaning
 
 [cut]
 
-The caret `pattern:^` matches at the end of the text, and the dollar `pattern:$` -- in the end.
+The caret `pattern:^` matches at the beginning of the text, and the dollar `pattern:$` -- in the end.
 
 For instance, let's test if the text starts with `Mary`:
 
