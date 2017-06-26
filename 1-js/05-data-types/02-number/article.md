@@ -362,7 +362,7 @@ alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
 Of course, there are situations when `parseInt/parseFloat` return `NaN`. It happens when no digits could be read:
 
 ```js run
-alert( parseInt('a123') ); // NaN, the first symbol stops he process
+alert( parseInt('a123') ); // NaN, the first symbol stops the process
 ```
 
 ````smart header="The second argument of `parseInt(str, radix)`"
