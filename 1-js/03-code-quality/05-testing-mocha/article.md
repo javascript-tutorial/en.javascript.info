@@ -174,7 +174,7 @@ Making tests separate is useful to get more information about what's going on, s
 
 And besides that, there's one more rule good to follow.
 
-**One tests checks one thing.**
+**One test checks one thing.**
 
 If we look at the test and see two independent checks in it -- better to split it into two simpler ones.
 
