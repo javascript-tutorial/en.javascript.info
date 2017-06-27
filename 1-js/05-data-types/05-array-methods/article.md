@@ -100,7 +100,7 @@ alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 ```
 
 ````smart header="Negative indexes allowed"
-Here and in other array methods, negative indexes are allowed. The specify the position from the end of the array, like here:
+Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
 
 ```js run
 let arr = [1, 2, 5]
