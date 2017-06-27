@@ -229,7 +229,7 @@ alert( arr.includes(1) ); // true
 
 Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-If we wan to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
+If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
 
 
 ### find and findIndex
