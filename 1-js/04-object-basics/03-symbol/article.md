@@ -256,7 +256,7 @@ Other symbols will also become familiar when we study the corresponding language
 
 Symbols are created with `Symbol(name)` call.
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls of `Symfol.for` return exactly the same symbol.
+Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls of `Symbol.for` return exactly the same symbol.
 
 Symbols have two main use cases:
 
