@@ -43,14 +43,16 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that the two examples are alike. So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
+It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Notice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
+
+So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
 
 The `class User {...}` here actually does two things:
 
 1. Declares a variable `User` that references the function named `"constructor"`.
 2. Puts into `User.prototype` methods listed in the definition. Here it includes `sayHi` and the `constructor`.
 
-Here's some code to demonstrate that:
+Here's the code to dig into the class and see that:
 
 ```js run
 class User {
@@ -69,15 +71,19 @@ alert(User == User.prototype.constructor); // true
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-Here's the illustration of `class User`:
+Here's the illustration of what `class User` creates:
 
 ![](class-user.png)
 
-So `class` is a special syntax to define the constructor with prototype methods.
 
-...But not only that. There are minor tweaks here and there to ensure the right usage.
 
-For instance, the `constructor` function can't be called without `new`:
+So `class` is a special syntax to define a constructor together with its prototype methods.
+
+...But not only that. There are minor tweaks here and there:
+
+Constructors require `new`
+: Unlike a regular function, a class `constructor` can't be called without `new`:
+
 ```js run
 class User {
   constructor() {}
@@ -87,23 +93,19 @@ alert(typeof User); // function
 User(); // Error: Class constructor User cannot be invoked without 'new'
 ```
 
-```smart header="Outputting a class"
-If we output it like `alert(User)`, some engines show `"class User..."`, while others show `"function User..."`.
+Different string output
+: If we output it like `alert(User)`, some engines show `"class User..."`, while others show `"function User..."`.
 
 Please don't be confused: the string representation may vary, but that's still a function, there is no separate "class" entity in JavaScript language.
-```
 
-```smart header="Class methods are non-enumerable"
-Class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`. That's good, because if we `for..in` over an object, we usually don't want its class methods.
-```
+Class methods are non-enumerable
+: A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`. That's good, because if we `for..in` over an object, we usually don't want its class methods.
 
-```smart header="What if there's no constructor?"
-If there's no `constructor` in the `class` construct, then an empty function is generated, same as if we had written `constructor() {}`.
-```
+Classes have a default `constructor() {}`
+: If there's no `constructor` in the `class` construct, then an empty function is generated, same as if we had written `constructor() {}`.
 
-```smart header="Classes always `use strict`"
-All code inside the class construct is automatically in strict mode.
-```
+Classes always `use strict`
+: All code inside the class construct is automatically in strict mode.
 
 ### Getters/setters
 
@@ -141,13 +143,26 @@ alert(user.name); // John
 user = new User(""); // Name too short.
 ```
 
+Internally, getters and setters are also created on the `User` prototype, like this:
+
+```js
+Object.defineProperty(User.prototype, {
+  name: {
+    get() {
+      return this._name
+    },
+    set(name) {
+      // ...
+    }
+  }
+});
+```
+
 ### Only methods
 
-Unlike object literals, no `property:value` assignments are allowed inside `class`. There may be only methods (without a comma between them) and getters/setters.
+Unlike object literals, no `property:value` assignments are allowed inside `class`. There may be only methods and getters/setters. There is some work going on in the specification to lift that limitation, but it's not yet there.
 
-The idea is that everything inside `class` goes to the prototype. And the prototype should store methods only, which are shared between objects. The data describing a concrete object state should reside in individual objects.
-
-If we really insist on putting a non-function value into the prototype, then `class` can't help here. We can alter `prototype` manually though, like this:
+If we really need to put a non-function value into the prototype, then we can alter `prototype` manually, like this:
 
 ```js run
 class User { }
@@ -157,9 +172,9 @@ User.prototype.test = 5;
 alert( new User().test ); // 5
 ```
 
-So, technically that's possible, but we should know why we're doing it.
+So, technically that's possible, but we should know why we're doing it. Such properties will be shared among all objects of the class.
 
-An alternative here would be to use a getter:
+An "in-class" alternative is to use a getter:
 
 ```js run
 class User {
@@ -171,7 +186,7 @@ class User {
 alert( new User().test ); // 5
 ```
 
-From the external code, the usage is the same. But the getter variant is probably a bit slower.
+From the external code, the usage is the same. But the getter variant is a bit slower.
 
 ## Class Expression
 
@@ -180,8 +195,9 @@ Just like functions, classes can be defined inside another expression, passed ar
 Here's a class-returning function ("class factory"):
 
 ```js run
-function getClass(phrase) {
+function makeClass(phrase) {
 *!*
+  // declare a class and return it
   return class {
     sayHi() {
       alert(phrase);
@@ -190,30 +206,31 @@ function getClass(phrase) {
 */!*
 }
 
-let User = getClass("Hello");
+let User = makeClass("Hello");
 
 new User().sayHi(); // Hello
 ```
 
-That's quite normal if we recall that `class` is just a special form of function-with-prototype definition.
+That's quite normal if we recall that `class` is just a special form of a function-with-prototype definition.
 
 And, like Named Function Expressions, such classes also may have a name, that is visible inside that class only:
 
 ```js run
+// "Named Class Expression" (alas, no such term, but that's what's going on)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass);
+    alert(MyClass); // MyClass is visible only inside the class
   }
 };
 
 new User().sayHi(); // works, shows MyClass definition
 
-alert(MyClass); // error, MyClass is only visible in methods of the class
+alert(MyClass); // error, MyClass not visible outside of the class
 ```
 
 ## Static methods
 
-Static methods are bound to the class function, not to its `"prototype"`.
+We can also assign methods to the class function, not to its `"prototype"`. Such methods are called *static*.
 
 An example:
 
@@ -241,7 +258,7 @@ User.staticMethod = function() {
 
 The value of `this` inside `User.staticMethod()` is the class constructor `User` itself (the "object before dot" rule).
 
-Usually, static methods are used when the code is related to the class, but not to a particular object of it.
+Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
 
 For instance, we have `Article` objects and need a function to compare them. The natural choice would be `Article.compare`, like this:
 
@@ -273,9 +290,15 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // Body
 ```
 
-Here `Article.compare` stands "over" the articles, as a means to compare them.
+Here `Article.compare` stands "over" the articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
 
-Another example would be a so-called "factory" method, that creates an object with specific parameters.
+Another example would be a so-called "factory" method. Imagine, we need few ways to create an article:
+
+1. Create by given parameters (`title`, `date` etc).
+2. Create an empty article with today's date.
+3. ...
+
+The first way can be implemented by the constructor. And for the second one we can make a static method of the class.
 
 Like `Article.createTodays()` here:
 
@@ -299,12 +322,36 @@ let article = Article.createTodays();
 alert( articles.title ); // Todays digest
 ```
 
-Now every time we need to create a todays digest, we can call `Article.createTodays()`.
+Now every time we need to create a todays digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
 
-Static methods are often used in database-related classes to search/save/remove entries from the database, like this:
+Static methods are also used in database-related classes to search/save/remove entries from the database, like this:
 
 ```js
 // assuming Article is a special class for managing articles
 // static method to remove the article:
 Article.remove({id: 12345});
 ```
+
+## Summary
+
+The basic class syntax looks like this:
+
+```js
+class MyClass {
+  constructor(...) {
+    // ...
+  }
+  method1(...) {}
+  method2(...) {}
+  get something(...) {}
+  set something(...) {}
+  static staticMethod(..) {}
+  // ...
+}
+```
+
+The value of `MyClass` is a function provided as `constructor`. If there's no `constructor`, then an empty function.
+
+In any case, methods listed in the class declaration become members of its `prototype`, with the exception of static methods that are written into the function itself and callable as `MyClass.staticMethod()`. Static methods are used when we need a function bound to a class, but not to any object of that class.
+
+In the next chapter we'll learn more about classes, including inheritance.

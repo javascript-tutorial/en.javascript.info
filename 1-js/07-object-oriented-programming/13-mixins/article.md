@@ -1,18 +1,20 @@
 # Mixins
 
-In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]`.
+In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]` for an object. And a class may extend only one other class.
 
-But sometimes we need such kind of thing. For instance, we have a code that implements events exchange or templating, and we'd like to be able to add these capabilities to any class easily.
+But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bycicle`, and want to make a `StreetSweepingBycicle`.
 
-What can help here is *mixins*.
+Or, talking about programming, we have a class `Renderer` that implements templating and a class `EventEmitter` that implements event handling, and want to merge these functionalities together with a class `Page`, to make a page that can use templates and emit events.
 
-As [defined in Wikipedia](https://en.wikipedia.org/wiki/Mixin), a *mixin* is a class that contains methods for use by other classes without having to be the parent class of those other classes.
+There's a concept that can help here, called "mixins".
 
-In other words, a *mixin* is a class that implements a certain behavior. But we do not use it alone, we use it to add the behavior to other classes.
+As defined in Wikipedia, a [mixin](https://en.wikipedia.org/wiki/Mixin) is a class that contains methods for use by other classes without having to be the parent class of those other classes.
+
+In other words, a *mixin* provides methods that implement a certain behavior, but we do not use it alone, we use it to add the behavior to other classes.
 
 ## A mixin example
 
-The simplest way to make a mixin in JavaScript -- is to make an object with useful methods, that we can just copy into the prototype.
+The simplest way to make a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
 
 For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
 
@@ -45,9 +47,17 @@ Object.assign(User.prototype, sayHiMixin);
 new User("Dude").sayHi(); // Hi Dude!
 ```
 
-There's no inheritance, there's a simple method copying. So `User` may extend some other class and also include the mixin to "mix-in" the additional methods.
+There's no inheritance, but a simple method copying. So `User` may extend some other class and also include the mixin to "mix-in" the additional methods, like this:
 
-Mixins also can make use of inheritance.
+```js
+class User extends Person {
+  // ...
+}
+
+Object.assign(User.prototype, sayHiMixin);
+```
+
+Mixins can make use of inheritance inside themselves.
 
 For instance, here `sayHiMixin` inherits from `sayMixin`:
 
@@ -59,8 +69,7 @@ let sayMixin = {
 };
 
 let sayHiMixin = {
-  // can use any way of prototype setting here
-  __proto__: sayMixin,
+  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
 
   sayHi() {
     *!*
@@ -94,25 +103,22 @@ That's because methods from `sayHiMixin` have `[[HomeObject]]` set to it. So `su
 
 ## EventMixin
 
-Now a mixin for the real life.
+Now let's make a mixin for real life.
 
 The important feature of many objects is working with events.
 
-That is: an object should have a method to "generate an event" when something important happens to it, and other objects should be able to "subscribe" to receive such notifications.
+That is: an object should have a method to "generate an event" when something important happens to it, and other objects should be able to "listen" to such events.
 
-An event must have a name and, if necessary, the attached data.
+An event must have a name and, optionally, bundle some additional data.
 
-For instance, an object `user` can generate an event `"login"` when the visitor logs in. And an object `calendar` may want to receive such notifications and load the information about that visitor.
+For instance, an object `user` can generate an event `"login"` when the visitor logs in. And another object `calendar` may want to receive such events to load the calendar for the logged-in person.
 
-Or, the object `menu` can generate the event `"select"` when a menu item is selected, and other objects may want to get that information and react on that event.
+Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may want to get that information and react on that event.
 
-Events is a way to "share information" with anyone who wants it.
-
-Here is `eventMixin` that implements the corresponding methods:
+Events is a way to "share information" with anyone who wants it. They can be useful in any class, so let's make a mixin for them:
 
 ```js run
 let eventMixin = {
-
   /**
    * Subscribe to event, usage:
    *  menu.on('select', function(item) { ... }
