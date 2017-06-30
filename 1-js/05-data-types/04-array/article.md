@@ -215,7 +215,7 @@ alert( fruits ); // Banana, Pear - 2 items now
 
 But they all break if we quit working with an array as with an "ordered collection" and start working with it as if it were a regular object.
 
-For instance, technically we can do like that:
+For instance, technically we can do this:
 
 ```js
 let fruits = []; // make an array
