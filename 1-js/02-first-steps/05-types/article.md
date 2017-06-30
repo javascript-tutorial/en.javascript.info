@@ -23,7 +23,7 @@ n = 12.345;
 
 The *number* type serves both for integer and floating point numbers.
 
-There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, substraction `-` and so on.
+There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, subtraction `-` and so on.
 
 Besides regular numbers, there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
 
