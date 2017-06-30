@@ -157,7 +157,7 @@ Now we can give the answer to the first seed question from the beginning of the 
 
 That's because of the described mechanism. Old variable values are not saved anywhere. When a function wants them, it takes the current values from its own or an outer Lexical Environment.
 
-So the answer here is `Pete`:
+So the answer to the first question is `Pete`:
 
 ```js run
 let name = "John";
@@ -188,7 +188,7 @@ And if a function is called multiple times, then each invocation will have its o
 ```
 
 ```smart header="Lexical Environment is a specification object"
-"Lexical Environment" is a specification object. We can't get this object in our code and manipulate it directly. JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks.
+"Lexical Environment" is a specification object. We can't get this object in our code and manipulate it directly. JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks, but the visible behavior should be as described.
 ```
 
 
@@ -216,7 +216,7 @@ function sayHiBye(firstName, lastName) {
 
 Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name.
 
-What's more interesting, a nested function can be returned: as a property of a new object (if the outer function creates and returns it) or as a result by itself. And then used somewhere else. No matter where, it still keeps the access to the same outer variables.
+What's more interesting, a nested function can be returned: as a property of a new object (if the outer function creates an object with methods) or as a result by itself. And then used somewhere else. No matter where, it still keeps the access to the same outer variables.
 
 An example with the constructor function (see the chapter <info:constructor-new>):
 
@@ -224,14 +224,14 @@ An example with the constructor function (see the chapter <info:constructor-new>
 // constructor function returns a new object
 function User(name) {
 
-  // the method is created as a nested function
+  // the object method is created as a nested function
   this.sayHi = function() {
     alert(name);
   };
 }
 
 let user = new User("John");
-user.sayHi();
+user.sayHi(); // the method code has access to the outer "name"
 ```
 
 An example with returning a function:
@@ -241,7 +241,7 @@ function makeCounter() {
   let count = 0;
 
   return function() {
-    return count++;
+    return count++; // has access to the outer counter
   };
 }
 
@@ -252,13 +252,11 @@ alert( counter() ); // 1
 alert( counter() ); // 2
 ```
 
-Let's go on with the `makeCounter` example. It creates the "counter" function that returns the next number on each invocation. Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator), and more. So the example is not exactly "artificial".
+Let's go on with the `makeCounter` example. It creates the "counter" function that returns the next number on each invocation. Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator), and more. So the example is not quite artificial.
 
-How does the counter work?
+How does the counter work internally?
 
-When the inner function runs, the variable in `count++` is searched from inside out.
-
-For the example above, the order will be:
+When the inner function runs, the variable in `count++` is searched from inside out. For the example above, the order will be:
 
 ![](lexical-search-order.png)
 
@@ -268,7 +266,7 @@ For the example above, the order will be:
 
 In that example `count` is found on the step `2`. When an outer variable is modified, it's changed where it's found. So `count++` finds the outer variable and increases it in the Lexical Environment where it belongs. Like if we had `let count = 1`.
 
-Here's a couple of questions:
+Here are two questions for you:
 
 1. Can we somehow reset the `counter` from the code that doesn't belong to `makeCounter`? E.g. after `alert` calls in the example above.
 2. If we call `makeCounter()` multiple times -- it returns many `counter` functions. Are they independent or do they share the same `count`?
@@ -302,11 +300,13 @@ alert( counter2() ); // 0 (independant)
 ```
 
 
-Probably, the situation with outer variables is quite clear for you as of now. But in more complex situations a deeper understanding of internals may be required. So here you go.
+Probably, the situation with outer variables is quite clear for you as of now. But in more complex situations a deeper understanding of internals may be required. So let's go ahead.
 
 ## Environments in detail
 
-For a more in-depth understanding, here's what's going on in the `makeCounter` example step-by-step, down to the nuts and bolts:
+Now as you understand how closures work generally, we may finally descend to the very nuts and bolts.
+
+Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand everything. Please note the additional `[[Environment]]` property that we didn't cover yet.
 
 1. When the script has just started, there is only global Lexical Environment:
 
@@ -317,6 +317,8 @@ For a more in-depth understanding, here's what's going on in the `makeCounter` e
     All functions "on birth" receive a hidden property `[[Environment]]` with the reference to the Lexical Environment of their creation. We didn't talk about it yet, but technically that's a way how the function knows where it was made.
 
     Here, `makeCounter` is created in the global Lexical Environment, so `[[Environment]]` keeps the reference to it.
+
+    In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
 2. Then the code runs on, and the call to `makeCounter()` is performed. Here's the picture for the moment when the execution is on the first line inside `makeCounter()`:
 
