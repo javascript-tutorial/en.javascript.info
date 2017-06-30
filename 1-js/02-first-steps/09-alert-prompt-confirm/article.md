@@ -22,7 +22,7 @@ For example:
 alert("Hello");
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until he deals with the window. In this case -- until he presses "OK".
+The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons etc, until they deal with the window. In this case -- until they press "OK".
 
 ## prompt
 
@@ -40,7 +40,7 @@ It shows a modal window with a text message, an input field for the visitor and 
 `default`
 : An optional second parameter, the initial value for the input field.
 
-The visitor may type something in the prompt input field and press OK. Or he can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
+The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
 
 The call to `prompt` returns the text from the field or `null` if the input was canceled.
 
