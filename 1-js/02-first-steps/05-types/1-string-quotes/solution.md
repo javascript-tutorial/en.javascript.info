@@ -5,11 +5,11 @@ Backticks embed the expression inside `${...}` into the string.
 let name = "Ilya";
 
 // the expression is a number 1
-alert( `hello ${1}` ); // Hello, 1
+alert( `hello ${1}` ); // hello 1
 
 // the expression is a string "name"
-alert( `hello ${"name"}` ); // Hello, name
+alert( `hello ${"name"}` ); // hello name
 
 // the expression is a variable, embed it
-alert( `hello ${name}` ); // Hello, Ilya
+alert( `hello ${name}` ); // hello Ilya
 ```
