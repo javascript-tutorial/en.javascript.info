@@ -172,7 +172,7 @@ let timerId = setTimeout(function request() {
     delay *= 2;
   }
 
-  timerId = setTimeout(tick, delay);
+  timerId = setTimeout(request, delay);
 
 }, delay);
 ```
