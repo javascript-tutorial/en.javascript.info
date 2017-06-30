@@ -4,7 +4,7 @@ importance: 2
 
 # Syntax check
 
-What is the resule of this code?
+What is the result of this code?
 
 
 ```js no-beautify
