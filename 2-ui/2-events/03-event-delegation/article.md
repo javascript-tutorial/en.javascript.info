@@ -102,8 +102,8 @@ table.onclick = function(event) {
 Explanations:
 1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
 2. If `event.target` is not inside any `<td>`, then the call returns `null`, and we don't have to do anything.
-3. In case of nested tables, `event.target` may be a `<td>` outside of the current table. So we check if that's actually *our* `<td>`.
-4. And, if it is so, highlight it.
+3. In case of nested tables, `event.target` may be a `<td>` lying outside of the current table. So we check if that's actually *our table's* `<td>`.
+4. And, if it's so, then highlight it.
 
 ## Delegation example: actions in markup
 
