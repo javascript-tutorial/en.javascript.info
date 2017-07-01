@@ -5,7 +5,7 @@
 
 Arrays by themselves are iterable. But not only arrays. Strings are iterable too, and many other built-in objects as well.
 
-Iterables are widely used by the core JavaScript, as we'll see many operators and built-in methods rely on them.
+Iterables are widely used by the core JavaScript. As we'll see many built-in operators and methods rely on them.
 
 [cut]
 
@@ -23,13 +23,13 @@ let range = {
   to: 5
 };
 
-// We want for..of to work:
+// We want the for..of to work:
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
 To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
-- When `for..of` starts, it calls that method (or errors if none found).
+- When `for..of` starts, it calls that method (or errors if not found).
 - The method must return an *iterator* -- an object with the method `next`.
 - When `for..of` wants the next value, it calls `next()` on that object.
 - The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
@@ -47,13 +47,13 @@ range[Symbol.iterator] = function() {
 
   // 2. ...it returns the iterator:
   return {
-    current: this.from, // start at "range.from",
-    last: this.to,      // end at "range.to"
+    current: this.from,
+    last: this.to,      
 
-    // 3. next() is called on each iteration by for..of
+    // 3. next() is called on each iteration by the for..of loop
     next() {
+      // 4. it should return the value as an object {done:.., value :...}
       if (this.current <= this.last) {
-        // 4. it should return the value as an object {done:.., value :...}
         return { done: false, value: this.current++ };
       } else {
         return { done: true };
@@ -62,6 +62,7 @@ range[Symbol.iterator] = function() {
   };
 };
 
+// now it works!
 for (let num of range) {
   alert(num); // 1, then 2, 3, 4, 5
 }
@@ -72,9 +73,9 @@ There is an important separation of concerns in this code:
 - The `range` itself does not have the `next()` method.
 - Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and it handles the iteration.
 
-So, the iterator is separate from the object.
+So, the iterator object is separate from the object it iterates over.
 
-Technically, we may merge them and use `range` itself as the iterator, to make the code simpler.
+Technically, we may merge them and use `range` itself as the iterator to make the code simpler.
 
 Like this:
 
@@ -102,7 +103,7 @@ for (let num of range) {
 }
 ```
 
-Now `range[Symbol.iterator]()` returns the `range` object itself, and it has the necessary `next()` method. Sometimes that's fine too. The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself.
+Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Sometimes that's fine too. The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself.
 
 ```smart header="Infinite iterators"
 Infinite iterators are also doable. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
@@ -138,9 +139,9 @@ for(let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
-But to understand things a little bit more deeper let's see how to create an iterator explicitly. We'll do that the same way as `for..of`, but with direct calls.
+But to understand things a little bit more deeper let's see how to create an iterator explicitly.
 
-For instance, this code gets a string iterator and calls it "manually":
+We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
 
 ```js run
 let str = "Hello";
@@ -157,16 +158,16 @@ while(true) {
 }
 ```
 
-That is rarely needed, but gives us more control than `for..of`. For instance, we can split the iteration process: iterate a bit, then stop, do something else, and then resume later.
+That is rarely needed, but gives us more control over the process than `for..of`. For instance, we can split the iteration process: iterate a bit, then stop, do something else, and then resume later.
 
 ## Iterables and array-likes [#array-like]
 
-There are two official terms that look similar, but are very different. Please be careful to avoid the confusion.
+There are two official terms that look similar, but are very different. Please make sure you understand them well to avoid the confusion.
 
 - *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
 - *Array-likes* are objects that have indexes and `length`, so they look like arrays.
 
-Naturally, they can combine. For instance, strings are both iterable and array-like.
+Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
 But an iterable may be not array-like and vice versa.
 
@@ -236,7 +237,7 @@ let arr = Array.from(range, num => num * num);
 alert(arr); // 1,4,9,16,25
 ```
 
-We can also use `Array.from` to turn a string into an array of characters:
+Here we use `Array.from` to turn a string into an array of characters:
 
 ```js run
 let str = '𝒳😂';

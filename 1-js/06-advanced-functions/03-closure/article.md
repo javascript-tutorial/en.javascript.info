@@ -334,9 +334,9 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
 3. During the execution of `makeCounter()`, a tiny nested function is created.
 
-    It doesn't matter whether the function is created using Function Declaration or Function Expression. All functions get the `[[Environment]]` property that references the Lexical Environment where they were made.
+    It doesn't matter whether the function is created using Function Declaration or Function Expression. All functions get the `[[Environment]]` property that references the Lexical Environment where they were made. So that new tiny nested function gets it as well.
 
-    For our new nested function that is the current Lexical Environment of `makeCounter()`:
+    For our new nested function the value of `[[Environment]]` is the current Lexical Environment of `makeCounter()` (where it was born):
 
     ![](lexenv-nested-makecounter-3.png)
 
