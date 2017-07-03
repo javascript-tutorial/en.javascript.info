@@ -1,6 +1,6 @@
 # Operators
 
-Many operators are known to us from school. It is an addition `+`, a multiplication `*`, a substraction `-` and so on.
+Many operators are known to us from school. It is an addition `+`, a multiplication `*`, a subtraction `-` and so on.
 
 In this chapter we concentrate on aspects that are not covered by the school arithmetic.
 
@@ -11,7 +11,7 @@ In this chapter we concentrate on aspects that are not covered by the school ari
 Before we move on, let's grasp the common terminology.
 
 - *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes people say "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary minus `"-"` reverses the sign of the number:
+- An operator is *unary* if it has a single operand. For example, the unary negation `"-"` reverses the sign of the number:
 
     ```js run
     let x = 1;
@@ -19,16 +19,16 @@ Before we move on, let's grasp the common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary minus was applied
+    alert( x ); // -1, unary negation was applied
     ```
 - An operator is *binary* if it has two operands. The same minus exists in the binary form as well:
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus substracts values
+    alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, we're talking about the two different operators here: the unary minus (single operand, reverses the sign) and the binary minus (two operands, substracts).
+    Formally, we're talking about the two different operators here: the unary negation (single operand, reverses the sign) and the binary subtraction (two operands, subtracts).
 
 ## Strings concatenation, binary +
 
@@ -135,11 +135,11 @@ An extract from the [precedence table](https://developer.mozilla.org/en/JavaScri
 | Precedence | Name | Sign |
 |------------|------|------|
 | ... | ... | ... |
-| 15 | unary plus | `+` |
-| 15 | unary minus | `-` |
+| 16 | unary plus | `+` |
+| 16 | unary negation | `-` |
 | 14 | multiplication | `*` |
 | 14 | division | `/` |
-| 13 | addition (binary) | `+` |
+| 13 | addition | `+` |
 | 13 | subtraction | `-` |
 | ... | ... | ... |
 | 3 | assignment | `=` |
@@ -194,7 +194,7 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to substract from `3`.
+In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to subtract from `3`.
 
 Funny code, isn't it? We should understand how it works, because sometimes we can see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make the code clearer and readable.
 ````

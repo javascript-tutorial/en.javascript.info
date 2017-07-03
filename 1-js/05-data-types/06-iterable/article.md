@@ -169,7 +169,7 @@ There are two official terms that look similar, but are very different. Please m
 
 Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
-But an iterable may be not array-like and vice versa.
+But an iterable may be not array-like. And vice versa an array-like may be not iterable.
 
 For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
 
