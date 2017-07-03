@@ -143,7 +143,7 @@ For example:
 let accessAllowed = (age > 18) ? true : false;
 ```
 
-Technically, we can omit parentheses around `age > 14`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
+Technically, we can omit parentheses around `age > 18`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
 
 ```js
 // the comparison operator "age > 18" executes first anyway
