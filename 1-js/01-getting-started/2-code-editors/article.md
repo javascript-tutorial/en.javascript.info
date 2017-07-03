@@ -10,9 +10,9 @@ There are two archetypes: IDE and lightweight editors. Many people feel comforta
 
 The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As said, that's not just an editor, but a full-scale "development environment".
 
-An IDE loads the project (can be many files), and then allows navigation between files, provides autocompletion based on the whole project, integrates with version management system (like [git](https://git-scm.com/)), with testing environment and other "project-level" stuff.
+An IDE loads the project (can be many files), and then allows navigation between files, provides autocompletion based on the whole project, integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
 
-If you haven't considered selecting an IDE, look at the following variants:
+If you haven't considered selecting an IDE yet, look at the following variants:
 
 - IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
@@ -40,22 +40,22 @@ The following options deserve your attention:
 - [Atom](https://atom.io/) (cross-platform, free).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- Vim, Emacs are cool, if you know how to use them.
+- Vim and Emacs are also cool, if you know how to use them.
 
 ## My favorites
 
-The personal preference of the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
+The personal preference as the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
 
 I'm using:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I didn't use them.
+- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I haven't used them.
 - As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
 
 If you don't know what to choose -- you can consider these ones.
 
 ## Let's not argue
 
-The editors in the lists above are those that me or my friends -- good developers are using for a long time and are happy with.
+The editors in the lists above are those that me or my friends -- good developers have been using for a long time and are happy with.
 
 There are other great editors in our big world, please choose the one you like the most.
 
