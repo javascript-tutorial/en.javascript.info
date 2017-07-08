@@ -40,7 +40,7 @@ Now we can see errors and that's enough for the start. We'll be back to develope
 
 Most other browsers use `key:F12` to open developer tools.
 
-The look & feel of them is quite similar. Once you know how to use one of them (ypu can start with Chrome), you can easily switch to another.
+The look & feel of them is quite similar. Once you know how to use one of them (you can start with Chrome), you can easily switch to another.
 
 ## Safari
 
