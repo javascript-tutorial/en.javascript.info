@@ -44,7 +44,7 @@ The following options deserve your attention:
 
 ## My favorites
 
-The personal preference as the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
+The personal preference of the author is to have both an IDE for projects and a lightweight editor for quick and easy file editing.
 
 I'm using:
 
