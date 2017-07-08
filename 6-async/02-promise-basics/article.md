@@ -96,7 +96,7 @@ let promise = new Promise(function(resolve, reject) {
 
 The idea is that a job done by the executor may have only one result or an error. In programming, there exist other data structures that allow many "flowing" results, for instance streams and queues. They have their own advantages and disadvantages versus promises. They are not supported by JavaScript core and lack certain language features that promises provide, we don't cover them here to concentrate on promises.
 
-Also we if we call `resolve/reject` with more then one argument -- only the first argument is used, the next ones are ignored.
+Also if we call `resolve/reject` with more then one argument -- only the first argument is used, the next ones are ignored.
 ````
 
 ```smart header="Reject with `Error` objects"
