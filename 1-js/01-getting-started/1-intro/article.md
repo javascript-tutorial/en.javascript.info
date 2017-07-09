@@ -85,7 +85,7 @@ There are at least *three* great things about JavaScript:
 
 ```compare
 + Full integration with HTML/CSS.
-+ Simple things can be done easily.
++ Simple things done simply.
 + Supported by all major browsers and enabled by default.
 ```
 
