@@ -126,7 +126,7 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-The so-called "ternary" or "question mark" operator allows to do that shorter and simpler.
+The so-called "ternary" or "question mark" operator lets us do that shorter and simpler.
 
 The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 operands. It is actually the one and only operator in JavaScript which has that many.
 
