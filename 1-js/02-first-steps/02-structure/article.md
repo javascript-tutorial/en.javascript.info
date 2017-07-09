@@ -85,16 +85,16 @@ Now we have the "All fine now" message and then `1` and `2`.
 
 The error in the no-semicolon variant occurs because JavaScript does not imply a semicolon before square brackets `[...]`.
 
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement, that's how the engine sees it:
+So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. That's how the engine sees it:
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such thing happens.
+But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such a thing happens.
 ````
 
-It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of time. But it's safer, especially for a beginner -- to put them.
+It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer, especially for a beginner -- to use them.
 
 ## Comments
 
@@ -126,9 +126,9 @@ alert('Hello');
 alert('World');
 ```
 
-The content of comments is ignored, so if we put a code inside <code>/&#42; ... &#42;/</code> it won't execute.
+The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code> it won't execute.
 
-Sometimes it comes handy to temporarily disable a part of the code:
+Sometimes it comes in handy to temporarily disable a part of code:
 
 ```js run
 /* Commenting out the code
@@ -138,13 +138,13 @@ alert('World');
 ```
 
 ```smart header="Use hotkeys!"
-In most editors a line of code can be commented out by `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a code and press the hotkey). For Mac try `key:Cmd` instead of `key:Ctrl`.
+In most editors a line of code can be commented out by `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac try `key:Cmd` instead of `key:Ctrl`.
 ```
 
 ````warn header="Nested comments are not supported!"
 There may not be `/*...*/` inside another `/*...*/`.
 
-This code will die with an error:
+Such code will die with an error:
 
 ```js run no-beautify
 /*
@@ -156,6 +156,6 @@ alert( 'World' );
 
 Please, don't hesitate to comment your code.
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to production server. They remove comments, so comments do not appear in the working scripts. So, the comments do not have any negative effects on production at all.
+Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to the production server. They remove comments, so they don't appear in the working scripts. Therefore comments do not have any negative effects on production at all.
 
 Further in the tutorial, there will be a chapter <info:coding-style> that also explains how to write better comments.
