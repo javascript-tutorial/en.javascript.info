@@ -271,7 +271,7 @@ So, we can set many properties at once.
 
 ## Object.getOwnPropertyDescriptors
 
-To get many descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
+To get all property descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
 
 Together with `Object.defineProperties` it can be used as a "flags-aware" way of cloning an object:
 
@@ -288,6 +288,8 @@ for(let key in user) {
 ```
 
 ...But that does not copy flags. So if we want a "better" clone then `Object.defineProperties` is preferred.
+
+Another difference is that `for..in` ignores symbolic properties, but `Object.getOwnPropertyDescriptors` returns *all* property descriptors including symbolic ones.
 
 ## Sealing an object globally
 
