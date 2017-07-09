@@ -142,7 +142,7 @@ if (i < 3) { alert(i); i++ }
 ```
 
 ````smart header="Inline variable declaration"
-Here the "counter" variable `i` is declared right in the loop. That's called an "inline" variable declaration. Such variable is visible only inside the loop.
+Here the "counter" variable `i` is declared right in the loop. That's called an "inline" variable declaration. Such variables are visible only inside the loop.
 
 ```js run
 for (*!*let*/!* i = 0; i < 3; i++) {
@@ -202,7 +202,7 @@ for (;;) {
 }
 ```
 
-Please note that the two `for` semicolons `;` must present, otherwise it would be a syntax error.
+Please note that the two `for` semicolons `;` must be present, otherwise it would be a syntax error.
 
 ## Breaking the loop
 
@@ -210,7 +210,7 @@ Normally the loop exits when the condition becomes falsy.
 
 But we can force the exit at any moment. There's a special `break` directive for that.
 
-For example, this code below asks user for numbers and breaks if no number entered:
+For example, the loop below asks the user for a series of numbers, but "breaks" when no number is entered:
 
 ```js
 let sum = 0;
@@ -353,7 +353,7 @@ In the code above `break outer` looks upwards for the label named `outer` and br
 
 So the control goes straight from `(*)` to `alert('Done!')`.
 
-We can also move a label into the separate string:
+We can also move the label onto a separate line:
 
 ```js no-beautify
 outer:

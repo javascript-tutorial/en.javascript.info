@@ -53,7 +53,7 @@ Unwanted elements of the array can also be thrown away via an extra comma:
 let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 */!*
 
-alert( title ); // Imperator
+alert( title ); // Consul
 ```
 
 In the code above, the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest is also skipped.

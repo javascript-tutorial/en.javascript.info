@@ -126,7 +126,7 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-The so-called "ternary" or "question mark" operator allows to do that shorter and simpler.
+The so-called "ternary" or "question mark" operator lets us do that shorter and simpler.
 
 The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 operands. It is actually the one and only operator in JavaScript which has that many.
 
@@ -143,7 +143,7 @@ For example:
 let accessAllowed = (age > 18) ? true : false;
 ```
 
-Technically, we can omit parentheses around `age > 14`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
+Technically, we can omit parentheses around `age > 18`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
 
 ```js
 // the comparison operator "age > 18" executes first anyway

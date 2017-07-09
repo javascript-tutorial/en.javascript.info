@@ -46,7 +46,17 @@ Nothing is "carved in stone" here. Everything is optional and can be changed: th
 
 In most JavaScript projects figure brackets are written on the same line, not on the new line. A so-called "egyptian" style. There's also a space before an opening bracket.
 
-An edge case is a single-line `if/for`. Should we use brackets at all? If yes, then where?
+Like this:
+
+```js
+if (condition) {
+  // do this
+  // ...and that
+  // ...and that
+}
+```
+
+A single-line construct is an important edge case. Should we use brackets at all? If yes, then where?
 
 Here are the annotated variants, so you can judge about their readability on your own:
 
@@ -82,9 +92,9 @@ There are two types of indents:
 
 - **A horizontal indent: 2(4) spaces.**
 
-    A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is a kind of an old holy war. Spaces are more common nowadays.
+    A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
 
-    One of advantages of spaces over tabs is that they allow more flexible configurations of indents than the "Tab" symbol.
+    One of advantages of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
 
     For instance, we can align the arguments with the opening bracket, like this:
 
@@ -99,7 +109,7 @@ There are two types of indents:
     }
     ```
 
-- **A vertical indent: empty lines for splitting the code in logical blocks.**
+- **A vertical indent: empty lines for splitting code into logical blocks.**
 
     Even a single function can often be divided in logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
 
@@ -121,9 +131,9 @@ There are two types of indents:
 
 A semicolon should be present after each statement. Even if it could be possibly be skipped.
 
-There are languages where a semicolon is truly optional. It's rarely used there.
+There are languages where a semicolon is truly optional. It's rarely used there. But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors.
 
-But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors, so semicolons should be at place.
+As you become more mature as a programmer, you may choose a no-semicolon style, like [StandardJS](https://standardjs.com/), but that's only when you know JavaScript well and understand possible pitfalls.
 
 ### Nesting levels
 
@@ -240,7 +250,7 @@ If you are writing several "helper" functions and the code to use them, then the
       ...
     }
     ```
-3. Mixed, a function is described where it's first used.
+3. Mixed: a function is described where it's first used.
 
 Most of time, the second variant is preferred.
 
@@ -259,6 +269,7 @@ For instance:
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
+- [StandardJS](https://standardjs.com/)
 - (there are more)
 
 If you're a novice developer, then you could start with the cheatsheet above in the chapter, and later browse the style guides to pick up the common principles and maybe choose one.
@@ -267,7 +278,7 @@ If you're a novice developer, then you could start with the cheatsheet above in 
 
 There are tools that can check the code style automatically. They are called "linters".
 
-The great thing about them is that style-checking also finds some bugs, like a typo in variable name or a function.
+The great thing about them is that style-checking also finds some bugs, like a typo in a variable or function name.
 
 So it's recommended to install one, even if you don't want to stick to a "code style". They help to find typos -- and that's already good enough.
 
@@ -314,7 +325,7 @@ Using a linter has the great side-effect. Linters catch typos. For instance, whe
 
 For that reason even if you're not concerned about styles, using a linter is highly recommended.
 
-Also certain IDEs support built-in linting, but not so tunable as ESLint.
+Also certain IDEs support built-in linting, that also may be good, but not so tunable as ESLint.
 
 ## Summary
 
