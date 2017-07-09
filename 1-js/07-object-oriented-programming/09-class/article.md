@@ -319,7 +319,7 @@ class Article {
 
 let article = Article.createTodays();
 
-alert( articles.title ); // Todays digest
+alert( article.title ); // Todays digest
 ```
 
 Now every time we need to create a todays digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.

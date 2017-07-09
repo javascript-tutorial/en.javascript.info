@@ -97,7 +97,7 @@ In other words, all special characters are allowed except where they mean someth
 
 A dot `"."` inside square brackets means just a dot. The pattern `pattern:[.,]` would look for one of characters: either a dot or a comma.
 
-In the example below the regexp `pattern:[-().^+]` looks for one of the characters `-().^`:
+In the example below the regexp `pattern:[-().^+]` looks for one of the characters `-().^+`:
 
 ```js run
 // No need to escape
