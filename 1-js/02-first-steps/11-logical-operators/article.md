@@ -16,7 +16,7 @@ The "OR" operator is represented with two vertical line symbols:
 result = a || b;
 ```
 
-In classical programming, logical OR is meant to manipulate boolean values. If any of it's arguments is `true`, then it returns `true`, otherwise -- returns `false`.
+In classical programming, logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, then it returns `true`, otherwise it returns `false`.
 
 In JavaScript the operator is a little bit more tricky and powerful. But first let's see what happens with boolean values.
 
@@ -62,7 +62,7 @@ let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is weekend
+  alert( 'The office is closed.' ); // it is the weekend
 }
 ```
 
@@ -78,13 +78,13 @@ Given multiple OR'ed values:
 result = value1 || value2 || value3;
 ```
 
-The OR `"||"` operator is doing the following:
+The OR `"||"` operator does the following:
 
-- Evalutes operands from left to right.
-- For each value -- converts it to boolean. If it's true then stops and returns that value.
-- If operands finished, returns the last value.
+- Evalute operands from left to right.
+- For each operand, convert it to boolean. If the result is `true`, then stop and return that the original value of that operand.
+- If all other operands have been assessed (i.e. all were `falsy`), return the last operand.
 
-A value is returned in it's original form, without the conversion.
+A value is returned in its original form, without the conversion.
 
 In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value found.
 
@@ -159,7 +159,7 @@ The AND operator is represented with two ampersands `&&`:
 result = a && b;
 ```
 
-In classical programming AND returns `true` if both operands are truthy and `false` -- otherwise:
+In classical programming AND returns `true` if both operands are truthy and `false` otherwise:
 
 ```js run
 alert( true && true );   // true
@@ -196,13 +196,13 @@ Given multiple AND'ed values:
 result = value1 && value2 && value3;
 ```
 
-The AND `"&&"` operator is doing the following:
+The AND `"&&"` operator does the following:
 
-- Evalutes operands from left to right.
-- For each value converts it to a boolean. If the result is `false`, stops and returns the original value.
-- If values finished (all are truthy), returns the last one.
+- Evalute operands from left to right.
+- For each operand, convert it to a boolean. If the result is `false`, stop and return the original value of that operand.
+- If all other operands have been assessed (i.e. all were truthy), return the last operand.
 
-In other words, AND returns the first falsy value or the last value if none found.
+In other words, AND returns the first falsy value or the last value if none were found.
 
 The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
 
@@ -210,12 +210,12 @@ Examples:
 
 ```js run
 // if the first operand is truthy,
-// AND returns the second one:
+// AND returns the second operand:
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
 // if the first operand is falsy,
-// AND returns it, and the second one is ignored
+// AND returns it. The second operand is ignored
 alert( null && 5 ); // null
 alert( 0 && "no matter what" ); // 0
 ```
@@ -266,7 +266,7 @@ if (x > 0) {
 
 The variant with `&&` appears to be shorter. But `if` is more obvious and tends to be a little bit more readable.
 
-So it is recommended to use every construct for it's purpose. Use `if` if we want if. And use `&&` if we want AND.
+So it is recommended to use every construct for its purpose. Use `if` if we want if. And use `&&` if we want AND.
 
 ## ! (NOT)
 
@@ -297,9 +297,9 @@ alert( !!"non-empty string" ); // true
 alert( !!null ); // false
 ```
 
-That is: the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again, at the end we have a plain value-to-boolean conversion.
+That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. At the end we have a plain value-to-boolean conversion.
 
-There's a little more verbose to do the same -- a built-in `Boolean` function:
+There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
 
 ```js run
 alert( Boolean("non-empty string") ); // true
