@@ -136,7 +136,7 @@ alert( 0 === false ); // false, because the types are different
 
 There also exists a "strict non-equality" operator `!==`, as an analogy for `!=`.
 
-The string equality check operator is a bit longer to write, but makes it obvious what's going on and leaves less space for errors.
+The strict equality check operator is a bit longer to write, but makes it obvious what's going on and leaves less space for errors.
 
 ## Comparison with null and undefined
 
