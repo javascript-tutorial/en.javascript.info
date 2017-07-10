@@ -4,7 +4,7 @@ The tutorial that you're reading is about core JavaScript, which is platform-ind
 
 But, we need a working environment to run our scripts, and, just because this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum, so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
 
-So first, let's see how to attach a script to the webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
+So first, let's see how to attach a script to a webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
 
 
 [cut]
@@ -45,7 +45,7 @@ The `<script>` tag contains JavaScript code which is automatically executed when
 
 ## The modern markup
 
-The `<script>` tag has a few attributes that are rarely used nowadays, but we can find them in the old code:
+The `<script>` tag has a few attributes that are rarely used nowadays, but we can find them in old code:
 
  The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
 
@@ -70,7 +70,7 @@ Comments before and after scripts.
 
 If we have a lot of JavaScript code, we can put it into a separate file.
 
-The script file is attached to HTML with `src` attribute:
+The script file is attached to HTML with the `src` attribute:
 
 ```html
 <script src="/path/to/script.js"></script>
@@ -78,7 +78,7 @@ The script file is attached to HTML with `src` attribute:
 
 Here `/path/to/script.js` is an absolute path to the file with the script (from the site root).
 
-It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` from the current folder.
+It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
 
 We can give a full URL as well, for instance:
 
@@ -99,7 +99,7 @@ As a rule, only the simplest scripts are put into HTML. More complex ones reside
 
 The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 
-After this, other pages which want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
+After this, other pages that want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
 
 That saves traffic and makes pages faster.
 ```
@@ -134,4 +134,4 @@ The example above can be split into two scripts to work:
 - A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
 
 
-There is much more about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to JavaScript language, so we shouldn't distract ourselves from it. We'll be using a browser as a way to run JavaScript, which is very convenient for online reading, but yet one of many.
+There is much more to learn about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn't distract ourselves from it. We'll be using a browser as a way to run JavaScript, which is very convenient for online reading, but yet one of many.

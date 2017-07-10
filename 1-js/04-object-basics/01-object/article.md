@@ -459,7 +459,7 @@ let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independant variables, each one is storing the string `"Hello!"`.
+As a result we have two independent variables, each one is storing the string `"Hello!"`.
 
 ![](variable-copy-value.png)
 
