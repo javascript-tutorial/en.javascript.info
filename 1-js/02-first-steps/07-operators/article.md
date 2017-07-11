@@ -145,7 +145,7 @@ An extract from the [precedence table](https://developer.mozilla.org/en/JavaScri
 | 3 | assignment | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `15`, higher than `13` for the "addition" (binary plus). That's why in the expression `"+apples + +oranges"` unary pluses work first, and then the addition.
+As we can see, the "unary plus" has a priority of `16`, higher than `13` for the "addition" (binary plus). That's why in the expression `"+apples + +oranges"` unary pluses work first, and then the addition.
 
 ## Assignment
 
