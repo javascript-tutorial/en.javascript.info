@@ -86,7 +86,7 @@ Here's the bigger picture of how `let` variables work:
 
 ![lexical environment](lexical-environment-global-2.png)
 
-Rectangles ont the right-hand side demonstrate how the global Lexical Environment changes during the execution:
+Rectangles on the right-hand side demonstrate how the global Lexical Environment changes during the execution:
 
 1. When the script starts, the Lexical Environment is empty.
 2. The `let phrase` definition appears. Now it initially has no value, so `undefined` is stored.
