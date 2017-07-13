@@ -1,6 +1,6 @@
 # Dispatching custom events
 
-We can not only assign handlers, but also generate events form JavaScript.
+We can not only assign handlers, but also generate events from JavaScript.
 
 Custom events can be used to create "graphical components". For instance, a root element of the menu may trigger events telling what happens with the menu: `open` (menu open),  `select` (an item is selected) and so on.
 
