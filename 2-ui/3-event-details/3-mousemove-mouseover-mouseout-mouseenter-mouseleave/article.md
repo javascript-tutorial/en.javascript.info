@@ -42,7 +42,7 @@ We should keep that possibility in mind when using `event.relatedTarget` in our 
 
 The `mousemove` event triggers when the mouse moves. But that doesn't mean that every pixel leads to an event.
 
-The browser checks the mouse position from time to time. And if he notices changes then triggers the events.
+The browser checks the mouse position from time to time. And if it notices changes then triggers the events.
 
 That means that if the visitor is moving the mouse very fast then DOM-elements may be skipped:
 
