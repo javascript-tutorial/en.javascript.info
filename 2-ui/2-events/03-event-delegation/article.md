@@ -186,7 +186,7 @@ For instance, here the attribute `data-counter` adds a behavior: "increase on cl
 
 ```html run autorun height=60
 Counter: <input type="button" value="1" data-counter>
-One more counter: <input type="button" value="2">
+One more counter: <input type="button" value="2" data-counter>
 
 <script>
   document.addEventListener('click', function(event) {
