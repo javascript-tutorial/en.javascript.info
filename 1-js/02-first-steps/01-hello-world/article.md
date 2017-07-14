@@ -105,7 +105,7 @@ That saves traffic and makes pages faster.
 ```
 
 ````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag may not have both `src` attribute and the code inside.
+A single `<script>` tag can't have both `src` attribute and the code inside.
 
 This won't work:
 
