@@ -88,8 +88,8 @@ We can get such error in case if we forget to put `async` before a function. As 
 
 Let's take `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
 
-1. First we'll need to replace `.then` calls by `await`.
-2. And we should make the function `async` for them to work.
+1. We'll need to replace `.then` calls by `await`.
+2. Also we should make the function `async` for them to work.
 
 ```js run
 async function showAvatar() {
