@@ -99,7 +99,7 @@ We covered 3 browser-specific functions to interact with the visitor:
 : shows a message asking the user to input text. It returns the text or, if CANCEL or `key:Esc` is clicked, all browsers except Safari return `null`.
 
 `confirm`
-: shows a message and waits the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
+: shows a message and waits for the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
 
 All these methods are modal: they pause the script execution and don't allow the visitor to interact with the rest of the page until the message has been dismissed.
 
