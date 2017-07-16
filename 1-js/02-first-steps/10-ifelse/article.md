@@ -164,7 +164,7 @@ let accessAllowed = age > 18;
 
 ## Multiple '?'
 
-A sequence of question mark `"?"` operators allows to return a value depending on more than one condition.
+A sequence of question mark `"?"` operators allows returning a value that depends on more than one condition.
 
 For instance:
 ```js run
