@@ -153,7 +153,7 @@ For a strict equality check `===`
     ```
 
 For a non-strict check `==`
-: There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but no any other value.
+: There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but not any other value.
 
     ```js run
     alert( null == undefined ); // true
@@ -162,7 +162,7 @@ For a non-strict check `==`
 For maths and other comparisons `< > <= >=`
 : Values `null/undefined` are converted to a number: `null` becomes `0`, while `undefined` becomes `NaN`.
 
-Now let's see funny things that happen when we apply those rules. And, what's more important, how do not fall into a trap with these features.
+Now let's see funny things that happen when we apply those rules. And, what's more important, how to not fall into a trap with these features.
 
 ### Strange result: null vs 0
 
