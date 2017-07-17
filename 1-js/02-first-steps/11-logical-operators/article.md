@@ -41,7 +41,7 @@ if (1 || 0) { // works just like if( true || false )
 }
 ```
 
-Most of time, OR `||` is used in `if` to test if *any* of given conditions is correct.
+Most of the time, OR `||` is used in `if` to test if *any* of given conditions is correct.
 
 For example:
 
