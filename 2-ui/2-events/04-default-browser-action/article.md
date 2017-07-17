@@ -201,7 +201,6 @@ The object will catch any right-click, look through stored handlers and run the 
 But then each piece of code that wants a context menu should know about that object and use its help instead of the own `contextmenu` handler.
 ```
 
-
 ## Summary
 
 There are many default browser actions:
@@ -219,3 +218,13 @@ All the default actions can be prevented if we want to handle the event exclusiv
 To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on<event>`.
 
 If the default action was prevented, the value of `event.defaultPrevented` becomes `true`, otherwise it's `false`.
+
+```warn header="Stay semantic, don't abuse"
+Technically, by preventing default actions and adding JavaScript we can customize the behavior of any elements. For instance, we can make a link `<a>` work like a button, and a button `<button>` behave as a link (redirect to another URL or so).
+
+But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should preform navigation, not a button.
+
+Besides being "just a good thing", that makes your HTML better in terms of accessibility.
+
+Also if we consider the example with `<a>`, then please note: a browser allows to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
+```
