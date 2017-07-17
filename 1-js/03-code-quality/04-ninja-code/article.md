@@ -101,7 +101,7 @@ Using *similar* names for *same* things makes life more interesting and shows yo
 
 For instance, consider function prefixes. If a function shows a message on the screen -- start it with `display…`, like `displayMessage`. And then if another function shows on the screen something else, like a user name, start it with `show…` (like `showName`).
 
-Insinuate that there's a subtle difference difference between such functions, while there is none.
+Insinuate that there's a subtle difference between such functions, while there is none.
 
 Make a pact with fellow ninjas of the team: if John starts "showing" functions with `display...` in his code, then Peter could use `render..`, and Ann -- `paint...`. Note how much more interesting and diverse the code became.
 
