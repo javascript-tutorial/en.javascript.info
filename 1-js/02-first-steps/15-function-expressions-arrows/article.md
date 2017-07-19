@@ -476,7 +476,7 @@ In most cases when we need to declare a function, Function Declaration is prefer
 
 So we should use Function Expression only when Function Declaration does not fit the task. We've seen a couple of examples of that in the chapter. And will see more in the future.
 
-Arrow functions are handy for one-liners. The come in two flavors:
+Arrow functions are handy for one-liners. They come in two flavors:
 
 1. Without figure brackets: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
 2. With figure brackets: `(...args) => { body }` -- brackets allow to write multiple statements inside the function, but we need an explicit `return` to return something.
