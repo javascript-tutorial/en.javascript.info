@@ -92,7 +92,7 @@ There are two types of indents:
 
 - **A horizontal indent: 2(4) spaces.**
 
-    A horizantal identation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
+    A horizontal indentation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
 
     One of advantages of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
 
