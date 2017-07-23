@@ -195,7 +195,7 @@ First, the syntax: how to see what is what in the code.
     // Function Expression
     let sum = function(a, b) {
       return a + b;
-    }
+    };
     ```
 
 The more subtle difference is *when* a function is created by JavaScript engine.
