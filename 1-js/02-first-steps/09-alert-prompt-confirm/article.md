@@ -96,7 +96,7 @@ We covered 3 browser-specific functions to interact with the visitor:
 : shows a message.
 
 `prompt`
-: shows a message asking the user to input text. It returns the text or, if CANCEL or `key:Esc` is clicked, all browsers except Safari return `null`.
+: shows a message asking the user to input text. It returns the text or, if CANCEL or `key:Esc` is clicked, all browsers return `null`.
 
 `confirm`
 : shows a message and waits for the user to press "OK" or "CANCEL". It returns `true` for OK and `false` for CANCEL/`key:Esc`.
