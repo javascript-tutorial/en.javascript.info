@@ -182,7 +182,7 @@ Right now they are fully independent.
 
 But we'd want `Rabbit` to extend `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
 
-What does it mean in the language on prototypes?
+What does it mean in the language of prototypes?
 
 Right now methods for `rabbit` objects are in `Rabbit.prototype`. We'd like `rabbit` to use `Animal.prototype` as a "fallback", if the method is not found in `Rabbit.prototype`.
 
