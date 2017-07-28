@@ -2,7 +2,7 @@
 
 Sometimes we need to perform different actions based on a condition.
 
-There is `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  “question mark” operator: "?" for simplicity.
+There is `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  “question mark” operator: `"?"` for simplicity.
 
 [cut]
 
