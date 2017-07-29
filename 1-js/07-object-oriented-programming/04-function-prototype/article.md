@@ -75,7 +75,7 @@ function Rabbit() {}
 alert( Rabbit.prototype.constructor == Rabbit ); // true
 ```
 
-Naturally, it we do nothing, the `constructor` property is available to all rabbits through  `[[Prototype]]`:
+Naturally, if we do nothing, the `constructor` property is available to all rabbits through  `[[Prototype]]`:
 
 ```js run
 function Rabbit() {}
