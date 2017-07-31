@@ -70,7 +70,7 @@ In JavaScript, every running function, code block and the script as a whole have
 The Lexical Environment object consists of two parts:
 
 1. *Environment Record* -- an object that has all local variables as its properties (and some other information like the value of `this`).
-2. A reference to the *outer lexical environment*, usually the one associated with the code lexically right outside of it (outside of the current figure brackets).a
+2. A reference to the *outer lexical environment*, usually the one associated with the code lexically right outside of it (outside of the current figure brackets).
 
 So, a "variable" is just a property of the special internal object, Environment Record. "To get or change a variable" means "to get or change the property of that object".
 
