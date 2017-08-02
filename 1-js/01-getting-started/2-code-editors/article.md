@@ -1,6 +1,6 @@
 # Code editors
 
-A code editor is the place where a programmer spends most of his time. 
+A code editor is the place where a programmer spends most of his time.
 
 There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
 
@@ -14,13 +14,13 @@ An IDE loads the project (can be many files), and then allows navigation between
 
 If you haven't considered selecting an IDE yet, look at the following variants:
 
-- IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and other if you need additional languages.
+- IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and others if you need additional languages.
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
 - Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
 - [Komodo IDE](http://www.activestate.com/komodo-ide) and its lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
 
-All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux. 
+All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux.
 
 Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
@@ -30,7 +30,7 @@ Most IDEs are paid, but have a trial period. Their cost is usually negligible co
 
 They are mainly used to instantly open and edit a file.
 
-The main difference between a "lightweight editor" and an "IDE" is that IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
 
 In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
 
@@ -51,12 +51,12 @@ I'm using:
 - [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I haven't used them.
 - As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
 
-If you don't know what to choose -- you can consider these ones.
+If you don't know what to choose, you can consider these ones.
 
 ## Let's not argue
 
-The editors in the lists above are those that me or my friends -- good developers have been using for a long time and are happy with.
+The editors in the lists above are those that either my friends or I -- good developers -- have been using for a long time and are happy with.
 
-There are other great editors in our big world, please choose the one you like the most.
+There are other great editors in our big world. Please choose the one you like the most.
 
 The choice of an editor, like any other tool, is individual and depends on your projects, habits, personal preferences.

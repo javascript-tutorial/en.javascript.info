@@ -1,12 +1,12 @@
 # Developer console
 
-Code is prone to errors. You are quite likely to have errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+Code is prone to errors. You are quite likely to make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
 But in the browser, a user doesn't see the errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
 
 To see errors and get a lot of other useful information about scripts, browsers have embedded "developer tools".
 
-Most often developers lean towards Chrome or Firefox for development, because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catching-up" to Chrome or Firefox. So most people have a "favorite" browser and switch to others if a problem is browser-specific.
+Most often developers lean towards Chrome or Firefox for development, because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most people have a "favorite" browser and switch to others if a problem is browser-specific.
 
 Developer tools are really powerful, there are many features. To start, we'll learn how to open them, look at errors and run JavaScript commands.
 
@@ -57,4 +57,4 @@ Now `key:Cmd+Opt+C` can toggle the console. Also note that the new top menu item
 - Developer tools allow us to see errors, run commands, examine variables and much more.
 - They can be opened with `key:F12` for most browsers under Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
 
-Now we have the environment ready. In the next section we get down to JavaScript.
+Now we have the environment ready. In the next section we'll get down to JavaScript.

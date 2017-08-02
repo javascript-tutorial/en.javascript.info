@@ -18,7 +18,7 @@ When JavaScript was created, it initially had another name: "LiveScript". But Ja
 But as it evolved, JavaScript became a fully independent language, with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where there exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
 The browser has an embedded engine, sometimes it's also called a "JavaScript virtual machine".
 
@@ -38,14 +38,14 @@ Engines are complicated. But the basics are easy.
 2. The engine (embedded if it's a browser) reads the script ("parses") and converts ("compiles") it to the machine language.
 3. And then it runs, pretty fast.
 
-The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data that flows through it and applies optimizations to the machine-code basing on that knowledge. That's why the code runs fast.
+The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data that flows through it and applies optimizations to the machine-code based on that knowledge. That's why the code runs fast.
 ```
 
 ## What can in-browser JavaScript do?
 
 The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
-The capabilities greatly depend on the environment that runs JavaScript. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allows JavaScript to read/write arbitrary files, perform network requests etc.
+The capabilities greatly depend on the environment that runs JavaScript. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests etc.
 
 In-browser JavaScript can do everything related to webpage manipulation, interaction with the user and the webserver.
 
@@ -57,7 +57,7 @@ For instance, in-browser JavaScript is able to:
 - Get and set cookies, ask questions to the visitor, show messages.
 - Remember the data on the client-side ("local storage").
 
-## What in-browser JavaScript can NOT do?
+## What CAN'T in-browser JavaScript do?
 
 JavaScript's abilities in the browser are limited for the sake of the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
 
@@ -73,7 +73,7 @@ The examples of such restrictions are:
     This is called the "Same Origin Policy". To work around that, *both pages* must contain a special JavaScript code that handles data exchange.
 
     The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened must not be able to open or access another browser tab with the URL `http://gmail.com` and steal information from there.
-- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires the explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
+- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 
 ![](limitations.png)
 
@@ -89,7 +89,7 @@ There are at least *three* great things about JavaScript:
 + Supported by all major browsers and enabled by default.
 ```
 
-Combined, these 3 things exist only in JavaScript and no other browser technology.
+Combined, these three things exist only in JavaScript and no other browser technology.
 
 That's what makes JavaScript unique. That's why it's the most widespread tool to create browser interfaces.
 
@@ -117,5 +117,5 @@ There are more. Of course even if we use one of those languages, we should also 
 ## Summary
 
 - JavaScript was initially created as a browser-only language, but now it is used in many other environments as well.
-- At this moment, JavaScript has a unique position as the most widely adopted browser language with full integration with HTML/CSS.
+- At this moment, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
 - There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
