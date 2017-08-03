@@ -1,14 +1,14 @@
 # Conditional operators: if, '?'
 
-Sometimes we need to perform different actions basing on a condition.
+Sometimes we need to perform different actions based on a condition.
 
-There's an `if` operator for that and also the "question mark" operator: `"?"` for conditional evaluation.
+There is `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  “question mark” operator: `"?"` for simplicity.
 
 [cut]
 
-## The "if" operator
+## The "if" statement
 
-The "if" operator gets a condition, evaluates it and -- if the result is `true` -- executes the code.
+The "if" statement gets a condition, evaluates it and -- if the result is `true` -- executes the code.
 
 For example:
 
@@ -22,7 +22,7 @@ if (year == 2015) alert( 'You are right!' );
 
 In the example above, the condition is a simple equality check: `year == 2015`, but it can be much more complex.
 
-If there's more than one command to execute -- we can use a code block in figure brackets:
+If there is more than one command to execute -- we can use a code block in figure brackets:
 
 ```js
 if (year == 2015) {
@@ -31,11 +31,11 @@ if (year == 2015) {
 }
 ```
 
-It is recommended to use figure brackets every time with `if`, even if there's only one command. That improves readability.
+It is recommended to use figure brackets every time with `if`, even if there is only one command. That improves readability.
 
 ## Boolean conversion
 
-The `if (…)` operator evaluates the expression in parentheses and converts it to the boolean type.
+The `if (…)` statement evaluates the expression in parentheses and converts it to the boolean type.
 
 Let's recall the conversion rules from the chapter <info:type-conversions>:
 
@@ -70,7 +70,7 @@ if (cond) {
 
 ## The "else" clause
 
-The `if` operator may contain an optional "else" block. It executes when the condition is wrong.
+The `if` statement may contain an optional "else" block. It executes when the condition is wrong.
 
 For example:
 ```js run
@@ -85,7 +85,7 @@ if (year == 2015) {
 
 ## Several conditions: "else if"
 
-Sometimes we'd like to test several variants of a condition. There's an `else if` clause for that.
+Sometimes we'd like to test several variants of a condition. There is an `else if` clause for that.
 
 For example:
 
@@ -220,7 +220,7 @@ We don't assign a result to a variable here, the idea is to execute different co
 
 The notation seem to be shorter than `if`, that appeals to some programmers. But it is less readable.
 
-Here's the same with `if` for comparison:
+Here is the same with `if` for comparison:
 
 ```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
@@ -236,4 +236,4 @@ if (company == 'Netscape') {
 
 Our eyes scan the code vertically. The constructs which span several lines are easier to understand than a long horizontal instruction set.
 
-The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There's `if` to execute different branches of the code.
+The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There is `if` to execute different branches of the code.

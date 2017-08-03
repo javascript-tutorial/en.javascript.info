@@ -120,7 +120,7 @@ The same thing with an empty string:
 alert( '' == false ); // true
 ```
 
-That's because operands of different types are converted to a number by the assignment operator `=`. An empty string, just like `false`, becomes a zero.
+That's because operands of different types are converted to a number by the equality operator `==`. An empty string, just like `false`, becomes a zero.
 
 What to do if we'd like to differentiate `0` from `false`?
 
