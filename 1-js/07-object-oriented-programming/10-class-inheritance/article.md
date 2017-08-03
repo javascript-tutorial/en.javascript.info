@@ -267,7 +267,7 @@ Let's get a little deeper under the hood of `super`. We'll see some interesting 
 
 First to say, from all that we've learned till now, it's impossible for `super` to work.
 
-Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve that  method? In other words, we need to take the `method` from the parent prototype of the current object. How, technically, we (or a JavaScript engine) can do it?
+Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve the `method`? Naturally, we need to take the `method` from the prototype of the current object. How, technically, we (or a JavaScript engine) can do it?
 
 Maybe we can get it `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that won't work.
 
