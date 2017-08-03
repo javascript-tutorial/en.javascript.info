@@ -269,7 +269,7 @@ First to say, from all that we've learned till now, it's impossible for `super` 
 
 Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve the `method`? Naturally, we need to take the `method` from the prototype of the current object. How, technically, we (or a JavaScript engine) can do it?
 
-Maybe we can get it `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that won't work.
+Maybe we can get the method from `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that doesn't work.
 
 Let's try to do it. Without classes, using plain objects for the sake of simplicity.
 
@@ -288,6 +288,7 @@ let rabbit = {
   name: "Rabbit",
   eat() {
 *!*
+    // that's how super.eat() could presumably work
     this.__proto__.eat.call(this); // (*)
 */!*
   }
@@ -298,9 +299,9 @@ rabbit.eat(); // Rabbit eats.
 
 At the line `(*)` we take `eat` from the prototype (`animal`) and call it in the context of the current object. Please note that `.call(this)` is important here, because a simple `this.__proto__.eat()` would execute parent `eat` in the context of the prototype, not the current object.
 
-And here it works.
+And in the code above it actually works as intended: we have the correct `alert`.
 
-Now let's add one more object to the chain. We'll see how things break:
+Now let's add one more object to the chain. And we'll see how things break:
 
 ```js run
 let animal = {
