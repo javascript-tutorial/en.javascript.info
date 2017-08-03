@@ -33,7 +33,7 @@ We can check it like this:
 let obj = {};
 
 alert(obj.__proto__ === Object.prototype); // true
-// obj.toString === obj.__proto__toString == Object.prototype.toString
+// obj.toString === obj.__proto__.toString == Object.prototype.toString
 ```
 
 Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
