@@ -301,7 +301,7 @@ At the line `(*)` we take `eat` from the prototype (`animal`) and call it in the
 
 And in the code above it actually works as intended: we have the correct `alert`.
 
-Now let's add one more object to the chain. And we'll see how things break:
+Now let's add one more object to the chain. We'll see how things break:
 
 ```js run
 let animal = {
@@ -336,20 +336,22 @@ The code doesn't work any more! We can see the error trying to call `longEar.eat
 
 It may be not that obvious, but if we trace `longEar.eat()` call, then we can see why. In both lines `(*)` and `(**)` the value of `this` is the current object (`longEar`). That's essential: all object methods get the current object as `this`, not a prototype or something.
 
-So, in both lines `(*)` and `(**)` the value of `this.__proto__` is exactly the same: `rabbit`. They both call `rabbit.eat` without going up the chain.
+So, in both lines `(*)` and `(**)` the value of `this.__proto__` is exactly the same: `rabbit`. They both call `rabbit.eat` without going up the chain in the endless loop.
 
-In other words:
+Here's the picture of what happens:
 
-1. Inside `longEar.eat()`, we pass the call up to `rabbit.eat` giving it the same `this=longEar`.
+![](this-super-loop.png)
+
+1. Inside `longEar.eat()`, the line `(**)` calls `rabbit.eat` providing it with `this=longEar`.
     ```js
     // inside longEar.eat() we have this = longEar
     this.__proto__.eat.call(this) // (**)
     // becomes
     longEar.__proto__.eat.call(this)
-    // or
+    // that is
     rabbit.eat.call(this);
     ```
-2. Inside `rabbit.eat`, we want to pass the call even higher in the chain, but `this=longEar`, so `this.__proto__.eat` is `rabbit.eat`!
+2. Then in the line `(*)` of `rabbit.eat`, we'd like to pass the call even higher in the chain, but `this=longEar`, so `this.__proto__.eat` is again `rabbit.eat`!
 
     ```js
     // inside rabbit.eat() we also have this = longEar
@@ -362,9 +364,7 @@ In other words:
 
 3. ...So `rabbit.eat` calls itself in the endless loop, because it can't ascend any further.
 
-![](this-super-loop.png)
-
-There problem is unsolvable, because `this` must always be the calling object itself, no matter which parent method is called. So its prototype will always be the immediate parent of the object. We can't go up the chain.
+The problem can't be solved by using `this` alone.
 
 ### `[[HomeObject]]`
 
@@ -500,6 +500,8 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype);
 ```
 
 This way `Rabbit` has access to all static methods of `Animal`.
+
+### No static inheritance in built-ins
 
 Please note that built-in classes don't have such static `[[Prototype]]` reference. For instance, `Object` has `Object.defineProperty`, `Object.keys` and so on, but `Array`, `Date` etc do not inherit them.
 
