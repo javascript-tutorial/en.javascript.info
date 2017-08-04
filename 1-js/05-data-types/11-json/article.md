@@ -162,7 +162,7 @@ let meetup = {
   participants: ["john", "ann"]
 };
 
-meetup.room = room;       // meetup references room
+meetup.place = room;       // meetup references room
 room.occupiedBy = meetup; // room references meetup
 
 *!*
@@ -260,6 +260,8 @@ let meetup = {
   participants: [{name: "John"}, {name: "Alice"}],
   place: room // meetup references room
 };
+
+room.occupiedBy = meetup; // room references meetup
 
 alert( JSON.stringify(meetup, function replacer(key, value) {
   alert(`${key}: ${value}`); // to see what replacer gets
