@@ -55,7 +55,7 @@ If you don't know what to choose, you can consider these ones.
 
 ## Let's not argue
 
-The editors in the lists above are those that either my friends or I -- good developers -- have been using for a long time and are happy with.
+The editors in the lists above are those that either I or my friends who I consider good developers have been using for a long time and are happy with.
 
 There are other great editors in our big world. Please choose the one you like the most.
 
