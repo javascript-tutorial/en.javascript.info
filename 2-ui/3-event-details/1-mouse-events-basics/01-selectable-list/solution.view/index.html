@@ -49,9 +49,9 @@
     }
 
     function singleSelect(li) {
-      let selected = ul.querySelector('.selected');
-      if (selected) {
-        selected.classList.remove('selected');
+      let selected = ul.querySelectorAll('.selected');
+      for(let elem of selected) {
+        elem.classList.remove('selected');
       }
       li.classList.add('selected');
     }
