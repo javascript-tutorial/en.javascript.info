@@ -201,7 +201,7 @@ Funny code, isn't it? We should understand how it works, because sometimes we ca
 
 ## Remainder %
 
-The remainder operator `%` despite it's look does not have a relation to percents.
+The remainder operator `%` despite its look does not have a relation to percents.
 
 The result of `a % b` is the remainder of the integer division of `a` by `b`.
 
@@ -415,7 +415,7 @@ let a = (1+2, 3+4);
 alert( a ); // 7 (the result of 3+4)
 ```
 
-Here, the first expression `1+2` is evaluated, and it's result is thrown away, then `3+4` is evaluated and returned as the result.
+Here, the first expression `1+2` is evaluated, and its result is thrown away, then `3+4` is evaluated and returned as the result.
 
 ```smart header="Comma has a very low precedence"
 Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
