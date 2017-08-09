@@ -348,7 +348,7 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
     That function has only one line: `return count++`, that will be executed when we run it.
 
-5. When the `counter()` is called, an "empty" Lexical Environment is created for it. It has no local variables by itself. But the `[[Environment]]` of `counter` is used as the outer reference for it, so it has access to the variables of the former `makeCounter()` call, where it was created:
+5. When the `counter()` is called, an "empty" Lexical Environment is created for it. It has no local variables by itself. But the `[[Environment]]` of `counter` is used as the outer lexical reference for it, so it has access to the variables of the former `makeCounter()` call, where it was created:
 
     ![](lexenv-nested-makecounter-5.png)
 
