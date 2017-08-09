@@ -1,7 +1,7 @@
 
 # Object to primitive conversion
 
-What happens when objects are added `obj1 + obj2`, substracted `obj1 - obj2` or printed using `alert(obj)`?
+What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
 There are special methods in objects that do the conversion.
 
@@ -11,7 +11,7 @@ In the chapter <info:type-conversions> we've seen the rules for numeric, string 
 
 For objects, there's no to-boolean conversion, because all objects are `true` in a boolean context. So there are only string and numeric conversions.
 
-The numeric conversion happens when we substract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be substracted, and the result of `date1 - date2` is the time difference between two dates.
+The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
 
 As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
