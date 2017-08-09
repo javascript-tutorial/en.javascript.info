@@ -34,11 +34,11 @@ The terms above are good to remember, because they are used in developer article
 
 Engines are complicated. But the basics are easy.
 
-1. The script is written and distributed as a plain text (can be compressed/optimized by so-called "javascript minifiers").
-2. The engine (embedded if it's a browser) reads the script ("parses") and converts ("compiles") it to the machine language.
-3. And then it runs, pretty fast.
+1. The engine (embedded if it's a browser) reads ("parses") the script.
+2. Then it converts ("compiles") the script to the machine language.
+3. And then the machine code runs, pretty fast.
 
-The engine applies optimizations on every stage of the process. It even watches the script as it runs, analyzes the data that flows through it and applies optimizations to the machine-code based on that knowledge. That's why the code runs fast.
+The engine applies optimizations on every stage of the process. It even watches the compiled script as it runs, analyzes the data that flows through it and applies optimizations to the machine code based on that knowledge. At the end, scripts are quite fast.
 ```
 
 ## What can in-browser JavaScript do?
@@ -72,7 +72,7 @@ The examples of such restrictions are:
 
     This is called the "Same Origin Policy". To work around that, *both pages* must contain a special JavaScript code that handles data exchange.
 
-    The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened must not be able to open or access another browser tab with the URL `http://gmail.com` and steal information from there.
+    The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com` and steal information from there.
 - JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
 
 ![](limitations.png)

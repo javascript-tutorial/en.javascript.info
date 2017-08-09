@@ -130,7 +130,7 @@ Parentheses override any precedence, so if we're not satisfied with the order, w
 
 There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
 
-An extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence):
+An extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
 
 | Precedence | Name | Sign |
 |------------|------|------|
