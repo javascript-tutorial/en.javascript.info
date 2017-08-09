@@ -138,7 +138,7 @@ During the function call we have two Lexical Environments: the inner one (for th
 - The inner Lexical Environment corresponds to the current execution of  `say`. It has a single variable: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
 - The outer Lexical Environment is the global Lexical Environment.
 
-The inner Lexical Environment one has the `outer` reference to the outer one.
+The inner Lexical Environment has the `outer` reference to the outer one.
 
 **When a code wants to access a variable -- it is first searched in the inner Lexical Environment, then in the outer one, then the more outer one and so on until the end of the chain.**
 
