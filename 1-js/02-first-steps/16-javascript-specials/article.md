@@ -41,7 +41,7 @@ for(;;) {
 }
 ```
 
-...But even if we can put an "extra" semicolon somewhere, that's not an error, it will be ignored.
+...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
 
 More in: <info:structure>.
 
@@ -57,7 +57,7 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 
 The directive must be at the top of a script or at the beginning of a function.
 
-Without `"use strict"`, everything still works, but some features behave in old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
 
 Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
 
@@ -74,9 +74,9 @@ Can be declared using:
 A variable name can include:
 - Letters and digits, but the first character may not be a digit.
 - Characters `$` and `_` are normal, on par with letters.
-- Non-latin alphabets and hieroglyphs are also allowed, but commonly not used.
+- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
 
-Variables are dynamically typed -- they can store any value:
+Variables are dynamically typed. They can store any value:
 
 ```js
 let x = 5;
@@ -113,7 +113,7 @@ We're using a browser as a working environment, so basic UI functions will be:
 [`alert(message)`](mdn:api/Window/alert)
 : Output a `message`.
 
-All these functions are *modal*, they pause the code execution and prevent the visitor from interaction with the page until he answers.
+All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until he answers.
 
 For instance:
 
@@ -129,12 +129,12 @@ More in: <info:alert-prompt-confirm>.
 
 ## Operators
 
-JavaScript supports following operators:
+JavaScript supports the following operators:
 
 Arithmetical
 : Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Binary plus `+` concatenates strings. And if any of the operands is a string -- the other one is converted to string too:
+    Binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
     ```js run
     alert( '1' + 2 ); // '12', string
@@ -228,7 +228,7 @@ Details in: <info:switch>.
 
 ## Functions
 
-We covered 3 ways to create a function in JavaScript:
+We covered three ways to create a function in JavaScript:
 
 1. Function Declaration: the function in the main code flow
 
@@ -258,7 +258,7 @@ We covered 3 ways to create a function in JavaScript:
     // expression at the right side
     let sum = (a, b) => a + b;
 
-    // or multiline syntax with { ... }, need return here:
+    // or multi-line syntax with { ... }, need return here:
     let sum = (a, b) => {
       // ...
       return a + b;
@@ -272,7 +272,7 @@ We covered 3 ways to create a function in JavaScript:
     ```
 
 
-- Functions may have local variables -- those declared inside its body. Such variables are only visible inside the function.
+- Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
 - Parameters can have default values: `function sum(a=1, b=2) {...}`.
 - Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
@@ -286,4 +286,4 @@ More: see <info:function-basics>, <info:function-expressions-arrows>.
 
 ## More to come
 
-That was a brief list of JavaScript features. As of now we studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.
+That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.

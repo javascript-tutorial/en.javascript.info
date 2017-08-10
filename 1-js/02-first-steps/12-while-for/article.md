@@ -2,7 +2,7 @@
 
 We often have a need to perform similar actions many times in a row.
 
-For example, when we need to output goods from the list one after another. Or just run the same code for each number from 1 to 10.
+For example, when we need to output goods from a list one after another. Or just run the same code for each number from 1 to 10.
 
 *Loops* are a way to repeat the same part of code multiple times.
 
@@ -19,7 +19,7 @@ while (condition) {
 }
 ```
 
-While the `condition` is `true` -- the `code` from the loop body is executed.
+While the `condition` is `true`, the `code` from the loop body is executed.
 
 For instance, the loop below outputs `i` while `i<3`:
 
@@ -31,7 +31,7 @@ while (i < 3) { // shows 0, then 1, then 2
 }
 ```
 
-A single execution of the loop body is called *an iteration*. The loop in the example above makes 3 iterations.
+A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
 
 If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and for server-side JavaScript we can kill the process.
 
@@ -70,7 +70,7 @@ do {
 } while (condition);
 ```
 
-The loop will first execute the body, then check the condition, and while it's truthy -- execute it again and again.
+The loop will first execute the body, then check the condition and, while it's truthy, execute it again and again.
 
 For example:
 
@@ -82,7 +82,7 @@ do {
 } while (i < 3);
 ```
 
-This form of syntax is rarely used except when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other  form is preferred: `while(…) {…}`.
+This form of syntax is rarely used except when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
 
 ## The "for" loop
 
@@ -231,7 +231,7 @@ alert( 'Sum: ' + sum );
 
 The `break` directive is activated in the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
 
-The combination: "infinite loop + `break` as needed" is great for situations when the condition must be checked not in beginning/end of the loop, but in the middle. Or even in several places of the body.
+The combination "infinite loop + `break` as needed" is great for situations when the condition must be checked not in the beginning/end of the loop, but in the middle, or even in several places of the body.
 
 ## Continue to the next iteration [#continue]
 
@@ -266,7 +266,7 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-From the technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
+From a technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
 But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
@@ -360,12 +360,12 @@ outer:
 for (let i = 0; i < 3; i++) { ... }
 ```
 
-The `continue` directive can also be used with a label. In this case the execution jumps to the next iteration of the labelled loop.
+The `continue` directive can also be used with a label. In this case the execution jumps to the next iteration of the labeled loop.
 
 ````warn header="Labels are not a \"goto\""
-Labels do not allow to jump into an arbitrary place of code.
+Labels do not allow us to jump into an arbitrary place of code.
 
-For example, it is impossible to do like this:
+For example, it is impossible to do this:
 ```js
 break label;  // jumps to label? No.
 
@@ -379,12 +379,12 @@ The call to a `break/continue` is only possible from inside the loop, and the la
 
 We covered 3 types of loops:
 
-- `while` -- the condition is checked before each iteration.
-- `do..while` -- the condition is checked after each iteration.
-- `for(;;)` -- the condition is checked before each iteration, additional settings available.
+- `while` -- The condition is checked before each iteration.
+- `do..while` -- The condition is checked after each iteration.
+- `for(;;)` -- The condition is checked before each iteration, additional settings available.
 
 To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
-If we don't want to do anything on the current iteration and would like to forward to the next one -- the `continue` directive does it.
+If we don't want to do anything on the current iteration and would like to forward to the next one, the `continue` directive does it.
 
 `Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.

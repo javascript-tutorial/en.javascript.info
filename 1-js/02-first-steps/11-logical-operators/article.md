@@ -41,7 +41,7 @@ if (1 || 0) { // works just like if( true || false )
 }
 ```
 
-Most of the time, OR `||` is used in `if` to test if *any* of given conditions is correct.
+Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is correct.
 
 For example:
 
@@ -80,13 +80,13 @@ result = value1 || value2 || value3;
 
 The OR `"||"` operator does the following:
 
-- Evalute operands from left to right.
-- For each operand, convert it to boolean. If the result is `true`, then stop and return that the original value of that operand.
+- Evaluate operands from left to right.
+- For each operand, convert it to boolean. If the result is `true`, then stop and return the original value of that operand.
 - If all other operands have been assessed (i.e. all were `falsy`), return the last operand.
 
 A value is returned in its original form, without the conversion.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value found.
+In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value is found.
 
 For instance:
 
@@ -147,7 +147,7 @@ That leads to some interesting usages compared to a "pure, classical, boolean-on
 
     An assignment is a simple case, other side effects can be involved.
 
-    As we can see, such use case is a "shorter way to do `if`". The first operand is converted to boolean and if it's false then the second one is evaluated.
+    As we can see, such a use case is a "shorter way to do `if`". The first operand is converted to boolean and if it's false then the second one is evaluated.
 
     Most of time it's better to use a "regular" `if` to keep the code easy to understand, but sometimes that can be handy.
 
@@ -198,7 +198,7 @@ result = value1 && value2 && value3;
 
 The AND `"&&"` operator does the following:
 
-- Evalute operands from left to right.
+- Evaluate operands from left to right.
 - For each operand, convert it to a boolean. If the result is `false`, stop and return the original value of that operand.
 - If all other operands have been assessed (i.e. all were truthy), return the last operand.
 

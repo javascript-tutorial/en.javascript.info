@@ -2,13 +2,13 @@
 
 Sometimes we need to perform different actions based on a condition.
 
-There is `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  “question mark” operator: `"?"` for simplicity.
+There is the `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  the “question mark” operator: `"?"` for simplicity.
 
 [cut]
 
 ## The "if" statement
 
-The "if" statement gets a condition, evaluates it and -- if the result is `true` -- executes the code.
+The "if" statement gets a condition, evaluates it and, if the result is `true`, executes the code.
 
 For example:
 
@@ -22,7 +22,7 @@ if (year == 2015) alert( 'You are right!' );
 
 In the example above, the condition is a simple equality check: `year == 2015`, but it can be much more complex.
 
-If there is more than one command to execute -- we can use a code block in figure brackets:
+If there is more than one command to execute, we can use a code block in figure brackets:
 
 ```js
 if (year == 2015) {
@@ -101,7 +101,7 @@ if (year < 2015) {
 }
 ```
 
-In the code above JavaScript first checks `year < 2015`, if it is falsy then goes to the next condition `year > 2015`, and otherwise shows the last `alert`.
+In the code above JavaScript first checks `year < 2015`. If it is falsy it then goes to the next condition `year > 2015`, and otherwise shows the last `alert`.
 
 There can be more `else if` blocks. The ending `else` is optional.
 
@@ -128,7 +128,7 @@ alert(accessAllowed);
 
 The so-called "ternary" or "question mark" operator lets us do that shorter and simpler.
 
-The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has 3 operands. It is actually the one and only operator in JavaScript which has that many.
+The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
 
 The syntax is:
 ```js
@@ -151,7 +151,7 @@ Technically, we can omit parentheses around `age > 18`. The question mark operat
 let accessAllowed = age > 18 ? true : false;
 ```
 
-...But parentheses make the code more readable. So it's recommended to put them.
+...But parentheses make the code more readable. So it's recommended to use them.
 
 ````smart
 In the example above it's possible to evade the question mark operator, because the comparison by itself returns `true/false`:
@@ -214,13 +214,13 @@ let company = prompt('Which company created JavaScript?', '');
 
 Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
 
-We don't assign a result to a variable here, the idea is to execute different code depending on the condition.
+We don't assign a result to a variable here. The idea is to execute different code depending on the condition.
 
 **It is not recommended to use the question mark operator in this way.**
 
-The notation seem to be shorter than `if`, that appeals to some programmers. But it is less readable.
+The notation seems to be shorter than `if`, which appeals to some programmers. But it is less readable.
 
-Here is the same with `if` for comparison:
+Here is the same code with `if` for comparison:
 
 ```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
