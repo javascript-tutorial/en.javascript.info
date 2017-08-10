@@ -103,7 +103,7 @@ User(); // undefined
 new User(); // function User { ... }
 ```
 
-That can be used to allow both `new` and regular syntax work the same:
+That can be used to allow both `new` and regular syntax to work the same:
 
 ```js run
 function User(name) {
@@ -118,7 +118,7 @@ let john = User("John"); // redirects call to new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because omitting `new` makes a bit less obvious what's going on. With `new` we all know that the new object is being created, that's a good thing.
+This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created, that's a good thing.
 
 ## Return from constructors
 
@@ -176,7 +176,7 @@ Omitting parentheses here is not considered a "good style", but the syntax is pe
 
 ## Methods in constructor
 
-Using constuctor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, what to put in it.
+Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
 
 Of course, we can add to `this` not only properties, but methods as well.
 
@@ -207,8 +207,8 @@ john = {
 
 ## Summary
 
-- Constructor functions or, shortly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
-- Constructor functions should only be called using `new`. Such call implies a creation of empty `this` at the start and returning the populated one at the end.
+- Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
+- Constructor functions should only be called using `new`. Such a call implies a creation of empty `this` at the start and returning the populated one at the end.
 
 We can use constructor functions to make multiple similar objects.
 

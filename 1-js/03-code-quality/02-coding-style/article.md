@@ -77,7 +77,7 @@ if (n < 0) {
 ![](figure-bracket-style.png)
 
 As a summary:
-- For a really short code one line is acceptable: like `if (cond) return null`.
+- For a really short code, one line is acceptable: like `if (cond) return null`.
 - But a separate line for each statement in brackets is usually better.
 
 ### Line length
@@ -94,7 +94,7 @@ There are two types of indents:
 
     A horizontal indentation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
 
-    One of advantages of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
+    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
 
     For instance, we can align the arguments with the opening bracket, like this:
 
@@ -125,11 +125,11 @@ There are two types of indents:
     }
     ```
 
-    Insert an extra newline where it helps to make the code more readable. There should not be more than 9 lines of code without a vertical indentation.
+    Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.
 
 ### A semicolon
 
-A semicolon should be present after each statement. Even if it could be possibly be skipped.
+A semicolon should be present after each statement. Even if it could possibly be skipped.
 
 There are languages where a semicolon is truly optional. It's rarely used there. But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors.
 
@@ -160,7 +160,7 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-The similar thing can be done with `if/else` and `return`.
+A similar thing can be done with `if/else` and `return`.
 
 For example, two constructs below are identical.
 
@@ -258,11 +258,11 @@ That's because when reading a code, we first want to know "what it does". If the
 
 ## Style guides
 
-A style guide contains general rules about "how to write": which quotes to use, how many spaces to indent, where to put line breaks etc. A lot of minor things.
+A style guide contains general rules about "how to write": which quotes to use, how many spaces to indent, where to put line breaks, etc. A lot of minor things.
 
-In total, when all members of a team use the same style guide, the code looks uniform. No matter who of the team wrote it, still the same style.
+In total, when all members of a team use the same style guide, the code looks uniform. No matter who of the team wrote it, it's still the same style.
 
-Surely, a team may think out a style guide themselves. But as of now, there's no need to. There are many tried, worked out style guides, easy to adopt.
+Surely, a team may think out a style guide themselves. But as of now, there's no need to. There are many tried, worked-out style guides, which are easy to adopt.
 
 For instance:
 
@@ -321,7 +321,7 @@ Then install/enable the plugin for your editor that integrates with ESLint. The 
 
 It is possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
 
-Using a linter has the great side-effect. Linters catch typos. For instance, when an undefined variable is accessed, a linter detects it and (if integrated with an editor) highlights. In most cases that's a mistype. So we can fix it right ahead.
+Using a linter has a great side-effect: linters catch typos. For instance, when an undefined variable is accessed, a linter detects it and (if integrated with an editor) highlights it. In most cases that's a mistype. So we can fix it right ahead.
 
 For that reason even if you're not concerned about styles, using a linter is highly recommended.
 

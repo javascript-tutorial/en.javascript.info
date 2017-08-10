@@ -1,7 +1,7 @@
 
 # Objects
 
-As we know from the chapter <info:types>, there are 7 language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+As we know from the chapter <info:types>, there are seven language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
 In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
@@ -42,7 +42,7 @@ In the `user` object, there are two properties:
 1. The first property has the name `"name"` and the value `"John"`.
 2. The second one has the name `"age"` and the value `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labelled "name" and "age".
+The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
 
 ![user object](object-user.png)
 
@@ -125,7 +125,7 @@ delete user["likes birds"];
 
 Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 
-Square brackets also provide a way to obtain the property name as the result of any expression - as opposed to a literal string - like from a variable as follows:
+Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
 
 ```js
 let key = "likes birds";
@@ -246,7 +246,7 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
 
 Instead of `name:name` we can just write `name`, like this:
 
@@ -280,7 +280,7 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true means "no such property"
 ```
 
-There also exists a special operator `"in"` to check for the existance of a property.
+There also exists a special operator `"in"` to check for the existence of a property.
 
 The syntax is:
 ```js
@@ -358,7 +358,7 @@ for(let key in user) {
 }
 ```
 
-Note that all "for" constructs allow to declare the looping variable inside the loop, like `let key` here.
+Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
 
 Also, we could use another variable name here instead of `key`. For instance, `"for(let prop in obj)"` is also widely used.
 
@@ -394,10 +394,10 @@ But if we run the code, we see a totally different picture:
 - USA (1) goes first
 - then Switzerland (41) and so on.
 
-The phone codes go in the ascending sorted order, because they are integer. So we see `1, 41, 44, 49`.
+The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
 
 ````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from integer without a change.
+The "integer property" term here means a string that can be converted to-and-from an integer without a change.
 
 So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
 
@@ -448,7 +448,7 @@ Now it works as intended.
 
 ## Copying by reference
 
-One of fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
 
 Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
 
@@ -509,7 +509,7 @@ admin.name = 'Pete'; // changed by the "admin" reference
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-The example above demonstrates that there is only one object. Like if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we see changes.
+The example above demonstrates that there is only one object. Like if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
 
 ### Comparison by reference
 
@@ -579,9 +579,9 @@ user = {
 
 So, copying an object variable creates one more reference to the same object.
 
-But what if we need to duplicate an object? Create an independant copy, a clone?
+But what if we need to duplicate an object? Create an independent copy, a clone?
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed, copying by reference is good most of the time.
+That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
 
 But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
 
@@ -660,7 +660,7 @@ let clone = Object.assign({}, user);
 
 It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
 
-Till now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
 
 Like this:
 ```js run

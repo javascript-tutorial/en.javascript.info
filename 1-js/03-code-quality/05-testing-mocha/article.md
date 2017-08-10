@@ -1,6 +1,6 @@
 # Automated testing with mocha
 
-Automated testing will be used further in tasks.
+Automated testing will be used in further tasks.
 
 It's actually a part of the "educational minimum" of a developer.
 
@@ -8,19 +8,19 @@ It's actually a part of the "educational minimum" of a developer.
 
 ## Why we need tests?
 
-When we write a function, we usually can imagine what it should do: which parameters give which results.
+When we write a function, we can usually imagine what it should do: which parameters give which results.
 
-During the development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
 
-If something's wrong -- then we fix the code, run again, check the result -- and so on till it works.
+If something is wrong -- then we fix the code, run again, check the result -- and so on till it works.
 
 But such manual "re-runs" are imperfect.
 
-**When testing a code by manual re-runs -- it's easy to miss something.**
+**When testing a code by manual re-runs, it's easy to miss something.**
 
 For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
 
-That's very typical. When we develop something, we keep a lot of possible use cases and mind. But it's hard to expect from programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
 **Automated testing means that tests are written separately, in addition to the code. They can be executed easily and check all the main use cases.**
 
@@ -36,7 +36,7 @@ Enough words. Let's see the example.
 
 Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
 
-That task is just an example: there's `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
+That task is just an example: there's the `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
 
 Before creating the code of `pow`, we can imagine what the function should do and describe it.
 
@@ -73,7 +73,7 @@ The flow of development usually looks like this:
 
 1. An initial spec is written, with tests for the most basic functionality.
 2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. Errors are displayed. We make corrections till everything works.
+3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. Errors are displayed. We make corrections until everything works.
 4. Now we have a working initial implementation with tests.
 5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
 6. Go to 3, update the implementation till tests give no errors.
@@ -112,7 +112,7 @@ The result:
 
 As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
-For future, let's note that for there are advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup many different tests.
+For the future, let's note that there are advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup many different tests.
 
 ## Initial implementation
 
@@ -130,7 +130,7 @@ Wow, now it works!
 
 ## Improving the spec
 
-What we've done -- is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
+What we've done is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
 
 ...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
 
@@ -172,11 +172,11 @@ The principal difference is that when `assert` triggers an error, the `it` block
 
 Making tests separate is useful to get more information about what's going on, so the second variant is better.
 
-And besides that, there's one more rule good to follow.
+And besides that, there's one more rule that's good to follow.
 
 **One test checks one thing.**
 
-If we look at the test and see two independent checks in it -- better to split it into two simpler ones.
+If we look at the test and see two independent checks in it, it's better to split it into two simpler ones.
 
 So let's continue with the second variant.
 
@@ -361,11 +361,11 @@ function pow(x, n) {
 */!*
 
   let result = 1;
-  
+
   for (let i = 0; i < n; i++) {
     result *= x;
   }
-  
+
   return result;
 }
 ```
@@ -388,7 +388,7 @@ The spec can be used in three ways:
 
 With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
 
-That's especially important in large projects when a function is used in many places. When we change such a function -- there's just no way to manually check if every place that uses them still works right.
+That's especially important in large projects when a function is used in many places. When we change such a function, there's just no way to manually check if every place that uses it still works right.
 
 Without tests, people have two ways:
 
@@ -397,7 +397,7 @@ Without tests, people have two ways:
 
 **Automatically tested code is contrary to that!**
 
-If the project is covered with tests -- there's just no such problem. We can run tests and see a lot of checks made in a matter of seconds.
+If the project is covered with tests, there's just no such problem. We can run tests and see a lot of checks made in a matter of seconds.
 
 **Besides, a well-tested code has better architecture.**
 

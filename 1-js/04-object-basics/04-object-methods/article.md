@@ -36,7 +36,7 @@ user.sayHi(); // Hello!
 
 Here we've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
 
-Then we can call it. The user now can speak!
+Then we can call it. The user can now speak!
 
 A function that is the property of an object is called its *method*.
 
@@ -92,7 +92,7 @@ let user = {
 
 As demonstrated, we can omit `"function"` and just write `sayHi()`.
 
-To say the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
 
 ## "this" in methods
 
@@ -271,7 +271,7 @@ This doesn't (evaluated method):
 (user.name == "John" ? user.hi : user.bye)(); // Error!
 ```
 
-Why? If we want to understand why it happens -- let's get under the hood of how `obj.method()` call works.
+Why? If we want to understand why it happens, let's get under the hood of how `obj.method()` call works.
 
 Looking closely, we may notice two operations in `obj.method()` statement:
 
@@ -352,4 +352,4 @@ The value of `this` is defined at run-time.
 - That function can be copied between objects.
 - When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
 
-Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function -- it is taken from outside.
+Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.

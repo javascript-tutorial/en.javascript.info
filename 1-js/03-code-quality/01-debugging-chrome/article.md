@@ -22,7 +22,7 @@ Here's what you should see if you are doing it for the first time:
 
 The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
 
-Let's click it and select `index.html` and then `hello.js` in the tree view. That's what should show up:
+Let's click it and select `index.html` and then `hello.js` in the tree view. Here's what should show up:
 
 ![](chrome-tabs.png)
 
@@ -36,7 +36,7 @@ Now you could click the same toggler <span class="devtools" style="background-po
 
 ## Console
 
-If we press `Esc`, then a console opens below, we can type commands there and press `key:Enter` to execute.
+If we press `Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
 
 After a statement is executed, its result is shown below.
 
@@ -50,7 +50,7 @@ Let's examine what's going on within the code of the [example page](debugging/in
 
 Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
 
-Should look like this (blue is where you should click):
+It should look like this (blue is where you should click):
 
 ![](chrome-sources-breakpoint.png)
 
@@ -67,7 +67,7 @@ We can always find a list of breakpoints in the right pane. That's useful when w
 ```smart header="Conditional breakpoints"
 *Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression is truthy.
 
-That's handy when we need to stop only for a certain variable value or for a certain function parameters.
+That's handy when we need to stop only for a certain variable value or for certain function parameters.
 ```
 
 ## Debugger command
@@ -91,13 +91,13 @@ That's very convenient when we are in a code editor and don't want to switch to 
 
 ## Pause and look around
 
-In our example, `hello()` is called during the page load, so the easiest way to activate debugger -- is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+In our example, `hello()` is called during the page load, so the easiest way to activate the debugger is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
 ![](chrome-sources-debugger-pause.png)
 
-Please open the informational dropdowns to the right (labelled with arrows). They allow you to examine the current code state:
+Please open the informational dropdowns to the right (labeled with arrows). They allow you to examine the current code state:
 
 1. **`Watch` -- shows current values for any expressions.**
 
@@ -129,9 +129,9 @@ There are buttons for it at the top of the right pane. Let's engage them.
 
     ![](chrome-sources-debugger-trace-1.png)
 
-    The execution has resumed, reached another breakpoint inside `say()` and paused there.    Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
+    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
 
-<span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *not go into the function*, hotkey `key:F10`.
+<span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
 : If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
 
 <span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
@@ -149,7 +149,7 @@ There are buttons for it at the top of the right pane. Let's engage them.
 ```smart header="Continue to here"
 Right click on a line of code opens the context menu with a great option called "Continue to here".
 
-That's handy when we want to move multiple steps forward, but too lazy to set a breakpoint.
+That's handy when we want to move multiple steps forward, but we're too lazy to set a breakpoint.
 ```
 
 ## Logging
@@ -165,20 +165,20 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it -- either open the Console tab of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
+Regular users don't see that output, it is in the console. To see it, either open the Console tab of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
 
 If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
 
 ## Summary
 
-As we can see, there are 3 main ways to pause a script:
+As we can see, there are three main ways to pause a script:
 1. A breakpoint.
 2. The `debugger` statements.
 3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on")
 
-Then we can examine variables and step on to see where the execution goes the wrong way.
+Then we can examine variables and step on to see where the execution goes wrong.
 
-There's much more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>
+There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>
 
 The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
 

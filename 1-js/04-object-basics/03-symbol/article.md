@@ -3,7 +3,7 @@
 
 By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
 
-Till now we only saw strings. Now let's see the advantages that symbols can give us.
+Till now we've only seen strings. Now let's see the advantages that symbols can give us.
 
 [cut]
 
@@ -60,7 +60,7 @@ That's a "language guard" against messing up, because strings and symbols are fu
 
 ## "Hidden" properties
 
-Symbols allow to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
+Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
 For instance, if we want to store an "identifier" for the object `user`, we can create a symbol with the name `id` for it:
 
@@ -72,11 +72,11 @@ user[id] = "ID Value";
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
-Now let's imagine that another script wants to have his own "id" property inside `user`, for his own purposes. That may be another JavaScript library, so the scripts are completely unaware for each other.
+Now let's imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
 
 No problem. It can create its own `Symbol("id")`.
 
-Their script:
+The script:
 
 ```js
 // ...
@@ -176,7 +176,7 @@ alert( obj[0] ); // test (same property)
 
 ## Global symbols
 
-As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities.
+As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be the same entities.
 
 For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
 
@@ -246,7 +246,7 @@ They are listed in the specification in the [Well-known symbols](https://tc39.gi
 - `Symbol.toPrimitive`
 - ...and so on.
 
-For instance, `Symbol.toPrimitive` allows to describe object to primitive conversion. We'll see its use very soon.
+For instance, `Symbol.toPrimitive` allows us to describe object to primitive conversion. We'll see its use very soon.
 
 Other symbols will also become familiar when we study the corresponding language features.
 
@@ -265,6 +265,6 @@ Symbols have two main use cases:
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 
-2. There are many system symbols used by JavaScript and accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
+2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
 
-Technically, symbols are not 100% hidden. There is a build-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods probably understands well what he's doing.
+Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in methods and syntax constructs adhere to a common agreement that they are. And the one who explicitly calls the aforementioned methods probably understands well what he's doing.
