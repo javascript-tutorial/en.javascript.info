@@ -11,7 +11,7 @@ So first, let's see how to attach a script to a webpage. For server-side environ
 
 ## The "script" tag
 
-JavaScript programs can be inserted in any place of HTML with the help of the `<script>` tag.
+JavaScript programs can be inserted in any part of an HTML document with the help of the `<script>` tag.
 
 For instance:
 
@@ -49,7 +49,7 @@ The `<script>` tag has a few attributes that are rarely used nowadays, but we ca
 
  The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
 
- : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default, no attribute is required.
+ : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default. No attribute is required.
 
  The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
   : This attribute was meant to show the language of the script. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.
@@ -105,7 +105,7 @@ That saves traffic and makes pages faster.
 ```
 
 ````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag can't have both `src` attribute and the code inside.
+A single `<script>` tag can't have both the `src` attribute and the code inside.
 
 This won't work:
 

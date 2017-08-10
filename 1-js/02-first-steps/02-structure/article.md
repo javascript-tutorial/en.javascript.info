@@ -61,9 +61,9 @@ If you're curious to see a concrete example of such an error, check this code ou
 [1, 2].forEach(alert)
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later, for now -- it does not matter. Let's just remember the result: it shows `1`, then `2`.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later, for now it does not matter. Let's just remember the result: it shows `1`, then `2`.
 
-Now let's add an `alert` before the code. And *not* finish it with a semicolon:
+Now let's add an `alert` before the code and *not* finish it with a semicolon:
 
 ```js run no-beautify
 alert("There will be an error")
@@ -94,11 +94,11 @@ alert("There will be an error")[1, 2].forEach(alert)
 But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such a thing happens.
 ````
 
-It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer, especially for a beginner -- to use them.
+It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
 
 ## Comments
 
-As the time goes, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
+As time goes on, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
 
 Comments can be put into any place of the script. They don't affect the execution, because the engine simply ignores them.
 

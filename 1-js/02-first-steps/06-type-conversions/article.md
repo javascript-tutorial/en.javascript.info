@@ -1,6 +1,6 @@
 # Type Conversions
 
-Most of time, operators and functions automatically convert a value to the right type. That's called "type coercion".
+Most of the time, operators and functions automatically convert a value to the right type. That's called "type coercion".
 
 For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
 
@@ -14,7 +14,7 @@ In this chapter we don't cover objects yet. Here we study primitives first. Late
 
 ## ToString
 
-The string conversion happens when we need a string form of a value.
+String conversion happens when we need the string form of a value.
 
 For example, `alert(value)` does it to show the value.
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 */!*
 ```
 
-The string conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
+String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"` etc.
 
 ## ToNumber
 
@@ -53,7 +53,7 @@ let num = Number(str); // becomes a number 123
 alert(typeof num); // number
 ```
 
-The explicit conversion is usually required when we read a value from a string-based source like a text form, but we expect a number to be entered.
+Explicit conversion is usually required when we read a value from a string-based source like a text form, but we expect a number to be entered.
 
 If the string is not a valid number, the result of such conversion is `NaN`, for instance:
 
@@ -70,7 +70,7 @@ Numeric conversion rules:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
-| `string` | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is `0`, otherwise -- the number is "read" from the string. An error gives `NaN`. |
+| `string` | Whitespaces from the start and the end are removed. Then, if the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
 
 Examples:
 
@@ -131,9 +131,9 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 
 There are three most widely used type conversions: to string, to number and to boolean.
 
-**`ToString`** -- occurs when we output something, can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`ToString`** -- Occurs when we output something, can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
-**`ToNumber`** -- occurs in math operations, can be performed with `Number(value)`.
+**`ToNumber`** -- Occurs in math operations, can be performed with `Number(value)`.
 
 The conversion follows the rules:
 
@@ -144,7 +144,7 @@ The conversion follows the rules:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
 
-**`ToBoolean`** -- occurs in logical operations, or can be performed with `Boolean(value)`.
+**`ToBoolean`** -- Occurs in logical operations, or can be performed with `Boolean(value)`.
 
 Follows the rules:
 
