@@ -266,7 +266,7 @@ Operators `++` and `--` can be placed both after and before the variable.
 - When the operator goes after the variable, it is called a "postfix form": `counter++`.
 - The "prefix form" is when the operator stands before the variable: `++counter`.
 
-Both of these records do the same: increase `i` by `1`.
+Both of these records do the same: increase `counter` by `1`.
 
 Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
 
