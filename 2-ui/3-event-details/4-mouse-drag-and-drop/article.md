@@ -29,6 +29,8 @@ ball.onmousedown = function(event) { // (1) start the process
   // (2) prepare to moving: make absolute and on top by z-index
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
+  // move it out of any current parents directly into body
+  // to make it positioned relative to the body
   document.body.append(ball);  
   // ...and put that absolutely positioned ball under the cursor
 
