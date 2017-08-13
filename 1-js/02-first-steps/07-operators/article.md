@@ -1,8 +1,8 @@
 # Operators
 
-Many operators are known to us from school. It is an addition `+`, a multiplication `*`, a subtraction `-` and so on.
+Many operators are known to us from school. They are addition `+`, a multiplication `*`, a subtraction `-` and so on.
 
-In this chapter we concentrate on aspects that are not covered by the school arithmetic.
+In this chapter we concentrate on aspects that are not covered by school arithmetic.
 
 [cut]
 
@@ -28,7 +28,7 @@ Before we move on, let's grasp the common terminology.
     alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, we're talking about the two different operators here: the unary negation (single operand, reverses the sign) and the binary subtraction (two operands, subtracts).
+    Formally, we're talking about two different operators here: the unary negation (single operand, reverses the sign) and the binary subtraction (two operands, subtracts).
 
 ## Strings concatenation, binary +
 
@@ -43,7 +43,7 @@ let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if any of operands is a string, then the other one is converted to string too.
+Note that if any of operands is a string, then the other one is converted to a string too.
 
 For example:
 
@@ -52,9 +52,9 @@ alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if any of operands is a string, then convert the other one into a string as well.
+See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, then convert the other one into a string as well.
 
-The string concatenation and conversion is the special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
+String concatenation and conversion is a special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
 For instance, subtraction and division:
 
@@ -88,7 +88,7 @@ alert( +"" );   // 0
 
 It actually does the same as `Number(...)`, but shorter.
 
-A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then are usually strings.
+A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then they are usually strings.
 
 What if we want to sum them?
 
@@ -116,7 +116,7 @@ alert( +apples + +oranges ); // 5
 // alert( Number(apples) + Number(oranges) ); // 5
 ```
 
-From a mathematician's standpoint the abundance of pluses may seem strange. But from a programmer's standpoint -- there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+From a mathematician's standpoint the abundance of pluses may seem strange. But from a programmer's standpoint, there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
 
 Why are unary pluses applied to values before the binary one? As we're going to see, that's because of their *higher precedence*.
 
@@ -124,11 +124,11 @@ Why are unary pluses applied to values before the binary one? As we're going to 
 
 If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, there's an implicit priority order among the operators.
 
-From the school we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
+From school we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
 
 Parentheses override any precedence, so if we're not satisfied with the order, we can use them, like: `(1 + 2) * 2`.
 
-There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is same -- the execution order is from left to right.
+There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the bigger number executes first. If the precedence is the same, the execution order is from left to right.
 
 An extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
 
@@ -145,7 +145,7 @@ An extract from the [precedence table](https://developer.mozilla.org/en/JavaScri
 | 3 | assignment | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `16`, higher than `13` for the "addition" (binary plus). That's why in the expression `"+apples + +oranges"` unary pluses work first, and then the addition.
+As we can see, the "unary plus" has a priority of `16`, which is higher than `13` for the "addition" (binary plus). That's why in the expression `"+apples + +oranges"` unary pluses work first, and then the addition.
 
 ## Assignment
 
@@ -180,7 +180,7 @@ An operator always returns a value. That's obvious for most of them like an addi
 
 The call `x = value` writes the `value` into `x` *and then returns it*.
 
-Here's the demo that uses an assignment as the part of a more complex expression:
+Here's the demo that uses an assignment as part of a more complex expression:
 
 ```js run
 let a = 1;
@@ -266,13 +266,13 @@ Operators `++` and `--` can be placed both after and before the variable.
 - When the operator goes after the variable, it is called a "postfix form": `counter++`.
 - The "prefix form" is when the operator stands before the variable: `++counter`.
 
-Both of these records do the same: increase `i` by `1`.
+Both of these records do the same: increase `counter` by `1`.
 
 Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
 
 Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
 
-To see the difference -- here's the example:
+To see the difference, here's the example:
 
 ```js run
 let counter = 1;
@@ -296,7 +296,7 @@ In the line `(*)` the *postfix* form `counter++` also increments `i`, but return
 
 To summarize:
 
-- If the result of increment/decrement is not used, then there is no difference which form to use:
+- If the result of increment/decrement is not used, then there is no difference in which form to use:
 
     ```js run
     let counter = 0;
@@ -403,7 +403,7 @@ alert( n ); // 16  (right part evaluated first, same as n *= 8)
 
 The comma operator `','` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
 
-The comma operator allows to evaluate several expressions, dividing them with a comma `','`. Each of them is evaluated, but result of only the last one is returned.
+The comma operator allows us to evaluate several expressions, dividing them with a comma `','`. Each of them is evaluated, but the result of only the last one is returned.
 
 For example:
 
@@ -436,4 +436,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Such tricks are used in many JavaScript frameworks, that's why we mention about them. But usually they don't improve the code readability, so we should think well before writing like that.
+Such tricks are used in many JavaScript frameworks, that's why we mention them. But usually they don't improve the code readability, so we should think well before writing like that.

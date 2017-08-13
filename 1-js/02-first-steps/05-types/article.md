@@ -10,7 +10,7 @@ message = 123456;
 
 Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
 
-There are 7 basic data types in JavaScript. Here we'll study the basics, and in next chapters we'll talk about each of them in detail.
+There are seven basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
 
 [cut]
 
@@ -62,7 +62,7 @@ The script will never stop with a fatal error ("die"). At worst we'll get `NaN` 
 
 Special numeric values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
 
-We'll see more into working with numbers in the chapter <info:number>.
+We'll see more about working with numbers in the chapter <info:number>.
 
 ## A string
 
@@ -82,7 +82,7 @@ In JavaScript, there are 3 types of quotes.
 
 Double and single quotes are "simple" quotes. There's no difference between them in JavaScript.
 
-Backticks are "extended functionality" quotes. They allow to embed variables and expressions into a string by wrapping them in `${…}`, for example:
+Backticks are "extended functionality" quotes. They allow us to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
 ```js run
 let name = "John";
@@ -96,7 +96,7 @@ alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 
 The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
 
-Please note that this only can be done in backticks, other quotes do not allow such embedding!
+Please note that this can only be done in backticks. Other quotes do not allow such embedding!
 ```js run
 alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
 ```
@@ -113,7 +113,7 @@ In JavaScript, there is no such type. There's only one type: `string`. A string 
 
 The boolean type has only two values: `true` and `false`.
 
-This type is commonly used to store yes/no values: `true` means "yes, correct", and `false` means the "no, incorrect".
+This type is commonly used to store yes/no values: `true` means "yes, correct", and `false` means "no, incorrect".
 
 For instance:
 
@@ -178,7 +178,7 @@ alert(x); // "undefined"
 
 The `object` type is special.
 
-All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections data and more complex entities. We'll deal with them later in the chapter <info:object> after we know enough about primitives.
+All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities. We'll deal with them later in the chapter <info:object> after we know enough about primitives.
 
 The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but it's better to study them after objects.
 
@@ -238,10 +238,10 @@ There are 7 basic types in JavaScript.
 - `object` for more complex data structures.
 - `symbol` for unique identifiers.
 
-The `typeof` operator allows to see which type is stored in the variable.
+The `typeof` operator allows us to see which type is stored in the variable.
 
 - Two forms: `typeof x` or `typeof(x)`.
 - Returns a string with the name of the type, like `"string"`.
-- For `null` returns `"object"` -- that's the error in the language, it's not an object in fact.
+- For `null` returns `"object"` -- that's an error in the language, it's not an object in fact.
 
-In the next chapters we'll concentrate on primitive values and once we're familiar with that, then we'll move on to objects.
+In the next chapters we'll concentrate on primitive values and once we're familiar with them, then we'll move on to objects.

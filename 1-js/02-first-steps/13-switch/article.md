@@ -28,9 +28,9 @@ switch(x) {
 }
 ```
 
-- The value of `x` is checked for a strict equality to the value from the first `case`, that is: `value1`, then to the second `value2` and so on.
-- If the equality is found -- `switch` starts to execute the code starting from the corresponding `case`, and to the nearest `break` (or to the end of `switch`).
-- If no case matched then the `default` code is executed (if exists).
+- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
+- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
+- If no case is matched then the `default` code is executed (if it exists).
 
 ## An example
 
@@ -58,7 +58,7 @@ switch (a) {
 
 Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
 
-Then `4`. That's the match, so the execution starts from `case 4` and till the nearest `break`.
+Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
 
 **If there is no `break` then the execution continues with the next `case` without any checks.**
 
@@ -89,8 +89,8 @@ alert( 'Too big' );
 alert( "I don't know such values" );
 ```
 
-````smart header="Any expresion can be a `switch/case` argument"
-Both `switch` and case allow arbitrary expressions.
+````smart header="Any expression can be a `switch/case` argument"
+Both `switch` and `case` allow arbitrary expressions.
 
 For example:
 
@@ -141,7 +141,7 @@ switch (a) {
 
 Now both `3` and `5` show the same message.
 
-The ability to "group" cases a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+The ability to "group" cases is a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
 
 ## Type matters
 

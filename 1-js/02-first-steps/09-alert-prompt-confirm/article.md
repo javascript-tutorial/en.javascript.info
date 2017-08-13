@@ -2,7 +2,7 @@
 
 This part of the tutorial aims to cover JavaScript "as is", without environment-specific tweaks.
 
-But still we use a browser as the demo environment. So we should know at least few user-interface functions. In this chapter we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
+But still we use a browser as the demo environment. So we should know at least a few user-interface functions. In this chapter we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
 
 [cut]
 
@@ -40,7 +40,7 @@ It shows a modal window with a text message, an input field for the visitor and 
 `default`
 : An optional second parameter, the initial value for the input field.
 
-The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing a CANCEL button or hitting the `key:Esc` key.
+The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing the CANCEL button or hitting the `key:Esc` key.
 
 The call to `prompt` returns the text from the field or `null` if the input was canceled.
 

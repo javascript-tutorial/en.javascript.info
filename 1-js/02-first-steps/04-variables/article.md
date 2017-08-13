@@ -95,7 +95,7 @@ There are subtle differences between `let` and `var`, but they do not matter for
 
 ## A real-life analogy
 
-We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a unique-named sticker on it.
+We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
 
 For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
 
@@ -139,9 +139,9 @@ alert(message); // Hello world!
 ```smart header="Functional languages"
 It may be interesting to know that there also exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages that forbid changing a variable value. For example, [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/).
 
-In such languages, once the value is stored "in the box" -- it's there forever. If we need to store something else -- the language forces to create a new box (declare a new variable), we can't reuse the old one.
+In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces to create a new box (declare a new variable). We can't reuse the old one.
 
-Though it may seem a little bit odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying of such a language (even if not planning to use it soon) is recommended to broaden the mind.
+Though it may seem a little bit odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if not planning to use it soon) is recommended to broaden the mind.
 ```
 
 ## Variable naming [#variable-naming]
@@ -160,7 +160,7 @@ let test123;
 
 When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word starts with a capital letter: `myVeryLongName`.
 
-What's interesting -- the dollar sign `'$'` and the underscore `'_'` also can be used in names. They are regular symbols, just like letters, without any special meaning.
+What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
 
 These names are valid:
 
@@ -209,7 +209,7 @@ let return = 5; // also can't name it "return", error!
 
 ````warn header="An assignment without `use strict`"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value, without `let`. This still works now if we don't put `use strict`, the behavior is kept for compatibility with old scripts.
+Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value, without `let`. This still works now if we don't put `use strict`. The behavior is kept for compatibility with old scripts.
 
 ```js run no-strict
 // note: no "use strict" in this example
@@ -239,7 +239,7 @@ To declare a constant (unchanging) variable, one can use `const` instead of `let
 const myBirthday = '18.04.1982';
 ```
 
-The variable declared using `const` are called "constants". They can not be changed. An attempt to do it would cause an error:
+Variables declared using `const` are called "constants". They cannot be changed. An attempt to do it would cause an error:
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -254,7 +254,7 @@ When a programmer is sure that the variable should never change, he can use `con
 
 There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
 
-Such constants are named using capitals and underscores.
+Such constants are named using capital letters and underscores.
 
 Like this:
 
@@ -273,9 +273,9 @@ Benefits:
 
 - `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
 - It is much easier to mistype in `"#FF7F00"` than in `COLOR_ORANGE`.
-- When reading the code -- `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
+- When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
 
-When should we use capitals for a constant, and when -- name them normally? Let's make that clear.
+When should we use capitals for a constant, and when should we name them normally? Let's make that clear.
 
 Being a "constant" just means that the value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red), and there are those that are *calculated* in run-time, during the execution, but do not change after the assignment.
 
@@ -296,7 +296,7 @@ Please name the variables sensibly. Take time to think if needed.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code is written by a beginner and which by an experienced developer.
 
-In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from the scratch. And when we return to the code after some time of doing something else, it's much easier to find the information that is well-labelled. Or, in other words, when the variables have good names.
+In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from the scratch. And when we return to the code after some time of doing something else, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
 
 Please spend some time thinking about the right name for a variable before declaring it. That will repay you a lot.
 
@@ -326,7 +326,7 @@ Modern JavaScript minifiers and browsers optimize code well enough, so it won't 
 We can declare variables to store data. That can be done using `var` or `let` or `const`.
 
 - `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case if you'll need them.
-- `const` -- is like `let`, but the value of variable can't be changed.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
 
-Variables should be named in a way that allows to easily understand what's inside.
+Variables should be named in a way that allows us to easily understand what's inside.

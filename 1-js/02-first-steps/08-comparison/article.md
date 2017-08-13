@@ -86,7 +86,7 @@ alert( false == 0 ); // true
 ```
 
 ````smart header="A funny consequence"
-It is possible that in the same time:
+It is possible that at the same time:
 
 - Two values are equal.
 - One of them is `true` as a boolean and the other one is `false` as a boolean.
@@ -103,7 +103,7 @@ alert( Boolean(b) ); // true
 alert(a == b); // true!
 ```
 
-From JavaScript standpoint that's quite normal. An equality check converts using the numeric conversion (hence `"0"` becomes `0`), while `Boolean` conversion uses another set of rules.
+From JavaScript's standpoint that's quite normal. An equality check converts using the numeric conversion (hence `"0"` becomes `0`), while `Boolean` conversion uses another set of rules.
 ````
 
 ## Strict equality
@@ -126,7 +126,7 @@ What to do if we'd like to differentiate `0` from `false`?
 
 **A strict equality operator `===` checks the equality without type conversion.**
 
-In other words, if `a` and `b` are of different types then `a === b` immediately returns `false`, without an attempt to convert them.
+In other words, if `a` and `b` are of different types, then `a === b` immediately returns `false` without an attempt to convert them.
 
 Let's try it:
 
@@ -142,7 +142,7 @@ The strict equality check operator is a bit longer to write, but makes it obviou
 
 Let's see more edge cases.
 
-There's a non-intuitive behavior when `null` or `undefined` is compared with other values.
+There's a non-intuitive behavior when `null` or `undefined` are compared with other values.
 
 
 For a strict equality check `===`
@@ -174,7 +174,7 @@ alert( null == 0 ); // (2) false
 alert( null >= 0 ); // (3) *!*true*/!*
 ```
 
-Yeah, mathematically that's strange. The last result states that "`null` is equal or greater than zero". Then one of the comparisons above must be correct, but they are both falsy.
+Yeah, mathematically that's strange. The last result states that "`null` is greater than or equal to zero". Then one of the comparisons above must be correct, but they are both falsy.
 
 The reason is that an equality check `==` and comparisons `> < >= <=` work differently. Comparisons convert `null` to a number, hence treat it as `0`. That's why (3) `null >= 0` is true and (1) `null > 0` is false.
 
@@ -199,7 +199,7 @@ We've got these results because:
 
 ### Evade problems
 
-Why did we observe these examples? Should we remember these pecularities all the time? Well, not really. Actually, these tricky things will gradually become familiar over the time, but there's a solid way to evade any problems with them.
+Why did we observe these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to evade any problems with them.
 
 Just treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
 
@@ -211,4 +211,4 @@ Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`,
 - Strings are compared letter-by-letter in the "dictionary" order.
 - When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
 - Values `null` and `undefined` equal `==` each other and do not equal any other value.
-- Be careful when using comparisons like `>` or `<` with variables that can occasionaly be `null/undefined`. Making a separate check for `null/undefined` is a good idea.
+- Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Making a separate check for `null/undefined` is a good idea.
