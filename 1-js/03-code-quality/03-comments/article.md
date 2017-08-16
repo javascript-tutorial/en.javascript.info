@@ -4,7 +4,7 @@ Comments are generally a good thing. But novices in programming generally get th
 
 But the amount of such "explanatory" comments should be minimal.
 
-Seriously, a good code should be easy to understand without them.
+Seriously, good code should be easy to understand without them.
 
 There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
 
@@ -122,14 +122,14 @@ Document a function usage
     }
     ```
 
-    Such comments allow to understand the purpose of the function and use it the right way without looking in its code.
+    Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
 
     By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
 
     Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
 
-Why the task is solved this way?
-: What's written is important. But what's *not* written maybe even more important to understand what's going on. Why the task is solved exactly this way? The code gives no answer.
+Why is the task solved this way?
+: What's written is important. But what's *not* written maybe even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
 
     If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
 
@@ -145,6 +145,6 @@ Any subtle features of the code? Where they are used?
 
 ## Summary
 
-One of signs of a good developer is his comments. Good comments allow to maintain the code well, return to it after a long delay and use features more effectively.
+One sign of a good developer is his comments. Good comments allow us to maintain the code well, return to it after a long delay and use features more effectively.
 
 Comments are also used for auto-documenting tools: they read them and generate HTML-docs (or in another format).

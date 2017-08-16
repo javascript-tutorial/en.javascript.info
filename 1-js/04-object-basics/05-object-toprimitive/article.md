@@ -19,11 +19,11 @@ As for the string conversion -- it usually happens when we output an object like
 
 When an object is used in the context where a primitive is required, for instance, in an `alert` or mathematical operations, it's converted to a primitive value using the `ToPrimitive` algorithm ([specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
 
-That algorithm allows to customize the conversion using in a special object method.
+That algorithm allows us to customize the conversion using a special object method.
 
 Depending on the context, the conversion has a so-called "hint".
 
-There are 3 variants:
+There are three variants:
 
 `"string"`
 : When an operation expects a string, for object-to-string conversions, like `alert`:
@@ -68,7 +68,7 @@ There are 3 variants:
 
     In practice, all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And probably we should do the same.
 
-Please note -- there are only three hints. That simple. There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
+Please note -- there are only three hints. It's that simple. There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
 
 **To do the conversion, JavaScript tries to find and call three object methods:**
 
@@ -159,12 +159,12 @@ alert(user); // toString -> John
 alert(user + 500); // toString -> John500
 ```
 
-In the absense of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
+In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
 
 
 ## ToPrimitive and ToString/ToNumber
 
-The important thing to know about all primitive-conversion methods is that they not necessarily return the "hinted" primitive.
+The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
 
 There is no control whether `toString()` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint "number".
 
@@ -178,7 +178,7 @@ For instance:
 
     ```js run
     let obj = {
-      toString() { // toString handles all conversions in the absense of other methods
+      toString() { // toString handles all conversions in the absence of other methods
         return "2";
       }
     };
@@ -186,7 +186,7 @@ For instance:
     alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
     ```
 
-- Binary plus performs checks the primitive -- if it's a string, then it does concatenation, otherwise performs `ToNumber` and works with numbers.
+- Binary plus checks the primitive -- if it's a string, then it does concatenation, otherwise it performs `ToNumber` and works with numbers.
 
     String example:
     ```js run
@@ -235,4 +235,4 @@ The conversion algorithm is:
 3. Otherwise if hint is `"number"` or `"default"`
     - try `obj.valueOf()` and `obj.toString()`, whatever exists.
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that returns a "human-readable" representation of an object, for logging or debugging purposes.  
+In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that return a "human-readable" representation of an object, for logging or debugging purposes.  

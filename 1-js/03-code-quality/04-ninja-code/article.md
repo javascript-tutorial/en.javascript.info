@@ -38,13 +38,13 @@ Another way to code faster (and much worse!) is to use single-letter variable na
 
 A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, he won't be able to "decipher" what the name `a` or `b` means.
 
-...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are so much more exotic letters. For instance, `x` or `y`.
+...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are many more exotic letters. For instance, `x` or `y`.
 
-An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, he won't be able to figure out fast that the variable named `x` is the loop counter.
+An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, he won't be able to quickly figure out that the variable named `x` is the loop counter.
 
 ## Use abbreviations
 
-If the team rules forbid to use one-letter and vague names -- shorten them, make abbreviations.
+If the team rules forbid the use of one-letter and vague names -- shorten them, make abbreviations.
 
 Like this:
 
@@ -53,7 +53,7 @@ Like this:
 - `browser` -> `brsr`.
 - ...etc
 
-Only the one with a truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
+Only the one with truly good intuition will be able to understand such names. Try to shorten everything. Only a worthy person should be able to uphold the development of your code.
 
 ## Soar high. Be abstract.
 
@@ -66,7 +66,7 @@ The great image has no form.
 
 While choosing a name try to use the most abstract word. Like `obj`, `data`, `value`, `item`, `elem` and so on.
 
-- **The ideal name for a variable is `data`.** Use it everywhere where you can. Indeed, every variable holds *data*, right?
+- **The ideal name for a variable is `data`.** Use it everywhere you can. Indeed, every variable holds *data*, right?
 
     ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
 
@@ -74,9 +74,9 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     Give them a try. A young ninja may wonder -- do such names make the code worse? Actually, yes!
 
-    From one hand, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code -- he'll be surprised to see that there's actually no information at all!
+    From one hand, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all!
 
-    Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number it stores? There's just no way to figure out without a good meditation!
+    Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store? There's just no way to figure out without a good meditation!
 
 - **...But what if there are no more such names?** Just add a letter: `item1, item2, elem5, data1`...
 
@@ -182,9 +182,9 @@ function render() {
 }
 ```
 
-A programmer who jumps inside the `render` will probably miss to notice that there's a local `user` shadowing the outer one.
+A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
 
-Then he'll try to work with `user` it assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
+Then he'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
 
 
 ## Side-effects everywhere!
@@ -223,6 +223,6 @@ Imagine, another developer wants only to check the email, and not output any mes
 
 All "pieces of advice" above are from the real code... Sometimes, written by experienced developers. Maybe even more experienced than you are ;)
 
-- Follow some of them -- and your code will become full of surprises.
-- Follow many of them -- and your code will become truly yours, no one would want to change it.
-- Follow all -- and your code will become a valuable lesson for young developers looking for enlightment.
+- Follow some of them, and your code will become full of surprises.
+- Follow many of them, and your code will become truly yours, no one would want to change it.
+- Follow all, and your code will become a valuable lesson for young developers looking for enlightenment.
