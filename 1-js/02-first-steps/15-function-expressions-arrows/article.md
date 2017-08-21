@@ -450,7 +450,7 @@ Like this:
 let sum = (a, b) => {  // the figure bracket opens a multiline function
   let result = a + b;
 *!*
-  return result; // if we use figure brackets, must use return
+  return result; // if we use figure brackets, use return to get results
 */!*
 };
 
