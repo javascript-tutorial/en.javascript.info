@@ -233,12 +233,11 @@ In real code we often use existing variables as values for property names.
 For instance:
 
 ```js run
-function makeUser() {
-  let name = prompt("Name?");
-  let age = prompt("Age?");
+function makeUser(name, age) {
   return {
     name: name,
     age: age
+    // ...other properties
   };
 }
 
@@ -256,6 +255,7 @@ function makeUser(name, age) {
   return {
     name, // same as name: name
     age   // same as age: age
+    // ...
   };
 */!*
 }

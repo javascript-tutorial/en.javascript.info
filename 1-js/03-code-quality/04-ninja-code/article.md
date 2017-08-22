@@ -1,4 +1,4 @@
-# How to write bad code?
+# Ninja code
 
 Programmer ninjas of the past used these tricks to make code maintainers cry. Code review gurus look for them in test tasks. Novice developers sometimes use them even better than programmer ninjas.
 
