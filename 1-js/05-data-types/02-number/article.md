@@ -284,7 +284,7 @@ In most cases the distinction is unnoticeable, because operators are suited to t
 Remember the two special numeric values?
 
 - `Infinite` (and `-Infinite`) is a special numeric value that is greater (less) than anything.
-- `NaN` represends an error.
+- `NaN` represents an error.
 
 They belong to the type `number`, but are not "normal" numbers, so there are special functions to check for them:
 
