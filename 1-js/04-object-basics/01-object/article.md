@@ -495,7 +495,7 @@ Now we have two variables, each one with the reference to the same object:
 
 ![](variable-copy-reference.png)
 
-Now can use any variable to access the cabinet and modify its contents:
+We can use any variable to access the cabinet and modify its contents:
 
 ```js run
 let user = { name: 'John' };
