@@ -20,6 +20,7 @@ function sumInput() {
   for (let number of numbers) {
     sum += number;
   }
+  return sum;
 }
 
 alert( sumInput() ); 
