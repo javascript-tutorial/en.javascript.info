@@ -69,7 +69,7 @@
         return;
       }
 
-      let childrenContainer = target.parentNode.querySelector('ul');
+      let childrenContainer = event.target.parentNode.querySelector('ul');
       if (!childrenContainer) return; // no children
 
       childrenContainer.hidden = !childrenContainer.hidden;
