@@ -1,14 +1,28 @@
 # Comments
 
-Comments are generally a good thing. But novices in programming generally get that wrong. They write comments explaining "what is going on in the code".
+As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
 
-But the amount of such "explanatory" comments should be minimal.
+We normally use them to describe how and why the code works.
 
-Seriously, good code should be easy to understand without them.
+From the first sight, commenting might be obvious, but novices in programming usually get it wrong.
+
+## Bad comments
+
+Novices tend to use comments to explain "what is going on in the code". Like this:
+
+```js
+// This code will do this thing (...) and that thing (...)
+// ...and who knows what else...
+very;
+complex;
+code;
+```
+
+But in a good code the amount of such "explanatory" comments should be minimal. Seriously, a code should be easy to understand without them.
 
 There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
 
-[cut]
+### Recipe: factor out functions
 
 Sometimes it's beneficial to replace a code piece with a function, like here:
 
@@ -29,7 +43,7 @@ function showPrimes(n) {
 }
 ```
 
-The better variant:
+The better variant, with a factored out function `isPrime`:
 
 
 ```js
@@ -50,7 +64,9 @@ function isPrime(n) {
 }
 ```
 
-Now we can understand the code easily without the comment. Such code is called *self-descriptive*.
+Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+
+### Recipe: create functions
 
 And if we have a long "code sheet" like this:
 
@@ -94,13 +110,13 @@ function addJuice(container) {
 }
 ```
 
-That's readable without comments. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
+Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
 
 In reality, we can't totally evade "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
 
 ## Good comments
 
-Which comments are good?
+So, explanatory comments are usually bad. Which comments are good?
 
 Describe the architecture
 : Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
@@ -145,6 +161,19 @@ Any subtle features of the code? Where they are used?
 
 ## Summary
 
-One sign of a good developer is his comments. Good comments allow us to maintain the code well, return to it after a long delay and use features more effectively.
+An important sign of a good developer is comments: their presence and even their absense.
 
-Comments are also used for auto-documenting tools: they read them and generate HTML-docs (or in another format).
+Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+
+**Comment this:**
+
+- Overall architecture, high-level view.
+- Function usage.
+- Important solutions, especially when not immediately obvious.
+
+**Evade comments:**
+
+- That tell "how code works" and "what it does".
+- Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
+
+Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
