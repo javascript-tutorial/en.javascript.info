@@ -9,13 +9,12 @@ They also provide methods to call and such. We will study those soon, but first 
 Let's look at the key distinction between primitives and objects.
 
 A primitive
-: Is a value of a primitive type. There are 6 primitive types: `string`, `number`, `boolean`, `symbol`, `null` and `undefined`.
 
 An object
 : Is capable of storing multiple values as properties.
 Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript, e.g. functions are objects.
 
-One of the best things about objects is that we can store functions within them as properties:
+One of the best things about objects is that we can store a function as one of its properties:
 
 ```js run
 let john = {
@@ -34,7 +33,7 @@ Many built-in objects already exist, such as those that work with dates, errors,
 
 But, these features come with a cost!
 
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But as properties and methods are very useful in programming, JavaScript engines try to optimize them to reduce the additional burdon.
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But as properties and methods are very useful in programming, JavaScript engines try to optimize them to reduce the additional burden.
 
 ## A primitive as an object
 
