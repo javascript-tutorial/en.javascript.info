@@ -12,7 +12,7 @@ Imagine we need to write 1 billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-But in real life we usually avoid writing the full number as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+But in real life we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
 
 In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
 
@@ -125,7 +125,7 @@ There are several built-in functions for rounding:
 : Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
 
 `Math.trunc` (not supported by Internet Explorer)
-: Removes anything after the decimal without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
+: Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
 
 Here's the table to summarize the differences between them:
 
@@ -145,7 +145,7 @@ There are two ways to do so:
 
 1. Multiply-and-divide.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function, and then divide back.
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
@@ -159,7 +159,7 @@ There are two ways to do so:
     alert( num.toFixed(1) ); // "12.3"
     ```
 
-    This round up or down to the nearest value, similar to `Math.round`:
+    This rounds up or down to the nearest value, similar to `Math.round`:
 
     ```js run
     let num = 12.36;
@@ -205,7 +205,7 @@ Ouch! There are more consequences than an incorrect comparison here. Imagine you
 
 But why does this happen?
 
-A number is stored in memory in it's binary form, a sequence of ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
+A number is stored in memory in its binary form, a sequence of ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
 
 In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`. 
 
@@ -254,7 +254,7 @@ Can we work around the problem? Sure, there're a number of ways:
 
     This works because when we do `0.1*10 = 1` and `0.2 * 10 = 2` then both numbers become integers, and there's no precision loss. 
 
-3. If it's we were dealing with a shop, then the most radical solution would be to store all prices in cents and use no fractions at all. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely feasible, so the solutions above help avoid this pitfall.
+3. If we were dealing with a shop, then the most radical solution would be to store all prices in cents and use no fractions at all. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely feasible, so the solutions above help avoid this pitfall.
 
 ````smart header="The funny thing"
 Try running this:
@@ -320,7 +320,7 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
-Please note that spaces in a string are treated as a `0` in all numeric functions, including `isFinite`. 
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
 
 ```smart header="Compare with `Object.is`"
 
@@ -331,7 +331,7 @@ There is a special built-in method [Object.is](mdn:js/Object/is) that compares v
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`. 
 
-This method of comparison is often used in JavaScript. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 
@@ -343,19 +343,19 @@ Numeric conversion using a plus `+` or `Number()` is strict. If a value is not e
 alert( +"100px" ); // NaN
 ```
 
-The sole exception is spaces before and after the line, as they are ignored.
+The sole exception is spaces at the beginning or at the end of the string, as they are ignored.
 
-But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries, the currency symbol goes after the amount, so we have `"19€"`, but would still like to extract a numeric value out of that.
+But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
 
 That's what `parseInt` and `parseFloat` are for.
 
-They "read" numbers within a string and unless there's an error (for example, if the first character of a string is not a number), the first valid number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+They "read" a number from a string until they can. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
 
 ```js run
 alert( parseInt('100px') ); // 100
 alert( parseFloat('12.5em') ); // 12.5
 
-alert( parseInt('12.3') ); // 12, only the integer is returned
+alert( parseInt('12.3') ); // 12, only the integer part is returned
 alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
 ```
 
@@ -423,7 +423,7 @@ For different numeral systems:
 
 For converting values like `12pt` and `100px` to a number:
 
-- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string until broken by something that is not a number. 
+- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error. 
 
 For fractions:
 
