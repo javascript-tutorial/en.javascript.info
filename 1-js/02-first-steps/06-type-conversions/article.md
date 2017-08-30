@@ -1,6 +1,6 @@
 # Type Conversions
 
-Most of the time, operators and functions automatically convert a value to the right type. That's called "type coercion".
+Most of the time, operators and functions automatically convert a value to the right type. That's called "type conversion".
 
 For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
 
