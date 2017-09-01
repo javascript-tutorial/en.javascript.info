@@ -139,7 +139,7 @@ alert(message); // Hello world!
 ```smart header="Functional languages"
 It may be interesting to know that there also exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages that forbid changing a variable value. For example, [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/).
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces to create a new box (declare a new variable). We can't reuse the old one.
+In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
 
 Though it may seem a little bit odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if not planning to use it soon) is recommended to broaden the mind.
 ```
