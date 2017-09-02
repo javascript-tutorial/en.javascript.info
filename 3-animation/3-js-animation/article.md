@@ -219,8 +219,8 @@ If we want to speed up the animation, we can use `progress` in the power `n`.
 For instance, a parabolic curve:
 
 ```js
-function quad(progress) {
-  return Math.pow(progress, 2)
+function quad(timeFraction) {
+  return Math.pow(timeFraction, 2)
 }
 ```
 
