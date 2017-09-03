@@ -236,7 +236,7 @@ alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with 
 
 The optional second parameter allows us to search starting from the given position.
 
-For instance, the first occurence of `"id"` is at position `1`. To look for the next occurence, let's start the search from  position `2`:
+For instance, the first occurence of `"id"` is at position `1`. To look for the next occurence, let's start the search from position `2`:
 
 ```js run
 let str = 'Widget with id';
@@ -245,7 +245,7 @@ alert( str.indexOf('id', 2) ) // 12
 ```
 
 
-If we're interested in all occurences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
 
 
 ```js run
