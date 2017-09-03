@@ -301,4 +301,4 @@ To change the styles:
 
 To read the resolved styles (with respect to all classes, after all CSS is applied and final values are calculated):
 
-- The `getComputedStyles(elem[, pseudo])` returns the style-like object with them. Read-only.
+- The `getComputedStyle(elem[, pseudo])` returns the style-like object with them. Read-only.
