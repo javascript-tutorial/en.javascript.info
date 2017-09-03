@@ -624,7 +624,7 @@ For example:
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
 
-This provides great flexibility, but also an interesting problem: the same symbol can be visually represented with different unicode compositions.
+This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different unicode compositions.
 
 For instance:
 
