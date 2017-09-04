@@ -162,7 +162,7 @@ let x;
 alert(x); // shows "undefined"
 ```
 
-Technically, it is possible to assign any variable to `undefined`:
+Technically, it is possible to assign `undefined` to any variable:
 
 ```js run
 let x = 123;
