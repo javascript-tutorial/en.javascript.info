@@ -308,7 +308,7 @@ let options = {
 let {title, ...rest} = options;
 */!*
 
-// now title="Menu", rest={height: 200, widht: 100}
+// now title="Menu", rest={height: 200, width: 100}
 alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
@@ -389,7 +389,7 @@ The whole `options` object except `extra` that was not mentioned, is assigned to
 
 Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
 
-That often happens with destructuring assignments. We have a complex object with may properties and want extract only what we need.
+That often happens with destructuring assignments. We have a complex object with many properties and want to extract only what we need.
 
 Even like this:
 ```js
