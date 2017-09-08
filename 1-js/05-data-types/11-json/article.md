@@ -36,7 +36,7 @@ JavaScript provides methods:
 - `JSON.stringify` to convert objects into JSON.
 - `JSON.parse` to convert JSON back into an object.
 
-For instance, here's we `JSON.stringify` a student:
+For instance, here we `JSON.stringify` a student:
 ```js run
 let student = {
   name: 'John',
