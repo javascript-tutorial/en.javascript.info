@@ -236,7 +236,7 @@ alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with 
 
 The optional second parameter allows us to search starting from the given position.
 
-For instance, the first occurence of `"id"` is at position `1`. To look for the next occurence, let's start the search from position `2`:
+For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
 
 ```js run
 let str = 'Widget with id';
@@ -280,7 +280,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```smart header="`str.lastIndexOf(pos)`"
 There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
-It would list the occurences in the reverse order.
+It would list the occurrences in the reverse order.
 ```
 
 There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
