@@ -271,7 +271,7 @@ From a technical point of view it's identical to the example above. Surely, we c
 But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
-````warn header="No `break/continue` to the right side of '?'"
+````warn header="No `break/continue` to the left and right side of '?'"
 Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
 
 For example, if we take this code:
