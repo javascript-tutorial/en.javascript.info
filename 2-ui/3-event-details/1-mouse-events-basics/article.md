@@ -1,5 +1,7 @@
 # Mouse events basics
 
+Mouse events come not only from "mouse manipulators", but are also emulated on touch devices, to make them compatible.
+
 In this chapter we'll get into more details about mouse events and their properties.
 
 [cut]
@@ -26,7 +28,7 @@ The most used simple events are:
 ### Complex events
 
 `click`
-: Triggers after `mousedown` and then `mouseup` over the same element.
+: Triggers after `mousedown` and then `mouseup` over the same element if the left mouse button was used.
 
 `contextmenu`
 : Triggers after `mousedown` if the right mouse button was used.
@@ -35,8 +37,6 @@ The most used simple events are:
 : Triggers after a double click over an element.
 
 Complex events are made of simple ones, so in theory we could live without them. But they exist, and that's good, because they are convenient.
-
-For touchscreen and touchpad devices mouse events also happen, they are emulated.
 
 ### Events order
 
