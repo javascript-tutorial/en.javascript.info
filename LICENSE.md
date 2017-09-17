@@ -13,4 +13,4 @@ Under the following terms:
 - **NonCommercial** — You may not use the material for commercial purposes.
 - **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
 
-**To use the tutorial commercially, like printing a book and selling it, please get an approval.**
+To use the tutorial commercially, like printing a book and selling it, please get an approval.
