@@ -281,7 +281,7 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ```
 
-Here in the line `(*)` the prefix call `++counter` increments `i` and returns the new value that is `2`. So the `alert` shows `2`.
+Here in the line `(*)` the prefix call `++counter` increments `counter` and returns the new value that is `2`. So the `alert` shows `2`.
 
 Now let's use the postfix form:
 
@@ -292,7 +292,7 @@ let a = counter++; // (*) changed ++counter to counter++
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)` the *postfix* form `counter++` also increments `i`, but returns the *old* value (prior to increment). So the `alert` shows `1`.
+In the line `(*)` the *postfix* form `counter++` also increments `counter`, but returns the *old* value (prior to increment). So the `alert` shows `1`.
 
 To summarize:
 
