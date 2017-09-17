@@ -1,8 +1,10 @@
 # Variables
 
-Most of the time, a script needs to work with information. If it's an online-shop -- that's going to be the goods and a shopping cart. If it's a chat -- users, messages and so on.
+Most of the time, a JavaScript application needs to work with information. Here are 2 examples:
+1. An online-shop -- the information might include goods being sold and a shopping cart. 
+2. A chat application -- the information might include users, messages, and much more.
 
-Variables are used to store the information.
+Variables are used to store this information.
 
 [cut]
 
@@ -296,7 +298,7 @@ Please name the variables sensibly. Take time to think if needed.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code is written by a beginner and which by an experienced developer.
 
-In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from the scratch. And when we return to the code after some time of doing something else, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
+In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from scratch. And when we return to the code after some time of doing something else, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
 
 Please spend some time thinking about the right name for a variable before declaring it. That will repay you a lot.
 
@@ -305,14 +307,14 @@ Some good-to-follow rules are:
 - Use human-readable names like `userName` or `shoppingCart`.
 - Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
 - Make the name maximally descriptive and concise. Examples of bad names are `data` and `value`. Such a name says nothing. It is only ok to use them if it's exceptionally obvious from the context which data or value is meant.
-- Agree on terms within the team and in your own mind. If a site visitor is called a "user" then we should name related variables like `currentUser` or `newUser`, but not `currentVisitor` or a `newManInTown`.
+- Agree on terms within your team and in your own mind. If a site visitor is called a "user" then we should name related variables like `currentUser` or `newUser`, but not `currentVisitor` or a `newManInTown`.
 
 Sounds simple? Indeed it is, but creating good descriptive-and-concise names in practice is not. Go for it.
 
 ```smart header="Reuse or create?"
 And the last note. There are some lazy programmers who, instead of declaring a new variable, tend to reuse the existing ones.
 
-As the result, the variable is like a box where people throw different things without changing the sticker. What is inside it now? Who knows... We need to come closer and check.
+As a result, the variable is like a box where people throw different things without changing the sticker. What is inside it now? Who knows... We need to come closer and check.
 
 Such a programmer saves a little bit on variable declaration, but loses ten times more on debugging the code.
 
