@@ -189,7 +189,7 @@ We can use more complex expressions inside square brackets:
 ```js
 let fruit = 'apple';
 let bag = {
-  ['apple' + 'Computers']: 5 // bag.appleComputers = 5
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
 };
 ```
 
