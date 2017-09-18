@@ -43,7 +43,7 @@ Here JavaScript would treat `{` as the start of function body, not the start of 
 let usersMapped = users.map(user => *!*({*/!*
   fullName: `${user.name} ${user.surname}`,
   id: user.id
-});
+}));
 ```
 
 Now fine.
