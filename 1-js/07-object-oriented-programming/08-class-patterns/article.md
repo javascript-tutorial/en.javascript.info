@@ -5,7 +5,7 @@
 In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
 ```
 
-There's a special syntax construct and a keyword `class` in JavaScript. But before studying it, we should consider that the term "class" comes the theory of object-oriented programming. The definition is cited above, and it's language-independant.
+There's a special syntax construct and a keyword `class` in JavaScript. But before studying it, we should consider that the term "class" comes from the theory of object-oriented programming. The definition is cited above, and it's language-independant.
 
 In JavaScript there are several well-known programming patterns to make classes even without using the `class` keyword. And here we'll talk about them first.
 
