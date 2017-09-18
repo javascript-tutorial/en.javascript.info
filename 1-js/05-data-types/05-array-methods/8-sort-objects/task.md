@@ -15,7 +15,7 @@ let mary = { name: "Mary", age: 28 }
 
 let arr = [ john, pete, mary ];
 
-lsortByName(arr);
+sortByName(arr);
 
 // now: [john, mary, pete]
 alert(arr[1].name) // Mary
