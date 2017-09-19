@@ -358,7 +358,7 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
     Please note how memory management works here. When `makeCounter()` call finished some time ago, its Lexical Environment was retained in memory, because there's a nested function with `[[Environment]]` referencing it.
 
-    Generally, a Lexical Environment object lives until there is a function which may use it. And when there are none, it is cleared.
+    Generally, a Lexical Environment object lives as long as there is a function which may use it. And when there are none, it is cleared.
 
 6. The call to `counter()` not only returns the value of `count`, but also increases it. Note that the modification is done "in place". The value of `count` is modified exactly in the environment where it was found.
 
