@@ -3,7 +3,7 @@
 
 This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
 
-## Translactions
+## Translations
 
 - Russian: [https://github.com/iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru).
 - Chinese: the ongoing translation at [https://github.com/iliakan/javascript-tutorial-cn](https://github.com/iliakan/javascript-tutorial-cn), go ahead and join if you know Chinese.
