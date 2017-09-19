@@ -88,7 +88,7 @@ Examples with unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 𠌱, a rare chinese hieroglyph (long unicode)
+alert( "\u{20331}" ); // 佫, a rare chinese hieroglyph (long unicode)
 alert( "\u{1F60D}"); // 😍, a smiling face symbol (another long unicode)
 ```
 
