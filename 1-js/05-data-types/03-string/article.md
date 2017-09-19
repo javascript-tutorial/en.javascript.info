@@ -89,7 +89,7 @@ Examples with unicode:
 ```js run
 alert( "\u00A9" ); // ©
 alert( "\u{20331}" ); // 𠌱, a rare chinese hieroglyph (long unicode)
-alert( "\u{1F60D}"); // a smiling face sumbol (another long unicode)
+alert( "\u{1F60D}"); // 😍, a smiling face symbol (another long unicode)
 ```
 
 All special characters start with a backslash character `\`. It is also called an "escape character".
