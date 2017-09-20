@@ -289,7 +289,7 @@ Recursion can give a shorter code, easier to understand and support. Optimizatio
 
 Another great application of the recursion is a recursive traversal.
 
-Imagine, we have an company. The staff structure can be presented as an object:
+Imagine, we have a company. The staff structure can be presented as an object:
 
 ```js
 let company = {
