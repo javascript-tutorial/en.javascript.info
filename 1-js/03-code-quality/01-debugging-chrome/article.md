@@ -101,7 +101,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
 1. **`Watch` -- shows current values for any expressions.**
 
-    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in in the process of execution.
+    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in the process of execution.
 
 2. **`Call Stack` -- shows the nested calls chain.**
 
