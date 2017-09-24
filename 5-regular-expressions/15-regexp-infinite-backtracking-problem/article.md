@@ -101,7 +101,7 @@ Here we end the demo of the problem and start looking into what's going on and w
 
 To make an example even simpler, let's consider `pattern:(\d+)*$`.
 
-This regular expression also has the same probblem. In most regexp engines that search takes a very long time (careful -- can hang):
+This regular expression also has the same problem. In most regexp engines that search takes a very long time (careful -- can hang):
 
 ```js run
 alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
