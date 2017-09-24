@@ -70,7 +70,7 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
 
-- **Name the variable by its type: `str`, `num`...**
+- **Name a variable by its type: `str`, `num`...**
 
     Give them a try. A young ninja may wonder -- do such names make the code worse? Actually, yes!
 
@@ -78,7 +78,7 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store? There's just no way to figure out without a good meditation!
 
-- **...But what if there are no more such names?** Just add a letter: `item1, item2, elem5, data1`...
+- **...But what if there are no more such names?** Just add a number: `data1, item2, elem5`...
 
 ## Attention test
 

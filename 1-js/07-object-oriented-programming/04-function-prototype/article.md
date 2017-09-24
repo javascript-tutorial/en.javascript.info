@@ -1,6 +1,6 @@
 # F.prototype
 
-In modern JavaScript we can set a prototype using `__proto__`. But it wasn't like that all the time.
+In modern JavaScript we can set a prototype using `__proto__`, as described in the previous article. But it wasn't like that all the time.
 
 [cut]
 
@@ -10,9 +10,7 @@ But in the old times, there was another (and the only) way to set it: to use a `
 
 ## The "prototype" property
 
-As we know already, `new F()` creates a new object. But what we didn't use yet `F.prototype` property.
-
-That property is used by the JavaScript itself to set `[[Prototype]]` for new objects.
+As we know already, `new F()` creates a new object. In the process, its "magic" `F.prototype` property is used by the JavaScript itself to set `[[Prototype]]` for new objects.
 
 **When a new object is created with `new F()`, the object's `[[Prototype]]` is set to `F.prototype`.**
 

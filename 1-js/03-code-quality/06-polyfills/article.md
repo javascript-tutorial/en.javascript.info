@@ -46,7 +46,7 @@ alert('Press the "Play" button in the upper-right corner to run');
 ```
 
 Examples that use modern JS will work only if your browser supports it.
-```
+````
 
 ```offline
 As you're reading the offline version, examples are not runnable. But they usually work :)

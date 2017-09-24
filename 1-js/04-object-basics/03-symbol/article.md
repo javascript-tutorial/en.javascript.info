@@ -9,18 +9,25 @@ Till now we've only seen strings. Now let's see the advantages that symbols can 
 
 ## Symbols
 
-"Symbol" value represents an unique identifier with a given name.
+"Symbol" value represents an unique identifier.
 
-A value of this type can be created using `Symbol(name)`:
+A value of this type can be created using `Symbol()`:
 
 ```js
-// id is a symbol with the name "id"
+// id is a new symbol
+let id = Symbol();
+```
+
+We can also give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+
+```js
+// id is a symbol with the description "id"
 let id = Symbol("id");
 ```
 
-Symbols are guaranteed to be unique. Even if we create many symbols with the same name, they are different values.
+Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn't affect anything.
 
-For instance, here are two symbols with the same name -- they are not equal:
+For instance, here are two symbols with the same description -- they are not equal:
 
 ```js run
 let id1 = Symbol("id");
@@ -56,13 +63,11 @@ alert(id.toString()); // Symbol(id), now it works
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
 ````
 
-
-
 ## "Hidden" properties
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
-For instance, if we want to store an "identifier" for the object `user`, we can create a symbol with the name `id` for it:
+For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
 
 ```js run
 let user = { name: "John" };
@@ -72,11 +77,13 @@ user[id] = "ID Value";
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
-Now let's imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
+What's the benefit over using `Symbol("id")` over a string `"id"`?
 
-No problem. It can create its own `Symbol("id")`.
+Let's make the example a bit deeper to see that.
 
-The script:
+Imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
+
+Then that script can create its own `Symbol("id")`, like this:
 
 ```js
 // ...
@@ -87,7 +94,7 @@ user[id] = "Their id value";
 
 There will be no conflict, because symbols are always different, even if they have the same name.
 
-Please note that if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
+Now note that if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
 
 ```js run
 let user = { name: "John" };
@@ -176,25 +183,27 @@ alert( obj[0] ); // test (same property)
 
 ## Global symbols
 
-As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be the same entities.
+As we've seen, usually all symbols are different, even if they have the same names. But sometimes we want same-named symbols to be same entities.
 
 For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
 
 To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
 
-In order to create or read a symbol in the registry, use `Symbol.for(name)`.
+In order to create or read a symbol in the registry, use `Symbol.for(key)`.
+
+That call checks the global registry, and if there's a symbol described as `key`, then returns it, otherwise creates a new symbol `Symbol(key)` and stores it in the registry by the given `key`.
 
 For instance:
 
 ```js run
 // read from the global registry
-let name = Symbol.for("name"); // if the symbol did not exist, it is created
+let id = Symbol.for("id"); // if the symbol did not exist, it is created
 
 // read it again
-let nameAgain = Symbol.for("name");
+let idAgain = Symbol.for("id");
 
 // the same symbol
-alert( name === nameAgain ); // true
+alert( id === idAgain ); // true
 ```
 
 Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
@@ -207,7 +216,7 @@ In JavaScript, as we can see, that's right for global symbols.
 
 ### Symbol.keyFor
 
-For global symbols, not only `Symbol.for(name)` returns a symbol by name, but there's a reverse call: `Symbol.keyFor(sym)`, that does the reverse: returns a name by a global symbol.
+For global symbols, not only `Symbol.for(key)` returns a symbol by name, but there's a reverse call: `Symbol.keyFor(sym)`, that does the reverse: returns a name by a global symbol.
 
 For instance:
 
@@ -220,19 +229,15 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the name for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
 
 For instance:
 
 ```js run
 alert( Symbol.keyFor(Symbol.for("name")) ); // name, global symbol
 
-alert( Symbol.keyFor(Symbol("name2")) ); // undefined, non-global symbol
+alert( Symbol.keyFor(Symbol("name2")) ); // undefined, the argument isn't a global symbol
 ```
-
-So, for global symbols the name may be indeed helpful, as we can get a symbol by id.
-
-And for non-global symbols the name is only used for debugging purposes, like printing out a symbol.
 
 ## System symbols
 
@@ -254,9 +259,9 @@ Other symbols will also become familiar when we study the corresponding language
 
 `Symbol` is a primitive type for unique identifiers.
 
-Symbols are created with `Symbol(name)` call.
+Symbols are created with `Symbol()` call with an optional description.
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(name)` returns (creates if needed) a global symbol with the given name. Multiple calls of `Symbol.for` return exactly the same symbol.
+Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` return exactly the same symbol.
 
 Symbols have two main use cases:
 
