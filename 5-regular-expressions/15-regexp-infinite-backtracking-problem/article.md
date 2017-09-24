@@ -2,11 +2,11 @@
 
 Some regular expressions are looking simple, but can execute veeeeeery long time, and even "hang" the JavaScript engine.
 
-Sooner or later all developers occasionally meets this behavior.
+Sooner or later most developers occasionally face such behavior.
 
-The typical situation -- a regular expression works fine for some time, and then starts to "hang" the script and make it consume 100% of CPU.
+The typical situation -- a regular expression works fine sometimes, but for certain strings it "hangs"  consuming 100% of CPU.
 
-That may even be a vulnerability. For instance, if JavaScript is on the server and uses regular expressions on user data. There were many vulnerabilities of that kind even in widely distributed systems.
+That may even be a vulnerability. For instance, if JavaScript is on the server, and it uses regular expressions to process user data, then such an input may cause denial of service. The author personally saw and reported such vulnerabilities even for well-known and widely used programs.
 
 So the problem is definitely worth to deal with.
 
@@ -42,7 +42,7 @@ In the regexp language that is: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`:
 1. `pattern:<\w+` -- is the tag start,
 2. `pattern:(\s*\w+=(\w+|"[^"]*")\s*)*` -- is an arbitrary number of pairs `word=value`, where the value can be either a word `pattern:\w+` or a quoted string `pattern:"[^"]*"`.
 
-That doesn't yet support the details of HTML grammer, for instance strings can be in 'single' quotes, but these can be added later, so that's somewhat close to real life. For now we want the regexp to be simple.
+That doesn't yet support few details of HTML grammar, for instance strings in 'single' quotes, but they can be added later, so that's somewhat close to real life. For now we want the regexp to be simple.
 
 Let's try it in action:
 
@@ -58,7 +58,7 @@ Great, it works! It found both the long tag `match:<a test="<>" href="#">` and t
 
 Now let's see the problem.
 
-If you run the example below, it may hang the browser (or another JavaScript engine):
+If you run the example below, it may hang the browser (or whatever JavaScript engine runs):
 
 ```js run
 let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
@@ -76,7 +76,9 @@ Some regexp engines can handle that search, but most of them don't.
 
 What's the matter? Why a simple regular expression on such a small string "hangs"?
 
-Let's simplify the situation by removing the tag and quoted strings, we'll look only for attributes:
+Let's simplify the situation by removing the tag and quoted strings.
+
+Here we look only for attributes:
 
 ```js run
 // only search for space-delimited attributes
@@ -91,15 +93,15 @@ alert( str.match(reg) );
 */!*
 ```
 
-The same.
+The same problem persists.
 
-Here we end the demo of the problem and start looking into what's going on.
+Here we end the demo of the problem and start looking into what's going on and why it hangs.
 
 ## Backtracking
 
 To make an example even simpler, let's consider `pattern:(\d+)*$`.
 
-In most regexp engines that search takes a very long time (careful -- can hang):
+This regular expression also has the same probblem. In most regexp engines that search takes a very long time (careful -- can hang):
 
 ```js run
 alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
@@ -107,9 +109,9 @@ alert( '12345678901234567890123456789123456789z'.match(/(\d+)*$/) );
 
 So what's wrong with the regexp?
 
-Actually, it looks a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+$`.
+First, one may notice that the regexp is a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+$`.
 
-Yes, the regexp is artificial, but the reason why it is slow is the same as those we saw above. So let's understand it.
+Indeed, the regexp is artificial. But the reason why it is slow is the same as those we saw above. So let's understand it, and then return to the real-life examples.
 
 What happen during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
 
