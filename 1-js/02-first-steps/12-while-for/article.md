@@ -188,7 +188,7 @@ We can also remove the `step` part:
 let i = 0;
 
 for (; i < 3;) {
-  alert( i );
+  alert( i++ );
 }
 ```
 
