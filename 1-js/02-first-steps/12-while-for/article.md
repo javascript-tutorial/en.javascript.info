@@ -21,7 +21,7 @@ while (condition) {
 
 While the `condition` is `true`, the `code` from the loop body is executed.
 
-For instance, the loop below outputs `i` while `i<3`:
+For instance, the loop below outputs `i` while `i < 3`:
 
 ```js run
 let i = 0;
@@ -37,7 +37,7 @@ If there were no `i++` in the example above, the loop would repeat (in theory) f
 
 Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to boolean by `while`.
 
-For instance, the shorter way to write `while (i!=0)` could be `while (i)`:
+For instance, the shorter way to write `while (i != 0)` could be `while (i)`:
 
 ```js run
 let i = 3;
@@ -108,8 +108,8 @@ Let's examine the `for` statement part by part:
 
 | part  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `i=0`    | Executes once upon entering the loop.                                      |
-| condition | `i<3`| Checked before every loop iteration, if fails the loop stops.              |
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration, if fails the loop stops.              |
 | step| `i++`      | Executes after the body on each iteration, but before the condition check. |
 | body | `alert(i)`| Runs again and again while the condition is truthy                         |
 
@@ -192,7 +192,7 @@ for (; i < 3;) {
 }
 ```
 
-The loop became identical to `while (i<3)`.
+The loop became identical to `while (i < 3)`.
 
 We can actually remove everything, thus creating an infinite loop:
 
@@ -324,7 +324,7 @@ The ordinary `break` after `input` would only break the inner loop. That's not s
 
 A *label* is an identifier with a colon before a loop:
 ```js
-labelName: for(...) {
+labelName: for (...) {
   ...
 }
 ```
@@ -369,7 +369,7 @@ For example, it is impossible to do this:
 ```js
 break label;  // jumps to label? No.
 
-label: for(...)
+label: for (...)
 ```
 
 The call to a `break/continue` is only possible from inside the loop, and the label must be somewhere upwards from the directive.
@@ -381,7 +381,7 @@ We covered 3 types of loops:
 
 - `while` -- The condition is checked before each iteration.
 - `do..while` -- The condition is checked after each iteration.
-- `for(;;)` -- The condition is checked before each iteration, additional settings available.
+- `for (;;)` -- The condition is checked before each iteration, additional settings available.
 
 To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
