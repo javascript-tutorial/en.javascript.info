@@ -9,7 +9,7 @@ Till now we've only seen strings. Now let's see the advantages that symbols can 
 
 ## Symbols
 
-"Symbol" value represents an unique identifier.
+"Symbol" value represents a unique identifier.
 
 A value of this type can be created using `Symbol()`:
 
@@ -141,7 +141,7 @@ let user = {
 };
 
 *!*
-for(let key in user) alert(key); // name, age (no symbols)
+for (let key in user) alert(key); // name, age (no symbols)
 */!*
 
 // the direct access by the symbol works
