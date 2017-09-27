@@ -121,7 +121,7 @@ What happen during the search of `pattern:(\d+)*$` in the line `subject:12345678
     \d+.......
     (123456789)z
     ```
-2. Then it tries to apply the start around the parentheses `pattern:(\d+)*`, but there are no more digits, so it the star doesn't give anything.
+2. Then it tries to apply the star around the parentheses `pattern:(\d+)*`, but there are no more digits, so it the star doesn't give anything.
 
     Then the pattern has the string end anchor `pattern:$`, and in the text we have `subject:z`.
 
