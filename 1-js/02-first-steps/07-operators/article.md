@@ -381,8 +381,8 @@ This notation can be shortened using operators `+=` and `*=`:
 
 ```js run
 let n = 2;
-n += 5; // now n=7 (same as n = n + 5)
-n *= 2; // now n=14 (same as n = n * 2)
+n += 5; // now n = 7 (same as n = n + 5)
+n *= 2; // now n = 14 (same as n = n * 2)
 
 alert( n ); // 14
 ```
@@ -409,18 +409,18 @@ For example:
 
 ```js run
 *!*
-let a = (1+2, 3+4);
+let a = (1 + 2, 3 + 4);
 */!*
 
-alert( a ); // 7 (the result of 3+4)
+alert( a ); // 7 (the result of 3 + 4)
 ```
 
-Here, the first expression `1+2` is evaluated, and its result is thrown away, then `3+4` is evaluated and returned as the result.
+Here, the first expression `1 + 2` is evaluated, and its result is thrown away, then `3 + 4` is evaluated and returned as the result.
 
 ```smart header="Comma has a very low precedence"
 Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
 
-Without them: `a=1+2,3+4` evaluates `+` first, summing the numbers into `a=3,7`, then the assignment operator `=` assigns `a=3`, and then the number after the comma `7` is not processed anyhow, so it's ignored.
+Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns    `a = 3`, and then the number after the comma `7` is not processed anyhow, so it's ignored.
 ```
 
 Why do we need such an operator which throws away everything except the last part?
