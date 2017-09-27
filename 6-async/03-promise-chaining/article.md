@@ -1,7 +1,7 @@
 
 # Promises chaining
 
-Let's return to the problem mentioned in the chapter <info:callbacks>:
+Let's return to the problem mentioned in the chapter <info:callbacks>.
 
 - We have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts.
 - How to code it well?
@@ -617,12 +617,13 @@ What happens when an error is not handled? For instance, after the rethrow as in
 ```js untrusted run refresh
 new Promise(function() {
   noSuchFunction(); // Error here (no such function)
-});
+}); // no .catch attached
 ```
 
 Or here:
 
 ```js untrusted run refresh
+// a chain of promises without .catch at the end
 new Promise(function() {
   throw new Error("Whoops!");
 }).then(function() {
@@ -634,9 +635,9 @@ new Promise(function() {
 });
 ```
 
-In theory, nothing should happen. In case of an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
+In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
-In practice, that means that the code is bad. Indeed, how come that there's no error handling?
+In practice, that's usually because of the bad code. Indeed, how come that there's no error handling?
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
 
