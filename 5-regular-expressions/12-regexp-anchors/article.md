@@ -9,7 +9,7 @@ The caret `pattern:^` matches at the beginning of the text, and the dollar `patt
 For instance, let's test if the text starts with `Mary`:
 
 ```js run
-let str1 = 'Mary had a little lamb, it's fleece was white as snow';
+let str1 = "Mary had a little lamb, it's fleece was white as snow";
 let str2 = 'Everywhere Mary went, the lamp was sure to go';
 
 alert( /^Mary/.test(str1) ); // true

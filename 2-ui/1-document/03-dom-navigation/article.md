@@ -157,7 +157,7 @@ The first thing is nice. The second is tolerable, because we can use `Array.from
 ```warn header="DOM collections are read-only"
 DOM collections, and even more -- *all* navigation properties listed in this chapter are read-only.
 
-We can't replace an child by something else assigning `childNodes[i] = ...`.
+We can't replace a child by something else assigning `childNodes[i] = ...`.
 
 Changing DOM needs other methods, we'll see them in the next chapter.
 ```

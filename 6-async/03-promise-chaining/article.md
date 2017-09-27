@@ -49,7 +49,7 @@ As the result is passed along the chain of handlers, we can see a sequence of `a
 
 ![](promise-then-chain.png)
 
-The whole thing works, because a call to `promise.then` returns a promise, so that we can call next `.then` on it.
+The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
 
