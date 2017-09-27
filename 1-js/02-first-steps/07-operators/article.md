@@ -173,7 +173,7 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-Chained assignments evaluate from right to left. First the rightmost expression `2+2` is evaluated then assigned to the variables on the left: `c`, `b` and `a`. At the end, all variables share a single value.
+Chained assignments evaluate from right to left. First the rightmost expression `2 + 2` is evaluated then assigned to the variables on the left: `c`, `b` and `a`. At the end, all variables share a single value.
 
 ````smart header="The assignment operator `\"=\"` returns a value"
 An operator always returns a value. That's obvious for most of them like an addition `+` or a multiplication `*`. But the assignment operator follows that rule too.
