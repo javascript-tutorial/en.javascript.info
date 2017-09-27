@@ -27,3 +27,5 @@ The type of the material is defined by the file inside the folder:
 Each of these files starts from the `# Main header`.
 
 Assets required for the material reside in the same folder.
+
+
