@@ -191,7 +191,7 @@ It supports two forms of syntax:
 1. As an operator: `typeof x`.
 2. Function style: `typeof(x)`.
 
-In other words, it works both with the brackets or without them. The result is the same.
+In other words, it works both with parentheses or without them. The result is the same.
 
 The call to `typeof x` returns a string with the type name:
 
