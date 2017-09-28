@@ -50,7 +50,7 @@ The process is called "bubbling", because events "bubble" from the inner element
 ```warn header="*Almost* all events bubble."
 The key word in this phrase is "almost".
 
-For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather then a rule, most events do bubble.
+For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
 ```
 
 ## event.target
