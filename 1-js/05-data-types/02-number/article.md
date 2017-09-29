@@ -249,10 +249,10 @@ Can we work around the problem? Sure, there're a number of ways:
 2. We can temporarily turn numbers into integers for the maths and then revert it back. It works like this:
 
     ```js run
-    alert( (0.1*10 + 0.2*10) / 10 ); // 0.3
+    alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
     ```
 
-    This works because when we do `0.1*10 = 1` and `0.2 * 10 = 2` then both numbers become integers, and there's no precision loss. 
+    This works because when we do `0.1 * 10 = 1` and `0.2 * 10 = 2` then both numbers become integers, and there's no precision loss. 
 
 3. If we were dealing with a shop, then the most radical solution would be to store all prices in cents and use no fractions at all. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely feasible, so the solutions above help avoid this pitfall.
 
@@ -270,7 +270,7 @@ JavaScript doesn't trigger an error in such events. It does its best to fit the 
 ````
 
 ```smart header="Two zeroes"
-Another funny consequence of the internal representation of numbers is the existance of two zeroes: `0` and `-0`.
+Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
 
 That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero. 
 
