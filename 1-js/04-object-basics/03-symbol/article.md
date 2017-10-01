@@ -106,6 +106,8 @@ user.id = "ID Value";
 
 user.id = "Their id value"
 // boom! overwritten! it did not mean to harm the colleague, but did it!
+
+alert(user.id);
 ```
 
 ### Symbols in a literal
