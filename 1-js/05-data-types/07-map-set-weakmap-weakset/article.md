@@ -16,7 +16,7 @@ The main methods are:
 
 - `new Map()` -- creates the map.
 - `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key.
+- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
 - `map.delete(key)` -- removes the value by the key.
 - `map.clear()` -- clears the map
@@ -148,7 +148,7 @@ for(let amount of recipeMap.values()) {
 
 // iterate over [key, value] entries
 for(let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,50 (and so on)
+  alert(entry); // cucumber,500 (and so on)
 }
 ```
 
@@ -160,7 +160,7 @@ Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
 recipeMap.forEach( (value, key, map) => {
-  alert(`${key}: ${value}`); // cucumber: 50 etc
+  alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
 
