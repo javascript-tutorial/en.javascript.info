@@ -24,7 +24,7 @@ describe("spy", function() {
     let wrappedSum = spy(sum);
 
     assert.equal(wrappedSum(1, 2), 3);
-    assert(spy.calledWith(1, 2));
+    assert(sum.calledWith(1, 2));
   });
 
 
@@ -37,8 +37,8 @@ describe("spy", function() {
     calc.wrappedSum = spy(calc.sum);
 
     assert.equal(calculator.wrappedSum(1, 2), 3);
-    assert(spy.calledWith(1, 2));
-    assert(spy.calledOn(calculator));
+    assert(calc.sum.calledWith(1, 2));
+    assert(calc.sum.calledOn(calculator));
   });
 
 });
