@@ -213,7 +213,7 @@ For instance:
 ```smart header="Historical notes"
 For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but that object is ignored (like if the method didn't exist).
 
-In contrast, `Symbol.toPrimitive` *must* return an primitive, otherwise there will be an error.
+In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise, there will be an error.
 ```
 
 ## Summary
