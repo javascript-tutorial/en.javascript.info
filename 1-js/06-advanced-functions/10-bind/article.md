@@ -72,7 +72,7 @@ setTimeout(() => user.sayHi(), 1000); // Hello, John!
 
 Looks fine, but a slight vulnerability appears in our code structure.
 
-What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, the it will call the wrong object!
+What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, it will call the wrong object!
 
 
 ```js run
