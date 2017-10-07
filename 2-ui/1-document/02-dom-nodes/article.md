@@ -41,7 +41,7 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above element nodes you can click on element nodes. Their children will open/collapse.
+On the picture above, you can click on element nodes and their children will open/collapse.
 ```
 
 Tags are called *element nodes* (or just elements). Nested tags become children of the enclosing ones. As a result we have a tree of elements: `<html>` is at the root, then `<head>` and `<body>` are its children etc.
