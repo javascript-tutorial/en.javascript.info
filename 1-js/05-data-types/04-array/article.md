@@ -113,7 +113,7 @@ There's another use case for arrays -- the data structure named [stack](https://
 It supports two operations:
 
 - `push` adds an element to the end.
-- `pop` takes an element to the end.
+- `pop` takes an element from the end.
 
 So new elements are added or taken always from the "end".
 
