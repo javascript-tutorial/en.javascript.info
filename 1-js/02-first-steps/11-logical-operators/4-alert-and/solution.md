@@ -1,4 +1,4 @@
-The answer: `1`, and then `undefined`.
+The answer: `1`.
 
 ```js run
 alert( alert(1) && alert(2) );
