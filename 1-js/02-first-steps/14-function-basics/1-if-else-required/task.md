@@ -35,4 +35,4 @@ function checkAge(age) {
 }
 ```
 
-Is there any difference in the bahavior of these two variants?
+Is there any difference in the behavior of these two variants?
