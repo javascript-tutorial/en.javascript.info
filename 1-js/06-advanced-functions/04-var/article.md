@@ -61,7 +61,7 @@ alert(i); // 10, "i" is visible after loop, it's a global variable
 */!*
 ```
 
-If a code block in inside a function, then `var` becomes a function-level variable:
+If appears in a code block inside a function, then `var` becomes a function-level variable:
 
 ```js
 function sayHi() {
