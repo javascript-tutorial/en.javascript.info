@@ -43,7 +43,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Notice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
+It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Novice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
 
 So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
 
