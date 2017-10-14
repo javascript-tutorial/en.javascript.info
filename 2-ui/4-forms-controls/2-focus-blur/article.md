@@ -68,7 +68,7 @@ For instance, let's make the visitor unable to leave the input if the value is i
 </style>
 
 Your email please: <input type="email" id="input">
-<input type="text" style="width:200px" placeholder="make email invalid and try to focus here">
+<input type="text" style="width:220px" placeholder="make email invalid and try to focus here">
 
 <script>
   input.onblur = function() {
