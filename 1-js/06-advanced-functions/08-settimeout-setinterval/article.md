@@ -325,7 +325,7 @@ Then the next call is scheduled in `(*)` if we're not done yet.
 
 Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react on other user actions.
 
-The notable thing is that both variants: with and without splitting the job by `setInterval` -- are comparable in speed. There's no much difference in the overall counting time.
+The notable thing is that both variants: with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
 
 To make them closer let's make an improvement.
 
