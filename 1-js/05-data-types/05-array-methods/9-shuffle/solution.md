@@ -12,7 +12,7 @@ shuffle(arr);
 alert(arr);
 ```
 
-That somewhat works, because `Math.random()-0.5` is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+That somewhat works, because `Math.random() - 0.5` is a random number that may be positive or negative, so the sorting function reorders elements randomly.
 
 But because the sorting function is not meant to be used this way, not all permutations have the same probability.
 
