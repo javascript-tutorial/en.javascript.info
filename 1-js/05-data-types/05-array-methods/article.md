@@ -64,13 +64,13 @@ alert( arr ); // ["I", "JavaScript"]
 
 Easy, right? Starting from the index `1` it removed `1` element.
 
-In the next example we remove 3 elements and replace them by the other two:
+In the next example we remove 3 elements and replace them with the other two:
 
 ```js run
 let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
 
-// remove 3 first elements and replace them by another
-arr.splice(0, 3, "Let's", "dance")
+// remove 3 first elements and replace them with another
+arr.splice(0, 3, "Let's", "dance");
 
 alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
 ```
@@ -103,7 +103,7 @@ alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
 
 ```js run
-let arr = [1, 2, 5]
+let arr = [1, 2, 5];
 
 // from index -1 (one step from the end)
 // delete 0 elements,
@@ -155,7 +155,7 @@ It accepts any number of arguments -- either arrays or values.
 
 The result is a new array containing items from `arr`, then `arg1`, `arg2` etc.
 
-If an argument is an array or has `Symbol.isConcatSpreadable` property, then all its elements are copied. Otherwise the argument itself is copied.
+If an argument is an array or has `Symbol.isConcatSpreadable` property, then all its elements are copied. Otherwise, the argument itself is copied.
 
 For instance:
 
@@ -172,7 +172,7 @@ alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays ("spreads" them), other objects even if they look like arrays and added as a whole:
+Normally, it only copies elements from arrays ("spreads" them). Other objects, even if they look like arrays, added as a whole:
 
 ```js run
 let arr = [1, 2];
@@ -211,7 +211,7 @@ These are methods to search for something in an array.
 
 The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
 
-- `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otheriwse `-1`.
+- `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
 - `arr.lastIndexOf(item, from)` -- same, but looks from right to left.
 - `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
 
@@ -515,7 +515,7 @@ The easiest way to grasp that is by example.
 Here we get a sum of array in one line:
 
 ```js run
-let arr = [1, 2, 3, 4, 5]
+let arr = [1, 2, 3, 4, 5];
 
 let result = arr.reduce((sum, current) => sum + current, 0);
 
@@ -528,7 +528,7 @@ Let's see the details of what's going on.
 
 1. On the first run, `sum` is the initial value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the result is `1`.
 2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
-3. On the 3rd run, `sum = 3` and we add one more element ot it, and so on...
+3. On the 3rd run, `sum = 3` and we add one more element to it, and so on...
 
 The calculation flow:
 
@@ -687,7 +687,7 @@ A cheatsheet of array methods:
 - To search among elements:
   - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
-  - `find/filter(func)` -- filter elements of through the function, return first/all values that make it return `true`.
+  - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
 
 - To transform the array:
