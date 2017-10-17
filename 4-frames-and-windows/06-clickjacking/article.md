@@ -39,10 +39,10 @@ iframe { /* iframe from the victim site */
 
 <!-- The url from the victim site -->
 *!*
-<iframe src="facebook.html"></iframe>
+<iframe src="/clickjacking/facebook.html"></iframe>
 
 <button>Click here!</button>
- */!*
+*/!*
 
 <div>...And you're cool (I'm a cool hacker actually)!</div>
 ```
