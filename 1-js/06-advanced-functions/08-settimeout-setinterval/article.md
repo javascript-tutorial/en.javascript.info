@@ -325,7 +325,7 @@ Then the next call is scheduled in `(*)` if we're not done yet.
 
 Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react on other user actions.
 
-The notable thing is that both variants: with and without splitting the job by `setInterval` -- are comparable in speed. There's no much difference in the overall counting time.
+The notable thing is that both variants: with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
 
 To make them closer let's make an improvement.
 
@@ -461,4 +461,4 @@ For example, the in-browser timer may slow down for a lot of reasons:
 - The browser tab is in the background mode.
 - The laptop is on battery.
 
-All that may decrease the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and settings.
+All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and settings.
