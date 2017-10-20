@@ -365,7 +365,7 @@ loadJson('/article/promise-chaining/user.json')
 
 ## Error handling
 
-Asynchronous actions may sometimes fail: in case of an error the corresponding promises becomes rejected. For instance, `fetch` fails if the remote server is not available. We can use `.catch` to handle errors (rejections).
+Asynchronous actions may sometimes fail: in case of an error the corresponding promise becomes rejected. For instance, `fetch` fails if the remote server is not available. We can use `.catch` to handle errors (rejections).
 
 Promise chaining is great at that aspect. When a promise rejects, the control jumps to the closest rejection handler down the chain. That's very convenient in practice.
 
