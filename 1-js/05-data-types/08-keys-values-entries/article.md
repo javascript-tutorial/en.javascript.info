@@ -58,7 +58,7 @@ let user = {
 };
 
 // loop over values
-for(let value of Object.values(user)) {
+for (let value of Object.values(user)) {
   alert(value); // John, then 30
 }
 ```
