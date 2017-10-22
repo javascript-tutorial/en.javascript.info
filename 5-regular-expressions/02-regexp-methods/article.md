@@ -153,7 +153,7 @@ We can use special characters in it:
 |`$&`|the whole match|
 |<code>$&#096;</code>|a part of the string before the match|
 |`$'`|a part of the string after the match|
-|`$n`|if `n` is a 1-2 digit number, then it means the contents of n-th parentheses counting fro left to right|
+|`$n`|if `n` is a 1-2 digit number, then it means the contents of n-th parentheses counting from left to right|
 
 For instance let's use `$&` to replace all entries of `"John"` by `"Mr.John"`:
 
