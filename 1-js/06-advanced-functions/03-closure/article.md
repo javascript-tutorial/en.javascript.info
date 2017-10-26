@@ -296,7 +296,7 @@ let counter2 = makeCounter();
 alert( counter1() ); // 0
 alert( counter1() ); // 1
 
-alert( counter2() ); // 0 (independant)
+alert( counter2() ); // 0 (independent)
 ```
 
 
@@ -423,7 +423,7 @@ For instance, after `if` finishes, the `alert` below won't see the `user`, hence
 For a loop, every run has a separate Lexical Environment. If the variable is declared in `for`, then it's also local to that Lexical Environment:
 
 ```js run
-for(let i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   // Each loop has its own Lexical Environment
   // {i: value}
 }
@@ -567,7 +567,7 @@ Lexical Environment objects that we've been talking about are subjects to same m
       return function() { alert(value); };
     }
 
-    // 3 functions in array, every of them links to Lexical Environment
+    // 3 functions in array, every one of them links to Lexical Environment
     // from the corresponding f() run
     //         LE   LE   LE
     let arr = [f(), f(), f()];
@@ -641,6 +641,6 @@ g();
 ```warn header="See ya!"
 This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
 
-That is not a bug of debugger, but a special feature of V8. Maybe it will be changed some time.
+That is not a bug of debugger, but a special feature of V8. Maybe it will be changed sometime.
 You always can check for it by running examples on this page.
 ```
