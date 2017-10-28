@@ -158,7 +158,7 @@ The `setTimeout` above schedules next call right at the end of the current one `
 
 Recursive `setTimeout` is more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
 
-For instance, we need to write a service that each 5 seconds sends a request to server asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+For instance, we need to write a service that every 5 seconds sends a request to server asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
 
 Here's the pseudocode:
 ```js
@@ -178,7 +178,7 @@ let timerId = setTimeout(function request() {
 ```
 
 
-And if we regulary have CPU-hungry tasks, then we can measure the time taken by the execution and plan the next call sooner or later.
+And if we regularly have CPU-hungry tasks, then we can measure the time taken by the execution and plan the next call sooner or later.
 
 **Recursive `setTimeout` guarantees a delay between the executions, `setInterval` -- does not.**
 
@@ -209,7 +209,7 @@ Did you notice?...
 
 **The real delay between `func` calls for `setInterval` is less than in the code!**
 
-That's natural, because the time taken by `func` execution "consumes" a part of the interval.
+That's natural, because the time is taken by `func` execution "consumes" a part of the interval.
 
 It is possible that `func` execution turns out to be longer than we expected and takes more than 100ms.
 
@@ -235,7 +235,7 @@ setTimeout(function() {...}, 100);
 
 For `setInterval` the function stays in memory until `cancelInterval` is called.
 
-There's a side-effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function any more, it's better to cancel it, even if it's very small.
+There's a side-effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
 ````
 
 ## setTimeout(...,0)
@@ -260,7 +260,7 @@ The first line "puts the call into calendar after 0ms". But the scheduler will o
 
 There's a trick to split CPU-hungry task using `setTimeout`.
 
-For instance, syntax highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To hightlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", that's unacceptable.
+For instance, syntax highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", that's unacceptable.
 
 So we can split the long text to pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on.
 
@@ -276,7 +276,7 @@ let start = Date.now();
 function count() {
 
   // do a heavy job
-  for(let j = 0; j < 1e9; j++) {
+  for (let j = 0; j < 1e9; j++) {
     i++;
   }
 
@@ -401,7 +401,7 @@ Here's the demo:
   let i = 0;
 
   function count() {
-    for(let j = 0; j < 1e6; j++) {
+    for (let j = 0; j < 1e6; j++) {
       i++;
       // put the current i into the <div>
       // (we'll talk more about innerHTML in the specific chapter, should be obvious here)
