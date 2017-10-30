@@ -36,9 +36,9 @@ describe("spy", function() {
 
     calc.wrappedSum = spy(calc.sum);
 
-    assert.equal(calculator.wrappedSum(1, 2), 3);
+    assert.equal(calc.wrappedSum(1, 2), 3);
     assert(calc.sum.calledWith(1, 2));
-    assert(calc.sum.calledOn(calculator));
+    assert(calc.sum.calledOn(calc));
   });
 
 });
