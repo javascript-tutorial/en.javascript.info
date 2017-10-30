@@ -135,7 +135,7 @@ func.call(context, arg1, arg2, ...)
 
 It runs `func` providing the first argument as `this`, and the next as the arguments.
 
-To put it simple, these two calls do almost the same:
+To put it simply, these two calls do almost the same:
 ```js
 func(1, 2, 3);
 func.call(obj, 1, 2, 3)
@@ -241,7 +241,7 @@ There are many solutions possible:
 
 1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
 2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
-3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make a one value from many.
+3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
 
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
@@ -319,7 +319,7 @@ let wrapper = function() {
 
 That's called *call forwarding*. The `wrapper` passes everything it gets: the context `this` and arguments to `anotherFunction` and returns back its result.
 
-When an external code calls such `wrapper`, it is undistinguishable from the call of the original function.
+When an external code calls such `wrapper`, it is indistinguishable from the call of the original function.
 
 Now let's bake it all into the more powerful `cachingDecorator`:
 
@@ -438,7 +438,7 @@ So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. 
 
 *Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
 
-It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one need to be careful if one uses them. Some decorators provide their own properties.
+It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them. Some decorators provide their own properties.
 
 Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
 
