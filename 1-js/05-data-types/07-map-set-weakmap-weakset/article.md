@@ -137,17 +137,17 @@ let recipeMap = new Map([
 ]);
 
 // iterate over keys (vegetables)
-for(let vegetable of recipeMap.keys()) {
+for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomateos, onion
 }
 
 // iterate over values (amounts)
-for(let amount of recipeMap.values()) {
+for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
 // iterate over [key, value] entries
-for(let entry of recipeMap) { // the same as of recipeMap.entries()
+for (let entry of recipeMap) { // the same as of recipeMap.entries()
   alert(entry); // cucumber,500 (and so on)
 }
 ```
@@ -199,7 +199,7 @@ set.add(mary);
 // set keeps only unique values
 alert( set.size ); // 3
 
-for(let user of set) {
+for (let user of set) {
   alert(user.name); // John (then Pete and Mary)
 }
 ```
@@ -213,7 +213,7 @@ We can loop over a set either with `for..of` or using `forEach`:
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
-for(let value of set) alert(value);
+for (let value of set) alert(value);
 
 // the same with forEach:
 set.forEach((value, valueAgain, set) => {
@@ -332,7 +332,7 @@ That's useful for situations when we have a main storage for the objects somewhe
 
 Let's see an example.
 
-For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count any more.
+For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count anymore.
 
 One way would be to keep track of leaving users and clean up the storage manually:
 
@@ -345,7 +345,7 @@ let visitsCountMap = new Map();
 // john is the key for the map
 visitsCountMap.set(john, 123);
 
-// now john leaves us, we don't need him any more
+// now john leaves us, we don't need him anymore
 john = null;
 
 *!*
@@ -364,7 +364,7 @@ let visitsCountMap = new WeakMap();
 
 visitsCountMap.set(john, 123);
 
-// now john leaves us, we don't need him any more
+// now john leaves us, we don't need him anymore
 john = null;
 
 // there are no references except WeakMap,
@@ -408,7 +408,7 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-- `Map` -- is a a collection of keyed values.
+- `Map` -- is a collection of keyed values.
 
     The differences from a regular `Object`:
 
@@ -421,12 +421,12 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
     - Unlike an array, does not allow to reorder elements.
     - Keeps the insertion order.
 
-- `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become unaccessible by other means.
+- `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become inaccessible by other means.
 
     - It does not support operations on the structure as a whole: no `size`, no `clear()`, no iterations.
 
-- `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become unaccessible by other means.
+- `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become inaccessible by other means.
 
     - Also does not support `size/clear()` and iterations.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in additional to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up aumatically.
+`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up automatically.
