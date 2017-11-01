@@ -1,6 +1,6 @@
 # Rest parameters and spread operator
 
-Many JavaScript built-in functions support on arbitrary number of arguments.
+Many JavaScript built-in functions support an arbitrary number of arguments.
 
 For instance:
 
@@ -35,7 +35,7 @@ For instance, to gather all arguments into array `args`:
 function sumAll(...args) { // args is the name for the array
   let sum = 0;
 
-  for(let arg of args) sum += arg;
+  for (let arg of args) sum += arg;
 
   return sum;
 }
@@ -207,7 +207,7 @@ alert( [...str] ); // H,e,l,l,o
 
 The spread operator internally uses iterators to gather elements, the same way as `for..of` does.
 
-So, for a string, `for..of` returns characters and `...str` becomes `"h","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
 
 For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
 
