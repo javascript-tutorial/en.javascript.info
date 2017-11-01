@@ -55,7 +55,7 @@ let scrollHeight = Math.max(
   document.body.clientHeight, document.documentElement.clientHeight
 );
 
-alert('Full document width, with scrolled out part: ' + scrollHeight);
+alert('Full document height, with scrolled out part: ' + scrollHeight);
 ```
 
 Why so? Better don't ask. These inconsistencies come from ancient times, not a "smart" logic.

@@ -99,7 +99,7 @@ let user = {
 
 // loop over keys-and-values
 *!*
-for(let [key, value] of Object.entries(user)) {
+for (let [key, value] of Object.entries(user)) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
@@ -113,7 +113,7 @@ user.set("name", "John");
 user.set("age", "30");
 
 *!*
-for(let [key, value] of user.entries()) {
+for (let [key, value] of user.entries()) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
@@ -136,7 +136,7 @@ alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignmemnt.
+The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
 
 ### Default values
 
@@ -155,7 +155,7 @@ If we want a "default" value to replace the missing one, we can provide it using
 ```js run
 *!*
 // default values
-let [name="Guest", surname="Anonymous"] = ["Julius"];
+let [name = "Guest", surname = "Anonymous"] = ["Julius"];
 */!*
 
 alert(name);    // Julius (from array)
@@ -168,7 +168,7 @@ For instance, here we use the `prompt` function for two defaults. But it will ru
 
 ```js run
 // runs only prompt for surname
-let [name=prompt('name?'), surname=prompt('surname?')] = ["Julius"];
+let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
 alert(name);    // Julius (from array)
 alert(surname); // whatever prompt gets
@@ -248,7 +248,7 @@ let options = {
 };
 
 *!*
-let {width=100, height=200, title} = options;
+let {width = 100, height = 200, title} = options;
 */!*
 
 alert(title);  // Menu
@@ -266,7 +266,7 @@ let options = {
 };
 
 *!*
-let {width=prompt("width?"), title=prompt("title?")} = options;
+let {width = prompt("width?"), title = prompt("title?")} = options;
 */!*
 
 alert(title);  // Menu
@@ -281,7 +281,7 @@ let options = {
 };
 
 *!*
-let {width:w=100, height:h=200, title} = options;
+let {width: w = 100, height: h = 200, title} = options;
 */!*
 
 alert(title);  // Menu
@@ -434,7 +434,7 @@ let options = {
 function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
   // title, items – taken from options,
   // width, height – defaults used
-  alert( title + ' ' + width + ' ' + height ); // My Menu 100 200
+  alert( `${title} ${width} ${height}` ); // My Menu 200 100
   alert( items ); // Item1, Item2
 }
 
@@ -452,12 +452,12 @@ let options = {
 *!*
 function showMenu({
   title = "Untitled",
-  width:w = 100,  // width goes to w
-  height:h = 200, // height goes to h
+  width: w = 100,  // width goes to w
+  height: h = 200, // height goes to h
   items: [item1, item2] // items first element goes to item1, second to item2
 }) {
 */!*
-  alert( title + ' ' + w + ' ' + h ); // My Menu 100 200
+  alert( `${title} ${w} ${h}` ); // My Menu 100 200
   alert( item1 ); // Item1
   alert( item2 ); // Item2
 }
@@ -487,8 +487,8 @@ We can fix this by making `{}` the default value for the whole destructuring thi
 
 ```js run
 // simplified parameters a bit for clarity
-function showMenu(*!*{ title="Menu", width=100, height=200 } = {}*/!*) {
-  alert( title + ' ' + width + ' ' + height );
+function showMenu(*!*{ title = "Menu", width = 100, height = 200 } = {}*/!*) {
+  alert( `${title} ${width} ${height}` );
 }
 
 showMenu(); // Menu 100 200

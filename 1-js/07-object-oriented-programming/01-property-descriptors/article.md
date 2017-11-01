@@ -15,7 +15,7 @@ Object properties, besides a **`value`**, have three special attributes (so-call
 - **`enumerable`** -- if `true`, then listed in loops, otherwise not listed.
 - **`configurable`** -- if `true`, the property can be deleted and these attributes can be modified, otherwise not.
 
-We didn't see them yet, because generally they do not show up. When we create a property "the usual way", all of them are `true`. But we also can change them any time.
+We didn't see them yet, because generally they do not show up. When we create a property "the usual way", all of them are `true`. But we also can change them anytime.
 
 First, let's see how to get those flags.
 
@@ -156,7 +156,7 @@ let user = {
 };
 
 // By default, both our properties are listed:
-for(let key in user) alert(key); // name, toString
+for (let key in user) alert(key); // name, toString
 ```
 
 If we don't like it, then we can set `enumerable:false`. Then it won't appear in `for..in` loop, just like the built-in one:
@@ -178,7 +178,7 @@ Object.defineProperty(user, "toString", {
 *!*
 // Now our toString disappears:
 */!*
-for(let key in user) alert(key); // name
+for (let key in user) alert(key); // name
 ```
 
 Non-enumerable properties are also excluded from `Object.keys`:
@@ -282,7 +282,7 @@ let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
 Normally when we clone an object, we use an assignment to copy properties, like this:
 
 ```js
-for(let key in user) {
+for (let key in user) {
   clone[key] = user[key]
 }
 ```

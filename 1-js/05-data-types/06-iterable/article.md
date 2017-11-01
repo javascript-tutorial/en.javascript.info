@@ -121,7 +121,7 @@ Arrays and strings are most widely used built-in iterables.
 For a string, `for..of` loops over its characters:
 
 ```js run
-for(let char of "test") {
+for (let char of "test") {
   alert( char ); // t, then e, then s, then t
 }
 ```
@@ -130,8 +130,8 @@ And it works right with surrogate pairs!
 
 ```js run
 let str = '𝒳😂';
-for(let char of str) {
-    alert(char); // 𝒳, and then 😂
+for (let char of str) {
+    alert( char ); // 𝒳, and then 😂
 }
 ```
 
@@ -139,7 +139,7 @@ for(let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
-But to understand things a little bit more deeper let's see how to create an iterator explicitly.
+But to understand things a little bit deeper let's see how to create an iterator explicitly.
 
 We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
 
@@ -151,7 +151,7 @@ let str = "Hello";
 
 let iterator = str[Symbol.iterator]();
 
-while(true) {
+while (true) {
   let result = iterator.next();
   if (result.done) break;
   alert(result.value); // outputs characters one by one
@@ -184,7 +184,7 @@ let arrayLike = { // has indexes and length => array-like
 
 *!*
 // Error (no Symbol.iterator)
-for(let item of arrayLike) {}
+for (let item of arrayLike) {}
 */!*
 ```
 
@@ -258,7 +258,7 @@ Technically here it does the same as:
 let str = '𝒳😂';
 
 let chars = []; // Array.from internally does the same loop
-for(let char of str) {
+for (let char of str) {
   chars.push(char);
 }
 
