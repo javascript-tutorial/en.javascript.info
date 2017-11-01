@@ -100,7 +100,7 @@ There are also their UTC-counterparts, that return day, month, year and so on fo
 If your local time zone is shifted relative to UTC, then the code below shows different hours:
 
 ```js run
-// currend date
+// current date
 let date = new Date();
 
 // the hour in your current time zone
@@ -208,7 +208,7 @@ let date = new Date();
 alert(+date); // the number of milliseconds, same as date.getTime()
 ```
 
-The important side effect: dates can be substracted, the result is their difference in ms.
+The important side effect: dates can be subtracted, the result is their difference in ms.
 
 That can be used for time measurements:
 
@@ -251,7 +251,7 @@ for (let i = 0; i < 100000; i++) {
 let end = Date.now(); // done
 */!*
 
-alert( `The loop took ${end - start} ms` ); // substract numbers, not dates
+alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
 ```
 
 ## Benchmarking
@@ -262,7 +262,7 @@ For instance, let's measure two functions that calculate the difference between 
 
 ```js
 // we have date1 and date2, which function faster returns their difference in ms?
-function diffSubstract(date1, date2) {
+function diffSubtract(date1, date2) {
   return date2 - date1;
 }
 
@@ -281,7 +281,7 @@ The first idea may be to run them many times in a row and measure the time diffe
 Let's measure:
 
 ```js run
-function diffSubstract(date1, date2) {
+function diffSubtract(date1, date2) {
   return date2 - date1;
 }
 
@@ -298,7 +298,7 @@ function bench(f) {
   return Date.now() - start;
 }
 
-alert( 'Time of diffSubstract: ' + bench(diffSubstract) + 'ms' );
+alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
 alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
@@ -306,7 +306,7 @@ Wow! Using `getTime()` is so much faster! That's because there's no type convers
 
 Okay, we have something. But that's not a good benchmark yet.
 
-Imagine that at the time of running `bench(diffSubstract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` the work has finished.
+Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` the work has finished.
 
 A pretty real scenario for a modern multi-process OS.
 
@@ -317,7 +317,7 @@ As a result, the first benchmark will have less CPU resources than the second. T
 Here's the code example:
 
 ```js run
-function diffSubstract(date1, date2) {
+function diffSubtract(date1, date2) {
   return date2 - date1;
 }
 
@@ -340,12 +340,12 @@ let time2 = 0;
 *!*
 // run bench(upperSlice) and bench(upperLoop) each 10 times alternating
 for (let i = 0; i < 10; i++) {
-  time1 += bench(diffSubstract);
+  time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Total time for diffSubstract: ' + time1 );
+alert( 'Total time for diffSubtract: ' + time1 );
 alert( 'Total time for diffGetTime: ' + time2 );
 ```
 
@@ -353,12 +353,12 @@ Modern JavaScript engines start applying advanced optimizations only to "hot cod
 
 ```js
 // added for "heating up" prior to the main loop
-bench(diffSubstract);
+bench(diffSubtract);
 bench(diffGetTime);
 
 // now benchmark
 for (let i = 0; i < 10; i++) {
-  time1 += bench(diffSubstract);
+  time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 ```
@@ -405,8 +405,8 @@ alert(date);
 - Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
 - Months are counted from zero (yes, January is a zero month).
 - Days of week in `getDay()` are also counted from zero (that's Sunday).
-- `Date` auto-corrects itself when out-of-range components are set. Good for adding/substracting days/months/hours.
-- Dates can be substracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp if converted to a number.
+- `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
+- Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
 - Use `Date.now()` to get the current timestamp fast.
 
 Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
@@ -417,7 +417,7 @@ Also, sometimes we need more precise time measurements. JavaScript itself does n
 alert(`Loading started ${performance.now()}ms ago`);
 // Something like: "Loading started 34731.26000000001ms ago"
 // .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, but only 3 first are correct
+// more than 3 digits after the decimal point are precision errors, but only the first 3 are correct
 ```
 
 Node.JS has `microtime` module and other ways. Technically, any device and environment allows to get more precision, it's just not in `Date`.
