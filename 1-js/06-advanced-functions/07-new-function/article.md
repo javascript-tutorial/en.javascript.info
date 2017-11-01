@@ -10,20 +10,22 @@ There's one more way to create a function. It's rarely used, but sometimes there
 The syntax for creating a function:
 
 ```js
-let func = new Function('a', 'b', 'return a + b');
+let func = new Function ([arg1[, arg2[, ...argN]],] functionBody)
 ```
 
-All arguments of `new Function` are strings. Parameters go first, and the body is the last.
+In other words, function parameters (or, more precise, names for them) go first, and the body is the last. All arguments are strings.
 
-For instance:
+That's easy to understand by example. 
+
+For instance, here's a function with two arguments:
 
 ```js run
-let sum = new Function('arg1', 'arg2', 'return arg1 + arg2');
+let sum = new Function('a', 'b', 'return a + b'); 
 
 alert( sum(1, 2) ); // 3
 ```
 
-If there are no arguments, then there will be only body:
+If there are no arguments, then there's only one single argument, function body:
 
 ```js run
 let sayHi = new Function('alert("Hello")');
