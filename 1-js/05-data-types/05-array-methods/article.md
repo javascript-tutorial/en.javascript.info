@@ -231,6 +231,13 @@ Note that the methods use `===` comparison. So, if we look for `false`, it finds
 
 If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
 
+Also, a very minor difference of `include` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+
+```js run
+const arr = [NaN];
+alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
+alert( arr.includes(NaN) );// true (correct)
+```
 
 ### find and findIndex
 
@@ -703,7 +710,7 @@ A cheatsheet of array methods:
 - Additionally:
   - `Array.isArray(arr)` checks `arr` for being an array.
 
-Of all these methods only `sort`, `reverse` and `splice` modify the array itself, the other ones only return a value.
+Please note that methods `sort`, `reverse` and `splice` modify the array itself.
 
 These methods are the most used ones, they cover 99% of use cases. But there are few others:
 
