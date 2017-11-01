@@ -30,7 +30,7 @@ alert( "function g()".match(/g\(\)/) ); // "g()"
 If we're looking for a backslash `\`, then we should double it:
 
 ```js run
-alert( "1\2".match(/\\/) ); // '\'
+alert( "1\\2".match(/\\/) ); // '\'
 ```
 
 ## A slash
