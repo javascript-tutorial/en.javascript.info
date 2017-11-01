@@ -12,7 +12,7 @@ Like this:
 
 Please note two important features of the scroll:
 
-1. **The scroll is "elastic".** We can scroll a little beyound the document start or end in some browsers/devices (empty space below is shown, and then the document will automatically "bounces back" to normal).
+1. **The scroll is "elastic".** We can scroll a little beyond the document start or end in some browsers/devices (empty space below is shown, and then the document will automatically "bounces back" to normal).
 2. **The scroll is imprecise.** When we scroll to page end, then we may be in fact like 0-50px away from the real document bottom.
 
 So, "scrolling to the end" should mean that the visitor is no more than 100px away from the document end.
