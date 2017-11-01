@@ -12,6 +12,6 @@ let arr = [ john, pete, mary ];
 sortByName(arr);
 
 // now sorted is: [john, mary, pete]
-alert(arr[1].name) // Mary
+alert(arr[1].name); // Mary
 ```
 
