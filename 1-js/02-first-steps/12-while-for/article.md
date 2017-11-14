@@ -239,7 +239,7 @@ The `continue` directive is a "lighter version" of `break`. It doesn't stop the 
 
 We can use it if we're done on the current iteration and would like to move on to the next.
 
-The loop above uses `continue` to output only odd values:
+The loop below uses `continue` to output only odd values:
 
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
