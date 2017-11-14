@@ -68,7 +68,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 
 ## OR seeks the first truthy value
 
-The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScipt.
+The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScript.
 
 The extended algorithm works as follows.
 
