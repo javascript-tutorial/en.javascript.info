@@ -154,8 +154,8 @@ let user = { name: "John" };
 let admin = { name: "Admin" };
 
 // use call to pass different objects as "this"
-sayHi.call( user ); // John
-sayHi.call( admin ); // Admin
+sayHi.call( user ); // this = John
+sayHi.call( admin ); // this = Admin
 ```
 
 And here we use `call` to call `say` with the given context and phrase:
