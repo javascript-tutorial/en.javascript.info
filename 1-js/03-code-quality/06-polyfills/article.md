@@ -24,7 +24,7 @@ Actually, there are two parts in Babel:
     There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
 
     Two interesting polyfills are:
-    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
+    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/).
     - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
 
 So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
