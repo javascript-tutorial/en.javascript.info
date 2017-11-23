@@ -90,7 +90,7 @@ There are 7 data types:
 - `boolean` for logical values: `true/false`,
 - `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
 - `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we didn't learn them yet.
+- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
 
 The `typeof` operator returns the type for a value, with two exceptions:
 ```js
