@@ -12,7 +12,7 @@ Read them carefully and find out who you are -- a ninja, a novice, or maybe a co
 
 
 ```warn header="Irony detected"
-Ninja paths lie ahead. Knowledge is dangerous in hands of a fool.
+Many start following ninja paths. Few succeed. Even a blunt sword is dangerous in hands of a fool. 
 ```
 
 
