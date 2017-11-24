@@ -1,8 +1,8 @@
 # Ninja code
 
-Programmer ninjas of the past used these tricks to make code maintainers cry. 
+Programmer ninjas of the past used these tricks to make code maintainers cry.
 
-Code review gurus look for them in test tasks. 
+Code review gurus look for them in test tasks.
 
 Novice developers sometimes use them even better than programmer ninjas.
 
@@ -12,7 +12,7 @@ Read them carefully and find out who you are -- a ninja, a novice, or maybe a co
 
 
 ```warn header="Irony detected"
-Ninja paths lie ahead.
+Ninja paths lie ahead. Knowledge is dangerous in hands of a fool.
 ```
 
 
