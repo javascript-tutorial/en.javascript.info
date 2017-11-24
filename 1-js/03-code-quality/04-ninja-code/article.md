@@ -12,7 +12,7 @@ Read them carefully and find out who you are -- a ninja, a novice, or maybe a co
 
 
 ```warn header="Irony detected"
-Ninja path lies ahead. You've been warned. 
+Ninja paths lie ahead.
 ```
 
 
