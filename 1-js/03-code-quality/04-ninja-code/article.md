@@ -1,14 +1,20 @@
 # Ninja code
 
-Programmer ninjas of the past used these tricks to make code maintainers cry. Code review gurus look for them in test tasks. Novice developers sometimes use them even better than programmer ninjas.
+Programmer ninjas of the past used these tricks to make code maintainers cry. 
+
+Code review gurus look for them in test tasks. 
+
+Novice developers sometimes use them even better than programmer ninjas.
 
 Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
 
 [cut]
 
+
 ```warn header="Irony detected"
-These are rules of writing bad code. Just... You know, some people miss the point.
+Ninja path lies ahead. You've been warned. 
 ```
+
 
 ## Brevity is the soul of wit
 
