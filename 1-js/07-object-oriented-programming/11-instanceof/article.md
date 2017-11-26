@@ -70,13 +70,13 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 
     In other words, compare:
     ```js
-    obj.__proto__ == Class.prototype
-    obj.__proto__.__proto__ == Class.prototype
-    obj.__proto__.__proto__.__proto__ == Class.prototype
+    obj.__proto__ === Class.prototype
+    obj.__proto__.__proto__ === Class.prototype
+    obj.__proto__.__proto__.__proto__ === Class.prototype
     ...
     ```
 
-    In the example above `Rabbit.prototype == rabbit.__proto__`, so that gives the answer immediately.
+    In the example above `Rabbit.prototype === rabbit.__proto__`, so that gives the answer immediately.
 
     In the case of an inheritance, `rabbit` is an instance of the parent class as well:
 
@@ -88,8 +88,8 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     *!*
     alert(rabbit instanceof Animal); // true
     */!*
-    // rabbit.__proto__ == Rabbit.prototype
-    // rabbit.__proto__.__proto__ == Animal.prototype (match!)
+    // rabbit.__proto__ === Rabbit.prototype
+    // rabbit.__proto__.__proto__ === Animal.prototype (match!)
     ```
 
 Here's the illustration of what `rabbit instanceof Animal` compares with `Animal.prototype`:
@@ -117,7 +117,7 @@ alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
-That's one of reasons to avoid changing `prototype`. Just to keep safe.
+That's one of the reasons to avoid changing `prototype`. Just to keep safe.
 
 ## Bonus: Object toString for the type
 
@@ -130,9 +130,9 @@ alert(obj); // [object Object]
 alert(obj.toString()); // the same
 ```
 
-That's their implementation of `toString`. But there's a hidden feature thank makes `toString` actually much more powerful than that. We can use it as an extended `typeof` and an alternative for `instanceof`.
+That's their implementation of `toString`. But there's a hidden feature that makes `toString` actually much more powerful than that. We can use it as an extended `typeof` and an alternative for `instanceof`.
 
-Sounds strange? Indeed. Let's demistify.
+Sounds strange? Indeed. Let's demystify.
 
 By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring), the built-in `toString` can be extracted from the object and executed in the context of any other value. And its result depends on that value.
 
@@ -175,7 +175,7 @@ For instance:
 
 ```js run
 let user = {
-  [Symbol.toStringTag]: 'User'
+  [Symbol.toStringTag]: "User"
 };
 
 alert( {}.toString.call(user) ); // [object User]
