@@ -61,7 +61,7 @@ There are only two top-level exclusions:
 1. Spaces and newlines before `<head>` are ignored for historical reasons,
 2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as HTML spec requires that all content must be inside `<body>`. So there may be no spaces after `</body>`.
 
-In other cases everything's honest -- if there are spaces (just like any character) in the document, then they text nodes in DOM, and if we remove them, then there won't be any.
+In other cases everything's honest -- if there are spaces (just like any character) in the document, then they become text nodes in DOM, and if we remove them, then there won't be any.
 
 Here are no space-only text nodes:
 
@@ -79,7 +79,7 @@ drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
 ```smart header="Edge spaces and in-between empty text are usually hidden in tools"
-Browser tools (to be covered soon) that work with DOM usually do not show spaces at start/end of the text and empty text nodes (line-breaks) between tags. .
+Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
 
 That's because they are mainly used to decorate HTML, and do not affect (in most cases) how it is shown.
 
@@ -143,7 +143,7 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
-You see? The `<tbody>` has appeared out of nowhere. Should keep in mind while working with tables to evade surprises.
+You see? The `<tbody>` has appeared out of nowhere. Should keep in mind while working with tables to avoid surprises.
 ````
 
 ## Other node types
@@ -193,7 +193,7 @@ There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usu
 
 ## See it yourself
 
-To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up DOM at instant.
+To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up DOM at an instant.
 
 ## In the browser inspector
 
@@ -207,9 +207,9 @@ Should look like this:
 
 You can see the DOM, click on elements, see their details and so on.
 
-Please note that the DOM structure in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of time we are interested in element nodes.
+Please note that the DOM structure in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of the time we are interested in element nodes.
 
-Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button in the left-upper corner allows to choose a node from the webpage using a mouse (or other pointer device) and "inspect" it (scroll to it in the elements tab). Works great when we have a huge HTML page and would like to see the DOM of a particular place in it.
+Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button in the left-upper corner allows to choose a node from the webpage using a mouse (or other pointer devices) and "inspect" it (scroll to it in the elements tab). Works great when we have a huge HTML page and would like to see the DOM of a particular place in it.
 
 Another way to do it would be just right-clicking on a webpage and selecting "Inspect" in the context menu.
 
