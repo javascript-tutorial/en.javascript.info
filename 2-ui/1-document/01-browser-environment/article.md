@@ -8,7 +8,7 @@ A host environment provides platform-specific objects and functions additionally
 
 [cut]
 
-Here's a bird-eye view of what we have when JavaScript runs in a web-browser:
+Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
 
 ![](windowObjects.png)
 
@@ -43,10 +43,10 @@ The `document` object gives access to the page content. We can change or create 
 For instance:
 ```js run
 // change the background color to red
-document.body.style.background = 'red';
+document.body.style.background = "red";
 
 // change it back after 1 second
-setTimeout(() => document.body.style.background = '', 1000);
+setTimeout(() => document.body.style.background = "", 1000);
 ```
 
 Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. By chance, there are two working groups who develop it:
@@ -54,7 +54,7 @@ Here we used `document.body.style`, but there's much, much more. Properties and 
 1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
 2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), publishing at <https://dom.spec.whatwg.org>.
 
-As it happens, the two groups don't always agree, so we have like 2 sets of standards. But they are in the tight contact and eventually things merge. So the documentation that you can find on the given resources is very similar, there's like 99% match. There are very minor differences, you probably won't notice them.
+As it happens, the two groups don't always agree, so we have like 2 sets of standards. But they are in the tight contact and eventually things merge. So the documentation that you can find on the given resources is very similar, there's about 99% match. There are very minor differences, you probably won't notice them.
 
 Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
 
@@ -82,15 +82,15 @@ Browser Object Model (BOM) are additional objects provided by the browser (host 
 
 For instance:
 
-- [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operation system. There are many properties, but two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- [location](mdn:api/Window/location) object allows to read the current URL and redirect the browser to a new one.
+- [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
+- [location](mdn:api/Window/location) object allows to read the current URL and redirects the browser to a new one.
 
 Here's how we can use the `location` object:
 
 ```js run
 alert(location.href); // shows current URL
 if (confirm("Go to wikipedia?")) {
-  location.href = 'https://wikipedia.org'; // redirect the browser to another URL
+  location.href = "https://wikipedia.org"; // redirect the browser to another URL
 }
 ```
 
@@ -118,6 +118,6 @@ HTML specification
 
 Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is the most complex part.
 
-Please note the links above, because there's so many stuff to learn, it's impossible to cover and remember everything.
+Please note the links above, because there's so much stuff to learn, it's impossible to cover and remember everything.
 
 When you'd like to read about a property or a method -- the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice one, but reading the corresponding spec may be better: more complex and longer to read, but will make your fundamental knowledge sound and complete.
