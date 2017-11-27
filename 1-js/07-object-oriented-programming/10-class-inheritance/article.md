@@ -161,7 +161,7 @@ setTimeout(function() { super.stop() }, 1000);
 
 ## Overriding constructor
 
-With constructors, things are is a little bit tricky.
+With constructors it gets a little bit tricky.
 
 Till now, `Rabbit` did not have its own `constructor`.
 
@@ -279,7 +279,7 @@ Here, `rabbit.eat()` should call `animal.eat()` method of the parent object:
 let animal = {
   name: "Animal",
   eat() {
-    alert(this.name + " eats.");
+    alert(`${this.name} eats.`);
   }
 };
 
@@ -307,7 +307,7 @@ Now let's add one more object to the chain. We'll see how things break:
 let animal = {
   name: "Animal",
   eat() {
-    alert(this.name + " eats.");
+    alert(`${this.name} eats.`);
   }
 };
 
@@ -332,7 +332,7 @@ longEar.eat(); // Error: Maximum call stack size exceeded
 */!*
 ```
 
-The code doesn't work any more! We can see the error trying to call `longEar.eat()`.
+The code doesn't work anymore! We can see the error trying to call `longEar.eat()`.
 
 It may be not that obvious, but if we trace `longEar.eat()` call, then we can see why. In both lines `(*)` and `(**)` the value of `this` is the current object (`longEar`). That's essential: all object methods get the current object as `this`, not a prototype or something.
 
@@ -382,7 +382,7 @@ Let's see how it works for `super` -- again, using plain objects:
 let animal = {
   name: "Animal",
   eat() {         // [[HomeObject]] == animal
-    alert(this.name + " eats.");
+    alert(`${this.name} eats.`);
   }
 };
 
@@ -490,10 +490,10 @@ class Animal {}
 class Rabbit extends Animal {}
 
 // for static propertites and methods
-alert(Rabbit.__proto__ == Animal); // true
+alert(Rabbit.__proto__ === Animal); // true
 
 // and the next step is Function.prototype
-alert(Animal.__proto__ == Function.prototype); // true
+alert(Animal.__proto__ === Function.prototype); // true
 
 // that's in addition to the "normal" prototype chain for object methods
 alert(Rabbit.prototype.__proto__ === Animal.prototype);
@@ -523,7 +523,7 @@ For instance, here `PowerArray` inherits from the native `Array`:
 // add one more method to it (can do more)
 class PowerArray extends Array {
   isEmpty() {
-    return this.length == 0;
+    return this.length === 0;
   }
 }
 
@@ -551,7 +551,7 @@ For example, here due to `Symbol.species` built-in methods like `map`, `filter` 
 ```js run
 class PowerArray extends Array {
   isEmpty() {
-    return this.length == 0;
+    return this.length === 0;
   }
 
 *!*
