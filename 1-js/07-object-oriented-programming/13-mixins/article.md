@@ -2,7 +2,7 @@
 
 In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]` for an object. And a class may extend only one other class.
 
-But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bycicle`, and want to make a `StreetSweepingBycicle`.
+But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make a `StreetSweepingBicycle`.
 
 Or, talking about programming, we have a class `Renderer` that implements templating and a class `EventEmitter` that implements event handling, and want to merge these functionalities together with a class `Page`, to make a page that can use templates and emit events.
 
@@ -24,10 +24,10 @@ For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`
 */!*
 let sayHiMixin = {
   sayHi() {
-    alert("Hello " + this.name);
+    alert(`Hello ${this.name}`);
   },
   sayBye() {
-    alert("Bye " + this.name);
+    alert(`Bye ${this.name}`);
   }
 };
 
@@ -44,7 +44,7 @@ class User {
 Object.assign(User.prototype, sayHiMixin);
 
 // now User can say hi
-new User("Dude").sayHi(); // Hi Dude!
+new User("Dude").sayHi(); // Hello Dude!
 ```
 
 There's no inheritance, but a simple method copying. So `User` may extend some other class and also include the mixin to "mix-in" the additional methods, like this:
@@ -75,10 +75,10 @@ let sayHiMixin = {
     *!*
     // call parent method
     */!*
-    super.say("Hello " + this.name);
+    super.say(`Hello ${this.name}`);
   },
   sayBye() {
-    super.say("Bye " + this.name);
+    super.say(`Bye ${this.name}`);
   }
 };
 
@@ -138,8 +138,8 @@ let eventMixin = {
   off(eventName, handler) {
     let handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
-    for(let i = 0; i < handlers.length; i++) {
-      if (handlers[i] == handler) {
+    for (let i = 0; i < handlers.length; i++) {
+      if (handlers[i] === handler) {
         handlers.splice(i--, 1);
       }
     }
@@ -183,7 +183,7 @@ let menu = new Menu();
 
 // call the handler on selection:
 *!*
-menu.on("select", value => alert("Value selected: " + value));
+menu.on("select", value => alert(`Value selected: ${value}`));
 */!*
 
 // triggers the event => shows Value selected: 123
