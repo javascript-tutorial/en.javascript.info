@@ -40,7 +40,7 @@ The following options deserve your attention:
 - [Atom](https://atom.io/) (cross-platform, free).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- Vim and Emacs are also cool, if you know how to use them.
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool, if you know how to use them.
 
 ## My favorites
 
