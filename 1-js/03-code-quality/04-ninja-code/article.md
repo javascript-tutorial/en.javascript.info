@@ -80,7 +80,7 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     Give them a try. A young ninja may wonder -- do such names make the code worse? Actually, yes!
 
-    From one hand, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all!
+    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all!
 
     Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store? There's just no way to figure out without a good meditation!
 
