@@ -26,7 +26,7 @@ For other cases, like making the text red, adding a background icon -- describe 
 
 ## className and classList
 
-Changing a class is one of the most often actions in scripts.
+Changing a class is one of the most often used actions in scripts.
 
 In the ancient time, there was a limitation in JavaScript: a reserved word like `"class"` could not be an object property. That limitation does not exist now, but at that time it was impossible to have a `"class"` property, like `elem.class`.
 
@@ -76,7 +76,7 @@ Besides that, `classList` is iterable, so we can list all classes like this:
 ```html run
 <body class="main page">
   <script>
-    for(let name of document.body.classList) {
+    for (let name of document.body.classList) {
       alert(name); // main, and then page
     }
   </script>
@@ -223,7 +223,7 @@ element
 : Element to read the value for.
 
 pseudo
-: A pseudo-element if required, for instance `::before`. An empty string or no argument mean the element itself.
+: A pseudo-element if required, for instance `::before`. An empty string or no argument means the element itself.
 
 The result is an object with style properties, like `elem.style`, but now with respect to all CSS classes.
 
@@ -250,10 +250,10 @@ For instance:
 ```smart header="Computed and resolved values"
 There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values):
 
-1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the  result of the CSS cascade. If can look like `height:1em` or `font-size:125%`.
+1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the  result of the CSS cascade. It can look like `height:1em` or `font-size:125%`.
 2. A *resolved* style value is the one finally applied to the element. Values like `1em` or `125%` are relative. The browser takes the computed value and makes all units fixed and absolute, for instance: `height:20px` or `font-size:16px`. For geometry properties resolved values may have a floating point, like `width:50.5px`.
 
-Long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
+A long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
 
 So nowadays `getComputedStyle` actually returns the resolved value of the property.
 ```
@@ -283,7 +283,7 @@ Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
 
-JavaScript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to test if a link was visited and hence to break the privacy.
+JavaScript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no sideway for an evil page to test if a link was visited and hence to break the privacy.
 ```
 
 ## Summary
