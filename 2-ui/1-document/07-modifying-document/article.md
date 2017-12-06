@@ -10,7 +10,7 @@ First we'll see a simple example and then explain the methods.
 
 ## Example: show a message
 
-For the start, let's see how to add a message on the page that looks nicer than `alert`.
+For a start, let's see how to add a message on the page that looks nicer than `alert`.
 
 Here's how it will look:
 
@@ -153,7 +153,7 @@ These methods are "old school": they exist from the ancient times and we can mee
 
 For instance, how to insert *html* if we have it as a string? Or, given a node, how to insert another node *before* it? Of course, all that is doable, but not in an elegant way.
 
-So there exists two other sets of insertion methods to handle all cases easily.
+So there exist two other sets of insertion methods to handle all cases easily.
 
 ### prepend/append/before/after
 
@@ -279,7 +279,7 @@ The method has two brothers:
 - `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` in inserted "as text" instead of HTML,
 - `elem.insertAdjacentElement(where, elem)` -- the same syntax, but inserts an element.
 
-They exist mainly to make the syntax "uniform". In practice, most of time only `insertAdjacentHTML` is used, because for elements and text we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
+They exist mainly to make the syntax "uniform". In practice, most of the time only `insertAdjacentHTML` is used, because for elements and text we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
 
 So here's an alternative variant of showing a message:
 
