@@ -99,7 +99,7 @@ There are subtle differences between `let` and `var`, but they do not matter for
 
 We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
 
-For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
+For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
 
 ![](variable.png)
 
