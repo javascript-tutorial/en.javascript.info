@@ -99,7 +99,7 @@ There are subtle differences between `let` and `var`, but they do not matter for
 
 We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
 
-For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
+For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
 
 ![](variable.png)
 
@@ -298,9 +298,9 @@ Please name the variables sensibly. Take time to think if needed.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code is written by a beginner and which by an experienced developer.
 
-In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from scratch. And when we return to the code after some time of doing something else, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
+In a real project, most of the time is spent on modifying and extending the existing code base, rather than writing something completely separate from scratch. And when we return to the code after some time of doing something else, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
 
-Please spend some time thinking about the right name for a variable before declaring it. That will repay you a lot.
+Please spend some time thinking about the right name for a variable before declaring it. This will repay you a lot.
 
 Some good-to-follow rules are:
 
