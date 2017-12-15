@@ -1,16 +1,16 @@
 
 # Map, Set, WeakMap and WeakSet
 
-Now we know the following complex data structures:
+Now we've learned about the following complex data structures:
 
 - Objects for storing keyed collections.
 - Arrays for storing ordered collections.
 
-But that's not enough for real life. That's why there also exist `Map` and `Set`.
+But that's not enough for real life. That's why `Map` and `Set` also exist.
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items. Just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
 
 The main methods are:
 
@@ -20,7 +20,7 @@ The main methods are:
 - `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
 - `map.delete(key)` -- removes the value by the key.
 - `map.clear()` -- clears the map
-- `map.size` -- is the current elements count.
+- `map.size` -- returns the current element count.
 
 For instance:
 
@@ -76,7 +76,7 @@ alert( visitsCounts[john.id] ); // 123
 
 
 ```smart header="How `Map` compares keys"
-To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as the strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
 
 This algorithm can't be changed or customized.
 ```
@@ -106,7 +106,7 @@ let map = new Map([
 ]);
 ```
 
-There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns the array of key/value pairs for an object exactly in that format.
+There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
 
 So we can initialize a map from an object like this:
 
@@ -167,9 +167,9 @@ recipeMap.forEach( (value, key, map) => {
 
 ## Set
 
-`Set` -- is a collection of values, where each value may occur only once.
+A `Set` is a collection of values, where each value may occur only once.
 
-The main methods are:
+Its main methods are:
 
 - `new Set(iterable)` -- creates the set, optionally from an array of values (any iterable will do).
 - `set.add(value)` -- adds a value, returns the set itself.
@@ -223,9 +223,9 @@ set.forEach((value, valueAgain, set) => {
 
 Note the funny thing. The `forEach` function in the `Set` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
 
-That's made for compatibility with `Map` where `forEach` has three arguments.
+That's for compatibility with `Map` where `forEach` has three arguments.
 
-The same methods as `Map` has for iterators are also supported:
+The same methods `Map` has for iterators are also supported:
 
 - `set.keys()` -- returns an iterable object for values,
 - `set.values()` -- same as `set.keys`, for compatibility with `Map`,
@@ -330,9 +330,9 @@ weakMap.put(john, "secret documents");
 
 That's useful for situations when we have a main storage for the objects somewhere and need to keep additional information that is only relevant while the object lives.
 
-Let's see an example.
+Let's look at an example.
 
-For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count anymore.
+For instance, we have code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count anymore.
 
 One way would be to keep track of leaving users and clean up the storage manually:
 
