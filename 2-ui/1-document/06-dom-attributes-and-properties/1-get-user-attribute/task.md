@@ -7,7 +7,7 @@ importance: 5
 Write the code to select the element with `data-widget-name` attribute from the document and to read its value.
 
 ```html run
-<!DOCTYLE HTML>
+<!DOCTYPE html>
 <html>
 <body>
 
