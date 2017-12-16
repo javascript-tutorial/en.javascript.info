@@ -1,6 +1,11 @@
 # Ninja code
 
-Programmer ninjas of the past used these tricks to make code maintainers cry.
+
+```quote author="Confucius"
+Learning without thought is labor lost; thought without learning is perilous.
+```
+
+Programmer ninjas of the past used these tricks to make sharpen the mind of code maintainers.
 
 Code review gurus look for them in test tasks.
 
@@ -12,7 +17,7 @@ Read them carefully and find out who you are -- a ninja, a novice, or maybe a co
 
 
 ```warn header="Irony detected"
-Many start following ninja paths. Few succeed. 
+Many try to follow ninja paths. Few succeed.
 ```
 
 
