@@ -410,9 +410,24 @@ So, "49" is an integer property name, because when it's transformed to an intege
 
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+Remove this line because it does not return an integer -->> alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
 alert( String(Math.trunc(Number("+49"))) ); // "49", not same ⇒ not integer property
 alert( String(Math.trunc(Number("1.2"))) ); // "1", not same ⇒ not integer property
+
+The above 3 lines are not adequate tests to determine if an value is an integer property name or not, because:
+
+alert( String(Math.trunc(Number("49"))) + 1 ); // "491", all 3 lines return a String and not an Integer!
+alert( String(Math.trunc(Number("+49"))) + 1 ); // "491", all 3 lines return a String and not an Integer!
+alert( String(Math.trunc(Number("1.2"))) + 1 ); // "11", all 3 lines return a String and not an Integer!
+
+similarly:
+
+alert( Number.isInteger(String(Math.trunc(Number("49")))) );  // "false", again, all 3 lines are Strings - not an Integer!
+alert( Number.isInteger(String(Math.trunc(Number("+49")))) ); // "false", again, all 3 lines are Strings - not an Integer!
+alert( Number.isInteger(String(Math.trunc(Number("1.2")))) ); // "false", again, all 3 lines are Strings - not an Integer!
+
+Your test for verifying an property integer has failed. I guess it is best to remove it! Thanks!
+
 ```
 ````
 
