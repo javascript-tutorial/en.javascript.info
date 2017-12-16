@@ -98,7 +98,7 @@ function pow(x, n) {
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("[tail calls optimizations](http://2ality.com/2015/06/tail-call-optimization.html)"), but they are not yet supported everywhere and work only in simple cases.
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
