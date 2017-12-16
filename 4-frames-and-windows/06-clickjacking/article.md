@@ -12,14 +12,14 @@ The idea is very simple.
 
 Here's how clickjacking was done with Facebook:
 
-1. A visitor is lured to the evil page. No matter how.
-2. The page has a harmlessly-looking link on it (like "get rich now" or "click here, very funny" and so on).
+1. A visitor is lured to the evil page. It doesn't matter how.
+2. The page has a harmless-looking link on it (like "get rich now" or "click here, very funny").
 3. Over that link the evil page positions a transparent `<iframe>` with `src` from facebook.com, in such a way that the "Like" button is right above that link. Usually that's done with `z-index`.
-4. Clicking on that link, the visitor in fact presses that button.
+4. In attempting to click the link, the visitor in fact clicks the button.
 
 ## The demo
 
-Here's how the evil page looks like. To make things clear, the `<iframe>` is half-transparent (in real evil pages it's fully transparent):
+Here's how the evil page looks. To make things clear, the `<iframe>` is half-transparent (in real evil pages it's fully transparent):
 
 ```html run height=120 no-beautify
 <style>
@@ -53,7 +53,7 @@ The full demo of the attack:
 
 Here we have a half-transparent `<iframe src="facebook.html">`, and in the example we can see it hovering over the button. A click on the button actually clicks on the iframe, but that's not visible to the user, because the iframe is transparent.
 
-As a result if the visitor is authorized on facebook ("remember me" is usually turned on), then it adds a "Like". On Twitter that would be a "Follow" button.
+As a result, if the visitor is authorized on Facebook ("remember me" is usually turned on), then it adds a "Like". On Twitter that would be a "Follow" button.
 
 Here's the same example, but closer to reality, with `opacity:0` for `<iframe>`:
 
@@ -68,14 +68,14 @@ Technically, if we have a text field to hack, then we can position an iframe in 
 
 But then there's a problem. Everything that the visitor types will be hidden, because the iframe is not visible.
 
-So that would look really odd to the user, and he will stop.
+People will usually stop typing when they can't see their new characters printing on the screen.
 ```
 
 ## Old-school defences (weak)
 
-The oldest defence method is the piece of JavaScript that forbids to open the page in a frame (so-called "framebusting").
+The oldest defence is a bit of JavaScript which forbids opening the page in a frame (so-called "framebusting").
 
-Like this:
+That looks like this:
 
 ```js
 if (top != window) {
@@ -83,15 +83,15 @@ if (top != window) {
 }
 ```
 
-That is: if the window finds out that it's not on the top, then it automatically makes itself the top.
+That is: if the window finds out that it's not on top, then it automatically makes itself the top.
 
-As of now, that's not reliable, because there are many ways to hack around it. Let's cover a few.
+This not a reliable defence, because there are many ways to hack around it. Let's cover a few.
 
 ### Blocking top-navigation
 
 We can block the transition caused by changing `top.location` in the [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event.
 
-The top page (that belongs to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking him whether he wants to leave.
+The top page (belonging to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking him whether he wants to leave.
 
 Like this:
 ```js
@@ -101,7 +101,7 @@ window.onbeforeunload = function() {
 };
 ```
 
-In most cases the visitor would answer negatively, because he doesn't know about the iframe, all he can see is the top page, there's no reason to leave. And so the `top.location` won't change!
+In most cases the visitor would answer negatively, because he doesn't know about the iframe, all he can see is the top page, leading him to think there is no reason to leave. So `top.location` won't change!
 
 In action:
 
@@ -111,7 +111,7 @@ In action:
 
 One of the things restricted by the `sandbox` attribute is navigation. A sandboxed iframe may not change `top.location`.
 
-So we can add the iframe with `sandbox="allow-scripts allow-forms"`. That would relax the restrictions allowing scripts and forms. But we don't put `allow-top-navigation` in the value so that the navigation is still forbidden. And the change of `top.location` won't work.
+So we can add the iframe with `sandbox="allow-scripts allow-forms"`. That would relax the restrictions, permitting scripts and forms. But we omit `allow-top-navigation` so that changing `top.location` is forbidden.
 
 Here's the code:
 
@@ -123,21 +123,21 @@ There are other ways to work around that simple protection too.
 
 ## X-Frame-Options
 
-Server-side header `X-Frame-Options` can allow or forbid showing the page inside a frame.
+The server-side header `X-Frame-Options` can permit or forbid displaying the page inside a frame.
 
-It must be sent by the server: browser ignore it if found in `<meta>` tags. So `<meta http-equiv="X-Frame-Options"...>` won't do anything.
+It must be sent *by the server*: the browser will ignore it if found in a `<meta>` tag. So, `<meta http-equiv="X-Frame-Options"...>` won't do anything.
 
 The header may have 3 values:
 
 
 `DENY`
-: Never ever show the page inside an iframe.
+: Never ever show the page inside a frame.
 
 `SAMEORIGIN`
-: Allow to show inside an iframe if the parent document comes from the same origin.
+: Allow inside a frame if the parent document comes from the same origin.
 
 `ALLOW-FROM domain`
-: Allows to show inside an iframe if the parent document is from the given domain.
+: Allow inside a frame if the parent document is from the given domain.
 
 For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`. Here's the result:
 
@@ -147,15 +147,15 @@ For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`. Here's the result:
 
 <iframe src="https://twitter.com"></iframe>
 
-Depending on the browser, `iframe` above is either empty or it has a message telling that "the browser can't show it".
+Depending on your browser, the `iframe` above is either empty or alerting you that the browser won't permit that page to be navigating in this way.
 
 ## Showing with disabled functionality
 
-The protecting `X-Frame-Options` header has a side-effect. Other sites can't show our page in an `iframe`, even if they have "legal" reasons to do so.
+The `X-Frame-Options` header has a side-effect. Other sites won't be able to show our page in a frame, even if they have good reasons to do so.
 
-So there are other solutions. For instance, we can "cover" the page with a `<div>` with `height:100%;width:100%`, so that it handles all clicks. That `<div>` should disappear if `window == top` or we figure out that we don't need protection.
+So there are other solutions... For instance, we can "cover" the page with a `<div>` with `height: 100%; width: 100%;`, so that it intercepts all clicks. That `<div>` should disappear if `window == top` or if we figure out that we don't need the protection.
 
-Like this:
+Something like this:
 
 ```html
 <style>
@@ -188,13 +188,13 @@ The demo:
 
 ## Summary
 
-Clickjacking is a way to "trick" users into a clicking on a victim site without even knowing what happens. That's dangerous if there are important click-activated actions.
+Clickjacking is a way to "trick" users into clicking on a malicious site without even knowing what's happening. That's dangerous if there are important click-activated actions.
 
-A hacker can post a link to his evil page in a message or lure visitors to his page by other means. There are many variants.
+A hacker can post a link to his evil page in a message, or lure visitors to his page by some other means. There are many variations.
 
-From one side -- the attack is "not deep": all a hacker can do is one click. But from another side, if the hacker knows that after the click another control appears, then it may use cunning messages to make the user to click on it as well.
+From one perspective -- the attack is "not deep": all a hacker is doing is intercepting a single click. But from another perspective, if the hacker knows that after the click another control will appear, then he may use cunning messages to coerce the user into clicking on them as well.
 
-The attack is quite dangerous, because when we engineer the UI we usually don't think that a hacker can click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
+The attack is quite dangerous, because when we engineer the UI we usually don't anticipate that a hacker may click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
 
-- It's recommended to use `X-Frame-Options: SAMEORIGIN` on pages that are totally not meant to be shown inside iframes (or just for the whole site).
-- Use a covering `<div>` if we want to allow our pages to be shown in iframes, and still stay safe.
+- It is recommended to use `X-Frame-Options: SAMEORIGIN` on pages (or whole websites) which are not intended to be viewed inside frames.
+- Use a covering `<div>` if we want to allow our pages to be shown in iframes, but still stay safe.
