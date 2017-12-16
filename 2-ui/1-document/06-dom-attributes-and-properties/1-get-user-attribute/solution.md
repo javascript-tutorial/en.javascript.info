@@ -1,6 +1,6 @@
 
 ```html run height=100
-<!DOCTYLE HTML>
+<!DOCTYPE html>
 <html>
 <body>
 
