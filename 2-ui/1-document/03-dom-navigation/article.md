@@ -88,7 +88,7 @@ For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text 
 </html>
 ```
 
-...And if we ask for all descendants of `<body>`, then we get direct children `<div>`, `<ul>` and also more nested elements like `<li>` (being a child of `<ul>`) and `<b>` (being a child of `<li>`) -- the whole subtree.
+...And if we ask for all descendants of `<body>`, then we get direct children `<div>`, `<ul>` and also more nested elements like `<li>` (being a child of `<ul>`) and `<b>` (being a child of `<li>`) -- the entire subtree.
 
 **The `childNodes` collection provides access to all child nodes, including text nodes.**
 
@@ -177,7 +177,7 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
 <body>
 <script>
   // shows 0, 1, length, item, values and more.
-  for(let prop in document.body.childNodes) alert(prop);
+  for (let prop in document.body.childNodes) alert(prop);
 </script>
 </body>
 ````
@@ -242,7 +242,7 @@ In other words, the `documentElement` (`<html>`) is the root node. Formally, it 
 Sometimes that matters when we're walking over the chain of parents and call a method on each of them, but `document` doesn't have it, so we exclude it.
 ````
 
-Let's modify one of examples above: replace `childNodes` with `children`. Now it shows only elements:
+Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
 
 ```html run
 <html>
