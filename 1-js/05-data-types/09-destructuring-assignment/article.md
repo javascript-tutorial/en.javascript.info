@@ -478,8 +478,8 @@ Please note that such destructuring assumes that `showMenu()` does have an argum
 ```js
 showMenu({});
 
-// that would give an error
-showMenu();
+
+showMenu(); // this would give an error
 ```
 
 We can fix this by making `{}` the default value for the whole destructuring thing:
