@@ -109,7 +109,7 @@ The "sum" function actually does that right:
 
 ```js run 
 *!*
-let sum = new Function('a', 'b', ' return a + b; ');
+let sum = new Function('a', 'b', 'return a + b');
 */!*
 
 let a = 1, b = 2;
@@ -133,9 +133,9 @@ For historical reasons, arguments can also be given as a comma-separated list.
 These three mean the same:
 
 ```js 
-new Function('a', 'b', ' return a + b; '); // basic syntax
-new Function('a,b', ' return a + b; '); // comma-separated
-new Function('a , b', ' return a + b; '); // comma-separated with spaces
+new Function('a', 'b', 'return a + b'); // basic syntax
+new Function('a,b', 'return a + b'); // comma-separated
+new Function('a , b', 'return a + b'); // comma-separated with spaces
 ```
 
 Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they can not use outer variables. But that's actually good, because it saves us from errors. Explicit parameters passing is a much better thing architecturally and has no problems with minifiers.
