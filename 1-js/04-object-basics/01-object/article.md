@@ -410,8 +410,14 @@ So, "49" is an integer property name, because when it's transformed to an intege
 
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same ⇒ not integer property
+alert( String(Math.trunc(Number("49"))) ); // <- Line 1: "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // <- Line 2: "49", not same ⇒ not integer property
+
+// Above is Wrong, because:
+alert(String(Math.trunc(Number("+49"))) === String(Math.trunc(Number("49")))) // true -> Strict equality between Line 1 and Line 2.
+alert(Math.trunc(Number("+49")) === Math.trunc(Number("49"))) // true -> Strict equality between Line 1 and Line 2.
+// and so the above is not a good test for "integer property"!!!
+
 alert( String(Math.trunc(Number("1.2"))) ); // "1", not same ⇒ not integer property
 ```
 ````
