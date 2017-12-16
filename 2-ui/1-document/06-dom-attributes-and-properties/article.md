@@ -4,7 +4,7 @@ When the browser loads the page, it "reads" (another word: "parses") HTML text a
 
 For instance, if the tag is `<body id="page">`, then the DOM object has `body.id="page"`.
 
-But the attribute-property mapping is not one-to-one! In this chapter we'll pay attention to separate these two notions, to see how to work with them, when they are same, and when they are different.
+But the attribute-property mapping is not one-to-one! In this chapter we'll pay attention to separate these two notions, to see how to work with them, when they are the same, and when they are different.
 
 [cut]
 
@@ -28,11 +28,11 @@ alert(document.body.myData.title); // Imperator
 We can add a method as well:
 
 ```js run
-document.body.sayHi = function() {
+document.body.sayTagName = function() {
   alert(this.tagName);
 };
 
-document.body.sayHi(); // BODY (the value of "this" in the method is document.body)
+document.body.sayTagName(); // BODY (the value of "this" in the method is document.body)
 ```
 
 We can also modify built-in prototypes like `Element.prototype` and add new methods to all elements:
@@ -129,7 +129,7 @@ Here's an extended demo of working with attributes:
     alert( elem.outerHTML ); // (3), see it's there
 
     for (let attr of elem.attributes) { // (4) list all
-      alert( attr.name + " = " + attr.value );
+      alert( `${attr.name} = ${attr.value}` );
     }
   </script>
 </body>
@@ -144,9 +144,9 @@ Please note:
 
 ## Property-attribute synchronization
 
-When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vise-versa.
+When a standard attribute changes, the corresponding property is auto-updated, and (with some exceptions) vice versa.
 
-In the example below `id` is modified as an attribute, and we can see the property change too. And then the same backwards:
+In the example below `id` is modified as an attribute, and we can see the property changed too. And then the same backwards:
 
 ```html run
 <input>
@@ -188,7 +188,7 @@ In the example above:
 - Changing the attribute `value` updates the property.
 - But the property change does not affect the attribute.
 
-That "feature" may actually can come in handy, because the user may modify `value`, and then after it, if we want to recover the "original" value from HTML, it's in the attribute.
+That "feature" may actually come in handy, because the user may modify `value`, and then after it, if we want to recover the "original" value from HTML, it's in the attribute.
 
 ## DOM properties are typed
 
@@ -311,7 +311,7 @@ div.setAttribute('order-state', 'canceled');
 
 But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
 
-To evade conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
+To avoid conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 
 **All attributes starting with "data-" are reserved for programmers' use. They are available in `dataset` property.**
 
