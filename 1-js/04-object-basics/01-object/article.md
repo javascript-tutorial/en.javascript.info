@@ -229,7 +229,7 @@ That can become a source of bugs and even vulnerabilies if we intent to store ar
 In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
 
 There exist a way to make objects treat `__proto__` as a regular property, we'll cover it later, but first we need to know more about objects to understand it. 
-There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys. Also
+There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
 ````
 
 
