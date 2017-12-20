@@ -130,7 +130,7 @@ For that we should use another event -- `onbeforeunload`.
 
 If a visitor initiated navigation away from the page or tries to close the window, the `beforeunload` handler asks for additional confirmation.
 
-It may return a string with the question. Historically browsers used to show it, but as of now only some of them do. That's because certain webmasters abused this event handler, to protect the visitor from potentially misleading and hackish messages.
+It may return a string with the question. Historically browsers used to show it, but as of now only some of them do. That's because certain webmasters abused this event handler by showing misleading and hackish messages.
 
 You can try it by running this code and then reloading the page.
 
