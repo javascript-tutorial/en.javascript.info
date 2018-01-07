@@ -1,6 +1,6 @@
 # Element size and scrolling
 
-There are many JavaScript properties that allow to read information about element width, height and other geometry features.
+There are many JavaScript properties that allow us to read information about element width, height and other geometry features.
 
 We often need them when moving or positioning elements in JavaScript, to correctly calculate coordinates.
 
@@ -37,7 +37,7 @@ You can [open the document in the sandbox](sandbox:metric).
 ```smart header="Mind the scrollbar"
 The picture above demonstrates the most complex case when the element has a scrollbar. Some browsers (not all) reserve the space for it by taking it from the content.
 
-So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary between devices and browsers) then only `300-16 = 284px` remains, and we should take it into account. That's why examples from this chapter assume that there's a scrollbar. If there's no scrollbar, then things are just a bit simpler.
+So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary between devices and browsers) then only `300 - 16 = 284px` remains, and we should take it into account. That's why examples from this chapter assume that there's a scrollbar. If there's no scrollbar, then things are just a bit simpler.
 ```
 
 ```smart header="The `padding-bottom` may be filled with text"
@@ -68,7 +68,7 @@ The `offsetParent` is the nearest ancestor that is:
 
 In most practical cases we can use `offsetParent` to get the nearest CSS-positioned ancestor. And `offsetLeft/offsetTop` provide x/y coordinates relative to it's left-upper corner.
 
-In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` are shifts from its left-upper corner (`180`):
+In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its left-upper corner (`180`):
 
 ```html run height=10
 <main style="position: relative" id="main">
@@ -90,11 +90,11 @@ There are several occasions when `offsetParent` is `null`:
 
 1. For not shown elements (`display:none` or not in the document).
 2. For `<body>` and `<html>`.
-3. For elements with `position:fixed` on them.
+3. For elements with `position:fixed`.
 
 ## offsetWidth/Height
 
-Now let's move to the element itself.
+Now let's move on to the element itself.
 
 These two properties are the simplest ones. They provide the "outer" width/height of the element. Or, in other words, its full size including borders.
 
@@ -102,7 +102,7 @@ These two properties are the simplest ones. They provide the "outer" width/heigh
 
 For our sample element:
 
-- `offsetWidth = 390` -- the outer width, can be calculated as inner CSS-width (`300px`) plus paddings (`2*20px`) and borders (`2*25px`).
+- `offsetWidth = 390` -- the outer width, can be calculated as inner CSS-width (`300px`) plus paddings (`2 * 20px`) and borders (`2 * 25px`).
 - `offsetHeight = 290` -- the outer height.
 
 ````smart header="Geometry properties for not shown elements are zero/null"
@@ -140,9 +140,9 @@ In our example:
 
 What's the difference?
 
-It becomes visible when the document is right-to-left (the operation system is in arabic or hebrew languages). The scrollbar is then not on the right, but on the left, and then `clientLeft` also includes the scrollbar width.
+It becomes visible when the document is right-to-left (the operating system is in Arabic or Hebrew languages). The scrollbar is then not on the right, but on the left, and then `clientLeft` also includes the scrollbar width.
 
-In that case `clientLeft` in our example would be not `25`, but with the scrollbar width `25+16=41`:
+In that case, `clientLeft` would be not `25`, but with the scrollbar width `25 + 16 = 41`:
 
 ![](metric-client-left-top-rtl.png)
 
@@ -154,7 +154,7 @@ They include the content width together with paddings, but without the scrollbar
 
 ![](metric-client-width-height.png)
 
-On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so it's exactly the sum of what's inside the borders: CSS-height `200px` plus top and bottom paddings (`2*20px`) total `240px`.
+On the picture above let's first consider `clientHeight`: it's easier to evaluate. There's no horizontal scrollbar, so it's exactly the sum of what's inside the borders: CSS-height `200px` plus top and bottom paddings (`2 * 20px`) total `240px`.
 
 Now `clientWidth` -- here the content width is not `300px`, but `284px`, because `16px` are occupied by the scrollbar. So the sum is `284px` plus left and right paddings, total `324px`.
 
@@ -167,13 +167,13 @@ So when there's no padding we can use `clientWidth/clientHeight` to get the cont
 ## scrollWidth/Height
 
 - Properties `clientWidth/clientHeight` only account for the visible part of the element.
-- Properties `scrollWidth/scrollHeight` also include the scrolled out (hidden) part:
+- Properties `scrollWidth/scrollHeight` also include the scrolled out (hidden) parts:
 
 ![](metric-scroll-width-height.png)
 
 On the picture above:
 
-- `scrollHeight = 723` -- is the full inner height of the content area including the scrolled out part.
+- `scrollHeight = 723` -- is the full inner height of the content area including the scrolled out parts.
 - `scrollWidth = 324` -- is the full inner width, here we have no horizontal scroll, so it equals `clientWidth`.
 
 We can use these properties to expand the element wide to its full width/height.
@@ -182,7 +182,7 @@ Like this:
 
 ```js
 // expand the element to the full content height
-element.style.height = element.scrollHeight + 'px';
+element.style.height = `${element.scrollHeight}px`;
 ```
 
 ```online
@@ -190,7 +190,7 @@ Click the button to expand the element:
 
 <div id="element" style="width:300px;height:200px; padding: 0;overflow: auto; border:1px solid black;">text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text</div>
 
-<button style="padding:0" onclick="element.style.height = element.scrollHeight + 'px'">element.style.height = element.scrollHeight + 'px'</button>
+<button style="padding:0" onclick="element.style.height = `${element.scrollHeight}px`">element.style.height = `${element.scrollHeight}px`</button>
 ```
 
 ## scrollLeft/scrollTop
@@ -207,7 +207,7 @@ In other words, `scrollTop` is "how much is scrolled up".
 Most geometry properties that are read-only, but `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
 
 ```online
-If you click the element below, the code `elem.scrollTop+=10` executes. That makes the element content scroll `10px` below.
+If you click the element below, the code `elem.scrollTop += 10` executes. That makes the element content scroll `10px` down.
 
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Click<br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
 ```
@@ -229,7 +229,7 @@ let elem = document.body;
 alert( getComputedStyle(elem).width ); // show CSS width for elem
 ```
 
-Why we should use geometry properties instead? There are two reasons:
+Why should we use geometry properties instead? There are two reasons:
 
 1. First, CSS width/height depend on another property: `box-sizing` that defines "what is" CSS width and height. A change in `box-sizing` for CSS purposes may break such JavaScript.
 2. Second, CSS `width/height` may be `auto`, for instance for an inline element:
@@ -260,7 +260,7 @@ The element with text has CSS `width:300px`.
 On a Desktop Windows OS, Firefox, Chrome, Edge all reserve the space for the scrollbar. But  Firefox shows `300px`, while Chrome and Edge show less. That's because Firefox returns the CSS width and other browsers return the "real" width.
 ```
 
-Please note that the described difference are only about reading `getComputedStyle(...).width` from JavaScript, visually everything is correct.
+Please note that the described difference is only about reading `getComputedStyle(...).width` from JavaScript, visually everything is correct.
 
 ## Summary
 
@@ -271,7 +271,7 @@ Elements have the following geometry properties:
 - `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
 - `clientLeft/clientTop` -- the distance from the left-upper outer corner to its left-upper inner corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
 - `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
-- `scrollWidth/scrollHeight` -- the width/height of the content including the scrolled out part. Also includes paddings, but not the scrollbar.
+- `scrollWidth/scrollHeight` -- the width/height of the content including the scrolled out parts. Also includes paddings, but not the scrollbar.
 - `scrollLeft/scrollTop` -- width/height of the scrolled out part of the element, starting from its left-upper corner.
 
 All properties are read-only except `scrollLeft/scrollTop`. They make the browser scroll the element if changed.
