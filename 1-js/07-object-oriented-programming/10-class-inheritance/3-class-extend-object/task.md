@@ -4,9 +4,9 @@ importance: 5
 
 # Class extends Object?
 
-As we know, all objects normally inherit from `Object.prototype` and get access to "generic" object methods.
+As we know, all objects normally inherit from `Object.prototype` and get access to "generic" object methods like `hasOwnProperty` etc.
 
-Like demonstrated here:
+For instance:
 
 ```js run
 class Rabbit {
@@ -24,9 +24,11 @@ alert( rabbit.hasOwnProperty('name') ); // true
 */!*
 ```
 
-So, is it correct to say that `"class Rabbit extends Object"` does exactly the same as `"class Rabbit"`, or not?
+But if we spell it out explicitly like `"class Rabbit extends Object"`, then the result would be different from a simple `"class Rabbit"`?
 
-Will it work?
+What's the difference?
+
+Here's an example of such code (it doesn't work -- why? fix it?):
 
 ```js
 class Rabbit extends Object {
@@ -39,5 +41,3 @@ let rabbit = new Rabbit("Rab");
 
 alert( rabbit.hasOwnProperty('name') ); // true
 ```
-
-If it won't please fix the code. 

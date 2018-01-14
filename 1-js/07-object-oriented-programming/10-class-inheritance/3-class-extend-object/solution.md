@@ -1,6 +1,6 @@
-The answer has two parts.
+First, let's see why the latter code doesn't work.
 
-The first, an easy one is that the inheriting class needs to call `super()` in the constructor. Otherwise `"this"` won't be "defined".
+The reason becomes obvious if we try to run it. An inheriting class constructor must call `super()`. Otherwise `"this"` won't be "defined".
 
 So here's the fix:
 
@@ -37,7 +37,7 @@ alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) true
 ```
 
-So we can access static methods of `Object` via `Rabbit`, like this:
+So `Rabbit` now provides access to static methods of `Object` via `Rabbit`, like this:
 
 ```js run
 class Rabbit extends Object {}
@@ -48,15 +48,16 @@ alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // a,b
 */!*
 ```
 
-And if we don't use `extends`, then `class Rabbit` does not get the second reference.
+But if we don't have `extends Object`, then `Rabbit.__proto__` is not set to `Object`.
 
-Please compare with it:
+Here's the demo:
 
 ```js run
 class Rabbit {}
 
 alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) false (!)
+alert( Rabbit.__proto__ === Function.prototype ); // as any function by default
 
 *!*
 // error, no such function in Rabbit
@@ -64,14 +65,7 @@ alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error
 */!*
 ```
 
-For the simple `class Rabbit`, the `Rabbit` function has the same prototype
-
-```js run
-class Rabbit {}
-
-// instead of (2) that's correct for Rabbit (just like any function):
-alert( Rabbit.__proto__ === Function.prototype );
-```
+So `Rabbit` doesn't provide access to static methods of `Object` in that case.
 
 By the way, `Function.prototype` has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
 
