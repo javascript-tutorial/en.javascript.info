@@ -5,12 +5,18 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 ## Translations
 
+Published:
 - Russian: [https://github.com/iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru).
+
+In progress:
 - Chinese: the ongoing translation at [https://github.com/iliakan/javascript-tutorial-cn](https://github.com/iliakan/javascript-tutorial-cn), go ahead and join if you know Chinese.
+- Spanish: https://github.com/lmauromb/javascript-tutorial-es
 
-If you'd like to translate it into your language then fork the English tutorial and go ahead. I can publish the translation with your credits on a domain like fr.javascript.info.
+If you'd like to translate it into your language then fork the English tutorial and go ahead. I can publish the translation with your credits on a domain like fr.javascript.info or you can do it on your domain.
 
-Please use this repository to file issues and suggest PRs for the text.
+You can also send PR for this file to indicate that there's work in progress.
+
+Please note that the tutorial can run locally using <https://github.com/iliakan/javascript-tutorial-server/>.
 
 ## Structure
 
