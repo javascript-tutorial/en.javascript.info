@@ -82,7 +82,7 @@ The OR `"||"` operator does the following:
 
 - Evaluate operands from left to right.
 - For each operand, convert it to boolean. If the result is `true`, then stop and return the original value of that operand.
-- If all other operands have been assessed (i.e. all were `falsy`), return the last operand.
+- If all other operands have been assessed (i.e. all were `false`), return the last operand.
 
 A value is returned in its original form, without the conversion.
 
