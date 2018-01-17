@@ -11,7 +11,7 @@ In this chapter we concentrate on aspects that are not covered by school arithme
 Before we move on, let's grasp the common terminology.
 
 - *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes people say "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `"-"` reverses the sign of the number:
+- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of the number:
 
     ```js run
     let x = 1;
