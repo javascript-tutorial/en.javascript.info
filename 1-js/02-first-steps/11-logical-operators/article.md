@@ -78,7 +78,7 @@ Given multiple OR'ed values:
 result = value1 || value2 || value3;
 ```
 
-The OR `"||"` operator does the following:
+The OR `||` operator does the following:
 
 - Evaluate operands from left to right.
 - For each operand, convert it to boolean. If the result is `true`, then stop and return the original value of that operand.
