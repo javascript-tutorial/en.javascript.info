@@ -93,9 +93,9 @@ alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same as `Number(...)`, but shorter.
+It actually does the same as `Number(...)`, but is shorter.
 
-A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then they are usually strings.
+A need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, then they are usually strings.
 
 What if we want to sum them?
 
