@@ -19,6 +19,7 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 - Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
 - [Komodo IDE](http://www.activestate.com/komodo-ide) and its lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
+- [Atom IDE](https://ide.atom.io/).
 
 All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux.
 
