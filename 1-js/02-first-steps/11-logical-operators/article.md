@@ -270,7 +270,7 @@ So it is recommended to use every construct for its purpose. Use `if` if we want
 
 ## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `"!"`.
+The boolean NOT operator is represented with an exclamation sign `!`.
 
 The syntax is pretty simple:
 
