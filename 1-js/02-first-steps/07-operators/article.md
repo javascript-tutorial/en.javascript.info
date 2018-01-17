@@ -34,7 +34,7 @@ Before we move on, let's grasp the common terminology.
 
 Now let's see special features of JavaScript operators that are beyond school arithmetics.
 
-Usually the plus operator `'+'` sums numbers.
+Usually the plus operator `+` sums numbers.
 
 But if the binary `+` is applied to strings, it merges (concatenates) them:
 
