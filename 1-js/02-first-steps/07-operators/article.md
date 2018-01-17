@@ -72,7 +72,7 @@ alert( '6' / '2' ); // 3
 
 ## Numeric conversion, unary +
 
-The plus `+` exist in two forms. The binary form that we used above and the unary form.
+The plus `+` exists in two forms. The binary form that we used above and the unary form.
 
 The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything with numbers, but if the operand is not a number, then it is converted into it.
 
