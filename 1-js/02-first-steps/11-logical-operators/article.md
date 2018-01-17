@@ -196,7 +196,7 @@ Given multiple AND'ed values:
 result = value1 && value2 && value3;
 ```
 
-The AND `"&&"` operator does the following:
+The AND `&&` operator does the following:
 
 - Evaluate operands from left to right.
 - For each operand, convert it to a boolean. If the result is `false`, stop and return the original value of that operand.
