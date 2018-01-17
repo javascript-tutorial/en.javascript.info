@@ -4,7 +4,7 @@ Many comparison operators we know from maths:
 
 - Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equality check is written as `a == b` (please note the double equation sign `'='`. A single symbol `a = b` would mean an assignment).
+- Equality check is written as `a == b` (please note the double equation sign `=`. A single symbol `a = b` would mean an assignment).
 - Not equals. In maths the notation is <code>&ne;</code>, in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
 
 [cut]
