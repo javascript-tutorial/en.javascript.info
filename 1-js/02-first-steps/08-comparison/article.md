@@ -108,7 +108,7 @@ From JavaScript's standpoint that's quite normal. An equality check converts usi
 
 ## Strict equality
 
-A regular equality check `"=="` has a problem. It cannot differ `0` from `false`:
+A regular equality check `==` has a problem. It cannot differ `0` from `false`:
 
 ```js run
 alert( 0 == false ); // true
