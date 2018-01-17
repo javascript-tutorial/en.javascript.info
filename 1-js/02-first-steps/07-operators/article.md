@@ -43,7 +43,7 @@ let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if any of operands is a string, then the other one is converted to a string too.
+Note that if any of the operands is a string, then the other one is converted to a string too.
 
 For example:
 
@@ -53,6 +53,13 @@ alert( 2 + '1' ); // "21"
 ```
 
 See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, then convert the other one into a string as well.
+
+However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
+
+
+```js run
+alert(2 + 2 + '1' ); // "41" and not "221"
+```
 
 String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
