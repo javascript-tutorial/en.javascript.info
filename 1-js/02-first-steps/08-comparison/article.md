@@ -146,7 +146,7 @@ There's a non-intuitive behavior when `null` or `undefined` are compared with ot
 
 
 For a strict equality check `===`
-: These values are different, because each of them belong to a separate type of it's own.
+: These values are different, because each of them belongs to a separate type of its own.
 
     ```js run
     alert( null === undefined ); // false
