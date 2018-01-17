@@ -54,7 +54,7 @@ alert( 2 + '1' ); // "21"
 
 See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, then convert the other one into a string as well.
 
-String concatenation and conversion is a special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
+String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
 For instance, subtraction and division:
 
