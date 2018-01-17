@@ -253,14 +253,14 @@ So, there are special operators for that:
 
     ```js run no-beautify
     let counter = 2;
-    counter++;      // works same as counter = counter + 1, but shorter
+    counter++;      // works the same as counter = counter + 1, but is shorter
     alert( counter ); // 3
     ```
 - **Decrement** `--` decreases a variable by 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;      // works same as counter = counter - 1, but shorter
+    counter--;      // works the same as counter = counter - 1, but is shorter
     alert( counter ); // 1
     ```
 
@@ -408,9 +408,9 @@ alert( n ); // 16  (right part evaluated first, same as n *= 8)
 
 ## Comma
 
-The comma operator `','` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
+The comma operator `,` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `','`. Each of them is evaluated, but the result of only the last one is returned.
+The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated, but the result of only the last one is returned.
 
 For example:
 
