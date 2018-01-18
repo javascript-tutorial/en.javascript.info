@@ -35,7 +35,7 @@ A single execution of the loop body is called *an iteration*. The loop in the ex
 
 If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and for server-side JavaScript we can kill the process.
 
-Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to boolean by `while`.
+Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to a boolean by `while`.
 
 For instance, the shorter way to write `while (i != 0)` could be `while (i)`:
 
