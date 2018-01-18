@@ -426,7 +426,7 @@ function isPrime(n) {
 }
 ```
 
-The second variant is easier to understand isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
+The second variant is easier to understand, isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
 
 So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
 
@@ -442,7 +442,7 @@ function name(parameters, delimited, by, comma) {
 
 - Values passed to a function as parameters are copied to its local variables.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't then its result is `undefined`.
+- A function can return a value. If it doesn't, then its result is `undefined`.
 
 To make the code clean and easy to understand, it's recommended to use mainly local variables and parameters in the function, not outer variables.
 
