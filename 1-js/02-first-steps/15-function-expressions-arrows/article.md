@@ -187,9 +187,8 @@ First, the syntax: how to see what is what in the code.
       return a + b;
     }
     ```
-- *Function Expression:* a function, created inside an expression or inside another syntax construct.
-
-    Here, the function is created at the right side of the "assignment expression =":
+- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
+    
     ```js
     // Function Expression
     let sum = function(a, b) {
