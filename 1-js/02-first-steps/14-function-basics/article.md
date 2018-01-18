@@ -378,7 +378,7 @@ These examples assume common meanings of prefixes. What they mean for you is det
 ```smart header="Ultrashort function names"
 Functions that are used *very often* sometimes have ultrashort names.
 
-For example, [jQuery](http://jquery.com) framework defines a function `$`, [LoDash](http://lodash.com/) library has it's core function named `_`.
+For example, the [jQuery](http://jquery.com) framework defines a function `$`. The [LoDash](http://lodash.com/) library has its core function named `_`.
 
 These are exceptions. Generally functions names should be concise, but descriptive.
 ```
