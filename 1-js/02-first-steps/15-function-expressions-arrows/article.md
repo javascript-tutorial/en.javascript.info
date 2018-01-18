@@ -244,7 +244,7 @@ Function Expressions are created when the execution reaches them. That would hap
 
 Sometimes that's handy to declare a local function only needed in that block alone. But that feature may also cause problems.
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get in run time. And then we plan to use it some time later.
+For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get during runtime. And then we plan to use it some time later.
 
 The code below doesn't work:
 
