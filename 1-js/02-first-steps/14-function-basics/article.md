@@ -22,7 +22,7 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* in the brackets (empty in the example above) and finally the code of the function, also named "the function body".
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
 
 ![](function_basics.png)
 
@@ -43,7 +43,7 @@ showMessage();
 
 The call `showMessage()` executes the code of the function. Here we will see the message two times.
 
-This example clearly demonstrates one of the main purposes of functions: to evade code duplication.
+This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
 
 If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
 
