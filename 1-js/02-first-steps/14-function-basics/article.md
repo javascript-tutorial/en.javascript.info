@@ -130,7 +130,7 @@ Variables declared outside of any function, such as the outer `userName` in the 
 
 Global variables are visible from any function (unless shadowed by locals).
 
-Usually, a function declares all variables specific to its task, and global variables only store project-level data, so important that it really must be seen from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+Usually, a function declares all variables specific to its task. Global variables only store project-level data, so when it's important that these variables are accesible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
 ```
 
 ## Parameters
