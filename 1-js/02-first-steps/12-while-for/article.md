@@ -229,7 +229,7 @@ while (true) {
 alert( 'Sum: ' + sum );
 ```
 
-The `break` directive is activated in the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
+The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
 
 The combination "infinite loop + `break` as needed" is great for situations when the condition must be checked not in the beginning/end of the loop, but in the middle, or even in several places of the body.
 
