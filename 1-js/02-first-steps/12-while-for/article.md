@@ -272,7 +272,7 @@ But as a side-effect we got one more nesting level (the `alert` call inside the 
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
-Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
+Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` are disallowed there.
 
 For example, if we take this code:
 
@@ -294,7 +294,7 @@ if (i > 5) {
 ...Then it stops working. The code like this will give a syntax error:
 
 
-That's just another reason not to use a question mark operator `'?'` instead of `if`.
+That's just another reason not to use a question mark operator `?` instead of `if`.
 ````
 
 ## Labels for break/continue
