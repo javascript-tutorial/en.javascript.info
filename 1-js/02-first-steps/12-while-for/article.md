@@ -387,4 +387,4 @@ To make an "infinite" loop, usually the `while(true)` construct is used. Such a 
 
 If we don't want to do anything on the current iteration and would like to forward to the next one, the `continue` directive does it.
 
-`Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
+`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
