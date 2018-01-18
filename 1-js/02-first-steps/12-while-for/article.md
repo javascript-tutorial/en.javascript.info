@@ -268,7 +268,7 @@ for (let i = 0; i < 10; i++) {
 
 From a technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
-But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
+But as a side-effect we got one more nesting level (the `alert` call inside the curly braces). If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
