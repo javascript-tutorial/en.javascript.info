@@ -331,6 +331,6 @@ Also certain IDEs support built-in linting, that also may be good, but not so tu
 
 All syntax rules from this chapter and the style guides aim to increase readability, so all of them are debatable.
 
-When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to evade errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
+When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to avoid errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
 
 Read style guides to see the latest ideas about that and follow those that you find the best.
