@@ -46,7 +46,7 @@ For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing,
 
 ## Breakpoints
 
-Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at the line number `4`. Yes, right on the `"4"` digit, not on the code.
+Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at line number `4`. Yes, right on the `4` digit, not on the code.
 
 Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
 
@@ -123,7 +123,7 @@ Now it's time to *trace* the script.
 There are buttons for it at the top of the right pane. Let's engage them.
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
-: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger looses the control.
+: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
 
     Here's what we can see after a click on it:
 
@@ -178,7 +178,7 @@ As we can see, there are three main ways to pause a script:
 
 Then we can examine variables and step on to see where the execution goes wrong.
 
-There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>
+There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
 
 The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
 
