@@ -146,7 +146,7 @@ Document a function usage
     Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
 
 Why is the task solved this way?
-: What's written is important. But what's *not* written maybe even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
 
     If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
 
