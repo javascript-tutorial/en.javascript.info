@@ -158,7 +158,7 @@ Why is the task solved this way?
     Comments that explain the solution are very important. They help to continue development the right way.
 
 Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-obvious, it's definitely worth commenting.
+: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
 
 ## Summary
 
