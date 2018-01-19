@@ -172,7 +172,7 @@ Good comments allow us to maintain the code well, come back to it after a delay 
 - Function usage.
 - Important solutions, especially when not immediately obvious.
 
-**Evade comments:**
+**Avoid comments:**
 
 - That tell "how code works" and "what it does".
 - Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
