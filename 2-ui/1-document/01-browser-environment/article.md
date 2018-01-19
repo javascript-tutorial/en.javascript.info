@@ -120,4 +120,4 @@ Now we'll get down to learning DOM, because the document plays the central role 
 
 Please note the links above, as there's so much stuff to learn it's impossible to cover and remember everything.
 
-When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice resource, but reading the corresponding spec may be better: i's more complex and longer to read, but will make your fundamental knowledge sound and complete.
+When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice resource, but reading the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
