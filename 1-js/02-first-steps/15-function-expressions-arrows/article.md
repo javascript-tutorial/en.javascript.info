@@ -299,7 +299,7 @@ if (age < 18) {
   }
 }
 
-// Here we're out of figure brackets,
+// Here we're out of curly braces,
 // so we can not see Function Declarations made inside of them.
 
 *!*
@@ -440,15 +440,15 @@ They are very convenient for simple one-line actions, when we're just too lazy t
 
 The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in figure brackets. Then use a normal `return` within them.
+Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
 
 Like this:
 
 ```js run
-let sum = (a, b) => {  // the figure bracket opens a multiline function
+let sum = (a, b) => {  // the curly brace opens a multiline function
   let result = a + b;
 *!*
-  return result; // if we use figure brackets, use return to get results
+  return result; // if we use curly braces, use return to get results
 */!*
 };
 
@@ -476,5 +476,5 @@ So we should use a Function Expression only when a Function Declaration is not f
 
 Arrow functions are handy for one-liners. They come in two flavors:
 
-1. Without figure brackets: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With figure brackets: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
+2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
