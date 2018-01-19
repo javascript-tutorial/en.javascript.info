@@ -28,9 +28,9 @@ Let's click it and select `index.html` and then `hello.js` in the tree view. Her
 
 Here we can see three zones:
 
-1. **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. **Source zone** shows the source code.
-3. **Information and control zone** is for debugging, we'll explore it soon.
+1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
+2. The **Source zone** shows the source code.
+3. The **Information and control zone** is for debugging, we'll explore it soon.
 
 Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
 
