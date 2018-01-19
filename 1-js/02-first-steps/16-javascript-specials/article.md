@@ -134,7 +134,7 @@ JavaScript supports the following operators:
 Arithmetical
 : Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
+    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
     ```js run
     alert( '1' + 2 ); // '12', string
@@ -204,7 +204,7 @@ Later we'll study more types of loops to deal with objects.
 
 ## The "switch" construct
 
-The "switch" construct can replace multiple `if` checks. It uses `===` for comparisons.
+The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
 
 For instance:
 
@@ -250,7 +250,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-    Function expression can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
+    Function expressions can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
 
 3. Arrow functions:
 
