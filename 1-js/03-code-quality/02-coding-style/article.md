@@ -42,9 +42,9 @@ Now let's discuss the rules and reasons for them in detail.
 
 Nothing is "carved in stone" here. Everything is optional and can be changed: these are coding rules, not religious dogmas.
 
-### Figure brackets
+### Curly braces
 
-In most JavaScript projects figure brackets are written on the same line, not on the new line. A so-called "egyptian" style. There's also a space before an opening bracket.
+In most JavaScript projects curly braces are written on the same line as the corresponding keyword, not on the new line, a so-called "Egyptian" style. There's also a space before an opening bracket.
 
 Like this:
 
