@@ -27,7 +27,7 @@ Now we can clearly see that `1` gets twice less values than `2`. And the same wi
 
 # The correct solution
 
-There are many correct solutions to the task. One of them is to adjust interval borders. To ensure the same intervals, we can generate values from `0.5 to 2.5`, thus adding the required probabilities to the edges:
+There are many correct solutions to the task. One of them is to adjust interval borders. To ensure the same intervals, we can generate values from `0.5 to 3.5`, thus adding the required probabilities to the edges:
 
 ```js run
 *!*
