@@ -231,7 +231,7 @@ Note that the methods use `===` comparison. So, if we look for `false`, it finds
 
 If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
 
-Also, a very minor difference of `include` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
 
 ```js run
 const arr = [NaN];
