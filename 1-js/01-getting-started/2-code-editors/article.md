@@ -1,6 +1,6 @@
 # Code editors
 
-A code editor is the place where a programmer spends most of his time.
+A code editor is the place where programmers spend most of their time.
 
 There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
 
@@ -8,9 +8,9 @@ There are two archetypes: IDE and lightweight editors. Many people feel comforta
 
 ## IDE
 
-The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As said, that's not just an editor, but a full-scale "development environment".
+The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As the name suggests, that's not just an editor, but a full-scale "development environment".
 
-An IDE loads the project (can be many files), and then allows navigation between files, provides autocompletion based on the whole project, integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
+An IDE loads the project (can be many files), allows navigation between files, provides autocompletion, integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
 
 If you haven't considered selecting an IDE yet, look at the following variants:
 
@@ -48,10 +48,8 @@ The personal preference of the author is to have both an IDE for projects and a 
 
 I'm using:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to other Jetbrains editors like [PHPStorm](http://www.jetbrains.com/phpstorm/) (PHP), [IDEA](http://www.jetbrains.com/idea/) (Java), [RubyMine](http://www.jetbrains.com/ruby/) (Ruby). There are editors for other languages too, but I haven't used them.
-- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
-
-If you don't know what to choose, you can consider these ones.
+- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to one of the other Jetbrains offerings listed above.
+- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/) have served me well.
 
 ## Let's not argue
 
