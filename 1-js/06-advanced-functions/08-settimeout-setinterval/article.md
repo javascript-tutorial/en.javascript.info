@@ -91,7 +91,7 @@ let timerId = setTimeout(...);
 clearTimeout(timerId);
 ```
 
-In the code below we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
+In the code below, we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
 
 ```js run no-beautify
 let timerId = setTimeout(() => alert("never happens"), 1000);
@@ -101,7 +101,7 @@ clearTimeout(timerId);
 alert(timerId); // same identifier (doesn't become null after canceling)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, that can be something else. For instance, Node.JS returns a timer object with additional methods.
+As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.JS returns a timer object with additional methods.
 
 Again, there is no universal specification for these methods, so that's fine.
 
@@ -109,7 +109,7 @@ For browsers, timers are described in the [timers section](https://www.w3.org/TR
 
 ## setInterval
 
-Method `setInterval` has the same syntax as `setTimeout`:
+The `setInterval` method has the same syntax as `setTimeout`:
 
 ```js
 let timerId = setInterval(func|code, delay[, arg1, arg2...])
@@ -154,11 +154,11 @@ let timerId = setTimeout(function tick() {
 }, 2000);
 ```
 
-The `setTimeout` above schedules next call right at the end of the current one `(*)`.
+The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
 
-Recursive `setTimeout` is more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+The recursive `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
 
-For instance, we need to write a service that every 5 seconds sends a request to server asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
 
 Here's the pseudocode:
 ```js
@@ -205,23 +205,23 @@ For `setInterval` the internal scheduler will run `func(i)` every 100ms:
 
 ![](setinterval-interval.png)
 
-Did you notice?...
+Did you notice?
 
 **The real delay between `func` calls for `setInterval` is less than in the code!**
 
-That's natural, because the time is taken by `func` execution "consumes" a part of the interval.
+That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
 
-It is possible that `func` execution turns out to be longer than we expected and takes more than 100ms.
+It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
 
-In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, then runs it again *immediately*.
+In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
 
-In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without pause at all.
+In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
 
-And here is the picture for recursive `setTimeout`:
+And here is the picture for the recursive `setTimeout`:
 
 ![](settimeout-interval.png)
 
-**Recursive `setTimeout` guarantees the fixed delay (here 100ms).**
+**The recursive `setTimeout` guarantees the fixed delay (here 100ms).**
 
 That's because a new call is planned at the end of the previous one.
 
@@ -258,11 +258,11 @@ The first line "puts the call into calendar after 0ms". But the scheduler will o
 
 ### Splitting CPU-hungry tasks
 
-There's a trick to split CPU-hungry task using `setTimeout`.
+There's a trick to split CPU-hungry tasks using `setTimeout`.
 
-For instance, syntax highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", that's unacceptable.
+For instance, a syntax-highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", which is unacceptable.
 
-So we can split the long text to pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on.
+So we can split the long text into pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on.
 
 For clarity, let's take a simpler example for consideration. We have a function to count from `1` to `1000000000`.
 
@@ -286,7 +286,7 @@ function count() {
 count();
 ```
 
-The browser may even show "the script takes too long" warning (but hopefully won't, the number is not very big).
+The browser may even show "the script takes too long" warning (but hopefully it won't, because the number is not very big).
 
 Let's split the job using the nested `setTimeout`:
 
@@ -323,11 +323,11 @@ We do a part of the job `(*)`:
 
 Then the next call is scheduled in `(*)` if we're not done yet.
 
-Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react on other user actions.
+Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react to other user actions.
 
-The notable thing is that both variants: with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
+The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
 
-To make them closer let's make an improvement.
+To make them closer, let's make an improvement.
 
 We'll move the scheduling in the beginning of the `count()`:
 
@@ -356,14 +356,14 @@ function count() {
 count();
 ```
 
-Now when we start to `count()` and know that we'll need to `count()` more -- we schedule that immediately, before doing the job.
+Now when we start to `count()` and know that we'll need to `count()` more, we schedule that immediately, before doing the job.
 
-If you run it, easy to notice that it takes significantly less time.
+If you run it, it's easy to notice that it takes significantly less time.
 
 ````smart header="Minimal delay of nested timers in-browser"
-In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://www.w3.org/TR/html5/webappapis.html#timers) says: "after five nested timers..., the interval is forced to be at least four milliseconds.".
+In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://www.w3.org/TR/html5/webappapis.html#timers) says: "after five nested timers, the interval is forced to be at least four milliseconds.".
 
-Let's demonstrate what it means by the example below. The `setTimeout` call in it re-schedules itself after `0ms`. Each call remembers the real time from the previous one in the `times` array. What the real delays look like? Let's see:
+Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself after `0ms`. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
 
 ```js run
 let start = Date.now();
