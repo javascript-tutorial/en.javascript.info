@@ -319,7 +319,7 @@ We do a part of the job `(*)`:
 
 1. First run: `i=1...1000000`.
 2. Second run: `i=1000001..2000000`.
-3. ...and so on, the `while` checks if `i` is evenly divided by `100000`.
+3. ...and so on, the `while` checks if `i` is evenly divided by `1000000`.
 
 Then the next call is scheduled in `(*)` if we're not done yet.
 
