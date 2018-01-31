@@ -5,7 +5,7 @@ libs:
 
 # Currying and partials
 
-Till now we were only talking about binding `this`. Now let's make a step further.
+Until now we have only been talking about binding `this`. Let's take it a step further.
 
 We can bind not only `this`, but also arguments. That's rarely done, but sometimes can be handy.
 
