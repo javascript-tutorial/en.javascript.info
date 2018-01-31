@@ -148,7 +148,7 @@ More advanced implementations of currying like [_.curry](https://lodash.com/docs
 
 ```js
 function curry(f) {
-  return function(..args) {
+  return function(...args) {
     // if args.length == f.length (as many arguments as f has),
     //   then pass the call to f
     // otherwise return a partial function that fixes args as first arguments
