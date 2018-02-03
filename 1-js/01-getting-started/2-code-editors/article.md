@@ -16,8 +16,6 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 
 - IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and others if you need additional languages.
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
-- Eclipse-based products, like [Aptana](http://www.aptana.com/) and Zend Studio.
-- [Komodo IDE](http://www.activestate.com/komodo-ide) and its lightweight free version [Komodo Edit](http://www.activestate.com/komodo-edit).
 - [Netbeans](http://netbeans.org/).
 
 All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux.
