@@ -11,7 +11,7 @@ In this chapter we concentrate on aspects that are not covered by school arithme
 Before we move on, let's grasp the common terminology.
 
 - *An operand* -- is what operators are applied to. For instance in multiplication `5 * 2` there are two operands: the left operand is `5`, and the right operand is `2`. Sometimes people say "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `"-"` reverses the sign of the number:
+- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of the number:
 
     ```js run
     let x = 1;
@@ -34,7 +34,7 @@ Before we move on, let's grasp the common terminology.
 
 Now let's see special features of JavaScript operators that are beyond school arithmetics.
 
-Usually the plus operator `'+'` sums numbers.
+Usually the plus operator `+` sums numbers.
 
 But if the binary `+` is applied to strings, it merges (concatenates) them:
 
@@ -43,7 +43,7 @@ let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if any of operands is a string, then the other one is converted to a string too.
+Note that if any of the operands is a string, then the other one is converted to a string too.
 
 For example:
 
@@ -54,7 +54,14 @@ alert( 2 + '1' ); // "21"
 
 See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, then convert the other one into a string as well.
 
-String concatenation and conversion is a special feature of the binary plus `"+"`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
+However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
+
+
+```js run
+alert(2 + 2 + '1' ); // "41" and not "221"
+```
+
+String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers. They always convert their operands to numbers.
 
 For instance, subtraction and division:
 
@@ -65,7 +72,7 @@ alert( '6' / '2' ); // 3
 
 ## Numeric conversion, unary +
 
-The plus `+` exist in two forms. The binary form that we used above and the unary form.
+The plus `+` exists in two forms. The binary form that we used above and the unary form.
 
 The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything with numbers, but if the operand is not a number, then it is converted into it.
 
@@ -86,9 +93,9 @@ alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same as `Number(...)`, but shorter.
+It actually does the same as `Number(...)`, but is shorter.
 
-A need to convert string to number arises very often. For example, if we are getting values from HTML form fields, then they are usually strings.
+A need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, then they are usually strings.
 
 What if we want to sum them?
 
@@ -246,14 +253,14 @@ So, there are special operators for that:
 
     ```js run no-beautify
     let counter = 2;
-    counter++;      // works same as counter = counter + 1, but shorter
+    counter++;      // works the same as counter = counter + 1, but is shorter
     alert( counter ); // 3
     ```
 - **Decrement** `--` decreases a variable by 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;      // works same as counter = counter - 1, but shorter
+    counter--;      // works the same as counter = counter - 1, but is shorter
     alert( counter ); // 1
     ```
 
@@ -401,9 +408,9 @@ alert( n ); // 16  (right part evaluated first, same as n *= 8)
 
 ## Comma
 
-The comma operator `','` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
+The comma operator `,` is one of most rare and unusual operators. Sometimes it's used to write shorter code, so we need to know it in order to understand what's going on.
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `','`. Each of them is evaluated, but the result of only the last one is returned.
+The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated, but the result of only the last one is returned.
 
 For example:
 
