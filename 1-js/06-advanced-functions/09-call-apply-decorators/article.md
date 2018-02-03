@@ -70,7 +70,7 @@ To summarize, there are several benefits of using a separate `cachingDecorator` 
 
 The caching decorator mentioned above is not suited to work with object methods.
 
-For instance, in the code below `user.format()` stops working after the decoration:
+For instance, in the code below `worker.slow()` stops working after the decoration:
 
 ```js run
 // we'll make worker.slow caching
