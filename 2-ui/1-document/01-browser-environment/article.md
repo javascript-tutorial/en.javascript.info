@@ -1,10 +1,10 @@
 # Browser environment, specs
 
-The JavaScript language was initially created for web browsers. Since then, it evolved and became a language with many uses and platforms.
+The JavaScript language was initially created for web browsers. Since then, it has evolved and become a language with many uses and platforms.
 
-A platform may be either a browser or a web-server or a washing machine or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+A platform may be a browser, or a web-server, or a washing machine, or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
-A host environment provides platform-specific objects and functions additionally to the language core. Web browsers give means to control web pages. Node.JS provides server-side features, and so on.
+A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.JS provides server-side features, and so on.
 
 [cut]
 
@@ -49,29 +49,29 @@ document.body.style.background = "red";
 setTimeout(() => document.body.style.background = "", 1000);
 ```
 
-Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. By chance, there are two working groups who develop it:
+Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. There happen to be two working groups who develop it:
 
 1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
 2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), publishing at <https://dom.spec.whatwg.org>.
 
-As it happens, the two groups don't always agree, so we have like 2 sets of standards. But they are in the tight contact and eventually things merge. So the documentation that you can find on the given resources is very similar, there's about 99% match. There are very minor differences, you probably won't notice them.
+As it happens, the two groups don't always agree, so it's like we have two sets of standards. But they are very similar and eventually things merge. The documentation that you can find on the given resources is very similar, with about a 99% match. There are very minor differences that you probably won't notice.
 
 Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
 
-In the ancient past, there was no standard at all -- each browser implemented whatever it wanted. So different browsers had different sets methods and properties for the same thing, and developers had to write different code for each of them. Dark, messy times.
+In the ancient past, there was no standard at all -- each browser implemented however it wanted. Different browsers had different sets, methods, and properties for the same thing, and developers had to write different code for each of them. Dark, messy times.
 
-Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But in this tutorial we'll use modern stuff: there's no need to learn old things until you really need those (chances are high you won't).
+Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But, in this tutorial we'll use modern stuff: there's no need to learn old things until you really need to (chances are high that you won't).
 
-Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's DOM Level 4. People from WhatWG group got tired of version and are calling that just "DOM", without a number. So will do we.
+Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's reached DOM Level 4. People from WhatWG group got tired of version numbers and are calling it just "DOM", without a number. So we'll do the same.
 
 ```smart header="DOM is not only for browsers"
 The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
 
-For instance, server-side tools that download HTML pages and process them. They may support only a part of the DOM specification though.
+For instance, server-side tools that download HTML pages and process them use the DOM. They may support only a part of the specification though.
 ```
 
 ```smart header="CSSOM for styling"
-CSS rules and stylesheets are structured not like HTML. So there's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, how to read and write them.
+CSS rules and stylesheets are not structured like HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
 
 CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
 ```
@@ -82,8 +82,8 @@ Browser Object Model (BOM) are additional objects provided by the browser (host 
 
 For instance:
 
-- [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- [location](mdn:api/Window/location) object allows to read the current URL and redirects the browser to a new one.
+- [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
+- [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
 
 Here's how we can use the `location` object:
 
@@ -114,10 +114,10 @@ CSSOM specification
 : Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
 
 HTML specification
-: Describes HTML language (tags etc) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
+: Describes HTML language (tags etc.) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
 
-Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is the most complex part.
+Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is very complex.
 
-Please note the links above, because there's so much stuff to learn, it's impossible to cover and remember everything.
+Please note the links above, as there's so much stuff to learn it's impossible to cover and remember everything.
 
-When you'd like to read about a property or a method -- the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice one, but reading the corresponding spec may be better: more complex and longer to read, but will make your fundamental knowledge sound and complete.
+When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice resource, but reading the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
