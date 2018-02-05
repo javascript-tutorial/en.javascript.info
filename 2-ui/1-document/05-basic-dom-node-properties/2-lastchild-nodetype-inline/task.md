@@ -4,7 +4,7 @@ importance: 5
 
 # What's in the nodeType?
 
-What the script shows?
+What does the script show?
 
 ```html
 <html>
