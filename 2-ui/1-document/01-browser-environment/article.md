@@ -82,8 +82,8 @@ Browser Object Model (BOM) are additional objects provided by the browser (host 
 
 For instance:
 
-- [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
+- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
+- The [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
 
 Here's how we can use the `location` object:
 
@@ -114,7 +114,7 @@ CSSOM specification
 : Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
 
 HTML specification
-: Describes HTML language (tags etc.) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
+: Describes the HTML language (e.g. tags) and also the BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes the DOM specification and extends it with many additional properties and methods.
 
 Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is very complex.
 
