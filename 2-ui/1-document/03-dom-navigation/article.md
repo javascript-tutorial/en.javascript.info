@@ -7,9 +7,9 @@ libs:
 
 # Walking the DOM
 
-DOM allows to do anything with elements and their contents, but first we need to reach the corresponding DOM object, get it into a variable, and then we are able to modify it.
+The DOM allows to do anything with elements and their contents, but first we need to reach the corresponding DOM object, get it into a variable, and then we are able to modify it.
 
-All operations on DOM start with the `document` object. From it we can access any node.
+All operations on the DOM start with the `document` object. From it we can access any node.
 
 [cut]
 
@@ -275,7 +275,7 @@ Certain types of DOM elements may provide additional properties, specific to the
 
 Tables are a great example and important particular case of that.
 
-**`<table>`** element supports (in addition to the given above) these properties:
+**The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
 - `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
@@ -285,8 +285,8 @@ Tables are a great example and important particular case of that.
 
 **`<tr>`:**
 - `tr.cells` -- the collection of `<td>` and `<th>` cells inside the given `<tr>`.
-- `tr.sectionRowIndex` -- the number of the given `<tr>` inside the enclosing `<thead>/<tbody>`.
-- `tr.rowIndex` -- the number of the `<tr>` in the table.
+- `tr.sectionRowIndex` -- the position (index) of the given `<tr>` inside the enclosing `<thead>/<tbody>/<tfoot>`.
+- `tr.rowIndex` -- the number of the `<tr>` in the table as a whole (including all table rows).
 
 **`<td>` and `<th>`:**
 - `td.cellIndex` -- the number of the cell inside the enclosing `<tr>`.
