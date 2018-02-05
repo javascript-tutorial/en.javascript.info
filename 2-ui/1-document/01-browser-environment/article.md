@@ -116,7 +116,7 @@ CSSOM specification
 HTML specification
 : Describes HTML language (tags etc.) and also BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes DOM specification and extends it with many additional properties and methods.
 
-Now we'll get down to learning DOM, because the document plays the central role in the UI, and working with it is very complex.
+Now we'll get down to learning DOM, because the document plays the central role in the UI.
 
 Please note the links above, as there's so much stuff to learn it's impossible to cover and remember everything.
 

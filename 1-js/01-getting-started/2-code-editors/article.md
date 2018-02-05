@@ -10,15 +10,15 @@ There are two archetypes: IDE and lightweight editors. Many people feel comforta
 
 The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As the name suggests, that's not just an editor, but a full-scale "development environment".
 
-An IDE loads the project (can be many files), allows navigation between files, provides autocompletion, integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
+An IDE loads the project (can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
 
 If you haven't considered selecting an IDE yet, look at the following variants:
 
-- IntelliJ editors: [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) and others if you need additional languages.
+- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and other editors of the same company if you need additional languages.
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
 - [Netbeans](http://netbeans.org/).
 
-All of the IDEs listed above are available on both Windows and Mac, and the IDEs other than Visual Studio are also available on Linux.
+All of the IDEs except Visual Studio are available on Windows, MacOs and Linux. Visual Studio doesn't work on Linux.
 
 Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
@@ -47,7 +47,7 @@ The personal preference of the author is to have both an IDE for projects and a 
 I'm using:
 
 - [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to one of the other Jetbrains offerings listed above.
-- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/) have served me well.
+- As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
 
 ## Let's not argue
 
