@@ -2,9 +2,9 @@ importance: 1
 
 ---
 
-# Why "aaa" remains?
+# Why does "aaa" remain?
 
-Run the example. Why `table.remove()` does not delete the text `"aaa"`?
+Run the example. Why does `table.remove()` not delete the text `"aaa"`?
 
 ```html height=100 run
 <table id="table">
