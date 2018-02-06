@@ -6,14 +6,14 @@ importance: 5
 
 In the code below there's a `setTimeout` call scheduled, then a heavy calculation is run, that takes more than 100ms to finish.
 
-When the scheduled function will run?
+When will the scheduled function run?
 
 1. After the loop.
 2. Before the loop.
 3. In the beginning of the loop.
 
 
-What `alert` is going to show?
+What is `alert` going to show?
 
 ```js
 let i = 0;
