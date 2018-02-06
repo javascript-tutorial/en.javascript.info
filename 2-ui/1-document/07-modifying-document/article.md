@@ -6,8 +6,6 @@ Here we'll see how to create new elements "on the fly" and modify the existing p
 
 First we'll see a simple example and then explain the methods.
 
-[cut]
-
 ## Example: show a message
 
 For a start, let's see how to add a message on the page that looks nicer than `alert`.
@@ -32,7 +30,7 @@ Here's how it will look:
 */!*
 ```
 
-That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS).
+That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS file).
 
 ## Creating an element
 
@@ -63,7 +61,7 @@ div.className = "alert alert-success";
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
-After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because not inserted into the page yet.
+After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because it's not been inserted into the page yet.
 
 ## Insertion methods
 
@@ -137,9 +135,8 @@ Here's a brief list of methods to insert a node into a parent element (`parentEl
     */!*
     </script>
     ```
-
-    To insert as the first element, we can do like this:
-
+    To insert `newLi` as the first element, we can do it like this:
+    
     ```js
     list.insertBefore(newLi, list.firstChild);
     ```
@@ -206,7 +203,7 @@ before
 after
 ```
 
-These methods can insert multiple list of nodes and text pieces in a single call.
+These methods can insert multiple lists of nodes and text pieces in a single call.
 
 For instance, here a string and an element are inserted:
 
