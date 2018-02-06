@@ -302,7 +302,7 @@ So here's an alternative variant of showing a message:
 
 How to insert one more similar message?
 
-We could do a function and put the code there. But the alternative way would be to *clone* the existing `div` and modify the text inside it (if needed).
+We could make a function and put the code there. But the alternative way would be to *clone* the existing `div` and modify the text inside it (if needed).
 
 Sometimes when we have a big element, that may be faster and simpler.
 
@@ -337,7 +337,7 @@ An example of copying the message:
 
 ## Removal methods
 
-To remove nodes, there are following methods:
+To remove nodes, there are the following methods:
 
 
 `parentElem.removeChild(node)`
@@ -411,7 +411,7 @@ The call to `document.write(html)` writes the `html` into page "right here and n
 
 The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 
-In modern scripts we can rarely see it, because of the important limitation.
+In modern scripts we can rarely see it, because of the following important limitation:
 
 **The call to `document.write` only works while the page is loading.**
 
@@ -479,4 +479,4 @@ Insertion and removal of nodes:
 - To append HTML to the page before it has finished loading:
   - `document.write(html)`
 
-  After the page is loaded such call erases the document. Mostly seen in old scripts.
+  After the page is loaded such a call erases the document. Mostly seen in old scripts.
