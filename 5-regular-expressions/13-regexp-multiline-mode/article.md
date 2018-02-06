@@ -2,8 +2,6 @@
 
 The multiline mode is enabled by the flag `pattern:/.../m`.
 
-[cut]
-
 It only affects the behavior of `pattern:^` and `pattern:$`.
 
 In the multiline mode they match not only at the beginning and end of the string, but also at start/end of line.

@@ -4,8 +4,6 @@ The "Same Origin" (same site) policy limits access of windows and frame to each 
 
 The idea is that if we have two windows open: one from `john-smith.com`, and another one is `gmail.com`, then we wouldn't want a script from `john-smith.com` to read our mail.
 
-[cut]
-
 ## Same Origin [#same-origin]
 
 Two URLs are said to have the "same origin" if they have the same protocol, domain and port.

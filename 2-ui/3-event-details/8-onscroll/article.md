@@ -6,8 +6,6 @@ For instance:
 - Show/hide additional controls or information depending on where in the document the user is.
 - Load more data when the user scrolls down till the end of the page.
 
-[cut]
-
 Here's a small function to show the current scroll:
 
 ```js autorun

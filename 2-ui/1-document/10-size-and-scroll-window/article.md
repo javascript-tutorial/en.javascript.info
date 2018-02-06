@@ -4,8 +4,6 @@ How to find out the width of the browser window? How to get the full height of t
 
 From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
 
-[cut]
-
 ## Width/height of the window
 
 Properties `clientWidth/clientHeight` of `document.documentElement` is exactly what we want here:

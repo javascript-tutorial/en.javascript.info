@@ -10,8 +10,6 @@ Losing the focus generally means: "the data has been entered", so we can run the
 
 There are important peculiarities when working with focus events. We'll do the best to cover them here.
 
-[cut]
-
 ## Events focus/blur
 
 The `focus` event is called on focusing, and `blur` -- when the element loses the focus.

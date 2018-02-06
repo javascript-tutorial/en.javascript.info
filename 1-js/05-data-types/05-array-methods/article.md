@@ -2,8 +2,6 @@
 
 Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
 
-[cut]
-
 ## Add/remove items
 
 We already know methods that add and remove items from the beginning or the end:

@@ -13,8 +13,6 @@ And, in the real world, a user can *act*: select something from the shopping car
 
 Actions are represented in JavaScript by functions in properties.
 
-[cut]
-
 ## Method examples
 
 For the start, let's teach the `user` to say hello:

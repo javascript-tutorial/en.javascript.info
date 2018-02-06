@@ -6,8 +6,6 @@ Here we'll see how to create new elements "on the fly" and modify the existing p
 
 First we'll see a simple example and then explain the methods.
 
-[cut]
-
 ## Example: show a message
 
 For a start, let's see how to add a message on the page that looks nicer than `alert`.

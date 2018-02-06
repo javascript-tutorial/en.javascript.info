@@ -9,8 +9,6 @@ Till now we were only talking about binding `this`. Now let's make a step furthe
 
 We can bind not only `this`, but also arguments. That's rarely done, but sometimes can be handy.
 
-[cut]
-
 The full syntax of `bind`:
 
 ```js

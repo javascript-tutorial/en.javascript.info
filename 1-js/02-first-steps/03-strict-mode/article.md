@@ -6,8 +6,6 @@ That had the benefit of never breaking existing code. But the downside was that 
 
 It had been so until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
 
-[cut]
-
 ## "use strict"
 
 The directive looks like a string: `"use strict"` or `'use strict'`. When it is located on the top of the script, then the whole script works the "modern" way.

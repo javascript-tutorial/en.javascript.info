@@ -3,8 +3,6 @@
 
 There's one more way to create a function. It's rarely used, but sometimes there's no alternative.
 
-[cut]
-
 ## Syntax
 
 The syntax for creating a function:

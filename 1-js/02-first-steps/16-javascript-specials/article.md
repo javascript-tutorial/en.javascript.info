@@ -2,8 +2,6 @@
 
 This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
 
-[cut]
-
 ## Code structure
 
 Statements are delimited with a semicolon:

@@ -4,8 +4,6 @@ Mouse events come not only from "mouse manipulators", but are also emulated on t
 
 In this chapter we'll get into more details about mouse events and their properties.
 
-[cut]
-
 ## Mouse event types
 
 We can split mouse events into two categories: "simple" and "complex"

@@ -2,8 +2,6 @@
 
 In JavaScript, a function is not a "magical language structure", but a special kind of value.
 
-[cut]
-
 The syntax that we used before is called a *Function Declaration*:
 
 ```js

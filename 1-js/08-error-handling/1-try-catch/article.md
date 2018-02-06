@@ -6,8 +6,6 @@ Usually, a script "dies" (immediately stops) in case of an error, printing it to
 
 But there's a syntax construct `try..catch` that allows to "catch" errors and, instead of dying, do something more reasonable.
 
-[cut]
-
 ## The "try..catch" syntax
 
 The `try..catch` construct has two main blocks: `try`, and then `catch`:

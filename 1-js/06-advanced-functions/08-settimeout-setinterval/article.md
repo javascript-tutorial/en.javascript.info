@@ -10,8 +10,6 @@ There are two methods for it:
 These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.JS.
 
 
-[cut]
-
 ## setTimeout
 
 The syntax:

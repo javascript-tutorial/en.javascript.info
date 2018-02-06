@@ -14,8 +14,6 @@ Each event may be useful:
 
 Let's explore the details of these events.
 
-[cut]
-
 ## DOMContentLoaded
 
 The `DOMContentLoaded` event happens on the `document` object.

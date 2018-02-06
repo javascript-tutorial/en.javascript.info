@@ -6,8 +6,6 @@ For example, `alert` automatically converts any value to a string to show it. Ma
 
 There are also cases when we need to explicitly convert a value to put things right.
 
-[cut]
-
 ```smart header="Not talking about objects yet"
 In this chapter we don't cover objects yet. Here we study primitives first. Later, after we learn objects, we'll see how object conversion works in the chapter <info:object-toprimitive>.
 ```

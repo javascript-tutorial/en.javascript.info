@@ -6,8 +6,6 @@ That is actually an art of programming -- to take a complex task and code it in 
 
 One thing to help is the good code style.
 
-[cut]
-
 ## Syntax
 
 A cheatsheet with the rules (more details below):

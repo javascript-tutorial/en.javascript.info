@@ -6,8 +6,6 @@ Although they are called "logical", they can be applied to values of any type, n
 
 Let's see the details.
 
-[cut]
-
 ## || (OR)
 
 The "OR" operator is represented with two vertical line symbols:

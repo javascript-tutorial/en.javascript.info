@@ -12,8 +12,6 @@ Programming languages that allow such things are called "dynamically typed", mea
 
 There are seven basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
 
-[cut]
-
 ## A number
 
 ```js

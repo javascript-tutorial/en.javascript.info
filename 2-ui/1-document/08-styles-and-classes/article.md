@@ -7,8 +7,6 @@ There are generally two ways to style an element:
 1. Create a class in CSS and add it: `<div class="...">`
 2. Write properties directly into `style`: `<div style="...">`.
 
-[cut]
-
 CSS is always the preferred way -- not only for HTML, but in JavaScript as well.
 
 We should only manipulate the `style` property if classes "can't handle it".

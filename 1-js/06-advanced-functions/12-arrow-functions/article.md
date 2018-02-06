@@ -2,8 +2,6 @@
 
 Let's revisit arrow functions.
 
-[cut]
-
 Arrow functions are not just a "shorthand" for writing small stuff.
 
 JavaScript is full of situations where we need to write a small function, that's executed somewhere else.

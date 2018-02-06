@@ -4,8 +4,6 @@ The `instanceof` operator allows to check whether an object belongs to a certain
 
 Such a check may be necessary in many cases, here we'll use it for building a *polymorphic* function, the one that treats arguments differently depending on their type.
 
-[cut]
-
 ## The instanceof operator [#ref-instanceof]
 
 The syntax is:

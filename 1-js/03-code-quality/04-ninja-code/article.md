@@ -13,8 +13,6 @@ Novice developers sometimes use them even better than programmer ninjas.
 
 Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
 
-[cut]
-
 
 ```warn header="Irony detected"
 Many try to follow ninja paths. Few succeed.

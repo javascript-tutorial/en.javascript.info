@@ -3,8 +3,6 @@
 DOM navigation properties are great when elements are close to each other. What if they are not? How to get an arbitrary element of the page?
 
 There are additional searching methods for that.
-[cut]
-
 ## document.getElementById or just id
 
 If an element has the `id` attribute, then there's a global variable by the name from that `id`.

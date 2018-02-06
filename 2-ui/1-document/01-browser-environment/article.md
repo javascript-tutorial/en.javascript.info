@@ -6,8 +6,6 @@ A platform may be a browser, or a web-server, or a washing machine, or another *
 
 A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.JS provides server-side features, and so on.
 
-[cut]
-
 Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
 
 ![](windowObjects.png)

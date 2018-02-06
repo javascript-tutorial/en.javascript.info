@@ -8,8 +8,6 @@ It is not convenient to use an object here, because it provides no methods to ma
 
 There exists a special data structure named `Array`, to store ordered collections. 
 
-[cut]
-
 ## Declaration
 
 There are two syntaxes for creating an empty array:

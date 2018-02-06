@@ -2,8 +2,6 @@
 
 In modern JavaScript we can set a prototype using `__proto__`, as described in the previous article. But it wasn't like that all the time.
 
-[cut]
-
 JavaScript has had prototypal inheritance from the beginning. It was one of the core features of the language.
 
 But in the old times, there was another (and the only) way to set it: to use a `"prototype"` property of the constructor function. And there are still many scripts that use it.

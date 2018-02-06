@@ -4,8 +4,6 @@ JavaScript allows us to work with primitives (strings, numbers etc) as if they w
 
 They also provide methods to call and such. We will study those soon, but first we'll see how it works, because, of course, primitives are not objects (and here we will make it even more clear).
 
-[cut]
-
 Let's look at the key distinction between primitives and objects.
 
 A primitive

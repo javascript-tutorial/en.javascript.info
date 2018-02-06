@@ -4,8 +4,6 @@ Let's meet a new built-in object: [Date](mdn:js/Date). It stores the date, time 
 
 For instance, we can use it to store creation/modification times, or to measure time, or just to print out the current date.
 
-[cut]
-
 ## Creation
 
 To create a new `Date` object call `new Date()` with one of the following arguments:

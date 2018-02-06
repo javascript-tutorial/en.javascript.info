@@ -8,8 +8,6 @@ In particular, a function can make a sub-call *itself*. That's called *a recursi
 
 We'll fiddle around that advanced case to better learn how functions work.
 
-[cut]
-
 [smart header="A topic you already know?"]
 Recursion is a general programming term. If you are already familiar with it, then you may list the page to the next chapter. Please read on if you are new to functions or just prefer not to skip parts.
 [/smart]

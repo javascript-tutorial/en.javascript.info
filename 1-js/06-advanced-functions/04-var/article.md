@@ -13,8 +13,6 @@ But `var` is a very different beast, that originates from very old times. It's g
 
 If you don't plan meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
 
-[cut]
-
 From the first sight, `var` behaves similar to `let`. That is, declares a variable:
 
 ```js run

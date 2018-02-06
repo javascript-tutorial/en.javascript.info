@@ -6,8 +6,6 @@ For instance, if the tag is `<body id="page">`, then the DOM object has `body.id
 
 But the attribute-property mapping is not one-to-one! In this chapter we'll pay attention to separate these two notions, to see how to work with them, when they are the same, and when they are different.
 
-[cut]
-
 ## DOM properties
 
 We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add our own.

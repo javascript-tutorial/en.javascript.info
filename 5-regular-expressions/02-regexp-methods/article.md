@@ -7,8 +7,6 @@ There are two sets of methods to deal with regular expressions.
 
 The structure is a bit messed up, so we'll first consider methods separately, and then -- practical recipes for common tasks.
 
-[cut]
-
 ## str.search(reg)
 
 We've seen this method already. It returns the position of the first match or `-1` if none found:

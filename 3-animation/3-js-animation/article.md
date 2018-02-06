@@ -4,8 +4,6 @@ JavaScript animations can handle things that CSS can't.
 
 For instance, moving along a complex path, with a timing function different from Bezier curves, or an animation on a canvas.
 
-[cut]
-
 ## setInterval
 
 From the HTML/CSS point of view, an animation is a gradual change of the style property. For instance, changing `style.left` from `0px` to `100px` moves the element.

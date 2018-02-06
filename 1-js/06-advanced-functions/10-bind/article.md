@@ -9,8 +9,6 @@ When using `setTimeout` with object methods or passing object methods along, the
 
 Suddenly, `this` just stops working right. The situation is typical for novice developers, but happens with experienced ones as well.
 
-[cut]
-
 ## Losing "this"
 
 We already know that in JavaScript it's easy to lose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.

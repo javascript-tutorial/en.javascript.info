@@ -4,8 +4,6 @@ Many operators are known to us from school. They are addition `+`, a multiplicat
 
 In this chapter we concentrate on aspects that are not covered by school arithmetic.
 
-[cut]
-
 ## Terms: "unary", "binary", "operand"
 
 Before we move on, let's grasp the common terminology.

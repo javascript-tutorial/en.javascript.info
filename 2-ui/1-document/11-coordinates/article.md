@@ -9,8 +9,6 @@ Most JavaScript methods deal with one of two coordinate systems:
 
 It's important to understand the difference and which type is where.
 
-[cut]
-
 ## Window coordinates: getBoundingClientRect
 
 Window coordinates start at the left-upper corner of the window.

@@ -6,8 +6,6 @@ Custom events can be used to create "graphical components". For instance, a root
 
 Also we can generate built-in events like `click`, `mousedown` etc, that may be good for testing.
 
-[cut]
-
 ## Event constructor
 
 Events form a hierarchy, just like DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.

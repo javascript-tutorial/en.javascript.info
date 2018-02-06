@@ -4,8 +4,6 @@ Sometimes we need to perform different actions based on a condition.
 
 There is the `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  the “question mark” operator `?` for simplicity.
 
-[cut]
-
 ## The "if" statement
 
 The `if` statement gets a condition, evaluates it and, if the result is `true`, executes the code.

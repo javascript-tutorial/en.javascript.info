@@ -4,8 +4,6 @@ Forms and control elements, such as `<input>` have a lot of special properties a
 
 Working with forms can be much more convenient if we know them.
 
-[cut]
-
 ## Navigation: form and elements
 
 Document forms are members of the special collection `document.forms`.

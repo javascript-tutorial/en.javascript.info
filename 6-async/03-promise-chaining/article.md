@@ -8,8 +8,6 @@ Let's return to the problem mentioned in the chapter <info:callbacks>.
 
 Promises provide a couple of recipes to do that.
 
-[cut]
-
 In this chapter we cover promise chaining.
 
 It looks like this:

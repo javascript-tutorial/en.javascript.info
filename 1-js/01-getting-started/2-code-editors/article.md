@@ -4,8 +4,6 @@ A code editor is the place where programmers spend most of their time.
 
 There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
 
-[cut]
-
 ## IDE
 
 The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project". As the name suggests, that's not just an editor, but a full-scale "development environment".

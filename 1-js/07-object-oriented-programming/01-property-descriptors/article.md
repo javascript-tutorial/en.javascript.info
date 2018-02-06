@@ -5,8 +5,6 @@ As we know, objects can store properties.
 
 Till now, a property was a simple "key-value" pair to us. But an object property is actually more complex and tunable thing.
 
-[cut]
-
 ## Property flags
 
 Object properties, besides a **`value`**, have three special attributes (so-called "flags"):

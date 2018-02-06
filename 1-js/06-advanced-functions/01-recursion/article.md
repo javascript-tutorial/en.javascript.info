@@ -10,8 +10,6 @@ Recursion is a programming pattern that is useful in situations when a task can 
 
 When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
 
-[cut]
-
 ## Two ways of thinking
 
 For something simple to start with -- let's write a function `pow(x, n)` that raises `x` to a natural power of `n`. In other words, multiplies `x` by itself `n` times.

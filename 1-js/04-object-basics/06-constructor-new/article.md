@@ -4,8 +4,6 @@ The regular `{...}` syntax allows to create one object. But often we need to cre
 
 That can be done using constructor functions and the `"new"` operator.
 
-[cut]
-
 ## Constructor function
 
 Constructor functions technically are regular functions. There are two conventions though:

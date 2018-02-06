@@ -9,8 +9,6 @@ There are also other ways to get/set a prototype, besides those that we already 
 - [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- returns the `[[Prototype]]` of `obj`.
 - [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- sets the `[[Prototype]]` of `obj` to `proto`.
 
-[cut]
-
 For instance:
 
 ```js run

@@ -6,8 +6,6 @@ Most of the time, a JavaScript application needs to work with information. Here 
 
 Variables are used to store this information.
 
-[cut]
-
 ## A variable
 
 A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors and other data.

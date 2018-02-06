@@ -9,8 +9,6 @@ window.open('http://javascript.info/')
 
 ... And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
 
-[cut]
-
 ## Popup blocking
 
 Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: JavaScript is able to send requests for server, so popups are rarely used. But sometimes they are still handy.

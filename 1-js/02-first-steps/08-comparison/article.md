@@ -7,8 +7,6 @@ Many comparison operators we know from maths:
 - Equality check is written as `a == b` (please note the double equation sign `=`. A single symbol `a = b` would mean an assignment).
 - Not equals. In maths the notation is <code>&ne;</code>, in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
 
-[cut]
-
 ## Boolean is the result
 
 Just as all other operators, a comparison returns a value. The value is of the boolean type.

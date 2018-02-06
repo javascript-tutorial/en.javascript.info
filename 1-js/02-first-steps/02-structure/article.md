@@ -2,8 +2,6 @@
 
 The first thing to study is the building blocks of the code.
 
-[cut]
-
 ## Statements
 
 Statements are syntax constructs and commands that perform actions.

@@ -6,8 +6,6 @@ The method `form.submit()` allows to initiate form sending from JavaScript. We c
 
 Let's see more details of them.
 
-[cut]
-
 ## Event: submit
 
 There are two main ways to submit a form:

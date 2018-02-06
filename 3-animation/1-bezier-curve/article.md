@@ -4,8 +4,6 @@ Bezier curves are used in computer graphics to draw shapes, for CSS animation an
 
 They are actually a very simple thing, worth to study once and then feel comfortable in the world of vector graphics and advanced animations.
 
-[cut]
-
 ## Control points
 
 A [bezier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) is defined by control points.

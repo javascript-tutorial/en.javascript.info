@@ -4,8 +4,6 @@ Alternation is the term in regular expression that is actually a simple "OR".
 
 In a regular expression it is denoted with a vertical line character `pattern:|`.
 
-[cut]
-
 For instance, we need to find programming languages: HTML, PHP, Java or JavaScript.
 
 The corresponding regexp: `pattern:html|php|java(script)?`.

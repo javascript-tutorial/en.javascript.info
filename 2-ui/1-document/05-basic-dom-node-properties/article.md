@@ -4,8 +4,6 @@ Let's get a more in-depth look at DOM nodes.
 
 In this chapter we'll see more into what they are and their most used properties.
 
-[cut]
-
 ## DOM node classes
 
 DOM nodes have different properties depending on their class. For instance, an element node corresponding to tag `<a>` has link-related properties, and the one corresponding to `<input>` has input-related properties and so on. Text nodes are not the same as element nodes. But there are also common properties and methods between all of them, because all classes of DOM nodes form a single hierarchy.

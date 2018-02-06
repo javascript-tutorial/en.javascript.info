@@ -10,8 +10,6 @@ For instance:
 
 In this chapter we'll learn how to do the same. And, more importantly, how to feel comfortable working with such functions and arrays.
 
-[cut]
-
 ## Rest parameters `...`
 
 A function can be called with any number of arguments, no matter how it is defined.

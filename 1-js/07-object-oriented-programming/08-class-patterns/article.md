@@ -11,8 +11,6 @@ In JavaScript there are several well-known programming patterns to make classes 
 
 The `class` construct will be described in the next chapter, but in JavaScript it's a "syntax sugar" and an extension of one of the patterns that we'll study here.
 
-[cut]
-
 
 ## Functional class pattern
 

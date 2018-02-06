@@ -6,8 +6,6 @@ For instance, we have a `user` object with its properties and methods, and want 
 
 *Prototypal inheritance* is a language feature that helps in that.
 
-[cut]
-
 ## [[Prototype]]
 
 In JavaScript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":

@@ -4,8 +4,6 @@ In JavaScript, the textual data is stored as strings. There is no separate type 
 
 The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
 
-[cut]
-
 ## Quotes
 
 Let's recall the kinds of quotes.

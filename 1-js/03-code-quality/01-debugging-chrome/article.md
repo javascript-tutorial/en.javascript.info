@@ -6,8 +6,6 @@ All modern browsers and most other environments support "debugging" -- a special
 
 We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
 
-[cut]
-
 ## The "sources" pane
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.

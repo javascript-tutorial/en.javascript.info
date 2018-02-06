@@ -4,8 +4,6 @@ Consider a practical task -- we have a phone number `"+7(903)-123-45-67"`, and w
 
 A character class is a special notation that matches any symbol from the set.
 
-[cut]
-
 For instance, there's a "digit" class. It's written as `\d`. We put it in the pattern, and during the search any digit matches it.
 
 For instance, the regexp `pattern:/\d/` looks for a single digit:

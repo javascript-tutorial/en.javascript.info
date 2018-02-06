@@ -6,8 +6,6 @@ So if we want to track any input into an `<input>` field, then keyboard events a
 
 Keyboard events should be used when we want to handle keyboard actions (virtual keyboard also counts). For instance, to react on arrow keys `key:Up` and `key:Down` or hotkeys (including combinations of keys).
 
-[cut]
-
 
 ## Teststand [#keyboard-test-stand]
 

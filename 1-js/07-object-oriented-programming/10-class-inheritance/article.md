@@ -5,8 +5,6 @@ Classes can extend one another. There's a nice syntax, technically based on the 
 
 To inherit from another class, we should specify `"extends"` and the parent class before the brackets `{..}`.
 
-[cut]
-
 Here `Rabbit` inherits from `Animal`:
 
 ```js run

@@ -3,8 +3,6 @@
 
 The "class" construct allows to define prototype-based classes with a clean, nice-looking syntax.
 
-[cut]
-
 ## The "class" syntax
 
 The `class` syntax is versatile, we'll start with a simple example first.

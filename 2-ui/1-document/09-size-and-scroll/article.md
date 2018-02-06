@@ -4,8 +4,6 @@ There are many JavaScript properties that allow us to read information about ele
 
 We often need them when moving or positioning elements in JavaScript, to correctly calculate coordinates.
 
-[cut]
-
 
 ## Sample element
 

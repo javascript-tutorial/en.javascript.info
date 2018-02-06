@@ -10,8 +10,6 @@ That may even be a vulnerability. For instance, if JavaScript is on the server, 
 
 So the problem is definitely worth to deal with.
 
-[cut]
-
 ## Example
 
 The plan will be like this:

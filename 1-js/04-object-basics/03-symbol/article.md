@@ -5,8 +5,6 @@ By specification, object property keys may be either of string type, or of symbo
 
 Till now we've only seen strings. Now let's see the advantages that symbols can give us.
 
-[cut]
-
 ## Symbols
 
 "Symbol" value represents a unique identifier.

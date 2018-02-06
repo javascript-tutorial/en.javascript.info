@@ -7,8 +7,6 @@ But, we need a working environment to run our scripts, and, just because this bo
 So first, let's see how to attach a script to a webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
 
 
-[cut]
-
 ## The "script" tag
 
 JavaScript programs can be inserted in any part of an HTML document with the help of the `<script>` tag.

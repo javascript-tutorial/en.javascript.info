@@ -6,8 +6,6 @@ For example, when we need to output goods from a list one after another. Or just
 
 *Loops* are a way to repeat the same part of code multiple times.
 
-[cut]
-
 ## The "while" loop
 
 The `while` loop has the following syntax:

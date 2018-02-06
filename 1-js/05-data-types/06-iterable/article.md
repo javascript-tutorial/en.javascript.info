@@ -7,8 +7,6 @@ Arrays by themselves are iterable. But not only arrays. Strings are iterable too
 
 Iterables are widely used by the core JavaScript. As we'll see many built-in operators and methods rely on them.
 
-[cut]
-
 ## Symbol.iterator
 
 We can easily grasp the concept of iterables by making one of our own.

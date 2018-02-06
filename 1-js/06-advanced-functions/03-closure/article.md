@@ -11,8 +11,6 @@ Also, what happens when a function travels to another place in the code and is c
 
 Different languages behave differently here, and in this chapter we cover the behaviour of JavaScript.
 
-[cut]
-
 ## A couple of questions
 
 Let's consider two situations to begin with, and then study the internal mechanics piece-by-piece, so that you'll be able to answer the following questions and more complex ones in the future.

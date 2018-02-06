@@ -11,8 +11,6 @@ DOM allows to do anything with elements and their contents, but first we need to
 
 All operations on DOM start with the `document` object. From it we can access any node.
 
-[cut]
-
 Here's a picture of links that allow to travel between DOM nodes:
 
 ![](dom-links.png)
