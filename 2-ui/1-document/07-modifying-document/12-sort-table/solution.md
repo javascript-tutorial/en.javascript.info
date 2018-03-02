@@ -4,7 +4,7 @@ The solution is short, yet may look a bit tricky, so here I provide it with exte
 ```js
 let sortedRows = Array.from(table.rows)
   .slice(1)
-  .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1);
+  .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML);
 
 table.tBodies[0].append(...sortedRows);
 ```
