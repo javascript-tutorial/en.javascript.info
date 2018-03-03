@@ -33,7 +33,7 @@ A single execution of the loop body is called *an iteration*. The loop in the ex
 
 If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and for server-side JavaScript we can kill the process.
 
-Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to boolean by `while`.
+Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to a boolean by `while`.
 
 For instance, the shorter way to write `while (i != 0)` could be `while (i)`:
 
@@ -227,7 +227,7 @@ while (true) {
 alert( 'Sum: ' + sum );
 ```
 
-The `break` directive is activated in the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
+The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
 
 The combination "infinite loop + `break` as needed" is great for situations when the condition must be checked not in the beginning/end of the loop, but in the middle, or even in several places of the body.
 
@@ -266,11 +266,11 @@ for (let i = 0; i < 10; i++) {
 
 From a technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
-But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
+But as a side-effect we got one more nesting level (the `alert` call inside the curly braces). If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
-Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
+Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` are disallowed there.
 
 For example, if we take this code:
 
@@ -292,7 +292,7 @@ if (i > 5) {
 ...Then it stops working. The code like this will give a syntax error:
 
 
-That's just another reason not to use a question mark operator `'?'` instead of `if`.
+That's just another reason not to use a question mark operator `?` instead of `if`.
 ````
 
 ## Labels for break/continue
@@ -385,4 +385,4 @@ To make an "infinite" loop, usually the `while(true)` construct is used. Such a 
 
 If we don't want to do anything on the current iteration and would like to forward to the next one, the `continue` directive does it.
 
-`Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
+`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
