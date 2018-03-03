@@ -20,7 +20,7 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* in the brackets (empty in the example above) and finally the code of the function, also named "the function body".
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
 
 ![](function_basics.png)
 
@@ -41,7 +41,7 @@ showMessage();
 
 The call `showMessage()` executes the code of the function. Here we will see the message two times.
 
-This example clearly demonstrates one of the main purposes of functions: to evade code duplication.
+This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
 
 If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
 
@@ -117,7 +117,7 @@ function showMessage() {
   alert(message);
 }
 
-// the function will create and use it's own userName
+// the function will create and use its own userName
 showMessage();
 
 alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
@@ -128,7 +128,7 @@ Variables declared outside of any function, such as the outer `userName` in the 
 
 Global variables are visible from any function (unless shadowed by locals).
 
-Usually, a function declares all variables specific to its task, and global variables only store project-level data, so important that it really must be seen from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+Usually, a function declares all variables specific to its task. Global variables only store project-level data, so when it's important that these variables are accesible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
 ```
 
 ## Parameters
@@ -376,7 +376,7 @@ These examples assume common meanings of prefixes. What they mean for you is det
 ```smart header="Ultrashort function names"
 Functions that are used *very often* sometimes have ultrashort names.
 
-For example, [jQuery](http://jquery.com) framework defines a function `$`, [LoDash](http://lodash.com/) library has it's core function named `_`.
+For example, the [jQuery](http://jquery.com) framework defines a function `$`. The [LoDash](http://lodash.com/) library has its core function named `_`.
 
 These are exceptions. Generally functions names should be concise, but descriptive.
 ```
@@ -424,7 +424,7 @@ function isPrime(n) {
 }
 ```
 
-The second variant is easier to understand isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
+The second variant is easier to understand, isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
 
 So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
 
@@ -440,7 +440,7 @@ function name(parameters, delimited, by, comma) {
 
 - Values passed to a function as parameters are copied to its local variables.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't then its result is `undefined`.
+- A function can return a value. If it doesn't, then its result is `undefined`.
 
 To make the code clean and easy to understand, it's recommended to use mainly local variables and parameters in the function, not outer variables.
 
