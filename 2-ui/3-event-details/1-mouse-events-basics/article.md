@@ -56,7 +56,7 @@ Also we can see the `which` property that allows to detect the mouse button.
 
 ## Getting the button: which
 
-Click-related events always have the `which` property that allows to get the button.
+Click-related events always have the `which` property, which allows to get the exact mouse button.
 
 It is not used for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
 
@@ -175,7 +175,7 @@ Now if you double-click on "Unselectable", it doesn't get selected. Seems to wor
 
 ...But there is a potential problem! The text became truly unselectable. Even if a user starts the selection from "Before" and ends with "After", the selection skips "Unselectable" part. Do we really want to make our text unselectable?
 
-Most of time, we don't. A user may have valid reasons to select the text, for copying or other needs. That may be disturbing if we don't allow him to do it. So the solution is not that good.
+Most of time, we don't. A user may have valid reasons to select the text, for copying or other needs. That may be inconvenient if we don't allow him to do it. So this solution is not that good.
 
 What we want is to prevent the selection on double-click, that's it.
 
@@ -191,7 +191,7 @@ Before...
 
 Now the bold element is not selected on double clicks.
 
-From the other hand, the text inside it is still selectable. The selection should start not on the text itself, but before or after it. Usually that's fine.
+The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine though.
 
 ````smart header="Canceling the selection"
 Instead of *preventing* the selection, we can cancel it "post-factum" in the event handler.
@@ -226,18 +226,18 @@ Surely that can't stop the user from opening HTML-source, but not everyone knows
 
 ## Summary
 
-Mouse events have following properties:
+Mouse events have the following properties:
 
 - Button: `which`.
 - Modifier keys (`true` if pressed): `altKey`, `ctrlKey`, `shiftKey` and `metaKey` (Mac).
   - If you want to handle `key:Ctrl`, then don't forget Mac users, they use `key:Cmd`, so it's better to check `if (e.metaKey || e.ctrlKey)`.
 
 - Window-relative coordinates: `clientX/clientY`.
-- Document-relative coordinates: `pageX/clientX`.
+- Document-relative coordinates: `pageX/pageY`.
 
-In the tasks below it's also important to deal with the selection as an unwanted side-effect of clicks.
+It's also important to deal with text selection as an unwanted side-effect of clicks.
 
-There are several ways, for instance:
-1. CSS-property `user-select:none` (with browser prefixes) completely disables it.
+There are several ways to do this, for instance:
+1. The CSS-property `user-select:none` (with browser prefixes) completely disables text-selection.
 2. Cancel the selection post-factum using `getSelection().removeAllRanges()`.
 3. Handle `mousedown` and prevent the default action (usually the best).
