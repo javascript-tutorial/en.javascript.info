@@ -5,7 +5,7 @@ libs:
 
 # Currying and partials
 
-Till now we were only talking about binding `this`. Now let's make a step further.
+Until now we have only been talking about binding `this`. Let's take it a step further.
 
 We can bind not only `this`, but also arguments. That's rarely done, but sometimes can be handy.
 
@@ -146,7 +146,7 @@ More advanced implementations of currying like [_.curry](https://lodash.com/docs
 
 ```js
 function curry(f) {
-  return function(..args) {
+  return function(...args) {
     // if args.length == f.length (as many arguments as f has),
     //   then pass the call to f
     // otherwise return a partial function that fixes args as first arguments
