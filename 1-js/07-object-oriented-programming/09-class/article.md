@@ -48,7 +48,7 @@ So, what exactly does `class` do? We may think that it defines a new language-le
 The `class User {...}` here actually does two things:
 
 1. Declares a variable `User` that references the function named `"constructor"`.
-2. Puts into `User.prototype` methods listed in the definition. Here it includes `sayHi` and the `constructor`.
+2. Puts methods listed in the definition into `User.prototype`. Here, it includes `sayHi` and the `constructor`.
 
 Here's the code to dig into the class and see that:
 
