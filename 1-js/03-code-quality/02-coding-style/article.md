@@ -40,9 +40,9 @@ Now let's discuss the rules and reasons for them in detail.
 
 Nothing is "carved in stone" here. Everything is optional and can be changed: these are coding rules, not religious dogmas.
 
-### Figure brackets
+### Curly braces
 
-In most JavaScript projects figure brackets are written on the same line, not on the new line. A so-called "egyptian" style. There's also a space before an opening bracket.
+In most JavaScript projects curly braces are written on the same line as the corresponding keyword, not on the new line, a so-called "Egyptian" style. There's also a space before an opening bracket.
 
 Like this:
 
@@ -293,7 +293,7 @@ Most linters are integrated with editors: just enable the plugin in the editor a
 For instance, for ESLint you should do the following:
 
 1. Install [Node.JS](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is Node.JS package installer).
+2. Install ESLint with the command `npm install -g eslint` (npm is a JavaScript package installer).
 3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
 
 Here's an example of `.eslintrc`:
@@ -329,6 +329,6 @@ Also certain IDEs support built-in linting, that also may be good, but not so tu
 
 All syntax rules from this chapter and the style guides aim to increase readability, so all of them are debatable.
 
-When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to evade errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
+When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to avoid errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
 
 Read style guides to see the latest ideas about that and follow those that you find the best.
