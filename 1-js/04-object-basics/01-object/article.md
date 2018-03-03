@@ -545,7 +545,7 @@ For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj 
 
 ### Const object
 
-An object declared as `const` *can* be changed.
+An object declared as `const` *can't* be changed.
 
 For instance:
 
@@ -607,7 +607,7 @@ for (let key in user) {
 }
 */!*
 
-// now clone is a fully independant clone
+// now clone is a fully independent clone
 clone.name = "Pete"; // changed the data in it
 
 alert( user.name ); // still John in the original object
