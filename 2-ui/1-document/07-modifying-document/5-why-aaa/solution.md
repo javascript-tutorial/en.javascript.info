@@ -4,6 +4,6 @@ The browser has to fix it automatically. But there may be no text inside the `<t
 
 Now it's obvious that when we remove the table, it remains.
 
-The question can be easily answered by exploring DOM using the browser tools. They show `"aaa"` before the `<table>`.
+The question can be easily answered by exploring the DOM using the browser tools. It shows `"aaa"` before the `<table>`.
 
 The HTML standard specifies in detail how to process bad HTML, and such behavior of the browser is correct.

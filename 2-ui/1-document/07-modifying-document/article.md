@@ -30,7 +30,7 @@ Here's how it will look:
 */!*
 ```
 
-That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS).
+That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS file).
 
 ## Creating an element
 
@@ -61,7 +61,7 @@ div.className = "alert alert-success";
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
-After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because not inserted into the page yet.
+After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because it's not been inserted into the page yet.
 
 ## Insertion methods
 
@@ -135,9 +135,8 @@ Here's a brief list of methods to insert a node into a parent element (`parentEl
     */!*
     </script>
     ```
-
-    To insert as the first element, we can do like this:
-
+    To insert `newLi` as the first element, we can do it like this:
+    
     ```js
     list.insertBefore(newLi, list.firstChild);
     ```
@@ -204,7 +203,7 @@ before
 after
 ```
 
-These methods can insert multiple list of nodes and text pieces in a single call.
+These methods can insert multiple lists of nodes and text pieces in a single call.
 
 For instance, here a string and an element are inserted:
 
@@ -303,7 +302,7 @@ So here's an alternative variant of showing a message:
 
 How to insert one more similar message?
 
-We could do a function and put the code there. But the alternative way would be to *clone* the existing `div` and modify the text inside it (if needed).
+We could make a function and put the code there. But the alternative way would be to *clone* the existing `div` and modify the text inside it (if needed).
 
 Sometimes when we have a big element, that may be faster and simpler.
 
@@ -338,7 +337,7 @@ An example of copying the message:
 
 ## Removal methods
 
-To remove nodes, there are following methods:
+To remove nodes, there are the following methods:
 
 
 `parentElem.removeChild(node)`
@@ -412,7 +411,7 @@ The call to `document.write(html)` writes the `html` into page "right here and n
 
 The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 
-In modern scripts we can rarely see it, because of the important limitation.
+In modern scripts we can rarely see it, because of the following important limitation:
 
 **The call to `document.write` only works while the page is loading.**
 
@@ -480,4 +479,4 @@ Insertion and removal of nodes:
 - To append HTML to the page before it has finished loading:
   - `document.write(html)`
 
-  After the page is loaded such call erases the document. Mostly seen in old scripts.
+  After the page is loaded such a call erases the document. Mostly seen in old scripts.
