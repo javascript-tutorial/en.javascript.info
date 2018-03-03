@@ -443,7 +443,7 @@ Let's recap these methods to avoid any confusion:
 
 | method | selects... | negatives |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` | allows negatives |
+| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
 | `substring(start, end)` | between `start` and `end` | negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
 

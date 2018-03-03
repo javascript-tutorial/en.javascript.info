@@ -63,7 +63,7 @@ There are only two top-level exclusions:
 
 In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in DOM, and if we remove them, then there won't be any.
 
-Here are no-space, text-only nodes:
+Here are no space-only text nodes:
 
 ```html no-beautify
 <!DOCTYPE HTML>
