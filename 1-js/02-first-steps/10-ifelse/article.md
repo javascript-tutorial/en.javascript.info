@@ -188,7 +188,7 @@ The same logic using `if..else`:
 ```js
 if (age < 3) {
   message = 'Hi, baby!';
-} else if (a < 18) {
+} else if (age < 18) {
   message = 'Hello!';
 } else if (age < 100) {
   message = 'Greetings!';
