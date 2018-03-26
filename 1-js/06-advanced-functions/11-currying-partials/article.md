@@ -95,7 +95,7 @@ user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinu
 
 user.sayNow("Hello");
 // Something like:
-// [10:00] Hello, John!
+// [10:00] John: Hello!
 ```
 
 The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
