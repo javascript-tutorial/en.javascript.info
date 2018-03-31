@@ -108,10 +108,10 @@ Here's a demo of reading a non-standard property:
 </body>
 ```
 
-HTML attributes have following features:
+HTML attributes have the following features:
 
-- Their name is case-insensitive (that's HTML: `id` is same as `ID`).
-- They are always strings.
+- Their name is case-insensitive (`id` is same as `ID`).
+- Their values are always strings.
 
 Here's an extended demo of working with attributes:
 
@@ -136,7 +136,7 @@ Here's an extended demo of working with attributes:
 Please note:
 
 1. `getAttribute('About')` -- the first letter is uppercase here, and in HTML it's all lowercase. But that doesn't matter: attribute names are case-insensitive.
-2. We can assign anything to an attribute, but that becomes a string. So here we have `"123"` as the value.
+2. We can assign anything to an attribute, but it becomes a string. So here we have `"123"` as the value.
 3. All attributes including ones that we set are visible in `outerHTML`.
 4. The `attributes` collection is iterable and has all attributes with `name` and `value`.
 
@@ -190,7 +190,7 @@ That "feature" may actually come in handy, because the user may modify `value`, 
 
 ## DOM properties are typed
 
-DOM properties are not always strings. For instance, `input.checked` property (for checkboxes) is boolean:
+DOM properties are not always strings. For instance, the `input.checked` property (for checkboxes) is a boolean:
 
 ```html run
 <input id="input" type="checkbox" checked> checkbox
@@ -201,7 +201,7 @@ DOM properties are not always strings. For instance, `input.checked` property (f
 </script>
 ```
 
-There are other examples. The `style` attribute is a string, but `style` property is an object:
+There are other examples. The `style` attribute is a string, but the `style` property is an object:
 
 ```html run
 <div id="div" style="color:red;font-size:120%">Hello</div>
@@ -311,7 +311,7 @@ But there may be a possible problem with custom attributes. What if we use a non
 
 To avoid conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 
-**All attributes starting with "data-" are reserved for programmers' use. They are available in `dataset` property.**
+**All attributes starting with "data-" are reserved for programmers' use. They are available in the `dataset` property.**
 
 For instance, if an `elem` has an attribute named `"data-about"`, it's available as `elem.dataset.about`.
 
@@ -380,7 +380,7 @@ Methods to work with attributes are:
 - `elem.removeAttribute(name)` -- to remove the attribute.
 - `elem.attributes` is a collection of all attributes.
 
-For most needs DOM properties can serve us well. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
+For most needs, DOM properties can serve us well. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
 
 - We need a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
-- We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance `href` property is always a full URL, and we may want to get the "original" value.
+- We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance the `href` property is always a full URL, and we may want to get the "original" value.
