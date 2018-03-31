@@ -4,7 +4,7 @@ importance: 3
 
 # Tag in comment
 
-What this code shows?
+What does this code show?
 
 ```html
 <script>

@@ -4,7 +4,7 @@ importance: 4
 
 # Where's the "document" in the hierarchy?
 
-Which class the `document` belongs to?
+Which class does the `document` belong to?
 
 What's its place in the DOM hierarchy?
 
