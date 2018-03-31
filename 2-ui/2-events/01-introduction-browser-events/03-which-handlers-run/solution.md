@@ -13,4 +13,4 @@ button.addEventListener("click", handler);
 button.removeEventListener("click", handler);
 ```
 
-The handler `button.onclick` works independantly and in addition to `addEventListener`.
+The handler `button.onclick` works independently and in addition to `addEventListener`.
