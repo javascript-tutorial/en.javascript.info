@@ -83,7 +83,6 @@ let user = {
 ![](object-user-props.png)
 
 
-````smart header="Trailing comma"
 The last property in the list may end with a comma:
 ```js
 let user = {
@@ -92,7 +91,6 @@ let user = {
 }
 ```
 That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
-````
 
 ## Square brackets
 
