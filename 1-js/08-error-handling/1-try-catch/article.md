@@ -295,7 +295,7 @@ try {
 
 As we can see, that's a `SyntaxError`.
 
-And in our case, the absense of `name` could be treated as a syntax error also, assuming that users must have a `name`.
+And in our case, the absence of `name` could be treated as a syntax error also, assuming that users must have a `name`.
 
 So let's throw it:
 
