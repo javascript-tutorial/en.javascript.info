@@ -9,13 +9,13 @@ if (userName == 'Admin') {
 
   if (pass == 'TheMaster') {
     alert( 'Welcome!' );
-  } else if (pass == null) {
+  } else if (pass == '' || pass == null) {
     alert( 'Canceled.' );
   } else {
     alert( 'Wrong password' );
   }
 
-} else if (userName == null) {
+} else if (userName == '' || userName == null) {
   alert( 'Canceled' );
 } else {
   alert( "I don't know you" );
