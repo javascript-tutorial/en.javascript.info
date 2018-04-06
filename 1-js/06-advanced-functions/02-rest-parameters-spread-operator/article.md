@@ -135,7 +135,7 @@ alert( Math.max(3, 5, 1) ); // 5
 
 Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
 
-Passing it "as it" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
 
 ```js run
 let arr = [3, 5, 1];
