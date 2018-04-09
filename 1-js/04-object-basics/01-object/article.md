@@ -83,7 +83,6 @@ let user = {
 ![](object-user-props.png)
 
 
-````smart header="Trailing comma"
 The last property in the list may end with a comma:
 ```js
 let user = {
@@ -92,7 +91,6 @@ let user = {
 }
 ```
 That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
-````
 
 ## Square brackets
 
@@ -226,7 +224,7 @@ That can become a source of bugs and even vulnerabilies if we intent to store ar
 
 In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
 
-There exist a way to make objects treat `__proto__` as a regular property, we'll cover it later, but first we need to know more about objects to understand it. 
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects. 
 There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
 ````
 
@@ -370,7 +368,7 @@ Also, we could use another variable name here instead of `key`. For instance, `"
 
 ### Ordered like an object
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order that they are added in it? Can we rely on it?
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
 
 The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
 
@@ -514,7 +512,7 @@ admin.name = 'Pete'; // changed by the "admin" reference
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-The example above demonstrates that there is only one object. Like if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
+The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
 
 ### Comparison by reference
 
@@ -541,7 +539,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to say the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
 
 ### Const object
 
@@ -739,4 +737,4 @@ There are many other kinds of objects in JavaScript:
 
 They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
+Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.

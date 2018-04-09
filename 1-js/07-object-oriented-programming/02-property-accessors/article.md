@@ -128,7 +128,7 @@ Object.defineProperty(user, 'fullName', {
 
 alert(user.fullName); // John Smith
 
-for(let key in user) alert(key);
+for(let key in user) alert(key); // name, surname
 ```
 
 Please note once again that a property can be either an accessor or a data property, not both.

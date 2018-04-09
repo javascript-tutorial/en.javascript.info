@@ -140,7 +140,7 @@ new Promise(function(resolve, reject) {
 
 Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result*2`) is passed on to handler of the second `.then` in the line `(**)`. It shows `2` and does the same thing.
 
-So the output is again 1 -> 2 > 4, but now with 1 second delay between `alert` calls.
+So the output is again 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
 
 Returning promises allows us to build chains of asynchronous actions.
 

@@ -26,7 +26,7 @@ If you look closely at these curves, you can immediately notice:
 
 1. **Points are not always on curve.** That's perfectly normal, later we'll see how the curve is built.
 2. **The curve order equals the number of points minus one**.
-For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for three points -- cubic curve.
+For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for four points -- cubic curve.
 3. **A curve is always inside the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of control points:**
 
     ![](bezier4-e.png) ![](bezier3-e.png)

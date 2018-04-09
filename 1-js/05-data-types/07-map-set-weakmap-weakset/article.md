@@ -138,7 +138,7 @@ let recipeMap = new Map([
 
 // iterate over keys (vegetables)
 for (let vegetable of recipeMap.keys()) {
-  alert(vegetable); // cucumber, tomateos, onion
+  alert(vegetable); // cucumber, tomatoes, onion
 }
 
 // iterate over values (amounts)
