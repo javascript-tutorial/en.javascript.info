@@ -12,5 +12,5 @@ let reg = /\d+(\.\d+)?/g;
 
 let str = "1.5 0 12. 123.4.";
 
-alert( str.match(re) );   // 1.5, 0, 12, 123.4
+alert( str.match(reg) );   // 1.5, 0, 12, 123.4
 ```
