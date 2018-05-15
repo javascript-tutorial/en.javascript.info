@@ -9,8 +9,8 @@ Everyone is happy: you, because the people don't crowd you any more, and fans, b
 This is a real-life analogy for things we often have in programming:
 
 1. A "producing code" that does something and takes time. For instance, the code loads a remote script. That's a "singer".
-2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions in your "consuming code" may need that result. These are "fans".
-3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes the time it needs to produce the promised result, and the "promise" makes it available to all of the subscribed code when it's ready.
+2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions (in your "consuming code") may need that result. These are the "fans".
+3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
 
 The analogy isn't terribly accurate, because JavaScript promises are more complex than a simple subscription list: they have additional features and limitations. But this will serve for an introduction.
 
@@ -22,7 +22,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The function passed to `new Promise` is called the *executor*. When the promise is created, this executor function is called (run) automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
+The function passed to `new Promise` is called the *executor*. When the promise is created, this executor function is called (or, run) automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
 
 The resulting `promise` object has internal properties:
 
@@ -57,7 +57,7 @@ let promise = new Promise(function(resolve, reject) {
 We can see two things by running the code above:
 
 1. The executor is called automatically and immediately (by the `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined. We don't need to create them. Instead, we should write the executor to call them when ready.
+2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. Instead, we should write the executor to call them when ready.
 
 After one second of "processing" the executor calls `resolve("done")` to produce the result:
 
@@ -94,7 +94,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The idea is that a job done by the executor may have only one result or an error. (If you are familiar with other languages, you might be aware of data structures which allow many "flowing" results, like streams and queues. They have their own advantages and disadvantages as compared with Promises. But as they are not supported by the JavaScript core, we won't be covering them.)
+The idea is that a job done by the executor may have only one result or an error.
 
 Further, `resolve`/`reject` expect only one argument and will ignore additional arguments.
 ````
@@ -112,7 +112,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-For instance, it might happen when we start to do a job but then see that everything has already been completed. That is fine: we have a resolved Promise immediately.
+For instance, this might happen when we start to do a job but then see that everything has already been completed. That is fine: we immediately have a resolved Promise.
 ````
 
 ```smart header="The `state` and `result` are internal"
@@ -174,7 +174,7 @@ promise.then(
 );
 ```
 
-If we're interested only in successful Promises, then we can provide only one function argument to `.then`:
+If we're interested only in successful completions, then we can provide only one function argument to `.then`:
 
 ```js run
 let promise = new Promise(resolve => {
@@ -186,7 +186,7 @@ promise.then(alert); // shows "done!" after 1 second
 */!*
 ```
 
-If we're interested only in errors, then we can use `.catch(errorHandlingFunction)`, which is just like doing `.then(null, errorHandlingFunction)`.
+If we're interested only in errors, then we can use `.catch(errorHandlingFunction)`, which is exactly the same as `.then(null, errorHandlingFunction)`.
 
 
 ```js run
@@ -216,14 +216,14 @@ That's handy for jobs that may sometimes require time and sometimes finish immed
 ````
 
 ````smart header="Handlers of `.then`/`.catch` are always asynchronous"
-Even when the Promise is immediately resolved, code which occurs on lines below your `.then`/`.catch` can still run first. When the JavaScript engine sees your Promise, it will not only run the executor (the "producing code"), it will also go ahead and start executing code which occurs after your Promise and its `.then`/`.catch` calls.
+Even when the Promise is immediately resolved, code which occurs on lines below your `.then`/`.catch` may still run first. When the JavaScript engine sees your Promise, it will not only run the executor (the "producing code"), it will also go ahead and start executing code which occurs after your Promise and its `.then`/`.catch` calls.
 
-So, when it is time for the function passed to `.then`/`.catch` to execute (nearly immediately in the case of an immediately-resolved Promise), the JavaScript engine puts it into an internal execution queue which will then already have items to be run.
+So, when it is time for the function passed to `.then`/`.catch` to execute (nearly immediately in the case of an immediately-resolved Promise), the JavaScript engine puts it into an internal execution queue (which will then already have items to be run).
 
 The JavaScript engine is trying to do as many things at virtually the same time as possible. Everything is racing to get done. So, in the example code below, behind the scenes, you can imagine that the events might occur in this order:
 
 1. The new Promise object is constructed on Line 2. 
-2. The subscriber on Line 4 (the call to `alert`) is be registered with the Promise.
+2. The subscriber on Line 4 (the call to `alert`) is registered with the Promise.
 3. The executor is run by the Promise object and immediately resolves.
 4. The other `alert` call, on Line 6, is executed.
 6. The Promise notices it has been resolved and therefore executes the registered call to `alert` from Line 4.
