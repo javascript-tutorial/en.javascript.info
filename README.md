@@ -12,6 +12,7 @@ In progress:
 - Chinese: the ongoing translation at [https://github.com/iliakan/javascript-tutorial-cn](https://github.com/iliakan/javascript-tutorial-cn), go ahead and join if you know Chinese.
 - Spanish: https://github.com/lmauromb/javascript-tutorial-es
 - German: https://github.com/MartinEls/javascript-tutorial-de
+- Japanese: https://github.com/t-cool/javascript-tutorial-jpn
 
 If you'd like to translate it into your language then fork the English tutorial and go ahead. I can publish the translation with your credits on a domain like fr.javascript.info or you can do it on your domain.
 
