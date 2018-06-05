@@ -1,17 +1,13 @@
 
 # Polyfills
 
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+The JavaScript language steadily evolves. New features requests are regularly [proposed](https://github.com/tc39/proposals) to the language and are vetted through a [4 part staging process](https://tc39.github.io/process-document/). If considered worthy, these are added to the evergreen spec at <https://tc39.github.io/ecma262/> and then get standardized to the [yearly release specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
-Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
-
-So it's quite common for an engine to implement only the part of the standard.
-
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+A way to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
 ## Babel
 
-When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
+When we use modern features of the language, some engines may fail to support such code. Engines will not usually implement any proposal before Stage 3 since the feature is in flux, and shipping a feature in a browser takes a lot of work.
 
 Here Babel comes to the rescue.
 
@@ -19,7 +15,7 @@ Here Babel comes to the rescue.
 
 Actually, there are two parts in Babel:
 
-1. First, the transpiler program, which rewrites the code. The developer runs it on his own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) or [brunch](http://brunch.io/) provide means to run transpiler automatically on every code change, so that doesn't involve any time loss from our side.
+1. First, the transpiler program, which rewrites the code. The developer runs it on his own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](https://webpack.js.org/) or [brunch](http://brunch.io/) provide means to run transpiler automatically on every code change, so that doesn't involve any time loss from our side.
 
 2. Second, the polyfill.
 
@@ -28,7 +24,7 @@ Actually, there are two parts in Babel:
     There's a term "polyfill" for scripts that "fill in" the gap and add missing implementations.
 
     Two interesting polyfills are:
-    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
+    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/).
     - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
 
 So, we need to setup the transpiler and add the polyfill for old engines to support modern features.
