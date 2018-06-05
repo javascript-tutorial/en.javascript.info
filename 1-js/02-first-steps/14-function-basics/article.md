@@ -330,6 +330,26 @@ return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 So, it effectively becomes an empty return. We should put the value on the same line instead.
+
+It is possible to spread a long expression over multiple lines though, as long as the first part starts on the same line as the `return` keyword (so no automatic semicolon insertion happens). For example (assuming we're inside a function):
+
+```js
+const a = 3, b = 5, c = 7;
+
+return a
++ b + c; // this will return the sum of the variables, 15
+```
+
+If you choose to spread a return statement accross multiple lines, it's actually better and clearer to surround the expression with parentheses:
+
+```js
+return (
+  a 
+  + b 
+  + c; // this will return the sum of the variables, 15
+)
+```
+The important takeaway is to make sure no automatic semicolon insertion happens after `return` by adding either a parenthesis or part of your expression right after it.
 ````
 
 ## Naming a function [#function-naming]
