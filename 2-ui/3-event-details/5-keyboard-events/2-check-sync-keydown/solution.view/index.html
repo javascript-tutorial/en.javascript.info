@@ -5,14 +5,15 @@
   <p>Press "Q" and "W" together (can be in any language).</p>
 
   <script>
-    function runOnKeys(func, ...codes) {
+    function runOnKeys(func, ...keys) {
       let pressed = new Set();
 
       document.addEventListener('keydown', function(event) {
-        pressed.add(event.code);
+        let key = event.key.toUpperCase();
+        pressed.add(key);
 
-        for (let code of codes) { // are all keys in the set?
-          if (!pressed.has(code)) {
+        for (let key of keys) { // are all keys in the set?
+          if (!pressed.has(key)) {
             return;
           }
         }
@@ -30,15 +31,16 @@
       });
 
       document.addEventListener('keyup', function(event) {
-        pressed.delete(event.code);
+        let key = event.key.toUpperCase();
+        pressed.delete(key);
       });
 
     }
 
     runOnKeys(
       () => alert("Hello!"),
-      "KeyQ",
-      "KeyW"
+      "Q",
+      "W"
     );
   </script>
 
