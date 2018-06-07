@@ -1,36 +1,31 @@
 
-# The JavaScript Tutorial
+# JavaScript Darsligi
 
-This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+Ushbu repoda [https://uz.javascript.info](https://uz.javascript.info) saytida chop etilgan "Zamonaviy JavaScript" darsligining matni va kodi joylashtirilgan.
 
-## Translations
+## Boshqa tillarda
 
-Published:
-- Russian: [https://github.com/iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru).
+Chop Etilgan:
+- Ruscha: [https://github.com/iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru).
+- Inglizcha: [https://github.com/iliakan/javascript-tutorial-en](https://github.com/iliakan/javascript-tutorial-en).
 
-In progress:
-- Chinese: the ongoing translation at [https://github.com/iliakan/javascript-tutorial-cn](https://github.com/iliakan/javascript-tutorial-cn), go ahead and join if you know Chinese.
-- Spanish: https://github.com/lmauromb/javascript-tutorial-es
-- German: https://github.com/MartinEls/javascript-tutorial-de
+Ushbu Zamonaviy JavaScript darsligi tarjima qilish jarayonida. Bundan maqsan O'zbekiston yoshlarini dasturlashga o'rgatish.
+Agar Siz professional bo'lsangiz, tarjima jarayoniga yordam qilishingiz va hammuallif bo'lishingiz mumkin.
 
-If you'd like to translate it into your language then fork the English tutorial and go ahead. I can publish the translation with your credits on a domain like fr.javascript.info or you can do it on your domain.
+Ushbu darslik lokal komyuterda ham ushbu repo orqali yuklanishi mumkin: <https://github.com/aruzikulov/javascript-tutorial-server/>.
 
-You can also send PR for this file to indicate that there's work in progress.
+## Tuzilma
 
-Please note that the tutorial can run locally using <https://github.com/iliakan/javascript-tutorial-server/>.
+Xar bir bob, mavzu yoki vazifa uchun aloxida papkalar mavjud.
 
-## Structure
+Papkalar ushbu shaklda nomlangan `N-url`, `N` bu tartib raqami, `url` esa URL va material mavzusi.
 
-Every chapter, article or a task has its folder.
+Material turlari papka ichida fayl shaklida belgilangan:
 
-The folder is named like `N-url`, where `N` is a number for the sorting purposes and `url` is the URL part with title of the material.
+  - `index.md` bu bob uchun
+  - `article.md` bu mavzu uchun
+  - `task.md` bu vazifa uchun (vazifa yechimi `solution.md` faylida keltirilgan)
 
-The type of the material is defined by the file inside the folder:
+Xar bir fayl `# Main header` bilan boshlanadi.
 
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
-
-Each of these files starts from the `# Main header`.
-
-Assets required for the material reside in the same folder.
+Boshqa kerakli fayllar tegishli papkalarni ichida saqlanadi.
