@@ -12,7 +12,7 @@ Chop Etilgan:
 Ushbu Zamonaviy JavaScript darsligi tarjima qilish jarayonida. Bundan maqsan O'zbekiston yoshlarini dasturlashga o'rgatish.
 Agar Siz professional bo'lsangiz, tarjima jarayoniga yordam qilishingiz va hammuallif bo'lishingiz mumkin.
 
-Ushbu darslik lokal komyuterda ham ushbu repo orqali yuklanishi mumkin: <https://github.com/aruzikulov/javascript-tutorial-server/>.
+Ushbu darslik lokal komyuterda ham ushbu repo orqali yuklanishi mumkin: <https://github.com/aruzikulov/javascript-tutorial-server-uz/>.
 
 ## Tuzilma
 
