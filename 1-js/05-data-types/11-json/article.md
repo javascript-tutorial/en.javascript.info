@@ -131,7 +131,7 @@ let meetup = {
   title: "Conference",
 *!*
   room: {
-    number: 123,
+    number: 23,
     participants: ["john", "ann"]
   }
 */!*
