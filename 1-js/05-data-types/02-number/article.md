@@ -306,7 +306,7 @@ They belong to the type `number`, but are not "normal" numbers, so there are spe
 
     ```js run
     alert( isFinite("15") ); // true
-    alert( isFinite("str") ); // false, because a special value: NaN
+    alert( isFinite(NaN) ); // false, because a special value: NaN
     alert( isFinite(Infinity) ); // false, because a special value: Infinity
     ```
 
