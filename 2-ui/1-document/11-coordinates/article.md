@@ -55,7 +55,7 @@ If we compare window coordinates versus CSS positioning, then there are obvious 
 
 But in CSS the `right` property means the distance from the right edge, and the `bottom` -- from the bottom edge.
 
-If we just look at the picture below, we can see that in JavaScript it is not so. All window coordinates are counted from the upper-left corner, including these ones.
+If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the upper-left corner, including these ones.
 ```
 
 ## elementFromPoint(x, y) [#elementFromPoint]
