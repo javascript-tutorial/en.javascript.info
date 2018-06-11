@@ -216,21 +216,22 @@ That's handy for jobs that may sometimes require time and sometimes finish immed
 ````
 
 ````smart header="Handlers of `.then`/`.catch` are always asynchronous"
-Even when the Promise is immediately resolved, code which occurs on lines below your `.then`/`.catch` may still run first. When the JavaScript engine sees your Promise, it will not only run the executor (the "producing code"), it will also go ahead and start executing code which occurs after your Promise and its `.then`/`.catch` calls.
+Even when the Promise is immediately resolved, code which occurs on lines *below* your `.then`/`.catch` may still execute first.
 
-So, when it is time for the function passed to `.then`/`.catch` to execute (nearly immediately in the case of an immediately-resolved Promise), the JavaScript engine puts it into an internal execution queue (which will then already have items to be run).
+When it is time for the function you've passed to `.then`/`.catch` to execute, the JavaScript engine puts it at the end of an internal execution queue.
 
-The JavaScript engine is trying to do as many things at virtually the same time as possible. Everything is racing to get done. So, in the example code below, behind the scenes, you can imagine that the events might occur in this order:
+The JavaScript engine doesn't wait very long for an operation to finish before moving on to do other things. Everything is racing to get done. So as you gain experience, you will encounter situations where some lines of code are still "in process" while *later* lines have already started. In the example code below, you can imagine that the events might occur in this order, behind the scenes:
 
-1. The new Promise object is constructed on Line 2. 
-2. The subscriber on Line 4 (the call to `alert`) is registered with the Promise.
-3. The executor is run by the Promise object and immediately resolves.
-4. The other `alert` call, on Line 6, is executed.
-6. The Promise notices it has been resolved and therefore executes the registered call to `alert` from Line 4.
+1. The new Promise object is constructed at Line 3, and the executor is passed on to it. 
+2. The subscriber at Line 5 (the call to `alert`) is registered with the Promise.
+3. The executor is finally run by the Promise object and immediately resolves.
+4. The second `alert` call, at Line 7, is executed.
+6. The Promise notices that it has been resolved and therefore executes the registered call to `alert` from Line 5.
 
 ```js run
 // an "immediately" resolved Promise
-let promise = new Promise(resolve => resolve("done!"));
+const executor = resolve => resolve("done!");
+const promise = new Promise(executor);
 
 promise.then(alert); // this alert shows last
 
