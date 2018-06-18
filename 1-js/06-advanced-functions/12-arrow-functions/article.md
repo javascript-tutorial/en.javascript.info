@@ -41,7 +41,7 @@ group.showList();
 
 Here in `forEach`, the arrow function is used, so `this.title` in it is exactly the same as in the outer method `showList`. That is: `group.title`.
 
-If we used a "regular" function, there would be an error:
+If we used a "regular" function, the callback context would be different than the group object:
 
 ```js run
 let group = {
@@ -51,7 +51,11 @@ let group = {
   showList() {
 *!*
     this.students.forEach(function(student) {
-      // Error: Cannot read property 'title' of undefined
+      /*
+        undefined: John
+        undefined: Pete
+        undefined: Alice
+      */
       alert(this.title + ': ' + student)
     });
 */!*
@@ -61,7 +65,7 @@ let group = {
 group.showList();
 ```
 
-The error occurs because `forEach` runs functions with `this=undefined` by default, so the attempt to access `undefined.title` is made.
+That occurs because in this example, `forEach` runs the callback function with `this=window` by default, so the attempt to access `window.title` is made which is undefined.
 
 That doesn't affect arrow functions, because they just don't have `this`.
 
