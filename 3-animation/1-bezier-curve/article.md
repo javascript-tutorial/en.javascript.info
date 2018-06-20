@@ -47,49 +47,12 @@ Here are some examples:
 
 ![](bezier-car.png) ![](bezier-letter.png) ![](bezier-vase.png)
 
-## Maths
-
-A Bezier curve can be described using a mathematical formula.
-
-As we'll see soon -- there's no need to know it. But for completeness -- here it is.
-
-Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
-
-- The formula for a 2-points curve:
-
-    <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
-- For three points:
-
-    <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
-- For four points:
-
-    <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub>  +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
-
-These are vector equations.
-
-We can rewrite them coordinate-by-coordinate, for instance the 3-point curve:
-
-- <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
-- <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
-
-Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points.
-
-For instance, if control points are  `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations are:
-
-- <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = t</code>
-- <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
-
-Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve.
-
-That's probably too scientific, not very obvious why curves look like that, and how they depend on control points.
-
-So here's the drawing algorithm that may be easier to understand.
-
 ## De Casteljau's algorithm
 
-[De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) is identical to the mathematical definition of the curve, but visually shows how it is built.
+There's a mathematical formula for Bezier curves, but let's cover it a bit later, because
+[De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) it is identical to the mathematical definition and visually shows how it is constructed.
 
-Let's see it on the 3-points example.
+First let's see the 3-points example.
 
 Here's the demo, and the explanation follow.
 
@@ -116,19 +79,19 @@ Points can be moved by the mouse. Press the "play" button to run it.
 | ------------------------ | ---------------------- |
 | ![](bezier3-draw1.png)   | ![](bezier3-draw2.png) |
 
-4. Now the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
+4. Now in the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
 
 5. As `t` runs from `0` to `1`, every value of `t` adds a point to the curve. The set of such points forms the Bezier curve. It's red and parabolic on the pictures above.
 
 That was a process for 3 points. But the same is for 4 points.
 
-The demo for 4 points (points can be moved by mouse):
+The demo for 4 points (points can be moved by a mouse):
 
 [iframe src="demo.svg?p=0,0,0.5,0,0.5,1,1,1&animate=1" height=370]
 
-The algorithm:
+The algorithm for 4 points:
 
-- Control points are connected by segments: 1 -> 2, 2 -> 3, 3 -> 4. We have 3 <span style="color:#825E28">brown</span> segments.
+- Connect control points by segments: 1 -> 2, 2 -> 3, 3 -> 4. There will be 3 <span style="color:#825E28">brown</span> segments.
 - For each `t` in the interval from `0` to `1`:
     - We take points on these segments on the distance proportional to `t` from the beginning. These points are connected, so that we have two <span style="color:#0A0">green segments</span>.
     - On these segments we take points proportional to `t`. We get one <span style="color:#167490">blue segment</span>.
@@ -137,18 +100,25 @@ The algorithm:
 
 The algorithm is recursive and can be generalized for any number of control points.
 
-Given N of control points, we connect them to get initially N-1 segments.
+Given N of control points:
 
-Then for each `t` from `0` to `1`:
-- Take a point on each of segment on the distance proportional to `t` and connect them -- there will be N-2 segments.
-- Take a point on each of these segments on the distance proportional to `t` and connect -- there will be N-3 segments, and so on...
-- Till we have one point. These points make the curve.
+1. We connect them to get initially N-1 segments.
+2. Then for each `t` from `0` to `1`, we take a point on each segment on the distance proportional to `t` and connect them. There will be N-2 segments.
+3. Repeat step 2 until there is only one point.
 
-Move examples of curves:
+These points make the curve.
+
+```online
+**Run and pause examples to clearly see the segments and how the curve is built.**
+```
+
+
+A curve that looks like `y=1/t`:
 
 [iframe src="demo.svg?p=0,0,0,0.75,0.25,1,1,1&animate=1" height=370]
 
-With other points:
+
+With zig-zag control points:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1" height=370]
 
@@ -156,11 +126,11 @@ Loop form:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,1,0.5,0&animate=1" height=370]
 
-Not smooth Bezier curve:
+A non-smooth Bezier curve (yeah, that's possible too):
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
-As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But in practice they are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
+As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
 
 ```smart header="How to draw a curve *through* given points?"
 We use control points for a Bezier curve. As we can see, they are not on the curve. Or, to be precise, the first and the last ones do belong to curve, but others don't.
@@ -171,6 +141,42 @@ There are mathematical formulas for such curves, for instance [Lagrange polynomi
 
 In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
 ```
+
+
+## Maths
+
+A Bezier curve can be described using a mathematical formula.
+
+As we saw -- there's actually no need to know it. But for completeness -- here it is.
+
+Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
+
+- The formula for a 2-points curve:
+
+    <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
+- For three points:
+
+    <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
+- For four points:
+
+    <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub>  +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
+
+
+These are vector equations. In other words, we can put `x` and `y` instead of `P` to get corresponding coordinates.
+
+For instance, the 3-point curve is formed by points `(x,y)` calculated as:
+
+- <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
+- <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
+
+Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points, and then as `t` moves from `0` to `1`, for each value of `t` we'll have `(x,y)` of the curve.
+
+For instance, if control points are  `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations become:
+
+- <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = t</code>
+- <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
+
+Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve for such control points.
 
 ## Summary
 
