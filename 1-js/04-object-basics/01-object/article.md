@@ -703,7 +703,23 @@ To fix that, we should use the cloning loop that examines each value of `user[ke
 
 There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
-
+The simplest way to deep clone an object is:
+```js run
+  const user = {
+    name: "John",
+    sizes: {
+      height: 182,
+      width: 50
+    }
+  };
+  
+  const user2 = JSON.parse(JSON.stringify(user));
+  
+  user.sizes.height = 183;
+  
+  alert(user.sizes.height);
+  alert(user2.sizes.height);
+```
 
 ## Summary
 
