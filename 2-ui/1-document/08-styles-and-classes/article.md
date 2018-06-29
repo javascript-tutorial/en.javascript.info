@@ -207,7 +207,7 @@ For instance, here `style` doesn't see the margin:
 </body>
 ```
 
-...But what if we need, say, increase the margin by 20px? We want the current value for the start.
+...But what if we need, say, to increase the margin by 20px? We want the current value for the start.
 
 There's another method for that: `getComputedStyle`.
 
