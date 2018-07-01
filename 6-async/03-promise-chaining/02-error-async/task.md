@@ -1,6 +1,6 @@
 # Error in setTimeout
 
-How do you think, does the `.catch` trigger? Explain your answer?
+What do you think? Will the `.catch` trigger? Explain your answer.
 
 ```js
 new Promise(function(resolve, reject) {
