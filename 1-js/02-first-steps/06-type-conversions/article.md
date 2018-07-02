@@ -50,7 +50,19 @@ let num = Number(str); // becomes a number 123
 
 alert(typeof num); // number
 ```
+OR
+```
+let str = "123";
+alert(typeof str); // string
 
+alert(str); // "123"
+
+let num = parseInt(str);
+
+alert(typeof num); // number
+
+alert(num); // becomes a number 123
+```
 Explicit conversion is usually required when we read a value from a string-based source like a text form, but we expect a number to be entered.
 
 If the string is not a valid number, the result of such conversion is `NaN`, for instance:
