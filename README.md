@@ -5,12 +5,15 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 ## Translations
 
+(In alphabetical order):
+
 | Language | Github | Translation leads | Published |
 |----------|--------|-------------------|-----------|
-| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | https://learn.javascript.ru | 
 | Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | – |
+| French | https://github.com/SugoiNelson/javascript-tutorial-fr | @SugoiNelson | - |
 | German | https://github.com/MartinEls/javascript-tutorial-de | @MartilEls | - |
 | Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | - |
+| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | https://learn.javascript.ru | 
 | Uzbek | https://github.com/aruzikulov/javascript-tutorial-uz | @aruzikulov | - |
 
 If you'd like to translate it into your language, please [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new).
