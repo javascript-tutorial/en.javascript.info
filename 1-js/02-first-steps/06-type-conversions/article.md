@@ -54,7 +54,6 @@ OR
 ```
 let str = "123";
 alert(typeof str); // string
-alert(str); //"123"
 
 let num = parseInt(str);
 alert(typeof num); // number
