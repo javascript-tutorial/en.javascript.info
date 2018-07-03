@@ -11,7 +11,7 @@ In the very first chapter about [variables](info:variables), we mentioned three 
 
 But `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
 
-If you don't plan meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
+If you don't plan on reading or editing such scripts you may even skip this chapter, but there is a chance that you will see `var` in old scripts that you are reading and/or editing. 
 
 From the first sight, `var` behaves similar to `let`. That is, declares a variable:
 
@@ -74,9 +74,9 @@ sayHi();
 alert(phrase); // Error: phrase is not defined
 ```
 
-As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a reminiscence of that.
+As we can see, `var` pierces through `if`, `for` or other code blocks. That's because in previous versions of JavaScript, blocks had no Lexical Environments. And `var` is a reminiscence of that.
 
-## "var" are processed at the function start
+## "var" variables are processed at the start of the function
 
 `var` declarations are processed when the function starts (or script starts for globals).
 
@@ -126,7 +126,7 @@ function sayHi() {
 }
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+People also call such behavior "hoisting" (raising), because all `var` variables are "hoisted" (raised) to the top of the function.
 
 So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
 
@@ -169,7 +169,7 @@ function sayHi() {
 sayHi();
 ```
 
-Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
+Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until they are explicitly defined.
 
 In both examples above `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
 
@@ -177,8 +177,8 @@ In both examples above `alert` runs without an error, because the variable `phra
 
 There are two main differences of `var`:
 
-1. Variables have no block scope, they are visible minimum at the function level.
-2. Variable declarations are processed at function start.
+1. `var` Variables have no block scope, they are not block-local and can be accessed from any point in the script.
+2. `var` Variable declarations are processed at function start.
 
 There's one more minor difference related to the global object, we'll cover that in the next chapter.
 
