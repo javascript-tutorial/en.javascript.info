@@ -17,7 +17,7 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 | Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | - |
 | Uzbek | https://github.com/aruzikulov/javascript-tutorial-uz | @aruzikulov | - |
 
-If you'd like to translate it into your language, please [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new).
+If you'd like to translate it into your language, please create/clone the repository, name it "javascript-tutorial-..." (by the language) and [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new) for me to add you to the list.
 
 The server to run the tutorial locally is at <https://github.com/iliakan/javascript-tutorial-server/>.
 
