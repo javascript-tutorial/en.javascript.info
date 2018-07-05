@@ -33,7 +33,7 @@ For two points we have a linear curve (that's a straight line), for three points
 
 Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection or convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
 
-The main value of Bezier curves for drawing -- by moving the points the curve is changing *in intuitively obvious way*.
+**The main value of Bezier curves for drawing -- by moving the points the curve is changing *in intuitively obvious way*.**
 
 Try to move control points using a mouse in the example below:
 
@@ -56,7 +56,7 @@ First let's see the 3-points example.
 
 Here's the demo, and the explanation follow.
 
-Points can be moved by the mouse. Press the "play" button to run it.
+Control points (1,2 and 3) can be moved by the mouse. Press the "play" button to run it.
 
 [iframe src="demo.svg?p=0,0,0.5,1,1,0&animate=1" height=370]
 
@@ -117,12 +117,11 @@ A curve that looks like `y=1/t`:
 
 [iframe src="demo.svg?p=0,0,0,0.75,0.25,1,1,1&animate=1" height=370]
 
-
-With zig-zag control points:
+Zig-zag control points also work fine:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1" height=370]
 
-Loop form:
+Making a loop is possible:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,1,0.5,0&animate=1" height=370]
 
@@ -130,16 +129,19 @@ A non-smooth Bezier curve (yeah, that's possible too):
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
-As the algorithm is recursive, we can build Bezier curves of any order: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
+```online
+If there's anything unclear in the algorithm description, then live examples above show how
+the curve is built.
+```
+
+As the algorithm is recursive, we can build Bezier curves of any order, that is: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
 
 ```smart header="How to draw a curve *through* given points?"
-We use control points for a Bezier curve. As we can see, they are not on the curve. Or, to be precise, the first and the last ones do belong to curve, but others don't.
+We use control points for a Bezier curve. As we can see, they are not on the curve, except the first and the last ones.
 
 Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
 
-There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial).
-
-In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
+There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
 ```
 
 
@@ -147,17 +149,17 @@ In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline
 
 A Bezier curve can be described using a mathematical formula.
 
-As we saw -- there's actually no need to know it. But for completeness -- here it is.
+As we saw -- there's actually no need to know it, most people just draw the curve by moving points with a mouse. But if you're into maths -- here it is.
 
 Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
 
 - The formula for a 2-points curve:
 
     <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
-- For three points:
+- For 3 control points:
 
     <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
-- For four points:
+- For 4 control points:
 
     <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub>  +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
 
