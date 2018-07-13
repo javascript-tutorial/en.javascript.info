@@ -3,7 +3,7 @@
 
 As we know, objects can store properties.
 
-Till now, a property was a simple "key-value" pair to us. But an object property is actually more complex and tunable thing.
+Till now, a property was a simple "key-value" pair to us. But an object property is actually a more complex and tunable thing.
 
 ## Property flags
 
