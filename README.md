@@ -35,5 +35,3 @@ The type of the material is defined by the file inside the folder:
   - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
 
 Each of these files starts from the `# Main header`.
-
-Assets required for the material reside in the same folder.
