@@ -8,7 +8,7 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 (In alphabetical order):
 
 | Language | Github | Translation leads | Transnlated (%) | Published |
-|----------|--------|-------------------|-----------|
+|----------|--------|-------------------|-----------------|-----------|
 | Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | - |
 | Danish | https://github.com/ockley/javascript-tutorial-da | @ockey | ![](http://translate-hook.javascript.info/stats/da.svg) | - |
 | French | https://github.com/SugoiNelson/javascript-tutorial-fr | @SugoiNelson | ![](http://translate-hook.javascript.info/stats/fr.svg) | - |
