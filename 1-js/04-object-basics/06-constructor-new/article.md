@@ -85,6 +85,10 @@ The constructor can't be called again, because it is not saved anywhere, just cr
 
 ## Dual-syntax constructors: new.target
 
+```smart header="Advanced stuff"
+The syntax from this section is rarely used, skip it unless you want to know everything.
+```
+
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
 It is empty for regular calls and equals the function if called with `new`:
@@ -94,14 +98,18 @@ function User() {
   alert(new.target);
 }
 
-// without new:
+// without "new":
+*!*
 User(); // undefined
+*/!*
 
-// with new:
+// with "new":
+*!*
 new User(); // function User { ... }
+*/!*
 ```
 
-That can be used to allow both `new` and regular syntax to work the same:
+That can be used to allow both `new` and regular calls to work the same. That is, create the same object:
 
 ```js run
 function User(name) {
@@ -116,7 +124,9 @@ let john = User("John"); // redirects call to new User
 alert(john.name); // John
 ```
 
-This approach is sometimes used in libraries to make the syntax more flexible. Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created, that's a good thing.
+This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
+
+Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created.
 
 ## Return from constructors
 
