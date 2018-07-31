@@ -25,8 +25,6 @@ alert(user); // {name: "John", age: 30}
 
 Luckily, there's no need to write the code to handle all this. The task has been solved already.
 
-[cut]
-
 ## JSON.stringify
 
 The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](http://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
@@ -36,7 +34,7 @@ JavaScript provides methods:
 - `JSON.stringify` to convert objects into JSON.
 - `JSON.parse` to convert JSON back into an object.
 
-For instance, here's we `JSON.stringify` a student:
+For instance, here we `JSON.stringify` a student:
 ```js run
 let student = {
   name: 'John',
@@ -133,7 +131,7 @@ let meetup = {
   title: "Conference",
 *!*
   room: {
-    number: 123,
+    number: 23,
     participants: ["john", "ann"]
   }
 */!*

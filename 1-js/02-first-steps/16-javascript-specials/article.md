@@ -2,8 +2,6 @@
 
 This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
 
-[cut]
-
 ## Code structure
 
 Statements are delimited with a semicolon:
@@ -90,7 +88,7 @@ There are 7 data types:
 - `boolean` for logical values: `true/false`,
 - `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
 - `undefined` -- a type with a single value `undefined`, meaning "not assigned",
-- `object` and `symbol` -- for complex data structures and unique identifiers, we didn't learn them yet.
+- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
 
 The `typeof` operator returns the type for a value, with two exceptions:
 ```js
@@ -134,7 +132,7 @@ JavaScript supports the following operators:
 Arithmetical
 : Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
+    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
     ```js run
     alert( '1' + 2 ); // '12', string
@@ -148,7 +146,7 @@ Bitwise
 : Bitwise operators work with integers on bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
 
 Ternary
-: The only operator with three parameters: `cond ? resultA : result B`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
 
 Logical operators
 : Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped.
@@ -204,7 +202,7 @@ Later we'll study more types of loops to deal with objects.
 
 ## The "switch" construct
 
-The "switch" construct can replace multiple `if` checks. It uses `===` for comparisons.
+The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
 
 For instance:
 
@@ -216,7 +214,7 @@ switch (age) {
     alert("Won't work"); // the result of prompt is a string, not a number
 
   case "18":
-    alert("This works!"");
+    alert("This works!");
     break;
 
   default:
@@ -250,7 +248,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-    Function expression can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
+    Function expressions can have a name, like `sum = function name(a, b)`, but that `name` is only visible inside that function.
 
 3. Arrow functions:
 
@@ -273,7 +271,7 @@ We covered three ways to create a function in JavaScript:
 
 
 - Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
-- Parameters can have default values: `function sum(a=1, b=2) {...}`.
+- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
 - Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
 

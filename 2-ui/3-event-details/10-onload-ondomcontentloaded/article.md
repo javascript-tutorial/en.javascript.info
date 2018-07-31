@@ -14,8 +14,6 @@ Each event may be useful:
 
 Let's explore the details of these events.
 
-[cut]
-
 ## DOMContentLoaded
 
 The `DOMContentLoaded` event happens on the `document` object.
@@ -128,26 +126,22 @@ For that we should use another event -- `onbeforeunload`.
 
 ## window.onbeforeunload [#window.onbeforeunload]
 
-If a visitor initiated leaving the page or tries to close the window, the `beforeunload` handler can ask for additional confirmation.
+If a visitor initiated navigation away from the page or tries to close the window, the `beforeunload` handler asks for additional confirmation.
 
-It needs to return the string with the question. The browser will show it.
+It may return a string with the question. Historically browsers used to show it, but as of now only some of them do. That's because certain webmasters abused this event handler by showing misleading and hackish messages.
 
-For instance:
+You can try it by running this code and then reloading the page.
 
-```js
+```js run
 window.onbeforeunload = function() {
   return "There are unsaved changes. Leave now?";
 };
 ```
 
 ```online
-Click on the button in `<iframe>` below to set the handler, and then click the link to see it in action:
+Or you can click on the button in `<iframe>` below to set the handler, and then click the link:
 
 [iframe src="window-onbeforeunload" border="1" height="80" link edit]
-```
-
-```warn header="Some browsers ignore the text and show their own message instead"
-Some browsers like Chrome and Firefox ignore the string and shows its own message instead. That's for sheer safety, to protect the user from potentially misleading and hackish messages.
 ```
 
 ## readyState

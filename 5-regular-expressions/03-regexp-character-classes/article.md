@@ -4,8 +4,6 @@ Consider a practical task -- we have a phone number `"+7(903)-123-45-67"`, and w
 
 A character class is a special notation that matches any symbol from the set.
 
-[cut]
-
 For instance, there's a "digit" class. It's written as `\d`. We put it in the pattern, and during the search any digit matches it.
 
 For instance, the regexp `pattern:/\d/` looks for a single digit:
@@ -101,9 +99,9 @@ So it matches `pattern:\bHello\b` and `pattern:\bJava\b`, but not `pattern:\bHel
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello
-alert( "Hello, Java!".match(/\Java\b/) );  // Java
-alert( "Hello, Java!".match(/\Hell\b/) );  // null
-alert( "Hello, Java!".match(/\Java!\b/) ); // null
+alert( "Hello, Java!".match(/\bJava\b/) );  // Java
+alert( "Hello, Java!".match(/\bHell\b/) );  // null
+alert( "Hello, Java!".match(/\bJava!\b/) ); // null
 ```
 
 Once again let's note that `pattern:\b` makes the searching engine to test for the boundary, so that `pattern:Java\b` finds `match:Java` only when followed by a word boundary, but it does not add a letter to the result.

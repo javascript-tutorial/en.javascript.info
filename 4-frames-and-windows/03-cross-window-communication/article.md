@@ -4,8 +4,6 @@ The "Same Origin" (same site) policy limits access of windows and frame to each 
 
 The idea is that if we have two windows open: one from `john-smith.com`, and another one is `gmail.com`, then we wouldn't want a script from `john-smith.com` to read our mail.
 
-[cut]
-
 ## Same Origin [#same-origin]
 
 Two URLs are said to have the "same origin" if they have the same protocol, domain and port.
@@ -27,7 +25,7 @@ If we have a reference to another window (a popup or iframe), and that window co
 
 If it comes from another origin, then we can only change its location. Please note: not *read* the location, but *modify* it, redirect it to another place. That's safe, because the URL may contain sensitive parameters, so reading it from another origin is prohibited, but changing is not.
 
-Also such windows windows may exchange messages. Soon about that later.
+Also such windows may exchange messages. Soon about that later.
 
 ````warn header="Exclusion: subdomains may be same-origin"
 

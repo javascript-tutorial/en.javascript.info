@@ -12,8 +12,6 @@ Programming languages that allow such things are called "dynamically typed", mea
 
 There are seven basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
 
-[cut]
-
 ## A number
 
 ```js
@@ -162,7 +160,7 @@ let x;
 alert(x); // shows "undefined"
 ```
 
-Technically, it is possible to assign any variable to `undefined`:
+Technically, it is possible to assign `undefined` to any variable:
 
 ```js run
 let x = 123;
@@ -191,7 +189,7 @@ It supports two forms of syntax:
 1. As an operator: `typeof x`.
 2. Function style: `typeof(x)`.
 
-In other words, it works both with the brackets or without them. The result is the same.
+In other words, it works both with parentheses or without them. The result is the same.
 
 The call to `typeof x` returns a string with the type name:
 

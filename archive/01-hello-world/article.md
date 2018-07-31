@@ -6,8 +6,6 @@ But we need something like a "base environment" to run our scripts, and browser 
 
 So we'll start with attaching a script to the webpage. For other environments like Node.JS there are other ways to run it.
 
-[cut]
-
 [todo remove defer/async from here and move to 2nd part?]
 
 ## The "script" tag

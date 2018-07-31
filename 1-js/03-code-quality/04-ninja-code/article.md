@@ -1,14 +1,23 @@
 # Ninja code
 
-Programmer ninjas of the past used these tricks to make code maintainers cry. Code review gurus look for them in test tasks. Novice developers sometimes use them even better than programmer ninjas.
+
+```quote author="Confucius"
+Learning without thought is labor lost; thought without learning is perilous.
+```
+
+Programmer ninjas of the past used these tricks to make sharpen the mind of code maintainers.
+
+Code review gurus look for them in test tasks.
+
+Novice developers sometimes use them even better than programmer ninjas.
 
 Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
 
-[cut]
 
 ```warn header="Irony detected"
-These are rules of writing bad code. Just... You know, some people miss the point.
+Many try to follow ninja paths. Few succeed.
 ```
+
 
 ## Brevity is the soul of wit
 
@@ -34,7 +43,7 @@ The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-Another way to code faster (and much worse!) is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
 
 A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, he won't be able to "decipher" what the name `a` or `b` means.
 
@@ -70,19 +79,21 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     ...But what to do if `data` is already taken? Try `value`, it's also universal. After all, a variable eventually gets a *value*.
 
-- **Name the variable by its type: `str`, `num`...**
+- **Name a variable by its type: `str`, `num`...**
 
-    Give them a try. A young ninja may wonder -- do such names make the code worse? Actually, yes!
+    Give them a try. A young initiate may wonder -- are such names really useful for a ninja? Indeed, they are!
 
-    From one hand, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all!
+    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all! And will ultimately fail to alter your well-thought code.
 
-    Indeed, the value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store? There's just no way to figure out without a good meditation!
+    The value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store?
 
-- **...But what if there are no more such names?** Just add a letter: `item1, item2, elem5, data1`...
+    There's just no way to figure out without a good meditation!
+
+- **...But what if there are no more such names?** Just add a number: `data1, item2, elem5`...
 
 ## Attention test
 
-Only a truly attentive programmer should be able to understand the code. But how to check that?
+Only a truly attentive programmer should be able to understand your code. But how to check that?
 
 **One of the ways -- use similar variable names, like `date` and `data`.**
 

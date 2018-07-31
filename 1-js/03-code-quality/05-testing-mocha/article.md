@@ -4,8 +4,6 @@ Automated testing will be used in further tasks.
 
 It's actually a part of the "educational minimum" of a developer.
 
-[cut]
-
 ## Why we need tests?
 
 When we write a function, we can usually imagine what it should do: which parameters give which results.

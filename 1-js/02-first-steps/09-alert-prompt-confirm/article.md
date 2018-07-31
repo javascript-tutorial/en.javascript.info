@@ -4,8 +4,6 @@ This part of the tutorial aims to cover JavaScript "as is", without environment-
 
 But still we use a browser as the demo environment. So we should know at least a few user-interface functions. In this chapter we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
 
-[cut]
-
 ## alert
 
 Syntax:

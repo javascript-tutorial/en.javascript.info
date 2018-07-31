@@ -44,4 +44,4 @@ The demo:
 
 If you move the mouse over the "clock" fast then nothing happens, and if you do it slow or stop on them, then there will be a tooltip.
 
-Please note: the tooltip doesn't "blink" when the cursor between the clock subelements.
+Please note: the tooltip doesn't "blink" when the cursor moves between the clock subelements.

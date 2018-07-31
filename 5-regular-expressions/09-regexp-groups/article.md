@@ -7,8 +7,6 @@ That has two effects:
 1. It allows to place a part of the match into a separate array item when using  [String#match](mdn:js/String/match) or [RegExp#exec](mdn:/RegExp/exec) methods.
 2. If we put a quantifier after the parentheses, it applies to the parentheses as a whole, not the last character.
 
-[cut]
-
 ## Example
 
 In the example below the pattern `pattern:(go)+` finds one or more `match:'go'`:

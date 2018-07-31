@@ -1,8 +1,6 @@
 # F.prototype
 
-In modern JavaScript we can set a prototype using `__proto__`. But it wasn't like that all the time.
-
-[cut]
+In modern JavaScript we can set a prototype using `__proto__`, as described in the previous article. But it wasn't like that all the time.
 
 JavaScript has had prototypal inheritance from the beginning. It was one of the core features of the language.
 
@@ -10,11 +8,11 @@ But in the old times, there was another (and the only) way to set it: to use a `
 
 ## The "prototype" property
 
-As we know already, `new F()` creates a new object. But what we didn't use yet `F.prototype` property.
+As we know already, `new F()` creates a new object.
 
-That property is used by the JavaScript itself to set `[[Prototype]]` for new objects.
+When a new object is created with `new F()`, the object's `[[Prototype]]` is set to `F.prototype`.
 
-**When a new object is created with `new F()`, the object's `[[Prototype]]` is set to `F.prototype`.**
+In other words, if `F` has a `prototype` property with a value of the object type, then `new` operator uses it to set `[[Prototype]]` for the new object.
 
 Please note that `F.prototype` here means a regular property named `"prototype"` on `F`. It sounds something similar to the term "prototype", but here we really mean a regular property with this name.
 

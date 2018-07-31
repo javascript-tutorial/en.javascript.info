@@ -10,8 +10,6 @@ For instance:
 
 If we handle an event in JavaScript, often we don't want browser actions. Fortunately, it can be prevented.
 
-[cut]
-
 ## Preventing browser actions
 
 There are two ways to tell the browser we don't want it to act:

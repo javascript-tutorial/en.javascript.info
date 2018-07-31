@@ -4,17 +4,15 @@ An element receives a focus when the user either clicks on it or uses the `key:T
 
 Focusing generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize or load something.
 
-The moment of loosing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
+The moment of losing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
 
-Loosing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
+Losing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
 
 There are important peculiarities when working with focus events. We'll do the best to cover them here.
 
-[cut]
-
 ## Events focus/blur
 
-The `focus` event is called on focusing, and `blur` -- when the element looses the focus.
+The `focus` event is called on focusing, and `blur` -- when the element loses the focus.
 
 Let's use them for validation of an input field.
 
@@ -68,6 +66,7 @@ For instance, let's make the visitor unable to leave the input if the value is i
 </style>
 
 Your email please: <input type="email" id="input">
+<input type="text" style="width:220px" placeholder="make email invalid and try to focus here">
 
 <script>
   input.onblur = function() {
@@ -89,7 +88,7 @@ It works in all browsers except Firefox ([bug](https://bugzilla.mozilla.org/show
 
 If we enter something into the input and then try to use `key:Tab` or click away from the `<input>`, then `onblur` returns the focus back.
 
-Please note that we can't "prevent loosing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
+Please note that we can't "prevent losing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
 
 ```warn header="JavaScript-initiated focus loss"
 A focus loss can occur for many reasons.
@@ -213,7 +212,7 @@ So here's another working variant:
 
 ## Summary
 
-Events `focus` and `blur` trigger on focusing/loosing focus on the element.
+Events `focus` and `blur` trigger on focusing/losing focus on the element.
 
 Their specials are:
 - They do not bubble. Can use capturing state instead or `focusin/focusout`.

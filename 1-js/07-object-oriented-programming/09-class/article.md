@@ -3,11 +3,9 @@
 
 The "class" construct allows to define prototype-based classes with a clean, nice-looking syntax.
 
-[cut]
-
 ## The "class" syntax
 
-The `class` syntax is versatile, we'll start from a simple example first.
+The `class` syntax is versatile, we'll start with a simple example first.
 
 Here's a prototype-based class `User`:
 
@@ -43,27 +41,27 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Notice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
+It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Novice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
 
 So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
 
 The `class User {...}` here actually does two things:
 
 1. Declares a variable `User` that references the function named `"constructor"`.
-2. Puts into `User.prototype` methods listed in the definition. Here it includes `sayHi` and the `constructor`.
+2. Puts methods listed in the definition into `User.prototype`. Here, it includes `sayHi` and the `constructor`.
 
 Here's the code to dig into the class and see that:
 
 ```js run
 class User {
   constructor(name) { this.name = name; }
-  sayHi() { alert(this.name);  }
+  sayHi() { alert(this.name); }
 }
 
 *!*
 // proof: User is the "constructor" function
 */!*
-alert(User == User.prototype.constructor); // true
+alert(User === User.prototype.constructor); // true
 
 *!*
 // proof: there are two methods in its "prototype"
@@ -129,7 +127,7 @@ class User {
   set name(value) {
 */!*
     if (value.length < 4) {
-      alert("Name too short.");
+      alert("Name is too short.");
       return;
     }
     this._name = value;
@@ -146,7 +144,7 @@ user = new User(""); // Name too short.
 Internally, getters and setters are also created on the `User` prototype, like this:
 
 ```js
-Object.defineProperty(User.prototype, {
+Object.defineProperties(User.prototype, {
   name: {
     get() {
       return this._name
@@ -239,7 +237,7 @@ class User {
 *!*
   static staticMethod() {
 */!*
-    alert(this == User);
+    alert(this === User);
   }
 }
 
@@ -252,7 +250,7 @@ That actually does the same as assigning it as a function property:
 function User() { }
 
 User.staticMethod = function() {
-  alert(this == User);
+  alert(this === User);
 };
 ```
 
@@ -312,7 +310,7 @@ class Article {
 *!*
   static createTodays() {
     // remember, this = Article
-    return new this("Todays digest", new Date());
+    return new this("Today's digest", new Date());
   }
 */!*
 }
@@ -322,7 +320,7 @@ let article = Article.createTodays();
 alert( article.title ); // Todays digest
 ```
 
-Now every time we need to create a todays digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
+Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
 
 Static methods are also used in database-related classes to search/save/remove entries from the database, like this:
 

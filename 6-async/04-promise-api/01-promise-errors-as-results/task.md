@@ -17,7 +17,7 @@ Promise.all(urls.map(url => fetch(url)))
     for(let response of responses) {
       alert(`${response.url}: ${response.status}`);
     }
-  ));
+  });
 ```
 
 The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we loose results of all the other requests.

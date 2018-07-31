@@ -6,8 +6,6 @@ All modern browsers and most other environments support "debugging" -- a special
 
 We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
 
-[cut]
-
 ## The "sources" pane
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
@@ -28,9 +26,9 @@ Let's click it and select `index.html` and then `hello.js` in the tree view. Her
 
 Here we can see three zones:
 
-1. **Resources zone** lists html, javascript, css and other files including images that are attached to the page. Chrome extensions may appear here too.
-2. **Source zone** shows the source code.
-3. **Information and control zone** is for debugging, we'll explore it soon.
+1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
+2. The **Source zone** shows the source code.
+3. The **Information and control zone** is for debugging, we'll explore it soon.
 
 Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
 
@@ -46,7 +44,7 @@ For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing,
 
 ## Breakpoints
 
-Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at the line number `4`. Yes, right on the `"4"` digit, not on the code.
+Let's examine what's going on within the code of the [example page](debugging/index.html). In `hello.js`, click at line number `4`. Yes, right on the `4` digit, not on the code.
 
 Congratulations! You've set a breakpoint. Please also click on the number for line `8`.
 
@@ -101,7 +99,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
 1. **`Watch` -- shows current values for any expressions.**
 
-    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in in the process of execution.
+    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in the process of execution.
 
 2. **`Call Stack` -- shows the nested calls chain.**
 
@@ -123,7 +121,7 @@ Now it's time to *trace* the script.
 There are buttons for it at the top of the right pane. Let's engage them.
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
-: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger looses the control.
+: Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
 
     Here's what we can see after a click on it:
 
@@ -178,7 +176,7 @@ As we can see, there are three main ways to pause a script:
 
 Then we can examine variables and step on to see where the execution goes wrong.
 
-There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>
+There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
 
 The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
 

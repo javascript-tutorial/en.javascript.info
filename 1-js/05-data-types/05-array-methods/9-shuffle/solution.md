@@ -12,7 +12,7 @@ shuffle(arr);
 alert(arr);
 ```
 
-That somewhat works, because `Math.random()-0.5` is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+That somewhat works, because `Math.random() - 0.5` is a random number that may be positive or negative, so the sorting function reorders elements randomly.
 
 But because the sorting function is not meant to be used this way, not all permutations have the same probability.
 
@@ -33,14 +33,14 @@ let count = {
   '312': 0
 };
 
-for(let i = 0; i < 1000000; i++) {
+for (let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
   shuffle(array);
   count[array.join('')]++;
 }
 
 // show counts of all possible permutations
-for(let key in count) {
+for (let key in count) {
   alert(`${key}: ${count[key]}`);
 }
 ```
@@ -66,8 +66,8 @@ There are other good ways to do the task. For instance, there's a great algorith
 
 ```js
 function shuffle(array) {
-  for(let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i+1)); // random index from 0 to i
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
     [array[i], array[j]] = [array[j], array[i]]; // swap elements
   }
 }
@@ -77,8 +77,8 @@ Let's test it the same way:
 
 ```js run
 function shuffle(array) {
-  for(let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i+1));
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
@@ -93,14 +93,14 @@ let count = {
   '312': 0
 };
 
-for(let i = 0; i < 1000000; i++) {
+for (let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
   shuffle(array);
   count[array.join('')]++;
 }
 
 // show counts of all possible permutations
-for(let key in count) {
+for (let key in count) {
   alert(`${key}: ${count[key]}`);
 }
 ```

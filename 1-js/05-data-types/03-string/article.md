@@ -4,8 +4,6 @@ In JavaScript, the textual data is stored as strings. There is no separate type 
 
 The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
 
-[cut]
-
 ## Quotes
 
 Let's recall the kinds of quotes.
@@ -19,7 +17,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-Single and double quotes are essentially the same. Backticks however allow us to embed any expression into the string, including function calls:
+Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, including function calls:
 
 ```js run
 function sum(a, b) {
@@ -49,7 +47,7 @@ let guestList = "Guests:  // Error: Unexpected token ILLEGAL
 
 Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
 
 
 ## Special characters
@@ -88,8 +86,8 @@ Examples with unicode:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 𠌱, a rare chinese hieroglyph (long unicode)
-alert( "\u{1F60D}"); // a smiling face sumbol (another long unicode)
+alert( "\u{20331}" ); // 佫, a rare chinese hieroglyph (long unicode)
+alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
 ```
 
 All special characters start with a backslash character `\`. It is also called an "escape character".
@@ -166,7 +164,7 @@ alert( str.charAt(1000) ); // '' (an empty string)
 We can also iterate over characters using `for..of`:
 
 ```js run
-for(let char of "Hello") {
+for (let char of "Hello") {
   alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
 }
 ```
@@ -236,7 +234,7 @@ alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with 
 
 The optional second parameter allows us to search starting from the given position.
 
-For instance, the first occurence of `"id"` is at position `1`. To look for the next occurence, let's start the search from position `2`:
+For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
 
 ```js run
 let str = 'Widget with id';
@@ -280,7 +278,7 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 ```smart header="`str.lastIndexOf(pos)`"
 There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
-It would list the occurences in the reverse order.
+It would list the occurrences in the reverse order.
 ```
 
 There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
@@ -379,8 +377,8 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     ```js run
     let str = "stringify";
-    alert( str.slice(0,5) ); // 'strin', the substring from 0 to 5 (not including 5)
-    alert( str.slice(0,1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+    alert( str.slice(0, 5) ); // 'strin', the substring from 0 to 5 (not including 5)
+    alert( str.slice(0, 1) ); // 's', from 0 to 1, but not including 1, so only character at 0
     ```
 
     If there is no second argument, then `slice` goes till the end of the string:
@@ -445,7 +443,7 @@ Let's recap these methods to avoid any confusion:
 
 | method | selects... | negatives |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` | allows negatives |
+| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
 | `substring(start, end)` | between `start` and `end` | negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
 
@@ -548,7 +546,7 @@ For instance:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allow it to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc.
+This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
 
 ## Internals, Unicode
 

@@ -2,8 +2,6 @@
 
 The first thing to study is the building blocks of the code.
 
-[cut]
-
 ## Statements
 
 Statements are syntax constructs and commands that perform actions.
@@ -102,7 +100,7 @@ As time goes on, the program becomes more and more complex. It becomes necessary
 
 Comments can be put into any place of the script. They don't affect the execution, because the engine simply ignores them.
 
-**One-line comments start with the two forward slash characters `//`.**
+**One-line comments start with two forward slash characters `//`.**
 
 The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
 

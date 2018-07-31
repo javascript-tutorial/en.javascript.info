@@ -4,8 +4,6 @@ CSS animations allow to do simple animations without JavaScript at all.
 
 JavaScript can be used to control CSS animation and make them even better with a little of code.
 
-[cut]
-
 ## CSS transitions [#css-transition]
 
 The idea of CSS transitions is simple. We describe a property and how its changes should be animated. When the property changes, the browser paints the animation.
@@ -42,7 +40,7 @@ Click the button below to animate the background:
 </script>
 ```
 
-There are 5 properties to describe CSS transitions:
+There are 4 properties to describe CSS transitions:
 
 - `transition-property`
 - `transition-duration`
@@ -262,9 +260,15 @@ But how to make the Bezier curve for a specific task? There are many tools. For 
 
 Timing function `steps(number of steps[, start/end])` allows to split animation into steps.
 
-Let's see that in an example with digits. We'll make the digits change not in a smooth, but in a discrete way.
+Let's see that in an example with digits.
 
-For that we split the animation into 9 steps:
+Here's a list of digits, without any animations, just as a source:
+
+[codetabs src="step-list"]
+
+We'll make the digits appear in a discrete way by making the part of the list outside of the red "window" invisible and shifting the list to the left with each step.
+
+There will be 9 steps, a step-move for each digit:
 
 ```css
 #stripe.animate  {
@@ -273,11 +277,11 @@ For that we split the animation into 9 steps:
 }
 ```
 
-In action `step(9, start)`:
+In action:
 
 [codetabs src="step"]
 
-The first argument of `steps` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is divided as well: 9 seconds split into 1 second intervals.
+The first argument of `steps(9, start)` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is automatically divided into 9 parts as well, so `transition: 9s` gives us 9 seconds for the whole animation – 1 second per digit.
 
 The second argument is one of two words: `start` or `end`.
 
@@ -303,7 +307,7 @@ So the process would go like this:
 - ...
 - `9s` -- `-90%`
 
-In action `step(9, end)`:
+Here's `step(9, end)` in action (note the pause between the first digit change):
 
 [codetabs src="step-end"]
 

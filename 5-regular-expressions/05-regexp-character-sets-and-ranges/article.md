@@ -2,8 +2,6 @@
 
 Several characters or character classes inside square brackets `[…]` mean to "search for any character among given".
 
-[cut]
-
 ## Sets
 
 For instance, `pattern:[eao]` means any of the 3 characters: `'a'`, `'e'`, or `'o'`.

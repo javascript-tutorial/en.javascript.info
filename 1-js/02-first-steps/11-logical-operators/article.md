@@ -6,8 +6,6 @@ Although they are called "logical", they can be applied to values of any type, n
 
 Let's see the details.
 
-[cut]
-
 ## || (OR)
 
 The "OR" operator is represented with two vertical line symbols:
@@ -68,7 +66,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 
 ## OR seeks the first truthy value
 
-The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScipt.
+The logic described above is somewhat classical. Now let's bring in the "extra" features of JavaScript.
 
 The extended algorithm works as follows.
 
@@ -78,11 +76,11 @@ Given multiple OR'ed values:
 result = value1 || value2 || value3;
 ```
 
-The OR `"||"` operator does the following:
+The OR `||` operator does the following:
 
 - Evaluate operands from left to right.
 - For each operand, convert it to boolean. If the result is `true`, then stop and return the original value of that operand.
-- If all other operands have been assessed (i.e. all were `falsy`), return the last operand.
+- If all other operands have been assessed (i.e. all were `false`), return the last operand.
 
 A value is returned in its original form, without the conversion.
 
@@ -196,7 +194,7 @@ Given multiple AND'ed values:
 result = value1 && value2 && value3;
 ```
 
-The AND `"&&"` operator does the following:
+The AND `&&` operator does the following:
 
 - Evaluate operands from left to right.
 - For each operand, convert it to a boolean. If the result is `false`, stop and return the original value of that operand.
@@ -232,14 +230,10 @@ When all values are truthy, the last value is returned:
 alert( 1 && 2 && 3 ); // 3, the last one
 ```
 
-````smart header="AND `&&` executes before OR `||`"
-The precedence of the AND `&&` operator is higher than OR `||`, so it executes before OR.
+````smart header="Precedence of AND `&&` is higher than OR `||`"
+The precedence of AND `&&` operator is higher than OR `||`.
 
-In the code below `1 && 0` is calculated first:
-
-```js run
-alert( 5 || 1 && 0 ); // 5
-```
+So the code `a && b || c && d` is essentially the same as if `&&` were in parentheses: `(a && b) || (c && d)`.
 ````
 
 Just like OR, the AND `&&` operator can sometimes replace `if`.
@@ -270,7 +264,7 @@ So it is recommended to use every construct for its purpose. Use `if` if we want
 
 ## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `"!"`.
+The boolean NOT operator is represented with an exclamation sign `!`.
 
 The syntax is pretty simple:
 
@@ -305,3 +299,5 @@ There's a little more verbose way to do the same thing -- a built-in `Boolean` f
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
+
+The precedence of NOT `!` is the highest of all bitwise operators, so it always executes first, before any `&&`, `||`.

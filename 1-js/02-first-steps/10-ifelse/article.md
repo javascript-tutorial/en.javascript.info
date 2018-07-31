@@ -2,13 +2,11 @@
 
 Sometimes we need to perform different actions based on a condition.
 
-There is the `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  the “question mark” operator: `"?"` for simplicity.
-
-[cut]
+There is the `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  the “question mark” operator `?` for simplicity.
 
 ## The "if" statement
 
-The "if" statement gets a condition, evaluates it and, if the result is `true`, executes the code.
+The `if` statement gets a condition, evaluates it and, if the result is `true`, executes the code.
 
 For example:
 
@@ -22,7 +20,7 @@ if (year == 2015) alert( 'You are right!' );
 
 In the example above, the condition is a simple equality check: `year == 2015`, but it can be much more complex.
 
-If there is more than one command to execute, we can use a code block in figure brackets:
+If there is more than one statement to be executed, we have to wrap our code block inside curly braces:
 
 ```js
 if (year == 2015) {
@@ -31,7 +29,7 @@ if (year == 2015) {
 }
 ```
 
-It is recommended to use figure brackets every time with `if`, even if there is only one command. That improves readability.
+It is recommended to wrap your code block with curly braces `{}` every time with `if`, even if there is only one statement. That improves readability.
 
 ## Boolean conversion
 
@@ -128,7 +126,7 @@ alert(accessAllowed);
 
 The so-called "ternary" or "question mark" operator lets us do that shorter and simpler.
 
-The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
+The operator is represented by a question mark `?`.  The formal term "ternary" means that the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
 
 The syntax is:
 ```js
@@ -151,7 +149,7 @@ Technically, we can omit parentheses around `age > 18`. The question mark operat
 let accessAllowed = age > 18 ? true : false;
 ```
 
-...But parentheses make the code more readable. So it's recommended to use them.
+But parentheses make the code more readable, so it's recommended to use them.
 
 ````smart
 In the example above it's possible to evade the question mark operator, because the comparison by itself returns `true/false`:
@@ -164,7 +162,7 @@ let accessAllowed = age > 18;
 
 ## Multiple '?'
 
-A sequence of question mark `"?"` operators allows returning a value that depends on more than one condition.
+A sequence of question mark `?` operators allows returning a value that depends on more than one condition.
 
 For instance:
 ```js run
@@ -190,7 +188,7 @@ The same logic using `if..else`:
 ```js
 if (age < 3) {
   message = 'Hi, baby!';
-} else if (a < 18) {
+} else if (age < 18) {
   message = 'Hello!';
 } else if (age < 100) {
   message = 'Greetings!';
@@ -201,7 +199,7 @@ if (age < 3) {
 
 ## Non-traditional use of '?'
 
-Sometimes the question mark `'?'` is used as a replacement for `if`:
+Sometimes the question mark `?` is used as a replacement for `if`:
 
 ```js run no-beautify
 let company = prompt('Which company created JavaScript?', '');
@@ -212,7 +210,7 @@ let company = prompt('Which company created JavaScript?', '');
 */!*
 ```
 
-Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
+Depending on the condition `company == 'Netscape'`, either the first or the second part after `?` gets executed and shows the alert.
 
 We don't assign a result to a variable here. The idea is to execute different code depending on the condition.
 
@@ -236,4 +234,4 @@ if (company == 'Netscape') {
 
 Our eyes scan the code vertically. The constructs which span several lines are easier to understand than a long horizontal instruction set.
 
-The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There is `if` to execute different branches of the code.
+The idea of a question mark `?` is to return one or another value depending on the condition. Please use it for exactly that. There is `if` to execute different branches of the code.

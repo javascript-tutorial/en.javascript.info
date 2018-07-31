@@ -10,8 +10,6 @@ Recursion is a programming pattern that is useful in situations when a task can 
 
 When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
 
-[cut]
-
 ## Two ways of thinking
 
 For something simple to start with -- let's write a function `pow(x, n)` that raises `x` to a natural power of `n`. In other words, multiplies `x` by itself `n` times.
@@ -31,7 +29,7 @@ There are two ways to implement it.
       let result = 1;
 
       // multiply result by x n times in the loop
-      for(let i = 0; i < n; i++) {
+      for (let i = 0; i < n; i++) {
         result *= x;
       }
 
@@ -67,8 +65,8 @@ pow(x, n) =
               else     = x * pow(x, n - 1)
 ```
 
-1. If `n==1`, then everything is trivial. It is called *the base* of recursion, because it immediately produces the obvious result: `pow(x, 1)` equals `x`.
-2. Otherwise, we can represent `pow(x, n)` as `x * pow(x, n-1)`. In maths, one would write <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. This is called *a recursive step*: we transform the task into a simpler action (multiplication by `x`) and a simpler call of the same task (`pow` with lower `n`). Next steps simplify it further and further untill `n` reaches `1`.
+1. If `n == 1`, then everything is trivial. It is called *the base* of recursion, because it immediately produces the obvious result: `pow(x, 1)` equals `x`.
+2. Otherwise, we can represent `pow(x, n)` as `x * pow(x, n - 1)`. In maths, one would write <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. This is called *a recursive step*: we transform the task into a simpler action (multiplication by `x`) and a simpler call of the same task (`pow` with lower `n`). Next steps simplify it further and further until `n` reaches `1`.
 
 We can also say that `pow` *recursively calls itself* till `n == 1`.
 
@@ -91,7 +89,7 @@ Here we can rewrite the same using the ternary `?` operator instead of `if` to m
 
 ```js run
 function pow(x, n) {
-  return (n == 1) ? x : (x * pow(x, n-1));
+  return (n == 1) ? x : (x * pow(x, n - 1));
 }
 ```
 ````
@@ -134,7 +132,7 @@ We can sketch it as:
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
+That's when the function starts to execute. The condition `n == 1` is false, so the flow continues into the second branch of `if`:
 
 ```js run
 function pow(x, n) {
@@ -160,7 +158,7 @@ The variables are same, but the line changes, so the context is now:
   </li>
 </ul>
 
-To calculate `x*pow(x, n-1)`, we need to make a subcall of `pow` with new arguments `pow(2, 2)`.
+To calculate `x * pow(x, n - 1)`, we need to make a subcall of `pow` with new arguments `pow(2, 2)`.
 
 ### pow(2, 2)
 
@@ -230,7 +228,7 @@ function pow(x, n) {
 
 There are no more nested calls, so the function finishes, returning `2`.
 
-As the function finishes, its execution context is not needed any more, so it's removed from the memory. The previous one is restored off the top of the stack:
+As the function finishes, its execution context is not needed anymore, so it's removed from the memory. The previous one is restored off the top of the stack:
 
 
 <ul class="function-execution-context-list">
@@ -244,7 +242,7 @@ As the function finishes, its execution context is not needed any more, so it's 
   </li>
 </ul>
 
-The execution of `pow(2, 2)` is resumed. It has the result of the subcall `pow(2, 1)`, so it also can finish the evaluation of `x * pow(x, n-1)`, returning `4`.
+The execution of `pow(2, 2)` is resumed. It has the result of the subcall `pow(2, 1)`, so it also can finish the evaluation of `x * pow(x, n - 1)`, returning `4`.
 
 Then the previous context is restored:
 
@@ -269,7 +267,7 @@ A loop-based algorithm is more memory-saving:
 function pow(x, n) {
   let result = 1;
 
-  for(let i = 0; i < n; i++) {
+  for (let i = 0; i < n; i++) {
     result *= x;
   }
 
@@ -289,7 +287,7 @@ Recursion can give a shorter code, easier to understand and support. Optimizatio
 
 Another great application of the recursion is a recursive traversal.
 
-Imagine, we have an company. The staff structure can be presented as an object:
+Imagine, we have a company. The staff structure can be presented as an object:
 
 ```js
 let company = {
@@ -360,7 +358,7 @@ function sumSalaries(department) {
     return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
   } else { // case (2)
     let sum = 0;
-    for(let subdep of Object.values(department)) {
+    for (let subdep of Object.values(department)) {
       sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
     }
     return sum;
@@ -395,7 +393,7 @@ A company *department* is:
 - Either an array of people.
 - Or an object with *departments*.
 
-For web-developers there are much better known examples: HTML and XML documents.
+For web-developers there are much better-known examples: HTML and XML documents.
 
 In the HTML document, an *HTML-tag* may contain a list of:
 - Text pieces.

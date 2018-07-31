@@ -32,7 +32,7 @@ For plain objects, the following methods are available:
 
 The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
 
-Why so? There main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
+Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
 
 The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
 
@@ -58,7 +58,7 @@ let user = {
 };
 
 // loop over values
-for(let value of Object.values(user)) {
+for (let value of Object.values(user)) {
   alert(value); // John, then 30
 }
 ```

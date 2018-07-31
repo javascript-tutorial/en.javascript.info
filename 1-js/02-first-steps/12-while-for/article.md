@@ -6,8 +6,6 @@ For example, when we need to output goods from a list one after another. Or just
 
 *Loops* are a way to repeat the same part of code multiple times.
 
-[cut]
-
 ## The "while" loop
 
 The `while` loop has the following syntax:
@@ -21,7 +19,7 @@ while (condition) {
 
 While the `condition` is `true`, the `code` from the loop body is executed.
 
-For instance, the loop below outputs `i` while `i<3`:
+For instance, the loop below outputs `i` while `i < 3`:
 
 ```js run
 let i = 0;
@@ -35,9 +33,9 @@ A single execution of the loop body is called *an iteration*. The loop in the ex
 
 If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and for server-side JavaScript we can kill the process.
 
-Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to boolean by `while`.
+Any expression or a variable can be a loop condition, not just a comparison. They are evaluated and converted to a boolean by `while`.
 
-For instance, the shorter way to write `while (i!=0)` could be `while (i)`:
+For instance, the shorter way to write `while (i != 0)` could be `while (i)`:
 
 ```js run
 let i = 3;
@@ -108,8 +106,8 @@ Let's examine the `for` statement part by part:
 
 | part  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `i=0`    | Executes once upon entering the loop.                                      |
-| condition | `i<3`| Checked before every loop iteration, if fails the loop stops.              |
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration, if fails the loop stops.              |
 | step| `i++`      | Executes after the body on each iteration, but before the condition check. |
 | body | `alert(i)`| Runs again and again while the condition is truthy                         |
 
@@ -188,11 +186,11 @@ We can also remove the `step` part:
 let i = 0;
 
 for (; i < 3;) {
-  alert( i );
+  alert( i++ );
 }
 ```
 
-The loop became identical to `while (i<3)`.
+The loop became identical to `while (i < 3)`.
 
 We can actually remove everything, thus creating an infinite loop:
 
@@ -229,7 +227,7 @@ while (true) {
 alert( 'Sum: ' + sum );
 ```
 
-The `break` directive is activated in the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
+The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing the control to the first line after the loop. Namely, `alert`.
 
 The combination "infinite loop + `break` as needed" is great for situations when the condition must be checked not in the beginning/end of the loop, but in the middle, or even in several places of the body.
 
@@ -239,7 +237,7 @@ The `continue` directive is a "lighter version" of `break`. It doesn't stop the 
 
 We can use it if we're done on the current iteration and would like to move on to the next.
 
-The loop above uses `continue` to output only odd values:
+The loop below uses `continue` to output only odd values:
 
 ```js run no-beautify
 for (let i = 0; i < 10; i++) {
@@ -268,11 +266,11 @@ for (let i = 0; i < 10; i++) {
 
 From a technical point of view it's identical to the example above. Surely, we can just wrap the code in the `if` block instead of `continue`.
 
-But as a side-effect we got one more figure brackets nesting level. If the code inside `if` is longer than a few lines, that may decrease the overall readability.
+But as a side-effect we got one more nesting level (the `alert` call inside the curly braces). If the code inside `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
-Please note that syntax constructs that are not expressions cannot be used in `'?'`. In particular, directives `break/continue` are disallowed there.
+Please note that syntax constructs that are not expressions cannot be used with the ternary operator `?`. In particular, directives such as `break/continue` are disallowed there.
 
 For example, if we take this code:
 
@@ -294,7 +292,7 @@ if (i > 5) {
 ...Then it stops working. The code like this will give a syntax error:
 
 
-That's just another reason not to use a question mark operator `'?'` instead of `if`.
+That's just another reason not to use a question mark operator `?` instead of `if`.
 ````
 
 ## Labels for break/continue
@@ -324,7 +322,7 @@ The ordinary `break` after `input` would only break the inner loop. That's not s
 
 A *label* is an identifier with a colon before a loop:
 ```js
-labelName: for(...) {
+labelName: for (...) {
   ...
 }
 ```
@@ -369,7 +367,7 @@ For example, it is impossible to do this:
 ```js
 break label;  // jumps to label? No.
 
-label: for(...)
+label: for (...)
 ```
 
 The call to a `break/continue` is only possible from inside the loop, and the label must be somewhere upwards from the directive.
@@ -381,10 +379,10 @@ We covered 3 types of loops:
 
 - `while` -- The condition is checked before each iteration.
 - `do..while` -- The condition is checked after each iteration.
-- `for(;;)` -- The condition is checked before each iteration, additional settings available.
+- `for (;;)` -- The condition is checked before each iteration, additional settings available.
 
 To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
 If we don't want to do anything on the current iteration and would like to forward to the next one, the `continue` directive does it.
 
-`Break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.
+`break/continue` support labels before the loop. A label is the only way for `break/continue` to escape the nesting and go to the outer loop.

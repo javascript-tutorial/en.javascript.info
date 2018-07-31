@@ -7,8 +7,6 @@ Arrays by themselves are iterable. But not only arrays. Strings are iterable too
 
 Iterables are widely used by the core JavaScript. As we'll see many built-in operators and methods rely on them.
 
-[cut]
-
 ## Symbol.iterator
 
 We can easily grasp the concept of iterables by making one of our own.
@@ -121,7 +119,7 @@ Arrays and strings are most widely used built-in iterables.
 For a string, `for..of` loops over its characters:
 
 ```js run
-for(let char of "test") {
+for (let char of "test") {
   alert( char ); // t, then e, then s, then t
 }
 ```
@@ -130,8 +128,8 @@ And it works right with surrogate pairs!
 
 ```js run
 let str = '𝒳😂';
-for(let char of str) {
-    alert(char); // 𝒳, and then 😂
+for (let char of str) {
+    alert( char ); // 𝒳, and then 😂
 }
 ```
 
@@ -139,7 +137,7 @@ for(let char of str) {
 
 Normally, internals of iterables are hidden from the external code. There's a `for..of` loop, that works, that's all it needs to know.
 
-But to understand things a little bit more deeper let's see how to create an iterator explicitly.
+But to understand things a little bit deeper let's see how to create an iterator explicitly.
 
 We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
 
@@ -151,7 +149,7 @@ let str = "Hello";
 
 let iterator = str[Symbol.iterator]();
 
-while(true) {
+while (true) {
   let result = iterator.next();
   if (result.done) break;
   alert(result.value); // outputs characters one by one
@@ -184,11 +182,11 @@ let arrayLike = { // has indexes and length => array-like
 
 *!*
 // Error (no Symbol.iterator)
-for(let item of arrayLike) {}
+for (let item of arrayLike) {}
 */!*
 ```
 
-What they share in common -- both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
+What do they have in common? Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
 
 ## Array.from
 
@@ -258,7 +256,7 @@ Technically here it does the same as:
 let str = '𝒳😂';
 
 let chars = []; // Array.from internally does the same loop
-for(let char of str) {
+for (let char of str) {
   chars.push(char);
 }
 
@@ -295,8 +293,8 @@ Objects that can be used in `for..of` are called *iterable*.
 - String iterator knows about surrogate pairs.
 
 
-Objects that have indexed properties and `length` are called *array-like*. Such objects may also have other properties and methods, but lack built-in methods of arrays.
+Objects that have indexed properties and `length` are called *array-like*. Such objects may also have other properties and methods, but lack the built-in methods of arrays.
 
 If we look inside the specification -- we'll see that most built-in methods assume that they work with iterables or array-likes instead of "real" arrays, because that's more abstract.
 
-`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and then we can use array methods on it. The optional arguments `mapFn` and `thisArg` allow to apply a function to each item.
+`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.

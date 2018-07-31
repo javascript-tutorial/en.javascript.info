@@ -18,7 +18,7 @@ For instance, if the height of the whole HTML document is 2000px, then:
 document.documentElement.getBoundingClientRect().top = 0
 
 // window-relative bottom = 2000
-// the document is long, so that is probably far beyound the window bottom
+// the document is long, so that is probably far beyond the window bottom
 document.documentElement.getBoundingClientRect().bottom = 2000
 ```
 

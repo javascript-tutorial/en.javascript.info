@@ -2,11 +2,9 @@
 
 The two most used data structures in JavaScript are `Object` and `Array`.
 
-Objects allow to pack many pieces of information into a single entity and arrays allow to store ordered collections. So we can make an object or an array and handle it as a single thing, maybe pass to a function call.
+Objects allow us to pack many pieces of information into a single entity and arrays allow us to store ordered collections. So we can make an object or an array and handle it as a single entity, or maybe pass it to a function call.
 
-*Destructuring assignment* is a special syntax that allows to "unpack" arrays or objects into a bunch of variables, as sometimes they are more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and soon we'll see how these are handled too.
-
-[cut]
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes they are more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and soon we'll see how these are handled too.
 
 ## Array destructuring
 
@@ -34,9 +32,9 @@ let [firstName, surname] = "Ilya Kantor".split(' ');
 ```
 
 ````smart header="\"Destructuring\" does not mean \"destructive\""
-That's called "destructuring assignment", because it "destructurizes" by copying items into variables. But the array itself is not modified.
+It's called "destructuring assignment", because it "destructurizes" by copying items into variables. But the array itself is not modified.
 
-That's just a shorter way to write:
+It's just a shorter way to write:
 ```js
 // let [firstName, surname] = arr;
 let firstName = arr[0];
@@ -56,12 +54,12 @@ let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 alert( title ); // Consul
 ```
 
-In the code above, the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest is also skipped.
+In the code above, although the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest are also skipped.
 ````
 
 ````smart header="Works with any iterable on the right-side"
 
-...Actually, we can use it with any iterable, not only an array:
+...Actually, we can use it with any iterable, not only arrays:
 
 ```js
 let [a, b, c] = "abc"; // ["a", "b", "c"]
@@ -87,7 +85,7 @@ alert(user.name); // Ilya
 
 ````smart header="Looping with .entries()"
 
-In the previous chapter we saw [Object.entries(obj)](mdn:js/Object/entries) method.
+In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
 
 We can use it with destructuring to loop over keys-and-values of an object:
 
@@ -99,7 +97,7 @@ let user = {
 
 // loop over keys-and-values
 *!*
-for(let [key, value] of Object.entries(user)) {
+for (let [key, value] of Object.entries(user)) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
@@ -113,7 +111,7 @@ user.set("name", "John");
 user.set("age", "30");
 
 *!*
-for(let [key, value] of user.entries()) {
+for (let [key, value] of user.entries()) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
 }
@@ -121,7 +119,7 @@ for(let [key, value] of user.entries()) {
 ````
 ### The rest '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using the three dots `"..."`:
+If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
 
 ```js run
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
@@ -136,11 +134,11 @@ alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes the last.
+The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
 
 ### Default values
 
-If there are fewer values in the array than variables in the assignment -- there will be no error, absent values are considered undefined:
+If there are fewer values in the array than variables in the assignment, there will be no error. Absent values are considered undefined:
 
 ```js run
 *!*
@@ -155,7 +153,7 @@ If we want a "default" value to replace the missing one, we can provide it using
 ```js run
 *!*
 // default values
-let [name="Guest", surname="Anonymous"] = ["Julius"];
+let [name = "Guest", surname = "Anonymous"] = ["Julius"];
 */!*
 
 alert(name);    // Julius (from array)
@@ -164,11 +162,11 @@ alert(surname); // Anonymous (default used)
 
 Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
 
-For instance, here we use `prompt` function for two defaults. But it will only run only for the missing one:
+For instance, here we use the `prompt` function for two defaults. But it will run only for the missing one:
 
 ```js run
 // runs only prompt for surname
-let [name=prompt('name?'), surname=prompt('surname?')] = ["Julius"];
+let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
 alert(name);    // Julius (from array)
 alert(surname); // whatever prompt gets
@@ -186,7 +184,7 @@ The basic syntax is:
 let {var1, var2} = {var1:…, var2…}
 ```
 
-We have an existing object at the right side, that we want to split into variables. To the left side contains a "pattern" for corresponding properties. In the simple case that's a list of variable names in `{...}`.
+We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
 
 For instance:
 
@@ -206,7 +204,7 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter, that works too:
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter. This works too:
 
 ```js
 // changed the order of properties in let {...}
@@ -248,7 +246,7 @@ let options = {
 };
 
 *!*
-let {width=100, height=200, title} = options;
+let {width = 100, height = 200, title} = options;
 */!*
 
 alert(title);  // Menu
@@ -258,7 +256,7 @@ alert(height); // 200
 
 Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
 
-The code below asks for width, but not about the title.
+The code below asks for width, but not the title.
 
 ```js run
 let options = {
@@ -266,7 +264,7 @@ let options = {
 };
 
 *!*
-let {width=prompt("width?"), title=prompt("title?")} = options;
+let {width = prompt("width?"), title = prompt("title?")} = options;
 */!*
 
 alert(title);  // Menu
@@ -281,7 +279,7 @@ let options = {
 };
 
 *!*
-let {width:w=100, height:h=200, title} = options;
+let {width: w = 100, height: h = 200, title} = options;
 */!*
 
 alert(title);  // Menu
@@ -308,7 +306,7 @@ let options = {
 let {title, ...rest} = options;
 */!*
 
-// now title="Menu", rest={height: 200, widht: 100}
+// now title="Menu", rest={height: 200, width: 100}
 alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
@@ -389,9 +387,9 @@ The whole `options` object except `extra` that was not mentioned, is assigned to
 
 Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
 
-That often happens with destructuring assignments. We have a complex object with may properties and want extract only what we need.
+That often happens with destructuring assignments. We have a complex object with many properties and want to extract only what we need.
 
-Even like this:
+Even here it happens:
 ```js
 // take size as a whole into a variable, ignore the rest
 let { size } = options;
@@ -409,7 +407,7 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-The real-life problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+In real-life the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
 
 Like this?
 
@@ -434,7 +432,7 @@ let options = {
 function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
   // title, items – taken from options,
   // width, height – defaults used
-  alert( title + ' ' + width + ' ' + height ); // My Menu 100 200
+  alert( `${title} ${width} ${height}` ); // My Menu 200 100
   alert( items ); // Item1, Item2
 }
 
@@ -452,12 +450,12 @@ let options = {
 *!*
 function showMenu({
   title = "Untitled",
-  width:w = 100,  // width goes to w
-  height:h = 200, // height goes to h
+  width: w = 100,  // width goes to w
+  height: h = 200, // height goes to h
   items: [item1, item2] // items first element goes to item1, second to item2
 }) {
 */!*
-  alert( title + ' ' + w + ' ' + h ); // My Menu 100 200
+  alert( `${title} ${w} ${h}` ); // My Menu 100 200
   alert( item1 ); // Item1
   alert( item2 ); // Item2
 }
@@ -478,8 +476,8 @@ Please note that such destructuring assumes that `showMenu()` does have an argum
 ```js
 showMenu({});
 
-// that would give an error
-showMenu();
+
+showMenu(); // this would give an error
 ```
 
 We can fix this by making `{}` the default value for the whole destructuring thing:
@@ -487,8 +485,8 @@ We can fix this by making `{}` the default value for the whole destructuring thi
 
 ```js run
 // simplified parameters a bit for clarity
-function showMenu(*!*{ title="Menu", width=100, height=200 } = {}*/!*) {
-  alert( title + ' ' + width + ' ' + height );
+function showMenu(*!*{ title = "Menu", width = 100, height = 200 } = {}*/!*) {
+  alert( `${title} ${width} ${height}` );
 }
 
 showMenu(); // Menu 100 200
@@ -498,7 +496,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
 ## Summary
 
-- Destructuring assignment allows to instantly map an object or array into many variables.
+- Destructuring assignment allows for instantly mapping an object or array onto many variables.
 - The object syntax:
     ```js
     let {prop : varName = default, ...} = object

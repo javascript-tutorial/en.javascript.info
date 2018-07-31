@@ -2,8 +2,6 @@
 
 Let's dive into more details about events that happen when mouse moves between elements.
 
-[cut]
-
 ## Mouseover/mouseout, relatedTarget
 
 The `mouseover` event occurs when a mouse pointer comes over an element, and `mouseout` -- when it leaves.

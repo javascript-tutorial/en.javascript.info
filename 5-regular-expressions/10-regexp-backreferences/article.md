@@ -2,8 +2,6 @@
 
 Capturing groups may be accessed not only in the result, but in the replacement string, and in the pattern too.
 
-[cut]
-
 ## Group in replacement: $n
 
 When we are using `replace` method, we can access n-th group in the replacement string using `$n`.

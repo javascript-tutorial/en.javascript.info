@@ -4,10 +4,8 @@ Many comparison operators we know from maths:
 
 - Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equality check is written as `a == b` (please note the double equation sign `'='`. A single symbol `a = b` would mean an assignment).
+- Equality check is written as `a == b` (please note the double equation sign `=`. A single symbol `a = b` would mean an assignment).
 - Not equals. In maths the notation is <code>&ne;</code>, in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
-
-[cut]
 
 ## Boolean is the result
 
@@ -108,7 +106,7 @@ From JavaScript's standpoint that's quite normal. An equality check converts usi
 
 ## Strict equality
 
-A regular equality check `"=="` has a problem. It cannot differ `0` from `false`:
+A regular equality check `==` has a problem. It cannot differ `0` from `false`:
 
 ```js run
 alert( 0 == false ); // true
@@ -146,7 +144,7 @@ There's a non-intuitive behavior when `null` or `undefined` are compared with ot
 
 
 For a strict equality check `===`
-: These values are different, because each of them belong to a separate type of it's own.
+: These values are different, because each of them belongs to a separate type of its own.
 
     ```js run
     alert( null === undefined ); // false

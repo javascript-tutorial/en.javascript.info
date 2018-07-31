@@ -2,8 +2,6 @@
 
 Let's revisit arrow functions.
 
-[cut]
-
 Arrow functions are not just a "shorthand" for writing small stuff.
 
 JavaScript is full of situations where we need to write a small function, that's executed somewhere else.
@@ -125,4 +123,4 @@ Arrow functions:
 - Can't be called with `new`.
 - (They also don't have `super`, but we didn't study it. Will be in the chapter <info:class-inheritance>).
 
-That's because they are meant for short pieces of code that does not have their own "context", but rather works in the current one. And they really shine in that use case.
+That's because they are meant for short pieces of code that do not have their own "context", but rather works in the current one. And they really shine in that use case.

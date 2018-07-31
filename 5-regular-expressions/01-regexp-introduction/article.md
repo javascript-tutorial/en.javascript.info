@@ -6,8 +6,6 @@ In JavaScript regular expressions are implemented using objects of a built-in `R
 
 Please note that regular expressions vary between programming languages. In this tutorial we concentrate on JavaScript. Of course there's a lot in common, but they are a somewhat different in Perl, Ruby, PHP etc.
 
-[cut]
-
 ## Regular expressions
 
 A regular expression (also "regexp", or just "reg") consists of a *pattern* and optional *flags*.

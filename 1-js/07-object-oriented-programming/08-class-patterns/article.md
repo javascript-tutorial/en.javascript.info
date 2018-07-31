@@ -5,13 +5,11 @@
 In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
 ```
 
-There's a special syntax construct and a keyword `class` in JavaScript. But before studying it, we should consider that the term "class" comes the theory of object-oriented programming. The definition is cited above, and it's language-independant.
+There's a special syntax construct and a keyword `class` in JavaScript. But before studying it, we should consider that the term "class" comes from the theory of object-oriented programming. The definition is cited above, and it's language-independent.
 
 In JavaScript there are several well-known programming patterns to make classes even without using the `class` keyword. And here we'll talk about them first.
 
 The `class` construct will be described in the next chapter, but in JavaScript it's a "syntax sugar" and an extension of one of the patterns that we'll study here.
-
-[cut]
 
 
 ## Functional class pattern
@@ -43,7 +41,6 @@ So we can easily add internal functions and variables, like `calcAge()` here:
 
 ```js run
 function User(name, birthday) {
-
 *!*
   // only visible from other methods inside User
   function calcAge() {
@@ -52,17 +49,17 @@ function User(name, birthday) {
 */!*
 
   this.sayHi = function() {
-    alert(name + ', age:' + calcAge());
+    alert(`${name}, age:${calcAge()}`);
   };
 }
 
-let user = new User("John", new Date(2000,0,1));
-user.sayHi(); // John
+let user = new User("John", new Date(2000, 0, 1));
+user.sayHi(); // John, age:17
 ```
 
 In this code variables `name`, `birthday` and the function `calcAge()` are internal, *private* to the object. They are only visible from inside of it.
 
-From the other hand, `sayHi` is the external, *public* method. The external code that creates `user` can access it.
+On the other hand, `sayHi` is the external, *public* method. The external code that creates `user` can access it.
 
 This way we can hide internal implementation details and helper methods from the outer code. Only what's assigned to `this` becomes visible outside.
 
@@ -81,22 +78,22 @@ function User(name, birthday) {
 
   return {
     sayHi() {
-      alert(name + ', age:' + calcAge());
+      alert(`${name}, age:${calcAge()}`);
     }
   };
 }
 
 *!*
-let user = User("John", new Date(2000,0,1));
+let user = User("John", new Date(2000, 0, 1));
 */!*
-user.sayHi(); // John
+user.sayHi(); // John, age:17
 ```
 
 As we can see, the function `User` returns an object with public properties and methods. The only benefit of this method is that we can omit `new`: write `let user = User(...)` instead of `let user = new User(...)`. In other aspects it's almost the same as the functional pattern.
 
 ## Prototype-based classes
 
-Prototype-based classes is the most important and generally the best. Functional and factory class patterns are rarely used in practice.
+Prototype-based classes are the most important and generally the best. Functional and factory class patterns are rarely used in practice.
 
 Soon you'll see why.
 
@@ -117,11 +114,11 @@ User.prototype._calcAge = function() {
 };
 
 User.prototype.sayHi = function() {
-  alert(this._name + ', age:' + this._calcAge());
+  alert(`${this._name}, age:${this._calcAge()}`);
 };
 
-let user = new User("John", new Date(2000,0,1));
-user.sayHi(); // John
+let user = new User("John", new Date(2000, 0, 1));
+user.sayHi(); // John, age:17
 ```
 
 The code structure:
@@ -154,7 +151,7 @@ function Rabbit(name) {
 }
 
 Rabbit.prototype.jump = function() {
-  alert(this.name + ' jumps!');
+  alert(`${this.name} jumps!`);
 };
 
 let rabbit = new Rabbit("My rabbit");
@@ -170,7 +167,7 @@ function Animal(name) {
 }
 
 Animal.prototype.eat = function() {
-  alert(this.name + ' eats.');
+  alert(`${this.name} eats.`);
 };
 
 let animal = new Animal("My animal");
@@ -202,7 +199,7 @@ function Animal(name) {
 
 // All animals can eat, right?
 Animal.prototype.eat = function() {
-  alert(this.name + ' eats.');
+  alert(`${this.name} eats.`);
 };
 
 // Same Rabbit as before
@@ -211,7 +208,7 @@ function Rabbit(name) {
 }
 
 Rabbit.prototype.jump = function() {
-  alert(this.name + ' jumps!');
+  alert(`${this.name} jumps!`);
 };
 
 *!*

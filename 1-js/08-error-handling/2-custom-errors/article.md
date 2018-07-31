@@ -224,7 +224,7 @@ The code which calls `readUser` should handle these errors. Right now it uses mu
 
 Often the answer is "No": the outer code wants to be "one level above all that". It wants to have some kind of "data reading error". Why exactly it happened -- is often irrelevant (the error message describes it). Or, even better if there is a way to get error details, but only if we need to.
 
-So let's make a new class `ReadError` to represent such errors. If an error occurs inside `readUser`, we'll catch it there and generate `ReadError`. We'll also keep the reference to the original error in the `cause` property. Then the outer code will only have to check for `ReadError`.
+So let's make a new class `ReadError` to represent such errors. If an error occurs inside `readUser`, we'll catch it there and generate `ReadError`. We'll also keep the reference to the original error in its `cause` property. Then the outer code will only have to check for `ReadError`.
 
 Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
 

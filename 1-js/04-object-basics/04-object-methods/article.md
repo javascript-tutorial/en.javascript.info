@@ -13,8 +13,6 @@ And, in the real world, a user can *act*: select something from the shopping car
 
 Actions are represented in JavaScript by functions in properties.
 
-[cut]
-
 ## Method examples
 
 For the start, let's teach the `user` to say hello:
@@ -314,11 +312,11 @@ The result of a property access `user.hi` is not a function, but a value of Refe
 (user, "hi", true)
 ```
 
-When parentheses `()` are called on the Reference Type, they receive the full information about the object and it's method, and can set the right `this` (`=user` in this case).
+When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
-So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here).
+So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here). Later in this tutorial, we will learn various ways to solve this problem such as [func.bind()](/bind#solution-2-bind).
 
 ## Arrow functions have no "this"
 

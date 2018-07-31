@@ -4,8 +4,6 @@ Memory management in JavaScript is performed automatically and invisibly to us. 
 
 What happens when something is not needed any more? How does the JavaScript engine discover it and clean it up?
 
-[cut]
-
 ## Reachability
 
 The main concept of memory management in JavaScript is *reachability*.

@@ -7,8 +7,6 @@ The first kind is *data properties*. We already know how to work with them. Actu
 
 The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
 
-[cut]
-
 ## Getters and setters
 
 Accessor properties are represented by "getter" and "setter" methods. In an object literal they are denoted by `get` and `set`:
@@ -130,7 +128,7 @@ Object.defineProperty(user, 'fullName', {
 
 alert(user.fullName); // John Smith
 
-for(let key in user) alert(key);
+for(let key in user) alert(key); // name, surname
 ```
 
 Please note once again that a property can be either an accessor or a data property, not both.

@@ -4,8 +4,6 @@ A `switch` statement can replace multiple `if` checks.
 
 It gives a more descriptive way to compare a value with multiple variants.
 
-[cut]
-
 ## The syntax
 
 The `switch` has one or more `case` blocks and an optional default.

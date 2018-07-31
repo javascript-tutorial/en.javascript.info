@@ -7,11 +7,9 @@ libs:
 
 # Walking the DOM
 
-DOM allows to do anything with elements and their contents, but first we need to reach the corresponding DOM object, get it into a variable, and then we are able to modify it.
+The DOM allows to do anything with elements and their contents, but first we need to reach the corresponding DOM object, get it into a variable, and then we are able to modify it.
 
-All operations on DOM start with the `document` object. From it we can access any node.
-
-[cut]
+All operations on the DOM start with the `document` object. From it we can access any node.
 
 Here's a picture of links that allow to travel between DOM nodes:
 
@@ -88,7 +86,7 @@ For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text 
 </html>
 ```
 
-...And if we ask for all descendants of `<body>`, then we get direct children `<div>`, `<ul>` and also more nested elements like `<li>` (being a child of `<ul>`) and `<b>` (being a child of `<li>`) -- the whole subtree.
+...And if we ask for all descendants of `<body>`, then we get direct children `<div>`, `<ul>` and also more nested elements like `<li>` (being a child of `<ul>`) and `<b>` (being a child of `<li>`) -- the entire subtree.
 
 **The `childNodes` collection provides access to all child nodes, including text nodes.**
 
@@ -157,7 +155,7 @@ The first thing is nice. The second is tolerable, because we can use `Array.from
 ```warn header="DOM collections are read-only"
 DOM collections, and even more -- *all* navigation properties listed in this chapter are read-only.
 
-We can't replace an child by something else assigning `childNodes[i] = ...`.
+We can't replace a child by something else assigning `childNodes[i] = ...`.
 
 Changing DOM needs other methods, we'll see them in the next chapter.
 ```
@@ -177,7 +175,7 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
 <body>
 <script>
   // shows 0, 1, length, item, values and more.
-  for(let prop in document.body.childNodes) alert(prop);
+  for (let prop in document.body.childNodes) alert(prop);
 </script>
 </body>
 ````
@@ -242,7 +240,7 @@ In other words, the `documentElement` (`<html>`) is the root node. Formally, it 
 Sometimes that matters when we're walking over the chain of parents and call a method on each of them, but `document` doesn't have it, so we exclude it.
 ````
 
-Let's modify one of examples above: replace `childNodes` with `children`. Now it shows only elements:
+Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
 
 ```html run
 <html>
@@ -275,7 +273,7 @@ Certain types of DOM elements may provide additional properties, specific to the
 
 Tables are a great example and important particular case of that.
 
-**`<table>`** element supports (in addition to the given above) these properties:
+**The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
 - `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
@@ -285,8 +283,8 @@ Tables are a great example and important particular case of that.
 
 **`<tr>`:**
 - `tr.cells` -- the collection of `<td>` and `<th>` cells inside the given `<tr>`.
-- `tr.sectionRowIndex` -- the number of the given `<tr>` inside the enclosing `<thead>/<tbody>`.
-- `tr.rowIndex` -- the number of the `<tr>` in the table.
+- `tr.sectionRowIndex` -- the position (index) of the given `<tr>` inside the enclosing `<thead>/<tbody>/<tfoot>`.
+- `tr.rowIndex` -- the number of the `<tr>` in the table as a whole (including all table rows).
 
 **`<td>` and `<th>`:**
 - `td.cellIndex` -- the number of the cell inside the enclosing `<tr>`.

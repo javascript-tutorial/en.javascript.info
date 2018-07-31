@@ -5,11 +5,9 @@ As we know from the chapter <info:types>, there are seven language types in Java
 
 In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
-[cut]
-
 An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in it's file by the key. It's easy to find a file by it's name or add/remove a file.
+We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
 
 ![](object.png)
 
@@ -85,7 +83,6 @@ let user = {
 ![](object-user-props.png)
 
 
-````smart header="Trailing comma"
 The last property in the list may end with a comma:
 ```js
 let user = {
@@ -94,7 +91,6 @@ let user = {
 }
 ```
 That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
-````
 
 ## Square brackets
 
@@ -189,7 +185,7 @@ We can use more complex expressions inside square brackets:
 ```js
 let fruit = 'apple';
 let bag = {
-  ['apple' + 'Computers']: 5 // bag.appleComputers = 5
+  [fruit + 'Computers']: 5 // bag.appleComputers = 5
 };
 ```
 
@@ -222,7 +218,14 @@ obj.__proto__ = 5;
 alert(obj.__proto__); // [object Object], didn't work as intended
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored. If we want to store *arbitrary* (user-provided) keys, then such behavior can be the source of bugs and even vulnerabilities, because it's unexpected. There's another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+That can become a source of bugs and even vulnerabilies if we intent to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+
+In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
+
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
 ````
 
 
@@ -365,7 +368,7 @@ Also, we could use another variable name here instead of `key`. For instance, `"
 
 ### Ordered like an object
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order that they are added in it? Can we rely on it?
+Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
 
 The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
 
@@ -404,8 +407,8 @@ So, "49" is an integer property name, because when it's transformed to an intege
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
 alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same ⇒ not integer property
-alert( String(Math.trunc(Number("1.2"))) ); // "1", not same ⇒ not integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
 ```
 ````
 
@@ -465,7 +468,7 @@ As a result we have two independent variables, each one is storing the string `"
 
 Objects are not like that.
 
-**A variable stores not the object itself, but it's "address in memory", in other words "a reference" to it.**
+**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
 
 Here's the picture for the object:
 
@@ -509,7 +512,7 @@ admin.name = 'Pete'; // changed by the "admin" reference
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-The example above demonstrates that there is only one object. Like if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
+The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
 
 ### Comparison by reference
 
@@ -536,7 +539,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to say the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
 
 ### Const object
 
@@ -696,9 +699,9 @@ user.sizes.width++;       // change a property from one place
 alert(clone.sizes.width); // 51, see the result from the other one
 ```
 
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate it's structure as well. That is called a "deep cloning".
+To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 
@@ -734,4 +737,4 @@ There are many other kinds of objects in JavaScript:
 
 They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of the topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
+Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.

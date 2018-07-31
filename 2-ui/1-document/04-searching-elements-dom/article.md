@@ -3,8 +3,6 @@
 DOM navigation properties are great when elements are close to each other. What if they are not? How to get an arbitrary element of the page?
 
 There are additional searching methods for that.
-[cut]
-
 ## document.getElementById or just id
 
 If an element has the `id` attribute, then there's a global variable by the name from that `id`.
@@ -84,7 +82,7 @@ let divs = document.getElementsByTagName('div');
 
 This method is callable in the context of any DOM element.
 
-Let's find all `input` inside the table:
+Let's find all `input` tags inside the table:
 
 ```html run height=50
 <table id="table">
@@ -123,16 +121,16 @@ The `"s"` letter is absent in `getElementById`, because it returns a single elem
 ```
 
 ````warn header="It returns a collection, not an element!"
-Another widespread novice mistake is to write like:
+Another widespread novice mistake is to write:
 
 ```js
 // doesn't work
 document.getElementsByTagName('input').value = 5;
 ```
 
-That won't work, because it takes a *collection* of inputs and assigns the value to it, rather to elements inside it.
+That won't work, because it takes a *collection* of inputs and assigns the value to it rather than to elements inside it.
 
-We should either iterate over the collection or get an element by the number, and then assign, like this:
+We should either iterate over the collection or get an element by its index, and then assign, like this:
 
 ```js
 // should work (if there's an input)
@@ -374,7 +372,7 @@ Other methods can be called on elements too. For instance `elem.querySelectorAll
 Besides that:
 
 - There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
-- There is `elem.closest(css)` to look for a nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
+- There is `elem.closest(css)` to look for the nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
 
 And let's mention one more method here to check for the child-parent relationship:
 -  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`.

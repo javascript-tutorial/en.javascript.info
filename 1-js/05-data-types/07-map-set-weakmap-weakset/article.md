@@ -1,26 +1,26 @@
 
 # Map, Set, WeakMap and WeakSet
 
-Now we know the following complex data structures:
+Now we've learned about the following complex data structures:
 
 - Objects for storing keyed collections.
 - Arrays for storing ordered collections.
 
-But that's not enough for real life. That's why there also exist `Map` and `Set`.
+But that's not enough for real life. That's why `Map` and `Set` also exist.
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items. Just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
 
 The main methods are:
 
 - `new Map()` -- creates the map.
 - `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key.
+- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
 - `map.delete(key)` -- removes the value by the key.
 - `map.clear()` -- clears the map
-- `map.size` -- is the current elements count.
+- `map.size` -- returns the current element count.
 
 For instance:
 
@@ -76,7 +76,7 @@ alert( visitsCounts[john.id] ); // 123
 
 
 ```smart header="How `Map` compares keys"
-To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as the strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
 
 This algorithm can't be changed or customized.
 ```
@@ -106,7 +106,7 @@ let map = new Map([
 ]);
 ```
 
-There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns the array of key/value pairs for an object exactly in that format.
+There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
 
 So we can initialize a map from an object like this:
 
@@ -137,18 +137,18 @@ let recipeMap = new Map([
 ]);
 
 // iterate over keys (vegetables)
-for(let vegetable of recipeMap.keys()) {
-  alert(vegetable); // cucumber, tomateos, onion
+for (let vegetable of recipeMap.keys()) {
+  alert(vegetable); // cucumber, tomatoes, onion
 }
 
 // iterate over values (amounts)
-for(let amount of recipeMap.values()) {
+for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
 // iterate over [key, value] entries
-for(let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,50 (and so on)
+for (let entry of recipeMap) { // the same as of recipeMap.entries()
+  alert(entry); // cucumber,500 (and so on)
 }
 ```
 
@@ -160,16 +160,16 @@ Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
 recipeMap.forEach( (value, key, map) => {
-  alert(`${key}: ${value}`); // cucumber: 50 etc
+  alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
 
 
 ## Set
 
-`Set` -- is a collection of values, where each value may occur only once.
+A `Set` is a collection of values, where each value may occur only once.
 
-The main methods are:
+Its main methods are:
 
 - `new Set(iterable)` -- creates the set, optionally from an array of values (any iterable will do).
 - `set.add(value)` -- adds a value, returns the set itself.
@@ -199,7 +199,7 @@ set.add(mary);
 // set keeps only unique values
 alert( set.size ); // 3
 
-for(let user of set) {
+for (let user of set) {
   alert(user.name); // John (then Pete and Mary)
 }
 ```
@@ -213,7 +213,7 @@ We can loop over a set either with `for..of` or using `forEach`:
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
-for(let value of set) alert(value);
+for (let value of set) alert(value);
 
 // the same with forEach:
 set.forEach((value, valueAgain, set) => {
@@ -223,9 +223,9 @@ set.forEach((value, valueAgain, set) => {
 
 Note the funny thing. The `forEach` function in the `Set` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
 
-That's made for compatibility with `Map` where `forEach` has three arguments.
+That's for compatibility with `Map` where `forEach` has three arguments.
 
-The same methods as `Map` has for iterators are also supported:
+The same methods `Map` has for iterators are also supported:
 
 - `set.keys()` -- returns an iterable object for values,
 - `set.values()` -- same as `set.keys`, for compatibility with `Map`,
@@ -330,9 +330,9 @@ weakMap.put(john, "secret documents");
 
 That's useful for situations when we have a main storage for the objects somewhere and need to keep additional information that is only relevant while the object lives.
 
-Let's see an example.
+Let's look at an example.
 
-For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count any more.
+For instance, we have code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count anymore.
 
 One way would be to keep track of leaving users and clean up the storage manually:
 
@@ -345,7 +345,7 @@ let visitsCountMap = new Map();
 // john is the key for the map
 visitsCountMap.set(john, 123);
 
-// now john leaves us, we don't need him any more
+// now john leaves us, we don't need him anymore
 john = null;
 
 *!*
@@ -364,7 +364,7 @@ let visitsCountMap = new WeakMap();
 
 visitsCountMap.set(john, 123);
 
-// now john leaves us, we don't need him any more
+// now john leaves us, we don't need him anymore
 john = null;
 
 // there are no references except WeakMap,
@@ -408,7 +408,7 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-- `Map` -- is a a collection of keyed values.
+- `Map` -- is a collection of keyed values.
 
     The differences from a regular `Object`:
 
@@ -421,12 +421,12 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
     - Unlike an array, does not allow to reorder elements.
     - Keeps the insertion order.
 
-- `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become unaccessible by other means.
+- `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become inaccessible by other means.
 
     - It does not support operations on the structure as a whole: no `size`, no `clear()`, no iterations.
 
-- `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become unaccessible by other means.
+- `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become inaccessible by other means.
 
     - Also does not support `size/clear()` and iterations.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in additional to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up aumatically.
+`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up automatically.

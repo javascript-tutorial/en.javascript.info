@@ -1,6 +1,6 @@
 # Rest parameters and spread operator
 
-Many JavaScript built-in functions support on arbitrary number of arguments.
+Many JavaScript built-in functions support an arbitrary number of arguments.
 
 For instance:
 
@@ -8,9 +8,7 @@ For instance:
 - `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
 - ...and so on.
 
-In this chapter we'll see how to do the same. And, more important, how to feel comfortable working with such functions and arrays.
-
-[cut]
+In this chapter we'll learn how to do the same. And, more importantly, how to feel comfortable working with such functions and arrays.
 
 ## Rest parameters `...`
 
@@ -27,7 +25,7 @@ alert( sum(1, 2, 3, 4, 5) );
 
 There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
 
-The rest parameters can be mentioned in a function definition with three dots `...`. They literally mean: "gather the remaining parameters into an array".
+The rest parameters can be mentioned in a function definition with three dots `...`. They literally mean "gather the remaining parameters into an array".
 
 For instance, to gather all arguments into array `args`:
 
@@ -35,7 +33,7 @@ For instance, to gather all arguments into array `args`:
 function sumAll(...args) { // args is the name for the array
   let sum = 0;
 
-  for(let arg of args) sum += arg;
+  for (let arg of args) sum += arg;
 
   return sum;
 }
@@ -45,9 +43,9 @@ alert( sumAll(1, 2) ); // 3
 alert( sumAll(1, 2, 3) ); // 6
 ```
 
-We can choose to get first parameters as variables, and gather only the rest.
+We can choose to get the first parameters as variables, and gather only the rest.
 
-Here the first two arguments go into variables and the rest goes to `titles` array:
+Here the first two arguments go into variables and the rest go into `titles` array:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
@@ -72,7 +70,7 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
 }
 ```
 
-The `...rest` must always be the last.
+The `...rest` must always be last.
 ````
 
 ## The "arguments" variable
@@ -98,13 +96,13 @@ showName("Julius", "Caesar");
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and `arguments` was the only way to get all arguments of the function no matter of their total number.
+In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function, no matter their total number.
 
-And it still works, we can use it.
+And it still works, we can use it today.
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't say call `arguments.map(...)`.
+But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
 
-Also, it always has all arguments in it, we can't capture them partially, like we did with rest parameters.
+Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
 
 So when we need these features, then rest parameters are preferred.
 
@@ -123,23 +121,21 @@ f(1); // 1
 ```
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
 
-````
-
 ## Spread operator [#spread-operator]
 
 We've just seen how to get an array from the list of parameters.
 
 But sometimes we need to do exactly the reverse.
 
-For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from the list:
+For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
 
 ```js run
 alert( Math.max(3, 5, 1) ); // 5
 ```
 
-Now let's say we have an array `[3, 5, 1]`. How to call `Math.max` with it?
+Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
 
-Passing it "as it" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
 
 ```js run
 let arr = [3, 5, 1];
@@ -149,9 +145,9 @@ alert( Math.max(arr) ); // NaN
 */!*
 ```
 
-...And surely we can't manually list items in the code `Math.max(arg[0], arg[1], arg[2])`, because we may be unsure how much are there. As our script executes, there might be many, or there might be none. Also that would be ugly.
+And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
 
-*Spread operator* to the rescue. It looks similar to rest parameters, also using `...`, but does quite the opposite.
+*Spread operator* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
 
 When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
 
@@ -172,7 +168,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(...arr1, ...arr2) ); // 8
 ```
 
-...And even combine the spread operator with normal values:
+We can even combine the spread operator with normal values:
 
 
 ```js run
@@ -182,7 +178,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 ```
 
-Also spread operator can be used to merge arrays:
+Also, the spread operator can be used to merge arrays:
 
 ```js run
 let arr = [3, 5, 1];
@@ -197,7 +193,7 @@ alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
 
 In the examples above we used an array to demonstrate the spread operator, but any iterable will do.
 
-For instance, here we use spread operator to turn the string into array of characters:
+For instance, here we use the spread operator to turn the string into array of characters:
 
 ```js run
 let str = "Hello";
@@ -207,7 +203,7 @@ alert( [...str] ); // H,e,l,l,o
 
 The spread operator internally uses iterators to gather elements, the same way as `for..of` does.
 
-So, for a string, `for..of` returns characters and `...str` becomes `"h","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
 
 For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
 
@@ -225,7 +221,7 @@ But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
 - `Array.from` operates on both array-likes and iterables.
 - The spread operator operates only on iterables.
 
-So, for the task of turning something into an array, `Array.from` appears more universal.
+So, for the task of turning something into an array, `Array.from` tends to be more universal.
 
 
 ## Summary
@@ -234,8 +230,8 @@ When we see `"..."` in the code, it is either rest parameters or the spread oper
 
 There's an easy way to distinguish between them:
 
-- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list into the array.
-- When `...` occurs in a function call or alike, it's called a "spread operator" and expands an array into the list.
+- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
+- When `...` occurs in a function call or alike, it's called a "spread operator" and expands an array into a list.
 
 Use patterns:
 

@@ -10,8 +10,6 @@ Most often developers lean towards Chrome or Firefox for development, because th
 
 Developer tools are really powerful, there are many features. To start, we'll learn how to open them, look at errors and run JavaScript commands.
 
-[cut]
-
 ## Google Chrome
 
 Open the page [bug.html](bug.html).

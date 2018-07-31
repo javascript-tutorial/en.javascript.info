@@ -4,22 +4,19 @@ JavaScript animations can handle things that CSS can't.
 
 For instance, moving along a complex path, with a timing function different from Bezier curves, or an animation on a canvas.
 
-[cut]
+## Using setInterval
 
-## setInterval
+An animation can be implemented as a sequence of frames -- usually small changes to HTML/CSS properties.
 
-From the HTML/CSS point of view, an animation is a gradual change of the style property. For instance, changing `style.left` from `0px` to `100px` moves the element.
-
-And if we increase it in `setInterval`, by making 50 small changes per second, then it looks smooth. That's the same principle as in the cinema: 24 or more frames per second is enough to make it look smooth.
+For instance, changing `style.left` from `0px` to `100px` moves the element. And if we increase it in `setInterval`, changing by `2px` with a tiny delay, like 50 times per second, then it looks smooth. That's the same principle as in the cinema: 24 or more frames per second is enough to make it look smooth.
 
 The pseudo-code can look like this:
 
 ```js
-let delay = 1000 / 50; // in 1 second 50 frames
 let timer = setInterval(function() {
   if (animation complete) clearInterval(timer);
-  else increase style.left
-}, delay)
+  else increase style.left by 2px
+}, 20); // change by 2px every 20ms, about 50 frames per second
 ```
 
 More complete example of the animation:
@@ -52,15 +49,13 @@ Click for the demo:
 
 [codetabs height=200 src="move"]
 
-## requestAnimationFrame
+## Using requestAnimationFrame
 
 Let's imagine we have several animations running simultaneously.
 
-If we run them separately, each one with its own `setInterval(..., 20)`, then the browser would have to repaint much more often than every `20ms`.
+If we run them separately, then even though each one has `setInterval(..., 20)`, then the browser would have to repaint much more often than every `20ms`.
 
-Each `setInterval` triggers once per `20ms`, but they are independent, so we have several independent runs within `20ms`.
-
-These several independent redraws should be grouped together, to make it easier for the browser.
+That's because they have different starting time, so "every 20ms" differs between different animations. The intervals are not alignned. So we'll have several independent runs within `20ms`.
 
 In other words, this:
 
@@ -72,19 +67,19 @@ setInterval(function() {
 }, 20)
 ```
 
-...Is lighter than this:
+...Is lighter than three independent calls:
 
 ```js
-setInterval(animate1, 20);
-setInterval(animate2, 20);
+setInterval(animate1, 20); // independent animations
+setInterval(animate2, 20); // in different places of the script
 setInterval(animate3, 20);
 ```
 
-There's one more thing to keep in mind. Sometimes when CPU is overloaded, or there are other reasons to  redraw less often. For instance, if the browser tab is hidden, then there's totally no point in drawing.
+These several independent redraws should be grouped together, to make the redraw easier for the browser (and hence smoother for people).
 
-There's a standard [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`.
+There's one more thing to keep in mind. Sometimes when CPU is overloaded, or there are other reasons to redraw less often (like when the browser tab is hidden), so we really shouldn't run it every `20ms`.
 
-It addresses all these issues and even more.
+But how do we know about that in JavaScript? There's a specification [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`. It addresses all these issues and even more.
 
 The syntax:
 ```js
@@ -418,7 +413,7 @@ Here's the animated "bouncing" text typing:
 
 ## Summary
 
-JavaScript animation should be implemented via `requestAnimationFrame`. That built-in method allows to setup a callback function to run when the browser will be preparing a repaint. Usually that's very soon, but the exact time depends on the browser.
+For animations that CSS can't handle well, or those that need tight control, JavaScript can help. JavaScript animations should be implemented via `requestAnimationFrame`. That built-in method allows to setup a callback function to run when the browser will be preparing a repaint. Usually that's very soon, but the exact time depends on the browser.
 
 When a page is in the background, there are no repaints at all, so the callback won't run: the animation will be suspended and won't consume resources. That's great.
 

@@ -8,8 +8,6 @@ It is not convenient to use an object here, because it provides no methods to ma
 
 There exists a special data structure named `Array`, to store ordered collections. 
 
-[cut]
-
 ## Declaration
 
 There are two syntaxes for creating an empty array:
@@ -113,7 +111,7 @@ There's another use case for arrays -- the data structure named [stack](https://
 It supports two operations:
 
 - `push` adds an element to the end.
-- `pop` takes an element to the end.
+- `pop` takes an element from the end.
 
 So new elements are added or taken always from the "end".
 
@@ -297,7 +295,7 @@ But for arrays there is another form of loop, `for..of`:
 let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
-for(let fruit of fruits) {
+for (let fruit of fruits) {
   alert( fruit ); 
 }
 ```
@@ -356,7 +354,7 @@ arr.length = 5; // return length back
 alert( arr[3] ); // undefined: the values do not return
 ```
 
-So, the simplest way to clear the array is: `arr.length=0`.
+So, the simplest way to clear the array is: `arr.length = 0;`.
 
 
 ## new Array() [#new-array]
@@ -385,9 +383,9 @@ In the code above, `new Array(number)` has all elements `undefined`.
 
 To evade such surprises, we usually use square brackets, unless we really know what we're doing.
 
-## Multidimentional arrays
+## Multidimensional arrays
 
-Arrays can have items that are also arrays. We can use it for multidimentional arrays, to store matrices:
+Arrays can have items that are also arrays. We can use it for multidimensional arrays, to store matrices:
 
 ```js run
 let matrix = [
@@ -458,9 +456,9 @@ We can use an array as a deque with the following operations:
 - `unshift(...items)` adds items to the beginning.
 
 To loop over the elements of the array:
-  - `for(let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
-  - `for(let item of arr)` -- the modern syntax for items only,
-  - `for(let i in arr)` -- never use.
+  - `for (let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
+  - `for (let item of arr)` -- the modern syntax for items only,
+  - `for (let i in arr)` -- never use.
 
 We will return to arrays and study more methods to add, remove, extract elements and sort arrays in the chapter <info:array-methods>.
 

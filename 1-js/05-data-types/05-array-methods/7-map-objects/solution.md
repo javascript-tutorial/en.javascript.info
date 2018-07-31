@@ -21,8 +21,8 @@ usersMapped = [
 ]
 */
 
-alert( usersMapped[0].id ) // 1
-alert( usersMapped[0].fullName ) // John Smith
+alert( usersMapped[0].id ); // 1
+alert( usersMapped[0].fullName ); // John Smith
 ```
 
 Please note that in for the arrow functions we need to use additional brackets. 
@@ -43,7 +43,7 @@ Here JavaScript would treat `{` as the start of function body, not the start of 
 let usersMapped = users.map(user => *!*({*/!*
   fullName: `${user.name} ${user.surname}`,
   id: user.id
-});
+}));
 ```
 
 Now fine.

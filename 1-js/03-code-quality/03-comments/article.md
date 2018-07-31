@@ -18,7 +18,7 @@ complex;
 code;
 ```
 
-But in a good code the amount of such "explanatory" comments should be minimal. Seriously, a code should be easy to understand without them.
+But in good code the amount of such "explanatory" comments should be minimal. Seriously, code should be easy to understand without them.
 
 There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
 
@@ -58,8 +58,9 @@ function showPrimes(n) {
 
 function isPrime(n) {
   for (let i = 2; i < n; i++) {
-    if ( n % i == 0) return false;
+    if (n % i == 0) return false;
   }
+
   return true;
 }
 ```
@@ -112,7 +113,7 @@ function addJuice(container) {
 
 Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
 
-In reality, we can't totally evade "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
+In reality, we can't totally avoid "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
 
 ## Good comments
 
@@ -145,7 +146,7 @@ Document a function usage
     Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
 
 Why is the task solved this way?
-: What's written is important. But what's *not* written maybe even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
 
     If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
 
@@ -157,7 +158,7 @@ Why is the task solved this way?
     Comments that explain the solution are very important. They help to continue development the right way.
 
 Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-obvious, it's definitely worth commenting.
+: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
 
 ## Summary
 
@@ -171,7 +172,7 @@ Good comments allow us to maintain the code well, come back to it after a delay 
 - Function usage.
 - Important solutions, especially when not immediately obvious.
 
-**Evade comments:**
+**Avoid comments:**
 
 - That tell "how code works" and "what it does".
 - Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.

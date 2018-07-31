@@ -15,7 +15,7 @@ We'll use the letter-sorted variants as map keys to store only one value per eac
 function aclean(arr) {
   let map = new Map();
 
-  for(let word of arr) {
+  for (let word of arr) {
     // split the word by letters, sort them and join back
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)

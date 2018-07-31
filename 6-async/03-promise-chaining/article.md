@@ -1,14 +1,12 @@
 
 # Promises chaining
 
-Let's return to the problem mentioned in the chapter <info:callbacks>:
+Let's return to the problem mentioned in the chapter <info:callbacks>.
 
 - We have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts.
 - How to code it well?
 
 Promises provide a couple of recipes to do that.
-
-[cut]
 
 In this chapter we cover promise chaining.
 
@@ -49,7 +47,7 @@ As the result is passed along the chain of handlers, we can see a sequence of `a
 
 ![](promise-then-chain.png)
 
-The whole thing works, because a call to `promise.then` returns a promise, so that we can call next `.then` on it.
+The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
 
@@ -142,7 +140,7 @@ new Promise(function(resolve, reject) {
 
 Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result*2`) is passed on to handler of the second `.then` in the line `(**)`. It shows `2` and does the same thing.
 
-So the output is again 1 -> 2 > 4, but now with 1 second delay between `alert` calls.
+So the output is again 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
 
 Returning promises allows us to build chains of asynchronous actions.
 
@@ -365,7 +363,7 @@ loadJson('/article/promise-chaining/user.json')
 
 ## Error handling
 
-Asynchronous actions may sometimes fail: in case of an error the corresponding promises becomes rejected. For instance, `fetch` fails if the remote server is not available. We can use `.catch` to handle errors (rejections).
+Asynchronous actions may sometimes fail: in case of an error the corresponding promise becomes rejected. For instance, `fetch` fails if the remote server is not available. We can use `.catch` to handle errors (rejections).
 
 Promise chaining is great at that aspect. When a promise rejects, the control jumps to the closest rejection handler down the chain. That's very convenient in practice.
 
@@ -617,12 +615,13 @@ What happens when an error is not handled? For instance, after the rethrow as in
 ```js untrusted run refresh
 new Promise(function() {
   noSuchFunction(); // Error here (no such function)
-});
+}); // no .catch attached
 ```
 
 Or here:
 
 ```js untrusted run refresh
+// a chain of promises without .catch at the end
 new Promise(function() {
   throw new Error("Whoops!");
 }).then(function() {
@@ -634,9 +633,9 @@ new Promise(function() {
 });
 ```
 
-In theory, nothing should happen. In case of an error happens, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
+In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
-In practice, that means that the code is bad. Indeed, how come that there's no error handling?
+In practice, that's usually because of the bad code. Indeed, how come that there's no error handling?
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
 

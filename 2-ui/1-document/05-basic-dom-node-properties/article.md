@@ -4,8 +4,6 @@ Let's get a more in-depth look at DOM nodes.
 
 In this chapter we'll see more into what they are and their most used properties.
 
-[cut]
-
 ## DOM node classes
 
 DOM nodes have different properties depending on their class. For instance, an element node corresponding to tag `<a>` has link-related properties, and the one corresponding to `<input>` has input-related properties and so on. Text nodes are not the same as element nodes. But there are also common properties and methods between all of them, because all classes of DOM nodes form a single hierarchy.
@@ -78,7 +76,7 @@ Try it on `document.body`.
 ```
 
 ````smart header="IDL in the spec"
-In the specification classes are described using not JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
+In the specification, classes are described not using JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
 
 In IDL all properties are prepended with their types. For instance, `DOMString`, `boolean` and so on.
 
@@ -165,11 +163,11 @@ Sure, the difference is reflected in their names, but is indeed a bit subtle.
 - The `tagName` property exists only for `Element` nodes.
 - The `nodeName` is defined for any `Node`:
     - for elements it means the same as `tagName`.
-    - for other node types (text, comment etc) it has a string with the node type.
+    - for other node types (text, comment, etc.) it has a string with the node type.
 
 In other words, `tagName` is only supported by element nodes (as it originates from `Element` class), while `nodeName` can say something about other node types.
 
-For instance let's compare `tagName` and `nodeName` for the `document` and a comment node:
+For instance, let's compare `tagName` and `nodeName` for the `document` and a comment node:
 
 
 ```html run
@@ -177,7 +175,7 @@ For instance let's compare `tagName` and `nodeName` for the `document` and a com
 
   <script>
     // for comment
-    alert( document.body.firstChild.tagName ); // undefined (not element)
+    alert( document.body.firstChild.tagName ); // undefined (no element)
     alert( document.body.firstChild.nodeName ); // #comment
 
     // for document
@@ -220,7 +218,7 @@ The example shows the contents of `document.body` and then replaces it completel
 </body>
 ```
 
-We can try to insert an invalid HTML, the browser will fix our errors:
+We can try to insert invalid HTML, the browser will fix our errors:
 
 ```html run
 <body>
@@ -463,28 +461,28 @@ Most standard HTML attributes have the corresponding DOM property, and we can ac
 
 If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, HTMLInputElement is documented at <https://html.spec.whatwg.org/#htmlinputelement>.
 
-Or if we'd like to get them fast or interested in the concrete browser -- we can always output the element using `console.dir(elem)` and read the properties. Or explore "DOM properties" in Elements tab of the browser developer tools.
+Or if we'd like to get them fast or are interested in a concrete browser specification -- we can always output the element using `console.dir(elem)` and read the properties. Or explore "DOM properties" in the Elements tab of the browser developer tools.
 
 ## Summary
 
-Each DOM node belongs to a certain class. The classes form a hierarchy. The full set of properties and methods comes as the result of inheritance.
+Each DOM node belongs to a certain class. The classes form a hierarchy. The full set of properties and methods come as the result of inheritance.
 
 Main DOM node properties are:
 
 `nodeType`
-: Node type. We can get it from the DOM object class, but often we need just to see if it is a text or element node. The `nodeType` property is good for that. It has numeric values, most important are: `1` -- for elements,`3` -- for text nodes. Read-only.
+: We can get `nodeType` from the DOM object class, but often we need just to see if it is a text or element node. The `nodeType` property is good for that. It has numeric values, most important are: `1` -- for elements,`3` -- for text nodes. Read-only.
 
 `nodeName/tagName`
-: For elements, tag name (uppercased unless XML-mode). For non-element nodes `nodeName` describes what is it. Read-only.
+: For elements, tag name (uppercased unless XML-mode). For non-element nodes `nodeName` describes what it is. Read-only.
 
 `innerHTML`
-: The HTML content of the element. Can modify.
+: The HTML content of the element. Can be modified.
 
 `outerHTML`
 : The full HTML of the element. A write operation into `elem.outerHTML` does not touch `elem` itself. Instead it gets replaced with the new HTML in the outer context.
 
 `nodeValue/data`
-: The content of a non-element node (text, comment). These two are almost the same, usually we use `data`. Can modify.
+: The content of a non-element node (text, comment). These two are almost the same, usually we use `data`. Can be modified.
 
 `textContent`
 : The text inside the element, basically HTML minus all `<tags>`. Writing into it puts the text inside the element, with all special characters and tags treated exactly as text. Can safely insert user-generated text and protect from unwanted HTML insertions.
@@ -492,6 +490,6 @@ Main DOM node properties are:
 `hidden`
 : When set to `true`, does the same as CSS `display:none`.
 
-DOM nodes also have other properties depending on their class. For instance, `<input>` elements (`HTMLInputElement`) support `value`, `type`, while `<a>` elements (`HTMLAnchorElement`) support `href` etc. Most standard HTML attributes have the corresponding DOM property.
+DOM nodes also have other properties depending on their class. For instance, `<input>` elements (`HTMLInputElement`) support `value`, `type`, while `<a>` elements (`HTMLAnchorElement`) support `href` etc. Most standard HTML attributes have a corresponding DOM property.
 
 But HTML attributes and DOM properties are not always the same, as we'll see in the next chapter.

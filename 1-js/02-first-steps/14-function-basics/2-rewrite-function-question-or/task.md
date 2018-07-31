@@ -22,5 +22,5 @@ Rewrite it, to perform the same, but without `if`, in a single line.
 
 Make two variants of `checkAge`:
 
-1. Using a question mark operator `'?'`
+1. Using a question mark operator `?`
 2. Using OR `||`
