@@ -118,7 +118,7 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
 */!*
 ```
 
-Now no one can change the name of our user, unless he applies his own `defineProperty` to override ours.
+Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
 Here's the same operation, but for the case when a property doesn't exist:
 

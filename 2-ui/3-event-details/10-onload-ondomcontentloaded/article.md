@@ -10,7 +10,7 @@ Each event may be useful:
 
 - `DOMContentLoaded` event -- DOM is ready, so the handler can lookup DOM nodes, initialize the interface.
 - `load` event -- additional resources are loaded, we can get image sizes (if not specified in HTML/CSS) etc.
-- `beforeunload/unload` event -- the user is leaving: we can check if the user saved the changes and  ask him whether he really wants to leave.
+- `beforeunload/unload` event -- the user is leaving: we can check if the user saved the changes and ask them whether they really want to leave.
 
 Let's explore the details of these events.
 

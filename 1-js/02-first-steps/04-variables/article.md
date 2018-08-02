@@ -247,7 +247,7 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // error, can't reassign the constant!
 ```
 
-When a programmer is sure that the variable should never change, he can use `const` to guarantee it, and also to clearly show that fact to everyone.
+When a programmer is sure that the variable should never change, they can use `const` to guarantee it, and also to clearly show that fact to everyone.
 
 
 ### Uppercase constants

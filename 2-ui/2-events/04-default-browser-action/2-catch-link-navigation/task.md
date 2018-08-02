@@ -4,7 +4,7 @@ importance: 5
 
 # Catch links in the element
 
-Make all links inside the element with `id="contents"` ask the user if he really wants to leave. And if he doesn't then don't follow.
+Make all links inside the element with `id="contents"` ask the user if they really want to leave. And if they don't then don't follow.
 
 Like this:
 
