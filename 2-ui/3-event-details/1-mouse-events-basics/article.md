@@ -175,7 +175,7 @@ Now if you double-click on "Unselectable", it doesn't get selected. Seems to wor
 
 ...But there is a potential problem! The text became truly unselectable. Even if a user starts the selection from "Before" and ends with "After", the selection skips "Unselectable" part. Do we really want to make our text unselectable?
 
-Most of time, we don't. A user may have valid reasons to select the text, for copying or other needs. That may be inconvenient if we don't allow him to do it. So this solution is not that good.
+Most of time, we don't. A user may have valid reasons to select the text, for copying or other needs. That may be inconvenient if we don't allow them to do it. So this solution is not that good.
 
 What we want is to prevent the selection on double-click, that's it.
 

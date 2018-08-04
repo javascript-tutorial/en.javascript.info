@@ -451,7 +451,7 @@ Let's recap these methods to avoid any confusion:
 ```smart header="Which one to choose?"
 All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
 
-The author finds himself using `slice` almost all the time.
+The author finds themself using `slice` almost all the time.
 ```
 
 ## Comparing strings

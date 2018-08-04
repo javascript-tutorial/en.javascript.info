@@ -4,7 +4,7 @@ importance: 4
 
 # Load visible images
 
-Let's say we have a slow-speed client and want to save his mobile traffic.
+Let's say we have a slow-speed client and want to save their mobile traffic.
 
 For that purpose we decide not to show images immediately, but rather replace them with placeholders, like this:
 

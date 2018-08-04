@@ -22,7 +22,7 @@ So we'll assign `throttle(update, 100)` as the function to run on each mouse mov
 
 Visually, it will look like this:
 
-1. For the first mouse movement the decorated variant passes the call to `update`. That's important, the user sees our reaction to his move immediately.
+1. For the first mouse movement the decorated variant passes the call to `update`. That's important, the user sees our reaction to their move immediately.
 2. Then as the mouse moves on, until `100ms` nothing happens. The decorated variant ignores calls.
 3. At the end of `100ms` -- one more `update` happens with the last coordinates. 
 4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` runs with last coordinates. So, perhaps the most important, the final mouse coordinates are processed.

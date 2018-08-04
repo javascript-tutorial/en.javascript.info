@@ -194,7 +194,7 @@ You can find more detailed information about JSON in the <info:json> chapter.
 
 Should we be satisfied with that? Of course, not!
 
-This way, if something's wrong with the data, the visitor will never know that (unless he opens developer console). And people really don't like when something "just dies" without any error message.
+This way, if something's wrong with the data, the visitor will never know that (unless they open the developer console). And people really don't like when something "just dies" without any error message.
 
 Let's use `try..catch` to handle the error:
 
@@ -575,7 +575,7 @@ The information from this section is not a part of the core JavaScript.
 
 Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or something else terrible.
 
-Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally he doesn't see error messages) etc.
+Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages) etc.
 
 There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
 
