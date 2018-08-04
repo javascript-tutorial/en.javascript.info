@@ -47,7 +47,7 @@ For instance:
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store his visits count
+// for every user, let's store their visits count
 let visitsCountMap = new Map();
 
 // john is the key for the map
@@ -332,7 +332,7 @@ That's useful for situations when we have a main storage for the objects somewhe
 
 Let's look at an example.
 
-For instance, we have code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count anymore.
+For instance, we have code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store their visit count anymore.
 
 One way would be to keep track of leaving users and clean up the storage manually:
 

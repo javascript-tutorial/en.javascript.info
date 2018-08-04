@@ -62,7 +62,7 @@ All we need to attack -- is to position the `<iframe>` on the evil page in such 
 ```smart header="Clickjacking is for clicks, not for keyboard"
 The attack only affects mouse actions.
 
-Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input he sees on the page, he actually focuses on the input inside the iframe.
+Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input they see on the page, they actually focus on the input inside the iframe.
 
 But then there's a problem. Everything that the visitor types will be hidden, because the iframe is not visible.
 
@@ -89,7 +89,7 @@ This not a reliable defence, because there are many ways to hack around it. Let'
 
 We can block the transition caused by changing `top.location` in the [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event.
 
-The top page (belonging to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking him whether he wants to leave.
+The top page (belonging to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking them whether they want to leave.
 
 Like this:
 ```js
@@ -99,7 +99,7 @@ window.onbeforeunload = function() {
 };
 ```
 
-In most cases the visitor would answer negatively, because he doesn't know about the iframe, all he can see is the top page, leading him to think there is no reason to leave. So `top.location` won't change!
+In most cases the visitor would answer negatively because they don't know about the iframe - all they can see is the top page, leading them to think there is no reason to leave. So `top.location` won't change!
 
 In action:
 
@@ -188,9 +188,9 @@ The demo:
 
 Clickjacking is a way to "trick" users into clicking on a malicious site without even knowing what's happening. That's dangerous if there are important click-activated actions.
 
-A hacker can post a link to his evil page in a message, or lure visitors to his page by some other means. There are many variations.
+A hacker can post a link to their evil page in a message, or lure visitors to their page by some other means. There are many variations.
 
-From one perspective -- the attack is "not deep": all a hacker is doing is intercepting a single click. But from another perspective, if the hacker knows that after the click another control will appear, then he may use cunning messages to coerce the user into clicking on them as well.
+From one perspective -- the attack is "not deep": all a hacker is doing is intercepting a single click. But from another perspective, if the hacker knows that after the click another control will appear, then they may use cunning messages to coerce the user into clicking on them as well.
 
 The attack is quite dangerous, because when we engineer the UI we usually don't anticipate that a hacker may click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
 

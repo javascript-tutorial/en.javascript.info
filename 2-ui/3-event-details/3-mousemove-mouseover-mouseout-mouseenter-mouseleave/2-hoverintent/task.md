@@ -6,7 +6,7 @@ importance: 5
 
 Write a function that shows a tooltip over an element only if the visitor moves the mouse *over it*, but not *through it*.
 
-In other words, if the visitor moves the mouse on the element and stopped -- show the tooltip. And if he just moved the mouse through fast, then no need, who wants extra blinking?
+In other words, if the visitor moves the mouse on the element and stopped -- show the tooltip. And if they just moved the mouse through fast, then no need, who wants extra blinking?
 
 Technically, we can measure the mouse speed over the element, and if it's slow then we assume that it comes "over the element" and show the tooltip, if it's fast -- then we ignore it.
 

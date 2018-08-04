@@ -234,7 +234,7 @@ Using a function gives us the ultimate replacement power, because it gets all th
 
 Let's move on to the methods of `RegExp` class, that are callable on regexps themselves.
 
-The `test` method looks for any match and returns `true/false` whether he found it.
+The `test` method looks for any match and returns `true/false` whether they found it.
 
 So it's basically the same as `str.search(reg) != -1`, for instance:
 
