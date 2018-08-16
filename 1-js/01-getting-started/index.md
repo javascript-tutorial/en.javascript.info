@@ -1,3 +1,7 @@
-# An introduction
+<div dir="rtl">
+  
+# مقدمه
 
-About the JavaScript language and the environment to develop with it.
+درباره زبان جاوا اسکریپت و محیط توسعه آن.
+
+</div>
