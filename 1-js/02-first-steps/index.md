@@ -1,3 +1,7 @@
-# JavaScript Fundamentals
+<div dir="rtl">
 
-Let's learn the fundamentals of script building.
+# مبانی جاوا اسکریپت
+
+بیایید اصول ساخت جاوا اسکریپت را یاد بگیریم.
+
+</div>
