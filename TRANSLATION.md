@@ -1,13 +1,15 @@
 
-# The JavaScript Tutorial
+<div dir="rtl">
 
-This repository hosts the translation of the [Modern JavaScript Tutorial](https://javascript.info).
+# آموزش جاوا اسکریپت
 
-The full list of translations and leads is at <https://github.com/iliakan/javascript-tutorial-en>.
+این مخزن میزبان ترجمه فارسی [آموزش جاوا اسکریپت مدرن](https://javascript.info) می‌باشد.
 
-Please contact the translation lead for any questions. 
-Contact @iliakan there's no answer or the translation appears to be stalled. 
+فهرست کامل ترجمه‌ها و سر فصل‌ها در  <https://github.com/Goudarz/javascript-tutorial-fa> می‌باشد.
 
-If there are other translators, notify them (create an issue?) when you're taking a chapter.
+لطفا هر گونه سوالی در مورد ترجمه داشتید با من در میان بگذارید: 
+goudarz.jafari@gmail.com
 
+اگر خواستید قسمتی را شروع کنید یک [Issue](https://github.com/Goudarz/javascript-tutorial-fa/issues/new) باز کنید یا بهم ایمیل بزنید تا دوباره کاری نشود.
 
+</div>
