@@ -144,7 +144,7 @@ class Thenable {
   then(resolve, reject) {
     alert(resolve); // function() { native code }
     // resolve with this.num*2 after 1000ms
-    setTimeout(() => resolve(this.num * 2), 1000); // (*)
+    setTimeout(resolve, 1000, this.num * 2); // (*)
   }
 };
 
