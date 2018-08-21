@@ -8,11 +8,11 @@ The solution, step by step:
 
 <script>
   // 1)
-  let selectedOption = genres.options[select.selectedIndex];
+  let selectedOption = genres.options[genres.selectedIndex];
   alert( selectedOption.value );
 
   // 2)
-  let newOption = new Option("classic", "Classic");
+  let newOption = new Option("Classic", "classic");
   select.append(newOption);
 
   // 3)
