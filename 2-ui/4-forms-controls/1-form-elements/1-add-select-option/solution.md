@@ -13,7 +13,7 @@ The solution, step by step:
 
   // 2)
   let newOption = new Option("Classic", "classic");
-  select.append(newOption);
+  genres.append(newOption);
 
   // 3)
   newOption.selected = true;
