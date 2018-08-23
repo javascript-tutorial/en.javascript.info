@@ -43,7 +43,7 @@ For instance:
 <img id="img" src="https://en.js.cx/clipart/train.gif?speed=1&cache=0">
 ```
 
-In the example the `DOMContentLoaded` handler runs when the document is loaded, not waits for the page load. So `alert` shows zero sizes.
+In the example the `DOMContentLoaded` handler runs when the document is loaded and does not wait for the image to load. So `alert` shows zero sizes.
 
 At the first sight `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. But there are few peculiarities.
 
