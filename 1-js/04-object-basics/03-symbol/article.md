@@ -118,7 +118,7 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not just "id: 123"
+  [id]: 123 // not just "id": 123
 */!*
 };
 ```
