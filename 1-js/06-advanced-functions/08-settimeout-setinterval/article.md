@@ -319,7 +319,7 @@ We do a part of the job `(*)`:
 2. Second run: `i=1000001..2000000`.
 3. ...and so on, the `while` checks if `i` is evenly divided by `1000000`.
 
-Then the next call is scheduled in `(*)` if we're not done yet.
+Then the next call is scheduled in `(**)` if we're not done yet.
 
 Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react to other user actions.
 
