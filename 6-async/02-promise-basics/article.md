@@ -123,7 +123,7 @@ The properties `state` and `result` of the Promise object are internal. We can't
 
 ## Consumers: "then" and "catch"
 
-A Promise object serves as a link between the executor (the "producing code" or "singer) and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
 
 The syntax of `.then` is:
 
