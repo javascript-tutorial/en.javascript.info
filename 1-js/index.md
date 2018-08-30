@@ -1,6 +1,8 @@
-# The JavaScript language
+<div dir="rtl">
+  
+# زبان جاوا اسکریپت
 
-Here we learn JavaScript, starting from scratch and go on to advanced concepts like OOP.
+ما اینجا جاوا اسکریپت یاد می‌گیریم، از ابتدا شروع می‌کنیم و به مفاهیم پیشرفته مانند شی گرایی می‌رسیم.
 
-We concentrate on the language itself here, with the minimum of environment-specific notes.
-
+در اینجا با حداقل یادداشت‌های مربوط به محیط توسعه ، روی خود زبان تمرکز می‌کنیم.
+</div>

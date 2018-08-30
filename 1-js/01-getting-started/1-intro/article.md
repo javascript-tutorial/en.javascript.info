@@ -1,12 +1,14 @@
-# An Introduction to JavaScript
+<div dir="rtl">
 
-Let's see what's so special about JavaScript, what we can achieve with it and which other technologies play well with it.
+# مقدمه‌ای برای جاوا اسکریپت
 
-## What is JavaScript?
+بیایید ببینیم چه چیزی در مورد جاوا اسکریپت بسیار خاص است، که ما می‌توانیم با آن دست و پنجه نرم کنیم و چه تکنولوژی‌های دیگری با آن کار می‌کنند.
 
-*JavaScript* was initially created to *"make webpages alive"*.
+## جاوا اسکریپت چیست؟
 
-The programs in this language are called *scripts*. They can be written right in the HTML and execute automatically as the page loads.
+*جاوا اسکریپت* در ابتدا برای *«ایجاد صفحات وب زنده»* ساخته شده است.
+
+برنامه‌های نوشته شده با این زبان را با نام *اسکریپت* شناخته می‌شود. از آنها می‌توان به صورت مستقیم در صفحات HTML نوشت و بارگذاری کرد که به صورت خودکار اجرا شوند.
 
 Scripts are provided and executed as a plain text. They don't need a special preparation or a compilation to run.
 
@@ -119,3 +121,5 @@ There are more. Of course even if we use one of those languages, we should also 
 - JavaScript was initially created as a browser-only language, but now it is used in many other environments as well.
 - At this moment, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
 - There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+
+</div>

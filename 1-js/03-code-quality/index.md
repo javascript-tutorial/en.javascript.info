@@ -1,3 +1,7 @@
-# Code quality
+<div dir="rtl">
 
-This chapter explains coding practices that we'll use further in the development. 
+# کیفیت کد
+
+در این فصل شیوه‌های برنامه‌نویسی را توضیح می‌دهد، که ما در توسعه بیشتر مورد استفاده قرار می‌دهیم.
+
+</div>
