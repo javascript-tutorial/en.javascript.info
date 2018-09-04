@@ -169,7 +169,7 @@ Here's the full example with all details:
 
 [codetabs height=380 src="mouseenter-mouseleave-delegation-2"]
 
-Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't better. Only `<td>` as a whole is highlighted unlike the example before.
+Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't matter. Only `<td>` as a whole is highlighted unlike the example before.
 ```
 
 

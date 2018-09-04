@@ -10,12 +10,11 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 |----------|--------|-------------------|-----------------|-----------|
 | Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | - |
 | Danish | https://github.com/ockley/javascript-tutorial-da | @ockey | ![](http://translate-hook.javascript.info/stats/da.svg) | - |
-| French | https://github.com/SugoiNelson/javascript-tutorial-fr | @SugoiNelson | ![](http://translate-hook.javascript.info/stats/fr.svg) | - |
 | German | https://github.com/MartinEls/javascript-tutorial-de | @MartilEls | ![](http://translate-hook.javascript.info/stats/de.svg) | - |
 | Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | - |
-| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | | https://learn.javascript.ru |
+| Persian | https://github.com/Goudarz/javascript-tutorial-fa | @Goudarz | ![](http://translate-hook.javascript.info/stats/fa.svg) | - |
+| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan |  | https://learn.javascript.ru |
 | Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg) | - |
-| Uzbek | https://github.com/aruzikulov/javascript-tutorial-uz | @aruzikulov | ![](http://translate-hook.javascript.info/stats/uz.svg) | - |
 
 If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new) for me to add you to the list.
 

@@ -162,7 +162,7 @@ Any subtle features of the code? Where they are used?
 
 ## Summary
 
-An important sign of a good developer is comments: their presence and even their absense.
+An important sign of a good developer is comments: their presence and even their absence.
 
 Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
 
