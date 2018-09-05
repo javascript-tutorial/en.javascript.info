@@ -128,7 +128,7 @@ The example above can be split into two scripts to work:
 ## Summary
 
 - We can use a `<script>` tag to add JavaScript code to the page.
-- The `type` and `language` attributes are not required.
+- In the modern world, the `type` and `language` attributes are not required.
 - A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
 
 
