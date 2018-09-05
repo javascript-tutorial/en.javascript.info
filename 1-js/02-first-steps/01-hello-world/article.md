@@ -95,7 +95,7 @@ To attach several scripts, use multiple tags:
 ```smart
 As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
 
-The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+The benefit of a separate file is that the browser will download it and then store it in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 
 After this, other pages that want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
 
