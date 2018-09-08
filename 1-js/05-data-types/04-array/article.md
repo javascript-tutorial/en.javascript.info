@@ -1,6 +1,6 @@
 # Arrays 
 
-Objects allow to store keyed collections of values. That's fine.
+Objects allow you to store keyed collections of values. That's fine.
 
 But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc. 
 
@@ -121,7 +121,7 @@ A stack is usually illustrated as a pack of cards: new cards are added to the to
 
 For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
 
-Arrays in JavaScript can work both as a queue and as a stack. They allow to add/remove elements both to/from the beginning or the end. 
+Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end. 
 
 In computer science the data structure that allows it is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
 
@@ -431,7 +431,7 @@ alert( "1,2" + 1 ); // "1,21"
 
 ## Summary
 
-Array is a special kind of objects, suited to store and manage ordered data items.
+Array is a special kind of object, suited to storing and managing ordered data items.
 
 - The declaration:
 
