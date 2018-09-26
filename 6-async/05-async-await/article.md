@@ -34,7 +34,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-So, `async` ensures that the function returns a promise, wraps non-promises in it. Simple enough, right? But not only that. There's another keyword `await` that works only inside `async` functions, and it's pretty cool.
+So, `async` ensures that the function returns a promise, and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
 
 ## Await
 
@@ -183,7 +183,7 @@ The meaning is the same: it ensures that the returned value is a promise and ena
 ````
 ## Error handling
 
-If a promise resolves normally, then `await promise` returns the result. But in case of a rejection it throws the error, just if there were a `throw` statement at that line.
+If a promise resolves normally, then `await promise` returns the result. But in case of a rejection, it throws the error, just if there were a `throw` statement at that line.
 
 This code:
 
@@ -205,7 +205,7 @@ async function f() {
 }
 ```
 
-In real situations the promise may take some time before it rejects. So `await` will wait, and then throw an error.
+In real situations, the promise may take some time before it rejects. So `await` will wait, and then throw an error.
 
 We can catch that error using `try..catch`, the same way as a regular `throw`:
 
