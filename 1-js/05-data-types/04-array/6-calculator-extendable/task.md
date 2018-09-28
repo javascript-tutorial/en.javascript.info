@@ -17,7 +17,7 @@ The task consists of two parts.
 
     alert( calc.calculate("3 + 7") ); // 10
     ```
-2. Then add the method `addOperator(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
+2. Then add the method `addMethod(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
 
     For instance, let's add the multiplication `*`, division `/` and power `**`:
 

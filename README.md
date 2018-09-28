@@ -1,4 +1,3 @@
-
 # The JavaScript Tutorial
 
 This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
@@ -7,19 +6,19 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 (In alphabetical order):
 
-| Language | Github | Translation leads | Published |
-|----------|--------|-------------------|-----------|
-| Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | – |
-| French | https://github.com/SugoiNelson/javascript-tutorial-fr | @SugoiNelson | - |
-| German | https://github.com/MartinEls/javascript-tutorial-de | @MartilEls | - |
-| Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | - |
-| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | https://learn.javascript.ru | 
-| Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | - |
-| Uzbek | https://github.com/aruzikulov/javascript-tutorial-uz | @aruzikulov | - |
+| Language | Github | Translation leads | Translated (%) | Published |
+|----------|--------|-------------------|-----------------|-----------|
+| Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | - |
+| Danish | https://github.com/ockley/javascript-tutorial-da | @ockey | ![](http://translate-hook.javascript.info/stats/da.svg) | - |
+| German | https://github.com/MartinEls/javascript-tutorial-de | @MartilEls | ![](http://translate-hook.javascript.info/stats/de.svg) | - |
+| Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | - |
+| Persian | https://github.com/Goudarz/javascript-tutorial-fa | @Goudarz | ![](http://translate-hook.javascript.info/stats/fa.svg) | - |
+| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan |  | https://learn.javascript.ru |
+| Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg) | - |
 
 If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new) for me to add you to the list.
 
-The server to run the tutorial locally is at <https://github.com/iliakan/javascript-tutorial-server/>.
+You can edit the text in any editor (markdown-like syntax). The server to run the tutorial locally and see how it looks is at <https://github.com/iliakan/javascript-tutorial-server>.  
 
 ## Structure
 
@@ -34,5 +33,3 @@ The type of the material is defined by the file inside the folder:
   - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
 
 Each of these files starts from the `# Main header`.
-
-Assets required for the material reside in the same folder.

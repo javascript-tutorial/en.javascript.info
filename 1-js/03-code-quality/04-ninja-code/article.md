@@ -34,7 +34,7 @@ i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 
 Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
 
-Tell him that shorter is always better. Initiate him into the paths of ninja.
+Tell them that shorter is always better. Initiate them into the paths of ninja.
 
 ## One-letter variables
 
@@ -45,11 +45,11 @@ completed.
 
 Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
 
-A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, he won't be able to "decipher" what the name `a` or `b` means.
+A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, they won't be able to "decipher" what the name `a` or `b` means.
 
 ...But there's an exception. A real ninja will never use `i` as the counter in a `"for"` loop. Anywhere, but not here. Look around, there are many more exotic letters. For instance, `x` or `y`.
 
-An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, he won't be able to quickly figure out that the variable named `x` is the loop counter.
+An exotic variable as a loop counter is especially cool if the loop body takes 1-2 pages (make it longer if you can). Then if someone looks deep inside the loop, they won't be able to quickly figure out that the variable named `x` is the loop counter.
 
 ## Use abbreviations
 
@@ -153,7 +153,7 @@ function ninjaFunction(elem) {
 }
 ```
 
-A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code he will find out that he's working with a clone!
+A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that he's working with a clone!
 
 Deadly effective even against an experienced ninja. Seen in code regularly.
 
@@ -204,7 +204,7 @@ There are functions that look like they don't change anything. Like `isReady()`,
 
 **A really beautiful trick is to add a "useful" action to them, besides the main task.**
 
-The expression of dazed surprise on the face of your colleague when he sees a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+The expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
 
 **Another way to surprise is to return a non-standard result.**
 
@@ -228,7 +228,7 @@ Additional actions should not be obvious from the function name. A true ninja co
 
 **Joining several actions into one protects your code from reuse.**
 
-Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit him. So he won't break your meditation by asking anything about it.
+Imagine, another developer wants only to check the email, and not output any message. Your function  `validateEmail(email)` that does both will not suit them. So they won't break your meditation by asking anything about it.
 
 ## Summary
 

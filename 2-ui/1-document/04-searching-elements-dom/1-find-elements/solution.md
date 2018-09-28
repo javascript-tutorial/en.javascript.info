@@ -25,7 +25,7 @@ let form = document.getElementsByName('search')[0]
 document.querySelector('form[name="search"]')
 
 // 5. The first input in that form.
-form.getElementsByTagName('input')
+form.getElementsByTagName('input')[0]
 // or
 form.querySelector('input')
 

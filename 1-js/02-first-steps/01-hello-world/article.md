@@ -47,7 +47,7 @@ The `<script>` tag has a few attributes that are rarely used nowadays, but we ca
 
  The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
 
- : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default. No attribute is required.
+ : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. It's not required any more. Also, the modern standard totally changed the meaning of this attribute. Now it can be used for Javascript modules. But that's an advanced topic, but we'll talk about modules later in another part of the tutorial. 
 
  The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
   : This attribute was meant to show the language of the script. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.
@@ -61,7 +61,7 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    These comments were supposed to hide the code from an old browser that didn't know about a `<script>` tag. But all browsers born in the past 15+ years don't have any issues. We mention it here, because such comments serve as a sign. If you see that somewhere -- that code is probably really old and not worth looking into.
+    This trick isn't used in modern JavaScript. These comments were used to hide the JavaScript code from old browsers that didn't know about a `<script>` tag. Since browsers born in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
 
 
 ## External scripts

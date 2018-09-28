@@ -230,14 +230,10 @@ When all values are truthy, the last value is returned:
 alert( 1 && 2 && 3 ); // 3, the last one
 ```
 
-````smart header="AND `&&` executes before OR `||`"
-The precedence of the AND `&&` operator is higher than OR `||`, so it executes before OR.
+````smart header="Precedence of AND `&&` is higher than OR `||`"
+The precedence of AND `&&` operator is higher than OR `||`.
 
-In the code below `1 && 0` is calculated first:
-
-```js run
-alert( 5 || 1 && 0 ); // 5
-```
+So the code `a && b || c && d` is essentially the same as if `&&` were in parentheses: `(a && b) || (c && d)`.
 ````
 
 Just like OR, the AND `&&` operator can sometimes replace `if`.
@@ -303,3 +299,5 @@ There's a little more verbose way to do the same thing -- a built-in `Boolean` f
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
+
+The precedence of NOT `!` is the highest of all bitwise operators, so it always executes first, before any `&&`, `||`.

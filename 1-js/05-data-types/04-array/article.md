@@ -369,7 +369,7 @@ It's rarely used, because square brackets `[]` are shorter. Also there's a trick
 
 If `new Array` is called with a single argument which is a number, then it creates an array *without items, but with the given length*.
 
-Let's see how one can shoot himself in the foot:
+Let's see how one can shoot themself in the foot:
 
 ```js run
 let arr = new Array(2); // will it create an array of [2] ?

@@ -6,7 +6,7 @@ importance: 5
 
 Create a function `showPrompt(html, callback)` that shows a form with the message `html`, an input field and buttons `OK/CANCEL`.
 
-- A user should type something into a text field and press `key:Enter` or the OK button, then `callback(value)` is called with the value he entered.
+- A user should type something into a text field and press `key:Enter` or the OK button, then `callback(value)` is called with the value they entered.
 - Otherwise if the user presses `key:Esc` or CANCEL, then `callback(null)` is called.
 
 In both cases that ends the input process and removes the form.

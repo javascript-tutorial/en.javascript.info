@@ -3,7 +3,7 @@
 
 As we know, objects can store properties.
 
-Till now, a property was a simple "key-value" pair to us. But an object property is actually more complex and tunable thing.
+Till now, a property was a simple "key-value" pair to us. But an object property is actually a more complex and tunable thing.
 
 ## Property flags
 
@@ -118,7 +118,7 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
 */!*
 ```
 
-Now no one can change the name of our user, unless he applies his own `defineProperty` to override ours.
+Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
 Here's the same operation, but for the case when a property doesn't exist:
 
