@@ -53,7 +53,7 @@ When the browser initially loads HTML and comes across a `<script>...</script>` 
 
 External scripts (with `src`) also put DOM building to pause while the script is loading and executing. So `DOMContentLoaded` waits for external scripts as well.
 
-The only exception are external scripts with `async` and `defer` attributes. They tell the browser to continue processing without waiting for the scripts. So the user can see the page before scripts finish loading, good for performance.
+The only exception are external scripts with `async` and `defer` attributes. They tell the browser to continue processing without waiting for the scripts. This lets the user see the page before scripts finish loading, which is good for performance.
 
 ```smart header="A word about `async` and `defer`"
 Attributes `async` and `defer` work only for external scripts. They are ignored if there's no `src`.
