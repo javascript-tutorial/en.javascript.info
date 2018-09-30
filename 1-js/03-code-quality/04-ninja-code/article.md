@@ -14,7 +14,7 @@ Novice developers sometimes use them even better than programmer ninjas.
 Read them carefully and find out who you are -- a ninja, a novice, or maybe a code reviewer?
 
 
-```warn header="Irony detected"
+```warn header="Sarcasm Detected"
 Many try to follow ninja paths. Few succeed.
 ```
 
