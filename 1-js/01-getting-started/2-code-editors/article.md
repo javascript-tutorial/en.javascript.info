@@ -16,7 +16,7 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 - Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
 - [Netbeans](http://netbeans.org/).
 
-All of the IDEs except Visual Studio are available on Windows, MacOs and Linux. Visual Studio doesn't work on Linux.
+All of the IDEs except Visual Studio are available on Windows, MacOs and Linux. Visual Studio doesn't work on Linux. But recently new light weight version named Visual Studio code helps us in creating Javascript code in Linux environment( https://code.visualstudio.com/docs/languages/javascript).
 
 Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
