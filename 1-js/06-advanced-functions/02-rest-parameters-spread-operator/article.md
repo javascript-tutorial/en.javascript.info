@@ -119,6 +119,8 @@ function f() {
 
 f(1); // 1
 ```
+````
+
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
 
 ## Spread operator [#spread-operator]
