@@ -183,7 +183,7 @@ let my-name; // a hyphen '-' is not allowed in the name
 Variables named `apple` and `AppLE` -- are two different variables.
 ```
 
-````smart header="Non-english letters are allowed, but not recommended"
+````smart header="Non-English letters are allowed, but not recommended"
 It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
 
 ```js
