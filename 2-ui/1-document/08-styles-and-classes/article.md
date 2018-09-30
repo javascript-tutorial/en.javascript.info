@@ -1,6 +1,6 @@
 # Styles and classes
 
-Before we get to JavaScript ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
+Before we get into JavaScript's ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
 
 There are generally two ways to style an element:
 
@@ -147,7 +147,7 @@ To set the full style as a string, there's a special property `style.cssText`:
 </script>
 ```
 
-We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we don't delete something important.
+We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we won't delete something important.
 
 The same can be accomplished by setting an attribute: `div.setAttribute('style', 'color: red...')`.
 ````
