@@ -12,13 +12,17 @@ An IDE loads the project (can be many files), allows navigation between files, p
 
 If you haven't considered selecting an IDE yet, look at the following variants:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and other editors of the same company if you need additional languages.
-- Visual Studio is fine if you're a .NET developer, and a free version is available ([Visual Studio Community](https://www.visualstudio.com/vs/community/))
-- [Netbeans](http://netbeans.org/).
+- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and other editors of the same company if you need additional languages (paid).
+- [Visual Studio Code](https://code.visualstudio.com/) (free).
+- [Netbeans](http://netbeans.org/) (paid).
 
-All of the IDEs except Visual Studio are available on Windows, MacOs and Linux. Visual Studio doesn't work on Linux.
+All of the IDEs except cross-platform.
 
-Most IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+For Windows, there's also a "Visual Studio" editor, don't mess it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/)).
+
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+
+
 
 ## Lightweight editors
 
