@@ -10,12 +10,18 @@ There exists a special data structure named `Array`, to store ordered collection
 
 ## Declaration
 
-There are two syntaxes for creating an empty array:
+There are two syntaxes for creating an empty `Array`:
 
 ```js
 let arr = new Array();
 let arr = [];
 ```
+
+With ES6+ we can create and initialize empty `Array` with a give size:
+```js
+let arr = [...new Array(10)];
+```
+
 
 Almost all the time, the second syntax is used. We can supply initial elements in the brackets:
 
@@ -30,9 +36,9 @@ We can get an element by its number in square brackets:
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-alert( fruits[0] ); // Apple
-alert( fruits[1] ); // Orange
-alert( fruits[2] ); // Plum
+console.log( fruits[0] ); // Apple
+console.log( fruits[1] ); // Orange
+console.log( fruits[2] ); // Plum
 ```
 
 We can replace an element:
@@ -52,15 +58,15 @@ The total count of the elements in the array is its `length`:
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-alert( fruits.length ); // 3
+console.log( fruits.length ); // 3
 ```
 
-We can also use `alert` to show the whole array.
+We can also use `console.log` to show the whole array.
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
 
-alert( fruits ); // Apple,Orange,Plum
+console.log( fruits ); // Apple, Orange, Plum
 ```
 
 An array can store elements of any type.
@@ -69,10 +75,10 @@ For instance:
 
 ```js run no-beautify
 // mix of values
-let arr = [ 'Apple', { name: 'John' }, true, function() { alert('hello'); } ];
+let arr = [ 'Apple', { name: 'John' }, true, function() { console.log('hello'); } ];
 
 // get the object at index 1 and then show its name
-alert( arr[1].name ); // John
+console.log( arr[1].name ); // John
 
 // get the function at index 3 and run it
 arr[3](); // hello
@@ -133,9 +139,9 @@ In computer science the data structure that allows it is called [deque](https://
     ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.pop() ); // remove "Pear" and alert it
+    console.log( fruits.pop() ); // remove "Pear" and print it
 
-    alert( fruits ); // Apple, Orange
+    console.log( fruits ); // Apple, Orange
     ```
 
 `push`
@@ -146,7 +152,7 @@ In computer science the data structure that allows it is called [deque](https://
 
     fruits.push("Pear");
 
-    alert( fruits ); // Apple, Orange, Pear
+    console.log( fruits ); // Apple, Orange, Pear
     ```
 
     The call `fruits.push(...)` is equal to `fruits[fruits.length] = ...`.
@@ -159,9 +165,9 @@ In computer science the data structure that allows it is called [deque](https://
     ```js
     let fruits = ["Apple", "Orange", "Pear"];
 
-    alert( fruits.shift() ); // remove Apple and alert it
+    console.log( fruits.shift() ); // remove Apple and print it
 
-    alert( fruits ); // Orange, Pear
+    console.log( fruits ); // Orange, Pear
     ```
 
 `unshift`
@@ -172,7 +178,7 @@ In computer science the data structure that allows it is called [deque](https://
 
     fruits.unshift('Apple');
 
-    alert( fruits ); // Apple, Orange, Pear
+    console.log( fruits ); // Apple, Orange, Pear
     ```
 
 Methods `push` and `unshift` can add multiple elements at once:
@@ -184,16 +190,17 @@ fruits.push("Orange", "Peach");
 fruits.unshift("Pineapple", "Lemon");
 
 // ["Pineapple", "Lemon", "Apple", "Orange", "Peach"]
-alert( fruits );
+console.log( fruits );
 ```
 
 ## Internals
 
-An array is a special kind of object. The square brackets used to access a property `arr[0]` actually come from the object syntax. Numbers are used as keys. 
+An array is a special kind of object. 
+The square brackets used to access a property `arr[0]` actually come from the object syntax. Indexes are used as keys. 
 
 They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object. 
+Remember, there are only 7 basic types in JavaScript. `Array` is an object and thus behaves like an object. 
 
 For instance, it is copied by reference:
 
@@ -202,11 +209,11 @@ let fruits = ["Banana"]
 
 let arr = fruits; // copy by reference (two variables reference the same array)
 
-alert( arr === fruits ); // true
+console.log( arr === fruits ); // true
  
 arr.push("Pear"); // modify the array by reference
 
-alert( fruits ); // Banana, Pear - 2 items now
+console.log( fruits ); // Banana, Pear - 2 items now
 ```
 
 ...But what makes arrays really  special is their internal representation. The engine tries to store its elements in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there are other optimizations as well, to make arrays work really fast.
@@ -285,7 +292,7 @@ let arr = ["Apple", "Orange", "Pear"];
 *!*
 for (let i = 0; i < arr.length; i++) {
 */!*
-  alert( arr[i] );
+  console.log( arr[i] );
 }
 ```
 
@@ -296,7 +303,7 @@ let fruits = ["Apple", "Orange", "Plum"];
 
 // iterates over array elements
 for (let fruit of fruits) {
-  alert( fruit ); 
+  console.log( fruit ); 
 }
 ```
 
@@ -310,7 +317,7 @@ let arr = ["Apple", "Orange", "Pear"];
 *!*
 for (let key in arr) {
 */!*
-  alert( arr[key] ); // Apple, Orange, Pear
+  console.log( arr[key] ); // Apple, Orange, Pear
 }
 ```
 
@@ -335,7 +342,7 @@ For instance, a single element with a large index gives a big length:
 let fruits = [];
 fruits[123] = "Apple";
 
-alert( fruits.length ); // 124
+console.log( fruits.length ); // 124
 ```
 
 Note that we usually don't use arrays like that. 
@@ -348,10 +355,10 @@ If we increase it manually, nothing interesting happens. But if we decrease it, 
 let arr = [1, 2, 3, 4, 5];
 
 arr.length = 2; // truncate to 2 elements
-alert( arr ); // [1, 2]
+console.log( arr ); // [1, 2]
 
 arr.length = 5; // return length back
-alert( arr[3] ); // undefined: the values do not return
+console.log( arr[3] ); // undefined: the values do not return
 ```
 
 So, the simplest way to clear the array is: `arr.length = 0;`.
@@ -374,9 +381,9 @@ Let's see how one can shoot themself in the foot:
 ```js run
 let arr = new Array(2); // will it create an array of [2] ?
 
-alert( arr[0] ); // undefined! no elements.
+console.log( arr[0] ); // undefined! no elements.
 
-alert( arr.length ); // length 2
+console.log( arr.length ); // length 2
 ```
 
 In the code above, `new Array(number)` has all elements `undefined`.
@@ -394,7 +401,7 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // the central element
+console.log( matrix[1][1] ); // the central element
 ```
 
 ## toString
@@ -407,16 +414,16 @@ For instance:
 ```js run
 let arr = [1, 2, 3];
 
-alert( arr ); // 1,2,3
-alert( String(arr) === '1,2,3' ); // true
+console.log( arr ); // 1,2,3
+console.log( String(arr) === '1,2,3' ); // true
 ```
 
 Also, let's try this:
 
 ```js run
-alert( [] + 1 ); // "1"
-alert( [1] + 1 ); // "11"
-alert( [1,2] + 1 ); // "1,21"
+console.log( [] + 1 ); // "1"
+console.log( [1] + 1 ); // "11"
+console.log( [1,2] + 1 ); // "1,21"
 ```
 
 Arrays do not have `Symbol.toPrimitive`, neither a viable `valueOf`, they implement only `toString` conversion, so here `[]` becomes an empty string, `[1]` becomes `"1"` and `[1,2]` becomes `"1,2"`.
@@ -424,9 +431,9 @@ Arrays do not have `Symbol.toPrimitive`, neither a viable `valueOf`, they implem
 When the binary plus `"+"` operator adds something to a string, it converts it to a string as well, so the next step looks like this:
 
 ```js run
-alert( "" + 1 ); // "1"
-alert( "1" + 1 ); // "11"
-alert( "1,2" + 1 ); // "1,21"
+console.log( "" + 1 ); // "1"
+console.log( "1" + 1 ); // "11"
+console.log( "1,2" + 1 ); // "1,21"
 ```
 
 ## Summary
