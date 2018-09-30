@@ -207,7 +207,7 @@ if (window == top) { // current window == window.top?
 
 ## The sandbox attribute
 
-The `sandbox` attribute allows to forbid certain actions inside an `<iframe>`, to run an untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
+The `sandbox` attribute allows for the exclusion of certain actions inside an `<iframe>` in order to prevent it executing untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
 
 By default, for `<iframe sandbox src="...">` the "default set" of restrictions is applied to the iframe. But we can provide a space-separated list of "excluded" limitations as a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`. The listed limitations are not applied.
 
