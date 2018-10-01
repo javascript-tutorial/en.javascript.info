@@ -635,7 +635,7 @@ new Promise(function() {
 
 In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
-In practice, that's usually because of the bad code. Indeed, how come that there's no error handling?
+In practice, that's usually because of the bad code. Indeed, how come there's no error handling?
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
 
