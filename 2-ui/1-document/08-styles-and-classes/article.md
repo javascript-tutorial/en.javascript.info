@@ -125,7 +125,7 @@ document.body.style.display = "none"; // hide
 setTimeout(() => document.body.style.display = "", 1000); // back to normal
 ```
 
-If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style` property at all.
+If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `display` property at all.
 
 ````smart header="Full rewrite with `style.cssText`"
 Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
