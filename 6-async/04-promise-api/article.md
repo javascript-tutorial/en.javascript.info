@@ -35,7 +35,7 @@ function loadCached(url) {
   return fetch(url)
     .then(response => response.text())
     .then(text => {
-      cache[url] = text;
+      cache.set(url,text); 
       return text;
     });
 }
