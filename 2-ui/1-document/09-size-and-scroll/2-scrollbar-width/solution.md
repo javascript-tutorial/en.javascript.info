@@ -18,3 +18,10 @@ div.remove();
 
 alert(scrollWidth);
 ```
+
+With borders:
+```js run
+function scrollWidth(elem) {
+    return (elem.offsetWidth - elem.clientLeft * 2) - elem.clientWidth;
+}
+```
