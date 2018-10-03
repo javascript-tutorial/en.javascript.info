@@ -14,10 +14,10 @@ There's a small feature implemented in the document for convenience. A click at 
 
 Your code should use DOM to get window coordinates of:
 
-1. Left-upper outer corner (that's simple).
-2. Right-bottom outer corner (simple too).
-3. Left-upper inner corner (a bit harder).
-4. Right-bottom inner corner (there are several ways, choose one).
+1. Upper-left, outer corner (that's simple).
+2. Bottom-right, outer corner (simple too).
+3. Upper-left, inner corner (a bit harder).
+4. Bottom-right, inner corner (there are several ways, choose one).
 
 The coordinates that you calculate should be the same as those returned by the mouse click.
 
