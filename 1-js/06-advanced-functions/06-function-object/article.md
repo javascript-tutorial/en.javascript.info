@@ -65,7 +65,7 @@ alert(user.sayHi.name); // sayHi
 alert(user.sayBye.name); // sayBye
 ```
 
-There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property empty, like here:
+There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
 
 ```js
 // function created inside array
