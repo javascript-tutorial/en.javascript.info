@@ -220,7 +220,7 @@ alert(obj.__proto__); // [object Object], didn't work as intended
 
 As we see from the code, the assignment to a primitive `5` is ignored.
 
-That can become a source of bugs and even vulnerabilies if we intent to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+That can become a source of bugs and even vulnerabilies if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
 
 In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
 
@@ -301,7 +301,7 @@ alert( "blabla" in user ); // false, user.blabla doesn't exist
 
 Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
-If we omit quotes, that would mean a variable containing the actual name to be tested. For instance:
+If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
 
 ```js run
 let user = { age: 30 };
