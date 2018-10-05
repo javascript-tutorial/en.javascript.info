@@ -300,4 +300,4 @@ alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-The precedence of NOT `!` is the highest of all bitwise operators, so it always executes first, before any `&&`, `||`.
+The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before any `&&`, `||`.
