@@ -100,7 +100,7 @@ The `callback` gets one argument -- the time passed from the beginning of the pa
 
 Usually `callback` runs very soon, unless the CPU is overloaded or the laptop battery is almost discharged, or there's another reason.
 
-The code below shows the time between first 20 runs for `requestAnimationFrame`. Usually it's 10-20ms:
+The code below shows the time between first 10 runs for `requestAnimationFrame`. Usually it's 10-20ms:
 
 ```html run height=40 refresh
 <script>
