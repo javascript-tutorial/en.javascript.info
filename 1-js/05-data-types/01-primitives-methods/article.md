@@ -7,6 +7,7 @@ They also provide methods to call as such. We will study those soon, but first w
 Let's look at the key distinction between primitives and objects.
 
 A primitive
+: Is a value of a primitive type. There are 6 primitive types: `string`, `number`, `boolean`, `symbol`, `null` and `undefined`.
 
 An object
 : Is capable of storing multiple values as properties.
