@@ -118,11 +118,11 @@ First, when a function runs, a new function Lexical Environment is created autom
 <!--
     ```js
     let phrase = "Hello";
-    
+
     function say(name) {
      alert( `${phrase}, ${name}` );
     }
-    
+
     say("John"); // Hello, John
     ```-->
 
@@ -319,7 +319,7 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
     In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
-2. The code runs on, and the call to `makeCounter()` is performed. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+2. The code runs on, the new global variable `counter` is declared and for its value `makeCounter()` is called. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
 
     ![](lexenv-nested-makecounter-2.png)
 
@@ -400,7 +400,7 @@ In the example below, when the execution goes into `if` block, the new "if-only"
 <!--
     ```js run
     let phrase = "Hello";
-    
+
     if (true) {
         let user = "John";
 
