@@ -9,15 +9,18 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 | Language | Github | Translation leads | Translated (%) | Published |
 |----------|--------|-------------------|-----------------|-----------|
 | Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | - |
-|
 | Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | - |
 | Persian | https://github.com/Goudarz/javascript-tutorial-fa | @Goudarz | ![](http://translate-hook.javascript.info/stats/fa.svg) | - |
-| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan |  | https://learn.javascript.ru |
+| Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | * | https://learn.javascript.ru |
 | Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg) | - |
+
+* - the previous version is published, need to backport/translate the new one from English.
 
 If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new) for me to add you to the list.
 
 You can edit the text in any editor (markdown-like syntax). The server to run the tutorial locally and see how it looks is at <https://github.com/iliakan/javascript-tutorial-server>.  
+
+
 
 ## Structure
 
