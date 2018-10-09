@@ -151,44 +151,43 @@ Once the server has responded, we can receive the result in the following proper
 `responseText`
 : The text of the server response,
 
-Есть и ещё одно свойство, которое используется гораздо реже:
+If the server returns XML with the correct header `Content-type: text/xml`, then there's also `responseXML` property with the parsed XML document. You can query it with `xhr.responseXml.querySelector("...")` and perform other XML-specific operations.
 
-`responseXML`
-: Если сервер вернул XML, снабдив его правильным заголовком `Content-type: text/xml`, то браузер создаст из него XML-документ. По нему можно будет делать запросы `xhr.responseXml.querySelector("...")` и другие.
+That's rarely used, because most of the time JSON is returned by the server. And then we can parse it using `JSON.parse(xhr.responseText)`.
 
-    Оно используется редко, так как обычно используют не XML, а JSON. То есть, сервер возвращает JSON в виде текста, который браузер превращает в объект вызовом `JSON.parse(xhr.responseText)`.
+## Synchronous and asynchronous requests
 
-## Синхронные и асинхронные запросы
+If in the `open` method the third parameter `async` is set to `false`, the request is made synchronously.
 
-Если в методе `open` установить параметр `async` равным `false`, то запрос будет синхронным.
+In other words, Javascript execution pauses at that line and continues when the response is received. Somewhat like `alert` or `prompt` commands.
 
-Синхронные вызовы используются чрезвычайно редко, так как блокируют взаимодействие со страницей до окончания загрузки. Посетитель не может даже прокручивать её. Никакой JavaScript не может быть выполнен, пока синхронный вызов не завершён -- в общем, в точности те же ограничения как `alert`.
+Synchronous calls are used rarely, because they block in-page Javascript till the loading is complete. In some browsers, a user is unable to scroll the page.
 
 ```js
-// Синхронный запрос
+// Synchronous request
 xhr.open('GET', 'phones.json', *!*false*/!*);
 
-// Отсылаем его
+// Send it
 xhr.send();
 *!*
-// ...весь JavaScript "подвиснет", пока запрос не завершится
+// ...JavaScript "hangs" and waits till the request is complete
 */!*
 ```
 
-Если синхронный вызов занял слишком много времени, то браузер предложит закрыть "зависшую" страницу.
+If a synchronous call takes too much time, the browser may suggest to close the "hanging" webpage.
 
-Из-за такой блокировки получается, что нельзя отослать два запроса одновременно. Кроме того, забегая вперёд, заметим, что ряд продвинутых возможностей, таких как возможность делать запросы на другой домен и указывать таймаут, в синхронном режиме не работают.
+Also, because of the blocking, it becomes impossible to send two requests simultaneously. And, looking a bit forward, let's note that some advanced capabilities of `XMLHttpRequest`, like requesting from another domain or specifying a timeout, are unavailable for synchronous requests.
 
-Из всего вышесказанного уже должно быть понятно, что синхронные запросы используются чрезвычайно редко, а асинхронные -- почти всегда.
+Because of all that, synchronous requests are used very sparingly, almost never.
 
-Для того, чтобы запрос стал асинхронным, укажем параметр `async` равным `true`.
+By default, requests are asynchronous.
 
-Изменённый JS-код:
+The same request made asynchronously:
 
 ```js
-var xhr = new XMLHttpRequest();
+let xhr = new XMLHttpRequest();
 
-xhr.open('GET', 'phones.json', *!*true*/!*);
+xhr.open('GET', 'phones.json'); // the third parameter is true by default
 
 xhr.send(); // (1)
 
@@ -197,7 +196,7 @@ xhr.onreadystatechange = function() { // (3)
   if (xhr.readyState != 4) return;
 */!*
 
-  button.innerHTML = 'Готово!';
+  button.innerHTML = 'Complete!';
 
   if (xhr.status != 200) {
     alert(xhr.status + ': ' + xhr.statusText);
@@ -207,56 +206,66 @@ xhr.onreadystatechange = function() { // (3)
 
 }
 
-button.innerHTML = 'Загружаю...'; // (2)
+button.innerHTML = 'Loading...'; // (2)
 button.disabled = true;
 ```
 
-Если в `open` указан третий аргумент `true` (или если третьего аргумента нет), то запрос выполняется асинхронно. Это означает, что после вызова `xhr.send()` в строке `(1)` код не "зависает", а преспокойно продолжает выполняться, выполняется строка `(2)`, а результат приходит через событие `(3)`, мы изучим его чуть позже.
+Now as there's no third argument in `open` (or if we explicitly set it to `true`), the request is asynchronous. In other words, after the call `xhr.send()` in the line `(1)`, Javascript does not "hang", but continues to execute.
 
-Полный пример в действии:
+In our case, it means that `(2)` shows a "loading" message.
+
+Then, after time, when the result is received, it comes in the event handler `(3)` that we'll cover a bit later.
+
+```online
+The full example in action:
 
 [codetabs src="phones-async"]
-
-# Событие readystatechange
-
-Событие `readystatechange` происходит несколько раз в процессе отсылки и получения ответа. При этом можно посмотреть "текущее состояние запроса" в свойстве `xhr.readyState`.
-
-В примере выше мы использовали только состояние `4` (запрос завершён), но есть и другие.
-
-Все состояния, по [спецификации](http://www.w3.org/TR/XMLHttpRequest/#states):
-
-```js
-const unsigned short UNSENT = 0; // начальное состояние
-const unsigned short OPENED = 1; // вызван open
-const unsigned short HEADERS_RECEIVED = 2; // получены заголовки
-const unsigned short LOADING = 3; // загружается тело (получен очередной пакет данных)
-const unsigned short DONE = 4; // запрос завершён
 ```
 
-Запрос проходит их в порядке `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`, состояние `3` повторяется при каждом получении очередного пакета данных по сети.
+# Event "readystatechange"
 
-Пример ниже демонстрирует переключение между состояниями. В нём сервер отвечает на запрос `digits`, пересылая по строке из 1000 цифр раз в секунду.
+The event `readystatechange` occurs multiple times during sending the request and receiving the response.
+
+As the name suggests, there's a "ready state" of `XMLHttpRequest`. It is accessible as  `xhr.readyState`.
+
+In the example above we only used state `4` (request complete), but there are few more.
+
+All states, as in [the specification](http://www.w3.org/TR/XMLHttpRequest/#states):
+
+```js
+const unsigned short UNSENT = 0; // initial state
+const unsigned short OPENED = 1; // open called
+const unsigned short HEADERS_RECEIVED = 2; // response headers received
+const unsigned short LOADING = 3; // response is loading (a data packed is received)
+const unsigned short DONE = 4; // request complete
+```
+
+An `XMLHttpRequest` object travels them in the order `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`. State `3` repeats every time a data packet is received over the network.
+
+The example above demostrates these states. The server answers the request `digits` by sending a string of `1000` digits once per second.
 
 [codetabs src="readystate"]
 
-```warn header="Точка разрыва пакетов не гарантирована"
-При состоянии `readyState=3` (получен очередной пакет) мы можем посмотреть текущие данные в `responseText` и, казалось бы, могли бы работать с этими данными как с "ответом на текущий момент".
+```warn header="Packets may break at any byte"
+One might think that `readyState=3` (the next data packet is received) allows us to get the current (not full yet) response body in `responseText`.
 
-Однако, технически мы не управляем разрывами между сетевыми пакетами. Если протестировать пример выше в локальной сети, то в большинстве браузеров разрывы будут каждые 1000 символов, но в реальности пакет может прерваться на любом байте.
+That's true. But only partially.
 
-Чем это опасно? Хотя бы тем, что символы русского языка в кодировке UTF-8 кодируются двумя байтами каждый -- и разрыв может возникнуть *между ними*.
+Technically, we do not have control over breakpoints between network packets. Many languages use multi-byte encodings like UTF-8, where a character is represented by multiple bytes. Some characters use only 1 byte, some use 2 or more. And packets may split *in the middle of a character*.
 
-Получится, что при очередном `readyState` в конце `responseText` будет байт-полсимвола, то есть он не будет корректной строкой -- частью ответа! Если в скрипте как-то по-особому это не обработать, то неизбежны проблемы.
+E.g. the letter `ö` is encoded with two bytes. The first of them may be at the end of one packet, and the second one -- at the beginning of the next packet.
+
+So, during the `readyState`, at the end of `responseText` there will be a half-character byte. That may lead to problems. In some simple cases, when we use only latin characters and digits (they all are encoded with 1 byte), such thing can't happen, but in other cases, that can become a source of bugs.
 ```
 
-## HTTP-заголовки
+## HTTP-headers
 
-`XMLHttpRequest` умеет как указывать свои заголовки в запросе, так и читать присланные в ответ.
+`XMLHttpRequest` allows both to send custom headers and read headers from the response.
 
-Для работы с HTTP-заголовками есть 3 метода:
+There are 3 methods for HTTP-headers:
 
 `setRequestHeader(name, value)`
-: Устанавливает заголовок `name` запроса со значением `value`.
+: Sets the request header with the given `name` and `value`.
 
     Например:
 
@@ -264,39 +273,42 @@ const unsigned short DONE = 4; // запрос завершён
     xhr.setRequestHeader('Content-Type', 'application/json');
     ```
 
-```warn header="Ограничения на заголовки"
-Нельзя установить заголовки, которые контролирует браузер, например `Referer` или `Host` и ряд других (полный список [тут](http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader-method)).
+    ```warn header="Headers limitations"
+    Several headers are managed exclusively by the browser, e.g. `Referer` and `Host`.
+    The full list is [in the specification](http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader-method).
 
-Это ограничение существует в целях безопасности и для контроля корректности запроса.
-```
+    XMLHttpRequest is not allowed to change them, for the sake of user safety and correctness of the request.
+    ```
 
-````warn header="Поставленный заголовок нельзя снять"
-Особенностью `XMLHttpRequest` является то, что отменить `setRequestHeader` невозможно.
+    ````warn header="Can't remove a header"
+    Another peciliarity of `XMLHttpRequest` is that one can't undo `setRequestHeader`.
 
-Повторные вызовы лишь добавляют информацию к заголовку, например:
+    Once the header is set, it's set. Additional calls add information to the header, don't overwrite it.
 
-```js
-xhr.setRequestHeader('X-Auth', '123');
-xhr.setRequestHeader('X-Auth', '456');
+    For instance:
 
-// в результате будет заголовок:
-// X-Auth: 123, 456
-```
-````
+    ```js
+    xhr.setRequestHeader('X-Auth', '123');
+    xhr.setRequestHeader('X-Auth', '456');
+
+    // the header will be:
+    // X-Auth: 123, 456
+    ```
+    ````
 
 `getResponseHeader(name)`
-: Возвращает значение заголовка ответа `name`, кроме `Set-Cookie` и `Set-Cookie2`.
+: Gets the response header with the given `name` (except `Set-Cookie` and `Set-Cookie2`).
 
-    Например:
+    For instance:
 
     ```js
     xhr.getResponseHeader('Content-Type')
     ```
 
 `getAllResponseHeaders()`
-: Возвращает все заголовки ответа, кроме `Set-Cookie` и `Set-Cookie2`.
+: Returns all response headers, except `Set-Cookie` and `Set-Cookie2`.
 
-    Заголовки возвращаются в виде единой строки, например:
+    Headers are returned as a single line, e.g.:
 
     ```
     Cache-Control: max-age=31536000
@@ -305,110 +317,84 @@ xhr.setRequestHeader('X-Auth', '456');
     Date: Sat, 08 Sep 2012 16:53:16 GMT
     ```
 
-    Между заголовками стоит перевод строки в два символа `"\r\n"` (не зависит от ОС), значение заголовка отделено двоеточием с пробелом `": "`. Этот формат задан стандартом.
+    The line break between headers is always `"\r\n"` (doesn't depend on OS), so we can easily split it into individual headers. The separator between the name and the value is always a colon followed by a space `": "`. That's fixed in the specification.
 
-    Таким образом, если хочется получить объект с парами заголовок-значение, то эту строку необходимо разбить и обработать.
+    So, if we want to get an object with name/value pairs, we need to throw in a bit JS.
 
-## Таймаут
+    Like this (assuming that if two headers have the same name, then the latter one overwrites the former one):
 
-Максимальную продолжительность асинхронного запроса можно задать свойством `timeout`:
+    ```js
+    let headers = xhr
+      .getAllResponseHeaders()
+      .split('\r\n')
+      .reduce((result, current) => {
+        let [name, value] = current.split(': ');
+        result[name] = value;
+        return acc;
+      }, {});
+    ```
+
+
+## Timeout
+
+The maximum duration of an asynchronous request can be set using the `timeout` property:
 
 ```js
-xhr.timeout = 30000; // 30 секунд (в миллисекундах)
+xhr.timeout = 30000; // 30 seconds (in milliseconds)
 ```
 
-При превышении этого времени запрос будет оборван и сгенерировано событие `ontimeout`:
+If the request exceeds that time, it's aborted, and the `timeout` event is generated:
 
 ```js
 xhr.ontimeout = function() {
-  alert( 'Извините, запрос превысил максимальное время' );
+  alert( 'Sorry, the request took too long.' );
 }
 ```
 
-## Полный список событий
+## The full event list
 
-Современная [спецификация](http://www.w3.org/TR/XMLHttpRequest/#events) предусматривает следующие события по ходу обработки запроса:
+The [modern specification](http://www.w3.org/TR/XMLHttpRequest/#events) lists following events (in the lifecycle order):
 
-- `loadstart` -- запрос начат.
-- `progress` -- браузер получил очередной пакет данных, можно прочитать текущие полученные данные в `responseText`.
-- `abort` -- запрос был отменён вызовом `xhr.abort()`.
-- `error` -- произошла ошибка.
-- `load` -- запрос был успешно (без ошибок) завершён.
-- `timeout` -- запрос был прекращён по таймауту.
-- `loadend` -- запрос был завершён (успешно или неуспешно)
+- `loadstart` -- the request has started.
+- `progress` -- a data packet of the response has arrived, the whole response body at the moment is in `responseText`.
+- `abort` -- the request was canceled by the call `xhr.abort()`.
+- `error` -- connection error has occured, e.g. wrong domain name. Doesn't happen for HTTP-errors like 404.
+- `load` -- the request has finished successfully.
+- `timeout` -- the request was canceled due to timeout (only happens if it was set).
+- `loadend` -- the request has finished (succeffully or not).
 
-Используя эти события можно более удобно отслеживать загрузку (`onload`) и ошибку (`onerror`), а также количество загруженных данных (`onprogress`).
+The most used events are load completion (`onload`), load failure (`onerror`), and also `onprogress` to track the progress.
 
-Ранее мы видели ещё одно событие -- `readystatechange`. Оно появилось гораздо раньше, ещё до появления текущего стандарта.
+We've already seen another event: `readystatechange`. Historically, it appeared long ago, before the specification settled. Nowadays, there's no need to use it, we can replace it with newer events, but it can often be found in older scripts.
 
-В современных браузерах от него можно отказаться в пользу других, необходимо лишь, как мы увидим далее,  учесть особенности IE8-9.
+## Summary
 
-## IE8,9: XDomainRequest
-
-В IE8 и IE9 поддержка `XMLHttpRequest` ограничена:
-
-- Не поддерживаются события, кроме `onreadystatechange`.
-- Некорректно поддерживается состояние `readyState = 3`: браузер может сгенерировать его только один раз во время запроса, а не при каждом пакете данных. Кроме того, он не даёт доступ к ответу `responseText` до того, как он будет до конца получен.
-
-Дело в том, что, когда создавались эти браузеры, спецификации были не до конца проработаны. Поэтому разработчики браузера решили добавить свой объект `XDomainRequest`, который реализовывал часть возможностей современного стандарта.
-
-А обычный `XMLHttpRequest` решили не трогать, чтобы ненароком не сломать существующий код.
-
-Мы подробнее поговорим про `XDomainRequest` в главе <info:xhr-crossdomain>. Пока лишь заметим, что для того, чтобы получить некоторые из современных возможностей в IE8,9 -- вместо `new XMLHttpRequest()` нужно использовать `new XDomainRequest`.
-
-Кросс-браузерно:
+Typical code of the GET-request with `XMLHttpRequest`:
 
 ```js
-var XHR = ("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest;
-var xhr = new XHR();
-```
+let xhr = new XMLHttpRequest();
 
-Теперь в IE8,9 поддерживаются события `onload`, `onerror` и `onprogress`. Это именно для IE8,9. Для IE10 обычный `XMLHttpRequest` уже является полноценным.
-
-### IE9- и кеширование
-
-Обычно ответы на запросы `XMLHttpRequest` кешируются, как и обычные страницы.
-
-Но IE9- по умолчанию кеширует все ответы, не снабжённые антикеш-заголовком. Другие браузеры этого не делают. Чтобы этого избежать, сервер должен добавить в ответ соответствующие антикеш-заголовки, например `Cache-Control: no-cache`.
-
-Впрочем, использовать заголовки типа `Expires`, `Last-Modified` и `Cache-Control` рекомендуется в любом случае, чтобы дать понять браузеру (не обязательно IE), что ему следует делать.
-
-Альтернативный вариант -- добавить в URL запроса случайный параметр, предотвращающий кеширование.
-
-Например, вместо `xhr.open('GET', 'service', false)` написать:
-
-```js
-xhr.open('GET', *!*'service?r=' + Math.random()*/!*, false);
-```
-
-По историческим причинам такой способ предотвращения кеширования можно увидеть много где, так как старые браузеры плохо обрабатывали кеширующие заголовки. Сейчас серверные заголовки поддерживаются хорошо.
-
-## Итого
-
-Типовой код для GET-запроса при помощи `XMLHttpRequest`:
-
-```js
-var xhr = new XMLHttpRequest();
-
-xhr.open('GET', '/my/url', true);
+xhr.open('GET', '/my/url');
 
 xhr.send();
 
-xhr.onreadystatechange = function() {
-  if (this.readyState != 4) return;
-
-  // по окончании запроса доступны:
-  // status, statusText
-  // responseText, responseXML (при content-type: text/xml)
+xhr.onload = function() {
+  // we can check
+  // status, statusText - for response HTTP status
+  // responseText, responseXML (when content-type: text/xml) - for the response
 
   if (this.status != 200) {
-    // обработать ошибку
-    alert( 'ошибка: ' + (this.status ? this.statusText : 'запрос не удался') );
+    // handle error
+    alert( 'error: ' + this.status);
     return;
   }
 
-  // получить результат из this.responseText или this.responseXML
-}
+  // get the response from this.responseText
+};
+
+xhr.onerror = function() {
+  // handle error
+};
 ```
 
 Мы разобрали следующие методы `XMLHttpRequest`:
@@ -428,7 +414,7 @@ xhr.onreadystatechange = function() {
 - `status`
 - `statusText`
 
-События:
+Events:
 
 - `onreadystatechange`
 - `ontimeout`
