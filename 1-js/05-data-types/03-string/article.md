@@ -132,7 +132,7 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 ```warn header="`length` is a property"
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add brackets after it.
+Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
 ```
 
 ## Accessing characters
