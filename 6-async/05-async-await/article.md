@@ -133,7 +133,7 @@ let user = await response.json();
 So we need to have a wrapping async function for the code that awaits. Just as in the example above.
 ````
 ````smart header="`await` accepts thenables"
-Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may be not a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
 
 For instance, here `await` accepts `new Thenable(1)`:
 ```js run
