@@ -397,30 +397,4 @@ xhr.onerror = function() {
 };
 ```
 
-Мы разобрали следующие методы `XMLHttpRequest`:
-
-- `open(method, url, async, user, password)`
-- `send(body)`
-- `abort()`
-- `setRequestHeader(name, value)`
-- `getResponseHeader(name)`
-- `getAllResponseHeaders()`
-
-Свойства `XMLHttpRequest`:
-
-- `timeout`
-- `responseText`
-- `responseXML`
-- `status`
-- `statusText`
-
-Events:
-
-- `onreadystatechange`
-- `ontimeout`
-- `onerror`
-- `onload`
-- `onprogress`
-- `onabort`
-- `onloadstart`
-- `onloadend`
+XMLHttpRequest is widely used, but there's a more modern method named `fetch(url)` that returns a promise, thus working well with async/await. We'll cover it soon in the next sections.
