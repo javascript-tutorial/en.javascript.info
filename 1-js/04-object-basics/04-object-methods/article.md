@@ -276,7 +276,7 @@ Looking closely, we may notice two operations in `obj.method()` statement:
 1. First, the dot `'.'` retrieves the property `obj.method`.
 2. Then parentheses `()` execute it.
 
-So, how does the information about `this` gets passed from the first part to the second one?
+So, how does the information about `this` get passed from the first part to the second one?
 
 If we put these operations on separate lines, then `this` will be lost for sure:
 
