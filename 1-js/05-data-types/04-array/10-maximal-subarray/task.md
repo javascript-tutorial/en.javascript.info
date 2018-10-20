@@ -8,7 +8,7 @@ The input is an array of numbers, e.g. `arr = [1, -2, 3, 4, -9, 6]`.
 
 The task is: find the contiguous subarray of `arr` with the maximal sum of items.
 
-Write the function `getMaxSubSum(arr)` that will find return that sum.
+Write the function `getMaxSubSum(arr)` that will return that sum.
 
 For instance: 
 
