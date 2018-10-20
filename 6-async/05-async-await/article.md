@@ -4,7 +4,7 @@ There's a special syntax to work with promises in a more comfortable fashion, ca
 
 ## Async functions
 
-Let's start with the `async` keyword. It can be placed before function, like this:
+Let's start with the `async` keyword. It can be placed before a function, like this:
 
 ```js
 async function f() {
