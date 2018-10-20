@@ -4,7 +4,7 @@ Imagine that you're a top singer, and fans ask day and night for your upcoming s
 
 To get some relief, you promise to send it to them when it's published. You give your fans a list to which they can subscribe for updates. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, if plans to publish the song are cancelled, they will still be notified.
 
-Everyone is happy: you, because the people don't crowd you any more, and fans, because they won't miss the single.
+Everyone is happy, because the people don't crowd you any more, and fans, because they won't miss the single.
 
 This is a real-life analogy for things we often have in programming:
 
