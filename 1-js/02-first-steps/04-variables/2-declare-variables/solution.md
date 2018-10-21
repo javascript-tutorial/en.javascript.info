@@ -18,4 +18,4 @@ Again, we could shorten that to `userName` if we know for sure that the user is 
 
 Modern editors and autocomplete make long variable names easy to write. Don't save on them. A name with 3 words in it is fine.
 
-And if your editor does not have proper autocompletion, get [a new one](/editors).
+And if your editor does not have proper autocompletion, get [a new one](/code-editors).
