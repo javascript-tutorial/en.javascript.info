@@ -16,7 +16,7 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 - [Visual Studio Code](https://code.visualstudio.com/) (free).
 - [Netbeans](http://netbeans.org/) (paid).
 
-All of the IDEs except cross-platform.
+All of the IDEs accept cross-platform.
 
 For Windows, there's also a "Visual Studio" editor, don't mess it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/)).
 
