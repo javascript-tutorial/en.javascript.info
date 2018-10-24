@@ -605,7 +605,7 @@ for (let key in user) {
 }
 */!*
 
-// now clone is a fully independant clone
+// now clone is a fully independent clone
 clone.name = "Pete"; // changed the data in it
 
 alert( user.name ); // still John in the original object
