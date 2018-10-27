@@ -18,7 +18,7 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 
 All of the IDEs except cross-platform.
 
-For Windows, there's also a "Visual Studio" editor, don't mess it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/)).
+For Windows, there's also a "Visual Studio" editor, don't mess it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
