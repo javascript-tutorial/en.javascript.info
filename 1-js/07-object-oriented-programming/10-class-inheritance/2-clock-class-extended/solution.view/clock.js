@@ -10,7 +10,7 @@ class Clock {
     if (hours < 10) hours = '0' + hours;
 
     let mins = date.getMinutes();
-    if (mins < 10) min = '0' + mins;
+    if (mins < 10) mins = '0' + mins;
 
     let secs = date.getSeconds();
     if (secs < 10) secs = '0' + secs;
