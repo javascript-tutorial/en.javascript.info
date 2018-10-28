@@ -375,7 +375,7 @@ In other words, it's roughly the same as:
 ```js
 let func = function(arg1, arg2, ...argN) {
   return expression;
-}
+};
 ```
 
 ...But much more concise.
