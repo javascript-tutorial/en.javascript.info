@@ -1,6 +1,6 @@
 # Capturing groups
 
-A part of the pattern can be enclosed in parentheses `pattern:(...)`. That's called a "capturing group".
+A part of a pattern can be enclosed in parentheses `pattern:(...)`. This is called a "capturing group".
 
 That has two effects:
 
@@ -30,9 +30,9 @@ john.smith@site.com.uk
 
 The pattern: `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`.
 
-- The first part before `@` may include wordly characters, a dot and a dash `pattern:[-.\w]+`, like `match:john.smith`.
+- The first part before `@` may include any alphanumeric word characters, a dot and a dash `pattern:[-.\w]+`, like `match:john.smith`.
 - Then `pattern:@`
-- And then the domain. May be a second-level domain `site.com` or with subdomains like `host.site.com.uk`. We can match it as "a word followed by a dot" repeated one or more times for subdomains: `match:mail.` or `match:site.com.`, and then "a word" for the last part: `match:.com` or `match:.uk`.
+- And then the domain and maybe a second-level domain like `site.com` or with subdomains like `host.site.com.uk`. We can match it as "a word followed by a dot" repeated one or more times for subdomains: `match:mail.` or `match:site.com.`, and then "a word" for the last part: `match:.com` or `match:.uk`.
 
     The word followed by a dot is `pattern:(\w+\.)+` (repeated). The last word should not have a dot at the end, so it's just `\w{2,20}`. The quantifier `pattern:{2,20}` limits the length, because domain zones are like `.uk` or `.com` or `.museum`, but can't be longer than 20 characters.
 
