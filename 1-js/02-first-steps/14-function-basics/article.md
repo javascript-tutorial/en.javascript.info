@@ -263,7 +263,7 @@ function checkAge(age) {
 */!*
   } else {
 *!*
-    return confirm('Got a permission from the parents?');
+    return confirm('Do you have permission from your parents?');
 */!*
   }
 }
@@ -334,7 +334,7 @@ So, it effectively becomes an empty return. We should put the value on the same 
 
 ## Naming a function [#function-naming]
 
-Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible describe what the function does. So that a person who reads the code gets the right clue.
+Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible, describe what the function does, so that someone reading the code gets an indication of what the function does.
 
 It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
 

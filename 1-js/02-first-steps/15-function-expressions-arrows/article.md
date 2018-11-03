@@ -78,8 +78,8 @@ let func = sayHi;
 Everything would work the same. Even more obvious what's going on, right?
 
 
-````smart header="Why there's a semicolon at the end?"
-There might be a question, why does Function Expression have a semicolon `;` at the end, and Function Declaration does not:
+````smart header="Why is there a semicolon at the end?"
+You might wonder, why does Function Expression have a semicolon `;` at the end, but Function Declaration does not:
 
 ```js
 function sayHi() {
@@ -198,7 +198,7 @@ The more subtle difference is *when* a function is created by the JavaScript eng
 
 **A Function Expression is created when the execution reaches it and is usable from then on.**
 
-Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called etc) from now on.
+Once the execution flow passes to the right side of the assignment `let sum = function…` -- here we go, the function is created and can be used (assigned, called, etc. ) from now on.
 
 Function Declarations are different.
 
@@ -350,7 +350,7 @@ welcome(); // ok now
 ```
 
 
-```smart header="When to choose Function Declaration versus Function Expression?"
+```smart header="When should you choose Function Declaration versus Function Expression?"
 As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax, the one we used before. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
 
 It's also a little bit easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
