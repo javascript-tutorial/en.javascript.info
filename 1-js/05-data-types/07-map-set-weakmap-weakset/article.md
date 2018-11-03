@@ -324,7 +324,7 @@ Now where do we need such thing?
 The idea of `WeakMap` is that we can store something for an object that exists only while the object exists. But we do not force the object to live by the mere fact that we store something for it.
 
 ```js
-weakMap.put(john, "secret documents");
+weakMap.set(john, "secret documents");
 // if john dies, secret documents will be destroyed
 ```
 
@@ -378,7 +378,7 @@ With a regular `Map`, cleaning up after a user has left becomes a tedious task: 
 `WeakSet` behaves similarly:
 
 - It is analogous to `Set`, but we may only add objects to `WeakSet` (not primitives).
-- An object exists in the set while it has reachable from somewhere else.
+- An object exists in the set while it is reachable from somewhere else.
 - Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
 
 For instance, we can use it to keep track of whether an item is checked:
@@ -429,4 +429,4 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
     - Also does not support `size/clear()` and iterations.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up automatically.
+`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, if it is only found in the `WeakMap/WeakSet`, it will be cleaned up automatically.
