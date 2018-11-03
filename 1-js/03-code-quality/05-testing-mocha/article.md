@@ -96,7 +96,7 @@ The full HTML page with these frameworks and `pow` spec:
 ```html src="index.html"
 ```
 
-The page can be divided into four parts:
+The page can be divided into five parts:
 
 1. The `<head>` -- add third-party libraries and styles for tests.
 2. The `<script>` with the function to test, in our case -- with the code for `pow`.

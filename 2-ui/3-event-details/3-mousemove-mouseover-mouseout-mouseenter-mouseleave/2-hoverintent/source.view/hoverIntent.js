@@ -45,6 +45,6 @@ class HoverIntent {
 
   destroy() {
     /* your code to "disable" the functionality, remove all handlers */
-  };
+  }
 
 }

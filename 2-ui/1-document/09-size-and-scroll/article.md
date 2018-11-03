@@ -60,7 +60,7 @@ These properties are rarely needed, but still they are the "most outer" geometry
 
 The `offsetParent` is the nearest ancestor that is:
 
-1. CSS-positioned (`position` is `absolute`, `relative` or `fixed`),
+1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`),
 2. or `<td>`, `<th>`, `<table>`,
 2. or `<body>`.
 
