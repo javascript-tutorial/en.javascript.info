@@ -101,6 +101,6 @@ class HoverIntent {
     elem.removeEventListener('mousemove', this.onMouseMove);
     elem.removeEventListener('mouseover', this.onMouseOver);
     elem.removeEventListener('mouseout', this.onMouseOut);
-  };
+  }
 
 }

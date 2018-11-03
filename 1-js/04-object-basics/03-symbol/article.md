@@ -75,7 +75,7 @@ user[id] = "ID Value";
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
-What's the benefit over using `Symbol("id")` over a string `"id"`?
+What's the benefit of using `Symbol("id")` over a string `"id"`?
 
 Let's make the example a bit deeper to see that.
 

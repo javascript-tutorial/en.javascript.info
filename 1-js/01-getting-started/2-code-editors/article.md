@@ -16,13 +16,11 @@ If you haven't considered selecting an IDE yet, look at the following variants:
 - [Visual Studio Code](https://code.visualstudio.com/) (free).
 - [Netbeans](http://netbeans.org/) (paid).
 
-All of the IDEs except cross-platform.
+All of the IDEs are cross-platform.
 
-For Windows, there's also a "Visual Studio" editor, don't mess it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/)).
+For Windows, there's also a "Visual Studio" editor, don't confuse it with "Visual Studio Code". "Visual Studio" is a paid and actually very powerful Windows-only editor, well-suited for .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
-
-
 
 ## Lightweight editors
 
@@ -53,7 +51,7 @@ I'm using:
 
 ## Let's not argue
 
-The editors in the lists above are those that either I or my friends who I consider good developers have been using for a long time and are happy with.
+The editors in the lists above are those that either I or my friends whom I consider good developers have been using for a long time and are happy with.
 
 There are other great editors in our big world. Please choose the one you like the most.
 

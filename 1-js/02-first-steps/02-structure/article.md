@@ -6,7 +6,7 @@ The first thing to study is the building blocks of the code.
 
 Statements are syntax constructs and commands that perform actions.
 
-We've already seen a statement `alert('Hello, world!')`, which shows the message.
+We've already seen a statement `alert('Hello, world!')`, which shows the message "Hello world!".
 
 We can have as many statements in the code as we want. Another statement can be separated with a semicolon.
 
@@ -46,7 +46,7 @@ alert(3 +
 + 2);
 ```
 
-The code outputs `6`, because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", no semicolon required. And in this case that works as intended.
+The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so the semicolon is not required. And in this case that works as intended.
 
 **But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
 
@@ -98,7 +98,7 @@ It's recommended to put semicolons between statements even if they are separated
 
 As time goes on, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
 
-Comments can be put into any place of the script. They don't affect the execution, because the engine simply ignores them.
+Comments can be put into any place of the script. They don't affect the execution because the engine simply ignores them.
 
 **One-line comments start with two forward slash characters `//`.**
 
@@ -156,4 +156,4 @@ Please, don't hesitate to comment your code.
 
 Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to the production server. They remove comments, so they don't appear in the working scripts. Therefore comments do not have any negative effects on production at all.
 
-Further in the tutorial, there will be a chapter <info:coding-style> that also explains how to write better comments.
+Further in the tutorial there will be a chapter <info:coding-style> that also explains how to write better comments.

@@ -349,7 +349,7 @@ But in real life we often have values in units, like `"100px"` or `"12pt"` in CS
 
 That's what `parseInt` and `parseFloat` are for.
 
-They "read" a number from a string until they can. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+They "read" a number from a string until they can't. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
 
 ```js run
 alert( parseInt('100px') ); // 100
