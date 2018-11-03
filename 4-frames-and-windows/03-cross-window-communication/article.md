@@ -32,7 +32,7 @@ Now let's see how some examples. First, about pages that come from the same orig
 ````warn header="Subdomains may be same-origin"
 There's a small exclusion in the "Same Origin" policy.
 
-If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that theyr common second-level domain is `site.com`), they can be treated as coming from the "same origin".
+If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), they can be treated as coming from the "same origin".
 
 To make it work, all such pages (including the one from `site.com`) should run the code:
 
