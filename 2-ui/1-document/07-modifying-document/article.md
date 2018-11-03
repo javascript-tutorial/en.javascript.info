@@ -409,7 +409,7 @@ The syntax:
 
 The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use JavaScript to create a full-fledged webpage and write it.
 
-The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
+The method comes from times when there was no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 
 In modern scripts we can rarely see it, because of the following important limitation:
 
