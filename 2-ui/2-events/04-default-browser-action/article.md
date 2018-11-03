@@ -17,7 +17,7 @@ There are two ways to tell the browser we don't want it to act:
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
 - If the handler is assigned using `on<event>` (not by `addEventListener`), then we can just return `false` from it.
 
-In the example below there a click to links don't lead to URL change:
+In the example below a click to links doesn't lead to URL change:
 
 ```html autorun height=60 no-beautify
 <a href="/" onclick="return false">Click here</a>
