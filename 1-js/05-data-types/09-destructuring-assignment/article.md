@@ -31,8 +31,8 @@ It looks great when combined with `split` or other array-returning methods:
 let [firstName, surname] = "Ilya Kantor".split(' ');
 ```
 
-````smart header="\"Destructuring\" does not mean \"destructive\""
-It's called "destructuring assignment", because it "destructurizes" by copying items into variables. But the array itself is not modified.
+````smart header="\"Destructuring\" does not mean \"destructive\"."
+It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
 
 It's just a shorter way to write:
 ```js
@@ -407,7 +407,7 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-In real-life the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+In real-life, the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
 
 Like this?
 
@@ -502,7 +502,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
     let {prop : varName = default, ...} = object
     ```
 
-    This means that property `prop` should go into the variable `varName` and, if no such property exists, then `default` value should be used.
+    This means that property `prop` should go into the variable `varName` and, if no such property exists, then the `default` value should be used.
 
 - The array syntax:
 
@@ -510,6 +510,6 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
     let [item1 = default, item2, ...rest] = array
     ```
 
-    The first item goes to `item1`, the second goes into `item2`, all the rest makes the array `rest`.
+    The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
 
 - For more complex cases, the left side must have the same structure as the right one.
