@@ -5,7 +5,7 @@
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
-Programmer ninjas of the past used these tricks to make sharpen the mind of code maintainers.
+Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
 
 Code review gurus look for them in test tasks.
 
@@ -32,7 +32,7 @@ For instance, take a look at this ternary operator `'?'`:
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
+Cool, right? If you write like that, a developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
 
 Tell them that shorter is always better. Initiate them into the paths of ninja.
 
