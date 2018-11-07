@@ -155,7 +155,7 @@ function ninjaFunction(elem) {
 
 A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that he's working with a clone!
 
-Deadly effective even against an experienced ninja. Seen in code regularly.
+Seen in code regularly. Deadly effective even against an experienced ninja. 
 
 ## Underscores for fun
 
