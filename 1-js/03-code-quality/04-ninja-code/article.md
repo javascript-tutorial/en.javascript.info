@@ -171,6 +171,8 @@ Let everyone see how magnificent your entities are! Names like `superElement`, `
 
 Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two.
 
+
+
 ## Overlap outer variables
 
 ```quote author="Guan Yin Zi"
@@ -204,7 +206,7 @@ There are functions that look like they don't change anything. Like `isReady()`,
 
 **A really beautiful trick is to add a "useful" action to them, besides the main task.**
 
-The expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
 
 **Another way to surprise is to return a non-standard result.**
 
