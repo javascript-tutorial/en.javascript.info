@@ -191,7 +191,7 @@ The non-configurable flag (`configurable:false`) is sometimes preset for built-i
 
 A non-configurable property can not be deleted or altered with `defineProperty`.
 
-For instance, `Math.PI` is both read-only, non-enumerable and non-configurable:
+For instance, `Math.PI` is read-only, non-enumerable and non-configurable:
 
 ```js run
 let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
