@@ -47,7 +47,7 @@ let value = await promise;
 
 The keyword `await` makes JavaScript wait until that promise settles and returns its result.
 
-Here's example with a promise that resolves in 1 second:
+Here's an example with a promise that resolves in 1 second:
 ```js run
 async function f() {
 
