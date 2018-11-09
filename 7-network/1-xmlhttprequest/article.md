@@ -267,7 +267,7 @@ There are 3 methods for HTTP-headers:
 `setRequestHeader(name, value)`
 : Sets the request header with the given `name` and `value`.
 
-    Например:
+    For instance:
 
     ```js
     xhr.setRequestHeader('Content-Type', 'application/json');
