@@ -27,12 +27,12 @@ For instance:
 
 <script>
   // get the form
-  let form = document.forms.my; // <form name="my"> element
+  let myForm = document.forms.my; // <form name="my"> element
 
   // get the element
-  let elem = form.elements.one; // <input name="one"> element
+  let myElement = myForm.elements.one; // <input name="one"> element
 
-  alert(elem.value); // 1
+  alert(myElement.value); // 1
 </script>
 ```
 
