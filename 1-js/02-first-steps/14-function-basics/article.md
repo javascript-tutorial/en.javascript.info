@@ -332,7 +332,7 @@ return*!*;*/!*
 So, it effectively becomes an empty return. We should put the value on the same line instead.
 ````
 
-## Naming a function #function-naming
+## Naming a function [#function-naming]
 
 Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.
 
