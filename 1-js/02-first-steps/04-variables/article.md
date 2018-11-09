@@ -195,7 +195,7 @@ Technically, there is no error here, such names are allowed, but there is an int
 ````
 
 ````warn header="Reserved names"
-There is a list of reserved words, which cannot be used as variable names, because they are used by the language itself.
+There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names, because they are used by the language itself.
 
 For example, words `let`, `class`, `return`, `function` are reserved.
 
