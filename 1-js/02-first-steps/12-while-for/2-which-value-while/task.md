@@ -2,11 +2,11 @@ importance: 4
 
 ---
 
-# Which values shows the while?
+# Which values does the while loop show?
 
-For every loop, write down which values it shows, in your opinion. And then compare with the answer.
+For every loop iteration, write down which value it outputs and then compare it with the solution.
 
-Both loops `alert` same values or not?
+Both loops `alert` the same values, or not?
 
 1. The prefix form `++i`:
 
