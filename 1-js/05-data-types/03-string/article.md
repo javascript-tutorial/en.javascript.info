@@ -275,8 +275,8 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 */!*
 ```
 
-```smart header="`str.lastIndexOf(pos)`"
-There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
+```smart header="`str.lastIndexOf(substr, position)`"
+There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
 It would list the occurrences in the reverse order.
 ```
