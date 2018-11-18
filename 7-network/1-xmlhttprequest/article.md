@@ -97,7 +97,7 @@ The modern [specification](https://xhr.spec.whatwg.org/#events) lists following 
 - `loadstart` -- the request has started.
 - `progress` -- the browser received a data packet (can happen multiple times).
 - `abort` -- the request was aborted by `xhr.abort()`.
-- `error` -- an network error has occured, the request failed.
+- `error` -- an network error has occurred, the request failed.
 - `load` -- the request is successful, no errors.
 - `timeout` -- the request was canceled due to timeout (if the timeout is set).
 - `loadend` -- the request is done (with an error or without it)
@@ -143,7 +143,7 @@ Here's a more feature-full example, with errors and a timeout:
 Once the server has responded, we can receive the result in the following properties of the request object:
 
 `status`
-: HTTP status code: `200`, `404`, `403` and so on. Also can be `0` if an error occured.
+: HTTP status code: `200`, `404`, `403` and so on. Also can be `0` if an error occurred.
 
 `statusText`
 : HTTP status message: usually `OK` for `200`, `Not Found` for `404`, `Forbidden` for `403` and so on.
@@ -242,7 +242,7 @@ const unsigned short DONE = 4; // request complete
 
 An `XMLHttpRequest` object travels them in the order `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`. State `3` repeats every time a data packet is received over the network.
 
-The example above demostrates these states. The server answers the request `digits` by sending a string of `1000` digits once per second.
+The example above demonstrates these states. The server answers the request `digits` by sending a string of `1000` digits once per second.
 
 [codetabs src="readystate"]
 
