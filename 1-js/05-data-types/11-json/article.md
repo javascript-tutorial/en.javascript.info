@@ -66,10 +66,10 @@ alert(json);
 
 The method `JSON.stringify(student)` takes the object and converts it into a string.
 
-The resulting `json` string is a called *JSON-encoded* or *serialized* or *stringified* or *marshalled* object. We are ready to send it over the wire or put into plain data store.
+The resulting `json` string is a called *JSON-encoded* or *serialized* or *stringified* or *marshalled* object. We are ready to send it over the wire or put into a plain data store.
 
 
-Please note that JSON-encoded object has several important differences from the object literal:
+Please note that a JSON-encoded object has several important differences from the object literal:
 
 - Strings use double quotes. No single quotes or backticks in JSON. So `'John'` becomes `"John"`.
 - Object property names are double-quoted also. That's obligatory. So `age:30` becomes `"age":30`.
@@ -190,7 +190,7 @@ replacer
 space
 : Amount of space to use for formatting
 
-Most of time, `JSON.stringify` is used with first argument only. But if we need to fine-tune the replacement process, like to filter out circular references, we can use the second argument of `JSON.stringify`.
+Most of the time, `JSON.stringify` is used with the first argument only. But if we need to fine-tune the replacement process, like to filter out circular references, we can use the second argument of `JSON.stringify`.
 
 If we pass an array of properties to it, only these properties will be encoded.
 
@@ -244,7 +244,7 @@ Now everything except `occupiedBy` is serialized. But the list of properties is 
 
 Fortunately, we can use a function instead of an array as the `replacer`.
 
-The function will be called for every `(key,value)` pair and should return the "replaced" value, which will be used instead of the original one.
+The function will be called for every `(key, value)` pair and should return the "replaced" value, which will be used instead of the original one.
 
 In our case, we can return `value` "as is" for everything except `occupiedBy`. To ignore `occupiedBy`, the code below returns `undefined`:
 
@@ -281,7 +281,7 @@ number:       23
 
 Please note that `replacer` function gets every key/value pair including nested objects and array items. It is applied recursively. The value of `this` inside `replacer` is the object that contains the current property.
 
-The first call is special. It is made using a special "wrapper object": `{"": meetup}`. In other words, the first `(key,value)` pair has an empty key, and the value is the target object as a whole. That's why the first line is `":[object Object]"` in the example above.
+The first call is special. It is made using a special "wrapper object": `{"": meetup}`. In other words, the first `(key, value)` pair has an empty key, and the value is the target object as a whole. That's why the first line is `":[object Object]"` in the example above.
 
 The idea is to provide as much power for `replacer` as possible: it has a chance to analyze and replace/skip the whole object if necessary.
 
@@ -332,7 +332,7 @@ The `spaces` parameter is used solely for logging and nice-output purposes.
 
 ## Custom "toJSON"
 
-Like `toString` for a string conversion, an object may provide method `toJSON` for to-JSON conversion. `JSON.stringify` automatically calls it if available.
+Like `toString` for string conversion, an object may provide method `toJSON` for to-JSON conversion. `JSON.stringify` automatically calls it if available.
 
 For instance:
 
@@ -409,7 +409,7 @@ str
 : JSON-string to parse.
 
 reviver
-: Optional function(key,value) that will be called for each `(key,value)` pair and can transform the value.
+: Optional function(key,value) that will be called for each `(key, value)` pair and can transform the value.
 
 For instance:
 
@@ -521,7 +521,7 @@ alert( schedule.meetups[1].date.getDate() ); // works!
 ## Summary
 
 - JSON is a data format that has its own independent standard and libraries for most programming languages.
-- JSON supports plain objects, arrays, strings, numbers, booleans and `null`.
+- JSON supports plain objects, arrays, strings, numbers, booleans, and `null`.
 - JavaScript provides methods [JSON.stringify](mdn:js/JSON/stringify) to serialize into JSON and [JSON.parse](mdn:js/JSON/parse) to read from JSON.
 - Both methods support transformer functions for smart reading/writing.
 - If an object has `toJSON`, then it is called by `JSON.stringify`.
