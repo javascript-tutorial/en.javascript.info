@@ -8,7 +8,7 @@ There are two archetypes: IDE and lightweight editors. Many people feel comforta
 
 The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project." As the name suggests, that's not just an editor, but a full-scale "development environment."
 
-An IDE loads the project (can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
+An IDE loads the project (can be many files), allows navigation between files, provides autocompilation based on the whole project (not just the open file), integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
 
 If you haven't considered selecting an IDE yet, look at the following variants:
 
