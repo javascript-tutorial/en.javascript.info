@@ -91,7 +91,7 @@ interface HTMLInputElement: HTMLElement {
   // here go properties and methods of <input> elements
 
 *!*
-  // "DOMString" means that these properties are strings
+  // "DOMString" means that the value of these properties are strings
 */!*
   attribute DOMString accept;
   attribute DOMString alt;
@@ -99,12 +99,12 @@ interface HTMLInputElement: HTMLElement {
   attribute DOMString value;
 
 *!*
-  // boolean property (true/false)
+  // boolean value property (true/false)
   attribute boolean autofocus;
 */!*
   ...
 *!*
-  // now the method: "void" means that that returns no value
+  // now the method: "void" means that the method returns no value
 */!*
   void select();
   ...
