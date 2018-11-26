@@ -43,7 +43,7 @@ The task is quite typical -- we want to pass an object method somewhere else (he
 
 ## Solution 1: a wrapper
 
-The simplest solution is to use an wrapping function:
+The simplest solution is to use a wrapping function:
 
 ```js run
 let user = {
