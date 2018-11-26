@@ -3,9 +3,21 @@
 
 *Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
 
-Arrays by themselves are iterable. But not only arrays. Strings are iterable too, and many other built-in objects as well.
+Of course, Arrays are iterable. But we can make any objects iterable. That helps to represent *collections* of values.
 
-Iterables are widely used by the core JavaScript. As we'll see many built-in operators and methods rely on them.
+Iterables are widely used by the core JavaScript. For instance, Strings are iterable also. As we'll see many built-in operators and methods rely on them.
+
+Here's an example of iteration over a string:
+
+```js run
+for (let char of "test") {
+  alert( char ); // t, then e, then s, then t
+}
+```
+
+As we can see, `for..of` treats string as a collection of characters, and iterates over them.
+
+If an object represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
 
 ## Symbol.iterator
 
@@ -27,7 +39,7 @@ let range = {
 
 To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
-- When `for..of` starts, it calls that method (or errors if not found).
+- When `for..of` starts, it calls that method once (or errors if not found).
 - The method must return an *iterator* -- an object with the method `next`.
 - When `for..of` wants the next value, it calls `next()` on that object.
 - The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
@@ -118,11 +130,7 @@ Arrays and strings are most widely used built-in iterables.
 
 For a string, `for..of` loops over its characters:
 
-```js run
-for (let char of "test") {
-  alert( char ); // t, then e, then s, then t
-}
-```
+
 
 And it works right with surrogate pairs!
 
