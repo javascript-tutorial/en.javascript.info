@@ -3,21 +3,10 @@
 
 *Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
 
-Of course, Arrays are iterable. But we can make any objects iterable. That helps to represent *collections* of values.
-
-Iterables are widely used by the core JavaScript. For instance, Strings are iterable also. As we'll see many built-in operators and methods rely on them.
-
-Here's an example of iteration over a string:
-
-```js run
-for (let char of "test") {
-  alert( char ); // t, then e, then s, then t
-}
-```
-
-As we can see, `for..of` treats string as a collection of characters, and iterates over them.
+Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, Strings are iterable also. As we'll see, many built-in operators and methods rely on them.
 
 If an object represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
+
 
 ## Symbol.iterator
 
@@ -39,10 +28,10 @@ let range = {
 
 To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
-- When `for..of` starts, it calls that method once (or errors if not found).
-- The method must return an *iterator* -- an object with the method `next`.
-- When `for..of` wants the next value, it calls `next()` on that object.
-- The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
+1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
+2. Onward, `for..of` works *only with that returned object*.
+3. When `for..of` wants the next value, it calls `next()` on that object.
+4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` must be the new value.
 
 Here's the full implementation for `range`:
 
@@ -55,7 +44,8 @@ let range = {
 // 1. call to for..of initially calls this
 range[Symbol.iterator] = function() {
 
-  // 2. ...it returns the iterator:
+  // ...it returns the iterator object:
+  // 2. Onward, for..of works only with this iterator, asking it for next values
   return {
     current: this.from,
     last: this.to,      
@@ -78,10 +68,10 @@ for (let num of range) {
 }
 ```
 
-There is an important separation of concerns in this code:
+Please note the core feature of iterables: an important separation of concerns:
 
 - The `range` itself does not have the `next()` method.
-- Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and it handles the iteration.
+- Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and it handles the whole iteration.
 
 So, the iterator object is separate from the object it iterates over.
 
@@ -113,10 +103,12 @@ for (let num of range) {
 }
 ```
 
-Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Sometimes that's fine too. The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself.
+Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Shorter? Yes. And sometimes that's fine too.
+
+The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, doable with some async scenarios.
 
 ```smart header="Infinite iterators"
-Infinite iterators are also doable. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
+Infinite iterators are also possible. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
 
 There are no limitations on `next`, it can return more and more values, that's normal.
 
@@ -130,9 +122,14 @@ Arrays and strings are most widely used built-in iterables.
 
 For a string, `for..of` loops over its characters:
 
+```js run
+for (let char of "test") {
+  // triggers 4 times: once for each character
+  alert( char ); // t, then e, then s, then t
+}
+```
 
-
-And it works right with surrogate pairs!
+And it works correctly with surrogate pairs!
 
 ```js run
 let str = '𝒳😂';
