@@ -1,7 +1,7 @@
 # Variables
 
 Most of the time, a JavaScript application needs to work with information. Here are 2 examples:
-1. An online-shop -- the information might include goods being sold and a shopping cart. 
+1. An online-shop -- the information might include goods being sold and a shopping cart.
 2. A chat application -- the information might include users, messages, and much more.
 
 Variables are used to store this information.
@@ -221,14 +221,13 @@ alert(num); // 5
 
 That's a bad practice, it gives an error in the strict mode:
 
-```js run untrusted
+```js run refresh untrusted
 "use strict";
 
 *!*
 num = 5; // error: num is not defined
 */!*
 ```
-
 ````
 
 ## Constants
