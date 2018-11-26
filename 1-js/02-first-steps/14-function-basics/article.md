@@ -204,6 +204,10 @@ function showMessage(from, text = anotherFunction()) {
 }
 ```
 
+```smart header="Evaluation of default parameters"
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunctions()` is called everytime `someMessage()` is called without the `text` parameter. This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
+```
+
 
 ````smart header="Default parameters old-style"
 Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
@@ -263,7 +267,7 @@ function checkAge(age) {
 */!*
   } else {
 *!*
-    return confirm('Got a permission from the parents?');
+    return confirm('Do you have permission from your parents?');
 */!*
   }
 }
@@ -334,7 +338,7 @@ So, it effectively becomes an empty return. We should put the value on the same 
 
 ## Naming a function [#function-naming]
 
-Functions are actions. So their name is usually a verb. It should briefly, but as accurately as possible describe what the function does. So that a person who reads the code gets the right clue.
+Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.
 
 It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
 
@@ -376,9 +380,9 @@ These examples assume common meanings of prefixes. What they mean for you is det
 ```smart header="Ultrashort function names"
 Functions that are used *very often* sometimes have ultrashort names.
 
-For example, the [jQuery](http://jquery.com) framework defines a function `$`. The [LoDash](http://lodash.com/) library has its core function named `_`.
+For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [LoDash](http://lodash.com/) library has its core function named `_`.
 
-These are exceptions. Generally functions names should be concise, but descriptive.
+These are exceptions. Generally functions names should be concise and descriptive.
 ```
 
 ## Functions == Comments

@@ -269,7 +269,7 @@ To generate an event, we first need to create an event object.
 
 The generic `Event(name, options)` constructor accepts an arbitrary event name and the `options` object with two properties:
   - `bubbles: true` if the event should bubble.
-  - `cancelable: true` is the `event.preventDefault()` should work.
+  - `cancelable: true` if the `event.preventDefault()` should work.
 
 Other constructors of native events like `MouseEvent`, `KeyboardEvent` and so on accept properties specific to that event type. For instance, `clientX` for mouse events.
 

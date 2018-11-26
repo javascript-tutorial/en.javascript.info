@@ -1,7 +1,7 @@
 
 # Objects
 
-As we know from the chapter <info:types>, there are seven language types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
 
 In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
 
@@ -205,7 +205,7 @@ let obj = {
   for: 1,
   let: 2,
   return: 3
-}
+};
 
 alert( obj.for + obj.let + obj.return );  // 6
 ```
@@ -220,7 +220,7 @@ alert(obj.__proto__); // [object Object], didn't work as intended
 
 As we see from the code, the assignment to a primitive `5` is ignored.
 
-That can become a source of bugs and even vulnerabilies if we intent to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+That can become a source of bugs and even vulnerabilies if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
 
 In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
 
@@ -301,7 +301,7 @@ alert( "blabla" in user ); // false, user.blabla doesn't exist
 
 Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
-If we omit quotes, that would mean a variable containing the actual name to be tested. For instance:
+If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
 
 ```js run
 let user = { age: 30 };
@@ -605,7 +605,7 @@ for (let key in user) {
 }
 */!*
 
-// now clone is a fully independant clone
+// now clone is a fully independent clone
 clone.name = "Pete"; // changed the data in it
 
 alert( user.name ); // still John in the original object

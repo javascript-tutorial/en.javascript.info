@@ -1,16 +1,16 @@
 # An Introduction to JavaScript
 
-Let's see what's so special about JavaScript, what we can achieve with it and which other technologies play well with it.
+Let's see what's so special about JavaScript, what we can achieve with it, and which other technologies play well with it.
 
 ## What is JavaScript?
 
-*JavaScript* was initially created to *"make webpages alive"*.
+*JavaScript* was initially created to *"make web pages alive"*.
 
-The programs in this language are called *scripts*. They can be written right in the HTML and execute automatically as the page loads.
+The programs in this language are called *scripts*. They can be written right in the HTML and executed automatically as the page loads.
 
 Scripts are provided and executed as a plain text. They don't need a special preparation or a compilation to run.
 
-In this aspect, JavaScript is very different from another language called [Java](http://en.wikipedia.org/wiki/Java).
+In this aspect, JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
 ```smart header="Why <u>Java</u>Script?"
 When JavaScript was created, it initially had another name: "LiveScript". But Java language was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
@@ -18,15 +18,15 @@ When JavaScript was created, it initially had another name: "LiveScript". But Ja
 But as it evolved, JavaScript became a fully independent language, with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where there exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+At present, JavaScript can not only execute in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
-The browser has an embedded engine, sometimes it's also called a "JavaScript virtual machine".
+The browser has an embedded engine, sometimes called a "JavaScript virtual machine".
 
 Different engines have different "codenames", for example:
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
-- ...There are other codenames like "Trident", "Chakra" for different versions of IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari etc.
+- ...There are other codenames like "Trident" and "Chakra" for different versions of IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari, etc.
 
 The terms above are good to remember, because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
 
@@ -45,9 +45,9 @@ The engine applies optimizations on every stage of the process. It even watches 
 
 The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
-The capabilities greatly depend on the environment that runs JavaScript. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests etc.
+The capabilities greatly depend on the environment that runs JavaScript. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
 
-In-browser JavaScript can do everything related to webpage manipulation, interaction with the user and the webserver.
+In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver.
 
 For instance, in-browser JavaScript is able to:
 
@@ -85,7 +85,7 @@ There are at least *three* great things about JavaScript:
 
 ```compare
 + Full integration with HTML/CSS.
-+ Simple things done simply.
++ Simple things are done simply.
 + Supported by all major browsers and enabled by default.
 ```
 
@@ -104,15 +104,15 @@ That's to be expected, because projects and requirements are different for every
 
 So recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
-Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and autoconverting it "under the hood".
+Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
 
 Examples of such languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby devs like it.
-- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. It is developed by Microsoft.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify the development and support of complex systems. It is developed by Microsoft.
 - [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
 
-There are more. Of course even if we use one of those languages, we should also know JavaScript, to really understand what we're doing.
+There are more. Of course, even if we use one of those languages, we should also know JavaScript, to really understand what we're doing.
 
 ## Summary
 

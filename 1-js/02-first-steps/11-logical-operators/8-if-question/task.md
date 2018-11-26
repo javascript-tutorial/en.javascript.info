@@ -6,7 +6,7 @@ importance: 5
 
 Which of these `alert`s are going to execute?
 
-What will be the results of the expressions inside `if(...)`?
+What will the results of the expressions be inside `if(...)`?
 
 ```js
 if (-1 || 0) alert( 'first' );

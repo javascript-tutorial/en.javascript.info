@@ -10,7 +10,7 @@ This handler is assigned to `<div>`, but also runs if you click any nested tag l
 </div>
 ```
 
-Isn't it a bit strange? Why the handler on `<div>` runs if the actual click was on `<em>`?
+Isn't it a bit strange? Why does the handler on `<div>` run if the actual click was on `<em>`?
 
 ## Bubbling
 
@@ -18,7 +18,7 @@ The bubbling principle is simple.
 
 **When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.**
 
-Let's say, we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
+Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
 
 ```html run autorun
 <style>
@@ -187,7 +187,7 @@ There's a property `event.eventPhase` that tells us the number of the phase on w
 The event handling process:
 
 - When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
-- Then the event first moves from the document root down the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way.
+- Then the event first moves from the document root down to the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way.
 - Then the event moves from `event.target` up to the root, calling handlers assigned using  `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false`.
 
 Each handler can access `event` object properties:

@@ -1,6 +1,6 @@
 # Attributes and properties
 
-When the browser loads the page, it "reads" (another word: "parses") HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
+When the browser loads the page, it "reads" (another word: "parses") the HTML and generates DOM objects from it. For element nodes, most standard HTML attributes automatically become properties of DOM objects.
 
 For instance, if the tag is `<body id="page">`, then the DOM object has `body.id="page"`.
 
@@ -51,7 +51,7 @@ So, DOM properties and methods behave just like those of regular JavaScript obje
 
 ## HTML attributes
 
-In HTML language, tags may have attributes. When the browser reads HTML text and creates DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
+In HTML, tags may have attributes. When the browser parses the HTML to create DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
 
 So when an element has `id` or another *standard* attribute, the corresponding property gets created. But that doesn't happen if the attribute is non-standard.
 
@@ -83,9 +83,9 @@ Here we can see it:
 </body>
 ```
 
-So, if an attribute is non-standard, there won't be DOM-property for it. Is there a way to access such attributes?
+So, if an attribute is non-standard, there won't be a DOM-property for it. Is there a way to access such attributes?
 
-Sure. All attributes are accessible using following methods:
+Sure. All attributes are accessible by using the following methods:
 
 - `elem.hasAttribute(name)` -- checks for existence.
 - `elem.getAttribute(name)` -- gets the value.
@@ -138,7 +138,7 @@ Please note:
 1. `getAttribute('About')` -- the first letter is uppercase here, and in HTML it's all lowercase. But that doesn't matter: attribute names are case-insensitive.
 2. We can assign anything to an attribute, but it becomes a string. So here we have `"123"` as the value.
 3. All attributes including ones that we set are visible in `outerHTML`.
-4. The `attributes` collection is iterable and has all attributes with `name` and `value`.
+4. The `attributes` collection is iterable and has all the attributes of the element (standard and non-standard) as objects with `name` and `value` properties.
 
 ## Property-attribute synchronization
 

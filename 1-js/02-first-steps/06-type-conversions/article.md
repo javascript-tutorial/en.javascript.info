@@ -91,7 +91,7 @@ alert( 1 + '2' ); // '12' (string to the right)
 alert( '1' + 2 ); // '12' (string to the left)
 ```
 
-That only happens when one of the arguments is a string. Otherwise, values are converted to numbers.
+That only happens when at least one of the arguments is a string. Otherwise, values are converted to numbers.
 ````
 
 ## ToBoolean

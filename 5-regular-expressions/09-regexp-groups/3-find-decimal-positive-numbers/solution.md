@@ -3,7 +3,7 @@ An integer number is `pattern:\d+`.
 
 A decimal part is: `pattern:\.\d+`.
 
-Because the decimal part is optional, let's put it in parentheses with quantifier `pattern:'?'`.
+Because the decimal part is optional, let's put it in parentheses with the quantifier `pattern:'?'`.
 
 Finally we have the regexp: `pattern:\d+(\.\d+)?`:
 

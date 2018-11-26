@@ -1,7 +1,7 @@
 # Variables
 
 Most of the time, a JavaScript application needs to work with information. Here are 2 examples:
-1. An online-shop -- the information might include goods being sold and a shopping cart. 
+1. An online-shop -- the information might include goods being sold and a shopping cart.
 2. A chat application -- the information might include users, messages, and much more.
 
 Variables are used to store this information.
@@ -183,7 +183,7 @@ let my-name; // a hyphen '-' is not allowed in the name
 Variables named `apple` and `AppLE` -- are two different variables.
 ```
 
-````smart header="Non-english letters are allowed, but not recommended"
+````smart header="Non-English letters are allowed, but not recommended"
 It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
 
 ```js
@@ -195,7 +195,7 @@ Technically, there is no error here, such names are allowed, but there is an int
 ````
 
 ````warn header="Reserved names"
-There is a list of reserved words, which cannot be used as variable names, because they are used by the language itself.
+There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names, because they are used by the language itself.
 
 For example, words `let`, `class`, `return`, `function` are reserved.
 
@@ -221,14 +221,13 @@ alert(num); // 5
 
 That's a bad practice, it gives an error in the strict mode:
 
-```js run untrusted
+```js run refresh untrusted
 "use strict";
 
 *!*
 num = 5; // error: num is not defined
 */!*
 ```
-
 ````
 
 ## Constants

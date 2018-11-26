@@ -1,6 +1,6 @@
 A regexp for a number is: `pattern:-?\d+(\.\d+)?`. We created it in previous tasks.
 
-An operator is `pattern:[-+*/]`. We put a dash `pattern:-` the first, because in the middle it would mean a character range, we don't need that.
+An operator is `pattern:[-+*/]`. We put the dash `pattern:-` first, because in the middle it would mean a character range, we don't need that.
 
 Note that a slash should be escaped inside a JavaScript regexp `pattern:/.../`.
 
@@ -21,15 +21,17 @@ alert( "1.2 + 12".match(reg) );
 The result includes:
 
 - `result[0] == "1.2 + 12"` (full match)
-- `result[1] == "1"` (first parentheses)
-- `result[2] == "2"` (second parentheses -- the decimal part `(\.\d+)?`)
-- `result[3] == "+"` (...)
-- `result[4] == "12"` (...)
-- `result[5] == undefined` (the last decimal part is absent, so it's undefined)
+- `result[1] == "1.2"` (first group `(-?\d+(\.\d+)?)` -- the first number, including the decimal part)
+- `result[2] == ".2"` (second group`(\.\d+)?` -- the first decimal part)
+- `result[3] == "+"` (third group `([-+*\/])` -- the operator)
+- `result[4] == "12"` (forth group `(-?\d+(\.\d+)?)` -- the second number)
+- `result[5] == undefined` (fifth group `(\.\d+)?` -- the last decimal part is absent, so it's undefined)
 
-We need only numbers and the operator. We don't need decimal parts.
+We only want the numbers and the operator, without the full match or the decimal parts.
 
-So let's remove extra groups from capturing by added `pattern:?:`, for instance: `pattern:(?:\.\d+)?`.
+The full match (the arrays first item) can be removed by shifting the array `pattern:result.shift()`.
+
+The decimal groups can be removed by making them into non-capturing groups, by adding `pattern:?:` to the beginning: `pattern:(?:\.\d+)?`.
 
 The final solution:
 

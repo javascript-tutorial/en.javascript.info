@@ -30,7 +30,7 @@ There are many other events. We'll get into more details of particular events in
 
 To react on events we can assign a *handler* -- a function that runs in case of an event.
 
-Handlers is a way to run JavaScript code in case of user actions.
+Handlers are a way to run JavaScript code in case of user actions.
 
 There are several ways to assign a handler. Let's see them, starting from the simplest one.
 
@@ -288,7 +288,7 @@ Multiple calls to `addEventListener` allow to add multiple handlers, like this:
 
 As we can see in the example above, we can set handlers *both* using a DOM-property and `addEventListener`. But generally we use only one of these ways.
 
-````warn header="For some events handlers only work with `addEventListener`"
+````warn header="For some events, handlers only work with `addEventListener`"
 There exist events that can't be assigned via a DOM-property. Must use `addEventListener`.
 
 For instance, the event `transitionend` (CSS animation finished) is like that.
@@ -354,7 +354,7 @@ Some properties of `event` object:
 `event.clientX / event.clientY`
 : Window-relative coordinates of the cursor, for mouse events.
 
-There are more properties. They depend on the event type, so we'll study them later when come to different events in details.
+There are more properties. They depend on the event type, so we'll study them later when we come to different events in details.
 
 ````smart header="The event object is also accessible from HTML"
 If we assign a handler in HTML, we can also use the `event` object, like this:

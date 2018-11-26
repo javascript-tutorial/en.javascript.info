@@ -61,7 +61,7 @@ div.className = "alert alert-success";
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
-After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because it's not been inserted into the page yet.
+After that, we have our DOM element ready. Right now it is just in a variable and we cannot see it. That is because it's not yet inserted into the page.
 
 ## Insertion methods
 
@@ -236,7 +236,7 @@ But what if we want to insert HTML "as html", with all tags and stuff working, l
 
 There's another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
 
-The first parameter is a string, specifying where to insert, must be one of the following:
+The first parameter is a string, specifying where to insert. Must be one of the following:
 
 - `"beforebegin"` -- insert `html` before `elem`,
 - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
@@ -273,10 +273,10 @@ We can easily notice similarities between this and the previous picture. The ins
 
 The method has two brothers:
 
-- `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` in inserted "as text" instead of HTML,
+- `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` is inserted "as text" instead of HTML,
 - `elem.insertAdjacentElement(where, elem)` -- the same syntax, but inserts an element.
 
-They exist mainly to make the syntax "uniform". In practice, most of the time only `insertAdjacentHTML` is used, because for elements and text we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
+They exist mainly to make the syntax "uniform". In practice, only `insertAdjacentHTML` is used most of the time. Because for elements and text, we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
 
 So here's an alternative variant of showing a message:
 
@@ -409,7 +409,7 @@ The syntax:
 
 The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use JavaScript to create a full-fledged webpage and write it.
 
-The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
+The method comes from times when there was no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 
 In modern scripts we can rarely see it, because of the following important limitation:
 

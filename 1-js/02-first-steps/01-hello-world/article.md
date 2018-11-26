@@ -2,7 +2,7 @@
 
 The tutorial that you're reading is about core JavaScript, which is platform-independent. Further on, you will learn Node.JS and other platforms that use it.
 
-But, we need a working environment to run our scripts, and, just because this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum, so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
+But, we need a working environment to run our scripts, and, just because this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
 
 So first, let's see how to attach a script to a webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
 
@@ -47,10 +47,10 @@ The `<script>` tag has a few attributes that are rarely used nowadays, but we ca
 
  The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
 
- : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. It's not required any more. Also, the modern standard totally changed the meaning of this attribute. Now it can be used for Javascript modules. But that's an advanced topic, but we'll talk about modules later in another part of the tutorial. 
+ : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern standard totally changed the meaning of this attribute. Now it can be used for Javascript modules. But that's an advanced topic; we'll talk about modules later in another part of the tutorial. 
 
  The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
-  : This attribute was meant to show the language of the script. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.
+  : This attribute was meant to show the language of the script. This attribute no longer makes sense, because JavaScript is the default language. No need to use it.
 
 Comments before and after scripts.
 : In really ancient books and guides, one may find comments inside `<script>`, like this:
@@ -61,7 +61,7 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    This trick isn't used in modern JavaScript. These comments were used to hide the JavaScript code from old browsers that didn't know about a `<script>` tag. Since browsers born in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+    This trick isn't used in modern JavaScript. These comments were used to hide the JavaScript code from old browsers that didn't know about a `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
 
 
 ## External scripts
@@ -78,7 +78,7 @@ Here `/path/to/script.js` is an absolute path to the file with the script (from 
 
 It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
 
-We can give a full URL as well, for instance:
+We can give a full URL as well. For instance:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
@@ -95,7 +95,7 @@ To attach several scripts, use multiple tags:
 ```smart
 As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
 
-The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+The benefit of a separate file is that the browser will download it and then store it in its [cache](https://en.wikipedia.org/wiki/Web_cache).
 
 After this, other pages that want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
 

@@ -137,15 +137,20 @@ The header may have 3 values:
 `ALLOW-FROM domain`
 : Allow inside a frame if the parent document is from the given domain.
 
-For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`. Here's the result:
+For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`.
+
+````online
+Here's the result:
 
 ```html
 <iframe src="https://twitter.com"></iframe>
 ```
 
+<!-- ebook: prerender/ chrome headless dies and timeouts on this iframe -->
 <iframe src="https://twitter.com"></iframe>
 
 Depending on your browser, the `iframe` above is either empty or alerting you that the browser won't permit that page to be navigating in this way.
+````
 
 ## Showing with disabled functionality
 

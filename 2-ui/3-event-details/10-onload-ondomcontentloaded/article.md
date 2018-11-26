@@ -53,9 +53,10 @@ When the browser initially loads HTML and comes across a `<script>...</script>` 
 
 External scripts (with `src`) also put DOM building to pause while the script is loading and executing. So `DOMContentLoaded` waits for external scripts as well.
 
-The only exception are external scripts with `async` and `defer` attributes. They tell the browser to continue processing without waiting for the scripts. So the user can see the page before scripts finish loading, good for performance.
+The only exception are external scripts with `async` and `defer` attributes. They tell the browser to continue processing without waiting for the scripts. This lets the user see the page before scripts finish loading, which is good for performance.
 
-```smart header="A word about `async` and `defer`"
+### Scripts with `async` and `defer`
+
 Attributes `async` and `defer` work only for external scripts. They are ignored if there's no `src`.
 
 Both of them tell the browser that it may go on working with the page, and load the script "in background", then run the script when it loads. So the script doesn't block DOM building and page rendering.
@@ -67,9 +68,9 @@ There are two differences between them.
 | Order | Scripts with `async` execute *in the load-first order*. Their document order doesn't matter -- which loads first runs first. | Scripts with `defer` always execute *in the document order* (as they go in the document). |
 | `DOMContentLoaded` | Scripts with `async` may load and execute while the document has not yet been fully downloaded. That happens if scripts are small or cached, and the document is long enough. | Scripts with `defer` execute after the document is loaded and parsed (they wait if needed), right before `DOMContentLoaded`. |
 
-So `async` is used for totally independent scripts.
+So `async` is used for independent scripts, like counters or ads, that don't need to access page content. And their relative execution order does not matter.
 
-```
+While `defer` is used for scripts that need DOM and/or their relative execution order is important.
 
 ### DOMContentLoaded and styles
 
@@ -214,8 +215,8 @@ The typical output:
 2. [2] readyState:interactive
 3. [2] DOMContentLoaded
 4. [3] iframe onload
-5. [4] readyState:complete
-6. [4] img onload
+5. [4] img onload
+6. [4] readyState:complete
 7. [4] window onload
 
 The numbers in square brackets denote the approximate time of when it happens. The real time is a bit greater, but events labeled with the same digit happen approximately at the same time (+- a few ms).
@@ -224,13 +225,14 @@ The numbers in square brackets denote the approximate time of when it happens. T
 - `document.readyState` becomes `complete` when all resources (`iframe` and `img`) are loaded. Here we can see that it happens in about the same time as `img.onload` (`img` is the last resource) and `window.onload`. Switching to `complete` state means the same as `window.onload`. The difference is that `window.onload` always works after all other `load` handlers.
 
 
-## Summary
+## Lifecycle events summary
 
 Page lifecycle events:
 
 - `DOMContentLoaded` event triggers on `document` when DOM is ready. We can apply JavaScript to elements at this stage.
-  - All scripts are executed except those that are external with `async` or `defer`
-  - Images and other resources may still continue loading.
+  - All inline scripts and scripts with `defer` are already executed.
+  - Async scripts may execute both before and after the event, depends on when they load.
+  - Images and other resources may also still continue loading.
 - `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
 - `beforeunload` event on `window` triggers when the user wants to leave the page. If it returns a string, the browser shows a question whether the user really wants to leave or not.
 - `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used.

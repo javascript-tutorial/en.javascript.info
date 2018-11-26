@@ -173,7 +173,7 @@ Complex regular expressions are hard to optimize, so the search may work exactly
 
 ## Alternative approach
 
-With regexps, there's often more then one way to do the same thing.
+With regexps, there's often more than one way to do the same thing.
 
 In our case we can find quoted strings without lazy mode using the regexp `pattern:"[^"]+"`:
 

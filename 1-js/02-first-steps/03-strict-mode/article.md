@@ -51,7 +51,7 @@ Once we enter the strict mode, there's no return.
 
 The differences of `"use strict"` versus the "default" mode are still to be covered.
 
-In the next chapters, as we learn language features, we'll make notes about the differences of the strict mode. Luckily, there are not so many. And they actually make our life better.
+In the next chapters, as we learn language features, we'll make notes about the differences of the strict and default mode. Luckily, there are not so many. And they actually make our life better.
 
 At this point in time it's enough to know about it in general:
 

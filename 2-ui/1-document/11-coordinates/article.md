@@ -11,7 +11,7 @@ It's important to understand the difference and which type is where.
 
 ## Window coordinates: getBoundingClientRect
 
-Window coordinates start at the left-upper corner of the window.
+Window coordinates start at the upper-left corner of the window.
 
 The method `elem.getBoundingClientRect()` returns window coordinates for `elem` as an object with properties:
 
@@ -25,7 +25,7 @@ Like this:
 ![](coords.png)
 
 
-Window coordinates do not take the scrolled out part of the document into account, they are calculated from the window left-upper corner.
+Window coordinates do not take the scrolled out part of the document into account, they are calculated from the window's upper-left corner.
 
 In other words, when we scroll the page, the element goes up or down, *its window coordinates change*. That's very important.
 
@@ -47,13 +47,13 @@ If you scroll the page, the button position changes, and window coordinates as w
 Also:
 
 - Coordinates may be decimal fractions. That's normal, internally browser uses them for calculations. We don't have to round them when setting to `style.position.left/top`, the browser is fine with fractions.
-- Coordinates may be negative. For instance, if the page is scrolled down and the `elem` top is now above the window then `elem.getBoundingClientRect().top` is negative.
-- Some browsers (like Chrome) also add to the result `getBoundingClientRect` properties `width` and `height`. We can get them also by subtraction: `height=bottom-top`, `width=right-left`.
+- Coordinates may be negative. For instance, if the page is scrolled down and the top `elem` is now above the window. Then, `elem.getBoundingClientRect().top` is negative.
+- Some browsers (like Chrome) provide additional properties (`width` and `height`) to `getBoundingClientRect` as the result. We can also get them by subtraction: `height=bottom-top`, `width=right-left`.
 
 ```warn header="Coordinates right/bottom are different from CSS properties"
-If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed` -- also the position relative to the viewport.
+If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed`. The positioning of an element is also relative to the viewport.
 
-But in CSS the `right` property means the distance from the right edge, and the `bottom` -- from the bottom edge.
+But in CSS, the `right` property means the distance from the right edge, and the `bottom` property means the distance from the bottom edge.
 
 If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the upper-left corner, including these ones.
 ```
@@ -153,7 +153,7 @@ To change that, we need to use document-based coordinates and `position:absolute
 
 ## Document coordinates
 
-Document-relative coordinates start from the left-upper corner of the document, not the window.
+Document-relative coordinates start from the upper-left corner of the document, not the window.
 
 In CSS, window coordinates correspond to `position:fixed`, while document coordinates are similar to `position:absolute` on top.
 
@@ -177,7 +177,7 @@ Here's the same page after the vertical scroll:
 
 ## Getting document coordinates [#getCoords]
 
-There's no standard method to get document coordinates of an element. But it's easy to write it.
+There's no standard method to get the document coordinates of an element. But it's easy to write it.
 
 The two coordinate systems are connected by the formula:
 - `pageY` = `clientY` + height of the scrolled-out vertical part of the document.

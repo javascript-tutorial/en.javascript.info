@@ -1,8 +1,8 @@
 # Cross-window communication
 
-The "Same Origin" (same site) policy limits access of windows and frame to each other.
+The "Same Origin" (same site) policy limits access of windows and frames to each other.
 
-The idea is that if we have two windows open: one from `john-smith.com`, and another one is `gmail.com`, then we wouldn't want a script from `john-smith.com` to read our mail.
+The idea is that if a user has two pages open: one from `john-smith.com`, and another one is `gmail.com`, then they wouldn't want a script from `john-smith.com` to read our mail from `gmail.com`. So, the purpose of the "Same Origin" policy is to protect users from information theft.
 
 ## Same Origin [#same-origin]
 
@@ -21,32 +21,31 @@ These ones do not:
 - <code><b>https://</b>site.com</code> (another protocol: `https`)
 - <code>http://site.com:<b>8080</b></code> (another port: `8080`)
 
-If we have a reference to another window (a popup or iframe), and that window comes from the same origin, then we can do everything with it.
+The "Same Origin" policy states that:
 
-If it comes from another origin, then we can only change its location. Please note: not *read* the location, but *modify* it, redirect it to another place. That's safe, because the URL may contain sensitive parameters, so reading it from another origin is prohibited, but changing is not.
+- if we have a reference to another window, e.g. a popup created by `window.open` or a window inside `<iframe>`, and that window comes from the same origin, then we have full access to that window.
+- otherwise, if it comes from another origin, then we can't access the content of that window: variables, document, anything. The only exception is `location`: we can change it (thus redirecting the user). But we can't not *read* location (so we can't see where the user is now, no information leak).
 
-Also such windows may exchange messages. Soon about that later.
+Now let's see how some examples. First, about pages that come from the same origin, and thus there are no limitations. And afterwards we'll cover cross-window messaging that allows to work around the "Same Origin" policy.
 
-````warn header="Exclusion: subdomains may be same-origin"
 
-There's an important exclusion in the same-origin policy.
+````warn header="Subdomains may be same-origin"
+There's a small exclusion in the "Same Origin" policy.
 
-If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com`, we can use JavaScript to assign to `document.domain` their common second-level domain `site.com`. Then these windows are treated as having the same origin.
+If windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), they can be treated as coming from the "same origin".
 
-In other words, all such documents (including the one from `site.com`) should have the code:
+To make it work, all such pages (including the one from `site.com`) should run the code:
 
 ```js
 document.domain = 'site.com';
 ```
 
-Then they can interact without limitations.
-
-That's only possible for pages with the same second-level domain.
+That's all. Now they can interact without limitations. Again, that's only possible for pages with the same second-level domain.
 ````
 
 ## Accessing an iframe contents
 
-An `<iframe>` is a two-faced beast. From one side it's a tag, just like `<script>` or `<img>`. From the other side it's a window-in-window.
+Our first example covers iframes. An `<iframe>` is a two-faced beast. From one side it's a tag, just like `<script>` or `<img>`. From the other side it's a window-in-window.
 
 The embedded window has a separate `document` and `window` objects.
 
@@ -207,7 +206,7 @@ if (window == top) { // current window == window.top?
 
 ## The sandbox attribute
 
-The `sandbox` attribute allows to forbid certain actions inside an `<iframe>`, to run an untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
+The `sandbox` attribute allows for the exclusion of certain actions inside an `<iframe>` in order to prevent it executing untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
 
 By default, for `<iframe sandbox src="...">` the "default set" of restrictions is applied to the iframe. But we can provide a space-separated list of "excluded" limitations as a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`. The listed limitations are not applied.
 
@@ -247,7 +246,9 @@ The purpose of the `"sandbox"` attribute is only to *add more* restrictions. It 
 
 The `postMessage` interface allows windows to talk to each other no matter which origin they are from.
 
-It has two parts.
+So, it's a way around the "Same Origin" policy. It allows a window from `john-smith.com` to talk to `gmail.com` and exchange information, but only if they both agree and call corresponding Javascript functions. That makes it safe for users.
+
+The interface has two parts.
 
 ### postMessage
 
@@ -348,6 +349,7 @@ If windows share the same origin (host, port, protocol), then windows can do wha
 Otherwise, only possible actions are:
 - Change the location of another window (write-only access).
 - Post a message to it.
+
 
 Exclusions are:
 - Windows that share the same second-level domain: `a.site.com` and `b.site.com`. Then setting `document.domain='site.com'` in both of them puts them into the "same origin" state.

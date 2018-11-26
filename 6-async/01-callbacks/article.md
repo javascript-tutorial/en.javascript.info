@@ -23,7 +23,7 @@ We can use it like this:
 loadScript('/my/script.js');
 ```
 
-The function is called "asynchronously", because the action (script loading) finishes not now, but later.
+The function is called "asynchronously," because the action (script loading) finishes not now, but later.
 
 The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
 
@@ -45,7 +45,7 @@ newFunction(); // no such function!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
 
 Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
 
@@ -94,7 +94,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course it's a general approach.
+Here we did it in `loadScript`, but of course, it's a general approach.
 
 ## Callback in callback
 
@@ -174,14 +174,14 @@ loadScript('/my/script.js', function(error, script) {
 Once again, the recipe that we used for `loadScript` is actually quite common. It's called the "error-first callback" style.
 
 The convention is:
-1. The first argument of `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
+1. The first argument of the `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
 2. The second argument (and the next ones if needed) are for the successful result. Then `callback(null, result1, result2…)` is called.
 
 So the single `callback` function is used both for reporting errors and passing back results.
 
-## Pyramid of doom
+## Pyramid of Doom
 
-From the first look it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+From the first look, it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
 
 But for multiple asynchronous actions that follow one after another we'll have code like this:
 
@@ -220,7 +220,7 @@ In the code above:
 
 As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have a real code instead of `...`, that may include more loops, conditional statements and so on.
 
-That's sometimes called "callback hell" or "pyramid of doom".
+That's sometimes called "callback hell" or "pyramid of doom."
 
 ![](callback-hell.png)
 
@@ -260,12 +260,12 @@ function step3(error, script) {
 };
 ```
 
-See? It does the same, and there's no deep nesting now, because we made every action a separate top-level function.
+See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, you probably noticed that. One needs to eye-jump between pieces while reading it. That's inconvenient, especially the reader is not familiar with the code and doesn't know where to eye-jump.
+It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that. One needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
-Also the functions named `step*` are all of a single use, they are created only to avoid the "pyramid of doom". No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
+Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
 
-We'd like to have a something better.
+We'd like to have something better.
 
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises", described in the next chapter.
+Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises," described in the next chapter.

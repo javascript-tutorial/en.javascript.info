@@ -1,6 +1,6 @@
 # Styles and classes
 
-Before we get to JavaScript ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
+Before we get into JavaScript's ways of dealing with styles and classes -- here's an important rule. Hopefully it's obvious enough, but we still have to mention it.
 
 There are generally two ways to style an element:
 
@@ -125,7 +125,7 @@ document.body.style.display = "none"; // hide
 setTimeout(() => document.body.style.display = "", 1000); // back to normal
 ```
 
-If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style` property at all.
+If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `display` property at all.
 
 ````smart header="Full rewrite with `style.cssText`"
 Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
@@ -147,7 +147,7 @@ To set the full style as a string, there's a special property `style.cssText`:
 </script>
 ```
 
-We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we don't delete something important.
+We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we won't delete something important.
 
 The same can be accomplished by setting an attribute: `div.setAttribute('style', 'color: red...')`.
 ````

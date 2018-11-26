@@ -283,7 +283,7 @@ In most cases the distinction is unnoticeable, because operators are suited to t
 
 Remember these two special numeric values?
 
-- `Infinite` (and `-Infinite`) is a special numeric value that is greater (less) than anything.
+- `Infinity` (and `-Infinity`) is a special numeric value that is greater (less) than anything.
 - `NaN` represents an error.
 
 They belong to the type `number`, but are not "normal" numbers, so there are special functions to check for them:
@@ -349,7 +349,7 @@ But in real life we often have values in units, like `"100px"` or `"12pt"` in CS
 
 That's what `parseInt` and `parseFloat` are for.
 
-They "read" a number from a string until they can. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+They "read" a number from a string until they can't. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
 
 ```js run
 alert( parseInt('100px') ); // 100

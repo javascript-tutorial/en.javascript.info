@@ -118,11 +118,11 @@ First, when a function runs, a new function Lexical Environment is created autom
 <!--
     ```js
     let phrase = "Hello";
-    
+
     function say(name) {
      alert( `${phrase}, ${name}` );
     }
-    
+
     say("John"); // Hello, John
     ```-->
 
@@ -319,7 +319,7 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
     In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
-2. The code runs on, and the call to `makeCounter()` is performed. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+2. The code runs on, the new global variable `counter` is declared and for its value `makeCounter()` is called. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
 
     ![](lexenv-nested-makecounter-2.png)
 
@@ -339,7 +339,7 @@ Here's what's going on in the `makeCounter` example step-by-step, follow it to m
 
     ![](lexenv-nested-makecounter-3.png)
 
-    Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running, we're going to return it.
+    Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running; we're going to return it soon.
 
 4. As the execution goes on, the call to `makeCounter()` finishes, and the result (the tiny nested function) is assigned to the global variable `counter`:
 
@@ -380,7 +380,7 @@ But if there were no `let name` in `makeWorker()`, then the search would go outs
 ```smart header="Closures"
 There is a general programming term "closure", that developers generally should know.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript all functions are naturally closures (there is only one exclusion, to be covered in <info:new-function>).
+A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exclusion, to be covered in <info:new-function>).
 
 That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and all of them can access outer variables.
 
@@ -400,7 +400,7 @@ In the example below, when the execution goes into `if` block, the new "if-only"
 <!--
     ```js run
     let phrase = "Hello";
-    
+
     if (true) {
         let user = "John";
 

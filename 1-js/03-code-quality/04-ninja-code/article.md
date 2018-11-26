@@ -5,7 +5,7 @@
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
-Programmer ninjas of the past used these tricks to make sharpen the mind of code maintainers.
+Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
 
 Code review gurus look for them in test tasks.
 
@@ -32,7 +32,7 @@ For instance, take a look at this ternary operator `'?'`:
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
+Cool, right? If you write like that, a developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
 
 Tell them that shorter is always better. Initiate them into the paths of ninja.
 
@@ -155,7 +155,7 @@ function ninjaFunction(elem) {
 
 A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that he's working with a clone!
 
-Deadly effective even against an experienced ninja. Seen in code regularly.
+Seen in code regularly. Deadly effective even against an experienced ninja. 
 
 ## Underscores for fun
 
@@ -170,6 +170,8 @@ A smart ninja puts underscores at one spot of code and evades them at other plac
 Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
 
 Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two.
+
+
 
 ## Overlap outer variables
 
@@ -204,7 +206,7 @@ There are functions that look like they don't change anything. Like `isReady()`,
 
 **A really beautiful trick is to add a "useful" action to them, besides the main task.**
 
-The expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
 
 **Another way to surprise is to return a non-standard result.**
 

@@ -276,7 +276,7 @@ Looking closely, we may notice two operations in `obj.method()` statement:
 1. First, the dot `'.'` retrieves the property `obj.method`.
 2. Then parentheses `()` execute it.
 
-So, how does the information about `this` gets passed from the first part to the second one?
+So, how does the information about `this` get passed from the first part to the second one?
 
 If we put these operations on separate lines, then `this` will be lost for sure:
 
@@ -316,7 +316,7 @@ When parentheses `()` are called on the Reference Type, they receive the full in
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
-So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj[method]()` syntax (they do the same here). Later in this tutorial, we will learn various ways to solve this problem such as [func.bind()](/bind#solution-2-bind).
+So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj['method']()` syntax (they do the same here). Later in this tutorial, we will learn various ways to solve this problem such as [func.bind()](/bind#solution-2-bind).
 
 ## Arrow functions have no "this"
 

@@ -132,7 +132,7 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 ```warn header="`length` is a property"
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add brackets after it.
+Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
 ```
 
 ## Accessing characters
@@ -275,8 +275,8 @@ while ((pos = str.indexOf(target, pos + 1)) != -1) {
 */!*
 ```
 
-```smart header="`str.lastIndexOf(pos)`"
-There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
+```smart header="`str.lastIndexOf(substr, position)`"
+There is also a similar method [str.lastIndexOf(substr, position)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
 
 It would list the occurrences in the reverse order.
 ```
