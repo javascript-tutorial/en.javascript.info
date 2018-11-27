@@ -127,7 +127,7 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 
 ## Summary
 
-There are three most widely used type conversions: to string, to number and to boolean.
+The three most widely used type conversions are: to string, to number and to boolean.
 
 **`ToString`** -- Occurs when we output something, can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
