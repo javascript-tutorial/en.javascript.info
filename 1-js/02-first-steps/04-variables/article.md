@@ -219,9 +219,9 @@ num = 5; // the variable "num" is created if didn't exist
 alert(num); // 5
 ```
 
-That's a bad practice, it gives an error in the strict mode:
+That's a bad practice, it would give an error in the strict mode:
 
-```js run refresh untrusted
+```js
 "use strict";
 
 *!*
