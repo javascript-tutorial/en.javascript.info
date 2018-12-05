@@ -202,7 +202,7 @@ On the picture below we can see `scrollHeight` and `scrollTop` for a block with 
 In other words, `scrollTop` is "how much is scrolled up".
 
 ````smart header="`scrollLeft/scrollTop` can be modified"
-Most geometry properties that are read-only, but `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
+Most of the geometry properties here are read-only, but `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
 
 ```online
 If you click the element below, the code `elem.scrollTop += 10` executes. That makes the element content scroll `10px` down.
