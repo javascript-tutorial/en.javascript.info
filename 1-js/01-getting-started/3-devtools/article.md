@@ -1,14 +1,14 @@
 # Developer console
 
-Code is prone to errors. You are quite likely to make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+Code is prone to errors. You will quite likely make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
-But in the browser, a user doesn't see the errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
+But in the browser, users doesn't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
 
 To see errors and get a lot of other useful information about scripts, "developer tools" have been embedded in browsers.
 
-Most often developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most people have a "favorite" browser and switch to others if a problem is browser-specific.
+Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
 
-Developer tools are potent; there are many features. To start, we'll learn how to open them, look at errors and run JavaScript commands.
+Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
 
 ## Google Chrome
 
@@ -31,20 +31,20 @@ The exact look of developer tools depends on your version of Chrome. It changes 
 
 Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
 
-Now we can see errors, and that's enough for a start. We'll be back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
+Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
 
 
 ## Firefox, Edge, and others
 
 Most other browsers use `key:F12` to open developer tools.
 
-The look & feel of them is quite similar. Once you know how to use one of those tools (you can start with Chrome), you can easily switch to another.
+The look & feel of them is quite similar. Once you know how to use one of these tools (you can start with Chrome), you can easily switch to another.
 
 ## Safari
 
 Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
 
-Open Preferences and go to "Advanced" pane. There's a checkbox at the bottom:
+Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom:
 
 ![safari](safari.png)
 
@@ -52,7 +52,7 @@ Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu ite
 
 ## Summary
 
-- Developer tools allow us to see errors, run commands, examine variables and much more.
-- They can be opened with `key:F12` for most browsers under Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
+- Developer tools allow us to see errors, run commands, examine variables, and much more.
+- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
 
 Now we have the environment ready. In the next section, we'll get down to JavaScript.
