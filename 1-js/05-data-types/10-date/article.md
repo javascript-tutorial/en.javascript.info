@@ -108,7 +108,7 @@ alert( date.getHours() );
 alert( date.getUTCHours() );
 ```
 
-Besides the given methods, there are two special ones, that do not have a UTC-variant:
+Besides the given methods, there are two special ones that do not have a UTC-variant:
 
 [getTime()](mdn:js/Date/getTime)
 : Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
