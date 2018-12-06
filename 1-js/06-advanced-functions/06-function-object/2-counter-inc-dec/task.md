@@ -8,7 +8,7 @@ Modify the code of `makeCounter()` so that the counter can also decrease and set
 
 - `counter()` should return the next number (as before).
 - `counter.set(value)` should set the `count` to `value`.
-- `counter.decrease(value)` should decrease the `count` by 1.
+- `counter.decrease()` should decrease the `count` by 1.
 
 See the sandbox code for the complete usage example.
 
