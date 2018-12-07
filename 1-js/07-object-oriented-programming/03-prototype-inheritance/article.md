@@ -112,7 +112,7 @@ let rabbit = {
 let longEar = {
   earLength: 10,
   __proto__: rabbit
-}
+};
 
 // walk is taken from the prototype chain
 longEar.walk(); // Animal walk
@@ -146,7 +146,7 @@ let animal = {
 
 let rabbit = {
   __proto__: animal
-}
+};
 
 *!*
 rabbit.walk = function() {
