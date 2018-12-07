@@ -13,7 +13,6 @@ An IDE loads the project (which can be many files), allows navigation between fi
 If you haven't selected an IDE yet, consider the following options:
 
 - [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development. The same company offers other editors for other languages (paid).
-- [Visual Studio Code](https://code.visualstudio.com/) (free).
 - [Netbeans](http://netbeans.org/) (paid).
 
 All of these IDEs are cross-platform.
@@ -34,7 +33,7 @@ In practice, lightweight editors may have a lot of plugins including directory-l
 
 The following options deserve your attention:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free) also has many IDE-like features.
 - [Atom](https://atom.io/) (cross-platform, free).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
