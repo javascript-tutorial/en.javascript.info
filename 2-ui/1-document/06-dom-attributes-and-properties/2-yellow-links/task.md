@@ -7,7 +7,7 @@ importance: 3
 Make all external links orange by altering their `style` property.
 
 A link is external if:
-- It's `href` has `://` in it
+- Its `href` has `://` in it
 - But doesn't start with `http://internal.com`.
 
 Example:
