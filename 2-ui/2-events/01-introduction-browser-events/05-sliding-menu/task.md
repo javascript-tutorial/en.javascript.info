@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Create a menu sliding menu
+# Create a sliding menu
 
 Create a menu that opens/collapses on click:
 
