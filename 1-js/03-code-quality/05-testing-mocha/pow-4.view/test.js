@@ -1,6 +1,6 @@
 describe("pow", function() {
 
-  describe("raises x to power n", function() {
+  describe("raises x to power 3", function() {
 
     function makeTest(x) {
       let expected = x * x * x;
