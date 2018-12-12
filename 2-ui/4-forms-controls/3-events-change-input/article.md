@@ -6,7 +6,7 @@ Let's discuss various events that accompany data updates.
 
 The [change](http://www.w3.org/TR/html5/forms.html#event-input-change) event triggers when the element has finished changing.
 
-For text inputs that means that the event occurs when it looses focus.
+For text inputs that means that the event occurs when it loses focus.
 
 For instance, while we are typing in the text field below -- there's no event. But when we move the focus somewhere else, for instance, click on a button -- there will be a `change` event:
 
@@ -62,7 +62,7 @@ For instance, the code below prevents all such events and shows what we are tryi
 </script>
 ```
 
-Technically, we can copy/paste everything. For instance, we can copy and file in the OS file manager, and paste it.
+Technically, we can copy/paste everything. For instance, we can copy a file in the OS file manager, and paste it.
 
 There's a list of methods [in the specification](https://www.w3.org/TR/clipboard-apis/#dfn-datatransfer) to work with different data types, read/write to the clipboard.
 
