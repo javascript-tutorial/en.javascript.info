@@ -96,7 +96,7 @@ Try entering the blue element and then moving the mouse on the red one -- and wa
 
 So, for a handler that does not take `target` into account, it looks like we left the parent in `mouseout` in `(2)` and returned back to it by `mouseover` in `(3)`.
 
-If we perform some actions on entering/leaving the element, then we'll get a lot of extra "false" runs. For simple stuff may be unnoticeable. For complex things that may bring unwanted side-effects.
+If we perform some actions on entering/leaving the element, then we'll get a lot of extra "false" runs. For simple stuff that may be unnoticeable. For complex things that may bring unwanted side-effects.
 
 We can fix it by using `mouseenter/mouseleave` events instead.
 
