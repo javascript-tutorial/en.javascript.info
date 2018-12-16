@@ -53,7 +53,7 @@ Besides regular numbers, there are so-called "special numeric values" which also
     So, if there's `NaN` somewhere in a mathematical expression, it propagates to the whole result.
 
 ```smart header="Mathematical operations are safe"
-Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
+Doing math is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
 
 The script will never stop with a fatal error ("die"). At worst we'll get `NaN` as the result.
 ```
@@ -78,9 +78,9 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are "simple" quotes. There's no difference between them in JavaScript.
+Double and single quotes are both "simple" quotes. There's no difference between them in JavaScript.
 
-Backticks are "extended functionality" quotes. They allow us to embed variables and expressions into a string by wrapping them in `${…}`, for example:
+Backticks are "extended functionality" quotes. They allow us to embed variables, and expressions into a string by wrapping them in `${…}`, for example:
 
 ```js run
 let name = "John";
@@ -92,7 +92,7 @@ alert( `Hello, *!*${name}*/!*!` ); // Hello, John!
 alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 ```
 
-The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
+The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name`, or an arithmetical expression like `1 + 2` or something more complex.
 
 Please note that this can only be done in backticks. Other quotes do not allow such embedding!
 ```js run
