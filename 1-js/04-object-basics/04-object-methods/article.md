@@ -257,7 +257,7 @@ On the last line there is a ternary operator that chooses either `user.hi` or `u
 
 The method is immediately called with parentheses `()`. But it doesn't work right!
 
-You can see that the call results in an error, cause the value of `"this"` inside the call becomes `undefined`.
+You can see that the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
 This works (object dot method):
 ```js
