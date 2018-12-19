@@ -41,7 +41,7 @@ function parse(expr) {
 
   let result = expr.match(reg);
 
-  if (!result) return;
+  if (!result) return [];
   result.shift();
 
   return result;
