@@ -27,7 +27,7 @@ The mini-window with the message is called a *modal window*. The word "modal" me
 Function `prompt` accepts two arguments:
 
 ```js no-beautify
-result = prompt(title[, default]);
+result = prompt(title , [default value]);
 ```
 
 It shows a modal window with a text message, an input field for the visitor and buttons OK/CANCEL.
