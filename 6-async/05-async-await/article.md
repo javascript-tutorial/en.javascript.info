@@ -83,12 +83,12 @@ function f() {
 }
 ```
 
-We can get such error in case if we forget to put `async` before a function. As said, `await` only works inside `async function`.
+We will get this error if we do not put `async` before a function. As said, `await` only works inside an `async function`.
 ````
 
-Let's take `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
+Let's take the `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
 
-1. We'll need to replace `.then` calls by `await`.
+1. We'll need to replace `.then` calls with `await`.
 2. Also we should make the function `async` for them to work.
 
 ```js run
@@ -122,7 +122,7 @@ showAvatar();
 Pretty clean and easy to read, right? Much better than before.
 
 ````smart header="`await` won't work in the top-level code"
-People who are just starting to use `await` tend to forget that, but we can't write `await` in the top-level code. That wouldn't work:
+People who are just starting to use `await` tend to forget the fact that we can't use `await` in top-level code. For example, this will not work:
 
 ```js run
 // syntax error in top-level code
