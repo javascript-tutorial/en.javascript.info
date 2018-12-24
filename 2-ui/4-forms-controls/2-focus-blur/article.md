@@ -49,7 +49,7 @@ Your email please: <input type="email" id="input">
 </script>
 ```
 
-Modern HTML allows to do many validations using input attributes: `required`, `pattern` and so on. And sometimes they are just what we need. JavaScript can be used when we want more flexibility. Also we could automatically send the changed value on the server if it's correct.
+Modern HTML allows to do many validations using input attributes: `required`, `pattern` and so on. And sometimes they are just what we need. JavaScript can be used when we want more flexibility. Also we could automatically send the changed value to the server if it's correct.
 
 
 ## Methods focus/blur
@@ -100,7 +100,7 @@ One of them is when the visitor clicks somewhere else. But also JavaScript itsel
 
 These features sometimes cause `focus/blur` handlers to misbehave -- to trigger when they are not needed.
 
-The best recipe is to be careful when using these events. If we want to track user-initiated focus-loss, then we should evade causing it by ourselves.
+The best recipe is to be careful when using these events. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.
 ```
 ## Allow focusing on any element: tabindex
 

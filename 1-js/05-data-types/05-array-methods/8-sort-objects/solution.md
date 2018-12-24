@@ -1,6 +1,6 @@
 ```js run no-beautify
 function sortByName(arr) {
-  arr.sort((a, b) => a.name > b.name);
+  arr.sort((a, b) => b.name > a.name ? 1 : -1);
 }
 
 let john = { name: "John", age: 25 };

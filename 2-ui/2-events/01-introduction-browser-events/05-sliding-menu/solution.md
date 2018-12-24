@@ -2,9 +2,9 @@
 # HTML/CSS
 First let's create HTML/CSS.
 
-A menu is a standalone graphical component on the page, so its better to put it into a single DOM element.
+A menu is a standalone graphical component on the page, so it's better to put it into a single DOM element.
 
-A list of menu items can be layed out as a list `ul/li`.
+A list of menu items can be laid out as a list `ul/li`.
 
 Here's the example structure:
 

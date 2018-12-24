@@ -329,7 +329,7 @@ It calls the function for each element of the array and returns the array of res
 For instance, here we transform each element into its length:
 
 ```js run
-let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length)
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 alert(lengths); // 5,7,6
 ```
 

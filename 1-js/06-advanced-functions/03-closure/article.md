@@ -475,7 +475,7 @@ They look like this:
 
 Here a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
 
-The Function Expression is wrapped with brackets `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so there will be an error:
+The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so there will be an error:
 
 ```js run
 // Error: Unexpected token (
@@ -497,7 +497,7 @@ function go() {
 }(); // <-- can't call Function Declaration immediately
 ```
 
-So, round brackets are needed to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression. It needs no name and can be called immediately.
+So, parenthesis are needed to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression. It needs no name and can be called immediately.
 
 There are other ways to tell JavaScript that we mean Function Expression:
 
