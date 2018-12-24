@@ -2,23 +2,22 @@
 
 A code editor is the place where programmers spend most of their time.
 
-There are two archetypes: IDE and lightweight editors. Many people feel comfortable choosing one tool of each type.
+There are two main types of code editors: IDEs and lightweight editors. Many people use one tool of each type.
 
 ## IDE
 
-The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) means a powerful editor with many features that usually operates on a "whole project." As the name suggests, that's not just an editor, but a full-scale "development environment."
+The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) refers to a powerful editor with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
 
-An IDE loads the project (can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), integrates with a version management system (like [git](https://git-scm.com/)), a testing environment and other "project-level" stuff.
+An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
 
-If you haven't considered selecting an IDE yet, look at the following variants:
+If you haven't selected an IDE yet, consider the following options:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development and other editors of the same company if you need additional languages (paid).
-- [Visual Studio Code](https://code.visualstudio.com/) (free).
+- [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development. The same company offers other editors for other languages (paid).
 - [Netbeans](http://netbeans.org/) (paid).
 
-All of the IDEs are cross-platform.
+All of these IDEs are cross-platform.
 
-For Windows, there's also a "Visual Studio" editor, don't confuse it with "Visual Studio Code." "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. A free version of it is called ([Visual Studio Community](https://www.visualstudio.com/vs/community/).
+For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code." "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. A free version of it is called [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Many IDEs are paid but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
@@ -34,7 +33,7 @@ In practice, lightweight editors may have a lot of plugins including directory-l
 
 The following options deserve your attention:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free) also has many IDE-like features.
 - [Atom](https://atom.io/) (cross-platform, free).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
@@ -46,7 +45,7 @@ The personal preference of the author is to have both an IDE for projects and a 
 
 I'm using:
 
-- [WebStorm](http://www.jetbrains.com/webstorm/) for JS, and if there is one more language in the project, then I switch to one of the other JetBrains offerings listed above.
+- As an IDE for JS -- [WebStorm](http://www.jetbrains.com/webstorm/) (I switch to one of the other JetBrains offerings when using other languages)
 - As a lightweight editor -- [Sublime Text](http://www.sublimetext.com) or [Atom](https://atom.io/).
 
 ## Let's not argue
@@ -55,4 +54,4 @@ The editors in the lists above are those that either I or my friends whom I cons
 
 There are other great editors in our big world. Please choose the one you like the most.
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habits, personal preferences.
+The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.

@@ -4,7 +4,7 @@ importance: 4
 
 # Load images with a callback
 
-Normally, images are loaded when they are created. So i when we add `<img>` to the page, the user does not see the picture immediately. The browser needs to load it first.
+Normally, images are loaded when they are created. So when we add `<img>` to the page, the user does not see the picture immediately. The browser needs to load it first.
 
 To show an image immediately, we can create it "in advance", like this:
 

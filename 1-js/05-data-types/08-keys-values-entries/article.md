@@ -45,7 +45,7 @@ let user = {
 };
 ```
 
-- `Object.keys(user) = [name, age]`
+- `Object.keys(user) = ["name", "age"]`
 - `Object.values(user) = ["John", 30]`
 - `Object.entries(user) = [ ["name","John"], ["age",30] ]`
 
