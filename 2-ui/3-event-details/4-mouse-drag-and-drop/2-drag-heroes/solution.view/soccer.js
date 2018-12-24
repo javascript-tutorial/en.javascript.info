@@ -1,3 +1,5 @@
+let isDragging = false;
+
 document.addEventListener('mousedown', function(event) {
 
   let dragElement = event.target.closest('.draggable');
@@ -5,16 +7,19 @@ document.addEventListener('mousedown', function(event) {
   if (!dragElement) return;
 
   event.preventDefault();
-  let coords, shiftX, shiftY;
-
-  startDrag(event.clientX, event.clientY);
-
-  document.addEventListener('mousemove', onMouseMove);
-
-  dragElement.onmouseup = function() {
-    finishDrag();
+  
+  dragElement.ondragstart = function() {
+      return false;
   };
 
+  let coords, shiftX, shiftY;
+
+  startDrag(dragElement, event.clientX, event.clientY);
+
+  function onMouseUp(event) {
+    finishDrag();
+  };
+  
   function onMouseMove(event) {
     moveAt(event.clientX, event.clientY);
   }
@@ -22,25 +27,37 @@ document.addEventListener('mousedown', function(event) {
   // on drag start:
   //   remember the initial shift
   //   move the element position:fixed and a direct child of body
-  function startDrag(clientX, clientY) {
+  function startDrag(element, clientX, clientY) {
+    if(isDragging) {
+      return;
+    }
+    
+    isDragging = true;
+    
+    document.addEventListener('mousemove', onMouseMove);
+    element.addEventListener('mouseup', onMouseUp);
 
-    shiftX = clientX - dragElement.getBoundingClientRect().left;
-    shiftY = clientY - dragElement.getBoundingClientRect().top;
+    shiftX = clientX - element.getBoundingClientRect().left;
+    shiftY = clientY - element.getBoundingClientRect().top;
 
-    dragElement.style.position = 'fixed';
-
-    document.body.append(dragElement);
+    element.style.position = 'fixed';
 
     moveAt(clientX, clientY);
   };
 
   // switch to absolute coordinates at the end, to fix the element in the document
   function finishDrag() {
+    if(!isDragging) {
+      return;
+    }
+    
+    isDragging = false;
+
     dragElement.style.top = parseInt(dragElement.style.top) + pageYOffset + 'px';
     dragElement.style.position = 'absolute';
 
     document.removeEventListener('mousemove', onMouseMove);
-    dragElement.onmouseup = null;
+    dragElement.removeEventListener('mouseup', onMouseUp);
   }
 
   function moveAt(clientX, clientY) {
