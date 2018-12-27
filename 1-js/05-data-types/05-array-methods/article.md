@@ -201,6 +201,35 @@ let arrayLike = {
 alert( arr.concat(arrayLike) ); // 1,2,something,else
 ```
 
+## Iterate: forEach
+
+The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+
+The syntax:
+```js
+arr.forEach(function(item, index, array) {
+  // ... do something with item
+});
+```
+
+For instance, this shows each element of the array:
+
+```js run
+// for each element call alert
+["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+```
+
+And this code is more elaborate about their positions in the target array:
+
+```js run
+["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+  alert(`${item} is at index ${index} in ${array}`);
+});
+```
+
+The result of the function (if it returns any) is thrown away and ignored.
+
+
 ## Searching in array
 
 These are methods to search for something in an array.
@@ -583,35 +612,6 @@ arr.reduce((sum, current) => sum + current);
 So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
-
-
-## Iterate: forEach
-
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
-
-The syntax:
-```js
-arr.forEach(function(item, index, array) {
-  // ... do something with item
-});
-```
-
-For instance, this shows each element of the array:
-
-```js run
-// for each element call alert
-["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
-```
-
-And this code is more elaborate about their positions in the target array:
-
-```js run
-["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
-  alert(`${item} is at index ${index} in ${array}`);
-});
-```
-
-The result of the function (if it returns any) is thrown away and ignored.
 
 ## Array.isArray
 
