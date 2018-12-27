@@ -122,7 +122,7 @@ The syntax is:
 arr.slice(start, end)
 ```
 
-It returns a new array where it copies all items start index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
 It works like `str.slice`, but makes subarrays instead of substrings.
 
@@ -201,6 +201,35 @@ let arrayLike = {
 alert( arr.concat(arrayLike) ); // 1,2,something,else
 ```
 
+## Iterate: forEach
+
+The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+
+The syntax:
+```js
+arr.forEach(function(item, index, array) {
+  // ... do something with item
+});
+```
+
+For instance, this shows each element of the array:
+
+```js run
+// for each element call alert
+["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
+```
+
+And this code is more elaborate about their positions in the target array:
+
+```js run
+["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
+  alert(`${item} is at index ${index} in ${array}`);
+});
+```
+
+The result of the function (if it returns any) is thrown away and ignored.
+
+
 ## Searching in array
 
 These are methods to search for something in an array.
@@ -274,7 +303,7 @@ alert(user.name); // John
 
 In real life arrays of objects is a common thing, so the `find` method is very useful.
 
-Note that in the example we provide to `find` a single-argument function `item => item.id == 1`. Other parameters of `find` are rarely used.
+Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. Other arguments of this function are rarely used.
 
 The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself.
 
@@ -477,7 +506,7 @@ alert( str.split('') ); // t,e,s,t
 ```
 ````
 
-The call [arr.join(str)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items glued by `str` between them.
+The call [arr.join(separator)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items glued by `separator` between them.
 
 For instance:
 
@@ -491,7 +520,7 @@ alert( str ); // Bilbo;Gandalf;Nazgul
 
 ### reduce/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`.
+When we need to iterate over an array -- we can use `forEach`, `for` or `for..of`.
 
 When we need to iterate and return the data for each element -- we can use `map`.
 
@@ -500,7 +529,7 @@ The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array
 The syntax is:
 
 ```js
-let value = arr.reduce(function(previousValue, item, index, arr) {
+let value = arr.reduce(function(previousValue, item, index, array) {
   // ...
 }, initial);
 ```
@@ -509,7 +538,7 @@ The function is applied to the elements. You may notice the familiar arguments, 
 
 - `item` -- is the current array item.
 - `index` -- is its position.
-- `arr` -- is the array.
+- `array` -- is the array.
 
 So far, like `forEach/map`. But there's one more argument:
 
@@ -584,34 +613,6 @@ So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
 
-
-## Iterate: forEach
-
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
-
-The syntax:
-```js
-arr.forEach(function(item, index, array) {
-  // ... do something with item
-});
-```
-
-For instance, this shows each element of the array:
-
-```js run
-// for each element call alert
-["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
-```
-
-And this code is more elaborate about their positions in the target array:
-
-```js run
-["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
-  alert(`${item} is at index ${index} in ${array}`);
-});
-```
-
-The result of the function (if it returns any) is thrown away and ignored.
 
 ## Array.isArray
 
@@ -694,6 +695,9 @@ A cheatsheet of array methods:
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
   - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
+  
+- To iterate over elements:
+  - `forEach(func)` -- calls `func` for every element, does not return anything.
 
 - To transform the array:
   - `map(func)` -- creates a new array from results of calling `func` for every element.
@@ -701,9 +705,6 @@ A cheatsheet of array methods:
   - `reverse()` -- reverses the array in-place, then returns it.
   - `split/join` -- convert a string to array and back.
   - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
-
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
 
 - Additionally:
   - `Array.isArray(arr)` checks `arr` for being an array.
