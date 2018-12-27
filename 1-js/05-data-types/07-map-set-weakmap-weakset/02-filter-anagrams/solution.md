@@ -68,7 +68,7 @@ function aclean(arr) {
     obj[sorted] = arr[i];
   }
 
-  return Array.from(Object.values(obj));
+  return Object.values(obj);
 }
 
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
