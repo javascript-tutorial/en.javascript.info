@@ -520,7 +520,7 @@ alert( str ); // Bilbo;Gandalf;Nazgul
 
 ### reduce/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`.
+When we need to iterate over an array -- we can use `forEach`, `for` or `for..of`.
 
 When we need to iterate and return the data for each element -- we can use `map`.
 
