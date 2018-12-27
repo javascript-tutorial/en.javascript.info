@@ -529,7 +529,7 @@ The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array
 The syntax is:
 
 ```js
-let value = arr.reduce(function(previousValue, item, index, arr) {
+let value = arr.reduce(function(previousValue, item, index, array) {
   // ...
 }, initial);
 ```
@@ -538,7 +538,7 @@ The function is applied to the elements. You may notice the familiar arguments, 
 
 - `item` -- is the current array item.
 - `index` -- is its position.
-- `arr` -- is the array.
+- `array` -- is the array.
 
 So far, like `forEach/map`. But there's one more argument:
 
@@ -612,6 +612,7 @@ arr.reduce((sum, current) => sum + current);
 So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+
 
 ## Array.isArray
 
@@ -694,6 +695,9 @@ A cheatsheet of array methods:
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
   - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
+  
+- To iterate over elements:
+  - `forEach(func)` -- calls `func` for every element, does not return anything.
 
 - To transform the array:
   - `map(func)` -- creates a new array from results of calling `func` for every element.
@@ -701,9 +705,6 @@ A cheatsheet of array methods:
   - `reverse()` -- reverses the array in-place, then returns it.
   - `split/join` -- convert a string to array and back.
   - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
-
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
 
 - Additionally:
   - `Array.isArray(arr)` checks `arr` for being an array.
