@@ -122,7 +122,7 @@ The syntax is:
 arr.slice(start, end)
 ```
 
-It returns a new array where it copies all items start index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+It returns a new array containing all items from index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
 It works like `str.slice`, but makes subarrays instead of substrings.
 
