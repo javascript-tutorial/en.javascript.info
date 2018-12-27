@@ -274,7 +274,7 @@ alert(user.name); // John
 
 In real life arrays of objects is a common thing, so the `find` method is very useful.
 
-Note that in the example we provide to `find` a single-argument function `item => item.id == 1`. Other parameters of `find` are rarely used.
+Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. Other arguments of this function are rarely used.
 
 The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself.
 
