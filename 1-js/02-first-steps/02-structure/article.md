@@ -1,22 +1,22 @@
 # Code structure
 
-The first thing to study is the building blocks of the code.
+The first thing we'll study is the building blocks of code.
 
 ## Statements
 
 Statements are syntax constructs and commands that perform actions.
 
-We've already seen a statement `alert('Hello, world!')`, which shows the message "Hello world!".
+We've already seen a statement, `alert('Hello, world!')`, which shows the message "Hello world!".
 
-We can have as many statements in the code as we want. Another statement can be separated with a semicolon.
+We can have as many statements in our code as we want. Statements can be separated with a semicolon.
 
-For example, here we split the message into two:
+For example, here we split "Hello World" into two alerts:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
 ```
 
-Usually each statement is written on a separate line -- thus the code becomes more readable:
+Usually, statements are written on separate lines to make the code more readable:
 
 ```js run no-beautify
 alert('Hello');
@@ -34,11 +34,11 @@ alert('Hello')
 alert('World')
 ```
 
-Here JavaScript interprets the line break as an "implicit" semicolon. That's also called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+Here, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**In most cases a newline implies a semicolon. But "in most cases" does not mean "always"!**
+**In most cases, a newline implies a semicolon. But "in most cases" does not mean "always"!**
 
-There are cases when a newline does not mean a semicolon, for example:
+There are cases when a newline does not mean a semicolon. For example:
 
 ```js run no-beautify
 alert(3 +
@@ -59,9 +59,9 @@ If you're curious to see a concrete example of such an error, check this code ou
 [1, 2].forEach(alert)
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later, for now it does not matter. Let's just remember the result: it shows `1`, then `2`.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
 
-Now let's add an `alert` before the code and *not* finish it with a semicolon:
+Now, let's add an `alert` before the code and *not* finish it with a semicolon:
 
 ```js run no-beautify
 alert("There will be an error")
@@ -69,7 +69,7 @@ alert("There will be an error")
 [1, 2].forEach(alert)
 ```
 
-Now if we run it, only the first `alert` is shown, and then we have an error!
+Now if we run the code, only the first `alert` is shown and then we have an error!
 
 But everything is fine again if we add a semicolon after `alert`:
 ```js run
@@ -78,27 +78,27 @@ alert("All fine now");
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "All fine now" message and then `1` and `2`.
+Now we have the "All fine now" message followed by `1` and `2`.
 
 
-The error in the no-semicolon variant occurs because JavaScript does not imply a semicolon before square brackets `[...]`.
+The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
 
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. That's how the engine sees it:
+So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not a single one. Such a merging in this case is just wrong, hence the error. There are other situations when such a thing happens.
+But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
 ````
 
-It's recommended to put semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
 
 ## Comments
 
-As time goes on, the program becomes more and more complex. It becomes necessary to add *comments* which describe what happens and why.
+As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
 
-Comments can be put into any place of the script. They don't affect the execution because the engine simply ignores them.
+Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
 
 **One-line comments start with two forward slash characters `//`.**
 
@@ -124,9 +124,9 @@ alert('Hello');
 alert('World');
 ```
 
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code> it won't execute.
+The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
 
-Sometimes it comes in handy to temporarily disable a part of code:
+Sometimes it can be handy to temporarily disable a part of code:
 
 ```js run
 /* Commenting out the code
@@ -136,7 +136,7 @@ alert('World');
 ```
 
 ```smart header="Use hotkeys!"
-In most editors a line of code can be commented out by `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac try `key:Cmd` instead of `key:Ctrl`.
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl`.
 ```
 
 ````warn header="Nested comments are not supported!"
@@ -154,6 +154,6 @@ alert( 'World' );
 
 Please, don't hesitate to comment your code.
 
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify the code before publishing to the production server. They remove comments, so they don't appear in the working scripts. Therefore comments do not have any negative effects on production at all.
+Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
 
-Further in the tutorial there will be a chapter <info:coding-style> that also explains how to write better comments.
+Later in the tutorial there will be a chapter <info:coding-style> that also explains how to write better comments.
