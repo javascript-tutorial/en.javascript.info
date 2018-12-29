@@ -1,6 +1,6 @@
 # Data types
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and later receive a numeric value:
+A variable in JavaScript can contain any data. A variable can at one moment be a string and at another be a number:
 
 ```js
 // no error
@@ -10,7 +10,7 @@ message = 123456;
 
 Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
 
-There are seven basic data types in JavaScript. Here we'll study the basics, and in the next chapters we'll talk about each of them in detail.
+There are seven basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
 
 ## A number
 
@@ -19,11 +19,11 @@ let n = 123;
 n = 12.345;
 ```
 
-The *number* type serves both for integer and floating point numbers.
+The *number* type represents both integer and floating point numbers.
 
-There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, subtraction `-` and so on.
+There are many operations for numbers, e.g. multiplication `*`, division `/`, addition `+`, subtraction `-`, and so on.
 
-Besides regular numbers, there are so-called "special numeric values" which also belong to that type: `Infinity`, `-Infinity` and `NaN`.
+Besides regular numbers, there are so-called "special numeric values" which also belong to this data type: `Infinity`, `-Infinity` and `NaN`.
 
 - `Infinity` represents the mathematical [Infinity](https://en.wikipedia.org/wiki/Infinity) ∞. It is a special value that's greater than any number.
 
@@ -33,7 +33,7 @@ Besides regular numbers, there are so-called "special numeric values" which also
     alert( 1 / 0 ); // Infinity
     ```
 
-    Or just mention it in the code directly:
+    Or just reference it directly:
 
     ```js run
     alert( Infinity ); // Infinity
@@ -44,27 +44,27 @@ Besides regular numbers, there are so-called "special numeric values" which also
     alert( "not a number" / 2 ); // NaN, such division is erroneous
     ```
 
-    `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
+    `NaN` is sticky. Any further operation on `NaN` returns `NaN`:
 
     ```js run
     alert( "not a number" / 2 + 5 ); // NaN
     ```
 
-    So, if there's `NaN` somewhere in a mathematical expression, it propagates to the whole result.
+    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result.
 
 ```smart header="Mathematical operations are safe"
-Doing maths is safe in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
+Doing maths is "safe" in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
 
-The script will never stop with a fatal error ("die"). At worst we'll get `NaN` as the result.
+The script will never stop with a fatal error ("die"). At worst, we'll get `NaN` as the result.
 ```
 
-Special numeric values formally belong to the "number" type. Of course they are not numbers in a common sense of this word.
+Special numeric values formally belong to the "number" type. Of course they are not numbers in the common sense of this word.
 
 We'll see more about working with numbers in the chapter <info:number>.
 
 ## A string
 
-A string in JavaScript must be quoted.
+A string in JavaScript must be surrounded by quotes.
 
 ```js
 let str = "Hello";
@@ -92,9 +92,9 @@ alert( `Hello, *!*${name}*/!*!` ); // Hello, John!
 alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 ```
 
-The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
+The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything in there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
 
-Please note that this can only be done in backticks. Other quotes do not allow such embedding!
+Please note that this can only be done in backticks. Other quotes don't have this embedding functionality!
 ```js run
 alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
 ```
@@ -128,31 +128,31 @@ let isGreater = 4 > 1;
 alert( isGreater ); // true (the comparison result is "yes")
 ```
 
-We'll cover booleans more deeply later in the chapter <info:logical-operators>.
+We'll cover booleans more deeply in the chapter <info:logical-operators>.
 
 ## The "null" value
 
-The special `null` value does not belong to any type of those described above.
+The special `null` value does not belong to any of the types described above.
 
-It forms a separate type of its own, which contains only the `null` value:
+It forms a separate type of its own which contains only the `null` value:
 
 ```js
 let age = null;
 ```
 
-In JavaScript `null` is not a "reference to a non-existing object" or a "null pointer" like in some other languages.
+In JavaScript, `null` is not a "reference to a non-existing object" or a "null pointer" like in some other languages.
 
-It's just a special value which has the sense of "nothing", "empty" or "value unknown".
+It's just a special value which represents "nothing", "empty" or "value unknown".
 
-The code above states that the `age` is unknown or empty for some reason.
+The code above states that `age` is unknown or empty for some reason.
 
 ## The "undefined" value
 
-The special value `undefined` stands apart. It makes a type of its own, just like `null`.
+The special value `undefined` also stands apart. It makes a type of its own, just like `null`.
 
 The meaning of `undefined` is "value is not assigned".
 
-If a variable is declared, but not assigned, then its value is exactly `undefined`:
+If a variable is declared, but not assigned, then its value is `undefined`:
 
 ```js run
 let x;
@@ -170,26 +170,26 @@ x = undefined;
 alert(x); // "undefined"
 ```
 
-...But it's not recommended to do that. Normally, we use `null` to write an "empty" or an "unknown" value into the variable, and `undefined` is only used for checks, to see if the variable is assigned or similar.
+...But we don't recommend doing that. Normally, we use `null` to assign an "empty" or "unknown" value to a variable, and we use `undefined` for checks like seeing if a variable has been assigned.
 
 ## Objects and Symbols
 
 The `object` type is special.
 
-All other types are called "primitive", because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities. We'll deal with them later in the chapter <info:object> after we know enough about primitives.
+All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities. We'll deal with them later in the chapter <info:object> after we learn more about primitives.
 
-The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but it's better to study them after objects.
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for completeness, but it's better to study this type after objects.
 
 ## The typeof operator [#type-typeof]
 
-The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently, or just want to make a quick check.
+The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently or just want to do a quick check.
 
 It supports two forms of syntax:
 
 1. As an operator: `typeof x`.
-2. Function style: `typeof(x)`.
+2. As a function: `typeof(x)`.
 
-In other words, it works both with parentheses or without them. The result is the same.
+In other words, it works with parentheses or without them. The result is the same.
 
 The call to `typeof x` returns a string with the type name:
 
@@ -217,11 +217,11 @@ typeof alert // "function"  (3)
 */!*
 ```
 
-The last three lines may need additional explanations:
+The last three lines may need additional explanation:
 
-1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here it serves just as an example of an object.
-2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, that's an error in the language.
-3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the next chapters, and we'll see that there's no special "function" type in the language. Functions belong to the object type. But `typeof` treats them differently. Formally, it's incorrect, but very convenient in practice.
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, this is an error in the language.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function of the language. We'll study functions in the next chapters where we'll see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently. Formally, it's incorrect, but very convenient in practice.
 
 
 ## Summary
@@ -236,10 +236,10 @@ There are 7 basic types in JavaScript.
 - `object` for more complex data structures.
 - `symbol` for unique identifiers.
 
-The `typeof` operator allows us to see which type is stored in the variable.
+The `typeof` operator allows us to see which type is stored in a variable.
 
 - Two forms: `typeof x` or `typeof(x)`.
 - Returns a string with the name of the type, like `"string"`.
-- For `null` returns `"object"` -- that's an error in the language, it's not an object in fact.
+- For `null` returns `"object"` -- this is an error in the language, it's not actually an object.
 
-In the next chapters we'll concentrate on primitive values and once we're familiar with them, then we'll move on to objects.
+In the next chapters, we'll concentrate on primitive values and once we're familiar with them, we'll move on to objects.
