@@ -8,11 +8,12 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 | Language | Github | Translation leads | Translated (%) | Published |
 |----------|--------|-------------------|-----------------|-----------|
-| Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg?1) | https://zh.javascript.info |
-| Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg?1) | https://ja.javascript.info |
+| Chinese | https://github.com/xitu/javascript-tutorial-zh | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | https://zh.javascript.info |
+| Japanese | https://github.com/KenjiI/javascript-tutorial-ja | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | https://ja.javascript.info |
+| Polish | https://github.com/krzmaciek/javascript-tutorial-pl | @krzmaciek | ![](http://translate-hook.javascript.info/stats/pl.svg) | - |
 | Romanian | https://github.com/lighthousand/javascript-tutorial-ro | @lighthousand | started | - |
 | Russian | https://github.com/iliakan/javascript-tutorial-ru | @iliakan | * | https://learn.javascript.ru |
-| Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg?1) | - |
+| Turkish | https://github.com/sahinyanlik/javascript-tutorial-tr | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg) | - |
 
 
 
