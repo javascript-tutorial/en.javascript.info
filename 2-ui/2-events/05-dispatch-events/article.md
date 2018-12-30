@@ -148,7 +148,7 @@ For instance:
 *!*
     detail: { name: "John" }
 */!*
-  });
+  }));
 </script>
 ```
 
