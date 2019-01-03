@@ -2,7 +2,7 @@
 
 Code is prone to errors. You will quite likely make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
 
-But in the browser, users doesn't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
+But in the browser, users don't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
 
 To see errors and get a lot of other useful information about scripts, "developer tools" have been embedded in browsers.
 
