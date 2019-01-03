@@ -53,7 +53,7 @@ alert( str.search(substr) ); // 2
 
 So searching for `pattern:/love/` is the same as searching for `"love"`.
 
-But that's only for now. Soon we'll create more complex regular expressions with much searching more power.
+But that's only for now. Soon we'll create more complex regular expressions with much more searching power.
 
 ```smart header="Colors"
 From here on the color scheme is:
@@ -65,9 +65,9 @@ From here on the color scheme is:
 
 
 ````smart header="When to use `new RegExp`?"
-Normally we use the short syntax `/.../`. But it does not allow any variables insertions, so we must know the exact regexp at the time of writing the code.
+Normally we use the short syntax `/.../`. But it does not allow any variable insertions, so we must know the exact regexp at the time of writing the code.
 
-From the other hand, `new RegExp` allows to construct a pattern dynamically from a string.
+On the other hand, `new RegExp` allows to construct a pattern dynamically from a string.
 
 So we can figure out what we need to search and create `new RegExp` from it:
 
