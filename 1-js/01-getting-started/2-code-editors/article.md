@@ -13,7 +13,7 @@ An IDE loads the project (which can be many files), allows navigation between fi
 If you haven't selected an IDE yet, consider the following options:
 
 - [WebStorm](http://www.jetbrains.com/webstorm/) for frontend development. The same company offers other editors for other languages (paid).
-- [Netbeans](http://netbeans.org/) (paid).
+- [Netbeans](http://netbeans.org/) (free).
 
 All of these IDEs are cross-platform.
 
