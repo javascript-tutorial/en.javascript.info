@@ -189,6 +189,12 @@ The demo:
 
 [codetabs src="protector"]
 
+## Samesite cookie attribute
+
+The `samesite` cookie attribute can also prevent clickjacking attacks. The purpose of the attribute is to prevent cookies from being sent to a website when the user doesn't intend to visit the website. It mainly prevents cross-site request forgery attacks, but also helps with clickjacking. When a cookie has the `samesite` attribute, whether the value is `strict` or `lax`, cookies are not sent to a website when it is loaded inside an iframe. A clickjacking attempt would fail because the user is not considered logged into, for example, Facebook, so they can't "Like" anything through the iframe. 
+
+The samesite attribute will not have an effect when cookies are not used. This may allow websites to easily show public, unauthenticated pages in iframes on unaffiliated websites. However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies. 
+
 ## Summary
 
 Clickjacking is a way to "trick" users into clicking on a malicious site without even knowing what's happening. That's dangerous if there are important click-activated actions.
