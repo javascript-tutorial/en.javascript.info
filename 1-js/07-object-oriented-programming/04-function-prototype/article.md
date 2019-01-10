@@ -139,7 +139,7 @@ Rabbit.prototype.jumps = true
 // the default Rabbit.prototype.constructor is preserved
 ```
 
-Or, alternatively, recreate the `constructor` property it manually:
+Or, alternatively, recreate the `constructor` property manually:
 
 ```js
 Rabbit.prototype = {
