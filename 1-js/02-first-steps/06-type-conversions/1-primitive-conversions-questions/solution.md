@@ -11,12 +11,13 @@ true + false = 1
 "4px" - 2 = NaN
 7 / 0 = Infinity
 " -9\n" + 5 = " -9\n5"
-" -9\n" - 5 = -14
-null + 1 = 1 // (3)
-undefined + 1 = NaN // (4)
+" -9\n" - 5 = -14 (3)
+null + 1 = 1 // (4)
+undefined + 1 = NaN // (5)
 ```
 
 1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
 2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
-3. `null` becomes `0` after the numeric conversion.
-4. `undefined` becomes `NaN` after the numeric conversion.
+3. The '/n' is interpreted as a new line character. The new line character is considered white space.
+4. `null` becomes `0` after the numeric conversion.
+5. `undefined` becomes `NaN` after the numeric conversion.
