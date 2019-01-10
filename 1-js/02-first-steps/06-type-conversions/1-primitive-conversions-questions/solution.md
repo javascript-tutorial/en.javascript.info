@@ -11,7 +11,6 @@ true + false = 1
 "4px" - 2 = NaN
 7 / 0 = Infinity
 " -9\n" + 5 = " -9\n5"
-" -9\n" - 5 = -14
 null + 1 = 1 // (3)
 undefined + 1 = NaN // (4)
 ```
