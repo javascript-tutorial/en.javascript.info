@@ -191,9 +191,39 @@ The demo:
 
 ## Samesite cookie attribute
 
-The `samesite` cookie attribute can also prevent clickjacking attacks. The purpose of the attribute is to prevent cookies from being sent to a website when the user doesn't intend to visit the website. It mainly prevents cross-site request forgery attacks, but also helps with clickjacking. When a cookie has the `samesite` attribute, whether the value is `strict` or `lax`, cookies are not sent to a website when it is loaded inside an iframe. A clickjacking attempt would fail because the user is not considered logged into, for example, Facebook, so they can't "Like" anything through the iframe. 
+The `samesite` cookie attribute can also prevent clickjacking attacks. The purpose of the attribute is to prevent cookies from being sent to a website when the user doesn't intend to visit the website. It is designed to prevent cross-site request forgery attacks, but also helps with clickjacking because a hijacked click usually results in an unintended request to a different site. When a cookie has the `samesite` attribute, whether the value is `strict` or `lax`, cookies are not sent to a website when it is loaded inside an iframe. 
 
-The samesite attribute will not have an effect when cookies are not used. This may allow websites to easily show public, unauthenticated pages in iframes on unaffiliated websites. However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies. 
+The `samesite` attribute can be set using HTTP response headers or JavaScript. Via HTTP, it looks like: 
+
+`Set-Cookie: demoCookie=demoValue; samesite=lax`
+
+or
+
+`Set-Cookie: demoCookie=demoValue; samesite=strict`
+
+In JavaScript, it is: 
+
+```html
+document.cookie = "demoCookie=demoValue; SameSite=Lax";
+document.cookie = "demoCookie=demoValue; SameSite=Strict";
+```
+
+When the value is `lax`, these types of requests are blocked: 
+- Form POST submit (&lt;form method="POST" action="..."&gt;)
+- iframe (&lt;iframe src="..."&gt;&lt;/iframe&gt;)
+- AJAX ($.get("..."))
+- Image (&lt;img src="..."&gt;)
+- Script (&lt;script src="..."&gt;&lt;/script&gt;)
+- Stylesheet (&lt;link rel="stylesheet" type="text/css" href="..."&gt;)
+
+When the value is `strict`, these types of requests are also blocked, in addition to those under `lax`: 
+- Clicking a link (&lt;a href="..."&gt;&lt;/a&gt;)
+- Prerender (&lt;link rel="prerender" href=".."/&gt;)
+- Form GET submit (&lt;form method="GET" action="..."&gt;)
+
+In this case, we are concerned with iframe requests. A clickjacking attempt would fail because the user is not considered logged into, for example, Facebook, so they can't "Like" anything through the iframe. 
+
+The `samesite` attribute will not have an effect when cookies are not used. This may allow websites to easily show public, unauthenticated pages in iframes on unaffiliated websites. However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies. 
 
 ## Summary
 
