@@ -31,7 +31,7 @@ while (i < 3) { // shows 0, then 1, then 2
 
 A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
 
-If there were no `i++` in the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops and in server-side JavaScript, we can kill the process.
+If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
 
 Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
 
@@ -166,7 +166,7 @@ alert(i); // 3, visible, because declared outside of the loop
 
 ### Skipping parts
 
-Any part of the `for` syntax can be skipped.
+Any part of `for` can be skipped.
 
 For example, we can omit `begin` if we don't need to do anything at the loop start.
 
@@ -190,9 +190,9 @@ for (; i < 3;) {
 }
 ```
 
-The loop became identical to `while (i < 3)`.
+This makes the loop identical to `while (i < 3)`.
 
-We can actually remove everything, thus creating an infinite loop:
+We can actually remove everything, creating an infinite loop:
 
 ```js
 for (;;) {
@@ -229,7 +229,7 @@ alert( 'Sum: ' + sum );
 
 The `break` directive is activated at the line `(*)` if the user enters an empty line or cancels the input. It stops the loop immediately, passing control to the first line after the loop. Namely, `alert`.
 
-The combination "infinite loop + `break` as needed" is great for situations when a loop's condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of the body.
+The combination "infinite loop + `break` as needed" is great for situations when a loop's condition must be checked not in the beginning or end of the loop, but in the middle or even in several places of its body.
 
 ## Continue to the next iteration [#continue]
 
