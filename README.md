@@ -8,6 +8,7 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 | Language | Github | Translation leads | Translated (%) | Last&nbsp;Commit | Published |
 |----------|--------|-------------------|----------------|-------------|-----------|
+| Azerbaijani | [orkhan-huseyn/javascript-tutorial-az](https://github.com/orkhan-huseyn/javascript-tutorial-az) | @orkhan-huseyn | ![](http://translate-hook.javascript.info/stats/az.svg) | ![](https://img.shields.io/github/last-commit/orkhan-huseyn/javascript-tutorial-az.svg?maxAge=1800) |  |
 | Chinese | [xitu/javascript-tutorial-zh](https://github.com/xitu/javascript-tutorial-zh) | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | ![](https://img.shields.io/github/last-commit/xitu/javascript-tutorial-zh.svg?maxAge=1800) | [zh.javascript.info](https://zh.javascript.info) |
 | French | [HachemiH/javascript-tutorial-fr](https://github.com/HachemiH/javascript-tutorial-fr) | @HachemiH | ![](http://translate-hook.javascript.info/stats/fr.svg) | ![](https://img.shields.io/github/last-commit/HachemiH/javascript-tutorial-ja.svg?maxAge=3600) | |
 | Japanese | [KenjiI/javascript-tutorial-ja](https://github.com/KenjiI/javascript-tutorial-ja) | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | ![](https://img.shields.io/github/last-commit/KenjiI/javascript-tutorial-ja.svg?maxAge=3600) | [ja.javascript.info](https://ja.javascript.info) |
