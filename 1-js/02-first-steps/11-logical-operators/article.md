@@ -133,7 +133,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     alert(x); // undefined, because (x = 1) not evaluated
     ```
 
-    If, instead, the first argument is `false`, `OR` evaluates the second one, thus running the assignment:
+    If, instead, the first argument is `false`, `||` evaluates the second one, thus running the assignment:
 
     ```js run no-beautify
     let x;
