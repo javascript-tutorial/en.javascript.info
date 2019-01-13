@@ -6,7 +6,7 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 (In alphabetical order):
 
-| Language | Github | Translation leads | Translated (%) | Last&nbsp;Commit | Published |
+| Language | Github | Translation leads | Translated (%) | &nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp; | Published |
 |----------|--------|-------------------|----------------|-------------|-----------|
 | Azerbaijani | [orkhan-huseyn/javascript-tutorial-az](https://github.com/orkhan-huseyn/javascript-tutorial-az) | @orkhan-huseyn | ![](http://translate-hook.javascript.info/stats/az.svg) | ![](https://img.shields.io/github/last-commit/orkhan-huseyn/javascript-tutorial-az.svg?maxAge=1800) |  |
 | Chinese | [xitu/javascript-tutorial-zh](https://github.com/xitu/javascript-tutorial-zh) | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | ![](https://img.shields.io/github/last-commit/xitu/javascript-tutorial-zh.svg?maxAge=1800) | [zh.javascript.info](https://zh.javascript.info) |
