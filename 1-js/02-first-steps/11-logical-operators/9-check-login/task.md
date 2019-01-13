@@ -20,8 +20,6 @@ The schema:
 
 Please use nested `if` blocks. Mind the overall readability of the code.
 
-Hint: 
-1. passing an empty input to a prompt returns an empty string `''`. Pressing `key:ESC` during a prompt returns `null`.
-2. You should use || that we will see in detail on the next chapter. Here some info: in classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are true, it returns true, otherwise it returns false.
+Hint:  passing an empty input to a prompt returns an empty string `''`. Pressing `key:ESC` during a prompt returns `null`.
 
 [demo]
