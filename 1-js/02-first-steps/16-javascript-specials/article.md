@@ -167,7 +167,7 @@ Comparisons
 
     Greater/less comparisons compare strings character-by-character, other types are converted to a number.
 
-Logical operators
+Other operators
 : There are few others, like a comma operator.
 
 More in: <info:operators>, <info:comparison>, <info:logical-operators>.
