@@ -228,7 +228,7 @@ Details in: <info:switch>.
 
 We covered three ways to create a function in JavaScript:
 
-1. Function Declaration: the function in the main code flow
+1. Function Declaration: the function in the main code flow:
 
     ```js
     function sum(a, b) {
@@ -238,7 +238,7 @@ We covered three ways to create a function in JavaScript:
     }
     ```
 
-2. Function Expression: the function in the context of an expression
+2. Function Expression: the function in the context of an expression:
 
     ```js
     let sum = function(a, b) {
