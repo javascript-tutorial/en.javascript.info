@@ -43,6 +43,6 @@ if (n < 0) {
   alert(`Power ${n} is not supported,
     please enter an integer number greater than zero`);
 } else {
-  alert( pow(x, n) );
+    alert( pow(x, n) );
 }
 ```
