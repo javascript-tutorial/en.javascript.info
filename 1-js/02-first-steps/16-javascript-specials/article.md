@@ -150,6 +150,7 @@ Ternary
 
 Logical operators
 : Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped.
+* ! (NOT) It's not mentioned here.
 
 Comparisons
 : Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
