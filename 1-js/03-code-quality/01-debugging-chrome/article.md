@@ -172,7 +172,7 @@ If we have enough logging in our code, then we can see what's going on from the 
 As we can see, there are three main ways to pause a script:
 1. A breakpoint.
 2. The `debugger` statements.
-3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on")
+3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
 
 Then we can examine variables and step on to see where the execution goes wrong.
 
