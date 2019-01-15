@@ -255,7 +255,7 @@ That's because when reading code, we first want to know *what it does*. If the c
 
 A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, where to put line breaks, etc. A lot of minor things.
 
-When all members of a team use the same style guide the code tends looks uniform, regardless of which team member wrote it.
+When all members of a team use the same style guide, the code looks uniform, regardless of which team member wrote it.
 
 Of course, a team can always write their own style guide. Most of the time though, there's no need to. There are many existing tried and true options to choose from, so adopting one of these is usually your best bet.
 
