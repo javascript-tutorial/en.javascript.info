@@ -142,7 +142,7 @@ Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. A
 
 So the output is again 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
 
-Returning promises allows us to build chains of asynchronous actions.
+Returning promises allows us to build chains of synchronous actions.
 
 ## Example: loadScript
 
