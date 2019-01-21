@@ -18,7 +18,7 @@ Here's a list of the most useful DOM events, just to take a look at:
 **Keyboard events:**
 - `keydown` and `keyup` -- when the visitor presses and then releases the button.
 
-**Document events**
+**Document events:**
 - `DOMContentLoaded` -- when the HTML is loaded and processed, DOM is fully built.
 
 **CSS events:**
