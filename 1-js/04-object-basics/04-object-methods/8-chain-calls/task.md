@@ -30,7 +30,7 @@ ladder.down();
 ladder.showStep(); // 1
 ```
 
-Modify the code of `up` and `down` to make the calls chainable, like this:
+Modify the code of `up`, `down` and `showStep` to make the calls chainable, like this:
 
 ```js
 ladder.up().up().down().showStep(); // 1
