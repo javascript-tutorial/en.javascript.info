@@ -537,7 +537,7 @@ Please note one very interesting thing. Built-in methods like `filter`, `map` an
 
 In the example above,
 ```js
-arr.constructor === PowerArray
+arr.__proto__.constructor === PowerArray
 ```
 
 So when `arr.filter()` is called, it internally creates the new array of results exactly as `new PowerArray`. And we can keep using its methods further down the chain.
@@ -563,7 +563,7 @@ class PowerArray extends Array {
 let arr = new PowerArray(1, 2, 5, 10, 50);
 alert(arr.isEmpty()); // false
 
-// filter creates new array using arr.constructor[Symbol.species] as constructor
+// filter creates new array using arr.__proto__.constructor[Symbol.species] as constructor
 let filteredArr = arr.filter(item => item >= 10);
 
 *!*
