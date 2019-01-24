@@ -568,7 +568,7 @@ The calculation flow:
 
 ![](reduce.png)
 
-Or in the form of a table, where each row represents is a function call on the next array element:
+Or in the form of a table, where each row represents a function call on the next array element:
 
 |   |`sum`|`current`|`result`|
 |---|-----|---------|---------|
