@@ -25,7 +25,7 @@ Promise.all(urls.map(url => fetch(url)))
   });
 ```
 
-The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we loose results of all the other requests. So the code above is not fault-tolerant, just like the one in the previous task.
+The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we lose results of all the other requests. So the code above is not fault-tolerant, just like the one in the previous task.
 
 Modify the code so that the array in the line `(*)` would include parsed JSON for successful requests and error for errored ones.
 
