@@ -148,7 +148,7 @@ Let's emphasize that the equality check is always strict. The values must be of 
 For example, let's consider the code:
 
 ```js run
-let arg = prompt("Enter a value?")
+let arg = prompt("Enter a value?");
 switch (arg) {
   case '0':
   case '1':
