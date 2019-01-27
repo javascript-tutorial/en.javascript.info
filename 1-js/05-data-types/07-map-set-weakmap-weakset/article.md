@@ -328,7 +328,7 @@ Compare it with the regular `Map` example above. Now if `john` only exists as th
 
 - `weakMap.get(key)`
 - `weakMap.set(key, value)`
-- `weakMap.delete(key, value)`
+- `weakMap.delete(key)`
 - `weakMap.has(key)`
 
 Why such a limitation? That's for technical reasons. If an object has lost all other references (like `john` in the code above), then it is to be garbage-collected automatically. But technically it's not exactly specified *when the cleanup happens*.
