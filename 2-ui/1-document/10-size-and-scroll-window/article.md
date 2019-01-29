@@ -129,7 +129,7 @@ And this button scrolls the page to show it at the bottom:
 
 Sometimes we need to make the document "unscrollable". For instance, when we need to cover it with a large message requiring immediate attention, and we want the visitor to interact with that message, not with the document.
 
-To make the document unscrollable, its enough to set `document.body.style.overflow = "hidden"`. The page will freeze on its current scroll.
+To make the document unscrollable, it's enough to set `document.body.style.overflow = "hidden"`. The page will freeze on its current scroll.
 
 ```online
 Try it:
