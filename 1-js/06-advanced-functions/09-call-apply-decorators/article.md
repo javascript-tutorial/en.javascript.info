@@ -310,7 +310,7 @@ And if `args` is both iterable and array-like, like a real array, then we techni
 One of the most important uses of `apply` is passing the call to another function, like this:
 
 ```js
-let wrapper = function() {
+let wrapper = function(anotherFunction) {
   return anotherFunction.apply(this, arguments);
 };
 ```
