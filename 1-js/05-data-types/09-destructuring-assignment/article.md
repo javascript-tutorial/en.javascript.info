@@ -335,7 +335,7 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
-To show JavaScript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
+To show JavaScript that it's not a code block, we can wrap the whole assignment in parentheses `(...)`:
 
 ```js run
 let title, width, height;
