@@ -12,7 +12,7 @@ async function f() {
 }
 ```
 
-The word "async" before a function means one simple thing: a function always returns a promise. If the code has `return <non-promise>` in it, then JavaScript automatically wraps it into a resolved promise with that value.
+The word "async" before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the "async" keyword directs Javascript to automatically wrap that value in a resolved promise.
 
 For instance, the code above returns a resolved promise with the result of `1`, let's test it:
 
