@@ -285,6 +285,16 @@ const pageLoadTime = /* time taken by a webpage to load */;
 The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
 
 In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+One more point to remember is you can not just declare a const variable without initializng it at the same line.
+For instance the below code will throw error :
+```js
+const variable;
+varibale=100;
+```
+Correct code is :
+```js
+const variable=100;
+```
 
 ## Name things right
 
