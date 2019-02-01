@@ -4,7 +4,7 @@ importance: 5
 
 # Sort objects
 
-Write the function `sortByName(users)` that gets an array of objects with property `name` and sorts it.
+Write the function `sortByName(users)` that gets an array of objects with the `age` property and sorts them by `age`.
 
 For instance:
 
@@ -18,6 +18,6 @@ let arr = [ john, pete, mary ];
 sortByName(arr);
 
 // now: [john, mary, pete]
-alert(arr[1].name); // Mary
+alert(arr[0].name); // Mary
+alert(arr[2].name); // Pete
 ```
-
