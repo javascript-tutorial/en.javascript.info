@@ -491,7 +491,7 @@ function() { // <-- JavaScript cannot find function name, meets ( and gives erro
 We can say "okay, let it be so Function Declaration, let's add a name", but it won't work. JavaScript does not allow Function Declarations to be called immediately:
 
 ```js run
-// syntax error because of brackets below
+// syntax error because of parentheses below
 function go() {
 
 }(); // <-- can't call Function Declaration immediately
@@ -505,11 +505,11 @@ There are other ways to tell JavaScript that we mean Function Expression:
 // Ways to create IIFE
 
 (function() {
-  alert("Brackets around the function");
+  alert("Parentheses around the function");
 }*!*)*/!*();
 
 (function() {
-  alert("Brackets around the whole thing");
+  alert("Parentheses around the whole thing");
 }()*!*)*/!*;
 
 *!*!*/!*function() {
