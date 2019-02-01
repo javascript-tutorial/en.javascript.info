@@ -34,6 +34,3 @@ The task consists of two parts.
 - No brackets or complex expressions in this task.
 - The numbers and the operator are delimited with exactly one space.
 - There may be error handling if you'd like to add it.
-- Please note how methods are stored. They are simply added to the internal object.
-- All tests and numeric conversions are done in the `calculate` method. In future it may be extended to support more complex expressions.
-
