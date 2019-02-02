@@ -1,4 +1,4 @@
-For the second brackets to work, the first ones must return a function.
+For the second parentheses to work, the first ones must return a function.
 
 Like this:
 
