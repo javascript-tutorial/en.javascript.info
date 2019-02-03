@@ -104,7 +104,7 @@ A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of mo
 
 Arrays support both operations.
 
-In practice we meet it very often. For example, a queue of messages that need to be shown on-screen.
+In practice we need it very often. For example, a queue of messages that need to be shown on-screen.
 
 There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)). 
 
