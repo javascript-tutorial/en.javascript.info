@@ -1,6 +1,6 @@
 # Window sizes and scrolling
 
-How to find out the width of the browser window? How to get the full height of the document, including the scrolled out part? How to scroll the page using JavaScript?
+How to find out the width and height of the browser window? How to get the full width and height of the document, including the scrolled out part? How to scroll the page using JavaScript?
 
 From the DOM point of view, the root document element is `document.documentElement`. That element corresponds to `<html>` and has geometry properties described in the [previous chapter](info:size-and-scroll). For some cases we can use it, but there are additional methods and peculiarities important enough to consider.
 
@@ -44,7 +44,7 @@ Theoretically, as the root document element is `documentElement.clientWidth/Heig
 
 These properties work well for regular elements. But for the whole page these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! For regular elements that's a nonsense.
 
-To have a reliable full window size, we should take the maximum of these properties:
+To have a reliable result on the full document height, we should take the maximum of these properties:
 
 ```js run
 let scrollHeight = Math.max(
@@ -96,7 +96,7 @@ It should work, but smells like cross-browser incompatibilities. Not good. Fortu
 
     <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
     ```
-- The method `scrollTo(pageX,pageY)` scrolls the page relative to the document top-left corner. It's like setting `scrollLeft/scrollTop`.
+- The method `scrollTo(pageX,pageY)` scrolls the page relative to the document's top-left corner. It's like setting `scrollLeft/scrollTop`.
 
     To scroll to the very beginning, we can use `scrollTo(0,0)`.
 
@@ -145,7 +145,7 @@ We can use the same technique to "freeze" the scroll for other elements, not jus
 
 The drawback of the method is that the scrollbar disappears. If it occupied some space, then that space is now free, and the content "jumps" to fill it.
 
-That looks a bit odd, but can be worked around if we compare `clientWidth` before and after the freeze, and if it increased (the scrollbar disappeared) then add `padding` to `document.body` in place of the scrollbar, to keep the content width same.
+That looks a bit odd, but can be worked around if we compare `clientWidth` before and after the freeze, and if it increased (the scrollbar disappeared) then add `padding` to `document.body` in place of the scrollbar, to keep the content width the same.
 
 ## Summary
 
