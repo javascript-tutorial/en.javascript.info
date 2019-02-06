@@ -275,7 +275,8 @@ Here the [arr.find](mdn:js/Array/find) method comes in handy.
 The syntax is:
 ```js
 let result = arr.find(function(item, index, array) {
-  // should return true if the item is what we are looking for
+  // if true is returned, item is returned and iteration is stopped
+  // for falsy scenario returns undefined
 });
 ```
 
@@ -313,11 +314,12 @@ The `find` method looks for a single (first) element that makes the function ret
 
 If there may be many, we can use [arr.filter(fn)](mdn:js/Array/filter).
 
-The syntax is roughly the same as `find`, but it returns an array of matching elements:
+The syntax is similar to `find`, but filter continues to iterate for all array elements even if `true` is already returned:
 
 ```js
 let results = arr.filter(function(item, index, array) {
-  // should return true if the item passes the filter
+  // if true item is pushed to results and iteration continues
+  // returns empty array for complete falsy scenario
 });
 ```
 
