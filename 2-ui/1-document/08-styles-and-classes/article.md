@@ -116,7 +116,7 @@ Sometimes we want to assign a style property, and later remove it.
 
 For instance, to hide an element, we can set `elem.style.display = "none"`.
 
-Then later we may want to remove the `style.display` as if it were not set. Instead of `delete elem.style.display` we should assign an empty line to it: `elem.style.display = ""`.
+Then later we may want to remove the `style.display` as if it were not set. Instead of `delete elem.style.display` we should assign an empty string to it: `elem.style.display = ""`.
 
 ```js run
 // if we run this code, the <body> "blinks"
@@ -207,7 +207,7 @@ For instance, here `style` doesn't see the margin:
 </body>
 ```
 
-...But what if we need, say, to increase the margin by 20px? We want the current value for the start.
+...But what if we need, say, to increase the margin by 20px? We would want the current value of it.
 
 There's another method for that: `getComputedStyle`.
 
@@ -281,7 +281,7 @@ Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
 
-JavaScript we may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no sideway for an evil page to test if a link was visited and hence to break the privacy.
+JavaScript may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids to apply geometry-changing styles in `:visited`. That's to guarantee that there's no sideway for an evil page to test if a link was visited and hence to break the privacy.
 ```
 
 ## Summary
