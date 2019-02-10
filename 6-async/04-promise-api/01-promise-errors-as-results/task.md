@@ -20,7 +20,7 @@ Promise.all(urls.map(url => fetch(url)))
   });
 ```
 
-The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we loose results of all the other requests.
+The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we lose results of all the other requests.
 
 That's not good.
 
