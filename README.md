@@ -1,4 +1,4 @@
-# The JavaScript Tutorial
+﻿# The JavaScript Tutorial
 
 This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
 
@@ -22,7 +22,7 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 `*` – the previous version is published in Russian, need to backport/translate the new one from English.
 
-If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutoria-en/issues/new) for me to add you to the list.
+If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutorial-en/issues/new) for me to add you to the list.
 
 You can edit the text in any editor (markdown-like syntax). The server to run the tutorial locally and see how it looks is at <https://github.com/iliakan/javascript-tutorial-server>.  
 
