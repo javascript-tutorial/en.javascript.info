@@ -330,7 +330,7 @@ There are 3 methods for HTTP-headers:
       .reduce((result, current) => {
         let [name, value] = current.split(': ');
         result[name] = value;
-        return acc;
+        return result;
       }, {});
     ```
 
