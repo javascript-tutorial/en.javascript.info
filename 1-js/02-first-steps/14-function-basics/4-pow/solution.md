@@ -13,9 +13,8 @@ function pow(x, n) {
 let x = prompt("x?", '');
 let n = prompt("n?", '');
 
-if (n < 1) {
-  alert(`Power ${n} is not supported,
-    use an integer greater than 0`);
+if (n < 1 || n % 1 != 0) {
+  alert(`Power ${n} is not supported, use an natural number`);
 } else {
   alert( pow(x, n) );
 }
