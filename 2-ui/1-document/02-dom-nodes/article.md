@@ -176,7 +176,7 @@ drawHtmlTree(node6, 'div.domtree', 690, 500);
 
 Here we see a new tree node type -- *comment node*, labeled as `#comment`.
 
-We may think -- why a comment is added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
+We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
 
 **Everything in HTML, even comments, becomes a part of the DOM.**
 
