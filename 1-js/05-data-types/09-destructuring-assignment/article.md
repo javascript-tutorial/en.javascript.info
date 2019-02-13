@@ -146,6 +146,7 @@ let [firstName, surname] = [];
 */!*
 
 alert(firstName); // undefined
+alert(surname); // undefined
 ```
 
 If we want a "default" value to replace the missing one, we can provide it using `=`:
