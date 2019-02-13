@@ -383,6 +383,8 @@ alert(item2);  // Donut
 
 The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
 
+Note that `size` and `items` itself is not destructured.
+
 ![](destructuring-complex.png)
 
 Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
