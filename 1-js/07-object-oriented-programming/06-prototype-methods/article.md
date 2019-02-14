@@ -222,7 +222,7 @@ let rabbit = {
 
 for(let prop in rabbit) {
   let isOwn = rabbit.hasOwnProperty(prop);
-  alert(`${prop}: ${isOwn}`); // jumps:true, then eats:false
+  alert(`${prop}: ${isOwn}`); // jumps: true, then eats: false
 }
 ```
 Here we have the following inheritance chain: `rabbit`, then `animal`, then `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
