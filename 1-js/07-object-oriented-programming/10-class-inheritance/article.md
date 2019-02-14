@@ -487,7 +487,7 @@ Here, let's check that:
 class Animal {}
 class Rabbit extends Animal {}
 
-// for static propertites and methods
+// for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 
 // and the next step is Function.prototype
