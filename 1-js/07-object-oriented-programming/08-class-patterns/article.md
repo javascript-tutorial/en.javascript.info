@@ -54,7 +54,7 @@ function User(name, birthday) {
 }
 
 let user = new User("John", new Date(2000, 0, 1));
-user.sayHi(); // John, age:17
+user.sayHi(); // John, age:19
 ```
 
 In this code variables `name`, `birthday` and the function `calcAge()` are internal, *private* to the object. They are only visible from inside of it.
