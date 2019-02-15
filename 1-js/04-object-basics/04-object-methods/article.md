@@ -205,6 +205,7 @@ admin['f'](); // Admin (dot or square brackets access the method – doesn't mat
 Actually, we can call the function without an object at all:
 
 ```js run
+'use strict';
 function sayHi() {
   alert(this);
 }
