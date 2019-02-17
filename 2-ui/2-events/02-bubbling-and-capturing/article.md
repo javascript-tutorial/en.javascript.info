@@ -108,7 +108,7 @@ Sometimes `event.stopPropagation()` creates hidden pitfalls that later may becom
 
 For instance:
 
-1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that outer menu don't trigger.
+1. We create a nested menu. Each submenu handles clicks on its elements and calls `stopPropagation` so that the outer menu won't trigger.
 2. Later we decide to catch clicks on the whole window, to track users' behavior (where people click). Some analytic systems do that. Usually the code uses `document.addEventListener('click'…)` to catch all clicks.
 3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. We've got a "dead zone".
 
