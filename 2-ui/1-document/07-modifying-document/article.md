@@ -341,7 +341,7 @@ To remove nodes, there are the following methods:
 
 
 `parentElem.removeChild(node)`
-: Removes `elem` from  `parentElem` (assuming it's a child).
+: Removes `node` from  `parentElem` (assuming it's a child).
 
 `node.remove()`
 : Removes the `node` from its place.
