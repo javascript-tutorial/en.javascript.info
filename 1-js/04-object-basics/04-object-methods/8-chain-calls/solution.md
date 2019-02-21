@@ -1,6 +1,6 @@
 The solution is to return the object itself from every call.
 
-```js run
+```js run demo
 let ladder = {
   step: 0,
   up() {
@@ -28,7 +28,7 @@ ladder.up().up().down().up().down().showStep(); // 1
 
 We also can write a single call per line. For long chains it's more readable:
 
-```js 
+```js
 ladder
   .up()
   .up()
@@ -37,4 +37,3 @@ ladder
   .down()
   .showStep(); // 1
 ```
-

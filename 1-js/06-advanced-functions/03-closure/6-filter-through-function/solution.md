@@ -14,7 +14,7 @@ alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
 
 # Filter inArray
 
-```js run
+```js run demo
 function inArray(arr) {
   return function(x) {
     return arr.includes(x);

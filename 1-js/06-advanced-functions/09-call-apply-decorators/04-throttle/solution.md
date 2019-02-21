@@ -1,4 +1,4 @@
-```js
+```js demo
 function throttle(func, ms) {
 
   let isThrottled = false,

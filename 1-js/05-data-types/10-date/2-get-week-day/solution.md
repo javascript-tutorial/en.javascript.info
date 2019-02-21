@@ -2,7 +2,7 @@ The method `date.getDay()` returns the number of the weekday, starting from sund
 
 Let's make an array of weekdays, so that we can get the proper day name by its number:
 
-```js run
+```js run demo
 function getWeekDay(date) {
   let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
 

@@ -1,5 +1,5 @@
 Let's create a date using the next month, but pass zero as the day:
-```js run
+```js run demo
 function getLastDayOfMonth(year, month) {
   let date = new Date(year, month + 1, 0);
   return date.getDate();

@@ -1,4 +1,4 @@
-# The slow solution
+# Slow solution
 
 We can calculate all possible subsums.
 
@@ -67,7 +67,7 @@ Let's walk the array and keep the current partial sum of elements in the variabl
 
 If the description is too vague, please see the code, it's short enough:
 
-```js run
+```js run demo
 function getMaxSubSum(arr) {
   let maxSum = 0;
   let partialSum = 0;

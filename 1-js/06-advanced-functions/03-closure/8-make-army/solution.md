@@ -55,9 +55,9 @@ function makeArmy() {
 
 As a result, all `shooter` functions get from the outer lexical envrironment the same, last value `i=10`.
 
-The fix can be very simple:
+We can fix it by moving the variable definition into the loop:
 
-```js run
+```js run demo
 function makeArmy() {
 
   let shooters = [];
@@ -80,16 +80,15 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-Now it works correctly, because every time the code block in `for (..) {...}` is executed, a new Lexical Environment is created for it, with the corresponding value of `i`.
+Now it works correctly, because every time the code block in `for (let i=0...) {...}` is executed, a new Lexical Environment is created for it, with the corresponding variable `i`.
 
-So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration. A `shooter` gets the value exactly from the one where it was created.
+So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration. That's why now it works.
 
 ![](lexenv-makearmy.png)
 
 Here we rewrote `while` into `for`.
 
 Another trick could be possible, let's see it for better understanding of the subject:
-
 
 ```js run
 function makeArmy() {

@@ -59,7 +59,7 @@ Here we could also use a plain object instead of the `Map`, because keys are str
 
 That's how the solution can look:
 
-```js run
+```js run demo
 function aclean(arr) {
   let obj = {};
 
