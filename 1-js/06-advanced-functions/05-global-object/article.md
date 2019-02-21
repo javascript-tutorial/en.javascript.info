@@ -61,7 +61,7 @@ But starting from ES-2015, these entities are split apart. There's a global Lexi
 
 As a practical difference, global `let/const` variables are definitively properties of the global Environment Record, but they do not exist in the global object.
 
-Naturally, that's because the idea of a global object as a way to access "all global things" comes from ancient times. Nowadays is not considered to be a good thing. Modern language features like `let/const` do not make friends with it, but old ones are still compatible.
+Naturally, that's because the idea of a global object as a way to access "all global things" comes from ancient times. Nowadays it's not considered to be a good thing. Modern language features like `let/const` do not make friends with it, but old ones are still compatible.
 ```
 
 ## Uses of "window"
