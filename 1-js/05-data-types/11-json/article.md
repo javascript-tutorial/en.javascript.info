@@ -361,7 +361,7 @@ alert( JSON.stringify(meetup) );
 
 Here we can see that `date` `(1)` became a string. That's because all dates have a built-in `toJSON` method which returns such kind of string.
 
-Now let's add a custom `toJSON` for our object `room`:
+Now let's add a custom `toJSON` for our object `room` `(2)`:
 
 ```js run
 let room = {
