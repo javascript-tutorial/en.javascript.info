@@ -123,7 +123,7 @@ During the process of development we may have ideas which new built-in methods w
 
 Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them overwrites the other one.
 
-In modern programming, there is only one case when modifying native prototypes is approved. That's polyfills. In other words, if there's a method in JavaScript specification that is not yet supported by our JavaScript engine (or any of those that we want to support), then may implement it manually and populate the built-in prototype with it.
+In modern programming, there is only one case when modifying native prototypes is approved. That's polyfills. In other words, if there's a method in JavaScript specification that is not yet supported by our JavaScript engine (or any of those that we want to support), then we may implement it manually and populate the built-in prototype with it.
 
 For instance:
 
