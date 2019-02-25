@@ -99,7 +99,7 @@ Further, `resolve`/`reject` expect only one argument and will ignore additional 
 ````
 
 ```smart header="Reject with `Error` objects"
-In case if something goes wrong, we can call `reject` with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
+In case something goes wrong, we can call `reject` with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
 ```
 
 ````smart header="Immediately calling `resolve`/`reject`"
