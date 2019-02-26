@@ -80,7 +80,7 @@ To summarize, the executor should do a job (something that takes time usually) a
 The Promise that is either resolved or rejected is called "settled", as opposed to a "pending" Promise.
 
 ````smart header="There can be only a single result or an error"
-The executor should call only one `resolve` or `reject`. The promise's state change is final.
+The executor should call only one `resolve` or one `reject`. The promise's state change is final.
 
 All further calls of `resolve` and `reject` are ignored:
 
@@ -95,7 +95,7 @@ let promise = new Promise(function(resolve, reject) {
 
 The idea is that a job done by the executor may have only one result or an error.
 
-Further, `resolve`/`reject` expect only one argument and will ignore additional arguments.
+Also, `resolve`/`reject` expect only one argument (or none) and will ignore additional arguments.
 ````
 
 ```smart header="Reject with `Error` objects"
