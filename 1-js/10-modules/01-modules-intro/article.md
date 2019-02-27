@@ -87,14 +87,14 @@ Module scripts, have several important differences, that's why `type="module"` i
     ```html run
     <script type="module">
     *!*
-      alert(button); // HTMLButtonElement: the script can 'see' elements below
+      alert(typeof button); // object: the script can 'see' the button below
     */!*
       // as modules are deferred, the script runs after the whole page is loaded
     </script>
 
     <script>
     *!*
-      alert(button); // Error: button is undefined, the script can't see elements below
+      alert(typeof button); // Error: button is undefined, the script can't see elements below
     */!*
       // regular scripts run immediately, before the rest of the page is processed
     </script>
@@ -102,7 +102,11 @@ Module scripts, have several important differences, that's why `type="module"` i
     <button id="button">Button</button>
     ```
 
-    So, when we're using modules, we should be aware that HTML-document can show up before the Javascript application is ready. Certain functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
+    Please note: the second script actually works before the first! So we'll see `undefined` first, and then `object`.
+
+    That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
+
+    When using modules, we should be aware that HTML-document can show up before the Javascript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
 
 4. Async attribute `<script async type="module">` is allowed on both inline and external scripts. Async scripts run immediately when imported modules are processed, independantly of other scripts or the HTML document.
 
@@ -299,6 +303,20 @@ import {admin, sayHi} from './admin.js';
 alert(admin.name); // *!*Pete*/!*
 
 sayHi(); // Ready to serve, *!*Pete*/!*!
+```
+
+### Top-level "this" is undefined
+
+In a module, top-level `this` is undefined (as opposed to a global object in non-module scripts):
+
+```html run height=0
+<script>
+  alert(this); // window
+</script>
+
+<script type="module">
+  alert(this); // undefined
+</script>
 ```
 
 ## Summary

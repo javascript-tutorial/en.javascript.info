@@ -182,4 +182,4 @@ There are two main differences of `var`:
 
 There's one more minor difference related to the global object, we'll cover that in the next chapter.
 
-These differences are actually a bad thing most of the time. First, we can't create block-local variables. And hoisting just creates more space for errors. So, for new scripts `var` is used exceptionally rarely.
+These differences are actually a bad thing most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.

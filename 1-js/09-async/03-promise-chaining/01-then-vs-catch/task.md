@@ -6,7 +6,8 @@ Are these code fragments equal? In other words, do they behave the same way in a
 promise.then(f1).catch(f2);
 ```
 
-Versus;
+Versus:
+
 ```js
 promise.then(f1, f2);
 ```

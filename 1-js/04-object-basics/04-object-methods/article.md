@@ -214,7 +214,7 @@ sayHi(); // undefined
 
 In this case `this` is `undefined` in strict mode. If we try to access `this.name`, there will be an error.
 
-In non-strict mode (if one forgets `use strict`) the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later). This is a historical behavior that `"use strict"` fixes.
+In non-strict mode the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later in the chapter [](info:global-object)). This is a historical behavior that `"use strict"` fixes.
 
 Please note that usually a call of a function that uses `this` without an object is not normal, but rather a programming mistake. If a function has `this`, then it is usually meant to be called in the context of an object.
 

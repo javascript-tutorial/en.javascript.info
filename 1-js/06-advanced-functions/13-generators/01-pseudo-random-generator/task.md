@@ -23,12 +23,12 @@ If we use `1` as the seed, the values will be:
 
 The task is to create a generator function `pseudoRandom(seed)` that takes `seed` and creates the generator with this formula.
 
-Use example:
+Usage example:
 
 ```js
-let gen = pseudoRandom(1);
+let generator = pseudoRandom(1);
 
-alert(gen.next().value); // 16807
-alert(gen.next().value); // 282475249
-alert(gen.next().value); // 1622650073
+alert(generator.next().value); // 16807
+alert(generator.next().value); // 282475249
+alert(generator.next().value); // 1622650073
 ```

@@ -118,14 +118,18 @@ That's fine. We immediately have a resolved Promise, nothing wrong with that.
 ````
 
 ```smart header="The `state` and `result` are internal"
-The properties `state` and `result` of the Promise object are internal. We can't directly access them from our "consuming code". We can use the methods `.then`/`.catch` for that. They are described below.
+The properties `state` and `result` of the Promise object are internal. We can't directly access them from our "consuming code". We can use the methods `.then`/`.catch`/`.finally` for that. They are described below.
 ```
 
-## Consumers: "then" and "catch"
+## Consumers: then, catch, finally
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then`, `.catch` and `.finally`.
 
-The syntax of `.then` is:
+### then
+
+The most important, fundamental one is `.then`.
+
+The syntax is:
 
 ```js
 promise.then(
@@ -144,7 +148,7 @@ The second argument of `.then` is a function that:
 1. runs when the Promise is rejected, and
 2. receives the error.
 
-For instance, here's the reaction to a successfuly resolved promise:
+For instance, here's a reaction to a successfuly resolved promise:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -190,6 +194,8 @@ promise.then(alert); // shows "done!" after 1 second
 */!*
 ```
 
+### catch
+
 If we're interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same:
 
 
@@ -206,8 +212,55 @@ promise.catch(alert); // shows "Error: Whoops!" after 1 second
 
 The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a shorthand.
 
-````smart header="On settled promises `then` runs immediately"
-If a promise is pending, `.then/catch` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:
+### finally
+
+The call `.finally(f)` is similar to `.then(f, f)`, it always runs when the promise is settled: be it resolve or reject.
+
+The idea is that we can perform cleanup in it, e.g. stop our loading indicators in `finally`, as they are not needed any more, like this:
+
+```js
+new Promise((resolve, reject) => {
+  /* do something that takes time, and then call resolve/reject */
+})
+*!*
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+*/!*
+  .then(result => show result, err => show error)
+```
+
+It's not exactly an alias though. There are several important differences:
+
+1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. We shouldn't need to know it, as our task is usually to perform "general" finalizing procedures.
+2. Finally passes through results and errors to the next handler.
+
+    For instance, here the result is passed through `finally` to `then`:
+    ```js run
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve("result"), 2000)
+    })
+      .finally(() => alert("Promise ready"))
+      .then(result => alert(result)); // result
+    ```
+
+    And here there's an error in the promise, passed through `finally` to `catch`:
+
+    ```js run
+    new Promise((resolve, reject) => {
+      throw new Error("error");
+    })
+      .finally(() => alert("Promise ready"))
+      .catch(err => alert(err)); // error
+    ```  
+
+    That's very convenient, because finally is not meant to process promise results. So it passes them through.
+
+    We'll talk about promise chaining and passing around results in more detail in the next chapter.
+
+3. The last, but not the least, `.finally(f)` is more convenient syntax than `.then(f, f)`: there's no need to duplicate a function.
+
+````smart header="On settled promises handlers runs immediately"
+If a promise is pending, `.then/catch/finally` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:
 
 ```js run
 // an immediately resolved promise
@@ -219,14 +272,12 @@ promise.then(alert); // done! (shows up right now)
 Some tasks may sometimes require time and sometimes finish immediately. The good thing is: the `.then` handler is guaranteed to run in both cases.
 ````
 
-````smart header="Handlers of `.then`/`.catch` are always asynchronous"
-Even when the Promise is immediately resolved, code which occurs on lines *below* your `.then`/`.catch` may still execute first.
+````smart header="Handlers of `.then`/`.catch`/`.finally` are always asynchronous"
+Even when the Promise is immediately resolved, code which occurs on lines *below* your `.then`/`.catch`/`.finally` may still execute first.
 
-The JavaScript engine has an internal execution queue which gets all `.then/catch` handlers.
+The JavaScript engine has an internal execution queue which gets all `.then/catch/finally` handlers.
 
-But it only looks into that queue when the current execution is finished.
-
-In other words, `.then/catch` handlers are pending execution until the engine is done with the current code.
+But it only looks into that queue when the current execution is finished. In other words, the handlers are pending execution until the engine is done with the current code.
 
 For instance, here:
 
@@ -240,11 +291,11 @@ promise.then(alert); // this alert shows last (*)
 alert("code finished"); // this alert shows first
 ```
 
-The promise becomes settled immediately, but the engine first finishes the current code, calls `alert`, and only *afterwards* looks into the queue to run `.then` handler.
+The promise becomes settled immediately, but the engine first finishes the current code, calls `alert("code finished")`, and only *afterwards* looks into the queue to run `.then` handler.
 
 So the code *after* `.then` ends up always running *before* the Promise's subscribers, even in the case of an immediately-resolved Promise.
 
-Usually that's unimportant, but in some scenarios the order may matter a great deal.
+Sometimes that's unimportant, while in some scenarios the order may matter a great deal.
 ````
 
 Next, let's see more practical examples of how promises can help us to write asynchronous code.
@@ -288,7 +339,7 @@ function loadScript(src) {
 Usage:
 
 ```js run
-let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js");
+let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
 
 promise.then(
   script => alert(`${script.src} is loaded!`),
@@ -300,11 +351,10 @@ promise.then(script => alert('One more handler to do something else!'));
 
 We can immediately see a few benefits over the callback-based pattern:
 
-```compare minus="Callbacks" plus="Promises"
-- We must have a ready `callback` function when calling `loadScript`. In other words, we must know what to do with the result *before* `loadScript` is called.
-- There can be only one callback.
-+ Promises allow us to do things in the natural order. First, we run `loadScript`, and `.then` we write what to do with the result.
-+ We can call `.then` on a Promise as many times as we want. Each time, we're adding a new "fan", a new subscribing function, to the "subscription list". More about this in the next section: [Promise Chaining](/promise-chaining).
-```
 
-So Promises already give us better code flow and flexibility. But there's more. We'll see that in the next chapters.
+| Promises | Callbacks |
+|----------|-----------|
+| Promises allow us to do things in the natural order. First, we run `loadScript(script)`, and `.then` we write what to do with the result. | We must have a `callback` function at our disposal when calling `loadScript(script, callback)`. In other words, we must know what to do with the result *before* `loadScript` is called. |
+| We can call `.then` on a Promise as many times as we want. Each time, we're adding a new "fan", a new subscribing function, to the "subscription list". More about this in the next chapter: [](info:promise-chaining). | There can be only one callback. |
+
+So Promises give us better code flow and flexibility. But there's more. We'll see that in the next chapters.

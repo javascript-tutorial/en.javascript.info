@@ -3,7 +3,7 @@
 
 Regular functions return only one, single value (or nothing).
 
-Generators can return ("yield") multiple values, possibly an infinite number of values, one after another, on-demand.
+Generators can return ("yield") multiple values, possibly an infinite number of values, one after another, on-demand. They work great with [iterables](info:iterable), allowing to create data streams with ease.
 
 ## Generator functions
 
@@ -114,11 +114,11 @@ for(let value of generator) {
 }
 ```
 
+That's a much better-looking way to work with generators than calling `.next().value`, right?
+
 ...But please note: the example above shows `1`, then `2`, and that's all. It doesn't show `3`!
 
-That's because a for-of iteration ignores the last `value`, when `done: true`. So the result of `return` is ignored.
-
-So, if we want all results to be shown by `for..of`, we must return them with `yield`:
+It's because for-of iteration ignores the last `value`, when `done: true`. So, if we want all results to be shown by `for..of`, we must return them with `yield`:
 
 ```js run
 function* generateSequence() {
@@ -152,7 +152,42 @@ alert(sequence); // 0, 1, 2, 3
 
 In the code above, `...generateSequence()` turns the iterable into array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
 
-Just like any function, generators may have arguments:
+## Converting iterables to generators
+
+Some time ago, in the chapter [](info:iterable) we created an iterable `range` object that returns values `from..to`.
+
+Here, let's remember the code:
+
+```js run
+let range = {
+  from: 1,
+  to: 5,
+
+  // for..of calls this method once in the very beginning
+  [Symbol.iterator]() {
+    // ...it returns the iterator object:
+    // onward, for..of works only with that object, asking it for next values
+    return {
+      current: this.from,
+      last: this.to,
+
+      // next() is called on each iteration by the for..of loop
+      next() {
+        // it should return the value as an object {done:.., value :...}
+        if (this.current <= this.last) {
+          return { done: false, value: this.current++ };
+        } else {
+          return { done: true };
+        }
+      }
+    };
+  }
+};
+
+alert([...range]); // 1,2,3,4,5
+```
+
+Using a generator to make iterable sequences is so much more elegant:
 
 ```js run
 function* generateSequence(start, end) {
@@ -161,31 +196,54 @@ function* generateSequence(start, end) {
   }
 }
 
-let sequence = [...generateSequence(2,5)];
+let sequence = [...generateSequence(1,5)];
 
-alert(sequence); // 2, 3, 4, 5
+alert(sequence); // 1, 2, 3, 4, 5
 ```
 
-Here we had finite generators. but we also can make a generator that yields pseudo-random numbers, infinitely. No one requires a generator to ever stop yielding.
+...But what if we'd like to keep a custom `range` object?
+
+We can get the best from both worlds by providing a generator as `Symbol.iterator`:
+
+```js run
+let range = {
+  from: 1,
+  to: 5,
+
+  *[Symbol.iterator]() { // a shorthand for [Symbol.iterator]: function*()
+    for(let value = this.from; value <= this.to; value++) {
+      yield value;
+    }
+  }
+};
+
+alert( [...range] ); // 1,2,3,4,5
+```
+
+The `range` object is now iterable. The last variant with a generator is much more concise than the original iterable code, and keeps the same functionality.
+
+```smart header="Generators may continue forever"
+In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
+
+That surely would require a `break` in `for..of`, otherwise the loop would repeat forever and hang.
+```
 
 ## Generator composition
 
-A generator may include results from other generators in its yields. That's called "a composition of generators".
+Generator composition is a special feature of generators that allows to transparently "embed" generators in each other.
 
 For instance, we'd like to generate a sequence of:
 - digits `0..9` (character codes 48..57),
 - followed by alphabet letters `a..z` (character codes 65..90)
 - followed by uppercased letters `A..Z` (character codes 97..122)
 
-Then we're going to create passwords by selecting characters from it (could add syntax characters as well).
+Then we plan to create passwords by selecting characters from it (could add syntax characters as well), but need to generate the sequence first.
 
-We already have `function* generateSequence`, that generates a sequence of numbers, given its `start` and `end`.
+We already have `function* generateSequence(start, end)`. Let's reuse it to deliver 3 sequences one after another, together they are exactly what we need.
 
-So let's reuse it.
+In a regular function, to combine results from multiple other functions, we call them, store the results, and then join at the end.
 
-Of course, we could call `generateSequence` multiple times and then join the results. That's what we would do with regular functions. But generator composition allows us to do better.
-
-It looks like this:
+For generators, we can do better, like this:
 
 ```js run
 function* generateSequence(start, end) {
@@ -216,11 +274,9 @@ for(let code of generatePasswordCodes()) {
 alert(str); // 0..9A..Za..z
 ```
 
-Here the special `yield*` directive is used. It only may apply to another generator and *delegates* the execution to it.
+The special `yield*` directive in the example is responsible for the composition. It *delegates* the execution to another generator. Or, to say it simple, it runs generators and transparently forwards their yields outside, as if they were done by the calling generator itself.
 
-That is, `yield*` makes the execution go inside its argument, e.g `generateSequence(48, 57)`, run it and forward all its yields outside.
-
-In other words, it's like we inserted the code from nested generators, equivalent to this:
+The result is the same as if we inlined the code from nested generators:
 
 ```js run
 function* generateSequence(start, end) {
@@ -251,24 +307,24 @@ for(let code of generateAlphaNum()) {
 alert(str); // 0..9A..Za..z
 ```
 
-A generator composition is a way to naturally insert one generator into another. It works even if the flow of values from the nested generator is infinite, without consuming extra memory.
+A generator composition is a natural way to insert a flow of one generator into another.
+
+It works even if the flow of values from the nested generator is infinite. It's simple and doesn't use extra memory to store intermediate results.
 
 ## "yield" is a two-way road
 
-Till this moment, generators were like "iterators on steroids". But as we'll see now, that is not so. There's a fundamental difference, generators are much more powerful and flexible.
+Till this moment, generators were like "iterators on steroids". And that's how they are often used.
 
-That's because `yield` is a two-way road. It not only returns the result outside, but also can pass the value inside the generator.
+But in fact they are much more powerful and flexible.
 
-- The call `let result = yield value` inside a generator returns `value` to the outer code, pausing the generator execution.
-- The outer code may process that value, and call `next` with an argument: `generator.next(arg)`.
-- The generator resumes execution, `result` gets the value of `arg`.
+That's because `yield` is a two-way road: it not only returns the result outside, but also can pass the value inside the generator.
 
-So, the argument of `next()` gets into the generator, that may use it to adjust further generation.
+To do so, we should call `generator.next(arg)`, with an argument. That argument becomes the result of `yield`.
 
 Let's see an example:
 
 ```js run
-function* generate() {
+function* gen() {
 *!*
   // Pass a question to the outer code and wait for an answer
   let result = yield "2 + 2?"; // (*)
@@ -277,31 +333,32 @@ function* generate() {
   alert(result);
 }
 
-let generator = generate();
+let generator = gen();
 
 let question = generator.next().value; // <-- yield returns the value
 
-setTimeout(() => generator.next(4), 2000); // --> in two seconds we pass result
+generator.next(4); // --> pass the result into the generator  
 ```
-
-In the illustration below, the rectangle is a generator, and outside it is the "calling code" interacting with it:
 
 ![](genYield2.png)
 
-The picture shows in detail what's going on in the line `(*)`:
-
 1. The first call `generator.next()` is always without an argument. It starts the execution and returns the result of the first `yield` ("2+2?"). At this point the generator pauses the execution (still on that line).
-2. The result of `yield` gets into the `question` variable in the calling code. The code now can do any tasks, the generator is paused.
-3. On thee next call `generator.next(4)`, the generator execution resumes, and `4` gets out of the assignment as the result: `let result = yield ...`.
+2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
+3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
-In the example above, there're only two `next()`.
+Please note, the outer code does not have to immediately call`next(4)`. It may take time to calculate the value. This is also a valid code:
 
-Be sure to wrap your head around it, as the syntax may be a bit odd. It's quite uncommon for a function and the calling code to pass values around to each other. But that's exactly what's going on.
+```js
+// resume the generator after some time
+setTimeout(() => generator.next(4), 1000);
+```
 
-To make things even more obvious, here's another example, with more calls:
+The syntax may seem a bit odd. It's quite uncommon for a function and the calling code to pass values around to each other. But that's exactly what's going on.
+
+To make things more obvious, here's another example, with more calls:
 
 ```js run
-function* generate() {
+function* gen() {
   let ask1 = yield "2 + 2?";
 
   alert(ask1); // 4
@@ -311,7 +368,7 @@ function* generate() {
   alert(ask2); // 9
 }
 
-let generator = generate();
+let generator = gen();
 
 alert( generator.next().value ); // "2 + 2?"
 
@@ -343,9 +400,9 @@ To pass an error into a `yield`, we should call `generator.throw(err)`. In that 
 For instance, here the yield of `"2 + 2?"` leads to an error:
 
 ```js run
-function* generate() {
+function* gen() {
   try {
-    let result = yield "Сколько будет 2 + 2?"; // (1)
+    let result = yield "2 + 2?"; // (1)
 
     alert("The execution does not reach here, because the exception is thrown above");
   } catch(e) {
@@ -353,7 +410,7 @@ function* generate() {
   }
 }
 
-let generator = generate();
+let generator = gen();
 
 let question = generator.next().value;
 
@@ -362,7 +419,7 @@ generator.throw(new Error("The answer is not found in my database")); // (2)
 */!*
 ```
 
-The error, thrown into the generator at the line `(2)` leads to an exception in the line `(1)` with `yield`. That exception is handled as usual. In the example above, `try..catch` catches it and shows.
+The error, thrown into the generator at the line `(2)` leads to an exception in the line `(1)` with `yield`. In the example above, `try..catch` catches it and shows.
 
 If we don't catch it, then just like any exception, it "falls out" the generator into the calling code.
 
