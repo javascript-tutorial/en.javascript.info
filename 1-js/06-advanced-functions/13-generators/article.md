@@ -152,7 +152,7 @@ alert(sequence); // 0, 1, 2, 3
 
 In the code above, `...generateSequence()` turns the iterable into array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
 
-## Converting iterables to generators
+## Using generators instead of iterables
 
 Some time ago, in the chapter [](info:iterable) we created an iterable `range` object that returns values `from..to`.
 
@@ -203,6 +203,8 @@ alert(sequence); // 1, 2, 3, 4, 5
 
 ...But what if we'd like to keep a custom `range` object?
 
+## Converting Symbol.iterator to generator
+
 We can get the best from both worlds by providing a generator as `Symbol.iterator`:
 
 ```js run
@@ -220,7 +222,16 @@ let range = {
 alert( [...range] ); // 1,2,3,4,5
 ```
 
-The `range` object is now iterable. The last variant with a generator is much more concise than the original iterable code, and keeps the same functionality.
+The `range` object is now iterable.
+
+That works pretty well, because when `range[Symbol.iterator]` is called:
+- it returns an object (now a generator)
+- that has `.next()` method (yep, a generator has it)
+- that returns values in the form `{value: ..., done: true/false}` (check, exactly what generator does).
+
+That's not a coincidence, of course. Generators aim to make iterables easier, so we can see that.
+
+The last variant with a generator is much more concise than the original iterable code, and keeps the same functionality.
 
 ```smart header="Generators may continue forever"
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
