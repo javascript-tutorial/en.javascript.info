@@ -8,15 +8,13 @@ Let's take the following task as an example.
 
 We have a text and need to replace all quotes `"..."` with guillemet marks: `«...»`. They are preferred for typography in many countries.
 
-For instance: `"Hello, world"` should become `«Hello, world»`.
+For instance: `"Hello, world"` should become `«Hello, world»`. Some countries prefer other quotes, like `„Witam, świat!”` (Polish) or `「你好，世界」` (Chinese), but for our task let's choose `«...»`.
 
-Some countries prefer `„Witam, świat!”` (Polish) or even `「你好，世界」` (Chinese) quotes. For different locales we can choose different replacements, but that all works the same, so let's start with `«...»`.
+The first thing to do is to locate quoted strings, and then we can replace them.
 
-To make replacements we first need to find all quoted substrings.
+A regular expression like `pattern:/".+"/g` (a quote, then something, then the other quote) may seem like a good fit, but it isn't!
 
-The regular expression can look like this: `pattern:/".+"/g`. That is: we look for a quote followed by one or more characters, and then another quote.
-
-...But if we try to apply it, even in such a simple case...
+Let's try it:
 
 ```js run
 let reg = /".+"/g;
@@ -193,7 +191,7 @@ Please note, that this logic does not replace lazy quantifiers!
 
 It is just different. There are times when we need one or another.
 
-Let's see one more example where lazy quantifiers fail and this variant works right.
+**Let's see an example where lazy quantifiers fail and this variant works right.**
 
 For instance, we want to find links of the form `<a href="..." class="doc">`, with any `href`.
 
@@ -210,7 +208,7 @@ let reg = /<a href=".*" class="doc">/g;
 alert( str.match(reg) ); // <a href="link" class="doc">
 ```
 
-...But what if there are many links in the text?
+It worked. But let's see what happens if there are many links in the text?
 
 ```js run
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
@@ -239,14 +237,14 @@ let reg = /<a href=".*?" class="doc">/g;
 alert( str.match(reg) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
 ```
 
-Now it works, there are two matches:
+Now it seems to work, there are two matches:
 
 ```html
 <a href="....." class="doc">    <a href="....." class="doc">
 <a href="link1" class="doc">... <a href="link2" class="doc">
 ```
 
-Why it works -- should be obvious after all explanations above. So let's not stop on the details, but try one more text:
+...But let's test it on one more text input:
 
 ```js run
 let str = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
@@ -256,24 +254,24 @@ let reg = /<a href=".*?" class="doc">/g;
 alert( str.match(reg) ); // <a href="link1" class="wrong">... <p style="" class="doc">
 ```
 
-We can see that the regexp matched not just a link, but also a lot of text after it, including `<p...>`.
+Now it fails. The match includes not just a link, but also a lot of text after it, including `<p...>`.
 
-Why it happens?
+Why?
+
+That's what's going on:
 
 1. First the regexp finds a link start `match:<a href="`.
+2. Then it looks for `pattern:.*?`: takes one character (lazily!), check if there's a match for `pattern:" class="doc">` (none).
+3. Then takes another character into `pattern:.*?`, and so on... until it finally reaches `match:" class="doc">`.
 
-2. Then it looks for `pattern:.*?`, we take one character, then check if there's a match for the rest of the pattern, then take another one...
+But the problem is: that's already beyound the link, in another tag `<p>`. Not what we want.
 
-    The quantifier `pattern:.*?` consumes characters until it meets `match:class="doc">`.
+Here's the picture of the match aligned with the text:
 
-    ...And where can it find it? If we look at the text, then we can see that the only `match:class="doc">` is beyond the link, in the tag `<p>`.
-
-3. So we have match:
-
-    ```html
-    <a href="..................................." class="doc">
-    <a href="link1" class="wrong">... <p style="" class="doc">
-    ```
+```html
+<a href="..................................." class="doc">
+<a href="link1" class="wrong">... <p style="" class="doc">
+```
 
 So the laziness did not work for us here.
 

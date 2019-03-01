@@ -96,34 +96,32 @@ There are only 5 of them in JavaScript:
 `m`
 : Multiline mode (covered in the chapter <info:regexp-multiline>).
 
+`s`
+: "Dotall" mode, allows `.` to match newlines (covered in the chapter <info:regexp-character-classes>).
+
 `u`
 : Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
 
 `y`
 : Sticky mode (covered in the [next chapter](info:regexp-methods#y-flag))
 
+We'll cover all these flags further in the tutorial.
 
-## The "i" flag
-
-The simplest flag is `i`.
-
-An example with it:
+For now, the simplest flag is `i`, here's an example:
 
 ```js run
 let str = "I love JavaScript!";
 
-alert( str.search(/LOVE/) ); // -1 (not found)
-alert( str.search(/LOVE/i) ); // 2
-```
+alert( str.search(/LOVE/i) ); // 2 (found lowercased)
 
-1. The first search returns `-1` (not found), because the search is case-sensitive by default.
-2. With the flag `pattern:/LOVE/i` the search found `match:love` at position 2.
+alert( str.search(/LOVE/) ); // -1 (nothing found without 'i' flag)
+```
 
 So the `i` flag already makes regular expressions more powerful than a simple substring search. But there's so much more. We'll cover other flags and features in the next chapters.
 
 
 ## Summary
 
-- A regular expression consists of a pattern and optional flags: `g`, `i`, `m`, `u`, `y`.
+- A regular expression consists of a pattern and optional flags: `g`, `i`, `m`, `u`, `s`, `y`.
 - Without flags and special symbols that we'll study later, the search by a regexp is the same as a  substring search.
-- The method `str.search(regexp)` returns the index where the match is found or `-1` if there's no match.
+- The method `str.search(regexp)` returns the index where the match is found or `-1` if there's no match. In the next chapter we'll see other methods.

@@ -4,7 +4,7 @@ A part of a pattern can be enclosed in parentheses `pattern:(...)`. This is call
 
 That has two effects:
 
-1. It allows to place a part of the match into a separate array item when using  [String#match](mdn:js/String/match) or [RegExp#exec](mdn:/RegExp/exec) methods.
+1. It allows to place a part of the match into a separate array.
 2. If we put a quantifier after the parentheses, it applies to the parentheses as a whole, not the last character.
 
 ## Example
@@ -30,32 +30,30 @@ john.smith@site.com.uk
 
 The pattern: `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`.
 
-- The first part before `@` may include any alphanumeric word characters, a dot and a dash `pattern:[-.\w]+`, like `match:john.smith`.
-- Then `pattern:@`
-- And then the domain and maybe a second-level domain like `site.com` or with subdomains like `host.site.com.uk`. We can match it as "a word followed by a dot" repeated one or more times for subdomains: `match:mail.` or `match:site.com.`, and then "a word" for the last part: `match:.com` or `match:.uk`.
+1. The first part `pattern:[-.\w]+` (before `@`) may include any alphanumeric word characters, a dot and a dash, to match `match:john.smith`.
+2. Then `pattern:@`, and the domain. It may be a subdomain like `host.site.com.uk`, so we match it as "a word followed by a dot `pattern:([\w-]+\.)` (repeated), and then the last part must be a word: `match:com` or `match:uk` (but not very long: 2-20 characters).
 
-    The word followed by a dot is `pattern:(\w+\.)+` (repeated). The last word should not have a dot at the end, so it's just `\w{2,20}`. The quantifier `pattern:{2,20}` limits the length, because domain zones are like `.uk` or `.com` or `.museum`, but can't be longer than 20 characters.
+That regexp is not perfect, but good enough to fix errors or occasional mistypes.
 
-    So the domain pattern is `pattern:(\w+\.)+\w{2,20}`. Now we replace `\w` with `[\w-]`, because dashes are also allowed in domains, and we get the final result.
-
-That regexp is not perfect, but usually works. It's short and good enough to fix errors or occasional mistypes.
-
-For instance, here we can find all emails in the string:
+For instance,  we can find all emails in the string:
 
 ```js run
 let reg = /[-.\w]+@([\w-]+\.)+[\w-]{2,20}/g;
 
-alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com,his@site.com.uk
+alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com, his@site.com.uk
 ```
 
+In this example parentheses were used to make a group for repeating `pattern:(...)+`. But there are other uses too, let's see them.
 
 ## Contents of parentheses  
 
 Parentheses are numbered from left to right. The search engine remembers the content of each and allows to reference it in the pattern or in the replacement string.
 
-For instance, we can find an HTML-tag using a (simplified) pattern `pattern:<.*?>`. Usually we'd want to do something with the result after it.
+For instance, we'd like to find HTML tags `pattern:<.*?>`, and process them.
 
-If we enclose the inner contents of `<...>` into parentheses, then we can access it like this:
+Let's wrap the inner content into parentheses, like this: `pattern:<(.*?)>`.
+
+We'll get them into an array:
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
@@ -66,7 +64,7 @@ alert( str.match(reg) ); // Array: ["<h1>", "h1"]
 
 The call to [String#match](mdn:js/String/match) returns groups only if the regexp has no `pattern:/.../g` flag.
 
-If we need all matches with their groups then we can use [RegExp#exec](mdn:js/RegExp/exec) method as described in <info:regexp-methods>:
+If we need all matches with their groups then we can use `.matchAll` or `regexp.exec` as described in <info:regexp-methods>:
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
@@ -74,13 +72,10 @@ let str = '<h1>Hello, world!</h1>';
 // two matches: opening <h1> and closing </h1> tags
 let reg = /<(.*?)>/g;
 
-let match;
+let matches = Array.from( str.matchAll(reg) );
 
-while (match = reg.exec(str)) {
-  // first shows the match: <h1>,h1
-  // then shows the match: </h1>,/h1
-  alert(match);
-}
+alert(matches[0]); //  Array: ["<h1>", "h1"]
+alert(matches[1]); //  Array: ["</h1>", "/h1"]
 ```
 
 Here we have two matches for `pattern:<(.*?)>`, each of them is an array with the full match and groups.
@@ -146,13 +141,78 @@ alert( match[2] ); // c
 
 The array length is permanent: `3`. But there's nothing for the group `pattern:(z)?`, so the result is `["ac", undefined, "c"]`.
 
+## Named groups
+
+Remembering groups by their numbers is hard. For simple patterns it's doable, but for more complex ones we can give names to parentheses.
+
+That's done by putting `pattern:?<name>` immediately after the opening paren, like this:
+
+```js run
+*!*
+let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
+*/!*
+let str = "2019-04-30";
+
+let groups = str.match(dateRegexp).groups;
+
+alert(groups.year); // 2019
+alert(groups.month); // 04
+alert(groups.day); // 30
+```
+
+As you can see, the groups reside in the `.groups` property of the match.
+
+Wee can also use them in replacements, as `pattern:$<name>` (like `$1..9`, but name instead of a digit).
+
+For instance, let's rearrange the date into `day.month.year`:
+
+```js run
+let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
+
+let str = "2019-04-30";
+
+let rearranged = str.replace(dateRegexp, '$<day>.$<month>.$<year>');
+
+alert(rearranged); // 30.04.2019
+```
+
+If we use a function, then named `groups` object is always the last argument:
+
+```js run
+let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
+
+let str = "2019-04-30";
+
+let rearranged = str.replace(dateRegexp,
+  (str, year, month, day, offset, input, groups) =>
+   `${groups.day}.${groups.month}.${groups.year}`
+);
+
+alert(rearranged); // 30.04.2019
+```
+
+Usually, when we intend to use named groups, we don't need positional arguments of the function. For the majority of real-life cases we only need `str` and `groups`.
+
+So we can write it a little bit shorter:
+
+```js
+let rearranged = str.replace(dateRegexp, (str, ...args) => {
+  let {year, month, day} = args.pop();
+  alert(str); // 2019-04-30
+  alert(year); // 2019
+  alert(month); // 04
+  alert(day); // 30
+});
+```
+
+
 ## Non-capturing groups with ?:
 
-Sometimes we need parentheses to correctly apply a quantifier, but we don't want their contents in the array.
+Sometimes we need parentheses to correctly apply a quantifier, but we don't want the contents in results.
 
 A group may be excluded by adding `pattern:?:` in the beginning.
 
-For instance, if we want to find `pattern:(go)+`, but don't want to put remember the contents (`go`) in a separate array item, we can write: `pattern:(?:go)+`.
+For instance, if we want to find `pattern:(go)+`, but don't want to remember the contents (`go`) in a separate array item, we can write: `pattern:(?:go)+`.
 
 In the example below we only get the name "John" as a separate member of the `results` array:
 
@@ -168,3 +228,10 @@ let result = str.match(reg);
 alert( result.length ); // 2
 alert( result[1] ); // John
 ```
+
+## Summary
+
+- Parentheses can be:
+  - capturing `(...)`, ordered left-to-right, accessible by number.
+  - named capturing `(?<name>...)`, accessible by name.
+  - non-capturing `(?:...)`, used only to apply quantifier to the whole groups.
