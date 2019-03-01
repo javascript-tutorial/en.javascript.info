@@ -203,7 +203,7 @@ For `setInterval` the internal scheduler will run `func(i)` every 100ms:
 
 ![](setinterval-interval.png)
 
-Did you notice?
+Did you notice? // `func` is not defined and you just get an error. It seems that the idea is to do a loop that alerts `i`. I did't create a code to demonstrates that because don't know if that's the idea.
 
 **The real delay between `func` calls for `setInterval` is less than in the code!**
 
