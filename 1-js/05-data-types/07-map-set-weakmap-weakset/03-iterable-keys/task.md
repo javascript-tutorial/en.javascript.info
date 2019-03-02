@@ -16,7 +16,7 @@ map.set("name", "John");
 let keys = map.keys();
 
 *!*
-// Error: numbers.push is not a function
+// Error: keys.push is not a function
 keys.push("more");
 */!*
 ```
