@@ -305,7 +305,7 @@ If we look more closely, there's a minor difference between such uses of `call` 
 
 So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
 
-And if `args` is both iterable and array-like, like a real array, then we technically could use any of them, but `apply` will probably be faster, because it's a single operation. Most JavaScript engines internally optimize is better than a pair `call + spread`.
+And if `args` is both iterable and array-like, like a real array, then we technically could use any of them, but `apply` will probably be faster, because it's a single operation. Most JavaScript engines internally optimize it better than a pair `call + spread`.
 
 One of the most important uses of `apply` is passing the call to another function, like this:
 
