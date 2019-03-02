@@ -275,7 +275,7 @@ In this example `count` is found on  step `2`. When an outer variable is modifie
 
 Here are two questions to consider:
 
-1. Can we somehow reset the `counter` from the code that doesn't belong to `makeCounter`? E.g. after `alert` calls in the example above.
+1. Can we somehow reset the counter `count` from the code that doesn't belong to `makeCounter`? E.g. after `alert` calls in the example above.
 2. If we call `makeCounter()` multiple times -- it returns many `counter` functions. Are they independent or do they share the same `count`?
 
 Try to answer them before you continue reading.
@@ -286,8 +286,8 @@ All done?
 
 Okay, let's go over the answers.
 
-1. There is no way. The `counter` is a local function variable, we can't access it from the outside.
-2. For every call to `makeCounter()` a new function Lexical Environment is created, with its own `counter`. So the resulting `counter` functions are independent.
+1. There is no way: `count` is a local function variable, we can't access it from the outside.
+2. For every call to `makeCounter()` a new function Lexical Environment is created, with its own `count`. So the resulting `counter` functions are independent.
 
 Here's the demo:
 

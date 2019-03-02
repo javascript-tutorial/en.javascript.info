@@ -1,5 +1,5 @@
 
-# "Sticky" flag `y`, searching at position [#y-flag]
+# Sticky flag "y", searching at position
 
 To grasp the use case of `y` flag, and see how great it is, let's explore a practical use case.
 

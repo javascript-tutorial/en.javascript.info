@@ -6,7 +6,9 @@ Sooner or later most developers occasionally face such behavior.
 
 The typical situation -- a regular expression works fine sometimes, but for certain strings it "hangs"  consuming 100% of CPU.
 
-That may even be a vulnerability. For instance, if JavaScript is on the server, and it uses regular expressions to process user data, then such an input may cause denial of service. The author personally saw and reported such vulnerabilities even for well-known and widely used programs.
+In a web-browser it kills the page. Not a good thing for sure.
+
+For server-side Javascript it may become a vulnerability, and it uses regular expressions to process user data. Bad input will make the process hang, causing denial of service. The author personally saw and reported such vulnerabilities even for very well-known and widely used programs.
 
 So the problem is definitely worth to deal with.
 
@@ -35,23 +37,23 @@ To correctly handle such situations we need a more complex regular expression. I
 
 1. For the `tag` name: `pattern:\w+`,
 2. For the `key` name: `pattern:\w+`,
-3. And the `value` can be a word `pattern:\w+` or a quoted string `pattern:"[^"]*"`.
+3. And the `value`: a quoted string `pattern:"[^"]*"`.
 
-If we substitute these into the pattern above, the full regexp is: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`.
+If we substitute these into the pattern above and throw in some optional spaces `pattern:\s`, the full regexp becomes: `pattern:<\w+(\s*\w+="[^"]*"\s*)*>`.
 
-That doesn't yet support all details of HTML, for instance strings in 'single' quotes. But they could be added easily, let's keep the regexp simple for now.
+That regexp is not perfect! It doesn't yet support all details of HTML, for instance unquoted values, and there are other ways to improve, but let's not add complexity. It will demonstrate the problem for us.
 
-Let's try it in action:
+The regexp seems to work:
 
 ```js run
-let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
+let reg = /<\w+(\s*\w+="[^"]*"\s*)*>/g;
 
 let str='...<a test="<>" href="#">... <b>...';
 
 alert( str.match(reg) ); // <a test="<>" href="#">, <b>
 ```
 
-Great, it works! It found both the long tag `match:<a test="<>" href="#">` and the short one `match:<b>`.
+Great! It found both the long tag `match:<a test="<>" href="#">` and the short one `match:<b>`.
 
 Now, that we've got a seemingly working solution, let's get to the infinite backtracking itself.
 
@@ -60,10 +62,10 @@ Now, that we've got a seemingly working solution, let's get to the infinite back
 If you run our regexp on the input below, it may hang the browser (or another JavaScript host):
 
 ```js run
-let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
+let reg = /<\w+(\s*\w+="[^"]*"\s*)*>/g;
 
-let str = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  
-  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
+let str = `<tag a="b"  a="b"  a="b"  a="b"  a="b"  a="b"  a="b"  a="b"
+  a="b"  a="b"  a="b"  a="b"  a="b"  a="b"  a="b"  a="b"  a="b" a="b"  a="b"  a="b"  a="b"`;
 
 *!*
 // The search will take a long, long time
@@ -75,16 +77,16 @@ Some regexp engines can handle that search, but most of them can't.
 
 What's the matter? Why a simple regular expression "hangs" on such a small string?
 
-Let's simplify the situation by looking only for attributes.
+Let's simplify the regexp by stripping the tag name and the quotes. So that we look only for `key=value` attributes: `pattern:<(\s*\w+=\w+\s*)*>`.
 
-Here we removed the tag and quoted strings from the regexp.
+Unfortunately, the regexp still hangs:
 
 ```js run
 // only search for space-delimited attributes
 let reg = /<(\s*\w+=\w+\s*)*>/g;
 
 let str = `<a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
-  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
+  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
 *!*
 // the search will take a long, long time
@@ -92,11 +94,9 @@ alert( str.match(reg) );
 */!*
 ```
 
-The same problem persists.
+Here we end the demo of the problem and start looking into what's going on, why it hangs and how to fix it.
 
-Here we end the demo of the problem and start looking into what's going on and why it hangs.
-
-## Backtracking
+## Detailed example
 
 To make an example even simpler, let's consider `pattern:(\d+)*$`.
 
@@ -110,7 +110,7 @@ So what's wrong with the regexp?
 
 First, one may notice that the regexp is a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+$`.
 
-Indeed, the regexp is artificial. But the reason why it is slow is the same as those we saw above. So let's understand it, and then return to the real-life examples.
+Indeed, the regexp is artificial. But the reason why it is slow is the same as those we saw above. So let's understand it, and then the previous example will become obvious.
 
 What happen during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
 
@@ -120,9 +120,9 @@ What happen during the search of `pattern:(\d+)*$` in the line `subject:12345678
     \d+.......
     (123456789)z
     ```
-2. Then it tries to apply the star around the parentheses `pattern:(\d+)*`, but there are no more digits, so it the star doesn't give anything.
+2. Then it tries to apply the star quantifier, but there are no more digits, so it the star doesn't give anything.
 
-    Then the pattern has the string end anchor `pattern:$`, and in the text we have `subject:z`.
+3. Then the pattern expects to see the string end `pattern:$`, and in the text we have `subject:z`, so there's no match:
 
     ```
                X
@@ -130,17 +130,16 @@ What happen during the search of `pattern:(\d+)*$` in the line `subject:12345678
     (123456789)z
     ```
 
-    No match!
-3. There's no match, so the greedy quantifier `pattern:+` decreases the count of repetitions (backtracks).
+4. As there's no match, the greedy quantifier `pattern:+` decreases the count of repetitions (backtracks).
 
-    Now `\d+` is not all digits, but all except the last one:
+    Now `\d+` doesn't take all digits, but all except the last one:
     ```
     \d+.......
     (12345678)9z
     ```
-4. Now the engine tries to continue the search from the new position (`9`).
+5. Now the engine tries to continue the search from the new position (`9`).
 
-    The start `pattern:(\d+)*` can now be applied -- it gives the number `match:9`:
+    The star `pattern:(\d+)*` can be applied -- it gives the number `match:9`:
 
     ```
 
@@ -156,8 +155,8 @@ What happen during the search of `pattern:(\d+)*$` in the line `subject:12345678
     (12345678)(9)z
     ```
 
-    There's no match, so the engine will continue backtracking.
-5. Now the first number `pattern:\d+` will have 7 digits, and the rest of the string `subject:89` becomes the second `pattern:\d+`:
+
+5. There's no match, so the engine will continue backtracking, decreasing the number of repetitions for `pattern:\d+` down to 7 digits. So the rest of the string `subject:89` becomes the second `pattern:\d+`:
 
     ```
                  X
@@ -193,38 +192,41 @@ What happen during the search of `pattern:(\d+)*$` in the line `subject:12345678
 
 The regular expression engine goes through all combinations of `123456789` and their subsequences. There are a lot of them, that's why it takes so long.
 
-A smart guy can say here: "Backtracking? Let's turn on the lazy mode -- and no more backtracking!".
+What to do?
 
-Let's replace `pattern:\d+` with `pattern:\d+?` and see if it works (careful, can hang the browser)
+Should we turn on the lazy mode?
+
+Unfortunately, it doesn't: if we replace `pattern:\d+` with `pattern:\d+?`, that still hangs:
 
 ```js run
 // sloooooowwwwww
 alert( '12345678901234567890123456789123456789z'.match(/(\d+?)*$/) );
 ```
 
-No, it doesn't.
+Lazy quantifiers actually do the same, but in the reverse order.
 
-Lazy quantifiers actually do the same, but in the reverse order. Just think about how the search engine would work in this case.
+Just think about how the search engine would work in this case.
 
 Some regular expression engines have tricky built-in checks to detect infinite backtracking or other means to work around them, but there's no universal solution.
 
+## Back to tags
+
 In the example above, when we search `pattern:<(\s*\w+=\w+\s*)*>` in the string `subject:<a=b  a=b  a=b  a=b` -- the similar thing happens.
 
-The string has no `>` at the end, so the match is impossible, but the regexp engine does not know about it. The search backtracks trying different combinations of `pattern:(\s*\w+=\w+\s*)`:
+The string has no `>` at the end, so the match is impossible, but the regexp engine doesn't know about it. The search backtracks trying different combinations of `pattern:(\s*\w+=\w+\s*)`:
 
 ```
 (a=b a=b a=b) (a=b)
 (a=b a=b) (a=b a=b)
+(a=b) (a=b a=b a=b)
 ...
 ```
 
 ## How to fix?
 
-The problem -- too many variants in backtracking even if we don't need them.
+The backtracking checks many variants that are an obvious fail for a human.
 
-For instance, in the pattern `pattern:(\d+)*$` we (people) can easily see that `pattern:(\d+)` does not need to backtrack.
-
-Decreasing the count of `pattern:\d+` can not help to find a match, there's no matter between these two:
+For instance, in the pattern `pattern:(\d+)*$` a human can easily see that `pattern:(\d+)*` does not need to backtrack `pattern:+`. There's no difference between one or two `\d+`:
 
 ```
 \d+........
@@ -234,40 +236,58 @@ Decreasing the count of `pattern:\d+` can not help to find a match, there's no m
 (1234)(56789)z
 ```
 
-Let's get back to more real-life example: `pattern:<(\s*\w+=\w+\s*)*>`. We want it to find pairs `name=value` (as many as it can). There's no need in backtracking here.
+Let's get back to more real-life example: `pattern:<(\s*\w+=\w+\s*)*>`. We want it to find pairs `name=value` (as many as it can).
 
-In other words, if it found many `name=value` pairs and then can't find `>`, then there's no need to decrease the count of repetitions. Even if we match one pair less, it won't give us the closing `>`:
+What we would like to do is to forbid backtracking.
+
+There's totally no need to decrease the number of repetitions.
+
+In other words, if it found three `name=value` pairs and then can't find `>` after them, then there's no need to decrease the count of repetitions. There are definitely no `>` after those two (we backtracked one `name=value` pair, it's there):
+
+```
+(name=value) name=value
+```
 
 Modern regexp engines support so-called "possessive" quantifiers for that. They are like greedy, but don't backtrack at all. Pretty simple, they capture whatever they can, and the search continues. There's also another tool called "atomic groups" that forbid backtracking inside parentheses.
 
 Unfortunately, but both these features are not supported by JavaScript.
 
-Although we can get a similar affect using lookahead. There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups).
+### Lookahead to the rescue
+
+We can get forbid backtracking using lookahead.
 
 The pattern to take as much repetitions as possible without backtracking is: `pattern:(?=(a+))\1`.
 
-In other words, the lookahead `pattern:?=` looks for the maximal count `pattern:a+` from the current position. And then they are "consumed into the result" by the backreference `pattern:\1`.
+In other words:
+- The lookahead `pattern:?=` looks for the maximal count `pattern:a+` from the current position.
+- And then they are "consumed into the result" by the backreference `pattern:\1` (`pattern:\1` corresponds to the content of the second parentheses, that is `pattern:a+`).
 
 There will be no backtracking, because lookahead does not backtrack. If it found like 5 times of `pattern:a+` and the further match failed, then it doesn't go back to 4.
+
+```smart
+There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups).
+```
+
+So this trick makes the problem disappear.
 
 Let's fix the regexp for a tag with attributes from the beginning of the chapter`pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`. We'll use lookahead to prevent backtracking of `name=value` pairs:
 
 ```js run
 // regexp to search name=value
-let attrReg = /(\s*\w+=(\w+|"[^"]*")\s*)/
+let reg = /(\s*\w+=(\w+|"[^"]*")\s*)/
 
-// use it inside the regexp for tag
-let reg = new RegExp('<\\w+(?=(' + attrReg.source + '*))\\1>', 'g');
+// use new RegExp to nicely insert its source into (?=(a+))\1
+let fixedReg = new RegExp(`<\\w+(?=(${attrReg.source}*))\\1>`, 'g');
 
-let good = '...<a test="<>" href="#">... <b>...';
+let goodInput = '...<a test="<>" href="#">... <b>...';
 
-let bad = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
+let badInput = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
   a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
-alert( good.match(reg) ); // <a test="<>" href="#">, <b>
-alert( bad.match(reg) ); // null (no results, fast!)
+alert( goodInput.match(fixedReg) ); // <a test="<>" href="#">, <b>
+alert( badInput.match(fixedReg) ); // null (no results, fast!)
 ```
 
-Great, it works! We found a long tag  `match:<a test="<>" href="#">` and a small one `match:<b>` and didn't hang the engine.
+Great, it works! We found both a long tag  `match:<a test="<>" href="#">` and a small one `match:<b>`, and (!) didn't hang the engine on the bad input.
 
 Please note the `attrReg.source` property. `RegExp` objects provide access to their source string in it. That's convenient when we want to insert one regexp into another.
