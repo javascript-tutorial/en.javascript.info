@@ -10,7 +10,7 @@ That may even be a vulnerability. For instance, if JavaScript is on the server, 
 
 So the problem is definitely worth to deal with.
 
-## Example
+## Introductin
 
 The plan will be like this:
 
@@ -24,23 +24,22 @@ We want to find all tags, with or without attributes -- like `subject:<a href=".
 
 In particular, we need it to match tags like `<a test="<>" href="#">` -- with `<` and `>` in attributes. That's allowed by [HTML standard](https://html.spec.whatwg.org/multipage/syntax.html#syntax-attributes).
 
-Now we can see that a simple regexp like `pattern:<[^>]+>` doesn't work, because it stops at the first `>`, and we need to ignore `<>` inside an attribute.
+Now we can see that a simple regexp like `pattern:<[^>]+>` doesn't work, because it stops at the first `>`, and we need to ignore `<>` if inside an attribute.
 
 ```js run
 // the match doesn't reach the end of the tag - wrong!
 alert( '<a test="<>" href="#">'.match(/<[^>]+>/) ); // <a test="<>
 ```
 
-We need the whole tag.
-
 To correctly handle such situations we need a more complex regular expression. It will have the form  `pattern:<tag (key=value)*>`.
 
-In the regexp language that is: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`:
+1. For the `tag` name: `pattern:\w+`,
+2. For the `key` name: `pattern:\w+`,
+3. And the `value` can be a word `pattern:\w+` or a quoted string `pattern:"[^"]*"`.
 
-1. `pattern:<\w+` -- is the tag start,
-2. `pattern:(\s*\w+=(\w+|"[^"]*")\s*)*` -- is an arbitrary number of pairs `word=value`, where the value can be either a word `pattern:\w+` or a quoted string `pattern:"[^"]*"`.
+If we substitute these into the pattern above, the full regexp is: `pattern:<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>`.
 
-That doesn't yet support few details of HTML grammar, for instance strings in 'single' quotes, but they can be added later, so that's somewhat close to real life. For now we want the regexp to be simple.
+That doesn't yet support all details of HTML, for instance strings in 'single' quotes. But they could be added easily, let's keep the regexp simple for now.
 
 Let's try it in action:
 
@@ -54,9 +53,11 @@ alert( str.match(reg) ); // <a test="<>" href="#">, <b>
 
 Great, it works! It found both the long tag `match:<a test="<>" href="#">` and the short one `match:<b>`.
 
-Now let's see the problem.
+Now, that we've got a seemingly working solution, let's get to the infinite backtracking itself.
 
-If you run the example below, it may hang the browser (or whatever JavaScript engine runs):
+## Infinite backtracking
+
+If you run our regexp on the input below, it may hang the browser (or another JavaScript host):
 
 ```js run
 let reg = /<\w+(\s*\w+=(\w+|"[^"]*")\s*)*>/g;
@@ -65,18 +66,18 @@ let str = `<tag a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b
   a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b  a=b`;
 
 *!*
-// The search will take a long long time
+// The search will take a long, long time
 alert( str.match(reg) );
 */!*
 ```
 
-Some regexp engines can handle that search, but most of them don't.
+Some regexp engines can handle that search, but most of them can't.
 
-What's the matter? Why a simple regular expression on such a small string "hangs"?
+What's the matter? Why a simple regular expression "hangs" on such a small string?
 
-Let's simplify the situation by removing the tag and quoted strings.
+Let's simplify the situation by looking only for attributes.
 
-Here we look only for attributes:
+Here we removed the tag and quoted strings from the regexp.
 
 ```js run
 // only search for space-delimited attributes

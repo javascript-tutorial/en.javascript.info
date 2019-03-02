@@ -18,7 +18,7 @@ The pattern `pattern:^Mary` means: "the string start and then Mary".
 
 Now let's test whether the text ends with an email.
 
-To match an email, we can use a regexp `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`. It's not perfect, but mostly works.
+To match an email, we can use a regexp `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`.
 
 To test whether the string ends with the email, let's add `pattern:$` to the pattern:
 

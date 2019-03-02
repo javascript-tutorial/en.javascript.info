@@ -20,46 +20,35 @@ alert( str.match(reg) ); // 'HTML', 'CSS', 'JavaScript'
 
 We already know a similar thing -- square brackets. They allow to choose between multiple character, for instance `pattern:gr[ae]y` matches `match:gray` or `match:grey`.
 
-Alternation works not on a character level, but on expression level. A regexp `pattern:A|B|C` means one of expressions `A`, `B` or `C`.
+Square brackets allow only characters or character sets. Alternation allows any expressions. A regexp `pattern:A|B|C` means one of expressions `A`, `B` or `C`.
 
 For instance:
 
 - `pattern:gr(a|e)y` means exactly the same as `pattern:gr[ae]y`.
-- `pattern:gra|ey` means "gra" or "ey".
+- `pattern:gra|ey` means `match:gra` or `match:ey`.
 
 To separate a part of the pattern for alternation we usually enclose it in parentheses, like this: `pattern:before(XXX|YYY)after`.
 
 ## Regexp for time
 
-In previous chapters there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time.
+In previous chapters there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time (99 seconds is valid, but shouldn't be).
 
 How can we make a better one?
 
-We can apply more careful matching:
+We can apply more careful matching. First, the hours:
 
-- The first digit must be `0` or `1` followed by any digit.
-- Or `2` followed by `pattern:[0-3]`
+- If the first digit is `0` or `1`, then the next digit can by anything.
+- Or, if the first digit is `2`, then the next must be `pattern:[0-3]`.
 
 As a regexp: `pattern:[01]\d|2[0-3]`.
 
-Then we can add a colon and the minutes part.
-
-The minutes must be from `0` to `59`, in the regexp language that means the first digit  `pattern:[0-5]` followed by any other digit `\d`.
+Next, the minutes must be from `0` to `59`. In the regexp language that means `pattern:[0-5]\d`: the first digit `0-5`, and then any digit.
 
 Let's glue them together into the pattern: `pattern:[01]\d|2[0-3]:[0-5]\d`.
 
-We're almost done, but there's a problem. The alternation `|` is between the `pattern:[01]\d` and `pattern:2[0-3]:[0-5]\d`. That's wrong, because it will match either the left or the right pattern:
+We're almost done, but there's a problem. The alternation `pattern:|` now happens to be between `pattern:[01]\d` and `pattern:2[0-3]:[0-5]\d`.
 
-
-```js run
-let reg = /[01]\d|2[0-3]:[0-5]\d/g;
-
-alert("12".match(reg)); // 12 (matched [01]\d)
-```
-
-That's rather obvious, but still an often mistake when starting to work with regular expressions.
-
-We need to add parentheses to apply alternation exactly to hours: `[01]\d` OR `2[0-3]`.
+That's wrong, as it should be applied only to hours `[01]\d` OR `2[0-3]`. That's a common mistake when starting to work with regular expressions.
 
 The correct variant:
 
