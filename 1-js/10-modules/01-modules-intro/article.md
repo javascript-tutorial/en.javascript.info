@@ -305,9 +305,21 @@ alert(admin.name); // *!*Pete*/!*
 sayHi(); // Ready to serve, *!*Pete*/!*!
 ```
 
+### import.meta
+
+The object `import.meta` contains the information about the current module.
+
+Its content depends on the environment, in a browser it contains the url of the script, or a webpage if inside HTML
+
+```
+alert(import.meta.url); // the url of the current page (or the script URL)
+```
+
 ### Top-level "this" is undefined
 
-In a module, top-level `this` is undefined (as opposed to a global object in non-module scripts):
+That's kind of a minor feature, but for completeness we should mention it.
+
+In a module, top-level `this` is undefined, as opposed to a global object in non-module scripts:
 
 ```html run height=0
 <script>
