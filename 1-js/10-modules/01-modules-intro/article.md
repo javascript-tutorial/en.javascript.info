@@ -345,4 +345,4 @@ To summarize, the core concepts are:
 4. Module code is executed only once. Exports are created once and shared between importers.
 5. In production, we usually use bundlers such as [Webpack](https://webpack.js.org) to bundle modules together.
 
-In the next chapter we'll see more examples of modules and `export/import` statements.
+In the next chapter we'll see more examples of modules and versatile `export/import` statements.
