@@ -224,7 +224,7 @@ new Promise((resolve, reject) => {
 })
 *!*
   // runs when the promise is settled, doesn't matter successfully or not
-  .finally(() => stop loading indicator)
+  .finally(() => stop loading indicator))
 */!*
   .then(result => show result, err => show error)
 ```
