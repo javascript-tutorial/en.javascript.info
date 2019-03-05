@@ -83,12 +83,12 @@ alert( true == 1 ); // true
 alert( false == 0 ); // true
 ```
 
-````smart header="A funny consequence"
+```smart header="A funny consequence"
 It is possible that at the same time:
 
 - Two values are equal.
 - One of them is `true` as a boolean and the other one is `false` as a boolean.
-
+```
 For example:
 
 ```js run
@@ -102,7 +102,7 @@ alert(a == b); // true!
 ```
 
 From JavaScript's standpoint, this result is quite normal. An equality check converts values using the numeric conversion (hence `"0"` becomes `0`), while the explicit `Boolean` conversion uses another set of rules.
-````
+
 
 ## Strict equality
 
@@ -146,16 +146,16 @@ There's a non-intuitive behavior when `null` or `undefined` are compared to othe
 For a strict equality check `===`
 : These values are different, because each of them is a different type.
 
-    ```js run
-    alert( null === undefined ); // false
-    ```
+```js run
+alert( null === undefined ); // false
+```
 
 For a non-strict check `==`
 : There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but not any other value.
 
-    ```js run
-    alert( null == undefined ); // true
-    ```
+```js run
+alert( null == undefined ); // true
+```
 
 For maths and other comparisons `< > <= >=`
 : `null/undefined` are converted to numbers: `null` becomes `0`, while `undefined` becomes `NaN`.
