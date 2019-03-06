@@ -214,9 +214,13 @@ The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a short
 
 ### finally
 
-The call `.finally(f)` is similar to `.then(f, f)`, it always runs when the promise is settled: be it resolve or reject.
+Just like there's a finally clause in a regular `try {...} catch {...}`, there's `finally` in promises.
 
-The idea is that we can perform cleanup in it, e.g. stop our loading indicators in `finally`, as they are not needed any more, like this:
+The call `.finally(f)` is similar to `.then(f, f)` in the sense that it always runs when the promise is settled: be it resolve or reject.
+
+It is a good handler to perform cleanup, e.g. to stop our loading indicators in `finally`, as they are not needed any more, no matter what the outcome is.
+
+Like this:
 
 ```js
 new Promise((resolve, reject) => {
@@ -231,7 +235,7 @@ new Promise((resolve, reject) => {
 
 It's not exactly an alias though. There are several important differences:
 
-1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. We shouldn't need to know it, as our task is usually to perform "general" finalizing procedures.
+1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
 2. Finally passes through results and errors to the next handler.
 
     For instance, here the result is passed through `finally` to `then`:
@@ -240,7 +244,7 @@ It's not exactly an alias though. There are several important differences:
       setTimeout(() => resolve("result"), 2000)
     })
       .finally(() => alert("Promise ready"))
-      .then(result => alert(result)); // result
+      .then(result => alert(result)); // <-- .then handles the result
     ```
 
     And here there's an error in the promise, passed through `finally` to `catch`:
@@ -250,14 +254,14 @@ It's not exactly an alias though. There are several important differences:
       throw new Error("error");
     })
       .finally(() => alert("Promise ready"))
-      .catch(err => alert(err)); // error
+      .catch(err => alert(err));  // <-- .catch handles the error object
     ```  
 
     That's very convenient, because finally is not meant to process promise results. So it passes them through.
 
-    We'll talk about promise chaining and passing around results in more detail in the next chapter.
+    We'll talk more about promise chaining and result-passing between handlers in the next chapter.
 
-3. The last, but not the least, `.finally(f)` is more convenient syntax than `.then(f, f)`: there's no need to duplicate a function.
+3. The last, but not the least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function.
 
 ````smart header="On settled promises handlers runs immediately"
 If a promise is pending, `.then/catch/finally` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:
@@ -269,33 +273,7 @@ let promise = new Promise(resolve => resolve("done!"));
 promise.then(alert); // done! (shows up right now)
 ```
 
-Some tasks may sometimes require time and sometimes finish immediately. The good thing is: the `.then` handler is guaranteed to run in both cases.
-````
-
-````smart header="Handlers of `.then`/`.catch`/`.finally` are always asynchronous"
-Even when the Promise is immediately resolved, code which occurs on lines *below* your `.then`/`.catch`/`.finally` may still execute first.
-
-The JavaScript engine has an internal execution queue which gets all `.then/catch/finally` handlers.
-
-But it only looks into that queue when the current execution is finished. In other words, the handlers are pending execution until the engine is done with the current code.
-
-For instance, here:
-
-```js run
-// an "immediately" resolved Promise
-const executor = resolve => resolve("done!");
-const promise = new Promise(executor);
-
-promise.then(alert); // this alert shows last (*)
-
-alert("code finished"); // this alert shows first
-```
-
-The promise becomes settled immediately, but the engine first finishes the current code, calls `alert("code finished")`, and only *afterwards* looks into the queue to run `.then` handler.
-
-So the code *after* `.then` ends up always running *before* the Promise's subscribers, even in the case of an immediately-resolved Promise.
-
-Sometimes that's unimportant, while in some scenarios the order may matter a great deal.
+The good thing is: `.then` handler is guaranteed to run whether the promise takes time or settles it immediately.
 ````
 
 Next, let's see more practical examples of how promises can help us to write asynchronous code.

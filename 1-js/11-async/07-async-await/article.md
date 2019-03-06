@@ -281,6 +281,34 @@ In case of an error, it propagates as usual: from the failed promise to `Promise
 
 ````
 
+## Async/await versus other async actions
+
+Some async stuff is more asynchronous than the other.
+
+For instance, `setTimeout(handler, 0)` is async, and `let x = await f()` is async. What triggers first?
+
+```js run
+async function f() {
+  return 1;
+}
+
+(async () => {
+    setTimeout(() => alert('timeout'), 0);
+
+    await f();
+
+    alert('await');
+})();
+```
+
+There's no ambiguity here: `await` always finishes first.
+
+Remember promise queue from the chapter <info:promise-queue>? Promise `.then/catch/finally` handlers get queued, and then executed when the currently running code is complete. By specification, the promise queue has higher priority than environment-specific handlers.
+
+`Async/await` is based on promises, so it uses the same promise queue internally.
+
+So `await` is guaranteed to work before any `setTimeout` or other event handlers. That's actually quite essential, as we know that our async/await will never be interrupted by other handlers or events.
+
 ## Summary
 
 The `async` keyword before a function has two effects:
