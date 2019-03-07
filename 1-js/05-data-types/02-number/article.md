@@ -26,11 +26,11 @@ In other words, `"e"` multiplies the number by `1` with the given zeroes count.
 
 ```js
 1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000 
+1.23e6 = 1.23 * 1000000
 ```
 
 
-Now let's write something very small. Say, 1 microsecond (one millionth of a second): 
+Now let's write something very small. Say, 1 microsecond (one millionth of a second):
 
 ```js
 let ms = 0.000001;
@@ -39,7 +39,7 @@ let ms = 0.000001;
 Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say:
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1 
+let ms = 1e-6; // six zeroes to the left from 1
 ```
 
 If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
@@ -153,7 +153,7 @@ There are two ways to do so:
     ```
 
 2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
-        
+
     ```js run
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
@@ -170,7 +170,7 @@ There are two ways to do so:
 
     ```js run
     let num = 12.34;
-    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits 
+    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
     ```
 
     We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
@@ -182,7 +182,7 @@ Internally, a number is represented in 64-bit format [IEEE-754](http://en.wikipe
 If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
 
 ```js run
-alert( 1e500 ); // Infinity 
+alert( 1e500 ); // Infinity
 ```
 
 What may be a little less obvious, but happens quite often, is the loss of precision.
@@ -193,7 +193,7 @@ Consider this (falsy!) test:
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
 ```
 
-That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`. 
+That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`.
 
 Strange! What is it then if not `0.3`?
 
@@ -207,7 +207,7 @@ But why does this happen?
 
 A number is stored in memory in its binary form, a sequence of ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
 
-In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`. 
+In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
 
 So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
 
@@ -227,40 +227,39 @@ That's why `0.1 + 0.2` is not exactly `0.3`.
 ```smart header="Not only JavaScript"
 The same issue exists in many other programming languages.
 
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format. 
+PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
 ```
 
-Can we work around the problem? Sure, there're a number of ways:
+Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
 
-1. We can round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
+```js run
+let sum = 0.1 + 0.2;
+alert( sum.toFixed(2) ); // 0.30
+```
 
-    ```js run
-    let sum = 0.1 + 0.2;
-    alert( sum.toFixed(2) ); // 0.30
-    ```
+Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
 
-    Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
+```js run
+let sum = 0.1 + 0.2;
+alert( +sum.toFixed(2) ); // 0.3
+```
 
-    ```js run
-    let sum = 0.1 + 0.2;
-    alert( +sum.toFixed(2) ); // 0.3
-    ```
+We also can temporarily multiply the numbers by 100 (or a bigger number) to turn them into integers, do the maths, and then divide back. Then, as we're doing maths with integers, the error somewhat decreases, but we still get it on division:
 
-2. We can temporarily turn numbers into integers for the maths and then revert it back. It works like this:
+```js run
+alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
+alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
+```
 
-    ```js run
-    alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
-    ```
+So, multiply/divide approach reduces the error, but doesn't remove it totally.
 
-    This works because when we do `0.1 * 10 = 1` and `0.2 * 10 = 2` then both numbers become integers, and there's no precision loss. 
-
-3. If we were dealing with a shop, then the most radical solution would be to store all prices in cents and use no fractions at all. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely feasible, so the solutions above help avoid this pitfall.
+Sometimes we could try to evade fractions at all. Like if we're dealing with a shop, then we can store prices in cents instead of dollars. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely possible. Just round them to cut "tails" when needed.
 
 ````smart header="The funny thing"
 Try running this:
 
 ```js run
-// Hello! I'm a self-increasing number! 
+// Hello! I'm a self-increasing number!
 alert( 9999999999999999 ); // shows 10000000000000000
 ```
 
@@ -272,7 +271,7 @@ JavaScript doesn't trigger an error in such events. It does its best to fit the 
 ```smart header="Two zeroes"
 Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
 
-That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero. 
+That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero.
 
 In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
 ```
@@ -326,10 +325,10 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 
 There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
-1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing. 
+1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
 2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, it rarely matters, but these values technically are different.
 
-In all other cases, `Object.is(a, b)` is the same as `a === b`. 
+In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
 This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
@@ -423,7 +422,7 @@ For different numeral systems:
 
 For converting values like `12pt` and `100px` to a number:
 
-- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error. 
+- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error.
 
 For fractions:
 
@@ -433,5 +432,3 @@ For fractions:
 More mathematical functions:
 
 - See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small, but can cover basic needs.
-
-
