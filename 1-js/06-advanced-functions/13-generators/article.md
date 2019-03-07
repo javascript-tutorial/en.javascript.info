@@ -400,61 +400,7 @@ The execution picture:
 
 It's like a "ping-pong" game. Each `next(value)` (excluding the first one) passes a value into the generator, that becomes the result of the current `yield`, and then gets back the result of the next `yield`.
 
-## generator.throw
 
-As we observed in the examples above, the outer code may pass a value into the generator, as the result of `yield`.
-
-...But it can also initiate (throw) an error there. That's natural, as an error is a kind of result.
-
-To pass an error into a `yield`, we should call `generator.throw(err)`. In that case, the `err` is thrown in the line with that `yield`.
-
-For instance, here the yield of `"2 + 2?"` leads to an error:
-
-```js run
-function* gen() {
-  try {
-    let result = yield "2 + 2?"; // (1)
-
-    alert("The execution does not reach here, because the exception is thrown above");
-  } catch(e) {
-    alert(e); // shows the error
-  }
-}
-
-let generator = gen();
-
-let question = generator.next().value;
-
-*!*
-generator.throw(new Error("The answer is not found in my database")); // (2)
-*/!*
-```
-
-The error, thrown into the generator at the line `(2)` leads to an exception in the line `(1)` with `yield`. In the example above, `try..catch` catches it and shows.
-
-If we don't catch it, then just like any exception, it "falls out" the generator into the calling code.
-
-The current line of the calling code is the line with `generator.throw`, labelled as `(2)`. So we can catch it here, like this:
-
-```js run
-function* generate() {
-  let result = yield "2 + 2?"; // Error in this line
-}
-
-let generator = generate();
-
-let question = generator.next().value;
-
-*!*
-try {
-  generator.throw(new Error("The answer is not found in my database"));
-} catch(e) {
-  alert(e); // shows the error
-}
-*/!*
-```
-
-If we don't catch the error there, then, as usual, it falls through to the outer calling code (if any) and, if uncaught, kills the script.
 
 ## Summary
 
