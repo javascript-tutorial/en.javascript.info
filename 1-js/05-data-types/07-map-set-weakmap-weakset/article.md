@@ -159,6 +159,7 @@ The iteration goes in the same order as the values were inserted. `Map` preserve
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
+// runs the function for each (key, value) pair 
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
