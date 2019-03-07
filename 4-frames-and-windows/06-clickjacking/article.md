@@ -2,7 +2,7 @@
 
 The "clickjacking" attack allows an evil page to click on a "victim site" *on behalf of the visitor*.
 
-Many sites were hacked this way, including Twitter, Facebook, Paypal and other sites. They are all fixed, of course.
+Many sites were hacked this way, including Twitter, Facebook, Paypal and other sites. They have all been fixed, of course.
 
 ## The idea
 
