@@ -136,7 +136,7 @@ for(let value of generator) {
 }
 ```
 
-Naturally, as generators are iterable, we can all related functionality, e.g. the spread operator `...`:
+Naturally, as generators are iterable, we can call all related functionality, e.g. the spread operator `...`:
 
 ```js run
 function* generateSequence() {
