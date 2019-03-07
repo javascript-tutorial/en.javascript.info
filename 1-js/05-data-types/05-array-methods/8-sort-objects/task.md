@@ -18,6 +18,6 @@ let arr = [ john, pete, mary ];
 sortByName(arr);
 
 // now: [john, mary, pete]
-alert(arr[0].name); // Mary
+alert(arr[0].name); // John
 alert(arr[2].name); // Pete
 ```
