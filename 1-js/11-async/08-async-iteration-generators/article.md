@@ -41,7 +41,7 @@ let range = {
   }
 };
 
-for(let value in range) {
+for(let value of range) {
   alert(value); // 1 then 2, then 3, then 4, then 5
 }
 ```

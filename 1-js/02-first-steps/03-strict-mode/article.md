@@ -47,6 +47,24 @@ There is no directive like `"no use strict"` that reverts the engine to old beha
 Once we enter strict mode, there's no return.
 ```
 
+## Browser console
+
+For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+
+Sometimes, when `use strict` makes a difference, you'll get incorrect results.
+
+Even if we press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, it doesn't work. That's because of how the console executes the code internally.
+
+The reliable way to ensure `use strict` would be to input the code into console like this:
+
+```
+(function() {
+  'use strict';
+
+  // ...your code...
+})()
+```
+
 ## Always "use strict"
 
 We have yet to cover the differences between strict mode and the "default" mode.
