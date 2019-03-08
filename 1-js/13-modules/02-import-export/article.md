@@ -158,7 +158,7 @@ So far, we've seen how to import/export multiple things, optionally "as" other n
 
 In practice, modules contain either:
 - A library, pack of functions, like `lib.js`.
-- Or an entity, like `class User` is descirbed in `user.js`, the whole module has only this class.
+- Or an entity, like `class User` is described in `user.js`, the whole module has only this class.
 
 Mostly, the second approach is preferred, so that every "thing" resides in its own module.
 
