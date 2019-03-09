@@ -216,7 +216,7 @@ Web-standard developers understood that long ago and suggested an alternative wa
 The syntax to add a handler:
 
 ```js
-element.addEventListener(event, handler[, phase]);
+element.addEventListener(event, handler[, options]);
 ```
 
 `event`
@@ -225,15 +225,17 @@ element.addEventListener(event, handler[, phase]);
 `handler`
 : The handler function.
 
-`phase`
-: An optional argument, the "phase" for the handler to work. To be covered later. Usually we don't use it.
+`options`
+: An additional optional object with properties:
+    - `once`: if `true`, then the listener is automatically removed after it triggers.
+    - `capture`: the phrase where to handle the event, to be covered later in the chapter <info:bubbling-and-capturing>. For historical reasons, `options` can also be `false/true`, that's the same as `{capture: false/true}`.
+    - `passive`: if `true`, then the handler will not `preventDefault()`, we'll cover that later in <info:default-browser-action>.
+
 
 To remove the handler, use `removeEventListener`:
 
-
 ```js
-// exactly the same arguments as addEventListener
-element.removeEventListener(event, handler[, phase]);
+element.removeEventListener(event, handler[, options]);
 ```
 
 ````warn header="Removal requires the same function"
