@@ -264,7 +264,7 @@ So far we've seen simple examples, to gain basic understanding. Now let's review
 
 There are many online APIs that deliver paginated data. For instance, when we need a list of users, then we can fetch it page-by-page: a request returns a pre-defined count (e.g. 100 users), and provides an URL to the next page.
 
-The pattern is very common, it's not about users, but just about anything. For instance, Github allows to retrieve commits in the same, paginated fasion:
+The pattern is very common, it's not about users, but just about anything. For instance, Github allows to retrieve commits in the same, paginated fashion:
 
 - We should make a request to URL in the form `https://api.github.com/repos/<repo>/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
