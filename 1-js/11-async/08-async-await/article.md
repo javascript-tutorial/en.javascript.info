@@ -281,7 +281,7 @@ In case of an error, it propagates as usual: from the failed promise to `Promise
 
 ````
 
-## Async/await versus other async actions
+## Timiing: async/await and higher-level actions
 
 Some async stuff is more asynchronous than the other.
 
@@ -307,7 +307,7 @@ Remember promise queue from the chapter <info:promise-queue>? Promise `.then/cat
 
 `Async/await` is based on promises, so it uses the same promise queue internally.
 
-So `await` is guaranteed to work before any `setTimeout` or other event handlers. That's actually quite essential, as we know that our async/await will never be interrupted by other handlers or events.
+So `await` is guaranteed to work before any `setTimeout` or other event handlers. That's actually quite essential, as we know that our async/await code flow will never be interrupted by other handlers or events.
 
 ## Summary
 
