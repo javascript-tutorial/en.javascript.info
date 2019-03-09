@@ -1,5 +1,9 @@
 todo:
 
-intl?
-proxy?
-eval?
+localstorage
+fetch
+indexdb
+
+addEventLitener options once passive
+
+security? xsrf xss csp etc?

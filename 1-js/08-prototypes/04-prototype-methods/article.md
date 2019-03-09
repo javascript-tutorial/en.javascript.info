@@ -111,7 +111,7 @@ Here the consequences are not terrible. But in other cases the prototype may ind
 
 What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
-Such thing happens only with `__proto__`. All other properties are "assignable" normally.
+Unexpected things also may happen when accessing `toString` property -- that's a function by default, and other built-in properties.
 
 How to evade the problem?
 
