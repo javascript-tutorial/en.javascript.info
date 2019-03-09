@@ -136,9 +136,15 @@ That is: for a click on `<td>` the event first goes through the ancestors chain 
 
 Handlers added using `on<event>`-property or using HTML attributes or using `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
 
-To catch an event on the capturing phase, we need to set the event options of `addEventListener` to `{capture: true}` (or just `true`).
+To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
 
-There are two possible values `capture` option:
+```js
+elem.addEventListener(..., {capture: true})
+// or, just "true" is an alias to {capture: true}
+elem.addEventListener(..., true)
+```
+
+There are two possible values of the `capture` option:
 
 - If it's `false` (default), then the handler is set on the bubbling phase.
 - If it's `true`, then the handler is set on the capturing phase.
