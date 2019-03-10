@@ -225,5 +225,5 @@ JavaScript provides constructor functions for many built-in language objects: li
 ```smart header="Objects, we'll be back!"
 In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
 
-After we learn that, in the chapter <info:object-oriented-programming> we return to objects and cover them in-depth, including inheritance and classes.
+After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
 ```
