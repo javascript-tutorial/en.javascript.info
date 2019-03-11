@@ -1,7 +1,7 @@
 
 # Classes
 
-The "class" construct allows to define prototype-based classes with a clean, nice-looking syntax. It also introduces new great features, useful for object-oriented programming.
+The "class" construct allows one to define prototype-based classes with a clean, nice-looking syntax. It also introduces great new features which are useful for object-oriented programming.
 
 ## The "class" syntax
 
@@ -22,7 +22,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-...And that's the same using `class` syntax:
+...And here's the same using `class` syntax:
 
 ```js run
 class User {
@@ -41,7 +41,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Novice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
+It's easy to see that these two examples are alike. Be sure to note that methods in a class do not have a comma between them. A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error. The above are not actually objects but simply making use of a class syntax. This notation is primarily syntactical sugar.
 
 ## What is a class?
 
@@ -49,9 +49,9 @@ So, what exactly is a `class`? We may think that it defines a new language-level
 
 In Javascript, a class is a kind of a function.
 
-The definition `class User {...}` create such function and puts the methods into `User.prototype`. So the structure is similar.
+The definition `class User {...}` creates a function under the same name and puts the methods into `User.prototype`. So the structure is similar.
 
-Here's the code to dig into the class and see that:
+This is demonstrated in the following code, which you can run yourself:
 
 ```js run
 class User {
@@ -75,17 +75,17 @@ alert(User === User.prototype.constructor); // true
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-Here's the illustration of what `class User` creates:
+Abstractly, we can illustrate this process of `class User` creating a function as:
 
 ![](class-user.png)
 
-So `class` is a special syntax to define a constructor together with its prototype methods. There are also quite a few additional features here and there, we'll study them later on.
+`Class` is a special syntax to define a constructor together with its prototype methods. In addition to its basic operation, the `Class` syntax brings many other features with it which we'll explore later.
 
 ## Class Expression
 
 Just like functions, classes can be defined inside another expression, passed around, returned etc.
 
-Here's a class-returning function ("class factory"):
+Here's a class-returning function - otherwise known as a "class factory":
 
 ```js run
 function makeClass(phrase) {
@@ -121,7 +121,7 @@ new User().sayHi(); // works, shows MyClass definition
 alert(MyClass); // error, MyClass not visible outside of the class
 ```
 
-## Differences of classes vs functions
+## Differences between classes and functions
 
 Classes have some differences compared to regular functions:
 
@@ -146,7 +146,7 @@ Class methods are non-enumerable
 : A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`. That's good, because if we `for..in` over an object, we usually don't want its class methods.
 
 Classes have a default `constructor() {}`
-: If there's no `constructor` in the `class` construct, then an empty function is generated, same as if we had written `constructor() {}`.
+: If there's no `constructor` in the `class` construct, then an empty function is generated, just as if we had written `constructor() {}`.
 
 Classes always `use strict`
 : All code inside the class construct is automatically in strict mode.
@@ -225,10 +225,10 @@ For a generator method, similarly, prepend it with `*`.
 ## Class properties
 
 ```warn header="Old browsers may need a polyfill"
-Class-level properties is a recent addition to the language.
+Class-level properties are a recent addition to the language.
 ```
 
-In the example before, `User` only had methods. Let's add a property:
+In the example above, `User` only had methods. Let's add a property:
 
 ```js run
 class User {
