@@ -49,7 +49,7 @@ So, what exactly is a `class`? We may think that it defines a new language-level
 
 In Javascript, a class is a kind of a function.
 
-The definition `class User {...}` create such function and puts the methods into `User.prototype`. So the structure is similar.
+The definition `class User {...}` creates such function and puts the methods into `User.prototype`. So the structure is similar.
 
 Here's the code to dig into the class and see that:
 
