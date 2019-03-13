@@ -1,5 +1,5 @@
 
-# Microtasks, event loop
+# Microtasks and event loop
 
 Promise handlers `.then`/`.catch`/`.finally` are always asynchronous.
 
