@@ -35,7 +35,7 @@ function loadCached(url) {
   return fetch(url)
     .then(response => response.text())
     .then(text => {
-      cache.set(url,text); 
+      cache.set(url,text);
       return text;
     });
 }
@@ -63,23 +63,29 @@ We cover it here for completeness, rarely used in real code.
 
 ## Promise.all
 
-The method to run many promises in parallel and wait till all of them are ready.
+Let's say we want to run many promises to execute in parallel, and wait till all of them are ready.
+
+For instance, download several urls in parallel and process the content when all done.
+
+That's what `Promise.all` is for.
 
 The syntax is:
 
 ```js
-let promise = Promise.all(iterable);
+let promise = Promise.all([...promises...]);
 ```
 
-It takes an `iterable` object with promises, technically it can be any iterable, but usually it's an array, and returns a new promise. The new promise resolves with when all of them are settled and has an array of their results.
+It takes an array of promises (technically can be any iterable, but usually an array) and returns a new promise.
+
+The new promise resolves when all listed promises are settled and has an array of their results.
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
 ```js run
 Promise.all([
-  new Promise((resolve, reject) => setTimeout(() => resolve(1), 3000)), // 1
-  new Promise((resolve, reject) => setTimeout(() => resolve(2), 2000)), // 2
-  new Promise((resolve, reject) => setTimeout(() => resolve(3), 1000))  // 3
+  new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
+  new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
+  new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
 ]).then(alert); // 1,2,3 when promises are ready: each promise contributes an array member
 ```
 
@@ -132,7 +138,6 @@ If any of the promises is rejected, `Promise.all` immediately rejects with that 
 
 For instance:
 
-
 ```js run
 Promise.all([
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
@@ -149,8 +154,8 @@ The important detail is that promises provide no way to "cancel" or "abort" thei
 
 There are ways to avoid this: we can either write additional code to `clearTimeout` (or otherwise cancel) the promises in case of an error, or we can make errors show up as members in the resulting array (see the task below this chapter about it).
 
-````smart header="`Promise.all(iterable)` allows non-promise items in `iterable`"
-Normally, `Promise.all(iterable)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
+````smart header="`Promise.all(...)` allows non-promise items in `iterable`"
+Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
 
 For instance, here the results are `[1, 2, 3]`:
 
