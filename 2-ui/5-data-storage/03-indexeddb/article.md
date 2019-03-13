@@ -250,7 +250,7 @@ The short answer is: we don't.
 
 In the next version 3.0 of the specification, there will probably be a manual way to finish the transaction, but right now in 2.0 there isn't.
 
-**When all transaction requests are finished, and the [microtasks queue](info:async-await#microtask-queue) is empty, it is committed automatically.**
+**When all transaction requests are finished, and the [microtasks queue](info:microtask-queue) is empty, it is committed automatically.**
 
 ```smart header="What's an \"empty microtask queue\"?"
 The microtask queue is explained in [another chapter](info:async-await#microtask-queue). In short, an empty microtask queue means that for all settled promises their `.then/catch/finally` handlers are executed.
@@ -431,7 +431,7 @@ So requests that return many values always return them in sorted by key order.
 ```
 
 
-## Searching by indexes
+## Searching by any field with an index
 
 To search by other object fields, we need to create an additional data structure named "index".
 
@@ -643,16 +643,48 @@ try {
 
 So we have all the sweet "plain async code" and "try..catch" stuff.
 
-If we don't catch the error, then it falls through and finally becomes an "unhandled promise rejection" event on `window` object.
+### Error handling
 
-We can handle them like this:
+If we don't catch the error, then it falls through, just as usual.
+
+Ultimately, if uncaught, it becomes an "unhandled promise rejection" event on `window` object.
+
+We can handle such errors like this:
 
 ```js
 window.addEventListener('unhandledrejection', event => {
   let request = event.target; // IndexedDB native request object
   let error = event.reason; //  Unhandled error object, same as request.error
+  ...report about the error...
 });
 ```
+
+### "Inactive transaction" pitfall
+
+As it was said, a transaction auto-commits as soon as the browser is done with the current code and microtasks.
+
+So if we put an *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it fails.
+
+Here's an example of `fetch` in the middle of the transaction:
+
+```js
+let transaction = db.transaction("inventory", "readwrite");
+let inventory = transaction.objectStore("inventory");
+
+await inventory.add({ id: 'js', price: 10, created: new Date() });
+
+await fetch(...); // (*)
+
+await inventory.add({ id: 'js', price: 10, created: new Date() }); // Error
+```
+
+The next `inventory.add` after `fetch` `(*)` fails with an "inactive transaction" error, because the transaction is already committed and closed at that time.
+
+The workaround is same as when working with native IndexedDB: either make a new transaction or just split things apart.
+1. Prepare the data and fetch all that's needed first.
+2. Then save in the database.
+
+### Getting native objects
 
 Internally, the wrapper performs a native IndexedDB request, adding `onerror/onsuccess` to it, and returns a promise that rejects/resolves with the result.
 
