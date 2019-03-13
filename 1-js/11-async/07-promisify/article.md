@@ -30,7 +30,7 @@ let loadScriptPromise = function(src) {
   return new Promise((resolve, reject) => {
     loadScript(src, (err, script) => {
       if (err) reject(err)
-      elsee resolve(script);
+      else resolve(script);
     });
   })
 }
