@@ -281,25 +281,11 @@ In case of an error, it propagates as usual: from the failed promise to `Promise
 
 ````
 
-## Microtask queue: await and higher-level actions [#microtask-queue]
+## Microtask queue [#microtask-queue]
 
-TODO
+As we've seen in the chapter <info:microtask-queue>, promise handlers are executed asynchronously. Every `.then/catch/finally` handler first gets into the "microtask queue" and executed after the current code is complete.
 
-
-In the browser, or other environments we have two types of async actions:
-1. `async/await`
-2. `setTimeout` calls that are to execute, pending events
-
-
-`Async/await` is based on promises, so it uses the promise queue internally, so-called "microtask queue".
-
-When a promise is ready, it's handling is put to a special internal queue, and processed when Javascript has finished with the current code.
-
-That's explained in detail in the chapter <info:promise-queue>. Promise `.then/catch/finally` handlers get queued, and then executed when the currently running code is complete.
-
-If we use `async/await`, things are much simpler than with promises. No chaining. So we don't care much about that internal queue.
-
-But there's an important side effect that we should understand: some async stuff is more asynchronous than the other.
+`Async/await` is based on promises, so it uses the same microtask queue internally, and has the similar priority over macrotasks.
 
 For instance, we have:
 - `setTimeout(handler, 0)`, that should run `handler` with zero delay.
@@ -313,24 +299,15 @@ async function f() {
 }
 
 (async () => {
-    setTimeout(() => alert('timeout finished'), 0);
+    setTimeout(() => alert('timeout'), 0);
 
     await f();
 
-    alert('await finished');
+    alert('await');
 })();
 ```
 
 There's no ambiguity here: `await` always finishes first.
-
-
-
-Internally, there`setTimeout` and event handlers are also processed in a queue
-
-
- By specification, the promise queue has higher priority than environment-specific handlers.
-
-So `await` is guaranteed to work before any `setTimeout` or other event handlers. That's actually quite essential, as we know that our async/await code flow will never be interrupted by other handlers or events.
 
 ## Summary
 
