@@ -27,7 +27,7 @@ To do the request, we need 3 steps:
     let xhr = new XMLHttpRequest(); // no arguments
     ```
 
-2. Initialize.
+2. Initialize it.
     ```js
     xhr.open(method, URL, async, user, password)
     ```
