@@ -290,7 +290,7 @@ Create it, optionally from a form, `append` more fields if needed, and then:
 1. `xhr.open('POST', ...)` – use `POST` method.
 2. `xhr.send(formData)` to submit the form to the server.
 
-The rest is as usual, for instance:
+For instance:
 
 ```html
 <form name="person">
