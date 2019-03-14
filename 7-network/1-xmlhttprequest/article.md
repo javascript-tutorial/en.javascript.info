@@ -26,7 +26,6 @@ To do the request, we need 3 steps:
     ```js
     let xhr = new XMLHttpRequest(); // no arguments
     ```
-    As simple as this.
 
 2. Initialize.
     ```js
