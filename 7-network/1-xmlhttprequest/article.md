@@ -53,7 +53,7 @@ To do the request, we need 3 steps:
 
 4. Listen to events for response.
 
-    There are several events for that, but these two are the most widely used:
+    These three are the most widely used:
     - `load` -- when the result is ready, that includes HTTP errors like 404.
     - `error` -- when the request couldn't be made, e.g. network down or invalid URL.
     - `progress` -- triggers periodically during the download, reports how much downloaded.
