@@ -1,25 +1,27 @@
-var http = require('http');
-var url = require('url');
-var querystring = require('querystring');
-var static = require('node-static');
-var file = new static.Server('.');
+let http = require('http');
+let url = require('url');
+let querystring = require('querystring');
+let static = require('node-static');
+let file = new static.Server('.');
 
 function accept(req, res) {
 
-  if (req.url == '/digits') {
+  if (req.url == '/load') {
 
     res.writeHead(200, {
       'Content-Type': 'text/plain',
-      'Cache-Control': 'no-cache'
+      'Cache-Control': 'no-cache',
+      'Content-Length': 90000
     });
 
-    var i = 0;
+    let i = 0;
 
-    var timer = setInterval(write, 1000);
+    let timer = setInterval(write, 1000);
     write();
 
     function write() {
-      res.write(new Array(1000).join(++i + '') + ' ');
+      res.write(String(i).repeat(10000));
+      i++;
       if (i == 9) {
         clearInterval(timer);
         res.end();
