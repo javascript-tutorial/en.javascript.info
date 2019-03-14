@@ -29,7 +29,7 @@ To do the request, we need 3 steps:
 
 2. Initialize it.
     ```js
-    xhr.open(method, URL, async, user, password)
+    xhr.open(method, URL, [async, user, password])
     ```
 
     This method is usually called first after `new XMLHttpRequest`. It specifies the main parameters of the request:
