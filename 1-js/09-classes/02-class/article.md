@@ -41,7 +41,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-It's easy to see that these two examples are alike. Be sure to note that methods in a class do not have a comma between them. A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error. The above are not actually objects but simply making use of a class syntax. This notation is primarily syntactical sugar.
+It's easy to see that these two examples are alike. Be sure to note that methods in a class do not have a comma between them. A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error. The notation here is not to be confused with object literals. Within the class syntactical sugar, no commas are required.
 
 ## What is a class?
 
