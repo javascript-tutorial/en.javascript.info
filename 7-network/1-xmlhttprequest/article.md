@@ -96,6 +96,7 @@ xhr.onload = function() {
 };
 
 xhr.onprogress = function(event) {
+  // event.total=0 if the server did not send Content-Length header
   alert(`Received ${event.loaded} of ${event.total}`);
 };
 
