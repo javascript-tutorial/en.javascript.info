@@ -51,7 +51,7 @@ To do the request, we need 3 steps:
 
     Some request methods like `GET` do not have a body. And some of them like `POST` use `body` to send the data to the server. We'll see examples later.
 
-4. Listen for response.
+4. Listen to events for response.
 
     There are several events for that, but these two are the most widely used:
     - `load` -- when the result is ready, that includes HTTP errors like 404.
