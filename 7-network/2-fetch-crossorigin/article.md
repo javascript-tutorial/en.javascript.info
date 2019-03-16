@@ -1,5 +1,18 @@
 # Cross-Origin Fetch
 
+TODO:
+Note that "Content-Length" header is not returned by default for CORS requests
+
+==
+
+Cache-Control
+Content-Language
+Content-Type
+Expires
+Last-Modified
+Pragma
+
+
 If we make a `fetch` from an arbitrary web-site, that will probably fail.
 
 Fetching from another origin (domain/port/protocol triplet) requires special headers from the remote side.

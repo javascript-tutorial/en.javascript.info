@@ -1,6 +1,8 @@
 
 # Fetch API
 
+TODO: FormData in detail https://xhr.spec.whatwg.org/#formdata?
+
 The second argument provides a lot of flexibility to `fetch` syntax.
 
 Here's the full list of possible options with default values (alternatives commented out):
