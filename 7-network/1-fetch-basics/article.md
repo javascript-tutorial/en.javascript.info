@@ -1,5 +1,5 @@
 
-# Fetch
+# Fetch basics
 
 Method `fetch()` is the modern way of sending requests over HTTP.
 
@@ -104,7 +104,7 @@ img.style = 'position:fixed;top:10px;left:10px;width:100px';
 setTimeout(() => img.remove(), 2000);
 ```
 
-## The full syntax
+## Fetch API in detail
 
 The second argument provides a lot of flexibility to `fetch` syntax.
 
@@ -116,17 +116,21 @@ let promise = fetch(url, {
   headers: {
     "Content-Type": "text/plain;charset=UTF-8"
   },
-  destination: "", // audio, audioworklet, document, embed, font...
+  body: undefined // string, FormData, Blob, BufferSource, or URLSearchParams
   referrer: "about:client", // "" for no-referrer, or an url from the current origin
   referrerPolicy: "", // no-referrer, no-referrer-when-downgrade, same-origin...
   mode: "cors", // same-origin, no-cors, navigate, or websocket
   credentials: "same-origin", // omit, include
   cache: "default", // no-store, reload, no-cache, force-cache, or only-if-cached
   redirect: "follow", // manual, error
-  integrity: "" // a hash, like "sha256-abcdef1234567890"
-  keepalive: false // true
-  body: "string" // FormData, Blob, BufferSource, or URLSearchParams
+  integrity: "", // a hash, like "sha256-abcdef1234567890"
+  keepalive: false, // true
+  signal: undefined, // AbortController to abort request
+  window: window // null
 })
+```
+
+
 
 
 
