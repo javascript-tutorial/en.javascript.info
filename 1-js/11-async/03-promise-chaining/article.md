@@ -69,8 +69,9 @@ new Promise(function(resolve, reject) {
 
 The value returned by `.then` is a promise, that's why we are able to add another `.then` at `(2)`. When the value is returned in `(1)`, that promise becomes resolved, so the next handler runs with the value.
 
-Please note: technically we can also add many `.then` to a single promise. This is not chaining:
+**A classic newbie error: technically we can also add many `.then` to a single promise. This is not chaining.**
 
+For example:
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve(1), 1000);
@@ -92,7 +93,7 @@ promise.then(function(result) {
 });
 ```
 
-What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it idependantly.
+What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it independently.
 
 Here's the picture (compare it with the chaining above):
 

@@ -28,6 +28,14 @@ function accept(req, res) {
       }
 
     }
+  } else if (req.url == '/json') {
+    res.writeHead(200, {
+      // 'Content-Type': 'application/json;charset=utf-8',
+      'Cache-Control': 'no-cache'
+    });
+
+    res.write(JSON.stringify({message: "Hello, world!"}));
+    res.end();
   } else {
     file.serve(req, res);
   }

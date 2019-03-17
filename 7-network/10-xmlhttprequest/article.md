@@ -60,7 +60,7 @@ To do the request, we need 3 steps:
 
     ```js
     xhr.onload = function() {
-      alert(`Loaded: ${xhr.status} ${xhr.responseText}`);
+      alert(`Loaded: ${xhr.status} ${xhr.response}`);
     };
 
     xhr.onerror = function() { // only triggers if the request couldn't be made at all
@@ -69,7 +69,8 @@ To do the request, we need 3 steps:
 
     xhr.onprogress = function(event) { // triggers periodically
       // event.loaded - how many bytes downloaded
-      // event.total - total number of bytes (if server set Content-Length header)
+      // event.lengthComputable = true if the server sent Content-Length header
+      // event.total - total number of bytes (if lengthComputable)
       alert(`Received ${event.loaded} of ${event.total}`);
     };
     ```
@@ -91,13 +92,17 @@ xhr.onload = function() {
   if (xhr.status != 200) { // analyze HTTP status of the response
     alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
   } else { // show the result
-    alert(`Done, got ${xhr.responseText.length} bytes`); // responseText is the server
+    alert(`Done, got ${xhr.response.length} bytes`); // responseText is the server
   }
 };
 
 xhr.onprogress = function(event) {
-  // event.total=0 if the server did not send Content-Length header
-  alert(`Received ${event.loaded} of ${event.total}`);
+  if (event.lengthComputable) {
+    alert(`Received ${event.loaded} of ${event.total} bytes`);
+  } else {
+    alert(`Received ${event.loaded} bytes`); // no Content-Length
+  }
+
 };
 
 xhr.onerror = function() {
@@ -113,10 +118,8 @@ Once the server has responded, we can receive the result in the following proper
 `statusText`
 : HTTP status message (a string): usually `OK` for `200`, `Not Found` for `404`, `Forbidden` for `403` and so on.
 
-`responseText`
-: The text of the server response, if JSON, then we can `JSON.parse` it.s
-
-If the server returns XML with the correct header `Content-type: text/xml`, then there's also `responseXML` property with the parsed XML document. We can query it with `xhr.responseXml.querySelector("...")` and perform other XML-specific operations.
+`response` (old scripts may use `responseText`)
+: The server response.
 
 If we changed our mind, we can terminate the request at any time. The call to `xhr.abort()` does that:
 
@@ -134,8 +137,46 @@ xhr.timeout = 10000; // timeout in ms, 10 seconds
 
 If the request does not succeed within the given time, it gets canceled and `timeout` event triggers.
 
+## Response Type
 
-### Ready states
+We can use `xhr.responseType` property to set the response format:
+
+- `""` (default) -- get as string,
+- `"text"` -- get as string,
+- `"arraybuffer"` -- get as `ArrayBuffer` (for binary data, see chapter <info:arraybuffer-and-views>),
+- `"blob"` -- get as `Blob` (for binary data, see chapter <info:blob>),
+- `"document"` -- get as XML document (can use XPath and other XML methods),
+- `"json"` -- get as JSON (parsed automatically).
+
+For example, let's get the response as JSON:
+
+```js run
+let xhr = new XMLHttpRequest();
+
+xhr.open('GET', '/article/xmlhttprequest/example/json');
+
+*!*
+xhr.responseType = 'json';
+*/!*
+
+xhr.send();
+
+// the response is {"message": "Hello, world!"}
+xhr.onload = function() {
+  let responseObj = xhr.response;
+  alert(responseObj.message); // Hello, world!
+};
+```
+
+```smart
+In the old scripts you may also find `xhr.responseText` and even `xhr.responseXML` properties.
+
+They exist for historical reasons, to get either a string or XML document. Nowadays, we should set the format in `xhr.responseType` and get `xhr.response` as demonstrated above.
+```
+
+
+
+## Ready states
 
 `XMLHttpRequest` changes between states as it progresses. The current state is accessible as  `xhr.readyState`.
 
@@ -186,7 +227,7 @@ try {
   if (xhr.status != 200) {
     alert(`Error ${xhr.status}: ${xhr.statusText}`);
   } else {
-    alert(xhr.responseText);
+    alert(xhr.response);
   }
 } catch(err) { // instead of onerror
   alert("Request failed");
@@ -275,7 +316,7 @@ There are 3 methods for HTTP-headers:
       }, {});
     ```
 
-## POST requests
+## POST, FormData
 
 To make a POST request, we can use the built-in [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
 
@@ -293,7 +334,7 @@ Create it, optionally from a form, `append` more fields if needed, and then:
 
 For instance:
 
-```html
+```html run
 <form name="person">
   <input name="name" value="John">
   <input name="surname" value="Smith">
@@ -308,8 +349,10 @@ For instance:
 
   // send it out
   let xhr = new XMLHttpRequest();
-  xhr.open("POST", "/url");
+  xhr.open("POST", "/article/xmlhttprequest/post/user");
   xhr.send(formData);
+
+  xhr.
 </script>
 ```
 
@@ -333,7 +376,7 @@ xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhr.send(json);
 ```
 
-`XMLHttpRequest` can also send binary data using Blob and similar objects. We'll cover binary data later, in the chapter about `fetch`.
+The `.send(body)` method is pretty omnivore. It can send almost everything, including Blob and BufferSource objects.
 
 ## Tracking upload progress
 
@@ -371,6 +414,7 @@ xhr.upload.onerror = function() {
 };
 ```
 
+
 ## Summary
 
 Typical code of the GET-request with `XMLHttpRequest`:
@@ -389,7 +433,7 @@ xhr.onload = function() {
     return;
   }
 
-  // get the response from xhr.responseText
+  // get the response from xhr.response
 };
 
 xhr.onprogress = function(event) {

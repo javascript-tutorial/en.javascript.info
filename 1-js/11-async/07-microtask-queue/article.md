@@ -3,7 +3,7 @@
 
 Promise handlers `.then`/`.catch`/`.finally` are always asynchronous.
 
-Even when a Promise is immediately resolved, the code on the lines *below* your `.then`/`.catch`/`.finally` may still execute first.
+Even when a Promise is immediately resolved, the code on the lines *below* your `.then`/`.catch`/`.finally` will still execute first.
 
 Here's the code that demonstrates it:
 
@@ -23,11 +23,11 @@ Why `.then` triggered after? What's going on?
 
 # Microtasks
 
-Asynchronous tasks need proper management. For that, the standard specifies an internal queue `PromiseJobs`, more often called the "microtask queue" (v8 term).
+Asynchronous tasks need proper management. For that, the standard specifies an internal queue `PromiseJobs`, more often referred to as "microtask queue" (v8 term).
 
 As said in the [specification](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
 
-- The queue is first-in-first-out: tasks that get enqueued first are run first.
+- The queue is first-in-first-out: tasks enqueued first are run first.
 - Execution of a task is initiated only when nothing else is running.
 
 Or, to say that simply, when a promise is ready, its `.then/catch/finally` handlers are put into the queue. They are not executed yet. Javascript engine takes a task from the queue and executes it, when it becomes free from the current code.
@@ -58,7 +58,7 @@ Now the order is as intended.
 
 Browser Javascript, as well as Node.js, is based on an *event loop*.
 
-"Event loop" is a process when the engine sleeps waits for events.
+"Event loop" is a process when the engine sleeps and waits for events, then reacts on those and sleeps again.
 
 Examples of events:
 - `mousemove`, a user moved their mouse.
@@ -71,9 +71,11 @@ Things happen -- the engine handles them -- and waits for more to happen (while 
 
 ![](eventLoop.png)
 
-When an event happens, and the engine is busy, it gets into a so-called "macrotask queue" (v8 term).
+As you can see, there's also a queue here. A so-called "macrotask queue" (v8 term).
 
-For instance, while the engine is busy processing a network `fetch`, a user may move their mouse causing `mousemove`, and `setTimeout` is due and so on, just as painted on the picture above.
+When an event happens, and the engine is busy, the event is enqueued.
+
+For instance, while the engine is busy processing a network `fetch`, a user may move their mouse causing `mousemove`, and `setTimeout` may be due and so on, just as painted on the picture above.
 
 Events from the macrotask queue are processed on "first came – first served" basis. When the engine browser finishes with `fetch`, it handles `mousemove` event, then `setTimeout` handler, and so on.
 
@@ -120,20 +122,24 @@ Promise.resolved()
 
 Naturally, `promise` shows up first, because `setTimeout` macrotask awaits in the less-priority macrotask queue.
 
+**As a side effect, macrotasks are handled only when promises give the engine a "free time".**
+
+So call have a promise chain that doesn't wait for anything, then things like `setTimeout` or event handlers can never get in the middle.
+
 ## Summary
 
-Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (v8 term).
+- Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (v8 term).
 
-**So, `.then/catch/finally` is called after the current code is finished.**
+    **So, `.then/catch/finally` is called after the current code is finished.**
 
-If we need to guarantee that a piece of code is executed after `.then/catch/finally`, it's best to add it into a chained `.then` call.
+      If we need to guarantee that a piece of code is executed after `.then/catch/finally`, it's best to add it into a chained `.then` call.
 
-There's also a "macrotask queue" that keeps various events, network operation results, `setTimeout`-scheduled calls, and so on. These are also called "macrotasks" (v8 term).
+- There's also a "macrotask queue" that keeps various events, network operation results, `setTimeout`-scheduled calls, and so on. These are also called "macrotasks" (v8 term).
 
-The engine uses the macrotask queue to handle them in the appearance order.
+    The engine uses the macrotask queue to handle them in the appearance order.
 
-**Macrotasks run after the code is finished *and* after the microtask queue is empty.**
+    **Macrotasks run after the code is finished *and* after the microtask queue is empty.**
 
-In other words, they have lower priority.
+    In other words, they have lower priority.
 
-So the order is: regular code, then promise handling, then everything else.
+So the order is: regular code, then promise handling, then everything else, like events etc.

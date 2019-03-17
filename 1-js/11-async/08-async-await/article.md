@@ -307,7 +307,7 @@ async function f() {
 })();
 ```
 
-There's no ambiguity here: `await` always finishes first.
+There's no ambiguity here: `await` always finishes first, because (as a microtask) it has a higher priority than `setTimeout` handling.
 
 ## Summary
 
