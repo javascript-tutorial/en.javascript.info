@@ -90,7 +90,7 @@ For instance, take a look:
 ```js run
 setTimeout(() => alert("timeout"), 0);
 
-Promise.resolved()
+Promise.resolve()
   .then(() => alert("promise"));
 
 alert("code");
@@ -109,7 +109,7 @@ Or, vise-versa, a microtask schedules a macrotask (e.g. `setTimeout`).
 For instance, here `.then` schedules a `setTimeout`:
 
 ```js run
-Promise.resolved()
+Promise.resolve()
   .then(() => {
     setTimeout(() => alert("timeout"), 0);
   })
