@@ -30,7 +30,7 @@ let loadScriptPromise = function(src) {
   return new Promise((resolve, reject) => {
     loadScript(src, (err, script) => {
       if (err) reject(err)
-      elsee resolve(script);
+      else resolve(script);
     });
   })
 }
@@ -75,7 +75,7 @@ loadScriptPromise(...).then(...);
 
 Here we assume that the original function expects a callback with two arguments `(err, result)`. That's what we meet most often. Then our custom callbacks is exactly in the right format, and `promisify` works great for such case.
 
-But what is the original `f` expects a callback with more arguments `callback(err, res1, res2)`?
+But what if the original `f` expects a callback with more arguments `callback(err, res1, res2)`?
 
 Here's a modification of `promisify` that returns an array of multiple callback results:
 
