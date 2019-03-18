@@ -445,6 +445,23 @@ function upload(file) {
 </script>
 ```
 
+## Cross-origin requests
+
+`XMLHttpRequest` can make cross-domain requests, using the same CORS policy as `fetch`.
+
+Just like `fetch`, it doesn't send cookies and HTTP-authorization to another origin by default. To enable them, set `xhr.withCredentials` to `true`:
+
+```js
+let xhr = new XMLHttpRequest();
+*!*
+xhr.withCredentials = true;
+*/!*
+s
+xhr.open('POST', 'http://anywhere.com/request');
+...
+```
+
+
 ## Summary
 
 Typical code of the GET-request with `XMLHttpRequest`:

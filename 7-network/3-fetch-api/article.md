@@ -16,7 +16,7 @@ let promise = fetch(url, {
   body: undefined // string, FormData, Blob, BufferSource, or URLSearchParams
   referrer: "about:client", // "" for no-referrer, or an url from the current origin
   referrerPolicy: "no-referrer-when-downgrade", // no-referrer, origin, same-origin...
-  mode: "cors", // same-origin, no-cors, navigate, or websocket
+  mode: "cors", // same-origin, no-cors
   credentials: "same-origin", // omit, include
   cache: "default", // no-store, reload, no-cache, force-cache, or only-if-cached
   redirect: "follow", // manual, error

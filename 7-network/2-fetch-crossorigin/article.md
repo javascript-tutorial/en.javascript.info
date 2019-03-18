@@ -1,10 +1,10 @@
-# Cross-Origin Fetch
+# Cross-Origin Requests
 
 If we make a `fetch` from an arbitrary web-site, that will probably fail.
 
 The core concept here is *origin* -- a domain/port/protocol triplet.
 
-Cross-origin requests -- those sent to another domain or protocol or port -- require special headers from the remote side.
+Cross-origin requests -- those sent to another domain or protocol or port -- require special headers from the remote side. That policy is called "CORS": Cross-Origin Resource Sharing.
 
 For instance, let's try fetching from `http://example.com`:
 
@@ -20,373 +20,294 @@ Fetch fails, as expected.
 
 ## Why?
 
-Cross-origin requests are subject to the special safety control with the sole purpose to protect the internet from evil hackers.
+Because cross-origin restrictions protect the internet from evil hackers.
 
 Seriously. Let's make a very brief historical digression.
 
-For many years Javascript was unable to perform network requests.
+For many years Javascript did not have any special methods to perform network requests.
 
-The main way to send a request to another site was an HTML `<form>` with either `POST` or `GET` method. People submitted it to `<iframe>`, just to stay on the current page.
+One way to communicate with another server was to submit a `<form>` there. People submitted it into `<iframe>`, just to stay on the current page, like this:
 
 ```html
-<form target="iframe" method="POST" action="http://site.com">
-  <!-- javascript could dynamically generate and submit this kind of form -->
+<iframe name="iframe"></iframe>
+
+<form target="iframe" method="POST" action="http://another.com/…">
+  <!-- a form could be dynamically generated and submited by Javascript -->
 </form>
 
-<iframe name="iframe"></iframe>
 ```
 
-So, it *was* possible to make a request. But if the submission was to another site, then the  main window was forbidden to access `<iframe>` content. Hence, it wasn't possible to get a response.
+- So, it was possible to make a GET/POST request to another site.
+- But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
 
-2. Open another site in `<iframe>`.
+**A script from one site could not access the content of another site.**
 
+That simple, yet powerful rule was a foundation of the internet security. E.g. a script from the page `hacker.com` could not access user's mailbox at `gmail.com`. People felt safe.
 
+But growing appetites of web developers demanded more power. A variety of tricks were invented.
 
-For many years cross-domain requests were simply unavailable. To access another
+One of them was to use a `<script src="http://another.com/…">` tag. It could request a script from anywhere, but again -- it was forbidden to access its content (if from another site).
 
-The internet got used to it, people got used to it.
+So if `another.com` was going to send back the data, it would be wrapped in a callback function with the name known to the receiving side. Usually, an url parameter, such as `?callback=…`, was used to specify the name.
 
-
-Imagine that `fetch` works from anywhere.
-
-How an evil hacker could use it?
-
-
-They would create a page at `http://evil.com`, and when a user comes to it, then run `fetch` from his mail server, e.g. `http://gmail.com/messages`.
-
-Such a request usually sends authentication cookies, so `http://gmail.com` would recognize the user and send back the messages. Then the hacker could analyze the mail and go with online-banking, and so on.
-
-![](cors-gmail-messages.png)
-
-How `gmail.com` and other sites protect users from such hacks now?
-
-That's simple -- when a request is made from they add an additional secret value to all requests.
-The protection is quite simple.
-How `gmail.com`
-
-Right, because o
-
-Because of cross-origin restrictions such a hack is impossible. They prevent an evil-minded person from doing anything that they couldn't do before.
+For instance:
+1. We declare a global function, e.g. `gotWeather`.
+1. Our page is requesting `http://another.com/weather.json?callback=gotWeather`.
+2. The remote server dynamically generates a script wrapping the response data into `gotWeather(...)`. As `gotWeather` is our global function, it handles the response: we have the data.
 
 
+Here's the demo:
 
+```js run
+function gotWeather({ temperature, humidity }) {
+  alert(`temperature: ${temperature}, humidity: ${humidity}`);
+}
 
-
-Кросс-доменные запросы проходят специальный контроль безопасности, цель которого -- не дать злым хакерам(tm) завоевать интернет.
-
-Серьёзно. Разработчики стандарта предусмотрели все заслоны, чтобы "злой хакер" не смог, воспользовавшись новым стандартом, сделать что-то принципиально отличное от того, что и так мог раньше и, таким образом, "сломать" какой-нибудь сервер, работающий по-старому стандарту и не ожидающий ничего принципиально нового.
-
-Давайте, на минуточку, вообразим, что появился стандарт, который даёт, без ограничений, возможность делать любой странице HTTP-запросы куда угодно, какие угодно.
-
-Как сможет этим воспользоваться злой хакер?
-
-Он сделает свой сайт, например `http://evilhacker.com` и заманит туда посетителя (а может посетитель попадёт на "злонамеренную" страницу и по ошибке -- не так важно).
-
-Когда посетитель зайдёт на `http://evilhacker.com`, он автоматически запустит JS-скрипт на странице. Этот скрипт сделает HTTP-запрос на почтовый сервер, к примеру, `http://gmail.com`. А ведь обычно HTTP-запросы идут с куками посетителя и другими авторизующими заголовками.
-
-Поэтому хакер сможет написать на `http://evilhacker.com` код, который, сделав GET-запрос на `http://gmail.com`, получит информацию из почтового ящика посетителя. Проанализирует её, сделает ещё пачку POST-запросов для отправки писем от имени посетителя. Затем настанет очередь онлайн-банка и так далее.
-
-Спецификация [CORS](http://www.w3.org/TR/cors/) налагает специальные ограничения на запросы, которые призваны не допустить подобного апокалипсиса.
-
-Запросы в ней делятся на два вида.
-
-[Простыми](http://www.w3.org/TR/cors/#terminology) считаются запросы, если они удовлетворяют следующим двум условиям:
-
-1. [Простой метод](http://www.w3.org/TR/cors/#simple-method): GET, POST или HEAD
-2. [Простые заголовки](http://www.w3.org/TR/cors/#simple-header) -- только из списка:
-
-- `Accept`
-- `Accept-Language`
-- `Content-Language`
-- `Content-Type` со значением `application/x-www-form-urlencoded`, `multipart/form-data` или `text/plain`.
-
-"Непростыми" считаются все остальные, например, запрос с методом `PUT` или с заголовком `Authorization` не подходит под ограничения выше.
-
-Принципиальная разница между ними заключается в том, что "простой" запрос можно сформировать и отправить на сервер и без XMLHttpRequest, например при помощи HTML-формы.
-
-То есть, злой хакер на странице `http://evilhacker.com` и до появления CORS мог отправить произвольный GET-запрос куда угодно. Например, если создать и добавить в документ элемент `<script src="любой url">`, то браузер сделает GET-запрос на этот URL.
-
-Аналогично, злой хакер и ранее мог на своей странице объявить и, при помощи JavaScript, отправить HTML-форму с методом GET/POST и кодировкой `multipart/form-data`. А значит, даже старый сервер наверняка предусматривает возможность таких атак и умеет от них защищаться.
-
-А вот запросы с нестандартными заголовками или с методом `DELETE` таким образом не создать. Поэтому старый сервер может быть к ним не готов. Или, к примеру, он может полагать, что такие запросы веб-страница в принципе не умеет присылать, значит они пришли из привилегированного приложения, и дать им слишком много прав.
-
-Поэтому при посылке "непростых" запросов нужно специальным образом спросить у сервера, согласен ли он в принципе на подобные кросс-доменные запросы или нет? И, если сервер не ответит, что согласен -- значит, нет.
-
-```summary
-В спецификации CORS, как мы увидим далее, есть много деталей, но все они объединены единым принципом: новые возможности доступны только с явного согласия сервера (по умолчанию -- нет).
+let script = document.createElement('script');
+script.src = `http://cors.javascript.local/article/fetch-crossorigin/demo/script?callback=gotWeather`;
+document.body.append(script);
 ```
 
-## CORS для простых запросов
+The response looks like this:
 
-В кросс-доменный запрос браузер автоматически добавляет заголовок `Origin`, содержащий домен, с которого осуществлён запрос.
+```js
+gotWeather({
+  temperature: 25,
+  humidity: 78
+});
+```
 
-В случае запроса на `http://anywhere.com/request` с `http://javascript.ru/page` заголовки будут примерно такие:
+
+That works, and doesn't violate security, because both sides agreed to pass the data this way. And, when both sides agree, it's definitely not a hack.
+
+Then `XMLHttpRequest` appeared, and `fetch` afterwards. After long discussions, it was decided that cross-domain requests would be possible, but in a way that does not add any capabilities unless explicitly allowed by the server.
+
+## Simple requests
+
+[Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
+
+1. [Simple method](http://www.w3.org/TR/cors/#simple-method): GET, POST or HEAD
+2. [Simple headers](http://www.w3.org/TR/cors/#simple-header) -- only allowed:
+    - `Accept`
+    - `Accept-Language`
+    - `Content-Language`
+    - `Content-Type` with the value `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.
+
+Any other request is considered "non-simple". For instance, a request with `PUT` method or with an `Authorization` HTTP-header does not fit the limitations.
+
+**The essential difference is that a "simple request" can be made with a `<form>` or a `<script>`, without any special methods.**
+
+So, even a very old server should be ready to accept a simple request.
+
+Contrary to that, headers with non-standard headers or e.g. `DELETE` method can't be created this way. For a long time Javascript was unable to do such requests. So an old server may assume that such requests come from a privileged source, "because a webpage is unable to send them".
+
+That's why we try to make a non-simple request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
+
+And, unless the server explicitly confirms that with headers, a non-simple request is not sent.
+
+Now we'll go into details. All of them serve a single purpose -- to ensure that new cross-origin capabilities are only accessible with an explicit permission from the server.
+
+## CORS for simple requests
+
+A browser always adds to cross-origin requests header `Origin`, with the origin of the request.
+
+For instance, if we request `https://anywhere.com/request` from `https://javascript.info/page`, the headers will be like:
 
 ```
 GET /request
 Host:anywhere.com
 *!*
-Origin:http://javascript.ru
+Origin:https://javascript.info
 */!*
 ...
 ```
 
-Сервер должен, со своей стороны, ответить специальными заголовками, разрешает ли он такой запрос к себе.
+Please note: `Origin` has no path, only domain/protocol/port.
 
-Если сервер разрешает кросс-доменный запрос с этого домена -- он должен добавить к ответу заголовок `Access-Control-Allow-Origin`, содержащий домен запроса (в данном случае "javascript.ru") или  звёздочку `*`.
+The server can inspect the `Origin` and, if it agrees to accept such a request, add a special header `Access-Control-Allow-Origin` to the response. That header should contain the allowed origin (in our case `https://javascript.info`), or a star `*`.
 
-**Только при наличии такого заголовка в ответе -- браузер сочтёт запрос успешным, а иначе JavaScript получит ошибку.**
+The browser plays the role of a trusted mediator here:
+1. It ensures that the corrent `Origin` is sent in any cross-domain request.
+2. If checks for correct `Access-Control-Allow-Origin` in the response, grants Javascript access if it's so, forbids otherwise.
 
 ![](xhr-another-domain.png)
 
-То есть, ответ сервера может быть примерно таким:
-
+Here's an example of an "accepting" response:
 ```
-HTTP/1.1 200 OK
+200 OK
 Content-Type:text/html; charset=UTF-8
 *!*
-Access-Control-Allow-Origin: http://javascript.ru
+Access-Control-Allow-Origin: https://javascript.info
 */!*
 ```
 
-Если `Access-Control-Allow-Origin` нет, то браузер считает, что разрешение не получено, и завершает запрос с ошибкой.
+## Response headers
 
-При таких запросах не передаются куки и заголовки HTTP-авторизации. Параметры `user` и `password` в методе `open` игнорируются. Мы рассмотрим, как разрешить их передачу, чуть далее.
+For cross-origin request, by default Javascript may only access "simple response headers":
 
-```warn header="Что может сделать хакер, используя такие запросы?"
-Описанные выше ограничения приводят к тому, что запрос полностью безопасен.
+- `Cache-Control`
+- `Content-Language`
+- `Content-Type`
+- `Expires`
+- `Last-Modified`
+- `Pragma`
 
-Действительно, злая страница может сформировать любой GET/POST-запрос и отправить его, но без разрешения сервера ответа она не получит.
+Any other header is forbidden.
 
-А без ответа такой запрос, по сути, эквивалентен отправке формы GET/POST, причём без авторизации.
+```smart
+Please note: there's no `Content-Length` header in the list! So, if we're downloading something, we can't track the percentage of progress.
 ```
 
-## Ограничения IE9-
+To grant Javascript access to any other header, the server must list it in the `Access-Control-Expose-Headers` header.
 
-В IE9- используется `XDomainRequest`, который представляет собой урезанный `XMLHttpRequest`.
-
-На него действуют ограничения:
-
-- Протокол нужно сохранять: запросы допустимы с HTTP на HTTP, с HTTPS на HTTPS. Другие протоколы запрещены.
-- Метод `open(method, url)` имеет только два параметра. Он всегда асинхронный.
-- Ряд возможностей современного стандарта недоступны, в частности:
-    - Недоступны методы, кроме GET или POST.
-    - Нельзя добавлять свои заголовки, даже нельзя указать свой `Content-Type` для запроса, он всегда `text/plain`.
-    - Нельзя включить передачу кук и данных HTTP-авторизации.
-- В IE8 в режиме просмотра InPrivate кросс-доменные запросы не работают.
-
-Современный стандарт [XMLHttpRequest](http://www.w3.org/TR/XMLHttpRequest/) предусматривает средства для преодоления этих ограничений, но на момент выхода IE8 они ещё не были проработаны, поэтому их не реализовали. А IE9 исправил некоторые ошибки, но в общем не добавил ничего нового.
-
-Поэтому на сайтах, которые хотят поддерживать IE9-, то на практике кросс-доменные запросы редко используют, предпочитая другие способы кросс-доменной коммуникации. Например, динамически создаваемый тег `SCRIPT` или вспомогательный `IFRAME` с другого домена. Мы разберём эти подходы в последующих главах.
-
-```smart header="Как разрешить кросс-доменные запросы от доверенного сайта в IE9-?"
-Разрешить кросс-доменные запросы для "доверенных" сайтов можно в настройках IE, во вкладке "Безопасность", включив пункт "Доступ к источникам данных за пределами домена".
-
-Обычно это делается для зоны "Надёжные узлы", после чего в неё вносится доверенный сайт. Теперь он может делать кросс-доменные запросы `XMLHttpRequest`.
-
-Этот способ можно применить для корпоративных сайтов, а также в тех случаях, когда посетитель заведомо вам доверяет, но почему-то (компьютер на работе, админ запрещает ставить другой браузер?) хочет использовать именно IE. Например, он может предлагаться в качестве дополнительной инструкции "как заставить этот сервис работать под IE".
-```
-
-```smart header="В IE разрешён другой порт"
-В кросс-доменные ограничения IE не включён порт.
-
-То есть, можно сделать запрос с `http://javascript.ru` на `http://javascript.ru:8080`, и в IE он не будет считаться кросс-доменным.
-
-Это позволяет решить некоторые задачи, связанные с взаимодействием различных сервисов в рамках одного сайта. Но только для IE.
-```
-
-Расширенные возможности, описанные далее, поддерживаются всеми современными браузерами, кроме IE9-.
-
-## Заголовки ответа
-
-Чтобы JavaScript мог прочитать HTTP-заголовок ответа, сервер должен указать его имя в `Access-Control-Expose-Headers`.
-
-Например:
+For example:
 
 ```
-HTTP/1.1 200 OK
+200 OK
 Content-Type:text/html; charset=UTF-8
-Access-Control-Allow-Origin: http://javascript.ru
+Access-Control-Allow-Origin: https://javascript.info
+Content-Length: 12345
+Authorization: 2c9de507f2c54aa1
 *!*
-X-Uid: 123
-X-Authorization: 2c9de507f2c54aa1
-Access-Control-Expose-Headers: X-Uid, X-Authentication
+Access-Control-Expose-Headers: Content-Length, Authorization
 */!*
 ```
 
-По умолчанию скрипт может прочитать из ответа только "простые" заголовки:
+With such `Access-Control-Expose-Headers` header, the script is allowed to access `Content-Length` and `Authorization` headers of the response.
 
-```
-Cache-Control
-Content-Language
-Content-Type
-Expires
-Last-Modified
-Pragma
-```
 
-...То есть, `Content-Type` получить всегда можно, а доступ к специфическим заголовкам нужно открывать явно.
+## "Non-simple" requests
 
-## Запросы от имени пользователя
+We can use any HTTP-method: not just `GET/POST`, but also `PATCH`, `DELETE` and others.
 
-По умолчанию браузер не передаёт с запросом куки и авторизующие заголовки.
+Some time ago no one could even assume that a webpage is able to do such requests. So there may exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
 
-Чтобы браузер передал вместе с запросом куки и HTTP-авторизацию, нужно поставить запросу `xhr.withCredentials = true`:
+So, to avoid misunderstandings, any "non-simple" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
 
-```js
-var xhr = new XMLHttpRequest();
-xhr.withCredentials = true;
+A preflight request uses method `OPTIONS` and has no body:
+- `Access-Control-Request-Method` header has the requested method.
+- `Access-Control-Request-Headers` header provides a comma-separated list of non-simple HTTP-headers.
 
-xhr.open('POST', 'http://anywhere.com/request', true)
-  ...
-```
+If the server agrees to serve the requests, then it should respond with status 200, no body and:
 
-Далее -- всё как обычно, дополнительных действий со стороны клиента не требуется.
-
-Такой `XMLHttpRequest` с куками, естественно, требует от сервера больше разрешений, чем "анонимный".
-
-**Поэтому для запросов с `withCredentials` предусмотрено дополнительное подтверждение со стороны сервера.**
-
-При запросе с `withCredentials` сервер должен вернуть уже не один, а два заголовка:
-
-- `Access-Control-Allow-Origin: домен`
-- `Access-Control-Allow-Credentials: true`
-
-Пример заголовков:
-
-```js no-beautify
-HTTP/1.1 200 OK
-Content-Type:text/html; charset=UTF-8
-*!*
-Access-Control-Allow-Origin: http://javascript.ru
-Access-Control-Allow-Credentials: true
-*/!*
-```
-
-Использование звёздочки `*` в `Access-Control-Allow-Origin` при этом запрещено.
-
-Если этих заголовков не будет, то браузер не даст JavaScript'у доступ к ответу сервера.
-
-## "Непростые" запросы
-
-В кросс-доменном `XMLHttpRequest` можно указать не только `GET/POST`, но и любой другой метод, например `PUT`, `DELETE`.
-
-Когда-то никто и не думал, что страница сможет сделать такие запросы. Поэтому ряд веб-сервисов написаны в предположении, что "если метод -- нестандартный, то это не браузер". Некоторые веб-сервисы даже учитывают это при проверке прав доступа.
-
-Чтобы пресечь любые недопонимания, браузер использует предзапрос в случаях, когда:
-
-- Если метод -- не GET / POST / HEAD.
-- Если заголовок `Content-Type` имеет значение отличное от `application/x-www-form-urlencoded`, `multipart/form-data` или `text/plain`, например `application/xml`.
-- Если устанавливаются другие HTTP-заголовки, кроме `Accept`, `Accept-Language`, `Content-Language`.
-
-...Любое из условий выше ведёт к тому, что браузер сделает два HTTP-запроса.
-
-Первый запрос называется "предзапрос" (английский термин "preflight"). Браузер делает его целиком по своей инициативе, из JavaScript мы о нём ничего не знаем, хотя можем увидеть в инструментах разработчика.
-
-Этот запрос использует метод `OPTIONS`. Он не содержит тела и содержит название желаемого метода в заголовке `Access-Control-Request-Method`, а если добавлены особые заголовки, то и их тоже -- в `Access-Control-Request-Headers`.
-
-Его задача -- спросить сервер, разрешает ли он использовать выбранный метод и заголовки.
-
-На этот запрос сервер должен ответить статусом 200, без тела ответа, указав заголовки `Access-Control-Allow-Method: метод` и, при необходимости, `Access-Control-Allow-Headers: разрешённые заголовки`.
-
-Дополнительно он может указать `Access-Control-Max-Age: sec`, где `sec` -- количество секунд, на которые нужно закэшировать разрешение. Тогда при последующих вызовах метода браузер уже не будет делать предзапрос.
+- The response header `Access-Control-Allow-Method` must have the allowed method.
+- The response header `Access-Control-Allow-Headers` must have a list of allowed headers.
+- Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
 
 ![](xhr-preflight.png)
 
-Давайте рассмотрим предзапрос на конкретном примере.
-
-### Пример запроса COPY
-
-Рассмотрим запрос `COPY`, который используется в протоколе [WebDAV](http://www.webdav.org/specs/rfc2518.html) для управления файлами через HTTP:
+Let's see how it works step-by-step for a cross-domain `PATCH` request:
 
 ```js
-var xhr = new XMLHttpRequest();
-
-xhr.open('COPY', 'http://site.com/~ilya', true);
-xhr.setRequestHeader('Destination', 'http://site.com/~ilya.bak');
-
-xhr.onload = ...
-xhr.onerror = ...
-
-xhr.send();
+let response = await fetch('https://site.com/service.json', {
+  method: 'PATCH', // this method is often used to update data
+  headers: {
+    'Content-Type': 'application/json'  
+    'API-Key': 'secret'
+  }
+});
 ```
 
-Этот запрос "непростой" по двум причинам (достаточно было бы одной из них):
+There are three reasons why the request is not simple (one is enough):
+- Method `PATCH`
+- `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`,  `text/plain`.
+- Custom `API-Key` header.
 
-1. Метод `COPY`.
-2. Заголовок `Destination`.
+### Step 1 (preflight request)
 
-Поэтому браузер, по своей инициативе, шлёт предварительный запрос `OPTIONS`:
+The browser, on its own, sends a preflight request that looks like this:
 
 ```
-OPTIONS /~ilya HTTP/1.1
+OPTIONS /service.json
 Host: site.com
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Accept-Encoding: gzip,deflate
-Connection: keep-alive
-*!*
-Origin: http://javascript.ru
-Access-Control-Request-Method: COPY
-Access-Control-Request-Headers: Destination
-*/!*
+Origin: https://javascript.info
+Access-Control-Request-Method: PATCH
+Access-Control-Request-Headers: Content-Type,API-Key
 ```
 
-Обратим внимание на детали:
+- Method: `OPTIONS`.
+- The path -- exactly the same as the main request: `/service.json`.
+- Cross-origin special headers:
+    - `Origin` -- the source origin.
+    - `Access-Control-Request-Method` -- requested method.
+    - `Access-Control-Request-Headers` -- a comma-separated list of "non-simple" headers.
 
-- Адрес -- тот же, что и у основного запроса: `http://site.com/~ilya`.
-- Стандартные заголовки запроса `Accept`, `Accept-Encoding`, `Connection` присутствуют.
-- Кросс-доменные специальные заголовки запроса:
-    - `Origin` -- домен, с которого сделан запрос.
-    - `Access-Control-Request-Method` -- желаемый метод.
-    - `Access-Control-Request-Headers` -- желаемый "непростой" заголовок.
+### Step 2 (preflight response)
 
-На этот запрос сервер должен ответить статусом 200, указав заголовки `Access-Control-Allow-Method: COPY` и `Access-Control-Allow-Headers: Destination`.
+The server can respond with status 200 and headers:
+- `Access-Control-Allow-Method: PATCH`
+- `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
-Но в протоколе WebDav разрешены многие методы и заголовки, которые имеет смысл сразу перечислить в ответе:
-
-```
-HTTP/1.1 200 OK
-Content-Type: text/plain
-*!*Access-Control-Allow-Methods*/!*: PROPFIND, PROPPATCH, COPY, MOVE, DELETE, MKCOL, LOCK, UNLOCK, PUT, GETLIB, VERSION-CONTROL, CHECKIN, CHECKOUT, UNCHECKOUT, REPORT, UPDATE, CANCELUPLOAD, HEAD, OPTIONS, GET, POST
-*!*Access-Control-Allow-Headers*/!*: Overwrite, Destination, Content-Type, Depth, User-Agent, X-File-Size, X-Requested-With, If-Modified-Since, X-File-Name, Cache-Control
-*!*Access-Control-Max-Age*/!*: 86400
-```
-
-Ответ должен быть без тела, то есть только заголовки.
-
-Браузер видит, что метод `COPY` -- в числе разрешённых и заголовок `Destination` -- тоже, и дальше он шлёт уже основной запрос.
-
-При этом ответ на предзапрос он закэширует на 86400 сек (сутки), так что последующие аналогичные вызовы сразу отправят основной запрос, без `OPTIONS`.
-
-Основной запрос браузер выполняет уже в "обычном" кросс-доменном режиме:
+...But if it expects other methods and headers, makes sense to list them all at once:
 
 ```
-COPY /~ilya HTTP/1.1
+200 OK
+Access-Control-Allow-Methods: PUT,PATCH,DELETE
+Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Control
+Access-Control-Max-Age: 86400
+```
+
+Now the browser can see that `PATCH` is an allowed method, and both headers are in the list too, so it sends the main request.
+
+Besides, the preflight response is cached for 86400 seconds (one day), so subsequent requests will not cause a preflight. Assuming that they fit the allowances, they will be sent directly, without `OPTIONS`.
+
+### Step 3 (actual request)
+
+When the preflight is successful, the browser now makes the real request.
+
+It has `Origin` header (because it's cross-origin):
+
+```
+PATCH /service.json
 Host: site.com
-Content-Type: text/html; charset=UTF-8
-*!*
-Destination: http://site.com/~ilya.bak
-Origin: http://javascript.ru
-*/!*
+Content-Type: application/json
+API-Key: secret
+Origin: https://javascript.info
 ```
 
-Ответ сервера, согласно спецификации [WebDav COPY](http://www.webdav.org/specs/rfc2518.html#rfc.section.8.8.8), может быть примерно таким:
+### Step 4 (actual response)
+
+The server should not forget `Accept-Control-Allow-Origin` in the response. A successful preflight does not relieve from that:
 
 ```
-HTTP/1.1 207 Multi-Status
-Content-Type: text/xml; charset="utf-8"
-Content-Length: ...
-*!*
-Access-Control-Allow-Origin: http://javascript.ru
-*/!*
-
-<?xml version="1.0" encoding="utf-8" ?>
-<d:multistatus xmlns:d="DAV:">
-  ...
-</d:multistatus>
+Access-Control-Allow-Origin: https://javascript.info
 ```
 
-Так как `Access-Control-Allow-Origin` содержит правильный домен, то браузер вызовет `xhr.onload` и запрос будет завершён.
+Now it's done. Because of `Access-Control-Max-Age: 86400`, preflight permissions are cached for 86400 seconds (1 day).
+
+
+## Credentials
+
+A cross-origin request by default does not bring any cookies.
+
+for example, `fetch('http://another.com')` does not send any cookies, even those that belong to `another.com` domain.
+
+To send cookies, we need to add the option `credentials: "include"`.
+
+Like this:
+
+```js
+fetch('http://another.com', {
+  credentials: "include"
+});
+```
+
+Now `fetch` sends cookies originating from `another.com` with the request.
+
+A request with credentials is much more powerful than an anonymouse one. Does the server trust Javascript to work on behalf of a user? Then it will access sensitive information, these permissions are not for everyone.
+
+The server should add a new header `Access-Control-Allow-Credentials: true` to the response, if it allows requests with credentials.
+
+For example:
+
+```
+200 OK
+Access-Control-Allow-Origin: https://javascript.info
+Access-Control-Allow-Credentials: true
+```
+
+Please note: using a start `*` in `Access-Control-Allow-Origin` is forbidden in such case. The server must explicitly put the trusted origin there. That's an additional safety measure, to ensure that the server really knows who it trusts.
+
 
 ## Итого
 
