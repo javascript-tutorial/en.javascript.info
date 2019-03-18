@@ -17,9 +17,9 @@ function accept(req, res) {
       chunks.push(data);
       length += data.length;
 
-      // Too much POST data, kill the connection!
-      if (length > 1e6) {
-        request.connection.destroy();
+      // More than 10mb, kill the connection!
+      if (length > 1e8) {
+        req.connection.destroy();
       }
     });
 
@@ -32,6 +32,9 @@ function accept(req, res) {
       } else if (req.url == '/image') {
         res.writeHead(200, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify({ message: "Image saved", imageSize: length }));
+      } else if (req.url == '/upload') {
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ message: "Upload complete", size: length }));
       } else {
         res.writeHead(404);
         res.end("Not found");

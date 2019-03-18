@@ -102,5 +102,19 @@ Reading methods `read*` do not generate events, but rather return the result, as
 That's only inside a Web Worker though, because delays and hang-ups in Web Workers are less important, they do not affect the page.
 ```
 
+## Summary
 
-It most often used to read from files, and
+`File` object inherit from `Blob`.
+
+In addition to `Blob` methods and properties, `File` objects also have `fileName` and `lastModified` properties, plus the internal ability to read from filesystem. We usually get `File` objects from user input, like `<input>` or drag'n'drop.
+
+`FileReader` objects can read from a file or a blob, in one of three formats:
+- String (`readAsText`).
+- `ArrayBuffer` (`readAsArrayBuffer`).
+- Data url, base-64 encoded (`readAsDataURL`).
+
+In many cases though, we don't have to read the file contents.
+
+We can create a blob url with `URL.createObjectURL(file)` and assign it to `<a>` or `<img>`. This way the file can be downloaded or show up as an image, as a part of canvas etc.
+
+And if we're going to send a `File` over a network, then it's also easy, as network API like `XMLHttpRequest` or `fetch` natively accepts `File` objects.

@@ -126,13 +126,62 @@ Naturally, `promise` shows up first, because `setTimeout` macrotask awaits in th
 
 So call have a promise chain that doesn't wait for anything, then things like `setTimeout` or event handlers can never get in the middle.
 
+
+## Unhandled rejection
+
+Remember "unhandled rejection" event from the chapter <info:promise-error-handling>?
+
+Now, with the understanding of microtasks, we can formalize it.
+
+**"Unhandled rejection" is when a promise error is not handled at the end of the microtask queue.**
+
+For instance, consider this code:
+
+```js run
+let promise = Promise.reject(new Error("Promise Failed!"));
+
+window.addEventListener('unhandledrejection', event => {
+  alert(event.reason); // Promise Failed!
+});
+```
+
+We create a rejected `promise` and do not handle the error. So we have the "unhandled rejection" event (printed in browser console too).
+
+We wouldn't have it if we added `.catch`, like this:
+
+```js run
+let promise = Promise.reject(new Error("Promise Failed!"));
+*!*
+promise.catch(err => alert('caught'));
+*/!*
+
+// no error, all quiet
+window.addEventListener('unhandledrejection', event => alert(event.reason));
+```
+
+Now let's say, we'll be catching the error, but after an extremely small delay:
+
+```js run
+let promise = Promise.reject(new Error("Promise Failed!"));
+*!*
+setTimeout(() => promise.catch(err => alert('caught')), 0);
+*/!*
+
+// Error: Promise Failed!
+window.addEventListener('unhandledrejection', event => alert(event.reason));
+```
+
+Now the unhandled rejction appears again. Why? Because `unhandledrejection` triggers when the microtask queue is complete. The engine examines promises and, if any of them is in "rejected" state, then the event is generated.
+
+In the example above `setTimeout` adds the `.catch`, and it triggers too, of course it does, but later, after the event has already occured.
+
 ## Summary
 
 - Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (v8 term).
 
     **So, `.then/catch/finally` is called after the current code is finished.**
 
-      If we need to guarantee that a piece of code is executed after `.then/catch/finally`, it's best to add it into a chained `.then` call.
+    If we need to guarantee that a piece of code is executed after `.then/catch/finally`, it's best to add it into a chained `.then` call.
 
 - There's also a "macrotask queue" that keeps various events, network operation results, `setTimeout`-scheduled calls, and so on. These are also called "macrotasks" (v8 term).
 

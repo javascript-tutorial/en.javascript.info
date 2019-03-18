@@ -1,4 +1,4 @@
-# TextDecoder, TextEncoder
+# TextDecoder and TextEncoder
 
 What if the binary data is actually a string?
 

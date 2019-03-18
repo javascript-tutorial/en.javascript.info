@@ -378,7 +378,7 @@ xhr.send(json);
 
 The `.send(body)` method is pretty omnivore. It can send almost everything, including Blob and BufferSource objects.
 
-## Tracking upload progress
+## Upload progress
 
 The `progress` event only works on the downloading stage.
 
@@ -398,7 +398,7 @@ Here's the list:
 - `timeout` -- upload timed out (if `timeout` property is set).
 - `loadend` -- upload finished with either success or error.
 
-Here's an example of upload tracking:
+Example of handlers:
 
 ```js
 xhr.upload.onprogress = function(event) {
@@ -414,6 +414,36 @@ xhr.upload.onerror = function() {
 };
 ```
 
+Here's a real-life example: file upload with progress indication:
+
+```html run
+<input type="file" onchange="upload(this.files[0])">
+
+<script>
+function upload(file) {
+  let xhr = new XMLHttpRequest();
+
+  // track upload progress
+*!*
+  xhr.upload.onprogress = function(event) {
+    console.log(`Uploaded ${event.loaded} of ${event.total}`);
+  };
+*/!*
+
+  // track completion: both successful or not
+  xhr.onloadend = function() {
+    if (xhr.status == 200) {
+      console.log("success");
+    } else {
+      console.log("error " + this.status);
+    }
+  };
+
+  xhr.open("POST", "/article/xmlhttprequest/post/upload");
+  xhr.send(file);
+}
+</script>
+```
 
 ## Summary
 

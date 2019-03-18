@@ -1,27 +1,16 @@
 # Cross-Origin Fetch
 
-TODO:
-Note that "Content-Length" header is not returned by default for CORS requests
-
-==
-
-Cache-Control
-Content-Language
-Content-Type
-Expires
-Last-Modified
-Pragma
-
-
 If we make a `fetch` from an arbitrary web-site, that will probably fail.
 
-Fetching from another origin (domain/port/protocol triplet) requires special headers from the remote side.
+The core concept here is *origin* -- a domain/port/protocol triplet.
 
-For instance, let's try fetching from http://google.com:
+Cross-origin requests -- those sent to another domain or protocol or port -- require special headers from the remote side.
+
+For instance, let's try fetching from `http://example.com`:
 
 ```js run async
 try {
-  await fetch('http://google.com');
+  await fetch('http://example.com');
 } catch(err) {
   alert(err); // Failed to fetch
 }
@@ -29,27 +18,55 @@ try {
 
 Fetch fails, as expected.
 
-## Safety control
+## Why?
 
-Cross-origin requests pass a special safety control, with the sole purpose to protect the internet from evil hackers.
+Cross-origin requests are subject to the special safety control with the sole purpose to protect the internet from evil hackers.
 
-Seriously. For many years cross-domain requests were simply unavailable. The internet got used to it, people got used to it.
+Seriously. Let's make a very brief historical digression.
 
-Imagine for a second that a new standard appeared, that allows any webpage to make any requests anywhere.
+For many years Javascript was unable to perform network requests.
+
+The main way to send a request to another site was an HTML `<form>` with either `POST` or `GET` method. People submitted it to `<iframe>`, just to stay on the current page.
+
+```html
+<form target="iframe" method="POST" action="http://site.com">
+  <!-- javascript could dynamically generate and submit this kind of form -->
+</form>
+
+<iframe name="iframe"></iframe>
+```
+
+So, it *was* possible to make a request. But if the submission was to another site, then the  main window was forbidden to access `<iframe>` content. Hence, it wasn't possible to get a response.
+
+2. Open another site in `<iframe>`.
+
+
+
+For many years cross-domain requests were simply unavailable. To access another
+
+The internet got used to it, people got used to it.
+
+
+Imagine that `fetch` works from anywhere.
 
 How an evil hacker could use it?
 
-They would create a page at `http://evilhacker.com`, lure a user to it, and run `fetch` from his mail server, e.g. `http://gmail.com`.
 
+They would create a page at `http://evil.com`, and when a user comes to it, then run `fetch` from his mail server, e.g. `http://gmail.com/messages`.
 
+Such a request usually sends authentication cookies, so `http://gmail.com` would recognize the user and send back the messages. Then the hacker could analyze the mail and go with online-banking, and so on.
 
-When cross-origin requests were finally implemented, safety restrictions were placed to  prevent an evil-minded person from doing anything that they couldn't do before. In such a way, that old sites are automatically protected.
+![](cors-gmail-messages.png)
 
-No script could fetch a webpage from another site (another origin, to be precise).
+How `gmail.com` and other sites protect users from such hacks now?
 
-That becomes really important, as you remember about cookies. Any request brings cookies by default, so being able to
+That's simple -- when a request is made from they add an additional secret value to all requests.
+The protection is quite simple.
+How `gmail.com`
 
- can't access the content of a page from another site.
+Right, because o
+
+Because of cross-origin restrictions such a hack is impossible. They prevent an evil-minded person from doing anything that they couldn't do before.
 
 
 
