@@ -92,7 +92,7 @@ promise.then(function(result) {
 });
 ```
 
-What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it idependantly.
+What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it independently.
 
 Here's the picture (compare it with the chaining above):
 
