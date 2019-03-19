@@ -290,7 +290,7 @@ So here's an alternative variant of showing a message:
   background-color: #dff0d8;
 }
 </style>
-
+<div></div>
 <script>
   document.body.insertAdjacentHTML("afterbegin", `<div class="alert alert-success">
     <strong>Hi there!</strong> You've read an important message.
