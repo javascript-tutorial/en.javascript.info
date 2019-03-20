@@ -174,8 +174,6 @@ In the old scripts you may also find `xhr.responseText` and even `xhr.responseXM
 They exist for historical reasons, to get either a string or XML document. Nowadays, we should set the format in `xhr.responseType` and get `xhr.response` as demonstrated above.
 ```
 
-
-
 ## Ready states
 
 `XMLHttpRequest` changes between states as it progresses. The current state is accessible as  `xhr.readyState`.
@@ -447,7 +445,7 @@ function upload(file) {
 
 ## Cross-origin requests
 
-`XMLHttpRequest` can make cross-domain requests, using the same CORS policy as `fetch`.
+`XMLHttpRequest` can make cross-domain requests, using the same CORS policy as [fetch](info:fetch-crossorigin).
 
 Just like `fetch`, it doesn't send cookies and HTTP-authorization to another origin by default. To enable them, set `xhr.withCredentials` to `true`:
 
@@ -456,7 +454,7 @@ let xhr = new XMLHttpRequest();
 *!*
 xhr.withCredentials = true;
 */!*
-s
+
 xhr.open('POST', 'http://anywhere.com/request');
 ...
 ```
