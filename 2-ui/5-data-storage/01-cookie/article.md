@@ -378,7 +378,7 @@ Also, some modern browsers employ special policies for such cookies:
 ```smart
 If we load a script from a third-party domain, like `<script src="https://google-analytics.com/analytics.js">`, and that script uses `document.cookie` to set a cookie, then such cookie is not third-party.
 
-If a script sets a cookie, then no matter where the script came from -- ito belongs to the domain of the current webpage.
+If a script sets a cookie, then no matter where the script came from -- it belongs to the domain of the current webpage.
 ```
 
 ## Appendix: GDPR
