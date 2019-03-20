@@ -4,7 +4,7 @@ importance: 5
 
 # Sort objects
 
-Write the function `sortByName(users)` that gets an array of objects with the `age` property and sorts them by `age`.
+Write the function `sortByName(users)` that gets an array of objects with the `name` property and sorts them by `name`.
 
 For instance:
 
