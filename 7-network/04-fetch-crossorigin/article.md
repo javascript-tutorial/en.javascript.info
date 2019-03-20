@@ -4,7 +4,7 @@ If we make a `fetch` from an arbitrary web-site, that will probably fail.
 
 The core concept here is *origin* -- a domain/port/protocol triplet.
 
-Cross-origin requests -- those sent to another domain or protocol or port -- require special headers from the remote side. That policy is called "CORS": Cross-Origin Resource Sharing.
+Cross-origin requests -- those sent to another domain (even a subdomain) or protocol or port -- require special headers from the remote side. That policy is called "CORS": Cross-Origin Resource Sharing.
 
 For instance, let's try fetching `http://example.com`:
 
