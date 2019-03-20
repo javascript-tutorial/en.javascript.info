@@ -104,8 +104,8 @@ fetch('https://another.com/page', {
 
 The `mode` option serves as a safe-guard that prevents cross-origin requests:
 
-- **`"cors"`** -- the default, cross-origin requests are allowed, as described in <info:fetch-crossorigin>.
-- **`"same-origin"`** -- cross-origin requests are forbidden
+- **`"cors"`** -- the default, cross-origin requests are allowed, as described in <info:fetch-crossorigin>,
+- **`"same-origin"`** -- cross-origin requests are forbidden,
 - **`"no-cors"`** -- only simple cross-origin requests are allowed.
 
 That may be useful in contexts when the fetch url comes from 3rd-party, and we want a "power off switch" to limit cross-origin capabilities.
@@ -116,20 +116,20 @@ The `credentials` option specifies whether `fetch` should send cookies and HTTP-
 
 - **`"same-origin"`** -- the default, don't send for cross-origin requests,
 - **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server,
-- **`"omit"`** -- never send.
+- **`"omit"`** -- never send, even for same-origin requests.
 
 ## cache
 
 By default, `fetch` requests make use of standard HTTP-caching. That is, it honors `Expires`, `Cache-Control` headers, sends `If-Modified-Since`, and so on. Just like regular HTTP-requests do.
 
-The `cache` options allows to ignore HTTP-cache or fine-tune interaction its usage:
+The `cache` options allows to ignore HTTP-cache or fine-tune its usage:
 
-- **`"default"`** -- `fetch` uses standard HTTP-cache rules and headers,
-- **`"no-store"`** -- totally ignore HTTP-cache, this mode becomes default if we set a header `If-Modified-Since`, `If-None-Match`, `If-Unmodified-Since`, `If-Match`, or `If-Range`.
-- **`"reload"`** -- don't take the result from HTTP-cache (if any), but populate cache with the response (if response headers allow)
-- **`"no-cache"`** -- create a conditional request if there is a cached response, and a normal request otherwise. Populate HTTP-cache with the response.
-- **`"force-cache"`** -- use any response from HTTP-cache, even if it's stale. If there's no response in HTTP-cache, behave normally.
-- **`"only-if-cached"`** -- use any response from HTTP-cache, even if it's stale. If there's no response in HTTP-cache, then error. Only works when `mode` is `"same-origin"`.
+- **`"default"`** -- `fetch` uses standard HTTP-cache rules and headers;
+- **`"no-store"`** -- totally ignore HTTP-cache, this mode becomes the default if we set a header `If-Modified-Since`, `If-None-Match`, `If-Unmodified-Since`, `If-Match`, or `If-Range`;
+- **`"reload"`** -- don't take the result from HTTP-cache (if any), but populate cache with the response (if response headers allow);
+- **`"no-cache"`** -- create a conditional request if there is a cached response, and a normal request otherwise. Populate HTTP-cache with the response;
+- **`"force-cache"`** -- use a response from HTTP-cache, even if it's stale. If there's no response in HTTP-cache, make a regular HTTP-request, behave normally;
+- **`"only-if-cached"`** -- use a response from HTTP-cache, even if it's stale. If there's no response in HTTP-cache, then error. Only works when `mode` is `"same-origin"`.
 
 ## redirect
 
@@ -163,7 +163,7 @@ Then `fetch` will calculate SHA-256 on its own and compare it with our string. I
 
 The `keepalive` option indicates that the request may outlive the page.
 
-For example, we gather statistics about how the current visitor uses our page (mouse clicks, interesting page fragments), to improve user experience.
+For example, we gather statistics about how the current visitor uses our page (mouse clicks,  page fragments he views), to improve user experience.
 
 When the visitor leaves our page -- we'd like to save it on our server.
 
@@ -183,5 +183,8 @@ window.onunload = function() {
 
 Normally, when a document is unloaded, all associated network requests are aborted. But `keepalive` option tells the browser to perform the request in background, even after it leaves the page. So it's essential for our request to succeed.
 
-- We can't send megabytes: the body limit for keepalive requests is 64kb. If we gather more data, we can send it out regularly, then there won't be a lot for the last request.
-- In case of `onunload` the request is completed when the current document is already unloaded, so we don't get server response (which is usually empty).
+- We can't send megabytes: the body limit for keepalive requests is 64kb.
+    - If we gather more data, we can send it out regularly, then there won't be a lot for the "onunload" request.
+    - The limit is for all currently ongoing requests. So we cheat it by creating 100 requests, each 64kb.
+- We don't get the server response if the request is made `onunload`, because the document is already unloaded at that time.
+    - Usually, the server sends empty response to such requests, so it's not a problem.
