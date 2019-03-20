@@ -68,7 +68,7 @@ Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rab
 
 ![](proto-animal-rabbit.png)
 
-Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypally inherits from `animal`".
+Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypically inherits from `animal`".
 
 So if `animal` has a lot of useful properties and methods, then they become automatically available in `rabbit`. Such properties are called "inherited".
 
