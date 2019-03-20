@@ -71,7 +71,7 @@ function gotWeather({ temperature, humidity }) {
 
 // 2. Pass its name as the ?callback parameter for the script
 let script = document.createElement('script');
-script.src = `http://cors.javascript.local/article/fetch-crossorigin/demo/script?callback=gotWeather`;
+script.src = `https://cors.javascript.info/article/fetch-crossorigin/demo/script?callback=gotWeather`;
 document.body.append(script);
 
 // 3. The expected answer from the server looks like this:
