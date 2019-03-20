@@ -101,7 +101,7 @@ class CoffeeMachine {
   }
 
   get waterAmount() {
-    return this.waterAmount;
+    return this._waterAmount;
   }
 
   constructor(power) {
