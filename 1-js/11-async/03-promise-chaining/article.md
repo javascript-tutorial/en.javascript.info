@@ -344,7 +344,7 @@ Now right after `setTimeout` runs `img.remove()`, it calls `resolve(githubUser)`
 
 As a rule, an asynchronous action should always return a promise.
 
-That makes possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
+That makes it possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
 
 Finally, we can split the code into reusable functions:
 
