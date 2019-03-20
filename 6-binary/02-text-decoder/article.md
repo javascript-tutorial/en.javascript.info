@@ -1,6 +1,6 @@
 # TextDecoder and TextEncoder
 
-What if the binary data is actually a string?
+What if the binary data is actually a string? For instance, we received a file with textual data.
 
 The build-in [TextDecoder](https://encoding.spec.whatwg.org/#interface-textdecoder) object allows to read the value into an an actual Javascript string, given the buffer and the encoding.
 
@@ -9,10 +9,10 @@ We first need to create it:
 let decoder = new TextDecoder([label], [options]);
 ```
 
-- **`label`** -- the encoding, `utf-8` by default.
+- **`label`** -- the encoding, `utf-8` by default, but `big5`, `windows-1251` and many other are also supported.
 - **`options`** -- optional object:
-  - **`fatal`** -- boolean, if `true` then throw an exception for invalid string, otherwise (default) replace invalid byte sequences with character `\uFFFD`.
-  - **`ignoreBOM`** -- boolean, if `true` then ignore BOM (an optional byte-order unicode mark), we usually don't set it.
+  - **`fatal`** -- boolean, if `true` then throw an exception for invalid (non-decodable) characters, otherwise (default) replace them with character `\uFFFD`.
+  - **`ignoreBOM`** -- boolean, if `true` then ignore BOM (an optional byte-order unicode mark), rarely needed.
 
 ...And then decode:
 
@@ -39,7 +39,7 @@ let uint8Array = new Uint8Array([228, 189, 160, 229, 165, 189]);
 alert( new TextDecoder().decode(uint8Array) ); // 你好
 ```
 
-We can decode a part of the buffer by passing it a subarray:
+We can decode a part of the buffer by creating a subarray view for it:
 
 
 ```js run
@@ -54,7 +54,7 @@ alert( new TextDecoder().decode(binaryString) ); // Hello
 
 ## TextEncoder
 
-[TextEncoder](https://encoding.spec.whatwg.org/#interface-textencoder) does the reverse thing -- writes a string into a buffer.
+[TextEncoder](https://encoding.spec.whatwg.org/#interface-textencoder) does the reverse thing -- converts a string into bytes.
 
 The syntax is:
 

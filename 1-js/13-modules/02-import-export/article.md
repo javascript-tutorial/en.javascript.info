@@ -204,7 +204,7 @@ We may have both default and named exports in a single module, but in practice p
 
 **Another thing to note is that named exports must (naturally) have a name, while `export default` may be anonymous.**
 
-For instance, these are all perfecly valid default exports:
+For instance, these are all perfectly valid default exports:
 
 ```js
 export default class { // no class name
@@ -433,6 +433,6 @@ if (something) {
 }
 ```
 
-...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed? 
+...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
 
 We'll see dynamic imports in the next chapter.

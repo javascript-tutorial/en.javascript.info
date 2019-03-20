@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<script>
+function run() {
+
+  let xhr = new XMLHttpRequest();
+  write(`readyState=${xhr.readyState}`);
+
+  xhr.open('GET', 'digits');
+  write(`readyState=${xhr.readyState}`);
+
+  xhr.onreadystatechange = function() {
+    write(`readyState=${xhr.readyState}, responseText.length=${xhr.responseText.length}`);
+  };
+
+  xhr.onprogress = function() {
+    write(`readyState=${xhr.readyState}, responseText.length=${xhr.responseText.length}`);
+  };
+
+  xhr.send();
+}
+
+function write(text) {
+  let li = log.appendChild(document.createElement('li'));
+  li.innerHTML = text;
+}
+</script>
+
+<button onclick="run()">Load digits</button>
+
+<ul id="log"></ul>

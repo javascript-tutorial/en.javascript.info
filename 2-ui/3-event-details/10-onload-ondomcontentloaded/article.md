@@ -121,9 +121,34 @@ The example below correctly shows image sizes, because `window.onload` waits for
 
 ## window.onunload
 
-When a visitor leaves the page, the `unload` event triggers on `window`. We can do something there that doesn't involve a delay, like closing related popup windows. But we can't cancel the transition to another page.
+When a visitor leaves the page, the `unload` event triggers on `window`. We can do something there that doesn't involve a delay, like closing related popup windows.
 
-For that we should use another event -- `onbeforeunload`.
+This event is a good place to send out analytics.
+
+E.g. we have a script that gathers some data about mouse clicks, scrolls, viewed page areas -- the statistics that can help us to see what users want.
+
+Then `onunload` is the best time to send it out. Regular networking methods such as [fetch](info:fetch-basics) or [XMLHttpRequest](info:xmlhttprequest) don't work well, because we're in the process of leaving the page.
+
+So, there exist `navigator.sendBeacon(url, data)` method for such needs, described in the specification <https://w3c.github.io/beacon/>.
+
+It sends the data in background. The transition to another page is not delayed: the browser leaves the page and performs `sendBeacon` in background.
+
+Here's how to use it:
+```js
+let analyticsData = { /* object with gathered data */ };
+
+window.addEventListener("unload", function() {
+  navigator.sendBeacon("/analytics", JSON.stringify(analyticsData));
+};
+```
+
+- The request is sent as POST.
+- We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch-basics>, but usually it's a stringified object.
+- The data is limited by 64kb.
+
+When the `sendBeacon` request is finished, the browser probably has already left the document, so there's no way to get server response (which is usually empty for analytics).
+
+If we want to cancel the transition to another page, we can't do it here. But we can use  another event -- `onbeforeunload`.
 
 ## window.onbeforeunload [#window.onbeforeunload]
 

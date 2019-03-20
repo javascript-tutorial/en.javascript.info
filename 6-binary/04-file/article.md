@@ -33,7 +33,7 @@ function showFile(input) {
 ```
 
 ```smart
-Please note: the input may select multiple files, so `input.files` is an array-like object with them. Here we have only one file, but it's still the same, so we just take `input.files[0]`.
+The input may select multiple files, so `input.files` is an array-like object with them. Here we have only one file, so we just take `input.files[0]`.
 ```
 
 ## FileReader
@@ -63,13 +63,13 @@ As the reading proceeds, there are events:
 - `error` -- error has occured.
 - `loadend` -- reading finished with either success or failure.
 
-At the end:
+When the reading is finished, we can access the result as:
 - `reader.result` is the result (if successful)
 - `reader.error` is the error (if failed).
 
 The most widely used events are for sure `load` and `error`.
 
-Here's an example:
+Here's an example of reading a file:
 
 ```html run
 <input type="file" onchange="readFile(this)">
@@ -80,6 +80,8 @@ function readFile(input) {
 
   let reader = new FileReader();
 
+  reader.readAsText(file);
+
   reader.onload = function() {
     console.log(reader.result);
   };
@@ -88,16 +90,24 @@ function readFile(input) {
     console.log(reader.error);
   };
 
-  reader.readAsText(file);
 }
 </script>
+```
+
+```smart header="`FileReader` for blobs"
+As mentioned in the chapter <info:blob>, `FileReader` works for any blobs, not just files.
+
+So we can use it to convert a blob to another format:
+- `readAsArrayBuffer(blob)` -- to `ArrayBuffer`,
+- `readAsText(blob, [encoding])` -- to string (an alternative to `TextDecoder`),
+- `readAsDataURL(blob)` -- to base64 data url.
 ```
 
 
 ```smart header="`FileReaderSync` is available for workers only"
 For Web Workers, there also exists a synchronous variant of `FileReader`, called [FileReaderSync](https://www.w3.org/TR/FileAPI/#FileReaderSync).
 
-Reading methods `read*` do not generate events, but rather return the result, as regular functions do.
+Its reading methods `read*` do not generate events, but rather return a result, as regular functions do.
 
 That's only inside a Web Worker though, because delays and hang-ups in Web Workers are less important, they do not affect the page.
 ```
@@ -113,8 +123,6 @@ In addition to `Blob` methods and properties, `File` objects also have `fileName
 - `ArrayBuffer` (`readAsArrayBuffer`).
 - Data url, base-64 encoded (`readAsDataURL`).
 
-In many cases though, we don't have to read the file contents.
+In many cases though, we don't have to read the file contents. Just as we did with blobs, we can create a short url with `URL.createObjectURL(file)` and assign it to `<a>` or `<img>`. This way the file can be downloaded or shown up as an image, as a part of canvas etc.
 
-We can create a blob url with `URL.createObjectURL(file)` and assign it to `<a>` or `<img>`. This way the file can be downloaded or show up as an image, as a part of canvas etc.
-
-And if we're going to send a `File` over a network, then it's also easy, as network API like `XMLHttpRequest` or `fetch` natively accepts `File` objects.
+And if we're going to send a `File` over a network, that's also easy, as network API like `XMLHttpRequest` or `fetch` natively accepts `File` objects.
