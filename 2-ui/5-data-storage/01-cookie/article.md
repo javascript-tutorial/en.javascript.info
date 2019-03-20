@@ -167,7 +167,7 @@ document.cookie = "user=John; max-age=0";
 
 The cookie should be transferred only over HTTPS.
 
-**By default if we set a cookie at `http://site.com`, then it also appears at `https://site.com` and vise versa.**
+**By default, if we set a cookie at `http://site.com`, then it also appears at `https://site.com` and vise versa.**
 
 That is, cookies are domain-based, they do not distinguish between the protocols.
 
@@ -268,7 +268,7 @@ But if a cookie is `httpOnly`, then `document.cookie` doesn't see it, so it is p
 
 ## Appendix: Cookie functions
 
-Here's a small set of functions to work with cookies, more conveinent than a manual modification of `document.cookie`.
+Here's a small set of functions to work with cookies, more convenient than a manual modification of `document.cookie`.
 
 There exist many cookie libraries for that, so these are for demo purposes. Fully working though.
 
@@ -352,7 +352,7 @@ Together: [cookie.js](cookie.js).
 A cookie is called "third-party" if it's placed by domain other than the user is visiting.
 
 For instance:
-1. A page at `site.com` loads an banner from another site: `<img src="https://ads.com/banner.png">`.
+1. A page at `site.com` loads a banner from another site: `<img src="https://ads.com/banner.png">`.
 2. Along with the banner, the remote server at `ads.com` may set `Set-Cookie` header with cookie like `id=1234`. Such cookie originates from `ads.com` domain, and will only be visible at `ads.com`:
 
     ![](cookie-third-party.png)
@@ -361,7 +361,7 @@ For instance:
 
     ![](cookie-third-party-2.png)
 
-4. What's even more important, when the users moves from `site.com` to another site `other.com` that also has a banners, then `ads.com` gets the cookie, as it belongs to `ads.com`, thus recognizing the visitor and tracking him as he moves between sites:
+4. What's even more important, when the users moves from `site.com` to another site `other.com` that also has a banner, then `ads.com` gets the cookie, as it belongs to `ads.com`, thus recognizing the visitor and tracking him as he moves between sites:
 
     ![](cookie-third-party-3.png)
 
