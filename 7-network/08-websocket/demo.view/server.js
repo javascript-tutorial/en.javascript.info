@@ -1,34 +1,24 @@
-const Koa = require('koa');
-const app = new Koa();
+const http = require('http');
 const ws = require('ws');
-const Router = require('koa-router');
 
-let router = new Router();
+const wss = new ws.Server({noServer: true});
 
-const wss = new ws.Server({noServer: true})
+function accept(req, res) {
+  // all incoming requests must be websockets
+  if (!req.headers.upgrade || req.headers.upgrade.toLowerCase() != 'websocket') {
+    res.end();
+    return;
+  }
+  // can be Connection: keep-alive, Upgrade
+  if (req.headers.connection.match(/\bupgrade\b/i)) {
+    res.end();
+    return;
+  }
 
-router.get('/hello', handleWebsocket(hello));
-
-
-function handleWebsocket(handler) {
-  return async (ctx, next) => {
-
-    const upgradeHeader = (ctx.request.headers.upgrade || '').split(',').map(s => s.trim())
-
-    // console.log(`websocket middleware called on route ${ctx.path}`);
-    // console.log(ctx.request.headers);
-    // console.log(upgradeHeader);
-
-    if (upgradeHeader.includes('websocket')) {
-      ctx.respond = false;
-      wss.handleUpgrade(ctx.req, ctx.request.socket, Buffer.alloc(0), handler);
-    } else {
-      await next();
-    }
-  };
+  wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onConnect);
 }
 
-async function hello(ws) {
+function onConnect(ws) {
   ws.on('message', function (message) {
     let name = message.match(/\w+$/) || "Guest";
     ws.send(`Hello, ${name}!`);
@@ -37,12 +27,8 @@ async function hello(ws) {
   });
 }
 
-app
-  .use(router.routes())
-  .use(router.allowedMethods());
-
 if (!module.parent) {
-  http.createServer(app.callback()).listen(8080);
+  http.createServer(accept).listen(8080);
 } else {
-  exports.accept = app.callback();
+  exports.accept = accept;
 }
