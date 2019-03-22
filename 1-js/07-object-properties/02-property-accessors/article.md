@@ -85,11 +85,12 @@ alert(user.surname); // Cooper
 Now we have a "virtual" property. It is readable and writable, but in fact does not exist.
 
 ```smart header="Accessor properties are only accessible with get/set"
-A property can either be a "data property" or an "accessor property", but not both.
+Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
 
-Once a property is defined with `get prop()` or `set prop()`, it's an accessor property. So there must be a getter to read it, and must be a setter if we want to assign it.
+- If there's a getter -- we can read `object.prop`, othrewise we can't.
+- If there's a setter -- we can set `object.prop=...`, othrewise we can't.
 
-Sometimes it's normal that there's only a setter or only a getter. But the property won't be readable or writable in that case.
+And in either case we can't `delete` an accessor property. 
 ```
 
 
