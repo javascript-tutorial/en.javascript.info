@@ -28,6 +28,10 @@ function mul(a, b) {
 Let's use `bind` to create a function `double` on its base:
 
 ```js run
+function mul(a, b) {
+  return a * b;
+}
+
 *!*
 let double = mul.bind(null, 2);
 */!*
