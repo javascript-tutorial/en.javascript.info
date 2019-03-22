@@ -113,14 +113,18 @@ Sometimes people mix up partial function application mentioned above with anothe
 
 [Currying](https://en.wikipedia.org/wiki/Currying) is translating a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
 
-Let's make `curry` function that performs currying for binary functions. In other words, it translates `f(a, b)` into `f(a)(b)`:
+Literally, currying is a transformation of functions: from one way of calling into another. In JavaScript, we usually make a wrapper to keep the original function.
+
+Currying doesn't call a function. It just transforms it. We'll see use cases soon.
+
+Let's make `curry` function that performs currying for two-argument functions. In other words, `curry(f)` for two-argument `f(a, b)` translates it into `f(a)(b)`
 
 ```js run
 *!*
-function curry(func) {
+function curry(f) { // curry(f) does the currying transform
   return function(a) {
     return function(b) {
-      return func(a, b);
+      return f(a, b);
     };
   };
 }
@@ -156,7 +160,7 @@ function curry(f) {
 
 ## Currying? What for?
 
-Advanced currying allows both to keep the function callable normally and to get partials easily. To understand the benefits we definitely need a worthy real-life example.
+To understand the benefits we definitely need a worthy real-life example. Advanced currying allows the function to be both callable normally and get partials.
 
 For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions also have many other useful features like: sending it over the network or filtering:
 
@@ -208,7 +212,7 @@ So:
 
 ## Advanced curry implementation
 
-In case you're interested, here's the "advanced" curry implementation that we could use above.
+In case you're interested, here's the "advanced" curry implementation that we could use above, it's pretty short:
 
 ```js run
 function curry(func) {
@@ -241,7 +245,7 @@ alert( curriedSum(1)(2,3) ); // 6
 alert( curriedSum(1)(2)(3) ); // 6
 ```
 
-The new `curry` may look complicated, but it's actually pretty easy to understand.
+The new `curry` may look complicated, but it's actually easy to understand.
 
 The result of `curry(func)` is the wrapper `curried` that looks like this:
 
