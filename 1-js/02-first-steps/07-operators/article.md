@@ -232,7 +232,7 @@ alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
 
-The operator works for non-integer numbers of `a` and `b` as well.
+The operator works for non-integer numbers as well.
 
 For instance:
 
