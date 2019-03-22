@@ -7,7 +7,7 @@ libs:
 
 IndexedDB is a built-in database, much more powerful than `localStorage`.
 
-- Key/value storage not only strings: value can be (almost) anything, multiple key types.
+- Key/value storage: value can be (almost) anything, multiple key types.
 - Supports transactions for reliability.
 - Supports key range queries, indexes.
 - Can store much more data than `localStorage`.
