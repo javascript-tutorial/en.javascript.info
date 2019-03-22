@@ -1,5 +1,5 @@
 
-# Plain objects: no __proto__
+# Prototype methods, objects without __proto__
 
 In the first chapter of this section, we mentioned that there are modern methods to setup a prototype.
 

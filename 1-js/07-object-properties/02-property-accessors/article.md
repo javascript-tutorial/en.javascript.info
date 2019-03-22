@@ -90,7 +90,7 @@ Once a property is defined with `get prop()` or `set prop()`, it's an accessor p
 - If there's a getter -- we can read `object.prop`, othrewise we can't.
 - If there's a setter -- we can set `object.prop=...`, othrewise we can't.
 
-And in either case we can't `delete` an accessor property. 
+And in either case we can't `delete` an accessor property.
 ```
 
 
