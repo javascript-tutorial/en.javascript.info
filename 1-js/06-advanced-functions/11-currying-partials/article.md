@@ -50,6 +50,10 @@ Please note that here we actually don't use `this` here. But `bind` requires it,
 The function `triple` in the code below triples the value:
 
 ```js run
+function mul(a, b) {
+  return a * b;
+}
+
 *!*
 let triple = mul.bind(null, 3);
 */!*
