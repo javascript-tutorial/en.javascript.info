@@ -42,19 +42,19 @@ let surname = arr[1];
 ```
 ````
 
-````smart header="Ignore first elements"
+````smart header="Ignore elements using commas"
 Unwanted elements of the array can also be thrown away via an extra comma:
 
 ```js run
 *!*
-// first and second elements are not needed
-let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// second and forth elements are not needed
+let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 */!*
 
 alert( title ); // Consul
 ```
 
-In the code above, although the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest are also skipped.
+In the code above, although thesecond elements of the array is skipped, the third one is assigned to `title`, and the rest are also skipped.
 ````
 
 ````smart header="Works with any iterable on the right-side"
