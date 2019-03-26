@@ -226,7 +226,7 @@ You may want skip those for now if you're reading for the first time, or if you 
 
 ### Module scripts are deferred
 
-Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:onload-ondomcontentloaded)), for both external and inline scripts.
+Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
 
 In other words:
 - external module scripts `<script type="module" src="...">` don't block HTML processing.

@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="import" id="link" href="ui-slider.html">
+  <style>
+    ui-slider {
+      width: 300px;
+      margin: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ui-slider min="0" max="1000" id="elem"></ui-slider>
+
+  <script>
+    elem.addEventListener("slide", function(e) {
+      value.innerHTML = e.detail.value; // = this.value
+    });
+  </script>
+
+  <div id="value">0</div>
+
+</body>
+
+</html>
