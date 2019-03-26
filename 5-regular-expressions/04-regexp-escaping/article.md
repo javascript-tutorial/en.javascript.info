@@ -43,7 +43,7 @@ Here's what a search for a slash `'/'` looks like:
 alert( "/".match(/\//) ); // '/'
 ```
 
-From the other hand, if we're not using `/.../`, but create a regexp using `new RegExp`, then we no need to escape it:
+On the other hand, if we're not using `/.../`, but create a regexp using `new RegExp`, then we don't need to escape it:
 
 ```js run
 alert( "/".match(new RegExp("/")) ); // '/'
