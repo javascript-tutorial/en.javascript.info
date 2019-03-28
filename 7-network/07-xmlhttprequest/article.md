@@ -1,6 +1,6 @@
 # XMLHttpRequest
 
-`XMLHttpRequest` is a built-in browser object that allows to make HTTP requests in JavaScript.
+`XMLHttpRequest` is a built-in browser object that allows us to make HTTP requests in JavaScript.
 
 Despite of having the word "XML" in its name, it can operate on any data, not only in XML format. We can upload/download files, track progress and much more.
 
@@ -12,27 +12,27 @@ In modern web-development `XMLHttpRequest` may be used for three reasons:
 2. We need to support old browsers, and don't want polyfills (e.g. to keep scripts tiny).
 3. We need something that `fetch` can't do yet, e.g. to track upload progress.
 
-Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to fetch (coming soon).
+Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to `fetch` (coming soon).
 
 ## Basic flow
 
-XMLHttpRequest has two modes of operation: synchronous and asynchronous.
+`XMLHttpRequest` has two modes of operation: synchronous and asynchronous.
 
-Let's see the asynchronous first, as it's used in the majority of cases.
+Let's see the part asynchronous first, as it's used in the majority of cases.
 
 To do the request, we need 3 steps:
 
-1. Create `XMLHttpRequest`.
+1. Create `XMLHttpRequest`:
     ```js
     let xhr = new XMLHttpRequest(); // no arguments
     ```
 
-2. Initialize it.
+2. Initialize it:
     ```js
     xhr.open(method, URL, [async, user, password])
     ```
 
-    This method is usually called first after `new XMLHttpRequest`. It specifies the main parameters of the request:
+    This method is usually called first after `new XMLHttpRequest()`. It specifies the main parameters of the request:
 
     - `method` -- HTTP-method. Usually `"GET"` or `"POST"`.
     - `URL` -- the URL to request.
@@ -41,13 +41,13 @@ To do the request, we need 3 steps:
 
     Please note that `open` call, contrary to its name, does not open the connection. It only configures the request, but the network activity only starts with the call of `send`.
 
-3. Send it out.
+3. Send the request:
 
     ```js
     xhr.send([body])
     ```
 
-    This method opens the connection and sends the request to server. The optional `body` parameter contains the request body.
+    This method opens the connection and sends the request to a server. The optional `body` parameter contains the request body.
 
     Some request methods like `GET` do not have a body. And some of them like `POST` use `body` to send the data to the server. We'll see examples later.
 
@@ -127,7 +127,7 @@ If we changed our mind, we can terminate the request at any time. The call to `x
 xhr.abort(); // terminate the request
 ```
 
-That triggers `abort` event.
+That triggers an `abort` event.
 
 We can also specify a timeout using the corresponding property:
 
@@ -135,7 +135,7 @@ We can also specify a timeout using the corresponding property:
 xhr.timeout = 10000; // timeout in ms, 10 seconds
 ```
 
-If the request does not succeed within the given time, it gets canceled and `timeout` event triggers.
+If the request does not succeed within the given time, it gets canceled and a `timeout` gets triggered.
 
 ## Response Type
 
@@ -164,6 +164,7 @@ xhr.send();
 // the response is {"message": "Hello, world!"}
 xhr.onload = function() {
   let responseObj = xhr.response;
+  
   alert(responseObj.message); // Hello, world!
 };
 ```
@@ -209,9 +210,9 @@ Nowadays, `load/error/progress` handlers deprecate it.
 
 ## Synchronous requests
 
-If in the `open` method the third parameter `async` is set to `false`, the request is made synchronously.
+If in the `open`, method the third parameter `async` is set to `false`, the request is made synchronously.
 
-In other words, Javascript execution pauses at `send()` and resumes when the response is received. Somewhat like `alert` or `prompt` commands.
+In other words, JavaScript execution pauses at `send()` and resumes when the response is received. Somewhat like `alert` or `prompt` commands.
 
 Here's the rewritten example, the 3rd parameter of `open` is `false`:
 
@@ -222,6 +223,7 @@ xhr.open('GET', '/article/xmlhttprequest/hello.txt', *!*false*/!*);
 
 try {
   xhr.send();
+  
   if (xhr.status != 200) {
     alert(`Error ${xhr.status}: ${xhr.statusText}`);
   } else {
@@ -242,7 +244,7 @@ Because of all that, synchronous requests are used very sparingly, almost never.
 
 `XMLHttpRequest` allows both to send custom headers and read headers from the response.
 
-There are 3 methods for HTTP-headers:
+There are 3 methods for HTTP- headers:
 
 `setRequestHeader(name, value)`
 : Sets the request header with the given `name` and `value`.
