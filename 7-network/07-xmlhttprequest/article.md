@@ -178,7 +178,7 @@ They exist for historical reasons, to get either a string or XML document. Nowad
 
 `XMLHttpRequest` changes between states as it progresses. The current state is accessible as  `xhr.readyState`.
 
-All states, as in [the specification](http://www.w3.org/TR/XMLHttpRequest/#states):
+All states, as in [the specification](https://xhr.spec.whatwg.org/#states):
 
 ```js
 const unsigned short UNSENT = 0; // initial state
