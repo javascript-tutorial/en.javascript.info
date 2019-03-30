@@ -75,16 +75,15 @@ That's how it looks in Chrome dev tools:
 
 **Shadow DOM is strongly delimited from the main document:**
 
-1. Shadow tree has own stylesheets. Style rules from the outer DOM don't get applied.
-2. Shadow tree is not visible by `document.querySelector`.
-3. Shadow tree element ids may match those in the outer document. They be unique only within the shadow tree.
+1. Shadow DOM elements are not visible to `querySelector` from the light DOM. In particular,  Shadow DOM elements may have ids that conflict with those in the light DOM. They be unique only within the shadow tree.
+2. Shadow DOM has own stylesheets. Style rules from the outer DOM don't get applied.
 
 For example:
 
 ```html run untrusted height=40
 <style>
 *!*
-  /* document style not applied to shadow tree (2) */
+  /* document style doesn't apply to shadow tree (2) */
 */!*
   p { color: red; }
 </style>
@@ -94,7 +93,7 @@ For example:
 <script>
   elem.attachShadow({mode: 'open'});
 *!*
-    // inner style is applied to shadow tree (1)
+    // shadow tree has its own style (1)
 */!*
   elem.shadowRoot.innerHTML = `
     <style> p { font-weight: bold; } </style>
@@ -102,7 +101,7 @@ For example:
   `;
 
 *!*
-  // <p> is only visible from inside the shadow tree  (3)
+  // <p> is only visible from queries inside the shadow tree (3)
 */!*
   alert(document.querySelectorAll('p').length); // 0
   alert(elem.shadowRoot.querySelectorAll('p').length); // 1
@@ -120,9 +119,55 @@ The element with a shadow root is called a "shadow tree host", and is available 
 alert(elem.shadowRoot.host === elem); // true
 ```
 
-## Composition
 
-We can create "slotted" components, e.g. articles, tabs, menus, that can be filled by
+## Slots, composition
+
+Quite often, our components should be generic. Like tabs, menus, etc -- we should be able to fill them with content.
+
+Something like this:
+
+<custom-menu>
+  <title>Please choose:</title>
+  <item>Candy</item>
+  <item>
+  <div slot="birthday">01.01.2001</div>
+  <p>I am John</p>
+</user-card>
+
+
+Let's say we need to create a `<user-card>` custom element, for showing user cards.
+
+```html run
+<user-card>
+  <p>Hello</p>
+  <div slot="username">John Smith</div>
+  <div slot="birthday">01.01.2001</div>
+  <p>I am John</p>
+</user-card>
+
+<script>
+customElements.define('user-card', class extends HTMLElement {
+  connectedCallback() {
+    this.attachShadow({mode: 'open'});
+    this.shadowRoot = `
+      <slot name="username"></slot>
+      <slot name="birthday"></slot>
+      <slot></slot>
+    `;
+  }
+});
+</script>
+```
+
+
+
+
+Let's say we'd like to create a generic `<user-card>` element for showing the information about the user. The element itself should be generic and contain "bio", "birthday" and "avatar" image.
+
+ Another developer should be able to add `<user-card>` on the page
+
+
+Shadow DOM with "slots",  e.g. articles, tabs, menus, that can be filled by
 
 polyfill https://github.com/webcomponents/webcomponentsjs
 

@@ -67,7 +67,7 @@ For example, there already exists `<time>` element in HTML, for date/time. But i
 Let's create `<time-formatted>` element that does the formatting:
 
 
-```html run height=50 autorun
+```html run height=50 autorun="no-epub"
 <script>
 class TimeFormatted extends HTMLElement {
 
@@ -133,7 +133,7 @@ Please note that in the current implementation, after the element is rendered, f
 
 We can observe attributes by providing their list in `observedAttributes()` static getter, and then update the element in `attributeChangedCallback`. It's called for changes only in the listed attributes for performance reasons.
 
-```html run autorun height=50
+```html run autorun="no-epub" height=50
 <script>
 class TimeFormatted extends HTMLElement {
 
@@ -286,7 +286,7 @@ We could use special [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessi
 
 Built-in elements can be customized by inheriting from their classes. HTML buttons are instances of `HTMLButtonElement`, so let's extend it:
 
-```html run autorun
+```html run autorun="no-epub"
 <script>
 // The button that says "hello" on click
 class HelloButton extends HTMLButtonElement {
@@ -323,5 +323,8 @@ customElements.define('hello-button', HelloButton, {extends: 'button'}); // 2
 ## Итого
 
 Мы рассмотрели, как создавать свои DOM-элементы при помощи стандарта [Custom Elements](http://www.w3.org/TR/custom-elements/).
+
+POLYFILL
+Edge is a bit lagging behind, but there's a polyfill <https://github.com/webcomponents/webcomponentsjs> that covers
 
 Далее мы перейдём к изучению дополнительных возможностей по работе с DOM.

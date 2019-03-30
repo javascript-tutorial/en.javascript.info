@@ -1,53 +1,92 @@
 
-# Шаблоны <template>
+# Template tags
 
-Элемент `<template>` предназначен для хранения "образца" разметки, невидимого и предназначенного для вставки куда-либо.
+A built-in `<template>` element serves as a storage for markup. The browser ignores it contents, only checks for syntax validity.
 
-Конечно, есть много способов записать произвольный невидимый текст в HTML. В чём же особенность `<template>`?
+Of course, there are many ways to create an invisible element somewhere in HTML for markup purposes. What's special about `<template>`?
 
-Его отличие от обычных тегов в том, что его содержимое обрабатывается особым образом. Оно не только скрыто, но и считается находящимся вообще "вне документа". А при вставке автоматически "оживает", выполняются из него скрипты, начинает проигрываться видео и т.п.
+First, as the content is ignored, it can be any valid HTML.
 
-Содержимое тега `<template>`, в отличие, к примеру, от шаблонов или `<script type="неизвестный тип">`, обрабатывается браузером.  А значит, должно быть корректным HTML.
+For example, we can put there a table row `<tr>`:
+```html
+<template>
+  <tr>
+    <td>Contents</td>
+  </tr>
+</template>
+```
 
-Оно доступно как `DocumentFragment` в свойстве тега `content`. Предполагается, что мы, при необходимости, возьмём `content` и вставим, куда надо.
+Usually, if we try to put `<tr>` inside, say, a `<div>`, the browser detects the invalid DOM structure and "fixes" it, adds `<table>` around. That's not what we want. On the other hand, `<template>` keeps exactly what we place there.
 
-## Вставка шаблона
+We can put there styles:
 
-Пример вставки шаблона `tmpl` в Shadow DOM элемента `elem`:
+```html
+<template>
+  <style>
+    p { font-weight: bold; }
+  </style>
+</template>
+```
 
-```html run autorun="no-epub"
-<p id="elem">
-  Доброе утро, страна!</p>
+The browser considers `<template>` content "out of the document", so the style is not applied.
 
+More than that, we can also have `<video>`, `<audio>` and even `<script>` in the template. It becomes live (the script executes) when we insert it.
+
+## Inserting template
+
+The template content is available in its `content` property as a `DocumentFragment` -- a special type of DOM node.
+
+We can treat it as any other DOM node, except one special property: when we insert it somewhere, its children are inserted instead.
+
+For example, let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
+
+```html run untrusted autorun="no-epub" height=60
 <template id="tmpl">
-  <h3><content></content></h3>
-  <p>Привет из подполья!</p>
-  <script>
-    document.write('...document.write:Новость!');
-  </script>
+  <style> p { font-weight: bold; } </style>
+  <script> alert("I am alive!"); </script>
+  <p id="message"></p>
 </template>
 
+<div id="elem">Click me</div>
+
 <script>
-  var root = elem.createShadowRoot();
-  root.appendChild(tmpl.content.cloneNode(true));
+  elem.onclick = function() {
+    elem.attachShadow({mode: 'open'});
+
+*!*
+    elem.shadowRoot.append(tmpl.content.cloneNode(true)); // (*)
+*/!*
+
+    elem.shadowRoot.getElementById('message').innerHTML = "Hello from the shadows!";
+  };
 </script>
 ```
 
-У нас получилось, что:
+In the line `(*)` when we clone and insert `tmpl.content`, its children (`<style>`, `<p>`) are inserted instead, they form the shadow DOM:
 
-1. В элементе `#elem` содержатся данные в некоторой оговорённой разметке.
-2. Шаблон `#tmpl` указывает, как их отобразить, куда и в какие HTML-теги завернуть содержимое `#elem`.
-3. Здесь шаблон показывается в Shadow DOM тега. Технически, это не обязательно, шаблон можно использовать и без Shadow DOM, но тогда не сработает тег `<content>`.
+```html
+<div id="elem">
+  #shadow-root
+    <style> p { font-weight: bold; } </style>
+    <script> alert("I am alive!"); </script>
+    <p id="message"></p>
+</div>
+```
 
-Можно также заметить, что скрипт из шаблона выполнился. Это важнейшее отличие вставки шаблона от вставки HTML через `innerHTML` и от обычного `DocumentFragment`.
+Please note that the template `<script>` runs exactly when it's added into the document. If we clone `template.content` multiple times, it executes each time.
 
-Также мы вставили не сам `tmpl.content`, а его клон. Это обычная практика, чтобы можно было использовать один шаблон много раз.
+## Summary
 
-## Итого
+To summarize:
 
-Тег `<template>` не призван заменить системы шаблонизации. В нём нет хитрых операторов итерации, привязок к данным.
+- `<template>` content can be any syntactically correct HTML.
+- `<template>` content is considered "out of the document", so it doesn't affect anything.
+- We can access `template.content` from JavaScript, clone it to render new component or for other purposes.
 
-Его основная особенность -- это возможность вставки "живого" содержимого, вместе со скриптами.
+The `<template>` tag is quite unique, because:
 
-И, конечно, мелочь, но удобно, что он не требует никаких библиотек.
+- The browser checks the syntax inside it (as opposed to using a template string inside a script).
+- ...But still allows to use any top-level HTML tags, even those that don't make sense without proper wrappers (e.g. `<tr>`).
+- The content becomes interactive: scripts run, `<video autoplay>` plays etc, when the insert it into the document (as opposed to assigning it with `elem.innerHTML=` that doesn't do that).
 
+The `<template>` tag does not feature any sophisticated iteration mechanisms or variable substitutions, making it less powerful than frameworks. But it's built-in and ready to serve.
