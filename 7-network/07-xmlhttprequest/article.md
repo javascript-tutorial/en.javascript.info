@@ -181,11 +181,11 @@ They exist for historical reasons, to get either a string or XML document. Nowad
 All states, as in [the specification](http://www.w3.org/TR/XMLHttpRequest/#states):
 
 ```js
-const unsigned short UNSENT = 0; // initial state
-const unsigned short OPENED = 1; // open called
-const unsigned short HEADERS_RECEIVED = 2; // response headers received
-const unsigned short LOADING = 3; // response is loading (a data packed is received)
-const unsigned short DONE = 4; // request complete
+UNSENT = 0; // initial state
+OPENED = 1; // open called
+HEADERS_RECEIVED = 2; // response headers received
+LOADING = 3; // response is loading (a data packed is received)
+DONE = 4; // request complete
 ```
 
 An `XMLHttpRequest` object travels them in the order `0` -> `1` -> `2` -> `3` -> ... -> `3` -> `4`. State `3` repeats every time a data packet is received over the network.
