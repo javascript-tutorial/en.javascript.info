@@ -40,7 +40,7 @@ class MyElement extends HTMLElement {
 
   adoptedCallback() {
     // called when the element is moved to a new document
-    // (document.adoptNode call, very rarely used)
+    // (happens in document.adoptNode, very rarely used)
   }
 }
 ```
@@ -113,21 +113,19 @@ To track custom elements from JavaScript, there are methods:
 - `customElements.whenDefined(name)` -- returns a promise that resolves (without value) when a custom element with the given `name` is defined.
 ```
 
-```smart header="Rendering in `connectedCallback` instead of `constructor`"
+
+
+```smart header="Rendering in `connectedCallback`, not in `constructor`"
 In the example above, element content is rendered (created) in `connectedCallback`.
 
 Why not in the `constructor`?
 
-First, that might be better performance-wise -- to delay the work until its really needed.
+The reason is simple: when `constructor` is called, it's yet too early. The element instance is created, but not populated yet. We don't have attributes at this stage: calls to `getAttribute` always return `null`. So we can't really render there.
+
+Besides, if you think about it, that's be tter performance-wise -- to delay the work until it's really needed.
 
 The `connectedCallback` triggers when the element is in the document, not just appended to another element as a child. So we can build detached DOM, create elements and prepare them for later use. They will only be actually rendered when they make it into the page.
-
-Second, when the element is on the page, we can get geometry information about it, e.g.  sizes (`elem.offsetWidth/offsetHeight`), so rendering at this stage is more powerful.
-
-On the other hand, `constructor` is the right place to initialize internal data structures, do lightweight jobs.
 ```
-
-
 
 ## Observing attributes
 
@@ -196,6 +194,89 @@ setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 4. ...and re-renders the element.
 5. At the end, we can easily make a live timer.
 
+## Rendering order
+
+When HTML parser builds the DOM, elements are processed one after another, parents before children. E.g. is we have `<outer><inner></inner></outer>`, then `<outer>` is created and connected to DOM first, and then `<inner>`.
+
+That leads to important side effects for custom elements.
+
+For example, if a custom element tries to access `innerHTML` in `connectedCallback`, it gets nothing:
+
+```html run height=40
+<script>
+customElements.define('user-info', class extends HTMLElement {
+
+  connectedCallback() {
+    alert(this.innerHTML);
+  }
+
+});
+</script>
+
+*!*
+<user-info>John</user-info>
+*/!*
+```
+
+If you run it, the `alert` is empty.
+
+That's exactly because there are no children on that stage, the DOM is unfinished yet. So, if we'd like to pass information to custom element, we can use attributes. They are available immediately.
+
+Or, if we really need the children, we can defer access to them with zero-delay `setTimeout`.
+
+This works:
+
+```html run height=40
+<script>
+customElements.define('user-info', class extends HTMLElement {
+
+  connectedCallback() {
+*!*
+    setTimeout(() => alert(this.innerHTML));
+*/!*
+  }
+
+});
+</script>
+
+*!*
+<user-info>John</user-info>
+*/!*
+```
+
+Now in `setTimeout` we can get the contents of the element and finish the initialization.
+
+On the other hand, this solution is also not perfect. If nested custom elements also use `setTimeout` to initialize themselves, then they queue up: the outer `setTimeout` triggers first, and then the inner one.
+
+So the outer element finishes the initialization before the inner one.
+
+For example:
+
+```html run height=0
+<script>
+customElements.define('user-info', class extends HTMLElement {
+  connectedCallback() {
+    alert(`${this.id} connected.`);
+    setTimeout(() => alert(`${this.id} initialized.`));
+  }
+});
+</script>
+
+*!*
+<user-info id="outer">
+  <user-info id="inner"></user-info>
+</user-info>
+*/!*
+```
+
+Output order:
+
+1. outer connected.
+2. inner connected.
+2. outer initialized.
+4. inner initialized.
+
+If we'd like the outer element to wait for inner ones, then there's no built-in reliable solution. But we can invent one. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
 
 ## Customized built-in elements
 
@@ -238,249 +319,6 @@ customElements.define('hello-button', HelloButton, {extends: 'button'}); // 2
 3. Now we can use a regular `<button>` tag, labelled with `is="hello-button"`.
 4. Our buttons extend built-in ones, so they retain the standard features like `disabled` attribute.
 
-
-
-For example, we can create `<custom-dropdown>` -- a nice-looking dropdown select, `<phone-input>` -- an input element for a phone number, and other graphical components.
-
-There are two kinds of custom elements:
-
-
-
-
-An autonomous custom element, which is defined with no extends option. These types of custom elements have a local name equal to their defined name.
-
-A customized built-in element, which is defined with an extends option. These types of custom elements have a local name equal to the value passed in their extends option, and their defined name is used as the value of the is attribute, which therefore must be a valid custom element name.
-
-
-
-```js run
-class DateLocal extends HTMLElement {
-  constructor() {
-    // element is created/upgraded
-    super();
-  }
-
-}
-
-
-
-## "tel" example
-
-
-
-For ins, we'd like to show a date in visitor's time zone.
-
-The time zone is
-
-A critical reader may wonder: "Do we need custom HTML elements? We can create interfaces from existing ones".
-
-
-
-Критично настроенный читатель скажет: "Зачем ещё стандарт для своих типов элементов? Я могу создать любой элемент и прямо сейчас! В любом из современных браузеров можно писать любой HTML, используя свои теги: `<mytag>`. Или создавать элементы из JavaScript при помощи `document.createElement('mytag')`."
-
-Однако, по умолчанию элемент с нестандартным названием (например `<mytag>`) воспринимается браузером, как нечто неопределённо-непонятное. Ему соответствует класс [HTMLUnknownElement](http://www.w3.org/TR/html5/dom.html#htmlunknownelement), и у него нет каких-либо особых методов.
-
-**Стандарт Custom Elements позволяет описывать для новых элементов свои свойства, методы, объявлять свой DOM, подобие конструктора и многое другое.**
-
-Давайте посмотрим это на примерах.
-
-```warn header="Для примеров рекомендуется Chrome"
-Так как спецификация не окончательна, то для запуска примеров рекомендуется использовать Google Chrome, лучше -- последнюю сборку [Chrome Canary](https://www.google.ru/chrome/browser/canary.html), в которой, как правило, отражены последние изменения.
-```
-
-## Новый элемент
-
-Для описания нового элемента используется вызов `document.registerElement(имя, { prototype: прототип })`.
-
-Здесь:
-
-- `имя` -- имя нового тега, например `"mega-select"`. Оно обязано содержать дефис `"-"`. Спецификация требует дефис, чтобы избежать в будущем конфликтов со стандартными элементами HTML. Нельзя создать элемент `timer` или `myTimer` -- будет ошибка.
-- `прототип` -- объект-прототип для нового элемента, он должен наследовать от `HTMLElement`, чтобы у элемента были стандартные свойства и методы.
-
-Вот, к примеру, новый элемент `<my-timer>`:
-
-```html run
-<script>
-*!*
-  // прототип с методами для нового элемента
-*/!*
-  var MyTimerProto = Object.create(HTMLElement.prototype);
-  MyTimerProto.tick = function() { // *!*свой метод tick*/!*
-    this.innerHTML++;
-  };
-
-*!*
-  // регистрируем новый элемент в браузере
-*/!*
-  document.registerElement("my-timer", {
-    prototype: MyTimerProto
-  });
-</script>
-
-*!*
-<!-- теперь используем новый элемент -->
-*/!*
-<my-timer id="timer">0</my-timer>
-
-<script>
-*!*
-  // вызовем метод tick() на элементе
-*/!*
-  setInterval(function() {
-    timer.tick();
-  }, 1000);
-</script>
-```
-
-Использовать новый элемент в HTML можно и до его объявления через `registerElement`.
-
-Для этого в браузере предусмотрен специальный режим "обновления" существующих элементов.
-
-Если браузер видит элемент с неизвестным именем, в котором есть дефис `-` (такие элементы называются "unresolved"), то:
-
-- Он ставит такому элементу специальный CSS-псевдокласс `:unresolved`, для того, чтобы через CSS можно было показать, что он ещё "не подгрузился".
-- При вызове `registerElement` такие элементы автоматически обновятся до нужного класса.
-
-В примере ниже регистрация элемента происходит через 2 секунды после его появления в разметке:
-
-```html run no-beautify
-<style>
-*!*
-  /* стиль для :unresolved элемента (до регистрации) */
-*/!*
-  hello-world:unresolved {
-    color: white;
-  }
-
-  hello-world {
-    transition: color 3s;
-  }
-</style>
-
-<hello-world id="hello">Hello, world!</hello-world>
-
-<script>
-*!*
-  // регистрация произойдёт через 2 сек
-*/!*
-  setTimeout(function() {
-    document.registerElement("hello-world", {
-      prototype: {
-        __proto__: HTMLElement.prototype,
-        sayHi: function() { alert('Привет!'); }
-      }
-    });
-
-*!*
-    // у нового типа элементов есть метод sayHi
-*/!*
-    hello.sayHi();
-  }, 2000);
-</script>
-```
-
-Можно создавать такие элементы и в JavaScript -- обычным вызовом `createElement`:
-
-```js
-var timer = document.createElement('my-timer');
-```
-
-## Расширение встроенных элементов
-
-Выше мы видели пример создания элемента на основе базового `HTMLElement`. Но можно расширить и другие, более конкретные HTML-элементы.
-
-Для расширения встроенных элементов у `registerElement` предусмотрен параметр `extends`, в котором можно задать, какой тег мы расширяем.
-
-Например, кнопку:
-
-```html run
-<script>
-  var MyTimerProto = Object.create(*!*HTMLButtonElement.prototype*/!*);
-  MyTimerProto.tick = function() {
-    this.innerHTML++;
-  };
-
-  document.registerElement("my-timer", {
-    prototype: MyTimerProto,
-*!*
-    extends: 'button'
-*/!*
-  });
-</script>
-
-<button *!*is="my-timer"*/!* id="timer">0</button>
-
-<script>
-  setInterval(function() {
-    timer.tick();
-  }, 1000);
-
-  timer.onclick = function() {
-    alert("Текущее значение: " + this.innerHTML);
-  };
-</script>
-```
-
-Важные детали:
-
-Прототип теперь наследует не от `HTMLElement`, а от `HTMLButtonElement`
-: Чтобы расширить элемент, нужно унаследовать прототип от его класса.
-
-В HTML указывается при помощи атрибута `is="..."`
-: Это принципиальное отличие разметки от обычного объявления без `extends`. Теперь `<my-timer>` работать не будет, нужно использовать исходный тег и `is`.
-
-Работают методы, стили и события кнопки.
-: При клике на кнопку её не отличишь от встроенной. И всё же, это новый элемент, со своими методами, в данном случае `tick`.
-
-При создании нового элемента в JS, если используется `extends`, необходимо указать и исходный тег в том числе:
-
-```js
-var timer = document.createElement("button", "my-timer");
-```
-
-## Жизненный цикл
-
-В прототипе своего элемента мы можем задать специальные методы, которые будут вызываться при создании, добавлении и удалении элемента из DOM:
-
-<table>
-<tr><td><code>createdCallback</code></td><td>Элемент создан</td></tr>
-<tr><td><code>attachedCallback</code></td><td>Элемент добавлен в документ</td></tr>
-<tr><td><code>detachedCallback</code></td><td>Элемент удалён из документа</td></tr>
-<tr><td><code>attributeChangedCallback(name, prevValue, newValue)</code></td><td>Атрибут добавлен, изменён или удалён</td></tr>
-</table>
-
-Как вы, наверняка, заметили, `createdCallback` является подобием конструктора. Он вызывается только при создании элемента, поэтому всю дополнительную инициализацию имеет смысл описывать в нём.
-
-Давайте используем `createdCallback`, чтобы инициализировать таймер, а `attachedCallback` -- чтобы автоматически запускать таймер при вставке в документ:
-
-```html run
-<script>
-  var MyTimerProto = Object.create(HTMLElement.prototype);
-
-  MyTimerProto.tick = function() {
-    this.timer++;
-    this.innerHTML = this.timer;
-  };
-
-*!*
-  MyTimerProto.createdCallback = function() {
-    this.timer = 0;
-  };
-*/!*
-
-*!*
-  MyTimerProto.attachedCallback = function() {
-    setInterval(this.tick.bind(this), 1000);
-  };
-*/!*
-
-  document.registerElement("my-timer", {
-    prototype: MyTimerProto
-  });
-</script>
-
-<my-timer id="timer">0</my-timer>
-```
 
 ## Итого
 

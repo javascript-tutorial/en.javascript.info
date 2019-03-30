@@ -14,18 +14,18 @@ class TimeFormatted extends HTMLElement {
     }).format(date);
   }
 
-  connectedCallback() { // (2)
+  connectedCallback() {
     if (!this.rendered) {
       this.render();
       this.rendered = true;
     }
   }
 
-  static get observedAttributes() { // (3)
+  static get observedAttributes() {
     return ['datetime', 'year', 'month', 'day', 'hour', 'minute', 'second', 'time-zone-name'];
   }
 
-  attributeChangedCallback(name, oldValue, newValue) { // (4)
+  attributeChangedCallback(name, oldValue, newValue) { 
     this.render();
   }
 

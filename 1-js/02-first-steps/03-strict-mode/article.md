@@ -57,7 +57,7 @@ Even if we press `key:Shift+Enter` to input multiple lines, and put `use strict`
 
 The reliable way to ensure `use strict` would be to input the code into console like this:
 
-```
+```js
 (function() {
   'use strict';
 

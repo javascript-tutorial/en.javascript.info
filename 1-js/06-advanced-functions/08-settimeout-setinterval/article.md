@@ -15,7 +15,7 @@ These methods are not a part of JavaScript specification. But most environments 
 The syntax:
 
 ```js
-let timerId = setTimeout(func|code, delay[, arg1, arg2...])
+let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)
 ```
 
 Parameters:
@@ -25,7 +25,7 @@ Parameters:
 Usually, that's a function. For historical reasons, a string of code can be passed, but that's not recommended.
 
 `delay`
-: The delay before run, in milliseconds (1000 ms = 1 second).
+: The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
 
 `arg1`, `arg2`...
 : Arguments for the function (not supported in IE9-)
@@ -110,7 +110,7 @@ For browsers, timers are described in the [timers section](https://www.w3.org/TR
 The `setInterval` method has the same syntax as `setTimeout`:
 
 ```js
-let timerId = setInterval(func|code, delay[, arg1, arg2...])
+let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
 ```
 
 All arguments have the same meaning. But unlike `setTimeout` it runs the function not only once, but regularly after the given interval of time.
@@ -238,7 +238,7 @@ There's a side-effect. A function references the outer lexical environment, so, 
 
 ## setTimeout(...,0)
 
-There's a special use case: `setTimeout(func, 0)`.
+There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
 
 This schedules the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
 
@@ -247,7 +247,7 @@ So the function is scheduled to run "right after" the current code. In other wor
 For instance, this outputs "Hello", then immediately "World":
 
 ```js run
-setTimeout(() => alert("World"), 0);
+setTimeout(() => alert("World"));
 
 alert("Hello");
 ```
@@ -260,7 +260,7 @@ There's a trick to split CPU-hungry tasks using `setTimeout`.
 
 For instance, a syntax-highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", which is unacceptable.
 
-So we can split the long text into pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on.
+So we can split the long text into pieces. First 100 lines, then plan another 100 lines using `setTimeout(..., 0)`, and so on.
 
 For clarity, let's take a simpler example for consideration. We have a function to count from `1` to `1000000000`.
 
@@ -303,7 +303,7 @@ function count() {
   if (i == 1e9) {
     alert("Done in " + (Date.now() - start) + 'ms');
   } else {
-    setTimeout(count, 0); // schedule the new call (**)
+    setTimeout(count); // schedule the new call (**)
   }
 
 }
@@ -338,7 +338,7 @@ function count() {
 
   // move the scheduling at the beginning
   if (i < 1e9 - 1e6) {
-    setTimeout(count, 0); // schedule the new call
+    setTimeout(count); // schedule the new call
   }
 
   do {
@@ -371,8 +371,8 @@ setTimeout(function run() {
   times.push(Date.now() - start); // remember delay from the previous call
 
   if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
-  else setTimeout(run, 0); // else re-schedule
-}, 0);
+  else setTimeout(run); // else re-schedule
+});
 
 // an example of the output:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
@@ -430,7 +430,7 @@ And if we use `setTimeout` to split it into pieces then changes are applied in-b
     } while (i % 1e3 != 0);
 
     if (i < 1e9) {
-      setTimeout(count, 0);
+      setTimeout(count);
     }
 
   }
