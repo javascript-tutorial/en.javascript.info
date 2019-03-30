@@ -40,7 +40,7 @@ A DOM element can have two types of DOM subtrees:
 1. Light tree -- a regular DOM subtree, made of HTML children.
 2. Shadow tree -- a hidden DOM subtree, not reflected in HTML, hidden from prying eyes.
 
-Technically, it's possible for an element to have both at the same time. Then the browser renders only the shadow tree. But usually the element content is either "light" (included into the main DOM/HTML) or "shadowed" (encapsulated from it).
+Technically, it's possible for an element to have both at the same time. Then the browser renders only the shadow tree. We'll why that may be needed later in this chapter.
 
 Shadow tree can be used in Custom Elements to hide internal implementation details.
 
@@ -82,25 +82,6 @@ That's how it looks in Chrome dev tools:
 For example:
 
 ```html run untrusted height=40
-<div id="elem"></div>
-<script>
-
-customElements.define('show-hello', class extends HTMLElement {
-  connectedCallback() {
-    this.attachShadow({mode: 'open'});
-*!*
-    // inner style is applied to shadow tree (1)
-*/!*
-    this.shadowRoot.innerHTML = `
-      <style> p { font-weight: bold; } </style>
-      <p>Hello, ${this.getAttribute('name')}!</p>
-    `;
-  }  
-});
-</script>
-
-<show-hello id="elem" name="John"></show-hello>
-
 <style>
 *!*
   /* document style not applied to shadow tree (2) */
@@ -108,7 +89,18 @@ customElements.define('show-hello', class extends HTMLElement {
   p { color: red; }
 </style>
 
+<div id="elem"></div>
+
 <script>
+  elem.attachShadow({mode: 'open'});
+*!*
+    // inner style is applied to shadow tree (1)
+*/!*
+  elem.shadowRoot.innerHTML = `
+    <style> p { font-weight: bold; } </style>
+    <p>Hello, John!</p>
+  `;
+
 *!*
   // <p> is only visible from inside the shadow tree  (3)
 */!*
@@ -117,8 +109,8 @@ customElements.define('show-hello', class extends HTMLElement {
 </script>  
 ```
 
-1. The style from the shadow tree itself applies.
-2. ...But the style from the outside doesn't.
+1. The style from the document does not affect the shadow tree.
+2. ...But the style from the inside works.
 3. To get elements in shadow tree, we must query from inside the tree.
 
 The element with a shadow root is called a "shadow tree host", and is available as the shadow root `host` property:
@@ -127,6 +119,17 @@ The element with a shadow root is called a "shadow tree host", and is available 
 // assuming {mode: "open"}
 alert(elem.shadowRoot.host === elem); // true
 ```
+
+## Composition
+
+We can create "slotted" components, e.g. articles, tabs, menus, that can be filled by
+
+polyfill https://github.com/webcomponents/webcomponentsjs
+
+
+
+
+
 
 
 
