@@ -1,22 +1,31 @@
 
 # Custom elements
 
-We can create our own class for a custom HTML element with its own methods and properties, events and so on.
+We can create custom HTML elements, described by our class, with its own methods and properties, events and so on.
+
+Once an custom element is defined, we can use it on par with built-in HTML elements.
+
+That's great, as HTML dictionary is rich, but not infinite. There are no `<easy-tabs>`, `<sliding-carousel>`, `<beautiful-upload>`... Just think of any other tag we might need.
+
+We can define them with a special class, and then use as if they were always a part of HTML.
 
 There are two kinds of custom elements:
 
 1. **Autonomous custom elements** -- "all-new" elements, extending the abstract `HTMLElement` class.
 2. **Customized built-in elements** -- extending built-in elements, like customized `HTMLButtonElement` etc.
 
-First we'll see how autonomous elements are made, and then the customized built-in ones.
+First we'll create autonomous elements, and then customized built-in ones.
 
-For a class to describe an element, it should support so-called "custom element reactions" -- methods that the browser calls when our element is created/added/removed from DOM.
+To create a custom element, we need to tell the browser several details about it: how to show it, what to do when the element is added or removed to page, etc.
 
-That's easy, as there are only few of them. Here's a sketch with the full list:
+That's done by making a class with special methods. That's easy, as there are only few methods, and all of them are optional.
+
+Here's a sketch with the full list:
 
 ```js
 class MyElement extends HTMLElement {
   constructor() {
+    super();
     // element created
   }
 
@@ -42,17 +51,19 @@ class MyElement extends HTMLElement {
     // called when the element is moved to a new document
     // (happens in document.adoptNode, very rarely used)
   }
+
+  // there can be other element methods and properties
 }
 ```
 
-Then we need to register the element:
+After that, we need to register the element:
 
 ```js
 // let the browser know that <my-element> is served by our new class
 customElements.define("my-element", MyElement);
 ```
 
-Now for any new elements with tag `my-element`, an instance of `MyElement` is created, and the aforementioned methods are called.
+Now for any HTML elements with tag `<my-element>`, an instance of `MyElement` is created, and the aforementioned methods are called. We also can `document.createElement('my-element')` in JavaScript.
 
 ```smart header="Custom element name must contain a hyphen `-`"
 Custom element name must have a hyphen `-`, e.g. `my-element` and `super-button` are valid names, but `myelement` is not.
@@ -64,12 +75,14 @@ That's to ensure that there are no name conflicts between built-in and custom HT
 
 For example, there already exists `<time>` element in HTML, for date/time. But it doesn't do any formatting by itself.
 
-Let's create `<time-formatted>` element that does the formatting:
+Let's create `<time-formatted>` element that displays the time in a nice, language-aware format:
 
 
 ```html run height=50 autorun="no-epub"
 <script>
-class TimeFormatted extends HTMLElement {
+*!*
+class TimeFormatted extends HTMLElement { // (1)
+*/!*
 
   connectedCallback() {
     let date = new Date(this.getAttribute('datetime') || Date.now());
@@ -87,51 +100,58 @@ class TimeFormatted extends HTMLElement {
 
 }
 
-customElements.define("time-formatted", TimeFormatted);
+*!*
+customElements.define("time-formatted", TimeFormatted); // (2)
+*/!*
 </script>
 
-<time-formatted
-  datetime="2019-12-01"
+<!-- (3) -->
+*!*
+<time-formatted datetime="2019-12-01"
+*/!*
   year="numeric" month="long" day="numeric"
   hour="numeric" minute="numeric" second="numeric"
   time-zone-name="short"
 ></time-formatted>
 ```
 
-As the result, `<time-formatted>` shows a nicely formatted time, according to the browser timezone and locale. We use the built-in [Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat) data formatter, well-supported across the browsers.
+1. The class has only one method `connectedCallback()` -- the browser calls it when `<time-formatted>` element is added to page (or when HTML parser detects it), and it uses the built-in [Intl.DateTimeFormat](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat) data formatter, well-supported across the browsers, to show a nicely formatted time.
+2. We need to register our new element by `customElements.define(tag, class)`.
+3. And then we can use it everywhere.
+
 
 ```smart header="Custom elements upgrade"
-If the browser encounters any `<time-formatted>` elements before `customElements.define` call, they are yet unknown, just like any non-standard tag.
+If the browser encounters any `<time-formatted>` elements before `customElements.define`, that's not an error. But the element is yet unknown, just like any non-standard tag.
 
-They can be styled with CSS selector `:not(:defined)`.
+Such "undefined" elements can be styled with CSS selector `:not(:defined)`.
 
 When `customElement.define` is called, they are "upgraded": a new instance of `TimeFormatted`
 is created for each, and `connectedCallback` is called. They become `:defined`.
 
-To track custom elements from JavaScript, there are methods:
-- `customElements.get(name)` -- returns the class for a defined custom element with the given `name`,
-- `customElements.whenDefined(name)` -- returns a promise that resolves (without value) when a custom element with the given `name` is defined.
+To get the information about custom elements, there are methods:
+- `customElements.get(name)` -- returns the class for a custom element with the given `name`,
+- `customElements.whenDefined(name)` -- returns a promise that resolves (without value) when a custom element with the given `name` becomes defined.
 ```
-
-
 
 ```smart header="Rendering in `connectedCallback`, not in `constructor`"
 In the example above, element content is rendered (created) in `connectedCallback`.
 
 Why not in the `constructor`?
 
-The reason is simple: when `constructor` is called, it's yet too early. The element instance is created, but not populated yet. We don't have attributes at this stage: calls to `getAttribute` always return `null`. So we can't really render there.
+The reason is simple: when `constructor` is called, it's yet too early. The element instance is created, but not populated yet. The browser did not yet process/assign attributes at this stage: calls to `getAttribute` would return `null`. So we can't really render there.
 
-Besides, if you think about it, that's be tter performance-wise -- to delay the work until it's really needed.
+Besides, if you think about it, that's better performance-wise -- to delay the work until it's really needed.
 
-The `connectedCallback` triggers when the element is in the document, not just appended to another element as a child. So we can build detached DOM, create elements and prepare them for later use. They will only be actually rendered when they make it into the page.
+The `connectedCallback` triggers when the element is added to the document. Not just appended to another element as a child, but actually becomes a part of the page. So we can build detached DOM, create elements and prepare them for later use. They will only be actually rendered when they make it into the page.
 ```
 
 ## Observing attributes
 
-Please note that in the current implementation, after the element is rendered, further attribute changes don't have any effect. That's strange for an HTML element. Usually, when we change an attribute, like `a.href`, the change is immediately visible. So let's fix this.
+In the current implementation of `<time-formatted>`, after the element is rendered, further attribute changes don't have any effect. That's strange for an HTML element. Usually, when we change an attribute, like `a.href`, we expect the change to be immediately visible. So let's fix this.
 
-We can observe attributes by providing their list in `observedAttributes()` static getter, and then update the element in `attributeChangedCallback`. It's called for changes only in the listed attributes for performance reasons.
+We can observe attributes by providing their list in `observedAttributes()` static getter. For such attributes, `attributeChangedCallback` is called when they are modified. It doesn't trigger for an attribute for performance reasons.
+
+Here's a new `<time-formatted>`, that auto-updates when attributes change:
 
 ```html run autorun="no-epub" height=50
 <script>
@@ -196,9 +216,9 @@ setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 
 ## Rendering order
 
-When HTML parser builds the DOM, elements are processed one after another, parents before children. E.g. is we have `<outer><inner></inner></outer>`, then `<outer>` is created and connected to DOM first, and then `<inner>`.
+When HTML parser builds the DOM, elements are processed one after another, parents before children. E.g. if we have `<outer><inner></inner></outer>`, then `<outer>` element is created and connected to DOM first, and then `<inner>`.
 
-That leads to important side effects for custom elements.
+That leads to important consequences for custom elements.
 
 For example, if a custom element tries to access `innerHTML` in `connectedCallback`, it gets nothing:
 
@@ -207,7 +227,9 @@ For example, if a custom element tries to access `innerHTML` in `connectedCallba
 customElements.define('user-info', class extends HTMLElement {
 
   connectedCallback() {
-    alert(this.innerHTML);
+*!*
+    alert(this.innerHTML); // empty (*)
+*/!*
   }
 
 });
@@ -220,7 +242,9 @@ customElements.define('user-info', class extends HTMLElement {
 
 If you run it, the `alert` is empty.
 
-That's exactly because there are no children on that stage, the DOM is unfinished yet. So, if we'd like to pass information to custom element, we can use attributes. They are available immediately.
+That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element `<user-info>`, and will now proceed to its children, but just didn't yet.
+
+If we'd like to pass information to custom element, we can use attributes. They are available immediately.
 
 Or, if we really need the children, we can defer access to them with zero-delay `setTimeout`.
 
@@ -232,7 +256,7 @@ customElements.define('user-info', class extends HTMLElement {
 
   connectedCallback() {
 *!*
-    setTimeout(() => alert(this.innerHTML));
+    setTimeout(() => alert(this.innerHTML)); // John (*)
 */!*
   }
 
@@ -244,13 +268,13 @@ customElements.define('user-info', class extends HTMLElement {
 */!*
 ```
 
-Now in `setTimeout` we can get the contents of the element and finish the initialization.
+Now the `alert` in line `(*)` shows "John", as we run it asynchronously, after the HTML parsing is complete. We can process children if needed and finish the initialization.
 
 On the other hand, this solution is also not perfect. If nested custom elements also use `setTimeout` to initialize themselves, then they queue up: the outer `setTimeout` triggers first, and then the inner one.
 
 So the outer element finishes the initialization before the inner one.
 
-For example:
+Let's demonstrate that on example:
 
 ```html run height=0
 <script>
@@ -276,22 +300,45 @@ Output order:
 2. outer initialized.
 4. inner initialized.
 
-If we'd like the outer element to wait for inner ones, then there's no built-in reliable solution. But we can invent one. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
+We can clearly see that the outer element does not wait for the inner one.
+
+There's no built-in callback that triggers after nested elements are ready. But we can implement such thing on our own. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
 
 ## Customized built-in elements
 
-New custom elements like `<time-formatted>` don't have any associated semantics. They are totally new to search engines and accessibility devices.
+New elements that we create, such as `<time-formatted>`, don't have any associated semantics. They are unknown to search engines, and accessibility devices can't handle them.
 
-We could use special [ARIA](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) attributes to describe the semantic. But if we're going to make a special button, why not extend a `<button>` element itself?
+But such things can be important. E.g, a search engine would be interested to know that we actually show a time. And if we're making a special kind of button, why not reuse the existing `<button>` functionality?
 
-Built-in elements can be customized by inheriting from their classes. HTML buttons are instances of `HTMLButtonElement`, so let's extend it:
+We can extend and customize built-in elements by inheriting from their classes.
+
+For example, buttons are instances of `HTMLButtonElement`, let's build upon it.
+
+1. Extend `HTMLButtonElement` with our class:
+
+    ```js
+    class HelloButton extends HTMLButtonElement { /* custom element methods */ }
+    ```
+
+2. Provide an third argument to `customElements.define`, that specifies the tag:
+    ```js
+    customElements.define('hello-button', HelloButton, *!*{extends: 'button'}*/!*);
+    ```    
+    There exist different tags that share the same class, that's why it's needed.
+
+3. At the end, to use our custom element, insert a regular `<button>` tag, but add `is="hello-button"` to it:
+    ```html
+    <button is="hello-button">...</button>
+    ```
+
+Here's a full example:
 
 ```html run autorun="no-epub"
 <script>
 // The button that says "hello" on click
 class HelloButton extends HTMLButtonElement {
 *!*
-  constructor() { // (1)
+  constructor() {
 */!*
     super();
     this.addEventListener('click', () => alert("Hello!"));
@@ -299,26 +346,20 @@ class HelloButton extends HTMLButtonElement {
 }
 
 *!*
-customElements.define('hello-button', HelloButton, {extends: 'button'}); // 2
+customElements.define('hello-button', HelloButton, {extends: 'button'});
 */!*
 </script>
 
-<!-- 3 -->
 *!*
 <button is="hello-button">Click me</button>
 */!*
 
-<!-- 4 -->
 *!*
 <button is="hello-button" disabled>Disabled</button>
 */!*
 ```
 
-1. We constructor add an event listener to the element. Please note: we must call `super()` before anything else (that's pure JS requirement).
-2. To extend a built-in element, we must specify `{extends: '<tag>'}` in the define. Some tags share the same HTML class, so we need to be precise here.
-3. Now we can use a regular `<button>` tag, labelled with `is="hello-button"`.
-4. Our buttons extend built-in ones, so they retain the standard features like `disabled` attribute.
-
+Our new button extends the built-in one. So it keeps the same styles and standard features like `disabled` attribute.
 
 ## Итого
 

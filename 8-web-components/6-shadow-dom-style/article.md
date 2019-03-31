@@ -2,7 +2,7 @@
 
 Shadow DOM may include both `<style>` and `<link rel="stylesheeet" href="…">` tags. In the latter case, stylesheets are HTTP-cached, so they are not redownloaded.
 
-As a general rule, CSS selectors in local styles work only inside the shadow tree. But there are few exceptions.
+As a general rule, local styles work only inside the shadow tree, and document styles work outside of it. But there are few exceptions.
 
 ## :host
 

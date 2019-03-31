@@ -2,7 +2,7 @@
 
 Did you ever think how complex browser controls like `<input type="range">` are created and styled?
 
-To draw this kind of element, the browser uses DOM/CSS internally:
+The browser uses DOM/CSS internally to draw this kind of thing:
 
 <input type="range">
 
@@ -29,7 +29,7 @@ input::-webkit-slider-runnable-track {
 <input type="range">
 ```
 
-Once again, `pseudo` is a non-standard attribute. Chronologically, browsers first started to experiment with internal DOM structures, and then, after time, Shadow DOM was standartized to allow us, developers, to do the similar thing.
+Once again, `pseudo` is a non-standard attribute. Chronologically, browsers first started to experiment with internal DOM structures to implement controls, and then, after time, Shadow DOM was standartized to allow us, developers, to do the similar thing.
 
 Furhter on, we'll use the modern Shadow DOM standard.
 
@@ -37,10 +37,10 @@ Furhter on, we'll use the modern Shadow DOM standard.
 
 A DOM element can have two types of DOM subtrees:
 
-1. Light tree -- a regular DOM subtree, made of HTML children.
+1. Light tree -- a regular DOM subtree, made of HTML children. All subtrees that we've seen before are light.
 2. Shadow tree -- a hidden DOM subtree, not reflected in HTML, hidden from prying eyes.
 
-Technically, it's possible for an element to have both at the same time. Then the browser renders only the shadow tree. We'll why that may be needed later in this chapter.
+If an element has both at the same time, then the browser renders only the shadow tree. But we can setup a kind of composition between two trees as well. We'll see the details later in the chapter <info:slots-composition>.
 
 Shadow tree can be used in Custom Elements to hide internal implementation details.
 
@@ -67,13 +67,13 @@ The `mode` option sets the encapsulation level. It must have any of two values:
 - **`"open"`** -- then the shadow root is available as DOM property `elem.shadowRoot`, so any code is able to access it.   
 - **`"closed"`** -- `elem.shadowRoot` is always `null`. Browser-native shadow trees, such as  `<input type="range">`, are closed.
 
-The [shadow root object](https://dom.spec.whatwg.org/#shadowroot) is like an element (or, more precisely, `DocumentFragment`): we can use `innerHTML` or DOM methods to populate it.
+The [shadow root object](https://dom.spec.whatwg.org/#shadowroot) is like an element: we can use `innerHTML` or DOM methods to populate it.
 
-That's how it looks in Chrome dev tools:
+That's how the resulting DOM looks in Chrome dev tools:
 
 ![](shadow-dom-say-hello.png)
 
-**Shadow DOM is strongly delimited from the main document:**
+Shadow DOM is strongly delimited from the main document:
 
 1. Shadow DOM elements are not visible to `querySelector` from the light DOM. In particular,  Shadow DOM elements may have ids that conflict with those in the light DOM. They be unique only within the shadow tree.
 2. Shadow DOM has own stylesheets. Style rules from the outer DOM don't get applied.
@@ -115,7 +115,7 @@ For example:
 The element with a shadow root is called a "shadow tree host", and is available as the shadow root `host` property:
 
 ```js
-// assuming {mode: "open"}
+// assuming {mode: "open"}, otherwise elem.shadowRoot is null
 alert(elem.shadowRoot.host === elem); // true
 ```
 
@@ -125,6 +125,7 @@ alert(elem.shadowRoot.host === elem); // true
 Quite often, our components should be generic. Like tabs, menus, etc -- we should be able to fill them with content.
 
 Something like this:
+
 
 <custom-menu>
   <title>Please choose:</title>
