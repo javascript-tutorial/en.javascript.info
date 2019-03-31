@@ -242,26 +242,16 @@ Function Expressions are created when the execution reaches them. That would hap
 
 Sometimes that's handy to declare a local function only needed in that block alone. But that feature may also cause problems.
 
-For instance, let's imagine that we need to declare a function `welcome()` depending on the `age` variable that we get during runtime. And then we plan to use it some time later.
+For instance, let's imagine that we need to declare a function `welcome()` inside another function. And then we plan to use it some time later.
 
 The code below doesn't work:
 
 ```js run
-let age = prompt("What is your age?", 18);
-
-// conditionally declare a function
-if (age < 18) {
-
+// declare function inside scope
+function outer() {
   function welcome() {
-    alert("Hello!");
+     alert("Hello!");
   }
-
-} else {
-
-  function welcome() {
-    alert("Greetings!");
-  }
-
 }
 
 // ...use it later
@@ -270,14 +260,13 @@ welcome(); // Error: welcome is not defined
 */!*
 ```
 
-That's because a Function Declaration is only visible inside the code block in which it resides.
+That's because a Function Declaration is only visible inside the execution context in which it resides.
 
 Here's another example:
 
 ```js run
-let age = 16; // take 16 as an example
 
-if (age < 18) {
+function outer() {
 *!*
   welcome();               // \   (runs)
 */!*
@@ -290,11 +279,6 @@ if (age < 18) {
   welcome();               // /   (runs)
 */!*
 
-} else {
-
-  function welcome() {     //  for age = 16, this "welcome" is never created
-    alert("Greetings!");
-  }
 }
 
 // Here we're out of curly braces,
