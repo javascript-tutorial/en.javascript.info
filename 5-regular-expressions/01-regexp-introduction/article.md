@@ -94,7 +94,7 @@ There are only 5 of them in JavaScript:
 : With this flag the search looks for all matches, without it -- only the first one (we'll see uses in the next chapter).
 
 `m`
-: Multiline mode (covered in the chapter <info:regexp-multiline>).
+: Multiline mode (covered in the chapter <info:regexp-multiline-mode>).
 
 `s`
 : "Dotall" mode, allows `.` to match newlines (covered in the chapter <info:regexp-character-classes>).
