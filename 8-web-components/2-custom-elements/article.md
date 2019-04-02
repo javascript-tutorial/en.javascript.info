@@ -361,11 +361,39 @@ customElements.define('hello-button', HelloButton, {extends: 'button'});
 
 Our new button extends the built-in one. So it keeps the same styles and standard features like `disabled` attribute.
 
-## Итого
+## References
 
-Мы рассмотрели, как создавать свои DOM-элементы при помощи стандарта [Custom Elements](http://www.w3.org/TR/custom-elements/).
+- HTML Living Standard: <https://html.spec.whatwg.org/#custom-elements>.
+- Compatiblity: <https://caniuse.com/#feat=custom-elements>.
 
-POLYFILL
-Edge is a bit lagging behind, but there's a polyfill <https://github.com/webcomponents/webcomponentsjs> that covers
+## Summary
 
-Далее мы перейдём к изучению дополнительных возможностей по работе с DOM.
+Custom elements can be of two types:
+
+1. "Autonomous" -- new tags, extending `HTMLElement`.
+
+    Definition scheme:
+
+    ```js
+    class MyElement extends HTMLElement {
+      constructor() { super(); /* ... */ }
+      connectedCallback() { /* ... */ }
+      disconnectedCallback() { /* ... */  }
+      static get observedAttributes() { return [/* ... */]; }
+      attributeChangedCallback(name, oldValue, newValue) { /* ... */ }
+      adoptedCallback() { /* ... */ }
+     }
+    customElements.define('my-element', MyElement);
+    /* <my-element> */
+    ```
+
+2. "Customized built-in elements" -- extensions of existing elements.
+
+    Requires one more `.define` argument, and `is="..."` in HTML:
+    ```js
+    class MyButton extends HTMLButtonElement { /*...*/ }
+    customElements.define('my-button', MyElement, {extends: 'button'});
+    /* <button is="my-button"> */
+    ```
+
+Custom elements are well-supported among browsers. Edge is a bit behind, but there's a polyfill <https://github.com/webcomponents/webcomponentsjs>.

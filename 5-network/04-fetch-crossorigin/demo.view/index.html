@@ -1,0 +1,31 @@
+<!doctype html>
+<script>
+
+async function init() {
+	const response = await fetch('long.txt');
+	const reader = response.body.getReader();
+
+	const contentLength = +response.headers.get('Content-Length');
+	let receivedLength = 0;
+
+	while(true) {
+		const chunk = await reader.read();
+
+		if (chunk.done) {
+			console.log("done!");
+			break;
+		}
+
+		receivedLength += chunk.value.length;
+		console.log(`${receivedLength}/${contentLength} received`)
+	}
+
+	let result = await response.text();
+	console.log(result);
+	//const chunkCount = await read(reader);
+	//console.log(`Finished! Received ${chunkCount} chunks.`);
+}
+
+init();
+
+</script>

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <style>
+    #train {
+      position: relative;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="train" src="https://en.js.cx/clipart/train.gif">
+
+  <script>
+    train.onclick = function() {
+      animate(function(progress) {
+        train.style.left = progress * 400 + 'px';
+      }, 2000);
+    };
+
+
+    function animate(draw, duration) {
+      let start = performance.now();
+
+      requestAnimationFrame(function animate(time) {
+        // how much time passed from the start?
+        let timePassed = time - start;
+
+        if (timePassed > duration) timePassed = duration;
+
+        // progress is from 0 to 1, the fraction of time that passed
+        let progress = duration / timePassed;
+
+        // draw the animation progress
+        draw(progress);
+
+        // if time is not up - schedule one more run
+        if (timePassed < duration) {
+          requestAnimationFrame(animate);
+        }
+
+      });
+    }
+  </script>
+
+
+</body>
+
+</html>

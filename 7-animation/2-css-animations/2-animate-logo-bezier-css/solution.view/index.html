@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    img {
+      display: block;
+      cursor: pointer;
+    }
+  </style>
+  <style>
+    #flyjet {
+      width: 40px;
+      height: 24px;
+      transition: all 3s cubic-bezier(0.25, 1.5, 0.75, 1.5);
+    }
+
+    #flyjet.growing {
+      width: 400px;
+      height: 240px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
+
+  <script>
+    flyjet.onclick = function() {
+      flyjet.classList.add('growing');
+    };
+  </script>
+
+</body>
+
+</html>
