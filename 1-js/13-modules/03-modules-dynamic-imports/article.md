@@ -3,7 +3,7 @@
 
 Export and import statements that we covered in previous chaters are called "static".
 
-What's because they are indeed static. The syntax is very strict.
+That's because they are indeed static. The syntax is very strict.
 
 First, we can't dynamicaly generate any parameters of `import`.
 
