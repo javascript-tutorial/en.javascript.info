@@ -5,7 +5,7 @@ let i = 0;
 
 let start = Date.now();
 
-let timer = setInterval(count, 0);
+let timer = setInterval(count);
 
 function count() {
 
@@ -20,4 +20,3 @@ function count() {
 
 }
 ```
-

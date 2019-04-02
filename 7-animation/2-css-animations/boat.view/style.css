@@ -1,0 +1,11 @@
+#boat {
+  margin-left: 0;
+  cursor: pointer;
+  transition: margin-left 3s ease-in-out;
+}
+
+/* flipping the picture with CSS */
+.back {
+  transform: scaleX(-1);
+  filter: fliph;
+}

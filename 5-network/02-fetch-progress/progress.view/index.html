@@ -1,0 +1,36 @@
+<!doctype html>
+<script>
+(async () {
+	
+	const response = await fetch('long.txt');
+	const reader = response.body.getReader();
+
+	const contentLength = +response.headers.get('Content-Length');
+	let receivedLength = 0;
+	let chunks = [];
+	while(true) {
+		const chunk = await reader.read();
+
+		if (chunk.done) {
+			console.log("done!");
+			break;
+		}
+
+		chunks.push(chunk.value);
+		receivedLength += chunk.value.length;
+		console.log(`${receivedLength}/${contentLength} received`)
+	}
+
+
+	let chunksMerged = new Uint8Array(receivedLength);
+	let length = 0;
+	for(let chunk of chunks) {
+		chunksMerged.set(chunk, length);
+		length += chunk.length;
+	}
+
+	let result = new TextDecoder("utf-8").decode(chunksMerged);
+	console.log(result);
+})();
+
+</script>

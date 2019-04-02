@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://js.cx/libs/animate.js"></script>
+</head>
+
+<body>
+
+
+  <div id="path">
+    <div id="brick"></div>
+  </div>
+
+  <script>
+    brick.onclick = function() {
+      animate({
+        duration: 1000,
+        timing: function circ(timeFraction) {
+          return 1 - Math.sin(Math.acos(timeFraction))
+        },
+        draw: function(progress) {
+          brick.style.left = progress * 500 + 'px';
+        }
+      });
+    };
+  </script>
+
+
+</body>
+
+</html>

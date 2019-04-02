@@ -1,3 +1,3 @@
-# Events in details
+# UI Events
 
-Here we cover most important events and details of working with them.
+Here we cover most important user interface events and how to work with them.
