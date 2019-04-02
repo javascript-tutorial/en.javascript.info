@@ -12,7 +12,7 @@ For server-side Javascript it may become a vulnerability, and it uses regular ex
 
 So the problem is definitely worth to deal with.
 
-## Introductin
+## Introduction
 
 The plan will be like this:
 
@@ -254,7 +254,7 @@ Unfortunately, but both these features are not supported by JavaScript.
 
 ### Lookahead to the rescue
 
-We can get forbid backtracking using lookahead.
+We can forbid backtracking using lookahead.
 
 The pattern to take as much repetitions as possible without backtracking is: `pattern:(?=(a+))\1`.
 
@@ -274,7 +274,7 @@ Let's fix the regexp for a tag with attributes from the beginning of the chapter
 
 ```js run
 // regexp to search name=value
-let reg = /(\s*\w+=(\w+|"[^"]*")\s*)/
+let attrReg = /(\s*\w+=(\w+|"[^"]*")\s*)/
 
 // use new RegExp to nicely insert its source into (?=(a+))\1
 let fixedReg = new RegExp(`<\\w+(?=(${attrReg.source}*))\\1>`, 'g');
