@@ -47,14 +47,14 @@ Unwanted elements of the array can also be thrown away via an extra comma:
 
 ```js run
 *!*
-// second and forth elements are not needed
+// second element is not needed
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 */!*
 
 alert( title ); // Consul
 ```
 
-In the code above, although thesecond elements of the array is skipped, the third one is assigned to `title`, and the rest are also skipped.
+In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array is also skipped.
 ````
 
 ````smart header="Works with any iterable on the right-side"
