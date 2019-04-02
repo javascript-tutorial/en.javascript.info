@@ -1,10 +1,7 @@
 
 # Promises chaining
 
-Let's return to the problem mentioned in the chapter <info:callbacks>.
-
-- We have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts.
-- How to code it well?
+Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts. How to code it well?
 
 Promises provide a couple of recipes to do that.
 
