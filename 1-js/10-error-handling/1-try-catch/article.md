@@ -15,7 +15,7 @@ try {
 
   // code...
 
-} catch (err)] {
+} catch (err) {
 
   // error handling
 
