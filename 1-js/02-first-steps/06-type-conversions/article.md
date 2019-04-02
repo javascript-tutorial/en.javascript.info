@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
 
-## Numberic Conversion
+## Numeric Conversion
 
 Numeric conversion happens in mathematical functions and expressions automatically.
 
