@@ -69,7 +69,7 @@ It provides convenient methods for search parameters:
 - **`append(name, value)`** -- add the parameter,
 - **`delete(name)`** -- remove the parameter,
 - **`get(name)`** -- get the parameter,
-- **`getAll(name)`** -- get all parameters with that name,
+- **`getAll(name)`** -- get all parameters with that name (if many, e.g. `?user=John&user=Pete`),
 - **`has(name)`** -- check for the existance of the parameter,
 - **`set(name, value)`** -- set/replace the parameter,
 - **`sort()`** -- sort parameters by name, rarely needed,

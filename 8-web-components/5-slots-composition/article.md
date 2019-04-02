@@ -420,7 +420,7 @@ The process of rendering slotted elements inside their slots is called "composit
 Composition does not really move nodes, from JavaScript point of view the DOM is still same.
 
 JavaScript can access slots using methods:
-- `slot.assignedNodes/Elements()` -- returns nodes/elements inside the `slot`
+- `slot.assignedNodes/Elements()` -- returns nodes/elements inside the `slot`.
 - `node.assignedSlot` -- the reverse meethod, returns slot by a node.
 
 If we'd like to know what we're showing, we can track slot contents using:
