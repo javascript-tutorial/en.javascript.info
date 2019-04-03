@@ -162,7 +162,7 @@ alert(groups.day); // 30
 
 As you can see, the groups reside in the `.groups` property of the match.
 
-Wee can also use them in replacements, as `pattern:$<name>` (like `$1..9`, but name instead of a digit).
+We can also use them in replacements, as `pattern:$<name>` (like `$1..9`, but name instead of a digit).
 
 For instance, let's rearrange the date into `day.month.year`:
 
