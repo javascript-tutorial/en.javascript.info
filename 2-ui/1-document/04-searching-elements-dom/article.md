@@ -266,8 +266,8 @@ All methods `"getElementsBy*"` return a *live* collection. Such collections alwa
 
 In the example below, there are two scripts.
 
-1. The first one creates a reference to the collection of `<div>`. As of now, it's length is `1`.
-2. The second scripts runs after the browser meets one more `<div>`, so it's length is `2`.
+1. The first one creates a reference to the collection of `<div>`. As of now, its length is `1`.
+2. The second scripts runs after the browser meets one more `<div>`, so its length is `2`.
 
 ```html run
 <div>First div</div>
