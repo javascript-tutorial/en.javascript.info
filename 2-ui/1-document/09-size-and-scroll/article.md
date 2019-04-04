@@ -64,7 +64,7 @@ The `offsetParent` is the nearest ancestor that is:
 2. or `<td>`, `<th>`, `<table>`,
 2. or `<body>`.
 
-In most practical cases we can use `offsetParent` to get the nearest CSS-positioned ancestor. And `offsetLeft/offsetTop` provide x/y coordinates relative to it's upper-left corner.
+In most practical cases we can use `offsetParent` to get the nearest CSS-positioned ancestor. And `offsetLeft/offsetTop` provide x/y coordinates relative to its upper-left corner.
 
 In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its upper-left corner (`180`):
 
