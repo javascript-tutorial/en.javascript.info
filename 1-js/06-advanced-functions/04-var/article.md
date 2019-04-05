@@ -11,7 +11,7 @@ In the very first chapter about [variables](info:variables), we mentioned three 
 
 But `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
 
-If you don't plan meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
+If you don't plan on meeting such scripts you may even skip this chapter or postpone it, but then there's a chance that it bites you later.
 
 From the first sight, `var` behaves similar to `let`. That is, declares a variable:
 
