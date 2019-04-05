@@ -130,19 +130,30 @@ let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 ```
 
-So we need to have a wrapping async function for the code that awaits. Just as in the example above.
-````
-````smart header="`await` accepts thenables"
-Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+We can wrap it into an anonymous async function, like this:
 
-For instance, here `await` accepts `new Thenable(1)`:
+```js run
+(async () => {
+  let response = await fetch('/article/promise-chaining/user.json');
+  let user = await response.json();
+  ...
+})();
+```
+
+
+````
+````smart header="`await` accepts \"thenables\""
+Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). The idea is that a 3rd-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+
+Here's a demo `Thenable` class, the `await` below accepts its instances:
+
 ```js run
 class Thenable {
   constructor(num) {
     this.num = num;
   }
   then(resolve, reject) {
-    alert(resolve); // function() { native code }
+    alert(resolve);
     // resolve with this.num*2 after 1000ms
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
@@ -161,9 +172,7 @@ If `await` gets a non-promise object with `.then`, it calls that method providin
 ````
 
 ````smart header="Async methods"
-A class method can also be async, just put `async` before it.
-
-Like here:
+To declare an async class method, just prepend it with `async`:
 
 ```js run
 class Waiter {
