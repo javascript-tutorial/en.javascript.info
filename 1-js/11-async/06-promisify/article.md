@@ -114,5 +114,5 @@ Promisification is a great approach, especially when you use `async/await` (see 
 
 Remember, a promise may have only one result, but a callback may technically be called many times.
 
-So promisification is only meant for functions that call the callback once. Furhter calls will be ignored.
+So promisification is only meant for functions that call the callback once. Further calls will be ignored.
 ```
