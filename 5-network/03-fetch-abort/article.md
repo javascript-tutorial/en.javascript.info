@@ -87,7 +87,7 @@ let results = await Promise.all(fetchJobs);
 // controller.abort() stops all fetches
 ```
 
-If wee have our own jobs, different from `fetch`, we can use a single `AbortController` to stop those, together with fetches.
+If we have our own jobs, different from `fetch`, we can use a single `AbortController` to stop those, together with fetches.
 
 
 ```js
