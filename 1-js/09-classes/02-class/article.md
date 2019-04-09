@@ -163,7 +163,7 @@ class User {
 
   constructor(name) {
     // invokes the setter
-    this.name = name;
+    this._name = name;
   }
 
 *!*
