@@ -24,7 +24,7 @@ These ones do not:
 The "Same Origin" policy states that:
 
 - if we have a reference to another window, e.g. a popup created by `window.open` or a window inside `<iframe>`, and that window comes from the same origin, then we have full access to that window.
-- otherwise, if it comes from another origin, then we can't access the content of that window: variables, document, anything. The only exception is `location`: we can change it (thus redirecting the user). But we can't not *read* location (so we can't see where the user is now, no information leak).
+- otherwise, if it comes from another origin, then we can't access the content of that window: variables, document, anything. The only exception is `location`: we can change it (thus redirecting the user). But we cannot *read* location (so we can't see where the user is now, no information leak).
 
 Now let's see some examples. First, we'll look at pages that come from the same origin and do not conflict with the "Same Origin" policy, and afterwards we'll cover cross-window messaging that allows to work around the "Same Origin" policy.
 
