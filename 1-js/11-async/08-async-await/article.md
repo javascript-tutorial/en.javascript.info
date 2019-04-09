@@ -298,7 +298,7 @@ As we've seen in the chapter <info:microtask-queue>, promise handlers are execut
 
 For instance, we have:
 - `setTimeout(handler, 0)`, that should run `handler` with zero delay.
-- `let x = await f()`, function `f()` is async, but returns immediateley.
+- `let x = await f()`, function `f()` is async, but returns immediately.
 
 Which one runs first if `await` is *below* `setTimeout` in the code?
 

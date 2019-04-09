@@ -41,7 +41,7 @@ function loadCached(url) {
 }
 ```
 
-We can use `loadCached(url).then(…)`, because the function is guaranteed to return a promise. That's the purpose `Promise.resolve` in the line `(*)`: it makes sure the interface unified. We can always use `.then` after `loadCached`.
+We can use `loadCached(url).then(…)`, because the function is guaranteed to return a promise. That's the purpose `Promise.resolve` serves in the line `(*)`: it makes sure the interface is unified. We can always use `.then` after `loadCached`.
 
 ## Promise.reject
 
@@ -65,7 +65,7 @@ We cover it here for completeness, rarely used in real code.
 
 Let's say we want to run many promises to execute in parallel, and wait till all of them are ready.
 
-For instance, download several urls in parallel and process the content when all done.
+For instance, download several URLs in parallel and process the content when all are done.
 
 That's what `Promise.all` is for.
 
@@ -150,7 +150,7 @@ Promise.all([
 
 Here the second promise rejects in two seconds. That leads to immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the whole `Promise.all`.
 
-The important detail is that promises provide no way to "cancel" or "abort" their execution. So other promises continue to execute, and the eventually settle, but all their results are ignored.
+The important detail is that promises provide no way to "cancel" or "abort" their execution. So other promises continue to execute, and then eventually settle, but all their results are ignored.
 
 There are ways to avoid this: we can either write additional code to `clearTimeout` (or otherwise cancel) the promises in case of an error, or we can make errors show up as members in the resulting array (see the task below this chapter about it).
 
@@ -175,7 +175,7 @@ So we are able to pass non-promise values to `Promise.all` where convenient.
 
 ## Promise.race
 
-Similar to `Promise.all` takes an iterable of promises, but instead of waiting for all of them to finish -- waits for the first result (or error), and goes on with it.
+Similar to `Promise.all`, it takes an iterable of promises, but instead of waiting for all of them to finish, it waits for the first result (or error), and goes on with it.
 
 The syntax is:
 
@@ -199,8 +199,8 @@ So, the first result/error becomes the result of the whole `Promise.race`. After
 
 There are 4 static methods of `Promise` class:
 
-1. `Promise.resolve(value)` -- makes a resolved promise with the given value,
-2. `Promise.reject(error)` -- makes a rejected promise with the given error,
+1. `Promise.resolve(value)` -- makes a resolved promise with the given value.
+2. `Promise.reject(error)` -- makes a rejected promise with the given error.
 3. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, then it becomes the error of `Promise.all`, and all other results are ignored.
 4. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
 

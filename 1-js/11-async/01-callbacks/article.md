@@ -98,7 +98,7 @@ Here we did it in `loadScript`, but of course, it's a general approach.
 
 ## Callback in callback
 
-How to load two scripts sequentially: the first one, and then the second one after it?
+How can we load two scripts sequentially: the first one, and then the second one after it?
 
 The natural solution would be to put the second `loadScript` call inside the callback, like this:
 
@@ -140,7 +140,7 @@ So, every new action is inside a callback. That's fine for few actions, but not 
 
 ## Handling errors
 
-In examples above we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
 
 Here's an improved version of `loadScript` that tracks loading errors:
 

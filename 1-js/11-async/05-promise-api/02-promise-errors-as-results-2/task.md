@@ -1,6 +1,6 @@
 # Fault-tolerant fetch with JSON
 
-Improve the solution of the previous task <info:task/promise-errors-as-results>. Now we need not just to call `fetch`, but to load the JSON objects from given URLs.
+Improve the solution of the previous task <info:task/promise-errors-as-results>. Now we need not just to call `fetch`, but to load the JSON objects from the given URLs.
 
 Here's the example code to do that:
 
