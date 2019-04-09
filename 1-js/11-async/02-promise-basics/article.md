@@ -48,8 +48,8 @@ Here's an example of a Promise constructor and a simple executor function with i
 let promise = new Promise(function(resolve, reject) {
   // the function is executed automatically when the promise is constructed
 
-  // after 1 second signal that the job is done with the result "done!"
-  setTimeout(() => *!*resolve("done!")*/!*, 1000);
+  // after 1 second signal that the job is done with the result "done"
+  setTimeout(() => *!*resolve("done")*/!*, 1000);
 });
 ```
 
@@ -58,7 +58,7 @@ We can see two things by running the code above:
 1. The executor is called automatically and immediately (by the `new Promise`).
 2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. Instead, we should write the executor to call them when ready.
 
-After one second of "processing" the executor calls `resolve("done!")` to produce the result:
+After one second of "processing" the executor calls `resolve("done")` to produce the result:
 
 ![](promise-resolve-1.png)
 
