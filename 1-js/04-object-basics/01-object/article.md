@@ -616,7 +616,7 @@ Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
 The syntax is:
 
 ```js
-Object.assign(dest[, src1, src2, src3...])
+Object.assign(dest, [src1, src2, src3...])
 ```
 
 - Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
