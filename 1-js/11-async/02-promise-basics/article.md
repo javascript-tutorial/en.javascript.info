@@ -218,7 +218,7 @@ Just like there's a finally clause in a regular `try {...} catch {...}`, there's
 
 The call `.finally(f)` is similar to `.then(f, f)` in the sense that it always runs when the promise is settled: be it resolve or reject.
 
-It is a good handler to perform cleanup, e.g. to stop our loading indicators in `finally`, as they are not needed any more, no matter what the outcome is.
+`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed any more, no matter what the outcome is.
 
 Like this:
 
@@ -261,7 +261,7 @@ It's not exactly an alias though. There are several important differences:
 
     We'll talk more about promise chaining and result-passing between handlers in the next chapter.
 
-3. The last, but not the least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function.
+3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function.
 
 ````smart header="On settled promises handlers runs immediately"
 If a promise is pending, `.then/catch/finally` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:
@@ -273,7 +273,7 @@ let promise = new Promise(resolve => resolve("done!"));
 promise.then(alert); // done! (shows up right now)
 ```
 
-The good thing is: `.then` handler is guaranteed to run whether the promise takes time or settles it immediately.
+The good thing is: a `.then` handler is guaranteed to run whether the promise takes time or settles it immediately.
 ````
 
 Next, let's see more practical examples of how promises can help us to write asynchronous code.

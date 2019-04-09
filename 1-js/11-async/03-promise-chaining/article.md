@@ -1,7 +1,7 @@
 
 # Promises chaining
 
-Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts. How to code it well?
+Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts. How can we code it well?
 
 Promises provide a couple of recipes to do that.
 
@@ -380,7 +380,7 @@ loadJson('/article/promise-chaining/user.json')
 
 ## Summary
 
-If `.then` (or `catch/finally`, doesn't matter) handler returns a promise, the rest of the chain waits until it settles. When it does, its result (or error) is passed further.
+If a `.then` (or `catch/finally`, doesn't matter) handler returns a promise, the rest of the chain waits until it settles. When it does, its result (or error) is passed further.
 
 Here's a full picture:
 

@@ -20,13 +20,13 @@ Promise.all(urls.map(url => fetch(url)))
   });
 ```
 
-The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we lose results of all the other requests.
+The problem is that if any of requests fails, then `Promise.all` rejects with the error, and we lose the results of all the other requests.
 
 That's not good.
 
 Modify the code so that the array `responses` in the line `(*)` would include the response objects for successful fetches and error objects for failed ones.
 
-For instance, if one of URLs is bad, then it should be like:
+For instance, if one of the URLs is bad, then it should be like:
 
 ```js
 let urls = [
