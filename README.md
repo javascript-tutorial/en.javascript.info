@@ -28,9 +28,7 @@ Here's the list of existing ongoing translations (in alphabetical order):
 1. First, check if the translation has already started in the list above or in issues. If it exists, contact the original lead, ask him  to join efforts. If the translation is stalled, ask him to transfer the repo to you or just create a new one and continue from where they stopped.
 2. If there's no such translation, create a new one. Clone the repository, change its name to `javascript-tutorial-<lang>` (by your language) and [create an issue](https://github.com/iliakan/javascript-tutorial-en/issues/new) for me to add you to the list.
 
-**You can edit the text in any editor (markdown-like syntax).** And if you want to see how it looks, there's a server to run the tutorial locally at <https://github.com/iliakan/javascript-tutorial-server>.  
-
-
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/iliakan/javascript-tutorial-server>.  
 
 ## Structure
 
