@@ -1,35 +1,42 @@
-# Современный учебник Javascript
+﻿# The JavaScript Tutorial
 
-Всем привет!
+This repository hosts the content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
 
-Когда-то давно был только русский учебник https://learn.javascript.ru. Но несколько лет назад был полностью с нуля написан английский https://javascript.info. И с тех пор все существенные изменения вносились только в него.
+## Translations
 
-Сейчас учебники уже довольно сильно разошлись. Между статьями есть общие фрагменты, но и много различий.
+(In alphabetical order):
 
-Самое лучшее, что можно сделать – это перевести русский с английского. Для этого создан этот репозиторий.
+| Language | Github | Translation leads | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
+|----------|--------|-------------------|----------------|-------------|-----------|
+| Azerbaijani | [orkhan-huseyn/javascript-tutorial-az](https://github.com/orkhan-huseyn/javascript-tutorial-az) | @orkhan-huseyn | ![](http://translate-hook.javascript.info/stats/az.svg) | ![](https://img.shields.io/github/last-commit/orkhan-huseyn/javascript-tutorial-az.svg?maxAge=900&label=) |  |
+| Chinese | [xitu/javascript-tutorial-zh](https://github.com/xitu/javascript-tutorial-zh) | @leviding | ![](http://translate-hook.javascript.info/stats/zh.svg) | ![](https://img.shields.io/github/last-commit/xitu/javascript-tutorial-zh.svg?maxAge=900&label=) | [zh.javascript.info](https://zh.javascript.info) |
+| French | [HachemiH/javascript-tutorial-fr](https://github.com/HachemiH/javascript-tutorial-fr) | @HachemiH | ![](http://translate-hook.javascript.info/stats/fr.svg) | ![](https://img.shields.io/github/last-commit/HachemiH/javascript-tutorial-fr.svg?maxAge=900&label=) | |
+| Japanese | [KenjiI/javascript-tutorial-ja](https://github.com/KenjiI/javascript-tutorial-ja) | @KenjiI | ![](http://translate-hook.javascript.info/stats/ja.svg) | ![](https://img.shields.io/github/last-commit/KenjiI/javascript-tutorial-ja.svg?maxAge=900&label=) | [ja.javascript.info](https://ja.javascript.info) |
+| Korean | [Violet-Bora-Lee/javascript-tutorial-ko](https://github.com/Violet-Bora-Lee/javascript-tutorial-ko) | @Violet-Bora-Lee | ![](http://translate-hook.javascript.info/stats/ko.svg) | ![](https://img.shields.io/github/last-commit/Violet-Bora-Lee/javascript-tutorial-ko.svg?maxAge=900&label=) |  |
+| Persian (Farsi) | [mehradsadeghi/javascript-tutorial-fa](https://github.com/mehradsadeghi/javascript-tutorial-fa) | @mehradsadeghi | started | ![](https://img.shields.io/github/last-commit/krzmaciek/javascript-tutorial-pl.svg?maxAge=900&label=) | |
+| Polish | [krzmaciek/javascript-tutorial-pl](https://github.com/krzmaciek/javascript-tutorial-pl) | @krzmaciek | ![](http://translate-hook.javascript.info/stats/pl.svg) | ![](https://img.shields.io/github/last-commit/krzmaciek/javascript-tutorial-pl.svg?maxAge=900&label=) |  |
+| Romanian | [lighthousand/javascript-tutorial-ro](https://github.com/lighthousand/javascript-tutorial-ro) | @lighthousand | ![](http://translate-hook.javascript.info/stats/ro.svg) | ![](https://img.shields.io/github/last-commit/lighthousand/javascript-tutorial-ro.svg?maxAge=900&label=) |  |
+| Russian | [iliakan/javascript-tutorial-ru](https://github.com/iliakan/javascript-tutorial-ru) | @iliakan | * . | ![](https://img.shields.io/github/last-commit/iliakan/javascript-tutorial-ru.svg?maxAge=900&label=) | [learn.javascript.ru](https://learn.javascript.ru) |
+| Turkish | [sahinyanlik/javascript-tutorial-tr](https://github.com/sahinyanlik/javascript-tutorial-tr) | @sahinyanlik | ![](http://translate-hook.javascript.info/stats/tr.svg) | ![](https://img.shields.io/github/last-commit/sahinyanlik/javascript-tutorial-tr.svg?maxAge=900&label=) | |
 
-Пожалуйста, переводите статьи и делайте PR.
+`*` – the previous version is published in Russian, need to backport/translate the new one from English.
 
-Если взяли статью на перевод - имеет смысл сделать issue этоб этом, чтобы другие люди не переводили ее же.
+If you'd like to translate it into your language, please clone the repository, change its name to `javascript-tutorial-...` (by the language) and [create an issue](https://github.com/iliakan/javascript-tutorial-en/issues/new) for me to add you to the list.
 
-# Структура
+You can edit the text in any editor (markdown-like syntax). The server to run the tutorial locally and see how it looks is at <https://github.com/iliakan/javascript-tutorial-server>.  
 
-Каждому разделу, статье или задаче соответствует директория.
 
-Эта директория имеет вид `N-url`, где `N` - это номер для сортировки статей и разделов (они упорядочены), а `url` – URL-имя, по которому материал будет доступен.
 
-В директории находится один из файлов:
+## Structure
 
-  - `index.md` для раздела
-  - `article.md` для статьи
-  - `task.md` для условия задачи (+там же `solution.md` с решением)
+Every chapter, article or a task has its folder.
 
-Каждый из этих файлов начинается с `# Заголовка материала`, и дальше текст в формате а-ля Markdown. Его довольно просто понять. Для редактирования достаточно простого текстового редактора.
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `url` is the URL part with title of the material.
 
-Ресурсы и примеры, необходимые для статьи, раздела или задачи, находятся в её директории. На них можно ссылаться из материала.
+The type of the material is defined by the file inside the folder:
 
-# Запуск локально
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
 
-Для удобства редактирования учебник можно запустить локально.
-
-Сервер для этого находится здесь: <https://github.com/iliakan/javascript-tutorial-server>. 
+Each of these files starts from the `# Main header`.
