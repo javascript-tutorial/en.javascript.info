@@ -119,13 +119,11 @@ Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation
 
 Sometimes people mix up partial function application mentioned above with another thing named "currying". That's another interesting technique of working with functions that we just have to mention here.
 
-[Currying](https://en.wikipedia.org/wiki/Currying) is translating a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
+[Currying](https://en.wikipedia.org/wiki/Currying) is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`. In JavaScript, we usually make a wrapper to keep the original function.
 
-Literally, currying is a transformation of functions: from one way of calling into another. In JavaScript, we usually make a wrapper to keep the original function.
+Currying doesn't call a function. It just transforms it.
 
-Currying doesn't call a function. It just transforms it. We'll see use cases soon.
-
-Let's make `curry` function that performs currying for two-argument functions. In other words, `curry(f)` for two-argument `f(a, b)` translates it into `f(a)(b)`
+Let's create a helper `curry(f)` function that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into `f(a)(b)`
 
 ```js run
 *!*
@@ -168,9 +166,11 @@ function curry(f) {
 
 ## Currying? What for?
 
-To understand the benefits we definitely need a worthy real-life example. Advanced currying allows the function to be both callable normally and get partials.
+To understand the benefits we definitely need a worthy real-life example.
 
-For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions also have many other useful features like: sending it over the network or filtering:
+Advanced currying allows the function to be both callable normally and partially.
+
+For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions also have many other useful features like sending logs over the network:
 
 ```js
 function log(date, importance, message) {
@@ -216,13 +216,15 @@ todayDebug("message"); // [HH:mm] DEBUG message
 
 So:
 1. We didn't lose anything after currying: `log` is still callable normally.
-2. We were able to generate partial functions that are convenient in many cases.
+2. We were able to generate partial functions such as for today's logs.
 
 ## Advanced curry implementation
 
-In case you're interested, here's the "advanced" curry implementation that we could use above, it's pretty short:
+In case you'd like to get in details (not obligatory!), here's the "advanced" curry implementation that we could use above.
 
-```js run
+It's pretty short:
+
+```js
 function curry(func) {
 
   return function curried(...args) {
@@ -236,21 +238,20 @@ function curry(func) {
   };
 
 }
+```
 
+Usage examples:
+
+```js
 function sum(a, b, c) {
   return a + b + c;
 }
 
 let curriedSum = curry(sum);
 
-// still callable normally
-alert( curriedSum(1, 2, 3) ); // 6
-
-// get the partial with curried(1) and call it with 2 other arguments
-alert( curriedSum(1)(2,3) ); // 6
-
-// full curried form
-alert( curriedSum(1)(2)(3) ); // 6
+alert( curriedSum(1, 2, 3) ); // 6, still callable normally
+alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg
+alert( curriedSum(1)(2)(3) ); // 6, full currying
 ```
 
 The new `curry` may look complicated, but it's actually easy to understand.
