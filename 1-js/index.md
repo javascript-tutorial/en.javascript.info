@@ -1,6 +1,6 @@
-# The JavaScript language
+# Язык программирования JavaScript
 
-Here we learn JavaScript, starting from scratch and go on to advanced concepts like OOP.
+Здесь вы можете изучить JavaScript, начиная с нуля и заканчивая продвинутыми концепциями вроде ООП.
 
-We concentrate on the language itself here, with the minimum of environment-specific notes.
+Мы сосредоточимся на самом языке, с минимальными замечаниями насчет того окружения, где этот язык используется.
 
