@@ -1,3 +1,3 @@
-# Regular expressions
+# Регулярные выражения
 
-Regular expressions is a powerful way of doing search and replace in strings.
+Регулярные выражения – мощный способ поиска и замены для строк.
