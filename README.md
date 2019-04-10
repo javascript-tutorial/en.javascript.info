@@ -4,7 +4,9 @@ This repository hosts the content of the Modern JavaScript Tutorial, published a
 
 ## Translations
 
-(In alphabetical order):
+We'd like to make the tutorial available in many languages. Please help us to translate.
+
+Here's the list of existing ongoing translations (in alphabetical order):
 
 | Language | Github | Translation leads | Translated (%) | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Last&nbsp;Commit&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Published |
 |----------|--------|-------------------|----------------|-------------|-----------|
