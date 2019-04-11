@@ -8,7 +8,7 @@ For instance, moving along a complex path, with a timing function different from
 
 An animation can be implemented as a sequence of frames -- usually small changes to HTML/CSS properties.
 
-For instance, changing `style.left` from `0px` to `100px` moves the element. And if we increase it in `setInterval`, changing by `2px` with a tiny delay, like 50 times per second, then it looks smooth. That's the same principle as in the cinema: 24 or more frames per second is enough to make it look smooth.
+For instance, changing `style.left` from `0px` to `100px` moves the element. And if we increase it in `setInterval`, changing by `2px` with a tiny delay, like 50 times per second, then it looks smooth. That's the same principle as in the cinema: 24 frames per second is enough to make it look smooth.
 
 The pseudo-code can look like this:
 
