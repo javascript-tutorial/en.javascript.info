@@ -26,7 +26,7 @@ const text = "Hello, world";
 document.querySelector('.hello').innerHTML = text;
 ```
 
-✅ DO (comment):
+✅ DO (translate comment):
 
 ```js
 // Ejemplo
@@ -42,7 +42,7 @@ const text = 'Hola mundo';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-❌ DON'T (class):
+❌ DON'T (translate class):
 
 ```js
 // Ejemplo
@@ -52,7 +52,7 @@ const text = 'Hola mundo';
 document.querySelector('.hola').innerHTML = text;
 ```
 
-❌ DEFINITELY DON'T (variables):
+❌ DEFINITELY DON'T (translate variables):
 
 ```js
 // Ejemplo
