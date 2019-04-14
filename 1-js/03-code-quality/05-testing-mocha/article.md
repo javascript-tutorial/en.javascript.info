@@ -117,7 +117,7 @@ For the future, let's note that there are advanced test-runners, like [karma](ht
 Let's make a simple implementation of `pow`, for tests to pass:
 
 ```js
-function pow() {
+function pow(x, n) {
   return 8; // :) we cheat!
 }
 ```
