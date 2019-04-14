@@ -15,7 +15,7 @@ For instance, for a programming language variants can be like:
 - Or an operator `pattern:[+-/*]`?
 - (a syntax error if it's not anything in the expected list)
 
-In Javascript, to perform a search starting from a given position, we can use `regexp.exec` with `regexp.lastIndex` property, but that's not we need!
+In Javascript, to perform a search starting from a given position, we can use `regexp.exec` with `regexp.lastIndex` property, but that's not what we need!
 
 We'd like to check the match exactly at given position, not "starting" from it.
 
