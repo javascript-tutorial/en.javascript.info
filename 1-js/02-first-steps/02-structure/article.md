@@ -156,4 +156,4 @@ Please, don't hesitate to comment your code.
 
 Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
 
-Later in the tutorial there will be a chapter <info:coding-style> that also explains how to write better comments.
+Later in the tutorial there will be a chapter <info:code-quality> that also explains how to write better comments.
