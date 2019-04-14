@@ -551,7 +551,7 @@ This method actually has two additional arguments specified in [the documentatio
 ## Internals, Unicode
 
 ```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical of hieroglyphs characters or other rare symbols.
+The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
 
 You can skip the section if you don't plan to support them.
 ```
