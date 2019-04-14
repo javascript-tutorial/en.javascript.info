@@ -62,7 +62,7 @@ documento.querySelector('.hola').interiorHTML = texto;
 
 ## External Links
 
-If an external link is to Wikipedia, e.g. <https://en.wikipedia.org/wiki/JavaScript>, and a version of that article exists in your language that is of decent quality, consider linking to that version instead.
+If an external link is to Wikipedia, e.g. https://en.wikipedia.org/wiki/JavaScript, and a version of that article exists in your language that is of decent quality, consider linking to that version instead.
 
 Example:
 
@@ -70,10 +70,12 @@ Example:
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a programming language.
 ```
 
-✅ OK:
+✅ OK (en -> es):
 
 ```md
 [JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
 ```
 
-For links that have no equivalent, just use the English link.
+For links to MDN, that are only partially translated, also use the language-specific version.
+
+If a linked article has no translated version, leave the link "as is".
