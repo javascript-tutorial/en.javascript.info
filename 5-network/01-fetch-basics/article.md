@@ -3,7 +3,7 @@
 
 Method `fetch()` is the modern way of sending requests over HTTP.
 
-Is evolved for several years and continues to improve, right now the support is pretty solid among browsers.
+It evolved for several years and continues to improve, right now the support is pretty solid among browsers.
 
 The basic syntax is:
 

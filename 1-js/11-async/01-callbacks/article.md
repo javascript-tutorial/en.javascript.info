@@ -262,7 +262,7 @@ function step3(error, script) {
 
 See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that. One needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
+It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
 Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
 
