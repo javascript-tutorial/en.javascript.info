@@ -84,7 +84,7 @@ So here we're talking about "regular" scripts, like `<script>...</script>`, or `
 
 External style sheets don't affect DOM, so `DOMContentLoaded` does not wait for them.
 
-But there's a pitfall. Isf we have a script after the style, then that script must wait until the stylesheet loads:
+But there's a pitfall. If we have a script after the style, then that script must wait until the stylesheet loads:
 
 ```html
 <link type="text/css" rel="stylesheet" href="style.css">
