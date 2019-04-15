@@ -102,7 +102,7 @@ function promisify(f, manyArgs = false) {
 
 // usage:
 f = promisify(f, true);
-f(...).then(err => ..., arrayOfResults => ...)
+f(...).then(arrayOfResults => ..., err => ...)
 ```
 
 In some cases, `err` may be absent at all: `callback(result)`, or there's something exotic in the callback format, then we can promisify such functions manually.
