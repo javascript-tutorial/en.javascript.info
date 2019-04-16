@@ -1,5 +1,5 @@
 
-# Extending build-in classes
+# Extending built-in classes
 
 Built-in classes like Array, Map and others are extendable also.
 
@@ -29,7 +29,7 @@ arr.constructor === PowerArray
 ```
 
 So when `arr.filter()` is called, it internally creates the new array of results exactly as `new PowerArray`.
-That's actually very cool, because we can keep using `PowerArray` methods further o the result.
+That's actually very cool, because we can keep using `PowerArray` methods further on the result.
 
 Even more, we can customize that behavior.
 
@@ -73,7 +73,7 @@ And we've already been talking about native classes extending each other: `Array
 
 But statics are an exception. Built-in classes don't inherit static properties from each other.
 
-In other words, the prototype of build-in constructor `Array` does not point to `Object`. This way `Array` and `Date` do not have `Array.keys` or `Date.keys`. And that feels natural.
+In other words, the prototype of built-in constructor `Array` does not point to `Object`. This way `Array` and `Date` do not have `Array.keys` or `Date.keys`. And that feels natural.
 
 Here's the picture structure for `Date` and `Object`:
 
