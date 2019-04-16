@@ -15,8 +15,7 @@ If you feel the original text could be improved, please send a PR.
 ## Text in Code Blocks
 
 - Translate comments in code blocks.
-- Translate example strings (optionally).
-- Don't translate variable names, ids, classes.
+- Don't translate strings, variable names, ids, classes, etc.
 
 Example:
 
@@ -34,15 +33,7 @@ const text = 'Hello, world';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-✅ ALSO OKAY (also text):
-
-```js
-// Ejemplo
-const text = 'Hola mundo';
-document.querySelector('.hello').innerHTML = text;
-```
-
-❌ DON'T (translate class):
+❌ DON'T (translate string or class):
 
 ```js
 // Ejemplo
@@ -50,14 +41,6 @@ const text = 'Hola mundo';
 // ".hello" is a class
 // DO NOT TRANSLATE
 document.querySelector('.hola').innerHTML = text;
-```
-
-❌ DEFINITELY DON'T (translate variables):
-
-```js
-// Ejemplo
-const texto = 'Hola mundo';
-documento.querySelector('.hola').interiorHTML = texto;
 ```
 
 ## External Links
