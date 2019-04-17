@@ -266,7 +266,7 @@ new Promise(function() {
 
 In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
 
-In practice, just like with a regular unhandled errors, it means that something terribly gone wrong, the script probably died.
+In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong, the script probably died.
 
 Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
 
