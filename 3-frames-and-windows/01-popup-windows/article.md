@@ -4,7 +4,7 @@ A popup window is one of the oldest methods to show additional document to user.
 
 Basically, you just run:
 ```js
-window.open('http://javascript.info/')
+window.open('https://javascript.info/')
 ```
 
 ... And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
@@ -17,7 +17,20 @@ In the past evil sites abused popups a lot. A bad page could open tons of popup 
 
 **Most browsers block popups if they are called outside of user-triggered event handlers like `onclick`.**
 
-If you think about it, that's a bit tricky. If the code is directly in an `onclick` handler, then that's easy. But what is the popup opens in `setTimeout`?
+For example:
+```js
+// popup blocked
+window.open('https://javascript.info');
+
+// popup allowed
+button.onclick = () => {
+  window.open('https://javascript.info');
+};
+```
+
+This way users are somewhat protected from unwanted popups, but the functionality is not disabled totally.
+
+What if the popup opens from `onclick`, but after `setTimeout`? That's a bit tricky.
 
 Try this code:
 
@@ -28,7 +41,7 @@ setTimeout(() => window.open('http://google.com'), 3000);
 
 The popup opens in Chrome, but gets blocked in Firefox.
 
-...And this works in Firefox too:
+...If we decrease the delay, the popup works in Firefox too:
 
 ```js run
 // open after 1 seconds
