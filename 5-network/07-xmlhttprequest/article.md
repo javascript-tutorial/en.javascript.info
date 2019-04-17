@@ -350,7 +350,6 @@ For instance:
   xhr.open("POST", "/article/xmlhttprequest/post/user");
   xhr.send(formData);
 
-  xhr.
 </script>
 ```
 
