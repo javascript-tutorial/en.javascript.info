@@ -76,7 +76,7 @@ new Promise((resolve, reject) => {
 
 The "invisible `try..catch`" around the executor automatically catches the error and treats it as a rejection.
 
-That's so not only in the executor, but in handlers as well. If we `throw` inside a `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
+This happens not only in the executor, but in its handlers as well. If we `throw` inside a `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
 
 Here's an example:
 
@@ -90,7 +90,7 @@ new Promise((resolve, reject) => {
 }).catch(alert); // Error: Whoops!
 ```
 
-That's so not only for `throw`, but for any errors, including programming errors as well:
+This happens for all errors, not just those caused by the `throw` statement. For example, a programming error:
 
 ```js run
 new Promise((resolve, reject) => {
@@ -102,7 +102,7 @@ new Promise((resolve, reject) => {
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
-As a side effect, the final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
+The final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
 
 ## Rethrowing
 
@@ -120,7 +120,7 @@ new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");
 
-}).catch(function(error) {
+}).catch(function(error) { 
 
   alert("The error is handled, continue normally");
 
