@@ -15,17 +15,17 @@ alert( obj ); // "[object Object]" ?
 
 Where's the code that generates the string `"[object Object]"`? That's a built-in `toString` method, but where is it? The `obj` is empty!
 
-...But the short notation `obj = {}` is the same as `obj = new Object()`, where `Object` -- is a built-in object constructor function. And that function has `Object.prototype` that references a huge object with `toString` and other functions.
+...But the short notation `obj = {}` is the same as `obj = new Object()`, where `Object` is a built-in object constructor function, with its own `prototype` referencing a huge object with `toString` and other methods.
 
-Like this (all that is built-in):
+Here's what's going on:
 
 ![](object-prototype.png)
 
-When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` by the rule that we've discussed in the previous chapter:
+When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` according to the rule that we discussed in the previous chapter:
 
 ![](object-prototype-1.png)
 
-Afterwards when `obj.toString()` is called -- the method is taken from `Object.prototype`.
+So then when `obj.toString()` is called the method is taken from `Object.prototype`.
 
 We can check it like this:
 
@@ -48,7 +48,7 @@ Other built-in objects such as `Array`, `Date`, `Function` and others also keep 
 
 For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is  used internally. So the array data is written into the new object, and `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
 
-By specification, all built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
+By specification, all of the built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
 
 Here's the overall picture (for 3 built-ins to fit):
 
@@ -82,11 +82,11 @@ As we've seen before, `Object.prototype` has `toString` as well, but `Array.prot
 ![](native-prototypes-array-tostring.png)
 
 
-In-browser tools like Chrome developer console also show inheritance (may need to use `console.dir` for built-in objects):
+In-browser tools like Chrome developer console also show inheritance (`console.dir` may need to be used for built-in objects):
 
 ![](console_dir_array.png)
 
-Other built-in objects also work the same way. Even functions. They are objects of a built-in `Function` constructor, and their methods: `call/apply` and others are taken from `Function.prototype`. Functions have their own `toString` too.
+Other built-in objects also work the same way. Even functions -- they are objects of a built-in `Function` constructor, and their methods (`call`/`apply` and others) are taken from `Function.prototype`. Functions have their own `toString` too.
 
 ```js run
 function f() {}
@@ -119,17 +119,17 @@ String.prototype.show = function() {
 "BOOM!".show(); // BOOM!
 ```
 
-During the process of development we may have ideas which new built-in methods we'd like to have. And there may be a slight temptation to add them to native prototypes. But that is generally a bad idea.
+During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them overwrites the other one.
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the other.
 
-So, generally modifying a native prototypeis considered a bad idea.
+So, generally, modifying a native prototype is considered a bad idea.
 ```
 
-**In modern programming, there is only one case when modifying native prototypes is approved. That's polyfilling.**
+**In modern programming, there is only one case where modifying native prototypes is approved. That's polyfilling.**
 
-Polyfilling is a term for making a substitute for a method that exists in JavaScript specification, but not yet supported by current JavaScript engine .
+Polyfilling is a term for making a substitute for a method that exists in JavaScript specification, but not yet supported by current JavaScript engine.
 
 Then we may implement it manually and populate the built-in prototype with it.
 
@@ -181,7 +181,7 @@ alert( obj.join(',') ); // Hello,world!
 
 It works, because the internal algorithm of the built-in `join` method only cares about the correct indexes and the `length` property, it doesn't check that the object is indeed the array. And many built-in methods are like that.
 
-Another possibility is to inherit by setting `obj.__proto__` to `Array.prototype`, then all `Array` methods are automatically available in `obj`.
+Another possibility is to inherit by setting `obj.__proto__` to `Array.prototype`, so all `Array` methods are automatically available in `obj`.
 
 But that's impossible if `obj` already inherits from another object. Remember, we only can inherit from one object at a time.
 
@@ -192,5 +192,5 @@ Borrowing methods is flexible, it allows to mix functionality from different obj
 - All built-in objects follow the same pattern:
     - The methods are stored in the prototype (`Array.prototype`, `Object.prototype`, `Date.prototype` etc).
     - The object itself stores only the data (array items, object properties, the date).
-- Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype`, `Boolean.prototype`. There are no wrapper objects only for `undefined` and `null`.
+- Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype`, `Boolean.prototype`. Only `undefined` and `null` do not have wrapper objects.
 - Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. Probably the only allowable cause is when we add-in a new standard, but not yet supported by the engine JavaScript method.

@@ -230,7 +230,7 @@ coffeeMachine.#waterLimit = 1000; // Error
 coffeeMachine.waterAmount = 100; // Works
 ```
 
-On the language level, `#` is a special sign that the field is private. We can't access it from outside or from inhereting classes.
+On the language level, `#` is a special sign that the field is private. We can't access it from outside or from inheriting classes.
 
 Private fields do not conflict with public ones. We can have both private `#waterAmount` and public `waterAmount` fields at the same time.
 
@@ -257,7 +257,7 @@ machine.waterAmount = 100;
 alert(machine.#waterAmount); // Error
 ```
 
-Unlike protected ones, private fields are enforced by the language itselfs. That's a good thing.
+Unlike protected ones, private fields are enforced by the language itself. That's a good thing.
 
 But if we inherit from `CoffeeMachine`, then we'll have no direct access to `#waterAmount`. We'll need to rely on `waterAmount` getter/setter:
 
