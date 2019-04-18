@@ -167,7 +167,7 @@ document.cookie = "user=John; max-age=0";
 
 The cookie should be transferred only over HTTPS.
 
-**By default, if we set a cookie at `http://site.com`, then it also appears at `https://site.com` and vise versa.**
+**By default, if we set a cookie at `http://site.com`, then it also appears at `https://site.com` and vice versa.**
 
 That is, cookies are domain-based, they do not distinguish between the protocols.
 
