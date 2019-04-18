@@ -142,7 +142,7 @@ To do an upgrade, there are two main ways:
 1. We can compare versions and run per-version operations.
 2. Or we can get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist), and it provides `contains(name)` method to check for the existance. And then we can do updates depending on what exists.
 
-Here's the demo of thee second approach:
+Here's the demo of the second approach:
 
 ```js
 let openRequest = indexedDB.open("db", 1);
