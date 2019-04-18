@@ -355,7 +355,7 @@ export {login, logout};
 import User from './user.js';
 export {User};
 
-import Githib from './providers/github.js';
+import Github from './providers/github.js';
 export {Github};
 ...
 ```
@@ -370,7 +370,7 @@ export {login, logout} from './helpers.js';
 
 export {default as User} from './user.js';
 
-export {default as Githib} from './providers/github.js';
+export {default as Github} from './providers/github.js';
 ...
 ```
 
