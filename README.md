@@ -16,6 +16,8 @@ Something's wrong? A topic is missing? Explain it to people, add as PR 👏
 
 **You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/iliakan/javascript-tutorial-server>.  
 
+The list of contributors is available at <https://javascript.info/about#contributors>.
+
 ## Structure
 
 Every chapter, article or a task has its folder.
