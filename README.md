@@ -14,8 +14,6 @@ We'd also like to collaborate on the tutorial with other people.
 
 A topic is missing? Explain it to people, add as PR 👏
 
-Adding a new article is very easy.
-
 **You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/iliakan/javascript-tutorial-server>.  
 
 ## Structure
