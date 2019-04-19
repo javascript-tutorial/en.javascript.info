@@ -12,7 +12,7 @@ The full list of existing translations is at <https://github.com/javascript-tuto
 
 We'd also like to collaborate on the tutorial with other people. 
 
-A topic is missing? Explain it to people, add as PR 👏
+Something's wrong? A topic is missing? Explain it to people, add as PR 👏
 
 **You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/iliakan/javascript-tutorial-server>.  
 
