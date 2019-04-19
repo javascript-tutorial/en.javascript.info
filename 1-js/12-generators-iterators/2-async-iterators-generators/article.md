@@ -1,5 +1,5 @@
 
-# Async iteration and generators
+# Async iterators and generators
 
 Asynchronous iterators allow to iterate over data that comes asynchronously, on-demand.
 
