@@ -54,7 +54,7 @@ Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu ite
 
 Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
 
-To insert multiple line, press `key:Shift+Enter`.
+To insert multiple lines, press `key:Shift+Enter`.
 
 ## Summary
 
