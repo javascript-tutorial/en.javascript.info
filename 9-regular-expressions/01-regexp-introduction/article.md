@@ -65,18 +65,18 @@ From here on the color scheme is:
 
 
 ````smart header="When to use `new RegExp`?"
-Normally we use the short syntax `/.../`. But it does not allow any variable insertions, so we must know the exact regexp at the time of writing the code.
+Normally we use the short syntax `/.../`. But it does not support variable insertions `${...}`.
 
-On the other hand, `new RegExp` allows to construct a pattern dynamically from a string.
+On the other hand, `new RegExp` allows to construct a pattern dynamically from a string, so it's more flexible.
 
-So we can figure out what we need to search and create `new RegExp` from it:
+Here's an example of a dynamically generated regexp:
 
 ```js run
-let search = prompt("What you want to search?", "love");
-let regexp = new RegExp(search);
+let tag = prompt("Which tag you want to search?", "h2");
+let regexp = new RegExp(`<${tag}>`);
 
-// find whatever the user wants
-alert( "I love JavaScript".search(regexp));
+// finds <h2> by default
+alert( "<h1> <h2> <h3>".search(regexp));
 ```
 ````
 
