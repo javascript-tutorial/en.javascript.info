@@ -76,7 +76,7 @@ That's for historical reasons.
 
 As of now we have all these ways at our disposal.
 
-Why `__proto__` was replaced by the functions? That's an interesting question, requiring us to understand why `__proto__` is bad. Read on to get the answer.
+Why was `__proto__` replaced by the functions? That's an interesting question, requiring us to understand why `__proto__` is bad. Read on to get the answer.
 
 ```warn header="Don't reset `[[Prototype]]` unless the speed doesn't matter"
 Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
