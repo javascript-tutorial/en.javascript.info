@@ -48,7 +48,7 @@ The solution looks a little bit awkward, but here it is:
 
 1. Primitives are still primitive. A single value, as desired.
 2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. When this happens, a special "object wrapper" is created that provides the extra functionality, and then is destroyed.
+3. When this happens, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
 
 The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean` and `Symbol`. Thus, they provide different sets of methods.
 
