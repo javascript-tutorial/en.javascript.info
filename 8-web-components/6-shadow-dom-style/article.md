@@ -194,7 +194,7 @@ Here `<p>John Smith</p>` becomes bold, because CSS inheritance is in effect betw
 
 Another option is to use `::slotted(selector)` pseudo-class. It matches elements based on two conditions:
 
-1. The element from the light DOOM that is inserted into a `<slot>`. Then slot name doesn't matter. Just any slotted element, but only the element itself, not its children.
+1. The element from the light DOM that is inserted into a `<slot>`. Then slot name doesn't matter. Just any slotted element, but only the element itself, not its children.
 2. The element matches the `selector`.
 
 In our example, `::slotted(div)` selects exactly `<div slot="username">`, but not its children:
