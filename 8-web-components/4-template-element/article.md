@@ -3,7 +3,7 @@
 
 A built-in `<template>` element serves as a storage for markup. The browser ignores it contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
 
-In theory, we could to create any invisible element somewhere in HTML for markup storage purposes. What's special about `<template>`?
+In theory, we could create any invisible element somewhere in HTML for markup storage purposes. What's special about `<template>`?
 
 First, its content can be any valid HTML, even if it normally requires a proper enclosing tag.
 
