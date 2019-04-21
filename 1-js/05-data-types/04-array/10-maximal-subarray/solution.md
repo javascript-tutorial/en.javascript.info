@@ -29,8 +29,8 @@ For instance, for `[-1, 2, 3, -9, 11]`:
 -9
 -9 + 11
 
-// Starting from -11
--11
+// Starting from 11
+11
 ```
 
 The code is actually a nested loop: the external loop over array elements, and the internal counts subsums starting with the current element.
