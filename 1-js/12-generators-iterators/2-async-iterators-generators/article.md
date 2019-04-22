@@ -273,7 +273,7 @@ The pattern is very common, it's not about users, but just about anything. For i
 What we'd like to have is an iterable source of commits, so that we could use it like this:
 
 ```js
-let repo = 'iliakan/javascript-tutorial-en'; // Github repository to get commits from
+let repo = 'javascript-tutorial/en.javascript.info'; // Github repository to get commits from
 
 for await (let commit of fetchCommits(repo)) {
   // process commit
@@ -320,7 +320,7 @@ An example of use (shows commit authors in console):
 
   let count = 0;
 
-  for await (const commit of fetchCommits('iliakan/javascript-tutorial-en')) {
+  for await (const commit of fetchCommits('javascript-tutorial/en.javascript.info')) {
 
     console.log(commit.author.login);
 

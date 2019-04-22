@@ -30,7 +30,7 @@ let animal = new Animal("My animal");
 ...And `Rabbit`:
 
 ```js
-class Rabbit extends Animal {
+class Rabbit {
   constructor(name) {
     this.name = name;
   }
