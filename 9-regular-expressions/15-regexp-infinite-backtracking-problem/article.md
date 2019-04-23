@@ -8,7 +8,7 @@ The typical situation -- a regular expression works fine sometimes, but for cert
 
 In a web-browser it kills the page. Not a good thing for sure.
 
-For server-side Javascript it may become a vulnerability, and it uses regular expressions to process user data. Bad input will make the process hang, causing denial of service. The author personally saw and reported such vulnerabilities even for very well-known and widely used programs.
+For server-side JavaScript it may become a vulnerability, and it uses regular expressions to process user data. Bad input will make the process hang, causing denial of service. The author personally saw and reported such vulnerabilities even for very well-known and widely used programs.
 
 So the problem is definitely worth to deal with.
 

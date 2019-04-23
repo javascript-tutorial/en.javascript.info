@@ -255,7 +255,7 @@ There exist following character classes:
 
 ...But that's not all!
 
-Modern Javascript also allows to look for characters by their Unicode properties, for instance:
+Modern JavaScript also allows to look for characters by their Unicode properties, for instance:
 
 - A cyrillic letter is: `pattern:\p{Script=Cyrillic}` or `pattern:\p{sc=Cyrillic}`.
 - A dash (be it a small hyphen `-` or a long dash `—`): `pattern:\p{Dash_Punctuation}` or `pattern:\p{pd}`.

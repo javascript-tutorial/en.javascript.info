@@ -3,7 +3,7 @@
 
 In the first chapter of this section, we mentioned that there are modern methods to setup a prototype.
 
-The `__proto__` is considered outdated and somewhat deprecated (in browser-only part of the Javascript standard).
+The `__proto__` is considered outdated and somewhat deprecated (in browser-only part of the JavaScript standard).
 
 The modern methods are:
 
@@ -81,7 +81,7 @@ Why was `__proto__` replaced by the functions? That's an interesting question, r
 ```warn header="Don't reset `[[Prototype]]` unless the speed doesn't matter"
 Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
 
-And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So evade it unless you know what you're doing, or Javascript speed totally doesn't matter for you.
+And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So evade it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
 ```
 
 ## "Very plain" objects

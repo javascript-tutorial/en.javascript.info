@@ -55,9 +55,9 @@ In JavaScript, there are three types of properties and members:
 
 In many other languages there also exist "protected" fields: accessible only from inside the class and those extending it. They are also useful for the internal interface. They are in a sense more widespread than private ones, because we usually want inheriting classes to gain access to properly do the extension.
 
-Protected fields are not implemented in Javascript on the language level, but in practice they are very convenient, so they are emulated.
+Protected fields are not implemented in JavaScript on the language level, but in practice they are very convenient, so they are emulated.
 
-In the next step we'll make a coffee machine in Javascript with all these types of properties. A coffee machine has a lot of details, we won't model them to stay simple (though we could).
+In the next step we'll make a coffee machine in JavaScript with all these types of properties. A coffee machine has a lot of details, we won't model them to stay simple (though we could).
 
 ## Protecting "waterAmount"
 
@@ -186,7 +186,7 @@ So protected fields are naturally inheritable. Unlike private ones that we'll se
 
 [recent browser=none]
 
-There's a finished Javascript proposal, almost in the standard, that provides language-level support for private properties and methods.
+There's a finished JavaScript proposal, almost in the standard, that provides language-level support for private properties and methods.
 
 Privates should start with `#`. They are only accessible from inside the class.
 
@@ -325,6 +325,6 @@ Hiding complexity
 To hide internal interface we use either protected or public properties:
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
-- Private fields start with `#`. Javascript makes sure we only can access those from inside the class.
+- Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
 
 Right now, private fields are not well-supported among browsers, but can be polyfilled.

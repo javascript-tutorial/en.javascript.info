@@ -5,7 +5,7 @@ To grasp the use case of `y` flag, and see how great it is, let's explore a prac
 
 One of common tasks for regexps is "parsing": when we get a text and analyze it for logical components, build a structure.
 
-For instance, there are HTML parsers for browser pages, that turn text into a structured document. There are parsers for programming languages, like Javascript, etc.
+For instance, there are HTML parsers for browser pages, that turn text into a structured document. There are parsers for programming languages, like JavaScript, etc.
 
 Writing parsers is a special area, with its own tools and algorithms, so we don't go deep in there, but there's a very common question: "What is the text at the given position?".
 
@@ -15,7 +15,7 @@ For instance, for a programming language variants can be like:
 - Or an operator `pattern:[+-/*]`?
 - (a syntax error if it's not anything in the expected list)
 
-In Javascript, to perform a search starting from a given position, we can use `regexp.exec` with `regexp.lastIndex` property, but that's not what we need!
+In JavaScript, to perform a search starting from a given position, we can use `regexp.exec` with `regexp.lastIndex` property, but that's not what we need!
 
 We'd like to check the match exactly at given position, not "starting" from it.
 

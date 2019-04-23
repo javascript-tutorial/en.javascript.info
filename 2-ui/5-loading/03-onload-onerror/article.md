@@ -23,7 +23,7 @@ document.head.append(script);
 ...But how to run the function that is declared inside that script? We need to wait until the script loads, and only then we can call it.
 
 ```smart
-For our own scripts we could use [Javascript modules](info:modules) here, but they are not widely adopted by third-party libraries.
+For our own scripts we could use [JavaScript modules](info:modules) here, but they are not widely adopted by third-party libraries.
 ```
 
 ### script.onload

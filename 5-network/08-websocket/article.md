@@ -96,7 +96,7 @@ Sec-WebSocket-Version: 13
 - `Sec-WebSocket-Version` -- WebSocket protocol version, 13 is the current one.
 
 ```smart header="WebSocket handshake can't be emulated"
-We can't use `XMLHttpRequest` or `fetch` to make this kind of HTTP-request, because Javascript is not allowed to set these headers.
+We can't use `XMLHttpRequest` or `fetch` to make this kind of HTTP-request, because JavaScript is not allowed to set these headers.
 ```
 
 If the server agrees to switch to WebSocket, it should send code 101 response:
@@ -289,7 +289,7 @@ HTML: there's a `<form>` to send messages and a `<div>` for incoming messages:
 <div id="messages"></div>
 ```
 
-Javascript is also simple. We open a socket, then on form submission -- `socket.send(message)`, on incoming message -- append it to `div#messages`:
+JavaScript is also simple. We open a socket, then on form submission -- `socket.send(message)`, on incoming message -- append it to `div#messages`:
 
 ```js
 let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");

@@ -29,7 +29,7 @@ For instance, here all exports are valid:
 ````smart header="No semicolons after export class/function"
 Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions-arrows). It's still a function declaration, albeit exported.
 
-Most Javascript style guides recommend semicolons after statements, but not after function and class declarations.
+Most JavaScript style guides recommend semicolons after statements, but not after function and class declarations.
 
 That's why there should be no semicolons at the end of `export class` and `export function`.
 

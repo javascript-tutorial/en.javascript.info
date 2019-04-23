@@ -246,7 +246,7 @@ The purpose of the `"sandbox"` attribute is only to *add more* restrictions. It 
 
 The `postMessage` interface allows windows to talk to each other no matter which origin they are from.
 
-So, it's a way around the "Same Origin" policy. It allows a window from `john-smith.com` to talk to `gmail.com` and exchange information, but only if they both agree and call corresponding Javascript functions. That makes it safe for users.
+So, it's a way around the "Same Origin" policy. It allows a window from `john-smith.com` to talk to `gmail.com` and exchange information, but only if they both agree and call corresponding JavaScript functions. That makes it safe for users.
 
 The interface has two parts.
 
