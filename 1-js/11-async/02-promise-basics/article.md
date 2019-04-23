@@ -214,7 +214,7 @@ The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a short
 
 ### finally
 
-Just like there's a finally clause in a regular `try {...} catch {...}`, there's `finally` in promises.
+Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
 
 The call `.finally(f)` is similar to `.then(f, f)` in the sense that it always runs when the promise is settled: be it resolve or reject.
 
