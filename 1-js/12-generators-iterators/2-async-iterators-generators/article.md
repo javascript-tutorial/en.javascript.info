@@ -264,7 +264,7 @@ So far we've seen simple examples, to gain basic understanding. Now let's review
 
 There are many online APIs that deliver paginated data. For instance, when we need a list of users, then we can fetch it page-by-page: a request returns a pre-defined count (e.g. 100 users), and provides an URL to the next page.
 
-The pattern is very common, it's not about users, but just about anything. For instance, Github allows to retrieve commits in the same, paginated fashion:
+The pattern is very common, it's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
 
 - We should make a request to URL in the form `https://api.github.com/repos/<repo>/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
@@ -273,7 +273,7 @@ The pattern is very common, it's not about users, but just about anything. For i
 What we'd like to have is an iterable source of commits, so that we could use it like this:
 
 ```js
-let repo = 'javascript-tutorial/en.javascript.info'; // Github repository to get commits from
+let repo = 'javascript-tutorial/en.javascript.info'; // GitHub repository to get commits from
 
 for await (let commit of fetchCommits(repo)) {
   // process commit
@@ -308,9 +308,9 @@ async function* fetchCommits(repo) {
 }
 ```
 
-1. We use the browser `fetch` method to download from a remote URL. It allows to supply authorization and other headers if needed, here Github requires `User-Agent`.
+1. We use the browser `fetch` method to download from a remote URL. It allows to supply authorization and other headers if needed, here GitHub requires `User-Agent`.
 2. The fetch result is parsed as JSON, that's again a `fetch`-specific method.
-3. We can get the next page URL from the `Link` header of the response. It has a special format, so we use a regexp for that. The next page URL may look like this: `https://api.github.com/repositories/93253246/commits?page=2`, it's generatd by Github itself.
+3. We can get the next page URL from the `Link` header of the response. It has a special format, so we use a regexp for that. The next page URL may look like this: `https://api.github.com/repositories/93253246/commits?page=2`, it's generatd by GitHub itself.
 4. Then we yield all commits received, and when they finish -- the next `while(url)` iteration will trigger, making one more request.
 
 An example of use (shows commit authors in console):

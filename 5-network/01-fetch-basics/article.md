@@ -54,7 +54,7 @@ To get the response body, we need to use an additional method call.
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (pure binary data),
 - additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
 
-For instance, here we get a JSON-object with latest commits from Github:
+For instance, here we get a JSON-object with latest commits from GitHub:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
