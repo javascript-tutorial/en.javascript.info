@@ -292,7 +292,7 @@ If an error occurs, and there's no `.catch`, the `unhandledrejection` handler tr
 
 Usually such errors are unrecoverable, so our best way out is to inform the user about the problem and probably report the incident to the server.
 
-In non-browser environments like Node.JS there are other similar ways to track unhandled errors.
+In non-browser environments like Node.js there are other similar ways to track unhandled errors.
 
 
 ## Summary

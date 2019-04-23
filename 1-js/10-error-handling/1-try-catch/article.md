@@ -590,7 +590,7 @@ Let's imagine we've got a fatal error outside of `try..catch`, and the script di
 
 Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages) etc.
 
-There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
+There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
 
 The syntax:
 

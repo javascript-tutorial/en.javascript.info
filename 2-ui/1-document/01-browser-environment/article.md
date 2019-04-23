@@ -4,7 +4,7 @@ The JavaScript language was initially created for web browsers. Since then, it h
 
 A platform may be a browser, or a web-server, or a washing machine, or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
-A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.JS provides server-side features, and so on.
+A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
 
 Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
 

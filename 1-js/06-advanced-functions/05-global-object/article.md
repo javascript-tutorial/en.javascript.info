@@ -3,7 +3,7 @@
 
 The global object provides variables and functions that are available anywhere. Mostly, the ones that are built into the language or the host environment.
 
-In a browser it is named "window", for Node.JS it is "global", for other environments it may have another name.
+In a browser it is named "window", for Node.js it is "global", for other environments it may have another name.
 
 For instance, we can call `alert` as a method of `window`:
 
