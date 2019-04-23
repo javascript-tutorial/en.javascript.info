@@ -2,12 +2,12 @@
 
 In web-development we meet binary data mostly while dealing with files (create, upload, download). Another typical use case is image processing.
 
-That's all possible in Javascript, and binary operations are high-performant.
+That's all possible in JavaScript, and binary operations are high-performant.
 
 Although, there's a bit of confusion, because there are many classes. To name a few:
 - `ArrayBuffer`, `Uint8Array`, `DataView`, `Blob`, `File`, etc.
 
-Binary data in Javascript is implemented in a non-standard way, compared to other languages. But when we sort things out, everything becomes fairly simple.
+Binary data in JavaScript is implemented in a non-standard way, compared to other languages. But when we sort things out, everything becomes fairly simple.
 
 **The basic binary object is `ArrayBuffer` -- a reference to a fixed-length contiguos memory area.**
 
@@ -144,7 +144,7 @@ Here's the list of typed arrays:
 - `Float32Array`, `Float64Array` -- for signed floating-point numbers of 32 and 64 bits.
 
 ```warn header="No `int8` or similar single-valued types"
-Please note, despite of the names like `Int8Array`, there's no single-value type like `int`, or `int8` in Javascript.
+Please note, despite of the names like `Int8Array`, there's no single-value type like `int`, or `int8` in JavaScript.
 
 That's logical, as `Int8Array` is not an array of these individual values, but rather a view on `ArrayBuffer`.
 ```

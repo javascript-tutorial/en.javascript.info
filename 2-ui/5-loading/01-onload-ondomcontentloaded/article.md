@@ -75,7 +75,7 @@ In the example above, we first see "Library loaded...", and then "DOM ready!" (a
 
 ```warn header="Scripts with `async`, `defer` or `type=\"module\"` don't block DOMContentLoaded"
 
-Script attributes `async` and `defer`, that we'll cover [a bit later](info:script-async-defer), don't block DOMContentLoaded. [Javascript modules](info:modules) behave like `defer`,  they don't block it too.
+Script attributes `async` and `defer`, that we'll cover [a bit later](info:script-async-defer), don't block DOMContentLoaded. [JavaScript modules](info:modules) behave like `defer`,  they don't block it too.
 
 So here we're talking about "regular" scripts, like `<script>...</script>`, or `<script src="..."></script>`.
 ```

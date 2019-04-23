@@ -211,7 +211,7 @@ Nowadays, `load/error/progress` handlers deprecate it.
 
 If in the `open` method the third parameter `async` is set to `false`, the request is made synchronously.
 
-In other words, Javascript execution pauses at `send()` and resumes when the response is received. Somewhat like `alert` or `prompt` commands.
+In other words, JavaScript execution pauses at `send()` and resumes when the response is received. Somewhat like `alert` or `prompt` commands.
 
 Here's the rewritten example, the 3rd parameter of `open` is `false`:
 
@@ -232,7 +232,7 @@ try {
 };
 ```
 
-It might look good, but synchronous calls are used rarely, because they block in-page Javascript till the loading is complete. In some browsers it becomes impossible to scroll. If a synchronous call takes too much time, the browser may suggest to close the "hanging" webpage.
+It might look good, but synchronous calls are used rarely, because they block in-page JavaScript till the loading is complete. In some browsers it becomes impossible to scroll. If a synchronous call takes too much time, the browser may suggest to close the "hanging" webpage.
 
 Many advanced capabilities of `XMLHttpRequest`, like requesting from another domain or specifying a timeout, are unavailable for synchronous requests. Also, as you can see, no progress indication.
 

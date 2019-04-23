@@ -462,7 +462,7 @@ If we don't catch the error there, then, as usual, it falls through to the outer
 - Inside generators (only) there exists a `yield` operator.
 - The outer code and the generator may exchange results via `next/yield` calls.
 
-In modern Javascript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique.
+In modern JavaScript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique.
 
 Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data in `for` loop.
 

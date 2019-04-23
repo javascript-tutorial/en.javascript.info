@@ -253,13 +253,13 @@ But we surely can use `samesite` together with other protection measures, like x
 
 ## httpOnly
 
-This option has nothing to do with Javascript, but we have to mention it for completeness.
+This option has nothing to do with JavaScript, but we have to mention it for completeness.
 
 The web-server uses `Set-Cookie` header to set a cookie. And it may set the `httpOnly` option.
 
 This option forbids any JavaScript access to the cookie. We can't see such cookie or manipulate it using `document.cookie`.
 
-That's used as a precaution measure, to protect from certain attacks when a hacker injects his own Javascript code into a page and waits for a user to visit that page. That shouldn't be possible at all, a hacker should not be able to inject their code into our site, but there may be bugs that let hackers do it.
+That's used as a precaution measure, to protect from certain attacks when a hacker injects his own JavaScript code into a page and waits for a user to visit that page. That shouldn't be possible at all, a hacker should not be able to inject their code into our site, but there may be bugs that let hackers do it.
 
 
 Normally, if such thing happens, and a user visits a web-page with hacker's code, then that code executes and gains access to `document.cookie` with user cookies containing authentication information. That's bad.

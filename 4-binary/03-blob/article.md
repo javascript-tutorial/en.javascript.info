@@ -1,6 +1,6 @@
 # Blob
 
-`ArrayBuffer` and views are a part of ECMA standard, a part of Javascript.
+`ArrayBuffer` and views are a part of ECMA standard, a part of JavaScript.
 
 In the browser, there are additional higher-level objects, described in [File API](https://www.w3.org/TR/FileAPI/).
 
@@ -52,7 +52,7 @@ The arguments are similar to `array.slice`, negative numbers are allowed too.
 ```smart header="Blobs are immutable"
 We can't change data directly in a blob, but we can slice parts of blobs, create new blobs from them, mix them into a new blob and so on.
 
-This behavior is similar to Javascript strings: we can't change a character in a string, but we can make a new corrected string.
+This behavior is similar to JavaScript strings: we can't change a character in a string, but we can make a new corrected string.
 ```
 
 ## Blob as URL
@@ -72,7 +72,7 @@ link.href = URL.createObjectURL(blob);
 </script>
 ```
 
-We can also create a link dynamically in Javascript and simulate a click by `link.click()`, then download starts authomatically.
+We can also create a link dynamically in JavaScript and simulate a click by `link.click()`, then download starts authomatically.
 
 Here's the similar "on the fly" blob creation and download code, but without HTML:
 

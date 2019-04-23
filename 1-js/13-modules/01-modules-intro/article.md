@@ -4,7 +4,7 @@
 As our application grows bigger, we want to split it into multiple files, so called 'modules'.
 A module usually contains a class or a library of useful functions.
 
-For a long time, Javascript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple. So there was no need.
+For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple. So there was no need.
 
 But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules.
 
@@ -56,7 +56,7 @@ The browser automatically fetches and evaluates imports, then runs the script.
 
 What's different in modules, compared to "regular" scripts?
 
-There are core features, valid both for browser and server-side Javascript.
+There are core features, valid both for browser and server-side JavaScript.
 
 ### Always "use strict"
 
@@ -222,7 +222,7 @@ In a module, top-level `this` is undefined, as opposed to a global object in non
 
 There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
 
-You may want skip those for now if you're reading for the first time, or if you don't use Javascript in a browser.
+You may want skip those for now if you're reading for the first time, or if you don't use JavaScript in a browser.
 
 ### Module scripts are deferred
 
@@ -259,7 +259,7 @@ Please note: the second script actually works before the first! So we'll see `un
 
 That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
 
-When using modules, we should be aware that HTML-document can show up before the Javascript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
+When using modules, we should be aware that HTML-document can show up before the JavaScript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
 
 ### Async works on inline scripts
 
@@ -350,7 +350,7 @@ Build tools do the following:
     - Unreachable code removed.
     - Unused exports removed ("tree-shaking").
     - Development-specific statements like `console` and `debugger` removed.
-    - Modern, bleeding-edge Javascript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
+    - Modern, bleeding-edge JavaScript syntax may be transformed to older one with similar functionality using [Babel](https://babeljs.io/).
     - The resulting file is minified (spaces removed, variables replaced with shorter named etc).
 
 That said, native modules are also usable. So we won't be using Webpack here: you can configure it later.

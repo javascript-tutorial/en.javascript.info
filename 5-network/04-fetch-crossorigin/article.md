@@ -24,7 +24,7 @@ Because cross-origin restrictions protect the internet from evil hackers.
 
 Seriously. Let's make a very brief historical digression.
 
-For many years Javascript did not have any special methods to perform network requests.
+For many years JavaScript did not have any special methods to perform network requests.
 
 **A script from one site could not access the content of another site.**
 
@@ -38,7 +38,7 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 <!-- form target -->
 <iframe name="iframe"></iframe>
 
-<!-- a form could be dynamically generated and submited by Javascript -->
+<!-- a form could be dynamically generated and submited by JavaScript -->
 <form target="iframe" method="POST" action="http://another.com/…">
   ...
 </form>
@@ -105,7 +105,7 @@ Any other request is considered "non-simple". For instance, a request with `PUT`
 
 So, even a very old server should be ready to accept a simple request.
 
-Contrary to that, requests with non-standard headers or e.g. method `DELETE` can't be created this way. For a long time Javascript was unable to do such requests. So an old server may assume that such requests come from a privileged source, "because a webpage is unable to send them".
+Contrary to that, requests with non-standard headers or e.g. method `DELETE` can't be created this way. For a long time JavaScript was unable to do such requests. So an old server may assume that such requests come from a privileged source, "because a webpage is unable to send them".
 
 When we try to make a non-simple request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
 
@@ -134,7 +134,7 @@ The server can inspect the `Origin` and, if it agrees to accept such a request, 
 
 The browser plays the role of a trusted mediator here:
 1. It ensures that the corrent `Origin` is sent with a cross-domain request.
-2. If checks for correct `Access-Control-Allow-Origin` in the response, if it is so, then Javascript access, otherwise forbids with an error.
+2. If checks for correct `Access-Control-Allow-Origin` in the response, if it is so, then JavaScript access, otherwise forbids with an error.
 
 ![](xhr-another-domain.png)
 
@@ -149,7 +149,7 @@ Access-Control-Allow-Origin: https://javascript.info
 
 ## Response headers
 
-For cross-origin request, by default Javascript may only access "simple response headers":
+For cross-origin request, by default JavaScript may only access "simple response headers":
 
 - `Cache-Control`
 - `Content-Language`
@@ -166,7 +166,7 @@ Please note: there's no `Content-Length` header in the list!
 So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
 
-To grant Javascript access to any other response header, the server must list it in the `Access-Control-Expose-Headers` header.
+To grant JavaScript access to any other response header, the server must list it in the `Access-Control-Expose-Headers` header.
 
 For example:
 
@@ -283,20 +283,20 @@ The server should not forget to add `Accept-Control-Allow-Origin` to the respons
 Access-Control-Allow-Origin: https://javascript.info
 ```
 
-Now everything's correct. Javascript is able to read the full response.
+Now everything's correct. JavaScript is able to read the full response.
 
 
 ## Credentials
 
 A cross-origin request by default does not bring any credentials (cookies or HTTP authentication).
 
-That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-domain requests made by Javascript methods are an exception.
+That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-domain requests made by JavaScript methods are an exception.
 
 For example, `fetch('http://another.com')` does not send any cookies, even those that belong to `another.com` domain.
 
 Why?
 
-That's because a request with credentials is much more powerful than an anonymous one. If allowed, it grants Javascript the full power to act and access sensitive information on behalf of a user.
+That's because a request with credentials is much more powerful than an anonymous one. If allowed, it grants JavaScript the full power to act and access sensitive information on behalf of a user.
 
 Does the server really trust pages from `Origin` that much? A request with credentials needs an additional header to pass through.
 
@@ -348,7 +348,7 @@ So, practical difference is that simple requests are sent right away, with `Orig
     - `Access-Control-Allow-Origin` to `Origin`
     - `Access-Control-Allow-Credentials` to `true`
 
-Additionally, if Javascript wants no access non-simple response headers:
+Additionally, if JavaScript wants no access non-simple response headers:
 - `Cache-Control`
 - `Content-Language`
 - `Content-Type`

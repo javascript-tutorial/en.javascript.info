@@ -130,7 +130,7 @@ That's natural, as it expects to find `Symbol.iterator`, same as `for..of` witho
 
 ## Async generators
 
-Javascript also provides generators, that are also iterable.
+JavaScript also provides generators, that are also iterable.
 
 Let's recall a sequence generator from the chapter [](info:generators). It generates a sequence of values from `start` to `end` (could be anything else):
 
@@ -358,4 +358,4 @@ In web-development we often meet streams of data, when it flows chunk-by-chunk. 
 
 We could use async generators to process such data, but there's also another API called Streams, that may be more convenient, as it provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere). But they are also more complex.
 
-Streams API not a part of Javascript language standard. Streams and async generators complement each other, both are great ways to handle async data flows.
+Streams API not a part of JavaScript language standard. Streams and async generators complement each other, both are great ways to handle async data flows.

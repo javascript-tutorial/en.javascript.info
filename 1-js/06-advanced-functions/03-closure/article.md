@@ -221,7 +221,7 @@ function sayHiBye(firstName, lastName) {
 }
 ```
 
-Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name. Nested functions are quite common in Javascript.
+Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name. Nested functions are quite common in JavaScript.
 
 What's much more interesting, a nested function can be returned: either as a property of a new object (if the outer function creates an object with methods) or as a result by itself. It can then be used somewhere else. No matter where, it still has access to the same outer variables.
 
@@ -473,7 +473,7 @@ The code outside of the block (or inside another script) doesn't see variables i
 
 ### IIFE
 
-In the past, there were no block-level lexical environment in Javascript.
+In the past, there were no block-level lexical environment in JavaScript.
 
 So programmers had to invent something. And what they did is called "immediately-invoked function expressions" (abbreviated as IIFE).
 
