@@ -35,7 +35,7 @@ The value of `document.cookie` consists of `name=value` pairs, delimited by `; `
 
 To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
 
-We leave it as an excercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
+We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
 
 ## Writing to document.cookie
 
