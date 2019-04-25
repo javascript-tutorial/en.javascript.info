@@ -41,7 +41,7 @@ We've seen this method already. It returns the position of the first match or `-
 ```js run
 let str = "A drop of ink may make a million think";
 
-alert( str.search( *!*/a/i*/!* ) ); // 0 (the first position)
+alert( str.search( *!*/a/i*/!* ) ); // 0 (first match at zero position)
 ```
 
 **The important limitation: `search` only finds  the first match.**
