@@ -105,7 +105,7 @@ If we really need to make a "global" in-browser variable, we can explicitly assi
 
 ### A module code is evaluated only the first time when imported
 
-If a same module is imported into multiple other places, it's code is executed only the first time, then exports are given to all importers.
+If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
 
 That has important consequences. Let's see that on examples.
 
