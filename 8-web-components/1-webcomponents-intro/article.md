@@ -56,7 +56,8 @@ Components may have subcomponents, e.g. messages may be parts of a higher-level 
 
 How do we decide, what is a component? That comes from intuition, experience and common sense. Usually it's a separate visual entity that we can describe in terms of what it does and how it interacts with the page. In the case above, the page has blocks, each of them plays its own role, it's logical to make these components.
 
-- A component has its own JavaScript class.
+A component has:
+- its own JavaScript class.
 - DOM structure, managed solely by its class, outside code doesn't access it ("encapsulation" principle).
 - CSS styles, applied to the component.
 - API: events, class methods etc, to interact with other components.
