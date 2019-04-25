@@ -46,7 +46,7 @@ alert( str.search( *!*/a/i*/!* ) ); // 0 (first match at zero position)
 
 **The important limitation: `search` only finds  the first match.**
 
-We can't find next positions using `search`, there's just no syntax for that. But there are other methods that can.
+We can't find next matches using `search`, there's just no syntax for that. But there are other methods that can.
 
 ## str.match(reg), no "g" flag
 
@@ -215,9 +215,9 @@ alert('12-34-56'.split(/-/)) // array of [12, 34, 56]
 
 ## str.replace(str|reg, str|func)
 
-That's actually a great method, one of most useful ones. The swiss army knife for searching and replacing.
+This is a generic method for searching and replacing, one of most useful ones. The swiss army knife for searching and replacing.  
 
-The simplest use -- searching and replacing a substring, like this:
+We can use it without regexps, to search and replace a substring:
 
 ```js run
 // replace a dash by a colon
