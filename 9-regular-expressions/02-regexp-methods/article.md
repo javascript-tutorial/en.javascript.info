@@ -263,7 +263,7 @@ Quite often we'd like to reuse parts of the source string, recombine them in the
 
 To do so, we should:
 1. First, mark the parts by parentheses in regexp.
-2. Use `$1`, `$2` (and so on) in the replacement string to get the content matched by parentheses.
+2. Use `$1`, `$2` (and so on) in the replacement string to get the content matched by 1st, 2nd and so on parentheses.
 
 For instance:
 
@@ -433,7 +433,7 @@ alert( regexp.test(str) ); // false (no match)
 
 
 ````warn header="Same global regexp tested repeatedly may fail to match"
-If we apply the same global regexp to different inputs, it may lead to wrong result, because `regexp.test` call advances `regexp.lastIndex` property, so next matches start from non-zero position.
+If we apply the same global regexp to different inputs, it may lead to wrong result, because `regexp.test` call advances `regexp.lastIndex` property, so the search in another string may start from non-zero position.
 
 For instance, here we call `regexp.test` twice on the same text, and the second time fails:
 
