@@ -10,7 +10,9 @@ There are two sets of methods to deal with regular expressions.
 
 Which method to use depends on what we'd like to do.
 
-Methods become much easier to understand if we separate them by their use in real-life tasks:
+Methods become much easier to understand if we separate them by their use in real-life tasks.
+
+So, here are general recipes, the details to follow:
 
 **To search for all matches:**
 
@@ -30,9 +32,7 @@ Use regexp `g` flag and:
 **To split the string by a separator:**
 - `str.split(str|reg)`
 
-Now you get the details about every method in this chapter... But if you're reading for the first time, and want to know more about regexps - go ahead!
-
-You may want to skip methods for now, move on to the next chapter, and then return here if something about a method is unclear.
+Now you can continue reading this chapter to get the details about every method... But if you're reading for the first time, then you probably want to know more about regexps. So you can move to the next chapter, and then return here if something about a method is unclear.
 
 ## str.search(reg)
 
