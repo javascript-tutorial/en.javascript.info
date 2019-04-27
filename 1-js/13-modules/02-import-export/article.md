@@ -377,7 +377,7 @@ export {default as Github} from './providers/github.js';
 ````warn header="Re-exporting default is tricky"
 Please note: `export User from './user.js'` won't work. It's actually a syntax error. To re-export the default export, we must mention it explicitly `{default as ...}`, like in the example above.
 
-Also, there's another oddity: `export * from './user.js'` re-exports only named exports, exluding the default one. Once again, we need to mention it explicitly.
+Also, there's another oddity: `export * from './user.js'` re-exports only named exports, excluding the default one. Once again, we need to mention it explicitly.
 
 For instance, to re-export everything, two statements will be necessary:
 ```js
