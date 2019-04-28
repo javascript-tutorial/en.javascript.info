@@ -72,7 +72,7 @@ link.href = URL.createObjectURL(blob);
 </script>
 ```
 
-We can also create a link dynamically in JavaScript and simulate a click by `link.click()`, then download starts authomatically.
+We can also create a link dynamically in JavaScript and simulate a click by `link.click()`, then download starts automatically.
 
 Here's the similar "on the fly" blob creation and download code, but without HTML:
 
