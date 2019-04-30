@@ -103,7 +103,7 @@ More in: <info:variables> and <info:types>.
 We're using a browser as a working environment, so basic UI functions will be:
 
 [`prompt(question, [default])`](mdn:api/Window/prompt)
-: Ask a `question`, and return either what the visitor entered or `null` if they pressed "cancel".
+: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
 
 [`confirm(question)`](mdn:api/Window/confirm)
 : Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
