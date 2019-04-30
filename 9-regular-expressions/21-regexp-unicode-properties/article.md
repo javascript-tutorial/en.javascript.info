@@ -1,5 +1,5 @@
 
-# Unicode character properies \p
+# Unicode character properties \p
 
 [Unicode](https://en.wikipedia.org/wiki/Unicode), the encoding format used by JavaScript strings, has a lot of properties for different characters (or, technically, code points). They describe which "categories" character belongs to, and a variety of technical details.
 
