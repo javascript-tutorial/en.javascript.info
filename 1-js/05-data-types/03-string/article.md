@@ -534,10 +534,10 @@ Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](ht
 
 It provides a special method to compare strings in different languages, following their rules.
 
-The call [str.localeCompare(str2)](mdn:js/String/localeCompare):
+The call [str.localeCompare(other_string)](mdn:js/String/localeCompare):
 
-- Returns `1` if `str` is greater than `str2` according to the language rules.
-- Returns `-1` if `str` is less than `str2`.
+- Returns `1` if `str` is greater than `other_string` according to the language rules.
+- Returns `-1` if `str` is less than `other_string`.
 - Returns `0` if they are equal.
 
 For instance:
