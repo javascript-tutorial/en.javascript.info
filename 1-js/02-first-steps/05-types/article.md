@@ -226,7 +226,7 @@ The last three lines may need additional explanation:
 
 ## Summary
 
-There are 7 basic types in JavaScript.
+There are 7 basic data types in JavaScript.
 
 - `number` for numbers of any kind: integer or floating-point.
 - `string` for strings. A string may have one or more characters, there's no separate single-character type.
