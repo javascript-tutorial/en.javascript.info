@@ -1,6 +1,6 @@
 # File and FileReader
 
-A [File](https://www.w3.org/TR/FileAPI/#dfn-file) object inhereits from `Blob`, but is extended with filesystem-related capabilities.
+A [File](https://www.w3.org/TR/FileAPI/#dfn-file) object inherits from `Blob`, but is extended with filesystem-related capabilities.
 
 There are two ways to obtain it.
 
@@ -114,7 +114,7 @@ That's only inside a Web Worker though, because delays and hang-ups in Web Worke
 
 ## Summary
 
-`File` object inherit from `Blob`.
+`File` objects inherit from `Blob`.
 
 In addition to `Blob` methods and properties, `File` objects also have `fileName` and `lastModified` properties, plus the internal ability to read from filesystem. We usually get `File` objects from user input, like `<input>` or drag'n'drop.
 
