@@ -1,6 +1,6 @@
 # Numbers
 
-All numbers in JavaScript are stored in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), also known as "double precision".
+All numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers".
 
 Let's recap and expand upon what we currently know about them.
 
@@ -177,7 +177,7 @@ There are two ways to do so:
 
 ## Imprecise calculations
 
-Internally, a number is represented in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
+Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
 
 If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
 
