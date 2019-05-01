@@ -290,7 +290,7 @@ function loadScript(src, callback) {
   script.src = src;
 
   script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error ` + src));
+  script.onerror = () => callback(new Error(`Script load error for ${src}`));
 
   document.head.append(script);
 }
@@ -307,7 +307,7 @@ function loadScript(src) {
     script.src = src;
 
     script.onload = () => resolve(script);
-    script.onerror = () => reject(new Error("Script load error: " + src));
+    script.onerror = () => reject(new Error(`Script load error for ${src}`));
 
     document.head.append(script);
   });
