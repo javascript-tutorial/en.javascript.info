@@ -180,7 +180,7 @@ That's exactly because `sessionStorage` is bound not only to the origin, but als
 
 When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://www.w3.org/TR/webstorage/#the-storage-event) event triggers, with properties:
 
-- `key` – the key that was changed (null if `.clear()` is called).
+- `key` – the key that was changed (`null` if `.clear()` is called).
 - `oldValue` – the old value (`null` if the key is newly added).
 - `newValue` – the new value (`null` if the key is removed).
 - `url` – the url of the document where the update happened.
