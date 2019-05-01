@@ -167,7 +167,7 @@ setTimeout(() => promise.catch(err => alert('caught')));
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-Now the unhandled rejction appears again. Why? Because `unhandledrejection` triggers when the microtask queue is complete. The engine examines promises and, if any of them is in "rejected" state, then the event is generated.
+Now the unhandled rejection appears again. Why? Because `unhandledrejection` triggers when the microtask queue is complete. The engine examines promises and, if any of them is in "rejected" state, then the event is generated.
 
 In the example, the `.catch` added by `setTimeout` triggers too, of course it does, but later, after `unhandledrejection` has already occurred.
 

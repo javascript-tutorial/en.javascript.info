@@ -68,7 +68,7 @@ Let's see more examples.
 
     } catch(err) {
 
-      alert(`Error has occured!`); // *!*(3) <--*/!*
+      alert(`Error has occurred!`); // *!*(3) <--*/!*
 
     }
 

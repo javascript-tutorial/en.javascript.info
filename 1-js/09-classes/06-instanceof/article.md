@@ -182,7 +182,7 @@ alert( {}.toString.call(user) ); // [object User]
 For most environment-specific objects, there is such a property. Here are few browser specific examples:
 
 ```js run
-// toStringTag for the envinronment-specific object and class:
+// toStringTag for the environment-specific object and class:
 alert( window[Symbol.toStringTag]); // window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
