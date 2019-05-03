@@ -100,7 +100,7 @@ The basic syntax is:
 ```js
 // more complex syntax will be little later
 let boundFunc = func.bind(context);
-````
+```
 
 The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
 
