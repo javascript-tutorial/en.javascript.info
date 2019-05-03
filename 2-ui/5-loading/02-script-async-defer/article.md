@@ -75,14 +75,14 @@ Deferred scripts keep their relative order, just like regular scripts.
 So, if we have a long script first, and then a smaller one, then the latter one waits.
 
 ```html
-<script async src="https://javascript.info/article/script-async-defer/long.js"></script>
-<script async src="https://javascript.info/article/script-async-defer/small.js"></script>
+<script defer src="https://javascript.info/article/script-async-defer/long.js"></script>
+<script defer src="https://javascript.info/article/script-async-defer/small.js"></script>
 ```
 
 ```smart header="The small script downloads first, runs second"
 Browsers scan the page for scripts and download them in parallel, to improve performance. So in the example above both scripts download in parallel. The `small.js` probably makes it first.
 
-But the specification requres scripts to execute in the document order, so it waits for `long.js` to execute.
+But the specification requires scripts to execute in the document order, so it waits for `long.js` to execute.
 ```
 
 ```smart header="The `defer` attribute is only for external scripts"
