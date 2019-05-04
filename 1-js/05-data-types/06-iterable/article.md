@@ -105,7 +105,7 @@ for (let num of range) {
 
 Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the necessary `next()` method and remembers the current iteration progress in `this.current`. Shorter? Yes. And sometimes that's fine too.
 
-The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, doable with some async scenarios.
+The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, even in async scenarios.
 
 ```smart header="Infinite iterators"
 Infinite iterators are also possible. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
@@ -144,7 +144,7 @@ Normally, internals of iterables are hidden from the external code. There's a `f
 
 But to understand things a little bit deeper let's see how to create an iterator explicitly.
 
-We'll iterate over a string the same way as `for..of`, but with direct calls. This code gets a string iterator and calls it "manually":
+We'll iterate over a string in exactlly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
 ```js run
 let str = "Hello";
@@ -170,7 +170,9 @@ There are two official terms that look similar, but are very different. Please m
 - *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
 - *Array-likes* are objects that have indexes and `length`, so they look like arrays.
 
-Naturally, these properties can combine. For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
+When we use JavaScript for practical tasks in browser or other environments, we may meet objects that are iterables or array-likes, or both.
+
+For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
 But an iterable may be not array-like. And vice versa an array-like may be not iterable.
 
@@ -191,11 +193,11 @@ for (let item of arrayLike) {}
 */!*
 ```
 
-What do they have in common? Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array.
+Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array. E.g. we would like to work with `range` using array methods. How to achieve that?
 
 ## Array.from
 
-There's a universal method [Array.from](mdn:js/Array/from) that brings them together. It takes an iterable or array-like value and makes a "real" `Array` from it. Then we can call array methods on it.
+There's a universal method [Array.from](mdn:js/Array/from) that takes an iterable or array-like value and makes a "real" `Array` from it. Then we can call array methods on it.
 
 For instance:
 
@@ -227,7 +229,7 @@ The full syntax for `Array.from` allows to provide an optional "mapping" functio
 Array.from(obj[, mapFn, thisArg])
 ```
 
-The second argument `mapFn` should be the function to apply to each element before adding to the array, and `thisArg` allows to set `this` for it.
+The optional second argument `mapFn` can be a function that will be applied to each element before adding to the array, and `thisArg` allows to set `this` for it.
 
 For instance:
 
