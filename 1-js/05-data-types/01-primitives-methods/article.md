@@ -14,7 +14,7 @@ A primitive
 An object
 
 - Is capable of storing multiple values as properties.
-- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript; functions, for example, are objects.
+- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
 
 One of the best things about objects is that we can store a function as one of its properties.
 
@@ -48,7 +48,7 @@ The solution looks a little bit awkward, but here it is:
 
 1. Primitives are still primitive. A single value, as desired.
 2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. When this happens, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
+3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
 
 The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean` and `Symbol`. Thus, they provide different sets of methods.
 
@@ -91,18 +91,18 @@ In JavaScript, that's also possible for historical reasons, but highly **unrecom
 For instance:
 
 ```js run
-alert( typeof 1 ); // "number"
+alert( typeof 0 ); // "number"
 
-alert( typeof new Number(1) ); // "object"!
+alert( typeof new Number(0) ); // "object"!
 ```
 
-And because what follows, `zero`, is an object, the alert will show up:
+Objects are always truthy in `if`, so here the alert will show up:
 
 ```js run
 let zero = new Number(0);
 
 if (zero) { // zero is true, because it's an object
-  alert( "zero is truthy?!?" );
+  alert( "zero is truthy!?!" );
 }
 ```
 
