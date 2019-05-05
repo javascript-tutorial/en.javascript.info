@@ -20,7 +20,7 @@ Here's what you should see if you are doing it for the first time:
 
 The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
 
-Let's click it and select `index.html` and then `hello.js` in the tree view. Here's what should show up:
+Let's click it and select `hello.js` in the tree view. Here's what should show up:
 
 ![](chrome-tabs.png)
 
@@ -34,7 +34,7 @@ Now you could click the same toggler <span class="devtools" style="background-po
 
 ## Console
 
-If we press `Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
+If we press `key:Esc`, then a console opens below. We can type commands there and press `key:Enter` to execute.
 
 After a statement is executed, its result is shown below.
 

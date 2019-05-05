@@ -52,15 +52,11 @@ The difference is that Firefox treats a timeout of 2000ms or less are acceptable
 
 ## Modern usage
 
-As of now, we have many methods to load and show data on-page with JavaScript. But there are still situations when a popup works best.
+As of now, we have many methods to load and show data on-page with JavaScript. But there are still situations when a popup works good, because:
 
-For instance, many shops use online chats for consulting people. A visitor clicks on the button, it runs `window.open` and opens the popup with the chat.
-
-Why a popup is good here, why not in-page?
-
-1. A popup is a separate window with its own independent JavaScript environment. So a chat service doesn't need to integrate with scripts of the main shop site.
-2. A popup is very simple to attach to a site, little to no overhead. It's only a small button, without additional scripts.
-3. A popup may persist even if the user left the page. For example, a consult advices the user to visit the page of a new "Super-Cooler" goodie. The user goes there in the main window without leaving the chat.
+1. A popup is a separate window with its own independent JavaScript environment. So opening a popup with a third-party non-trusted site is safe.
+2. It's very easy to open a popup, little to no overhead. 
+3. A popup may persist even if the user left the page. In also can navigate (change URL) in the opener window.
 
 ## window.open
 
@@ -118,7 +114,7 @@ Most browsers show the example above as required.
 Rules for omitted settings:
 
 - If there is no 3rd argument in the `open` call, or it is empty, then the default window parameters are used.
-- If there is a string of params, but some yes/no features are omitted, then the omitted features are disabled, if the browser allows that. So if you specify params, make sure you explicitly set all required features to yes.
+- If there is a string of params, but some `yes/no` features are omitted, then the omitted features assumed to have `no` value. So if you specify params, make sure you explicitly set all required features to yes.
 - If there is no `left/top` in params, then the browser tries to open a new window near the last opened window.
 - If there is no `width/height`, then the new window will be the same size as the last opened.
 
