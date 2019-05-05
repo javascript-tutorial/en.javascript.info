@@ -136,7 +136,7 @@ alert(message); // Hello world!
 ```
 
 ```smart header="Functional languages"
-It's interesting to note that [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), forbid changing variable values.
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
 
 In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
 
@@ -182,7 +182,7 @@ let my-name; // hyphens '-' aren't allowed in the name
 Variables named `apple` and `AppLE` are two different variables.
 ```
 
-````smart header="Non-English letters are allowed, but not recommended"
+````smart header="Non-Latin letters are allowed, but not recommended"
 It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
 
 ```js
@@ -254,7 +254,7 @@ There is a widespread practice to use constants as aliases for difficult-to-reme
 
 Such constants are named using capital letters and underscores.
 
-Like this:
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +290,7 @@ In other words, capital-named constants are only used as aliases for "hard-coded
 
 Talking about variables, there's one more extremely important thing.
 
-Please name your variables sensibly. Take time to think about this.
+A variable name should have a clean, obvious meaning, describe the data that it stores.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
 
