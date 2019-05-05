@@ -1,9 +1,9 @@
 
 # Closure
 
-JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at one moment, then copied to another variable or passed as an argument to another function and called from a totally different place later.
+JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created dynamically,  copied to another variable or passed as an argument to another function and called from a totally different place later.
 
-We know that a function can access variables outside of it; this feature is used quite often.
+We know that a function can access variables outside of it, this feature is used quite often.
 
 But what happens when an outer variable changes? Does a function get the most recent value or the one that existed when the function was created?
 
@@ -63,24 +63,24 @@ Let's consider two situations to begin with, and then study the internal mechani
 
 To understand what's going on, let's first discuss what a "variable" actually is.
 
-In JavaScript, every running function, code block, and the script as a whole have an associated object known as the *Lexical Environment*.
+In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
 
 The Lexical Environment object consists of two parts:
 
-1. *Environment Record* -- an object that has all local variables as its properties (and some other information like the value of `this`).
-2. A reference to the *outer lexical environment*, usually the one associated with the code lexically right outside of it (outside of the current curly brackets).
+1. *Environment Record* -- an object that stores all local variables as its properties (and some other information like the value of `this`).
+2. A reference to the *outer lexical environment*, the one associated with the outer code.
 
-**So, a "variable" is just a property of the special internal object, Environment Record. "To get or change a variable" means "to get or change a property of that object".**
+**So, a "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
 
 For instance, in this simple code, there is only one Lexical Environment:
 
 ![lexical environment](lexical-environment-global.png)
 
-This is a so-called global Lexical Environment, associated with the whole script. For browsers, all `<script>` tags share the same global environment.
+This is a so-called global Lexical Environment, associated with the whole script.
 
 On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, so it points to `null`.
 
-Here's the bigger picture of how `let` variables work:
+Here's the bigger picture of what happens when a `let` changes:
 
 ![lexical environment](lexical-environment-global-2.png)
 
@@ -89,7 +89,7 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 1. When the script starts, the Lexical Environment is empty.
 2. The `let phrase` definition appears. It has been assigned no value, so `undefined` is stored.
 3. `phrase` is assigned a value.
-4. `phrase` refers to a new value.
+4. `phrase` changes value.
 
 Everything looks simple for now, right?
 
@@ -147,7 +147,7 @@ So, during the function call we have two Lexical Environments: the inner one (fo
 
 The inner Lexical Environment has a reference to the outer one.
 
-**When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the end of the chain.**
+**When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
 
 If a variable is not found anywhere, that's an error in strict mode. Without `use strict`, an assignment to an undefined variable creates a new global variable, for backwards compatibility.
 
@@ -309,11 +309,9 @@ alert( counter2() ); // 0 (independent)
 ```
 
 
-Hopefully, the situation with outer variables is quite clear for you now. But in more complex situations a deeper understanding of internals may be required. So let's dive deeper.
+Hopefully, the situation with outer variables is clear now. For most situations such understanding is enough. There are few details in the specification that we omitted for brewity. So in the next section we cover even more details, not to miss anything.
 
 ## Environments in detail
-
-Now that you understand how closures work generally, that's already very good.
 
 Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
 
@@ -351,7 +349,7 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-3.png)
 
-    Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running; we're going to return it soon.
+    Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running.
 
 4. As the execution goes on, the call to `makeCounter()` finishes, and the result (the tiny nested function) is assigned to the global variable `counter`:
 
@@ -451,7 +449,7 @@ Again, similarly to `if`, after the loop `i` is not visible.
 
 We also can use a "bare" code block `{…}` to isolate variables into a "local scope".
 
-For instance, in a web browser all scripts share the same global area. So if we create a global variable in one script, it becomes available to others. But that becomes a source of conflicts if two scripts use the same variable name and overwrite each other.
+For instance, in a web browser all scripts (except with `type="module"`) share the same global area. So if we create a global variable in one script, it becomes available to others. But that becomes a source of conflicts if two scripts use the same variable name and overwrite each other.
 
 That may happen if the variable name is a widespread word, and script authors are unaware of each other.
 
@@ -581,7 +579,7 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 functions in array, every one of them links to Lexical Environment
+// 3 functions in array, every one of them links to Lexical Environment (LE for short)
 // from the corresponding f() run
 //         LE   LE   LE
 let arr = [f(), f(), f()];
