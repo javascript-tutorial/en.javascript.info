@@ -12,7 +12,7 @@ Promise.all(
 
 Here we have an array of `fetch(...)` promises that goes to `Promise.all`.
 
-We can't change the way `Promise.all` works: if it detects an error, then it rejects with it. So we need to prevent any error from occurring. Instead, if a `fetch` error happens, we need to treat it as a "normal" result.
+We can't change the way `Promise.all` works: if any promise rejects with an error, then `Promise.all` as a whole rejects with it. So we need to prevent any error from occurring. Instead, if a `fetch` error happens, we need to treat it as a "normal" result.
 
 Here's how:
 

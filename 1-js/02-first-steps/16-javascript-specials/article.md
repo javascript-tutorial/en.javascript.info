@@ -161,7 +161,7 @@ Comparisons
 
     Other comparisons convert to a number as well.
 
-    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it, so:
+    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
 
     Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
