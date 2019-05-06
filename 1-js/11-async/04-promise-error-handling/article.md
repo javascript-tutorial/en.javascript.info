@@ -169,7 +169,7 @@ Let's improve error handling for the user-loading example.
 
 The promise returned by [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) rejects when it's impossible to make a request. For instance, a remote server is not available, or the URL is malformed. But if the remote server responds with error 404, or even error 500, then it's considered a valid response.
 
-What if the server returns a non-JSON page with error 500 in the line `(*)`? What if there's no such user, and github returns a page with error 404 at `(**)`?
+What if the server returns a non-JSON page with error 500 in the line `(*)`? What if there's no such user, and GitHub returns a page with error 404 at `(**)`?
 
 ```js run
 fetch('no-such-user.json') // (*)
@@ -219,7 +219,7 @@ The great thing about having our own class for errors is that we can easily chec
 
 For instance, we can make a request, and then if we get 404 -- ask the user to modify the information.
 
-The code below loads a user with the given name from github. If there's no such user, then it asks for the correct name:
+The code below loads a user with the given name from GitHub. If there's no such user, then it asks for the correct name:
 
 ```js run
 function demoGithubUser() {
