@@ -2,7 +2,7 @@
 
 Sometimes, we need to perform different actions based on different conditions.
 
-To do that, we use the `if` statement and the conditional (ternary) operator which we will be referring to as the “question mark” operator `?` for simplicity.
+To do that, we can use the `if` statement and the conditional operator `?`, that's also called a "question mark" operator.
 
 ## The "if" statement
 
@@ -103,7 +103,7 @@ In the code above, JavaScript first checks `year < 2015`. If that is falsy, it g
 
 There can be more `else if` blocks. The final `else` is optional.
 
-## Ternary operator '?'
+## Conditional operator '?'
 
 Sometimes, we need to assign a variable depending on a condition.
 
@@ -124,9 +124,9 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-The so-called "ternary" or "question mark" operator lets us do that in a shorter and simpler way.
+The so-called "conditional" or "question mark" operator lets us do that in a shorter and simpler way.
 
-The operator is represented by a question mark `?`.  The formal term "ternary" means that the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
+The operator is represented by a question mark `?`. Sometimes it's called "ternary", because the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
 
 The syntax is:
 ```js
@@ -141,7 +141,7 @@ For example:
 let accessAllowed = (age > 18) ? true : false;
 ```
 
-Technically, we can omit the parentheses around `age > 18`. The question mark operator has a low precedence, so it executes after the comparison `>`. 
+Technically, we can omit the parentheses around `age > 18`. The question mark operator has a low precedence, so it executes after the comparison `>`.
 
 This example will do the same thing as the previous one:
 

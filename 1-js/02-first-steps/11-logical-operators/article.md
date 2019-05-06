@@ -84,7 +84,7 @@ The OR `||` operator does the following:
 
 A value is returned in its original form, without the conversion.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no such value is found.
+In other words, a chain of OR `"||"` returns the first truthy value or the last one if no truthy value is found.
 
 For instance:
 
@@ -101,7 +101,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
 1. **Getting the first truthy value from a list of variables or expressions.**
 
-    Imagine we have several variables which can either contain data or be `null/undefined`. How can we find the first one with data?
+    Imagine we have a list of variables which can either contain data or be `null/undefined`. How can we find the first one with data?
 
     We can use OR `||`:
 
@@ -143,7 +143,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     alert(x); // 1
     ```
 
-    An assignment is a simple case. Other side effects can also be involved.
+    An assignment is a simple case. There may be side effects, that won't show up if the evaluation doesn't reach them.
 
     As we can see, such a use case is a "shorter way of doing `if`". The first operand is converted to boolean. If it's false, the second one is evaluated.
 
