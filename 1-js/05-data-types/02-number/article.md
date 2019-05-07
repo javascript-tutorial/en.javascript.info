@@ -326,7 +326,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, it rarely matters, but these values technically are different.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
