@@ -39,8 +39,9 @@ In other words, `new User(...)` does something like:
 function User(name) {
 *!*
   // this = {};  (implicitly)
+  // this.__proto__ = User.prototype  (implicitly)
 */!*
-
+  
   // add properties to this
   this.name = name;
   this.isAdmin = false;
