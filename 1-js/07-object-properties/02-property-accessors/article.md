@@ -87,8 +87,8 @@ Now we have a "virtual" property. It is readable and writable, but in fact does 
 ```smart header="Accessor properties are only accessible with get/set"
 Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data properety any more.
 
-- If there's a getter -- we can read `object.prop`, othrewise we can't.
-- If there's a setter -- we can set `object.prop=...`, othrewise we can't.
+- If there's a getter -- we can read `object.prop`, otherwise we can't.
+- If there's a setter -- we can set `object.prop=...`, otherwise we can't.
 
 And in either case we can't `delete` an accessor property.
 ```
