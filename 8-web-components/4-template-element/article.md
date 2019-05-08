@@ -31,7 +31,7 @@ We can put styles and scripts into `<template>` as well:
 </template>
 ```
 
-The browser considers `<template>` content "out of the document", so the style is not applied, scripts are executed, `<video autoplay>` is not run, etc.
+The browser considers `<template>` content "out of the document", so the style is not applied, scripts are not executed, `<video autoplay>` is not run, etc.
 
 The content becomes live (the script executes) when we insert it.
 
