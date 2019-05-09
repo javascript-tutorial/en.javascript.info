@@ -153,7 +153,7 @@ alert( `Called ${sayHi.counter} times` ); // Called 2 times
 ```warn header="A property is not a variable"
 A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables never use function properties and vice versa. These are just parallel worlds.
+We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
 ```
 
 Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
@@ -340,7 +340,7 @@ Functions are objects.
 
 Here we covered their properties:
 
-- `name` -- the function name. Exists not only when given in the function definition, but also for assignments and object properties.
+- `name` -- the function name. Usually taken from the function definition, but if there's non, JavaScript tries to guess it from the context (e.g. an assignment).
 - `length` -- the number of arguments in the function definition. Rest parameters are not counted.
 
 If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.

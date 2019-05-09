@@ -46,14 +46,15 @@ alert( arr instanceof Object ); // true
 
 Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypally inherits from `Object`.
 
-The `instanceof` operator examines the prototype chain for the check, and is also fine-tunable using the static method `Symbol.hasInstance`.
+The `instanceof` operator examines the prototype chain for the check, but we can set a custom logic the static method `Symbol.hasInstance`.
 
 The algorithm of `obj instanceof Class` works roughly as follows:
 
-1. If there's a static method `Symbol.hasInstance`, then use it. Like this:
+1. If there's a static method `Symbol.hasInstance`, then just call it: `Class[Symbol.hasInstance](obj)`. It should return either `true` or `false`. We're done.
+    For example: 
 
     ```js run
-    // assume anything that canEat is an animal
+    // setup instanceOf check that assumes that anything that canEat is an animal
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -61,10 +62,11 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     }
 
     let obj = { canEat: true };
+
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
-2. Most classes do not have `Symbol.hasInstance`. In that case, check if `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Classs` checks whether `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
 
     In other words, compare:
     ```js
@@ -117,7 +119,7 @@ alert( rabbit instanceof Rabbit ); // false
 
 That's one of the reasons to avoid changing `prototype`. Just to keep safe.
 
-## Bonus: Object toString for the type
+## Bonus: Object.prototype.toString for the type
 
 We already know that plain objects are converted to string as `[object Object]`:
 
