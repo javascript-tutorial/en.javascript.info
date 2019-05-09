@@ -263,7 +263,7 @@ Modern JavaScript allows to use these properties in regexps to look for characte
 
 - A cyrillic letter is: `pattern:\p{Script=Cyrillic}` or `pattern:\p{sc=Cyrillic}`.
 - A dash (be it a small hyphen `-` or a long dash `—`): `pattern:\p{Dash_Punctuation}` or `pattern:\p{pd}`.
-- A currency symbol: `pattern:\p{Currency_Symbol}` or `pattern:\p{sc}`.
+- A currency symbol, such as `$`, `€` or another: `pattern:\p{Currency_Symbol}` or `pattern:\p{sc}`.
 - ...And much more. Unicode has a lot of character categories that we can select from.
 
 These patterns require `'u'` regexp flag to work. More about that in the chapter [](info:regexp-unicode).

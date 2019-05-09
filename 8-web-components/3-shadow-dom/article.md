@@ -98,7 +98,7 @@ alert(elem.shadowRoot.host === elem); // true
 
 Shadow DOM is strongly delimited from the main document:
 
-1. Shadow DOM elements are not visible to `querySelector` from the light DOM. In particular,  Shadow DOM elements may have ids that conflict with those in the light DOM. They be unique only within the shadow tree.
+1. Shadow DOM elements are not visible to `querySelector` from the light DOM. In particular,  Shadow DOM elements may have ids that conflict with those in the light DOM. They must be unique only within the shadow tree.
 2. Shadow DOM has own stylesheets. Style rules from the outer DOM don't get applied.
 
 For example:

@@ -49,8 +49,8 @@ class Article {
 
 // usage
 let articles = [
-  new Article("Mind", new Date(2019, 1, 1)),
-  new Article("Body", new Date(2019, 0, 1)),
+  new Article("HTML", new Date(2019, 1, 1)),
+  new Article("CSS", new Date(2019, 0, 1)),
   new Article("JavaScript", new Date(2019, 11, 1))
 ];
 
@@ -58,7 +58,7 @@ let articles = [
 articles.sort(Article.compare);
 */!*
 
-alert( articles[0].title ); // Body
+alert( articles[0].title ); // CSS
 ```
 
 Here `Article.compare` stands "over" the articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
@@ -171,7 +171,7 @@ rabbits[0].run(); // Black Rabbit runs with speed 5.
 
 Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` will be called.
 
-How does it work? Again, using prototypes. As you might have already guessed, extends also gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
+How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
 
 ![](animal-rabbit-static.png)
@@ -187,10 +187,10 @@ class Rabbit extends Animal {}
 // for static properties and methods
 alert(Rabbit.__proto__ === Animal); // true
 
-// and the next step is Function.prototype
+// the next step up leads to Function.prototype
 alert(Animal.__proto__ === Function.prototype); // true
 
-// that's in addition to the "normal" prototype chain for object methods
+// the "normal" prototype chain for object methods
 alert(Rabbit.prototype.__proto__ === Animal.prototype);
 ```
 
