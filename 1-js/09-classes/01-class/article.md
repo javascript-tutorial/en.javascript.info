@@ -168,12 +168,12 @@ Although, there are important differences.
     alert(User); // class User { ... }
     ```
 
-2. Class methods are non-enumerable
+2. Class methods are non-enumerable.
     A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`.
 
     That's good, because if we `for..in` over an object, we usually don't want its class methods.
 
-3. Classes always `use strict`
+3. Classes always `use strict`.
     All code inside the class construct is automatically in strict mode.
 
 
