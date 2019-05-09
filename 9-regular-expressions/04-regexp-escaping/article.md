@@ -61,7 +61,7 @@ let reg = new RegExp("\d\.\d");
 alert( "Chapter 5.1".match(reg) ); // null
 ```
 
-It worked with `pattern:/\d\.\d/`, but with `new RegExp("\d\.\d")` it doesn't, why?
+The search worked with `pattern:/\d\.\d/`, but with `new RegExp("\d\.\d")` it doesn't work, why?
 
 The reason is that backslashes are "consumed" by a string. Remember, regular strings have their own special characters like `\n`, and a backslash is used for escaping.
 
@@ -77,7 +77,7 @@ The quotes "consume" backslashes and interpret them, for instance:
 - `\u1234` -- becomes the Unicode character with such code,
 - ...And when there's no special meaning: like `\d` or `\z`, then the backslash is simply removed.
 
-So the call to `new RegExp` gets a string without backslashes. That's why it doesn't work!
+So the call to `new RegExp` gets a string without backslashes. That's why the search doesn't work!
 
 To fix it, we need to double backslashes, because quotes turn `\\` into `\`:
 
