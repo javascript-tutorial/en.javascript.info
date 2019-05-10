@@ -122,7 +122,7 @@ The latter works, because `Object.keys` only returns the keys that belong to the
 
 Please note that both key and value must be strings.
 
-If we any other type, like a number, or an object, it gets converted to string automatically:
+If we want any other type, like a number, or an object, it gets converted to string automatically:
 
 ```js run
 sessionStorage.user = {name: "John"};
