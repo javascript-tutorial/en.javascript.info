@@ -301,14 +301,14 @@ There are two notable differences of external module scripts:
 
     That ensures better security by default.
 
-### No bare modules allowed
+### No "bare" modules allowed
 
-In the browser, in scripts (not in HTML), `import` must get either a relative or absolute URL. So-called "bare" modules, without a path, are not allowed.
+In the browser, in scripts (not in HTML), `import` must get either a relative or absolute URL. Modules without any path are called "bare" modules. Such modules are not allowed in `import`.
 
 For instance, this `import` is invalid:
 ```js
 import {sayHi} from 'sayHi'; // Error, "bare" module
-// must be './sayHi.js' or wherever the module is
+// the module must have a path, e.g. './sayHi.js' or wherever the module is
 ```
 
 Certain environments, like Node.js or bundle tools allow bare modules, as they have own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
@@ -328,7 +328,7 @@ Old browsers do not understand `type="module"`. Scripts of the unknown type are 
 </script>
 ```
 
-If we use bundle tools, then as modules are bundled together, their `import/export` statements are replaced by special bundler calls, so the resulting build does not require `type="module"`, and we can put it into a regular script:
+If we use bundle tools, then as scripts are bundled together into a single file (or few files), `import/export` statements inside those scripts are replaced by special bundler functions. So the resulting "bundled" script does not contain any `import/export`, it doesn't require `type="module"`, and we can put it into a regular script:
 
 ```html
 <!-- Assuming we got bundle.js from a tool like Webpack -->
