@@ -97,14 +97,14 @@ For example, here are US layout ("QWERTY") and German layout ("QWERTZ") under it
 
 ![](german-layout.png)
 
-For the same key, US layout has "Z", while German layout has "Y" and (letters are swapped).
+For the same key, US layout has "Z", while German layout has "Y" (letters are swapped).
 
-So, `event.code` will equal `KeyZ` for German people who press "Y". Just because the keyboard layout is different.
+So, `event.code` will equal `KeyZ` for people with German layout when they press "Y".
 
 That sounds odd, but so it is. The [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) explicitly mentions such behavior.
 
-- `event.code` has the benefit of being the same, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
-- `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may be at different keyboard keys, leading to different codes. That happens for several codes, e.g. `keyA`, `keyQ`, `keyZ`. You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+- `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
+- `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may map to different physical keys, leading to different codes. That happens for several codes, e.g. `keyA`, `keyQ`, `keyZ` (as we've seen). You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
 
 So, to reliably track layout-dependent characters, `event.key` may be a better way.
 
