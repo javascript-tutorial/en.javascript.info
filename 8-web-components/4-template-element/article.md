@@ -1,9 +1,9 @@
 
 # Template element
 
-A built-in `<template>` element serves as a storage for markup. The browser ignores it contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
+A built-in `<template>` element serves as a storage for HTML markup templates. The browser ignores it contents, only checks for syntax validity, but we can access and use it in JavaScript, to create other elements.
 
-In theory, we could create any invisible element somewhere in HTML for markup storage purposes. What's special about `<template>`?
+In theory, we could create any invisible element somewhere in HTML for HTML markup storage purposes. What's special about `<template>`?
 
 First, its content can be any valid HTML, even if it normally requires a proper enclosing tag.
 
@@ -31,9 +31,9 @@ We can put styles and scripts into `<template>` as well:
 </template>
 ```
 
-The browser considers `<template>` content "out of the document", so the style is not applied, scripts are not executed, `<video autoplay>` is not run, etc.
+The browser considers `<template>` content "out of the document": styles are not applied, scripts are not executed, `<video autoplay>` is not run, etc.
 
-The content becomes live (the script executes) when we insert it.
+The content becomes live (styles apply, scripts run etc) when we insert it into the document.
 
 ## Inserting template
 
@@ -87,7 +87,7 @@ Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
 </script>
 ```
 
-In the line `(*)` when we clone and insert `tmpl.content`, its children (`<style>`, `<p>`) are inserted instead.
+In the line `(*)` when we clone and insert `tmpl.content`, as it's `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
 
 They form the shadow DOM:
 
@@ -109,8 +109,8 @@ To summarize:
 
 The `<template>` tag is quite unique, because:
 
-- The browser checks the syntax inside it (as opposed to using a template string inside a script).
+- The browser checks HTML syntax inside it (as opposed to using a template string inside a script).
 - ...But still allows to use any top-level HTML tags, even those that don't make sense without proper wrappers (e.g. `<tr>`).
 - The content becomes interactive: scripts run, `<video autoplay>` plays etc, when inserted into the document.
 
-The `<template>` tag does not feature any sophisticated iteration mechanisms, data binding or variable substitutions, making it less powerful than frameworks. But we can build those on top of it.
+The `<template>` element does not feature any iteration mechanisms, data binding or variable substitutions, but we can implement those on top of it.
