@@ -3,7 +3,7 @@ The tutorial is free to read.
 
 If you'd like to do something else with it, please get a permission from Ilya Kantor, iliakan@javascript.ru.
 
-As of now, I license the tutorial to almost everyone under the terms of a "free" CC-BY-NC-SA license. Just please be so kind to contact me.
+As of now, we license the tutorial to almost everyone for free under the terms of an "open" CC-BY-NC-SA license. Just please be so kind to contact.
 
 ## Attribution-NonCommercial-ShareAlike license (CC-BY-NC-SA)
 
