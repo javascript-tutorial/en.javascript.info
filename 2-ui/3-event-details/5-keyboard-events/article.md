@@ -110,9 +110,9 @@ So, to reliably track layout-dependent characters, `event.key` may be a better w
 
 ## Auto-repeat
 
-If a key is being pressed for a long enough time, it starts to repeat: the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
+If a key is being pressed for a long enough time, it starts to "auto-repeat": the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
 
-For all repeating keys the event object has `event.repeat` property set to `true`.
+For events triggered by auto-repeat, the event object has `event.repeat` property set to `true`.
 
 
 ## Default actions
