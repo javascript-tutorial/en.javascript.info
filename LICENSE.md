@@ -1,5 +1,11 @@
 
-# Attribution-NonCommercial-ShareAlike 4.0
+The tutorial is free to read.
+
+If you'd like to do something else with it, please get a permission from Ilya Kantor, iliakan@javascript.ru.
+
+As of now, I license the tutorial to almost everyone under the terms of a "free" CC-BY-NC-SA license. Just please be so kind to contact me.
+
+## Attribution-NonCommercial-ShareAlike license (CC-BY-NC-SA)
 
 The full license text is at <https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>.
 
