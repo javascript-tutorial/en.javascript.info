@@ -312,7 +312,7 @@ socket.onmessage = function(event) {
 }
 ```
 
-Server-side code is a little bit beyound our scope here. We're using browser WebSocket API, a server may have another library.
+Server-side code is a little bit beyond our scope here. We're using browser WebSocket API, a server may have another library.
 
 Still it can also be pretty simple. We'll use Node.js with <https://github.com/websockets/ws> module for websockets.
 
