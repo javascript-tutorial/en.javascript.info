@@ -80,7 +80,7 @@ If we forget the `u` flag and occasionally use surrogate pairs, then we can get 
 
 Normally, regexps understand `[a-z]` as a "range of characters with codes between codes of `a` and `z`.
 
-But without `u` flag, surrogate pairs are assumed to be a "pair of independant characters", so `[𝒳-𝒴]` is like `[<55349><56499>-<55349><56500>]` (replaced each surrogate pair with code points). Now we can clearly see that the range `56499-55349` is unacceptable, as the left range border must be less than the right one.
+But without `u` flag, surrogate pairs are assumed to be a "pair of independent characters", so `[𝒳-𝒴]` is like `[<55349><56499>-<55349><56500>]` (replaced each surrogate pair with code points). Now we can clearly see that the range `56499-55349` is unacceptable, as the left range border must be less than the right one.
 
 Using the `u` flag makes it work right:
 

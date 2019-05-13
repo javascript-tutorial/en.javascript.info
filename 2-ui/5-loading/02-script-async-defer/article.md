@@ -92,7 +92,7 @@ The `defer` attribute is ignored if the script has no `src`.
 
 ## async
 
-The `async` attribute means that a script is completely independant:
+The `async` attribute means that a script is completely independent:
 
 - The page doesn't wait for async scripts, the contents is processed and displayed.
 - `DOMContentLoaded` and async scripts don't wait each other:
@@ -120,7 +120,7 @@ So, if we have several `async` scripts, they may execute in any order. Whatever 
 2. `DOMContentLoaded` may happen both before and after `async`, no guarantees here.
 3. Async scripts don't wait for each other. A smaller script `small.js` goes second, but probably loads before `long.js`, so runs first. That's called a "load-first" order.
 
-Async scripts are great when we integrate an independant third-party script into the page: counters, ads and so on.
+Async scripts are great when we integrate an independent third-party script into the page: counters, ads and so on.
 
 ```html
 <script async src="https://google-analytics.com/analytics.js"></script>
