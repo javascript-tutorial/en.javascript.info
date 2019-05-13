@@ -49,7 +49,7 @@ Right now they are fully independent.
 
 But we'd want `Rabbit` to extend `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
 
-To inherit from another class, we should specify `"extends"` and the parent class before the brackets `{..}`.
+To inherit from another class, we should specify `"extends"` and the parent class before the braces `{..}`.
 
 Here `Rabbit` inherits from `Animal`:
 
