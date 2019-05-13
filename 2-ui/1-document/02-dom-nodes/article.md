@@ -106,7 +106,7 @@ drawHtmlTree(node3, 'div.domtree', 690, 150);
 
 While generating the DOM, browsers automatically process errors in the document, close tags and so on.
 
-Such an "invalid" document:
+Such an document with unclosed tags:
 
 ```html no-beautify
 <p>Hello
@@ -225,7 +225,7 @@ The best way to study them is to click around. Most values are editable in-place
 
 ## Interaction with console
 
-As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see how it looks. Here are few tips to travel between the Elements tab and the console.
+As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
 
 - Select the first `<li>` in the Elements tab.
 - Press `key:Esc` -- it will open console right below the Elements tab.
