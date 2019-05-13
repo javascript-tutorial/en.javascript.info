@@ -409,7 +409,7 @@ Import:
   - `import {default as x} from "mod"`
 - Everything:
   - `import * as obj from "mod"`
-- Only fetch/evalute the module, don't import:
+- Only fetch/evaluate the module, don't import:
   - `import "mod"`
 
 We can put import/export statements below or after other code, that doesn't matter.
