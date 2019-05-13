@@ -9,7 +9,7 @@ Although, there's a bit of confusion, because there are many classes. To name a 
 
 Binary data in JavaScript is implemented in a non-standard way, compared to other languages. But when we sort things out, everything becomes fairly simple.
 
-**The basic binary object is `ArrayBuffer` -- a reference to a fixed-length contiguos memory area.**
+**The basic binary object is `ArrayBuffer` -- a reference to a fixed-length contiguous memory area.**
 
 We create it like this:
 ```js run
@@ -209,7 +209,7 @@ These methods allow us to copy typed arrays, mix them, create new arrays from ex
 [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) is a special super-flexible "untyped" view over `ArrayBuffer`. It allows to access the data on any offset in any format.
 
 - For typed arrays, the constructor dictates what the format is. The whole array is supposed to be uniform. The i-th number is `arr[i]`.
-- With `DataView` we access the data with methods like `.getUint8(i)` or `.gteUint16(i)`. We choose the format at method call time instead of the construction time.
+- With `DataView` we access the data with methods like `.getUint8(i)` or `.getUint16(i)`. We choose the format at method call time instead of the construction time.
 
 The syntax:
 
@@ -249,7 +249,7 @@ dataView.setUint32(0, 0); // set 4-byte number to zero
 To do almost any operation on `ArrayBuffer`, we need a view.
 
 - It can be a `TypedArray`:
-    - `Uint8Array`, `Uint16Array`, `Uint32Array` -- for integer numbers of 8, 16 and 32 bits.
+    - `Uint8Array`, `Uint16Array`, `Uint32Array` -- for unsigned integers of 8, 16, and 32 bits.
     - `Uint8ClampedArray` -- for 8-bit integers, "clamps" them on assignment.
     - `Int8Array`, `Int16Array`, `Int32Array` -- for signed integer numbers (can be negative).
     - `Float32Array`, `Float64Array` -- for signed floating-point numbers of 32 and 64 bits.
@@ -261,7 +261,7 @@ There are also two additional terms:
 - `ArrayBufferView` is an umbrella term for all these kinds of views.
 - `BufferSource` is an umbrella term for `ArrayBuffer` or `ArrayBufferView`.
 
-These are used in descriptions of methods that operate on binary data. `BufferSource` is one of the most common teerms, as it means "any kind of binary data" -- an `ArrayBuffer` or a view over it. 
+These are used in descriptions of methods that operate on binary data. `BufferSource` is one of the most common terms, as it means "any kind of binary data" -- an `ArrayBuffer` or a view over it. 
 
 
 Here's a cheatsheet:
