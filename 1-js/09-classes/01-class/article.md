@@ -241,7 +241,7 @@ class User {
 
   constructor(name) {
     // invokes the setter
-    this._name = name;
+    this.name = name;
   }
 
 *!*
