@@ -155,14 +155,21 @@ alert(user + 500); // toString -> John500
 
 In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
 
-
-## ToPrimitive and ToString/ToNumber
+## Return types
 
 The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
 
 There is no control whether `toString()` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint "number".
 
-**The only mandatory thing: these methods must return a primitive.**
+The only mandatory thing: these methods must return a primitive, not an object.
+
+```smart header="Historical notes"
+For historical reasons, if `toString` or `valueOf` return an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
+
+In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
+```
+
+## Further operations
 
 An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary.
 
@@ -204,11 +211,6 @@ For instance:
     alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
     ```
 
-```smart header="Historical notes"
-For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but that object is ignored (like if the method didn't exist).
-
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise, there will be an error.
-```
 
 ## Summary
 
