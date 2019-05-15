@@ -236,7 +236,7 @@ If the default action was prevented, the value of `event.defaultPrevented` becom
 ```warn header="Stay semantic, don't abuse"
 Technically, by preventing default actions and adding JavaScript we can customize the behavior of any elements. For instance, we can make a link `<a>` work like a button, and a button `<button>` behave as a link (redirect to another URL or so).
 
-But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should preform navigation, not a button.
+But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should perform navigation, not a button.
 
 Besides being "just a good thing", that makes your HTML better in terms of accessibility.
 
