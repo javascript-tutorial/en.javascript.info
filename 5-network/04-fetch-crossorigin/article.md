@@ -198,7 +198,7 @@ A preflight request uses method `OPTIONS` and has no body.
 
 If the server agrees to serve the requests, then it should respond with status 200, without body.
 
-- The response header `Access-Control-Allow-Method` must have the allowed method.
+- The response header `Access-Control-Allow-Methods` must have the allowed method.
 - The response header `Access-Control-Allow-Headers` must have a list of allowed headers.
 - Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
 
@@ -243,7 +243,7 @@ Access-Control-Request-Headers: Content-Type,API-Key
 ### Step 2 (preflight response)
 
 The server should respond with status 200 and headers:
-- `Access-Control-Allow-Method: PATCH`
+- `Access-Control-Allow-Methods: PATCH`
 - `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
 That would allow future communication, otherwise an error is triggered.
@@ -364,7 +364,7 @@ Additionally, if JavaScript wants no access non-simple response headers:
     - `Access-Control-Request-Method` has requested method.
     - `Access-Control-Request-Headers` lists non-simple requested headers
 - ← The server should respond with status 200 and headers:
-    - `Access-Control-Allow-Method` with a list of allowed methods,
+    - `Access-Control-Allow-Methods` with a list of allowed methods,
     - `Access-Control-Allow-Headers` with a list of allowed headers,
     - `Access-Control-Max-Age` with a number of seconds to cache permissions.
 - Then the actual request is sent, the previous "simple" scheme is applied.
