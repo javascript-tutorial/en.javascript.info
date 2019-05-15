@@ -264,7 +264,7 @@ That's what's going on:
 2. Then it looks for `pattern:.*?`: takes one character (lazily!), check if there's a match for `pattern:" class="doc">` (none).
 3. Then takes another character into `pattern:.*?`, and so on... until it finally reaches `match:" class="doc">`.
 
-But the problem is: that's already beyound the link, in another tag `<p>`. Not what we want.
+But the problem is: that's already beyond the link, in another tag `<p>`. Not what we want.
 
 Here's the picture of the match aligned with the text:
 

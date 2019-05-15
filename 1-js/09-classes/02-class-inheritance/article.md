@@ -49,7 +49,7 @@ Right now they are fully independent.
 
 But we'd want `Rabbit` to extend `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
 
-To inherit from another class, we should specify `"extends"` and the parent class before the brackets `{..}`.
+To inherit from another class, we should specify `"extends"` and the parent class before the braces `{..}`.
 
 Here `Rabbit` inherits from `Animal`:
 
@@ -209,7 +209,7 @@ With constructors it gets a little bit tricky.
 
 Till now, `Rabbit` did not have its own `constructor`.
 
-According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following `constructor` is generated:
+According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following "empty" `constructor` is generated:
 
 ```js
 class Rabbit extends Animal {
@@ -309,15 +309,15 @@ alert(rabbit.earLength); // 10
 
 Let's get a little deeper under the hood of `super`. We'll see some interesting things by the way.
 
-First to say, from all that we've learned till now, it's impossible for `super` to work.
+First to say, from all that we've learned till now, it's impossible for `super` to work at all!
 
-Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, how to retrieve the `method`? Naturally, we need to take the `method` from the prototype of the current object. How, technically, we (or a JavaScript engine) can do it?
+Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, it needs to retrieve the `method` from the prototype of the current object. How JavaScript engine should get the prototype of `this`?
 
-Maybe we can get the method from `[[Prototype]]` of `this`, as `this.__proto__.method`? Unfortunately, that doesn't work.
+The task may seem simple, but it isn't. The engine could try to get the method from `[[Prototype]]` of `this`, as `this.__proto__.method`. Unfortunately, that doesn't work.
 
-Let's try to do it. Without classes, using plain objects for the sake of simplicity.
+Let's demonstrate the problem. Without classes, using plain objects for the sake of simplicity.
 
-Here, `rabbit.eat()` should call `animal.eat()` method of the parent object:
+In the example below, `rabbit.__proto__ = animal`. Now let's try: in `rabbit.eat()` we'll call `animal.eat()`, using `this.__proto__`:
 
 ```js run
 let animal = {
@@ -418,7 +418,7 @@ To provide the solution, JavaScript adds one more special internal property for 
 
 This actually violates the idea of "unbound" functions, because methods remember their objects. And `[[HomeObject]]` can't be changed, so this bound is forever. So that's a very important change in the language.
 
-But this change is safe. `[[HomeObject]]` is used only for calling parent methods in `super`, to resolve the prototype. So it doesn't break compatibility.
+But this change is safe. `[[HomeObject]]` is used only for calling parent methods in `super`, to resolve the prototype. So it doesn't break compatibility. Regular method calls know nothing about `[[HomeObject]]`, it only matters for `super`.
 
 Let's see how it works for `super` -- again, using plain objects:
 

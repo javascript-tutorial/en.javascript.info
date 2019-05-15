@@ -86,7 +86,7 @@ That's the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-In the browser, independant top-level scope also exists for each `<script type="module">`:
+In the browser, independent top-level scope also exists for each `<script type="module">`:
 
 ```html run
 <script type="module">
@@ -263,7 +263,7 @@ When using modules, we should be aware that HTML-document can show up before the
 
 ### Async works on inline scripts
 
-Async attribute `<script async type="module">` is allowed on both inline and external scripts. Async scripts run immediately when imported modules are processed, independantly of other scripts or the HTML document.
+Async attribute `<script async type="module">` is allowed on both inline and external scripts. Async scripts run immediately when imported modules are processed, independently of other scripts or the HTML document.
 
 For example, the script below has `async`, so it doesn't wait for anyone.
 

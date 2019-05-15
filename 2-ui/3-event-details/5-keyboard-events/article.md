@@ -75,13 +75,11 @@ Please note that `event.code` specifies exactly which key is pressed. For instan
 
 Let's say, we want to handle a hotkey: `key:Ctrl+Z` (or `key:Cmd+Z` for Mac). Most text editors hook the "Undo" action on it. We can set a listener on `keydown` and check which key is pressed -- to detect when we have the hotkey.
 
-Please answer the question -- in such a listener, should we check the value of `event.key` or `event.code`?
+There's a dilemma here: in such a listener, should we check the value of `event.key` or `event.code`?
 
-Please, pause and answer.
+On one hand, the value of `event.key` changes depending on the language. If the visitor has several languages in OS and switches between them, the same key gives different characters. So it makes sense to check `event.code`, it's always the same.
 
-Made up your mind?
-
-If you've got an understanding, then the answer is, of course, `event.code`, as we don't want `event.key` there. The value of `event.key` can change depending on the language or `CapsLock` enabled. The value of `event.code` is strictly bound to the key, so here we go:
+Like this:
 
 ```js run
 document.addEventListener('keydown', function(event) {
@@ -91,11 +89,30 @@ document.addEventListener('keydown', function(event) {
 });
 ```
 
+On the other hand, there's a problem with `event.code`. For different keyboard layouts, the same key may have different labels (letters).
+
+For example, here are US layout ("QWERTY") and German layout ("QWERTZ") under it (courtesy of Wikipedia):
+
+![](us-layout.png)
+
+![](german-layout.png)
+
+For the same key, US layout has "Z", while German layout has "Y" (letters are swapped).
+
+So, `event.code` will equal `KeyZ` for people with German layout when they press "Y".
+
+That sounds odd, but so it is. The [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) explicitly mentions such behavior.
+
+- `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
+- `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may map to different physical keys, leading to different codes. That happens for several codes, e.g. `keyA`, `keyQ`, `keyZ` (as we've seen). You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+
+So, to reliably track layout-dependent characters, `event.key` may be a better way.
+
 ## Auto-repeat
 
-If a key is being pressed for a long enough time, it starts to repeat: the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
+If a key is being pressed for a long enough time, it starts to "auto-repeat": the `keydown` triggers again and again, and then when it's released we finally get `keyup`. So it's kind of normal to have many `keydown` and a single `keyup`.
 
-For all repeating keys the event object has `event.repeat` property set to `true`.
+For events triggered by auto-repeat, the event object has `event.repeat` property set to `true`.
 
 
 ## Default actions
@@ -146,10 +163,9 @@ Now arrows and deletion works well.
 
 In the past, there was a `keypress` event, and also `keyCode`, `charCode`, `which` properties of the event object.
 
-There were so many browser incompatibilities that developers of the specification decided to deprecate all of them. The old code still works, as the browser keep supporting them, but there's totally no need to use those any more.
+There were so many browser incompatibilities that developers of the specification decided to deprecate all of them. The old code still works, as browsers keep supporting them, but there's totally no need to use those any more.
 
-There was time when this chapter included their detailed description. But as of now we can forget about those.
-
+There was a time when this chapter included their detailed description. But as of now it was removed and replaced with more details about the modern event handling.
 
 ## Summary
 
@@ -165,6 +181,6 @@ Main keyboard event properties:
 - `code` -- the "key code" (`"KeyA"`, `"ArrowLeft"` and so on), specific to the physical location of the key on keyboard.
 - `key` -- the character (`"A"`, `"a"` and so on), for non-character keys usually has the same value  as `code`.
 
-In the past, keyboard events were sometimes used to track user input in form fields. That's not reliable, because the input can come from various sources. We have `input` and `change` events to handle any input (covered later in the chapter <info:events-change-input>). They trigger after any input, including mouse or speech recognition.
+In the past, keyboard events were sometimes used to track user input in form fields. That's not reliable, because the input can come from various sources. We have `input` and `change` events to handle any input (covered later in the chapter <info:events-change-input>). They trigger after any kind of input, including copy-pasting or speech recognition.
 
 We should use keyboard events when we really want keyboard. For example, to react on hotkeys or special keys.

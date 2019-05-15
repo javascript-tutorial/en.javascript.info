@@ -35,9 +35,9 @@ Then after any changes, the `callback` is executed, with a list of [MutationReco
 [MutationRecord](https://dom.spec.whatwg.org/#mutationrecord) objects have properties:
 
 - `type` -- mutation type, one of
-    - `"attributes"` (attribute modified)
-    - `"characterData"` (data modified)
-    - `"childList"` (elements added/removed),
+    - `"attributes"`: attribute modified
+    - `"characterData"`: data modified
+    - `"childList"`: elements added/removed,
 - `target` -- where the change occured: an element for "attributes", or text node for "characterData", or an element for a "childList" mutation,
 - `addedNodes/removedNodes`  -- nodes that were added/removed,
 - `previousSibling/nextSibling` -- the previous and next sibling to added/removed nodes,
@@ -48,7 +48,7 @@ Then after any changes, the `callback` is executed, with a list of [MutationReco
 For example, here's a `<div>` with `contentEditable` attribute. That attribute allows us to focus on it and edit.
 
 ```html run
-<div contentEditable id="elem">Edit <b>me</b>, please</div>
+<div contentEditable id="elem">Click and <b>edit</b>, please</div>
 
 <script>
 let observer = new MutationObserver(mutationRecords => {
@@ -98,11 +98,11 @@ mutationRecords = [{
 
 When `MutationObserver` is needed? Is there a scenario when such thing can be useful?
 
-Sure, we can track something like `contentEditable` and create "undo/redo" stack, but here's  an example where `MutationObserver` is good from architectural standpoint.
+We can track something like `contentEditable` and implement "undo/redo" functionality (record mutations and rollback/redo them on demand). There are also cases when `MutationObserver` is good from architectural standpoint.
 
-Let's say we're making a website about programming, like this one. Naturally, articles and other materials may contain source code snippets.
+Let's say we're making a website about programming. Naturally, articles and other materials may contain source code snippets.
 
-An HTML code snippet looks like this:
+An HTML markup of a code snippet looks like this:
 ```html
 ...
 <pre class="language-javascript"><code>
@@ -112,9 +112,9 @@ An HTML code snippet looks like this:
 ...
 ```
 
-There's also a JavaScript highlighting library, e.g. [Prism.js](https://prismjs.com/). A call to `Prism.highlightElem(pre)` examines the contents of such `pre` elements and adds colored syntax highlighting, similar to what you in examples here, this page.
+Also we'll use a JavaScript highlighting library on our site, e.g. [Prism.js](https://prismjs.com/). A call to `Prism.highlightElem(pre)` examines the contents of such `pre` elements and adds into them special tags and styles for colored syntax highlighting, similar to what you see in examples here, at this page.
 
-Generally, when a page loads, e.g. at the bottom of the page, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+When to run that method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
 
 ```js
 // highlight all code snippets on the page
@@ -139,7 +139,7 @@ articleElem.innerHTML = article;
 
 The new `article` HTML may contain code snippets. We need to call `Prism.highlightElem` on them, otherwise they won't get highlighted.
 
-**Who's responsibility is to call `Prism.highlightElem` for a dynamically loaded article?**
+**Where and when to call `Prism.highlightElem` for a dynamically loaded article?**
 
 We could append that call to the code that loads an article, like this:
 
@@ -153,9 +153,9 @@ snippets.forEach(Prism.highlightElem);
 */!*
 ```
 
-...But imagine, we have many places where we load contents with code: articles, quizzes, forum posts. Do we need to put the highlighting call everywhere? Then we need to be careful, not to forget about it.
+...But imagine, we have many places in the code where we load contents: articles, quizzes, forum posts. Do we need to put the highlighting call everywhere? That's not very convenient, and also easy to forget.
 
-And what if we load the content into a third-party engine? E.g. we have a forum written by someone else, that loads contents dynamically, and we'd like to add syntax highlighting to it. No one likes to patch third-party scripts.
+And what if the content is loaded by a third-party module? E.g. we have a forum written by someone else, that loads contents dynamically, and we'd like to add syntax highlighting to it. No one likes to patch third-party scripts.
 
 Luckily, there's another option.
 
@@ -176,7 +176,7 @@ let observer = new MutationObserver(mutations => {
     // examine new nodes
 
     for(let node of mutation.addedNodes) {
-      // skip newly added text nodes
+      // we track only elements, skip other nodes (e.g. text nodes)
       if (!(node instanceof HTMLElement)) continue;
 
       // check the inserted element for being a code snippet
@@ -184,7 +184,7 @@ let observer = new MutationObserver(mutations => {
         Prism.highlightElement(node);
       }
 
-      // search its subtree for code snippets
+      // maybe there's a code snippet somewhere in its subtree?
       for(let elem of node.querySelectorAll('pre[class*="language-"]')) {
         Prism.highlightElement(elem);
       }
@@ -200,7 +200,7 @@ observer.observe(demoElem, {childList: true, subtree: true});
 
 <p id="highlight-demo" style="border: 1px solid #ddd">Demo element with <code>id="highlight-demo"</code>, obverved by the example above.</p>
 
-The code below populates `innerHTML`. If you've run the code above, snippets will get highlighted:
+The code below populates `innerHTML`. Please run the code above first, it will watch and highlight the new content:
 
 ```js run
 let demoElem = document.getElementById('highlight-demo');
@@ -217,12 +217,9 @@ demoElem.innerHTML = `A code snippet is below:
 
 Now we have `MutationObserver` that can track all highlighting in observed elements or the whole `document`. We can add/remove code snippets in HTML without thinking about it.
 
+## Additional methods
 
-## Garbage collection
-
-Observers use weak references to nodes internally. That is: if a node is removed from DOM, and becomes unreachable, then it becomes garbage collected, an observer doesn't prevent that.
-
-Still, we can release observers any time:
+There's a method to stop observing the node:
 
 - `observer.disconnect()` -- stops the observation.
 
@@ -239,6 +236,10 @@ let mutationRecords = observer.takeRecords();
 // now all handled, disconnect
 observer.disconnect();
 ```
+
+## Garbage collection
+
+Observers use weak references to nodes internally. That is: if a node is removed from DOM, and becomes unreachable, then it becomes garbage collected, an observer doesn't prevent that.
 
 ## Summary  
 

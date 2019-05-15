@@ -312,7 +312,6 @@ All other key/value-getting methods, such as `Object.keys`, `Object.values` and 
 They only operate on the object itself. Properties from the prototype are taken into account.
 ```
 
-
 ## Summary
 
 - In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.

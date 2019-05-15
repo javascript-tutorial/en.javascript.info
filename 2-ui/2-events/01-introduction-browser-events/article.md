@@ -160,9 +160,9 @@ button.onclick = sayThanks;
 button.onclick = sayThanks();
 ```
 
-If we add brackets, then `sayThanks()` --  will be the *result* of the function execution, so `onclick` in the last code becomes `undefined` (the function returns nothing). That won't work.
+If we add parentheses, `sayThanks()` --  is a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
 
-...But in the markup we do need the brackets:
+...But in the markup we do need the parentheses:
 
 ```html
 <input type="button" id="button" onclick="sayThanks()">
@@ -351,7 +351,7 @@ Some properties of `event` object:
 : Event type, here it's `"click"`.
 
 `event.currentTarget`
-: Element that handled the event. That's exactly the same as `this`, unless you bind `this` to something else, and then `event.currentTarget` becomes useful.
+: Element that handled the event. That's exactly the same as `this`, unless the handler is an arrow function, or its `this` is bound to something else, then `event.currentTarget` becomes useful.
 
 `event.clientX / event.clientY`
 : Window-relative coordinates of the cursor, for mouse events.
