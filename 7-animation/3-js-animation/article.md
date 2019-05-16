@@ -55,7 +55,7 @@ Let's imagine we have several animations running simultaneously.
 
 If we run them separately, then even though each one has `setInterval(..., 20)`, then the browser would have to repaint much more often than every `20ms`.
 
-That's because they have different starting time, so "every 20ms" differs between different animations. The intervals are not alignned. So we'll have several independent runs within `20ms`.
+That's because they have different starting time, so "every 20ms" differs between different animations. The intervals are not aligned. So we'll have several independent runs within `20ms`.
 
 In other words, this:
 
