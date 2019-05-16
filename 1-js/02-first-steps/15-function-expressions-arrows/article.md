@@ -175,7 +175,7 @@ We can pass it between variables and run when we want.
 
 Let's formulate the key differences between Function Declarations and Expressions.
 
-First, the syntax: how to see what is what in the code.
+First, the syntax: how to differentiate between them in the code.
 
 - *Function Declaration:* a function, declared as a separate statement, in the main code flow.
 
@@ -186,7 +186,7 @@ First, the syntax: how to see what is what in the code.
     }
     ```
 - *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
-    
+
     ```js
     // Function Expression
     let sum = function(a, b) {
@@ -202,7 +202,7 @@ Once the execution flow passes to the right side of the assignment `let sum = fu
 
 Function Declarations are different.
 
-**A Function Declaration is usable in the whole script/code block.**
+**A Function Declaration is usable in the whole script (or a code block, if it's inside a block).**
 
 In other words, when JavaScript *prepares* to run the script or a code block, it first looks for Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
 
