@@ -325,21 +325,37 @@ The property is not placed into `User.prototype`. Instead, it is created by `new
 
 ## Summary
 
-JavaScript provides many ways to create a class.
+JavaScript provides many ways to create an object.
 
 First, as per the general object-oriented terminology, a class is something that provides "object templates", allows to create same-structured objects.
 
-When we say "a class", that doesn't necessary means the `class` keyword.
+When we say "an object", that doesn't necessary mean object created by function with `class` keyword.
 
-This is a class:
+This is a function, that creates an object:
 
 ```js
 function User(name) {
+  this.name = name;
   this.sayHi = function() {
-    alert(name);
+    alert(this.name);
   }
 }
 ```
+
+Object with the same "functionatity" may be done with `class` keyword function:
+
+```js
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  sayHi() {
+    alert(this.name);
+  }
+}
+```
+
+These two ways to implement template for object creation have same idea. Result of both functions invocation will be an object containing propetry `name` and `sayHi()` method.
 
 ...But in most cases `class` keyword is used, as it provides great syntax and many additional features.
 
