@@ -342,7 +342,7 @@ function User(name) {
 }
 ```
 
-Object with the same "functionatity" may be made with `class` keyword function:
+Object with the same "functionality" may be made with `class` keyword function:
 
 ```js
 class User {
