@@ -355,7 +355,7 @@ class User {
 }
 ```
 
-These two ways to implement template for object creation have same idea. Result of both functions invocation will be an object containing propetry `name` and `sayHi()` method.
+These two ways to implement template for object creation have same idea. Result of both functions invocation will be an object containing property `name` and `sayHi()` method.
 
 ...But in most cases `class` keyword is used, as it provides great syntax and many additional features.
 
