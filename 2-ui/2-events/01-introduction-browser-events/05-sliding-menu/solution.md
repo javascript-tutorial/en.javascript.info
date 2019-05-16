@@ -29,7 +29,7 @@ Like this:
 
 So if we set `onclick` on it, then it will catch clicks to the right of the text.
 
-...but `<span>` has an implicit `display: inline`, so it occupies exactly enough place to fit all the text:
+As `<span>` has an implicit `display: inline`, it occupies exactly enough place to fit all the text:
 
 ```html autorun height=50
 <span style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</span>
