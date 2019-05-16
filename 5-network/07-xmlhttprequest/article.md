@@ -12,7 +12,7 @@ In modern web-development `XMLHttpRequest` may be used for three reasons:
 2. We need to support old browsers, and don't want polyfills (e.g. to keep scripts tiny).
 3. We need something that `fetch` can't do yet, e.g. to track upload progress.
 
-Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to [fetch](https://javascript.info/fetch-basics).
+Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to <info:fetch-basics>.
 
 ## Basic flow
 
