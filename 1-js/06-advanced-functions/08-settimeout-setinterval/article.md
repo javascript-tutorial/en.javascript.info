@@ -130,7 +130,7 @@ setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```smart header="Time goes on while `alert` is shown"
 In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
 
-So if you run the code above and don't dismiss the `alert` window for some time, then in the next `alert` will be shown immediately as you do it. So the actual interval between alerts will be shorter than 5 seconds.
+So if you run the code above and don't dismiss the `alert` window for some time, then in the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 5 seconds.
 ```
 
 ## Recursive setTimeout
