@@ -60,7 +60,7 @@ So DOMContentLoaded definitely happens after such scripts:
 ```html run
 <script>
   document.addEventListener("DOMContentLoaded", () => {
-    console.log("DOM ready!");
+    alert("DOM ready!");
   });
 </script>
 
