@@ -15,7 +15,7 @@ alert( "Mop top".match(/[tm]op/gi) ); // "Mop", "top"
 
 Please note that although there are multiple characters in the set, they correspond to exactly one character in the match.
 
-So the example above gives no matches:
+So the example below gives no matches:
 
 ```js run
 // find "V", then [o or i], then "la"
