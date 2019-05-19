@@ -4,7 +4,7 @@ importance: 4
 
 # Get average age
 
-Write the function `getAverageAge(users)` that gets an array of objects with property `age` and gets the average.
+Write the function `getAverageAge(users)` that gets an array of objects with property `age` and returns the average age.
 
 The formula for the average is `(age1 + age2 + ... + ageN) / N`.
 
@@ -19,4 +19,3 @@ let arr = [ john, pete, mary ];
 
 alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 ```
-
