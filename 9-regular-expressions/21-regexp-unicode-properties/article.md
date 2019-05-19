@@ -12,7 +12,7 @@ Here's the main tree of properties:
 - Letter `L`:
   - lowercase `Ll`, modifier `Lm`, titlecase `Lt`, uppercase `Lu`, other `Lo`
 - Number `N`:
-  - decimal digit `Nd`, letter number `Nl`, other `No`:
+  - decimal digit `Nd`, letter number `Nl`, other `No`
 - Punctuation `P`:
   - connector `Pc`, dash `Pd`, initial quote `Pi`, final quote `Pf`, open `Ps`, close `Pe`, other `Po`
 - Mark `M` (accents etc):
@@ -22,7 +22,7 @@ Here's the main tree of properties:
 - Separator `Z`:
   - line `Zl`, paragraph `Zp`, space `Zs`
 - Other `C`:
-  - control `Cc`, format `Cf`, not assigned `Cn`, private use `Co`, surrogate `Cs`.
+  - control `Cc`, format `Cf`, not assigned `Cn`, private use `Co`, surrogate `Cs`
 
 ```smart header="More information"
 Interested to see which characters belong to a property? There's a tool at <http://cldr.unicode.org/unicode-utilities/list-unicodeset> for that.
