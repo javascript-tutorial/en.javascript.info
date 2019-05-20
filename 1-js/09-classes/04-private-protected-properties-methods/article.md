@@ -164,7 +164,7 @@ class CoffeeMachine {
   }
 
   *!*getWaterAmount()*/!* {
-    return this.waterAmount;
+    return this._waterAmount;
   }
 }
 
@@ -215,7 +215,7 @@ class CoffeeMachine {
   }
 
   get waterAmount() {
-    return this.waterAmount;
+    return this._waterAmount;
   }
 
 }
@@ -262,7 +262,7 @@ Unlike protected ones, private fields are enforced by the language itself. That'
 But if we inherit from `CoffeeMachine`, then we'll have no direct access to `#waterAmount`. We'll need to rely on `waterAmount` getter/setter:
 
 ```js
-class CoffeeMachine extends CoffeeMachine() {
+class MegaCoffeeMachine extends CoffeeMachine() {
   method() {
 *!*
     alert( this.#waterAmount ); // Error: can only access from CoffeeMachine
