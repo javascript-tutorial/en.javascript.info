@@ -58,7 +58,7 @@ We can use character classes inside `[…]` as well.
 
 For instance, we want to match all wordly characters or a dash, for words like "twenty-third". We can't do it with `pattern:\w+`, because `pattern:\w` class does not include a dash. But we can use `pattern:[\w-]`.
 
-We also can use a combination of classes to cover every possible character, like `pattern:[\s\S]`. That matches spaces or non-spaces -- any character. That's wider than a dot `"."`, because the dot matches any character except a newline.
+We also can use several classes, for example `pattern:[\s\S]` matches spaces or non-spaces -- any character. That's wider than a dot `"."`, because the dot matches any character except a newline (unless `s` flag is set).
 
 ## Excluding ranges
 
