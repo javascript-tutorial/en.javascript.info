@@ -193,7 +193,7 @@ Why does it dislike zero so much? Always false!
 We get these results because:
 
 - Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN` and `NaN` is a special numeric value which returns `false` for all comparisons.
-- The equality check `(3)` returns `false` because `undefined` only equals `null` and no other value.
+- The equality check `(3)` returns `false` because `undefined` only equals `null`, `undefined`, and no other value.
 
 ### Evade problems
 
