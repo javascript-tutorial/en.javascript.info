@@ -6,7 +6,7 @@ A module usually contains a class or a library of useful functions.
 
 For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple. So there was no need.
 
-But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules.
+But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
 
 For instance:
 
@@ -20,9 +20,9 @@ Now all these slowly become a part of history, but we still can find them in old
 
 A module is just a file, a single script, as simple as that.
 
-Directives `export` and `import` allow to interchange functionality between modules:
+There are directives `export` and `import` to interchange functionality between modules, call functions of one module from another one:
 
-- `export` keyword labels variables and functions that should be accessible from outside the file.
+- `export` keyword labels variables and functions that should be accessible from outside the current module.
 - `import` allows to import functionality from other modules.
 
 For instance, if we have a file `sayHi.js` exporting a function:
@@ -44,13 +44,15 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-In this tutorial we concentrate on the language itself, but we use browser as the demo environment, so let's see how modules work in the browser.
+In this tutorial we concentrate on the language itself, but we use browser as the demo environment, so let's see how to use modules in the browser.
 
-To use modules, we must set the attribute `<script type="module">`, like this:
+As modules support special keywords and features, we must tell the browser that a script should be treated as module, by using the attribute `<script type="module">`.
+
+Like this:
 
 [codetabs src="say" height="140" current="index.html"]
 
-The browser automatically fetches and evaluates imports, then runs the script.
+The browser automatically fetches and evaluates imported modules, and then runs the script.
 
 ## Core module features
 
@@ -60,7 +62,7 @@ There are core features, valid both for browser and server-side JavaScript.
 
 ### Always "use strict"
 
-Modules always `use strict`. E.g. assigning to an undeclared variable will give an error.
+Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
 
 ```html run
 <script type="module">
@@ -101,7 +103,7 @@ In the browser, independent top-level scope also exists for each `<script type="
 </script>
 ```
 
-If we really need to make a "global" in-browser variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
+If we really need to make a window-level global variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
 
 ### A module code is evaluated only the first time when imported
 
@@ -229,11 +231,11 @@ You may want skip those for now if you're reading for the first time, or if you 
 Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
 
 In other words:
-- external module scripts `<script type="module" src="...">` don't block HTML processing.
-- module scripts wait until the HTML document is fully ready.
-- relative order is maintained: scripts that go first in the document, execute first.
+- external module scripts `<script type="module" src="...">` don't block HTML processing, they load in parallel with other resources.
+- module scripts wait until the HTML document is fully ready (even if they are tiny and load faster than HTML), and then run.
+- relative order of scripts is maintained: scripts that go first in the document, execute first.
 
-As a side-effect, module scripts always see HTML elements below them.
+As a side-effect, module scripts always "see" the fully loaded HTML-page, including HTML elements below them.
 
 For instance:
 
@@ -244,6 +246,8 @@ For instance:
 */!*
   // as modules are deferred, the script runs after the whole page is loaded
 </script>
+
+Compare to regular script below:
 
 <script>
 *!*
@@ -259,7 +263,7 @@ Please note: the second script actually works before the first! So we'll see `un
 
 That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
 
-When using modules, we should be aware that HTML-document can show up before the JavaScript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused because of it.
+When using modules, we should be aware that HTML-page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put transparent overlays or "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
 ### Async works on inline scripts
 
@@ -303,7 +307,7 @@ There are two notable differences of external module scripts:
 
 ### No "bare" modules allowed
 
-In the browser, in scripts (not in HTML), `import` must get either a relative or absolute URL. Modules without any path are called "bare" modules. Such modules are not allowed in `import`.
+In the browser, `import` must get either a relative or absolute URL. Modules without any path are called "bare" modules. Such modules are not allowed in `import`.
 
 For instance, this `import` is invalid:
 ```js
@@ -311,7 +315,7 @@ import {sayHi} from 'sayHi'; // Error, "bare" module
 // the module must have a path, e.g. './sayHi.js' or wherever the module is
 ```
 
-Certain environments, like Node.js or bundle tools allow bare modules, as they have own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
+Certain environments, like Node.js or bundle tools allow bare modules, without any path, as they have own ways for finding modules and hooks to fine-tune them. But browsers do not support bare modules yet.
 
 ### Compatibility, "nomodule"
 
@@ -362,7 +366,7 @@ To summarize, the core concepts are:
 1. A module is a file. To make `import/export` work, browsers need `<script type="module">`, that implies several differences:
     - Deferred by default.
     - Async works on inline scripts.
-    - External scripts need CORS headers.
+    - To load external scripts from another origin (domain/protocol/port), CORS headers are needed.
     - Duplicate external scripts are ignored.
 2. Modules have their own, local top-level scope and interchange functionality via `import/export`.
 3. Modules always `use strict`.

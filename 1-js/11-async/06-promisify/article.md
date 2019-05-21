@@ -2,7 +2,7 @@
 
 Promisification -- is a long word for a simple transform. It's conversion of a function that accepts a callback into a function returning a promise.
 
-In other words, we create a wrapper-function that does the same, internally calling the original one, but returns a promise.
+To be more precise, we create a wrapper-function that does the same, internally calling the original one, but returns a promise.
 
 Such transforms are often needed in real-life, as many functions and libraries are callback-based. But promises are more convenient. So it makes sense to promisify those.
 
@@ -105,7 +105,7 @@ f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...)
 ```
 
-In some cases, `err` may be absent at all: `callback(result)`, or there's something exotic in the callback format, then we can promisify such functions manually.
+In some cases, `err` may be absent at all: `callback(result)`, or there's something exotic in the callback format, then we can promisify such functions without using the helper, manually.
 
 There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
 

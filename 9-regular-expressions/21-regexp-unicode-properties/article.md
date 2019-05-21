@@ -47,7 +47,7 @@ alert("color: #123ABC".match(reg)); // 123ABC
 
 There are also properties with a value. For instance, Unicode "Script" (a writing system) can be Cyrillic, Greek, Arabic, Han (Chinese) etc, the [list is long]("https://en.wikipedia.org/wiki/Script_(Unicode)").
 
-To search for certain scripts, we should supply `Script=<value>`, e.g. to search for cyrillic letters: `\p{sc=Cyrillic}`, for Chinese glyphs: `\p{sc=Han}`, etc:
+To search for characters in certain scripts ("alphabets"), we should supply `Script=<value>`, e.g. to search for cyrillic letters: `\p{sc=Cyrillic}`, for Chinese glyphs: `\p{sc=Han}`, etc:
 
 ```js run
 let regexp = /\p{sc=Han}+/gu; // get chinese words
@@ -59,15 +59,15 @@ alert( str.match(regexp) ); // 你好
 
 ## Building multi-language \w
 
-Let's make a "universal" regexp for `pattern:\w`, for any language. That task has a standard solution in many programming languages with unicode-aware regexps, e.g. Perl.
+The pattern `pattern:\w` means "wordly characters", but doesn't work for languages that use non-Latin alphabets, such as Cyrillic and others. It's just a shorthand for `[a-zA-Z0-9_]`, so `pattern:\w+` won't find any Chinese words etc.
+
+Let's make a "universal" regexp, that looks for wordly characters in any language. That's easy to do using Unicode properties:
 
 ```js
 /[\p{Alphabetic}\p{Mark}\p{Decimal_Number}\p{Connector_Punctuation}\p{Join_Control}]/u
 ```
 
-Let's decipher. Remember, `pattern:\w` is actually the same as `pattern:[a-zA-Z0-9_]`.
-
-So the character set includes:
+Let's decipher. Just as `pattern:\w` is the same as `pattern:[a-zA-Z0-9_]`, we're making a set of our own, that includes:
 
 - `Alphabetic` for letters,
 - `Mark` for accents, as in Unicode accents may be represented by separate code points,
