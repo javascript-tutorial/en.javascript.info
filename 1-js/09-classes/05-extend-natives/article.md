@@ -28,12 +28,11 @@ In the example above,
 arr.constructor === PowerArray
 ```
 
-So when `arr.filter()` is called, it internally creates the new array of results exactly as `new PowerArray`.
-That's actually very cool, because we can keep using `PowerArray` methods further on the result.
+So when `arr.filter()` is called, it internally creates the new array of results using exactly `new PowerArray`, not basic `Array`. That's actually very cool, because we can keep using `PowerArray` methods further on the result.
 
 Even more, we can customize that behavior.
 
-There's a special static getter `Symbol.species`, if exists, it returns the constructor to use in such cases.
+We can add a special static getter `Symbol.species` to the class. If exists, it should return the constructor that JavaScript will use internally to create new entities in `map`, `filter` and so on.
 
 If we'd like built-in methods like `map`, `filter` will return regular arrays, we can return `Array` in `Symbol.species`, like here:
 
@@ -69,11 +68,20 @@ As you can see, now `.filter` returns `Array`. So the extended functionality is 
 
 Built-in objects have their own static methods, for instance `Object.keys`, `Array.isArray` etc.
 
-And we've already been talking about native classes extending each other: `Array.[[Prototype]] = Object`.
+As we already know, native classes extend each other. For instance, `Array` extends `Object`.
 
-But statics are an exception. Built-in classes don't inherit static properties from each other.
+Normally, when one class extends another, both static and non-static methods are inherited.
 
-In other words, the prototype of built-in constructor `Array` does not point to `Object`. This way `Array` and `Date` do not have `Array.keys` or `Date.keys`. And that feels natural.
+So, if `Rabbit extends Animal`, then:
+
+1. `Rabbit.methods` are callable for `Animal.methods`, because `Rabbit.[[Prototype]] = Animal`.
+2. `new Rabbit().methods` are also available, because `Rabbit.prototype.[[Prototype]] = Animal.prototype`.
+
+That's thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
+
+But built-in classes are an exception. They don't inherit statics `(1)` from each other.
+
+For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But  `Array.[[Prototype]]` does not point to `Object`. So there's `Object.keys()`, but not `Array.keys()` and `Date.keys()`.
 
 Here's the picture structure for `Date` and `Object`:
 
