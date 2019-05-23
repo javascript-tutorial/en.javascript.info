@@ -164,7 +164,7 @@ There is no control whether `toString()` returns exactly a string, or whether `S
 The only mandatory thing: these methods must return a primitive, not an object.
 
 ```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` return an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
+For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
 
 In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
 ```
