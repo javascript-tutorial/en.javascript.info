@@ -311,9 +311,9 @@ Let's get a little deeper under the hood of `super`. We'll see some interesting 
 
 First to say, from all that we've learned till now, it's impossible for `super` to work at all!
 
-Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, it needs to retrieve the `method` from the prototype of the current object. How JavaScript engine should get the prototype of `this`?
+Yeah, indeed, let's ask ourselves, how it could technically work? When an object method runs, it gets the current object as `this`. If we call `super.method()` then, it needs to retrieve the `method` from the prototype of the current object.
 
-The task may seem simple, but it isn't. The engine could try to get the method from `[[Prototype]]` of `this`, as `this.__proto__.method`. Unfortunately, that doesn't work.
+The task may seem simple, but it isn't. The engine knows the current object `this`, so it could get the parent `method` as `this.__proto__.method`. Unfortunately, such a "naive" solution won't work.
 
 Let's demonstrate the problem. Without classes, using plain objects for the sake of simplicity.
 
@@ -414,18 +414,16 @@ The problem can't be solved by using `this` alone.
 
 To provide the solution, JavaScript adds one more special internal property for functions: `[[HomeObject]]`.
 
-**When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.**
+When a function is specified as a class or object method, its `[[HomeObject]]` property becomes that object.
 
-This actually violates the idea of "unbound" functions, because methods remember their objects. And `[[HomeObject]]` can't be changed, so this bound is forever. So that's a very important change in the language.
+Then `super` uses it to resolve the parent prototype and its methods.
 
-But this change is safe. `[[HomeObject]]` is used only for calling parent methods in `super`, to resolve the prototype. So it doesn't break compatibility. Regular method calls know nothing about `[[HomeObject]]`, it only matters for `super`.
-
-Let's see how it works for `super` -- again, using plain objects:
+Let's see how it works, first with plain objects:
 
 ```js run
 let animal = {
   name: "Animal",
-  eat() {         // [[HomeObject]] == animal
+  eat() {         // animal.eat.[[HomeObject]] == animal
     alert(`${this.name} eats.`);
   }
 };
@@ -433,7 +431,7 @@ let animal = {
 let rabbit = {
   __proto__: animal,
   name: "Rabbit",
-  eat() {         // [[HomeObject]] == rabbit
+  eat() {         // rabbit.eat.[[HomeObject]] == rabbit
     super.eat();
   }
 };
@@ -441,19 +439,75 @@ let rabbit = {
 let longEar = {
   __proto__: rabbit,
   name: "Long Ear",
-  eat() {         // [[HomeObject]] == longEar
+  eat() {         // longEar.eat.[[HomeObject]] == longEar
     super.eat();
   }
 };
 
 *!*
+// works correctly
 longEar.eat();  // Long Ear eats.
 */!*
 ```
 
-Every method remembers its object in the internal `[[HomeObject]]` property. Then `super` uses it to resolve the parent prototype.
+It works as intended, due to `[[HomeObject]]` mechanics. A method, such as `longEar.eat`, knows its `[[HomeObject]]` and takes the parent method from its prototype. Without any use of `this`.
 
-`[[HomeObject]]` is defined for methods defined both in classes and in plain objects. But for objects, methods must be specified exactly the given way: as `method()`, not as `"method: function()"`.
+### Methods are not "free"
+
+As we've known before, generally functions are "free", not bound to objects in JavaScript. So they can be copied between objects and called with another `this`.
+
+The very existance of `[[HomeObject]]` violates that principle, because methods remember their objects. `[[HomeObject]]` can't be changed, so this bond is forever.
+
+The only place in the language where `[[HomeObject]]` is used -- is `super`. So, if a method does not use `super`, then we can still consider it free and copy between objects. But with `super` things may go wrong.
+
+Here's the demo of a wrong `super` call:
+
+```js run
+let animal = {
+  sayHi() {
+    console.log(`I'm an animal`);
+  }
+};
+
+let rabbit = {
+  __proto__: animal,
+  sayHi() {
+    super.sayHi();
+  }
+};
+
+let plant = {
+  sayHi() {
+    console.log("I'm a plant");
+  }
+};
+
+let tree = {
+  __proto__: plant,
+*!*
+  sayHi: rabbit.sayHi // (*)
+*/!*
+};
+
+*!*
+tree.sayHi();  // I'm an animal (?!?)
+*/!*
+```
+
+A call to `tree.sayHi()` shows "I'm an animal". Definitevely wrong.
+
+The reason is simple:
+- In the line `(*)`, the method `tree.sayHi` was copied from `rabbit`. Maybe we just wanted to avoid code duplication?
+- So its `[[HomeObject]]` is `rabbit`, as it was created in `rabbit`. There's no way to change `[[HomeObject]]`.
+- The code of `tree.sayHi()` has `super.sayHi()` inside. It goes up from `rabbit` and takes the method from `animal`.
+
+![](super-homeobject-wrong.png)
+
+### Methods, not function properties
+
+`[[HomeObject]]` is defined for methods both in classes and in plain objects. But for objects, methods must be specified exactly as `method()`, not as `"method: function()"`.
+
+The difference may be non-essential for us, but it's important for JavaScript.
 
 In the example below a non-method syntax is used for comparison. `[[HomeObject]]` property is not set and the inheritance doesn't work:
 
@@ -475,3 +529,18 @@ let rabbit = {
 rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
 */!*
 ```
+
+## Summary
+
+1. To extend a class: `class Child extends Parent`:
+    - That means `Child.prototype.__proto__` will be `Parent.prototype`, so methods are inherited.
+2. When overriding a constructor:
+    - We must call parent constructor as `super()` in `Child` constructor before using `this`.
+3. When overriding another method:
+    - We can use `super.method()` in a `Child` method to call `Parent` method.
+4. Internals:
+    - Methods remember their class/object in the internal `[[HomeObject]]` property. That's how `super` resolves parent methods.
+    - So it's not safe to copy a method with `super` from one object to another.
+
+Also:
+- Arrow functions don't have own `this` or `super`, so they transparently fit into the surrounding context.

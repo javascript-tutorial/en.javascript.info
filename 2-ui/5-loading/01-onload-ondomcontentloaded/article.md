@@ -3,7 +3,7 @@
 The lifecycle of an HTML page has three important events:
 
 - `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may be not yet loaded.  
-- `load` -- not onyl HTML is loaded, but also all the external resources: images, styles etc.
+- `load` -- not only HTML is loaded, but also all the external resources: images, styles etc.
 - `beforeunload/unload` -- the user is leaving the page.
 
 Each event may be useful:

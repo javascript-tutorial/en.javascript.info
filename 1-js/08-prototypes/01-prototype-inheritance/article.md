@@ -268,12 +268,12 @@ let rabbit = {
 };
 
 *!*
-// only own keys
+// Object.keys only return own keys
 alert(Object.keys(rabbit)); // jumps
 */!*
 
 *!*
-// inherited keys too
+// for..in loops over both own and inherited keys
 for(let prop in rabbit) alert(prop); // jumps, then eats
 */!*
 ```
@@ -294,17 +294,24 @@ let rabbit = {
 
 for(let prop in rabbit) {
   let isOwn = rabbit.hasOwnProperty(prop);
-  alert(`${prop}: ${isOwn}`); // jumps: true, then eats: false
+
+  if (isOwn) {
+    alert(`Our: ${prop}`); // Our: jumps
+  } else {
+    alert(`Inherited: ${prop}`); // Inherited: eats
+  }
 }
 ```
 
-Here we have the following inheritance chain: `rabbit`, then `animal`, then `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
+Here we have the following inheritance chain: `rabbit` inherits from `animal`, that inherits from `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
 
 ![](rabbit-animal-object.png)
 
-Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
+Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? We did not define it. Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
 
-...But why `hasOwnProperty` does not appear in `for..in` loop, if it lists all inherited properties?  The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`. That's why they are not listed.
+...But why `hasOwnProperty` does not appear in `for..in` loop, like `eats` and `jumps`, if it lists all inherited properties.
+
+The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`, it has `enumerable:false` flag. That's why they are not listed.
 
 ```smart header="All other iteration methods ignore inherited properties"
 All other key/value-getting methods, such as `Object.keys`, `Object.values` and so on ignore inherited properties.
@@ -317,6 +324,7 @@ They only operate on the object itself. Properties from the prototype are taken 
 - In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
 - We can use `obj.__proto__` to access it (a historical getter/setter, there are other ways, to be covered soon).
 - The object referenced by `[[Prototype]]` is called a "prototype".
-- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
+- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype.
+- Write/delete operations for act directly on the object, they don't use the prototype (assuming it's a data property, not is a setter).
 - If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
 - The `for..in` loop iterates over both own and inherited properties. All other key/value-getting methods only operate on the object itself.
