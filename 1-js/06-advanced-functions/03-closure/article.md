@@ -140,7 +140,7 @@ So, during the function call we have two Lexical Environments: the inner one (fo
 
 - The inner Lexical Environment corresponds to the current execution of `say`.
 
-    It has a single variable: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
+    It has a single property: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
 - The outer Lexical Environment is the global Lexical Environment.
 
     It has `phrase` and the function itself.
