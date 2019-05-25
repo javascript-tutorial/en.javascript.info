@@ -5,7 +5,7 @@ Asynchronous actions may sometimes fail: in case of an error the corresponding p
 
 Promise chaining is great at that aspect. When a promise rejects, the control jumps to the closest rejection handler down the chain. That's very convenient in practice.
 
-For instance, in the code below the URL is wrong (no such server) and `.catch` handles the error:
+For instance, in the code below the URL is wrong (no such site) and `.catch` handles the error:
 
 ```js run
 *!*
@@ -15,10 +15,10 @@ fetch('https://no-such-server.blabla') // rejects
   .catch(err => alert(err)) // TypeError: failed to fetch (the text may vary)
 ```
 
-Or, maybe, everything is all right with the server, but the response is not valid JSON:
+Or, maybe, everything is all right with the site, but the response is not valid JSON:
 
 ```js run
-fetch('/') // fetch works fine now, the server responds successfully
+fetch('/') // fetch works fine now, the server responds with the HTML page
 *!*
   .then(response => response.json()) // rejects: the page is HTML, not a valid json
 */!*
@@ -52,7 +52,7 @@ Normally, `.catch` doesn't trigger at all, because there are no errors. But if a
 
 ## Implicit try..catch
 
-The code of a promise executor and promise handlers has an "invisible `try..catch`" around it. If an error happens, it gets caught and treated as a rejection.
+The code of a promise executor and promise handlers has an "invisible `try..catch`" around it. If an exception happens, it gets caught and treated as a rejection.
 
 For instance, this code:
 
@@ -120,7 +120,7 @@ new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");
 
-}).catch(function(error) { 
+}).catch(function(error) {
 
   alert("The error is handled, continue normally");
 
@@ -211,11 +211,11 @@ loadJson('no-such-user.json') // (3)
   .catch(alert); // HttpError: 404 for .../no-such-user.json
 ```
 
-1. We make a custom class for HTTP Errors to distinguish them from other types of errors. Besides, the new class has a constructor that accepts `response` object and saves it in the error. So error-handling code will be able to access it.
+1. We make a custom class for HTTP Errors to distinguish them from other types of errors. Besides, the new class has a constructor that accepts `response` object and saves it in the error. So error-handling code will be able to access the response.
 2. Then we put together the requesting and error-handling code into a function that fetches the `url` *and* treats any non-200 status as an error. That's convenient, because we often need such logic.
 3. Now `alert` shows a more helpful descriptive message.
 
-The great thing about having our own class for errors is that we can easily check for it in error-handling code.
+The great thing about having our own class for errors is that we can easily check for it in error-handling code using `instanceof`.
 
 For instance, we can make a request, and then if we get 404 -- ask the user to modify the information.
 
@@ -260,15 +260,17 @@ new Promise(function() {
   noSuchFunction(); // Error here (no such function)
 })
   .then(() => {
-    // zero or many promise handlers
+    // successful promise handlers, one or more
   }); // without .catch at the end!
 ```
 
-In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck".
+In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck". There's no code to handle it.
 
-In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong, the script probably died.
+In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong.
 
-Most JavaScript engines track such situations and generate a global error in that case. We can see it in the console.
+What happens when a regular error occurs and is not caught by `try..catch`? The script dies. Similar thing happens with unhandled promise rejections.
+
+The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
@@ -299,7 +301,7 @@ In non-browser environments like Node.js there are other similar ways to track u
 
 - `.catch` handles promise rejections of all kinds: be it a `reject()` call, or an error thrown in a handler.
 - We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones.
-- It's normal not to use `.catch` if we don't know how to handle errors (all errors are unrecoverable).
+- It's ok not to use `.catch` at all, if there's no way to recover from an error.
 - In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments), to track unhandled errors and inform the user (and probably our server) about the them, so that our app never "just dies".
 
 And finally, if we have load-indication, then `.finally` is a great handler to stop it when the fetch is complete:
@@ -316,7 +318,7 @@ function demoGithubUser() {
 *!*
     .finally(() => { // (2) stop the indication
       document.body.style.opacity = '';
-      return new Promise(resolve => setTimeout(resolve, 0)); // (*)
+      return new Promise(resolve => setTimeout(resolve)); // (*)
     })
 */!*
     .then(user => {

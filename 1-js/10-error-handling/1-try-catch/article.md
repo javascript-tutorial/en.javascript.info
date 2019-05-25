@@ -108,7 +108,7 @@ try {
 }
 ```
 
-That's because `try..catch` actually wraps the `setTimeout` call that schedules the function. But the function itself is executed later, when the engine has already left the `try..catch` construct.
+That's because the function itself is executed later, when the engine has already left the `try..catch` construct.
 
 To catch an exception inside a scheduled function, `try..catch` must be inside that function:
 ```js run
@@ -338,7 +338,7 @@ Now `catch` became a single place for all error handling: both for `JSON.parse` 
 
 ## Rethrowing
 
-In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a variable is undefined or something else, not just that "incorrect data" thing.
+In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just that "incorrect data" thing.
 
 Like this:
 
@@ -355,7 +355,7 @@ try {
 }
 ```
 
-Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a crazy bug may be discovered that leads to terrible hacks (like it happened with the `ssh` tool).
+Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a bug may be discovered that leads to terrible hacks.
 
 In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
 
@@ -489,7 +489,7 @@ The code has two ways of execution:
 1. If you answer "Yes" to "Make an error?", then `try -> catch -> finally`.
 2. If you say "No", then `try -> finally`.
 
-The `finally` clause is often used when we start doing something before `try..catch` and want to finalize it in any case of outcome.
+The `finally` clause is often used when we start doing something and want to finalize it in any case of outcome.
 
 For instance, we want to measure the time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what if there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
 
@@ -528,7 +528,7 @@ alert( `execution took ${diff}ms` );
 
 You can check by running the code with entering `35` into `prompt` -- it executes normally, `finally` after `try`. And then enter `-1` -- there will be an immediate error, an the execution will take `0ms`. Both measurements are done correctly.
 
-In other words, there may be two ways to exit a function: either a `return` or `throw`. The `finally` clause handles them both.
+In other words, the function may finish with `return` or `throw`, that doesn't matter. The `finally` clause executes in both cases.
 
 
 ```smart header="Variables are local inside `try..catch..finally`"
@@ -643,7 +643,7 @@ They work like this:
 
 ## Summary
 
-The `try..catch` construct allows to handle runtime errors. It literally allows to try running the code and catch errors that may occur in it.
+The `try..catch` construct allows to handle runtime errors. It literally allows to "try" running the code and "catch" errors that may occur in it.
 
 The syntax is:
 
@@ -666,7 +666,7 @@ Error objects have following properties:
 - `name` -- the string with error name (error constructor name).
 - `stack` (non-standard) -- the stack at the moment of error creation.
 
-If error is not needed, we can omit it by using `catch {` instead of `catch(err) {`.
+If an error object is not needed, we can omit it by using `catch {` instead of `catch(err) {`.
 
 We can also generate our own errors using the `throw` operator. Technically, the argument of `throw` can be anything, but usually it's an error object inheriting from the built-in `Error` class. More on extending errors in the next chapter.
 

@@ -186,7 +186,7 @@ In the example above:
 - Changing the attribute `value` updates the property.
 - But the property change does not affect the attribute.
 
-That "feature" may actually come in handy, because the user may modify `value`, and then after it, if we want to recover the "original" value from HTML, it's in the attribute.
+That "feature" may actually come in handy, because the user actions may lead to `value` changes, and then after them, if we want to recover the "original" value from HTML, it's in the attribute.
 
 ## DOM properties are typed
 
@@ -216,9 +216,9 @@ There are other examples. The `style` attribute is a string, but the `style` pro
 </script>
 ```
 
-That's an important difference. But even if a DOM property type is a string, it may differ from the attribute!
+Most properties are strings though.
 
-For instance, the `href` DOM property is always a *full* URL, even if the attribute contains a relative URL or just a `#hash`.
+Quite rarely, even if a DOM property type is a string, it may differ from the attribute. For instance, the `href` DOM property is always a *full* URL, even if the attribute contains a relative URL or just a `#hash`.
 
 Here's an example:
 
@@ -380,7 +380,7 @@ Methods to work with attributes are:
 - `elem.removeAttribute(name)` -- to remove the attribute.
 - `elem.attributes` is a collection of all attributes.
 
-For most needs, DOM properties can serve us well. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
+For most situations using DOM properties is preferable. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
 
 - We need a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
 - We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance the `href` property is always a full URL, and we may want to get the "original" value.

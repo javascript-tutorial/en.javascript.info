@@ -33,6 +33,6 @@ Compare the two code fragments.
     */!*
     ```
 
-We definitely need the cleanup after the work has started, doesn't matter if there was an error or not.
+We definitely need the cleanup after the work, doesn't matter if there was an error or not.
 
 Is there an advantage here in using `finally` or both code fragments are equal? If there is such an advantage, then give an example when it matters.

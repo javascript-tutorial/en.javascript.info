@@ -35,7 +35,7 @@ If we declare a variable with the same name, it takes precedence:
 <script>
   let elem = 5;
 
-  alert(elem); // the variable overrides the element
+  alert(elem); // 5
 </script>
 ```
 
@@ -172,7 +172,7 @@ Today, they are mostly history, as `querySelector` is more powerful and shorter 
 So here we cover them mainly for completeness, while you can still find them in the old scripts.
 
 - `elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` parameter can also be a star `"*"` for "any tags".
-- `elem.getElementsByClassName(className)` returns elements that have the given CSS class. Elements may have other classes too.
+- `elem.getElementsByClassName(className)` returns elements that have the given CSS class.
 - `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. very rarely used.
 
 For instance:
@@ -305,8 +305,6 @@ If we use it instead, then both scripts output `1`:
 
 Now we can easily see the difference. The static collection did not increase after the appearance of a new `div` in the document.
 
-Here we used separate scripts to illustrate how the element addition affects the collection, but any DOM manipulations affect them. Soon we'll see more of them.
-
 ## Summary
 
 There are 6 main methods to search for nodes in DOM:
@@ -367,5 +365,5 @@ Besides that:
 - There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
 - There is `elem.closest(css)` to look for the nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
 
-And let's mention one more method here to check for the child-parent relationship:
+And let's mention one more method here to check for the child-parent relationship, as it's sometimes useful:
 -  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`.
