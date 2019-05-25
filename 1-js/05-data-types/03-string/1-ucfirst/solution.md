@@ -15,7 +15,7 @@ There are two variants here:
 
 Here's the 2nd variant:
 
-```js run
+```js run demo
 function ucFirst(str) {
   if (!str) return str;
 
