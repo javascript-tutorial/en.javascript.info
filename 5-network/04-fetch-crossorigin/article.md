@@ -277,7 +277,7 @@ Origin: https://javascript.info
 
 ### Step 4 (actual response)
 
-The server should not forget to add `Accept-Control-Allow-Origin` to the response. A successful preflight does not relieve from that:
+The server should not forget to add `Access-Control-Allow-Origin` to the response. A successful preflight does not relieve from that:
 
 ```
 Access-Control-Allow-Origin: https://javascript.info
@@ -348,7 +348,7 @@ So, practical difference is that simple requests are sent right away, with `Orig
     - `Access-Control-Allow-Origin` to `Origin`
     - `Access-Control-Allow-Credentials` to `true`
 
-Additionally, if JavaScript wants no access non-simple response headers:
+Additionally, if JavaScript wants to access non-simple response headers:
 - `Cache-Control`
 - `Content-Language`
 - `Content-Type`
