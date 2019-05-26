@@ -2,7 +2,7 @@
 
 Bezier curves are used in computer graphics to draw shapes, for CSS animation and in many other places.
 
-They are actually a very simple thing, worth to study once and then feel comfortable in the world of vector graphics and advanced animations.
+They are a very simple thing, worth to study once and then feel comfortable in the world of vector graphics and advanced animations.
 
 ## Control points
 
@@ -130,14 +130,14 @@ A non-smooth Bezier curve (yeah, that's possible too):
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
 ```online
-If there's anything unclear in the algorithm description, then live examples above show how
+If there's something unclear in the algorithm description, please look at the live examples above to see how
 the curve is built.
 ```
 
 As the algorithm is recursive, we can build Bezier curves of any order, that is: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
 
 ```smart header="How to draw a curve *through* given points?"
-We use control points for a Bezier curve. As we can see, they are not on the curve, except the first and the last ones.
+To specify a Bezier curve, control points are used. As we can see, they are not on the curve, except the first and the last ones.
 
 Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
 
@@ -186,12 +186,12 @@ Bezier curves are defined by their control points.
 
 We saw two definitions of Bezier curves:
 
-1. Using a mathematical formulas.
-2. Using a drawing process: De Casteljau's algorithm
+1. Using a drawing process: De Casteljau's algorithm.
+2. Using a mathematical formulas.
 
 Good properties of Bezier curves:
 
-- We can draw smooth lines with a mouse by moving around control points.
+- We can draw smooth lines with a mouse by moving control points.
 - Complex shapes can be made of several Bezier curves.
 
 Usage:
