@@ -95,7 +95,7 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 ## Methods pop/push, shift/unshift
 
-A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
+A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of the most common uses of an array. In computer science, this means an ordered collection of elements which supports two operations:
 
 - `push` appends an element to the end.
 - `shift` get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1st.
