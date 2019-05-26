@@ -1,7 +1,7 @@
 
 # Fetch: Download progress
 
-`Fetch` allows to track download progress, but not upload progress.
+The `fetch` method allows to track download progress.
 
 Please note: there's currently no way for fetch to track upload progress. For that purpose, please use [XMLHttpRequest](info:xmlhttprequest).
 
