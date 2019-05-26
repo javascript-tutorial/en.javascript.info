@@ -12,4 +12,4 @@ Write the function `sumInput()` that:
 
 P.S. A zero `0` is a valid number, please don't stop the input on zero.
 
-[demo]
+[demo]  
