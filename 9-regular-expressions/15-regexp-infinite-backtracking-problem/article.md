@@ -26,7 +26,7 @@ We want to find all tags, with or without attributes -- like `subject:<a href=".
 
 In particular, we need it to match tags like `<a test="<>" href="#">` -- with `<` and `>` in attributes. That's allowed by [HTML standard](https://html.spec.whatwg.org/multipage/syntax.html#syntax-attributes).
 
-Now we can see that a simple regexp like `pattern:<[^>]+>` doesn't work, because it stops at the first `>`, and we need to ignore `<>` if inside an attribute.
+A simple regexp like `pattern:<[^>]+>` doesn't work, because it stops at the first `>`, and we need to ignore `<>` if inside an attribute:
 
 ```js run
 // the match doesn't reach the end of the tag - wrong!
@@ -41,7 +41,7 @@ To correctly handle such situations we need a more complex regular expression. I
 
 If we substitute these into the pattern above and throw in some optional spaces `pattern:\s`, the full regexp becomes: `pattern:<\w+(\s*\w+="[^"]*"\s*)*>`.
 
-That regexp is not perfect! It doesn't yet support all details of HTML, for instance unquoted values, and there are other ways to improve, but let's not add complexity. It will demonstrate the problem for us.
+That regexp is not perfect! It doesn't support all the details of HTML syntax, such as unquoted values, and there are other ways to improve, but let's not add complexity. It will demonstrate the problem for us.
 
 The regexp seems to work:
 
@@ -221,6 +221,8 @@ The string has no `>` at the end, so the match is impossible, but the regexp eng
 (a=b) (a=b a=b a=b)
 ...
 ```
+
+As there are many combinations, it takes a lot of time.
 
 ## How to fix?
 
