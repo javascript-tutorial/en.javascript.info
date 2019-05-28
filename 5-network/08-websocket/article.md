@@ -130,7 +130,7 @@ For instance:
 let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);
 ```
 
-The server should respond with a list of protocls and extensions that it agrees to use.
+The server should respond with a list of protocols and extensions that it agrees to use.
 
 For example, the request:
 
