@@ -33,7 +33,7 @@ Here's the cheatsheet:
 - `href` is the full url, same as `url.toString()`
 - `protocol` ends with the colon character `:`
 - `search` starts with the question mark `?`
-- `hash` ends with the hash character `#`
+- `hash` starts with the hash character `#`
 - there are also `user` and `password` properties if HTTP authentication is present.
 
 We can also use `URL` to create relative urls, using the second argument:
@@ -60,7 +60,7 @@ Let's say we want to create an url with given search params, for instance, `http
 
 They must be correctly encoded.
 
-In very old browsers, before `URL` apparead, we'd use built-in functions `encodeURIComponent/decodeURIComponent`.
+In very old browsers, before `URL` appeared, we'd use built-in functions `encodeURIComponent/decodeURIComponent`.
 
 Now, there's no need: `url.searchParams` is an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
 
