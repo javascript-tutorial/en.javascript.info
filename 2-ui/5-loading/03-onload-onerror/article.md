@@ -155,7 +155,7 @@ Script error.
 , 0:0
 ```
 
-Details may vary depeding on the browser, but the idea is same: any information about the internals of a script is hidden. Exactly because it's from another domain.
+Details may vary depending on the browser, but the idea is same: any information about the internals of a script is hidden. Exactly because it's from another domain.
 
 Why do we need the details?
 
