@@ -78,12 +78,13 @@
     }
 
     document.onmouseout = function() {
-      // it is possible that mouseout triggered, but we're still inside the element (cause of bubbling)
+      // it is possible that mouseout triggered, but we're still inside the element
+      // (its target was inside, and it bubbled)
       // but in this case we'll have an immediate mouseover,
       // so the tooltip will be destroyed and shown again
       //
-      // that's an overhead, but here it's not visible
-      // can be fixed with additional checks
+      // luckily, the "blinking" won't be visible,
+      // as both events happen almost at the same time
       if (tooltip) {
         tooltip.remove();
         tooltip = false;

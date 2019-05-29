@@ -10,15 +10,17 @@ The `mouseover` event occurs when a mouse pointer comes over an element, and `mo
 
 These events are special, because they have a `relatedTarget`.
 
+This property complements `target`. When a mouse leaves one element for another, one of them becomes `target`, and the other one `relatedTarget`.
+
 For `mouseover`:
 
 - `event.target` -- is the element where the mouse came over.
-- `event.relatedTarget` -- is the element from which the mouse came.
+- `event.relatedTarget` -- is the element from which the mouse came (`relatedTarget` -> `target`).
 
 For `mouseout` the reverse:
 
 - `event.target` -- is the element that mouse left.
-- `event.relatedTarget` -- is the new under-the-pointer element (that mouse left for).
+- `event.relatedTarget` -- is the new under-the-pointer element, that mouse left for (`target` -> `relatedTarget`).
 
 ```online
 In the example below each face feature is an element. When you move the mouse, you can see mouse events in the text area.

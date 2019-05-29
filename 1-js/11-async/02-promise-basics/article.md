@@ -8,7 +8,7 @@ Everyone is happy, because the people don't crowd you any more, and fans, becaus
 
 This is a real-life analogy for things we often have in programming:
 
-1. A "producing code" that does something and takes time. For instance, the code loads a remote script. That's a "singer".
+1. A "producing code" that does something and takes time. For instance, the code loads data over a network. That's a "singer".
 2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
 3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
 
@@ -27,7 +27,7 @@ The function passed to `new Promise` is called the *executor*. When the promise 
 The resulting `promise` object has internal properties:
 
 - `state` — initially "pending", then changes to either "fulfilled" or "rejected",
-- `result` — an arbitrary value of your choosing, initially `undefined`.
+- `result` — an arbitrary value, initially `undefined`.
 
 When the executor finishes the job, it should call one of the functions that it gets as arguments:
 
@@ -56,7 +56,7 @@ let promise = new Promise(function(resolve, reject) {
 We can see two things by running the code above:
 
 1. The executor is called automatically and immediately (by the `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. Instead, we should write the executor to call them when ready.
+2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We only should call one of them when ready.
 
 After one second of "processing" the executor calls `resolve("done")` to produce the result:
 
@@ -77,7 +77,7 @@ let promise = new Promise(function(resolve, reject) {
 
 To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding Promise object.
 
-The Promise that is either resolved or rejected is called "settled", as opposed to a "pending" Promise.
+The Promise that is either resolved or rejected is called "settled", as opposed to a initially "pending" Promise.
 
 ````smart header="There can be only a single result or an error"
 The executor should call only one `resolve` or one `reject`. The promise's state change is final.
@@ -112,9 +112,9 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-For instance, this might happen when we start to do a job but then see that everything has already been completed.
+For instance, this might happen when we start to do a job but then see that everything has already been completed and  cached.
 
-That's fine. We immediately have a resolved Promise, nothing wrong with that.
+That's fine. We immediately have a resolved promise.
 ````
 
 ```smart header="The `state` and `result` are internal"
@@ -140,12 +140,12 @@ promise.then(
 
 The first argument of `.then` is a function that:
 
-1. runs when the Promise is resolved, and
+1. runs when the promise is resolved, and
 2. receives the result.
 
 The second argument of `.then` is a function that:
 
-1. runs when the Promise is rejected, and
+1. runs when the promise is rejected, and
 2. receives the error.
 
 For instance, here's a reaction to a successfully resolved promise:
@@ -233,10 +233,10 @@ new Promise((resolve, reject) => {
   .then(result => show result, err => show error)
 ```
 
-It's not exactly an alias though. There are several important differences:
+It's not exactly an alias of `then(f,f)` though. There are several important differences:
 
 1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
-2. Finally passes through results and errors to the next handler.
+2. A `finally` handler passes through results and errors to the next handler.
 
     For instance, here the result is passed through `finally` to `then`:
     ```js run
@@ -257,11 +257,11 @@ It's not exactly an alias though. There are several important differences:
       .catch(err => alert(err));  // <-- .catch handles the error object
     ```  
 
-    That's very convenient, because finally is not meant to process promise results. So it passes them through.
+    That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
 
     We'll talk more about promise chaining and result-passing between handlers in the next chapter.
 
-3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function.
+3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
 
 ````smart header="On settled promises handlers runs immediately"
 If a promise is pending, `.then/catch/finally` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:

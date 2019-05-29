@@ -13,7 +13,7 @@ Technically, we can measure the mouse speed over the element, and if it's slow t
 Make a universal object `new HoverIntent(options)` for it. With `options`:
 
 - `elem` -- element to track.
-- `over` -- a function to call if the mouse is slowly moving the element.
+- `over` -- a function to call if the mouse is slowly moving over the element.
 - `out` -- a function to call when the mouse leaves the element (if `over` was called).
 
 An example of using such object for the tooltip:

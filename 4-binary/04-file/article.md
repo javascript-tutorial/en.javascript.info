@@ -1,6 +1,6 @@
 # File and FileReader
 
-A [File](https://www.w3.org/TR/FileAPI/#dfn-file) object inherits from `Blob`, but is extended with filesystem-related capabilities.
+A [File](https://www.w3.org/TR/FileAPI/#dfn-file) object inherits from `Blob` and is extended with filesystem-related capabilities.
 
 There are two ways to obtain it.
 
@@ -38,9 +38,9 @@ The input may select multiple files, so `input.files` is an array-like object wi
 
 ## FileReader
 
-[FileReader](https://www.w3.org/TR/FileAPI/#dfn-filereader) is an object with the sole purpose of reading from `Blob` (and hence `File` too) objects.
+[FileReader](https://www.w3.org/TR/FileAPI/#dfn-filereader) is an object with the sole purpose of reading data from `Blob` (and hence `File` too) objects.
 
-It's event based, as reading from disk may take time.
+It delivers the data using events, as reading from disk may take time.
 
 The constructor:
 
@@ -109,7 +109,7 @@ For Web Workers, there also exists a synchronous variant of `FileReader`, called
 
 Its reading methods `read*` do not generate events, but rather return a result, as regular functions do.
 
-That's only inside a Web Worker though, because delays and hang-ups in Web Workers are less important, they do not affect the page.
+That's only inside a Web Worker though, because delays in synchronous calls, that are possible while reading from files, in Web Workers are less important. They do not affect the page.
 ```
 
 ## Summary
