@@ -521,7 +521,7 @@ try {
 }
 */!*
 
-alert(result || "error occured");
+alert(result || "error occurred");
 
 alert( `execution took ${diff}ms` );
 ```

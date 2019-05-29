@@ -92,7 +92,7 @@ img.onload = function() {
 };
 
 img.onerror = function() {
-  alert("Error occured while loading image");
+  alert("Error occurred while loading image");
 };
 ```
 

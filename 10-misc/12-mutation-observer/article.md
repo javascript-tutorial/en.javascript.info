@@ -38,7 +38,7 @@ Then after any changes, the `callback` is executed, with a list of [MutationReco
     - `"attributes"`: attribute modified
     - `"characterData"`: data modified, used for text nodes,
     - `"childList"`: child elements added/removed,
-- `target` -- where the change occured: an element for "attributes", or text node for "characterData", or an element for a "childList" mutation,
+- `target` -- where the change occurred: an element for "attributes", or text node for "characterData", or an element for a "childList" mutation,
 - `addedNodes/removedNodes`  -- nodes that were added/removed,
 - `previousSibling/nextSibling` -- the previous and next sibling to added/removed nodes,
 - `attributeName/attributeNamespace` -- the name/namespace (for XML) of the changed attribute,

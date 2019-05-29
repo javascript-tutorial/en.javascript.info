@@ -60,7 +60,7 @@ As the reading proceeds, there are events:
 - `progress` -- occurs during reading.
 - `load` -- no errors, reading complete.
 - `abort` -- `abort()` called.
-- `error` -- error has occured.
+- `error` -- error has occurred.
 - `loadend` -- reading finished with either success or failure.
 
 When the reading is finished, we can access the result as:
