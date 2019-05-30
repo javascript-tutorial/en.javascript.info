@@ -124,7 +124,7 @@ For instance:
 
 `Sec-WebSocket-Extensions` is sent by the browser automatically, with a list of possible extensions it supports.
 
-`Sec-WebSocket-Protocol` is depends on us: we decide what kind of data we send. The second optional parameter of `new WebSocket` lists subprotocols:
+`Sec-WebSocket-Protocol` depends on us: we decide what kind of data we send. The second optional parameter of `new WebSocket` lists subprotocols:
 
 ```js
 let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);
@@ -250,7 +250,7 @@ There are other codes like:
 
 Please refer to the [RFC6455, §7.4.1](https://tools.ietf.org/html/rfc6455#section-7.4.1) for the full list.
 
-WebSocket codes are somewhat like HTTP codes, but different. In particular, an codes less than `1000` are reserved, there'll be an error if we try to set such a code.
+WebSocket codes are somewhat like HTTP codes, but different. In particular, any codes less than `1000` are reserved, there'll be an error if we try to set such a code.
 
 ```js
 // in case connection is broken
@@ -360,7 +360,7 @@ You can also download it (upper-right button in the iframe) and run locally. Jus
 
 ## Summary
 
-WebSocket is a modern way to have persisten browser-server connections.
+WebSocket is a modern way to have persistent browser-server connections.
 
 - WebSockets don't have cross-origin limitations.
 - They are well-supported in browsers.
@@ -378,7 +378,7 @@ Events:
 - `error`,
 - `close`.
 
-WebSocket by itself does not include reconnection, authentication and many other high-level mechanisms. So there are client/server libraries add them. But it's also possible to implement these manually and integrate WebSockets with an existing site.
+WebSocket by itself does not include reconnection, authentication and many other high-level mechanisms. So there are client/server libraries that add them. But it's also possible to implement these manually and integrate WebSockets with an existing site.
 
 For integration purposes, a WebSocket server is usually running in parallel with the main server, and they share a single database. Requests to WebSocket use `wss://ws.site.com`, a subdomain that leads to WebSocket server, while `https://site.com` goes to the main HTTP-server.
 
