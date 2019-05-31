@@ -232,7 +232,7 @@ Lax mode, just like `strict`, forbids the browser to send cookies when coming fr
 A `samesite=lax` cookie is sent if both of these conditions are true:
 1. The HTTP method is "safe" (e.g. GET, but not POST).
 
-    The full list safe of HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
+    The full list of safe HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
 
 2. The operation performs top-level navigation (changes URL in the browser address bar).
 
