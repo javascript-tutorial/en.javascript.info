@@ -204,7 +204,7 @@ admin['f'](); // Admin (dot or square brackets access the method – doesn't mat
 
 The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call of `f`. So it's either `user` or `admin` in the example above.
 
-````smart header="Calling without an object: `this=undefined`"
+````smart header="Calling without an object: `this == undefined`"
 We can even call the function without an object at all:
 
 ```js run
