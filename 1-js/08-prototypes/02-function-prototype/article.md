@@ -162,7 +162,7 @@ Everything is quite simple, just few notes to make things clear:
 
 - The `F.prototype` property is not the same as `[[Prototype]]`. The only thing `F.prototype` does: it sets `[[Prototype]]` of new objects when `new F()` is called.
 - The value of `F.prototype` should be either an object or null: other values won't work.
--  The `"prototype"` property only has such a special effect when is set to a constructor function, and invoked with `new`.
+-  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
 
 On regular objects the `prototype` is nothing special:
 ```js
