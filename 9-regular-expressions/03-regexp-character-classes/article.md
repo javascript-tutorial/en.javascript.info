@@ -61,7 +61,7 @@ alert( str.match(reg) ); // CSS4
 Also we can use many character classes:
 
 ```js run
-alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // 'HTML5'
+alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // ' HTML5'
 ```
 
 The match (each character class corresponds to one result character):
