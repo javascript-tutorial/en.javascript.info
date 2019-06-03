@@ -19,7 +19,7 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
-As you can see, it's like a `Map` colection (`setItem/getItem/removeItem`), but also keeps elements order and allows to access by index with `key(index)`.
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also keeps elements order and allows to access by index with `key(index)`.
 
 Let's see how it works.
 
@@ -212,7 +212,7 @@ localStorage.setItem('now', Date.now());
 
 Please note that the event also contains: `event.url` -- the url of the document where the data was updated.
 
-Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `storageArea` references the one that was modified. We may event want to set something back in it, to "respond" to a change.
+Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
 
 **That allows different windows from the same origin to exchange messages.**
 
@@ -240,7 +240,7 @@ API:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 - Use `Object.keys` to get all keys.
-- Can use the keys as object properties, in that case `storage` event doesn't trigger.
+- Can use the keys as object properties, in that case `storage` event isn't triggered.
 
 Storage event:
 
