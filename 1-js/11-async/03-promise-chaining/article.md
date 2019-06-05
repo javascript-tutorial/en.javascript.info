@@ -242,7 +242,7 @@ This feature allows to integrate custom objects with promise chains without havi
 
 ## Bigger example: fetch
 
-In frontend programming promises are often used for network requests. So let's see an extended example of that.
+In front-end programming, promises are often used for network requests. So let's see an extended example of that.
 
 We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load the information about the user from the remote server. The method is quite complex, it has many optional parameters, but the basic usage is quite simple:
 
