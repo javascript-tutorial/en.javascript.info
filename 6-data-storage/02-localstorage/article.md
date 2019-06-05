@@ -42,9 +42,9 @@ localStorage.setItem('test', 1);
 alert( localStorage.getItem('test') ); // 1
 ```
 
-We only have to be on the same domain/port/protocol, the url path can be different.
+We only have to be on the same origin (domain/port/protocol), the url path can be different.
 
-The `localStorage` is shared, so if we set the data in one window, the change becomes visible in the other one.
+The `localStorage` is shared between all windows with the same origin, so if we set the data in one window, the change becomes visible in another one.
 
 ## Object-like access
 
@@ -73,7 +73,7 @@ That's allowed for historical reasons, and mostly works, but generally not recom
 
 ## Looping over keys
 
-As we've seen, the methods provide get/set/remove functionality. But how to get all saved values or keys?
+As we've seen, the methods provide "get/set/remove by key" functionality. But how to get all saved values or keys?
 
 Unfortunately, storage objects are not iterable.
 
@@ -198,7 +198,7 @@ Imagine, you have two windows with the same site in each. So `localStorage` is s
 You might want to open this page in two browser windows to test the code below.
 ```
 
-Now if both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
+If both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
 
 ```js run
 // triggers on updates made to the same storage from other documents
@@ -229,7 +229,7 @@ Web storage objects `localStorage` and `sessionStorage` allow to store key/value
 | `localStorage` | `sessionStorage` |
 |----------------|------------------|
 | Shared between all tabs and windows with the same origin | Visible within a browser tab, including iframes from the same origin |
-| Survives browser restart | Dies on tab close |
+| Survives browser restart | Survives page refresh (but not tab close) |
 
 API:
 
@@ -237,10 +237,10 @@ API:
 - `getItem(key)` -- get the value by key.
 - `removeItem(key)` -- remove the key with its value.
 - `clear()` -- delete everything.
-- `key(index)` -- get the key on a given position.
+- `key(index)` -- get the key number `index`.
 - `length` -- the number of stored items.
 - Use `Object.keys` to get all keys.
-- Can use the keys as object properties, in that case `storage` event isn't triggered.
+- We access keys as object properties, in that case `storage` event isn't triggered.
 
 Storage event:
 
