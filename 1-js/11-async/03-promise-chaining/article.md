@@ -146,7 +146,7 @@ Returning promises allows us to build chains of asynchronous actions.
 
 ## Example: loadScript
 
-Let's use this feature with `loadScript` to load scripts one by one, in sequence:
+Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](/promise-basics#loadscript), to load scripts one by one, in sequence:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
