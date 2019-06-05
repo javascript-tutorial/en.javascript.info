@@ -305,7 +305,7 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works, see comments about the details, but it should be quite self-descriptive. Although, there's a potential problem in it, a typical error of those who begin to use promises.
+The code works, see comments about the details. Although, there's a potential problem in it, a typical error of those who begin to use promises.
 
 Look at the line `(*)`: how can we do something *after* the avatar has finished showing and gets removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
 
