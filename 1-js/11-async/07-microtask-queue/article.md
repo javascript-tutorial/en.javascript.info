@@ -124,7 +124,6 @@ Naturally, `promise` shows up first, because `setTimeout` macrotask awaits in th
 
 As a logical consequence, macrotasks are handled only when promises give the engine a "free time". So if we have a chain of promise handlers that don't wait for anything, execute right one after another, then a `setTimeout` (or a user action handler) can never run in-between them.
 
-
 ## Unhandled rejection
 
 Remember "unhandled rejection" event from the chapter <info:promise-error-handling>?

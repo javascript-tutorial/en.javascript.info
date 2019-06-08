@@ -16,11 +16,11 @@ That power is usually excessive for traditional client-server apps. IndexedDB is
 
 The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
 
-We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases, so we'll start with events, and then use the wrapper.
+We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and  then, after we gain understanding of IndexedDb, we'll use the wrapper.
 
 ## Open database
 
-To start working with IndexedDB, we need to open a database.
+To start working with IndexedDB, we first need to open a database.
 
 The syntax:
 
@@ -31,16 +31,16 @@ let openRequest = indexedDB.open(name, version);
 - `name` -- a string, the database name.
 - `version` -- a positive integer version, by default `1` (explained below).
 
-We can have many databases with different names, all within the current origin (domain/protocol/port). So different websites can't access databases of each other.
+We can have many databases with different names, but all of them exist within the current origin (domain/protocol/port). Different websites can't access databases of each other.
 
 After the call, we need to listen to events on `openRequest` object:
-- `success`: database is ready, use the database object `openRequest.result` for further work.
+- `success`: database is ready, there's the "database object" in `openRequest.result`, that we should use it for further calls.
 - `error`: open failed.
 - `upgradeneeded`: database version is outdated (see below).
 
 **IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
 
-Unlike server-side databases, IndexedDB is client-side, we don't have the data at hands. But when we publish a new version of our app, we may need to update the database.
+Unlike server-side databases, IndexedDB is client-side, in the browser, so we don't have the data at hands. But when we publish a new version of our app, we may need to update the database.
 
 If the local database version is less than specified in `open`, then a special event `upgradeneeded` is triggered, and we can compare versions and upgrade data structures as needed.
 
@@ -109,11 +109,13 @@ An example of object that can't be stored: an object with circular references. S
 
 **There must be an unique `key` for every value in the store.**     
 
-A key must have a type one of: number, date, string, binary, or array. It's a unique object identifier: we can search/remove/update values by the key.
+A key must have a type one of: number, date, string, binary, or array. It's an unique identifier: we can search/remove/update values by the key.
 
 ![](indexeddb-structure.png)
 
-We can provide a key when we add an value to the store, similar to `localStorage`. That's good for storing primitive values. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
+As we'll see very soon, we can provide a key when we add an value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
+
+But we need to create an object store first.
 
 The syntax to create an object store:
 ```js
@@ -127,7 +129,7 @@ Please note, the operation is synchronous, no `await` needed.
   - `keyPath` -- a path to an object property that IndexedDB will use as the key, e.g. `id`.
   - `autoIncrement` -- if `true`, then the key for a newly stored object is generated automatically, as an ever-incrementing number.
 
-If we don't supply any options, then we'll need to provide a key explicitly later, when storing an object.
+If we don't supply `keyOptions`, then we'll need to provide a key explicitly later, when storing an object.
 
 For instance, this object store uses `id` property as the key:
 ```js
@@ -136,22 +138,24 @@ db.createObjectStore('books', {keyPath: 'id'});
 
 **An object store can only be created/modified while updating the DB version, in `upgradeneeded` handler.**
 
-That's a technical limitation. Outside of the handler we'll be able to add/remove/update the data, but object stores are changed only during version update.
+That's a technical limitation. Outside of the handler we'll be able to add/remove/update the data, but object stores can be created/removed/altered only during version update.
 
-To do an upgrade, there are two main ways:
-1. We can compare versions and run per-version operations.
-2. Or we can get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist), and it provides `contains(name)` method to check for the existance. And then we can do updates depending on what exists.
+To perform database version upgrade, there are two main approaches:
+1. We can implement per-version upgrade functions: from 1 to 2, from 2 to 3, from 3 to 4 etc. Then, in `upgradeneeded` we can compare versions (e.g. old 2, now 4) and run per-version upgrades step by step, for every intermediate version (2 to 3, then 3 to 4).
+2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existance. And then we can do updates depending on what exists and what doesn't.
+
+For small databases the second path may be simpler.
 
 Here's the demo of the second approach:
 
 ```js
 let openRequest = indexedDB.open("db", 1);
 
-// create an object store for books if not exists
+// create/upgrade the database without version checks
 openRequest.onupgradeneeded = function() {
   let db = openRequest.result;
-  if (!db.objectStoreNames.contains('books')) {
-    db.createObjectStore('books', {keyPath: 'id'});
+  if (!db.objectStoreNames.contains('books')) { // if there's no "books" store
+    db.createObjectStore('books', {keyPath: 'id'}); // create it
   }
 };
 ```
@@ -188,14 +192,14 @@ db.transaction(store[, type]);
 - `store` is a store name that the transaction is going to access, e.g. `"books"`. Can be an array of store names if we're going to access multiple stores.
 - `type` – a transaction type, one of:
   - `readonly` -- can only read, the default.
-  - `readwrite` -- can only read and write, but not modify object stores.
+  - `readwrite` -- can only read and write the data, but not create/remove/alter object stores.
 
 There'is also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
-```smart header="What are transaction types for?"
+```smart header="Why there exist different types of transactions?"
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
 
-Many `readonly` transactions can access concurrently the same store, but `readwrite` transactions can't. A `readwrite` transaction "locks" the store for writing. The next transaction must wait before the previous one finishes before accessing the same store.
+Many `readonly` transactions are able to access concurrently the same store, but `readwrite` transactions can't. A `readwrite` transaction "locks" the store for writing. The next transaction must wait before the previous one finishes before accessing the same store.
 ```
 
 After the transaction is created, we can add an item to the store, like this:
@@ -227,12 +231,12 @@ request.onerror = function() {
 };
 ```
 
-There are basically four steps:
+There were basically four steps:
 
 1. Create a transaction, mention all stores it's going to access, at `(1)`.
 2. Get the store object using `transaction.objectStore(name)`, at `(2)`.
 3. Perform the request to the object store `books.add(book)`, at `(3)`.
-4. ...Handle request success/error `(4)`, make other requests if needed, etc.
+4. ...Handle request success/error `(4)`, then we can make other requests if needed, etc.
 
 Object stores support two methods to store a value:
 
@@ -242,14 +246,14 @@ Object stores support two methods to store a value:
 - **add(value, [key])**
     Same as `put`, but if there's already a value with the same key, then the request fails, and an error with the name `"ConstraintError"` is generated.
 
-Just like when opening a database, we send a request: `books.add(book)`, and then wait for `success/error` events.
+Similar to opening a database, we can send a request: `books.add(book)`, and then wait for `success/error` events.
 
 - The `request.result` for `add` is the key of the new object.
 - The error is in `request.error` (if any).
 
-## Transactions autocommit
+## Transactions' autocommit
 
-In the example above we started the transaction and made `add` request. We could make more requests. How do we finish ("commit") the transaction?
+In the example above we started the transaction and made `add` request. But as we stated previously, a transaction may have multiple associated requests, that must either all success or all fail. How do we mark the transaction as finished, no more requests to come?
 
 The short answer is: we don't.
 
@@ -257,15 +261,9 @@ In the next version 3.0 of the specification, there will probably be a manual wa
 
 **When all transaction requests are finished, and the [microtasks queue](info:microtask-queue) is empty, it is committed automatically.**
 
-```smart header="What's an \"empty microtask queue\"?"
-The microtask queue is explained in [another chapter](info:async-await#microtask-queue). In short, an empty microtask queue means that for all settled promises their `.then/catch/finally` handlers are executed.
+Usually, we can assume that a transaction commits when all its requests are complete, and the current code finishes.
 
-In other words, handling of finished promises and resuming "awaits" is done before closing the transaction.
-
-That's a minor technical detail. If we're using `async/await` instead of low-level promise calls, then we can assume that a transaction commits when all its requests are done, and the current code finishes.
-```
-
-So, in the example above no special code is needed to finish the transaction.
+So, in the example above no special call is needed to finish the transaction.
 
 Transactions auto-commit principle has an important side effect. We can't insert an async operation like `fetch`, `setTimeout` in the middle of transaction. IndexedDB will not keep the transaction waiting till these are done.
 
@@ -331,9 +329,9 @@ That's to be expected, not only because of possible errors at our side, but also
 
 **A failed request automatically aborts the transaction, canceling all its changes.**
 
-Sometimes a request may fail with a non-critical error. We'd like to handle it in `request.onerror` and continue the transaction. Then, to prevent the transaction abort, we should call `event.preventDefault()`.
+In some situations, we may want to handle the failure (e.g. try another request), without canceling existing changes, and continue the transaction. That's possible. The `request.onerror` handler is able to prevent the transaction abort by calling `event.preventDefault()`.
 
-In the example below a new book is added with the same key (`id`). The `store.add` method generates a `"ConstraintError"` in that case. We handle it without canceling the transaction:
+In the example below a new book is added with the same key (`id`) as the existing one. The `store.add` method generates a `"ConstraintError"` in that case. We handle it without canceling the transaction:
 
 ```js
 let transaction = db.transaction("books", "readwrite");
@@ -347,6 +345,7 @@ request.onerror = function(event) {
   if (request.error.name == "ConstraintError") {
     console.log("Book with such id already exists"); // handle the error
     event.preventDefault(); // don't abort the transaction
+    // use another key for the book?
   } else {
     // unexpected error, can't handle it
     // the transaction will abort
@@ -396,9 +395,9 @@ request.onerror = function(event) {
 
 ## Searching by keys
 
-There are two main ways to search in an object store:
+There are two main types of search in an object store:
 1. By a key or a key range. That is: by `book.id` in our "books" storage.
-2. By another object field, e.g. `book.price`. We need an index for that.
+2. By another object field, e.g. `book.price`.
 
 First let's deal with the keys and key ranges `(1)`.
 
@@ -524,7 +523,7 @@ Indexes are internally sorted by the tracked object field, `price` in our case. 
 
 ## Deleting from store
 
-The `delete` method looks up values to delete by a query, just like `getAll`.
+The `delete` method looks up values to delete by a query, the call format is similar to `getAll`:
 
 - **`delete(query)`** -- delete matching values by query.
 
@@ -555,9 +554,7 @@ books.clear(); // clear the storage.
 
 Methods like `getAll/getAllKeys` return an array of keys/values.
 
-But an object storage can be huge, bigger than the available memory.
-
-Then `getAll` will fail to get all records as an array.
+But an object storage can be huge, bigger than the available memory. Then `getAll` will fail to get all records as an array.
 
 What to do?
 
@@ -608,7 +605,7 @@ request.onsuccess = function() {
 The main cursor methods are:
 
 - `advance(count)` -- advance the cursor `count` times, skipping values.
-- `continue([key])` -- advance the cursor to the next value in range matching or after key.
+- `continue([key])` -- advance the cursor to the next value in range matching (or immediately after `key` if given).
 
 Whether there are more values matching the cursor or not -- `onsuccess` gets called, and then in `result` we can get the cursor pointing to the next record, or `undefined`.
 
@@ -672,7 +669,7 @@ So we have all the sweet "plain async code" and "try..catch" stuff.
 
 ### Error handling
 
-If we don't catch the error, then it falls through, just as usual.
+If we don't catch an error, then it falls through, till the closest outer `try..catch`.
 
 An uncaught error becomes an "unhandled promise rejection" event on `window` object.
 
@@ -688,7 +685,7 @@ window.addEventListener('unhandledrejection', event => {
 
 ### "Inactive transaction" pitfall
 
-A we know already, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put an *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it fails.
+A we know already, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put an *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
 
 For a promise wrapper and `async/await` the situation is the same.
 
