@@ -195,18 +195,18 @@ Now we can easily make a convenience function for current logs:
 
 ```js
 // currentLog will be the partial of log with fixed first argument
-let currentLog = log(new Date());
+let logNow = log(new Date());
 
 // use it
-currentLog("INFO", "message"); // [HH:mm] INFO message
+logNow("INFO", "message"); // [HH:mm] INFO message
 ```
 
 And here's a convenience function for current debug messages:
 
 ```js
-let todayDebug = currentLog("DEBUG");
+let debugNow = logNow("DEBUG");
 
-currentLog("message"); // [HH:mm] DEBUG message
+debugNow("message"); // [HH:mm] DEBUG message
 ```
 
 So:
