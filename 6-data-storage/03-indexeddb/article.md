@@ -57,7 +57,7 @@ openRequest.onupgradeneeded = function() {
 };
 
 openRequest.onerror = function() {
-  console.error("Error", openResult.error);
+  console.error("Error", openRequest.error);
 };
 
 openRequest.onsuccess = function() {
@@ -107,15 +107,17 @@ IndexedDB uses the [standard serialization algorithm](https://www.w3.org/TR/html
 
 An example of object that can't be stored: an object with circular references. Such objects are not serializable. `JSON.stringify` also fails for such objects.
 
-**There must be an unique `key` for every value in the store.**     
+**There must be a unique `key` for every value in the store.**     
 
 A key must have a type one of: number, date, string, binary, or array. It's an unique identifier: we can search/remove/update values by the key.
 
 ![](indexeddb-structure.png)
 
-As we'll see very soon, we can provide a key when we add an value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
+
+As we'll see very soon, we can provide a key when we add a value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
 
 But we need to create an object store first.
+
 
 The syntax to create an object store:
 ```js
@@ -194,7 +196,7 @@ db.transaction(store[, type]);
   - `readonly` -- can only read, the default.
   - `readwrite` -- can only read and write the data, but not create/remove/alter object stores.
 
-There'is also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
+There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
 ```smart header="Why there exist different types of transactions?"
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
@@ -462,7 +464,7 @@ objectStore.createIndex(name, keyPath, [options]);
 - **`keyPath`** -- path to the object field that the index should track (we're going to search by that field),
 - **`option`** -- an optional object with properties:
   - **`unique`** -- if true, then there may be only one object in the store with the given value at the `keyPath`. The index will enforce that by generating an error if we try to add a duplicate.
-  - **`multiEntry`** -- only used if there value on `keyPath` is an array. In that case, by default, the index will treat the whole array as the key. But if `multiEntry` is true, then the index will keep a list of store objects for each value in that array. So array members become index keys.
+  - **`multiEntry`** -- only used if the value on `keyPath` is an array. In that case, by default, the index will treat the whole array as the key. But if `multiEntry` is true, then the index will keep a list of store objects for each value in that array. So array members become index keys.
 
 In our example, we store books keyed by `id`.
 
@@ -611,7 +613,7 @@ Whether there are more values matching the cursor or not -- `onsuccess` gets cal
 
 In the example above the cursor was made for the object store.
 
-But we also can make a cursor over an index. As we remember, indexes allow to search by an object field. Cursors over indexes to precisely the same as over object stores -- they save memory by returning one value at a timee.
+But we also can make a cursor over an index. As we remember, indexes allow to search by an object field. Cursors over indexes to precisely the same as over object stores -- they save memory by returning one value at a time.
 
 For cursors over indexes, `cursor.key` is the index key (e.g. price), and we should use `cursor.primaryKey` property the object key:
 
@@ -685,7 +687,9 @@ window.addEventListener('unhandledrejection', event => {
 
 ### "Inactive transaction" pitfall
 
-A we know already, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put an *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
+
+As we already know, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put a *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
+
 
 For a promise wrapper and `async/await` the situation is the same.
 
@@ -712,7 +716,7 @@ The workaround is same as when working with native IndexedDB: either make a new 
 
 Internally, the wrapper performs a native IndexedDB request, adding `onerror/onsuccess` to it, and returns a promise that rejects/resolves with the result.
 
-That works most fine of the time. The examples are at the lib page <https://github.com/jakearchibald/idb>.
+That works fine most of the time. The examples are at the lib page <https://github.com/jakearchibald/idb>.
 
 In few rare cases, when we need the original `request` object, we can access it as `promise.request` property of the promise:
 
