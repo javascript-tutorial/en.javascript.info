@@ -58,7 +58,7 @@ In-browser JavaScript execution flow, as well as Node.js, is based on an *event 
 
 "Event loop" is a process when the engine sleeps and waits for events. When they occur - handles them and sleeps again.
 
-Events may come either comes from external sources, like user actions, or just as the end signal of an internal task.
+Events may come either from external sources, like user actions, or just as the end signal of an internal task.
 
 Examples of events:
 - `mousemove`, a user moved their mouse.
@@ -123,7 +123,6 @@ Promise.resolve()
 Naturally, `promise` shows up first, because `setTimeout` macrotask awaits in the less-priority macrotask queue.
 
 As a logical consequence, macrotasks are handled only when promises give the engine a "free time". So if we have a chain of promise handlers that don't wait for anything, execute right one after another, then a `setTimeout` (or a user action handler) can never run in-between them.
-
 
 ## Unhandled rejection
 
