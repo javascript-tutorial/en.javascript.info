@@ -58,7 +58,7 @@ In-browser JavaScript execution flow, as well as Node.js, is based on an *event 
 
 "Event loop" is a process when the engine sleeps and waits for events. When they occur - handles them and sleeps again.
 
-Events may come either comes from external sources, like user actions, or just as the end signal of an internal task.
+Events may come either from external sources, like user actions, or just as the end signal of an internal task.
 
 Examples of events:
 - `mousemove`, a user moved their mouse.
