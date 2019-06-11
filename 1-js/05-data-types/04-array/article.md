@@ -453,7 +453,7 @@ We can use an array as a deque with the following operations:
 - `push(...items)` adds `items` to the end.
 - `pop()` removes the element from the end and returns it.
 - `shift()` removes the element from the beginning and returns it.
-- `unshift(...items)` adds items to the beginning.
+- `unshift(...items)` adds `items` to the beginning.
 
 To loop over the elements of the array:
   - `for (let i=0; i<arr.length; i++)` -- works fastest, old-browser-compatible.
