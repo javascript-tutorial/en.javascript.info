@@ -278,7 +278,7 @@ The good thing is: a `.then` handler is guaranteed to run whether the promise ta
 
 Next, let's see more practical examples of how promises can help us to write asynchronous code.
 
-## Example: loadScript
+## Example: loadScript [#loadscript]
 
 We've got the `loadScript` function for loading a script from the previous chapter.
 

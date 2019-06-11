@@ -60,9 +60,9 @@ alert( str.match(/(?<!\$)\d+/) ); // 2 (skipped the price)
 
 Generally, what's inside the lookaround (a common name for both lookahead and lookbehind) parentheses does not become a part of the match.
 
-E.g. in the pattern `pattern:\d+(?!€)`, the `pattern:€` sign doesn't get captured as a part of the match.
+E.g. in the pattern `pattern:\d+(?=€)`, the `pattern:€` sign doesn't get captured as a part of the match. That's natural: we look for a number `pattern:\d+`, while `pattern:(?=€)` is just a test that it should be followed by `subject:€`.
 
-But if we want to capture the whole lookaround expression or a part of it, that's possible. Just need to wrap that into additional parentheses.
+But in some situations we might want to capture the lookaround expression as well, or a part of it. That's possible. Just  wrap that into additional parentheses.
 
 For instance, here the currency `pattern:(€|kr)` is captured, along with the amount:
 
@@ -89,9 +89,13 @@ Usually parentheses are numbered left-to-right, but lookbehind is an exception, 
 
 ## Summary
 
-Lookahead and lookbehind (commonly referred to as "lookaround") are useful for simple regular expressions, when we'd like not to take something into the match depending on the context before/after it.
+Lookahead and lookbehind (commonly referred to as "lookaround") are useful when we'd like to take something into the match depending on the context before/after it.
 
-Sometimes we can do the same manually, that is: match all and filter by context in the loop. Remember, `str.matchAll` and `reg.exec` return matches with `.index` property, so we know where exactly in the text it is. But generally regular expressions can do it better.
+For simple regexps we can do the similar thing manually. That is: match everything, in any context, and then filter by context in the loop.
+
+Remember, `str.matchAll` and `reg.exec` return matches with `.index` property, so we know where exactly in the text it is, and can check the context.
+
+But generally regular expressions are more convenient.
 
 Lookaround types:
 
@@ -102,4 +106,4 @@ Lookaround types:
 | `pattern:(?<=y)x` |  Positive lookbehind | `x` if after `y` |
 | `pattern:(?<!y)x` | Negative lookbehind | `x` if not after `y` |
 
-Lookahead can also used to disable backtracking. Why that may be needed -- see in the next chapter.
+Lookahead can also used to disable backtracking. Why that may be needed and other details  -- see in the next chapter.

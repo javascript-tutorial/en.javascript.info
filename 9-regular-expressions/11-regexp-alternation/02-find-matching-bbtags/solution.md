@@ -1,14 +1,14 @@
 
 Opening tag is `pattern:\[(b|url|quote)\]`.
 
-Then to find everything till the closing tag -- let's the pattern `pattern:[\s\S]*?` to match any character including the newline and then a backreference to the closing tag.
+Then to find everything till the closing tag -- let's use the pattern `pattern:.*?` with flag `s` to match any character including the newline and then add a backreference to the closing tag.
 
-The full pattern: `pattern:\[(b|url|quote)\][\s\S]*?\[/\1\]`.
+The full pattern: `pattern:\[(b|url|quote)\].*?\[/\1\]`.
 
 In action:
 
 ```js run
-let reg = /\[(b|url|quote)\][\s\S]*?\[\/\1\]/g;
+let reg = /\[(b|url|quote)\].*?\[\/\1\]/gs;
 
 let str = `
   [b]hello![/b]

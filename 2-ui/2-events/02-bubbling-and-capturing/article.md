@@ -151,9 +151,7 @@ There are two possible values of the `capture` option:
 
 Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
 
-If one puts capturing and bubbling handlers on the target element, the capture handler triggers last in the capturing phase and the bubble handler triggers first in the bubbling phase.
-
-Let's see it in action:
+Let's see both capturing and bubbling in action:
 
 ```html run autorun height=140 edit
 <style>

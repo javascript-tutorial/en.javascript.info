@@ -1,6 +1,6 @@
 # Backreferences in pattern: \n and \k
 
-Capturing groups can be accessed not only in the result or in the replacement string, but also in the pattern itself.
+We can use the contents of capturing groups `(...)` not only in the result or in the replacement string, but also in the pattern itself.
 
 ## Backreference by number: \n
 
@@ -12,7 +12,7 @@ We need to find a quoted string: either a single-quoted `subject:'...'` or a dou
 
 How to look for them?
 
-We can put two kinds of quotes in the pattern: `pattern:['"](.*?)['"]`, but it would find strings with mixed quotes, like `match:"...'` and `match:'..."`. That would lead to incorrect matches when one quote appears inside other ones, like the string `subject:"She's the one!"`:
+We can put both kinds of quotes in the square brackets: `pattern:['"](.*?)['"]`, but it would find strings with mixed quotes, like `match:"...'` and `match:'..."`. That would lead to incorrect matches when one quote appears inside other ones, like the string `subject:"She's the one!"`:
 
 ```js run
 let str = `He said: "She's the one!".`;
@@ -25,7 +25,7 @@ alert( str.match(reg) ); // "She'
 
 As we can see, the pattern found an opening quote `match:"`, then the text is consumed lazily till the other quote `match:'`, that closes the match.
 
-To make sure that the pattern looks for the closing quote exactly the same as the opening one, we can make a groups of it and use the backreference.
+To make sure that the pattern looks for the closing quote exactly the same as the opening one, we can wrap it into a capturing group and use the backreference.
 
 Here's the correct code:
 

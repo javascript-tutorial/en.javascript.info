@@ -1,7 +1,7 @@
 
 # Dynamic imports
 
-Export and import statements that we covered in previous chaters are called "static".
+Export and import statements that we covered in previous chapters are called "static".
 
 That's because they are indeed static. The syntax is very strict.
 

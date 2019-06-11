@@ -31,7 +31,7 @@ To separate a part of the pattern for alternation we usually enclose it in paren
 
 ## Regexp for time
 
-In previous chapters there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time (99 seconds is valid, but shouldn't be).
+In previous chapters there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time (as 99 seconds match the pattern).
 
 How can we make a better one?
 

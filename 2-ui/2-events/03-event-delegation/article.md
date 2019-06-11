@@ -182,7 +182,7 @@ The pattern has two parts:
 
 ### Counter
 
-For instance, here the attribute `data-counter` adds a behavior: "increase on click" to buttons:
+For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
 
 ```html run autorun height=60
 Counter: <input type="button" value="1" data-counter>

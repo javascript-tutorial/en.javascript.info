@@ -66,10 +66,10 @@ So we can operate both on the full class string using `className` or on individu
 Methods of `classList`:
 
 - `elem.classList.add/remove("class")` -- adds/removes the class.
-- `elem.classList.toggle("class")` -- if the class exists, then removes it, otherwise adds it.
+- `elem.classList.toggle("class")` -- adds the class if it doesn't exist, otherwise removes it.
 - `elem.classList.contains("class")` -- returns `true/false`, checks for the given class.
 
-Besides that, `classList` is iterable, so we can list all classes like this:
+Besides, `classList` is iterable, so we can list all classes with `for..of`, like this:
 
 ```html run
 <body class="main page">
@@ -147,7 +147,7 @@ To set the full style as a string, there's a special property `style.cssText`:
 </script>
 ```
 
-We rarely use it, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But still can be done for new elements when we know we won't delete something important.
+This property is rarely used, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But we can safely use it for new elements, when we know we won't delete an existing style.
 
 The same can be accomplished by setting an attribute: `div.setAttribute('style', 'color: red...')`.
 ````
