@@ -58,7 +58,24 @@ alert( visitsCountMap.get(john) ); // 123
 
 Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but it would be difficult to replace the `Map` with a regular `Object` in the example above.
 
-In the old times, before `Map` existed, people added unique identifiers to objects for that:
+Let's try:
+
+```js run
+let john = { name: "John" };
+
+let visitsCountObj = {}; // try to use an object
+
+visitsCountObj[john] = 123; // try to use john object as the key
+
+*!*
+// That's what got written!
+alert( visitsCountObj["[object Object]"] ); // 123
+*/!*
+```
+
+As `john` is an object, it got converted to the key string `"[object Object]"`. All objects without a special conversion handling are converted to such string, so they'll all mess up.
+
+In the old times, before `Map` existed, people used to add unique identifiers to objects for that:
 
 ```js run
 // we add the id field
@@ -159,7 +176,7 @@ The iteration goes in the same order as the values were inserted. `Map` preserve
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
-// runs the function for each (key, value) pair 
+// runs the function for each (key, value) pair
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
