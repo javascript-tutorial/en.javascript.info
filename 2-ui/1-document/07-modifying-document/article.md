@@ -38,7 +38,7 @@ That was an HTML example. Now let's create the same `div` with JavaScript (assum
 To create DOM nodes, there are two methods:
 
 `document.createElement(tag)`
-: Creates a new element with the given tag:
+: Creates a new *element node* with the given tag:
 
     ```js
     let div = document.createElement('div');
@@ -67,7 +67,7 @@ After that, we have our DOM element ready. Right now it is just in a variable an
 
 To make the `div` show up, we need to insert it somewhere into `document`. For instance, in `document.body`.
 
-There's a special method for that: `document.body.appendChild(div)`.
+There's a special method `appendChild` for that: `document.body.appendChild(div)`.
 
 Here's the full code:
 
@@ -146,9 +146,9 @@ Here's a brief list of methods to insert a node into a parent element (`parentEl
 
 All these methods return the inserted node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
 
-These methods are "old school": they exist from the ancient times and we can meet them in many old scripts. Unfortunately, there are some tasks that are hard to solve with them.
+These methods are "old school": they exist from the ancient times and we can meet them in many old scripts. Unfortunately, they are not flexible enough.
 
-For instance, how to insert *html* if we have it as a string? Or, given a node, how to insert another node *before* it? Of course, all that is doable, but not in an elegant way.
+For instance, how to insert *html* if we have it as a string? Or, given a node, without reference to its parent, how to remove it? Of course, that's doable, but not in an elegant way.
 
 So there exist two other sets of insertion methods to handle all cases easily.
 
@@ -161,6 +161,8 @@ This set of methods provides more flexible insertions:
 - `node.before(...nodes or strings)` –- insert nodes or strings before the `node`,
 - `node.after(...nodes or strings)` –- insert nodes or strings after the `node`,
 - `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
+
+All of them accept a list of DOM nodes and/or text strings. If a string is given it's inserted as a text node.
 
 Here's an example of using these methods to add more items to a list and the text before/after it:
 
@@ -236,14 +238,14 @@ But what if we want to insert HTML "as html", with all tags and stuff working, l
 
 There's another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
 
-The first parameter is a string, specifying where to insert. Must be one of the following:
+The first parameter is a code word, specifying where to insert relative to `elem`. Must be one of the following:
 
-- `"beforebegin"` -- insert `html` before `elem`,
+- `"beforebegin"` -- insert `html` immediately before `elem`,
 - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
 - `"beforeend"` -- insert `html` into `elem`, at the end,
-- `"afterend"` -- insert `html` after `elem`.
+- `"afterend"` -- insert `html` immediately after `elem`.
 
-The second parameter is an HTML string, inserted "as is".
+The second parameter is an HTML string, that is inserted "as HTML".
 
 For instance:
 
@@ -338,9 +340,9 @@ An example of copying the message:
 
 ## DocumentFragment [#document-fragment]
 
-`DocumentFragment` is a special DOM node that serves as a wrapper to pass around groups of nodes.
+`DocumentFragment` is a special DOM node that serves as a wrapper to pass around lists of nodes.
 
-We can append other nodes to it, but when we insert it somewhere, then it "disappears", leaving its content inserted instead.
+We can append other nodes to it, but when we insert it somewhere, then its content is inserted instead.
 
 For example, `getListContent` below generates a fragment with `<li>` items, that are later inserted into `<ul>`:
 
@@ -502,7 +504,7 @@ So it's kind of unusable at "after loaded" stage, unlike other DOM methods we co
 
 That was the downside.
 
-Technically, when `document.write` is called while the browser is still reading HTML, it appends something to it, and the browser consumes it just as it were initially there.
+Technically, when `document.write` is called while the browser is reading ("parsing") incoming HTML, and it writes something, the browser consumes it just as it were initially there, in the   HTML text.
 
 That gives us the upside -- it works blazingly fast, because there's *no DOM modification*. It writes directly into the page text, while the DOM is not yet built, and the browser puts it into DOM at generation-time.
 

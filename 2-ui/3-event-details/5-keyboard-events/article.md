@@ -104,7 +104,7 @@ So, `event.code` will equal `KeyZ` for people with German layout when they press
 That sounds odd, but so it is. The [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) explicitly mentions such behavior.
 
 - `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
-- `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may map to different physical keys, leading to different codes. That happens for several codes, e.g. `keyA`, `keyQ`, `keyZ` (as we've seen). You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
+- `event.code` may match a wrong character for unexpected layout. Same letters in different layouts may map to different physical keys, leading to different codes. Luckily, that happens only with several codes, e.g. `keyA`, `keyQ`, `keyZ` (as we've seen), and doesn't happen with special keys such as `Shift`. You can find the list in the [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system).
 
 So, to reliably track layout-dependent characters, `event.key` may be a better way.
 
@@ -163,9 +163,9 @@ Now arrows and deletion works well.
 
 In the past, there was a `keypress` event, and also `keyCode`, `charCode`, `which` properties of the event object.
 
-There were so many browser incompatibilities that developers of the specification decided to deprecate all of them. The old code still works, as browsers keep supporting them, but there's totally no need to use those any more.
+There were so many browser incompatibilities while working with them, that developers of the specification had no way, other than deprecating all of them and creating new, modern events (described above in this chapter). The old code still works, as browsers keep supporting them, but there's totally no need to use those any more.
 
-There was a time when this chapter included their detailed description. But as of now it was removed and replaced with more details about the modern event handling.
+There was a time when this chapter included their detailed description. But, as of now, browsers support modern events, so it was removed and replaced with more details about the modern event handling.
 
 ## Summary
 
@@ -179,7 +179,7 @@ Keyboard events:
 Main keyboard event properties:
 
 - `code` -- the "key code" (`"KeyA"`, `"ArrowLeft"` and so on), specific to the physical location of the key on keyboard.
-- `key` -- the character (`"A"`, `"a"` and so on), for non-character keys usually has the same value  as `code`.
+- `key` -- the character (`"A"`, `"a"` and so on), for non-character keys, such as `key:Esc`, usually has the same value  as `code`.
 
 In the past, keyboard events were sometimes used to track user input in form fields. That's not reliable, because the input can come from various sources. We have `input` and `change` events to handle any input (covered later in the chapter <info:events-change-input>). They trigger after any kind of input, including copy-pasting or speech recognition.
 
