@@ -137,7 +137,7 @@ We'll cover more features of modules later, in the chapter [](info:modules).
 
 2. We can test the global object for support of modern language features.
 
-    For instance, test if a build-in `Promise` object exists (it doesn't in really old browsers):
+    For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
     ```js run
     if (!window.Promise) {
       alert("Your browser is really old!");
