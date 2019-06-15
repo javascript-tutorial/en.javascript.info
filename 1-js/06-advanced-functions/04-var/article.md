@@ -35,7 +35,7 @@ alert(phrase); // Error, phrase is not defined
 
 For instance:
 
-```js
+```js run
 if (true) {
   var test = true; // use "var" instead of "let"
 }
@@ -61,7 +61,7 @@ alert(i); // 10, "i" is visible after loop, it's a global variable
 
 If a code block is inside a function, then `var` becomes a function-level variable:
 
-```js
+```js run
 function sayHi() {
   if (true) {
     var phrase = "Hello";
@@ -71,7 +71,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined
+alert(phrase); // Error: phrase is not defined (Check the Developer Console)
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a remnant of that.
@@ -84,7 +84,7 @@ In other words, `var` variables are defined from the beginning of the function, 
 
 So this code:
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello";
 
@@ -94,11 +94,12 @@ function sayHi() {
   var phrase;
 */!*
 }
+sayHi();
 ```
 
 ...Is technically the same as this (moved `var phrase` above):
 
-```js
+```js run
 function sayHi() {
 *!*
   var phrase;
@@ -108,11 +109,12 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 ...Or even as this (remember, code blocks are ignored):
 
-```js
+```js run
 function sayHi() {
   phrase = "Hello"; // (*)
 
@@ -124,6 +126,7 @@ function sayHi() {
 
   alert(phrase);
 }
+sayHi();
 ```
 
 People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
