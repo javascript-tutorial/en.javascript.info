@@ -1,6 +1,12 @@
 # Eval: run a code string
 
-The built-in `eval(code)` function allows to execute a string of `code`.
+The built-in `eval` function allows to execute a string of `code`.;
+
+The syntax is:
+
+```js
+let result = eval(code);
+```
 
 For example:
 
@@ -56,33 +62,33 @@ Without `use strict`, `eval` doesn't have its own lexical environment, so we wou
 
 ## Using "eval"
 
-In modern programming `eval` is used very sparingly. There's also an expression "eval is evil".
+In modern programming `eval` is used very sparingly. It's often said that "eval is evil".
 
-The reason is simple: long, long time ago JavaScript was a weak language, many things could only be done with `eval`. But that time has passed.
+The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
 
-Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct, or [JavaScript Modules](info:modules).
+Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
 
-Still, if you're sure you need `eval`, please note that its ability to access outer variables has side-effects.
+Still, if you're sure you need to dynamically `eval` a string of code, please note that its ability to access outer variables has side-effects.
 
-Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones. That's safe, unless `eval` is used. When they see `eval`, they thing it might use local variables, so they don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
+Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones for brewity. That's usually safe, but not if `eval` is used, as it may reference them. So minifiers don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
 
-Also, renaming a local variable becomes more dangeours overall.
+Using outer local variables inside `eval` is a bad programming practice, as it makes maintaining the code more difficult.
 
-Using outer variables inside `eval` is a bad programming practice.
+There are two ways how to evade any eval-related problems.
 
-There are two solutions.
+**If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
 
-**If you don't use outer variables, please call `eval` as `window.eval(...)`:**
+This way the code is executed in the global scope:
 
 ```js untrusted refresh run
-let a = 1;
+let x = 1;
 {
-  let a = 5;
-  window.eval('alert(a)'); // 1
+  let x = 5;
+  window.eval('alert(x)'); // 1 (global variable)
 }
 ```
 
-**If your code needs variables, execute it with `new Function`:**
+**If your code needs local variables, execute it with `new Function` and pass them as arguments:**
 
 ```js run
 let f = new Function('a', 'alert(a)');
@@ -90,12 +96,12 @@ let f = new Function('a', 'alert(a)');
 f(5); // 5
 ```
 
-The `new Function` construct is explained in the chapter <info:new-function>. It creates a function from a string. Local variables can be passed to it as parameters, like in the example above.
+The `new Function` construct is explained in the chapter <info:new-function>. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
 
 ## Summary
 
-- A call to `eval(code)` runs the code and returns the result of the last statement.
-- Rarely used in modern JavaScript.
+A call to `eval(code)` runs the string of code and returns the result of the last statement.
+- Rarely used in modern JavaScript, as there's usually no need.
 - Can access outer local variables. That's considered bad practice.
-- To execute the code in the global scope, use `window.eval(code)`.
-- If your code needs some data from the outer scope, use `new Function` and pass it as arguments.
+- Instead, to `eval` the code in the global scope, use `window.eval(code)`.
+- Or, if your code needs some data from the outer scope, use `new Function` and pass it as arguments.
