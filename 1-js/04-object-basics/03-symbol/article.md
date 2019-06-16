@@ -16,7 +16,7 @@ A value of this type can be created using `Symbol()`:
 let id = Symbol();
 ```
 
-We can also give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
 
 ```js run
 // id is a symbol with the description "id"
@@ -74,7 +74,7 @@ alert(id.description); // id
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
-For instance, if we want to store an "identifier" for the object `user`, we can use a symbol as a key for it:
+For instance, if we'd like to add an "identifier" to the object `user`, we can use a symbol as a key for it:
 
 ```js run
 let user = { name: "John" };
@@ -88,7 +88,7 @@ What's the benefit of using `Symbol("id")` over a string `"id"`?
 
 Let's make the example a bit deeper to see that.
 
-Imagine that another script wants to have its own "id" property inside `user`, for its own purposes. That may be another JavaScript library, so the scripts are completely unaware of each other.
+Imagine that another script wants to have its own identifier inside `user`, for its own purposes. That may be another JavaScript library, so thes scripts are completely unaware of each other.
 
 Then that script can create its own `Symbol("id")`, like this:
 
@@ -99,9 +99,9 @@ let id = Symbol("id");
 user[id] = "Their id value";
 ```
 
-There will be no conflict, because symbols are always different, even if they have the same name.
+There will be no conflict between our and their identifiers, because symbols are always different, even if they have the same name.
 
-Now note that if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
+...But if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
 
 ```js run
 let user = { name: "John" };
@@ -117,7 +117,7 @@ user.id = "Their id value"
 
 ### Symbols in a literal
 
-If we want to use a symbol in an object literal, we need square brackets.
+If we want to use a symbol in an object literal `{...}`, we need square brackets around it.
 
 Like this:
 
@@ -155,7 +155,7 @@ for (let key in user) alert(key); // name, age (no symbols)
 alert( "Direct: " + user[id] );
 ```
 
-That's a part of the general "hiding" concept. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
+`Object.keys(user)` also ignores them. That's a part of the general "hiding symbolic properties" principle. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
 
 In contrast, [Object.assign](mdn:js/Object/assign) copies both string and symbol properties:
 
@@ -190,13 +190,13 @@ alert( obj[0] ); // test (same property)
 
 ## Global symbols
 
-As we've seen, usually all symbols are different, even if they have the same names. But sometimes we want same-named symbols to be same entities.
+As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities.
 
 For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
 
 To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
 
-In order to create or read a symbol in the registry, use `Symbol.for(key)`.
+In order to read (create if absent) a symbol from the registry, use `Symbol.for(key)`.
 
 That call checks the global registry, and if there's a symbol described as `key`, then returns it, otherwise creates a new symbol `Symbol(key)` and stores it in the registry by the given `key`.
 
@@ -206,7 +206,7 @@ For instance:
 // read from the global registry
 let id = Symbol.for("id"); // if the symbol did not exist, it is created
 
-// read it again
+// read it again (maybe from another part of the code)
 let idAgain = Symbol.for("id");
 
 // the same symbol
@@ -266,14 +266,14 @@ Other symbols will also become familiar when we study the corresponding language
 
 `Symbol` is a primitive type for unique identifiers.
 
-Symbols are created with `Symbol()` call with an optional description.
+Symbols are created with `Symbol()` call with an optional description (name).
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` return exactly the same symbol.
+Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` with the same `key` return exactly the same symbol.
 
 Symbols have two main use cases:
 
 1. "Hidden" object properties.
-    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally listed. Also it won't be accessed directly, because another script does not have our symbol, so it will not occasionally intervene into its actions.
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from occasional use or overwrite.
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 

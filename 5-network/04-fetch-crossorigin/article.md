@@ -18,82 +18,96 @@ try {
 
 Fetch fails, as expected.
 
-## Why?
+## Why? A brief history
 
 Because cross-origin restrictions protect the internet from evil hackers.
 
 Seriously. Let's make a very brief historical digression.
 
-For many years JavaScript did not have any special methods to perform network requests.
-
-**A script from one site could not access the content of another site.**
+**For many years a script from one site could not access the content of another site.**
 
 That simple, yet powerful rule was a foundation of the internet security. E.g. a script from the page `hacker.com` could not access user's mailbox at `gmail.com`. People felt safe.
 
-But web developers demanded more power. A variety of tricks were invented to work around it.
+JavaScript also did not have any special methods to perform network requests at that time. It was a toy language to decorate a web page.
+
+But web developers demanded more power. A variety of tricks were invented to work around the limitation.
+
+### Using forms
 
 One way to communicate with another server was to submit a `<form>` there. People submitted it into `<iframe>`, just to stay on the current page, like this:
 
 ```html
 <!-- form target -->
+*!*
 <iframe name="iframe"></iframe>
+*/!*
 
 <!-- a form could be dynamically generated and submited by JavaScript -->
+*!*
 <form target="iframe" method="POST" action="http://another.com/…">
+*/!*
   ...
 </form>
 
 ```
 
-- So, it was possible to make a GET/POST request to another site, even without networking methods.
-- But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
+So, it was possible to make a GET/POST request to another site, even without networking methods. But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
 
-So, `<form>` allowed to submit the data anywhere, but the response content was unaccessible.
+...Okay, in fact there actually were tricks for that (required special scripts at both remote and our page), but let's not delve deeper. Nothing good in those for us now.
+
+### Using scripts
 
 Another trick was to use a `<script src="http://another.com/…">` tag. A script could have any `src`, from any domain. But again -- it was impossible to access the raw content of such script.
 
 If `another.com` intended to expose data for this kind of access, then a so-called "JSONP (JSON with padding)" protocol was used.
 
-Here's the flow:
+Let's say we need to get the data from `http://another.com` this way:
 
 1. First, in advance, we declare a global function to accept the data, e.g. `gotWeather`.
-2. Then we make a `<script>` and pass its name as the `callback` query parameter, e.g. `src="http://another.com/weather.json?callback=gotWeather"`.
-3. The remote server dynamically generates a response that wraps the data into `gotWeather(...)` call.  
+
+    ```js
+    // 1. Declare the function to process the data
+    function gotWeather({ temperature, humidity }) {
+      alert(`temperature: ${temperature}, humidity: ${humidity}`);
+    }
+    ```
+2. Then we make a `<script>` tag with `src="http://another.com/weather.json?callback=gotWeather"`,  please note that the name of our function is its `callback` parameter.
+
+    ```js
+    let script = document.createElement('script');
+    script.src = `http://another.com/weather.json?callback=gotWeather`;
+    document.body.append(script);
+    ```
+3. The remote server dynamically generates a script that calls `gotWeather(...)` with the data it wants us to receive.
+    ```js
+    // The expected answer from the server looks like this:
+    gotWeather({
+      temperature: 25,
+      humidity: 78
+    });
+    ```
 4. As the script executes, `gotWeather` runs, and, as it's our function, we have the data.
 
-Here's an example of the code to receive the data in JSONP:
-
-```js run
-// 1. Declare the function to process the data
-function gotWeather({ temperature, humidity }) {
-  alert(`temperature: ${temperature}, humidity: ${humidity}`);
-}
-
-// 2. Pass its name as the ?callback parameter for the script
-let script = document.createElement('script');
-script.src = `https://cors.javascript.info/article/fetch-crossorigin/demo/script?callback=gotWeather`;
-document.body.append(script);
-
-// 3. The expected answer from the server looks like this:
-/*
-gotWeather({
-  temperature: 25,
-  humidity: 78
-});
-*/
-```
 
 
 That works, and doesn't violate security, because both sides agreed to pass the data this way. And, when both sides agree, it's definitely not a hack. There are still services that provide such access, as it works even for very old browsers.
 
-After a while, modern network methods appeared. At first, cross-origin requests were forbidden. But as a result of long discussions, cross-domain requests were  allowed, in a way that does not add any capabilities unless explicitly allowed by the server.
+After a while, networking methods appeared, such as `XMLHttpRequest`.
+
+At first, cross-origin requests were forbidden. But as a result of long discussions, cross-domain requests were  allowed, in a way that does not add any capabilities unless explicitly allowed by the server.
 
 ## Simple requests
 
-[Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
+There are two types of cross-domain requests:
+1. Simple requests.
+2. All the others.
+
+Simple Requests are, well, simpler to make, so let's start with them.
+
+A [simple request](http://www.w3.org/TR/cors/#terminology) is a request that satisfies two conditions:
 
 1. [Simple method](http://www.w3.org/TR/cors/#simple-method): GET, POST or HEAD
-2. [Simple headers](http://www.w3.org/TR/cors/#simple-header) -- only allowed:
+2. [Simple headers](http://www.w3.org/TR/cors/#simple-header) -- the only allowed custom headers are:
     - `Accept`,
     - `Accept-Language`,
     - `Content-Language`,
