@@ -2,13 +2,13 @@
 
 Forms and control elements, such as `<input>` have a lot of special properties and events.
 
-Working with forms can be much more convenient if we know them.
+Working with forms will be much more convenient when we learn them.
 
 ## Navigation: form and elements
 
 Document forms are members of the special collection `document.forms`.
 
-That's a *named* collection: we can use both the name and the number to get the form.
+That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
 
 ```js no-beautify
 document.forms.my - the form with name="my"
@@ -154,7 +154,7 @@ Let's talk about form controls, pay attention to their specific features.
 
 ### input and textarea
 
-Normally, we can access the value as `input.value` or `input.checked` for checkboxes.
+We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes.
 
 Like this:
 
@@ -166,7 +166,7 @@ input.checked = true; // for a checkbox or radio button
 ```
 
 ```warn header="Use `textarea.value`, not `textarea.innerHTML`"
-Please note that we should never use `textarea.innerHTML`: it stores only the HTML that was initially on the page, not the current value.
+Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML`. It stores only the HTML that was initially on the page, not the current value.
 ```
 
 ### select and option
@@ -174,8 +174,8 @@ Please note that we should never use `textarea.innerHTML`: it stores only the HT
 A `<select>` element has 3 important properties:
 
 1. `select.options` -- the collection of `<option>` elements,
-2. `select.value` -- the value of the chosen option,
-3. `select.selectedIndex` -- the number of the selected option.
+2. `select.value` -- the value of the currently selected option,
+3. `select.selectedIndex` -- the number of the currently selected option.
 
 So we have three ways to set the value of a `<select>`:
 
@@ -223,9 +223,11 @@ Like this:
 </script>
 ```
 
-The full specification of the `<select>` element is available at <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
+The full specification of the `<select>` element is available in the specification <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
 
 ### new Option
+
+This is rarely used on its own. But there's still an interesting thing.
 
 In the specification of [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
 
@@ -237,7 +239,7 @@ Parameters:
 
 - `text` -- the text inside the option,
 - `value` -- the option value,
-- `defaultSelected` -- if `true`, then `selected` attribute is created,
+- `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
 - `selected` -- if `true`, then the option is selected.
 
 For instance:
@@ -281,6 +283,6 @@ Form navigation:
 
 Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
 
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is at <https://html.spec.whatwg.org/multipage/forms.html>.
+For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is in the specification <https://html.spec.whatwg.org/multipage/forms.html>.
 
-These are the basics to start working with forms. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+These are the basics to start working with forms. We'll meet many examples further in the tutorial. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.

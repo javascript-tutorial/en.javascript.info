@@ -17,9 +17,9 @@ Write the destructuring assignment that reads:
 
 - `name` property into the variable `name`.
 - `years` property into the variable `age`.
-- `isAdmin` property into the variable `isAdmin` (false if absent)
+- `isAdmin` property into the variable `isAdmin` (false, if no such property)
 
-The values after the assignment should be:
+Here's an example of the values after your assignment:
 
 ```js
 let user = { name: "John", years: 30 };

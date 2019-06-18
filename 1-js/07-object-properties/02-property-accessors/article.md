@@ -3,7 +3,7 @@
 
 There are two kinds of properties.
 
-The first kind is *data properties*. We already know how to work with them. Actually, all properties that we've been using till now were data properties.
+The first kind is *data properties*. We already know how to work with them. All properties that we've been using till now were data properties.
 
 The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
 
@@ -82,7 +82,7 @@ alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-Now we have a "virtual" property. It is readable and writable, but in fact does not exist.
+As the result, we have a "virtual" property `fullName`. It is readable and writable, but in fact does not exist.
 
 ```smart header="Accessor properties are only accessible with get/set"
 Once a property is defined with `get prop()` or `set prop()`, it's an accessor property, not a data property any more.
@@ -181,9 +181,9 @@ Technically, the external code may still access the name directly by using `user
 
 ## Using for compatibility
 
-One of the great ideas behind getters and setters -- they allow to take control over a "normal" data property and tweak it at any moment.
+One of the great ideas behind getters and setters -- they allow to take control over a "regular" data property at any moment by replacing it with getter and setter and tweak its behavior.
 
-For instance, we started implementing user objects using data properties `name` and `age`:
+Let's say we started implementing user objects using data properties `name` and `age`:
 
 ```js
 function User(name, age) {
@@ -209,9 +209,9 @@ let john = new User("John", new Date(1992, 6, 1));
 
 Now what to do with the old code that still uses `age` property?
 
-We can try to find all such places and fix them, but that takes time and can be hard to do if that code is written by other people. And besides, `age` is a nice thing to have in `user`, right? In some places it's just what we want.
+We can try to find all such places and fix them, but that takes time and can be hard to do if that code is written/used by many other people. And besides, `age` is a nice thing to have in `user`, right? In some places it's just what we want.
 
-Adding a getter for `age` mitigates the problem:
+Adding a getter for `age` solves the problem:
 
 ```js run no-beautify
 function User(name, birthday) {
