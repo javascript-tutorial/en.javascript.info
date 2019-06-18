@@ -74,7 +74,7 @@ alert(id.description); // id
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
-For instance, if we're working with `user` objects, that come from a third-party code and don't have any `id` field. We'd like to add identifiers to them.
+For instance, if we're working with `user` objects, that belong to a third-party code and don't have any `id` field. We'd like to add identifiers to them.
 
 Let's use a symbol key for it:
 
@@ -88,7 +88,7 @@ alert( user[id] ); // we can access the data using the symbol as the key
 
 What's the benefit of using `Symbol("id")` over a string `"id"`?
 
-As `user` objects come from another code, and that code works with them, we shouldn't just add any fields to it. That's unsafe.
+As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed occasionally, the third-party code probably won't even see it, so it's probably all right to do.
 
 Also, imagine that another script wants to have its own identifier inside `user`, for its own purposes. That may be another JavaScript library, so that the scripts are completely unaware of each other.
 
