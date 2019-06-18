@@ -92,11 +92,11 @@ alert( visitsCounts[john.id] ); // 123
 ...But `Map` is much more elegant.
 
 
-```smart header="How `Map` compares keys"
+````smart header="How `Map` compares keys"
 To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
 
 This algorithm can't be changed or customized.
-```
+````
 
 
 ````smart header="Chaining"
