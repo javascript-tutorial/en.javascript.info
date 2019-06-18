@@ -112,7 +112,7 @@ Here's a small cheatsheet:
 
 |       | Iterators | Async iterators |
 |-------|-----------|-----------------|
-| Object method to provide iteraterable | `Symbol.iterator` | `Symbol.asyncIterator` |
+| Object method to provide iterator | `Symbol.iterator` | `Symbol.asyncIterator` |
 | `next()` return value is              | any value         | `Promise`  |
 | to loop, use                          | `for..of`         | `for await..of` |
 
@@ -178,7 +178,7 @@ No problem, just prepend it with `async`, like this:
 })();
 ```
 
-Now we have an the async generator, iteratable with `for await...of`.
+Now we have an the async generator, iterable with `for await...of`.
 
 It's indeed very simple. We add the `async` keyword, and the generator now can use `await` inside of it, rely on promises and other async functions.
 
@@ -344,7 +344,7 @@ Syntax differences between async and regular iterators:
 
 |       | Iterators | Async iterators |
 |-------|-----------|-----------------|
-| Object method to provide iteraterable | `Symbol.iterator` | `Symbol.asyncIterator` |
+| Object method to provide iterator | `Symbol.iterator` | `Symbol.asyncIterator` |
 | `next()` return value is              | any value         | `Promise`  |
 
 Syntax differences between async and regular generators:
@@ -356,6 +356,6 @@ Syntax differences between async and regular generators:
 
 In web-development we often meet streams of data, when it flows chunk-by-chunk. For instance, downloading or uploading a big file.
 
-We can use async generators to process such data, but it's worth to mention that there's also another API called Streams, that provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere). 
+We can use async generators to process such data, but it's worth to mention that there's also another API called Streams, that provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere).
 
 Streams API not a part of JavaScript language standard. Streams and async generators complement each other, both are great ways to handle async data flows.
