@@ -8,7 +8,7 @@ If a `fetch` fails, or the response has non-200 status, we just return `null` in
 
 So here's the code:
 
-```js
+```js demo
 async function getUsers(names) {
   let jobs = [];
 
