@@ -47,7 +47,7 @@ window.currentUser = {
 // somewhere else in code
 alert(currentUser.name);  // John
 
-// or, if we have a local variable with the name "value"
+// or, if we have a local variable with the name "currentUser"
 // get it from window explicitly (safe!)
 alert(window.currentUser.name); // John
 ```
@@ -56,7 +56,7 @@ That said, using global variables is generally discouraged. There should be as f
 
 ## Using for polyfills
 
-We can test the global object for support of modern language features.
+We use the global object to test for support of modern language features.
 
 For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
 ```js run
@@ -84,4 +84,4 @@ if (!window.Promise) {
 - We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
 - In-browser, unless we're using [modules](info:modules), a global variable declared with `var` becomes a property of the global object.
 
-    To make the code easier to understand and more future-proof, we should operate directly on the properties of the global object: `window.x = ...` instead of `var x = ...`.
+    To make the code easier to understand and more future-proof, we should access properties of the global object directly, as `window.x`.
