@@ -257,11 +257,11 @@ user.hi(); // John (the simple call works)
 */!*
 ```
 
-On the last line there is a ternary operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+On the last line there is a conditinal operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
 
-The method is immediately called with parentheses `()`. But it doesn't work right!
+Then the method is immediately called with parentheses `()`. But it doesn't work right!
 
-You can see that the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
+As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
 This works (object dot method):
 ```js
@@ -306,7 +306,7 @@ The Reference Type is a "specification type". We can't explicitly use it, but it
 The value of Reference Type is a three-value combination `(base, name, strict)`, where:
 
 - `base` is the object.
-- `name` is the property.
+- `name` is the property name.
 - `strict` is true if `use strict` is in effect.
 
 The result of a property access `user.hi` is not a function, but a value of Reference Type. For `user.hi` in strict mode it is:
@@ -317,6 +317,8 @@ The result of a property access `user.hi` is not a function, but a value of Refe
 ```
 
 When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
+
+Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
