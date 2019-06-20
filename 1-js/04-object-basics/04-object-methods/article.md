@@ -15,7 +15,7 @@ Actions are represented in JavaScript by functions in properties.
 
 ## Method examples
 
-For the start, let's teach the `user` to say hello:
+For a start, let's teach the `user` to say hello:
 
 ```js run
 let user = {
