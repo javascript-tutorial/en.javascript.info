@@ -52,6 +52,10 @@ Here we used `document.body.style`, but there's much, much more. Properties and 
 1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
 2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), publishing at <https://dom.spec.whatwg.org>.
 
+```smart
+The two groups signed an agreement to collaborate on the development of a single version of the HTML and DOM specifications. You can read more informations [here](https://www.w3.org/blog/2019/05/w3c-and-whatwg-to-work-together-to-advance-the-open-web-platform/)
+```
+
 As it happens, the two groups don't always agree, so it's like we have two sets of standards. But they are very similar and eventually things merge. The documentation that you can find on the given resources is very similar, with about a 99% match. There are very minor differences that you probably won't notice.
 
 Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
