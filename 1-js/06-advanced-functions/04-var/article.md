@@ -45,7 +45,19 @@ alert(test); // true, the variable lives after if
 */!*
 ```
 
-If we used `let test` on the 2nd line, then it wouldn't be visible to `alert`. But `var` ignores code blocks, so we've got a global `test`.
+`var` ignores code blocks, so we've got a global variable `test`.
+
+If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
+
+```js run
+if (true) {
+  let test = true; // use "let"
+}
+
+*!*
+alert(test); // Error: test is not defined
+*/!*
+```
 
 The same thing for loops: `var` cannot be block- or loop-local:
 
@@ -76,7 +88,7 @@ alert(phrase); // Error: phrase is not defined (Check the Developer Console)
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript blocks had no Lexical Environments. And `var` is a remnant of that.
 
-## "var" are processed at the function start
+## "var" declarations are processed at the function start
 
 `var` declarations are processed when the function starts (or script starts for globals).
 
@@ -178,11 +190,11 @@ In both examples above `alert` runs without an error, because the variable `phra
 
 ## Summary
 
-There are two main differences of `var`:
+There are two main differences of `var` compared to `let/const`:
 
-1. Variables have no block scope, they are visible minimum at the function level.
-2. Variable declarations are processed at function start.
+1. `var` variables have no block scope, they are visible minimum at the function level.
+2. `var` declarations are processed at function start (script start for globals).
 
 There's one more minor difference related to the global object, we'll cover that in the next chapter.
 
-These differences are actually a bad thing most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.

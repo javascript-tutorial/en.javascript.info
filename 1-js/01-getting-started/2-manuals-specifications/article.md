@@ -14,7 +14,6 @@ The latest draft is at <https://tc39.es/ecma262/>.
 
 To read about bleeding-edge features, that are not yet widely supported, see proposals at <https://github.com/tc39/proposals>.
 
-
 Also, if you're in developing for the browser, then there are other specs covered in the [second part](info:browser-environment) of the tutorial.
 
 ## Manuals
