@@ -16,7 +16,7 @@ alert("Hello");
 window.alert("Hello");
 ```
 
-In a browser, global variables declared with `var` become the property of the global object:
+In a browser, global functions and variables declared with `var` become the property of the global object:
 
 ```js run untrusted refresh
 var gVar = 5;
@@ -82,6 +82,5 @@ if (!window.Promise) {
 
     ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
 - We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), a global variable declared with `var` becomes a property of the global object.
-
-    To make the code easier to understand and more future-proof, we should access properties of the global object directly, as `window.x`.
+- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
+- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.

@@ -34,7 +34,7 @@ alert(window.innerHeight); // inner window height
 
 There are more window-specific methods and properties, we'll cover them later.
 
-## Document Object Model (DOM)
+## DOM (Document Object Model)
 
 The `document` object gives access to the page content. We can change or create anything on the page using it.
 
@@ -47,20 +47,9 @@ document.body.style.background = "red";
 setTimeout(() => document.body.style.background = "", 1000);
 ```
 
-Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification. There happen to be two working groups who develop it:
+Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification:
 
-1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- the documentation is at <https://www.w3.org/TR/dom>.
-2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), publishing at <https://dom.spec.whatwg.org>.
-
-As it happens, the two groups don't always agree, so it's like we have two sets of standards. But they are very similar and eventually things merge. The documentation that you can find on the given resources is very similar, with about a 99% match. There are very minor differences that you probably won't notice.
-
-Personally, I find <https://dom.spec.whatwg.org> more pleasant to use.
-
-In the ancient past, there was no standard at all -- each browser implemented however it wanted. Different browsers had different sets, methods, and properties for the same thing, and developers had to write different code for each of them. Dark, messy times.
-
-Even now we can sometimes meet old code that uses browser-specific properties and works around incompatibilities. But, in this tutorial we'll use modern stuff: there's no need to learn old things until you really need to (chances are high that you won't).
-
-Then the DOM standard appeared, in an attempt to bring everyone to an agreement. The first version was "DOM Level 1", then it was extended by DOM Level 2, then DOM Level 3, and now it's reached DOM Level 4. People from WhatWG group got tired of version numbers and are calling it just "DOM", without a number. So we'll do the same.
+- **DOM Living Standard** at <https://dom.spec.whatwg.org>
 
 ```smart header="DOM is not only for browsers"
 The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
@@ -74,7 +63,7 @@ CSS rules and stylesheets are not structured like HTML. There's a separate speci
 CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
 ```
 
-## BOM (part of HTML spec)
+## BOM (Browser object model)
 
 Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
 
@@ -94,12 +83,9 @@ if (confirm("Go to wikipedia?")) {
 
 Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
 
-
-```smart header="HTML specification"
 BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
 
-Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms".
-```
+Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
 
 ## Summary
 
@@ -114,8 +100,12 @@ CSSOM specification
 HTML specification
 : Describes the HTML language (e.g. tags) and also the BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes the DOM specification and extends it with many additional properties and methods.
 
+Additionally, some classes are described separately at <https://spec.whatwg.org/>.
+
+Please note these links, as there's so much stuff to learn it's impossible to cover and remember everything.
+
+When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is also a nice resource, but the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
+
+To find something, it's often convenient to use an internet search "WHATWG [term]" or "MDN [term]", e.g <https://google.com?q=whatwg+localstorage>, <https://google.com?q=mdn+localstorage>.
+
 Now we'll get down to learning DOM, because the document plays the central role in the UI.
-
-Please note the links above, as there's so much stuff to learn it's impossible to cover and remember everything.
-
-When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is a nice resource, but reading the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
