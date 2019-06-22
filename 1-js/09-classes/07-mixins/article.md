@@ -4,7 +4,7 @@ In JavaScript we can only inherit from a single object. There can be only one `[
 
 But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make a `StreetSweepingBicycle`.
 
-Or, talking about programming, we have a class `Renderer` that implements templating and a class `EventEmitter` that implements event handling, and want to merge these functionalities together with a class `Page`, to make a page that can use templates and emit events.
+Or, talking about programming, we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
 
 There's a concept that can help here, called "mixins".
 
@@ -47,7 +47,7 @@ Object.assign(User.prototype, sayHiMixin);
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-There's no inheritance, but a simple method copying. So `User` may extend some other class and also include the mixin to "mix-in" the additional methods, like this:
+There's no inheritance, but a simple method copying. So `User` may inherit from another class and also include the mixin to "mix-in" the additional methods, like this:
 
 ```js
 class User extends Person {
@@ -101,21 +101,21 @@ Please note that the call to the parent method `super.say()` from `sayHiMixin` l
 
 That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
 
-As `super` looks for parent methods in `[[HomeObject]].__proto__`, that means it searches `sayHiMixin.__proto__` for `super.say`, not `User.__proto__`.
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
 
 ## EventMixin
 
 Now let's make a mixin for real life.
 
-The important feature of many browser objects (not only) is working with events. Events is a way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
+The important feature of many browser objects (not only) can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
 
-- The mixin will provide a method `.trigger(name, [data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, and the optional additional data may follow.
-- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when the event triggers.
+- The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
+- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from `.trigger` call.
 - ...And the method `.off(name, handler)` that removes `handler` listener.
 
-After adding the mixin, an object `user` will become able to generate an event `"login"` when the visitor logs in. And another object `calendar` may want to receive such events to load the calendar for the logged-in person.
+After adding the mixin, an object `user` will become able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen to such events to load the calendar for the logged-in person.
 
-Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may want to get that information and react on that event. And so on.
+Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
 
 Here's the code:
 
@@ -203,4 +203,4 @@ Some other languages like e.g. Python allow to create mixins using multiple inhe
 
 We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
 
-Mixins may become a point of conflict if they occasionally overwrite native class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
+Mixins may become a point of conflict if they occasionally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
