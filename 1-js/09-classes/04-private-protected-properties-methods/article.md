@@ -322,7 +322,7 @@ Hiding complexity
 
     **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
 
-To hide internal interface we use either protected or public properties:
+To hide internal interface we use either protected or private properties:
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
 - Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
