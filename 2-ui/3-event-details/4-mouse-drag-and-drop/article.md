@@ -156,10 +156,10 @@ ball.onmousedown = function(event) {
     moveAt(event.pageX, event.pageY);
   }
 
-  // (3) move the ball on mousemove
+  // move the ball on mousemove
   document.addEventListener('mousemove', onMouseMove);
 
-  // (4) drop the ball, remove unneeded handlers
+  // drop the ball, remove unneeded handlers
   ball.onmouseup = function() {
     document.removeEventListener('mousemove', onMouseMove);
     ball.onmouseup = null;
@@ -184,7 +184,7 @@ The difference is especially noticeable if we drag the ball by its right-bottom 
 
 In previous examples the ball could be dropped just "anywhere" to stay. In real-life we usually take one element and drop it onto another. For instance, a file into a folder, or a user into a trash can or whatever.
 
-Abstractly, we take a "draggable" element and drop it onto "droppable" element.
+In other words, we take a "draggable" element and drop it onto "droppable" element.
 
 We need to know the target droppable at the end of Drag'n'Drop -- to do the corresponding action, and, preferably, during the dragging process, to highlight it.
 
@@ -211,7 +211,7 @@ For instance, below are two `<div>` elements, red on top of blue. There's no way
 <div style="background:red" onmouseover="alert('over red!')"></div>
 ```
 
-The same with a draggable element. The ball in always on top over other elements, so events happen on it. Whatever handlers we set on lower elements, they won't work.
+The same with a draggable element. The ball is always on top over other elements, so events happen on it. Whatever handlers we set on lower elements, they won't work.
 
 That's why the initial idea to put handlers on potential droppables doesn't work in practice. They won't run.
 
