@@ -58,7 +58,24 @@ alert( visitsCountMap.get(john) ); // 123
 
 Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but it would be difficult to replace the `Map` with a regular `Object` in the example above.
 
-In the old times, before `Map` existed, people added unique identifiers to objects for that:
+Let's try:
+
+```js run
+let john = { name: "John" };
+
+let visitsCountObj = {}; // try to use an object
+
+visitsCountObj[john] = 123; // try to use john object as the key
+
+*!*
+// That's what got written!
+alert( visitsCountObj["[object Object]"] ); // 123
+*/!*
+```
+
+As `john` is an object, it got converted to the key string `"[object Object]"`. All objects without a special conversion handling are converted to such string, so they'll all mess up.
+
+In the old times, before `Map` existed, people used to add unique identifiers to objects for that:
 
 ```js run
 // we add the id field
@@ -159,7 +176,7 @@ The iteration goes in the same order as the values were inserted. `Map` preserve
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
-// runs the function for each (key, value) pair 
+// runs the function for each (key, value) pair
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
@@ -172,7 +189,7 @@ A `Set` is a collection of values, where each value may occur only once.
 
 Its main methods are:
 
-- `new Set(iterable)` -- creates the set, optionally from an array of values (any iterable will do).
+- `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
 - `set.add(value)` -- adds a value, returns the set itself.
 - `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
@@ -222,9 +239,9 @@ set.forEach((value, valueAgain, set) => {
 });
 ```
 
-Note the funny thing. The `forEach` function in the `Set` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
+Note the funny thing. The callback function passed in `forEach` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
 
-That's for compatibility with `Map` where `forEach` has three arguments. Looks a bit strange, for sure. But may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
 
 The same methods `Map` has for iterators are also supported:
 

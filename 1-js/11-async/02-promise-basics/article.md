@@ -4,7 +4,7 @@ Imagine that you're a top singer, and fans ask day and night for your upcoming s
 
 To get some relief, you promise to send it to them when it's published. You give your fans a list to which they can subscribe for updates. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, if plans to publish the song are cancelled, they will still be notified.
 
-Everyone is happy, because the people don't crowd you any more, and fans, because they won't miss the single.
+Everyone is happy, because the people don't crowd you anymore, and fans, because they won't miss the single.
 
 This is a real-life analogy for things we often have in programming:
 
@@ -218,7 +218,7 @@ Just like there's a `finally` clause in a regular `try {...} catch {...}`, there
 
 The call `.finally(f)` is similar to `.then(f, f)` in the sense that it always runs when the promise is settled: be it resolve or reject.
 
-`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed any more, no matter what the outcome is.
+`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed anymore, no matter what the outcome is.
 
 Like this:
 
@@ -278,7 +278,7 @@ The good thing is: a `.then` handler is guaranteed to run whether the promise ta
 
 Next, let's see more practical examples of how promises can help us to write asynchronous code.
 
-## Example: loadScript
+## Example: loadScript [#loadscript]
 
 We've got the `loadScript` function for loading a script from the previous chapter.
 

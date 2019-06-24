@@ -304,8 +304,8 @@ Here's an example of an `.eslintrc` file:
   },
   "rules": {
     "no-console": 0,
-  },
-  "indent": 2
+    "indent": ["warning", 2]
+  }
 }
 ```
 

@@ -4,7 +4,7 @@ In JavaScript we can only inherit from a single object. There can be only one `[
 
 But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make a `StreetSweepingBicycle`.
 
-Or, talking about programming, we have a class `Renderer` that implements templating and a class `EventEmitter` that implements event handling, and want to merge these functionalities together with a class `Page`, to make a page that can use templates and emit events.
+Or, talking about programming, we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
 
 There's a concept that can help here, called "mixins".
 
@@ -47,7 +47,7 @@ Object.assign(User.prototype, sayHiMixin);
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-There's no inheritance, but a simple method copying. So `User` may extend some other class and also include the mixin to "mix-in" the additional methods, like this:
+There's no inheritance, but a simple method copying. So `User` may inherit from another class and also include the mixin to "mix-in" the additional methods, like this:
 
 ```js
 class User extends Person {
@@ -99,23 +99,25 @@ Please note that the call to the parent method `super.say()` from `sayHiMixin` l
 
 ![](mixin-inheritance.png)
 
-That's because methods from `sayHiMixin` have `[[HomeObject]]` set to it. So `super` actually means `sayHiMixin.__proto__`, not `User.__proto__`.
+That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
+
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
 
 ## EventMixin
 
 Now let's make a mixin for real life.
 
-The important feature of many objects is working with events.
+The important feature of many browser objects (not only) can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
 
-That is: an object should have a method to "generate an event" when something important happens to it, and other objects should be able to "listen" to such events.
+- The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
+- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from `.trigger` call.
+- ...And the method `.off(name, handler)` that removes `handler` listener.
 
-An event must have a name and, optionally, bundle some additional data.
+After adding the mixin, an object `user` will become able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen to such events to load the calendar for the logged-in person.
 
-For instance, an object `user` can generate an event `"login"` when the visitor logs in. And another object `calendar` may want to receive such events to load the calendar for the logged-in person.
+Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
 
-Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may want to get that information and react on that event.
-
-Events is a way to "share information" with anyone who wants it. They can be useful in any class, so let's make a mixin for them:
+Here's the code:
 
 ```js run
 let eventMixin = {
@@ -146,7 +148,7 @@ let eventMixin = {
   },
 
   /**
-   * Generate the event and attach the data to it
+   * Generate an event with the given name and data
    *  this.trigger('select', data1, data2);
    */
   trigger(eventName, ...args) {
@@ -160,12 +162,10 @@ let eventMixin = {
 };
 ```
 
-There are 3 methods here:
 
-1. `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name happens. The handlers are stored in the `_eventHandlers` property.
-2. `.off(eventName, handler)` -- removes the function from the handlers list.
-3. `.trigger(eventName, ...args)` -- generates the event: all assigned handlers are called and `args` are passed as arguments to them.
-
+- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name happens. Technically, there's `_eventHandlers` property, that stores an array of handlers for each event name. So it just adds it to the list.
+- `.off(eventName, handler)` -- removes the function from the handlers list.
+- `.trigger(eventName, ...args)` -- generates the event: all handlers from `_eventHandlers[eventName]` are called, with a list of arguments `...args`.
 
 Usage:
 
@@ -176,30 +176,31 @@ class Menu {
     this.trigger("select", value);
   }
 }
-// Add the mixin
+// Add the mixin with event-related methods
 Object.assign(Menu.prototype, eventMixin);
 
 let menu = new Menu();
 
-// call the handler on selection:
+// add a handler, to be called on selection:
 *!*
 menu.on("select", value => alert(`Value selected: ${value}`));
 */!*
 
-// triggers the event => shows Value selected: 123
-menu.choose("123"); // value selected
+// triggers the event => the handler above runs and shows:
+// Value selected: 123
+menu.choose("123");
 ```
 
-Now if we have the code interested to react on user selection, we can bind it with `menu.on(...)`.
+Now if we'd like any code to react on menu selection, we can listen to it with `menu.on(...)`.
 
-And the `eventMixin` can add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
+And `eventMixin` mixin makes it easy to add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
 
 ## Summary
 
 *Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
 
-Some other languages like e.g. python allow to create mixins using multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying them into the prototype.
+Some other languages like e.g. Python allow to create mixins using multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
 
 We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
 
-Mixins may become a point of conflict if they occasionally overwrite native class methods. So generally one should think well about the naming for a mixin, to minimize such possibility.
+Mixins may become a point of conflict if they occasionally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.

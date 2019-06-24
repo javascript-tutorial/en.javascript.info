@@ -64,7 +64,7 @@ The notation here is not to be confused with object literals. Within the class, 
 
 ## What is a class?
 
-So, what exactly is a `class`? That's not an entirely  new language-level entity, as one might think.
+So, what exactly is a `class`? That's not an entirely new language-level entity, as one might think.
 
 Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
 
@@ -91,7 +91,7 @@ What `class User {...}` construct really does is:
 
 Afterwards, for new objects, when we call a method, it's taken from the prototype, just as  described in the chapter <info:function-prototype>. So `new User` object has access to class methods.
 
-We can illustrate the result of `class User` as:
+We can illustrate the result of `class User` declaration as:
 
 ![](class-user.png)
 
@@ -198,7 +198,8 @@ Similar to Named Function Expressions, class expressions may or may not have a n
 If a class expression has a name, it's visible inside the class only:
 
 ```js run
-// "Named Class Expression" (alas, no such term, but that's what's going on)
+// "Named Class Expression"
+// (no such term in the spec, but that's similar to Named Function Expression)
 let User = class *!*MyClass*/!* {
   sayHi() {
     alert(MyClass); // MyClass is visible only inside the class
@@ -268,7 +269,7 @@ alert(user.name); // John
 user = new User(""); // Name too short.
 ```
 
-Internally, getters and setters are created on `User.prototype`, like this:
+The class declaration creates getters and setters in `User.prototype`, like this:
 
 ```js
 Object.defineProperties(User.prototype, {

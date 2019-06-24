@@ -85,7 +85,7 @@ So, the recursion reduces a function call to a simpler one, and then -- to even 
 ````smart header="Recursion is usually shorter"
 A recursive solution is usually shorter than an iterative one.
 
-Here we can rewrite the same using the ternary `?` operator instead of `if` to make `pow(x, n)` more terse and still very readable:
+Here we can rewrite the same using the conditional operator `?` instead of `if` to make `pow(x, n)` more terse and still very readable:
 
 ```js run
 function pow(x, n) {
@@ -100,11 +100,11 @@ The maximal recursion depth is limited by JavaScript engine. We can make sure ab
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
-## The execution stack
+## The execution context and stack
 
 Now let's examine how recursive calls work. For that we'll look under the hood of functions.
 
-The information about a function run is stored in its *execution context*.
+The information about the process of execution of a running function is stored in its *execution context*.
 
 The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
 
@@ -416,7 +416,7 @@ let arr = [obj1, obj2, obj3];
 
 ...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues.
+The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
 
 Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
 
@@ -506,14 +506,17 @@ Naturally, lists are not always better than arrays. Otherwise everyone would use
 
 The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
 
-...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends.
+...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
 
-Sometimes it's worth to add another variable named `tail` to track the last element of the list (and update it when adding/removing elements from the end). For large sets of elements the speed difference versus arrays is huge.
+Lists can be enhanced:
+- We can add property `prev` in addition to `next` to reference the previous element, to move back easily.
+- We can also add a variable named `tail` referencing the last element of the list (and update it when adding/removing elements from the end).
+- ...The data structure may vary according to our needs.
 
 ## Summary
 
 Terms:
-- *Recursion*  is a programming term that means a "self-calling" function. Such functions can be used to solve certain tasks in elegant ways.
+- *Recursion*  is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
 
     When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
 

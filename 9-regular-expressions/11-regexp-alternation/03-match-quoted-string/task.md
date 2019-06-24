@@ -2,15 +2,15 @@
 
 Create a regexp to find strings in double quotes `subject:"..."`.
 
-The important part is that strings should support escaping, in the same way as JavaScript strings do. For instance, quotes can be inserted as `subject:\"` a newline as `subject:\n`, and the slash itself as `subject:\\`.
+The strings should support escaping, the same way as JavaScript strings do. For instance, quotes can be inserted as `subject:\"` a newline as `subject:\n`, and the slash itself as `subject:\\`.
 
 ```js
 let str = "Just like \"here\".";
 ```
 
-For us it's important that an escaped quote `subject:\"` does not end a string.
+Please note, in particular, that an escaped quote `subject:\"` does not end a string.
 
-So we should look from one quote to the other ignoring escaped quotes on the way.
+So we should search from one quote to the other ignoring escaped quotes on the way.
 
 That's the essential part of the task, otherwise it would be trivial.
 

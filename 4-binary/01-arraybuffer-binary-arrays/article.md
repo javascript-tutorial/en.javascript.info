@@ -99,17 +99,17 @@ new TypedArray();
     *!*
     let arr = new Uint8Array([0, 1, 2, 3]);
     */!*
-    alert( arr.length ); // 4
-    alert( arr[1] ); // 1
+    alert( arr.length ); // 4, created binary array of the same length
+    alert( arr[1] ); // 1, filled with 4 bytes (unsigned 8-bit integers) with given values
     ```
-3. If another `TypedArray` is supplied, it does the same: creates a typed array of the same length and copies values. Values are converted to the new type in the process.
+3. If another `TypedArray` is supplied, it does the same: creates a typed array of the same length and copies values. Values are converted to the new type in the process, if needed.
     ```js run
     let arr16 = new Uint16Array([1, 1000]);
     *!*
     let arr8 = new Uint8Array(arr16);
     */!*
     alert( arr8[0] ); // 1
-    alert( arr8[1] ); // 232 (tried to copy 1000, but can't fit 1000 into 8 bits)
+    alert( arr8[1] ); // 232, tried to copy 1000, but can't fit 1000 into 8 bits (explanations below)
     ```
 
 4. For a numeric argument `length` -- creates the typed array to contain that many elements. Its byte length will be `length` multiplied by the number of bytes in a single item `TypedArray.BYTES_PER_ELEMENT`:
@@ -224,6 +224,7 @@ new DataView(buffer, [byteOffset], [byteLength])
 For instance, here we extract numbers in different formats from the same buffer:
 
 ```js run
+// binary array of 4 bytes, all have the maximal value 255
 let buffer = new Uint8Array([255, 255, 255, 255]).buffer;
 
 let dataView = new DataView(buffer);
@@ -231,13 +232,13 @@ let dataView = new DataView(buffer);
 // get 8-bit number at offset 0
 alert( dataView.getUint8(0) ); // 255
 
-// now get 16-bit number at offset 0, that's 2 bytes, both with max value
+// now get 16-bit number at offset 0, it consists of 2 bytes, together iterpreted as 65535
 alert( dataView.getUint16(0) ); // 65535 (biggest 16-bit unsigned int)
 
 // get 32-bit number at offset 0
 alert( dataView.getUint32(0) ); // 4294967295 (biggest 32-bit unsigned int)
 
-dataView.setUint32(0, 0); // set 4-byte number to zero
+dataView.setUint32(0, 0); // set 4-byte number to zero, thus setting all bytes to 0
 ```
 
 `DataView` is great when we store mixed-format data in the same buffer. E.g we store a sequence of pairs (16-bit integer, 32-bit float). Then `DataView` allows to access them easily.
@@ -257,12 +258,11 @@ To do almost any operation on `ArrayBuffer`, we need a view.
 
 In most cases we create and operate directly on typed arrays, leaving `ArrayBuffer` under cover, as a "common discriminator". We can access it as `.buffer` and make another view if needed.
 
-There are also two additional terms:
+There are also two additional terms, that are used in descriptions of methods that operate on binary data:
 - `ArrayBufferView` is an umbrella term for all these kinds of views.
 - `BufferSource` is an umbrella term for `ArrayBuffer` or `ArrayBufferView`.
 
-These are used in descriptions of methods that operate on binary data. `BufferSource` is one of the most common terms, as it means "any kind of binary data" -- an `ArrayBuffer` or a view over it. 
-
+We'll see these terms in the next chapters. `BufferSource` is one of the most common terms, as it means "any kind of binary data" -- an `ArrayBuffer` or a view over it.
 
 Here's a cheatsheet:
 

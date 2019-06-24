@@ -3,7 +3,7 @@
 
 The built-in [URL](https://url.spec.whatwg.org/#api) class provides a convenient interface for creating and parsing URLs.
 
-We don't have to use it at all. There are no networking methods that require exactly an `URL` object, strings are good enough. But sometimes it can be really helpful.
+There are no networking methods that require exactly an `URL` object, strings are good enough. So technically we don't have to use `URL`. But sometimes it can be really helpful.
 
 ## Creating an URL
 
@@ -13,8 +13,28 @@ The syntax to create a new URL object:
 new URL(url, [base])
 ```
 
-- **`url`** -- the text url
-- **`base`** -- an optional base for the `url`
+- **`url`** -- the URL string or path (if base is set, see below).
+- **`base`** -- an optional base, if set and `url` has only path, then the URL is generated relative to `base`.
+
+For example, these two URLs are same:
+
+```js run
+let url1 = new URL('https://javascript.info/profile/admin');
+let url2 = new URL('/profile/admin', 'https://javascript.info');
+
+alert(url1); // https://javascript.info/profile/admin
+alert(url2); // https://javascript.info/profile/admin
+```
+
+Переход к пути относительно текущего URL:
+
+```js run
+let url = new URL('https://javascript.info/profile/admin');
+let testerUrl = new URL('tester', url);
+
+alert(testerUrl); // https://javascript.info/profile/tester
+```
+
 
 The `URL` object immediately allows us to access its components, so it's a nice way to parse the url, e.g.:
 
@@ -32,21 +52,10 @@ Here's the cheatsheet:
 
 - `href` is the full url, same as `url.toString()`
 - `protocol` ends with the colon character `:`
-- `search` starts with the question mark `?`
+- `search` - a string of parameters, starts with the question mark `?`
 - `hash` starts with the hash character `#`
 - there are also `user` and `password` properties if HTTP authentication is present.
 
-We can also use `URL` to create relative urls, using the second argument:
-
-```js run
-let url = new URL('profile/admin', 'https://javascript.info');
-
-alert(url); // https://javascript.info/profile/admin
-
-url = new URL('tester', url); // go to 'tester' relative to current url path
-
-alert(url); // https://javascript.info/profile/tester
-```
 
 ```smart header="We can use `URL` everywhere instead of a string"
 We can use an `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a string url is expected.
@@ -54,15 +63,15 @@ We can use an `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere whe
 In the vast majority of methods it's automatically converted to a string.
 ```
 
-## SearchParams
+## SearchParams "?..."
 
-Let's say we want to create an url with given search params, for instance, `https://google.com/search?query=value`.
+Let's say we want to create an url with given search params, for instance, `https://google.com/search?query=JavaScript`.
 
-They must be correctly encoded.
+They must be correctly encoded to include non-latin charcters, spaces etc.
 
-In very old browsers, before `URL` appeared, we'd use built-in functions `encodeURIComponent/decodeURIComponent`.
+Some time ago, before `URL` objects appeared, we'd use built-in functions `encodeURIComponent/decodeURIComponent`. They have some problems, but now that doesn't matter.
 
-Now, there's no need: `url.searchParams` is an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
+There's URL property for that: `url.searchParams` is an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
 
 It provides convenient methods for search parameters:
 
@@ -81,7 +90,7 @@ For example:
 
 ```js run
 let url = new URL('https://google.com/search');
-url.searchParams.set('query', 'test me!');
+url.searchParams.set('query', 'test me!'); // added parameter with a space and !
 
 alert(url); // https://google.com/search?query=test+me%21
 

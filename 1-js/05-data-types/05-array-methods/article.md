@@ -11,7 +11,7 @@ We already know methods that add and remove items from the beginning or the end:
 - `arr.shift()` -- extracts an item from the beginning,
 - `arr.unshift(...items)` -- adds items to the beginning.
 
-Here are few others.
+Here are a few others.
 
 ### splice
 
@@ -238,7 +238,7 @@ These are methods to search for something in an array.
 
 The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
 
-- `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
+- `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
 - `arr.lastIndexOf(item, from)` -- same, but looks for from right to left.
 - `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
 
@@ -418,7 +418,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Now it works as intended.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of *something*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or HTML elements or whatever. We have a set of *something*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
 
 The `arr.sort(fn)` method has a built-in implementation of sorting algorithm. We don't need to care how it exactly works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
 
@@ -474,7 +474,7 @@ It also returns the array `arr` after the reversal.
 
 ### split and join
 
-Here's the situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
+Here's the situation from real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
 
 The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
 
@@ -548,7 +548,7 @@ So far, like `forEach/map`. But there's one more argument:
 
 The easiest way to grasp that is by example.
 
-Here we get a sum of array in one line:
+Here we get a sum of an array in one line:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -681,7 +681,7 @@ In the call above, we use `user.younger` as a filter and also provide `user` as 
 
 ## Summary
 
-A cheatsheet of array methods:
+A cheat sheet of array methods:
 
 - To add/remove elements:
   - `push(...items)` -- adds items to the end,
@@ -727,6 +727,6 @@ For the full list, see the [manual](mdn:js/Array).
 
 From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier than it seems.
 
-Look through the cheatsheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
+Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
 
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheatsheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheat sheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.

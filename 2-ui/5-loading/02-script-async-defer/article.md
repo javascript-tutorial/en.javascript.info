@@ -188,8 +188,11 @@ But there are also essential differences between them:
 | `defer` | *Document order* (as they go in the document). |  Execute after the document is loaded and parsed (they wait if needed), right before `DOMContentLoaded`. |
 
 ```warn header="Page without scripts should be usable"
-Please note that if you're using `defer`, then the page is visible before the script loads and enables all the graphical components.
+Please note that if you're using `defer`, then the page is visible *before* the script loads.
 
-So, buttons should be disabled by CSS or by other means, to let the user
+So the user may read the page, but some graphical components are probably not ready yet.
+
+There should be "loading" indication in proper places, not-working buttons disabled, to clearly show the user what's ready and what's not.
+```
 
 In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.

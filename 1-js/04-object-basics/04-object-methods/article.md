@@ -15,7 +15,7 @@ Actions are represented in JavaScript by functions in properties.
 
 ## Method examples
 
-For the start, let's teach the `user` to say hello:
+For a start, let's teach the `user` to say hello:
 
 ```js run
 let user = {
@@ -63,7 +63,7 @@ user.sayHi(); // Hello!
 ```smart header="Object-oriented programming"
 When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
 
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, and more. 
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, and more.
 ```
 ### Method shorthand
 
@@ -72,14 +72,14 @@ There exists a shorter syntax for methods in an object literal:
 ```js
 // these objects do the same
 
-let user = {
+user = {
   sayHi: function() {
     alert("Hello");
   }
 };
 
 // method shorthand looks better, right?
-let user = {
+user = {
 *!*
   sayHi() { // same as "sayHi: function()"
 */!*
@@ -166,7 +166,7 @@ If we used `this.name` instead of `user.name` inside the `alert`, then the code 
 
 ## "this" is not bound
 
-In JavaScript, "this" keyword behaves unlike most other programming languages. First, it can be used in any function.
+In JavaScript, "this" keyword behaves unlike most other programming languages. It can be used in any function.
 
 There's no syntax error in the code like that:
 
@@ -176,9 +176,9 @@ function sayHi() {
 }
 ```
 
-The value of `this` is evaluated during the run-time. And it can be anything.
+The value of `this` is evaluated during the run-time, depending on the context. And it can be anything.
 
-For instance, the same function may have different "this" when called from different objects:
+For instance, here the same function is assigned to two different objects and has different "this" in the calls:
 
 ```js run
 let user = { name: "John" };
@@ -189,7 +189,7 @@ function sayHi() {
 }
 
 *!*
-// use the same functions in two objects
+// use the same function in two objects
 user.f = sayHi;
 admin.f = sayHi;
 */!*
@@ -202,7 +202,10 @@ admin.f(); // Admin  (this == admin)
 admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
 ```
 
-Actually, we can call the function without an object at all:
+The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call of `f`. So it's either `user` or `admin` in the example above.
+
+````smart header="Calling without an object: `this == undefined`"
+We can even call the function without an object at all:
 
 ```js run
 function sayHi() {
@@ -216,7 +219,8 @@ In this case `this` is `undefined` in strict mode. If we try to access `this.nam
 
 In non-strict mode the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later in the chapter [](info:global-object)). This is a historical behavior that `"use strict"` fixes.
 
-Please note that usually a call of a function that uses `this` without an object is not normal, but rather a programming mistake. If a function has `this`, then it is usually meant to be called in the context of an object.
+Usually such call is an programming error. If there's `this` inside a function, it expects to be called in an object context.
+````
 
 ```smart header="The consequences of unbound `this`"
 If you come from another programming language, then you are probably used to the idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
@@ -253,11 +257,11 @@ user.hi(); // John (the simple call works)
 */!*
 ```
 
-On the last line there is a ternary operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+On the last line there is a conditinal operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
 
-The method is immediately called with parentheses `()`. But it doesn't work right!
+Then the method is immediately called with parentheses `()`. But it doesn't work right!
 
-You can see that the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
+As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
 This works (object dot method):
 ```js
@@ -302,7 +306,7 @@ The Reference Type is a "specification type". We can't explicitly use it, but it
 The value of Reference Type is a three-value combination `(base, name, strict)`, where:
 
 - `base` is the object.
-- `name` is the property.
+- `name` is the property name.
 - `strict` is true if `use strict` is in effect.
 
 The result of a property access `user.hi` is not a function, but a value of Reference Type. For `user.hi` in strict mode it is:
@@ -313,6 +317,8 @@ The result of a property access `user.hi` is not a function, but a value of Refe
 ```
 
 When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
+
+Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
