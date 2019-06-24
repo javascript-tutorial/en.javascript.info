@@ -241,20 +241,20 @@ Please note that the nested event `menu-open` bubbles up and is handled on the `
 
 That's not only about `dispatchEvent`, there are other cases. JavaScript in an event handler can call methods that lead to other events -- they are too processed synchronously.
 
-If we don't like it, we can either put the `dispatchEvent` (or other event-triggering call) at the end of `onclick` or, if inconvenient, wrap it in `setTimeout(...,0)`:
+If we don't like it, we can either put the `dispatchEvent` (or other event-triggering call) at the end of `onclick` or wrap it in zero-delay `setTimeout`:
 
 ```html run
 <button id="menu">Menu (click me)</button>
 
 <script>
-  // 1 -> 2 -> nested
+  // Now the result is: 1 -> 2 -> nested
   menu.onclick = function() {
     alert(1);
 
     // alert(2)
     setTimeout(() => menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
-    })), 0);
+    })));
 
     alert(2);
   };
@@ -262,6 +262,8 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
   document.addEventListener('menu-open', () => alert('nested'))
 </script>
 ```    
+
+Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
 
 ## Summary
 
