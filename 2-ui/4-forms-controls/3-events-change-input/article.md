@@ -21,6 +21,8 @@ For other elements: `select`, `input type=checkbox/radio` it triggers right afte
 
 The `input` event triggers every time a value is modified.
 
+Unlike keyboard events, it triggers on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
+
 For instance:
 
 ```html autorun height=40 run
@@ -34,7 +36,7 @@ For instance:
 
 If we want to handle every modification of an `<input>` then this event is the best choice.
 
-Unlike keyboard events it works on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
+On the other hand, `input` event doesn't trigger on keyboard input and other actions that do not involve value change, e.g. pressing arrow keys `key:⇦` `key:⇨` while in the input.
 
 ```smart header="Can't prevent anything in `oninput`"
 The `input` event occurs after the value is modified.
