@@ -105,7 +105,6 @@ So recently a plethora of new languages appeared, which are *transpiled* (conver
 
 Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
 
-The most used are
 Examples of such languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
