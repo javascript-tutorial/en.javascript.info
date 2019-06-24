@@ -102,7 +102,7 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
 
-Of course, that refers only to the quotes that are same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Of course, that refers only to the quotes that are the same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
