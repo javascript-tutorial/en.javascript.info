@@ -4,7 +4,7 @@ As we know from the chapter <info:structure>, comments can be single-line: start
 
 We normally use them to describe how and why the code works.
 
-From the first sight, commenting might be obvious, but novices in programming usually get it wrong.
+At first sight, commenting might be obvious, but novices in programming usually get it wrong.
 
 ## Bad comments
 
