@@ -274,7 +274,7 @@ let {width = prompt("width?"), title = prompt("title?")} = options;
 */!*
 
 alert(title);  // Menu
-alert(width);  // (whatever you the result of prompt is)
+alert(width);  // (whatever the result of prompt is)
 ```
 
 We also can combine both the colon and equality:
