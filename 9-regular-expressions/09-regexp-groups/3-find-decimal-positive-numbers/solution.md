@@ -1,11 +1,11 @@
 
-An non-negative integer number is `pattern:\d+`. We should exclude `0` as the first digit, as we don't need zero, but we can allow it in further digits.
+An non-negative integer number is `pattern:\d+`. A zero `0` can't be the first digit,  but we should allow it in further digits.
 
 So that gives us `pattern:[1-9]\d*`.
 
 A decimal part is: `pattern:\.\d+`.
 
-Because the decimal part is optional, let's put it in parentheses with the quantifier `pattern:'?'`.
+Because the decimal part is optional, let's put it in parentheses with the quantifier `pattern:?`.
 
 Finally we have the regexp: `pattern:[1-9]\d*(\.\d+)?`:
 

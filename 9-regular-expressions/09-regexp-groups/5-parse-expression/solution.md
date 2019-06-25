@@ -1,8 +1,10 @@
 A regexp for a number is: `pattern:-?\d+(\.\d+)?`. We created it in previous tasks.
 
-An operator is `pattern:[-+*/]`. We put the dash `pattern:-` first, because in the middle it would mean a character range, we don't need that.
+An operator is `pattern:[-+*/]`.
 
-Note that a slash should be escaped inside a JavaScript regexp `pattern:/.../`.
+Please note:
+- Here the dash `pattern:-` goes first in the brackets, because in the middle it would mean a character range, while we just want a character `-`.
+- A slash `/` should be escaped inside a JavaScript regexp `pattern:/.../`, we'll do that later.
 
 We need a number, an operator, and then another number. And optional spaces between them.
 

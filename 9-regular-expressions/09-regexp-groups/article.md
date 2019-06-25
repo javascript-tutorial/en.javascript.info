@@ -47,13 +47,13 @@ In this example parentheses were used to make a group for repeating `pattern:(..
 
 ## Contents of parentheses  
 
-Parentheses are numbered from left to right. The search engine remembers the content of each and allows to reference it in the pattern or in the replacement string.
+Parentheses are numbered from left to right. The search engine remembers the content matched by each of them and allows to reference it in the pattern or in the replacement string.
 
 For instance, we'd like to find HTML tags `pattern:<.*?>`, and process them.
 
 Let's wrap the inner content into parentheses, like this: `pattern:<(.*?)>`.
 
-We'll get them into an array:
+We'll get both the tag as a whole and its content as an array:
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
@@ -62,7 +62,7 @@ let reg = /<(.*?)>/;
 alert( str.match(reg) ); // Array: ["<h1>", "h1"]
 ```
 
-The call to [String#match](mdn:js/String/match) returns groups only if the regexp has no `pattern:/.../g` flag.
+The call to [String#match](mdn:js/String/match) returns groups only if the regexp only looks for the first match, that is: has no `pattern:/.../g` flag.
 
 If we need all matches with their groups then we can use `.matchAll` or `regexp.exec` as described in <info:regexp-methods>:
 
@@ -162,9 +162,9 @@ alert(groups.day); // 30
 
 As you can see, the groups reside in the `.groups` property of the match.
 
-We can also use them in replacements, as `pattern:$<name>` (like `$1..9`, but name instead of a digit).
+We can also use them in the replacement string, as `pattern:$<name>` (like `$1..9`, but a name instead of a digit).
 
-For instance, let's rearrange the date into `day.month.year`:
+For instance, let's reformat the date into `day.month.year`:
 
 ```js run
 let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
@@ -176,7 +176,7 @@ let rearranged = str.replace(dateRegexp, '$<day>.$<month>.$<year>');
 alert(rearranged); // 30.04.2019
 ```
 
-If we use a function, then named `groups` object is always the last argument:
+If we use a function for the replacement, then named `groups` object is always the last argument:
 
 ```js run
 let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
@@ -231,7 +231,12 @@ alert( result[1] ); // John
 
 ## Summary
 
-- Parentheses can be:
-  - capturing `(...)`, ordered left-to-right, accessible by number.
-  - named capturing `(?<name>...)`, accessible by name.
-  - non-capturing `(?:...)`, used only to apply quantifier to the whole groups.
+Parentheses group together a part of the regular expression, so that the quantifier applies to it as a whole.
+
+Parentheses groups are numbered left-to-right, and can optionally be named with  `(?<name>...)`.
+
+The content, matched by a group, can be referenced both in the replacement string as `$1`, `$2` etc, or by the name `$name` if named.
+
+So, parentheses groups are called "capturing groups", as they "capture" a part of the match. We get that part separately from the result.
+
+We can exclude the group from remembering (make in "non-capturing") by putting `?:` at the start: `(?:...)`, that's used if we'd like to apply a quantifier to the whole group, but don't need it in the result.
