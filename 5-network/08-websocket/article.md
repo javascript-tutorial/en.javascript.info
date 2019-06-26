@@ -320,7 +320,7 @@ Still it can also be pretty simple. We'll use Node.js with <https://github.com/w
 
 The server-side algorithm will be:
 1. Create `clients = new Set()` -- a set of sockets.
-2. For each accepted websocket, `clients.add(socket)` and add `onmessage` listener for its messages.
+2. For each accepted websocket, `clients.add(socket)` and add `message` event listener for its messages.
 3. When a message received: iterate over clients and send it to everyone.
 4. When a connection is closed: `clients.delete(socket)`.
 
