@@ -237,6 +237,6 @@ Parentheses groups are numbered left-to-right, and can optionally be named with 
 
 The content, matched by a group, can be referenced both in the replacement string as `$1`, `$2` etc, or by the name `$name` if named.
 
-So, parentheses groups are called "capturing groups", as they "capture" a part of the match. We get that part separately from the result.
+So, parentheses groups are called "capturing groups", as they "capture" a part of the match. We get that part separately from the result as a member of the array or in `.groups` if it's named.
 
 We can exclude the group from remembering (make in "non-capturing") by putting `?:` at the start: `(?:...)`, that's used if we'd like to apply a quantifier to the whole group, but don't need it in the result.
