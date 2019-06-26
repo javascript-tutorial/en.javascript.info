@@ -1,8 +1,6 @@
 # Automated testing with mocha
 
-Automated testing will be used in further tasks.
-
-It's actually a part of the "educational minimum" of a developer.
+Automated testing will be used in further tasks, and it's also widely used in real projects.
 
 ## Why we need tests?
 
@@ -20,7 +18,7 @@ For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` wo
 
 That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
-**Automated testing means that tests are written separately, in addition to the code. They can be executed easily and check all the main use cases.**
+**Automated testing means that tests are written separately, in addition to the code. They can be executed automatically and check all the main use cases.**
 
 ## Behavior Driven Development (BDD)
 
@@ -28,7 +26,7 @@ Let's use a technique named [Behavior Driven Development](http://en.wikipedia.or
 
 **BDD is three things in one: tests AND documentation AND examples.**
 
-Enough words. Let's see the example.
+Let's see the example.
 
 ## Development of "pow": the spec
 
@@ -55,7 +53,7 @@ A spec has three main building blocks that you can see above:
 `describe("title", function() { ... })`
 : What functionality we're describing. Uses to group "workers" -- the `it` blocks. In our case we're describing the function `pow`.
 
-`it("title", function() { ... })`
+`it("use case description", function() { ... })`
 : In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
 
 `assert.equal(value1, value2)`
@@ -71,7 +69,7 @@ The flow of development usually looks like this:
 
 1. An initial spec is written, with tests for the most basic functionality.
 2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. Errors are displayed. We make corrections until everything works.
+3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
 4. Now we have a working initial implementation with tests.
 5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
 6. Go to 3, update the implementation till tests give no errors.
@@ -79,7 +77,9 @@ The flow of development usually looks like this:
 
 So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
 
-In our case, the first step is complete: we have an initial spec for `pow`. So let's make an implementation. But before that let's make a "zero" run of the spec, just to see that tests are working (they will all fail).
+Let's see this development flow in our practical case.
+
+The first step is complete: we have an initial spec for `pow`. Now, before making the implementaton, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
 
 ## The spec in action
 
@@ -110,7 +110,7 @@ The result:
 
 As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
-For the future, let's note that there are advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup many different tests.
+For the future, let's note that there are more high-level test-runners, like [karma](https://karma-runner.github.io/) and others, that make it easy to autorun many different tests.
 
 ## Initial implementation
 
@@ -132,7 +132,7 @@ What we've done is definitely a cheat. The function does not work: an attempt to
 
 ...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
 
-Let's add one more test to see if `pow(3, 4) = 81`.
+Let's add one more test to check that `pow(3, 4) = 81`.
 
 We can select one of two ways to organize the test here:
 
@@ -296,7 +296,7 @@ Testing finished – after all tests (after)
 
 [edit src="beforeafter" title="Open the example in the sandbox."]
 
-Usually, `beforeEach/afterEach` (`before/after`) are used to perform initialization, zero out counters or do something else between the tests (or test groups).
+Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
 ````
 
 ## Extending the spec
@@ -390,22 +390,20 @@ That's especially important in large projects when a function is used in many pl
 
 Without tests, people have two ways:
 
-1. To perform the change, no matter what. And then our users meet bugs and report them. If we can afford that.
-2. Or people become afraid to modify such functions, if the punishment for errors is harsh. Then it becomes old, overgrown with cobwebs, no one wants to get into it, and that's not good.
+1. To perform the change, no matter what. And then our users meet bugs, as we probably fail to check something manually.
+2. Or, if the punishment for errors is harsh, as there are no tests, people become afraid to modify such functions, and then the code becomes outdated, no one wants to get into it. Not good for development.
 
-**Automatically tested code is contrary to that!**
+**Automatic testing helps to avoid these problems!**
 
-If the project is covered with tests, there's just no such problem. We can run tests and see a lot of checks made in a matter of seconds.
+If the project is covered with tests, there's just no such problem. After any changes, we can run tests and see a lot of checks made in a matter of seconds.
 
 **Besides, a well-tested code has better architecture.**
 
-Naturally, that's because it's easier to change and improve it. But not only that.
+Naturally, that's because auto-tested code is easier to modify and improve. But there's also another reason.
 
 To write tests, the code should be organized in such a way that every function has a clearly described task, well-defined input and output. That means a good architecture from the beginning.
 
 In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But in general writing tests makes development faster and more stable.
-
-## What now?
 
 Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
 
