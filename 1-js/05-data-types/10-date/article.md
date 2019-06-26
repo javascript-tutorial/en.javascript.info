@@ -49,7 +49,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     ```
 
 `new Date(year, month, date, hours, minutes, seconds, ms)`
-: Create the date with the given components in the local time zone. Only two first arguments are obligatory.
+: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
     Note:
 
