@@ -56,7 +56,7 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
 3. Then the dot repeats because of the quantifier `pattern:.+`. The regular expression engine builds the match by taking characters one by one while it is possible.
 
-    ...When it becomes impossible? All characters match the dot, so it only stops when it reaches the end of the string:
+    ...When does it become impossible? All characters match the dot, so it only stops when it reaches the end of the string:
 
     ![](witch_greedy3.png)
 
