@@ -26,7 +26,7 @@ alert(url1); // https://javascript.info/profile/admin
 alert(url2); // https://javascript.info/profile/admin
 ```
 
-Переход к пути относительно текущего URL:
+Go to the path relative to the current URL:
 
 ```js run
 let url = new URL('https://javascript.info/profile/admin');
