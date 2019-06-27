@@ -38,17 +38,17 @@ The picture above demonstrates the most complex case when the element has a scro
 So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary between devices and browsers) then only `300 - 16 = 284px` remains, and we should take it into account. That's why examples from this chapter assume that there's a scrollbar. If there's no scrollbar, then things are just a bit simpler.
 ```
 
-```smart header="The `padding-bottom` may be filled with text"
-Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`, so you can see that in examples. But the padding is still there, unless specified otherwise.
+```smart header="The `padding-bottom` area may be filled with text"
+Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`, so you can see that in examples. Still, the padding is set in further examples, unless explicitly specified otherwise.
 ```
 
 ## Geometry
 
-Element properties that provide width, height and other geometry are always numbers. They are assumed to be in pixels.
-
 Here's the overall picture:
 
 ![](metric-all.png)
+
+Values of these properties are technically numbers, but these numbers are "of pixels", so these are pixel measurements.
 
 They are many properties, it's difficult to fit them all in the single picture, but their values are simple and easy to understand.
 
@@ -58,13 +58,15 @@ Let's start exploring them from the outside of the element.
 
 These properties are rarely needed, but still they are the "most outer" geometry properties, so we'll start with them.
 
-The `offsetParent` is the nearest ancestor that is:
+The `offsetParent` is the nearest ancestor, that browser uses for calculating coordinates during rendering.
+
+That's the nearest ancestor, that satisfies following conditions:
 
 1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`),
 2. or `<td>`, `<th>`, `<table>`,
 2. or `<body>`.
 
-In most practical cases we can use `offsetParent` to get the nearest CSS-positioned ancestor. And `offsetLeft/offsetTop` provide x/y coordinates relative to its upper-left corner.
+In most practical cases `offsetParent` is exactly the nearest ancestor, that is CSS-positioned. And `offsetLeft/offsetTop` provide x/y coordinates relative to its upper-left corner.
 
 In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its upper-left corner (`180`):
 
@@ -103,12 +105,12 @@ For our sample element:
 - `offsetWidth = 390` -- the outer width, can be calculated as inner CSS-width (`300px`) plus paddings (`2 * 20px`) and borders (`2 * 25px`).
 - `offsetHeight = 290` -- the outer height.
 
-````smart header="Geometry properties for not shown elements are zero/null"
-Geometry properties are calculated only for shown elements.
+````smart header="Geometry properties for not displayed elements are zero/null"
+Geometry properties are calculated only for displayed elements.
 
-If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero or `null` depending on what it is.
+If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero (or `null` if that's `offsetParent`).
 
-For example, `offsetParent` is `null`, and `offsetWidth`, `offsetHeight` are `0`.
+For example, `offsetParent` is `null`, and `offsetWidth`, `offsetHeight` are `0` when we created an element, but haven't inserted it into the document yet, or it (or it's ancestor) has `display:none`.
 
 We can use this to check if an element is hidden, like this:
 
@@ -134,7 +136,7 @@ In our example:
 
 ![](metric-client-left-top.png)
 
-...But to be precise -- they are not borders, but relative coordinates of the inner side from the outer side.
+...But to be precise -- these propeerties are not border width/height, but rather relative coordinates of the inner side from the outer side.
 
 What's the difference?
 
@@ -215,11 +217,11 @@ Setting `scrollTop` to `0` or `Infinity` will make the element scroll to the ver
 
 ## Don't take width/height from CSS
 
-We've just covered geometry properties of DOM elements. They are normally used to get widths, heights and calculate distances.
+We've just covered geometry properties of DOM elements, that can be used to get widths, heights and calculate distances.
 
 But as we know from the chapter <info:styles-and-classes>, we can read CSS-height and width using `getComputedStyle`.
 
-So why not to read the width of an element like this?
+So why not to read the width of an element with `getComputedStyle`, like this?
 
 ```js run
 let elem = document.body;
@@ -269,7 +271,7 @@ Elements have the following geometry properties:
 - `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
 - `clientLeft/clientTop` -- the distance from the upper-left outer corner to its upper-left inner corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
 - `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
-- `scrollWidth/scrollHeight` -- the width/height of the content including the scrolled out parts. Also includes paddings, but not the scrollbar.
-- `scrollLeft/scrollTop` -- width/height of the scrolled out part of the element, starting from its upper-left corner.
+- `scrollWidth/scrollHeight` -- the width/height of the content, just like `clientWidth/clientHeight`, but also include scrolled-out, invisible part of the element.
+- `scrollLeft/scrollTop` -- width/height of the scrolled out upper part of the element, starting from its upper-left corner.
 
 All properties are read-only except `scrollLeft/scrollTop`. They make the browser scroll the element if changed.

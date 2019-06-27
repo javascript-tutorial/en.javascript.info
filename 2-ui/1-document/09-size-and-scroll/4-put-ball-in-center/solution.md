@@ -34,9 +34,7 @@ The code won't work reliably while `<img>` has no width/height:
 
 When the browser does not know the width/height of an image (from tag attributes or CSS), then it assumes them to equal `0` until the image finishes loading.
 
-In real life after the first load browser usually caches the image, and on next loads it will have the size immediately.
-
-But on the first load the value of `ball.offsetWidth` is `0`. That leads to wrong coordinates.
+After the first load browser usually caches the image, and on next loads it will have the size immediately. But on the first load the value of `ball.offsetWidth` is `0`. That leads to wrong coordinates.
 
 We should fix that by adding `width/height` to `<img>`:
 
