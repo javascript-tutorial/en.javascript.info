@@ -40,7 +40,7 @@ The syntax is:
 - Positive lookbehind: `pattern:(?<=y)x`, matches `pattern:x`, but only if it follows after `pattern:y`.
 - Negative lookbehind: `pattern:(?<!y)x`, matches `pattern:x`, but only if there's no `pattern:y` before.
 
-For example, let's change the price to US dollars. The dollar sign is usually before the number, so to look for `$30` we'll use `pattern:(?<=\$)\d+` -- an amount preceeded by `subject:$`:
+For example, let's change the price to US dollars. The dollar sign is usually before the number, so to look for `$30` we'll use `pattern:(?<=\$)\d+` -- an amount preceded by `subject:$`:
 
 ```js run
 let str = "1 turkey costs $30";
@@ -48,7 +48,7 @@ let str = "1 turkey costs $30";
 alert( str.match(/(?<=\$)\d+/) ); // 30 (skipped the sole number)
 ```
 
-And, to find the quantity -- a number, not preceeded by `subject:$`, we can use a negative lookbehind `pattern:(?<!\$)\d+`:
+And, to find the quantity -- a number, not preceded by `subject:$`, we can use a negative lookbehind `pattern:(?<!\$)\d+`:
 
 ```js run
 let str = "2 turkeys cost $60";
