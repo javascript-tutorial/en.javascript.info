@@ -233,7 +233,7 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
     alert(2);
   };
 
-  document.addEventListener('menu-open', () => alert('nested'))
+  document.addEventListener('menu-open', () => alert('nested'));
 </script>
 ```    
 
@@ -259,7 +259,7 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
     alert(2);
   };
 
-  document.addEventListener('menu-open', () => alert('nested'))
+  document.addEventListener('menu-open', () => alert('nested'));
 </script>
 ```    
 
