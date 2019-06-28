@@ -141,7 +141,7 @@ openRequest.onsuccess = function() {
 *!*
 openRequest.onblocked = function() {
   // there's another open connection to same database
-  // and it wasn't closed by db.onversionchange listener
+  // and it wasn't closed after db.onversionchange triggered for them
 };
 */!*
 ```
@@ -149,9 +149,11 @@ openRequest.onblocked = function() {
 We do two things:
 
 1. Add `db.onversionchange` listener after a successful opening, to close the old database.
-2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. Normally, this doesn't happen if we close it in `db.onversionchange`.
+2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. This doesn't happen if we close it in `db.onversionchange`.
 
-Alternatively, we can just do nothing in `db.onversionchange` and let the new connection be blocked with a proper message. That's up to us really.
+Alternatively, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to do something. The new connection will be blocked immediatelly after `db.onversionchange` finished without closing, but we can try to reopen it later.
+
+That's up to us, how we handle such version collision, it happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't just die silently.
 
 ## Object store
 
