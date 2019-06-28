@@ -799,12 +799,11 @@ IndexedDB can be thought of as a "localStorage on steroids". It's a simple key-v
 
 The best manual is the specification, [the current one](https://w3c.github.io/IndexedDB) is 2.0, but few methods from [3.0](https://w3c.github.io/IndexedDB/) (it's not much different) are partially supported.
 
-The usage can be described with a few phrases:
+The basic usage can be described with a few phrases:
 
 1. Get a promise wrapper like [idb](https://github.com/jakearchibald/idb).
 2. Open a database: `idb.openDb(name, version, onupgradeneeded)`
-    - Create object storages in indexes in `onupgradeneeded` handlers.
-    - Update version if needed - either by comparing numbers or just checking what exists.
+    - Create object storages and indexes in `onupgradeneeded` handler or perform version update if needed.
 3. For requests:
     - Create transaction `db.transaction('books')` (readwrite if needed).
     - Get the object store `transaction.objectStore('books')`.
