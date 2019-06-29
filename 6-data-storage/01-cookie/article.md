@@ -181,9 +181,9 @@ document.cookie = "user=John; secure";
 
 ## samesite
 
-That's another security option, to protect from so-called XSRF (cross-site request forgery) attacks.
+That's another security attribute `somesite`. It's designed to protect from so-called XSRF (cross-site request forgery) attacks.
 
-To understand when it's useful, let's introduce the following attack scenario.
+To understand how it works and when it's useful, let's take a look at XSRF attacks.
 
 ### XSRF attack
 
