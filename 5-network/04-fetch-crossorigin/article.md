@@ -86,7 +86,7 @@ Let's say we need to get the data from `http://another.com` this way:
       humidity: 78
     });
     ```
-4. As the script executes, `gotWeather` runs, and, as it's our function, we have the data.
+4. When the remote script loads and executes, `gotWeather` runs, and, as it's our function, we have the data.
 
 
 
@@ -152,7 +152,7 @@ The browser plays the role of a trusted mediator here:
 
 ![](xhr-another-domain.png)
 
-Here's an example of an "accepting" response:
+Here's an example of a permissive server response:
 ```
 200 OK
 Content-Type:text/html; charset=UTF-8
@@ -177,7 +177,7 @@ Any other response header is forbidden.
 ```smart header="Please note: no `Content-Length`"
 Please note: there's no `Content-Length` header in the list!
 
-So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
+This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
 
 To grant JavaScript access to any other response header, the server must list it in the `Access-Control-Expose-Headers` header.
@@ -233,11 +233,11 @@ let response = await fetch('https://site.com/service.json', {
 There are three reasons why the request is not simple (one is enough):
 - Method `PATCH`
 - `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`,  `text/plain`.
-- Custom `API-Key` header.
+- "Non-simple" `API-Key` header.
 
 ### Step 1 (preflight request)
 
-The browser, on its own, sends a preflight request that looks like this:
+Prior to sending our request, the browser, on its own, sends a preflight request that looks like this:
 
 ```
 OPTIONS /service.json
@@ -260,9 +260,9 @@ The server should respond with status 200 and headers:
 - `Access-Control-Allow-Methods: PATCH`
 - `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
-That would allow future communication, otherwise an error is triggered.
+That allows future communication, otherwise an error is triggered.
 
-If the server expects other methods and headers, makes sense to list them all at once, e.g:
+If the server expects other methods and headers in the future, makes sense to allow them in advance by adding to the list:
 
 ```
 200 OK
@@ -312,9 +312,9 @@ Why?
 
 That's because a request with credentials is much more powerful than an anonymous one. If allowed, it grants JavaScript the full power to act and access sensitive information on behalf of a user.
 
-Does the server really trust pages from `Origin` that much? A request with credentials needs an additional header to pass through.
+Does the server really trust pages from `Origin` that much? Then it must explicitly allow requests with credentials with an additional header.
 
-To enable credentials, we need to add the option `credentials: "include"`, like this:
+To send credentials, we need to add the option `credentials: "include"`, like this:
 
 ```js
 fetch('http://another.com', {
@@ -322,7 +322,7 @@ fetch('http://another.com', {
 });
 ```
 
-Now `fetch` sends cookies originating from `another.com` with the request.
+Now `fetch` sends cookies originating from `another.com` with out request to that site.
 
 If the server wishes to accept the request with credentials, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 
@@ -356,10 +356,10 @@ So, practical difference is that simple requests are sent right away, with `Orig
 **For simple requests:**
 
 - → The browser sends `Origin` header with the origin.
-- ← For requests without credentials (default), the server should set:
-    - `Access-Control-Allow-Origin` to `*` or same as `Origin`
+- ← For requests without credentials (not sent default), the server should set:
+    - `Access-Control-Allow-Origin` to `*` or same value as `Origin`
 - ← For requests with credentials, the server should set:
-    - `Access-Control-Allow-Origin` to `Origin`
+    - `Access-Control-Allow-Origin` to same value as `Origin`
     - `Access-Control-Allow-Credentials` to `true`
 
 Additionally, if JavaScript wants to access non-simple response headers:
