@@ -238,7 +238,7 @@ let sayHi = function(name) {  // (*) no magic any more
 
 Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
 
-**When a Function Declaration is made within a code block, it is visible everywhere inside that block. But not outside of it.**
+**By `use strict` when a Function Declaration is made within a code block, it is visible everywhere inside that block. But not outside of it.**
 
 Sometimes that's handy to declare a local function only needed in that block alone. But that feature may also cause problems.
 
@@ -247,6 +247,7 @@ For instance, let's imagine that we need to declare a function `welcome()` depen
 The code below doesn't work:
 
 ```js run
+'use strict';
 let age = prompt("What is your age?", 18);
 
 // conditionally declare a function
@@ -270,11 +271,12 @@ welcome(); // Error: welcome is not defined
 */!*
 ```
 
-That's because a Function Declaration is only visible inside the code block in which it resides.
+That's because by `use strict` a Function Declaration is only visible inside the code block in which it resides.
 
 Here's another example:
 
 ```js run
+'use strict';
 let age = 16; // take 16 as an example
 
 if (age < 18) {
