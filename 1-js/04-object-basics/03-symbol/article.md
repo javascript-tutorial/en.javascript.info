@@ -174,7 +174,7 @@ alert( clone[id] ); // 123
 
 There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
 
-````smart header="Property keys of other types are coerced to strings"
+````smart header="Property keys of other types are converted to strings"
 We can only use strings or symbols as keys in objects. Other types are converted to strings.
 
 For instance, a number `0` becomes a string `"0"` when used as a property key:
