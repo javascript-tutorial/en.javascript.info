@@ -92,7 +92,7 @@ alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
 
 All special characters start with a backslash character `\`. It is also called an "escape character".
 
-We would also use it if we want to insert a quote into the string.
+We might also use it if we wanted to insert a quote into the string.
 
 For instance:
 
