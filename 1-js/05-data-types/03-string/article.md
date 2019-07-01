@@ -305,7 +305,8 @@ if (str.indexOf("Widget") != -1) {
 }
 ```
 
-````smart header="The bitwise NOT trick"
+#### The bitwise NOT trick
+
 One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
 
 For 32-bit integers the call `~n` means exactly the same as `-(n+1)` (due to IEEE-754 format).
@@ -321,9 +322,9 @@ alert( ~-1 ); // 0, the same as -(-1+1)
 */!*
 ```
 
-As we can see, `~n` is zero only if `n == -1`.
+As we can see, for 32-bit integers `~n` is zero only if `n == -1`.
 
-So, the test `if ( ~str.indexOf("...") )` is truthy that the result of `indexOf` is not `-1`. In other words, when there is a match.
+So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
 
 People use it to shorten `indexOf` checks:
 
@@ -338,7 +339,10 @@ if (~str.indexOf("Widget")) {
 It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
-````
+
+Technically speaking, numbers are truncated to 32 bits by `~` operator, so there exist other big numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is  not that long.
+
+Right now we can see it only in the old code, as modern JavaScript provides `.includes` method (see below).
 
 ### includes, startsWith, endsWith
 
