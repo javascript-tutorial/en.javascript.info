@@ -136,7 +136,7 @@ In our example:
 
 ![](metric-client-left-top.png)
 
-...But to be precise -- these propeerties are not border width/height, but rather relative coordinates of the inner side from the outer side.
+...But to be precise -- these properties are not border width/height, but rather relative coordinates of the inner side from the outer side.
 
 What's the difference?
 
