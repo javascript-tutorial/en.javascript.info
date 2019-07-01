@@ -119,7 +119,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Not just a syntax sugar
 
-Sometimes people say that `class` is a "syntax sugar" in JavaScript, because we could actually declare the same without `class` keyword at all:
+Sometimes people say that `class` is a "syntax sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new) in JavaScript, because we could actually declare the same without `class` keyword at all:
 
 ```js run
 // rewriting class User in pure functions
