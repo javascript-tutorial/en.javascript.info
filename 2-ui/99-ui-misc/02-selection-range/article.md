@@ -70,7 +70,7 @@ let selectPDomtree = {
 drawHtmlTree(selectPDomtree, 'div.select-p-domtree', 690, 320);
 </script>
 
-Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (counting text nodes as well):
+Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (counting text nodes):
 
 ![](range-example-p-0-1.png)
 
