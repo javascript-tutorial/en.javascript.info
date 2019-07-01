@@ -322,7 +322,7 @@ alert( ~-1 ); // 0, the same as -(-1+1)
 */!*
 ```
 
-As we can see, for 32-bit integers `~n` is zero only if `n == -1`.
+As we can see, `~n` is zero only if `n == -1` (that's for any 32-bit signed integer `n`).
 
 So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
 
