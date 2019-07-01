@@ -254,7 +254,7 @@ function onMouseMove(event) {
   if (currentDroppable != droppableBelow) { // if there are any changes
     // we're flying in or out...
     // note: both values can be null
-    //   currentDroppable=null if we were not over a droppable (e.g over an empty space)
+    //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
     //   droppableBelow=null if we're not over a droppable now, during this event
 
     if (currentDroppable) {
@@ -274,11 +274,11 @@ In the example below when the ball is dragged over the soccer gate, the gate is 
 
 [codetabs height=250 src="ball4"]
 
-Now we have the current "drop target" in the variable `currentDroppable` during the whole process and can use it to highlight or any other stuff.
+Now we have the current "drop target", that we're flying over, in the variable `currentDroppable` during the whole process and can use it to highlight or any other stuff.
 
 ## Summary
 
-We considered a basic `Drag'n'Drop` algorithm.
+We considered a basic Drag'n'Drop algorithm.
 
 The key components:
 
