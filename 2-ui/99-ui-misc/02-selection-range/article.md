@@ -94,7 +94,7 @@ Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (cou
 ```
 
 - `range.setStart(p, 0)` -- sets the start at the 0th child of `<p>` (that's a text node `"Example: "`).
-- `range.setEnd(p, 2)` -- spans the range up to (but not including) 2nd child of `<p>` (that's a text node `" and "`, but as the end is not included, the last selected node is `<i>`).
+- `range.setEnd(p, 2)` -- spans the range up to (but not including) 2nd child of `<p>` (that's a text node `" and "`, but as the end is not included, so the last selected node is `<i>`).
 
 Here's a more flexible test stand where you try more variants:
 
