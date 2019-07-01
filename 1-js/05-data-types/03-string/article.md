@@ -340,9 +340,9 @@ It is usually not recommended to use language features in a non-obvious way, but
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
 
-Technically speaking, numbers are truncated to 32 bits by `~` operator, so there exist other big numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is  not that long.
+Technically speaking, numbers are truncated to 32 bits by `~` operator, so there exist other big numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is not that long.
 
-Right now we can see it only in the old code, as modern JavaScript provides `.includes` method (see below).
+Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
 
 ### includes, startsWith, endsWith
 

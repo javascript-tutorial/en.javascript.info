@@ -39,7 +39,7 @@ We leave it as an exercise for the reader. Also, at the end of the chapter you'l
 
 ## Writing to document.cookie
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor.
+We can write to `document.cookie`. But it's not a data property, it's an accessor. An assignment to it is treated specially.
 
 **A write operation to `document.cookie` passes through the browser that updates cookies mentioned in it, but doesn't touch other cookies.**
 
@@ -84,11 +84,11 @@ document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 
 - **`path=/mypath`**
 
-The url path prefix, where the cookie is accessible. Must be absolute. By default, it's the current path.
+The url path prefix, the cookie will be accessible for pages under that path. Must be absolute. By default, it's the current path.
 
 If a cookie is set with `path=/admin`, it's visible at pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
 
-Usually, we set `path=/` to make the cookie accessible from all website pages.
+Usually, we should set `path` to the root: `path=/` to make the cookie accessible from all website pages.
 
 ## domain
 
@@ -110,19 +110,22 @@ alert(document.cookie); // no user
 
 **There's no way to let a cookie be accessible from another 2nd-level domain, so `other.com` will never receive a cookie set at `site.com`.**
 
-It's a safety restriction, to allow us to store sensitive data in cookies.
+It's a safety restriction, to allow us to store sensitive data in cookies, that should be available only on one site.
 
-...But if we'd like to grant access to subdomains like `forum.site.com`, that's possible. We  should explicitly set `domain` option to the root domain: `domain=site.com`:
+...But if we'd like to allow subdomains like `forum.site.com` get a cookie, that's possible. When setting a cookie at `site.com`, we should explicitly set `domain` option to the root domain: `domain=site.com`:
 
 ```js
-// at site.com, make the cookie accessible on any subdomain:
+// at site.com
+// make the cookie accessible on any subdomain *.site.com:
 document.cookie = "user=John; domain=site.com"
 
+// later
+
 // at forum.site.com
-alert(document.cookie); // with user
+alert(document.cookie); // has cookie user=John
 ```
 
-For historical reasons, `domain=.site.com` (a dot at the start) also works this way, it might better to add the dot to support very old browsers.
+For historical reasons, `domain=.site.com` (a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation, should be used if we need to support very old browsers.
 
 So, `domain` option allows to make a cookie accessible at subdomains.
 
