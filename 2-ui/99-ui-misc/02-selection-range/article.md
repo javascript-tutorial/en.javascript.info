@@ -4,7 +4,7 @@ libs:
 
 ---
 
-# Text Selection and Range
+# Selection and Range
 
 In this chapter we'll cover text selection.
 
