@@ -1,6 +1,6 @@
 # Events: change, input, cut, copy, paste
 
-Let's discuss various events that accompany data updates.
+Let's cover various events that accompany data updates.
 
 ## Event: change
 
