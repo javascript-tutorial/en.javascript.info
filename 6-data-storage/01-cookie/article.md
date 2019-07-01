@@ -2,11 +2,11 @@
 
 Cookies are small strings of data that are stored directly in the browser. They are a part of HTTP protocol, defined by [RFC 6265](https://tools.ietf.org/html/rfc6265) specification.
 
-Most of the time, cookies are set by a web server. Then they are automatically added to every request to the same domain.
+Cookies are usually set by a web-server using response `Set-Cookie` HTTP-header. Then the browser automatically adds them to (almost) every request to the same domain using `Cookie` HTTP-header.
 
 One of the most widespread use cases is authentication:
 
-1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
+1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
 2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
@@ -17,11 +17,11 @@ There are many tricky things about cookies and their options. In this chapter we
 ## Reading from document.cookie
 
 ```online
-Do you have any cookies on this site? Let's see:
+Does your browser store any cookies from this site? Let's see:
 ```
 
 ```offline
-Assuming you're on a website, it's possible to see the cookies, like this:
+Assuming you're on a website, it's possible to see the cookies from it, like this:
 ```
 
 ```js run
