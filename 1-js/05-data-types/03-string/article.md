@@ -321,7 +321,7 @@ alert( ~-1 ); // 0, the same as -(-1+1)
 */!*
 ```
 
-As we can see, `~n` is zero only if `n == -1`.
+There are only two cases where `~n` is zero: `n` must be either `-1` or `4294967295`.
 
 So, the test `if ( ~str.indexOf("...") )` is truthy that the result of `indexOf` is not `-1`. In other words, when there is a match.
 
