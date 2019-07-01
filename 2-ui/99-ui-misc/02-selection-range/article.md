@@ -541,6 +541,13 @@ To make something unselectable, there are three ways:
 
 3. We can also clear the selection post-factum after it happens with `document.getSelection().empty()`. That's rarely used, as this causes unwanted blinking as the selection appears-disappears.
 
+## References
+
+- [DOM spec: Range](https://dom.spec.whatwg.org/#ranges)
+- [Selection API](https://www.w3.org/TR/selection-api/#dom-globaleventhandlers-onselectstart)
+- [HTML spec: APIs for the text control selections](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#textFieldSelection)
+
+
 ## Summary
 
 We covered two different APIs for selections:
