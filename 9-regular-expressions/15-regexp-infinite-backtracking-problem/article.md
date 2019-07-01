@@ -112,7 +112,7 @@ First, one may notice that the regexp is a little bit strange. The quantifier `p
 
 Indeed, the regexp is artificial. But the reason why it is slow is the same as those we saw above. So let's understand it, and then the previous example will become obvious.
 
-What happened during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
+What happens during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
 
 1. First, the regexp engine tries to find a number `pattern:\d+`. The plus `pattern:+` is greedy by default, so it consumes all digits:
 
