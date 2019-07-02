@@ -3,7 +3,7 @@
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
-In that case objects are auto-converted to primitives, and then the operation is carried out.
+In that case, objects are auto-converted to primitives, and then the operation is carried out.
 
 In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
 
@@ -138,7 +138,7 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case we can implement `toString` only, like this:
+Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
 
 ```js run
 let user = {
