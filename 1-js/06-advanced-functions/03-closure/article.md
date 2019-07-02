@@ -599,7 +599,7 @@ function f() {
 }
 
 let g = f(); // while g is alive
-// there corresponding Lexical Environment lives
+// their corresponding Lexical Environment lives
 
 g = null; // ...and now the memory is cleaned up
 ```
