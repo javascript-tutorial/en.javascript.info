@@ -34,7 +34,7 @@ router.post('/image-form', async (ctx) => {
   });
 
   ctx.body = {
-    message: `Image saved, firstName: ${fields.firstName}, size:${files[0].length}, fileName: ${files[0].filename}.`
+    message: `Image saved, firstName: ${fields.firstName}, Image size:${files[0].length}, fileName: ${files[0].filename}.`
   };
 });
 
