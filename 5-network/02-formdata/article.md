@@ -45,6 +45,8 @@ As you can see, that's almost one-liner:
 </script>
 ```
 
+Here, the server accepts the POST request with the form and replies "User saved".
+
 ## FormData Methods
 
 We can modify fields in `FormData` with methods:
