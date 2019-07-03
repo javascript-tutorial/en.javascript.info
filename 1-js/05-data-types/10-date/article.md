@@ -40,7 +40,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     ```js run
     let date = new Date("2017-01-26");
     alert(date);
-    // The time portion of the date is assumed to be midnight GMT and 
+    // The time is not set, so it's assumed to be midnight GMT and
     // is adjusted according to the timezone the code is run in
     // So the result could be
     // Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
@@ -50,8 +50,6 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
-
-    Note:
 
     - The `year` must have 4 digits: `2013` is okay, `98` is not.
     - The `month` count starts with `0` (Jan), up to `11` (Dec).
@@ -74,7 +72,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
 ## Access date components
 
-There are many methods to access the year, month and so on from the `Date` object. But they can be easily remembered when categorized.
+There are methods to access the year, month and so on from the `Date` object:
 
 [getFullYear()](mdn:js/Date/getFullYear)
 : Get the year (4 digits)
@@ -217,21 +215,21 @@ The important side effect: dates can be subtracted, the result is their differen
 That can be used for time measurements:
 
 ```js run
-let start = new Date(); // start counting
+let start = new Date(); // start measuring time
 
 // do the job
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let end = new Date(); // done
+let end = new Date(); // end measuring time
 
 alert( `The loop took ${end - start} ms` );
 ```
 
 ## Date.now()
 
-If we only want to measure the difference, we don't need the `Date` object.
+If we only want to measure time, we don't need the `Date` object.
 
 There's a special method `Date.now()` that returns the current timestamp.
 
@@ -264,6 +262,8 @@ If we want a reliable benchmark of CPU-hungry function, we should be careful.
 
 For instance, let's measure two functions that calculate the difference between two dates: which one is faster?
 
+Such performance measurements are often called "benchmarks".
+
 ```js
 // we have date1 and date2, which function faster returns their difference in ms?
 function diffSubtract(date1, date2) {
@@ -280,7 +280,7 @@ These two do exactly the same thing, but one of them uses an explicit `date.getT
 
 So, which one is faster?
 
-The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it around 100000 times.
+The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
 
 Let's measure:
 
@@ -310,7 +310,7 @@ Wow! Using `getTime()` is so much faster! That's because there's no type convers
 
 Okay, we have something. But that's not a good benchmark yet.
 
-Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` the work has finished.
+Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
 
 A pretty real scenario for a modern multi-process OS.
 
@@ -368,7 +368,7 @@ for (let i = 0; i < 10; i++) {
 ```
 
 ```warn header="Be careful doing microbenchmarking"
-Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
 
 The great pack of articles about V8 can be found at <http://mrale.ph>.
 ```
@@ -415,7 +415,7 @@ alert(date);
 
 Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
 
-Also, sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
 
 ```js run
 alert(`Loading started ${performance.now()}ms ago`);

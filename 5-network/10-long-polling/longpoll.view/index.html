@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<script src="browser.js"></script>
+
+All visitors of this page will see messages of each other.
+
+<form name="publish">
+  <input type="text" name="message" />
+  <input type="submit" value="Send" />
+</form>
+
+<div id="subscribe">
+</div>
+
+<script>
+  new PublishForm(document.forms.publish, 'publish');
+  // random url to avoid any caching issues
+  new SubscribePane(document.getElementById('subscribe'), 'subscribe?random=' + Math.random());
+</script>

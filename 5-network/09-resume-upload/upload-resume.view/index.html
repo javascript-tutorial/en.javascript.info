@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+
+<script src="uploader.js"></script>
+
+<form name="upload" method="POST" enctype="multipart/form-data" action="/upload">
+  <input type="file" name="myfile">
+  <input type="submit" name="submit" value="Upload (Resumes automatically)">
+</form>
+
+<button onclick="uploader.stop()">Stop upload</button>
+
+
+<div id="log">Progress indication</div>
+
+<script>
+  function log(html) {
+    document.getElementById('log').innerHTML = html;
+    console.log(html);
+  }
+
+  function onProgress(loaded, total) {
+    log("progress " + loaded + ' / ' + total);
+  }
+
+  let uploader;
+
+  document.forms.upload.onsubmit = async function(e) {
+    e.preventDefault();
+
+    let file = this.elements.myfile.files[0];
+    if (!file) return;
+
+    uploader = new Uploader({file, onProgress});
+
+    try {
+      let uploaded = await uploader.upload();
+
+      if (uploaded) {
+        log('success');
+      } else {
+        log('stopped');
+      }
+
+    } catch(err) {
+      console.error(err);
+      log('error');
+    }
+  };
+
+</script>

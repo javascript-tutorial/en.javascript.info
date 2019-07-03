@@ -78,7 +78,7 @@ Please note, that it's possible to copy/paste not just text, but everything. For
 
 There's a list of methods [in the specification](https://www.w3.org/TR/clipboard-apis/#dfn-datatransfer) that can work with different data types including files, read/write to the clipboard.
 
-But please note that clipboard is a "global" OS-level thing. Most browsers allow read/write access to the clipboard only in the scope of certain user actions for the safety.
+But please note that clipboard is a "global" OS-level thing. Most browsers allow read/write access to the clipboard only in the scope of certain user actions for the safety, e.g. in `onclick` event handlers.
 
 Also it's forbidden to generate "custom" clipboard events with `dispatchEvent` in all browsers except Firefox.
 
