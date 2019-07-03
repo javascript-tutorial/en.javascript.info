@@ -1,7 +1,7 @@
 
 # FormData
 
-This chapter is about sending HTML forms: with or without files, with additional fields and so on. [FormData](https://xhr.spec.whatwg.org/#interface-formdata) is the object to handle that.
+This chapter is about sending HTML forms: with or without files, with additional fields and so on. [FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects can help with that.
 
 The constructor is:
 ```js
@@ -10,9 +10,9 @@ let formData = new FormData([form]);
 
 If HTML `form` element is provided, it automatically captures its fields.
 
-Network methods, such as `fetch` can use `FormData` objects as a body, they are automatically encoded and sent with `Content-Type: form/multipart`.
+Network methods, such as `fetch` accept `FormData` objects as a body. They are  encoded and sent out with `Content-Type: form/multipart`.
 
-So from the server point of view, that's a usual form submission.
+So, from the server point of view, that looks like a usual form submission.
 
 ## Sending a simple form
 
