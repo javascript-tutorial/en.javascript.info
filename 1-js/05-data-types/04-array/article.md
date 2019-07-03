@@ -144,12 +144,13 @@ In computer science the data structure that allows it is called [deque](https://
     ```js run
     let fruits = ["Apple", "Orange"];
 
-    fruits.push("Pear");
+    alert( fruits.push("Pear") ); // returns array length
 
     alert( fruits ); // Apple, Orange, Pear
     ```
 
     The call `fruits.push(...)` is equal to `fruits[fruits.length] = ...`.
+    The only difference is that the last variant returns the assigned value while method push returns array length.
 
 **Methods that work with the beginning of the array:**
 
@@ -170,7 +171,7 @@ In computer science the data structure that allows it is called [deque](https://
     ```js
     let fruits = ["Orange", "Pear"];
 
-    fruits.unshift('Apple');
+    alert( fruits.unshift('Apple') ); // returns array length
 
     alert( fruits ); // Apple, Orange, Pear
     ```
