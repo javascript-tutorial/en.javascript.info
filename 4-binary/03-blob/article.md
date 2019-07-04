@@ -120,7 +120,7 @@ An alternative to `URL.createObjectURL` is to convert a blob into a base64-encod
 
 That encoding represents binary data as a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64. And what's more important -- we can use this encoding in "data-urls".
 
-A [data url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) has the form `data:[<mediatype>][;base64],<data>`. We can use such urls everywhere, on par with "regular" urls.
+A [data url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) has the form `data:[<mediatype>][;base64],<data>`. We can use such urls everywhere, on a par with "regular" urls.
 
 For instance, here's a smiley:
 
