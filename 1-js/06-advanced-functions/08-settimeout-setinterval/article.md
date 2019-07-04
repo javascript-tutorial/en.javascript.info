@@ -9,7 +9,6 @@ There are two methods for it:
 
 These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.js.
 
-
 ## setTimeout
 
 The syntax:
@@ -291,9 +290,9 @@ For server-side JavaScript, that limitation does not exist, and there exist othe
 - To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
 - Nested `setTimeout` calls is a more flexible alternative to `setInterval`. Also they can guarantee the minimal time *between* the executions.
 - Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code is complete".
-- The browsere ensures that for five or more nested call of `setTimeout`, or for zero-delay `setInterval`, the real delay between calls is at least 4ms. That's for historical reasons.
+- The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
 
-Please note that all scheduling methods do not *guarantee* the exact delay. We should not rely on that in the scheduled code.
+Please note that all scheduling methods do not *guarantee* the exact delay. 
 
 For example, the in-browser timer may slow down for a lot of reasons:
 - The CPU is overloaded.

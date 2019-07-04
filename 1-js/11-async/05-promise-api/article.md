@@ -112,7 +112,7 @@ Promise.all(requests)
   ));
 ```
 
-A bigger example with fetching user information for an array of github users by their names (or we could fetch an array of goods by their ids, the logic is same):
+A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is same):
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
@@ -134,7 +134,7 @@ Promise.all(requests)
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-**If any of the promises is rejected, `Promise.all` immediately rejects with that error.**
+**If any of the promises is rejected, the promise returned by `Promise.all` immediately rejects with that error.**
 
 For instance:
 
@@ -155,10 +155,10 @@ If one promise rejects, `Promise.all` immediately rejects, completely forgetting
 
 For example, if there are multiple `fetch` calls, like in the example above, and one fails, other ones will still continue to execute, but `Promise.all` don't watch them any more. They will probably settle, but the result will be ignored.
 
-`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](fetch-abort) we'll cover `AbortController` that aims to help with that, but it's not a part of the Promise API.
+`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](info:fetch-abort) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
 ```
 
-````smart header="`Promise.all(...)` allows non-promise items in `iterable`"
+````smart header="`Promise.all(iterable)` allows non-promise \"regular\" values in `iterable`"
 Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
 
 For instance, here the results are `[1, 2, 3]`:
@@ -173,8 +173,7 @@ Promise.all([
 ]).then(alert); // 1, 2, 3
 ```
 
-So we are able to pass non-promise values to `Promise.all` where convenient.
-
+So we are able to pass ready values to `Promise.all` where convenient.
 ````
 
 ## Promise.allSettled
@@ -289,4 +288,4 @@ There are 5 static methods of `Promise` class:
     - `value` (if fulfilled) or `reason` (if rejected).
 5. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
 
-Of these five, `Promise.all/allSettled` are the most common in practice.
+Of these five, `Promise.all` is probably the most common in practice.

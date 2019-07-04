@@ -31,7 +31,7 @@ alert(phrase); // Error, phrase is not defined
 
 ## "var" has no block scope
 
-`var` variables are either function-wide or global, they are visible through blocks.
+Variables, declared with `var`, are either function-wide or global. They are visible through blocks.
 
 For instance:
 
@@ -45,7 +45,7 @@ alert(test); // true, the variable lives after if
 */!*
 ```
 
-`var` ignores code blocks, so we've got a global variable `test`.
+As `var` ignores code blocks, we've got a global variable `test`.
 
 If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
 

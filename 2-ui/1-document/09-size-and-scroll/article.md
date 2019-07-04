@@ -39,7 +39,9 @@ So, without scrollbar the content width would be `300px`, but if the scrollbar i
 ```
 
 ```smart header="The `padding-bottom` area may be filled with text"
-Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`, so you can see that in examples. Still, the padding is set in further examples, unless explicitly specified otherwise.
+Usually paddings are shown empty on illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`.
+
+That's a note to avoid confusion, as `padding-bottom` is set in further examples, unless explicitly specified otherwise.
 ```
 
 ## Geometry
@@ -66,7 +68,7 @@ That's the nearest ancestor, that satisfies following conditions:
 2. or `<td>`, `<th>`, `<table>`,
 2. or `<body>`.
 
-In most practical cases `offsetParent` is exactly the nearest ancestor, that is CSS-positioned. And `offsetLeft/offsetTop` provide x/y coordinates relative to its upper-left corner.
+Properties `offsetLeft/offsetTop` provide x/y coordinates relative to its upper-left corner.
 
 In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its upper-left corner (`180`):
 
@@ -105,7 +107,7 @@ For our sample element:
 - `offsetWidth = 390` -- the outer width, can be calculated as inner CSS-width (`300px`) plus paddings (`2 * 20px`) and borders (`2 * 25px`).
 - `offsetHeight = 290` -- the outer height.
 
-````smart header="Geometry properties for not displayed elements are zero/null"
+````smart header="Geometry properties are zero/null for elements that are not displayed"
 Geometry properties are calculated only for displayed elements.
 
 If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero (or `null` if that's `offsetParent`).

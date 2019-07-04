@@ -21,7 +21,7 @@ That's strange, because the promise is definitely done from the beginning.
 
 Why did the `.then` trigger afterwards? What's going on?
 
-## Microtasks
+## Microtasks queue
 
 Asynchronous tasks need proper management. For that, the standard specifies an internal queue `PromiseJobs`, more often referred to as "microtask queue" (v8 term).
 
@@ -68,7 +68,7 @@ let promise = Promise.reject(new Error("Promise Failed!"));
 promise.catch(err => alert('caught'));
 */!*
 
-// no error, all quiet
+// doesn't run: error handled
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
@@ -93,13 +93,13 @@ setTimeout(() => promise.catch(err => alert('caught')), 1000);
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-Now, if you run it, we'll see `Promise Failed!` message first, and then `caught`.
+Now, if you run it, we'll see `Promise Failed!` message first, and then `caught`. 
 
-If we didn't know about microtasks, we could wonder: "Why did `unhandledrejection` happen? We did catch the error!".
+If we didn't know about microtasks queue, we could wonder: "Why did `unhandledrejection` handler run? We did catch the error!".
 
-But now we do know that `unhandledrejection` is generated when the microtask queue is complete: the engine examines promises and, if any of them is in "rejected" state, then the event triggers.
+But now we understand that `unhandledrejection` is generated when the microtask queue is complete: the engine examines promises and, if any of them is in "rejected" state, then the event triggers.
 
-...By the way, the `.catch` added by `setTimeout` also triggers, of course it does, but later, after `unhandledrejection` has already occurred.
+In the example above, `.catch` added by `setTimeout` also triggers, but later, after `unhandledrejection` has already occurred, so that doesn't change anything.
 
 ## Summary
 
