@@ -96,14 +96,15 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 // deleteRequest.onsuccess/onerror tracks the result
 ```
 
-### Opening an old version
+```warn header="Can we open an old version?"
+Now what if we try to open a database with a lower version than the current one? E.g. the existing DB version is 3, and we try to `open(...2)`.
 
-Now what if we try to open a database with a lower version than the current one?
-E.g. the existing DB version is 3, and we try to `open(...2)`. That's simple:  `openRequest.onerror` triggers.
+That's an error, `openRequest.onerror` triggers.
 
-Such thing may happen if the visitor loaded an outdated code, e.g. from a proxy cache. We should check `db.version`, suggest him to reload the page, and also make sure that our caching policy is correct.
+Such thing may happen if the visitor loaded an outdated code, e.g. from a proxy cache. We should check `db.version`, suggest him to reload the page. And also re-check our caching headers to ensure that the visitor never gets old code.
+```
 
-### Multi-page update problem
+### Parallel update problem
 
 As we're talking about versioning, let's tackle a small related problem.
 
@@ -113,11 +114,11 @@ Then we rolled out an update, and the same visitor opens our site in another tab
 
 The problem is that a database is shared between two tabs, as that's the same site, same origin. And it can't be both version 1 and 2. To perform the update to version 2, all connections to version 1 must be closed.
 
-In order to organize that, there's `versionchange` event on an open database object. We should listen to it, as it lets us know that the version is about to change, so that we should close the database (and probably suggest the visitor to reload the page, to load the updated code).
+In order to organize that, the `versionchange` event triggers an open database object when a parallel upgrade is attempted. We should listen to it, so that we should close the database (and probably suggest the visitor to reload the page, to load the updated code).
 
-If we don't close it, then the second connection will be blocked with `blocked` event instead of `success`.
+If we don't close it, then the second, new connection will be blocked with `blocked` event instead of `success`.
 
-Here's the code to work around it, it has two minor additions:
+Here's the code to do that:
 
 ```js
 let openRequest = indexedDB.open("store", 2);
@@ -131,7 +132,7 @@ openRequest.onsuccess = function() {
   *!*
   db.onversionchange = function() {
     db.close();
-    alert("Your database is outdated, please reload the page.")
+    alert("Database is outdated, please reload the page.")
   };
   */!*
 
@@ -146,14 +147,14 @@ openRequest.onblocked = function() {
 */!*
 ```
 
-We do two things:
+Here we do two things:
 
-1. Add `db.onversionchange` listener after a successful opening, to close the old database.
+1. Add `db.onversionchange` listener after a successful opening, to be informed about a parallel update attempt.
 2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. This doesn't happen if we close it in `db.onversionchange`.
 
-Alternatively, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to do something. The new connection will be blocked immediatelly after `db.onversionchange` finished without closing, but we can try to reopen it later.
+There are other variants. For example, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to save the data before the connection is closed. The new updating connection will be blocked immediatelly after `db.onversionchange` finished without closing, and we can ask the visitor in the new tab to close other tabs for the update.
 
-That's up to us, how we handle such version collision, it happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't just die silently.
+Such update collision happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't surprise the user by dying silently.
 
 ## Object store
 

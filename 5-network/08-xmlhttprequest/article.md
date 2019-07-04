@@ -220,11 +220,7 @@ We can terminate the request at any time. The call to `xhr.abort()` does that:
 xhr.abort(); // terminate the request
 ```
 
-That triggers `abort` event.
-
-That
-Also, `x and `xhr.status` become `0` in that case.
-
+That triggers `abort` event, and `xhr.status` becomes `0`.
 
 ## Synchronous requests
 
@@ -248,7 +244,7 @@ try {
   }
 } catch(err) { // instead of onerror
   alert("Request failed");
-};
+}
 ```
 
 It might look good, but synchronous calls are used rarely, because they block in-page JavaScript till the loading is complete. In some browsers it becomes impossible to scroll. If a synchronous call takes too much time, the browser may suggest to close the "hanging" webpage.
@@ -489,7 +485,7 @@ let xhr = new XMLHttpRequest();
 
 xhr.open('GET', '/my/url');
 
-xhr.send(); s
+xhr.send();
 
 xhr.onload = function() {
   if (xhr.status != 200) { // HTTP error?
@@ -521,9 +517,9 @@ There are actually more events, the [modern specification](http://www.w3.org/TR/
 - `timeout` -- the request was canceled due to timeout (only happens if it was set).
 - `loadend` -- triggers after `load`, `error`, `timeout` or `abort`.
 
-The `error`, `abort`, `timeout`, and `load` events are mutually exclusive.
+The `error`, `abort`, `timeout`, and `load` events are mutually exclusive. Only one of them may happen.
 
-The most used events are load completion (`load`), load failure (`error`), or we can use a single `loadend` handler and check event and response to see what happened.
+The most used events are load completion (`load`), load failure (`error`), or we can use a single `loadend` handler and check the response to see what happened.
 
 We've already seen another event: `readystatechange`. Historically, it appeared long ago, before the specification settled. Nowadays, there's no need to use it, we can replace it with newer events, but it can often be found in older scripts.
 

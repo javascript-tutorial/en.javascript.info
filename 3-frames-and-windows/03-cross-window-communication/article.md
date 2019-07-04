@@ -28,12 +28,12 @@ The "Same Origin" policy states that:
 
 ### In action: iframe
 
-An `<iframe>` tag hosts embbedded window, with its own separate `document` and `window` objects.
+An `<iframe>` tag hosts a separate embedded window, with its own separate `document` and `window` objects.
 
 We can access them using properties:
 
 - `iframe.contentWindow` to get the window inside the `<iframe>`.
-- `iframe.contentDocument` to get the document inside the `<iframe>`.
+- `iframe.contentDocument` to get the document inside the `<iframe>`, короткий аналог `iframe.contentWindoe.document`.
 
 When we access something inside the embedded window, the browser checks if the iframe has the same origin. If that's not so then the access is denied (writing to `location` is an exception, it's still permitted).
 
@@ -102,13 +102,13 @@ The `iframe.onload` event (on the `<iframe>` tag) is essentially the same as `if
 ...But we can't access `iframe.contentWindow.onload` for an iframe from another origin, so using `iframe.onload`.
 ```
 
-## Iframes on subdomains: document.domain
+## Windows on subdomains: document.domain
 
 By definition, two URLs with different domains have different origins.
 
 But if windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), we can make the browser ignore that difference, so that they can be treated as coming from the "same origin" for the purposes of cross-window communication.
 
-To make it work, each window (including the one from `site.com`) should run the code:
+To make it work, each such window should run the code:
 
 ```js
 document.domain = 'site.com';
@@ -144,22 +144,16 @@ Here, look:
 
 We shouldn't work with the document of a not-yet-loaded iframe, because that's the *wrong document*. If we set any event handlers on it, they will be ignored.
 
-...The right document is definitely there when `iframe.onload`  triggers. But it only triggers when the whole iframe with all resources is loaded.
+How to detect the moment when the document is there?
 
-There's also `DOMContentLoaded` event, that triggers sooner than `onload`. As we assume that the iframe comes from the same origin, we can setup the event handler. But we should set it on the right document, so we need to detect when it's there.
+The right document is definitely at place when `iframe.onload`  triggers. But it only triggers when the whole iframe with all resources is loaded.
 
-Here's a small recipe for this.
-
-We can try to catch the moment when a new document appears using checks in `setInterval`, and then setup necessary handlers:
+We can try to catch the moment earlier using checks in `setInterval`:
 
 ```html run
 <iframe src="/" id="iframe"></iframe>
 
 <script>
-  function onDocumentLoaded() {
-    iframe.contentDocument.body.prepend('Hello, world!');
-  }
-
   let oldDoc = iframe.contentDocument;
 
   // every 100 ms check if the document is the new one
@@ -167,14 +161,7 @@ We can try to catch the moment when a new document appears using checks in `setI
     let newDoc = iframe.contentDocument;
     if (newDoc == oldDoc) return;
 
-    // new document
-    if (newDoc.readyState == 'loading') {
-      // loading yet, wait for the event
-      newDoc.addEventListener('DOMContentLoaded', onDocumentLoaded);
-    } else {
-      // DOM is ready!
-      onDocumentLoaded();
-    }
+    alert("New document is here!");
 
     clearInterval(timer); // cancel setInterval, don't need it any more
   }, 100);
@@ -227,11 +214,11 @@ if (window == top) { // current window == window.top?
 
 The `sandbox` attribute allows for the exclusion of certain actions inside an `<iframe>` in order to prevent it executing untrusted code. It "sandboxes" the iframe by treating it as coming from another origin and/or applying other limitations.
 
-There's a "default set" of restrictions applied for `<iframe sandbox src="...">`. But it can be relaxed if we provide a space-separated list of keywords for restrictions that should not be applied as a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`.
+There's a "default set" of restrictions applied for `<iframe sandbox src="...">`. But it can be relaxed if we provide a space-separated list of restrictions that should not be applied as a value of the attribute, like this: `<iframe sandbox="allow-forms allow-popups">`.
 
 In other words, an empty `"sandbox"` attribute puts the strictest limitations possible, but we can put a space-delimited list of those that we want to lift.
 
-Here's a list of limitations. By default, all are applied. We can disable each by specifying the corresponding keyword in the `sandbox` attribute:
+Here's a list of limitations:
 
 `allow-same-origin`
 : By default `"sandbox"` forces the "different origin" policy for the iframe. In other words, it makes the browser to treat the `iframe` as coming from another origin, even if its `src` points to the same site. With all implied restrictions for scripts. This option removes that feature.
@@ -375,7 +362,7 @@ Exceptions are:
 - Windows that share the same second-level domain: `a.site.com` and `b.site.com`. Then setting `document.domain='site.com'` in both of them puts them into the "same origin" state.
 - If an iframe has a `sandbox` attribute, it is forcefully put into the "different origin" state, unless the `allow-same-origin` is specified in the attribute value. That can be used to run untrusted code in iframes from the same site.
 
-The `postMessage` interface allows two windows to talk with security checks:
+The `postMessage` interface allows two windows with any origins to talk:
 
 1. The sender calls `targetWin.postMessage(data, targetOrigin)`.
 2. If `targetOrigin` is not `'*'`, then the browser checks if window `targetWin` has the origin `targetOrigin`.

@@ -12,7 +12,7 @@ For example, we can:
 
 ...And all of that without reloading the page!
 
-There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avascript <b>A</b>nd <b>X</b>ml) for that. We don't have to use XML though: the term comes from old times, that's why it's here.
+There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avascript <b>A</b>nd <b>X</b>ml) for that. We don't have to use XML though: the term comes from old times, that's that word is there.
 
 There are multiple ways to send a network request and get information from the server.
 
@@ -32,7 +32,6 @@ The browser starts the request right away and returns a `promise`.
 Getting a response is usually a two-stage process.
 
 **First, the `promise` resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
-
 
 So we can check HTTP status, to see whether it is successful or not, check headers, but don't have the body yet.
 
@@ -67,7 +66,7 @@ if (response.ok) { // if HTTP-status is 200-299
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (pure binary data),
 - additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
 
-For instance, here we get a JSON-object with latest commits from GitHub:
+For instance, let's get a JSON-object with latest commits from GitHub:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
@@ -79,7 +78,7 @@ let commits = await response.json(); // read response body and parse as JSON
 alert(commits[0].author.login);
 ```
 
-Or, the same using pure promises syntax:
+Or, the same without `await`, using pure promises syntax:
 
 ```js run
 fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
@@ -191,9 +190,7 @@ To make a `POST` request, or a request with another method, we need to use `fetc
   - a string (e.g. JSON),
   - `FormData` object, to submit the data as `form/multipart`,
   - `Blob`/`BufferSource` to send binary data,
-  - [URLSearchParams](info:url), to submit the data as `x-www-form-urlencoded`, rarely used.
-
-Let's see examples.
+  - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
 
 For example, this code submits `user` object as JSON:
 
@@ -271,7 +268,7 @@ function submit() {
 
 ## Summary
 
-A typical fetch request consists of two `awaits`:
+A typical fetch request consists of two `await` calls:
 
 ```js
 let response = await fetch(url, options); // resolves with response headers
@@ -302,4 +299,4 @@ Fetch options so far:
 - `headers` -- an object with request headers (not any header is allowed),
 - `body` -- `string`, `FormData`, `BufferSource`, `Blob` or `UrlSearchParams` object to send.
 
-In the next chapters we'll see more options and use cases.
+In the next chapters we'll see more options and use cases of `fetch`.

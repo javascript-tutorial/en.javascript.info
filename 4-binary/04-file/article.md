@@ -10,14 +10,14 @@ First, there's a constructor, similar to `Blob`:
 new File(fileParts, fileName, [options])
 ```
 
-- **`fileParts`** -- is an array of Blob/BufferSource/String value, same as `Blob`.
+- **`fileParts`** -- is an array of Blob/BufferSource/String values.
 - **`fileName`** -- file name string.
 - **`options`** -- optional object:
     - **`lastModified`** -- the timestamp (integer date) of last modification.
 
-Second, more often we get a file from `<input type="file">` or drag'n'drop or other browser interfaces. Then the file gets these from OS.
+Second, more often we get a file from `<input type="file">` or drag'n'drop or other browser interfaces. In that case, the file gets this information from OS.
 
-As `File` inherits from `Blob`, it has same properties, plus:
+As `File` inherits from `Blob`, `File` objects have the same properties, plus:
 - `name` -- the file name,
 - `lastModified` -- the timestamp of last modification.
 
@@ -61,7 +61,7 @@ The main methods:
 
 The choice of `read*` method depends on which format we prefer, how we're going to use the data.
 
-- `readAsArrayBuffer` - for binary files, to do low-level binary operations. For high-level operations, like slicing, `File` inherits from `Blob`, so we can calll them directly, without reading.
+- `readAsArrayBuffer` - for binary files, to do low-level binary operations. For high-level operations, like slicing, `File` inherits from `Blob`, so we can call them directly, without reading.
 - `readAsText` - for text files, when we'd like to get a string.
 - `readAsDataURL` -- when we'd like to use this data in `src` for `img` or another tag. There's an alternative to reading a file for that, as discussed in chapter <info:blob>: `URL.createObjectURL(file)`.
 

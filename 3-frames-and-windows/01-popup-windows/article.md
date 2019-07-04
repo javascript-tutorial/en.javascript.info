@@ -11,12 +11,12 @@ window.open('https://javascript.info/')
 
 Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
 
-Also, popups are tricky on mobile devices.
+Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
 
-Still, there are situations when a popup works good, e.g. for OAuth authorization (login with Google/Facebook/...), because:
+Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
 
 1. A popup is a separate window with its own independent JavaScript environment. So opening a popup with a third-party non-trusted site is safe.
-2. It's very easy to open a popup, little to no overhead.
+2. It's very easy to open a popup.
 3. A popup can navigate (change URL) and send messages to the opener window.
 
 ## Popup blocking
@@ -149,7 +149,7 @@ newWindow.onload = function() {
 Please note: immediately after `window.open`, the new window isn't loaded yet. That's demonstrated by `alert` in line `(*)`. So we wait for `onload` to modify it. We could also use `DOMContentLoaded` handler for `newWin.document`.
 
 ```warn header="Same origin policy"
-Windows may only freely modify each other if they come from the same origin (the same protocol://domain:port).
+Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
 
 Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
 ```
@@ -158,7 +158,7 @@ Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail
 
 A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
 
-If you run the code below, it replaces the opener window content with "Test":
+If you run the code below, it replaces the opener (current) window content with "Test":
 
 ```js run
 let newWin = window.open("about:blank", "hello", "width=200,height=200");
@@ -172,12 +172,13 @@ So the connection between the windows is bidirectional: the main window and the 
 
 ## Closing a popup
 
-- To close a window: `win.close()`.
-- To check if a window is closed: `win.close` property.
+To close a window: `win.close()`. 
+
+To check if a window is closed: `win.closed`.
 
 Technically, the `close()` method is available for any `window`, but `window.close()` is ignored by most browsers if `window` is not created with `window.open()`. So it'll only work on a popup.
 
-The `win.closed` property is `true` if the window is closed. That's useful to check if the popup (or the main window) is still open or not. A user can close it anytime, and our code should take that possibility into account.
+The `closed` property is `true` if the window is closed. That's useful to check if the popup (or the main window) is still open or not. A user can close it anytime, and our code should take that possibility into account.
 
 This code loads and then closes the window:
 
@@ -259,23 +260,18 @@ For instance:
 
 ## Summary   
 
-Всплывающие окна используются нечасто. Ведь загрузить новую информацию можно динамически, с помощью технологии AJAX, а показать -- в элементе `<div>`, расположенным над страницей (`z-index`). Ещё одна альтернатива -- тег `<iframe>`.
+Popup windows are used rarely, as there are alternatives: loading and displaying information in-page, or in iframe.
 
-Но в некоторых случаях всплывающие окна бывают очень даже полезны. Например, отдельное окно сервиса онлайн-консультаций. Посетитель может ходить по сайту в основном окне, а общаться в чате -- во вспомогательном.
-
-Если вы хотите использовать всплывающее окно, предупредите посетителя об этом, так же и при использовании `target="_blank"` в ссылках или формах. Иконка открывающегося окошка на ссылке поможет посетителю понять, что происходит и не потерять оба окна из поля зрения.
+If we're going to open a popup, a good practice is to inform the user about it. An "opening window" icon near a link or button would allow the visitor to survive the focus shift and keep both windows in mind.
 
 - A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
 - Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
 - The popup may access the opener window using the `window.opener` property.
-- The main window and the popup can freely read and modify each other if they havee the same origin. Otherwise, they can change location of each other and [exchange messages](cross-window-communication).
+- The main window and the popup can freely read and modify each other if they havee the same origin. Otherwise, they can change location of each other and [exchange messages.
 
-Methods and properties:
+To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 
-- To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
-- Methods `focus()` and `blur()` allow to focus/unfocus a window. Sometimes.
+- Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
 - Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
-- ...And a few scrolling and resizing methods.
 
-If we're going to open a popup, a good practice is to inform the user about it. If there's a link that opens a popup, we could place an icon near it, so that visitor can survive the focus shift and keep both windows in mind.

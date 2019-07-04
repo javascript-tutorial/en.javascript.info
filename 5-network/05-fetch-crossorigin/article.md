@@ -48,12 +48,11 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 */!*
   ...
 </form>
-
 ```
 
 So, it was possible to make a GET/POST request to another site, even without networking methods. But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
 
-...Okay, in fact there actually were tricks for that (required special scripts at both remote and our page), but let's not delve deeper. Nothing good in those for us now.
+As we can see, forms allowed to send data anywhere, but not receive the response. To be precise, there wre actually tricks for that (required special scripts at both the iframe and the page), but let these dinosaurs rest in peace.
 
 ### Using scripts
 

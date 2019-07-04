@@ -7,7 +7,7 @@ Please note: there's currently no way for `fetch` to track *upload* progress. Fo
 
 To track download progress, we can use `response.body` property. It's a "readable stream" -- a special object that provides body chunk-by-chunk, as it comes.
 
-Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can see how much is consumed at the moment.
+Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can count how much is consumed at any moment.
 
 Here's the sketch of code that reads the reponse from `response.body`:
 
@@ -29,13 +29,13 @@ while(true) {
 }
 ```
 
-So, we read response chunks in the loop, while `await reader.read()` returns them. When it's done, no more data, so we're done.
-
 The result of `await reader.read()` call is an object with two properties:
 - **`done`** -- true when the reading is complete.
 - **`value`** -- a typed array of bytes: `Uint8Array`.
 
-To log progress, we just need for every `value` add its length to the counter.
+We wait for more chunks in the loop, until `done` is `true`.
+
+To log the progress, we just need for every `value` add its length to the counter.
 
 Here's the full code to get response and log the progress, more explanations follow:
 
