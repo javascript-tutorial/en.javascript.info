@@ -79,7 +79,7 @@ So, if `Rabbit extends Animal`, then:
 
 That's thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
 
-But built-in classes are an exception. They don't inherit statics `(1)` from each other.
+But built-in classes are an exception. They don't inherit statics from each other.
 
 For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But  `Array.[[Prototype]]` does not point to `Object`. So there's `Object.keys()`, but not `Array.keys()` and `Date.keys()`.
 
