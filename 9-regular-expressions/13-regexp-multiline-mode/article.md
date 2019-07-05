@@ -20,8 +20,9 @@ alert( str.match(/^\d+/gm) ); // 1, 2, 33
 */!*
 ```
 
-Without the flag  `pattern:/.../m` only the first number is matched:
+The regexp engine moves along the text and looks for a line start `pattern:^`, when finds -- continues to match the rest of the pattern `pattern:\d+`.
 
+Without the flag  `pattern:/.../m` only the first number is matched:
 
 ```js run
 let str = `1st place: Winnie
@@ -33,9 +34,7 @@ alert( str.match(/^\d+/g) ); // 1
 */!*
 ```
 
-That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of a line.
-
-The regular expression engine moves along the text and looks for a string start `pattern:^`, when finds -- continues to match the rest of the pattern `pattern:\d+`.
+That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of any line.
 
 ## Line end $
 
