@@ -257,9 +257,9 @@ user.hi(); // John (the simple call works)
 */!*
 ```
 
-On the last line there is a conditinal operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
 
-Then the method is immediately called with parentheses `()`. But it doesn't work right!
+Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
 
 As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
