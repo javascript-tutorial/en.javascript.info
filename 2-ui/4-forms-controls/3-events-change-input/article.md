@@ -29,7 +29,7 @@ For other elements: `select`, `input type=checkbox/radio` it triggers right afte
 
 ## Event: input
 
-The `input` event triggers every time after a value is modified.
+The `input` event triggers every time after a value is modified by the user.
 
 Unlike keyboard events, it triggers on any value change, even those that does not involve keyboard actions: pasting with a mouse or using speech recognition to dictate the text.
 
