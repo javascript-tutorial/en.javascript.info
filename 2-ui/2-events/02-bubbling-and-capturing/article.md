@@ -130,7 +130,7 @@ Here's the picture of a click on `<td>` inside a table, taken from the specifica
 
 ![](eventflow.png)
 
-That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing), then it reaches the target, and then it goes up (bubbles), calling handlers on its way.
+That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
 
 **Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
 
@@ -148,6 +148,7 @@ There are two possible values of the `capture` option:
 
 - If it's `false` (default), then the handler is set on the bubbling phase.
 - If it's `true`, then the handler is set on the capturing phase.
+
 
 Note that while formally there are 3 phases, the 2nd phase ("target phase": the event reached the element) is not handled separately: handlers on both capturing and bubbling phases trigger at that phase.
 
@@ -179,10 +180,9 @@ The code sets click handlers on *every* element in the document to see which one
 
 If you click on `<p>`, then the sequence is:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV` -> `P` (capturing phase, the first listener), and then:
-2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
-
-Please note that `P` shows up two times: at the end of capturing and at the start of bubbling.
+1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
+2. `P` (target phrase, triggers two times, as there are both capturing and bubbling listeners)
+3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
@@ -190,19 +190,29 @@ There's a property `event.eventPhase` that tells us the number of the phase on w
 If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
 ```
 
+````smart header="Listeners on same element and same phase run in their set order"
+If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
+
+```js
+elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
+elem.addEventListener("click", e => alert(2));
+```
+````
+
+
 ## Summary
 
-The event handling process:
+When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
 
-- When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
-- Then the event first moves from the document root down to the `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way (`true` is a shorthand for `{capture: true}`).
-- Then the event moves from `event.target` up to the root, calling handlers assigned using  `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false`.
+- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way (`true` is a shorthand for `{capture: true}`).
+- Then handlers are called on the target element itself.
+- Then the event bubbles up from `event.target` up to the root, calling handlers assigned using `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
 
 Each handler can access `event` object properties:
 
 - `event.target` -- the deepest element that originated the event.
 - `event.currentTarget` (=`this`) -- the current element that handles the event (the one that has the handler on it)
-- `event.eventPhase` -- the current phase (capturing=1, bubbling=3).
+- `event.eventPhase` -- the current phase (capturing=1, target=2, bubbling=3).
 
 Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
 
