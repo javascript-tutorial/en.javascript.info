@@ -150,12 +150,12 @@ window.addEventListener("unload", function() {
 ```
 
 - The request is sent as POST.
-- We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch-basics>, but usually it's a stringified object.
+- We can send not only a string, but also forms and other formats, as described in the chapter <info:fetch>, but usually it's a stringified object.
 - The data is limited by 64kb.
 
 When the `sendBeacon` request is finished, the browser probably has already left the document, so there's no way to get server response (which is usually empty for analytics).
 
-There's also a `keepalive` flag for doing such "after-page-left" requests in  [fetch](info:fetch-basics) method for generic network requests. You can find more information in the chapter <info:fetch-api>.
+There's also a `keepalive` flag for doing such "after-page-left" requests in  [fetch](info:fetch) method for generic network requests. You can find more information in the chapter <info:fetch-api>.
 
 
 If we want to cancel the transition to another page, we can't do it here. But we can use  another event -- `onbeforeunload`.

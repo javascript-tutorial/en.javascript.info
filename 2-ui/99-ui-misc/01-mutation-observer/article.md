@@ -130,7 +130,7 @@ let hello = "world";
 
 Everything's simple so far, right? There are `<pre>` code snippets in HTML, we highlight them.
 
-Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](info:fetch-basics). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
+Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](info:fetch). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
 
 ```js
 let article = /* fetch new content from server */

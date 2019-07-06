@@ -233,7 +233,7 @@ While `ArrayBuffer`, `Uint8Array` and other `BufferSource` are "binary data", a 
 
 That makes Blobs convenient for upload/download operations, that are so common in the browser.
 
-Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch-basics) and so on, can work with `Blob` natively, as well as with other binary types.
+Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch) and so on, can work with `Blob` natively, as well as with other binary types.
 
 We can easily convert betweeen `Blob` and low-level binary data types:
 
