@@ -33,7 +33,7 @@ An `<iframe>` tag hosts a separate embedded window, with its own separate `docum
 We can access them using properties:
 
 - `iframe.contentWindow` to get the window inside the `<iframe>`.
-- `iframe.contentDocument` to get the document inside the `<iframe>`, короткий аналог `iframe.contentWindoe.document`.
+- `iframe.contentDocument` to get the document inside the `<iframe>`, короткий аналог `iframe.contentWindow.document`.
 
 When we access something inside the embedded window, the browser checks if the iframe has the same origin. If that's not so then the access is denied (writing to `location` is an exception, it's still permitted).
 
