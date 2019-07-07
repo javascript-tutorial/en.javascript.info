@@ -80,7 +80,7 @@ There are other, less common "special" characters as well. Here's the list:
 |`\r`|Carriage return|
 |`\t`|Tab|
 |`\uNNNN`|A unicode symbol with the hex code `NNNN`, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{NNNNNNNN}`|Some rare characters are encoded with two unicode symbols, taking up to 4 bytes. This long unicode requires braces around it.|
+|`\u{NNNNNNNN}`|Some rare characters are encoded with two unicode symbols, taking 4 bytes. This long unicode requires braces around it.|
 
 Examples with unicode:
 
