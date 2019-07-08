@@ -178,7 +178,7 @@ No problem, just prepend it with `async`, like this:
 })();
 ```
 
-Now we have an the async generator, iterable with `for await...of`.
+Now we have the async generator, iterable with `for await...of`.
 
 It's indeed very simple. We add the `async` keyword, and the generator now can use `await` inside of it, rely on promises and other async functions.
 
