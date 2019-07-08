@@ -45,7 +45,7 @@ If we use them and try to use multiple lines, there'll be an error:
 
 
 ```js run
-let guestList = "Guests:  // Error: Unexpected token ILLEGAL
+let guestList = "Guests: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
@@ -199,7 +199,7 @@ For instance:
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1];  // replace the string
+str = 'h' + str[1]; // replace the string
 
 alert( str ); // hi
 ```
@@ -377,7 +377,7 @@ The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js
 
 ```js run
 alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") );   // true, "Widget" ends with "get"
+alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
 ```
 
 ## Getting a substring
