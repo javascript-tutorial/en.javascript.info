@@ -12,7 +12,7 @@ What will be the result for these expressions?
 "2" > "12"
 undefined == null
 undefined === null
-null == "\n0\n"
-null === +"\n0\n"
+null == *!*0*/!*
+null === *!*0*/!*
 ```
 
