@@ -43,7 +43,6 @@ Looks natural, right? But single or double quotes do not work this way.
 
 If we use them and try to use multiple lines, there'll be an error:
 
-
 ```js run
 let guestList = "Guests:  // Error: Unexpected token ILLEGAL
   * John";
@@ -52,7 +51,6 @@ let guestList = "Guests:  // Error: Unexpected token ILLEGAL
 Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
 Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
-
 
 ## Special characters
 
@@ -129,7 +127,6 @@ alert( `The backslash: \\` ); // The backslash: \
 ```
 
 ## String length
-
 
 The `length` property has the string length:
 
@@ -252,9 +249,7 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-
 If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
-
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
@@ -411,14 +406,12 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     alert( str.slice(-4, -1) ); // gif
     ```
 
-
 `str.substring(start [, end])`
 : Returns the part of the string *between* `start` and `end`.
 
     This is almost the same as `slice`, but it allows `start` to be greater than `end`.
 
     For instance:
-
 
     ```js run
     let str = "st*!*ring*/!*ify";
@@ -434,7 +427,6 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
     Negative arguments are (unlike slice) not supported, they are treated as `0`.
-
 
 `str.substr(start [, length])`
 : Returns the part of the string from `start`, with the given `length`.
@@ -460,7 +452,6 @@ Let's recap these methods to avoid any confusion:
 | `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
 | `substring(start, end)` | between `start` and `end` | negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
-
 
 ```smart header="Which one to choose?"
 All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
@@ -536,7 +527,6 @@ The characters are compared by their numeric code. The greater code means that t
 
 - All lowercase letters go after uppercase letters because their codes are greater.
 - Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
-
 
 ### Correct comparisons
 
@@ -666,7 +656,6 @@ alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
-
 
 ## Summary
 
