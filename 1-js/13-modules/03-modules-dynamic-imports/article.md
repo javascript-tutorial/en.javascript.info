@@ -25,9 +25,9 @@ if(...) {
 }
 ```
 
-That's because, import/export aim to provide a backbone for the code structure. That's a good thing, as code structure can be analyzed, modules can be gathered and bundled together, unused exports can be removed (tree-shaken). That's possible only because everything is fixed.
+That's because `import`/`export` aim to provide a backbone for the code structure. That's a good thing, as code structure can be analyzed, modules can be gathered and bundled together, unused exports can be removed ("tree-shaken"). That's possible only because the structure of imports/exports is simple and fixed.
 
-But how do we import a module dynamically, on-demand?
+But how can we import a module dynamically, on-demand?
 
 ## The import() function
 
@@ -49,6 +49,6 @@ Like this:
 
 [codetabs src="say" current="index.html"]
 
-So, dynamic imports are very simple to use.
+So, dynamic imports are very simple to use, and they allow to import modules at run-time.
 
 Also, dynamic imports work in regular scripts, they don't require `script type="module"`.
