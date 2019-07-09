@@ -42,9 +42,7 @@ Two more details:
 1. Rendering never happens while the engine executes a task.
 
     Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it suggests "killing" it.
-
-    Usually, the whole page dies with the task.
+2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" and suggesting to kill the task with the whole page.
 
 Now let's see how we can apply that knowledge.
 
@@ -52,7 +50,7 @@ Now let's see how we can apply that knowledge.
 
 Let's say we have a CPU-hungry task.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot.
+For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot of time.
 
 While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hang", which is unacceptable.
 
@@ -115,7 +113,7 @@ A single run of `count` does a part of the job `(*)`, and then re-schedules itse
 2. Second run counts: `i=1000001..2000000`.
 3. ...and so on.
 
-Pauses between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react on other user actions.
+Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react on other user actions.
 
 The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
 
@@ -154,11 +152,11 @@ If you run it, it's easy to notice that it takes significantly less time.
 
 Why?  
 
-That's simple: remember, there's the in-browser minimal delay of 4ms for many nested `setTimeout` calls. Even if we set `0`, it's `4ms` (or a bit more). So the earlier we schedule it - the faster it runs.
+That's simple: as you remember, there's the in-browser minimal delay of 4ms for many nested `setTimeout` calls. Even if we set `0`, it's `4ms` (or a bit more). So the earlier we schedule it - the faster it runs.
 
-## Use case: progress bar
+## Use case: progress indication
 
-Another benefit of splitting heavy tasks for browser scripts is that we can show a progress bar.
+Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
 
 Usually the browser renders after the currently running code is complete. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is finished.
 
@@ -185,9 +183,9 @@ Here's the demo, the changes to `i` won't show up until the function finishes, s
 
 ...But we also may want to show something during the task, e.g. a progress bar.
 
-If we use `setTimeout` to split the heavy task into pieces, then changes are painted out in-between them.
+If we split the heavy task into pieces using `setTimeout`, then changes are painted out in-between them.
 
-This looks better:
+This looks prettier:
 
 ```html run
 <div id="progress"></div>
