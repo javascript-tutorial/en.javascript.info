@@ -209,11 +209,15 @@ For instance, these are all perfectly valid default exports:
 export default class { // no class name
   constructor() { ... }
 }
+```
 
+```js
 export default function(user) { // no function name
   alert(`Hello, ${user}!`);
 }
+```
 
+```js
 // export a single value, without making a variable
 export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
