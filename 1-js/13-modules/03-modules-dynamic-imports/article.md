@@ -94,3 +94,9 @@ Here's the full example:
 So, dynamic imports are very simple to use, and they allow to import modules at run-time.
 
 Also, dynamic imports work in regular scripts, they don't require `script type="module"`.
+
+```smart
+Although `import()` looks like a function call, it's a special syntax that just happens to use parentheses (similar to `super()`).
+
+That means that import doesn't inherit from `Function.prototype` so we cannot call or apply it.
+```
