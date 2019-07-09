@@ -45,7 +45,50 @@ import(modulePath)
 
 Or, we could use `let module = await import(modulePath)` if inside an async function.
 
-Like this:
+For instance, if we have the following `say.js`:
+
+```js
+// 📁 say.js
+export function hi() {
+  alert(`Hello`);
+}
+
+export function bye() {
+  alert(`Bye`);
+}
+```
+
+...Then dynamic import can be like this:
+
+```js
+let {hi, bye} = await import('./say.js');
+
+hi();
+bye();
+
+```
+
+Or, for the default export:
+
+```js
+// 📁 say.js
+export default function() {
+  alert("Module loaded (export default)!");
+}
+```
+
+
+The default export becomes `default` property in the module object, as explained in the [previous chapter](info:import-export).
+
+So, the dynamic import will be like this:
+
+```js
+let {default: say} = await import('./say.js'); // map .default to say variable
+
+say();
+```
+
+Here's the full example:
 
 [codetabs src="say" current="index.html"]
 
