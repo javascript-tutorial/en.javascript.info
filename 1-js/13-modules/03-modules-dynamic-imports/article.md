@@ -77,8 +77,7 @@ export default function() {
 }
 ```
 
-
-The default export becomes `default` property in the module object, as explained in the [previous chapter](info:import-export).
+To import it, we need to get `default` property of the module object, as explained in the [previous chapter](info:import-export).
 
 So, the dynamic import will be like this:
 
