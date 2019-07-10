@@ -146,7 +146,7 @@ Returning promises allows us to build chains of asynchronous actions.
 
 ## Example: loadScript
 
-Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](/promise-basics#loadscript), to load scripts one by one, in sequence:
+Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](info:promise-basics#loadscript), to load scripts one by one, in sequence:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -207,9 +207,7 @@ Sometimes it's ok to write `.then` directly, because the nested function has acc
 
 
 ````smart header="Thenables"
-To be precise, `.then` may return an arbitrary "thenable" object, and it will be treated the same way as a promise.
-
-A "thenable" object is any object with a method `.then`.
+To be precise, `.then` may return a so-called "thenable" object - an arbitrary object that has method `.then`, and it will be treated the same way as a promise.
 
 The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have extended set of methods, but also be compatible with native promises, because they implement `.then`.
 
@@ -244,7 +242,7 @@ This feature allows to integrate custom objects with promise chains without havi
 
 In frontend programming promises are often used for network requests. So let's see an extended example of that.
 
-We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load the information about the user from the remote server. The method is quite complex, it has many optional parameters, but the basic usage is quite simple:
+We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in separate chapters, but the basic syntax is quite simple:
 
 ```js
 let promise = fetch(url);
