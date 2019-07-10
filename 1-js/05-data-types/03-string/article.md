@@ -54,7 +54,7 @@ Backticks also allow us to specify a "template function" before the first backti
 
 ## Special characters
 
-It is still possible to create multiline strings with single quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
