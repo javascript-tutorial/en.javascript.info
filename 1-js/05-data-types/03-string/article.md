@@ -81,11 +81,11 @@ Here's the full list:
 | Character | Description |
 |-----------|-------------|
 |`\n`|New line|
-|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\n\r` to represent a line break. |
+|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\r\n` to represent a line break. |
 |`\'`, `\"`|Quotes|
 |`\\`|Backslash|
 |`\t`|Tab|
-|`\b`, `\f`,`\v` | Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
 |`\xXX`|Unicode character with the given hexadimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
 |`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
 |`\u{X…XXXXXX}` (1 to 6 hex characters)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. |
