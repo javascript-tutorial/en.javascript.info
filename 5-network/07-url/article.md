@@ -185,7 +185,7 @@ So we should use only `encodeURIComponent` for each search parameter, to correct
 
 ### Why URL?
 
-Lots of old code uses these functions, these are sometimes convenient, and by noo means not dead.
+Lots of old code uses these functions, these are sometimes convenient, and by no means not dead.
 
 But in modern code, it's recommended to use classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams).
 
