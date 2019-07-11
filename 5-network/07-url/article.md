@@ -94,7 +94,7 @@ For example:
 let url = new URL('https://google.com/search');
 url.searchParams.set('q', 'test me!'); // added parameter with a space and !
 
-alert(url); // https://google.com/search?query=test+me%21
+alert(url); // https://google.com/search?q=test+me%21
 
 url.searchParams.set('tbs', 'qdr:y'); // this parameter specifies for date range for Google Search
 
