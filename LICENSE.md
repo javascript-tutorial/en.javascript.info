@@ -1,7 +1,7 @@
 
 The tutorial is free to read.
 
-If you'd like to do something else with it, please get a permission from Ilya Kantor, iliakan@javascript.ru.
+If you'd like to do something else with it, please get a permission from Ilya Kantor, iliakan@javascript.info.
 
 As of now, we license the tutorial to almost everyone for free under the terms of an "open" CC-BY-NC-SA license. Just please be so kind to contact me.
 
@@ -9,7 +9,7 @@ As of now, we license the tutorial to almost everyone for free under the terms o
 
 The full license text is at <https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>.
 
-You are free to:
+It gives the right to:
 - **Share** – copy and redistribute the tutorial in any medium or material.
 - **Adapt** – remix, transform, and build upon the material.
 

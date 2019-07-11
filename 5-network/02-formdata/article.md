@@ -8,11 +8,9 @@ The constructor is:
 let formData = new FormData([form]);
 ```
 
-If HTML `form` element is provided, it automatically captures its fields.
+If HTML `form` element is provided, it automatically captures its fields. As you may have already guessed, `FormData` is  an object to store and send form data.
 
-Network methods, such as `fetch` accept `FormData` objects as a body. They are  encoded and sent out with `Content-Type: form/multipart`.
-
-So, from the server point of view, that looks like a usual form submission.
+The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: form/multipart`. So, from the server point of view, that looks like a usual form submission.
 
 ## Sending a simple form
 
@@ -80,7 +78,7 @@ for(let [name, value] of formData) {
 
 ## Sending a form with a file
 
-The form is always sent as `Content-Type: form/multipart`. So, `<input type="file">` fields are sent also, similar to a usual form submission.
+The form is always sent as `Content-Type: form/multipart`, this encoding allows to send files. So, `<input type="file">` fields are sent also, similar to a usual form submission.
 
 Here's an example with such form:
 
@@ -109,11 +107,11 @@ Here's an example with such form:
 </script>
 ```
 
-## Sending a form with blob
+## Sending a form with Blob data
 
-As we've seen in the chapter <info:fetch>, sending a dynamically generated `Blob`, e.g. an image, is easy. We can supply it directly as `fetch` body.
+As we've seen in the chapter <info:fetch>, sending a dynamically generated `Blob`, e.g. an image, is easy. We can supply it directly as `fetch` parameter `body`.
 
-In practice though, it's often more convenient to send an image as a part of the form, with additional fields, such as "name" and other metadata.
+In practice though, it's often convenient to send an image not separately, but as a part of the form, with additional fields, such as "name" and other metadata.
 
 Also, servers are usually more suited to accept multipart-encoded forms, rather than raw binary data.
 
@@ -159,11 +157,11 @@ Please note how the image `Blob` is added:
 formData.append("image", imageBlob, "image.png");
 ```
 
-That's same as if there were `<input type="file" name="image">` in the form, and the visitor submitted a file `image.png` from their filesystem.
+That's same as if there were `<input type="file" name="image">` in the form, and the visitor submitted a file named `image.png` (3rd argument) from their filesystem.
 
 ## Summary
 
-[FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects are used to read HTML form and submit it using `fetch` or another network method.
+[FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects are used to capture HTML form and submit it using `fetch` or another network method.
 
 We can either create `new FormData(form)` from an HTML form, or create an empty object, and then append fields with methods:
 

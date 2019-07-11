@@ -32,14 +32,15 @@ function onUpload(req, res) {
 
   let fileStream;
 
-  // for byte 0, create a new file, otherwise check the size and append to existing one
-  if (startByte == 0) {
+  // if startByte is 0 or not set, create a new file, otherwise check the size and append to existing one
+  if (!startByte) {
     upload.bytesReceived = 0;
     fileStream = fs.createWriteStream(filePath, {
       flags: 'w'
     });
     debug("New file created: " + filePath);
   } else {
+    // we can check on-disk file size as well to be sure
     if (upload.bytesReceived != startByte) {
       res.writeHead(400, "Wrong start byte");
       res.end(upload.bytesReceived);

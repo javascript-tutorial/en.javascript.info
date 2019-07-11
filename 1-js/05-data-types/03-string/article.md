@@ -17,7 +17,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, including function calls:
+Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
 
 ```js run
 function sum(a, b) {
@@ -39,9 +39,12 @@ let guestList = `Guests:
 alert(guestList); // a list of guests, multiple lines
 ```
 
-If we try to use single or double quotes in the same way, there will be an error:
+Looks natural, right? But single or double quotes do not work this way.
+
+If we use them and try to use multiple lines, there'll be an error:
+
 ```js run
-let guestList = "Guests:  // Error: Unexpected token ILLEGAL
+let guestList = "Guests: // Error: Unexpected token ILLEGAL
   * John";
 ```
 
@@ -49,10 +52,9 @@ Single and double quotes come from ancient times of language creation when the n
 
 Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:/JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
 
-
 ## Special characters
 
-It is still possible to create multiline strings with single quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
 
 ```js run
 let guestList = "Guests:\n * John\n * Pete\n * Mary";
@@ -60,27 +62,33 @@ let guestList = "Guests:\n * John\n * Pete\n * Mary";
 alert(guestList); // a multiline list of guests
 ```
 
-For example, these two lines describe the same:
+For example, these two lines are equal, just written differently:
 
 ```js run
-alert( "Hello\nWorld" ); // two lines using a "newline symbol"
+let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
 
 // two lines using a normal newline and backticks
-alert( `Hello
-World` );
+let str2 = `Hello
+World`;
+
+alert(str1 == str2); // true
 ```
 
-There are other, less common "special" characters as well. Here's the list:
+There are other, less common "special" characters.
+
+Here's the full list:
 
 | Character | Description |
 |-----------|-------------|
-|`\b`|Backspace|
-|`\f`|Form feed|
 |`\n`|New line|
-|`\r`|Carriage return|
+|`\r`|Carriage return: not used alone. Windows text files use a combination of two characters `\n\r` to represent a line break. |
+|`\'`, `\"`|Quotes|
+|`\\`|Backslash|
 |`\t`|Tab|
-|`\uNNNN`|A unicode symbol with the hex code `NNNN`, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{NNNNNNNN}`|Some rare characters are encoded with two unicode symbols, taking 4 bytes. This long unicode requires braces around it.|
+|`\b`, `\f`,`\v` | Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
+|`\xXX`|Unicode character with the given hexadimal unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
+|`\uXXXX`|A unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
+|`\u{X…XXXXXX}` (1 to 6 hex characters)|A unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two unicode symbols, taking 4 bytes. This way we can insert long codes. |
 
 Examples with unicode:
 
@@ -102,7 +110,7 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
 
-Of course, that refers only to the quotes that are the same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Of course, only to the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -119,7 +127,6 @@ alert( `The backslash: \\` ); // The backslash: \
 ```
 
 ## String length
-
 
 The `length` property has the string length:
 
@@ -189,7 +196,7 @@ For instance:
 ```js run
 let str = 'Hi';
 
-str = 'h' + str[1];  // replace the string
+str = 'h' + str[1]; // replace the string
 
 alert( str ); // hi
 ```
@@ -242,9 +249,7 @@ let str = 'Widget with id';
 alert( str.indexOf('id', 2) ) // 12
 ```
 
-
 If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
-
 
 ```js run
 let str = 'As sly as a fox, as strong as an ox';
@@ -367,7 +372,7 @@ The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js
 
 ```js run
 alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") );   // true, "Widget" ends with "get"
+alert( "Widget".endsWith("get") ); // true, "Widget" ends with "get"
 ```
 
 ## Getting a substring
@@ -401,14 +406,12 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     alert( str.slice(-4, -1) ); // gif
     ```
 
-
 `str.substring(start [, end])`
 : Returns the part of the string *between* `start` and `end`.
 
     This is almost the same as `slice`, but it allows `start` to be greater than `end`.
 
     For instance:
-
 
     ```js run
     let str = "st*!*ring*/!*ify";
@@ -424,7 +427,6 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
     Negative arguments are (unlike slice) not supported, they are treated as `0`.
-
 
 `str.substr(start [, length])`
 : Returns the part of the string from `start`, with the given `length`.
@@ -451,11 +453,10 @@ Let's recap these methods to avoid any confusion:
 | `substring(start, end)` | between `start` and `end` | negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
 
-
 ```smart header="Which one to choose?"
 All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
 
-The author finds themself using `slice` almost all the time.
+Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write. So, it's enough to remember solely `slice` of these three methods.
 ```
 
 ## Comparing strings
@@ -527,10 +528,9 @@ The characters are compared by their numeric code. The greater code means that t
 - All lowercase letters go after uppercase letters because their codes are greater.
 - Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
 
-
 ### Correct comparisons
 
-The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages. The same-looking letter may be located differently in different alphabets.
+The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
 
 So, the browser needs to know the language to compare.
 
@@ -550,7 +550,7 @@ For instance:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
 
 ## Internals, Unicode
 
@@ -580,7 +580,7 @@ We actually have a single symbol in each of the strings above, but the `length` 
 
 `String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
 
-But, for instance, getting a symbol can be tricky, because surrogate pairs are treated as two characters:
+Getting a symbol can be tricky, because surrogate pairs are treated as two characters:
 
 ```js run
 alert( '𝒳'[0] ); // strange symbols...
@@ -608,7 +608,7 @@ In many languages there are symbols that are composed of the base character with
 
 For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
 
-To support arbitrary compositions, UTF-16 allows us to use several unicode characters. The base character and one or many "mark" characters that "decorate" it.
+To support arbitrary compositions, UTF-16 allows us to use several unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
 
 For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
 
@@ -634,7 +634,7 @@ For instance:
 alert( 'S\u0307\u0323' ); // Ṩ, S + dot above + dot below
 alert( 'S\u0323\u0307' ); // Ṩ, S + dot below + dot above
 
-alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
+alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false, different characters (?!)
 ```
 
 To solve this, there exists a "unicode normalization" algorithm that brings each string to the single "normal" form.
@@ -657,10 +657,9 @@ In reality, this is not always the case. The reason being that the symbol `Ṩ` 
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
 
-
 ## Summary
 
-- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions.
+- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
 - Strings in JavaScript are encoded using UTF-16.
 - We can use special characters like `\n` and insert letters by their unicode using `\u...`.
 - To get a character, use: `[]`.
@@ -673,6 +672,6 @@ There are several other helpful methods in strings:
 
 - `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
 - `str.repeat(n)` -- repeats the string `n` times.
-- ...and more. See the [manual](mdn:js/String) for details.
+- ...and more to be found in the [manual](mdn:js/String).
 
-Strings also have methods for doing search/replace with regular expressions. But that topic deserves a separate chapter, so we'll return to that later.
+Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.

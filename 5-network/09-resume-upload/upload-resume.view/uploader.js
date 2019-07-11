@@ -5,7 +5,7 @@ class Uploader {
     this.onProgress = onProgress;
 
     // create fileId that uniquely identifies the file
-    // we can also add user session identifier, to make it even more unique
+    // we could also add user session identifier (if had one), to make it even more unique
     this.fileId = file.name + '-' + file.size + '-' + +file.lastModifiedDate;
   }
 

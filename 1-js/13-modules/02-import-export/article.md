@@ -209,16 +209,20 @@ For instance, these are all perfectly valid default exports:
 export default class { // no class name
   constructor() { ... }
 }
+```
 
+```js
 export default function(user) { // no function name
   alert(`Hello, ${user}!`);
 }
+```
 
+```js
 // export a single value, without making a variable
 export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
 
-That's fine, because `export default` is only one per file. Contrary to that, omitting a name for named imports would be an error:
+Not giving a name is fine, because `export default` is only one per file. Contrary to that, omitting a name for named imports would be an error:
 
 ```js
 export class { // Error! (non-default export needs a name)

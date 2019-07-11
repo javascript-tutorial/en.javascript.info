@@ -3,16 +3,15 @@
 
 This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other sources.
 
-
 ## Specification
 
 **The ECMA-262 specification** contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
 
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, it's the right place. But it's not for everyday use.
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
 
 The latest draft is at <https://tc39.es/ecma262/>.
 
-To read about bleeding-edge features, that are not yet widely supported, see proposals at <https://github.com/tc39/proposals>.
+To read about new bleeding-edge features, that are "almost standard", see proposals at <https://github.com/tc39/proposals>.
 
 Also, if you're in developing for the browser, then there are other specs covered in the [second part](info:browser-environment) of the tutorial.
 
