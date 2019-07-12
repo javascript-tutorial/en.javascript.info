@@ -106,7 +106,7 @@ drawHtmlTree(node3, 'div.domtree', 690, 150);
 
 While generating the DOM, browsers automatically process errors in the document, close tags and so on.
 
-Such an document with unclosed tags:
+Such document with unclosed tags:
 
 ```html no-beautify
 <p>Hello
