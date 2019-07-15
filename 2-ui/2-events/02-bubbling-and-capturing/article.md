@@ -69,13 +69,13 @@ For instance, if we have a single handler `form.onclick`, then it can "catch" al
 In `form.onclick` handler:
 
 - `this` (`=event.currentTarget`) is the `<form>` element, because the handler runs on it.
-- `event.target` is the concrete element inside the form that actually was clicked.
+- `event.target` is the actual element inside the form that was clicked.
 
 Check it out:
 
 [codetabs height=220 src="bubble-target"]
 
-It's possible that `event.target` equals `this` -- when the click is made directly on the `<form>` element.
+It's possible that `event.target` could equal `this` -- it happens when the click is made directly on the `<form>` element.
 
 ## Stopping bubbling
 
