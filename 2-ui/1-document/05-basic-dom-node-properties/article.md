@@ -38,7 +38,7 @@ For example, let's consider the DOM object for an `<input>` element. It belongs 
 - `EventTarget` -- gives the support for events (to be covered),
 - ...and finally it inherits from `Object`, so "pure object" methods like `hasOwnProperty` are also available.
 
-To see the DOM node class name, we can recall that an object usually has the `constructor` property. It references to the class constructor, and `constructor.name` is its name:
+To see the DOM node class name, we can recall that an object usually has the `constructor` property. It references the class constructor, and `constructor.name` is its name:
 
 ```js run
 alert( document.body.constructor.name ); // HTMLBodyElement
@@ -76,7 +76,7 @@ Try it on `document.body`.
 ```
 
 ````smart header="IDL in the spec"
-In the specification, DOM classes are described not using JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
+In the specification, DOM classes aren't described by using JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
 
 In IDL all properties are prepended with their types. For instance, `DOMString`, `boolean` and so on.
 
@@ -201,7 +201,7 @@ In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
 
 The [innerHTML](https://w3c.github.io/DOM-Parsing/#widl-Element-innerHTML) property allows to get the HTML inside the element as a string.
 
-We can also modify it. So it's one of most powerful ways to change the page.
+We can also modify it. So it's one of the most powerful ways to change the page.
 
 The example shows the contents of `document.body` and then replaces it completely:
 
