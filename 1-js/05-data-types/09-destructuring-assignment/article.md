@@ -349,7 +349,7 @@ To show JavaScript that it's not a code block, we can make it a part of an expre
 let title, width, height;
 
 // okay now
-*!*(*/!*{title, width, height}*!*)*/!* = {title: "Menu", width: 200, height: 100};
+*!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
 
 alert( title ); // Menu
 ```
