@@ -8,17 +8,17 @@ Also we can generate built-in events like `click`, `mousedown` etc, that may be 
 
 ## Event constructor
 
-Events form a hierarchy, just like DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
+Build-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
 
 We can create `Event` objects like this:
 
 ```js
-let event = new Event(event type[, options]);
+let event = new Event(type[, options]);
 ```
 
 Arguments:
 
-- *event type* -- may be any string, like `"click"` or our own like `"hey-ho!"`.
+- *type* -- event type, a string like `"click"` or our own like `"my-event"`.
 - *options* -- the object with two optional properties:
   - `bubbles: true/false` -- if `true`, then the event bubbles.
   - `cancelable: true/false` -- if `true`, then the "default action"  may be prevented. Later we'll see what it means for custom events.
@@ -66,8 +66,12 @@ All we need is to set `bubbles` to `true`:
   // ...dispatch on elem!
   let event = new Event("hello", {bubbles: true}); // (2)
   elem.dispatchEvent(event);
+
+  // the handler on document will activate and display the message.
+
 </script>
 ```
+
 
 Notes:
 
@@ -160,11 +164,9 @@ The event class tells something about "what kind of event" it is, and if the eve
 
 We can call `event.preventDefault()` on a script-generated event if `cancelable:true` flag is specified.
 
-Of course, if the event has a non-standard name, then it's not known to the browser, and there's no "default browser action" for it.
+Of course, for custom events, with names unknown for the browser, there are no "default browser actions". But our code may plan its own actions after `dispatchEvent`.
 
-But the event-generating code may plan some actions after `dispatchEvent`.
-
-The call of `event.preventDefault()` is a way for the handler to send a signal that those actions shouldn't be performed.
+The call of `event.preventDefault()` is a way for the handler to send a signal that those actions should be canceled  .
 
 In that case the call to `elem.dispatchEvent(event)` returns `false`. And the event-generating code knows that the processing shouldn't continue.
 
@@ -267,7 +269,7 @@ Now `dispatchEvent` runs asynchronously after the current code execution is fini
 
 ## Summary
 
-To generate an event, we first need to create an event object.
+To generate an event from code, we first need to create an event object.
 
 The generic `Event(name, options)` constructor accepts an arbitrary event name and the `options` object with two properties:
   - `bubbles: true` if the event should bubble.

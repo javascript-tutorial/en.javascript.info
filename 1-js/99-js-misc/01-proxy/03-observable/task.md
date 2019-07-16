@@ -20,10 +20,8 @@ user.observe((key, value) => {
 user.name = "John"; // alerts: SET name=John
 ```
 
-In other words, an object returned by `makeObservable` has the method `observe(handler)`.
+In other words, an object returned by `makeObservable` has the method `observe(handler)` that allows to add `handler` function to be called on a property change.
 
 Whenever a property changes, `handler(key, value)` is called with the name and value o the property.
 
-
 P.S. In this task, please handle only writing to a property. Other operations can be implemented in a similar way.
-P.P.S. You might want to introduce a global variable or a global structure to store handlers. That's fine here. In real life, such function lives in a module, that has its own global scope. 

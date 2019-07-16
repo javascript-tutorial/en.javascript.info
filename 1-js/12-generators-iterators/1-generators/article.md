@@ -19,14 +19,16 @@ function* generateSequence() {
 }
 ```
 
-When `generateSequence()` is called, it does not execute the code. Instead, it returns a special object, called "generator".
+The term "generator function" is a bit misleading, because when called it does not execute the code. Instead, it returns a special object, called "generator object".
+
+So it's kind of a "generator constructor".
 
 ```js
 // "generator function" creates "generator object"
 let generator = generateSequence();
 ```
 
-The `generator` object can be perceived as a "frozen function call":
+The `generator` object is something like an "frozen function call":
 
 ![](generateSequence-1.png)
 
@@ -60,7 +62,7 @@ As of now, we got the first value only:
 
 ![](generateSequence-2.png)
 
-Let's call `generator.next()` again. It resumes the execution and returns the next `yield`:
+Let's call `generator.next()` again. It resumes the code execution and returns the next `yield`:
 
 ```js
 let two = generator.next();
@@ -152,7 +154,7 @@ alert(sequence); // 0, 1, 2, 3
 
 In the code above, `...generateSequence()` turns the iterable into array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
 
-## Using generators instead of iterables
+## Using generators for iterables
 
 Some time ago, in the chapter [](info:iterable) we created an iterable `range` object that returns values `from..to`.
 
@@ -163,7 +165,7 @@ let range = {
   from: 1,
   to: 5,
 
-  // for..of calls this method once in the very beginning
+  // for..of range calls this method once in the very beginning
   [Symbol.iterator]() {
     // ...it returns the iterator object:
     // onward, for..of works only with that object, asking it for next values
@@ -187,7 +189,7 @@ let range = {
 alert([...range]); // 1,2,3,4,5
 ```
 
-Using a generator to make iterable sequences is so much more elegant:
+Using a generator to make iterable sequences is simpler and much more elegant:
 
 ```js run
 function* generateSequence(start, end) {
@@ -201,11 +203,11 @@ let sequence = [...generateSequence(1,5)];
 alert(sequence); // 1, 2, 3, 4, 5
 ```
 
-...But what if we'd like to keep a custom `range` object?
-
 ## Converting Symbol.iterator to generator
 
-We can get the best from both worlds by providing a generator as `Symbol.iterator`:
+We can add generator-style iteration to any custom object by providing a generator as `Symbol.iterator`.
+
+Here's the same `range`, but with a much more compact iterator:
 
 ```js run
 let range = {
@@ -224,19 +226,18 @@ alert( [...range] ); // 1,2,3,4,5
 
 The `range` object is now iterable.
 
-That works pretty well, because when `range[Symbol.iterator]` is called:
-- it returns an object (now a generator)
-- that has `.next()` method (yep, a generator has it)
-- that returns values in the form `{value: ..., done: true/false}` (check, exactly what generator does).
+That works, because `range[Symbol.iterator]()` now returns a generator, and generator methods are exactly what `for..of` expects:
+- it has `.next()` method
+- that returns values in the form `{value: ..., done: true/false}`
 
-That's not a coincidence, of course. Generators aim to make iterables easier, so we can see that.
+That's not a coincidence, of course. Generators were added to JavaScript language with iterators in mind, to implement them easier.
 
-The last variant with a generator is much more concise than the original iterable code, and keeps the same functionality.
+The last variant with a generator is much more concise than the original iterable code of `range`, and keeps the same functionality.
 
-```smart header="Generators may continue forever"
+```smart header="Generators may generate values forever"
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
 
-That surely would require a `break` in `for..of`, otherwise the loop would repeat forever and hang.
+That surely would require a `break` (or `return`) in `for..of` over such generator, otherwise the loop would repeat forever and hang.
 ```
 
 ## Generator composition
@@ -248,7 +249,7 @@ For instance, we'd like to generate a sequence of:
 - followed by alphabet letters `a..z` (character codes 65..90)
 - followed by uppercased letters `A..Z` (character codes 97..122)
 
-Then we plan to create passwords by selecting characters from it (could add syntax characters as well), but need to generate the sequence first.
+We can use the sequence e.g. to create passwords by selecting characters from it (could add syntax characters as well), but let's generate it first.
 
 We already have `function* generateSequence(start, end)`. Let's reuse it to deliver 3 sequences one after another, together they are exactly what we need.
 
@@ -285,7 +286,7 @@ for(let code of generatePasswordCodes()) {
 alert(str); // 0..9A..Za..z
 ```
 
-The special `yield*` directive in the example is responsible for the composition. It *delegates* the execution to another generator. Or, to say it simple, it runs generators and transparently forwards their yields outside, as if they were done by the calling generator itself.
+The special `yield*` directive in the example is responsible for the composition. It *delegates* the execution to another generator. Or, to say it simple, `yield* gen` iterates over the generator `gen` and transparently forwards its yields outside. As if the values were yielded by the outer generator.
 
 The result is the same as if we inlined the code from nested generators:
 
@@ -357,14 +358,16 @@ generator.next(4); // --> pass the result into the generator
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
 3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
-Please note, the outer code does not have to immediately call`next(4)`. It may take time to calculate the value. This is also a valid code:
+Please note, the outer code does not have to immediately call`next(4)`. It may take time to calculate the value. That's not a problem: the generator will resume when the call is made.
+
+This is also a valid code:
 
 ```js
 // resume the generator after some time
 setTimeout(() => generator.next(4), 1000);
 ```
 
-The syntax may seem a bit odd. It's quite uncommon for a function and the calling code to pass values around to each other. But that's exactly what's going on.
+As we can see, unlike regular functions, generators and the calling code can exchange results by passing values in `next/yield`.
 
 To make things more obvious, here's another example, with more calls:
 
@@ -462,8 +465,8 @@ If we don't catch the error there, then, as usual, it falls through to the outer
 - Inside generators (only) there exists a `yield` operator.
 - The outer code and the generator may exchange results via `next/yield` calls.
 
-In modern JavaScript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique.
+In modern JavaScript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique. And, surely, they are great for making iterable objects.
 
-Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data in `for` loop.
+Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data (e.g paginated fetches over a network) in `for await ... of` loop.
 
-In web-programming we often work with streamed data, e.g. need to fetch paginated results, so that's a very important use case.
+In web-programming we often work with streamed data, so that's another very important use case.

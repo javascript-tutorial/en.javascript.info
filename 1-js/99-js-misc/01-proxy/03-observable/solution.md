@@ -1,6 +1,6 @@
 The solution consists of two parts:
 
-1. Whenever `.observe(handler)` is called, we need to remember the handler somewhere, to be able to call it later. We can store it right in the object, using our symbol as the key.
+1. Whenever `.observe(handler)` is called, we need to remember the handler somewhere, to be able to call it later. We can store handlers right in the object, using our symbol as the property key.
 2. We need a proxy with `set` trap to call handlers in case of any change.
 
 ```js run

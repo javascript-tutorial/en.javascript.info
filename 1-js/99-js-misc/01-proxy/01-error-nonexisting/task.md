@@ -1,11 +1,12 @@
-
 # Error on reading non-existant property
 
-Create a proxy that throws an error for an attempt to read of a non-existant property.
+Usually, an attempt to read a non-existant property returns `undefined`.
+
+Create a proxy that throws an error for an attempt to read of a non-existant property instead.
 
 That can help to detect programming mistakes early.
 
-Write a function `wrap(target)` that takes an object `target` and return a proxy instead with that functionality.
+Write a function `wrap(target)` that takes an object `target` and return a proxy that adds this functionality aspect.
 
 That's how it should work:
 

@@ -91,11 +91,11 @@ The most common traps are for reading/writing properties.
 
 To intercept the reading, the `handler` should have a method `get(target, property, receiver)`.
 
-It triggers when a property is read:
+It triggers when a property is read, with following arguments:
 
 - `target` -- is the target object, the one passed as the first argument to `new Proxy`,
 - `property` -- property name,
-- `receiver` -- if the property is a getter, then `receiver` is the object that's going to be used as `this` in that code. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy).
+- `receiver` -- if the target property is a getter, then `receiver` is the object that's going to be used as `this` in its code. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don't need this argument, will be explained in more details letter.
 
 Let's use `get` to implement default values for an object.
 
@@ -167,7 +167,7 @@ alert( dictionary['Welcome to Proxy']); // Welcome to Proxy (no translation)
 */!*
 ```
 
-````smart header="Proxy should be used instead of `target` everywhere"
+````smart
 Please note how the proxy overwrites the variable:
 
 ```js
@@ -175,21 +175,21 @@ dictionary = new Proxy(dictionary, ...);
 numbers = new Proxy(numbers, ...);
 ```
 
-The proxy should totally replace the target object everywhere. No one should ever reference the target object after it got proxied. Otherwise it's easy to mess up.
+The proxy should totally replace the target object everywhere. No one should ever reference the target object after it got proxied. Otherwise it  's easy to mess up.
 ````
 
 ## Validation with "set" trap
 
 Now let's intercept writing as well.
 
-Let's say we want a numeric array. If a value of another type is added, there should be an error.
+Let's say we want a numbers-only array. If a value of another type is added, there should be an error.
 
 The `set` trap triggers when a property is written: `set(target, property, value, receiver)`
 
 - `target` -- is the target object, the one passed as the first argument to `new Proxy`,
 - `property` -- property name,
 - `value` -- property value,
-- `receiver` -- same as in `get` trap, only matters if the property is a setter.
+- `receiver` -- similar to `get` trap, matters only for setter properties.
 
 The `set` trap should return `true` if setting is successful, and `false` otherwise (leads to `TypeError`).
 
@@ -238,7 +238,7 @@ If it returns a falsy value (or doesn't return anything), that triggers `TypeErr
 
 ## Protected properties with "deleteProperty" and "ownKeys"
 
-There's a widespread convention that properties and methods prefixed by an underscore `_` are internal. They shouldn't be accessible from outside the object.
+There's a widespread convention that properties and methods prefixed by an underscore `_` are internal. They shouldn't be accessed from outside the object.
 
 Technically, that's possible though:
 
@@ -409,7 +409,7 @@ We can wrap a proxy around a function as well.
 
 The `apply(target, thisArg, args)` trap handles calling a proxy as function:
 
-- `target` is the target object,
+- `target` is the target object (function is an object in JavaScript),
 - `thisArg` is the value of `this`.
 - `args` is a list of arguments.
 
@@ -454,16 +454,15 @@ function sayHi(user) {
 }
 
 *!*
-alert(sayHi.length); // 1 (function length is the arguments count)
+alert(sayHi.length); // 1 (function length is the arguments count in its declaration)
 */!*
 
 sayHi = delay(sayHi, 3000);
 
 *!*
-alert(sayHi.length); // 0 (wrapper has no arguments)
+alert(sayHi.length); // 0 (in the wrapper declaration, there are zero arguments)
 */!*
 ```
-
 
 `Proxy` is much more powerful, as it forwards everything to the target object.
 
@@ -495,13 +494,13 @@ The result is the same, but now not only calls, but all operations on the proxy 
 
 We've got a "richer" wrapper.
 
-There exist other traps, but probably you've already got the idea.
+There exist other traps: the full list is in the beginning of this chapter. Their usage pattern is similar to the above.
 
 ## Reflect
 
 The `Reflect` API was designed to work in tandem with `Proxy`.
 
-For every internal object operation that can be trapped, there's a `Reflect` method. It has the same name and arguments as the trap, and can be used to forward the operation to an object.
+For every internal object operation that can be trapped, there's a `Reflect` method. It has the same name and arguments as the trap, and can be used to forward the operation to an object from the trap.
 
 For example:
 
@@ -529,14 +528,14 @@ let name = user.name; // GET name
 user.name = "Pete"; // SET name TO Pete
 ```
 
-- `Reflect.get` gets the property, like `target[prop]` that we used before.
-- `Reflect.set` sets the property, like `target[prop] = value`, and also ensures the correct return value.
+- `Reflect.get` gets the property, like `target[prop]`.
+- `Reflect.set` sets the property, like `target[prop] = value`, and returns `true/false` as needed by `[[Set]]`.
 
 In most cases, we can do the same thing without `Reflect`. But we may miss some peculiar aspects.
 
 Consider the following example, it doesn't use `Reflect` and doesn't work right.
 
-We have a proxied user object and inherit from it, then use a getter:
+We have a proxied `user` object with `name` getter and inherit `admin` from it:
 
 ```js run
 let user = {
@@ -632,7 +631,7 @@ Still, it's not perfect. There are limitations.
 
 Many built-in objects, for example `Map`, `Set`, `Date`, `Promise` and others make use of so-called "internal slots".
 
-These are like properties, but reserved for internal purposes. Built-in methods access them directly, not via `[[Get]]/[[Set]]` internal methods. So `Proxy` can't intercept that.
+These are like properties, but reserved for internal, specification-only purposes. Built-in methods access them directly, not via `[[Get]]/[[Set]]` internal methods. So `Proxy` can't intercept that.
 
 Who cares? They are internal anyway!
 
@@ -779,7 +778,7 @@ A *revocable* proxy is a proxy that can be disabled.
 
 Let's say we have a resource, and would like to close access to it any moment.
 
-What we can do is to wrap it into a revocable proxy, without any traps. Such proxy will forward operations to object, and we also get a special method to disable it.
+What we can do is to wrap it into a revocable proxy, without any traps. Such proxy will forward operations to object, and we can disable it at any moment.
 
 The syntax is:
 
@@ -810,8 +809,7 @@ alert(proxy.data); // Error
 
 A call to `revoke()` removes all internal references to the target object from the proxy, so they are no more connected. The target object can be garbage-collected after that.
 
-We can also store `revoke` in a `WeakMap`, to be able to easily find it by the proxy:
-
+We can also store `revoke` in a `WeakMap`, to be able to easily find it by a proxy object:
 
 ```js run
 *!*
@@ -835,7 +833,7 @@ alert(proxy.data); // Error (revoked)
 
 The benefit of such approach is that we don't have to carry `revoke` around. We can get it from the map by `proxy` when needeed.
 
-Using `WeakMap` instead of `Map` here, because it should not block garbage collection. If a proxy object becomes "unreachable" (e.g. no variable references it any more), `WeakMap` allows it to be wiped from memory (we don't need its revoke in that case).
+Using `WeakMap` instead of `Map` here, because it should not block garbage collection. If a proxy object becomes "unreachable" (e.g. no variable references it any more), `WeakMap` allows it to be wiped from memory together with its `revoke` that we won't need any more.
 
 ## References
 

@@ -113,7 +113,7 @@ For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
 
 ```warn header="There are also mobile devices"
 Keyboard combinations are good as an addition to the workflow. So that if the visitor has a
- keyboard -- it works. And if your device doesn't have it -- then there's another way to do the same.
+ keyboard -- it works. And if their device doesn't have it -- then there should be another way to do the same.
 ```
 
 ## Coordinates: clientX/Y, pageX/Y
@@ -123,7 +123,7 @@ All mouse events have coordinates in two flavours:
 1. Window-relative: `clientX` and `clientY`.
 2. Document-relative: `pageX` and `pageY`.
 
-For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`. And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `position:fixed`.
+For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`. And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is, how far the document was scrolled. They are similar to `position:fixed`.
 
 ````online
 Move the mouse over the input field to see `clientX/clientY` (it's in the `iframe`, so coordinates are relative to that `iframe`):
@@ -138,9 +138,9 @@ Coordinates `pageX`, `pageY` are similar to `position:absolute` on the document 
 
 You can read more about coordinates in the chapter <info:coordinates>.
 
-## No selection on mousedown
+## Disabling selection on mousedown
 
-Mouse clicks have a side-effect that may be disturbing. A double click selects the text.
+Mouse clicks have a side-effect that may be disturbing in some interfaces: a double click selects the text.
 
 If we want to handle click events ourselves, then the "extra" selection doesn't look good.
 
@@ -191,7 +191,7 @@ Before...
 
 Now the bold element is not selected on double clicks.
 
-The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine though.
+The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine for users.
 
 ````smart header="Canceling the selection"
 Instead of *preventing* the selection, we can cancel it "post-factum" in the event handler.
@@ -235,9 +235,11 @@ Mouse events have the following properties:
 - Window-relative coordinates: `clientX/clientY`.
 - Document-relative coordinates: `pageX/pageY`.
 
-It's also important to deal with text selection as an unwanted side-effect of clicks.
+It's also important to deal with text selection, it may be an unwanted side-effect of clicks.
 
 There are several ways to do this, for instance:
 1. The CSS-property `user-select:none` (with browser prefixes) completely disables text-selection.
 2. Cancel the selection post-factum using `getSelection().removeAllRanges()`.
 3. Handle `mousedown` and prevent the default action (usually the best).
+
+The selection is a separate topic, covered in another chapter <info:selection-range>.

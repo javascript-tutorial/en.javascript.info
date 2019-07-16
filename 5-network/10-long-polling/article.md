@@ -13,16 +13,14 @@ That is, periodical requests to the server: "Hello, I'm here, do you have any in
 In response, the server first takes a notice to itself that the client is online, and second - sends a packet of messages it got till that moment.
 
 That works, but there are downsides:
-1. Messages are passed with a delay up to 10 seconds.
+1. Messages are passed with a delay up to 10 seconds (between requests).
 2. Even if there are no messages, the server is bombed with requests every 10 seconds. That's quite a load to handle for backend, speaking performance-wise.
 
-So, if we're talking about a very small service, the approach may be viable.
-
-But generally, it needs an improvement.
+So, if we're talking about a very small service, the approach may be viable, but generally, it needs an improvement.
 
 ## Long polling
 
-Long polling -- is a better way to poll the server.
+So-called "long polling" is a much better way to poll the server.
 
 It's also very easy to implement, and delivers messages without delays.
 
@@ -37,16 +35,17 @@ The situation when the browser sent a request and has a pending connection with 
 
 ![](long-polling.png)
 
-Even if the connection is lost, because of, say, a network error, the browser immediately sends a new request.
+If the connection is lost, because of, say, a network error, the browser immediately sends a new request.
 
-A sketch of client-side code:
+A sketch of client-side `subscribe` function that makes long requests:
 
 ```js
 async function subscribe() {
   let response = await fetch("/subscribe");
 
   if (response.status == 502) {
-    // Connection timeout, happens when the connection was pending for too long
+    // Connection timeout error,
+    // may happen when the connection was pending for too long, and the remote server or a proxy closed it
     // let's reconnect
     await subscribe();
   } else if (response.status != 200) {
@@ -66,7 +65,7 @@ async function subscribe() {
 subscribe();
 ```
 
-The `subscribe()` function makes a fetch, then waits for the response, handles it and calls itself again.
+As you can see, `subscribe` function makes a fetch, then waits for the response, handles it and calls itself again.
 
 ```warn header="Server should be ok with many pending connections"
 The server architecture must be able to work with many pending connections.

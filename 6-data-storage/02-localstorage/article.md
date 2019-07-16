@@ -61,7 +61,7 @@ alert( localStorage.test ); // 2
 delete localStorage.test;
 ```
 
-That's allowed for historical reasons, and mostly works, but generally not recommended for two reasons:
+That's allowed for historical reasons, and mostly works, but generally not recommended, because:
 
 1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
     ```js run
@@ -157,7 +157,7 @@ Properties and methods are the same, but it's much more limited:
 
 - The `sessionStorage` exists only within the current browser tab.
   - Another tab with the same page will have a different storage.
-  - But it is shared between iframes in the tab (assuming they come from the same origin).
+  - But it is shared between iframes in the same tab (assuming they come from the same origin).
 - The data survives page refresh, but not closing/opening the tab.
 
 Let's see that in action.
@@ -212,7 +212,7 @@ localStorage.setItem('now', Date.now());
 
 Please note that the event also contains: `event.url` -- the url of the document where the data was updated.
 
-Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
+Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `event.storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
 
 **That allows different windows from the same origin to exchange messages.**
 
@@ -245,5 +245,5 @@ API:
 Storage event:
 
 - Triggers on `setItem`, `removeItem`, `clear` calls.
-- Contains all the data about the operation, the document `url` and the storage object.
+- Contains all the data about the operation (`key/oldValue/newValue`), the document `url` and the storage object `storageArea`.
 - Triggers on all `window` objects that have access to the storage except the one that generated it (within a tab for `sessionStorage`, globally for `localStorage`).
