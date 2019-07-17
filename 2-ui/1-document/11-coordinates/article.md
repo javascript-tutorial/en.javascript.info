@@ -4,58 +4,106 @@ To move elements around we should be familiar with coordinates.
 
 Most JavaScript methods deal with one of two coordinate systems:
 
-1. Relative to the window(or another viewport) top/left.
-2. Relative to the document top/left.
+1. **Relative to the window** - similar to `position:fixed`, calculated from the window top/left edge.
+    - we'll denote them as `clientX/clientY`, the reason for such name will become clear later when we move to events,
+2. **Relative to the document** - similar to `position:absolute` in the document root, calculated from the document top/left edge.
+    - we'll denote them `pageX/pageY`
 
-It's important to understand the difference and which type is where.
+When the page is scrolled to the top, so that the window top/left corner is exactly the document top/left corner, these coordinates equal each other. But after the document shifts, window-relative coordinates of elements change, as elements move across the window.
 
-## Window coordinates: getBoundingClientRect
+Here's the picture, the left part is before the scroll, and the right part - after scroll up:
 
-Window coordinates start at the upper-left corner of the window.
+![](document-and-window-coordinates-scrolled.png)
 
-The method `elem.getBoundingClientRect()` returns window coordinates for `elem` as an object with properties:
+As the document moved up:
+- `pageY` - document-relative coordinate of the same point is still the same, it's counted from the document top (scrolled out).
+- `clientY` - window-relative coordinate did change (the arrow became shorter), as the same point now became closer to window top.
 
-- `top` -- Y-coordinate for the top element edge,
-- `left` -- X-coordinate for the left element edge,
-- `right` -- X-coordinate for the right element edge,
-- `bottom` -- Y-coordinate for the bottom element edge.
+We'll see more examples of window and document coordinates through this chapter.
 
-Like this:
+## Element coordinates: getBoundingClientRect
 
-![](coords.png)
+The method `elem.getBoundingClientRect()` returns window coordinates for a minimal rectangle that encloses `elem` as an object of built-in [DOMRect](https://www.w3.org/TR/geometry-1/#domrect) class.
 
+Main `DomRect` properties:
 
-Window coordinates do not take the scrolled out part of the document into account, they are calculated from the window's upper-left corner.
+- `x/y` -- X/Y-coordinates of the rectangle origin relative to window,
+- `width/height` -- width/height of the rectangle (can be negative).
 
-In other words, when we scroll the page, the element goes up or down, *its window coordinates change*. That's very important.
+Additionally, there are derived properties:
+
+- `top/bottom` -- Y-coordinate for the top/bottom edge,
+- `left/right` -- X-coordinate for the left/right edge.
 
 ```online
 Click the button to see its window coordinates:
 
-<input id="brTest" type="button" value="Show button.getBoundingClientRect() for this button" onclick='showRect(this)'/>
+<p><input id="brTest" type="button" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
 
 <script>
 function showRect(elem) {
   let r = elem.getBoundingClientRect();
-  alert("{top:"+r.top+", left:"+r.left+", right:"+r.right+", bottom:"+ r.bottom + "}");
+  alert(`x:${r.x}
+y:${r.y}
+width:${r.width}
+height:${r.height}
+top:${r.top}
+bottom:${r.bottom}
+left:${r.left}
+right:${r.right}
+`);
 }
 </script>
 
-If you scroll the page, the button position changes, and window coordinates as well.
+Please, scroll the page and repeat. You will notice that as window-relative button position changes, its window coordinates (`y/top/bottom` if you scroll vertically) change as well.
 ```
+
+Here's the picture:
+
+![](coordinates.png)
+
+As you can see, derived properties can be easily calculated:
+- `top = y`
+- `left = x`
+- `bottom = y + height`
+- `right = x + width`
+
+**Why derived properties are needed? Why does `top/left` exist if there's `x/y`?**
+
+The reason is that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
+
+That may be useful e.g. for mouse selections, to properly mark selection start and end.
+
+Here's a vectorized example with negative `width` and `height`:
+
+![](coordinates-negative.png)
+
+The rectangle above starts at its bottom-right corner and then spans left/up.
+
+As you can see, `left/top` are not `x/y` any more. The formula can be adjusted to cover negative `width/height`. That's simple enough to do, but rarely needed.
+
+**All element coordinates are returned with positive width/height.**
+
+The main reason why negative rectangles are covered here is to explain the need for derived propeties. Otherwise it would be odd to see `top/left` duplicating `x/y`.
 
 Also:
 
-- Coordinates may be decimal fractions. That's normal, internally browser uses them for calculations. We don't have to round them when setting to `style.position.left/top`, the browser is fine with fractions.
+- Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.position.left/top`.
 - Coordinates may be negative. For instance, if the page is scrolled down and the top `elem` is now above the window. Then, `elem.getBoundingClientRect().top` is negative.
-- Some browsers (like Chrome) provide additional properties, `width` and `height` of the element that invoked the method to `getBoundingClientRect` as the result. We can also get them by subtraction: `height=bottom-top`, `width=right-left`.
 
-```warn header="Coordinates right/bottom are different from CSS properties"
-If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed`. The positioning of an element is also relative to the viewport.
 
-But in CSS, the `right` property means the distance from the right edge, and the `bottom` property means the distance from the bottom edge.
+```warn header="Internet Explorer and Edge: no support for `x/y`"
+Internet Explorer and Edge don't support `x/y` properties for historical reasons.
 
-If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the upper-left corner, including these ones.
+So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same for `elem.getBoundingClientRect()`.
+```
+
+```warn header="Coordinates right/bottom are different from CSS position properties"
+If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed`, it's also relative to the viewport.
+
+But in CSS positioning, `right` property means the distance from the right edge, and `bottom` property means the distance from the bottom edge.
+
+If we just look at the picture above, we can see that in JavaScript it is not so. All window coordinates are counted from the top-left corner, including these ones.
 ```
 
 ## elementFromPoint(x, y) [#elementFromPoint]
