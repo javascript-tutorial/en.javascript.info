@@ -119,7 +119,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Not just a syntax sugar
 
-Sometimes people say that `class` is a "syntax sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new) in JavaScript, because we could actually declare the same without `class` keyword at all:
+Sometimes people say that `class` is a "syntax sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
 
 ```js run
 // rewriting class User in pure functions
@@ -147,7 +147,7 @@ Although, there are important differences.
 
 1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
 
-    Unlike a regular function, a class constructor can't be called without `new`:
+    Unlike a regular function, a class constructor must be called with `new`:
 
     ```js run
     class User {
@@ -176,8 +176,7 @@ Although, there are important differences.
 3. Classes always `use strict`.
     All code inside the class construct is automatically in strict mode.
 
-
-Also, in addition to its basic operation, the `class` syntax brings many other features with it which we'll explore later.
+Besides, `class` syntax brings many other features that we'll explore later.
 
 ## Class Expression
 

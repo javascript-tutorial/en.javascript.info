@@ -32,8 +32,8 @@ Main `DOMRect` properties:
 
 Additionally, there are derived properties:
 
-- `top/bottom` -- Y-coordinate for the top/bottom edge,
-- `left/right` -- X-coordinate for the left/right edge.
+- `top/bottom` -- Y-coordinate for the top/bottom rectangle edge,
+- `left/right` -- X-coordinate for the left/right rectangle edge.
 
 ```online
 For instance click this button to see its window coordinates:
@@ -71,11 +71,14 @@ As you can see, `x/y` and `width/height` fully describe the rectangle. Derived p
 Also:
 
 - Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.position.left/top`.
-- Coordinates may be negative. For instance, if the page is scrolled down and the top `elem` is now above the window. Then, `elem.getBoundingClientRect().top` is negative.
+- Coordinates may be negative. For instance, if the page is scrolled so that `elem` is now above the window, then `elem.getBoundingClientRect().top` is negative.
 
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
+Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`.
 
-The reason is that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
+So the additional derived properties are for convenience.
+
+Please note that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
 
 Negative `width/height` may be useful for directed rectangles, e.g. to represent mouse selections with properly marked start and end.
 
