@@ -166,7 +166,7 @@ We can call `event.preventDefault()` on a script-generated event if `cancelable:
 
 Of course, for custom events, with names unknown for the browser, there are no "default browser actions". But our code may plan its own actions after `dispatchEvent`.
 
-The call of `event.preventDefault()` is a way for the handler to send a signal that those actions should be canceled  .
+The call of `event.preventDefault()` is a way for the handler to send a signal that those actions should be canceled.
 
 In that case the call to `elem.dispatchEvent(event)` returns `false`. And the event-generating code knows that the processing shouldn't continue.
 
