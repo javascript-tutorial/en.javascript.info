@@ -49,7 +49,7 @@ We can add, remove and read files from it any time.
 Property values are accessible using the dot notation:
 
 ```js
-// get fields of the object:
+// get property values of the object:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
