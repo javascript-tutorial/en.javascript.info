@@ -63,18 +63,18 @@ observer.observe(elem, {
 </script>
 ```
 
-If we change the text inside `<b>me</b>`, we'll get a single mutation:
+If we change the text inside `<b>edit</b>`, we'll get a single mutation:
 
 ```js
 mutationRecords = [{
   type: "characterData",
-  oldValue: "me",
+  oldValue: "edit",
   target: <text node>,
   // other properties empty
 }];
 ```
 
-If we select and remove the `<b>me</b>` altogether, we'll get multiple mutations:
+If we select and remove the `<b>edit</b>` altogether, we'll get multiple mutations:
 
 ```js
 mutationRecords = [{
@@ -88,8 +88,8 @@ mutationRecords = [{
   type: "characterData"
   target: <text node>
   // ...details depend on how the browser handles the change
-  // it may coalesce two adjacent text nodes "Edit " and ", please" into one node
-  // or it can just delete the extra space after "Edit".
+  // it may coalesce two adjacent text nodes "edit " and ", please" into one node
+  // or it can just delete the extra space after "edit".
   // may be one mutation or a few
 }];
 ```
