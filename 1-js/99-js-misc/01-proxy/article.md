@@ -1,4 +1,3 @@
-
 # Proxy and Reflect
 
 A *proxy* wraps another object and intercepts operations, like reading/writing properties and others, optionally handling them on its own, or transparently allowing the object to handle them.
@@ -175,7 +174,7 @@ dictionary = new Proxy(dictionary, ...);
 numbers = new Proxy(numbers, ...);
 ```
 
-The proxy should totally replace the target object everywhere. No one should ever reference the target object after it got proxied. Otherwise it  's easy to mess up.
+The proxy should totally replace the target object everywhere. No one should ever reference the target object after it got proxied. Otherwise it's easy to mess up.
 ````
 
 ## Validation with "set" trap

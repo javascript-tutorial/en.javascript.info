@@ -70,21 +70,14 @@ Built-in objects have their own static methods, for instance `Object.keys`, `Arr
 
 As we already know, native classes extend each other. For instance, `Array` extends `Object`.
 
-Normally, when one class extends another, both static and non-static methods are inherited.
-
-So, if `Rabbit extends Animal`, then:
-
-1. `Rabbit.methods` are callable for `Animal.methods`, because `Rabbit.[[Prototype]] = Animal`.
-2. `new Rabbit().methods` are also available, because `Rabbit.prototype.[[Prototype]] = Animal.prototype`.
-
-That's thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
+Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
 
 But built-in classes are an exception. They don't inherit statics from each other.
 
-For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But  `Array.[[Prototype]]` does not point to `Object`. So there's `Object.keys()`, but not `Array.keys()` and `Date.keys()`.
+For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no `Array.keys()` and `Date.keys()` static methods.
 
 Here's the picture structure for `Date` and `Object`:
 
 ![](object-date-inheritance.png)
 
-Note, there's no link between `Date` and `Object`. Both `Object` and `Date` exist independently. `Date.prototype` inherits from `Object.prototype`, but that's all.
+As you can see, there's no link between `Date` and `Object`. They are independent, only `Date.prototype` inherits from `Object.prototype`.

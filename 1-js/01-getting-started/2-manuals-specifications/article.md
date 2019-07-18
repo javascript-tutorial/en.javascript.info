@@ -11,7 +11,7 @@ But being that formalized, it's difficult to understand at first. So if you need
 
 The latest draft is at <https://tc39.es/ecma262/>.
 
-To read about new bleeding-edge features, that are "almost standard", see proposals at <https://github.com/tc39/proposals>.
+To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
 
 Also, if you're in developing for the browser, then there are other specs covered in the [second part](info:browser-environment) of the tutorial.
 
@@ -28,7 +28,7 @@ Also, if you're in developing for the browser, then there are other specs covere
 
     Also, we can use an internet search with phrases such as "RegExp MSDN" or "RegExp MSDN jscript".
 
-## Feature support
+## Compatibility tables
 
 JavaScript is a developing language, new features get added regularly.
 

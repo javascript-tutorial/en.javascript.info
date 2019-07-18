@@ -1,4 +1,3 @@
-
 # Dynamic imports
 
 Export and import statements that we covered in previous chapters are called "static".
@@ -65,10 +64,9 @@ let {hi, bye} = await import('./say.js');
 
 hi();
 bye();
-
 ```
 
-Or, for the default export:
+Or, if `say.js` has the default export:
 
 ```js
 // 📁 say.js
@@ -77,12 +75,12 @@ export default function() {
 }
 ```
 
-To import it, we need to get `default` property of the module object, as explained in the [previous chapter](info:import-export).
+...Then, in order to access it, we can use `default` property of the module object, as explained in the [previous chapter](info:import-export).
 
 So, the dynamic import will be like this:
 
 ```js
-let {default: say} = await import('./say.js'); // map .default to say variable
+let {default: say} = await import('./say.js'); // save .default property in say variable
 
 say();
 ```
@@ -91,12 +89,12 @@ Here's the full example:
 
 [codetabs src="say" current="index.html"]
 
-So, dynamic imports are very simple to use, and they allow to import modules at run-time.
-
-Also, dynamic imports work in regular scripts, they don't require `script type="module"`.
+```smart
+Dynamic imports work in regular scripts, they don't require `script type="module"`.
+```
 
 ```smart
 Although `import()` looks like a function call, it's a special syntax that just happens to use parentheses (similar to `super()`).
 
-That means that import doesn't inherit from `Function.prototype` so we cannot call or apply it.
+So we can't copy `import` to a variable or use `.call/apply` with it.
 ```

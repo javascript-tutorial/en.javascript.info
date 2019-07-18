@@ -1,4 +1,3 @@
-
 # Generators
 
 Regular functions return only one, single value (or nothing).
@@ -223,8 +222,6 @@ let range = {
 
 alert( [...range] ); // 1,2,3,4,5
 ```
-
-The `range` object is now iterable.
 
 That works, because `range[Symbol.iterator]()` now returns a generator, and generator methods are exactly what `for..of` expects:
 - it has `.next()` method
