@@ -5,19 +5,19 @@ To move elements around we should be familiar with coordinates.
 Most JavaScript methods deal with one of two coordinate systems:
 
 1. **Relative to the window** - similar to `position:fixed`, calculated from the window top/left edge.
-    - we'll denote these coordinates as `clientX/clientY`, the reason for such name will become clear after next chapters ,
+    - we'll denote these coordinates as `clientX/clientY`, the reasoning for such name will become clear later, when we study event properties.
 2. **Relative to the document** - similar to `position:absolute` in the document root, calculated from the document top/left edge.
-    - we'll denote them `pageX/pageY`
+    - we'll denote them `pageX/pageY`.
 
-When the page is scrolled to the top, so that the window top/left corner is exactly the document top/left corner, these coordinates equal each other. But after the document shifts, window-relative coordinates of elements change, as elements move across the window.
+When the page is scrolled to the top, so that the top/left corner of the window is exactly the document top/left corner, these coordinates equal each other. But after the document shifts, window-relative coordinates of elements change, as elements move across the window, while document-relative coordinates remain the same.
 
-Here's the picture, the left part is before the scroll, and the right part - after scroll up:
+Here's the picture, the left part is before the scroll, and the right part - after scrolling the page up:
 
 ![](document-and-window-coordinates-scrolled.png)
 
 As the document moved up:
-- `pageY` - document-relative coordinate of the same point is still the same, it's counted from the document top (scrolled out).
-- `clientY` - window-relative coordinate did change (the arrow became shorter), as the same point now became closer to window top.
+- `pageY` - document-relative coordinate of the same point stayed the same, it's counted from the document top (now scrolled out).
+- `clientY` - window-relative coordinate did change (the arrow became shorter), as the same point became closer to window top.
 
 We'll see more examples of window and document coordinates through this chapter.
 
@@ -25,7 +25,7 @@ We'll see more examples of window and document coordinates through this chapter.
 
 The method `elem.getBoundingClientRect()` returns window coordinates for a minimal rectangle that encloses `elem` as an object of built-in [DOMRect](https://www.w3.org/TR/geometry-1/#domrect) class.
 
-Main `DomRect` properties:
+Main `DOMRect` properties:
 
 - `x/y` -- X/Y-coordinates of the rectangle origin relative to window,
 - `width/height` -- width/height of the rectangle (can be negative).
@@ -36,7 +36,7 @@ Additionally, there are derived properties:
 - `left/right` -- X-coordinate for the left/right edge.
 
 ```online
-Click the button to see its window coordinates:
+For instance click this button to see its window coordinates:
 
 <p><input id="brTest" type="button" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
 
@@ -55,42 +55,38 @@ right:${r.right}
 }
 </script>
 
-Please, scroll the page and repeat. You will notice that as window-relative button position changes, its window coordinates (`y/top/bottom` if you scroll vertically) change as well.
+If you scroll the page and repeat, you'll notice that as window-relative button position changes, its window coordinates (`y/top/bottom` if you scroll vertically) change as well.
 ```
 
-Here's the picture:
+Here's the picture of `elem.getBoundingClientRect()` output:
 
 ![](coordinates.png)
 
-As you can see, derived properties can be easily calculated:
-- `top = y`
+As you can see, `x/y` and `width/height` fully describe the rectangle. Derived properties can be easily calculated:
 - `left = x`
-- `bottom = y + height`
+- `top = y`
 - `right = x + width`
-
-**Why derived properties are needed? Why does `top/left` exist if there's `x/y`?**
-
-The reason is that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
-
-That may be useful e.g. for mouse selections, to properly mark selection start and end.
-
-Here's a vectorized example with negative `width` and `height`:
-
-![](coordinates-negative.png)
-
-The rectangle above starts at its bottom-right corner and then spans left/up.
-
-As you can see, `left/top` are not `x/y` any more. The formula can be adjusted to cover negative `width/height`. That's simple enough to do, but rarely needed.
-
-**All element coordinates are returned with positive width/height.**
-
-The main reason why negative rectangles are covered here is to explain the need for derived propeties. Otherwise it would be odd to see `top/left` duplicating `x/y`.
+- `bottom = y + height`
 
 Also:
 
 - Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.position.left/top`.
 - Coordinates may be negative. For instance, if the page is scrolled down and the top `elem` is now above the window. Then, `elem.getBoundingClientRect().top` is negative.
 
+```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
+
+The reason is that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
+
+Negative `width/height` may be useful for directed rectangles, e.g. to represent mouse selections with properly marked start and end.
+
+Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
+
+![](coordinates-negative.png)
+
+The rectangle above starts at its bottom-right corner and then spans left/up.
+
+As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. The formula can be adjusted to cover negative `width/height`. That's simple enough to do, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
+```
 
 ```warn header="Internet Explorer and Edge: no support for `x/y`"
 Internet Explorer and Edge don't support `x/y` properties for historical reasons.
