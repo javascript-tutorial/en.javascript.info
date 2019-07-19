@@ -4,9 +4,9 @@ importance: 5
 
 # Iterable keys
 
-We want to get an array of `map.keys()` and go on working with it (apart from the map itself).
+We'd like to get an array of `map.keys()` in a variable and then do apply array-specific methods to it, e.g. `.push`.
 
-But there's a problem:
+But that doesn't work:
 
 ```js run
 let map = new Map();

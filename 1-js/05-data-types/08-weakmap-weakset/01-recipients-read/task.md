@@ -8,9 +8,9 @@ There's an array of messages:
 
 ```js
 let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
 ];
 ```
 
@@ -20,4 +20,4 @@ Now, which data structure you could use to store information whether the message
 
 P.S. When a message is removed from `messages`, it should disappear from your structure as well.
 
-P.P.S. We shouldn't modify message objects directly. If they are managed by someone else's code, then adding extra properties to them may have bad consequences.
+P.P.S. We shouldn't modify message objects directly. As they are managed by someone else's code, adding extra properties to them may have bad consequences.

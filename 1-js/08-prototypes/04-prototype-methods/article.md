@@ -84,7 +84,7 @@ Technically, we can get/set `[[Prototype]]` at any time. But usually we only set
 And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So evade it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
 ```
 
-## "Very plain" objects
+## "Very plain" objects [#very-plain]
 
 As we know, objects can be used as associative arrays to store key/value pairs.
 
