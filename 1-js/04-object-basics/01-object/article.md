@@ -105,7 +105,6 @@ That's because the dot requires the key to be a valid variable identifier. That 
 
 There's an alternative "square bracket notation" that works with any string:
 
-
 ```js run
 let user = {};
 
@@ -130,7 +129,7 @@ let key = "likes birds";
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. 
 
 For instance:
 
@@ -146,6 +145,17 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
+The dot notation cannot be used in a similar way.
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+user.key // undefined
+```
 
 ### Computed properties
 
@@ -222,7 +232,7 @@ As we see from the code, the assignment to a primitive `5` is ignored.
 
 That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
 
-In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
+In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
 
 There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
 There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
