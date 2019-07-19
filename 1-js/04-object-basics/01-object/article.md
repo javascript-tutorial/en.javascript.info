@@ -335,11 +335,9 @@ alert( obj.test ); // it's undefined, so - no such property?
 alert( "test" in obj ); // true, the property does exist!
 ```
 
-
 In the code above, the property `obj.test` technically exists. So the `in` operator works right.
 
 Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
-````
 
 
 ## The "for..in" loop
@@ -530,7 +528,7 @@ The equality `==` and strict equality `===` operators for objects work exactly t
 
 **Two objects are equal only if they are the same object.**
 
-For instance, two variables reference the same object, they are equal:
+For instance, if two variables reference the same object, they are equal:
 
 ```js run
 let a = {};
