@@ -74,31 +74,27 @@ Also:
 - Coordinates may be negative. For instance, if the page is scrolled so that `elem` is now above the window, then `elem.getBoundingClientRect().top` is negative.
 
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
-Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`.
+Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`. So the additional derived properties are for convenience.
 
-So the additional derived properties are for convenience.
-
-Please note that technically it's possible for `width/height` to be negative. A rectangle starts at `(x,y)` and `(width,height)` is actually the direction vector where it goes.
-
-Negative `width/height` may be useful for directed rectangles, e.g. to represent mouse selections with properly marked start and end.
+Technically it's possible for `width/height` to be negative, that's useful for  "directed" rectangles, e.g. to represent mouse selection with properly marked start and end.
 
 Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
 
 ![](coordinates-negative.png)
 
-The rectangle above starts at its bottom-right corner and then spans left/up.
+The rectangle starts at its bottom-right corner and then spans left/up, as negative `width/height` lead it backwards by coordinates.
 
-As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. The formula can be adjusted to cover negative `width/height`. That's simple enough to do, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
+As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. Their formula can be adjusted to cover negative `width/height`, that's simple enough, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
 ```
 
 ```warn header="Internet Explorer and Edge: no support for `x/y`"
 Internet Explorer and Edge don't support `x/y` properties for historical reasons.
 
-So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same for `elem.getBoundingClientRect()`.
+So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for `elem.getBoundingClientRect()`.
 ```
 
 ```warn header="Coordinates right/bottom are different from CSS position properties"
-If we compare window coordinates versus CSS positioning, then there are obvious similarities to `position:fixed`, it's also relative to the viewport.
+There are obvious similarities between window-relative coordinates and CSS `position:fixed`.
 
 But in CSS positioning, `right` property means the distance from the right edge, and `bottom` property means the distance from the bottom edge.
 
@@ -134,8 +130,6 @@ The method `document.elementFromPoint(x,y)` only works if `(x,y)` are inside the
 
 If any of the coordinates is negative or exceeds the window width/height, then it returns `null`.
 
-In most cases such behavior is not a problem, but we should keep that in mind.
-
 Here's a typical error that may occur if we don't check for it:
 
 ```js
@@ -147,7 +141,7 @@ elem.style.background = ''; // Error!
 ```
 ````
 
-## Using for position:fixed
+## Using for "fixed" positioning
 
 Most of time we need coordinates to position something. In CSS, to position an element relative to the viewport we use `position:fixed` together with `left/top` (or `right/bottom`).
 
@@ -198,31 +192,13 @@ The reason is obvious: the message element relies on `position:fixed`, so it rem
 
 To change that, we need to use document-based coordinates and `position:absolute`.
 
-## Document coordinates
+## Document coordinates [#getCoords]
 
 Document-relative coordinates start from the upper-left corner of the document, not the window.
 
 In CSS, window coordinates correspond to `position:fixed`, while document coordinates are similar to `position:absolute` on top.
 
 We can use `position:absolute` and `top/left` to put something at a certain place of the document, so that it remains there during a page scroll. But we need the right coordinates first.
-
-For clarity we'll call window coordinates `(clientX,clientY)` and document coordinates `(pageX,pageY)`.
-
-When the page is not scrolled, then window coordinate and document coordinates are actually the same. Their zero points match too:
-
-![](document-window-coordinates-zero.png)
-
-And if we scroll it, then `(clientX,clientY)` change, because they are relative to the window, but `(pageX,pageY)` remain the same.
-
-Here's the same page after the vertical scroll:
-
-![](document-window-coordinates-scroll.png)
-
-- `clientY` of the header `"From today's featured article"` became `0`, because the element is now on window top.
-- `clientX` didn't change, as we didn't scroll horizontally.
-- `pageX` and `pageY` coordinates of the element are still the same, because they are relative to the document.
-
-## Getting document coordinates [#getCoords]
 
 There's no standard method to get the document coordinates of an element. But it's easy to write it.
 

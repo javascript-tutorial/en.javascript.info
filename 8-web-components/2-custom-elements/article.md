@@ -12,9 +12,9 @@ We can define them with a special class, and then use as if they were always a p
 There are two kinds of custom elements:
 
 1. **Autonomous custom elements** -- "all-new" elements, extending the abstract `HTMLElement` class.
-2. **Customized built-in elements** -- extending built-in elements, like customized `HTMLButtonElement` etc.
+2. **Customized built-in elements** -- extending built-in elements, like a customized button, based on `HTMLButtonElement` etc.
 
-First we'll create autonomous elements, and then customized built-in ones.
+First we'll cover autonomous elements, and then move to customized built-in ones.
 
 To create a custom element, we need to tell the browser several details about it: how to show it, what to do when the element is added or removed to page, etc.
 
@@ -30,12 +30,12 @@ class MyElement extends HTMLElement {
   }
 
   connectedCallback() {
-    // browser calls it when the element is added to the document
+    // browser calls this method when the element is added to the document
     // (can be called many times if an element is repeatedly added/removed)
   }
 
   disconnectedCallback() {
-    // browser calls it when the element is removed from the document
+    // browser calls this method when the element is removed from the document
     // (can be called many times if an element is repeatedly added/removed)
   }
 
