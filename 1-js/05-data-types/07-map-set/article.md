@@ -12,7 +12,7 @@ But that's not enough for real life. That's why `Map` and `Set` also exist.
 
 [Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
 
-The main methods are:
+Methods and properties are:
 
 - `new Map()` -- creates the map.
 - `map.set(key, value)` -- stores the value by the key.
@@ -57,7 +57,7 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but it would be difficult to replace the `Map` with a regular `Object` in the example above.
+Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
 
 Let's try:
 
@@ -94,7 +94,7 @@ map.set('1', 'str1')
 
 ## Map from Object
 
-When a `Map` is created, we can pass an array (or another iterable) with key-value pairs, like this:
+When a `Map` is created, we can pass an array (or another iterable) with key-value pairs for initialization, like this:
 
 ```js
 // array of [key, value] pairs
@@ -105,7 +105,7 @@ let map = new Map([
 ]);
 ```
 
-There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
 
 So we can initialize a map from an object like this:
 
@@ -168,10 +168,9 @@ recipeMap.forEach( (value, key, map) => {
 });
 ```
 
-
 ## Set
 
-A `Set` is a collection of values (without keys), where each value may occur only once.
+A `Set` is a special type collection - "set of values" (without keys), where each value may occur only once.
 
 Its main methods are:
 
@@ -181,6 +180,8 @@ Its main methods are:
 - `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
 - `set.clear()` -- removes everything from the set.
 - `set.size` -- is the elements count.
+
+The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
 
 For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
 
@@ -239,13 +240,30 @@ The same methods `Map` has for iterators are also supported:
 
 `Map` -- is a collection of keyed values.
 
+Methods and properties:
+
+- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
+- `map.set(key, value)` -- stores the value by the key.
+- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
+- `map.delete(key)` -- removes the value by the key.
+- `map.clear()` -- removes everything from the map.
+- `map.size` -- returns the current element count.
+
 The differences from a regular `Object`:
 
 - Any keys, objects can be keys.
-- Iterates in the insertion order.
 - Additional convenient methods, the `size` property.
 
 `Set` -- is a collection of unique values.
 
-- Keeps the insertion order.
-- Doesn't allow to reorder elements.
+Methods and properties:
+
+- `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
+- `set.add(value)` -- adds a value (does nothing if `value` exists), returns the set itself.
+- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
+- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
+- `set.clear()` -- removes everything from the set.
+- `set.size` -- is the elements count.
+
+Iteration over `Map` and `Set` is always in the insertion order, so we can't say that these collections are unordered, but we can't reorder elements or directly get an element by its number.

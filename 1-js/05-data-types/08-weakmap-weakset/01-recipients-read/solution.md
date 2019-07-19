@@ -40,4 +40,4 @@ messages[0][isRead] = true;
 
 Now third-party code probably won't see our extra property.
 
-Both solutions are possible, though the one with `WeakSet` is "cleaner" from the architectural point of view.
+Although symbols allow to lower the probability of problems, using `WeakSet` is better from the architectural point of view.
