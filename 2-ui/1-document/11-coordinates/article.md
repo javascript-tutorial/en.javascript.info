@@ -220,6 +220,28 @@ function getCoords(elem) {
 }
 ```
 
+If in the example above we use it with `position:absolute`, that would work right.
+
+The modified `createMessageUnder` function:
+
+```js
+function createMessageUnder(elem, html) {
+  let message = document.createElement('div');
+  message.style.cssText = "*!*position:absolute*/!*; color: red";
+
+  let coords = *!*getCoords(elem);*/!*
+
+  message.style.left = coords.left + "px";
+  message.style.top = coords.bottom + "px";
+
+  message.innerHTML = html;
+
+  return message;
+}
+```
+
+You'll find other examples in the task.
+
 ## Summary
 
 Any point on the page has coordinates:
