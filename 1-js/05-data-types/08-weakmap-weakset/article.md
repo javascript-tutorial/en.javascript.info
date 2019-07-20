@@ -110,9 +110,9 @@ Now where do we need such data structure?
 
 The main area of application for `WeakMap` is an *additional data storage*.
 
-There are objects managed elsewhere in the code, maybe they come from a third-party code, and in our code we need to keep additional information that is only relevant while the object is in memory.
+If we're working with an object that "belongs" to another code, maybe even a third-party library, and would like to store some data associated with it, that should only exist while the object is alive - then `WeakMap` is the right choice!
 
-And when the object is garbage collected, that data should automatically disappear as well.
+We put the data to a `WeakMap`, using the object as the key, and when the object is garbage collected, that data will automatically disappear as well.
 
 ```js
 weakMap.set(john, "secret documents");
@@ -121,7 +121,7 @@ weakMap.set(john, "secret documents");
 
 Let's look at an example.
 
-For instance, we have code that keeps a visit count for each user. The information is stored in a map: a user object is the key and the visit count is the value. When a user leaves (its object gets garbage collected), we don't want to store their visit count anymore.
+For instance, we have code that keeps a visit count for users. The information is stored in a map: a user object is the key and the visit count is the value. When a user leaves (its object gets garbage collected), we don't want to store their visit count anymore.
 
 Here's an example of a counting function with `Map`:
 
@@ -136,7 +136,7 @@ function countUser(user) {
 }
 ```
 
-Let's imagine another part of the code using it:
+And here's another part of the code, maybe another file using it:
 
 ```js
 // 📁 main.js
@@ -151,7 +151,7 @@ john = null;
 
 Now, we have a problem: `john` object should be garbage collected, but remains is memory, as it's a key in `visitsCountMap`.
 
-We need to clean up `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
+We need to clean `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
 
 We can avoid it by switching to `WeakMap` instead:
 
@@ -271,7 +271,6 @@ alert(visitedSet.has(john)); // true
 // check if Mary visited?
 alert(visitedSet.has(mary)); // false
 
-// John object is not needed any more
 john = null;
 
 // visitedSet will be cleaned automatically
@@ -281,10 +280,10 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-`WeakMap` is `Map`-like collection that allows only objects as keys and removes them once they become inaccessible by other means.
+`WeakMap` is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
 
 `WeakSet` is `Set`-like collection that only stores objects and removes them once they become inaccessible by other means.
 
-Both of them do not support methods and properties that refer to all keys or their count. Only individial get/has/set/remove operations with a given key are allowed.
+Both of them do not support methods and properties that refer to all keys or their count. Only individial operations are allowed.
 
 `WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
