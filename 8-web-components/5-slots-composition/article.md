@@ -58,7 +58,7 @@ customElements.define('user-card', class extends HTMLElement {
 
 In the shadow DOM, `<slot name="X">` defines an "insertion point", a place where elements with `slot="X"` are rendered.
 
-Then the browser performs "composition": it takes elements from the light DOM and renders them in corresponding slots of the shadow DOM. At the end, we have exactly what we want -- a generic component that can be filled with data.
+Then the browser performs "composition": it takes elements from the light DOM and renders them in corresponding slots of the shadow DOM. At the end, we have exactly what we want -- a component that can be filled with data.
 
 Here's the DOM structure after the script, not taking composition into account:
 
@@ -76,7 +76,7 @@ Here's the DOM structure after the script, not taking composition into account:
 </user-card>
 ```
 
-There's nothing odd here. We created the shadow DOM, so here it is. Now the element has both light and shadow DOM.
+We created the shadow DOM, so here it is, under `#shadow-root`. Now the element has both light and shadow DOM.
 
 For rendering purposes, for each `<slot name="...">` in shadow DOM, the browser looks for `slot="..."` with the same name in the light DOM. These elements are rendered inside the slots:
 
@@ -89,7 +89,7 @@ The result is called "flattened" DOM:
   #shadow-root
     <div>Name:
       <slot name="username">
-        <!-- slotted element is inserted into the slot as a whole -->
+        <!-- slotted element is inserted into the slot -->
         <span slot="username">John Smith</span>
       </slot>
     </div>
@@ -101,7 +101,7 @@ The result is called "flattened" DOM:
 </user-card>
 ```
 
-...But the "flattened" DOM is only created for rendering and event-handling purposes. That's how things are shown. The nodes are actually not moved around!
+...But the flattened DOM exists only for rendering and event-handling purposes. It's kind of "virtual". That's how things are shown. But the nodes in the document are actually not moved around!
 
 That can be easily checked if we run `querySelector`: nodes are still at their places.
 
@@ -110,7 +110,7 @@ That can be easily checked if we run `querySelector`: nodes are still at their p
 alert( document.querySelector('user-card span').length ); // 2
 ```
 
-It may look bizarre, but for shadow DOM with slots we have one more "DOM level", the "flattened" DOM -- result of slot insertion. The browser renders it and uses for style inheritance, event propagation. But JavaScript still sees the document "as is", before flattening.
+So, the flattened DOM is derived from shadow DOM by inserting slots. The browser renders it and uses for style inheritance, event propagation (more about that later). But JavaScript still sees the document "as is", before flattening.
 
 ````warn header="Only top-level children may have slot=\"...\" attribute"
 The `slot="..."` attribute is only valid for direct children of the shadow host (in our example, `<user-card>` element). For nested elements it's ignored.
@@ -120,18 +120,43 @@ For example, the second `<span>` here is ignored (as it's not a top-level child 
 <user-card>
   <span slot="username">John Smith</span>
   <div>
-    <!-- bad slot, not top-level: -->
+    <!-- invalid slot, must be direct child of user-card -->
     <span slot="birthday">01.01.2001</span>
   </div>
 </user-card>
 ```
-
-In practice, there's no sense in slotting a deeply nested element, so this limitation just ensures the correct DOM structure.
 ````
+
+If there are multiple elements in light DOM with the same slot name, they are appended into the slot, one after another.
+
+For example, this:
+```html
+<user-card>
+  <span slot="username">John</span>
+  <span slot="username">Smith</span>
+</user-card>
+```
+
+Gives this flattened DOM with two elements in `<slot name="username">`:
+
+```html
+<user-card>
+  #shadow-root
+    <div>Name:
+      <slot name="username">
+        <span slot="username">John</span>
+        <span slot="username">Smith</span>
+      </slot>
+    </div>
+    <div>Birthday:
+      <slot name="birthday"></slot>
+    </div>
+</user-card>
+```
 
 ## Slot fallback content
 
-If we put something inside a `<slot>`, it becomes the fallback content. The browser shows it if there's no corresponding filler in light DOM.
+If we put something inside a `<slot>`, it becomes the fallback, "default" content. The browser shows it if there's no corresponding filler in light DOM.
 
 For example, in this piece of shadow DOM, `Anonymous` renders if there's no `slot="username"` in light DOM.
 
@@ -141,11 +166,11 @@ For example, in this piece of shadow DOM, `Anonymous` renders if there's no `slo
 </div>
 ```
 
-## Default slot
+## Default slot: first unnamed
 
 The first `<slot>` in shadow DOM that doesn't have a name is a "default" slot. It gets all nodes from the light DOM that aren't slotted elsewhere.
 
-For example, let's add the default slot to our `<user-card>` that collects any unslotted information about the user:
+For example, let's add the default slot to our `<user-card>` that shows all unslotted information about the user:
 
 ```html run autorun="no-epub" untrusted height=140
 <script>
@@ -243,7 +268,7 @@ The shadow DOM template with proper slots:
 ```
 
 1. `<span slot="title">` goes into `<slot name="title">`.
-2. There are many `<li slot="item">` in the template, but only one `<slot name="item">` in the template. That's perfectly normal. All elements with `slot="item"` get appended to `<slot name="item">` one after another, thus forming the list.
+2. There are many `<li slot="item">` in the template, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
 
 The flattened DOM becomes:
 
@@ -293,7 +318,7 @@ Here's the full demo:
 
 Of course, we can add more functionality to it: events, methods and so on.
 
-## Monitoring slots
+## Updating slots
 
 What if the outer code wants to add/remove menu items dynamically?
 
@@ -301,7 +326,7 @@ What if the outer code wants to add/remove menu items dynamically?
 
 Also, as light DOM nodes are not copied, but just rendered in slots, the changes inside them immediately become visible.
 
-So we don't have to do anything to update rendering. But if the component wants to know about slot changes, then `slotchange` event is available.
+So we don't have to do anything to update rendering. But if the component code wants to know about slot changes, then `slotchange` event is available.
 
 For example, here the menu item is inserted dynamically after 1 second, and the title changes after 2 seconds:
 
@@ -406,7 +431,7 @@ setTimeout(() => {
 
 ## Summary
 
-Slots allow to show light DOM children in shadow DOM.
+Usually, if an element has shadow DOM, then its light DOM is not displayed. Slots allow to show elements from light DOM in specified places of shadow DOM.
 
 There are two kinds of slots:
 
@@ -427,6 +452,6 @@ If we'd like to know what we're showing, we can track slot contents using:
 - `slotchange` event -- triggers the first time a slot is filled, and on any add/remove/replace operation of the slotted element, but not its children. The slot is `event.target`.
 - [MutationObserver](info:mutation-observer) to go deeper into slot content, watch changes inside it.
 
-Now, as we have elements from light DOM in the shadow DOM, let's see how to style them properly. The basic rule is that shadow elements are styled inside, and light elements -- outside, but there are notable exceptions.
+Now, as we know how to show elements from light DOM in shadow DOM, let's see how to style them properly. The basic rule is that shadow elements are styled inside, and light elements -- outside, but there are notable exceptions.
 
 We'll see the details in the next chapter.
