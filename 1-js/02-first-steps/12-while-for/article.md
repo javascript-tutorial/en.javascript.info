@@ -6,82 +6,6 @@ For example, outputting goods from a list one after another or just running the 
 
 *Loops* are a way to repeat the same code multiple times.
 
-## The "while" loop
-
-The `while` loop has the following syntax:
-
-```js
-while (condition) {
-  // code
-  // so-called "loop body"
-}
-```
-
-While the `condition` is `true`, the `code` from the loop body is executed.
-
-For instance, the loop below outputs `i` while `i < 3`:
-
-```js run
-let i = 0;
-while (i < 3) { // shows 0, then 1, then 2
-  alert( i );
-  i++;
-}
-```
-
-A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
-
-If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
-
-Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
-
-For instance, a shorter way to write `while (i != 0)` is `while (i)`:
-
-```js run
-let i = 3;
-*!*
-while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
-*/!*
-  alert( i );
-  i--;
-}
-```
-
-````smart header="Curly braces are not required for a single-line body"
-If the loop body has a single statement, we can omit the curly braces `{…}`:
-
-```js run
-let i = 3;
-*!*
-while (i) alert(i--);
-*/!*
-```
-````
-
-## The "do..while" loop
-
-The condition check can be moved *below* the loop body using the `do..while` syntax:
-
-```js
-do {
-  // loop body
-} while (condition);
-```
-
-The loop will first execute the body, then check the condition, and, while it's truthy, execute it again and again.
-
-For example:
-
-```js run
-let i = 0;
-do {
-  alert( i );
-  i++;
-} while (i < 3);
-```
-
-This form of syntax should only be used when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
-
 ## The "for" loop
 
 The `for` loop is the most commonly used loop.
@@ -190,8 +114,6 @@ for (; i < 3;) {
 }
 ```
 
-This makes the loop identical to `while (i < 3)`.
-
 We can actually remove everything, creating an infinite loop:
 
 ```js
@@ -201,6 +123,82 @@ for (;;) {
 ```
 
 Please note that the two `for` semicolons `;` must be present. Otherwise, there would be a syntax error.
+
+## The "while" loop
+
+The `while` loop has the following syntax:
+
+```js
+while (condition) {
+  // code
+  // so-called "loop body"
+}
+```
+
+While the `condition` is `true`, the `code` from the loop body is executed.
+
+For instance, the loop below outputs `i` while `i < 3`:
+
+```js run
+let i = 0;
+while (i < 3) { // shows 0, then 1, then 2
+  alert( i );
+  i++;
+}
+```
+
+A single execution of the loop body is called *an iteration*. The loop in the example above makes three iterations.
+
+If `i++` was missing from the example above, the loop would repeat (in theory) forever. In practice, the browser provides ways to stop such loops, and in server-side JavaScript, we can kill the process.
+
+Any expression or variable can be a loop condition, not just comparisons: the condition is evaluated and converted to a boolean by `while`.
+
+For instance, a shorter way to write `while (i != 0)` is `while (i)`:
+
+```js run
+let i = 3;
+*!*
+while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
+*/!*
+  alert( i );
+  i--;
+}
+```
+
+````smart header="Curly braces are not required for a single-line body"
+If the loop body has a single statement, we can omit the curly braces `{…}`:
+
+```js run
+let i = 3;
+*!*
+while (i) alert(i--);
+*/!*
+```
+````
+
+## The "do..while" loop
+
+The condition check can be moved *below* the loop body using the `do..while` syntax:
+
+```js
+do {
+  // loop body
+} while (condition);
+```
+
+The loop will first execute the body, then check the condition, and, while it's truthy, execute it again and again.
+
+For example:
+
+```js run
+let i = 0;
+do {
+  alert( i );
+  i++;
+} while (i < 3);
+```
+
+This form of syntax should only be used when you want the body of the loop to execute **at least once** regardless of the condition being truthy. Usually, the other form is preferred: `while(…) {…}`.
 
 ## Breaking the loop
 
