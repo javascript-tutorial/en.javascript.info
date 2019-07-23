@@ -10,12 +10,12 @@ Here's the demo:
 ```js run
 let promise = Promise.resolve();
 
-promise.then(() => alert("promise done"));
+promise.then(() => alert("promise done!"));
 
 alert("code finished"); // this alert shows first
 ```
 
-If you run it, you see `code finished` first, and then `promise done`.
+If you run it, you see `code finished` first, and then `promise done!`.
 
 That's strange, because the promise is definitely done from the beginning.
 
@@ -54,7 +54,7 @@ Now the order is as intended.
 
 ## Unhandled rejection
 
-Remember "unhandled rejection" event from the chapter <info:promise-error-handling>?
+Remember `unhandledrejection` event from the chapter <info:promise-error-handling>?
 
 Now we can see exactly how JavaScript finds out that there was an unhandled rejection
 
