@@ -40,7 +40,7 @@ For instance:
 </body>
 ```
 
-If we assign something to `elem.className`, it replaces the whole strings of classes. Sometimes that's what we need, but often we want to add/remove a single class.
+If we assign something to `elem.className`, it replaces the whole string of classes. Sometimes that's what we need, but often we want to add/remove a single class.
 
 There's another property for that: `elem.classList`.
 
