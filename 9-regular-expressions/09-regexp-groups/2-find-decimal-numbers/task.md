@@ -9,5 +9,5 @@ let reg = /your regexp/g;
 
 let str = "-1.5 0 2 -123.4.";
 
-alert( str.match(re) ); // -1.5, 0, 2, -123.4
+alert( str.match(reg) ); // -1.5, 0, 2, -123.4
 ```
