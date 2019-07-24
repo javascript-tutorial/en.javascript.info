@@ -364,7 +364,7 @@ There's one more very simple and concise syntax for creating functions, that's o
 
 
 ```js
-let func = (arg1, arg2, ...argN) => expression
+let func = (arg1, arg2, ...argN) => expression;
 ```
 
 ...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
