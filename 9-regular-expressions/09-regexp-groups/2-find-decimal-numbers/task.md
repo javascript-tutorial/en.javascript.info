@@ -1,4 +1,4 @@
-# Find decimal numbers
+# Find all numbers
 
 Write a regexp that looks for all decimal numbers including integer ones, with the floating point and negative ones.
 
