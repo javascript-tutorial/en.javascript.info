@@ -445,8 +445,8 @@ Methods:
     The last argument, `selectionMode`, determines how the selection will be set after the text has been replaced. The possible values are:
 
     - `"select"` -- the newly inserted text will be selected.
-    - `"start"` -- the selection range collapses just before the inserted text.
-    - `"end"` -- the selection range collapses just after the inserted text.
+    - `"start"` -- the selection range collapses just before the inserted text (the cursor will be immediately before it).
+    - `"end"` -- the selection range collapses just after the inserted text (the cursor will be right after it).
     - `"preserve"` -- attempts to preserve the selection. This is the default.
 
 Now let's see these methods in action.
@@ -504,7 +504,7 @@ Focus on me, the cursor will be at position 10.
 
 ### Example: modifying selection
 
-To modify the content of the selection, we can use `input.setRangeText`. Of course, we can read `selectionStart/End` and can just change `value`, but `setRangeText` is more powerful.
+To modify the content of the selection, we can use `input.setRangeText`. Of course, we can read `selectionStart/End` and, with the knowledge of the selection, change the corresponding substring of `value`, but `setRangeText` is more powerful and often more convenient.
 
 That's a somewhat complex method. In its simplest one-argument form it replaces the user selected range and removes the selection.
 
@@ -551,7 +551,7 @@ If nothing is selected, or we use equal `start` and `end` in `setRangeText`, the
 
 We can also insert something "at the cursor" using `setRangeText`.
 
-Here's an button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can do detect in by comparing `selectionStart=selectionEnd` and do something else instead):
+Here's an button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can do detect in by comparing `selectionStart!=selectionEnd` and do something else instead):
 
 ```html run autorun
 <input id="input" style="width:200px" value="Text Text Text Text Text">
@@ -598,9 +598,7 @@ To make something unselectable, there are three ways:
 
     This prevents starting the selection on `elem`, but the visitor may start it at another element, then extend to `elem`.
 
-    That's convenient when there's another event handler on the same action that triggers the select. So we disable the selection to avoid conflict.
-
-    And `elem` contents still be copied.
+    That's convenient when there's another event handler on the same action that triggers the select (e.g. `mousedown`). So we disable the selection to avoid conflict, still allowing `elem` contents to be copied.
 
 3. We can also clear the selection post-factum after it happens with `document.getSelection().empty()`. That's rarely used, as this causes unwanted blinking as the selection appears-disappears.
 
@@ -626,8 +624,10 @@ The most used recipes are probably:
     ```js run
     let selection = document.getSelection();
 
+    let cloned = /* element to clone the selected nodes to */;
+
     // then apply Range methods to selection.getRangeAt(0)
-    // or to all ranges if supporting multi-select
+    // or, like here, to all ranges to support multi-select
     for (let i = 0; i < selection; i++) {
       cloned.append(selection.getRangeAt(i).cloneContents());
     }
@@ -639,11 +639,9 @@ The most used recipes are probably:
     // directly:
     selection.setBaseAndExtent(...from...to...);
 
-    // or create range and:
+    // or we can create a range and:
     selection.removeAllRanges();
     selection.addRange(range);
     ```
 
-Another important thing to know about selection: the cursor position in editable elements, like `<textarea>` is always at the start or the end of the selection.
-
-We can use it both to get cursor position and to move the cursor by setting `elem.selectionStart` and `elem.selectionEnd`.
+And finally, about the cursor. The cursor position in editable elements, like `<textarea>` is always at the start or the end of the selection. We can use it  to get cursor position or to move the cursor by setting `elem.selectionStart` and `elem.selectionEnd`.
