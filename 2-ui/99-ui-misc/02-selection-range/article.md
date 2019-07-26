@@ -504,7 +504,7 @@ Focus on me, the cursor will be at position 10.
 
 ### Example: modifying selection
 
-To modify the content of the selection, we can use `input.setRangeText`. Of course, we can read `selectionStart/End` and, with the knowledge of the selection, change the corresponding substring of `value`, but `setRangeText` is more powerful and often more convenient.
+To modify the content of the selection, we can use `input.setRangeText()` method. Of course, we can read `selectionStart/End` and, with the knowledge of the selection, change the corresponding substring of `value`, but `setRangeText` is more powerful and often more convenient.
 
 That's a somewhat complex method. In its simplest one-argument form it replaces the user selected range and removes the selection.
 
