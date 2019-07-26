@@ -1,4 +1,4 @@
-First, the variable for the name of our planet.
+## The variable for our planet
 
 That's simple:
 
@@ -8,7 +8,7 @@ let ourPlanetName = "Earth";
 
 Note, we could use a shorter name `planet`, but it might be not obvious what planet it refers to. It's nice to be more verbose. At least until the variable isNotTooLong.
 
-Second, the name of the current visitor:
+## The name of the current visitor
 
 ```js
 let currentUserName = "John";

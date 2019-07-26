@@ -4,14 +4,14 @@ For given strings though, a simple `'=='` works too.
 
 ```js no-beautify
 if(browser == 'Edge') {
-  alert("You've got the Edge!");
+  alert("У вас браузер Edge!");
 } else if (browser == 'Chrome'
  || browser == 'Firefox'
  || browser == 'Safari'
  || browser == 'Opera') {
-  alert( 'Okay we support these browsers too' );
+  alert( 'Мы поддерживаем и эти браузерыo' );
 } else {
-  alert( 'We hope that this page looks ok!' );
+  alert( 'Надеемся, что эта страница выглядит хорошо!' );
 }
 ```
 

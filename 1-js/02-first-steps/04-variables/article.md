@@ -323,7 +323,7 @@ Modern JavaScript minifiers and browsers optimize code well enough, so it won't 
 
 We can declare variables to store data by using the `var`, `let`, or `const` keywords.
 
-- `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
+- `let` -- is a modern variable declaration.
 - `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
 - `const` -- is like `let`, but the value of the variable can't be changed.
 

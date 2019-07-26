@@ -6,7 +6,7 @@ To do that, we can use the `if` statement and the conditional operator `?`, that
 
 ## The "if" statement
 
-The `if` statement evaluates a condition and, if the condition's result is `true`, executes a block of code.
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
 
 For example:
 
@@ -216,7 +216,7 @@ Depending on the condition `company == 'Netscape'`, either the first or the seco
 
 We don't assign a result to a variable here. Instead, we execute different code depending on the condition.
 
-**We don't recommend using the question mark operator in this way.**
+**It's not recommended to use the question mark operator in this way.**
 
 The notation is shorter than the equivalent `if` statement, which appeals to some programmers. But it is less readable.
 
