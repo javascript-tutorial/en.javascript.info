@@ -2,9 +2,9 @@
 
 Before writing more complex code, let's talk about debugging.
 
-All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier.
+All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier. It also allows to trace the code step by step to see what exactly is going on.
 
-We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
 
 ## The "sources" pane
 
@@ -70,7 +70,7 @@ That's handy when we need to stop only for a certain variable value or for certa
 
 ## Debugger command
 
-We can also pause the code by using the `debugger` command, like this:
+We can also pause the code by using the `debugger` command in it, like this:
 
 ```js
 function hello(name) {
@@ -89,7 +89,7 @@ That's very convenient when we are in a code editor and don't want to switch to 
 
 ## Pause and look around
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
@@ -105,7 +105,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
     At the current moment the debugger is inside `hello()` call, called by a script in `index.html` (no function there, so it's called "anonymous").
 
-    If you click on a stack item, the debugger jumps to the corresponding code, and all its variables can be examined as well.
+    If you click on a stack item (e.g. "anonymous"), the debugger jumps to the corresponding code, and all its variables can be examined as well.
 3. **`Scope` -- current variables.**
 
     `Local` shows local function variables. You can also see their values highlighted right over the source.
@@ -147,19 +147,19 @@ There are buttons for it at the top of the right pane. Let's engage them.
 ```smart header="Continue to here"
 Right click on a line of code opens the context menu with a great option called "Continue to here".
 
-That's handy when we want to move multiple steps forward, but we're too lazy to set a breakpoint.
+That's handy when we want to move multiple steps forward to the line, but we're too lazy to set a breakpoint.
 ```
 
 ## Logging
 
-To output something to console, there's `console.log` function.
+To output something to console from our code, there's `console.log` function.
 
 For instance, this outputs values from `0` to `4` to console:
 
 ```js run
 // open console to see
 for (let i = 0; i < 5; i++) {
-  console.log("value", i);
+  console.log("значение", i);
 }
 ```
 
@@ -174,10 +174,10 @@ As we can see, there are three main ways to pause a script:
 2. The `debugger` statements.
 3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
 
-Then we can examine variables and step on to see where the execution goes wrong.
+When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
 
 There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
 
 The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
 
-Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click as well!
+Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click and context menus!
