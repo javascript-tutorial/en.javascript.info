@@ -39,9 +39,9 @@ We leave it as an exercise for the reader. Also, at the end of the chapter you'l
 
 ## Writing to document.cookie
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor. An assignment to it is treated specially.
+We can write to `document.cookie`. But it's not a data property, it's an accessor (getter/setter). An assignment to it is treated specially.
 
-**A write operation to `document.cookie` passes through the browser that updates cookies mentioned in it, but doesn't touch other cookies.**
+**A write operation to `document.cookie` updates only cookies mentioned in it, but doesn't touch other cookies.**
 
 For instance, this call sets a cookie with the name `user` and value `John`:
 
@@ -52,7 +52,7 @@ alert(document.cookie); // show all cookies
 
 If you run it, then probably you'll see multiple cookies. That's because `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
 
-Technically, name and value can have any characters, but to keep the formatting valid they should be escaped using a built-in `encodeURIComponent` function:
+Technically, name and value can have any characters, to keep the valid formatting they should be escaped using a built-in `encodeURIComponent` function:
 
 ```js run
 // special values, need encoding
