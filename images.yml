@@ -1,0 +1,98 @@
+ifelse_task2.svg:
+  Begin: ''
+  You don't know?: ''
+  “ECMAScript”!: ''
+  Right!: ''
+  What's the: ''
+  “official” name of: ''
+  JavaScript?: ''
+  Other: ''
+  ECMAScript: ''
+
+ifelse_task.svg:
+  Begin: ''
+  Canceled: ''
+  Welcome!: ''
+  I don't know you: ''
+  Wrong password: ''
+  Who's there?: ''
+  Password?: ''
+  Cancel: ''
+  Admin: ''
+  TheMaster: ''
+  Other: ''
+
+chrome-sources-breakpoint.svg:
+  here's the list: ''
+  breakpoints: ''
+
+chrome-sources-debugger-pause.svg:
+  '1': ''
+  '2': ''
+  '3': ''
+  jump to the outer function: ''
+  watch expressions: ''
+  current variables: ''
+
+chrome-sources-debugger-trace-1.svg:
+  nested calls: ''
+
+toolbarButtonGlyphs.svg: {}
+
+code-style.svg:
+  '2': ''
+  No space: ''
+  between the function name and parentheses: ''
+  between the parentheses and the parameter: ''
+  Indentation: ''
+  2 spaces: ''
+  'A space ': ''
+  after for/if/while…: ''
+  '} else { without a line break': ''
+  Spaces around a nested call: ''
+  An empty line: ''
+  between logical blocks: ''
+  Lines are not very long: ''
+  A semicolon ;: ''
+  is mandatory: ''
+  Spaces: ''
+  around operators: ''
+  'Curly brace {': ''
+  'on the same line, after a space': ''
+  A space: ''
+  between: ''
+  parameters: ''
+  A space between parameters: ''
+
+recursion-pow.svg:
+  'pow(x,n)': ''
+  x: ''
+  'x * pow(x, n-1)': ''
+  n == 1 ?: ''
+  'Yes': ''
+  'No': ''
+  recursive call until n==1: ''
+
+try-catch-flow.svg:
+  Begin: ''
+  No Errors: ''
+  An error occured in the code: ''
+  Ignore catch block: ''
+  Ignore the rest of try: ''
+  Execute catch block: ''
+  'try {': ''
+  '': ''
+  '}': ''
+  // code...: ''
+
+statusbarButtonGlyphs.svg:
+  '!': ''
+
+field.svg: {}
+
+placeholder.svg: {}
+
+logo-fetch.svg: {}
+
+demo.svg:
+  '1': ''

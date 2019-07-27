@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="264px" viewBox="0 0 500 264" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>ifelse_task2.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ifelse_task2.svg">
+            <path id="Path-1218-Copy" d="M422.5,187.5 L422.5,136.5 L342,136.5 L340.5,136.5 L340.5,133.5 L425.5,133.5 L425.5,187.5 L433.5,187.5 L424,206.5 L414.5,187.5 L422.5,187.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <g id="Rectangle-1-+-Корень" transform="translate(213.000000, 4.000000)">
+                <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="1" y="1" width="78" height="28" rx="14"></rect>
+                <text id="Begin" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="21" y="19">Begin</tspan>
+                </text>
+            </g>
+            <g id="Rectangle-1-+-Корень-Copy-2" transform="translate(8.000000, 206.000000)">
+                <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="1" y="1" width="131" height="49" rx="24.5"></rect>
+                <text id="You-don't-know?-“ECM" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="13.3540039" y="20">You don't know?</tspan>
+                    <tspan x="21.9672852" y="39">“ECMAScript”!</tspan>
+                </text>
+            </g>
+            <g id="Rectangle-1-+-Корень-Copy-3" transform="translate(354.000000, 206.000000)">
+                <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="1" y="1" width="131" height="49" rx="24.5"></rect>
+                <text id="Right!" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="47.9301758" y="28">Right!</tspan>
+                </text>
+            </g>
+            <path id="Line" d="M252,57.0499687 L252,34 L255,34 L255,57.0499687 L263,57.0499687 L253.5,76.0499687 L244,57.0499687 L252,57.0499687 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Path-1218" d="M77.5,187.5 L77.5,133.5 L139.5,133.5 L139.5,136.5 L80.5,136.5 L80.5,187.5 L88.5,187.5 L79,206.5 L69.5,187.5 L77.5,187.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-356" fill="#FFFFFF" x="47" y="152" width="60" height="20"></rect>
+            <g id="Rectangle-354-+-Каково-“официальное”" transform="translate(137.000000, 76.000000)">
+                <path d="M2.1985673,59.5 L116.5,117.877127 L230.801433,59.5 L116.5,1.12287343 L2.1985673,59.5 Z" id="Rectangle-354" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+                <text id="What's-the-“official" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="81.0263672" y="43">What's the</tspan>
+                    <tspan x="60.6347656" y="62">“official” name of</tspan>
+                    <tspan x="80.7700195" y="81">JavaScript?</tspan>
+                </text>
+            </g>
+            <text id="Other" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="57" y="166">Other</tspan>
+            </text>
+            <rect id="Rectangle-356-Copy" fill="#FFFFFF" x="387" y="152" width="60" height="20"></rect>
+            <text id="ECMAScript" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="383" y="165">ECMAScript</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

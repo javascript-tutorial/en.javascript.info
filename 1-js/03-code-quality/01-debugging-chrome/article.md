@@ -50,7 +50,7 @@ Congratulations! You've set a breakpoint. Please also click on the number for li
 
 It should look like this (blue is where you should click):
 
-![](chrome-sources-breakpoint.png)
+![](chrome-sources-breakpoint.svg)
 
 A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
 
@@ -93,7 +93,7 @@ In our example, `hello()` is called during the page load, so the easiest way to 
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
-![](chrome-sources-debugger-pause.png)
+![](chrome-sources-debugger-pause.svg)
 
 Please open the informational dropdowns to the right (labeled with arrows). They allow you to examine the current code state:
 
@@ -125,7 +125,7 @@ There are buttons for it at the top of the right pane. Let's engage them.
 
     Here's what we can see after a click on it:
 
-    ![](chrome-sources-debugger-trace-1.png)
+    ![](chrome-sources-debugger-trace-1.svg)
 
     The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
 

@@ -28,7 +28,7 @@ It works like this:
 2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and then jumps over `catch`.
 3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) contains an error object with details about what's happened.
 
-![](try-catch-flow.png)
+![](try-catch-flow.svg)
 
 So, an error inside the `try {…}` block does not kill the script: we have a chance to handle it in `catch`.
 
