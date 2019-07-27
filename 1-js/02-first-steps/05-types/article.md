@@ -178,7 +178,7 @@ The `object` type is special.
 
 All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities. We'll deal with them later in the chapter <info:object> after we learn more about primitives.
 
-The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study ite after objects.
+The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study it after objects.
 
 ## The typeof operator [#type-typeof]
 
