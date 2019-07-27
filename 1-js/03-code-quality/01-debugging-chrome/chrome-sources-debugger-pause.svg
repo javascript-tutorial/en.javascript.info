@@ -31,9 +31,6 @@
             <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
             <feColorMatrix values="0 0 0 0 1   0 0 0 0 1   0 0 0 0 1  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
         </filter>
-        <path d="M434.5,222.5 L494.5,222.5" id="path-7"></path>
-        <path d="M434.5,184.5 L494.5,184.5" id="path-8"></path>
-        <path d="M434.5,92.5 L494.5,92.5" id="path-9"></path>
     </defs>
     <g id="debugging" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="chrome-sources-debugger-pause.svg">
@@ -62,9 +59,9 @@
             <text id="current-variables" font-family="OpenSans-Bold, Open Sans" font-size="18" font-weight="bold" fill="#EE6B47">
                 <tspan x="273" y="227">current variables</tspan>
             </text>
-            <path id="Line-Copy-3" d="M480.5,223.5 L433.5,223.5 L433.5,221.5 L480.5,221.5 L480.5,215.5 L494.5,222.5 L480.5,229.5 L480.5,223.5 Z" fill-rule="nonzero"></path>
-            <path id="Line-Copy-4" d="M480.5,185.5 L433.5,185.5 L433.5,183.5 L480.5,183.5 L480.5,177.5 L494.5,184.5 L480.5,191.5 L480.5,185.5 Z" fill-rule="nonzero"></path>
-            <path id="Line-Copy-5" d="M480.5,93.5 L433.5,93.5 L433.5,91.5 L480.5,91.5 L480.5,85.5 L494.5,92.5 L480.5,99.5 L480.5,93.5 Z" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M476,94.5 L435.5,94.5 L435.5,91.5 L476,91.5 L476,83.5 L495,93 L476,102.5 L476,94.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy" d="M476,185.5 L435.5,185.5 L435.5,182.5 L476,182.5 L476,174.5 L495,184 L476,193.5 L476,185.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy-2" d="M476,221.5 L435.5,221.5 L435.5,218.5 L476,218.5 L476,210.5 L495,220 L476,229.5 L476,221.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
         </g>
     </g>
 </svg>
