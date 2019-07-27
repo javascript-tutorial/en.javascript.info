@@ -56,21 +56,27 @@ A single-line construct, such as `if (condition) doSomething()`, is an important
 
 Here are the annotated variants so you can judge their readability for yourself:
 
-<!--
-```js no-beautify
-if (n < 0) {alert(`Power ${n} is not supported`);}
+1. 😠 Beginners sometimes do that. Bad! Curly braces are not needed:
+    ```js
+    if (n < 0) *!*{*/!*alert(`Power ${n} is not supported`);*!*}*/!*
+    ```
+2. 😠 Split to a separate line without braces. Never do that, easy to make an error when adding new lines:
+    ```js
+    if (n < 0)
+      alert(`Power ${n} is not supported`);
+    ```
+3. 😏 One line without braces - acceptable, if it's short:
+    ```js
+    if (n < 0) alert(`Power ${n} is not supported`);
+    ```
+4. 😃 The best variant:
+    ```js
+    if (n < 0) {
+      alert(`Power ${n} is not supported`);
+    }
+    ```
 
-if (n < 0) alert(`Power ${n} is not supported`);
-
-if (n < 0)
-  alert(`Power ${n} is not supported`);
-
-if (n < 0) {
-  alert(`Power ${n} is not supported`);
-}
-```
--->
-![](figure-bracket-style.png)
+For a very brief code, one line is allowed, e.g. `if (cond) return null`. But a code block (the last variant) is usually more readable.
 
 ### Line Length
 
@@ -106,9 +112,9 @@ There are two types of indents:
 
 - **Horizontal indents: 2 or 4 spaces.**
 
-    A horizontal indentation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
+    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old holy war. Spaces are more common nowadays.
 
-    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
+    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
 
     For instance, we can align the arguments with the opening bracket, like this:
 
@@ -153,7 +159,7 @@ If you're an experienced JavaScript programmer, you may choose a no-semicolon co
 
 Try to avoid nesting code too many levels deep.
 
-For example, in the loop, it's sometimes a good idea to use the ["continue"](info:while-for#continue) directive to avoid extra nesting.
+For example, in the loop, it's sometimes a good idea to use the [`continue`](info:while-for#continue) directive to avoid extra nesting.
 
 For example, instead of adding a nested `if` conditional like this:
 
@@ -271,7 +277,7 @@ That's because when reading code, we first want to know *what it does*. If the c
 
 ## Style Guides
 
-A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, where to put line breaks, etc. A lot of minor things.
+A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, the maximal line length, etc. A lot of minor things.
 
 When all members of a team use the same style guide, the code looks uniform, regardless of which team member wrote it.
 
