@@ -8,7 +8,7 @@ That is actually the art of programming -- to take a complex task and code it in
 
 Here is a cheat sheet with some suggested rules (see below for more details):
 
-![](code-style.png)
+![](code-style.svg)
 <!--
 ```js
 function pow(x, n) {

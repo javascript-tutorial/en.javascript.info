@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="488px" height="405px" viewBox="0 0 488 405" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>try-catch-flow.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="try-catch-flow.svg">
+            <g id="Rectangle-1-+-Корень" transform="translate(188.000000, 4.000000)">
+                <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="1" y="1" width="78" height="28" rx="14"></rect>
+                <text id="Begin" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="17" y="19">Begin</tspan>
+                </text>
+            </g>
+            <g id="Rectangle-1-+-Корень-Copy-2" transform="translate(294.000000, 262.000000)"></g>
+            <path id="Line" d="M227,57.0499687 L227,34 L230,34 L230,57.0499687 L238,57.0499687 L228.5,76.0499687 L219,57.0499687 L227,57.0499687 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M377,320.049969 L377,297 L380,297 L380,320.049969 L388,320.049969 L378.5,339.049969 L369,320.049969 L377,320.049969 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Path-1218" d="M77.5,219.5 L77.5,131.5 L139.5,131.5 L139.5,134.5 L80.5,134.5 L80.5,219.5 L88.5,219.5 L79,238.5 L69.5,219.5 L77.5,219.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Path-1218-Copy" d="M317.5,219.5 L317.5,131.5 L379.5,131.5 L379.5,134.5 L320.5,134.5 L320.5,219.5 L328.5,219.5 L319,238.5 L309.5,219.5 L317.5,219.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <g id="Rectangle-354-+-Каково-“официальное”" transform="translate(135.000000, 81.000000)" fill="#FFF9EB" stroke="#E8C48E" stroke-width="2">
+                <path d="M2.05929887,52 L93.6102814,102.856071 L185.161264,52 L93.6102814,1.14392927 L2.05929887,52 Z" id="Rectangle-354"></path>
+            </g>
+            <g id="Rectangle-356-+-Отмена" transform="translate(40.000000, 178.000000)">
+                <rect id="Rectangle-356" fill="#FFFFFF" x="0" y="0" width="60" height="20"></rect>
+                <text id="No-Errors" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="7.5" y="13">No Errors</tspan>
+                </text>
+            </g>
+            <g id="Rectangle-356-Copy-+-“Админ”" transform="translate(270.000000, 178.000000)">
+                <rect id="Rectangle-356-Copy" fill="#FFFFFF" x="79" y="0" width="60" height="20"></rect>
+                <text id="An-error-occured-in" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                    <tspan x="0.23828125" y="13">An error occured in the code</tspan>
+                </text>
+            </g>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="288" y="349" width="186" height="49" rx="24.5"></rect>
+            <text id="try-{-//-code...-}" font-family="Consolas" font-size="14" font-weight="normal" line-spacing="10" fill="#8A704D">
+                <tspan x="201" y="115">try {</tspan>
+                <tspan x="202.702148" y="128.330078"></tspan>
+                <tspan x="201" y="135">  // code...</tspan>
+                <tspan x="202.702148" y="148.330078"></tspan>
+                <tspan x="201" y="155">}</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="9" y="244" width="159" height="49" rx="24.5"></rect>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="288" y="244" width="186" height="49" rx="24.5"></rect>
+            <text id="Ignore-catch-block" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="17" y="272">Ignore catch block</tspan>
+            </text>
+            <text id="Ignore-the-rest-of-t" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="294" y="272">Ignore the rest of try</tspan>
+            </text>
+            <text id="Execute-catch-block" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="306" y="376">Execute catch block</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

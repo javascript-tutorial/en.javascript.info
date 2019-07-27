@@ -70,7 +70,7 @@ pow(x, n) =
 
 We can also say that `pow` *recursively calls itself* till `n == 1`.
 
-![recursive diagram of pow](recursion-pow.png)
+![recursive diagram of pow](recursion-pow.svg)
 
 
 For example, to calculate `pow(2, 4)` the recursive variant does these steps:

@@ -16,7 +16,7 @@ The password is checked as follows:
 
 The schema:
 
-![](ifelse_task.png)
+![](ifelse_task.svg)
 
 Please use nested `if` blocks. Mind the overall readability of the code.
 
