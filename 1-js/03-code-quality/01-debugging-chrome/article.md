@@ -16,7 +16,7 @@ Your Chrome version may look a little bit different, but it still should be obvi
 
 Here's what you should see if you are doing it for the first time:
 
-![](chrome-open-sources.png)
+![](chrome-open-sources.svg)
 
 The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
 
