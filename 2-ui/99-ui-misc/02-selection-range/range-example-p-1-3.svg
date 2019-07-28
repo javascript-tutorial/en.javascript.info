@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640px" height="89px" viewBox="0 0 640 89" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>range-example-p-1-3.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="153" y="35" width="345" height="21"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="345" height="21" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="range-example-p-1-3.svg">
+            <text id="&lt;p&gt;Example:-&lt;i&gt;itali" font-family="PTMono-Regular, PT Mono" font-size="18" font-weight="normal" letter-spacing="1" fill="#8A704D">
+                <tspan x="13" y="51">&lt;p&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;</tspan>
+            </text>
+            <use id="Rectangle" stroke="#0000FF" mask="url(#mask-2)" stroke-width="2" fill-opacity="0.1" fill="#0000FF" stroke-dasharray="5,2" xlink:href="#path-1"></use>
+            <polyline id="Path-Copy" stroke="#EE6B47" stroke-width="2" transform="translate(99.000000, 62.500000) scale(1, -1) translate(-99.000000, -62.500000) " points="48 68 48 57 48 57 150 57 150 68"></polyline>
+            <polyline id="Path-Copy-2" stroke="#EE6B47" stroke-width="2" transform="translate(231.000000, 62.500000) scale(1, -1) translate(-231.000000, -62.500000) " points="154 68 154 57 154 57 308 57 308 68"></polyline>
+            <text id="0" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" letter-spacing="0.777777778" fill="#000000">
+                <tspan x="93" y="84">0</tspan>
+            </text>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" letter-spacing="0.777777778" fill="#000000">
+                <tspan x="226" y="84">1</tspan>
+            </text>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" letter-spacing="0.777777778" fill="#000000">
+                <tspan x="334" y="84">2</tspan>
+            </text>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" letter-spacing="0.777777778" fill="#000000">
+                <tspan x="428" y="84">3</tspan>
+            </text>
+            <polyline id="Path-Copy-3" stroke="#EE6B47" stroke-width="2" transform="translate(338.500000, 62.500000) scale(1, -1) translate(-338.500000, -62.500000) " points="312 68 312 57 312 57 365 57 365 68"></polyline>
+            <polyline id="Path-Copy-4" stroke="#EE6B47" stroke-width="2" transform="translate(433.000000, 62.500000) scale(1, -1) translate(-433.000000, -62.500000) " points="369 68 369 57 369 57 497 57 497 68"></polyline>
+        </g>
+    </g>
+</svg>

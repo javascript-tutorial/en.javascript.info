@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="658px" height="246px" viewBox="0 0 658 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>url-object.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="network" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="url-object.svg">
+            <path d="M2,38 L2,218" id="Line-Copy" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M69,132 L69,218" id="Line-Copy-2" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M96,112 L96,218" id="Line-Copy-6" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M3,38 L652,38" id="Line-Copy-10" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M3,74 L267,74" id="Line-Copy-11" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M214,132 L214,218" id="Line-Copy-7" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M203,132 L203,218" id="Line-Copy-8" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M268,38 L268,218" id="Line-Copy-9" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M399,132 L399,218" id="Line-Copy-13" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M582,132 L582,218" id="Line-Copy-14" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <path d="M652,39 L652,218" id="Line-Copy-15" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <text id="href" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="297" y="33">href</tspan>
+            </text>
+            <text id="origin" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="103" y="68">origin</tspan>
+            </text>
+            <path d="M96,112 L266,112" id="Line-Copy-12" stroke="#EE6B47" stroke-width="2" fill="#EE6B47" stroke-linecap="square" stroke-dasharray="1"></path>
+            <text id="host" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="153" y="107">host</tspan>
+            </text>
+            <text id="proto-col" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="10" y="152">proto</tspan>
+                <tspan x="19.6" y="170">col</tspan>
+            </text>
+            <text id="http://site.com:8080" font-family="PTMono-Regular, PT Mono" font-size="18" font-weight="normal" letter-spacing="2.4000001" fill="#000000">
+                <tspan x="4.29999771" y="209">http://site.com:8080/path/page?p1=v1&amp;p2=v2… #has</tspan>
+                <tspan x="637.900002" y="209">h</tspan>
+            </text>
+            <text id="hostname" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="107" y="152">hostname</tspan>
+            </text>
+            <text id="port" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="221" y="152">port</tspan>
+            </text>
+            <text id="pathname" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="294" y="152">pathname</tspan>
+            </text>
+            <text id="search" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="456" y="152">search</tspan>
+            </text>
+            <text id="hash" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="597" y="152">hash</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

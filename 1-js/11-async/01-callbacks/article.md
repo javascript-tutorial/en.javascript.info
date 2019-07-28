@@ -222,7 +222,7 @@ As calls become more nested, the code becomes deeper and increasingly more diffi
 
 That's sometimes called "callback hell" or "pyramid of doom."
 
-![](callback-hell.png)
+![](callback-hell.svg)
 
 The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
 

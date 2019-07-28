@@ -154,7 +154,7 @@ The simplest variant is when the animation goes uniformly, with the same linear 
 
 Here's how that curve looks:
 
-![](bezier-linear.png)
+![](bezier-linear.svg)
 
 ...As we can see, it's just a straight line. As the time (`x`) passes, the completion (`y`) of the animation steadily goes from `0` to `1`.
 
@@ -178,7 +178,7 @@ We can use another Bezier curve: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
 
 The graph:
 
-![](train-curve.png)
+![](train-curve.svg)
 
 As we can see, the process starts fast: the curve soars up high, and then slower and slower.
 
@@ -204,7 +204,7 @@ Other names are shorthands for the following `cubic-bezier`:
 | <code>ease</code><sup>*</sup> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> |
 |-------------------------------|----------------------|-----------------------|--------------------------|
 | <code>(0.25, 0.1, 0.25, 1.0)</code> | <code>(0.42, 0, 1.0, 1.0)</code> | <code>(0, 0, 0.58, 1.0)</code> | <code>(0.42, 0, 0.58, 1.0)</code> |
-| ![ease, figure](ease.png) | ![ease-in, figure](ease-in.png) | ![ease-out, figure](ease-out.png) | ![ease-in-out, figure](ease-in-out.png) |
+| ![ease, figure](ease.svg) | ![ease-in, figure](ease-in.svg) | ![ease-out, figure](ease-out.svg) | ![ease-in-out, figure](ease-in-out.svg) |
 
 `*` -- by default, if there's no timing function, `ease` is used.
 
@@ -246,7 +246,7 @@ But if you click the train, you'll see that:
 
 Why it happens -- pretty obvious if we look at the graph of the given Bezier curve:
 
-![](bezier-train-over.png)
+![](bezier-train-over.svg)
 
 We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made put it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
 

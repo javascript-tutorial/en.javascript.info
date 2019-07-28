@@ -53,7 +53,7 @@ Now let's get into details of how it works.
 
 The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
 
-![](decorator-makecaching-wrapper.png)
+![](decorator-makecaching-wrapper.svg)
 
 As we can see, the wrapper returns the result of `func(x)` "as is". From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
 

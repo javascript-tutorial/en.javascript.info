@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="399px" height="225px" viewBox="0 0 399 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>family-no-father.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="garbage-collection" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="family-no-father.svg">
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="187" y="78" width="78" height="26"></rect>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="203" y="94">Object</tspan>
+            </text>
+            <rect id="Rectangle-3" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="69" y="146" width="118" height="48"></rect>
+            <text id="Object-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="103" y="163">Object</tspan>
+            </text>
+            <text id="wife" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="211" y="146">wife</tspan>
+            </text>
+            <text id="family" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="171" y="61">family</tspan>
+            </text>
+            <text id="name:-&quot;John&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="83" y="183">name: "John"</tspan>
+            </text>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="278" y="146" width="118" height="48"></rect>
+            <text id="name:-&quot;Ann&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="299" y="183">name: "Ann"</tspan>
+            </text>
+            <text id="mother" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="306" y="125">mother</tspan>
+            </text>
+            <text id="Object-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="308" y="163">Object</tspan>
+            </text>
+            <path id="Line" d="M226.5,59.5 L226.5,41.5 L228.5,41.5 L228.5,59.5 L234.5,59.5 L227.5,73.5 L220.5,59.5 L226.5,59.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M244.5,155.5 L196.5,155.5 L196.5,153.5 L244.5,153.5 L244.5,147.5 L258.5,154.5 L244.5,161.5 L244.5,155.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M307.36482,135.447526 L271.11061,110.763808 L272.236192,109.11061 L308.490402,133.794327 L311.867147,128.834732 L319.5,142.5 L303.988074,140.407121 L307.36482,135.447526 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-5" stroke="#D0021B" stroke-width="2" x="48" y="117" width="217" height="99"></rect>
+            <g id="noun_48910_cc" transform="translate(7.000000, 114.000000)">
+                <path d="M17.5030263,1.75054945 L12.4969737,1.75054945 C12.3098684,1.75054945 12.1571053,1.90364835 12.1571053,2.09156044 L12.1571053,3.21745055 L17.8432895,3.21745055 L17.8432895,2.09156044 C17.8432895,1.90364835 17.6905263,1.75054945 17.5030263,1.75054945 L17.5030263,1.75054945 Z" id="Shape"></path>
+                <path d="M28.3638158,3.21745055 L19.5896053,3.21745055 L19.5896053,2.09156044 C19.5896053,0.937978022 18.6540789,-4.4408921e-16 17.5030263,-4.4408921e-16 L12.4969737,-4.4408921e-16 C11.3463158,-4.4408921e-16 10.4103947,0.937978022 10.4103947,2.09156044 L10.4103947,3.21745055 L1.63657895,3.21745055 C0.9375,3.21745055 0.370657895,3.78514286 0.370657895,4.48575824 L0.370657895,4.57516484 C0.370657895,5.27578022 0.9375,5.84347253 1.63657895,5.84347253 L28.3638158,5.84347253 C29.0628947,5.84347253 29.6297368,5.27578022 29.6297368,4.57516484 L29.6297368,4.48575824 C29.6297368,3.78514286 29.0625,3.21745055 28.3638158,3.21745055 L28.3638158,3.21745055 Z M17.8432895,3.21745055 L12.1571053,3.21745055 L12.1571053,2.09156044 C12.1571053,1.90364835 12.3098684,1.75054945 12.4969737,1.75054945 L17.5034211,1.75054945 C17.6909211,1.75054945 17.8432895,1.90364835 17.8432895,2.09156044 L17.8432895,3.21745055 L17.8432895,3.21745055 Z" id="Shape" fill="#D0021B"></path>
+                <path d="M26.0542105,6.28101099 L3.7275,6.28101099 C2.42960526,6.28101099 1.37723684,6.0567033 1.37723684,7.35784615 L3.13973684,33.195956 C3.13973684,34.4959121 4.1925,35.6047912 5.49039474,35.6047912 L24.2921053,35.6047912 C25.59,35.6047912 26.6423684,34.4959121 26.6423684,33.195956 L28.4048684,7.35784615 C28.4044737,6.0567033 27.3521053,6.28101099 26.0542105,6.28101099 L26.0542105,6.28101099 Z M9.63710526,32.1927033 C9.26013158,32.2053626 8.94552632,31.932 8.93289474,31.5807033 L8.23894737,11.664 C8.22671053,11.3127033 8.52236842,11.0171868 8.89815789,11.0041319 C9.27513158,10.9910769 9.58973684,11.2652308 9.60236842,11.6165275 L10.2963158,31.5332308 C10.3085526,31.8841319 10.0132895,32.180044 9.63710526,32.1927033 L9.63710526,32.1927033 Z M15.6809211,31.5632967 C15.6809211,31.9145934 15.3753947,32.1998242 14.9988158,32.1998242 C14.6222368,32.1998242 14.3167105,31.9141978 14.3167105,31.5632967 L14.3167105,11.6343297 C14.3167105,11.2826374 14.6222368,10.9978022 14.9988158,10.9978022 C15.3753947,10.9978022 15.6809211,11.2826374 15.6809211,11.6343297 L15.6809211,31.5632967 L15.6809211,31.5632967 Z M21.0651316,31.5810989 C21.0528947,31.9323956 20.7378947,32.2057582 20.3609211,32.1930989 C19.9847368,32.1804396 19.6894737,31.8845275 19.7017105,31.5332308 L20.3956579,11.6165275 C20.4078947,11.2652308 20.7225,10.9910769 21.0994737,11.0041319 C21.4756579,11.0175824 21.7713158,11.3127033 21.7590789,11.664 L21.0651316,31.5810989 L21.0651316,31.5810989 Z" id="Shape" fill="#D0021B"></path>
+            </g>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="181" y="13" width="93" height="26"></rect>
+            <text id="&lt;global&gt;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="197" y="30">&lt;global&gt;</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

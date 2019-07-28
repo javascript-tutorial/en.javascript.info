@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="463px" height="524px" viewBox="0 0 463 524" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>metric-scroll-width-height.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="metric-scroll-width-height.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="463" height="524"></rect>
+            <text id="Introduction" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="66" y="54">Introduction</tspan>
+                <tspan x="166.726562" y="54" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="66" y="82" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="66" y="101" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="66" y="120" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="66" y="139" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="66" y="158" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape </tspan>
+                <tspan x="66" y="177" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">and first appeared in that company’s </tspan>
+                <tspan x="66" y="196" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Navigator 2.0 browser. It has appeared </tspan>
+                <tspan x="66" y="215" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">in all subsequent browsers from </tspan>
+                <tspan x="66" y="234" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Netscape and in all browsers from </tspan>
+                <tspan x="66" y="253" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Microsoft starting with Internet Explorer </tspan>
+                <tspan x="66" y="272" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">3.0.</tspan>
+                <tspan x="66" y="291" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">The development of this Standard </tspan>
+                <tspan x="66" y="310" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">started in November 1996. The first </tspan>
+                <tspan x="66" y="329" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">edition of this Ecma Standard was </tspan>
+                <tspan x="66" y="348" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">adopted by the Ecma General Assembly </tspan>
+                <tspan x="66" y="367" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">of June 1997.</tspan>
+                <tspan x="66" y="386" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">That Ecma Standard was submitted to </tspan>
+                <tspan x="66" y="405" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">ISO/IEC JTC 1 for adoption under the </tspan>
+                <tspan x="66" y="424" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">fast-track procedure, and approved as </tspan>
+                <tspan x="66" y="443" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">international standard ISO/IEC 16262, in </tspan>
+                <tspan x="66" y="462" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">April 1998. The Ecma General Assembly </tspan>
+                <tspan x="66" y="481" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">of June 1998 approved the second </tspan>
+                <tspan x="66" y="500" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">edition of ECMA-262 to keep it fully </tspan>
+                <tspan x="66" y="519" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">aligned with ISO/IEC 16262. Changes </tspan>
+                <tspan x="66" y="538" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">between the first and the second </tspan>
+                <tspan x="66" y="557" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">edition are editorial in nature.</tspan>
+            </text>
+            <rect id="Rectangle-15" fill-opacity="0.8" fill="#FFFFFF" x="58" y="410" width="312" height="111"></rect>
+            <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" x="58" y="35" width="312" height="89"></rect>
+            <path d="M370,148 L46,148 L46,388 L370,388 L370,148 Z M21,123 L395,123 L395,413 L21,413 L21,123 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F"></path>
+            <rect id="Rectangle-2" stroke-opacity="0.8" stroke="#E8C48F" stroke-width="2" x="45" y="22" width="326" height="502"></rect>
+            <text id="scrollHeight:723px" transform="translate(426.000000, 270.500000) rotate(-90.000000) translate(-426.000000, -270.500000) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="350.4" y="275" fill="#EE6B47">scrollHeight:</tspan>
+                <tspan x="459.6" y="275" fill="#3B86C4">723px</tspan>
+            </text>
+            <path d="M371,22 L449,22" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M371,524 L449,524" id="Line-26" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path id="Line-25" d="M440,40 L440,506 L446,506 L439,520 L432,506 L438,506 L438,40 L432,40 L439,26 L446,40 L440,40 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-39" d="M64,108 L335.359985,108 L335.359985,102 L349.359985,109 L335.359985,116 L335.359985,110 L64,110 L64,116 L50,109 L64,102 L64,108 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path d="M352,154 L352,100" id="Line-42" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M47,154 L47,100" id="Line-43" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <text id="scrollWidth-=-324px" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="149.2" y="105" fill="#EE6B47">scrollWidth = </tspan>
+                <tspan x="266.8" y="105" fill="#3B86C4">324px</tspan>
+            </text>
+            <g id="Scrollbar" transform="translate(354.000000, 148.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F2F2" x="0.5" y="0.5" width="15" height="239" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 230.000000) scale(1, -1) translate(-8.000000, -230.000000) translate(0.000000, 220.000000)">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " fill="url(#linearGradient-2)" stroke="#CFCFCF">
+                        <rect id="Rectangle-18" x="0.5" y="0.5" width="15" height="50" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" fill="#D8D8D8" stroke="#979797">
+                        <rect id="Rectangle-22" x="0.5" y="0.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-23" x="0.5" y="3.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-24" x="0.5" y="6.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-25" x="0.5" y="9.5" width="7" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

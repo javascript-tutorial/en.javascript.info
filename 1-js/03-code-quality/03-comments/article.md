@@ -4,7 +4,7 @@ As we know from the chapter <info:structure>, comments can be single-line: start
 
 We normally use them to describe how and why the code works.
 
-At first sight, commenting might be obvious, but novices in programming usually get it wrong.
+At first sight, commenting might be obvious, but novices in programming often use them wrongly.
 
 ## Bad comments
 
@@ -120,9 +120,9 @@ In reality, we can't totally avoid "explanatory" comments. There are complex alg
 So, explanatory comments are usually bad. Which comments are good?
 
 Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
 
-Document a function usage
+Document function parameters and usage
 : There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
 
     For instance:

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="236px" height="52px" viewBox="0 0 236 52" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>love-html5-classes.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="regexp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" font-family="PTMono-Regular, PT Mono" font-weight="normal">
+        <g id="love-html5-classes.svg">
+            <text id="I-love-HTML5" font-size="22" letter-spacing="4.58333333" fill="#8A704D">
+                <tspan x="9" y="39">I love HTML</tspan>
+                <tspan x="204.616667" y="39">5</tspan>
+            </text>
+            <text id="\s-\w-\w-\w-\w-\d" font-size="12" letter-spacing="-1.19999998" fill="#F38158">
+                <tspan x="114" y="16">\s \w \w \w \w \</tspan>
+                <tspan x="210" y="16">d</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

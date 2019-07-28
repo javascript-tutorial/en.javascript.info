@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="463px" height="130px" viewBox="0 0 463 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>witch_greedy1.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="regexp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="witch_greedy1.svg">
+            <text id="a-&quot;witch&quot;-and-her-&quot;b" font-family="PTMono-Regular, PT Mono" font-size="22" font-weight="normal" fill="#8A704D">
+                <tspan x="20" y="112">a "witch" and her "broom" is one</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" x="45.5" y="50.5" width="14" height="76"></rect>
+            <path d="M52.0039062,60.4414062 L51.6757812,65.9375 L49.7539062,65.9375 L49.4140625,60.4414062 L52.0039062,60.4414062 Z M56.5625,60.4414062 L56.234375,65.9375 L54.3125,65.9375 L53.9726562,60.4414062 L56.5625,60.4414062 Z" id="--&quot;-----------------" fill="#CB1E31"></path>
+            <path id="Line" d="M51.5,30.5 L51.5,8.5 L53.5,8.5 L53.5,30.5 L59.5,30.5 L52.5,44.5 L45.5,30.5 L51.5,30.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

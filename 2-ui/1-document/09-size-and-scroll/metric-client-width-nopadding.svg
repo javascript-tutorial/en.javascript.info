@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="409px" height="467px" viewBox="0 0 409 467" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>metric-client-width-nopadding.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="metric-client-width-nopadding.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="409" height="467"></rect>
+            <path d="M364,156 L60,156 L60,356 L364,356 L364,156 Z M35,131 L389,131 L389,381 L35,381 L35,131 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F"></path>
+            <text id="clientWidth:284px-=-" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="84.7" y="399.64193" fill="#EE6B47">clientWidth:</tspan>
+                <tspan x="171.1" y="399.64193" fill="#3B86C4">284px </tspan>
+                <tspan x="214.3" y="399.64193" fill="#EE6B47">= content width</tspan>
+            </text>
+            <path id="Line-44" d="M77.6799927,408.64193 L329.679993,408.64193 L329.679993,402.64193 L343.679993,409.64193 L329.679993,416.64193 L329.679993,410.64193 L77.6799927,410.64193 L77.6799927,416.64193 L63.6799927,409.64193 L77.6799927,402.64193 L77.6799927,408.64193 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="CSS-width:-300px" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="145.9" y="429.64193" fill="#F38158">CSS width:</tspan>
+                <tspan x="217.9" y="429.64193" fill="#3B86C4"> 300px</tspan>
+            </text>
+            <path id="Line-47" d="M76.6799927,433.64193 L349,433.64193 L349,427.64193 L363,434.64193 L349,441.64193 L349,435.64193 L76.6799927,435.64193 L76.6799927,441.64193 L62.6799927,434.64193 L76.6799927,427.64193 L76.6799927,433.64193 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="Introduction-This-Ec" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="62" y="173">Introduction</tspan>
+                <tspan x="162.726562" y="173" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="62" y="201" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="62" y="220" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="62" y="239" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="62" y="258" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="62" y="277" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="62" y="296" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="62" y="315" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">2.0 browser. It has appeared in all </tspan>
+                <tspan x="62" y="334" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">subsequent browsers from Netscape and </tspan>
+                <tspan x="62" y="353" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">in all browsers from Microsoft starting with </tspan>
+            </text>
+            <ellipse id="Oval-5" stroke="#EE6B47" stroke-width="2" fill="#FFF9EB" cx="191" cy="58.8580704" rx="76" ry="43.5"></ellipse>
+            <path id="Line" d="M190,114.638622 L190,103 L192,103 L192,114.638622 L198,114.638622 L191,128.638622 L184,114.638622 L190,114.638622 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="padding:-0;" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="136" y="52">padding: 0;</tspan>
+                <tspan x="136" y="70">width: 300px;</tspan>
+            </text>
+            <g id="Group-2" transform="translate(348.000000, 156.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F2F2" x="0.5" y="0.5" width="15" height="199" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 190.000000) scale(1, -1) translate(-8.000000, -190.000000) translate(0.000000, 180.000000)">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " fill="url(#linearGradient-2)" stroke="#CFCFCF">
+                        <rect id="Rectangle-18" x="0.5" y="0.5" width="15" height="50" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" fill="#D8D8D8" stroke="#979797">
+                        <rect id="Rectangle-22" x="0.5" y="0.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-23" x="0.5" y="3.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-24" x="0.5" y="6.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-25" x="0.5" y="9.5" width="7" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+            <path d="M60.5,354.64193 L60.5,450.64193" id="Line-46" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M345.5,354.64193 L345.5,414" id="Line-45" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M363.5,354.64193 L363.5,450.64193" id="Line-48" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+        </g>
+    </g>
+</svg>

@@ -97,7 +97,7 @@ new User("Dude").sayHi(); // Hello Dude!
 
 Please note that the call to the parent method `super.say()` from `sayHiMixin` looks for the method in the prototype of that mixin, not the class.
 
-![](mixin-inheritance.png)
+![](mixin-inheritance.svg)
 
 That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
 

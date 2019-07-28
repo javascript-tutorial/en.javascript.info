@@ -10,7 +10,7 @@ For instance, we have a `user` object with its properties and methods, and want 
 
 In JavaScript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":
 
-![prototype](object-prototype-empty.png)
+![prototype](object-prototype-empty.svg)
 
 The prototype is a little bit "magical". When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". Many cool language features and programming techniques are based on it.
 
@@ -66,7 +66,7 @@ Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
 
 Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rabbit`, so JavaScript follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
 
-![](proto-animal-rabbit.png)
+![](proto-animal-rabbit.svg)
 
 Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypically inherits from `animal`".
 
@@ -97,7 +97,7 @@ rabbit.walk(); // Animal walk
 
 The method is automatically taken from the prototype, like this:
 
-![](proto-animal-rabbit-walk.png)
+![](proto-animal-rabbit-walk.svg)
 
 The prototype chain can be longer:
 
@@ -129,7 +129,7 @@ longEar.walk(); // Animal walk
 alert(longEar.jumps); // true (from rabbit)
 ```
 
-![](proto-animal-rabbit-chain.png)
+![](proto-animal-rabbit-chain.svg)
 
 There are actually only two limitations:
 
@@ -169,7 +169,7 @@ rabbit.walk(); // Rabbit! Bounce-bounce!
 
 From now on, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
 
-![](proto-animal-rabbit-walk-2.png)
+![](proto-animal-rabbit-walk-2.svg)
 
 That's for data properties only, not for accessors. If a property is a getter/setter, then it behaves like a function: getters/setters are looked up in the prototype.
 
@@ -245,7 +245,7 @@ alert(animal.isSleeping); // undefined (no such property in the prototype)
 
 The resulting picture:
 
-![](proto-animal-rabbit-walk-3.png)
+![](proto-animal-rabbit-walk-3.svg)
 
 If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
 
@@ -305,7 +305,7 @@ for(let prop in rabbit) {
 
 Here we have the following inheritance chain: `rabbit` inherits from `animal`, that inherits from `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
 
-![](rabbit-animal-object.png)
+![](rabbit-animal-object.svg)
 
 Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? We did not define it. Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
 

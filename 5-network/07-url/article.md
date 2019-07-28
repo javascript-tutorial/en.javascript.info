@@ -48,7 +48,7 @@ alert(url.pathname); // /url
 
 Here's the cheatsheet:
 
-![](url-object.png)
+![](url-object.svg)
 
 - `href` is the full url, same as `url.toString()`
 - `protocol` ends with the colon character `:`

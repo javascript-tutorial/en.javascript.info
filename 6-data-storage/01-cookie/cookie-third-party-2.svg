@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="668px" height="192px" viewBox="0 0 668 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>cookie-third-party-2.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="data-storage" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="cookie-third-party-2.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="38" y="48" width="282" height="99"></rect>
+            <text id="&lt;img-src=&quot;https://ad" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="42" y="70">&lt;img src="https://ads.com/banner.png"&gt;</tspan>
+            </text>
+            <text id="site.com" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="149" y="36">site.com</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="505" y="48" width="140" height="99"></rect>
+            <text id="ads.com" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="543" y="36">ads.com</tspan>
+            </text>
+            <path id="Line" d="M485.492587,91.6098407 L321.374704,69.3565684 L321.643432,67.3747042 L485.761314,89.6279765 L486.567496,83.682384 L499.5,92.5 L484.686405,97.5554332 L485.492587,91.6098407 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="GET-/banner.png" transform="translate(416.568389, 68.381858) rotate(7.000000) translate(-416.568389, -68.381858) " font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="361.068389" y="73.8818576">GET /banner.png</tspan>
+            </text>
+            <text id="cookie:-id=123" transform="translate(410.079569, 93.199054) rotate(7.000000) translate(-410.079569, -93.199054) " font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="363.079569" y="98.6990536">cookie: id=123</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

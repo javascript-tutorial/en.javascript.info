@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="728px" height="358px" viewBox="0 0 728 358" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>document-and-window-coordinates-scrolled.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="document-and-window-coordinates-scrolled.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="728" height="358"></rect>
+            <text id="Introduction-This-Ec" opacity="0.7" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="34" y="176">Introduction</tspan>
+                <tspan x="134.726562" y="176" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="34" y="204" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="34" y="223" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="34" y="242" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="34" y="261" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="34" y="280" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="34" y="299" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="34" y="318" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">2.0 browser. </tspan>
+                <tspan x="34" y="337" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">     </tspan>
+                <tspan x="34" y="356" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">It has appeared in all subsequent browsers </tspan>
+                <tspan x="34" y="375" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">from Netscape and in all browsers from </tspan>
+                <tspan x="34" y="394" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Microsoft starting with Internet Explorer </tspan>
+                <tspan x="34" y="413" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">3.0. The development of this Standard </tspan>
+                <tspan x="34" y="432" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">started in November 1996. </tspan>
+                <tspan x="34" y="451" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">The first edition of this Ecma Standard was </tspan>
+                <tspan x="34" y="470" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">adopted by the Ecma General Assembly of </tspan>
+                <tspan x="34" y="489" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">June 1997.</tspan>
+                <tspan x="34" y="508" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">That Ecma Standard was submitted to ISO/</tspan>
+                <tspan x="34" y="527" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">IEC JTC 1 for adoption under the fast-track </tspan>
+                <tspan x="34" y="546" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">procedure, and approved as international </tspan>
+                <tspan x="34" y="565" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">standard ISO/IEC 16262, in April 1998. The </tspan>
+                <tspan x="34" y="584" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Ecma General Assembly of June 1998 </tspan>
+                <tspan x="34" y="603" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">approved the second edition of ECMA-262 </tspan>
+                <tspan x="34" y="622" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">to keep it fully aligned with ISO/IEC 16262. </tspan>
+                <tspan x="34" y="641" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Changes between the first and the second </tspan>
+                <tspan x="34" y="660" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">edition are editorial in nature.</tspan>
+            </text>
+            <text id="😍" font-family="AppleColorEmoji, Apple Color Emoji" font-size="18" font-weight="normal" fill="#5A4739">
+                <tspan x="139" y="330">😍</tspan>
+            </text>
+            <path id="Line-39" d="M148.5,298 L148.5,131 L150.5,131 L150.5,298 L156.5,298 L149.5,312 L142.5,298 L148.5,298 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="pageY" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="157" y="155">pageY</tspan>
+            </text>
+            <text id="clientY" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="156.4" y="177">clientY</tspan>
+            </text>
+            <path id="Line-39-Copy" d="M126,323.5 L13,323.5 L12,323.5 L12,321.5 L126,321.5 L126,315.5 L140,322.5 L126,329.5 L126,323.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="pageX" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="23" y="316">pageX</tspan>
+            </text>
+            <text id="clientX" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="22.4" y="337">clientX</tspan>
+            </text>
+            <g id="np_browser_551045_E8C48F" transform="translate(-1.000000, 68.000000)" fill="#E8C48F" fill-rule="nonzero">
+                <path d="M22.8007131,0 C7.75885978,0 0,8.15688571 0,24 L0,266 C0,281.843114 7.75885978,290 22.8007131,290 L332.145811,290 C347.187664,290 354,282.843114 354,267 L354,24 C354,8.15688571 347.187664,0 332.145811,0 L22.8007131,0 Z M17.3747837,15.2857143 L335.552488,15.2857143 C338.087318,15.2857143 339.739037,17.2978173 339.739037,20.3857143 L338,55.328125 L13.188235,55.328125 L13.188235,20.3857143 C13.188235,17.2978173 14.8399541,15.2857143 17.3747837,15.2857143 Z M38.5340462,29.1428571 C34.6323815,29.1428571 31.4666667,32.4703619 31.4666667,36.5714286 C31.4666667,40.6724953 34.6323815,44.0000001 38.5340462,44.0000001 C42.4357108,44.0000001 45.6014257,40.6724953 45.6014257,36.5714286 C45.6014257,32.4703619 42.4357108,29.1428571 38.5340462,29.1428571 Z M70.0007129,29.1428571 C66.0990482,29.1428571 62.9333333,32.4703619 62.9333333,36.5714286 C62.9333333,40.6724953 66.0990482,44.0000001 70.0007129,44.0000001 C73.9023775,44.0000001 77.0680924,40.6724953 77.0680924,36.5714286 C77.0680924,32.4703619 73.9023775,29.1428571 70.0007129,29.1428571 Z M101.46738,29.1428571 C97.5657149,29.1428571 94.4,32.4703619 94.4,36.5714286 C94.4,40.6724953 97.5657149,44.0000001 101.46738,44.0000001 C105.369044,44.0000001 108.534759,40.6724953 108.534759,36.5714286 C108.534759,32.4703619 105.369044,29.1428571 101.46738,29.1428571 Z M14,71.171875 L338,71.171875 L339.86524,269.547619 C339.86524,272.329898 338.213521,274.142857 335.678691,274.142857 C263.454865,274.142857 209.286995,274.142857 173.175081,274.142857 C138.580838,274.142857 86.6894732,274.142857 17.5009866,274.142857 C14.9661569,274.142857 13.3144379,272.329898 13.3144379,269.547619 L14,71.171875 Z" id="Shape"></path>
+            </g>
+            <text id="Introduction-This-Ec" opacity="0.7" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="409" y="34">Introduction</tspan>
+                <tspan x="509.726562" y="34" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="409" y="62" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="409" y="81" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="409" y="100" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="409" y="119" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="409" y="138" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="409" y="157" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="409" y="176" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">2.0 browser. </tspan>
+                <tspan x="409" y="195" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">     </tspan>
+                <tspan x="409" y="214" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">It has appeared in all subsequent browsers </tspan>
+                <tspan x="409" y="233" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">from Netscape and in all browsers from </tspan>
+                <tspan x="409" y="252" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Microsoft starting with Internet Explorer </tspan>
+                <tspan x="409" y="271" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">3.0. The development of this Standard </tspan>
+                <tspan x="409" y="290" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">started in November 1996. </tspan>
+                <tspan x="409" y="309" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">The first edition of this Ecma Standard was </tspan>
+                <tspan x="409" y="328" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">adopted by the Ecma General Assembly of </tspan>
+                <tspan x="409" y="347" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">June 1997.</tspan>
+                <tspan x="409" y="366" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">That Ecma Standard was submitted to ISO/</tspan>
+                <tspan x="409" y="385" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">IEC JTC 1 for adoption under the fast-track </tspan>
+                <tspan x="409" y="404" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">procedure, and approved as international </tspan>
+                <tspan x="409" y="423" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">standard ISO/IEC 16262, in April 1998. The </tspan>
+                <tspan x="409" y="442" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Ecma General Assembly of June 1998 </tspan>
+                <tspan x="409" y="461" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">approved the second edition of ECMA-262 </tspan>
+                <tspan x="409" y="480" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">to keep it fully aligned with ISO/IEC 16262. </tspan>
+                <tspan x="409" y="499" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Changes between the first and the second </tspan>
+                <tspan x="409" y="518" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">edition are editorial in nature.</tspan>
+            </text>
+            <rect id="Rectangle" fill="#FFFFFF" opacity="0.6" x="392" y="87" width="307" height="42"></rect>
+            <g id="np_browser_551045_E8C48F" transform="translate(374.000000, 71.000000)" fill="#E8C48F" fill-rule="nonzero">
+                <path d="M22.8007131,0 C7.75885978,0 0,8.15688571 0,24 L0,266 C0,281.843114 7.75885978,290 22.8007131,290 L332.145811,290 C347.187664,290 354,282.843114 354,267 L354,24 C354,8.15688571 347.187664,0 332.145811,0 L22.8007131,0 Z M17.3747837,15.2857143 L335.552488,15.2857143 C338.087318,15.2857143 339.739037,17.2978173 339.739037,20.3857143 L338,55.328125 L13.188235,55.328125 L13.188235,20.3857143 C13.188235,17.2978173 14.8399541,15.2857143 17.3747837,15.2857143 Z M38.5340462,29.1428571 C34.6323815,29.1428571 31.4666667,32.4703619 31.4666667,36.5714286 C31.4666667,40.6724953 34.6323815,44.0000001 38.5340462,44.0000001 C42.4357108,44.0000001 45.6014257,40.6724953 45.6014257,36.5714286 C45.6014257,32.4703619 42.4357108,29.1428571 38.5340462,29.1428571 Z M70.0007129,29.1428571 C66.0990482,29.1428571 62.9333333,32.4703619 62.9333333,36.5714286 C62.9333333,40.6724953 66.0990482,44.0000001 70.0007129,44.0000001 C73.9023775,44.0000001 77.0680924,40.6724953 77.0680924,36.5714286 C77.0680924,32.4703619 73.9023775,29.1428571 70.0007129,29.1428571 Z M101.46738,29.1428571 C97.5657149,29.1428571 94.4,32.4703619 94.4,36.5714286 C94.4,40.6724953 97.5657149,44.0000001 101.46738,44.0000001 C105.369044,44.0000001 108.534759,40.6724953 108.534759,36.5714286 C108.534759,32.4703619 105.369044,29.1428571 101.46738,29.1428571 Z M14,71.171875 L338,71.171875 L339.86524,269.547619 C339.86524,272.329898 338.213521,274.142857 335.678691,274.142857 C263.454865,274.142857 209.286995,274.142857 173.175081,274.142857 C138.580838,274.142857 86.6894732,274.142857 17.5009866,274.142857 C14.9661569,274.142857 13.3144379,272.329898 13.3144379,269.547619 L14,71.171875 Z" id="Shape"></path>
+            </g>
+            <rect id="Rectangle-2" stroke-opacity="0.8" stroke="#E8C48F" stroke-width="2" x="387" y="7" width="326" height="351"></rect>
+            <rect id="Rectangle-14" fill-opacity="0.8" fill="#FFFFFF" x="395" y="8" width="312" height="61"></rect>
+            <path id="Line-39" d="M517.5,166 L517.5,7 L519.5,7 L519.5,166 L525.5,166 L518.5,180 L511.5,166 L517.5,166 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-39-Copy-2" d="M530.5,166 L530.5,137 L532.5,137 L532.5,166 L538.5,166 L531.5,180 L524.5,166 L530.5,166 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="pageY" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="525" y="23">pageY</tspan>
+            </text>
+            <text id="clientY" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="542.4" y="172">clientY</tspan>
+            </text>
+            <path id="Line-39-Copy" d="M501,190.5 L389,190.5 L388,190.5 L388,188.5 L501,188.5 L501,182.5 L515,189.5 L501,196.5 L501,190.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="pageX" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="398" y="183">pageX</tspan>
+            </text>
+            <text id="clientX" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                <tspan x="397.4" y="204">clientX</tspan>
+            </text>
+            <text id="😍" font-family="AppleColorEmoji, Apple Color Emoji" font-size="18" font-weight="normal" fill="#5A4739">
+                <tspan x="514" y="197">😍</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

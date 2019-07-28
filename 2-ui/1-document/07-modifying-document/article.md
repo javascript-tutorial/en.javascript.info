@@ -189,7 +189,7 @@ Here's an example of using these methods to add more items to a list and the tex
 
 Here's a small picture what methods do:
 
-![](before-prepend-append-after.png)
+![](before-prepend-append-after.svg)
 
 So the final list will be:
 
@@ -269,7 +269,7 @@ That's how we can append an arbitrary HTML to our page.
 
 Here's the picture of insertion variants:
 
-![](insert-adjacent.png)
+![](insert-adjacent.svg)
 
 We can easily notice similarities between this and the previous picture. The insertion points are actually the same, but this method inserts HTML.
 

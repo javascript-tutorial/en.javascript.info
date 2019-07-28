@@ -200,7 +200,7 @@ setTimeout(function run() {
 
 For `setInterval` the internal scheduler will run `func(i)` every 100ms:
 
-![](setinterval-interval.png)
+![](setinterval-interval.svg)
 
 Did you notice?
 
@@ -216,7 +216,7 @@ In the edge case, if the function always executes longer than `delay` ms, then t
 
 And here is the picture for the recursive `setTimeout`:
 
-![](settimeout-interval.png)
+![](settimeout-interval.svg)
 
 **The recursive `setTimeout` guarantees the fixed delay (here 100ms).**
 

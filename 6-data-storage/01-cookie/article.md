@@ -196,7 +196,7 @@ Now, while browsing the web in another window, you occasionally come to another 
 
 The form is submitted from `evil.com` directly to the bank site, and your cookie is also sent, just because it's sent every time you visit `bank.com`. So the bank recognizes you and actually performs the payment.
 
-![](cookie-xsrf.png)
+![](cookie-xsrf.svg)
 
 That's called a cross-site request forgery (or XSRF) attack.
 
@@ -358,15 +358,15 @@ For instance:
 1. A page at `site.com` loads a banner from another site: `<img src="https://ads.com/banner.png">`.
 2. Along with the banner, the remote server at `ads.com` may set `Set-Cookie` header with cookie like `id=1234`. Such cookie originates from `ads.com` domain, and will only be visible at `ads.com`:
 
-    ![](cookie-third-party.png)
+    ![](cookie-third-party.svg)
 
 3. Next time when `ads.com` is accessed, the remote server gets the `id` cookie and recognizes the user:
 
-    ![](cookie-third-party-2.png)
+    ![](cookie-third-party-2.svg)
 
 4. What's even more important, when the users moves from `site.com` to another site `other.com` that also has a banner, then `ads.com` gets the cookie, as it belongs to `ads.com`, thus recognizing the visitor and tracking him as he moves between sites:
 
-    ![](cookie-third-party-3.png)
+    ![](cookie-third-party-3.svg)
 
 
 Third-party cookies are traditionally used for tracking and ads services, due to their nature. They are bound to the originating domain, so `ads.com` can track the same user between different sites, if they all access it.

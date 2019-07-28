@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="373px" height="152px" viewBox="0 0 373 152" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>promise-then-many.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="promise-then-many.svg">
+            <rect id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="10" y="120" width="108" height="28"></rect>
+            <text id=".then" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="42.5" y="139">.then</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="131" y="4" width="108" height="28"></rect>
+            <text id="new-Promise" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="138.3" y="22">new Promise</tspan>
+            </text>
+            <text id="resolve(1)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="142" y="54">resolve(1)</tspan>
+            </text>
+            <path id="Line-Copy-8" d="M184,93 L184,71 L186,71 L186,93 L192,93 L185,107 L178,93 L184,93 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="131" y="120" width="108" height="28"></rect>
+            <text id=".then-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="164" y="139">.then</tspan>
+            </text>
+            <path id="Line-Copy-9" d="M74.3957845,97.6522953 L113.74577,70.1073057 L114.892694,71.7457696 L75.5427092,99.2907591 L78.9834833,104.206151 L63.5,106.5 L70.9550105,92.7369037 L74.3957845,97.6522953 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1-Copy-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="255" y="120" width="108" height="28"></rect>
+            <text id=".then-copy-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="287.5" y="139">.then</tspan>
+            </text>
+            <path id="Line-Copy-10" d="M293.891997,98.6098627 L256.595473,69.1652385 L257.834762,67.5954729 L295.131286,97.0400972 L298.849151,92.3308006 L305.5,106.5 L290.174131,103.319159 L293.891997,98.6098627 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

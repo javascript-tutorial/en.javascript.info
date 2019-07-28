@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="440px" height="183px" viewBox="0 0 440 183" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>mouseover-mouseout-from-outside.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="202" y="57" width="126" height="93"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="126" height="93" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mouseover-mouseout-from-outside.svg">
+            <use id="Rectangle-10" stroke="#E8C48E" mask="url(#mask-2)" stroke-width="8" fill="#FFF9EB" opacity="0.6" stroke-dasharray="5,1,5,1" xlink:href="#path-1"></use>
+            <g id="noun_69008_cc" transform="translate(171.000000, 8.000000)" fill="#E8C48E">
+                <path d="M234.020833,169 L4.97916667,169 C2.23066667,169 0,167.09875 0,164.775 L0,4.225 C0,1.90125 2.23066667,0 4.97916667,0 L234.020833,0 C236.759375,0 239,1.90125 239,4.225 L239,164.775 C239,167.09875 236.759375,169 234.020833,169 L234.020833,169 Z M9.95833333,160.55 L229.041667,160.55 L229.041667,8.45 L9.95833333,8.45 L9.95833333,160.55 L9.95833333,160.55 Z" id="Shape"></path>
+                <path d="M229.041667,42.25 L9.95833333,42.25 C7.20983333,42.25 4.97916667,40.34875 4.97916667,38.025 C4.97916667,35.70125 7.20983333,33.8 9.95833333,33.8 L229.041667,33.8 C231.780208,33.8 234.020833,35.70125 234.020833,38.025 C234.020833,40.34875 231.780208,42.25 229.041667,42.25 L229.041667,42.25 Z" id="Shape"></path>
+                <path d="M27.9166667,20.9 C27.9166667,23.11 26.1266667,24.9 23.9166667,24.9 C21.7066667,24.9 19.9166667,23.11 19.9166667,20.9 C19.9166667,18.69 21.7066667,16.9 23.9166667,16.9 C26.1266667,16.9 27.9166667,18.69 27.9166667,20.9 L27.9166667,20.9 Z" id="Shape"></path>
+                <path d="M47.8333333,20.9 C47.8333333,23.11 46.0433333,24.9 43.8333333,24.9 C41.6233333,24.9 39.8333333,23.11 39.8333333,20.9 C39.8333333,18.69 41.6233333,16.9 43.8333333,16.9 C46.0433333,16.9 47.8333333,18.69 47.8333333,20.9 L47.8333333,20.9 Z" id="Shape"></path>
+                <path d="M67.75,20.9 C67.75,23.11 65.96,24.9 63.75,24.9 C61.54,24.9 59.75,23.11 59.75,20.9 C59.75,18.69 61.54,16.9 63.75,16.9 C65.96,16.9 67.75,18.69 67.75,20.9 L67.75,20.9 Z" id="Shape"></path>
+            </g>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="232" y="86" width="67" height="34"></rect>
+            <text id="#TO" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="250.99681" y="109">#TO</tspan>
+            </text>
+            <polygon id="Fill-21" fill="#EE6B47" transform="translate(159.000000, 103.646000) scale(-1, 1) translate(-159.000000, -103.646000) " points="223.12832 94.6353921 217.344468 101.853926 105.198001 101.853926 108.348404 94.146 82 103.645409 108.348404 113.146 105.235092 105.438074 217.204218 105.438074 223.12832 112.830378 236 112.830378 228.709332 103.733476 236 94.6353921"></polygon>
+            <text id="target" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="240" y="80">target</tspan>
+            </text>
+            <text id="relatedTarget-=-null" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="1" y="85">relatedTarget = null</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

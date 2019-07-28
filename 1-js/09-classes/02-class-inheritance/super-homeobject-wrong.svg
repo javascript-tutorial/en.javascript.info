@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="395px" height="192px" viewBox="0 0 395 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>super-homeobject-wrong.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="super-homeobject-wrong.svg">
+            <path d="M237,30 L237,58 L335,58 L335,30 L237,30 Z" id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="sayHi" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="247" y="48">sayHi</tspan>
+            </text>
+            <text id="plant" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="241" y="22">plant</tspan>
+            </text>
+            <path d="M237,143 L237,171 L335,171 L335,143 L237,143 Z" id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="sayHi" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="247" y="162">sayHi</tspan>
+            </text>
+            <text id="tree" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="241" y="135">tree</tspan>
+            </text>
+            <path id="Line" d="M288.5,84.5 L288.5,112.5 L286.5,112.5 L286.5,84.5 L280.5,84.5 L287.5,70.5 L294.5,84.5 L288.5,84.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M121.003531,156.550731 L246.003617,157.00363 L245.99637,159.003617 L120.996285,158.550718 L120.974546,164.550678 L107,157.5 L121.02527,150.55077 L121.003531,156.550731 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="30" width="98" height="28"></rect>
+            <text id="sayHi" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="18" y="48">sayHi</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="143" width="98" height="28"></rect>
+            <text id="animal" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="22">animal</tspan>
+            </text>
+            <text id="rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="131">rabbit</tspan>
+            </text>
+            <path id="Line-Copy-4" d="M59.5,86.5 L59.5,114.5 L57.5,114.5 L57.5,86.5 L51.5,86.5 L58.5,72.5 L65.5,86.5 L59.5,86.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[HomeObject]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="115" y="142">[[HomeObject]]</tspan>
+            </text>
+            <text id="sayHi" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="16" y="162">sayHi</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

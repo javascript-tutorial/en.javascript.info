@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="707px" height="463px" viewBox="0 0 707 463" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>arraybuffer-view-buffersource.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="binary" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="arraybuffer-view-buffersource.svg">
+            <rect id="Rectangle" stroke-opacity="0.35" stroke="#979797" fill="#F2F2F2" x="238.5" y="44.5" width="449" height="391"></rect>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="237" y="61" width="31" height="58"></rect>
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="268" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="296" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="324" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="352" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="380" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="408" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="436" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="463" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="491" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="519" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="547" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="575" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="603" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="631" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="659" y="61" width="28" height="58"></rect>
+            <rect id="Rectangle-227-Copy-19" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="237" y="155" width="59" height="44"></rect>
+            <rect id="Rectangle-227-Copy-22" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="82" y="155" width="157" height="44"></rect>
+            <rect id="Rectangle-227-Copy-17" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="296" y="155" width="56" height="44"></rect>
+            <rect id="Rectangle-227-Copy-15" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="352" y="155" width="56" height="44"></rect>
+            <text id="0-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="263.8" y="180">0</tspan>
+            </text>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="375.8" y="180">2</tspan>
+            </text>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="320.8" y="180">1</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-13" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="408" y="155" width="56" height="44"></rect>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="431.8" y="180">3</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-11" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="463" y="155" width="56" height="44"></rect>
+            <rect id="Rectangle-227-Copy-9" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="519" y="155" width="56" height="44"></rect>
+            <rect id="Rectangle-227-Copy-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="575" y="155" width="56" height="44"></rect>
+            <rect id="Rectangle-227-Copy-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="631" y="155" width="56" height="44"></rect>
+            <text id="4" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="485.8" y="180">4</tspan>
+            </text>
+            <text id="5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="541.8" y="180">5</tspan>
+            </text>
+            <text id="6" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="597.8" y="180">6</tspan>
+            </text>
+            <text id="7" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="654.8" y="180">7</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-20" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="236" y="234" width="116" height="58"></rect>
+            <path d="M82,234 L82,292 L238,292 L238,234 L82,234 Z" id="Rectangle-227-Copy-23" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <rect id="Rectangle-227-Copy-16" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="352" y="234" width="112" height="58"></rect>
+            <text id="0-copy-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="293" y="267">0</tspan>
+            </text>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="404" y="267">1</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-12" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="463" y="234" width="112" height="58"></rect>
+            <rect id="Rectangle-227-Copy-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="575" y="234" width="112" height="58"></rect>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="516" y="267">2</tspan>
+            </text>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="628" y="267">3</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-21" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="237" y="328" width="227" height="28"></rect>
+            <text id="0" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="348.8" y="346">0</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-14" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="463" y="328" width="224" height="28"></rect>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="569.8" y="345">1</tspan>
+            </text>
+            <text id="new-ArrayBuffer(16)" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="330.8" y="26">new ArrayBuffer(16)</tspan>
+            </text>
+            <text id="ArrayBufferView" transform="translate(50.000000, 236.000000) rotate(-90.000000) translate(-50.000000, -236.000000) " font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="-22" y="241">ArrayBufferView</tspan>
+            </text>
+            <text id="Uint16Array-Int16Arr" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="16" fill="#000000">
+                <tspan x="115.3" y="172">Uint16Array</tspan>
+                <tspan x="119.5" y="188">Int16Array</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-25" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="82" y="61" width="157" height="58"></rect>
+            <text id="Uint8Array-Int8Array" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="119.5" y="79">Uint8Array</tspan>
+                <tspan x="123.7" y="94">Int8Array</tspan>
+                <tspan x="90.1" y="109">Uint8ClampedArray</tspan>
+            </text>
+            <text id="Uint32Array-Int32Arr" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="16" fill="#000000">
+                <tspan x="114.3" y="248">Uint32Array</tspan>
+                <tspan x="118.5" y="264">Int32Array</tspan>
+                <tspan x="110.1" y="280">Float32Array</tspan>
+            </text>
+            <path d="M82,328 L82,356 L238,356 L238,328 L82,328 Z" id="Rectangle-227-Copy-24" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <rect id="Rectangle-227-Copy-27" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="238" y="391" width="449" height="28"></rect>
+            <path d="M82,391 L82,419 L238,419 L238,391 L82,391 Z" id="Rectangle-227-Copy-26" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="Float64Array-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="111.1" y="345">Float64Array</tspan>
+            </text>
+            <text id="DataView" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="128.4" y="408">DataView</tspan>
+            </text>
+            <text id="get/setUint8(offset)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="243.3" y="409">get/setUint8(offset) get/setFloat32(offset)...</tspan>
+            </text>
+            <text id="BufferSource" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="11.4" y="28">BufferSource</tspan>
+            </text>
+            <path id="Line-2" d="M48.5,93.5 L48.5,42.5 L51.5,42.5 L51.5,93.5 L59.5,93.5 L50,112.5 L40.5,93.5 L48.5,93.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy" d="M192.5,25.5 L143.5,25.5 L143.5,22.5 L192.5,22.5 L192.5,14.5 L211.5,24 L192.5,33.5 L192.5,25.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="276.8" y="92">1</tspan>
+            </text>
+            <text id="0" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="249.8" y="92">0</tspan>
+            </text>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="304.8" y="92">2</tspan>
+            </text>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="332.8" y="92">3</tspan>
+            </text>
+            <text id="4" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="360.8" y="92">4</tspan>
+            </text>
+            <text id="5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="388.8" y="92">5</tspan>
+            </text>
+            <text id="6" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="416.8" y="92">6</tspan>
+            </text>
+            <text id="7" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="444.8" y="92">7</tspan>
+            </text>
+            <text id="8" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="471.8" y="92">8</tspan>
+            </text>
+            <text id="9" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="499.8" y="92">9</tspan>
+            </text>
+            <text id="10" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="524.6" y="92">10</tspan>
+            </text>
+            <text id="11" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="551.6" y="92">11</tspan>
+            </text>
+            <text id="12" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="579.6" y="92">12</tspan>
+            </text>
+            <text id="13" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="608.6" y="92">13</tspan>
+            </text>
+            <text id="14" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="636.6" y="92">14</tspan>
+            </text>
+            <text id="15" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="663.6" y="92">15</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

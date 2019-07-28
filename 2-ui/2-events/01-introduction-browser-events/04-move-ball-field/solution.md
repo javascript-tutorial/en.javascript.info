@@ -26,7 +26,7 @@ Next we need to assign the correct `ball.style.position.left/top`. They contain 
 
 Here's the picture:
 
-![](move-ball-coords.png)
+![](move-ball-coords.svg)
 
 We have `event.clientX/clientY` -- window-relative coordinates of the click.
 

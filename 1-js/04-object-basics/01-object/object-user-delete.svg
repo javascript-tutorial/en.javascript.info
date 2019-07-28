@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="248px" height="173px" viewBox="0 0 248 173" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object-user-delete.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object-user-delete.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="248" height="173"></rect>
+            <path d="M127.93675,101 L111.270083,121 L241.729917,121 L225.06325,101 L127.93675,101 Z" id="Rectangle-4-Copy" stroke="#D1C4B1" stroke-width="4" fill="#D1C4B1" opacity="0.5"></path>
+            <g id="Group-2" transform="translate(141.000000, 8.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="110"></rect>
+                    <path d="M0,0 L32,0 L32,110 L0,110 L0,0 Z M16.5,102.016129 C20.6421356,102.016129 24,99.0373784 24,95.3629032 C24,91.6884281 20.6421356,88.7096774 16.5,88.7096774 C12.3578644,88.7096774 9,91.6884281 9,95.3629032 C9,99.0373784 12.3578644,102.016129 16.5,102.016129 Z M4,4.43548387 L4,81.6129032 L28,81.6129032 L28,4.43548387 L4,4.43548387 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="name" transform="translate(15.500000, 42.858871) rotate(-90.000000) translate(-15.500000, -42.858871) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-1.3" y="47.358871">name</tspan>
+                </text>
+            </g>
+            <g id="Group-2-Copy-2" transform="translate(179.000000, 8.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="110"></rect>
+                    <path d="M0,0 L32,0 L32,110 L0,110 L0,0 Z M16.5,102.016129 C20.6421356,102.016129 24,99.0373784 24,95.3629032 C24,91.6884281 20.6421356,88.7096774 16.5,88.7096774 C12.3578644,88.7096774 9,91.6884281 9,95.3629032 C9,99.0373784 12.3578644,102.016129 16.5,102.016129 Z M4,4.43548387 L4,81.6129032 L28,81.6129032 L28,4.43548387 L4,4.43548387 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="isAdmin" transform="translate(14.500000, 41.653226) rotate(-90.000000) translate(-14.500000, -41.653226) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-14.9" y="46.1532258">isAdmin</tspan>
+                </text>
+            </g>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="4" fill="#FFF9EB" x="109" y="115" width="135" height="50"></rect>
+            <rect id="Rectangle-8" stroke="#BCA68E" stroke-width="3" x="164.5" y="135.5" width="25" height="10"></rect>
+            <text id="user" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="9" y="145">user</tspan>
+            </text>
+            <path id="Line-8" d="M75.5,142 L49,142 L49,139 L75.5,139 L75.5,131 L94.5,140.5 L75.5,150 L75.5,142 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

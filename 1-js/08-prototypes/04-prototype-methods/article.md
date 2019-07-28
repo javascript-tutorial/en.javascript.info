@@ -121,7 +121,7 @@ But `Object` also can serve us well here, because language creators gave a thoug
 
 The `__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
 
-![](object-prototype-2.png)
+![](object-prototype-2.svg)
 
 So, if `obj.__proto__` is read or set, the corresponding getter/setter is called from its prototype, and it gets/sets `[[Prototype]]`.
 
@@ -142,7 +142,7 @@ alert(obj[key]); // "some value"
 
 `Object.create(null)` creates an empty object without a prototype (`[[Prototype]]` is `null`):
 
-![](object-prototype-null.png)
+![](object-prototype-null.svg)
 
 So, there is no inherited getter/setter for `__proto__`. Now it is processed as a regular data property, so the example above works right.
 

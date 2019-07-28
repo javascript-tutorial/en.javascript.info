@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="458px" height="344px" viewBox="0 0 458 344" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>rabbit-extends-object.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rabbit-extends-object.svg">
+            <path d="M228,61 L228,129 L406,129 L406,61 L228,61 Z" id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="call:-function-bind:" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="238" y="80">call: function</tspan>
+                <tspan x="238" y="95">bind: function</tspan>
+                <tspan x="238" y="110">...</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="228" y="303" width="178" height="28"></rect>
+            <text id="Function.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="227" y="53">Function.prototype</tspan>
+            </text>
+            <path d="M228,202 L228,230 L406,230 L406,202 L228,202 Z" id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="238" y="220">constructor</tspan>
+            </text>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="227" y="194">Object</tspan>
+            </text>
+            <text id="Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="233" y="292">Rabbit</tspan>
+            </text>
+            <path id="Line" d="M317.5,157.5 L317.5,185.5 L315.5,185.5 L315.5,157.5 L309.5,157.5 L316.5,143.5 L323.5,157.5 L317.5,157.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="326" y="167">[[Prototype]]</tspan>
+            </text>
+            <path id="Line-Copy-3" d="M317.5,261.5 L317.5,289.5 L315.5,289.5 L315.5,261.5 L309.5,261.5 L316.5,247.5 L323.5,261.5 L317.5,261.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="326" y="271">[[Prototype]]</tspan>
+            </text>
+            <text id="constructor-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="236" y="321">constructor</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="61" width="178" height="68"></rect>
+            <text id="call:-function-bind:-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="18" y="80">call: function</tspan>
+                <tspan x="18" y="95">bind: function</tspan>
+                <tspan x="18" y="110">...</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="201" width="178" height="28"></rect>
+            <text id="Function.prototype-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="7" y="53">Function.prototype</tspan>
+            </text>
+            <text id="Rabbit-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="190">Rabbit</tspan>
+            </text>
+            <path id="Line-Copy-4" d="M97.5,159.5 L97.5,187.5 L95.5,187.5 L95.5,159.5 L89.5,159.5 L96.5,145.5 L103.5,159.5 L97.5,159.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]-Copy-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="106" y="169">[[Prototype]]</tspan>
+            </text>
+            <text id="constructor-copy-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="16" y="219">constructor</tspan>
+            </text>
+            <text id="class-Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="14" y="18">class Rabbit</tspan>
+            </text>
+            <text id="class-Rabbit-extends" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="224" y="18">class Rabbit extends Object</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

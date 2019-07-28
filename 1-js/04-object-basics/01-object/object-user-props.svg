@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="248px" height="215px" viewBox="0 0 248 215" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object-user-props.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object-user-props.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="248" height="215"></rect>
+            <path d="M127.93675,143 L111.270083,163 L241.729917,163 L225.06325,143 L127.93675,143 Z" id="Rectangle-4-Copy" stroke="#D1C4B1" stroke-width="4" fill="#D1C4B1" opacity="0.5"></path>
+            <g id="Group-2" transform="translate(124.000000, 3.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="157"></rect>
+                    <path d="M0,0 L32,0 L32,157 L0,157 L0,0 Z M16.5,145.604839 C20.6421356,145.604839 24,141.353349 24,136.108871 C24,130.864393 20.6421356,126.612903 16.5,126.612903 C12.3578644,126.612903 9,130.864393 9,136.108871 C9,141.353349 12.3578644,145.604839 16.5,145.604839 Z M4,6.33064516 L4,116.483871 L28,116.483871 L28,6.33064516 L4,6.33064516 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="name" transform="translate(15.500000, 60.141129) rotate(-90.000000) translate(-15.500000, -60.141129) " font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-3.7" y="62.7459677">name</tspan>
+                </text>
+            </g>
+            <g id="Group-2-Copy" transform="translate(161.000000, 3.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="157"></rect>
+                    <path d="M0,0 L32,0 L32,157 L0,157 L0,0 Z M16.5,145.604839 C20.6421356,145.604839 24,141.353349 24,136.108871 C24,130.864393 20.6421356,126.612903 16.5,126.612903 C12.3578644,126.612903 9,130.864393 9,136.108871 C9,141.353349 12.3578644,145.604839 16.5,145.604839 Z M4,6.33064516 L4,116.483871 L28,116.483871 L28,6.33064516 L4,6.33064516 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="age" transform="translate(15.500000, 60.141129) rotate(-90.000000) translate(-15.500000, -60.141129) " font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                    <tspan x="1.1" y="62.7459677">age</tspan>
+                </text>
+            </g>
+            <g id="Group-2-Copy-2" transform="translate(198.000000, 3.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="157"></rect>
+                    <path d="M0,0 L32,0 L32,157 L0,157 L0,0 Z M16.5,145.604839 C20.6421356,145.604839 24,141.353349 24,136.108871 C24,130.864393 20.6421356,126.612903 16.5,126.612903 C12.3578644,126.612903 9,130.864393 9,136.108871 C9,141.353349 12.3578644,145.604839 16.5,145.604839 Z M4,6.33064516 L4,116.483871 L28,116.483871 L28,6.33064516 L4,6.33064516 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="likes-birds" transform="translate(17.500000, 60.774194) rotate(-90.000000) translate(-17.500000, -60.774194) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-28.7" y="63.2782258">likes birds</tspan>
+                </text>
+            </g>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="4" fill="#FFF9EB" x="109" y="157" width="135" height="50"></rect>
+            <rect id="Rectangle-8" stroke="#BCA68E" stroke-width="3" x="164.5" y="177.5" width="25" height="10"></rect>
+            <text id="user" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="5" y="187">user</tspan>
+            </text>
+            <path id="Line-8" d="M71.5,184 L45,184 L45,181 L71.5,181 L71.5,173 L90.5,182.5 L71.5,192 L71.5,184 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

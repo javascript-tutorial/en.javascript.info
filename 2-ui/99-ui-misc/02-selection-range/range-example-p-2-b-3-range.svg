@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="683px" height="229px" viewBox="0 0 683 229" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>range-example-p-2-b-3-range.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="183" y="54" width="368" height="21"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="368" height="21" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="range-example-p-2-b-3-range.svg">
+            <text id="&lt;p&gt;Example:-&lt;i&gt;itali" font-family="PTMono-Regular, PT Mono" font-size="18" font-weight="normal" letter-spacing="1" fill="#8A704D">
+                <tspan x="126" y="70">&lt;p&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;</tspan>
+            </text>
+            <polyline id="Path" stroke="#EE6B47" stroke-width="2" transform="translate(213.000000, 73.000000) scale(1, -1) translate(-213.000000, -73.000000) " points="160 78 160 68 160 68 266 68 266 78"></polyline>
+            <polyline id="Path-Copy-2" stroke="#EE6B47" stroke-width="2" transform="translate(392.000000, 152.500000) scale(1, -1) translate(-392.000000, -152.500000) " points="126 162 126 143 126 143 658 143 658 162"></polyline>
+            <polyline id="Path-Copy" stroke="#EE6B47" stroke-width="2" transform="translate(539.000000, 75.000000) scale(1, -1) translate(-539.000000, -75.000000) " points="514 80 514 70 514 70 564 70 564 80"></polyline>
+            <path id="Line" d="M141.805422,96.0335122 L125.588919,81.8440721 L126.905928,80.3389187 L143.122431,94.5283588 L147.073459,90.0128986 L153,104.5 L137.854394,100.548972 L141.805422,96.0335122 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-3" d="M484.805422,96.0335122 L468.588919,81.8440721 L469.905928,80.3389187 L486.122431,94.5283588 L490.073459,90.0128986 L496,104.5 L480.854394,100.548972 L484.805422,96.0335122 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <use id="Rectangle" stroke="#0000FF" mask="url(#mask-2)" stroke-width="2" fill-opacity="0.1" fill="#0000FF" stroke-dasharray="5,2" xlink:href="#path-1"></use>
+            <text id="startContainer-(&lt;p&gt;." font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="10.3" y="118">startContainer</tspan>
+                <tspan x="0.7" y="136">(&lt;p&gt;.firstChild)</tspan>
+            </text>
+            <path id="Line-Copy" d="M184,88 L184,104 L182,104 L182,88 L176,88 L183,74 L190,88 L184,88 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M552,87 L552,103 L550,103 L550,87 L544,87 L551,73 L558,87 L552,87 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="startOffset-(=2)" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="170.2" y="118">startOffset</tspan>
+                <tspan x="203.8" y="136">(=2)</tspan>
+            </text>
+            <text id="commonAncestorContai" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="316.1" y="181">commonAncestorContainer</tspan>
+                <tspan x="402.5" y="199">(&lt;p&gt;)</tspan>
+            </text>
+            <text id="endContainer-(&lt;b&gt;.fi" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="388.9" y="117">endContainer</tspan>
+                <tspan x="369.7" y="135">(&lt;b&gt;.firstChild)</tspan>
+            </text>
+            <text id="endOffset-(=3)" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="537.3" y="118">endOffset</tspan>
+                <tspan x="561.3" y="136">(=3)</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

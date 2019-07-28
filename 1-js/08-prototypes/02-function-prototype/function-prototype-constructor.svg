@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="421px" height="73px" viewBox="0 0 421 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>function-prototype-constructor.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="function-prototype-constructor.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="233" y="23" width="170.5" height="28"></rect>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="10" y="23" width="108" height="28"></rect>
+            <text id="Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="9" y="15">Rabbit</tspan>
+            </text>
+            <path id="Line-Copy" d="M204,31 L130,31 L130,29 L204,29 L204,23 L218,30 L204,37 L204,31 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M145,40 L219,40 L219,42 L145,42 L145,48 L131,41 L145,34 L145,40 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="136" y="22">prototype</tspan>
+            </text>
+            <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="128" y="62">constructor</tspan>
+            </text>
+            <text id="default-&quot;prototype&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="233.7" y="15">default "prototype"</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

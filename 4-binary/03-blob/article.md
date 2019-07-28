@@ -6,7 +6,7 @@ In the browser, there are additional higher-level objects, described in [File AP
 
 `Blob` consists of an optional string `type` (a MIME-type usually), plus `blobParts` -- a sequence of other `Blob` objects, strings and `BufferSources`.
 
-![](blob.png)
+![](blob.svg)
 
 The constructor syntax is:
 

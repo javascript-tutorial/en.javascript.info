@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="233px" height="316px" viewBox="0 0 233 316" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>class-inheritance-array-object.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="class-inheritance-array-object.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="13" y="158" width="219" height="58"></rect>
+            <text id="slice:-function" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="23" y="181">slice: function</tspan>
+                <tspan x="23" y="196">...</tspan>
+            </text>
+            <text id="Array.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="150">Array.prototype</tspan>
+            </text>
+            <text id="arr" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="267">arr</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="13" y="25" width="219" height="58"></rect>
+            <text id="hasOwnProperty:-func" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="23" y="48">hasOwnProperty: function</tspan>
+                <tspan x="23" y="63">...</tspan>
+            </text>
+            <text id="Object.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="17">Object.prototype</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="13" y="275" width="219" height="28"></rect>
+            <path id="Line" d="M73.5,238.5 L73.5,266.5 L71.5,266.5 L71.5,238.5 L65.5,238.5 L72.5,224.5 L79.5,238.5 L73.5,238.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M73.5,106.5 L73.5,134.5 L71.5,134.5 L71.5,106.5 L65.5,106.5 L72.5,92.5 L79.5,106.5 L73.5,106.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[1,-2,-3]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="20" y="293">[1, 2, 3]</tspan>
+            </text>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="86" y="115">[[Prototype]]</tspan>
+            </text>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="86" y="247">[[Prototype]]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

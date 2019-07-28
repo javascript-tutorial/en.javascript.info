@@ -568,7 +568,7 @@ Let's see the details of what's going on.
 
 The calculation flow:
 
-![](reduce.png)
+![](reduce.svg)
 
 Or in the form of a table, where each row represents a function call on the next array element:
 

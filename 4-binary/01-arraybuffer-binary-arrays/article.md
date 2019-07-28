@@ -41,7 +41,7 @@ For instance:
 
 So, the binary data in an `ArrayBuffer` of 16 bytes can be interpreted as 16 "tiny numbers", or 8 bigger numbers (2 bytes each), or 4 even bigger (4 bytes each), or 2 floating-point values with high precision (8 bytes each).
 
-![](arraybuffer-views.png)
+![](arraybuffer-views.svg)
 
 `ArrayBuffer` is the core object, the root of everything, the raw binary data.
 
@@ -157,13 +157,13 @@ For instance, let's try to put 256 into `Uint8Array`. In binary form, 256 is `10
 
 For bigger numbers, only the rightmost (less significant) 8 bits are stored, and the rest is cut off:
 
-![](8bit-integer-256.png)
+![](8bit-integer-256.svg)
 
 So we'll get zero.
 
 For 257, the binary form is `100000001` (9 bits), the rightmost 8 get stored, so we'll have `1` in the array:
 
-![](8bit-integer-257.png)
+![](8bit-integer-257.svg)
 
 In other words, the number modulo 2<sup>8</sup> is saved.
 
@@ -266,4 +266,4 @@ We'll see these terms in the next chapters. `BufferSource` is one of the most co
 
 Here's a cheatsheet:
 
-![](arraybuffer-view-buffersource.png)
+![](arraybuffer-view-buffersource.svg)

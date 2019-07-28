@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="337px" height="204px" viewBox="0 0 337 204" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>family.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="garbage-collection" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="family.svg">
+            <path id="Line" d="M147.5,189.5 L193.5,189.5 L193.5,191.5 L147.5,191.5 L147.5,197.5 L133.5,190.5 L147.5,183.5 L147.5,189.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="123" y="80" width="78" height="26"></rect>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="139" y="96">Object</tspan>
+            </text>
+            <rect id="Rectangle-3" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="5" y="148" width="118" height="48"></rect>
+            <text id="Object-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="39" y="165">Object</tspan>
+            </text>
+            <text id="father" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="35" y="127">father</tspan>
+            </text>
+            <text id="wife" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="147" y="148">wife</tspan>
+            </text>
+            <text id="family" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="107" y="63">family</tspan>
+            </text>
+            <text id="name:-&quot;John&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="19" y="185">name: "John"</tspan>
+            </text>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="214" y="148" width="118" height="48"></rect>
+            <text id="name:-&quot;Ann&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="230" y="185">name: "Ann"</tspan>
+            </text>
+            <text id="mother" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="242" y="127">mother</tspan>
+            </text>
+            <text id="Object-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="244" y="165">Object</tspan>
+            </text>
+            <path id="Line" d="M162.5,61.5 L162.5,43.5 L164.5,43.5 L164.5,61.5 L170.5,61.5 L163.5,75.5 L156.5,61.5 L162.5,61.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M79.4216083,135.684192 L114.749841,111.10803 L115.89197,112.749841 L80.5637373,137.326002 L83.9901242,142.251434 L68.5,144.5 L75.9952214,130.758761 L79.4216083,135.684192 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M180.5,157.5 L132.5,157.5 L132.5,155.5 L180.5,155.5 L180.5,149.5 L194.5,156.5 L180.5,163.5 L180.5,157.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="husband" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="136" y="181">husband</tspan>
+            </text>
+            <path id="Line" d="M243.36482,137.447526 L207.11061,112.763808 L208.236192,111.11061 L244.490402,135.794327 L247.867147,130.834732 L255.5,144.5 L239.988074,142.407121 L243.36482,137.447526 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="88" y="13" width="151" height="26"></rect>
+            <text id="&lt;global-variable&gt;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="92" y="30">&lt;global variable&gt;</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

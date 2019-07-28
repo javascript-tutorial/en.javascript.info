@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="521px" height="411px" viewBox="0 0 521 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>coordinates-negative.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <filter x="-2.3%" y="-13.6%" width="104.5%" height="127.3%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="1" in="SourceGraphic"></feGaussianBlur>
+        </filter>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="coordinates-negative.svg">
+            <g id="noun_69008_cc" transform="translate(13.000000, 11.000000)" fill="#E8C48E">
+                <path d="M455.3125,330 L9.6875,330 C4.34,330 0,326.2875 0,321.75 L0,8.25 C0,3.7125 4.34,0 9.6875,0 L455.3125,0 C460.640625,0 465,3.7125 465,8.25 L465,321.75 C465,326.2875 460.640625,330 455.3125,330 L455.3125,330 Z M9.43204868,318.938547 L453.681542,318.938547 L453.681542,11.0614525 L9.43204868,11.0614525 L9.43204868,318.938547 L9.43204868,318.938547 Z" id="Shape"></path>
+                <path d="M19.673913,46 C14.333913,46 10,44.875 10,43.5 C10,42.125 14.333913,41 19.673913,41 L445.326087,41 C450.646739,41 455,42.125 455,43.5 C455,44.875 450.646739,46 445.326087,46 L19.673913,46 Z" id="Shape"></path>
+                <path d="M31,27.5 C31,30.53875 28.53875,33 25.5,33 C22.46125,33 20,30.53875 20,27.5 C20,24.46125 22.46125,22 25.5,22 C28.53875,22 31,24.46125 31,27.5 L31,27.5 Z" id="Shape"></path>
+                <path d="M59,27.5 C59,30.53875 56.53875,33 53.5,33 C50.46125,33 48,30.53875 48,27.5 C48,24.46125 50.46125,22 53.5,22 C56.53875,22 59,24.46125 59,27.5 L59,27.5 Z" id="Shape"></path>
+                <path d="M87,27.5 C87,30.53875 84.53875,33 81.5,33 C78.46125,33 76,30.53875 76,27.5 C76,24.46125 78.46125,22 81.5,22 C84.53875,22 87,24.46125 87,27.5 L87,27.5 Z" id="Shape"></path>
+            </g>
+            <text id="bottom" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#999999">
+                <tspan x="414" y="196">bottom</tspan>
+            </text>
+            <path d="M392,290 L392,327" id="Line-30-Copy-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M394,288 L463,288" id="Line-29-Copy" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <text id="(x,y)" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="395" y="305">(x,y)</tspan>
+            </text>
+            <text id="(x,y)-copy" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="395" y="305">(x,y)</tspan>
+            </text>
+            <text id="left" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#999999">
+                <tspan x="50" y="129">left</tspan>
+            </text>
+            <path id="Line-Copy" d="M407,269.5 L407,59 L410,59 L410,269.5 L418,269.5 L408.5,288.5 L399,269.5 L407,269.5 Z" fill="#999999" fill-rule="nonzero"></path>
+            <text id="right" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#999999">
+                <tspan x="188" y="323">right</tspan>
+            </text>
+            <path id="Line-3-Copy-2" d="M371,306 L21.0045776,306 L21.0045776,303 L371,303 L371,295 L390,304.5 L371,314 L371,306 Z" fill="#999999" fill-rule="nonzero"></path>
+            <path d="M382,123 L129,123 L129,278 L382,278 L382,123 Z M118,113 L392.628906,113 L392.628906,288 L118,288 L118,113 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F"></path>
+            <text id="Introduction-This-Ec" opacity="0.7" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="138.946273" y="147.8">Introduction</tspan>
+                <tspan x="239.672835" y="147.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="138.946273" y="175.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on </tspan>
+                <tspan x="138.946273" y="194.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">several originating technologies, </tspan>
+                <tspan x="138.946273" y="213.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">the most well known being </tspan>
+                <tspan x="138.946273" y="232.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JavaScript (Netscape) and JScript </tspan>
+                <tspan x="138.946273" y="251.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">(Microsoft). The language was </tspan>
+                <tspan x="138.946273" y="270.8" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at </tspan>
+            </text>
+            <text id="top" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#999999">
+                <tspan x="125" y="90">top</tspan>
+            </text>
+            <path id="Line-3" d="M99.9923616,114.902612 L21.9921261,114.492085 L22.0079154,111.492126 L100.008151,111.902654 L100.050256,103.902765 L118.999993,113.502632 L99.9502569,122.902501 L99.9923616,114.902612 Z" fill="#999999" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M134.422652,122.148497 L391.570294,285.387525 L389.962475,287.920294 L132.814833,124.681266 L128.527317,131.435317 L117.577872,113.23203 L138.710168,115.394446 L134.422652,122.148497 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3-Copy" d="M116.002972,94.7501302 L115.99987,59.0001302 L118.99987,58.9998698 L119.002972,94.7498699 L127.002972,94.7491757 L117.504621,113.75 L108.002972,94.7508245 L116.002972,94.7501302 Z" fill="#999999" fill-rule="nonzero"></path>
+            <g id="Group" transform="translate(270.970081, 195.848048) rotate(32.500000) translate(-270.970081, -195.848048) translate(204.470081, 184.848048)">
+                <rect id="Rectangle" fill="#FFFFFF" filter="url(#filter-1)" x="0" y="0" width="133" height="22"></rect>
+                <text id="(width,height)" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                    <tspan x="8.68187117" y="15.3779674">(width,height)</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

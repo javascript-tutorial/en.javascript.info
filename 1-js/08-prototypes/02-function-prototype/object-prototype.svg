@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="453px" height="94px" viewBox="0 0 453 94" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object-prototype.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object-prototype.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="233" y="23" width="208" height="58"></rect>
+            <text id="constructor:-Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="243" y="39">constructor: Object</tspan>
+                <tspan x="243" y="54">toString: function</tspan>
+                <tspan x="243" y="69">...</tspan>
+            </text>
+            <text id="Object.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="232" y="15">Object.prototype</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="10" y="23" width="107" height="28"></rect>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="9" y="15">Object</tspan>
+            </text>
+            <path id="Line-Copy" d="M194,35 L127,35 L127,33 L194,33 L194,27 L208,34 L194,41 L194,35 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="134" y="22">prototype</tspan>
+            </text>
+            <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="17" y="39">constructor</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

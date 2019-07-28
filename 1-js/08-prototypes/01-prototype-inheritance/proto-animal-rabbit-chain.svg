@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="206px" height="258px" viewBox="0 0 206 258" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>proto-animal-rabbit-chain.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="proto-animal-rabbit-chain.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="23" width="134" height="48"></rect>
+            <text id="eats:-true" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="42">eats: true</tspan>
+                <tspan x="24" y="57">walk: function</tspan>
+            </text>
+            <text id="animal" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="15">animal</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="134" width="134" height="28"></rect>
+            <text id="jumps:-true" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="151">jumps: true</tspan>
+            </text>
+            <text id="rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="126">rabbit</tspan>
+            </text>
+            <path id="Line" d="M79.5,97.5 L79.5,125.5 L77.5,125.5 L77.5,97.5 L71.5,97.5 L78.5,83.5 L85.5,97.5 L79.5,97.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="88" y="105">[[Prototype]]</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="227" width="134" height="28"></rect>
+            <text id="earLength:-10" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="244">earLength: 10</tspan>
+            </text>
+            <text id="longEar" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="219">longEar</tspan>
+            </text>
+            <path id="Line-Copy" d="M79.5,190.5 L79.5,218.5 L77.5,218.5 L77.5,190.5 L71.5,190.5 L78.5,176.5 L85.5,190.5 L79.5,190.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="88" y="198">[[Prototype]]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

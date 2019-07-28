@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="566px" height="173px" viewBox="0 0 566 173" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>setinterval-interval.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="setinterval-interval.svg">
+            <path d="M10.5,104 L560.5,104" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="110" y="89" width="88" height="28"></rect>
+            <text id="func(1)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="131" y="107">func(1)</tspan>
+            </text>
+            <path d="M118.911364,26.4383562 L126.490909,10.2739726 L106.470455,31.0958904 L116.193182,34 L110.286364,49.890411 L128.581818,29.3424658 L118.911364,26.4383562 Z M123.302273,14.9315068 L117.604545,27.0410959 L126.856818,29.7808219 L112.9,45.6164384 L117.447727,33.3972603 L108.195455,30.6575342 L123.302273,14.9315068 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M109,137.5 L109,67.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="253" y="89" width="88" height="28"></rect>
+            <text id="func(2)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="274" y="107">func(2)</tspan>
+            </text>
+            <path d="M271.581818,29.3424658 L261.911364,26.4383562 L269.490909,10.2739726 L249.470455,31.0958904 L259.193182,34 L253.286364,49.890411 L271.581818,29.3424658 L271.581818,29.3424658 Z M251.195455,30.6575342 L266.302273,14.9315068 L260.604545,27.0410959 L269.856818,29.7808219 L255.9,45.6164384 L260.447727,33.3972603 L251.195455,30.6575342 L251.195455,30.6575342 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M252,137.5 L252,67.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="387" y="89" width="88" height="28"></rect>
+            <text id="func(3)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="408" y="107">func(3)</tspan>
+            </text>
+            <path d="M405.581818,29.3424658 L395.911364,26.4383562 L403.490909,10.2739726 L383.470455,31.0958904 L393.193182,34 L387.286364,49.890411 L405.581818,29.3424658 L405.581818,29.3424658 Z M385.195455,30.6575342 L400.302273,14.9315068 L394.604545,27.0410959 L403.856818,29.7808219 L389.9,45.6164384 L394.447727,33.3972603 L385.195455,30.6575342 L385.195455,30.6575342 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M386,137.5 L386,67.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <text id="100" font-family="Consolas" font-size="18" font-weight="normal" fill="#8A704D">
+                <tspan x="93" y="165">100</tspan>
+            </text>
+            <text id="200" font-family="Consolas" font-size="18" font-weight="normal" fill="#8A704D">
+                <tspan x="237" y="165">200</tspan>
+            </text>
+            <text id="300" font-family="Consolas" font-size="18" font-weight="normal" fill="#8A704D">
+                <tspan x="372" y="165">300</tspan>
+            </text>
+            <path d="M199.5,104.5 L249.5,104.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M342.5,104.5 L383.5,104.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

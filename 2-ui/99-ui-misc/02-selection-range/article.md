@@ -74,7 +74,7 @@ drawHtmlTree(selectPDomtree, 'div.select-p-domtree', 690, 320);
 
 Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (counting text nodes):
 
-![](range-example-p-0-1.png)
+![](range-example-p-0-1.svg)
 
 ```html run
 <p id="p">Example: <i>italic</i> and <b>bold</b></p>
@@ -123,7 +123,7 @@ From <input id="start" type="number" value=1> – To <input id="end" type="numbe
 
 E.g. selecting from `1` to `4` gives range `<i>italic</i> and <b>bold</b>`.
 
-![](range-example-p-1-3.png)
+![](range-example-p-1-3.svg)
 
 We don't have to use the same node in `setStart` and `setEnd`. A range may span across many unrelated nodes. It's only important that the end is after the start.
 
@@ -131,7 +131,7 @@ We don't have to use the same node in `setStart` and `setEnd`. A range may span 
 
 Let's select the text partially, like this:
 
-![](range-example-p-2-b-3.png)
+![](range-example-p-2-b-3.svg)
 
 That's also possible, we just need to set the start and the end as a relative offset in text nodes.
 
@@ -157,7 +157,7 @@ We need to create a range, that:
 
 The range object has following properties:
 
-![](range-example-p-2-b-3-range.png)
+![](range-example-p-2-b-3-range.svg)
 
 - `startContainer`, `startOffset` -- node and offset of the start,
   - in the example above: first text node inside `<p>` and `2`.
@@ -272,7 +272,7 @@ A selection may include zero or more ranges. At least, the [Selection API specif
 
 Here's a screenshot of a selection with 3 ranges, made in Firefox:
 
-![](selection-firefox.png)
+![](selection-firefox.svg)
 
 Other browsers support at maximum 1 range. As we'll see, some of `Selection` methods imply that there may be many ranges, but again, in all browsers except Firefox, there's at maximum 1.
 
@@ -298,11 +298,11 @@ If the start (anchor) of the selection goes in the document before the end (focu
 
 E.g. if the user starts selecting with mouse and goes from "Example" to "italic":
 
-![](selection-direction-forward.png)
+![](selection-direction-forward.svg)
 
 Otherwise, if they go from the end of "italic" to "Example", the selection is directed "backward", its focus will be before the anchor:
 
-![](selection-direction-backward.png)
+![](selection-direction-backward.svg)
 
 That's different from `Range` objects that are always directed forward: the range start can't be after its end.
 ````

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="478px" height="364px" viewBox="0 0 478 364" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>dom-class-hierarchy.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dom-class-hierarchy.svg">
+            <rect id="Rectangle-9" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="181" y="6" width="118" height="28"></rect>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="181" y="74" width="118" height="28"></rect>
+            <text id="EventTarget" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="200.9" y="24">EventTarget</tspan>
+            </text>
+            <text id="Node" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="225.6" y="91">Node  </tspan>
+            </text>
+            <path id="Line-2" d="M241.5,53.5 L241.5,70.5 L239.5,70.5 L239.5,53.5 L233.5,53.5 L240.5,39.5 L247.5,53.5 L241.5,53.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="181" y="144" width="118" height="28"></rect>
+            <text id="Element" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="214.8" y="161">Element  </tspan>
+            </text>
+            <path id="Line-2-Copy" d="M241.5,123.5 L241.5,140.5 L239.5,140.5 L239.5,123.5 L233.5,123.5 L240.5,109.5 L247.5,123.5 L241.5,123.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="181" y="230" width="118" height="28"></rect>
+            <text id="HTMLElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="200.4" y="247">HTMLElement  </tspan>
+            </text>
+            <path id="Line-2-Copy-4" d="M241.5,209.5 L241.5,226.5 L239.5,226.5 L239.5,209.5 L233.5,209.5 L240.5,195.5 L247.5,209.5 L241.5,209.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="171" y="300" width="138" height="28"></rect>
+            <text id="HTMLBodyElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="186" y="317">HTMLBodyElement  </tspan>
+            </text>
+            <path id="Line-2-Copy-6" d="M241.5,279.5 L241.5,296.5 L239.5,296.5 L239.5,279.5 L233.5,279.5 L240.5,265.5 L247.5,279.5 L241.5,279.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="12" y="300" width="138" height="28"></rect>
+            <text id="HTMLInputElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="24.4" y="317">HTMLInputElement  </tspan>
+            </text>
+            <path id="Line-2-Copy-7" d="M159.56301,270.384521 L129.324588,293.903293 L128.096707,292.324588 L158.335128,268.805816 L154.651485,264.069703 L170,261 L163.246653,275.120634 L159.56301,270.384521 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="332" y="300" width="138" height="28"></rect>
+            <text id="HTMLAnchorElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="341.3" y="317">HTMLAnchorElement  </tspan>
+            </text>
+            <path id="Line-2-Copy-8" d="M317.084628,268.762186 L338.41207,292.577831 L336.922169,293.91207 L315.594727,270.096426 L311.125024,274.099145 L307,259 L321.55433,264.759468 L317.084628,268.762186 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="45" y="126" width="118" height="28"></rect>
+            <text id="Text" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="89.6" y="144">Text  </tspan>
+            </text>
+            <path id="Line-2-Copy-2" d="M160.67283,105.505239 L141.340917,120.905238 L140.094762,119.340917 L159.426676,103.940918 L155.688214,99.2479546 L171,96 L164.411292,110.198202 L160.67283,105.505239 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="315" y="126" width="118" height="28"></rect>
+            <text id="Comment" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="348.8" y="144">Comment  </tspan>
+            </text>
+            <path id="Line-2-Copy-3" d="M318.637855,103.84604 L338.40389,119.329434 L337.170566,120.90389 L317.404531,105.420496 L313.704559,110.143864 L307,96 L322.337827,99.1226713 L318.637855,103.84604 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy-9" d="M318.637855,181.84604 L338.40389,197.329434 L337.170566,198.90389 L317.404531,183.420496 L313.704559,188.143864 L307,174 L322.337827,177.122671 L318.637855,181.84604 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-8-Copy-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="315" y="205" width="118" height="28"></rect>
+            <text id="SVGElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="338" y="223">SVGElement  </tspan>
+            </text>
+            <text id="&lt;div&gt;Text&lt;/div&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="48" y="171" fill="#8A704D">&lt;div&gt;</tspan>
+                <tspan x="84" y="171" fill="#F5A623">Text</tspan>
+                <tspan x="112.8" y="171" fill="#8A704D">&lt;/div&gt;</tspan>
+            </text>
+            <text id="&lt;input-type=&quot;…&quot;&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#F5A623">
+                <tspan x="24.4" y="341">&lt;input type="…"&gt;</tspan>
+            </text>
+            <text id="&lt;body&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#F5A623">
+                <tspan x="220.4" y="341">&lt;body&gt;</tspan>
+            </text>
+            <text id="&lt;a-href=&quot;…&quot;&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#F5A623">
+                <tspan x="358.8" y="341">&lt;a href="…"&gt;</tspan>
+            </text>
+            <text id="&lt;div&gt;Text&lt;/div&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="189" y="188" fill="#8A704D">&lt;</tspan>
+                <tspan x="196.2" y="188" fill="#F5A623">div</tspan>
+                <tspan x="217.8" y="188" fill="#8A704D">&gt;</tspan>
+                <tspan x="225" y="188" fill="#998364">Text</tspan>
+                <tspan x="253.8" y="188" fill="#8A704D">&lt;/</tspan>
+                <tspan x="268.2" y="188" fill="#F5A623">div</tspan>
+                <tspan x="289.8" y="188" fill="#8A704D">&gt;</tspan>
+            </text>
+            <text id="&lt;!--comment--&gt;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#F5A623">
+                <tspan x="327.6" y="171">&lt;!--comment--&gt;</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

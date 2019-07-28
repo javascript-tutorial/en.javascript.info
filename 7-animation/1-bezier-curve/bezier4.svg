@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="149px" height="187px" viewBox="0 0 149 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier4.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier4.svg">
+            <path d="M23.6882043,143.904835 C73.7030381,143.904854 74.3912999,43.4905636 124.154864,43.4905689" id="Path-1" stroke="#CB1E31" stroke-width="2"></path>
+            <circle id="Oval-1" stroke="#E8C48E" fill="#FFFFFF" cx="24" cy="144" r="4"></circle>
+            <circle id="Oval-2" stroke="#E8C48E" fill="#FFFFFF" cx="124" cy="43" r="4"></circle>
+            <circle id="Oval-3" stroke="#E8C48E" fill="#FFFFFF" cx="73" cy="43" r="4"></circle>
+            <circle id="Oval-4" stroke="#E8C48E" fill="#FFFFFF" cx="73" cy="143" r="4"></circle>
+            <text id="1" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="20" y="165">1</tspan>
+            </text>
+            <text id="2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="69" y="165">2</tspan>
+            </text>
+            <text id="3" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="69" y="35">3</tspan>
+            </text>
+            <text id="4" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="121" y="35">4</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

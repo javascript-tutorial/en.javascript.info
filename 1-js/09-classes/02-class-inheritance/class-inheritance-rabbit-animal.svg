@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="198px" height="258px" viewBox="0 0 198 258" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>class-inheritance-rabbit-animal.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="class-inheritance-rabbit-animal.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="11" y="128" width="179" height="28"></rect>
+            <text id="methods-of-Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="19" y="146">methods of Rabbit</tspan>
+            </text>
+            <text id="Rabbit.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="10" y="120">Rabbit.prototype</tspan>
+            </text>
+            <text id="rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="10" y="213">rabbit</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="11" y="21" width="179" height="28"></rect>
+            <text id="methods-of-Animal" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="19" y="38">methods of Animal</tspan>
+            </text>
+            <text id="Animal.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="10" y="13">Animal.prototype</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="11" y="222" width="179" height="28"></rect>
+            <path id="Line" d="M71.5,181.5 L71.5,209.5 L69.5,209.5 L69.5,181.5 L63.5,181.5 L70.5,167.5 L77.5,181.5 L71.5,181.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M71.5,76.5 L71.5,104.5 L69.5,104.5 L69.5,76.5 L63.5,76.5 L70.5,62.5 L77.5,76.5 L71.5,76.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="80" y="86">[[Prototype]]</tspan>
+            </text>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="80" y="190">[[Prototype]]</tspan>
+            </text>
+            <text id="properties-of-rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="19" y="239">properties of rabbit</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

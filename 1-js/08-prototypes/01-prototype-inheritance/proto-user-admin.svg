@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="233px" height="249px" viewBox="0 0 233 249" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>proto-user-admin.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="proto-user-admin.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="23" width="201" height="71"></rect>
+            <text id="name:-&quot;John&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="45">name: "John"</tspan>
+                <tspan x="24" y="60">surname: "Smith"</tspan>
+                <tspan x="24" y="75">set fullName: function</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="164" width="201" height="71"></rect>
+            <text id="isAdmin:-true" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="186">isAdmin: true</tspan>
+                <tspan x="24" y="201">name: "Alice"</tspan>
+                <tspan x="24" y="216">surname: "Cooper"</tspan>
+            </text>
+            <text id="user" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="19" y="15">user</tspan>
+            </text>
+            <text id="admin" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="18" y="153">admin</tspan>
+            </text>
+            <path id="Line" d="M107.5,124.5 L107.5,152.5 L105.5,152.5 L105.5,124.5 L99.5,124.5 L106.5,110.5 L113.5,124.5 L107.5,124.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="116" y="132">[[Prototype]]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

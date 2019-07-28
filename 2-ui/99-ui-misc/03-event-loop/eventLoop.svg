@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="479px" height="279px" viewBox="0 0 479 279" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>eventLoop.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="eventLoop.svg">
+            <rect id="Rectangle-1-Copy-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="218" y="91" width="108" height="28"></rect>
+            <text id="..." font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="258.9" y="110">...</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="218" y="118" width="108" height="28"></rect>
+            <text id="setTimeout" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="230" y="137">setTimeout</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="218" y="145" width="108" height="28"></rect>
+            <text id="mousemove" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="233.7" y="164">mousemove</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-9" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="218" y="173" width="108" height="28"></rect>
+            <text id="script" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="246.8" y="192">script</tspan>
+            </text>
+            <text id="event-loop" font-family="PTSans-Regular, PT Sans" font-size="24" font-weight="normal" fill="#000000">
+                <tspan x="72.288" y="134">event</tspan>
+                <tspan x="77.64" y="163">loop</tspan>
+            </text>
+            <text id="macrotask-queue" font-family="PTSans-Regular, PT Sans" font-size="24" font-weight="normal" fill="#9B9B9B">
+                <tspan x="341.06" y="136">macrotask</tspan>
+                <tspan x="361.928" y="165">queue</tspan>
+            </text>
+            <path id="Path" d="M263.010725,69.7351956 L258.427178,55.1253877 L262.243758,53.9280087 L270.177144,79.2152421 L244.446978,72.8637563 L245.405602,68.9803249 L260.271316,72.6499231 L251.379057,64.2925256 C234.508006,51.2131452 213.805751,44 192,44 C160.941365,44 132.332745,58.6951996 114.136419,83.1428166 L110.927659,80.7545412 C129.87093,55.303369 159.663534,40 192,40 C214.734181,40 236.326559,47.5348634 253.906792,61.1909666 L254.049591,61.3130651 L263.010725,69.7351956 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Path-Copy-2" d="M120.724894,221.828651 L125.083129,236.507247 L121.248579,237.645767 L113.705173,212.239473 L139.334576,218.986062 L138.316319,222.854285 L123.508821,218.956414 L132.2805,227.4584 C148.5538,239.990276 169.796977,246.679687 194.412852,246.679687 C211.208683,246.679687 229.275076,241.15794 243.817212,231.644681 C250.728173,227.123628 255.441499,222.839019 265.167458,212.919811 L265.501312,212.579321 C267.561111,210.478661 268.636053,209.389458 269.882343,208.148251 L272.704986,210.98245 C271.473253,212.20916 270.406519,213.290045 268.357381,215.379834 L268.02357,215.72028 C258.101872,225.839116 253.233892,230.264312 246.007006,234.992038 C230.82183,244.925965 211.996447,250.679687 194.412852,250.679687 C168.89777,250.679687 146.759649,243.69382 129.747255,230.556099 L129.658358,230.487449 L120.724894,221.828651 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

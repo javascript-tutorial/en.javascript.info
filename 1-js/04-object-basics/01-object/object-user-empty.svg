@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="248px" height="92px" viewBox="0 0 248 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object-user-empty.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object-user-empty.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="248" height="92"></rect>
+            <path d="M123.93675,12 L107.270083,32 L237.729917,32 L221.06325,12 L123.93675,12 Z" id="Rectangle-4-Copy" stroke="#D1C4B1" stroke-width="4" fill="#D1C4B1" opacity="0.5"></path>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="4" fill="#FFF9EB" x="105" y="26" width="135" height="50"></rect>
+            <rect id="Rectangle-8" stroke="#BCA68E" stroke-width="3" x="160.5" y="46.5" width="25" height="10"></rect>
+            <text id="empty" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#9B9B9B">
+                <tspan x="151" y="22">empty</tspan>
+            </text>
+            <text id="user" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="4" y="56">user</tspan>
+            </text>
+            <path id="Line-8" d="M70.5,53 L44,53 L44,50 L70.5,50 L70.5,42 L89.5,51.5 L70.5,61 L70.5,53 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

@@ -29,7 +29,7 @@ let generator = generateSequence();
 
 The `generator` object is something like an "frozen function call":
 
-![](generateSequence-1.png)
+![](generateSequence-1.svg)
 
 Upon creation, the code execution is paused at the very beginning.
 
@@ -59,7 +59,7 @@ The result of `next()` is always an object:
 
 As of now, we got the first value only:
 
-![](generateSequence-2.png)
+![](generateSequence-2.svg)
 
 Let's call `generator.next()` again. It resumes the code execution and returns the next `yield`:
 
@@ -69,7 +69,7 @@ let two = generator.next();
 alert(JSON.stringify(two)); // {value: 2, done: false}
 ```
 
-![](generateSequence-3.png)
+![](generateSequence-3.svg)
 
 And, if we call it the third time, then the execution reaches `return` statement that finishes the function:
 
@@ -79,7 +79,7 @@ let three = generator.next();
 alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 ```
 
-![](generateSequence-4.png)
+![](generateSequence-4.svg)
 
 Now the generator is done. We should see it from `done:true` and process `value:3` as the final result.
 
@@ -349,7 +349,7 @@ let question = generator.next().value; // <-- yield returns the value
 generator.next(4); // --> pass the result into the generator  
 ```
 
-![](genYield2.png)
+![](genYield2.svg)
 
 1. The first call `generator.next()` is always without an argument. It starts the execution and returns the result of the first `yield` ("2+2?"). At this point the generator pauses the execution (still on that line).
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
@@ -390,7 +390,7 @@ alert( generator.next(9).done ); // true
 
 The execution picture:
 
-![](genYield2-2.png)
+![](genYield2-2.svg)
 
 1. The first `.next()` starts the execution... It reaches the first `yield`.
 2. The result is returned to the outer code.

@@ -13,7 +13,7 @@ All operations on the DOM start with the `document` object. From it we can acces
 
 Here's a picture of links that allow for travel between DOM nodes:
 
-![](dom-links.png)
+![](dom-links.svg)
 
 Let's discuss them in more detail.
 
@@ -216,7 +216,7 @@ But for many tasks we don't want text or comment nodes. We want to manipulate el
 
 So let's see more navigation links that only take *element nodes* into account:
 
-![](dom-links-elements.png)
+![](dom-links-elements.svg)
 
 The links are similar to those given above, just with `Element` word inside:
 

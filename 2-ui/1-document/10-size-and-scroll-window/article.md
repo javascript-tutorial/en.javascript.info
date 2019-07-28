@@ -8,7 +8,7 @@ From the DOM point of view, the root document element is `document.documentEleme
 
 Properties `clientWidth/clientHeight` of `document.documentElement` is exactly what we want here:
 
-![](document-client-width-height.png)
+![](document-client-width-height.svg)
 
 ```online
 For instance, this button shows the height of your window:

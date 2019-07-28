@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="241px" height="285px" viewBox="0 0 241 285" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>proxy-inherit.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="proxy-inherit.svg">
+            <path d="M116,181 C159.630495,181 195,150.331505 195,112.5 C195,74.6684946 159.630495,44 116,44 C72.3695048,44 37,74.6684946 37,112.5 C37,150.331505 72.3695048,181 116,181 Z" id="Oval" stroke="#BCA68E" stroke-width="2" stroke-dasharray="5"></path>
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="52" y="96" width="127" height="48"></rect>
+            <text id="_name:-&quot;Guest&quot;-name:" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="59" y="116">_name: "Guest"</tspan>
+                <tspan x="59" y="131">name: getter </tspan>
+            </text>
+            <rect id="Rectangle-2-Copy" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="52" y="242" width="127" height="28"></rect>
+            <text id="_name:-&quot;Admin&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="59" y="260">_name: "Admin"</tspan>
+            </text>
+            <text id="user-(proxied)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="57" y="29">user (proxied)</tspan>
+            </text>
+            <text id="original-user" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="61" y="87">original user</tspan>
+            </text>
+            <path id="Line-Copy-3" d="M114.463235,221 L114.463235,179.5 L117.463235,179.5 L117.463235,221 L125.463235,221 L115.963235,240 L106.463235,221 L114.463235,221 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

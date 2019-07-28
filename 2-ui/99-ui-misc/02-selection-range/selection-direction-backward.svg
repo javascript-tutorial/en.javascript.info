@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="559px" height="128px" viewBox="0 0 559 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>selection-direction-backward.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="47" y="62" width="262" height="21"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="262" height="21" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-3">
+            <stop stop-color="#F2F2F2" offset="0%"></stop>
+            <stop stop-color="#808080" offset="100%"></stop>
+        </linearGradient>
+        <polygon id="path-4" points="7.84066209 8.51607073 12.4865478 6.86493774 1.13686838e-13 0 3.64025044 13.7764227 6.3662792 9.66798489 9.63003598 13.8454031 11.1044189 12.6934889"></polygon>
+        <filter x="-52.6%" y="-43.3%" width="212.1%" height="203.6%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="1" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.2 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="selection-direction-backward.svg">
+            <text id="&lt;p&gt;Example:-&lt;i&gt;itali" font-family="PTMono-Regular, PT Mono" font-size="18" font-weight="normal" letter-spacing="1" fill="#8A704D">
+                <tspan x="13" y="79">&lt;p&gt;Example: &lt;i&gt;italic&lt;/i&gt; and &lt;b&gt;bold&lt;/b&gt;&lt;/p&gt;</tspan>
+            </text>
+            <path id="Line-Copy-3" d="M308.675044,49.162478 L308.675044,49.5 L308,49.5 L296,55.5 L296,49.5 L47,49.5 L47,47.5 L296,47.5 L296,41.5 L308,47.5 L308.675044,47.5 L308.675044,47.837522 L310,48.5 L308.675044,49.162478 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="focus" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="25" y="32">focus</tspan>
+            </text>
+            <text id="anchor" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="277.2" y="32">anchor</tspan>
+            </text>
+            <use id="Rectangle" stroke="#0000FF" mask="url(#mask-2)" stroke-width="2" fill-opacity="0.1" fill="#0000FF" stroke-dasharray="5,2" xlink:href="#path-1"></use>
+            <rect id="Rectangle" fill="url(#linearGradient-3)" opacity="0.200000003" transform="translate(184.000000, 102.000000) scale(-1, 1) translate(-184.000000, -102.000000) " x="53" y="94" width="262" height="16"></rect>
+            <g id="Cursor-/-Default-White" transform="translate(49.000000, 94.000000)">
+                <g id="Rectangle-237">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                    <path stroke-opacity="0.8" stroke="#000000" stroke-width="1" d="M8.6617598,8.75489325 L11.806255,12.7796636 L9.54386134,14.5472392 L6.39936616,10.5224689 L3.44128728,14.9806328 L-0.781456351,-1.00021852 L13.7031213,6.96320943 L8.6617598,8.75489325 Z" fill="#FFFFFF" fill-rule="evenodd"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

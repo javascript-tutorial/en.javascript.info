@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="409px" height="150px" viewBox="0 0 409 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>linked-list-split.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="linked-list-split.svg">
+            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="88" y="30" width="78" height="32"></rect>
+            <text id="value" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="90" y="20">value</tspan>
+            </text>
+            <text id="-8" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="122" y="50">1</tspan>
+            </text>
+            <path id="Line-21" d="M210.27,46 L151.73,46 L151.73,44 L210.27,44 L210.27,38 L224.27,45 L210.27,52 L210.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="176" y="34">next</tspan>
+            </text>
+            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="228" y="30" width="78" height="32"></rect>
+            <text id="value-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="230" y="20">value</tspan>
+            </text>
+            <text id="-9" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="262" y="50">2</tspan>
+            </text>
+            <path id="Line-22" d="M350.27,46 L291.73,46 L291.73,44 L350.27,44 L350.27,38 L364.27,45 L350.27,52 L350.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="316" y="34">next</tspan>
+            </text>
+            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="87" y="95" width="78" height="32"></rect>
+            <text id="value-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="89" y="85">value</tspan>
+            </text>
+            <text id="-10" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="121" y="115">3</tspan>
+            </text>
+            <path id="Line-23" d="M209.27,111 L150.73,111 L150.73,109 L209.27,109 L209.27,103 L223.27,110 L209.27,117 L209.27,111 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="175" y="99">next</tspan>
+            </text>
+            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="227" y="95" width="78" height="32"></rect>
+            <text id="value-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="229" y="85">value</tspan>
+            </text>
+            <text id="4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="261" y="115">4</tspan>
+            </text>
+            <path id="Line-24" d="M349.27,111 L290.73,111 L290.73,109 L349.27,109 L349.27,103 L363.27,110 L349.27,117 L349.27,111 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="315" y="99">next</tspan>
+            </text>
+            <text id="null" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="371" y="114">null</tspan>
+            </text>
+            <text id="null-copy" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="371" y="49">null</tspan>
+            </text>
+            <text id="secondList" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="5" y="114">secondList</tspan>
+            </text>
+            <text id="list" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="50" y="49">list</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

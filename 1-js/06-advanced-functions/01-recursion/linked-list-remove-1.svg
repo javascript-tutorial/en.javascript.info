@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="670px" height="143px" viewBox="0 0 670 143" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>linked-list-remove-1.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="linked-list-remove-1.svg">
+            <rect id="Rectangle-15" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="47" y="30" width="90" height="32"></rect>
+            <text id="value" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="43" y="20">value</tspan>
+            </text>
+            <text id="&quot;new-item&quot;" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="54" y="48">"new item"</tspan>
+            </text>
+            <path id="Line-21" d="M190.27,46 L131.73,46 L131.73,44 L190.27,44 L190.27,38 L204.27,45 L190.27,52 L190.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="156" y="34">next</tspan>
+            </text>
+            <rect id="Rectangle-15-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" opacity="0.6" x="117" y="104" width="78" height="32"></rect>
+            <text id="value-copy" opacity="0.6" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="118" y="94">value</tspan>
+            </text>
+            <text id="1" opacity="0.6" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="149" y="124">1</tspan>
+            </text>
+            <path id="Line-21-Copy" d="M219.821975,85.6654238 L181.663909,120.412668 L180.317332,118.933909 L218.475398,84.1866647 L214.435664,79.7503875 L229.5,75.5 L223.861709,90.101701 L219.821975,85.6654238 Z" fill="#EE6B47" fill-rule="nonzero" opacity="0.6"></path>
+            <text id="next-copy" opacity="0.6" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="214" y="108">next</tspan>
+            </text>
+            <rect id="Rectangle-11" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="208" y="30" width="78" height="32"></rect>
+            <text id="value-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="210" y="20">value</tspan>
+            </text>
+            <text id="-9" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="242" y="50">2</tspan>
+            </text>
+            <path id="Line-22" d="M330.27,46 L271.73,46 L271.73,44 L330.27,44 L330.27,38 L344.27,45 L330.27,52 L330.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="296" y="34">next</tspan>
+            </text>
+            <rect id="Rectangle-13" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="347" y="30" width="78" height="32"></rect>
+            <text id="value-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="349" y="20">value</tspan>
+            </text>
+            <text id="-10" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="381" y="50">3</tspan>
+            </text>
+            <path id="Line-23" d="M469.27,46 L410.73,46 L410.73,44 L469.27,44 L469.27,38 L483.27,45 L469.27,52 L469.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="435" y="34">next</tspan>
+            </text>
+            <rect id="Rectangle-14" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="487" y="30" width="78" height="32"></rect>
+            <text id="value-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="489" y="20">value</tspan>
+            </text>
+            <text id="4" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="521" y="50">4</tspan>
+            </text>
+            <path id="Line-24" d="M609.27,46 L550.73,46 L550.73,44 L609.27,44 L609.27,38 L623.27,45 L609.27,52 L609.27,46 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="next-4" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="575" y="34">next</tspan>
+            </text>
+            <text id="null" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="631" y="49">null</tspan>
+            </text>
+            <text id="list" font-family="Consolas-Italic, Consolas" font-size="14" font-style="italic" font-weight="normal" fill="#8A704D">
+                <tspan x="8" y="49">list</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

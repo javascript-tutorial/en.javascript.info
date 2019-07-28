@@ -14,7 +14,7 @@ The root of the hierarchy is [EventTarget](https://dom.spec.whatwg.org/#eventtar
 
 Here's the picture, explanations to follow:
 
-![](dom-class-hierarchy.png)
+![](dom-class-hierarchy.svg)
 
 The classes are:
 

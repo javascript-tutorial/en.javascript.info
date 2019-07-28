@@ -6,7 +6,7 @@ Let's dive into more details about events that happen when mouse moves between e
 
 The `mouseover` event occurs when a mouse pointer comes over an element, and `mouseout` -- when it leaves.
 
-![](mouseover-mouseout.png)
+![](mouseover-mouseout.svg)
 
 These events are special, because they have a `relatedTarget`.
 
@@ -46,7 +46,7 @@ The browser checks the mouse position from time to time. And if it notices chang
 
 That means that if the visitor is moving the mouse very fast then DOM-elements may be skipped:
 
-![](mouseover-mouseout-over-elems.png)
+![](mouseover-mouseout-over-elems.svg)
 
 If the mouse moves very fast from `#FROM` to `#TO` elements as painted above, then intermediate `<div>` (or some of them) may be skipped. The `mouseout` event may trigger on `#FROM` and then immediately `mouseover` on `#TO`.
 
@@ -56,7 +56,7 @@ On the other hand, we should keep in mind that we can't assume that the mouse sl
 
 In particular it's possible that the cursor jumps right inside the middle of the page from out of the window. And `relatedTarget=null`, because it came from "nowhere":
 
-![](mouseover-mouseout-from-outside.png)
+![](mouseover-mouseout-from-outside.svg)
 
 <div style="display:none">
 In case of a fast move, intermediate elements may trigger no events. But if the mouse enters the element (`mouseover`), when we're guaranteed to have `mouseout` when it leaves it.
@@ -76,7 +76,7 @@ Also try to move the pointer over the red `div`, and then move it out quickly do
 
 Imagine -- a mouse pointer entered an element. The `mouseover` triggered. Then the cursor goes into a child element. The interesting fact is that `mouseout` triggers in that case. The cursor is still in the element, but we have a `mouseout` from it!
 
-![](mouseover-to-child.png)
+![](mouseover-to-child.svg)
 
 That seems strange, but can be easily explained.
 

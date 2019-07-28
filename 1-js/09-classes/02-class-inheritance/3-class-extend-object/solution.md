@@ -71,7 +71,7 @@ By the way, `Function.prototype` has "generic" function methods, like `call`, `b
 
 Here's the picture:
 
-![](rabbit-extends-object.png)
+![](rabbit-extends-object.svg)
 
 So, to put it short, there are two differences:
 

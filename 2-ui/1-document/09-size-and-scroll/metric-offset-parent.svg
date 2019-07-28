@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="597px" height="520px" viewBox="0 0 597 520" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>metric-offset-parent.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <pattern id="pattern-1" width="30" height="30" x="-12" y="-6" patternUnits="userSpaceOnUse">
+            <use xlink:href="#image-2"></use>
+        </pattern>
+        <image id="image-2" width="30" height="30" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAEGWlDQ1BrQ0dDb2xvclNwYWNlR2VuZXJpY1JHQgAAOI2NVV1oHFUUPrtzZyMkzlNsNIV0qD8NJQ2TVjShtLp/3d02bpZJNtoi6GT27s6Yyc44M7v9oU9FUHwx6psUxL+3gCAo9Q/bPrQvlQol2tQgKD60+INQ6Ium65k7M5lpurHeZe58853vnnvuuWfvBei5qliWkRQBFpquLRcy4nOHj4g9K5CEh6AXBqFXUR0rXalMAjZPC3e1W99Dwntf2dXd/p+tt0YdFSBxH2Kz5qgLiI8B8KdVy3YBevqRHz/qWh72Yui3MUDEL3q44WPXw3M+fo1pZuQs4tOIBVVTaoiXEI/MxfhGDPsxsNZfoE1q66ro5aJim3XdoLFw72H+n23BaIXzbcOnz5mfPoTvYVz7KzUl5+FRxEuqkp9G/Ajia219thzg25abkRE/BpDc3pqvphHvRFys2weqvp+krbWKIX7nhDbzLOItiM8358pTwdirqpPFnMF2xLc1WvLyOwTAibpbmvHHcvttU57y5+XqNZrLe3lE/Pq8eUj2fXKfOe3pfOjzhJYtB/yll5SDFcSDiH+hRkH25+L+sdxKEAMZahrlSX8ukqMOWy/jXW2m6M9LDBc31B9LFuv6gVKg/0Szi3KAr1kGq1GMjU/aLbnq6/lRxc4XfJ98hTargX++DbMJBSiYMIe9Ck1YAxFkKEAG3xbYaKmDDgYyFK0UGYpfoWYXG+fAPPI6tJnNwb7ClP7IyF+D+bjOtCpkhz6CFrIa/I6sFtNl8auFXGMTP34sNwI/JhkgEtmDz14ySfaRcTIBInmKPE32kxyyE2Tv+thKbEVePDfW/byMM1Kmm0XdObS7oGD/MypMXFPXrCwOtoYjyyn7BV29/MZfsVzpLDdRtuIZnbpXzvlf+ev8MvYr/Gqk4H/kV/G3csdazLuyTMPsbFhzd1UabQbjFvDRmcWJxR3zcfHkVw9GfpbJmeev9F08WW8uDkaslwX6avlWGU6NRKz0g/SHtCy9J30o/ca9zX3Kfc19zn3BXQKRO8ud477hLnAfc1/G9mrzGlrfexZ5GLdn6ZZrrEohI2wVHhZywjbhUWEy8icMCGNCUdiBlq3r+xafL549HQ5jH+an+1y+LlYBifuxAvRN/lVVVOlwlCkdVm9NOL5BE4wkQ2SMlDZU97hX86EilU/lUmkQUztTE6mx1EEPh7OmdqBtAvv8HdWpbrJS6tJj3n0CWdM6busNzRV3S9KTYhqvNiqWmuroiKgYhshMjmhTh9ptWhsF7970j/SbMrsPE1suR5z7DMC+P/Hs+y7ijrQAlhyAgccjbhjPygfeBTjzhNqy28EdkUh8C+DU9+z2v/oyeH791OncxHOs5y2AtTc7nb/f73TWPkD/qwBnjX8BoJ98VQNcC+8AAADqSURBVEgN7ZVdDgIhDISl19KrrOFoBD2KXsOjkO1slAQBaVjovthHdjIfP7Otcc69iOjK9ThVijVn/nQbqTMzTCWbNDjkEfANfAQ8grXhCVgTnoG14EWwBrwKng0n7/0FkFJZa5+8voQQWDZWRzNMJZv8d66hg4DzUfVLUq3ZsxMwkv2G33kELoJR2a3LwIAjlUh7a/7u0RXBGvAqeDacfv3seGNcd6vJ9OianavHVHIYsycgeI7vkvptbywVj9TFcI00xS20/CJYIv5ca8tUokvAmvAMrAUvgjXgVfBsOCEogJRqVvNAJ1wBMfROw+AwCxUAAAAASUVORK5CYII="></image>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="metric-offset-parent.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="597" height="520"></rect>
+            <rect id="Rectangle-10" stroke="#E9E9E9" stroke-width="3" fill-opacity="0.5" fill="url(#pattern-1)" x="19.5" y="25.5" width="558" height="479"></rect>
+            <path d="M527,210 L203,210 L203,450 L527,450 L527,210 Z M178,185 L552,185 L552,475 L178,475 L178,185 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F"></path>
+            <text id="offsetTop:180px" transform="translate(163.000000, 104.320000) rotate(-90.000000) translate(-163.000000, -104.320000) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="100" y="108.82" fill="#EE6B47">offsetTop:</tspan>
+                <tspan x="184" y="108.82" fill="#3B86C4">180px</tspan>
+            </text>
+            <text id="offsetLeft:180px" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="34.3" y="179.32" fill="#EE6B47">offsetLeft:</tspan>
+                <tspan x="126.7" y="179.32" fill="#3B86C4">180px</tspan>
+            </text>
+            <text id="Introduction" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="223" y="247">Introduction</tspan>
+                <tspan x="323.726562" y="247" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="223" y="275" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="223" y="294" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="223" y="313" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="223" y="332" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="223" y="351" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape </tspan>
+                <tspan x="223" y="370" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">and first appeared in that company’s </tspan>
+                <tspan x="223" y="389" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Navigator 2.0 browser. It has appeared </tspan>
+                <tspan x="223" y="408" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">in all subsequent browsers from </tspan>
+                <tspan x="223" y="427" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Netscape and in all browsers from </tspan>
+                <tspan x="223" y="446" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">Microsoft</tspan>
+            </text>
+            <path id="Line-40" d="M180,40.5 L180,169.320007 L186,169.320007 L179,183.320007 L172,169.320007 L178,169.320007 L178,40.5 L172,40.5 L179,26.5 L186,40.5 L180,40.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-41" d="M34.5899963,185.910004 L163.410004,185.910004 L163.410004,179.910004 L177.410004,186.910004 L163.410004,193.910004 L163.410004,187.910004 L34.5899963,187.910004 L34.5899963,193.910004 L20.5899963,186.910004 L34.5899963,179.910004 L34.5899963,185.910004 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <circle id="Oval-2" fill="#3B86C4" cx="203" cy="211" r="2"></circle>
+            <circle id="Oval-2" fill="#3B86C4" cx="179" cy="186" r="3"></circle>
+            <ellipse id="Oval-6" stroke="#EE6B47" stroke-width="2" fill="#FFF9EB" cx="364.25" cy="104" rx="100" ry="50"></ellipse>
+            <path id="Line" d="M364,168.017216 L364,156.378593 L366,156.378593 L366,168.017216 L372,168.017216 L365,182.017216 L358,168.017216 L364,168.017216 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="position:-absolute;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="296.5" y="95.7926559">position: absolute;</tspan>
+                <tspan x="296.5" y="110.792656">left: 180px;</tspan>
+                <tspan x="296.5" y="125.792656">top: 180px;</tspan>
+            </text>
+            <text id="offsetParent-&lt;MAIN&gt;-" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#8A704D">
+                <tspan x="20.5" y="19.3785934">offsetParent &lt;MAIN&gt; </tspan>
+            </text>
+            <text id="&lt;DIV&gt;" font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#8A704D">
+                <tspan x="183.5" y="180.378593">&lt;DIV&gt;</tspan>
+            </text>
+            <g id="Scrollbar" transform="translate(511.000000, 210.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F2F2" x="0.5" y="0.5" width="15" height="239" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-3)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 230.000000) scale(1, -1) translate(-8.000000, -230.000000) translate(0.000000, 220.000000)">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-3)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " fill="url(#linearGradient-4)" stroke="#CFCFCF">
+                        <rect id="Rectangle-18" x="0.5" y="0.5" width="15" height="50" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" fill="#D8D8D8" stroke="#979797">
+                        <rect id="Rectangle-22" x="0.5" y="0.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-23" x="0.5" y="3.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-24" x="0.5" y="6.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-25" x="0.5" y="9.5" width="7" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

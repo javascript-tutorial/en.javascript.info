@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="521px" height="320px" viewBox="0 0 521 320" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>long-polling.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="network" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="long-polling.svg">
+            <text id="Browser" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="27" y="74">Browser</tspan>
+            </text>
+            <text id="Server" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="31" y="226">Server</tspan>
+            </text>
+            <path id="Line" d="M457.091247,80.5 L450.319082,76.6906571 L450.809343,75.8190816 L460.019864,81 L450.809343,86.1809184 L450.319082,85.3093429 L457.091247,81.5 L66.5,81.5 L66.5,80.5 L457.091247,80.5 Z" fill="#000000" fill-rule="nonzero"></path>
+            <path id="Line" d="M457.091247,205 L450.319082,201.190657 L450.809343,200.319082 L460.019864,205.5 L450.809343,210.680918 L450.319082,209.809343 L457.091247,206 L65.5,206 L65.5,205 L457.091247,205 Z" fill="#000000" fill-rule="nonzero"></path>
+            <text id="request" transform="translate(113.291381, 143.266023) rotate(76.000000) translate(-113.291381, -143.266023) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" line-spacing="18" fill="#8A704D">
+                <tspan x="83.8913811" y="146.266023">request</tspan>
+            </text>
+            <text id="connection-hangs" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="126" y="227">connection</tspan>
+                <tspan x="142.519043" y="245">hangs</tspan>
+            </text>
+            <text id="connection-breaks-en" font-family="OpenSans-Regular, Open Sans" font-size="12" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="186.209961" y="264">connection breaks</tspan>
+                <tspan x="196.598633" y="282">end of request</tspan>
+            </text>
+            <path id="Line-3" d="M115.697507,193.140039 L88.2907773,81.2666649 L90.2333351,80.7907773 L117.640065,192.664151 L123.467739,191.236488 L120,206.5 L109.869834,194.567702 L115.697507,193.140039 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="data" transform="translate(206.380494, 143.266023) rotate(284.000000) translate(-206.380494, -143.266023) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" line-spacing="18" fill="#8A704D">
+                <tspan x="189.580494" y="146.266023">data</tspan>
+            </text>
+            <path id="Line-2" d="M230.540283,95.776351 L200.704616,206.226179 L198.773821,205.704616 L228.609487,95.2547877 L222.8171,93.6900979 L233.225828,82 L236.332669,97.3410408 L230.540283,95.776351 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy" d="M374.540283,95.776351 L344.704616,206.226179 L342.773821,205.704616 L372.609487,95.2547877 L366.8171,93.6900979 L377.225828,82 L380.332669,97.3410408 L374.540283,95.776351 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="request-copy" transform="translate(260.291381, 143.266023) rotate(76.000000) translate(-260.291381, -143.266023) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" line-spacing="18" fill="#8A704D">
+                <tspan x="230.891381" y="146.266023">request</tspan>
+            </text>
+            <text id="connection-hangs-copy" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="270" y="227">connection</tspan>
+                <tspan x="286.519043" y="245">hangs</tspan>
+            </text>
+            <path id="Line-3-Copy-3" d="M262.697507,193.140039 L235.290777,81.2666649 L237.233335,80.7907773 L264.640065,192.664151 L270.467739,191.236488 L267,206.5 L256.869834,194.567702 L262.697507,193.140039 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="request-copy-2" transform="translate(404.291381, 143.266023) rotate(76.000000) translate(-404.291381, -143.266023) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" line-spacing="18" fill="#8A704D">
+                <tspan x="374.891381" y="146.266023">request</tspan>
+            </text>
+            <path id="Line-3-Copy-4" d="M406.697507,193.140039 L379.290777,81.2666649 L381.233335,80.7907773 L408.640065,192.664151 L414.467739,191.236488 L411,206.5 L400.869834,194.567702 L406.697507,193.140039 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="data-copy" transform="translate(350.380494, 143.266023) rotate(284.000000) translate(-350.380494, -143.266023) " font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" line-spacing="18" fill="#8A704D">
+                <tspan x="333.580494" y="146.266023">data</tspan>
+            </text>
+            <path d="M235,40.75 L235,241.75" id="Line" stroke="#979797" stroke-linecap="square" stroke-dasharray="3,3"></path>
+            <text id="connection-breaks-en-copy" font-family="OpenSans-Regular, Open Sans" font-size="12" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="330.209961" y="264">connection breaks</tspan>
+                <tspan x="340.598633" y="282">end of request</tspan>
+            </text>
+            <path d="M379,40.75 L379,241.75" id="Line-Copy" stroke="#979797" stroke-linecap="square" stroke-dasharray="3,3"></path>
+        </g>
+    </g>
+</svg>

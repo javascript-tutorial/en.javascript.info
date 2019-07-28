@@ -66,7 +66,7 @@ alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // ' HTML5'
 
 The match (each character class corresponds to one result character):
 
-![](love-html5-classes.png)
+![](love-html5-classes.svg)
 
 ## Word boundary: \b
 
@@ -95,7 +95,7 @@ When the pattern contains `pattern:\b`, it tests that the position in string is 
 
 For instance, in the string `subject:Hello, Java!` the following positions match `\b`:
 
-![](hello-java-boundaries.png)
+![](hello-java-boundaries.svg)
 
 So it matches `pattern:\bHello\b`, because:
 

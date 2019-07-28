@@ -93,7 +93,7 @@ Afterwards, for `new User` objects, when we call a method, it's taken from the p
 
 We can illustrate the result of `class User` declaration as:
 
-![](class-user.png)
+![](class-user.svg)
 
 Here's the code to introspect it:
 

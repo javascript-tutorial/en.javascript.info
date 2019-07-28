@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="165px" height="339px" viewBox="0 0 165 339" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>promise-then-chain.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="promise-then-chain.svg">
+            <rect id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="40" y="105" width="108" height="28"></rect>
+            <text id=".then" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="72.5" y="124">.then</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="40" y="10" width="108" height="28"></rect>
+            <text id="new-Promise" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="47.3" y="28">new Promise</tspan>
+            </text>
+            <text id="resolve(1)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="7" y="70">resolve(1)</tspan>
+            </text>
+            <text id="return-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="14" y="167">return 2</tspan>
+            </text>
+            <path id="Line-Copy-8" d="M92.5,173.5 L92.5,142.5 L94.5,142.5 L94.5,173.5 L100.5,173.5 L93.5,187.5 L86.5,173.5 L92.5,173.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="40" y="202" width="108" height="28"></rect>
+            <text id=".then-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="72.5" y="221">.then</tspan>
+            </text>
+            <text id="return-4" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="14" y="264">return 4</tspan>
+            </text>
+            <path id="Line-Copy-10" d="M92.5,271.5 L92.5,240.5 L94.5,240.5 L94.5,271.5 L100.5,271.5 L93.5,285.5 L86.5,271.5 L92.5,271.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1-Copy-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="40" y="298" width="108" height="28"></rect>
+            <text id=".then-copy-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="72.5" y="317">.then</tspan>
+            </text>
+            <path id="Line-Copy-9" d="M92.5,77.5 L92.5,46.5 L94.5,46.5 L94.5,77.5 L100.5,77.5 L93.5,91.5 L86.5,77.5 L92.5,77.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

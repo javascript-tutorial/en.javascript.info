@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="149px" height="187px" viewBox="0 0 149 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier3.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier3.svg">
+            <path d="M24.2788462,143.124399 C74.499953,42.9398992 114.209434,125.40565 124.100962,143.645433" id="Path-4" stroke="#CB1E31" stroke-width="2"></path>
+            <circle id="Oval-1" stroke="#E8C48E" fill="#FFFFFF" cx="24" cy="144" r="4"></circle>
+            <text id="1" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="20" y="165">1</tspan>
+            </text>
+            <circle id="Oval-2" stroke="#E8C48E" fill="#FFFFFF" cx="124" cy="144" r="4"></circle>
+            <text id="3" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="120" y="165">3</tspan>
+            </text>
+            <circle id="Oval-3" stroke="#E8C48E" fill="#FFFFFF" cx="74" cy="44" r="4"></circle>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="17" fill="#8A704D">
+                <tspan x="69.9899038" y="32">2</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -18,15 +18,15 @@ For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` wo
 
 That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
-**Automated testing means that tests are written separately, in addition to the code. They can be executed automatically and check all the main use cases.**
+**Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.**
 
 ## Behavior Driven Development (BDD)
 
-Let's use a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD. That approach is used among many projects. BDD is not just about testing. That's more.
+Let's start with a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD.
 
 **BDD is three things in one: tests AND documentation AND examples.**
 
-Let's see the example.
+To understand BDD, we'll examine a practical case of development.
 
 ## Development of "pow": the spec
 
@@ -36,7 +36,7 @@ That task is just an example: there's the `**` operator in JavaScript that can d
 
 Before creating the code of `pow`, we can imagine what the function should do and describe it.
 
-Such description is called a *specification* or, in short, a spec, and looks like this:
+Such description is called a *specification* or, in short, a spec, and contains descriptions of use cases together with tests for them, like this:
 
 ```js
 describe("pow", function() {
@@ -51,7 +51,7 @@ describe("pow", function() {
 A spec has three main building blocks that you can see above:
 
 `describe("title", function() { ... })`
-: What functionality we're describing. Uses to group "workers" -- the `it` blocks. In our case we're describing the function `pow`.
+: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
 
 `it("use case description", function() { ... })`
 : In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
@@ -59,9 +59,9 @@ A spec has three main building blocks that you can see above:
 `assert.equal(value1, value2)`
 : The code inside `it` block, if the implementation is correct, should execute without errors.
 
-    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`.
+    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
 
-    There are other types of comparisons and checks that we'll see further.
+The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
 
 ## The development flow
 
@@ -79,7 +79,7 @@ So, the development is *iterative*. We write the spec, implement it, make sure t
 
 Let's see this development flow in our practical case.
 
-The first step is complete: we have an initial spec for `pow`. Now, before making the implementaton, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementaton, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
 
 ## The spec in action
 
@@ -336,10 +336,9 @@ The result with new tests:
 The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
 
 ```smart header="Other assertions"
-
 Please note the assertion `assert.isNaN`: it checks for `NaN`.
 
-There are other assertions in Chai as well, for instance:
+There are other assertions in [Chai](http://chaijs.com) as well, for instance:
 
 - `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
 - `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
@@ -380,9 +379,9 @@ In BDD, the spec goes first, followed by implementation. At the end we have both
 
 The spec can be used in three ways:
 
-1. **Tests** guarantee that the code works correctly.
-2. **Docs** -- the titles of `describe` and `it` tell what the function does.
-3. **Examples** -- the tests are actually working examples showing how a function can be used.
+1. As **Tests** - they guarantee that the code works correctly.
+2. As **Docs** -- the titles of `describe` and `it` tell what the function does.
+3. As **Examples** -- the tests are actually working examples showing how a function can be used.
 
 With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
 

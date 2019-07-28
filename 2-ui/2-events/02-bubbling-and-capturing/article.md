@@ -41,7 +41,7 @@ A click on the inner `<p>` first runs `onclick`:
 3. Then on the outer `<form>`.
 4. And so on upwards till the `document` object.
 
-![](event-order-bubbling.png)
+![](event-order-bubbling.svg)
 
 So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
 
@@ -128,7 +128,7 @@ The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 
 
 Here's the picture of a click on `<td>` inside a table, taken from the specification:
 
-![](eventflow.png)
+![](eventflow.svg)
 
 That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
 

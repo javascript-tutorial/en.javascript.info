@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="278px" height="92px" viewBox="0 0 278 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>mouseover-mouseout.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mouseover-mouseout.svg">
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="95" y="25" width="88.0136719" height="50.4511719"></rect>
+            <text id="&lt;DIV&gt;" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="118.964095" y="56">&lt;DIV&gt;</tspan>
+            </text>
+            <path d="M109,51.8276766 C109,51.8276766 88.1589755,39.0886766 74.3265137,34 C73.990849,36.1044846 73.6561461,38.2078702 73.3204815,40.3112558 C50.6491708,39.1326345 27.6239215,40.8772137 6,45.5449934 C8.76995481,49.733632 11.5399096,53.9217211 14.3098644,58.1098102 C32.5800247,54.1662369 52.0341482,52.6925483 71.1891551,53.6881948 C70.8534905,55.7926793 70.5178258,57.8960649 70.1831229,60 C81.3091081,56.2091804 109,51.8276766 109,51.8276766" id="Fill-55" fill="#EE6B47"></path>
+            <text id="mouseover" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="21">mouseover</tspan>
+            </text>
+            <path d="M268,51.8276766 C268,51.8276766 247.158975,39.0886766 233.326514,34 C232.990849,36.1044846 232.656146,38.2078702 232.320481,40.3112558 C209.649171,39.1326345 186.623921,40.8772137 165,45.5449934 C167.769955,49.733632 170.53991,53.9217211 173.309864,58.1098102 C191.580025,54.1662369 211.034148,52.6925483 230.189155,53.6881948 C229.85349,55.7926793 229.517826,57.8960649 229.183123,60 C240.309108,56.2091804 268,51.8276766 268,51.8276766" id="Fill-56" fill="#EE6B47"></path>
+            <text id="mouseout" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="193" y="21">mouseout</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

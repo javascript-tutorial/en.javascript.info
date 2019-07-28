@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="260px" height="130px" viewBox="0 0 260 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier-car.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier-car.svg" stroke="#000000">
+            <g id="car" transform="translate(20.000000, 12.000000)">
+                <path d="M3.5483871,89.7419355 C-8.27956989,60.9784946 15.3763441,43.7204301 74.516129,37.9677419 C80.4301075,26.4623656 83.3870968,14.9569892 83.3870968,3.4516129 C183.924731,-8.05376344 228.27957,20.7096774 216.451613,89.7419355 L3.5483871,89.7419355 Z" id="Shape" stroke-width="2" fill="#C0C0C0"></path>
+                <g id="crvpnt-link" transform="translate(0.000000, 86.290323)" fill="#D3D3D3">
+                    <ellipse id="crvpnt" cx="3.5483871" cy="3.4516129" rx="3.5483871" ry="3.4516129"></ellipse>
+                </g>
+                <g id="crvpnt-link" transform="translate(70.967742, 34.516129)" fill="#D3D3D3">
+                    <ellipse id="crvpnt" cx="3.5483871" cy="3.4516129" rx="3.5483871" ry="3.4516129"></ellipse>
+                </g>
+                <g id="crvpnt-link" transform="translate(79.838710, 0.000000)" fill="#D3D3D3">
+                    <ellipse id="crvpnt" cx="3.5483871" cy="3.4516129" rx="3.5483871" ry="3.4516129"></ellipse>
+                </g>
+                <g id="crvpnt-link" transform="translate(212.903226, 86.290323)" fill="#D3D3D3">
+                    <ellipse id="crvpnt" cx="3.5483871" cy="3.4516129" rx="3.5483871" ry="3.4516129"></ellipse>
+                </g>
+                <g id="wheel-link" transform="translate(39.032258, 72.483871)" fill="#D3D3D3" stroke-width="5">
+                    <ellipse id="wheel" cx="17.7419355" cy="17.2580645" rx="17.7419355" ry="17.2580645"></ellipse>
+                </g>
+                <g id="wheel-link" transform="translate(154.354839, 72.483871)" fill="#D3D3D3" stroke-width="5">
+                    <ellipse id="wheel" cx="17.7419355" cy="17.2580645" rx="17.7419355" ry="17.2580645"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

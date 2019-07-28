@@ -128,7 +128,7 @@ reference the form.
 
 Here's the picture:
 
-![](form-navigation.png)
+![](form-navigation.svg)
 
 For instance:
 

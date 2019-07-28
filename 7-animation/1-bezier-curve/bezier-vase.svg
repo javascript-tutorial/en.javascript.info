@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="110px" height="170px" viewBox="0 0 110 170" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier-vase.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier-vase.svg">
+            <g id="figure4-15" transform="translate(5.000000, 1.000000)">
+                <path d="M32.0099502,161.208955 C12.5074627,121.606965 12.5074627,82.0049751 32.0099502,42.4029851 C38.5107794,29.2023217 38.5107794,16.0016584 32.0099502,2.80099502 L71.0149254,2.80099502 C64.5140962,16.0016584 64.5140962,29.2023217 71.0149254,42.4029851 C90.5174129,82.0049751 90.5174129,121.606965 71.0149254,161.208955 L32.0099502,161.208955 Z" id="Shape" stroke="#A0522D" stroke-width="2"></path>
+                <path d="M32.0099502,2.80099502 L41.761194,22.60199 L2.75621891,101.80597 L32.0099502,161.208955" id="Shape" stroke="#000000" stroke-width="0.5" stroke-dasharray="2"></path>
+                <path d="M71.0149254,2.80099502 L61.2636816,22.60199 L100.268657,101.80597 L71.0149254,161.208955" id="Shape" stroke="#000000" stroke-width="0.5" stroke-dasharray="2"></path>
+                <g id="dot-link" transform="translate(49.562189, 0.820896)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(30.059701, 0.820896)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(39.810945, 20.621891)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(30.059701, 40.422886)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(0.805970, 99.825871)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(30.059701, 159.228856)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(69.064677, 0.820896)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(59.313433, 20.621891)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(69.064677, 40.422886)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(98.318408, 99.825871)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+                <g id="dot-link" transform="translate(69.064677, 159.228856)" fill="#FFFFFF" stroke="#000000">
+                    <ellipse id="dot" cx="1.95024876" cy="1.9800995" rx="1.95024876" ry="1.9800995"></ellipse>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

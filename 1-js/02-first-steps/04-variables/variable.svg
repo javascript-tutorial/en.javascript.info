@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="166px" height="145px" viewBox="0 0 166 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>variable.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="variable.svg">
+            <g id="noun_1211_cc-+-Message" transform="translate(13.000000, 3.000000)">
+                <g id="noun_1211_cc">
+                    <path d="M17,37.1960457 L129.557785,37.1960457 L129.557785,80.1456641 C129.557785,80.5185728 129.479295,81.0083855 129.279367,81.4404861 C129.07944,81.8725868 112.704625,117 112.704625,117 L112.704625,62.6396695 L129.559266,37.1960457 L148,9 L35.4407339,9 L17,37.1960457 L17,37.1960457 Z" id="Shape" fill="#E8C48F"></path>
+                    <polyline id="Shape" fill="#E8C48F" points="17 66 17 38 2 66"></polyline>
+                    <g id="Rectangle-5-+-&quot;World!&quot;" transform="translate(15.000000, 0.000000)">
+                        <path d="M18.8613371,1.80856046 L1.99871056,17.5332141 L55.1386629,74.5188362 L72.0012894,58.7941826 L18.8613371,1.80856046 Z" id="Rectangle-5" stroke="#8A704D" stroke-width="2" fill="#FFF9EB"></path>
+                        <text id="&quot;Hello!&quot;" transform="translate(40.081064, 39.767828) rotate(47.000000) translate(-40.081064, -39.767828) " font-family="OpenSans-SemiBold, Open Sans" font-size="14" font-weight="500" line-spacing="17" fill="#8A704D">
+                            <tspan x="10.5885761" y="46.2678284">"Hello!"</tspan>
+                        </text>
+                    </g>
+                    <path d="M0,68 L0,122.729971 C0,126.150501 1.4836395,128 4.38712201,128 L104.473443,128 C107.59502,128 110,125.4521 110,124.524372 L110,68 L0,68 L0,68 Z" id="Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="message" font-family="OpenSans-SemiBold, Open Sans" font-size="18" font-weight="500" fill="#FFFFFF">
+                    <tspan x="17" y="105">message</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

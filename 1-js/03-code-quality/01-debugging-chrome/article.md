@@ -22,7 +22,7 @@ The toggler button <span class="devtools" style="background-position:-168px -76p
 
 Let's click it and select `hello.js` in the tree view. Here's what should show up:
 
-![](chrome-tabs.png)
+![](chrome-tabs.svg)
 
 Here we can see three zones:
 
@@ -40,7 +40,7 @@ After a statement is executed, its result is shown below.
 
 For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing, so the result is `undefined`:
 
-![](chrome-sources-console.png)
+![](chrome-sources-console.svg)
 
 ## Breakpoints
 

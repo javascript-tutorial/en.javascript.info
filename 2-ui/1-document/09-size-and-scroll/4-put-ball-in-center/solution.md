@@ -2,7 +2,7 @@ The ball has `position:absolute`. It means that its `left/top` coordinates are m
 
 The coordinates start from the inner left-upper corner of the field:
 
-![](field.png)
+![](field.svg)
 
 The inner field width/height is `clientWidth/clientHeight`. So the field center has coordinates `(clientWidth/2, clientHeight/2)`.
 

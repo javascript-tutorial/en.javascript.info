@@ -4,4 +4,4 @@ For instance, we can take both control points with `y>1`, like: `cubic-bezier(0.
 
 The graph:
 
-![](bezier-up.png)
+![](bezier-up.svg)

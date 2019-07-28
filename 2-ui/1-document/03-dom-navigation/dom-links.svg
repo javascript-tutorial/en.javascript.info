@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="420px" height="388px" viewBox="0 0 420 388" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>dom-links.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dom-links.svg">
+            <rect id="Rectangle-9" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="150" y="20" width="117" height="28"></rect>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="151" y="154" width="117" height="28"></rect>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="117" y="87" width="198" height="28"></rect>
+            <text id="document" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="179.7" y="38">document</tspan>
+            </text>
+            <text id="document.documentEle" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="129.6" y="105">document.documentElement  </tspan>
+            </text>
+            <text id="Type-something" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="324.9" y="105">&lt;HTML&gt;</tspan>
+            </text>
+            <text id="document.body--" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="164.2" y="173">document.body  </tspan>
+            </text>
+            <text id="(if-inside-body)" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="283.9" y="173">(if inside body)</tspan>
+            </text>
+            <path id="Line" d="M208.5,125.567507 L203.131314,135.111837 L201.388163,134.131314 L209.5,119.710271 L217.611837,134.131314 L215.868686,135.111837 L210.5,125.567507 L210.5,149.352424 L208.5,149.352424 L208.5,125.567507 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M208.5,58.5675066 L203.131314,68.1118368 L201.388163,67.1313143 L209.5,52.7102711 L217.611837,67.1313143 L215.868686,68.1118368 L210.5,58.5675066 L210.5,80.0953973 L208.5,80.0953973 L208.5,58.5675066 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path d="M2.5,191 L415,191" id="Line" stroke="#8A704D" stroke-width="2" stroke-linecap="square"></path>
+            <text id="parentNode" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="172" y="248">parentNode</tspan>
+            </text>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="169" y="289" width="80" height="28"></rect>
+            <text id="&lt;DIV&gt;" font-family="OpenSans-Regular, Open Sans" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="192.191508" y="308">&lt;DIV&gt;</tspan>
+            </text>
+            <path id="Line" d="M207.5,260.067507 L202.131314,269.611837 L200.388163,268.631314 L208.5,254.210271 L216.611837,268.631314 L214.868686,269.611837 L209.5,260.067507 L209.5,284.5 L207.5,284.5 L207.5,260.067507 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M207.5,206.067507 L202.131314,215.611837 L200.388163,214.631314 L208.5,200.210271 L216.611837,214.631314 L214.868686,215.611837 L209.5,206.067507 L209.5,206.5 L207.5,206.5 L207.5,206.067507 Z M209.5,230.5 L207.5,230.5 L207.5,226.5 L209.5,226.5 L209.5,230.5 Z M209.5,224.5 L207.5,224.5 L207.5,220.5 L209.5,220.5 L209.5,224.5 Z M209.5,218.5 L207.5,218.5 L207.5,214.5 L209.5,214.5 L209.5,218.5 Z M209.5,212.5 L207.5,212.5 L207.5,208.5 L209.5,208.5 L209.5,212.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M364.932493,301.5 L355.388163,296.131314 L356.368686,294.388163 L370.789729,302.5 L356.368686,310.611837 L355.388163,308.868686 L364.932493,303.5 L254.5,303.5 L254.5,301.5 L364.932493,301.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="nextSibling" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="264" y="288">nextSibling</tspan>
+            </text>
+            <path id="Line" d="M53.0675066,303.5 L62.6118368,308.868686 L61.6313143,310.611837 L47.2102711,302.5 L61.6313143,294.388163 L62.6118368,296.131314 L53.0675066,301.5 L165.5,301.5 L165.5,303.5 L53.0675066,303.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="previousSibling" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="50" y="288">previousSibling</tspan>
+            </text>
+            <path id="Line" d="M107.63364,360.731951 L118.574131,360.260077 L118.660313,362.258219 L102.129734,362.971199 L110.10455,348.473934 L111.856915,349.437894 L106.578914,359.032671 L162.822277,324.122997 L163.877003,325.822277 L107.63364,360.731951 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M310.986552,359.478964 L305.962163,349.748982 L307.739221,348.831341 L315.330841,363.532895 L298.824666,362.38635 L298.963255,360.391158 L309.887595,361.14998 L256.115014,325.78603 L257.21397,324.115014 L310.986552,359.478964 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="childNodes" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="170" y="343">childNodes</tspan>
+            </text>
+            <text id="firstChild--" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="64" y="379">firstChild  </tspan>
+            </text>
+            <text id="Type-something" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="279" y="379">lastChild</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

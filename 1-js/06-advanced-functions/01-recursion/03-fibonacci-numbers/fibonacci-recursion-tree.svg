@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="640px" height="225px" viewBox="0 0 640 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>fibonacci-recursion-tree.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="fibonacci-recursion-tree.svg">
+            <text id="fib(5)" font-family="Consolas" font-size="14" font-weight="normal">
+                <tspan x="355" y="11" fill="#000000">fib</tspan>
+                <tspan x="378.091797" y="11" fill="#999999">(</tspan>
+                <tspan x="385.789062" y="11" fill="#000000">5</tspan>
+                <tspan x="393.486328" y="11" fill="#999999">)</tspan>
+            </text>
+            <path id="Line-Copy-4" d="M494.818022,45.3689512 L412.251608,20.1644669 L412.835533,18.2516076 L495.401947,43.4560918 L497.153724,37.7175137 L508.5,48.5 L493.066245,51.1075294 L494.818022,45.3689512 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-18" d="M266.510054,43.2332664 L343.643062,18.2404482 L344.259552,20.1430623 L267.126544,45.1358805 L268.976012,50.843723 L253.5,48.5 L264.660586,37.5254238 L266.510054,43.2332664 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-13" d="M170.047093,139.386374 L152.092534,124.637987 L153.362013,123.092534 L171.316572,137.840922 L175.125008,133.204564 L181.5,147.5 L166.238656,144.022732 L170.047093,139.386374 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-14" d="M512.047093,139.386374 L494.092534,124.637987 L495.362013,123.092534 L513.316572,137.840922 L517.125008,133.204564 L523.5,147.5 L508.238656,144.022732 L512.047093,139.386374 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-17" d="M443.359568,137.290627 L458.022445,123.085965 L459.414035,124.522445 L444.751158,138.727107 L448.92593,143.036549 L434,147.75 L439.184797,132.981185 L443.359568,137.290627 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-20" d="M265.359568,137.290627 L280.022445,123.085965 L281.414035,124.522445 L266.751158,138.727107 L270.92593,143.036549 L256,147.75 L261.184797,132.981185 L265.359568,137.290627 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-21" d="M95.3595679,137.290627 L110.022445,123.085965 L111.414035,124.522445 L96.7511583,138.727107 L100.92593,143.036549 L86,147.75 L91.1847966,132.981185 L95.3595679,137.290627 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-15" d="M337.047093,139.386374 L319.092534,124.637987 L320.362013,123.092534 L338.316572,137.840922 L342.125008,133.204564 L348.5,147.5 L333.238656,144.022732 L337.047093,139.386374 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-16" d="M107.047093,190.386374 L89.0925343,175.637987 L90.3620132,174.092534 L108.316572,188.840922 L112.125008,184.204564 L118.5,198.5 L103.238656,195.022732 L107.047093,190.386374 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-22" d="M40.6834281,188.840922 L58.6379868,174.092534 L59.9074657,175.637987 L41.952907,190.386374 L45.7613435,195.022732 L30.5,198.5 L36.8749916,184.204564 L40.6834281,188.840922 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-8" d="M277.442455,93.3521335 L241.166064,75.9696958 L242.030304,74.1660638 L278.306696,91.5485014 L280.899417,86.1376053 L290.5,98.5 L274.849734,98.7630297 L277.442455,93.3521335 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-9" d="M581.442455,93.3521335 L545.166064,75.9696958 L546.030304,74.1660638 L582.306696,91.5485014 L584.899417,86.1376053 L594.5,98.5 L578.849734,98.7630297 L581.442455,93.3521335 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-7" d="M498.336665,90.9572304 L529.403523,74.1445778 L530.355422,75.9035227 L499.288564,92.7161753 L502.144263,97.99301 L486.5,98.5 L495.480966,85.6803957 L498.336665,90.9572304 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-19" d="M164.336665,90.9572304 L195.403523,74.1445778 L196.355422,75.9035227 L165.288564,92.7161753 L168.144263,97.99301 L152.5,98.5 L161.480966,85.6803957 L164.336665,90.9572304 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="fib(4)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="198" y="68">fib(4)</tspan>
+            </text>
+            <text id="fib(3)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="518" y="68">fib(3)</tspan>
+            </text>
+            <text id="fib(3)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="111" y="117">fib(3)</tspan>
+            </text>
+            <text id="fib(2)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="277" y="117">fib(2)</tspan>
+            </text>
+            <text id="fib(0)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="328" y="164">fib(0)</tspan>
+            </text>
+            <text id="fib(1)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="239" y="164">fib(1)</tspan>
+            </text>
+            <text id="fib(1)" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="164" y="164">fib(1)</tspan>
+            </text>
+            <text id="fib(2)-copy-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="456" y="117">fib(2)</tspan>
+            </text>
+            <text id="fib(0)-copy-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="514" y="164">fib(0)</tspan>
+            </text>
+            <text id="fib(1)-copy-2" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="409" y="164">fib(1)</tspan>
+            </text>
+            <text id="fib(1)-copy-3" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="580" y="117">fib(1)</tspan>
+            </text>
+            <text id="fib(2)-copy" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="54" y="164">fib(2)</tspan>
+            </text>
+            <text id="fib(0)-copy" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="102" y="218">fib(0)</tspan>
+            </text>
+            <text id="fib(1)-copy" font-family="Consolas" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="5" y="219">fib(1)</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

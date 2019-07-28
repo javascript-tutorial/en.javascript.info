@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="429px" height="404px" viewBox="0 0 429 404" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>websocket-handshake.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="network" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="websocket-handshake.svg">
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="2" y="16" width="128" height="64"></rect>
+            <text id="Browser" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="40" y="49">Browser</tspan>
+            </text>
+            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="249" y="16" width="128" height="64"></rect>
+            <text id="Server" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="291" y="49">Server</tspan>
+            </text>
+            <path d="M67,81 L67,331.5" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path d="M314,81 L314,332.5" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path id="Line" d="M299,141 L68,141 L68,139 L299,139 L299,133 L313,140 L299,147 L299,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="HTTP-request-&quot;Hey,-s" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
+                <tspan x="142.515137" y="132">HTTP-request</tspan>
+                <tspan x="74.3745117" y="154">"Hey, server, let's talk WebSocket?"</tspan>
+            </text>
+            <path id="Line-Copy" d="M298,212 L66,212 L66,210 L298,210 L298,204 L312,211 L298,218 L298,212 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="HTTP-response-&quot;Okay!" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
+                <tspan x="137.418945" y="204">HTTP-response</tspan>
+                <tspan x="162.97168" y="226">"Okay!"</tspan>
+            </text>
+            <path id="Line-Copy-2" d="M81,278 L83,278 L83,280 L81,280 L81,286 L67,279 L81,272 L81,278 Z M299,280 L295,280 L295,278 L299,278 L299,272 L313,279 L299,286 L299,280 Z M85,280 L85,278 L89,278 L89,280 L85,280 Z M91,280 L91,278 L95,278 L95,280 L91,280 Z M97,280 L97,278 L101,278 L101,280 L97,280 Z M103,280 L103,278 L107,278 L107,280 L103,280 Z M109,280 L109,278 L113,278 L113,280 L109,280 Z M115,280 L115,278 L119,278 L119,280 L115,280 Z M121,280 L121,278 L125,278 L125,280 L121,280 Z M127,280 L127,278 L131,278 L131,280 L127,280 Z M133,280 L133,278 L137,278 L137,280 L133,280 Z M139,280 L139,278 L143,278 L143,280 L139,280 Z M145,280 L145,278 L149,278 L149,280 L145,280 Z M151,280 L151,278 L155,278 L155,280 L151,280 Z M157,280 L157,278 L161,278 L161,280 L157,280 Z M163,280 L163,278 L167,278 L167,280 L163,280 Z M169,280 L169,278 L173,278 L173,280 L169,280 Z M175,280 L175,278 L179,278 L179,280 L175,280 Z M181,280 L181,278 L185,278 L185,280 L181,280 Z M187,280 L187,278 L191,278 L191,280 L187,280 Z M193,280 L193,278 L197,278 L197,280 L193,280 Z M199,280 L199,278 L203,278 L203,280 L199,280 Z M205,280 L205,278 L209,278 L209,280 L205,280 Z M211,280 L211,278 L215,278 L215,280 L211,280 Z M217,280 L217,278 L221,278 L221,280 L217,280 Z M223,280 L223,278 L227,278 L227,280 L223,280 Z M229,280 L229,278 L233,278 L233,280 L229,280 Z M235,280 L235,278 L239,278 L239,280 L235,280 Z M241,280 L241,278 L245,278 L245,280 L241,280 Z M247,280 L247,278 L251,278 L251,280 L247,280 Z M253,280 L253,278 L257,278 L257,280 L253,280 Z M259,280 L259,278 L263,278 L263,280 L259,280 Z M265,280 L265,278 L269,278 L269,280 L265,280 Z M271,280 L271,278 L275,278 L275,280 L271,280 Z M277,280 L277,278 L281,278 L281,280 L277,280 Z M283,280 L283,278 L287,278 L287,280 L283,280 Z M289,280 L289,278 L293,278 L293,280 L289,280 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="WebSocket-protocol" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="122.524414" y="272">WebSocket protocol</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

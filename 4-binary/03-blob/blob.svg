@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="659px" height="111px" viewBox="0 0 659 111" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>blob.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="binary" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="blob.svg">
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="108" y="56" width="96" height="28"></rect>
+            <text id="image/png" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="113.8" y="74">image/pn</tspan>
+                <tspan x="190.6" y="74" letter-spacing="3">g</tspan>
+            </text>
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="238" y="56" width="71" height="28"></rect>
+            <text id="blob1" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="250" y="74">blob1</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="308" y="56" width="71" height="28"></rect>
+            <text id="blob2" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="320" y="74">blob2</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="475" y="56" width="71" height="28"></rect>
+            <text id="str" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="497.1" y="74">str</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="546" y="56" width="71" height="28"></rect>
+            <text id="buffer" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="553.7" y="74">buffer</tspan>
+            </text>
+            <rect id="Rectangle-227-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="379" y="56" width="96" height="28"></rect>
+            <text id="..." font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="413.1" y="74">...</tspan>
+            </text>
+            <text id="type" font-family="OpenSans-Regular, Open Sans" font-size="20" font-weight="normal" fill="#000000">
+                <tspan x="135.692383" y="24">type</tspan>
+            </text>
+            <text id="Blob" font-family="OpenSans-Regular, Open Sans" font-size="20" font-weight="normal" fill="#000000">
+                <tspan x="24.8232422" y="76">Blob</tspan>
+            </text>
+            <text id="blobParts" font-family="OpenSans-Regular, Open Sans" font-size="20" font-weight="normal" fill="#000000">
+                <tspan x="378.209961" y="24">blobParts</tspan>
+            </text>
+            <text id="+" font-family="OpenSans-Regular, Open Sans" font-size="20" font-weight="normal" fill="#D0021B">
+                <tspan x="216.782227" y="77">+</tspan>
+            </text>
+            <text id="=" font-family="OpenSans-Regular, Open Sans" font-size="20" font-weight="normal" fill="#D0021B">
+                <tspan x="77.7822266" y="77">=</tspan>
+            </text>
+            <path d="M239,45 C320.340278,38.3333333 382.673611,35 426,35 C469.326389,35 531.659722,38.3333333 613,45" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square"></path>
+        </g>
+    </g>
+</svg>

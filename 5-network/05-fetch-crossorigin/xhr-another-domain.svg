@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="610px" height="411px" viewBox="0 0 610 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>xhr-another-domain.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="network" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="xhr-another-domain.svg">
+            <rect id="Rectangle-227" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="2" y="16" width="128" height="64"></rect>
+            <text id="JavaScript" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="36" y="50">JavaScript</tspan>
+            </text>
+            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="238" y="16" width="128" height="64"></rect>
+            <text id="Browser" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="273" y="50">Browser</tspan>
+            </text>
+            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="481" y="16" width="128" height="64"></rect>
+            <text id="Server" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="521" y="50">Server</tspan>
+            </text>
+            <path d="M67,81 L67,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path d="M303,81 L303,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path d="M546,81 L546,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path id="Line" d="M284,141 L67,141 L67,139 L284,139 L284,133 L298,140 L284,147 L284,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="Origin:-https://java" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="26" fill="#8A704D">
+                <tspan x="331.3125" y="206">Origin: https://javascript.info</tspan>
+            </text>
+            <text id="HTTP-request" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="26" fill="#8A704D">
+                <tspan x="378.015137" y="169">HTTP-request</tspan>
+            </text>
+            <text id="fetch()" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="154" y="128">fetch()</tspan>
+            </text>
+            <text id="HTTP-response" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="27" fill="#8A704D">
+                <tspan x="374.918945" y="250">HTTP-response</tspan>
+            </text>
+            <text id="Access-Control-Allow" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="332" y="288">Access-Control-Allow-Origin: </tspan>
+                <tspan x="337.130371" y="306">* OR https://javascript.info</tspan>
+            </text>
+            <text id="if-the-header-allows" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="92" y="322">if the header allows, success,</tspan>
+            </text>
+            <text id="otherwise-fail" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="142" y="356">otherwise fail</tspan>
+            </text>
+            <path id="Line" d="M531,188 L305,188 L305,186 L531,186 L531,180 L545,187 L531,194 L531,188 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M317,264 L545,264 L545,266 L317,266 L317,272 L303,265 L317,258 L317,264 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M85,332 L302,332 L302,334 L85,334 L85,340 L71,333 L85,326 L85,332 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

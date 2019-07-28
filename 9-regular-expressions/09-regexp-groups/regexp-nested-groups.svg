@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="320px" height="130px" viewBox="0 0 320 130" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>regexp-nested-groups.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="regexp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="regexp-nested-groups.svg">
+            <text id="&lt;(([a-z]+)\s*([^&gt;]*)" font-family="PTMono-Regular, PT Mono" font-size="22" font-weight="normal">
+                <tspan x="20" y="75" fill="#8A704D">&lt;</tspan>
+                <tspan x="33.2" y="75" fill="#DB2023">((</tspan>
+                <tspan x="59.6" y="75" fill="#8A704D">[a-z]+</tspan>
+                <tspan x="138.8" y="75" fill="#DB2023">)</tspan>
+                <tspan x="152" y="75" fill="#8A704D">\s*</tspan>
+                <tspan x="191.6" y="75" fill="#DB2023">(</tspan>
+                <tspan x="204.8" y="75" fill="#8A704D">[^&gt;]*</tspan>
+                <tspan x="270.8" y="75" fill="#D0021B">))</tspan>
+                <tspan x="297.2" y="75" fill="#8A704D">&gt;</tspan>
+            </text>
+            <path d="M42.5,45.6458333 L42.5,29.3541667" id="Line" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M290.5,45.6458333 L290.5,29.3541667" id="Line-2" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M42.5,28.5 L290.5,28.5" id="Line" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M52.5,101.645833 L52.5,85.3541667" id="Line-5" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M145.5,101.645833 L145.5,85.3541667" id="Line-4" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M52.5,102.5 L145.5,102.5" id="Line-3" stroke="#D0021B" stroke-linecap="square"></path>
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#D0021B">
+                <tspan x="24" y="44">1</tspan>
+            </text>
+            <text id="span-class=&quot;my&quot;" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#417505">
+                <tspan x="82" y="23">span class="my"</tspan>
+            </text>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#D0021B">
+                <tspan x="35" y="101">2</tspan>
+            </text>
+            <text id="span" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#417505">
+                <tspan x="73" y="119">span</tspan>
+            </text>
+            <path d="M197.5,101.645833 L197.5,85.3541667" id="Line-8" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M277.5,101.645833 L277.5,85.3541667" id="Line-7" stroke="#D0021B" stroke-linecap="square"></path>
+            <path d="M197.5,102.5 L277.5,102.5" id="Line-6" stroke="#D0021B" stroke-linecap="square"></path>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#D0021B">
+                <tspan x="182" y="101">3</tspan>
+            </text>
+            <text id="class=&quot;my&quot;" font-family="PTMono-Regular, PT Mono" font-size="20" font-weight="normal" fill="#417505">
+                <tspan x="185" y="121">class="my"</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

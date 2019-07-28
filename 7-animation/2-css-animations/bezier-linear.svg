@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144px" height="150px" viewBox="0 0 144 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier-linear.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier-linear.svg">
+            <g id="1" transform="translate(12.000000, 13.000000)">
+                <g id="Group">
+                    <path d="M4.17,103.348 L104.314,3.505" id="Shape" stroke="#CB1E31" stroke-width="2"></path>
+                    <circle id="Oval" stroke="#E8C48E" fill="#FFFFFF" cx="4" cy="104" r="4"></circle>
+                    <text id="1" fill="#8A704D" font-family="OpenSans-Bold, Open Sans" font-size="10.2803872" font-weight="bold">
+                        <tspan x="0" y="125">1</tspan>
+                    </text>
+                    <circle id="Oval" stroke="#E8C48E" fill="#FFFFFF" cx="104" cy="4" r="4"></circle>
+                    <text id="2" fill="#8A704D" font-family="OpenSans-Bold, Open Sans" font-size="10.2803872" font-weight="bold">
+                        <tspan x="100.101" y="25">2</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

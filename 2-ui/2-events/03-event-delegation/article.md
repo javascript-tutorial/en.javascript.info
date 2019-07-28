@@ -81,7 +81,7 @@ In our case if we take a look inside the HTML, we can see nested tags inside `<t
 
 Naturally, if a click happens on that `<strong>` then it becomes the value of `event.target`.
 
-![](bagua-bubble.png)
+![](bagua-bubble.svg)
 
 In the handler `table.onclick` we should take such `event.target` and find out whether the click was inside `<td>` or not.
 

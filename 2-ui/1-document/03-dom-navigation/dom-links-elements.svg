@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="440px" height="316px" viewBox="0 0 440 316" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>dom-links-elements.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dom-links-elements.svg">
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="129" y="10" width="198" height="28"></rect>
+            <text id="document.documentEle" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="142.6" y="29">document.documentElement  </tspan>
+            </text>
+            <text id="Type-something" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="336.9" y="29">&lt;HTML&gt;</tspan>
+            </text>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="163" y="78" width="117" height="28"></rect>
+            <text id="document.body--" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="174.2" y="95">document.body  </tspan>
+            </text>
+            <text id="(if-inside-body)" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="300.9" y="95">(if inside body)</tspan>
+            </text>
+            <path d="M14.5,115 L427,115" id="Line-5" stroke="#8A704D" stroke-width="2" stroke-linecap="square"></path>
+            <text id="parentElement" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="175" y="172" fill="#8A704D">parent</tspan>
+                <tspan x="218.2" y="172" fill="#EE6B47">Element</tspan>
+            </text>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="180" y="213" width="80" height="28"></rect>
+            <text id="&lt;DIV&gt;" font-family="OpenSans-Regular, Open Sans" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="204.191508" y="232">&lt;DIV&gt;</tspan>
+            </text>
+            <path id="Line-6" d="M219.5,184.567507 L214.131314,194.111837 L212.388163,193.131314 L220.5,178.710271 L228.611837,193.131314 L226.868686,194.111837 L221.5,184.567507 L221.5,208.5 L219.5,208.5 L219.5,184.567507 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-7" d="M423.932493,225.5 L414.388163,220.131314 L415.368686,218.388163 L429.789729,226.5 L415.368686,234.611837 L414.388163,232.868686 L423.932493,227.5 L266.5,227.5 L266.5,225.5 L423.932493,225.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="nextElementSibling" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="276" y="212" fill="#8A704D">next</tspan>
+                <tspan x="304.8" y="212" fill="#EE6B47">Element</tspan>
+                <tspan x="355.2" y="212" fill="#8A704D">Sibling</tspan>
+            </text>
+            <path id="Line-8" d="M15.0675066,227.5 L24.6118368,232.868686 L23.6313143,234.611837 L9.21027114,226.5 L23.6313143,218.388163 L24.6118368,220.131314 L15.0675066,225.5 L169,225.5 L169,227.5 L15.0675066,227.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="previousElementSibli" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="6" y="212" fill="#8A704D">previous</tspan>
+                <tspan x="63.6" y="212" fill="#EE6B47">Element</tspan>
+                <tspan x="114" y="212" fill="#8A704D">Sibling</tspan>
+            </text>
+            <path id="Line" d="M119.63364,284.731951 L130.574131,284.260077 L130.660313,286.258219 L114.129734,286.971199 L122.10455,272.473934 L123.856915,273.437894 L118.578914,283.032671 L174.822277,248.122997 L175.877003,249.822277 L119.63364,284.731951 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M322.986552,283.478964 L317.962163,273.748982 L319.739221,272.831341 L327.330841,287.532895 L310.824666,286.38635 L310.963255,284.391158 L321.887595,285.14998 L268.115014,249.78603 L269.21397,248.115014 L322.986552,283.478964 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="children" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#EE6B47">
+                <tspan x="188" y="273">children</tspan>
+            </text>
+            <text id="firstElementChild--" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="43" y="307" fill="#8A704D">first</tspan>
+                <tspan x="79" y="307" fill="#EE6B47">Element</tspan>
+                <tspan x="129.4" y="307" fill="#8A704D">Child  </tspan>
+            </text>
+            <text id="lastElementChild" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="273" y="307" fill="#8A704D">last</tspan>
+                <tspan x="301.8" y="307" fill="#EE6B47">Element</tspan>
+                <tspan x="352.2" y="307" fill="#8A704D">Child</tspan>
+            </text>
+            <path id="Line-Copy-2" d="M220.5,131.067507 L215.131314,140.611837 L213.388163,139.631314 L221.5,125.210271 L229.611837,139.631314 L227.868686,140.611837 L222.5,131.067507 L222.5,131.5 L220.5,131.5 L220.5,131.067507 Z M222.5,155.5 L220.5,155.5 L220.5,151.5 L222.5,151.5 L222.5,155.5 Z M222.5,149.5 L220.5,149.5 L220.5,145.5 L222.5,145.5 L222.5,149.5 Z M222.5,143.5 L220.5,143.5 L220.5,139.5 L222.5,139.5 L222.5,143.5 Z M222.5,137.5 L220.5,137.5 L220.5,133.5 L222.5,133.5 L222.5,137.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy" d="M220.5,50.5675066 L215.131314,60.1118368 L213.388163,59.1313143 L221.5,44.7102711 L229.611837,59.1313143 L227.868686,60.1118368 L222.5,50.5675066 L222.5,72.0953973 L220.5,72.0953973 L220.5,50.5675066 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

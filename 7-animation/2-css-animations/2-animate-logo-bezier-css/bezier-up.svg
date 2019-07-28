@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="149px" height="187px" viewBox="0 0 149 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier-up.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier-up.svg">
+            <path d="M12.5,60.5 L135.5,60.5" id="Line-3" stroke="#979797" opacity="0.7" stroke-linecap="square" stroke-dasharray="3,2,3,3"></path>
+            <path d="M24.5,160.5 L49.5,13.5" id="Line" stroke="#E8C48E" stroke-linecap="square"></path>
+            <path d="M124.5,60.5 L99.5,9.5" id="Line-2" stroke="#E8C48E" stroke-linecap="square"></path>
+            <path d="M23.6666667,160.666667 C48.6666667,10.6666667 98.6666667,10.6666667 123.666667,60.6666667" id="bezier-path" stroke="#CB1E00" stroke-width="2"></path>
+            <circle id="Oval-1" stroke="#E8C48E" fill="#FFFFFF" cx="24" cy="161" r="4"></circle>
+            <circle id="Oval-2" stroke="#E8C48E" fill="#FFFFFF" cx="124" cy="60" r="4"></circle>
+            <circle id="Oval-4" stroke="#E8C48E" fill="#FFFFFF" cx="49" cy="11" r="4"></circle>
+            <circle id="Oval-5" stroke="#E8C48E" fill="#FFFFFF" cx="99" cy="11" r="4"></circle>
+            <text id="1" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="20" y="182">1</tspan>
+            </text>
+            <text id="2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="33" y="16">2</tspan>
+            </text>
+            <text id="3" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="106" y="16">3</tspan>
+            </text>
+            <text id="4" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="127" y="52">4</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

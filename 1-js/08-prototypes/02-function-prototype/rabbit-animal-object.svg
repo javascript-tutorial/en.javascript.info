@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="233px" height="344px" viewBox="0 0 233 344" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>rabbit-animal-object.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="rabbit-animal-object.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="96" width="218" height="58"></rect>
+            <text id="toString:-function" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="113">toString: function</tspan>
+                <tspan x="24" y="128">hasOwnProperty: function</tspan>
+                <tspan x="24" y="143">...</tspan>
+            </text>
+            <text id="Object.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="88">Object.prototype</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="213" width="218" height="28"></rect>
+            <text id="animal" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="205">animal</tspan>
+            </text>
+            <path id="Line" d="M74.5,176.5 L74.5,204.5 L72.5,204.5 L72.5,176.5 L66.5,176.5 L73.5,162.5 L80.5,176.5 L74.5,176.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="83" y="184">[[Prototype]]</tspan>
+            </text>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="83" y="274">[[Prototype]]</tspan>
+            </text>
+            <path id="Line-2" d="M74.5,44.5 L74.5,72.5 L72.5,72.5 L72.5,44.5 L66.5,44.5 L73.5,30.5 L80.5,44.5 L74.5,44.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="83" y="52">[[Prototype]]</tspan>
+            </text>
+            <text id="null" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="59" y="19">null</tspan>
+            </text>
+            <text id="eats:-true" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="231">eats: true</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="302" width="218" height="28"></rect>
+            <text id="rabbit-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="294">rabbit</tspan>
+            </text>
+            <path id="Line-Copy" d="M74.5,265.5 L74.5,293.5 L72.5,293.5 L72.5,265.5 L66.5,265.5 L73.5,251.5 L80.5,265.5 L74.5,265.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="jumps:-true" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="320">jumps: true</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

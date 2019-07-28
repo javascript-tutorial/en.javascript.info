@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="353px" height="316px" viewBox="0 0 353 316" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>metric-client-left-top.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="0%" y1="47.0960915%" x2="62.2987085%" y2="47.0960918%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="metric-client-left-top.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="353" height="316"></rect>
+            <rect id="Rectangle-206" fill="#EBCB9D" x="12" y="15" width="50" height="300"></rect>
+            <rect id="Rectangle-207" fill="#EBCB9D" transform="translate(202.500000, 40.000000) rotate(-90.000000) translate(-202.500000, -40.000000) " x="177.5" y="-115.5" width="50" height="311"></rect>
+            <text id="Introduction" font-family="OpenSans-Bold, Open Sans" font-size="32" font-weight="bold" fill="#5A4739">
+                <tspan x="102" y="134">Introduction</tspan>
+                <tspan x="303.453125" y="134" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal"></tspan>
+                <tspan x="102" y="183" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">This Ecma Standard is based on </tspan>
+                <tspan x="102" y="216" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">several originating technologies, </tspan>
+                <tspan x="102" y="249" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">the most well known being </tspan>
+                <tspan x="102" y="282" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">JavaScript (Netscape) and JScript </tspan>
+                <tspan x="102" y="315" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">(Microsoft). The language was </tspan>
+                <tspan x="102" y="348" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">invented by Brendan Eich at </tspan>
+                <tspan x="102" y="381" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">Netscape and first appeared in </tspan>
+                <tspan x="102" y="414" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">that company’s Navigator 2.0 </tspan>
+                <tspan x="102" y="447" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">browser. It has appeared in all </tspan>
+                <tspan x="102" y="480" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">subsequent browsers from </tspan>
+                <tspan x="102" y="513" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">Netscape and in all browsers </tspan>
+                <tspan x="102" y="546" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">from Microsoft starting with </tspan>
+                <tspan x="102" y="579" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">Internet Explorer 3.0.</tspan>
+                <tspan x="102" y="612" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">The development of this </tspan>
+                <tspan x="102" y="645" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">Standard started in November </tspan>
+                <tspan x="102" y="678" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">1996. The first edition of this </tspan>
+                <tspan x="102" y="711" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">Ecma Standard was adopted by </tspan>
+                <tspan x="102" y="744" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">the Ecma General Assembly of </tspan>
+                <tspan x="102" y="777" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal">June 1997.</tspan>
+            </text>
+            <rect id="Rectangle-5" fill="url(#linearGradient-1)" transform="translate(179.500000, 216.500000) rotate(-180.000000) translate(-179.500000, -216.500000) " x="42" y="-7" width="275" height="447"></rect>
+            <rect id="Rectangle-6" fill="#FFFFFF" x="316" y="8" width="162" height="399"></rect>
+            <path id="Line-7" d="M63.4099998,29.6800003 L63.4099998,49.6800003 L69.4099998,49.6800003 L62.4099998,63.6800003 L55.4099998,49.6800003 L61.4099998,49.6800003 L61.4099998,29.6800003 L55.4099998,29.6800003 L62.4099998,15.6800003 L69.4099998,29.6800003 L63.4099998,29.6800003 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-28" d="M26.4099998,63.6800003 L46.4099998,63.6800003 L46.4099998,57.6800003 L60.4099998,64.6800003 L46.4099998,71.6800003 L46.4099998,65.6800003 L26.4099998,65.6800003 L26.4099998,71.6800003 L12.4099998,64.6800003 L26.4099998,57.6800003 L26.4099998,63.6800003 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="clientTop:25px-=-bor" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="75.7" y="43" fill="#EE6B47">clientTop:</tspan>
+                <tspan x="147.7" y="43" fill="#3B86C4">25px </tspan>
+                <tspan x="183.7" y="43" fill="#EE6B47">= border</tspan>
+            </text>
+            <text id="clientLeft:25px" transform="translate(37.320000, 136.000000) rotate(-90.000000) translate(-37.320000, -136.000000) " font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="-16.6800003" y="140" fill="#EE6B47">clientLeft:</tspan>
+                <tspan x="62.5199997" y="140" fill="#3B86C4">25px</tspan>
+            </text>
+            <g id="Rectangle-8-+-Rectangle-7" transform="translate(-45.000000, -3.000000)">
+                <rect id="Rectangle-8" fill="url(#linearGradient-1)" transform="translate(224.000000, 138.000000) rotate(-90.000000) translate(-224.000000, -138.000000) " x="86.5" y="-85.5" width="275" height="447"></rect>
+                <rect id="Rectangle-7" fill="#FFFFFF" transform="translate(233.000000, 355.500000) rotate(-270.000000) translate(-233.000000, -355.500000) " x="152" y="156" width="162" height="399"></rect>
+            </g>
+        </g>
+    </g>
+</svg>

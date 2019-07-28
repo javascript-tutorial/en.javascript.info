@@ -37,7 +37,7 @@ As there are no traps, all operations on `proxy` are forwarded to `target`.
 
 As we can see, without any traps, `proxy` is a transparent wrapper around `target`.
 
-![](proxy.png)  
+![](proxy.svg)  
 
 The proxy is a special "exotic object". It doesn't have "own" properties. With an empty handler it transparently forwards operations to `target`.
 
@@ -564,7 +564,7 @@ alert(admin.name); // Guest (?!?)
 
 As you can see, the result is incorrect! The `admin.name` is expected to be `"Admin"`, not `"Guest"`! Without the proxy, it would be `"Admin"`, looks like the proxying "broke" our object.
 
-![](proxy-inherit.png)
+![](proxy-inherit.svg)
 
 Why this happens? That's easy to understand if we explore what's going on during the call in the last line of the code.
 

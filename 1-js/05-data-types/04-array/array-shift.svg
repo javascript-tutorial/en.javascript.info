@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="610px" height="175px" viewBox="0 0 610 175" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>array-shift.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="array" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="array-shift.svg">
+            <text id="1" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="63" y="116.973154">1</tspan>
+            </text>
+            <rect id="Rectangle-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="84" y="86.973154" width="35" height="52"></rect>
+            <text id="2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="99" y="116.973154">2</tspan>
+            </text>
+            <rect id="Rectangle-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="120" y="86.973154" width="35" height="52"></rect>
+            <text id="3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="135" y="116.973154">3</tspan>
+            </text>
+            <text id="&quot;Orange&quot;" transform="translate(60.052814, 49.448100) rotate(-89.000000) translate(-60.052814, -49.448100) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="26.0528141" y="53.9480997">"Orange"</tspan>
+            </text>
+            <text id="&quot;Pear&quot;" transform="translate(96.535362, 57.447947) rotate(-89.000000) translate(-96.535362, -57.447947) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="71.0353617" y="61.9479474">"Pear"</tspan>
+            </text>
+            <text id="&quot;Lemon&quot;" transform="translate(138.044088, 53.948024) rotate(-89.000000) translate(-138.044088, -53.948024) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="108.544088" y="58.4480235">"Lemon"</tspan>
+            </text>
+            <text id="length-=-4" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="172" y="63.973154">length = 4</tspan>
+            </text>
+            <rect id="Rectangle-8" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="230" y="86.973154" width="35" height="52"></rect>
+            <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="266" y="86.973154" width="35" height="52"></rect>
+            <rect id="Rectangle-6" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="302" y="86.973154" width="35" height="52"></rect>
+            <text id="-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="317" y="116.973154">2</tspan>
+            </text>
+            <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="338" y="86.973154" width="35" height="52"></rect>
+            <text id="-4" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="353" y="116.973154">3</tspan>
+            </text>
+            <text id="&quot;Orange&quot;" transform="translate(278.052814, 49.448100) rotate(-89.000000) translate(-278.052814, -49.448100) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="244.052814" y="53.9480997">"Orange"</tspan>
+            </text>
+            <text id="&quot;Pear&quot;" transform="translate(314.535362, 57.447947) rotate(-89.000000) translate(-314.535362, -57.447947) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="289.035362" y="61.9479474">"Pear"</tspan>
+            </text>
+            <text id="&quot;Lemon&quot;" transform="translate(356.044088, 53.948024) rotate(-89.000000) translate(-356.044088, -53.948024) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="326.544088" y="58.4480235">"Lemon"</tspan>
+            </text>
+            <text id="length-=-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="390" y="63.973154">length = 3</tspan>
+            </text>
+            <polygon id="Shape" fill="#EE6B47" transform="translate(195.000000, 112.473154) rotate(-90.000000) translate(-195.000000, -112.473154) " points="195 141.973154 204 125.366988 198 125.366988 198 82.973154 192 82.973154 192 125.366988 186 125.366988"></polygon>
+            <text id="clear" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="173" y="100.973154">clear</tspan>
+            </text>
+            <text id="move" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="393" y="98.973154">move</tspan>
+                <tspan x="393" y="117.973154"></tspan>
+                <tspan x="393" y="136.973154">elements</tspan>
+                <tspan x="393" y="155.973154">to the left</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="12" y="87" width="35" height="52"></rect>
+            <rect id="Rectangle-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="48" y="86.973154" width="35" height="52"></rect>
+            <text id="0" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="26" y="116.973154">0</tspan>
+            </text>
+            <text id="&quot;Apple&quot;" transform="translate(23.044088, 53.948024) rotate(-89.000000) translate(-23.044088, -53.948024) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="-6.45591207" y="58.4480235">"Apple"</tspan>
+            </text>
+            <polygon id="Shape-2" fill="#EE6B47" transform="translate(437.000000, 114.246103) rotate(-90.000000) translate(-437.000000, -114.246103) " points="437 158.519052 446 141.912886 440 141.912886 440 69.973154 433.442871 69.973154 434 141.912886 428 141.912886"></polygon>
+            <rect id="Rectangle-12" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="496" y="86.973154" width="35" height="52"></rect>
+            <rect id="Rectangle-9" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="532" y="86.973154" width="35" height="52"></rect>
+            <text id="-5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="510" y="116.973154">0</tspan>
+            </text>
+            <text id="-6" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="547" y="116.973154">1</tspan>
+            </text>
+            <rect id="Rectangle-10" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="568" y="86.973154" width="35" height="52"></rect>
+            <text id="-7" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="583" y="116.973154">2</tspan>
+            </text>
+            <text id="&quot;Orange&quot;" transform="translate(506.052814, 49.448100) rotate(-89.000000) translate(-506.052814, -49.448100) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="472.052814" y="53.9480997">"Orange"</tspan>
+            </text>
+            <text id="&quot;Pear&quot;" transform="translate(542.535362, 57.447947) rotate(-89.000000) translate(-542.535362, -57.447947) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="517.035362" y="61.9479474">"Pear"</tspan>
+            </text>
+            <text id="&quot;Lemon&quot;" transform="translate(584.044088, 53.948024) rotate(-89.000000) translate(-584.044088, -53.948024) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="554.544088" y="58.4480235">"Lemon"</tspan>
+            </text>
+            <text id="-2" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="61" y="116.973154">1</tspan>
+            </text>
+            <text id="-2-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="280" y="116.973154">1</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

@@ -9,7 +9,7 @@ An object can be created with figure brackets `{…}` with an optional list of *
 
 We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
 
-![](object.png)
+![](object.svg)
 
 An empty object ("empty cabinet") can be created using one of two syntaxes:
 
@@ -18,7 +18,7 @@ let user = new Object(); // "object constructor" syntax
 let user = {};  // "object literal" syntax
 ```
 
-![](object-user-empty.png)
+![](object-user-empty.svg)
 
 Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
 
@@ -42,7 +42,7 @@ In the `user` object, there are two properties:
 
 The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
 
-![user object](object-user.png)
+![user object](object-user.svg)
 
 We can add, remove and read files from it any time.
 
@@ -60,7 +60,7 @@ The value can be of any type. Let's add a boolean one:
 user.isAdmin = true;
 ```
 
-![user object 2](object-user-isadmin.png)
+![user object 2](object-user-isadmin.svg)
 
 To remove a property, we can use `delete` operator:
 
@@ -68,7 +68,7 @@ To remove a property, we can use `delete` operator:
 delete user.age;
 ```
 
-![user object 3](object-user-delete.png)
+![user object 3](object-user-delete.svg)
 
 We can also use multiword property names, but then they must be quoted:
 
@@ -80,7 +80,7 @@ let user = {
 };
 ```
 
-![](object-user-props.png)
+![](object-user-props.svg)
 
 
 The last property in the list may end with a comma:
@@ -474,7 +474,7 @@ let phrase = message;
 
 As a result we have two independent variables, each one is storing the string `"Hello!"`.
 
-![](variable-copy-value.png)
+![](variable-copy-value.svg)
 
 Objects are not like that.
 
@@ -488,7 +488,7 @@ let user = {
 };
 ```
 
-![](variable-contains-reference.png)
+![](variable-contains-reference.svg)
 
 Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
 
@@ -506,7 +506,7 @@ let admin = user; // copy the reference
 
 Now we have two variables, each one with the reference to the same object:
 
-![](variable-copy-reference.png)
+![](variable-copy-reference.svg)
 
 We can use any variable to access the cabinet and modify its contents:
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="149px" height="187px" viewBox="0 0 149 187" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>train-curve.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="train-curve.svg">
+            <path d="M26.1366543,142.907525 C26.1365899,93.4999868 76.5010648,43.244154 126.495114,43.2441555" id="Path-13" stroke="#CB1E31" stroke-width="2"></path>
+            <path d="M25.5,143.5 L25.5,93.3402552" id="Line" stroke="#E8C48E" stroke-linecap="square"></path>
+            <circle id="Oval-4" stroke="#E8C48E" fill="#FFFFFF" cx="26" cy="144" r="4"></circle>
+            <text id="-2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="22" y="165">1</tspan>
+            </text>
+            <circle id="Oval-6" stroke="#E8C48E" fill="#FFFFFF" cx="26" cy="94" r="4"></circle>
+            <text id="2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="22" y="87">2</tspan>
+            </text>
+            <path d="M75.5,43.5 L126.135956,43.5" id="Line" stroke="#E8C48E" stroke-linecap="square"></path>
+            <circle id="Oval-5" stroke="#E8C48E" fill="#FFFFFF" cx="126" cy="44" r="4"></circle>
+            <text id="4" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="122" y="36">4</tspan>
+            </text>
+            <circle id="Oval-7" stroke="#E8C48E" fill="#FFFFFF" cx="76" cy="44" r="4"></circle>
+            <text id="3" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="72" y="36">3</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

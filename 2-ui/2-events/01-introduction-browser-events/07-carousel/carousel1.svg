@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="488px" height="246px" viewBox="0 0 488 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>carousel1.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="carousel1.svg">
+            <rect id="Rectangle-18" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" x="41.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <rect id="Rectangle-19" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" x="109.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <rect id="Rectangle-20" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" x="177.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <rect id="Rectangle-21" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" opacity="0.5" x="245.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <rect id="Rectangle-22" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" opacity="0.5" x="313.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <rect id="Rectangle-23" stroke="#8A704D" stroke-width="3" fill="#FFF9EB" opacity="0.5" x="381.5" y="98.5" width="63" height="63" rx="10"></rect>
+            <text id="…-2" font-family="Consolas" font-size="24" font-weight="normal" fill="#8A704D">
+                <tspan x="406" y="131">…</tspan>
+            </text>
+            <rect id="Rectangle-24" stroke="#EE6B47" stroke-width="2" x="38" y="95" width="412" height="70"></rect>
+            <path d="M244,59 L36,59 L36,196 L244,196 L244,59 Z M19,42 L261,42 L261,213 L19,213 L19,42 Z" id="Rectangle-1" fill-opacity="0.88" fill="#E8C48F"></path>
+            <text id="div-(container)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="82.5" y="32">div (container)</tspan>
+            </text>
+            <text id="130x130" font-family="Consolas" font-size="13" font-weight="normal" fill="#8A704D">
+                <tspan x="48" y="133">130x130</tspan>
+            </text>
+            <text id="ul-(width:-9999px)" font-family="Consolas" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="71.5" y="82">ul (width: 9999px)</tspan>
+            </text>
+            <rect id="Rectangle-36" fill="#FFFFFF" x="447" y="90" width="16" height="84"></rect>
+        </g>
+    </g>
+</svg>

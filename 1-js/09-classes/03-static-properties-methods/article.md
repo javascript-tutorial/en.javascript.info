@@ -174,7 +174,7 @@ Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` wi
 How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
 
-![](animal-rabbit-static.png)
+![](animal-rabbit-static.svg)
 
 So, `Rabbit` function now inherits from `Animal` function. And `Animal` function normally has `[[Prototype]]` referencing `Function.prototype`, because it doesn't `extend` anything.
 

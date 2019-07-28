@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="369px" height="216px" viewBox="0 0 369 216" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bagua-bubble.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bagua-bubble.svg">
+            <polygon id="Rectangle-210" fill="#FFDE99" points="202.48764 140 217 186 103 186 117.51236 140"></polygon>
+            <path d="M216.633566,81 L102.366434,81 L86.2766439,132 L232.723356,132 L216.633566,81 Z" id="Rectangle-209" stroke="#CFCE95" stroke-width="18"></path>
+            <path d="M236.013506,29 L82.9864943,29 L60.2759239,101 L258.724076,101 L236.013506,29 Z" id="Rectangle-208" stroke="#99C0C3" stroke-width="18"></path>
+            <path d="M164.499875,123 L155.500875,123 L155.500875,110 L164.499875,110 L164.499875,123 Z M164.499875,141 L164.499875,154.816139 C164.499875,157.302139 162.484875,159.316139 160.000875,159.316139 C157.514875,159.316139 155.500875,157.302139 155.500875,154.816139 L155.500875,141 L164.499875,141 Z M164.499875,92 L155.500875,92 L155.500875,35.6981394 L145.361875,45.8351394 C143.605875,47.5921394 140.756875,47.5921394 138.998875,45.8351394 C137.240875,44.0771394 137.240875,41.2281394 138.998875,39.4711394 L156.637875,21.8311394 C157.563875,20.9071394 158.789875,20.4821394 160.000875,20.5311394 C161.210875,20.4821394 162.437875,20.9071394 163.361875,21.8311394 L181.001875,39.4711394 C182.758875,41.2281394 182.758875,44.0771394 181.001875,45.8351394 C179.243875,47.5921394 176.394875,47.5921394 174.637875,45.8351394 L164.499875,35.6981394 L164.499875,92 Z" id="Fill-46" fill="#5A4739"></path>
+            <text id="&lt;table&gt;" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#99C0C3">
+                <tspan x="9" y="30">&lt;table&gt;</tspan>
+            </text>
+            <text id="&lt;td&gt;" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#CFCE95">
+                <tspan x="36" y="136">&lt;td&gt;</tspan>
+            </text>
+            <text id="&lt;strong&gt;" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#E8C48E">
+                <tspan x="35" y="181">&lt;strong&gt;</tspan>
+            </text>
+            <text id="event.target" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="271.745605" y="181">event.target</tspan>
+            </text>
+            <path d="M229.5,177.5 L259.5,177.5" id="Line-30" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+        </g>
+    </g>
+</svg>

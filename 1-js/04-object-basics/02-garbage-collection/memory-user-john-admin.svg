@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144px" height="159px" viewBox="0 0 144 159" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>memory-user-john-admin.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="garbage-collection" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="memory-user-john-admin.svg">
+            <text id="user" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="67">user</tspan>
+            </text>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="16" y="93" width="118" height="48"></rect>
+            <text id="name:-&quot;John&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="30" y="130">name: "John"</tspan>
+            </text>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="44" y="110">Object</tspan>
+            </text>
+            <path id="Line" d="M53.5,65.5 L53.5,47.5 L55.5,47.5 L55.5,65.5 L61.5,65.5 L54.5,79.5 L47.5,65.5 L53.5,65.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="admin" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="92" y="67">admin</tspan>
+            </text>
+            <path id="Line-Copy" d="M81.5,65.5 L81.5,47.5 L83.5,47.5 L83.5,65.5 L89.5,65.5 L82.5,79.5 L75.5,65.5 L81.5,65.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="27" y="16" width="93" height="26"></rect>
+            <text id="&lt;global&gt;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="43" y="33">&lt;global&gt;</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

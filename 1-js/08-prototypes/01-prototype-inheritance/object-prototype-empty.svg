@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="191px" height="150px" viewBox="0 0 191 150" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object-prototype-empty.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object-prototype-empty.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="23" width="118" height="28"></rect>
+            <text id="prototype-object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="12" y="15">prototype object</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="14" y="111" width="118" height="28"></rect>
+            <text id="object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="13" y="103">object</tspan>
+            </text>
+            <path id="Line" d="M74.5,74.5 L74.5,102.5 L72.5,102.5 L72.5,74.5 L66.5,74.5 L73.5,60.5 L80.5,74.5 L74.5,74.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="83" y="82">[[Prototype]]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

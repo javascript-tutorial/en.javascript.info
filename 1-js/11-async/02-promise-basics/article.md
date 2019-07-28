@@ -38,7 +38,7 @@ When the executor finishes the job, it should call one of the functions that it 
     - sets `state` to `"rejected"`,
     - sets `result` to `error`.
 
-![](promise-resolve-reject.png)
+![](promise-resolve-reject.svg)
 
 Later we'll see how these changes become known to "fans".
 
@@ -60,7 +60,7 @@ We can see two things by running the code above:
 
 After one second of "processing" the executor calls `resolve("done")` to produce the result:
 
-![](promise-resolve-1.png)
+![](promise-resolve-1.svg)
 
 That was an example of a successful job completion, a "fulfilled promise".
 
@@ -73,7 +73,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-![](promise-reject-1.png)
+![](promise-reject-1.svg)
 
 To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding Promise object.
 

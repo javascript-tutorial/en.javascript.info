@@ -373,7 +373,7 @@ The code is short and easy to understand (hopefully?). That's the power of recur
 
 Here's the diagram of calls:
 
-![recursive salaries](recursive-salaries.png)
+![recursive salaries](recursive-salaries.svg)
 
 We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
 
@@ -444,7 +444,7 @@ let list = {
 
 Graphical representation of the list:
 
-![linked list](linked-list.png)
+![linked list](linked-list.svg)
 
 An alternative code for creation:
 
@@ -464,7 +464,7 @@ let secondList = list.next.next;
 list.next.next = null;
 ```
 
-![linked list split](linked-list-split.png)
+![linked list split](linked-list-split.svg)
 
 To join:
 
@@ -488,7 +488,7 @@ list = { value: "new item", next: list };
 */!*
 ```
 
-![linked list](linked-list-0.png)
+![linked list](linked-list-0.svg)
 
 To remove a value from the middle, change `next` of the previous one:
 
@@ -496,7 +496,7 @@ To remove a value from the middle, change `next` of the previous one:
 list.next = list.next.next;
 ```
 
-![linked list](linked-list-remove-1.png)
+![linked list](linked-list-remove-1.svg)
 
 We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
 

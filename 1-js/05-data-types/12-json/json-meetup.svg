@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="188px" height="192px" viewBox="0 0 188 192" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>json-meetup.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="json-meetup.svg">
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="59" y="1" width="89" height="26"></rect>
+            <text id="number:-23" font-family="Consolas" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="72" y="17">number: 23</tspan>
+            </text>
+            <rect id="Rectangle-3" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="25" y="80" width="152" height="26"></rect>
+            <text id="title:-&quot;Conference&quot;" font-family="Consolas" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="38" y="96">title: "Conference"</tspan>
+            </text>
+            <rect id="Rectangle-3-Copy" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="57" y="157" width="89" height="26"></rect>
+            <text id="..." font-family="Consolas" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="91" y="173">...</tspan>
+            </text>
+            <text id="place" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="127" y="56">place</tspan>
+            </text>
+            <path id="Line" d="M93.5,52.5 L93.5,34.5 L95.5,34.5 L95.5,52.5 L101.5,52.5 L94.5,66.5 L87.5,52.5 L93.5,52.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M108.5,49.5 L108.5,67.5 L106.5,67.5 L106.5,49.5 L100.5,49.5 L107.5,35.5 L114.5,49.5 L108.5,49.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="occupiedBy" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="5" y="56">occupiedBy</tspan>
+            </text>
+            <path id="Line-Copy-2" d="M100.5,131.5 L100.5,113.5 L102.5,113.5 L102.5,131.5 L108.5,131.5 L101.5,145.5 L94.5,131.5 L100.5,131.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="participants" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="0" y="135">participants</tspan>
+            </text>
+            <ellipse id="Oval-32" stroke="#F5A623" cx="101" cy="52.5" rx="37" ry="33.5"></ellipse>
+        </g>
+    </g>
+</svg>

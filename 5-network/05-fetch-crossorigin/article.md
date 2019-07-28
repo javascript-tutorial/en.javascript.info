@@ -149,7 +149,7 @@ The browser plays the role of a trusted mediator here:
 1. It ensures that the corrent `Origin` is sent with a cross-domain request.
 2. If checks for correct `Access-Control-Allow-Origin` in the response, if it is so, then JavaScript access, otherwise forbids with an error.
 
-![](xhr-another-domain.png)
+![](xhr-another-domain.svg)
 
 Here's an example of a permissive server response:
 ```
@@ -215,7 +215,7 @@ If the server agrees to serve the requests, then it should respond with status 2
 - The response header `Access-Control-Allow-Headers` must have a list of allowed headers.
 - Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
 
-![](xhr-preflight.png)
+![](xhr-preflight.svg)
 
 Let's see how it works step-by-step on example, for a cross-domain `PATCH` request (this method is often used to update data):
 

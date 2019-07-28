@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="245px" height="74px" viewBox="0 0 245 74" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>hello-java-boundaries.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="regexp" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="hello-java-boundaries.svg">
+            <text id="Hello,-Java!" font-family="PTMono-Regular, PT Mono" font-size="22" font-weight="normal" letter-spacing="4.58333333" fill="#8A704D">
+                <tspan x="20" y="61">Hello, Java</tspan>
+                <tspan x="215.616667" y="61">!</tspan>
+            </text>
+            <path id="Line" d="M15.5,25.5 L15.5,8.5 L17.5,8.5 L17.5,25.5 L23.5,25.5 L16.5,39.5 L9.5,25.5 L15.5,25.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M110.5,25.5 L110.5,8.5 L112.5,8.5 L112.5,25.5 L118.5,25.5 L111.5,39.5 L104.5,25.5 L110.5,25.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M142.5,25.5 L142.5,8.5 L144.5,8.5 L144.5,25.5 L150.5,25.5 L143.5,39.5 L136.5,25.5 L142.5,25.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-4" d="M216.5,25.5 L216.5,8.5 L218.5,8.5 L218.5,25.5 L224.5,25.5 L217.5,39.5 L210.5,25.5 L216.5,25.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

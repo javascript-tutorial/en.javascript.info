@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="486px" height="295px" viewBox="0 0 486 295" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>mixin-inheritance.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="mixin-inheritance.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="305" y="130.109589" width="178" height="58"></rect>
+            <text id="sayHi:-function-sayB" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="315" y="153.109589">sayHi: function</tspan>
+                <tspan x="315" y="168.109589">sayBye: function</tspan>
+            </text>
+            <text id="sayHiMixin" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="304" y="122.109589">sayHiMixin</tspan>
+            </text>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="305" y="23.109589" width="178" height="28"></rect>
+            <text id="say:-function" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="315" y="41.109589">say: function</tspan>
+            </text>
+            <text id="sayMixin" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="304" y="15.109589">sayMixin</tspan>
+            </text>
+            <path id="Line-2" d="M365.5,78.609589 L365.5,106.609589 L363.5,106.609589 L363.5,78.609589 L357.5,78.609589 L364.5,64.609589 L371.5,78.609589 L365.5,78.609589 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="378" y="87">[[Prototype]]</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="130.109589" width="178" height="58"></rect>
+            <text id="constructor:-User-sa" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="18" y="146.109589">constructor: User</tspan>
+                <tspan x="18" y="161.109589">sayHi: function</tspan>
+                <tspan x="18" y="176.109589">sayBye: function</tspan>
+            </text>
+            <text id="User.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="7" y="122.109589">User.prototype</tspan>
+            </text>
+            <path id="Line-2-Copy" d="M68.5,218.609589 L68.5,246.609589 L66.5,246.609589 L66.5,218.609589 L60.5,218.609589 L67.5,204.609589 L74.5,218.609589 L68.5,218.609589 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy-2" d="M264.5,176.609589 L154.5,176.609589 L154.5,174.609589 L264.5,174.609589 L264.5,168.609589 L278.5,175.609589 L264.5,182.609589 L264.5,176.609589 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2-Copy-3" d="M264.5,160.609589 L154.5,160.609589 L154.5,158.609589 L264.5,158.609589 L264.5,152.609589 L278.5,159.609589 L264.5,166.609589 L264.5,160.609589 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="81" y="227">[[Prototype]]</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="12" y="261" width="99" height="28"></rect>
+            <text id="name:-..." font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="18" y="278.109589">name: ...</tspan>
+            </text>
+            <text id="user" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="11" y="253">user</tspan>
+            </text>
+            <text id="[[HomeObject]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="193" y="148">[[HomeObject]</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

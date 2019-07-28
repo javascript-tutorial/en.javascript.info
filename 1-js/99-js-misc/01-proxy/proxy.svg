@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="292px" height="180px" viewBox="0 0 292 180" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>proxy.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="misc" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="proxy.svg">
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="191" y="81" width="69" height="26"></rect>
+            <text id="test:-5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="198" y="98">test: 5</tspan>
+            </text>
+            <text id="proxy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="186" y="17">proxy</tspan>
+            </text>
+            <text id="target" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="198" y="74">target</tspan>
+            </text>
+            <path id="Line" d="M116.536765,83.5 L4.46323529,83.5 L4.46323529,80.5 L116.536765,80.5 L116.536765,72.5 L135.536765,82 L116.536765,91.5 L116.536765,83.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-4" d="M24.4632353,106.5 L136.536765,106.5 L136.536765,109.5 L24.4632353,109.5 L24.4632353,117.5 L5.46323529,108 L24.4632353,98.5 L24.4632353,106.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M190.478261,89 L176.478261,96 L176.478261,82 L190.478261,89 Z M142,90 L142,88 L146,88 L146,90 L142,90 Z M149,90 L149,88 L153,88 L153,90 L149,90 Z M156,90 L156,88 L160,88 L160,90 L156,90 Z M163,90 L163,88 L167,88 L167,90 L163,90 Z M170,90 L170,88 L174,88 L174,90 L170,90 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M157,99 L159,99 L159,101 L157,101 L157,107 L143,100 L157,93 L157,99 Z M162,101 L162,99 L166,99 L166,101 L162,101 Z M169,101 L169,99 L173,99 L173,101 L169,101 Z M176,101 L176,99 L180,99 L180,101 L176,101 Z M183,101 L183,99 L187,99 L187,101 L183,101 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="get-proxy.test" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="7" y="69">get proxy.test</tspan>
+            </text>
+            <text id="5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#000000">
+                <tspan x="70" y="135">5</tspan>
+            </text>
+            <path d="M207,160 C243.450793,160 273,130.450793 273,94 C273,57.5492065 243.450793,28 207,28 C170.549207,28 141,57.5492065 141,94 C141,130.450793 170.549207,160 207,160 Z" id="Oval" stroke="#BCA68E" stroke-width="2" stroke-dasharray="5"></path>
+        </g>
+    </g>
+</svg>

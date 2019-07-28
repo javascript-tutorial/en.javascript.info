@@ -94,7 +94,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 
 Here's the illustration of what `rabbit instanceof Animal` compares with `Animal.prototype`:
 
-![](instanceof.png)
+![](instanceof.svg)
 
 By the way, there's also a method [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf), that returns `true` if `objA` is somewhere in the chain of prototypes for `objB`. So the test of `obj instanceof Class` can be rephrased as `Class.prototype.isPrototypeOf(obj)`.
 

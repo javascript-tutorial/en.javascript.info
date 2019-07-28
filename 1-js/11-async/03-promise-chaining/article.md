@@ -42,7 +42,7 @@ Here the flow is:
 
 As the result is passed along the chain of handlers, we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
 
-![](promise-then-chain.png)
+![](promise-then-chain.svg)
 
 The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
 
@@ -94,7 +94,7 @@ What we did here is just several handlers to one promise. They don't pass the re
 
 Here's the picture (compare it with the chaining above):
 
-![](promise-then-many.png)
+![](promise-then-many.svg)
 
 All `.then` on the same promise get the same result -- the result of that promise. So in the code above all `alert` show the same: `1`.
 
@@ -382,4 +382,4 @@ If a `.then` (or `catch/finally`, doesn't matter) handler returns a promise, the
 
 Here's a full picture:
 
-![](promise-handler-variants.png)
+![](promise-handler-variants.svg)

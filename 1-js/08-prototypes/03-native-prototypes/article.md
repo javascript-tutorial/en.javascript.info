@@ -19,11 +19,11 @@ Where's the code that generates the string `"[object Object]"`? That's a built-i
 
 Here's what's going on:
 
-![](object-prototype.png)
+![](object-prototype.svg)
 
 When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` according to the rule that we discussed in the previous chapter:
 
-![](object-prototype-1.png)
+![](object-prototype-1.svg)
 
 So then when `obj.toString()` is called the method is taken from `Object.prototype`.
 
@@ -52,7 +52,7 @@ By specification, all of the built-in prototypes have `Object.prototype` on the 
 
 Here's the overall picture (for 3 built-ins to fit):
 
-![](native-prototypes-classes.png)
+![](native-prototypes-classes.svg)
 
 Let's check the prototypes manually:
 
@@ -79,7 +79,7 @@ alert(arr); // 1,2,3 <-- the result of Array.prototype.toString
 As we've seen before, `Object.prototype` has `toString` as well, but `Array.prototype` is closer in the chain, so the array variant is used.
 
 
-![](native-prototypes-array-tostring.png)
+![](native-prototypes-array-tostring.svg)
 
 
 In-browser tools like Chrome developer console also show inheritance (`console.dir` may need to be used for built-in objects):

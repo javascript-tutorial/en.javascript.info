@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="234px" height="240px" viewBox="0 0 234 240" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bounce-inout.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bounce-inout.svg">
+            <path id="Line" d="M35,36.1600037 L35,210.5 L33,210.5 L33,36.1600037 L27,36.1600037 L34,22.1600037 L41,36.1600037 L35,36.1600037 Z" fill="#E8C48E" fill-rule="nonzero"></path>
+            <path id="Line" d="M194.509995,195 L23.5,195 L23.5,193 L194.509995,193 L194.509995,187 L208.509995,194 L194.509995,201 L194.509995,195 Z" fill="#E8C48E" fill-rule="nonzero"></path>
+            <path d="M35.3289777,193.635841 C35.3289777,193.635841 41.2333124,187.095281 52.2325098,193.635839 C55.4414764,183.659866 71.0514816,178.107189 80.7686063,193.635839 C89.032676,167.620814 117,110.452183 144.182478,194.552328 C148.063747,176.586161 175.037321,10.6423763 208.465749,22.4456533" id="Path-747" stroke="#EE6B47" stroke-width="3" stroke-linejoin="bevel"></path>
+            <text id="0" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="212">0</tspan>
+            </text>
+            <text id="1" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="36">1</tspan>
+            </text>
+            <text id="-2" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="200" y="212">1</tspan>
+            </text>
+            <path d="M35.4840461,192.776816 C53.45735,186.177656 69.3490979,170.128038 97.137513,18.4980531 C102.051415,32.4334475 112.013077,63.0795933 127.058929,63.996791 C142.104781,64.9139886 156.560556,31.0473534 160.222221,20.3348259 C166.618848,28.1959597 165.111566,31.4251632 174.958382,31.425163 C184.805198,31.4251628 190.347191,21.8729943 191.581215,20.6199652 C193.7855,22.5969315 202.177314,24.4036062 206.959731,21.4508296" id="Path-770" stroke="#62C0DC" stroke-width="3" stroke-linejoin="bevel"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="195px" height="145px" viewBox="0 0 195 145" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>8bit-integer-257.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="binary" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="8bit-integer-257.svg">
+            <rect id="Rectangle-227-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="24" y="33" width="100" height="28"></rect>
+            <text id="100000001" font-family="PTMono-Regular, PT Mono" font-size="16" font-weight="normal" letter-spacing="3" fill="#000000">
+                <tspan x="12.8" y="51">10000000</tspan>
+                <tspan x="113.6" y="51">1</tspan>
+            </text>
+            <text id="8-bit-integer" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#000000">
+                <tspan x="28.640625" y="25">8-bit intege</tspan>
+                <tspan x="112.828125" y="25" letter-spacing="3">r</tspan>
+            </text>
+            <text id="257" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#9B9B9B">
+                <tspan x="133.777344" y="50">257</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

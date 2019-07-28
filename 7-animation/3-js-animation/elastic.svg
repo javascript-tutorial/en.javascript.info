@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="233px" height="388px" viewBox="0 0 233 388" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>elastic.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="elastic.svg">
+            <path id="Line" d="M35,36.1600037 L35,366 L33,366 L33,36.1600037 L27,36.1600037 L34,22.1600037 L41,36.1600037 L35,36.1600037 Z" fill="#E8C48E" fill-rule="nonzero"></path>
+            <path id="Line" d="M194.509995,195 L23.5,195 L23.5,193 L194.509995,193 L194.509995,187 L208.509995,194 L194.509995,201 L194.509995,195 Z" fill="#E8C48E" fill-rule="nonzero"></path>
+            <path d="M34.8792035,192.69782 C38.3217915,192.697818 46.5362784,191.195974 53.4936997,193.038137 C62.0206897,195.295885 61.5154635,189.622956 87.0139157,194.339254 C100.114357,196.762365 100.423927,183.608251 115.161483,194.900075 C135.318831,210.34451 133.877092,159.362737 148.519851,194.677907 C151.940119,202.926853 155.398942,217.279032 158.65332,214.286779 C161.563227,211.611251 163.848094,194.907207 173.23036,150.175435 C177.841468,128.191083 188.232669,296.296579 192.347319,280.535848 C201.966406,243.690946 203.555755,39.1411041 207.337233,22.0938619" id="Path-747" stroke="#EE6B47" stroke-width="3"></path>
+            <text id="0" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="212">0</tspan>
+            </text>
+            <text id="1" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="17" y="36">1</tspan>
+            </text>
+            <text id="-2" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="200" y="212">1</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

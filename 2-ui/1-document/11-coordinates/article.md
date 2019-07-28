@@ -13,7 +13,7 @@ When the page is scrolled to the top, so that the top/left corner of the window 
 
 Here's the picture, the left part is before the scroll, and the right part - after scrolling the page up:
 
-![](document-and-window-coordinates-scrolled.png)
+![](document-and-window-coordinates-scrolled.svg)
 
 As the document moved up:
 - `pageY` - document-relative coordinate of the same point stayed the same, it's counted from the document top (now scrolled out).
@@ -60,7 +60,7 @@ If you scroll the page and repeat, you'll notice that as window-relative button 
 
 Here's the picture of `elem.getBoundingClientRect()` output:
 
-![](coordinates.png)
+![](coordinates.svg)
 
 As you can see, `x/y` and `width/height` fully describe the rectangle. Derived properties can be easily calculated:
 - `left = x`
@@ -80,7 +80,7 @@ Technically it's possible for `width/height` to be negative, that's useful for  
 
 Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
 
-![](coordinates-negative.png)
+![](coordinates-negative.svg)
 
 The rectangle starts at its bottom-right corner and then spans left/up, as negative `width/height` lead it backwards by coordinates.
 

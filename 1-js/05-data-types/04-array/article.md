@@ -100,7 +100,7 @@ A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of th
 - `push` appends an element to the end.
 - `shift` get an element from the beginning, advancing the queue, so that the 2nd element becomes the 1st.
 
-![](queue.png)
+![](queue.svg)
 
 Arrays support both operations.
 
@@ -117,7 +117,7 @@ So new elements are added or taken always from the "end".
 
 A stack is usually illustrated as a pack of cards: new cards are added to the top or taken from the top:
 
-![](stack.png)
+![](stack.svg)
 
 For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
 
@@ -239,7 +239,7 @@ Please think of arrays as special structures to work with the *ordered data*. Th
 
 Methods `push/pop` run fast, while `shift/unshift` are slow.
 
-![](array-speed.png)
+![](array-speed.svg)
 
 Why is it faster to work with the end of an array than with its beginning? Let's see what happens during the execution:
 
@@ -255,7 +255,7 @@ The `shift` operation must do 3 things:
 2. Move all elements to the left, renumber them from the index `1` to `0`, from `2` to `1` and so on.
 3. Update the `length` property.
 
-![](array-shift.png)
+![](array-shift.svg)
 
 **The more elements in the array, the more time to move them, more in-memory operations.**
 
@@ -269,7 +269,7 @@ The actions for the `pop` operation:
 fruits.pop(); // take 1 element from the end
 ```
 
-![](array-pop.png)
+![](array-pop.svg)
 
 **The `pop` method does not need to move anything, because other elements keep their indexes. That's why it's blazingly fast.**
 

@@ -34,7 +34,7 @@ Or, to say that simply, when a promise is ready, its `.then/catch/finally` handl
 
 That's why "code finished" in the example above shows first.
 
-![](promiseQueue.png)
+![](promiseQueue.svg)
 
 Promise handlers always go through that internal queue.
 

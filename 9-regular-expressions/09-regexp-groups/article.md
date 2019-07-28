@@ -103,7 +103,7 @@ alert(result); // <span class="my">, span class="my", span, class="my"
 
 Here's how groups look:
 
-![](regexp-nested-groups.png)
+![](regexp-nested-groups.svg)
 
 At the zero index of the `result` is always the full match.
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="225px" height="331px" viewBox="0 0 225 331" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>bezier-train-over.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="34" y="15" width="150" height="150"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="150" height="150" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="animation" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bezier-train-over.svg">
+            <g id="Group" opacity="0.7" transform="translate(0.000000, 74.000000)">
+                <use id="Rectangle-233" stroke="#979797" mask="url(#mask-2)" stroke-width="2" stroke-dasharray="3,2,3,2" xlink:href="#path-1"></use>
+                <text id="(1,1)" font-family="PTMono-Bold, PT Mono" font-size="12" font-weight="bold" fill="#838383">
+                    <tspan x="189" y="11">(1,1)</tspan>
+                </text>
+                <text id="(0,0)" font-family="PTMono-Bold, PT Mono" font-size="12" font-weight="bold" fill="#838383">
+                    <tspan x="0" y="157">(0,0)</tspan>
+                </text>
+                <text id="(0,1)" font-family="PTMono-Bold, PT Mono" font-size="12" font-weight="bold" fill="#838383">
+                    <tspan x="0" y="11">(0,1)</tspan>
+                </text>
+                <text id="(1,0)" font-family="PTMono-Bold, PT Mono" font-size="12" font-weight="bold" fill="#838383">
+                    <tspan x="189" y="157">(1,0)</tspan>
+                </text>
+            </g>
+            <path d="M34.5,239.5 L107.5,312.5" id="Line-2" stroke="#E8C48E" stroke-linecap="square"></path>
+            <path d="M34,239 C109,314 109,14 184,89" id="bezier-path" stroke="#CB1E31" stroke-width="2"></path>
+            <circle id="Oval-4" stroke="#E8C48E" fill="#FFFFFF" cx="34" cy="239" r="4"></circle>
+            <text id="-2" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="30" y="261">1</tspan>
+            </text>
+            <circle id="Oval-6" stroke="#E8C48E" fill="#FFFFFF" cx="109" cy="314" r="4"></circle>
+            <text id="-3" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="92" y="320">2</tspan>
+            </text>
+            <path d="M110.5,15.5 L183.5,88.5" id="Line" stroke="#E8C48E" stroke-linecap="square"></path>
+            <circle id="Oval-5" stroke="#E8C48E" fill="#FFFFFF" cx="184" cy="89" r="4"></circle>
+            <text id="-5" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="188" y="107">4</tspan>
+            </text>
+            <circle id="Oval-7" stroke="#E8C48E" fill="#FFFFFF" cx="109" cy="14" r="4"></circle>
+            <text id="-4" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" line-spacing="17" fill="#8A704D">
+                <tspan x="92" y="21">3</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

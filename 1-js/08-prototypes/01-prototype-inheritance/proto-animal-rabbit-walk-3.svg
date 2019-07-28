@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="206px" height="190px" viewBox="0 0 206 190" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>proto-animal-rabbit-walk-3.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="proto-animal-rabbit-walk-3.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="7" y="23" width="190" height="48"></rect>
+            <text id="walk:-function" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="24" y="42">walk: function</tspan>
+                <tspan x="24" y="57">sleep: function</tspan>
+            </text>
+            <text id="animal" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="8" y="15">animal</tspan>
+            </text>
+            <text id="rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="8" y="126">rabbit</tspan>
+            </text>
+            <path id="Line" d="M79.5,97.5 L79.5,125.5 L77.5,125.5 L77.5,97.5 L71.5,97.5 L78.5,83.5 L85.5,97.5 L79.5,97.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="88" y="105">[[Prototype]]</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="7" y="138" width="190" height="48"></rect>
+            <text id="name:-&quot;White-Rabbit&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="20" y="157" fill="#8A704D">name: "White Rabbit"</tspan>
+                <tspan x="20" y="172" font-family="PTMono-Bold, PT Mono" font-weight="bold" fill="#EC6B4E">isSleeping: true</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

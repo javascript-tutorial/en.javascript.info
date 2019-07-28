@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="144px" height="225px" viewBox="0 0 144 225" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>family-no-father-2.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="garbage-collection" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="family-no-father-2.svg">
+            <rect id="Rectangle-2" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="34" y="91" width="78" height="26"></rect>
+            <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="50" y="107">Object</tspan>
+            </text>
+            <text id="family" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="15" y="67">family</tspan>
+            </text>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="2" fill="#FFF9EB" x="16" y="166" width="118" height="48"></rect>
+            <text id="name:-&quot;Ann&quot;" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="34" y="203">name: "Ann"</tspan>
+            </text>
+            <text id="mother" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="16" y="142">mother</tspan>
+            </text>
+            <text id="Object-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="48" y="183">Object</tspan>
+            </text>
+            <path id="Line" d="M73.5,65.5 L73.5,47.5 L75.5,47.5 L75.5,65.5 L81.5,65.5 L74.5,79.5 L67.5,65.5 L73.5,65.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M72.5,141.5 L72.5,122.5 L74.5,122.5 L74.5,141.5 L80.5,141.5 L73.5,155.5 L66.5,141.5 L72.5,141.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="27" y="16" width="93" height="26"></rect>
+            <text id="&lt;global&gt;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="43" y="33">&lt;global&gt;</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

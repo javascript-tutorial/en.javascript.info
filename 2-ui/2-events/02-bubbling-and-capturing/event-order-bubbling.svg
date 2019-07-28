@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="353px" height="216px" viewBox="0 0 353 216" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>event-order-bubbling.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="event-order-bubbling.svg">
+            <polygon id="Rectangle-210" fill="#FFDE99" points="159.48764 140 174 186 60 186 74.51236 140"></polygon>
+            <path d="M173.633566,81 L59.3664344,81 L43.2766439,132 L189.723356,132 L173.633566,81 Z" id="Rectangle-209" stroke="#CFCE95" stroke-width="18"></path>
+            <path d="M193.013506,29 L39.9864943,29 L17.2759239,101 L215.724076,101 L193.013506,29 Z" id="Rectangle-208" stroke="#99C0C3" stroke-width="18"></path>
+            <path d="M121.499875,123 L112.500875,123 L112.500875,110 L121.499875,110 L121.499875,123 Z M121.499875,141 L121.499875,154.816139 C121.499875,157.302139 119.484875,159.316139 117.000875,159.316139 C114.514875,159.316139 112.500875,157.302139 112.500875,154.816139 L112.500875,141 L121.499875,141 Z M121.499875,92 L112.500875,92 L112.500875,35.6981394 L102.361875,45.8351394 C100.605875,47.5921394 97.756875,47.5921394 95.998875,45.8351394 C94.240875,44.0771394 94.240875,41.2281394 95.998875,39.4711394 L113.637875,21.8311394 C114.563875,20.9071394 115.789875,20.4821394 117.000875,20.5311394 C118.210875,20.4821394 119.437875,20.9071394 120.361875,21.8311394 L138.001875,39.4711394 C139.758875,41.2281394 139.758875,44.0771394 138.001875,45.8351394 C136.243875,47.5921394 133.394875,47.5921394 131.637875,45.8351394 L121.499875,35.6981394 L121.499875,92 Z" id="Fill-46" fill="#5A4739"></path>
+            <text id="1" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#5A4739">
+                <tspan x="210" y="105">1</tspan>
+            </text>
+            <text id="2" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#5A4739">
+                <tspan x="185" y="136">2</tspan>
+            </text>
+            <text id="3" font-family="PTMono-Bold, PT Mono" font-size="14" font-weight="bold" fill="#EE6B47">
+                <tspan x="157" y="181">3</tspan>
+            </text>
+            <text id="Most-deeply-nested-e" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
+                <tspan x="228.480469" y="175">Most deeply </tspan>
+                <tspan x="216.305664" y="194">nested element</tspan>
+            </text>
+            <path d="M179.5,177.5 L209.5,177.5" id="Line-30" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+        </g>
+    </g>
+</svg>

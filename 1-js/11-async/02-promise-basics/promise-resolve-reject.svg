@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512px" height="246px" viewBox="0 0 512 246" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>promise-resolve-reject.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="promise-resolve-reject.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="9" y="91" width="170" height="70"></rect>
+            <text id="new-Promise(executor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#707175">
+                <tspan x="10" y="82">new Promise(executor)</tspan>
+            </text>
+            <text id="state:-&quot;pending&quot;-res" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
+                <tspan x="21" y="115.431641">state:   "pending"</tspan>
+                <tspan x="21" y="135.431641">result:  undefined</tspan>
+            </text>
+            <path id="Line" d="M299.865748,184.482759 L195.673354,136.489909 L196.510091,134.673354 L300.702485,182.666204 L303.212697,177.21654 L313,189.431641 L297.355537,189.932423 L299.865748,184.482759 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M300.492513,63.3688916 L196.467935,107.310308 L195.689692,105.467935 L299.71427,61.5265189 L297.379539,55.9994011 L313,57 L302.827244,68.8960094 L300.492513,63.3688916 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="resolve(value)" transform="translate(244.389895, 72.629682) rotate(-23.000000) translate(-244.389895, -72.629682) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="185.589895" y="77.1296818">resolve(value)</tspan>
+            </text>
+            <text id="reject(error)" transform="translate(251.633927, 150.640538) rotate(25.000000) translate(-251.633927, -150.640538) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="197.033927" y="155.140538">reject(error)</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy" stroke="#7ED321" stroke-width="2" fill="#FFF9EB" x="323" y="10" width="182" height="64"></rect>
+            <text id="state:-&quot;fulfilled&quot;-r" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#417505">
+                <tspan x="338" y="34.4316406">state:  "fulfilled"</tspan>
+                <tspan x="338" y="54.4316406">result: value</tspan>
+            </text>
+            <rect id="Rectangle-1-Copy-3" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="323" y="177" width="182" height="64"></rect>
+            <text id="state:-&quot;rejected&quot;-re" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#727155">
+                <tspan x="338" y="201.431641">state:  "rejected"</tspan>
+                <tspan x="338" y="221.431641">result: error</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

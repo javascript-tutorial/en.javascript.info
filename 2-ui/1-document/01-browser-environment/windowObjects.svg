@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="354px" height="308px" viewBox="0 0 354 308" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>windowObjects.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="windowObjects.svg">
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="136" y="10" width="78" height="28"></rect>
+            <text id="window" font-family="Consolas" font-size="14" font-weight="normal" fill="#707175">
+                <tspan x="152" y="28">window</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#CFCE95" stroke-width="2" fill="#F5F4D8" x="18" y="80" width="78" height="26"></rect>
+            <rect id="Rectangle-2" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="255" y="118" width="78" height="26"></rect>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="110" y="270" width="132" height="26"></rect>
+            <text id="document" font-family="Consolas" font-size="14" font-weight="normal" fill="#727155">
+                <tspan x="26" y="97">document</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="255" y="80" width="78" height="26"></rect>
+            <text id="Object" font-family="Consolas" font-size="14" font-weight="normal" fill="#924565">
+                <tspan x="271" y="97">Object</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="135" y="80" width="78" height="26"></rect>
+            <text id="navigator" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="139.5" y="97">navigator</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="135" y="118" width="78" height="26"></rect>
+            <text id="screen" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="151" y="135">screen</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="135" y="156" width="78" height="26"></rect>
+            <text id="location" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="143.5" y="173">location</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="135" y="194" width="78" height="26"></rect>
+            <text id="frames" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="151" y="211">frames</tspan>
+            </text>
+            <rect id="Rectangle-2" stroke="#99C0C3" stroke-width="2" fill="#EDFCFD" x="135" y="232" width="78" height="26"></rect>
+            <text id="history" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="147.5" y="249">history</tspan>
+            </text>
+            <text id="Array" font-family="Consolas" font-size="14" font-weight="normal" fill="#924565">
+                <tspan x="275" y="135">Array</tspan>
+            </text>
+            <rect id="Rectangle-3" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="255" y="156" width="78" height="26"></rect>
+            <text id="Function" font-family="Consolas" font-size="14" font-weight="normal" fill="#924565">
+                <tspan x="263.5" y="173">Function</tspan>
+            </text>
+            <text id="XMLHttpRequest" font-family="Consolas" font-size="14" font-weight="normal" fill="#366378">
+                <tspan x="122" y="287">XMLHttpRequest</tspan>
+            </text>
+            <text id="BOM" font-family="Consolas" font-size="14" font-weight="normal" fill="#99C0C3">
+                <tspan x="135" y="73">BOM</tspan>
+            </text>
+            <text id="JavaScript" font-family="Consolas" font-size="14" font-weight="normal" fill="#C74A6C">
+                <tspan x="271" y="73">JavaScript</tspan>
+            </text>
+            <text id="DOM" font-family="Consolas" font-size="14" font-weight="normal" fill="#CFCE95">
+                <tspan x="17" y="73">DOM</tspan>
+            </text>
+            <path id="Line" d="M173.5,58.5 L173.5,40.5 L175.5,40.5 L175.5,58.5 L181.5,58.5 L174.5,72.5 L167.5,58.5 L173.5,58.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M97.4216083,64.684192 L132.749841,40.1080303 L133.89197,41.7498407 L98.5637373,66.3260024 L101.990124,71.2514336 L86.5,73.5 L93.9952214,59.7587608 L97.4216083,64.684192 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="…" font-family="Consolas" font-size="24" font-weight="normal" fill="#727155">
+                <tspan x="50" y="122">…</tspan>
+            </text>
+            <text id="…-2" font-family="Consolas" font-size="24" font-weight="normal" fill="#924565">
+                <tspan x="287" y="201">…</tspan>
+            </text>
+            <path id="Line" d="M255.37175,67.4660359 L216.101095,40.7504484 L217.226047,39.0968214 L256.496703,65.8124089 L259.87156,60.851528 L267.509615,74.5138889 L251.996893,72.4269168 L255.37175,67.4660359 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="566px" height="183px" viewBox="0 0 566 183" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>settimeout-interval.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="settimeout-interval.svg">
+            <path d="M11.5,102 L561.5,102" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="61" y="87" width="88" height="28"></rect>
+            <text id="func(1)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="82" y="105">func(1)</tspan>
+            </text>
+            <path d="M79.5818182,27.3424658 L69.9113636,24.4383562 L77.4909091,8.2739726 L57.4704545,29.0958904 L67.1931818,32 L61.2863636,47.890411 L79.5818182,27.3424658 L79.5818182,27.3424658 Z M59.1954545,28.6575342 L74.3022727,12.9315068 L68.6045455,25.0410959 L77.8568182,27.7808219 L63.9,43.6164384 L68.4477273,31.3972603 L59.1954545,28.6575342 L59.1954545,28.6575342 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M60,135.5 L60,65.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="254" y="87" width="88" height="28"></rect>
+            <text id="func(2)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="275" y="105">func(2)</tspan>
+            </text>
+            <path d="M262.911364,24.4383562 L270.490909,8.2739726 L250.470455,29.0958904 L260.193182,32 L254.286364,47.890411 L272.581818,27.3424658 L262.911364,24.4383562 Z M267.302273,12.9315068 L261.604545,25.0410959 L270.856818,27.7808219 L256.9,43.6164384 L261.447727,31.3972603 L252.195455,28.6575342 L267.302273,12.9315068 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M253,135.5 L253,65.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <rect id="Rectangle-1" stroke="#BCA68E" stroke-width="2" fill="#FFFFFF" x="447" y="87" width="88" height="28"></rect>
+            <text id="func(3)" font-family="Consolas" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="468" y="105">func(3)</tspan>
+            </text>
+            <path d="M465.581818,27.3424658 L455.911364,24.4383562 L463.490909,8.2739726 L443.470455,29.0958904 L453.193182,32 L447.286364,47.890411 L465.581818,27.3424658 L465.581818,27.3424658 Z M445.195455,28.6575342 L460.302273,12.9315068 L454.604545,25.0410959 L463.856818,27.7808219 L449.9,43.6164384 L454.447727,31.3972603 L445.195455,28.6575342 L445.195455,28.6575342 Z" id="Shape" stroke="#EE6B47" stroke-width="3" fill="#EE6B47" stroke-linecap="square"></path>
+            <path d="M446,135.5 L446,65.5" id="Line" stroke="#BCA68E" stroke-width="2" stroke-linecap="square"></path>
+            <path d="M150.5,102.5 L250.5,102.5" id="Line" stroke="#EE6B47" stroke-width="3" stroke-linecap="square"></path>
+            <path d="M343.5,102.5 L443.5,102.5" id="Line-2" stroke="#EE6B47" stroke-width="3" stroke-linecap="square"></path>
+            <text id="100" font-family="Consolas" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="187" y="177">100</tspan>
+            </text>
+            <text id="100" font-family="Consolas" font-size="18" font-weight="normal" fill="#000000">
+                <tspan x="380" y="177">100</tspan>
+            </text>
+            <path id="Line-3" d="M165.5,151.5 L237.5,151.5 L237.5,145.5 L251.5,152.5 L237.5,159.5 L237.5,153.5 L165.5,153.5 L165.5,159.5 L151.5,152.5 L165.5,145.5 L165.5,151.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3-Copy" d="M355.5,151.5 L427.5,151.5 L427.5,145.5 L441.5,152.5 L427.5,159.5 L427.5,153.5 L355.5,153.5 L355.5,159.5 L341.5,152.5 L355.5,145.5 L355.5,151.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="500px" height="493px" viewBox="0 0 500 493" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>metric-client-width-height.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#F1F1F1" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="dom" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="metric-client-width-height.svg">
+            <path d="M386,155 L46,155 L46,395 L386,395 L386,155 Z M21,130 L411,130 L411,420 L21,420 L21,130 Z" id="Rectangle-2" fill-opacity="0.88" fill="#E8C48F"></path>
+            <path d="M67,177 L67,376 L350,376 L350,177 L67,177 Z" id="Rectangle-1" stroke="#EE6B47" stroke-width="2"></path>
+            <g id="Scrollbar" transform="translate(370.000000, 155.000000)">
+                <rect id="Rectangle-19" stroke="#E9E9E9" fill="#F3F2F2" x="0.5" y="0.5" width="15" height="239" rx="3"></rect>
+                <g id="Rectangle-18-+-Triangle-1">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-2" transform="translate(8.000000, 230.000000) scale(1, -1) translate(-8.000000, -230.000000) translate(0.000000, 220.000000)">
+                    <rect id="Rectangle-18" stroke="#CFCFCF" fill="url(#linearGradient-1)" x="0.5" y="0.5" width="15" height="19" rx="3"></rect>
+                    <polygon id="Triangle-1" fill="#92979F" points="8 7 11.2 13 4.8 13"></polygon>
+                </g>
+                <g id="Rectangle-18-+-Triangle-3-+-Group" transform="translate(0.000000, 50.000000)">
+                    <g id="Rectangle-18-+-Triangle-3" transform="translate(8.000000, 25.500000) scale(1, -1) translate(-8.000000, -25.500000) " fill="url(#linearGradient-2)" stroke="#CFCFCF">
+                        <rect id="Rectangle-18" x="0.5" y="0.5" width="15" height="50" rx="3"></rect>
+                    </g>
+                    <g id="Group" transform="translate(4.000000, 20.000000)" fill="#D8D8D8" stroke="#979797">
+                        <rect id="Rectangle-22" x="0.5" y="0.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-23" x="0.5" y="3.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-24" x="0.5" y="6.5" width="7" height="1"></rect>
+                        <rect id="Rectangle-25" x="0.5" y="9.5" width="7" height="1"></rect>
+                    </g>
+                </g>
+            </g>
+            <text id="border" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="12.9" y="75" fill="#EE6B47">border</tspan>
+                <tspan x="20.1" y="89" fill="#3B86C4">25px</tspan>
+            </text>
+            <text id="padding" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="32.3" y="45" fill="#EE6B47">padding</tspan>
+                <tspan x="43.1" y="59" fill="#3B86C4">20px</tspan>
+            </text>
+            <text id="content-width:284px" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="139.1" y="109" fill="#EE6B47">content width:</tspan>
+                <tspan x="239.9" y="109" fill="#3B86C4">284px</tspan>
+            </text>
+            <path id="Line-15" d="M82.6799927,116 L336.5,116 L336.5,110 L350.5,117 L336.5,124 L336.5,118 L82.6799927,118 L82.6799927,124 L68.6799927,117 L82.6799927,110 L82.6799927,116 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path d="M-0.46484375,114.945312 L42.5351562,114.945312" id="Line-14" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(21.480469, 114.945312) rotate(-270.000000) translate(-21.480469, -114.945312) "></path>
+            <path d="M26.5351562,113.945312 L67.5351562,113.945312" id="Line-13" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(47.480469, 113.945312) rotate(-270.000000) translate(-47.480469, -113.945312) "></path>
+            <text id="border-2" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="376.9" y="76" fill="#EE6B47">border</tspan>
+                <tspan x="384.1" y="90" fill="#3B86C4">25px</tspan>
+            </text>
+            <text id="padding-2" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="339.3" y="16" fill="#EE6B47">padding</tspan>
+                <tspan x="350.1" y="30" fill="#3B86C4">20px</tspan>
+            </text>
+            <text id="scrollbar" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="349.1" y="48" fill="#EE6B47">scrollbar</tspan>
+                <tspan x="367.1" y="62" fill="#3B86C4">16px</tspan>
+            </text>
+            <path d="M349.535156,114.945312 L392.535156,114.945312" id="Line-17" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(371.480469, 114.945312) rotate(-270.000000) translate(-371.480469, -114.945312) "></path>
+            <path d="M363.535156,114.945312 L406.535156,114.945312" id="Line-20" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(385.480469, 114.945312) rotate(-270.000000) translate(-385.480469, -114.945312) "></path>
+            <path d="M389.535156,113.945312 L430.535156,113.945312" id="Line-18" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(410.480469, 113.945312) rotate(-270.000000) translate(-410.480469, -113.945312) "></path>
+            <path d="M45.5351562,113.945312 L86.5351562,113.945312" id="Line-16" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(66.480469, 113.945312) rotate(-270.000000) translate(-66.480469, -113.945312) "></path>
+            <path d="M332.535156,113.945312 L373.535156,113.945312" id="Line-19" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6" transform="translate(353.480469, 113.945312) rotate(-270.000000) translate(-353.480469, -113.945312) "></path>
+            <text id="clientWidth-=-20+284" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="80.3" y="473" fill="#EE6B47">clientWidth = </tspan>
+                <tspan x="197.9" y="473" fill="#3B86C4">20+284+20 </tspan>
+                <tspan x="281.9" y="473" fill="#F38158">=</tspan>
+                <tspan x="290.3" y="473" fill="#3B86C4"> 324px</tspan>
+            </text>
+            <path d="M46.5,376 L46.5,464.14193" id="Line-24" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M370.5,376 L370.5,464.14193" id="Line-25" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path id="Line-22" d="M62,451.070965 L354,451.070965 L354,445.070965 L368,452.070965 L354,459.070965 L354,453.070965 L62,453.070965 L62,459.070965 L48,452.070965 L62,445.070965 L62,451.070965 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="clientHeight:240px" transform="translate(488.500000, 277.500000) rotate(-90.000000) translate(-488.500000, -277.500000) " font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal">
+                <tspan x="412.9" y="282" fill="#EE6B47">clientHeight:</tspan>
+                <tspan x="522.1" y="282" fill="#3B86C4">240px</tspan>
+            </text>
+            <path d="M365.5,156 L485.5,156" id="Line-27" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M365.5,394 L485.5,394" id="Line-28" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path id="Line-26" d="M477,174 L477,375 L483,375 L476,389 L469,375 L475,375 L475,174 L469,174 L476,160 L483,174 L477,174 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="height:200px" transform="translate(422.500000, 274.000000) rotate(-90.000000) translate(-422.500000, -274.000000) " font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal">
+                <tspan x="379.3" y="278" fill="#EE6B47">height:</tspan>
+                <tspan x="429.7" y="278" fill="#3B86C4">200px</tspan>
+            </text>
+            <path d="M353.5,175 L441.64193,175" id="Line-3" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path d="M353.5,377 L441.64193,377" id="Line-2" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
+            <path id="Line" d="M436,191.5 L436,360 L442,360 L435,374 L428,360 L434,360 L434,191.5 L428,191.5 L435,177.5 L442,191.5 L436,191.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="Introduction" font-family="OpenSans-Bold, Open Sans" font-size="16" font-weight="bold" fill="#5A4739">
+                <tspan x="69" y="193">Introduction</tspan>
+                <tspan x="169.726562" y="193" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal"></tspan>
+                <tspan x="69" y="221" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">This Ecma Standard is based on several </tspan>
+                <tspan x="69" y="240" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">originating technologies, the most well </tspan>
+                <tspan x="69" y="259" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">known being JavaScript (Netscape) and </tspan>
+                <tspan x="69" y="278" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">JScript (Microsoft). The language was </tspan>
+                <tspan x="69" y="297" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">invented by Brendan Eich at Netscape and </tspan>
+                <tspan x="69" y="316" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">first appeared in that company’s Navigator </tspan>
+                <tspan x="69" y="335" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">2.0 browser. It has appeared in all </tspan>
+                <tspan x="69" y="354" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">subsequent browsers from Netscape and </tspan>
+                <tspan x="69" y="373" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal">in all browsers from Microsoft starting with </tspan>
+            </text>
+        </g>
+    </g>
+</svg>

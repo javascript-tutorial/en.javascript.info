@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="467px" height="279px" viewBox="0 0 467 279" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>callback-hell.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <polygon id="path-1" points="6 6.31088724e-30 0 6.31088724e-30 0 4.5 0 9 6 9 6 -5.68434189e-14"></polygon>
+    </defs>
+    <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="callback-hell.svg">
+            <g id="Page-1" transform="translate(0.000000, -3.000000)">
+                <polygon id="Fill-1" fill="#F5F2F0" points="0 12 467 12 467 0 0 0"></polygon>
+                <g id="Group-3">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <g id="Clip-2"></g>
+                    <text id="-" mask="url(#mask-2)" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                </g>
+                <polygon id="Fill-4" fill="#F5F2F0" points="0 25 467 25 467 12 0 12"></polygon>
+                <text id="loadScript" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="0" y="18">loadScript</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="57.72949" y="18">(</tspan>
+                </text>
+                <text id="'1.js'" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#669900">
+                    <tspan x="63.50244" y="18">'1.js'</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="98.14014" y="18">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="function" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="109.686" y="18">function</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="155.8696" y="18">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="161.6426" y="18">error</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="190.5073" y="18">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="script" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="202.0532" y="18">script</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="236.6909" y="18">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="248.2368" y="18">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-21" fill="#F5F2F0" points="0 38 467 38 467 25 0 25"></polygon>
+                <text id="--" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="if" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="11.5459" y="31">if</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="28.86475" y="31">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="34.6377" y="31">error</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="63.50244" y="31">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="75.04834" y="31">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-31" fill="#F5F2F0" points="0 51 467 51 467 38 0 38"></polygon>
+                <text id="----" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="handleError" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="23.0918" y="44">handleError</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="86.59424" y="44">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="92.36719" y="44">error</tspan>
+                </text>
+                <text id=");" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="121.2319" y="44">);</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-38" fill="#F5F2F0" points="0 63 467 63 467 51 0 51"></polygon>
+                <text id="--" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="11.5459" y="57">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="else" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="23.0918" y="57">else</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="51.95654" y="57">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-46" fill="#F5F2F0" points="0 76 467 76 467 63 0 63"></polygon>
+                <text id="----" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="//-..." font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#708090">
+                    <tspan x="23.0918" y="69">// ...</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-50" fill="#F5F2F0" points="0 89 467 89 467 76 0 76"></polygon>
+                <text id="----" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="loadScript" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="23.0918" y="82">loadScript</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="80.82129" y="82">(</tspan>
+                </text>
+                <text id="'2.js'" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#669900">
+                    <tspan x="86.59424" y="82">'2.js'</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="121.2319" y="82">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="function" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="132.7778" y="82">function</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="178.9614" y="82">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="184.7344" y="82">error</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="213.5991" y="82">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="script" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="225.145" y="82">script</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="259.7827" y="82">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="271.3286" y="82">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-67" fill="#F5F2F0" points="0 102 467 102 467 89 0 89"></polygon>
+                <text id="------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="if" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="34.6377" y="95">if</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="51.95654" y="95">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="57.72949" y="95">error</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="86.59424" y="95">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="98.14014" y="95">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-77" fill="#F5F2F0" points="0 114 467 114 467 102 0 102"></polygon>
+                <text id="--------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="handleError" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="46.18359" y="108">handleError</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="109.686" y="108">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="115.459" y="108">error</tspan>
+                </text>
+                <text id=");" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="144.3237" y="108">);</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-84" fill="#F5F2F0" points="0 127 467 127 467 114 0 114"></polygon>
+                <text id="------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="34.6377" y="120">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="else" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="46.18359" y="120">else</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="75.04834" y="120">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-92" fill="#F5F2F0" points="0 140 467 140 467 127 0 127"></polygon>
+                <text id="--------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="//-..." font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#708090">
+                    <tspan x="46.18359" y="133">// ...</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-96" fill="#F5F2F0" points="0 153 467 153 467 140 0 140"></polygon>
+                <text id="--------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="loadScript" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="46.18359" y="146">loadScript</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="103.9131" y="146">(</tspan>
+                </text>
+                <text id="'3.js'" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#669900">
+                    <tspan x="109.686" y="146">'3.js'</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="144.3237" y="146">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="function" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="155.8696" y="146">function</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="202.0532" y="146">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="207.8262" y="146">error</tspan>
+                </text>
+                <text id="," font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="236.6909" y="146">,</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="script" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="248.2368" y="146">script</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="282.8745" y="146">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="294.4204" y="146">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-113" fill="#F5F2F0" points="0 165 467 165 467 153 0 153"></polygon>
+                <text id="----------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="if" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="57.72949" y="159">if</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="75.04834" y="159">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="80.82129" y="159">error</tspan>
+                </text>
+                <text id=")" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="109.686" y="159">)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="121.2319" y="159">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-123" fill="#F5F2F0" points="0 178 467 178 467 165 0 165"></polygon>
+                <text id="------------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="handleError" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="69.27539" y="171">handleError</tspan>
+                </text>
+                <text id="(" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="132.7778" y="171">(</tspan>
+                </text>
+                <text id="error" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#000000">
+                    <tspan x="138.5508" y="171">error</tspan>
+                </text>
+                <text id=");" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="167.4155" y="171">);</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-130" fill="#F5F2F0" points="0 191 467 191 467 178 0 178"></polygon>
+                <text id="----------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="57.72949" y="184">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="else" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#0077AA">
+                    <tspan x="69.27539" y="184">else</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <text id="{" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="98.14014" y="184">{</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-138" fill="#F5F2F0" points="0 204 467 204 467 191 0 191"></polygon>
+                <text id="------------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="//-...continue-after-all-scripts-are-loaded-(*)" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#708090">
+                    <tspan x="69.27539" y="197">// ...continue after all scripts are loaded (*)</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-142" fill="#F5F2F0" points="0 216 467 216 467 204 0 204"></polygon>
+                <text id="----------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="57.72949" y="210">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-146" fill="#F5F2F0" points="0 229 467 229 467 216 0 216"></polygon>
+                <text id="--------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="});" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="46.18359" y="222">});</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-150" fill="#F5F2F0" points="0 242 467 242 467 229 0 229"></polygon>
+                <text id="------" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="34.6377" y="235">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-154" fill="#F5F2F0" points="0 255 467 255 467 242 0 242"></polygon>
+                <text id="----" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="})" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="23.0918" y="248">})</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-158" fill="#F5F2F0" points="0 267 467 267 467 255 0 255"></polygon>
+                <text id="--" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273"></text>
+                <text id="}" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" fill="#999999">
+                    <tspan x="11.5459" y="261">}</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-162" fill="#F5F2F0" points="0 280 467 280 467 267 0 267"></polygon>
+                <text id="});" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal" letter-spacing="0.0273" fill="#999999">
+                    <tspan x="0" y="273">});</tspan>
+                </text>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+                <polygon id="Fill-165" fill="#F5F2F0" points="0 293 467 293 467 280 0 280"></polygon>
+                <text id="-" font-family="PTMono-Regular, PT Mono" font-size="10" font-weight="normal"></text>
+            </g>
+            <g id="Group" transform="translate(232.000000, 140.000000) rotate(90.000000) translate(-232.000000, -140.000000) translate(93.000000, -92.000000)" fill="#626262" fill-opacity="0.2" fill-rule="nonzero">
+                <path d="M139.110335,0.599780046 L94.2108762,150.428815 L184.009794,150.428815 L139.110335,0.599780046 Z M139.110335,39.4739646 L167.150355,133.043223 L111.070316,133.043223 L139.110335,39.4739646 Z" id="Shape"></path>
+                <path d="M189.219757,167.814408 L89.0009134,167.814408 L62.9510996,254.74237 L215.269571,254.74237 L189.219757,167.814408 Z M95.4404274,185.2 L182.780243,185.2 L198.410131,237.356777 L79.8105391,237.356777 L95.4404274,185.2 Z" id="Shape"></path>
+                <path d="M220.479534,272.127962 L57.7411369,272.127962 L31.6913231,359.055924 L246.529347,359.055924 L220.479534,272.127962 Z M64.1806508,289.513554 L214.04002,289.513554 L229.669908,341.670331 L48.5507626,341.670331 L64.1806508,289.513554 Z" id="Shape"></path>
+                <path d="M251.73931,376.441516 L26.4813603,376.441516 L0.431546555,463.369478 L277.789124,463.369478 L251.73931,376.441516 Z M32.9208743,393.827109 L245.299796,393.827109 L260.929684,445.983886 L17.290986,445.983886 L32.9208743,393.827109 Z" id="Shape"></path>
+            </g>
+            <polygon id="Shape" fill="#D88D8D" fill-rule="nonzero" points="411.848113 150.069 409.767113 152.151 412.582113 165.616 419.315113 165.616 421.947113 171.125 432.781113 174.492 442.636113 170.88 444.900113 165.31 452.001113 164.943 454.571113 151.477 452.184113 149.396 449.246113 158.822 440.126113 154.874 435.566113 158.669 432.169113 156.068 428.711113 158.669 424.579113 155.609 415.337113 159.893"></polygon>
+            <path d="M459.984113,91 C459.984113,91 463.289113,98.896 461.820113,104.037 C460.098113,110.064 452.211113,109.746 449.617113,109.471 C445.527113,106.036 439.911113,103.731 432.196113,103.731 C424.488113,103.731 418.937113,106.026 414.941113,109.447 C412.607113,109.722 404.293113,110.245 402.520113,104.037 C401.049113,98.896 404.354113,91 404.354113,91 C404.354113,91 393.888113,105.017 397.927113,113.035 C399.526113,116.208 404.461113,118.274 407.965113,119.384 C404.006113,128.924 404.895113,139.293 404.895113,139.293 L414.719113,146.454 L417.198113,154.534 L425.186113,150.494 L429.409113,153.738 L432.806113,151.045 L436.295113,153.738 L440.610113,150.219 L448.598113,153.738 L450.571113,146.454 L460.457113,139.384 C460.457113,139.384 461.073113,128.864 456.773113,119.253 C460.243113,118.116 464.871113,116.087 466.410113,113.034 C470.450113,105.017 459.984113,91 459.984113,91 Z M425.278113,139.386 L415.087113,138.284 L412.700113,130.113 L414.444113,128.185 L426.471113,132.225 L428.215113,135.714 L425.278113,139.386 Z M435.633113,145.858 L434.302113,144.94 L432.807113,145.491 L432.649113,145.491 L431.154113,144.94 L429.823113,145.858 L428.813113,144.71 L431.751113,138.972 L432.649113,139.385 L432.807113,139.385 L433.705113,138.972 L436.643113,144.71 L435.633113,145.858 Z M450.339113,138.284 L440.148113,139.386 L437.210113,135.713 L438.954113,132.224 L450.981113,128.184 L452.725113,130.112 L450.339113,138.284 Z" id="Shape" fill="#D88D8D" fill-rule="nonzero"></path>
+        </g>
+    </g>
+</svg>

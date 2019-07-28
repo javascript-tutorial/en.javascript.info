@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="176px" height="183px" viewBox="0 0 176 183" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>object.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="combined" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="object.svg">
+            <rect fill="#FFFFFF" x="0" y="0" width="176" height="183"></rect>
+            <path d="M36.9367499,113 L20.2700832,133 L150.729917,133 L134.06325,113 L36.9367499,113 Z" id="Rectangle-4-Copy" stroke="#D1C4B1" stroke-width="4" fill="#D1C4B1" opacity="0.5"></path>
+            <g id="Group-2" transform="translate(33.000000, 6.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="124"></rect>
+                    <path d="M0,0 L32,0 L32,124 L0,124 L0,0 Z M16.5,115 C20.6421356,115 24,111.642136 24,107.5 C24,103.357864 20.6421356,100 16.5,100 C12.3578644,100 9,103.357864 9,107.5 C9,111.642136 12.3578644,115 16.5,115 Z M4,5 L4,92 L28,92 L28,5 L4,5 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="key1" transform="translate(15.500000, 47.500000) rotate(-90.000000) translate(-15.500000, -47.500000) " font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-3.7" y="52.5">key1</tspan>
+                </text>
+            </g>
+            <g id="Group-2-Copy" transform="translate(70.000000, 6.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="124"></rect>
+                    <path d="M0,0 L32,0 L32,124 L0,124 L0,0 Z M16.5,115 C20.6421356,115 24,111.642136 24,107.5 C24,103.357864 20.6421356,100 16.5,100 C12.3578644,100 9,103.357864 9,107.5 C9,111.642136 12.3578644,115 16.5,115 Z M4,5 L4,92 L28,92 L28,5 L4,5 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="key2" transform="translate(15.500000, 47.500000) rotate(-90.000000) translate(-15.500000, -47.500000) " font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-3.7" y="52.5">key2</tspan>
+                </text>
+            </g>
+            <g id="Group-2-Copy-2" transform="translate(107.000000, 6.000000)">
+                <g id="Group">
+                    <rect id="Rectangle-7" fill="#FFFFFF" x="0" y="0" width="32" height="124"></rect>
+                    <path d="M0,0 L32,0 L32,124 L0,124 L0,0 Z M16.5,115 C20.6421356,115 24,111.642136 24,107.5 C24,103.357864 20.6421356,100 16.5,100 C12.3578644,100 9,103.357864 9,107.5 C9,111.642136 12.3578644,115 16.5,115 Z M4,5 L4,92 L28,92 L28,5 L4,5 Z" id="Combined-Shape" fill="#E8C48F"></path>
+                </g>
+                <text id="key3" transform="translate(15.500000, 47.500000) rotate(-90.000000) translate(-15.500000, -47.500000) " font-family="PTMono-Bold, PT Mono" font-size="16" font-weight="bold" fill="#EE6B47">
+                    <tspan x="-3.7" y="52.5">key3</tspan>
+                </text>
+            </g>
+            <rect id="Rectangle-4" stroke="#BCA68E" stroke-width="4" fill="#FFF9EB" x="18" y="127" width="135" height="50"></rect>
+            <rect id="Rectangle-8" stroke="#BCA68E" stroke-width="3" x="73.5" y="147.5" width="25" height="10"></rect>
+        </g>
+    </g>
+</svg>
