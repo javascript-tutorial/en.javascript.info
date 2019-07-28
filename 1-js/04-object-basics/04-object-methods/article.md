@@ -111,6 +111,7 @@ let user = {
 
   sayHi() {
 *!*
+    // "this" is the "current object"
     alert(this.name);
 */!*
   }
@@ -176,7 +177,7 @@ function sayHi() {
 }
 ```
 
-The value of `this` is evaluated during the run-time, depending on the context. And it can be anything.
+The value of `this` is evaluated during the run-time, depending on the context.
 
 For instance, here the same function is assigned to two different objects and has different "this" in the calls:
 

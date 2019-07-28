@@ -215,6 +215,8 @@ john = {
 */
 ```
 
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+
 ## Summary
 
 - Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
