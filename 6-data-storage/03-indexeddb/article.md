@@ -678,7 +678,7 @@ In the example above the cursor was made for the object store.
 
 But we also can make a cursor over an index. As we remember, indexes allow to search by an object field. Cursors over indexes to precisely the same as over object stores -- they save memory by returning one value at a time.
 
-For cursors over indexes, `cursor.key` is the index key (e.g. price), and we should use `cursor.primaryKey` property the object key:
+For cursors over indexes, `cursor.key` is the index key (e.g. price), and we should use `cursor.primaryKey` property for the object key:
 
 ```js
 let request = priceIdx.openCursor(IDBKeyRange.upperBound(5));
