@@ -93,9 +93,9 @@ On the other hand, there's a problem with `event.code`. For different keyboard l
 
 For example, here are US layout ("QWERTY") and German layout ("QWERTZ") under it (courtesy of Wikipedia):
 
-![](us-layout.png)
+![](us-layout.svg)
 
-![](german-layout.png)
+![](german-layout.svg)
 
 For the same key, US layout has "Z", while German layout has "Y" (letters are swapped).
 

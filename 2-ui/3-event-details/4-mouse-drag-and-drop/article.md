@@ -107,7 +107,7 @@ It would be better if we keep the initial shift of the element relative to the p
 
 For instance, if we start dragging by the edge of the ball, then the cursor should remain over the edge while dragging.
 
-![](ball_shift.png)
+![](ball_shift.svg)
 
 1. When a visitor presses the button (`mousedown`) -- we can remember the distance from the cursor to the left-upper corner of the ball in variables `shiftX/shiftY`. We should keep that distance while dragging.
 
