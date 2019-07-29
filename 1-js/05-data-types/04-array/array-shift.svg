@@ -52,7 +52,7 @@
             </text>
             <polygon id="Shape" fill="#EE6B47" transform="translate(195.000000, 112.473154) rotate(-90.000000) translate(-195.000000, -112.473154) " points="195 141.973154 204 125.366988 198 125.366988 198 82.973154 192 82.973154 192 125.366988 186 125.366988"></polygon>
             <text id="clear" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="173" y="100.973154">clear</tspan>
+                <tspan x="176" y="101">clear</tspan>
             </text>
             <text id="move" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="393" y="98.973154">move</tspan>

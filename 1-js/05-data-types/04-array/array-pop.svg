@@ -38,7 +38,7 @@
             </text>
             <polygon id="Shape" fill="#EE6B47" transform="translate(306.000000, 107.500000) rotate(-90.000000) translate(-306.000000, -107.500000) " points="306 137 315 120.393834 309 120.393834 309 78 303 78 303 120.393834 297 120.393834"></polygon>
             <text id="clear" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="285" y="96">clear</tspan>
+                <tspan x="287" y="96">clear</tspan>
             </text>
             <rect id="Rectangle-7" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="363" y="82" width="35" height="52"></rect>
             <rect id="Rectangle-5" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="399" y="82" width="35" height="52"></rect>
