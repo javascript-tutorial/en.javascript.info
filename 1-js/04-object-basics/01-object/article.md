@@ -236,7 +236,7 @@ In that case the visitor may choose `__proto__` as the key, and the assignment l
 
 There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
 
-There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
 ````
 
 

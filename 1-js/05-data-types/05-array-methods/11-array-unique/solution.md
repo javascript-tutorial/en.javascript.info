@@ -36,4 +36,4 @@ So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 mill
 
 So the solution is only good for small arrays.
 
-Further in the chapter <info:map-set-weakmap-weakset> we'll see how to optimize it.
+Further in the chapter <info:map-set> we'll see how to optimize it.

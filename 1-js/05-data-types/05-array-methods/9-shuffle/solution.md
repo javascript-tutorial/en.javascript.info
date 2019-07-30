@@ -45,7 +45,7 @@ for (let key in count) {
 }
 ```
 
-An example result (for V8, July 2017):
+An example result (depends on JS engine):
 
 ```js
 123: 250706

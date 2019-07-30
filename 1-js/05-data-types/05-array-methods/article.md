@@ -581,8 +581,7 @@ Or in the form of a table, where each row represents a function call on the next
 |the fourth call|`6`|`4`|`10`|
 |the fifth call|`10`|`5`|`15`|
 
-
-As we can see, the result of the previous call becomes the first argument of the next one.
+Here we can clearly see how the result of the previous call becomes the first argument of the next one.
 
 We also can omit the initial value:
 
@@ -654,7 +653,7 @@ arr.map(func, thisArg);
 
 The value of `thisArg` parameter becomes `this` for `func`.
 
-For instance, here we use an object method as a filter and `thisArg` comes in handy:
+For instance, here we use an object method as a filter and `thisArg` helps with that:
 
 ```js run
 let user = {
@@ -726,7 +725,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
 For the full list, see the [manual](mdn:js/Array).
 
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier than it seems.
+From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier.
 
 Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
 
