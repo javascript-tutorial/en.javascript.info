@@ -23,10 +23,10 @@
                 <tspan x="188.4" y="92" fill="#999999">);</tspan>
             </text>
             <path d="M4.5,112.5 L230.5,112.5" id="Line-2" stroke="#9B9B9B" stroke-linecap="square" stroke-dasharray="4,4"></path>
-            <text id="handler-enqueued" font-family="PTSans-Regular, PT Sans" font-size="16" font-weight="normal" fill="#8A704D">
+            <text id="handler-enqueued" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#8A704D">
                 <tspan x="267" y="32">handler enqueued</tspan>
             </text>
-            <text id="queued-handler-runs" font-family="PTSans-Regular, PT Sans" font-size="16" font-weight="normal" fill="#8A704D">
+            <text id="queued-handler-runs" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#8A704D">
                 <tspan x="11" y="153">queued handler runs</tspan>
             </text>
             <g id="noun_88566_cc-copy" transform="translate(247.000000, 16.000000)" fill="#9B9B9B">
