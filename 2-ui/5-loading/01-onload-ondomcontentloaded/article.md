@@ -73,11 +73,10 @@ So DOMContentLoaded definitely happens after such scripts:
 
 In the example above, we first see "Library loaded...", and then "DOM ready!" (all scripts are executed).
 
-```warn header="Scripts with `async`, `defer` or `type=\"module\"` don't block DOMContentLoaded"
-
-Script attributes `async` and `defer`, that we'll cover [a bit later](info:script-async-defer), don't block DOMContentLoaded. [JavaScript modules](info:modules) behave like `defer`,  they don't block it too.
-
-So here we're talking about "regular" scripts, like `<script>...</script>`, or `<script src="..."></script>`.
+```warn header="Scripts that don't block DOMContentLoaded"
+There are two exceptions from this rule:
+1. Scripts with `async` attribute that we'll cover [a bit later](info:script-async-defer) don't block `DOMContentLoaded`.
+2. Scripts that are generated dynamically with `document.createElement('script')` and then added to page also don't block this event.
 ```
 
 ### DOMContentLoaded and styles
