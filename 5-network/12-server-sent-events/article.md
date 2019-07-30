@@ -37,7 +37,7 @@ data: Message 3
 data: of two lines
 ```
 
-- A message text goes after `data:`, the space after the semicolon is optional.
+- A message text goes after `data:`, the space after the colon is optional.
 - Messages are delimited with double line breaks `\n\n`.
 - To send a line break `\n`, we can immediately one more `data:` (3rd message above).
 
