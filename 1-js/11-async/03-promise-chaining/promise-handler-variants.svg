@@ -44,14 +44,11 @@
             <text id="the-call-of-.then(ha" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="136" y="15">the call of .then(handler) always returns a promise:</tspan>
             </text>
-            <text id="that-promise-is-sett" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="206" y="119">that promise is settled by handler</tspan>
-            </text>
             <text id="if-handler-ends-with" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="256" y="139">if handler ends with…</tspan>
+                <tspan x="256" y="133">if handler ends with…</tspan>
             </text>
-            <text id="the-promise-settles" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="12" y="253">the promise settles with:</tspan>
+            <text id="that-promise-settles" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
+                <tspan x="12" y="253">that promise settles with:</tspan>
             </text>
         </g>
     </g>
