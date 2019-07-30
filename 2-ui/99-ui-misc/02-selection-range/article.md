@@ -357,7 +357,7 @@ As text: <span id="astext"></span>
     cloned.innerHTML = astext.innerHTML = "";
 
     // Clone DOM nodes from ranges (we support multiselect here)
-    for (let i = 0; i < selection; i++) {
+    for (let i = 0; i < selection.rangeCount; i++) {
       cloned.append(selection.getRangeAt(i).cloneContents());
     }
 
@@ -628,7 +628,7 @@ The most used recipes are probably:
 
     // then apply Range methods to selection.getRangeAt(0)
     // or, like here, to all ranges to support multi-select
-    for (let i = 0; i < selection; i++) {
+    for (let i = 0; i < selection.rangeCount; i++) {
       cloned.append(selection.getRangeAt(i).cloneContents());
     }
     ```
