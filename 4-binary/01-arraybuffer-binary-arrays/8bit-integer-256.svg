@@ -11,8 +11,8 @@
                 <tspan x="113.6" y="51">0</tspan>
             </text>
             <text id="8-bit-integer" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#000000">
-                <tspan x="28.640625" y="25">8-bit intege</tspan>
-                <tspan x="112.828125" y="25" letter-spacing="3">r</tspan>
+                <tspan x="27.640625" y="25">8-bit intege</tspan>
+                <tspan x="111.828125" y="25" letter-spacing="3">r</tspan>
             </text>
             <text id="256" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#9B9B9B">
                 <tspan x="135.777344" y="51">256</tspan>

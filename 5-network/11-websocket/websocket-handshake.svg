@@ -16,9 +16,11 @@
             <path d="M67,81 L67,331.5" id="Line" stroke="#979797" stroke-linecap="square"></path>
             <path d="M314,81 L314,332.5" id="Line" stroke="#979797" stroke-linecap="square"></path>
             <path id="Line" d="M299,141 L68,141 L68,139 L299,139 L299,133 L313,140 L299,147 L299,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <text id="HTTP-request-&quot;Hey,-s" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
-                <tspan x="142.515137" y="132">HTTP-request</tspan>
-                <tspan x="74.3745117" y="154">"Hey, server, let's talk WebSocket?"</tspan>
+            <text id="HTTP-request" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
+                <tspan x="142.515137" y="130">HTTP-request</tspan>
+            </text>
+            <text id="&quot;Hey,-server,-let's" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
+                <tspan x="74.3745117" y="161">"Hey, server, let's talk WebSocket?"</tspan>
             </text>
             <path id="Line-Copy" d="M298,212 L66,212 L66,210 L298,210 L298,204 L312,211 L298,218 L298,212 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="HTTP-response-&quot;Okay!" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="22" fill="#8A704D">
