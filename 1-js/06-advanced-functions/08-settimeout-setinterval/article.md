@@ -241,7 +241,7 @@ There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
 
 This schedules the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
 
-So the function is scheduled to run "right after" the current code. In other words, *asynchronously*.
+So the function is scheduled to run "right after" the current code. In other words, *synchronously*.
 
 For instance, this outputs "Hello", then immediately "World":
 
