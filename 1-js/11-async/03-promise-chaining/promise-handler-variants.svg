@@ -6,7 +6,7 @@
     <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="promise-handler-variants.svg">
             <path id="Line-Copy" d="M525.949493,220.3668 L486.395757,189.768627 L488.231373,187.395757 L527.78511,217.99393 L532.680087,211.666277 L541.895478,230.805936 L521.054516,226.694454 L525.949493,220.3668 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy-3" d="M332,216 L332,188 L335,188 L335,216 L343,216 L333.5,235 L324,216 L332,216 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-3" d="M335,216 L335,188 L338,188 L338,216 L346,216 L336.5,235 L327,216 L335,216 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <path id="Line-Copy-2" d="M173.21489,217.99393 L212.768627,187.395757 L214.604243,189.768627 L175.050507,220.3668 L179.945484,226.694454 L159.104522,230.805936 L168.319913,211.666277 L173.21489,217.99393 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="return-value" font-family="PTMono-Regular, PT Mono" font-size="13" font-weight="normal" fill="#8A704D">
                 <tspan x="128" y="173">return value</tspan>
@@ -15,7 +15,7 @@
                 <tspan x="447" y="173">return promise</tspan>
             </text>
             <text id="throw-error" font-family="PTMono-Regular, PT Mono" font-size="13" font-weight="normal" fill="#8A704D">
-                <tspan x="284" y="173">throw error</tspan>
+                <tspan x="294" y="173">throw error</tspan>
             </text>
             <rect id="Rectangle-1-Copy" stroke="#7ED321" stroke-width="2" fill="#FFF9EB" x="20" y="264" width="178" height="64"></rect>
             <text id="state:-&quot;fulfilled&quot;-r" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#417505">
@@ -36,16 +36,16 @@
                 <tspan x="494" y="323">...with the result</tspan>
                 <tspan x="494" y="338">of the new promise...</tspan>
             </text>
-            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="241" y="25" width="191" height="64"></rect>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="241" y="34" width="191" height="64"></rect>
             <text id="state:-&quot;pending&quot;-res" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
-                <tspan x="271" y="49">state: "pending"</tspan>
-                <tspan x="271" y="69">result: undefined</tspan>
+                <tspan x="271" y="58">state: "pending"</tspan>
+                <tspan x="271" y="78">result: undefined</tspan>
             </text>
             <text id="the-call-of-.then(ha" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="136" y="15">the call of .then(handler) always returns a promise:</tspan>
             </text>
             <text id="if-handler-ends-with" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="256" y="133">if handler ends with…</tspan>
+                <tspan x="248" y="132">if handler ends with…</tspan>
             </text>
             <text id="that-promise-settles" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="12" y="253">that promise settles with:</tspan>
