@@ -1,7 +1,5 @@
 # WeakMap and WeakSet
 
-`WeakSet` is a special kind of `Set` that does not prevent JavaScript from removing its items from memory. `WeakMap` is the same thing for `Map`.
-
 As we know from the chapter <info:garbage-collection>, JavaScript engine stores a value in memory while it is reachable (and can potentially be used).
 
 For instance:
@@ -55,9 +53,9 @@ john = null; // overwrite the reference
 */!*
 ```
 
-`WeakMap/WeakSet` are fundamentally different in this aspect. They do not prevent garbage-collection of key objects.
+`WeakMap` is fundamentally different in this aspect. It doesn't prevent garbage-collection of key objects.
 
-Let's explain it starting with `WeakMap`.
+Let's see what it means on examples.
 
 ## WeakMap
 
@@ -110,7 +108,7 @@ Now where do we need such data structure?
 
 The main area of application for `WeakMap` is an *additional data storage*.
 
-If we're working with an object that "belongs" to another code, maybe even a third-party library, and would like to store some data associated with it, that should only exist while the object is alive - then `WeakMap` is the right choice!
+If we're working with an object that "belongs" to another code, maybe even a third-party library, and would like to store some data associated with it, that should only exist while the object is alive - then `WeakMap` is exactly what's needed.
 
 We put the data to a `WeakMap`, using the object as the key, and when the object is garbage collected, that data will automatically disappear as well.
 
@@ -149,7 +147,7 @@ countUser(john);
 john = null;
 ```
 
-Now, we have a problem: `john` object should be garbage collected, but remains is memory, as it's a key in `visitsCountMap`.
+Now `john` object should be garbage collected, but remains is memory, as it's a key in `visitsCountMap`.
 
 We need to clean `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
 
@@ -166,13 +164,13 @@ function countUser(user) {
 }
 ```
 
-Now we don't have to clean `visitsCountMap`. After `john` is removed from memory, the additionally stored information from `WeakMap` will be removed as well.
+Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable by all means except as a key of `WeakMap`, it gets removed from memory, along with the   information by that key from `WeakMap`.
 
 ## Use case: caching
 
 Another common example is caching: when a function result should be remembered ("cached"), so that future calls on the same object reuse it.
 
-We can use `Map` for it, like this:
+We can use `Map` to store results, like this:
 
 ```js run
 // 📁 cache.js
@@ -181,7 +179,7 @@ let cache = new Map();
 // calculate and remember the result
 function process(obj) {
   if (!cache.has(obj)) {
-    let result = /* calculate the result for */ obj;
+    let result = /* calculations of the result for */ obj;
 
     cache.set(obj, result);
   }
@@ -190,25 +188,26 @@ function process(obj) {
 }
 
 *!*
-// Usage in another file:
+// Now we use process() in another file:
 */!*
+
 // 📁 main.js
-let obj = {/* some object */};
+let obj = {/* let's say we have an object */};
 
 let result1 = process(obj); // calculated
 
 // ...later, from another place of the code...
-let result2 = process(obj); // taken from cache
+let result2 = process(obj); // remembered result taken from cache
 
 // ...later, when the object is not needed any more:
 obj = null;
 
-alert(cache.size); // 1 (Ouch! It's still in cache, taking memory!)
+alert(cache.size); // 1 (Ouch! The object is still in cache, taking memory!)
 ```
 
-Now for multiple calls of `process(obj)` with the same object, it only calculates the result the first time, and then just takes it from `cache`. The downside is that we need to clean `cache` when the object is not needed any more.
+For multiple calls of `process(obj)` with the same object, it only calculates the result the first time, and then just takes it from `cache`. The downside is that we need to clean `cache` when the object is not needed any more.
 
-If we replace `Map` with `WeakMap`, then the cached result will be removed from memory automatically after the object gets garbage collected:
+If we replace `Map` with `WeakMap`, then this problem disappears: the cached result will be removed from memory automatically after the object gets garbage collected.
 
 ```js run
 // 📁 cache.js
@@ -236,7 +235,8 @@ let result2 = process(obj);
 // ...later, when the object is not needed any more:
 obj = null;
 
-// Can't get cache.size, as it's a WeakMap, but it's 0 or soon be 0
+// Can't get cache.size, as it's a WeakMap,
+// but it's 0 or soon be 0
 // When obj gets garbage collected, cached data will be removed as well
 ```
 
@@ -250,7 +250,7 @@ obj = null;
 
 Being "weak", it also serves as an additional storage. But not for an arbitrary data, but rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
 
-For instance, we can use `WeakSet` to keep track of users that visited our site:
+For instance, we can add users to `WeakSet` to keep track of those who visited our site:
 
 ```js run
 let visitedSet = new WeakSet();
