@@ -262,7 +262,7 @@ alert(height); // 200
 
 Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
 
-The code below asks for width, but not the title.
+In the code below `prompt` asks for `width`, but not for `title`:
 
 ```js run
 let options = {
@@ -293,6 +293,21 @@ alert(w);      // 100
 alert(h);      // 200
 ```
 
+If we have a complex object with many properties, we can extract only what we need:
+
+```js run
+let options = {
+  title: "Menu",
+  width: 100,
+  height: 200
+};
+
+// only extract title as a variable
+let { title } = options;
+
+alert(title); // Menu
+```
+
 ### The rest pattern "..."
 
 What if the object has more properties than we have variables? Can we take some and then assign the "rest" somewhere?
@@ -319,8 +334,6 @@ alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
 
-
-
 ````smart header="Gotcha if there's no `let`"
 In the examples above variables were declared right in the assignment: `let {…} = {…}`. Of course, we could use existing variables too, without `let`. But there's a catch.
 
@@ -343,7 +356,9 @@ The problem is that JavaScript treats `{...}` in the main code flow (not inside 
 }
 ```
 
-To show JavaScript that it's not a code block, we can make it a part of an expression by wrapping in parentheses `(...)`:
+So here JavaScript assumes that we have a code block, but why there's an error. We have destructuring instead.
+
+To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
 
 ```js run
 let title, width, height;
@@ -353,14 +368,13 @@ let title, width, height;
 
 alert( title ); // Menu
 ```
-
 ````
 
 ## Nested destructuring
 
-If an object or an array contain other objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure:
+In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
 
 ```js run
 let options = {
@@ -369,7 +383,7 @@ let options = {
     height: 200
   },
   items: ["Cake", "Donut"],
-  extra: true    // something extra that we will not destruct
+  extra: true   
 };
 
 // destructuring assignment split in multiple lines for clarity
@@ -389,20 +403,13 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
-
-Note that `size` and `items` itself is not destructured.
+The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables:
 
 ![](destructuring-complex.svg)
 
 Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
 
-If we have a complex object with many properties, we can extract only what we need:
-
-```js
-// take size as a whole into a variable, ignore the rest
-let { size } = options;
-```
+Note that there are no variables for `size` and `items`, as we take their content instead.
 
 ## Smart function parameters
 
@@ -421,6 +428,7 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
+// undefined where detauls values are fine
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
@@ -472,29 +480,28 @@ function showMenu({
 showMenu(options);
 ```
 
-The syntax is the same as for a destructuring assignment:
+The full syntax is the same as for a destructuring assignment:
 ```js
 function({
-  incomingProperty: parameterName = defaultValue
+  incomingProperty: varName = defaultValue
   ...
 })
 ```
 
+Then, for an object of parameters, there will be a variable `varName` for property `incomingProperty`, with `defaultValue` by default.
+
 Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
 
 ```js
-showMenu({});
-
+showMenu({}); // ok, all values are default
 
 showMenu(); // this would give an error
 ```
 
-We can fix this by making `{}` the default value for the whole destructuring thing:
-
+We can fix this by making `{}` the default value for the whole object of parameters:
 
 ```js run
-// simplified parameters a bit for clarity
-function showMenu(*!*{ title = "Menu", width = 100, height = 200 } = {}*/!*) {
+function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
   alert( `${title} ${width} ${height}` );
 }
 
@@ -506,7 +513,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 ## Summary
 
 - Destructuring assignment allows for instantly mapping an object or array onto many variables.
-- The object syntax:
+- The full object syntax:
     ```js
     let {prop : varName = default, ...rest} = object
     ```
@@ -515,7 +522,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
     Object properties that have no mapping are copied to the `rest` object.
 
-- The array syntax:
+- The full array syntax:
 
     ```js
     let [item1 = default, item2, ...rest] = array
@@ -523,4 +530,4 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
     The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
 
-- For more complex cases, the left side must have the same structure as the right one.
+- It's possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.

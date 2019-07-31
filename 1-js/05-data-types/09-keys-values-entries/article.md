@@ -23,7 +23,7 @@ For plain objects, the following methods are available:
 - [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
 - [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
 
-...But please note the distinctions (compared to map for example):
+Please note the distinctions (compared to map for example):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
@@ -32,7 +32,7 @@ For plain objects, the following methods are available:
 
 The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
+Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `data` that implements its own `data.values()` method. And we still can call `Object.values(data)` on it.
 
 The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
 
@@ -69,55 +69,21 @@ Just like a `for..in` loop, these methods ignore properties that use `Symbol(...
 Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
 ```
 
-## Object.fromEntries to transform objects
 
-Sometimes we need to perform a transformation of an object to `Map` and back.
+## Transforming objects
 
-We already have `new Map(Object.entries(obj))` to make a `Map` from `obj`.
+Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others.
 
-The syntax of `Object.fromEntries` does the reverse. Given an array of `[key, value]` pairs, it creates an object:
+If we'd like to apply them, then we can use `Object.entries` followed `Object.fromEntries`:
 
-```js run
-let prices = Object.fromEntries([
-  ['banana', 1],
-  ['orange', 2],
-  ['meat', 4]
-]);
+1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
+2. Use array methods on that array, e.g. `map`.
+3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
-
-alert(prices.orange); // 2
-```
-
-Let's see practical applications.
-
-For example, we'd like to create a new object with double prices from the existing one.
-
-For arrays, we have `.map` method that allows to transform an array, but nothing like that for objects.
-
-So we can use a loop:
+For example, we have an object with prices, and would like to double them:
 
 ```js run
-let prices = {
-  banana: 1,
-  orange: 2,
-  meat: 4,
-};
-
-let doublePrices = {};
-for(let [product, price] of Object.entries(prices)) {
-  doublePrices[product] = price * 2;
-}
-
-alert(doublePrices.meat); // 8
-```
-
-...Or we can represent the object as an `Array` using `Object.entries`, then perform the operations with `map` (and potentially other array methods), and then go back using `Object.fromEntries`.
-
-Let's do it for our object:
-
-```js run
-let prices = {
+let users = {
   banana: 1,
   orange: 2,
   meat: 4,
@@ -135,21 +101,4 @@ alert(doublePrices.meat); // 8
 
 It may look difficult from the first sight, but becomes easy to understand after you use it once or twice.
 
-We also can use `fromEntries` to get an object from `Map`.
-
-E.g. we have a `Map` of prices, but we need to pass it to a 3rd-party code that expects an object.
-
-Here we go:
-
-```js run
-let map = new Map();
-map.set('banana', 1);
-map.set('orange', 2);
-map.set('meat', 4);
-
-let obj = Object.fromEntries(map);
-
-// now obj = { banana: 1, orange: 2, meat: 4 }
-
-alert(obj.orange); // 2
-```
+We can make powerful one-liners for more complex transforms this way. It's only important to keep balance, so that the code is still simple enough to understand it.

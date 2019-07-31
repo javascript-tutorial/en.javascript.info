@@ -92,35 +92,6 @@ map.set('1', 'str1')
 ```
 ````
 
-## Map from Object
-
-When a `Map` is created, we can pass an array (or another iterable) with key-value pairs for initialization, like this:
-
-```js
-// array of [key, value] pairs
-let map = new Map([
-  ['1',  'str1'],
-  [1,    'num1'],
-  [true, 'bool1']
-]);
-```
-
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
-
-So we can initialize a map from an object like this:
-
-```js
-let obj = {
-  name: "John",
-  age: 30
-};
-
-*!*
-let map = new Map(Object.entries(obj));
-*/!*
-```
-
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
 
 ## Iteration over Map
 
@@ -167,6 +138,90 @@ recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
+
+## Object.entries: Map from Object
+
+When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+
+```js run
+// array of [key, value] pairs
+let map = new Map([
+  ['1',  'str1'],
+  [1,    'num1'],
+  [true, 'bool1']
+]);
+
+alert( map.get('1') ); // str1
+```
+
+If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+
+So we can create a map from an object like this:
+
+```js run
+let obj = {
+  name: "John",
+  age: 30
+};
+
+*!*
+let map = new Map(Object.entries(obj));
+*/!*
+
+alert( map.get('name') ); // John
+```
+
+Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+
+
+## Object.fromEntries: Object from Map
+
+We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
+
+There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+
+```js run
+let prices = Object.fromEntries([
+  ['banana', 1],
+  ['orange', 2],
+  ['meat', 4]
+]);
+
+// now prices = { banana: 1, orange: 2, meat: 4 }
+
+alert(prices.orange); // 2
+```
+
+We can use `Object.fromEntries` to get an plain object from `Map`.
+
+E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+
+Here we go:
+
+```js run
+let map = new Map();
+map.set('banana', 1);
+map.set('orange', 2);
+map.set('meat', 4);
+
+*!*
+let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+*/!*
+
+// done!
+// obj = { banana: 1, orange: 2, meat: 4 }
+
+alert(obj.orange); // 2
+```
+
+A call to `map.entries()` returns an array of key/value pairs, exactly in the right format for `Object.fromEntries`.
+
+We could also make line `(*)` shorter:
+```js
+let obj = Object.fromEntries(map); // omit .entries()
+```
+
+That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
 
 ## Set
 
