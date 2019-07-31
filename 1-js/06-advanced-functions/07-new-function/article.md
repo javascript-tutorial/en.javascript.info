@@ -46,14 +46,13 @@ It is used in very specific cases, like when we receive code from a server, or t
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created.
+Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter <info:closure>).
 
-But when a function is created using `new Function`, its `[[Environment]]` references not the current Lexical Environment, but instead the global one.
+But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Lexical Environment, but the global one.
 
 So, such function doesn't have access to outer variables, only to the global ones.
 
 ```js run
-
 function getFunc() {
   let value = "test";
 
@@ -99,6 +98,8 @@ So if `new Function` had access to outer variables, it would be unable to find r
 
 **If `new Function` had access to outer variables, it would have problems with minifiers.**
 
+Besides, such code would be architecturally bad and prone to errors.
+
 To pass something to a function, created as `new Function`, we should use its arguments.
 
 ## Summary
@@ -111,7 +112,7 @@ let func = new Function ([arg1, arg2, ...argN], functionBody);
 
 For historical reasons, arguments can also be given as a comma-separated list.
 
-These three lines mean the same:
+These three declarations mean the same:
 
 ```js
 new Function('a', 'b', 'return a + b'); // basic syntax
@@ -119,4 +120,4 @@ new Function('a,b', 'return a + b'); // comma-separated
 new Function('a , b', 'return a + b'); // comma-separated with spaces
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it saves us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.

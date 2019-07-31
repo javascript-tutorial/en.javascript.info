@@ -143,9 +143,9 @@ So, during the function call we have two Lexical Environments: the inner one (fo
     It has a single property: `name`, the function argument. We called `say("John")`, so the value of `name` is `"John"`.
 - The outer Lexical Environment is the global Lexical Environment.
 
-    It has `phrase` and the function itself.
+    It has `phrase` variable and the function itself.
 
-The inner Lexical Environment has a reference to the outer one.
+The inner Lexical Environment has a reference to the `outer` one.
 
 **When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
 
@@ -160,9 +160,9 @@ Let's see how the search proceeds in our example:
 
 Now we can give the answer to the first question from the beginning of the chapter.
 
-**A function gets outer variables as they are now; it uses the most recent values.**
+**A function gets outer variables as they are now, it uses the most recent values.**
 
-That's because of the described mechanism. Old variable values are not saved anywhere. When a function wants them, it takes the current values from its own or an outer Lexical Environment.
+Old variable values are not saved anywhere. When a function wants a variable, it takes the current value from its own Lexical Environment or the outer one.
 
 So the answer to the first question is `Pete`:
 
@@ -309,7 +309,7 @@ alert( counter2() ); // 0 (independent)
 ```
 
 
-Hopefully, the situation with outer variables is clear now. For most situations such understanding is enough. There are few details in the specification that we omitted for brevity. So in the next section we cover even more details, not to miss anything.
+Hopefully, the situation with outer variables is clear now. For most situations such understanding is enough. There are few details in the specification that we omitted for brevity. So in the next section we cover even more details.
 
 ## Environments in detail
 
@@ -323,13 +323,15 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     At that starting moment there is only `makeCounter` function, because it's a Function Declaration. It did not run yet.
 
-    **All functions "on birth" receive a hidden property `[[Environment]]` with a reference to the Lexical Environment of their creation.** We didn't talk about it yet, but that's how the function knows where it was made.
+    **All functions "on birth" receive a hidden property `[[Environment]]` with a reference to the Lexical Environment of their creation.**
+
+    We didn't talk about it yet, that's how the function knows where it was made.
 
     Here, `makeCounter` is created in the global Lexical Environment, so `[[Environment]]` keeps a reference to it.
 
     In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
-2. The code runs on, the new global variable `counter` is declared and for its value `makeCounter()` is called. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+2. The code runs on, the new global variable `counter` is declared and gets the result of `makeCounter()` call. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
 
     ![](lexenv-nested-makecounter-2.svg)
 
@@ -337,7 +339,7 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     As all Lexical Environments, it stores two things:
     1. An Environment Record with local variables. In our case `count` is the only local variable (appearing when the line with `let count` is executed).
-    2. The outer lexical reference, which is set to `[[Environment]]` of the function. Here `[[Environment]]` of `makeCounter` references the global Lexical Environment.
+    2. The outer lexical reference, which is set to the value of `[[Environment]]` of the function. Here `[[Environment]]` of `makeCounter` references the global Lexical Environment.
 
     So, now we have two Lexical Environments: the first one is global, the second one is for the current `makeCounter` call, with the outer reference to global.
 
@@ -357,13 +359,11 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     That function has only one line: `return count++`, that will be executed when we run it.
 
-5. When the `counter()` is called, an "empty" Lexical Environment is created for it. It has no local variables by itself. But the `[[Environment]]` of `counter` is used as the outer reference for it, so it has access to the variables of the former `makeCounter()` call where it was created:
+5. When `counter()` is called, a new Lexical Environment is created for the call. It's empty, as `counter` has no local variables by itself. But the `[[Environment]]` of `counter` is used as the `outer` reference for it, that provides has access to the variables of the former `makeCounter()` call where it was created:
 
     ![](lexenv-nested-makecounter-5.svg)
 
-    Now if it accesses a variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the former `makeCounter()` call, then the global one.
-
-    When it looks for `count`, it finds it among the variables `makeCounter`, in the nearest outer Lexical Environment.
+    Now when the call looks for `count` variable, it first searches its own Lexical Environment (empty), then the Lexical Environment of the outer `makeCounter()` call, where finds it.
 
     Please note how memory management works here. Although `makeCounter()` call finished some time ago, its Lexical Environment was retained in memory, because there's a nested function with `[[Environment]]` referencing it.
 
@@ -373,13 +373,11 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-6.svg)
 
-    So we return to the previous step with the only change -- the new value of `count`. The following calls all do the same.
-
 7. Next `counter()` invocations do the same.
 
 The answer to the second question from the beginning of the chapter should now be obvious.
 
-The `work()` function in the code below uses the `name` from the place of its origin through the outer lexical environment reference:
+The `work()` function in the code below gets `name` from the place of its origin through the outer lexical environment reference:
 
 ![](lexenv-nested-work.svg)
 
@@ -430,7 +428,7 @@ For instance, after `if` finishes, the `alert` below won't see the `user`, hence
 
 ### For, while
 
-For a loop, every iteration has a separate Lexical Environment. If a variable is declared in `for`, then it's also local to that Lexical Environment:
+For a loop, every iteration has a separate Lexical Environment. If a variable is declared in `for(let ...)`, then it's also in there:
 
 ```js run
 for (let i = 0; i < 10; i++) {
@@ -441,7 +439,7 @@ for (let i = 0; i < 10; i++) {
 alert(i); // Error, no such variable
 ```
 
-Please note: `let i` is visually outside of `{...}`. The `for` construct is somewhat special here: each iteration of the loop has its own Lexical Environment with the current `i` in it.
+Please note: `let i` is visually outside of `{...}`. The `for` construct is special here: each iteration of the loop has its own Lexical Environment with the current `i` in it.
 
 Again, similarly to `if`, after the loop `i` is not visible.
 
@@ -537,7 +535,7 @@ There exist other ways besides parentheses to tell JavaScript that we mean a Fun
 }();
 ```
 
-In all the above cases we declare a Function Expression and run it immediately.
+In all the above cases we declare a Function Expression and run it immediately. Let's note again: nowadays there's no reason to write such code.
 
 ## Garbage collection
 
@@ -554,7 +552,7 @@ f();
 
 Here two values are technically the properties of the Lexical Environment. But after `f()` finishes that Lexical Environment becomes unreachable, so it's deleted from the memory.
 
-...But if there's a nested function that is still reachable after the end of `f`, then its `[[Environment]]` reference keeps the outer lexical environment alive as well:
+...But if there's a nested function that is still reachable after the end of `f`, then it has `[[Environment]]` property that references the outer lexical environment, so it's also reachable and alive:
 
 ```js
 function f() {
@@ -570,7 +568,7 @@ function f() {
 let g = f(); // g is reachable, and keeps the outer lexical environment in memory
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then the corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
+Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
 
 ```js
 function f() {
@@ -579,9 +577,8 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 functions in array, every one of them links to Lexical Environment (LE for short)
+// 3 functions in array, every one of them links to Lexical Environment
 // from the corresponding f() run
-//         LE   LE   LE
 let arr = [f(), f(), f()];
 ```
 
@@ -608,7 +605,7 @@ g = null; // ...and now the memory is cleaned up
 
 As we've seen, in theory while a function is alive, all outer variables are also retained.
 
-But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's easy to see that an outer variable is not used -- it is removed.
+But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
 
 **An important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging.**
 
@@ -621,7 +618,7 @@ function f() {
   let value = Math.random();
 
   function g() {
-    debugger; // in console: type alert( value ); No such variable!
+    debugger; // in console: type alert(value); No such variable!
   }
 
   return g;
@@ -642,7 +639,7 @@ function f() {
   let value = "the closest value";
 
   function g() {
-    debugger; // in console: type alert( value ); Surprise!
+    debugger; // in console: type alert(value); Surprise!
   }
 
   return g;

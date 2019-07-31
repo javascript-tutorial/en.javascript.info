@@ -177,7 +177,7 @@ let timerId = setTimeout(function request() {
 
 And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
 
-**Recursive `setTimeout` guarantees a delay between the executions, `setInterval` -- does not.**
+**Recursive `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
 
 Let's compare two code fragments. The first one uses `setInterval`:
 
@@ -222,7 +222,7 @@ And here is the picture for the recursive `setTimeout`:
 
 That's because a new call is planned at the end of the previous one.
 
-````smart header="Garbage collection"
+````smart header="Garbage collection and setInterval/setTimeout callback"
 When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
 
 ```js
@@ -288,7 +288,7 @@ For server-side JavaScript, that limitation does not exist, and there exist othe
 
 - Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
 - To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
-- Nested `setTimeout` calls is a more flexible alternative to `setInterval`. Also they can guarantee the minimal time *between* the executions.
+- Nested `setTimeout` calls is a more flexible alternative to `setInterval`, allowing to set the time *between* executions more precisely.
 - Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code is complete".
 - The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
 
