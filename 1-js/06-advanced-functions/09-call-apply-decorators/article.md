@@ -6,9 +6,9 @@ JavaScript gives exceptional flexibility when dealing with functions. They can b
 
 Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
 
-If the function is called often, we may want to cache (remember) the results for different `x` to avoid spending extra-time on recalculations.
+If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
 
-But instead of adding that functionality into `slow()` we'll create a wrapper. As we'll see, there are many benefits of doing so.
+But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
 
 Here's the code, and explanations follow:
 
@@ -23,13 +23,13 @@ function cachingDecorator(func) {
   let cache = new Map();
 
   return function(x) {
-    if (cache.has(x)) { // if the result is in the map
-      return cache.get(x); // return it
+    if (cache.has(x)) {    // if there's such key in cache
+      return cache.get(x); // read the result from it
     }
 
-    let result = func(x); // otherwise call func
+    let result = func(x);  // otherwise call func
 
-    cache.set(x, result); // and cache (remember) the result
+    cache.set(x, result);  // and cache (remember) the result
     return result;
   };
 }
@@ -49,13 +49,11 @@ The idea is that we can call `cachingDecorator` for any function, and it will re
 
 By separating caching from the main function code we also keep the main code simpler.
 
-Now let's get into details of how it works.
-
 The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
 
 ![](decorator-makecaching-wrapper.svg)
 
-As we can see, the wrapper returns the result of `func(x)` "as is". From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
 
 To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
 
