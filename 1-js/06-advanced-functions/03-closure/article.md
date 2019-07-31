@@ -70,7 +70,7 @@ The Lexical Environment object consists of two parts:
 1. *Environment Record* -- an object that stores all local variables as its properties (and some other information like the value of `this`).
 2. A reference to the *outer lexical environment*, the one associated with the outer code.
 
-**So, a "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
+**A "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
 
 For instance, in this simple code, there is only one Lexical Environment:
 
@@ -80,7 +80,7 @@ This is a so-called global Lexical Environment, associated with the whole script
 
 On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, so it points to `null`.
 
-Here's the bigger picture of what happens when a `let` changes:
+And that's how it changes when a variable is defined and assigned:
 
 ![lexical environment](lexical-environment-global-2.svg)
 
@@ -119,7 +119,7 @@ Now let's go on and explore what happens when a function accesses an outer varia
 
 During the call, `say()` uses the outer variable `phrase`, let's look at the details of what's going on.
 
-First, when a function runs, a new function Lexical Environment is created automatically. That's a general rule for all functions. That Lexical Environment is used to store local variables and parameters of the call.
+When a function runs, a new Lexical Environment is created automatically to store local variables and parameters of the call.
 
 For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
 

@@ -8,7 +8,7 @@ For instance:
 - `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
 - ...and so on.
 
-In this chapter we'll learn how to do the same. And, more importantly, how to feel comfortable working with such functions and arrays.
+In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
 
 ## Rest parameters `...`
 
@@ -96,9 +96,7 @@ showName("Julius", "Caesar");
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function, no matter their total number.
-
-And it still works, we can use it today.
+In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
 
 But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
 
@@ -119,9 +117,10 @@ function f() {
 
 f(1); // 1
 ```
-````
 
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+````
+
 
 ## Spread operator [#spread-operator]
 

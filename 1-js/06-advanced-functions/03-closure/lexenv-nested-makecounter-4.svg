@@ -51,7 +51,7 @@
                     <tspan x="4" y="19">count: 0</tspan>
                 </text>
             </g>
-            <g id="Group" transform="translate(606.000000, 48.000000)">
+            <g id="Group" transform="translate(612.000000, 48.000000)">
                 <path id="Line" d="M16.5,21.5 L2.5,21.5 L2.5,19.5 L16.5,19.5 L16.5,13.5 L30.5,20.5 L16.5,27.5 L16.5,21.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
                 <text id="outer" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
                     <tspan x="0" y="11">outer</tspan>
@@ -64,7 +64,7 @@
                 </text>
             </g>
             <text id="null" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="651" y="71">null</tspan>
+                <tspan x="657" y="71">null</tspan>
             </text>
             <text id="[[Environment]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="184" y="192">[[Environment]]</tspan>

@@ -6,7 +6,7 @@ importance: 5
 
 In simple cases of circular references, we can exclude an offending property from serialization by its name.
 
-But sometimes there are many backreferences. And names may be used both in circular references and normal properties.
+But sometimes we can't just use the name, as it may be used both in circular references and normal properties. So we can check the property by its value.
 
 Write `replacer` function to stringify everything, but remove properties that reference `meetup`:
 
@@ -22,7 +22,7 @@ let meetup = {
 };
 
 *!*
-// circular references 
+// circular references
 room.occupiedBy = meetup;
 meetup.self = meetup;
 */!*
@@ -39,4 +39,3 @@ alert( JSON.stringify(meetup, function replacer(key, value) {
 }
 */
 ```
-

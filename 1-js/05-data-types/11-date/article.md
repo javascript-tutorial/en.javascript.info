@@ -29,13 +29,12 @@ To create a new `Date` object call `new Date()` with one of the following argume
     alert( Jan02_1970 );
     ```
 
-    The number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
+    An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
 
     It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
 
 `new Date(datestring)`
-: If there is a single argument, and it's a string, then it is parsed with the `Date.parse` algorithm (see below).
-
+: If there is a single argument, and it's a string, then it is parsed automatically. The algorithm is the same as `Date.parse` uses, we'll cover it later.
 
     ```js run
     let date = new Date("2017-01-26");
@@ -131,12 +130,12 @@ Besides the given methods, there are two special ones that do not have a UTC-var
 
 The following methods allow to set date/time components:
 
-- [`setFullYear(year [, month, date])`](mdn:js/Date/setFullYear)
-- [`setMonth(month [, date])`](mdn:js/Date/setMonth)
+- [`setFullYear(year, [month], [date])`](mdn:js/Date/setFullYear)
+- [`setMonth(month, [date])`](mdn:js/Date/setMonth)
 - [`setDate(date)`](mdn:js/Date/setDate)
-- [`setHours(hour [, min, sec, ms])`](mdn:js/Date/setHours)
-- [`setMinutes(min [, sec, ms])`](mdn:js/Date/setMinutes)
-- [`setSeconds(sec [, ms])`](mdn:js/Date/setSeconds)
+- [`setHours(hour, [min], [sec], [ms])`](mdn:js/Date/setHours)
+- [`setMinutes(min, [sec], [ms])`](mdn:js/Date/setMinutes)
+- [`setSeconds(sec, [ms])`](mdn:js/Date/setSeconds)
 - [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
 - [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
 
@@ -318,7 +317,7 @@ As a result, the first benchmark will have less CPU resources than the second. T
 
 **For more reliable benchmarking, the whole pack of benchmarks should be rerun multiple times.**
 
-Here's the code example:
+For example, like this:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -424,4 +423,4 @@ alert(`Loading started ${performance.now()}ms ago`);
 // more than 3 digits after the decimal point are precision errors, but only the first 3 are correct
 ```
 
-Node.js has `microtime` module and other ways. Technically, any device and environment allows to get more precision, it's just not in `Date`.
+Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.

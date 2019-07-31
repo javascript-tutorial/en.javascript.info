@@ -80,13 +80,13 @@
             <text id="..." font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="403" y="94">...</tspan>
             </text>
-            <text id="makeArmy()" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="makeArmy()-LexicalEn" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="403" y="64">makeArmy()</tspan>
-                <tspan x="403" y="79">Lexical Environment</tspan>
+                <tspan x="403" y="79">LexicalEnvironment</tspan>
             </text>
-            <text id="for-block-Lexical-En" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+            <text id="for-block-LexicalEnv" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="278" y="14">for block</tspan>
-                <tspan x="278" y="29">Lexical Environment</tspan>
+                <tspan x="278" y="29">LexicalEnvironment</tspan>
             </text>
         </g>
     </g>

@@ -57,11 +57,11 @@
                 <tspan x="675" y="67">null</tspan>
             </text>
             <polyline id="Rectangle-1-Copy" fill="#EC6B4E" points="3 39.7741935 3 27 12 33.3870968"></polyline>
-            <text id="global-Lexical-Envir" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
-                <tspan x="440" y="15">global Lexical Environment</tspan>
+            <text id="global-LexicalEnviro" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="440" y="15">global LexicalEnvironment</tspan>
             </text>
-            <text id="Lexical-Environment" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
-                <tspan x="275" y="15">Lexical Environment</tspan>
+            <text id="LexicalEnvironment-o" font-family="PTMono-Regular, PT Mono" font-size="12" font-weight="normal" fill="#8A704D">
+                <tspan x="275" y="15">LexicalEnvironment</tspan>
                 <tspan x="275" y="29">of makeCounter() call</tspan>
             </text>
         </g>
