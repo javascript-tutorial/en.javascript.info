@@ -332,7 +332,7 @@ const clients = new Set();
 
 http.createServer((req, res) => {
   // here we only handle websocket connections
-  // in real project we'd have some other code herre to handle non-websocket requests
+  // in real project we'd have some other code here to handle non-websocket requests
   wss.handleUpgrade(req, req.socket, Buffer.alloc(0), onSocketConnect);
 });
 
