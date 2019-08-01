@@ -300,7 +300,7 @@ The `async` keyword before a function has two effects:
 The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
 
 1. If it's an error, the exception is generated, same as if `throw error` were called at that very place.
-2. Otherwise, it returns the result, so we can assign it to a value.
+2. Otherwise, it returns the result.
 
 Together they provide a great framework to write asynchronous code that is easy both to read and write.
 
