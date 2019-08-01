@@ -83,7 +83,7 @@ If we'd like to apply them, then we can use `Object.entries` followed `Object.fr
 For example, we have an object with prices, and would like to double them:
 
 ```js run
-let users = {
+let prices = {
   banana: 1,
   orange: 2,
   meat: 4,
