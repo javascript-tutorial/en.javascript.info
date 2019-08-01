@@ -12,9 +12,9 @@ async function f() {
 }
 ```
 
-The word "async" before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the "async" keyword directs JavaScript to automatically wrap that value in a resolved promise.
+The word "async" before a function means one simple thing: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
 
-For instance, the code above returns a resolved promise with the result of `1`, let's test it:
+For instance, this function returns a resolved promise with the result of `1`, let's test it:
 
 ```js run
 async function f() {
@@ -24,7 +24,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-...We could explicitly return a promise, that would be the same as:
+...We could explicitly return a promise, that would be the same:
 
 ```js run
 async function f() {
@@ -171,7 +171,7 @@ f();
 If `await` gets a non-promise object with `.then`, it calls that method providing native functions `resolve`, `reject` as arguments. Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
 
-````smart header="Async methods"
+````smart header="Async class methods"
 To declare an async class method, just prepend it with `async`:
 
 ```js run
@@ -214,7 +214,7 @@ async function f() {
 }
 ```
 
-In real situations, the promise may take some time before it rejects. So `await` will wait, and then throw an error.
+In real situations, the promise may take some time before it rejects. In that case there will be a delay before `await` throws an error.
 
 We can catch that error using `try..catch`, the same way as a regular `throw`:
 

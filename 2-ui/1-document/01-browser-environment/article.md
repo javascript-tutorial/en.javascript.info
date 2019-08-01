@@ -2,9 +2,9 @@
 
 The JavaScript language was initially created for web browsers. Since then, it has evolved and become a language with many uses and platforms.
 
-A platform may be a browser, or a web-server, or a washing machine, or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+A platform may be a browser, or a web-server or another *host*, even a coffee machine. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
-A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+A host environment provides own objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
 
 Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
 
@@ -36,7 +36,9 @@ There are more window-specific methods and properties, we'll cover them later.
 
 ## DOM (Document Object Model)
 
-The `document` object gives access to the page content. We can change or create anything on the page using it.
+Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+
+The `document` object is the main "entry point" to the page. We can change or create anything on the page using it.
 
 For instance:
 ```js run
@@ -52,15 +54,15 @@ Here we used `document.body.style`, but there's much, much more. Properties and 
 - **DOM Living Standard** at <https://dom.spec.whatwg.org>
 
 ```smart header="DOM is not only for browsers"
-The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
+The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use DOM too.
 
-For instance, server-side tools that download HTML pages and process them use the DOM. They may support only a part of the specification though.
+For instance, server-side scripts that download HTML pages and process them can also use DOM. They may support only a part of the specification though.
 ```
 
 ```smart header="CSSOM for styling"
-CSS rules and stylesheets are not structured like HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
+CSS rules and stylesheets are structured in a different way than HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
 
-CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
+CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, but that's also possible.
 ```
 
 ## BOM (Browser object model)
@@ -76,7 +78,7 @@ Here's how we can use the `location` object:
 
 ```js run
 alert(location.href); // shows current URL
-if (confirm("Go to wikipedia?")) {
+if (confirm("Go to Wikipedia?")) {
   location.href = "https://wikipedia.org"; // redirect the browser to another URL
 }
 ```
