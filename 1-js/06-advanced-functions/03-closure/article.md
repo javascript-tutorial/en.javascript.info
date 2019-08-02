@@ -359,7 +359,7 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     That function has only one line: `return count++`, that will be executed when we run it.
 
-5. When `counter()` is called, a new Lexical Environment is created for the call. It's empty, as `counter` has no local variables by itself. But the `[[Environment]]` of `counter` is used as the `outer` reference for it, that provides has access to the variables of the former `makeCounter()` call where it was created:
+5. When `counter()` is called, a new Lexical Environment is created for the call. It's empty, as `counter` has no local variables by itself. But the `[[Environment]]` of `counter` is used as the `outer` reference for it, that provides access to the variables of the former `makeCounter()` call where it was created:
 
     ![](lexenv-nested-makecounter-5.svg)
 
