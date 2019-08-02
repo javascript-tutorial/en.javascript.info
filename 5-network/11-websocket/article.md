@@ -60,7 +60,7 @@ socket.onerror = function(error) {
 };
 ```
 
-For demo purposes, there's a small server [server.js](demo/server.js) written in Node.js, for the example above, running. It responds with "hello", then waits 5 seconds and closes the connection.
+For demo purposes, there's a small server [server.js](demo/server.js) written in Node.js, for the example above, running. It responds with "Hello from server, John", then waits 5 seconds and closes the connection.
 
 So you'll see events `open` -> `message` -> `close`.
 
@@ -385,4 +385,4 @@ WebSocket by itself does not include reconnection, authentication and many other
 
 Sometimes, to integrate WebSocket into existing project, people run WebSocket server in parallel with the main HTTP-server, and they share a single database. Requests to WebSocket use `wss://ws.site.com`, a subdomain that leads to WebSocket server, while `https://site.com` goes to the main HTTP-server.
 
-Surely, other ways of integration are also possible. 
+Surely, other ways of integration are also possible.
