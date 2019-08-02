@@ -149,7 +149,7 @@ The inner Lexical Environment has a reference to the `outer` one.
 
 **When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
 
-If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to an undefined variable, like `user = "John"` creates a new global variable `user`, that's for backwards compatibility).
+If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to a non-existing variable, like `user = "John"` creates a new global variable `user`, that's for backwards compatibility).
 
 Let's see how the search proceeds in our example:
 
