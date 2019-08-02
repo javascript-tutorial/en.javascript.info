@@ -36,12 +36,13 @@ Here's an example:
 let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
 
 socket.onopen = function(e) {
-  alert("[open] Connection established, send the data -> server");
+  alert("[open] Connection established");
+  alert("Sending to server");
   socket.send("My name is John");
 };
 
 socket.onmessage = function(event) {
-  alert(`[message] Data received: ${event.data} <- server`);
+  alert(`[message] Data received from server: ${event.data}`);
 };
 
 socket.onclose = function(event) {

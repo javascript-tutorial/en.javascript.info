@@ -9,8 +9,9 @@ function accept(req, res) {
     res.end();
     return;
   }
+
   // can be Connection: keep-alive, Upgrade
-  if (req.headers.connection.match(/\bupgrade\b/i)) {
+  if (!req.headers.connection.match(/\bupgrade\b/i)) {
     res.end();
     return;
   }
@@ -20,8 +21,8 @@ function accept(req, res) {
 
 function onConnect(ws) {
   ws.on('message', function (message) {
-    let name = message.match(/\w+$/) || "Guest";
-    ws.send(`Hello, ${name}!`);
+    let name = message.match(/([\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]+)$/gu) || "Guest";
+    ws.send(`Hello from server, ${name}!`);
 
     setTimeout(() => ws.close(1000, "Bye!"), 5000);
   });
