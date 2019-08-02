@@ -87,7 +87,7 @@ Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
 </script>
 ```
 
-In the line `(*)` when we clone and insert `tmpl.content`, as it's `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
+In the line `(*)` when we clone and insert `tmpl.content`, as its `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
 
 They form the shadow DOM:
 
