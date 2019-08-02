@@ -24,7 +24,7 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even it's created without one, and then immediately assigned:
+What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
 
 ```js run
 let sayHi = function() {
