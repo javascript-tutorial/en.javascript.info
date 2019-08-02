@@ -3,7 +3,7 @@
 
 We can create custom HTML elements, described by our class, with its own methods and properties, events and so on.
 
-Once an custom element is defined, we can use it on par with built-in HTML elements.
+Once a custom element is defined, we can use it on par with built-in HTML elements.
 
 That's great, as HTML dictionary is rich, but not infinite. There are no `<easy-tabs>`, `<sliding-carousel>`, `<beautiful-upload>`... Just think of any other tag we might need.
 
