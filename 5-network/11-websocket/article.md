@@ -76,7 +76,7 @@ During the connection the browser (using headers) asks the server: "Do you suppo
 
 ![](websocket-handshake.svg)
 
-Here's an example of browser request for `new WebSocket("wss://javascript.info/chat")`.
+Here's an example of browser headers for request made by `new WebSocket("wss://javascript.info/chat")`.
 
 ```
 GET /chat
@@ -117,17 +117,15 @@ There may be additional headers `Sec-WebSocket-Extensions` and `Sec-WebSocket-Pr
 
 For instance:
 
-- `Sec-WebSocket-Extensions: deflate-frame` means that the browser supports data compression. An extension is something related to transferring the data, not data itself.
+- `Sec-WebSocket-Extensions: deflate-frame` means that the browser supports data compression. An extension is something related to transferring the data, functionality that extends WebSocket protocol. The header `Sec-WebSocket-Extensions` is sent automatically by the browser, with the list of all extenions it supports.
 
 - `Sec-WebSocket-Protocol: soap, wamp` means that we'd like to transfer not just any data, but the data in [SOAP](http://en.wikipedia.org/wiki/SOAP) or WAMP ("The WebSocket Application Messaging Protocol") protocols. WebSocket subprotocols are registered in the [IANA catalogue](http://www.iana.org/assignments/websocket/websocket.xml).
 
-`Sec-WebSocket-Extensions` header is sent by the browser automatically, with a list of possible extensions it supports.
+    This optional header is set by us, to tell the server which subprotocols our code supports, using the second (optional) parameter of `new WebSocket`. That's the array of subprotocols, e.g. if we'd like to use SOAP or WAMP:
 
-`Sec-WebSocket-Protocol` header depends on us: we decide what kind of data we send. The second optional parameter of `new WebSocket` is just for that, it lists subprotocols:
-
-```js
-let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);
-```
+    ```js
+    let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);
+    ```
 
 The server should respond with a list of protocols and extensions that it agrees to use.
 
@@ -162,24 +160,24 @@ Sec-WebSocket-Protocol: soap
 
 Here the server responds that it supports the extension "deflate-frame", and only SOAP of the requested subprotocols.
 
-## WebSocket data
+## Data transfer
 
 WebSocket communication consists of "frames" -- data fragments, that can be sent from either side, and can be of several kinds:
 
 - "text frames" -- contain text data that parties send to each other.
 - "binary data frames" -- contain binary data that parties send to each other.
 - "ping/pong frames" are used to check the connection, sent from the server, the browser responds to these automatically.
-- "connection close frame" and a few other service frames.
+- there's also "connection close frame" and a few other service frames.
 
 In the browser, we directly work only with text or binary frames.
 
 **WebSocket `.send()` method can send either text or binary data.**
 
-A call `socket.send(body)` allows `body` in string or a binary format, including `Blob`, `ArrayBuffer`, etc. No settings required: just send it out.
+A call `socket.send(body)` allows `body` in string or a binary format, including `Blob`, `ArrayBuffer`, etc. No settings required: just send it out in any format.
 
 **When we receive the data, text always comes as string. And for binary data, we can choose between `Blob` and `ArrayBuffer` formats.**
 
-The `socket.bufferType` is `"blob"` by default, so binary data comes in Blobs.
+That's set by `socket.bufferType` property, it's `"blob"` by default, so binary data comes as `Blob` objects.
 
 [Blob](info:blob) is a high-level binary object, it directly integrates with `<a>`, `<img>` and other tags, so that's a sane default. But for binary processing, to access individual data bytes, we can change it to `"arraybuffer"`:
 
@@ -192,7 +190,7 @@ socket.onmessage = (event) => {
 
 ## Rate limiting
 
-Imagine, our app is generating a lot of data to send. But the user has a slow network connection, maybe on a mobile, outside of a city.
+Imagine, our app is generating a lot of data to send. But the user has a slow network connection, maybe on a mobile internet, outside of a city.
 
 We can call `socket.send(data)` again and again. But the data will be buffered (stored) in memory and sent out only as fast as network speed allows.
 
@@ -249,7 +247,7 @@ There are other codes like:
 - `1011` -- unexpected error on server,
 - ...and so on.
 
-Please refer to the [RFC6455, §7.4.1](https://tools.ietf.org/html/rfc6455#section-7.4.1) for the full list.
+The full list can be found in [RFC6455, §7.4.1](https://tools.ietf.org/html/rfc6455#section-7.4.1).
 
 WebSocket codes are somewhat like HTTP codes, but different. In particular, any codes less than `1000` are reserved, there'll be an error if we try to set such a code.
 
@@ -275,9 +273,9 @@ To get connection state, additionally there's `socket.readyState` property with 
 
 ## Chat example
 
-Let's review a chat example using browser WebSocket API and Node.js WebSocket module <https://github.com/websockets/ws>.
+Let's review a chat example using browser WebSocket API and Node.js WebSocket module <https://github.com/websockets/ws>. We'll pay the main attention to the client side, but the server is also simple.
 
-HTML: there's a `<form>` to send messages and a `<div>` for incoming messages:
+HTML: we need a `<form>` to send messages and a `<div>` for incoming messages:
 
 ```html
 <!-- message form -->
@@ -290,7 +288,12 @@ HTML: there's a `<form>` to send messages and a `<div>` for incoming messages:
 <div id="messages"></div>
 ```
 
-JavaScript is also simple. We open a socket, then on form submission -- `socket.send(message)`, on incoming message -- append it to `div#messages`:
+From JavaScript we want three things:
+1. Open the connection.
+2. On form submission -- `socket.send(message)` for the message.
+3. On incoming message -- append it to `div#messages`.
+
+Here's the code:
 
 ```js
 let socket = new WebSocket("wss://javascript.info/article/websocket/chat/ws");
@@ -303,7 +306,7 @@ document.forms.publish.onsubmit = function() {
   return false;
 };
 
-// show message in div#messages
+// message received - show the message in div#messages
 socket.onmessage = function(event) {
   let message = event.data;
 
@@ -313,13 +316,12 @@ socket.onmessage = function(event) {
 }
 ```
 
-Server-side code is a little bit beyond our scope here. We're using browser WebSocket API, a server may have another library.
-
-Still it can also be pretty simple. We'll use Node.js with <https://github.com/websockets/ws> module for websockets.
+Server-side code is a little bit beyond our scope. Here we'll use Node.js, but you don't have to. Other platforms also have their means to work with WebSocket.
 
 The server-side algorithm will be:
+
 1. Create `clients = new Set()` -- a set of sockets.
-2. For each accepted websocket, `clients.add(socket)` and add `message` event listener for its messages.
+2. For each accepted websocket, add it to the set `clients.add(socket)` and setup `message` event listener to get its messages.
 3. When a message received: iterate over clients and send it to everyone.
 4. When a connection is closed: `clients.delete(socket)`.
 
@@ -359,7 +361,6 @@ Here's the working example:
 
 You can also download it (upper-right button in the iframe) and run locally. Just don't forget to install [Node.js](https://nodejs.org/en/) and `npm install ws` before running.
 
-
 ## Summary
 
 WebSocket is a modern way to have persistent browser-server connections.
@@ -384,4 +385,4 @@ WebSocket by itself does not include reconnection, authentication and many other
 
 Sometimes, to integrate WebSocket into existing project, people run WebSocket server in parallel with the main HTTP-server, and they share a single database. Requests to WebSocket use `wss://ws.site.com`, a subdomain that leads to WebSocket server, while `https://site.com` goes to the main HTTP-server.
 
-Surely, other ways of integration are also possible. Many servers (such as Node.js) can support both HTTP and WebSocket protocols.
+Surely, other ways of integration are also possible. 
