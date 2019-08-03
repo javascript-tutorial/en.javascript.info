@@ -22,9 +22,6 @@
             <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="134" y="22">prototype</tspan>
             </text>
-            <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="17" y="39">constructor</tspan>
-            </text>
         </g>
     </g>
 </svg>

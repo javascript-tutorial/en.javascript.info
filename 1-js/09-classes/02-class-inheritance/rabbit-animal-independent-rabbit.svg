@@ -14,9 +14,9 @@
             <text id="Rabbit.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="237" y="15">Rabbit.prototype</tspan>
             </text>
-            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="11" y="23" width="105" height="28"></rect>
+            <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="8" y="23" width="108" height="28"></rect>
             <text id="Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="10" y="15">Rabbit</tspan>
+                <tspan x="7" y="15">Rabbit</tspan>
             </text>
             <path d="M237,151 L237,179 L415,179 L415,151 L237,151 Z" id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
             <text id="new-Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
@@ -32,9 +32,6 @@
             </text>
             <text id="name:-&quot;My-rabbit&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="249" y="169">name: "My rabbit"</tspan>
-            </text>
-            <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="17" y="41">constructor</tspan>
             </text>
         </g>
     </g>

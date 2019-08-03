@@ -5,18 +5,18 @@
     <desc>Created with sketchtool.</desc>
     <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="function-prototype-constructor.svg">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="233" y="23" width="170.5" height="28"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="233" y="23" width="170" height="28"></rect>
             <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="10" y="23" width="108" height="28"></rect>
             <text id="Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="9" y="15">Rabbit</tspan>
             </text>
-            <path id="Line-Copy" d="M204,31 L130,31 L130,29 L204,29 L204,23 L218,30 L204,37 L204,31 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy-2" d="M145,40 L219,40 L219,42 L145,42 L145,48 L131,41 L145,34 L145,40 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M218,33 L101,33 L101,31 L218,31 L218,25 L232,32 L218,39 L218,33 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M133,42 L249,42 L249,44 L133,44 L133,50 L119,43 L133,36 L133,42 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="136" y="22">prototype</tspan>
+                <tspan x="20" y="35">prototype</tspan>
             </text>
             <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="128" y="62">constructor</tspan>
+                <tspan x="259" y="47">constructor</tspan>
             </text>
             <text id="default-&quot;prototype&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="233.7" y="15">default "prototype"</tspan>

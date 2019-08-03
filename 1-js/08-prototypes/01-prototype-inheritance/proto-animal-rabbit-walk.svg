@@ -18,7 +18,7 @@
                 <tspan x="24" y="152">jumps: true</tspan>
             </text>
             <text id="rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="18" y="127">rabbit</tspan>
+                <tspan x="13" y="127">rabbit</tspan>
             </text>
             <path id="Line" d="M79.5,98.5 L79.5,126.5 L77.5,126.5 L77.5,98.5 L71.5,98.5 L78.5,84.5 L85.5,98.5 L79.5,98.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
