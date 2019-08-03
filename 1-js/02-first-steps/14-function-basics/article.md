@@ -341,7 +341,7 @@ return*!*;*/!*
 
 So, it effectively becomes an empty return.
 
-If we want our expression to wrap across multiple lines, we can put the opening parentheses in the same line as the `return` statement as follows:
+If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
 
 ```js
 return (
