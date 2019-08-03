@@ -338,7 +338,17 @@ That doesn't work, because JavaScript assumes a semicolon after `return`. That'l
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-So, it effectively becomes an empty return. We should put the value on the same line instead.
+So, it effectively becomes an empty return. 
+If we wanted our expression to wrap across multiple lines, we would have to put the opening parenthesis in the same line as the `return` statement as follows:
+
+```js
+return (
+  some + long + expression 
+  + or + 
+  whatever * f(a) + f(b)
+  )
+```
+And it will work just as we expect it to.
 ````
 
 ## Naming a function [#function-naming]
