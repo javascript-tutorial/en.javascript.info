@@ -151,6 +151,7 @@ There are two ways to do so:
 
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
+    Note: If you work with negative numbers, you need to use Math.ceil() instead of Math.floor() .
 
 2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
 
