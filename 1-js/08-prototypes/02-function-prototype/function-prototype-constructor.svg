@@ -13,7 +13,7 @@
             <path id="Line-Copy" d="M218,33.5 L101,33.5 L101,31.5 L218,31.5 L218,25.5 L232,32.5 L218,39.5 L218,33.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <path id="Line-Copy-2" d="M133,42.5 L249,42.5 L249,44.5 L133,44.5 L133,50.5 L119,43.5 L133,36.5 L133,42.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="20" y="36">prototype</tspan>
+                <tspan x="20" y="35">prototype</tspan>
             </text>
             <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="259" y="47">constructor</tspan>

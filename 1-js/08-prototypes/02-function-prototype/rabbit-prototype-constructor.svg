@@ -23,8 +23,8 @@
                 <tspan x="248" y="112">rabbit</tspan>
             </text>
             <path id="Line" d="M324.5,79.5 L324.5,107.5 L322.5,107.5 L322.5,79.5 L316.5,79.5 L323.5,65.5 L330.5,79.5 L324.5,79.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy" d="M197,35 L127,35 L127,33 L197,33 L197,27 L211,34 L197,41 L197,35 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy-2" d="M142,43 L212,43 L212,45 L142,45 L142,51 L128,44 L142,37 L142,43 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M207,35 L127,35 L127,33 L207,33 L207,27 L221,34 L207,41 L207,35 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M142,43 L222,43 L222,45 L142,45 L142,51 L128,44 L142,37 L142,43 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="333" y="89">[[Prototype]]</tspan>
             </text>

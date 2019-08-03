@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="486px" height="370px" viewBox="0 0 486 370" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="503px" height="370px" viewBox="0 0 503 370" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>object-date-inheritance.svg</title>
     <desc>Created with sketchtool.</desc>
     <g id="inheritance" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="object-date-inheritance.svg">
-            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="262" y="23" width="219" height="78"></rect>
+            <rect id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="267" y="23" width="219" height="78"></rect>
             <text id="constructor:-Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="272" y="42">constructor: Object</tspan>
-                <tspan x="272" y="57">toString: function</tspan>
-                <tspan x="272" y="72">hasOwnProperty: function</tspan>
-                <tspan x="272" y="87">...</tspan>
+                <tspan x="277" y="42">constructor: Object</tspan>
+                <tspan x="277" y="57">toString: function</tspan>
+                <tspan x="277" y="72">hasOwnProperty: function</tspan>
+                <tspan x="277" y="87">...</tspan>
             </text>
-            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="262" y="329" width="178" height="28"></rect>
+            <rect id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="267" y="329" width="178" height="28"></rect>
             <text id="Object.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="261" y="15">Object.prototype</tspan>
+                <tspan x="266" y="15">Object.prototype</tspan>
             </text>
-            <rect id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="262" y="183" width="219" height="78"></rect>
+            <rect id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="267" y="183" width="219" height="78"></rect>
             <text id="constructor:-Date-to" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="272" y="202">constructor: Date</tspan>
-                <tspan x="272" y="217">toString: function</tspan>
-                <tspan x="272" y="232">getDate: function</tspan>
-                <tspan x="272" y="247">...</tspan>
+                <tspan x="277" y="202">constructor: Date</tspan>
+                <tspan x="277" y="217">toString: function</tspan>
+                <tspan x="277" y="232">getDate: function</tspan>
+                <tspan x="277" y="247">...</tspan>
             </text>
             <text id="Date.prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="261" y="175">Date.prototype</tspan>
+                <tspan x="266" y="175">Date.prototype</tspan>
             </text>
             <rect id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="15" y="23" width="133" height="64"></rect>
             <text id="Object" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
@@ -35,21 +35,21 @@
                 <tspan x="14" y="175">Date</tspan>
             </text>
             <text id="new-Date()" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="263" y="318">new Date()</tspan>
+                <tspan x="268" y="318">new Date()</tspan>
             </text>
-            <path id="Line" d="M351.5,127.5 L351.5,155.5 L349.5,155.5 L349.5,127.5 L343.5,127.5 L350.5,113.5 L357.5,127.5 L351.5,127.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy" d="M223,38 L156,38 L156,36 L223,36 L223,30 L237,37 L223,44 L223,38 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M356.5,127.5 L356.5,155.5 L354.5,155.5 L354.5,127.5 L348.5,127.5 L355.5,113.5 L362.5,127.5 L356.5,127.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M238,38 L156,38 L156,36 L238,36 L238,30 L252,37 L238,44 L238,38 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="360" y="137">[[Prototype]]</tspan>
+                <tspan x="365" y="137">[[Prototype]]</tspan>
             </text>
-            <path id="Line-Copy-3" d="M351.5,287.5 L351.5,315.5 L349.5,315.5 L349.5,287.5 L343.5,287.5 L350.5,273.5 L357.5,287.5 L351.5,287.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-3" d="M356.5,287.5 L356.5,315.5 L354.5,315.5 L354.5,287.5 L348.5,287.5 L355.5,273.5 L362.5,287.5 L356.5,287.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="[[Prototype]]-Copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="360" y="297">[[Prototype]]</tspan>
+                <tspan x="365" y="297">[[Prototype]]</tspan>
             </text>
             <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="163" y="25">prototype</tspan>
             </text>
-            <path id="Line-Copy-2" d="M223,206 L156,206 L156,204 L223,204 L223,198 L237,205 L223,212 L223,206 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M238,206 L156,206 L156,204 L238,204 L238,198 L252,205 L238,212 L238,206 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="prototype-copy" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="163" y="193">prototype</tspan>
             </text>
@@ -64,7 +64,7 @@
                 <tspan x="24" y="232">...</tspan>
             </text>
             <text id="1-Jan-2019" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="273" y="347">1 Jan 2019</tspan>
+                <tspan x="278" y="347">1 Jan 2019</tspan>
             </text>
         </g>
     </g>

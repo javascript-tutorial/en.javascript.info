@@ -24,7 +24,7 @@
                 <tspan x="239" y="160">new Animal</tspan>
             </text>
             <path id="Line" d="M327.5,112.5 L327.5,140.5 L325.5,140.5 L325.5,112.5 L319.5,112.5 L326.5,98.5 L333.5,112.5 L327.5,112.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy" d="M199,38 L132,38 L132,36 L199,36 L199,30 L213,37 L199,44 L199,38 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M208.5,38 L130,38 L130,36 L208.5,36 L208.5,30 L222.5,37 L208.5,44 L208.5,38 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="[[Prototype]]" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="336" y="122">[[Prototype]]</tspan>
             </text>
