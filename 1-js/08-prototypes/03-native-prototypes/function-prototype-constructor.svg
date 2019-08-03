@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="421px" height="73px" viewBox="0 0 421 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="449px" height="73px" viewBox="0 0 449 73" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>function-prototype-constructor.svg</title>
     <desc>Created with sketchtool.</desc>
@@ -10,16 +10,16 @@
             <text id="Rabbit" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="9" y="15">Rabbit</tspan>
             </text>
-            <path id="Line-Copy" d="M218,33 L101,33 L101,31 L218,31 L218,25 L232,32 L218,39 L218,33 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-Copy-2" d="M133,42 L249,42 L249,44 L133,44 L133,50 L119,43 L133,36 L133,42 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M218,33.5 L101,33.5 L101,31.5 L218,31.5 L218,25.5 L232,32.5 L218,39.5 L218,33.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy-2" d="M133,42.5 L249,42.5 L249,44.5 L133,44.5 L133,50.5 L119,43.5 L133,36.5 L133,42.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="prototype" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="20" y="35">prototype</tspan>
+                <tspan x="20" y="36">prototype</tspan>
             </text>
             <text id="constructor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="259" y="47">constructor</tspan>
             </text>
             <text id="default-&quot;prototype&quot;" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="233.7" y="15">default "prototype"</tspan>
+                <tspan x="234.2" y="15">default "prototype"</tspan>
             </text>
         </g>
     </g>
