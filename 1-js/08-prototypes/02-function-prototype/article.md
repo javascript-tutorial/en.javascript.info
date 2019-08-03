@@ -160,8 +160,8 @@ In this chapter we briefly described the way of setting a `[[Prototype]]` for ob
 
 Everything is quite simple, just few notes to make things clear:
 
-- The `F.prototype` property is not the same as `[[Prototype]]`. The only thing `F.prototype` does: it sets `[[Prototype]]` of new objects when `new F()` is called.
-- The value of `F.prototype` should be either an object or null: other values won't work.
+- The `F.prototype` property (don't mess with `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
+- The value of `F.prototype` should be either an object or `null`: other values won't work.
 -  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
 
 On regular objects the `prototype` is nothing special:
