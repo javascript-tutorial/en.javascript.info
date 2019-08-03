@@ -133,7 +133,7 @@ ask("Do you agree?", showOk, showCancel);
 
 Before we explore how we can write it in a much shorter way, let's note that in the browser (and on the server-side in some cases) such functions are quite popular. The major difference between a real-life implementation and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such a function usually draws a nice-looking question window. But that's another story.
 
-**The arguments of `ask` are called *callback functions* or just *callbacks*.**
+**The arguments `showOk` and `showCancel` of `ask` are called *callback functions* or just *callbacks*.**
 
 The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for the "yes" answer, and `showCancel` for the "no" answer.
 
