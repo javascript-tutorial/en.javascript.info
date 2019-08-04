@@ -36,7 +36,7 @@ alert(obj.__proto__ === Object.prototype); // true
 // obj.toString === obj.__proto__.toString == Object.prototype.toString
 ```
 
-Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
+Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
@@ -46,9 +46,9 @@ alert(Object.prototype.__proto__); // null
 
 Other built-in objects such as `Array`, `Date`, `Function` and others also keep methods in prototypes.
 
-For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is  used internally. So the array data is written into the new object, and `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
 
-By specification, all of the built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
+By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
 
 Here's the overall picture (for 3 built-ins to fit):
 
@@ -122,7 +122,7 @@ String.prototype.show = function() {
 During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the other.
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
 
 So, generally, modifying a native prototype is considered a bad idea.
 ```
@@ -144,7 +144,7 @@ if (!String.prototype.repeat) { // if there's no such method
 
     // actually, the code should be a little bit more complex than that
     // (the full algorithm is in the specification)
-    // but even an imperfect polyfill is often considered good enough
+    // but even an imperfect polyfill is often considered good enough for use
     return new Array(n + 1).join(this);
   };
 }
@@ -161,7 +161,7 @@ That's when we take a method from one object and copy it into another.
 
 Some methods of native prototypes are often borrowed.
 
-For instance, if we're making an array-like object, we may want to copy some array methods to it.
+For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
 
 E.g.
 

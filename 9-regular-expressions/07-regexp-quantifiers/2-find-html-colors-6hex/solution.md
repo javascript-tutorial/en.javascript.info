@@ -1,6 +1,6 @@
-We need to look for `#` followed by 6 hexadimal characters.
+We need to look for `#` followed by 6 hexadecimal characters.
 
-A hexadimal character can be described as `pattern:[0-9a-fA-F]`. Or if we use the `i` flag, then just  `pattern:[0-9a-f]`.
+A hexadecimal character can be described as `pattern:[0-9a-fA-F]`. Or if we use the `i` flag, then just  `pattern:[0-9a-f]`.
 
 Then we can look for 6 of them using the quantifier `pattern:{6}`.
 
