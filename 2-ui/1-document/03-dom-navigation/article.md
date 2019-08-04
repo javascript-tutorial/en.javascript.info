@@ -9,7 +9,7 @@ libs:
 
 The DOM allows us to do anything with elements and their contents, but first we need to reach the corresponding DOM object.
 
-All operations on the DOM start with the `document` object. From it we can access any node.
+All operations on the DOM start with the `document` object. That's the main "entry point" to DOM. From it we can access any node.
 
 Here's a picture of links that allow for travel between DOM nodes:
 
@@ -86,9 +86,9 @@ For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text 
 </html>
 ```
 
-...And all descendants of `<body>` are not only direct children `<div>`, `<ul>` but also more deeply nested elements, such as `<li>` (a child of `<ul>`) and `<b>` (a child of `<li>`) -- the entire subtree.
+...And descendants of `<body>` are not only direct children `<div>`, `<ul>` but also more deeply nested elements, such as `<li>` (a child of `<ul>`) and `<b>` (a child of `<li>`) -- the entire subtree.
 
-**The `childNodes` collection provides access to all child nodes, including text nodes.**
+**The `childNodes` collection lists all child nodes, including text nodes.**
 
 The example below shows children of `document.body`:
 
@@ -182,30 +182,34 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
 
 ## Siblings and the parent
 
-*Siblings* are nodes that are children of the same parent. For instance, `<head>` and `<body>` are siblings:
+*Siblings* are nodes that are children of the same parent.
+
+For instance, here `<head>` and `<body>` are siblings:
+
+```html
+<html>
+  <head>...</head><body>...</body>
+</html>
+```
 
 - `<body>` is said to be the "next" or "right" sibling of `<head>`,
 - `<head>` is said to be the "previous" or "left" sibling of `<body>`.
 
+The next sibling is is `nextSibling`, and the previous one is `previousSibling`.
+
 The parent is available as `parentNode`.
 
-The next node in the same parent (next sibling) is `nextSibling`, and the previous one is `previousSibling`.
+So all these tests are truthy:
 
-For instance:
+```js
+// parent of <body> is <html>
+alert( document.body.parentNode === document.documentElement ); // true
 
-```html run
-<html><head></head><body><script>
-  // HTML is "dense" to evade extra "blank" text nodes.
+// after <head> goes <body>
+alert( document.head.nextSibling ); // HTMLBodyElement
 
-  // parent of <body> is <html>
-  alert( document.body.parentNode === document.documentElement ); // true
-
-  // after <head> goes <body>
-  alert( document.head.nextSibling ); // HTMLBodyElement
-
-  // before <body> goes <head>
-  alert( document.body.previousSibling ); // HTMLHeadElement
-</script></body></html>
+// before <body> goes <head>
+alert( document.body.previousSibling ); // HTMLHeadElement
 ```
 
 ## Element-only navigation
@@ -235,12 +239,12 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-In other words, the `documentElement` (`<html>`) is the root node. Formally, it has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+The reason is that root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
 
-This loop travels up from an arbitrary element `elem` to `<html>`, but not to the `document`:
+This detail may be useful when we want to travel up from an arbitrary element `elem` to `<html>`, but not to the `document`:
 ```js
-while(elem = elem.parentElement) {
-  alert( elem ); // parent chain till <html>
+while(elem = elem.parentElement) { // go up till <html>
+  alert( elem );
 }
 ```
 ````

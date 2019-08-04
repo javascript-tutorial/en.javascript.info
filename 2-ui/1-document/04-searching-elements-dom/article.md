@@ -105,7 +105,7 @@ Pseudo-classes in the CSS selector like `:hover` and `:active` are also supporte
 
 The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and shorter to write.
+In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and also shorter to write.
 
 ## matches
 
