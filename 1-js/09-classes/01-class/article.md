@@ -25,7 +25,7 @@ class MyClass {
 }
 ```
 
-Then `new MyClass()` creates a new object with all the listed methods.
+Then use `new MyClass()` to create a new object with all the listed methods.
 
 The `constructor()` method is called automatically by `new`, so we can initialize the object there.
 
@@ -53,7 +53,7 @@ When `new User("John")` is called:
 1. A new object is created.
 2. The `constructor` runs with the given argument and assigns `this.name` to it.
 
-...Then we can call methods, such as `user.sayHi`.
+...Then we can call object methods, such as `user.sayHi()`.
 
 
 ```warn header="No comma between class methods"
@@ -191,7 +191,7 @@ let User = class {
 };
 ```
 
-Similar to Named Function Expressions, class expressions may or may not have a name.
+Similar to Named Function Expressions, class expressions may have a name.
 
 If a class expression has a name, it's visible inside the class only:
 
@@ -200,13 +200,13 @@ If a class expression has a name, it's visible inside the class only:
 // (no such term in the spec, but that's similar to Named Function Expression)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass); // MyClass is visible only inside the class
+    alert(MyClass); // MyClass name is visible only inside the class
   }
 };
 
 new User().sayHi(); // works, shows MyClass definition
 
-alert(MyClass); // error, MyClass not visible outside of the class
+alert(MyClass); // error, MyClass name isn't visible outside of the class
 ```
 
 
@@ -282,13 +282,14 @@ Object.defineProperties(User.prototype, {
 });
 ```
 
-Here's an example with computed properties:
+Here's an example with a computed property in brackets `[...]`:
 
 ```js run
-function f() { return "sayHi"; }
-
 class User {
-  [f()]() {
+
+*!*
+  ['say' + 'Hi']() {
+*/!*
     alert("Hello");
   }
 
@@ -309,7 +310,9 @@ In the example above, `User` only had methods. Let's add a property:
 
 ```js run
 class User {
+*!*
   name = "Anonymous";
+*/!*
 
   sayHi() {
     alert(`Hello, ${this.name}!`);
@@ -319,8 +322,7 @@ class User {
 new User().sayHi();
 ```
 
-The property is not placed into `User.prototype`. Instead, it is created by `new`, separately for every object. So, the property will never be shared between different objects of the same class.
-
+The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling constructor, it's the property of the object itself.
 
 ## Summary
 
@@ -328,7 +330,7 @@ The basic class syntax looks like this:
 
 ```js
 class MyClass {
-  prop = value; // field
+  prop = value; // property
 
   constructor(...) { // constructor
     // ...
@@ -339,7 +341,7 @@ class MyClass {
   get something(...) {} // getter method
   set something(...) {} // setter method
 
-  [Symbol.iterator]() {} // method with computed name/symbol name
+  [Symbol.iterator]() {} // method with computed name (symbol here)
   // ...
 }
 ```

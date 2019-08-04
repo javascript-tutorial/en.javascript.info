@@ -92,7 +92,7 @@ Internally, `extends` keyword adds `[[Prototype]]` reference from `Rabbit.protot
 
 So, if a method is not found in `Rabbit.prototype`, JavaScript takes it from `Animal.prototype`.
 
-As we can recall from the chapter <info:native-prototypes>, JavaScript uses the same prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`, so dates have generic object methods.
+As we can recall from the chapter <info:native-prototypes>, JavaScript uses prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`, so dates have generic object methods.
 
 ````smart header="Any expression is allowed after `extends`"
 Class syntax allows to specify not just a class, but any expression after `extends`.
@@ -130,7 +130,6 @@ class Rabbit extends Animal {
   }
 }
 ```
-
 
 ...But usually we don't want to totally replace a parent method, but rather to build on top of it, tweak or extend its functionality. We do something in our method, but call the parent method before/after it or in the process.
 

@@ -26,6 +26,7 @@ let rabbit = Object.create(animal);
 */!*
 
 alert(rabbit.eats); // true
+
 *!*
 alert(Object.getPrototypeOf(rabbit) === animal); // get the prototype of rabbit
 */!*
@@ -78,7 +79,7 @@ As of now we have all these ways at our disposal.
 
 Why was `__proto__` replaced by the functions `getPrototypeOf/setPrototypeOf`? That's an interesting question, requiring us to understand why `__proto__` is bad. Read on to get the answer.
 
-```warn header="Don't reset `[[Prototype]]` unless the speed doesn't matter"
+```warn header="Don't change `[[Prototype]]` on existing objects if speed matters"
 Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
 
 And JavaScript engines are highly optimized to that. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So evade it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
@@ -111,7 +112,7 @@ Here the consequences are not terrible. But in other cases, we may be assigning 
 
 What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
-Unexpected things also may happen when accessing `toString` property -- that's a function by default, and other built-in properties.
+Unexpected things also may happen when assigning to `toString` -- that's a function by default, and other built-in methods.
 
 How to evade the problem?
 
@@ -160,7 +161,7 @@ alert(obj); // Error (no toString)
 
 ...But that's usually fine for associative arrays.
 
-Please note that most object-related methods are `Object.something(...)`, like `Object.keys(obj)` -- they are not in the prototype, so they will keep working on such objects:
+Note that most object-related methods are `Object.something(...)`, like `Object.keys(obj)` -- they are not in the prototype, so they will keep working on such objects:
 
 
 ```js run
