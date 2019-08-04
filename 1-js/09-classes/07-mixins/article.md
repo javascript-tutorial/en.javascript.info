@@ -2,9 +2,9 @@
 
 In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]` for an object. And a class may extend only one other class.
 
-But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make a `StreetSweepingBicycle`.
+But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make their mix: a `StreetSweepingBicycle`.
 
-Or, talking about programming, we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
+Or we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
 
 There's a concept that can help here, called "mixins".
 
@@ -14,7 +14,7 @@ In other words, a *mixin* provides methods that implement a certain behavior, bu
 
 ## A mixin example
 
-The simplest way to make a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
+The simplest way to implement a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
 
 For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
 
@@ -75,10 +75,10 @@ let sayHiMixin = {
     *!*
     // call parent method
     */!*
-    super.say(`Hello ${this.name}`);
+    super.say(`Hello ${this.name}`); // (*)
   },
   sayBye() {
-    super.say(`Bye ${this.name}`);
+    super.say(`Bye ${this.name}`); // (*)
   }
 };
 
@@ -95,11 +95,13 @@ Object.assign(User.prototype, sayHiMixin);
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-Please note that the call to the parent method `super.say()` from `sayHiMixin` looks for the method in the prototype of that mixin, not the class.
+Please note that the call to the parent method `super.say()` from `sayHiMixin` (at lines labelled with `(*)`) looks for the method in the prototype of that mixin, not the class.
+
+Here's the diagram (see the right part):
 
 ![](mixin-inheritance.svg)
 
-That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
+That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So even though they got copied, their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
 
 As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
 
@@ -199,7 +201,7 @@ And `eventMixin` mixin makes it easy to add such behavior to as many classes as 
 
 *Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
 
-Some other languages like e.g. Python allow to create mixins using multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+Some other languages like allow multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
 
 We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
 

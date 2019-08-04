@@ -224,6 +224,6 @@ MyClass.property = ...
 MyClass.method = ...
 ```
 
-Static properties are inherited.
+Static properties and methods are inherited.
 
 For `class B extends A` the prototype of the class `B` itself points to `A`: `B.[[Prototype]] = A`. So if a field is not found in `B`, the search continues in `A`.

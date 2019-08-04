@@ -21,14 +21,14 @@ alert(filteredArr); // 10, 50
 alert(filteredArr.isEmpty()); // false
 ```
 
-Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type. They rely on the `constructor` property to do so.
+Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses object `constructor` property for that.
 
 In the example above,
 ```js
 arr.constructor === PowerArray
 ```
 
-So when `arr.filter()` is called, it internally creates the new array of results using exactly `new PowerArray`, not basic `Array`. That's actually very cool, because we can keep using `PowerArray` methods further on the result.
+When `arr.filter()` is called, it internally creates the new array of results using exactly `arr.constructor`, not basic `Array`. That's actually very cool, because we can keep using `PowerArray` methods further on the result.
 
 Even more, we can customize that behavior.
 
@@ -64,6 +64,10 @@ alert(filteredArr.isEmpty()); // Error: filteredArr.isEmpty is not a function
 
 As you can see, now `.filter` returns `Array`. So the extended functionality is not passed any further.
 
+```smart header="Other collections work similarly"
+Other collections, such as `Map` and `Set`, work alike. They also use `Symbol.species`.
+```
+
 ## No static inheritance in built-ins
 
 Built-in objects have their own static methods, for instance `Object.keys`, `Array.isArray` etc.
@@ -81,3 +85,5 @@ Here's the picture structure for `Date` and `Object`:
 ![](object-date-inheritance.svg)
 
 As you can see, there's no link between `Date` and `Object`. They are independent, only `Date.prototype` inherits from `Object.prototype`.
+
+That's an important difference of inheritance between built-in objects compared to what we get with `extends`.

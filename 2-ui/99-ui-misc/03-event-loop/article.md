@@ -11,13 +11,15 @@ In this chapter we first cover theoretical details about how things work, and th
 
 The concept of *event loop* is very simple. There's an endless loop, when JavaScript engine waits for tasks, executes them and then sleeps waiting for more tasks.
 
+The general algorithm of the engine:
+
 1. While there are tasks:
-    - execute the oldest task.
+    - execute them, starting with the oldest task.
 2. Sleep until a task appears, then go to 1.
 
-That's a formalized algorithm for what we see when browsing a page. JavaScript engine does nothing most of the time, only runs if a script/handler/event activates.
+That's a formalization for what we see when browsing a page. JavaScript engine does nothing most of the time, only runs if a script/handler/event activates.
 
-A task can be JS-code triggered by events, but can also be something else, e.g.:
+Examples of tasks:
 
 - When an external script `<script src="...">` loads, the task is to execute it.
 - When a user moves their mouse, the task is to dispatch `mousemove` event and execute handlers.
@@ -34,27 +36,25 @@ The tasks form a queue, so-called "macrotask queue" (v8 term):
 
 For instance, while the engine is busy executing a `script`, a user may move their mouse causing `mousemove`, and `setTimeout` may be due and so on, these tasks form a queue, as illustrated on the picture above.
 
-Tasks from the queue are processed on "first come – first served" basis. When the engine browser finishes with `fetch`, it handles `mousemove` event, then `setTimeout` handler, and so on.
+Tasks from the queue are processed on "first come – first served" basis. When the engine browser is done with the `script`, it handles `mousemove` event, then `setTimeout` handler, and so on.
 
 So far, quite simple, right?
 
 Two more details:
-1. Rendering never happens while the engine executes a task.
+1. Rendering never happens while the engine executes a task. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
+2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" and suggesting to kill the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to infinite loop.
 
-    Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" and suggesting to kill the task with the whole page.
+That was a theory. Now let's see how we can apply that knowledge.
 
-Now let's see how we can apply that knowledge.
-
-## Use-case: splitting CPU-hungry tasks
+## Use-case 1: splitting CPU-hungry tasks
 
 Let's say we have a CPU-hungry task.
 
 For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot of time.
 
-While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hang", which is unacceptable.
+While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hang" for a bit, which is unacceptable.
 
-So we can split the long text into pieces. Highlight first 100 lines, then schedule another 100 lines using zero-delay `setTimeout`, and so on.
+We can evade problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) another 100 lines, and so on.
 
 To demonstrate the approach, for the sake of simplicity, instead of syntax-highlighting let's take a function that counts from `1` to `1000000000`.
 
@@ -78,7 +78,7 @@ function count() {
 count();
 ```
 
-The browser may even show "the script takes too long" warning (but hopefully it won't, because the number is not very big).
+The browser may even show "the script takes too long" warning.
 
 Let's split the job using nested `setTimeout`:
 
@@ -154,7 +154,9 @@ Why?
 
 That's simple: as you remember, there's the in-browser minimal delay of 4ms for many nested `setTimeout` calls. Even if we set `0`, it's `4ms` (or a bit more). So the earlier we schedule it - the faster it runs.
 
-## Use case: progress indication
+Finally, we've split a CPU-hungry task into parts - now it doesn't block the user interface. And its overall execution time isn't much longer.
+
+## Use case 2: progress indication
 
 Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
 
@@ -214,11 +216,11 @@ This looks prettier:
 Now the `<div>` shows increasing values of `i`, a kind of a progress bar.
 
 
-## Use case: doing something after the event
+## Use case 3: doing something after the event
 
 In an event handler we may decide to postpone some actions until the event bubbled up and was handled on all levels. We can do that by wrapping the code in zero delay `setTimeout`.
 
-In the chapter <info:dispatch-events> we saw an example: a custom event `menu-open` is dispatched after the "click" event is fully handled.
+In the chapter <info:dispatch-events> we saw an example: custom event `menu-open` is dispatched in `setTimeout`, so that it happens after the "click" event is fully handled.
 
 ```js
 menu.onclick = function() {
@@ -227,7 +229,6 @@ menu.onclick = function() {
   // create a custom event with the clicked menu item data
   let customEvent = new CustomEvent("menu-open", {
     bubbles: true
-    /* details: can add more details, e.g. clicked item data here */
   });
 
   // dispatch the custom event asynchronously
@@ -235,20 +236,15 @@ menu.onclick = function() {
 };
 ```
 
-The custom event is totally independent here. It's dispatched asynchronously, after the `click` event bubbled up and was fully handled. That helps to workaround some potential bugs, that may happen when different events are nested in each other.
-
-## Microtasks
+## Macrotasks and Microtasks
 
 Along with *macrotasks*, described in this chapter, there exist *microtasks*, mentioned in the chapter <info:microtask-queue>.
 
-There are two main ways to create a microtask:
+Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
 
-1. When a promise is ready, the execution of its `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's a form of promise handling, similar to `.then`, but syntactically different.
-2. There's a special function `queueMicrotask(func)` that queues `func` for execution in the microtask queue.
+There's also a special function `queueMicrotask(func)` that queues `func` for execution in the microtask queue.
 
-After every *macrotask*, the engine executes all tasks from *microtask* queue, prior to running any other macrotasks.
-
-**Microtask queue has a higher priority than the macrotask queue.**
+**Immediately after every *macrotask*, the engine executes all tasks from *microtask* queue, prior to running any other macrotasks or rendering or anything else.**
 
 For instance, take a look:
 
@@ -261,21 +257,23 @@ Promise.resolve()
 alert("code");
 ```
 
-What's the order?
+What's going to be the order here?
 
 1. `code` shows first, because it's a regular synchronous call.
 2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
 3. `timeout` shows last, because it's a macrotask.
 
-**There may be no UI event between microtasks.**
+The richer event loop picture looks like this:
 
-Most of browser processing is macrotasks, including processing network request results, handling UI events and so on.
+![](eventLoop-full.svg)
 
-So if we'd like our code to execute asynchronously, but want the application state be basically the same (no mouse coordinate changes, no new network data, etc), then we can achieve that by creating a microtask with `queueMicrotask`.
+**All microtasks are completed before any other event handling or rendering or any other macrotask takes place.**
 
-Rendering also waits until the microtask queue is emptied.
+That's important, as it guarantees that the application environment be basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
 
-Here's an example with a "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end, just like the regular code:
+If we'd like to execute a function asynchronously (after the current code), but before changes are rendered or new events, we can schedule it with `queueMicrotask`.
+
+Here's an example with "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end. Just like the synchronous code:
 
 ```html run
 <div id="progress"></div>
@@ -303,13 +301,7 @@ Here's an example with a "counting progress bar", similar to the one shown previ
 </script>
 ```
 
-So, microtasks are asynchronous from the point of code execution, but they don't allow any browser processes or events to stick in-between them.
-
 ## Summary
-
-The richer event loop picture may look like this:
-
-![](eventLoop-full.svg)
 
 The more detailed algorithm of the event loop (though still simplified compare to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
 
@@ -318,23 +310,23 @@ The more detailed algorithm of the event loop (though still simplified compare t
     - While the microtask queue is not empty:
         - Dequeue and run the oldest microtask.
 3. Render changes if any.
-4. Wait until the macrotask queue is not empty (if needed).
+4. If the macrotask queue is empty, wait till a macrotask appears.
 5. Go to step 1.
 
-To schedule a new macrotask:
+To schedule a new *macrotask*:
 - Use zero delayed `setTimeout(f)`.
 
 That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react on user events and show progress between them.
 
 Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
 
-To schedule a new microtask:
+To schedule a new *microtask*
 - Use `queueMicrotask(f)`.
 - Also promise handlers go through the microtask queue.
 
 There's no UI or network event handling between microtasks: they run immediately one after another.
 
-So one may want to `queueMicrotask` to execute a function asynchronously, but also with the same application state.
+So one may want to `queueMicrotask` to execute a function asynchronously, but within the environment state.
 
 ```smart header="Web Workers"
 For long heavy calculations that shouldn't block the event loop, we can use [Web Workers](https://html.spec.whatwg.org/multipage/workers.html).
