@@ -102,9 +102,9 @@ In practice we rarely need multiple handlers for one promise. Chaining is used m
 
 ## Returning promises
 
-Normally, a value returned by a `.then` handler is immediately passed to the next handler. But there's an exception.
+`.then` always returns a [promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/then#Return_value). 
 
-If the returned value is a promise, then the further execution is suspended until it settles. After that, the result of that promise is given to the next `.then` handler.
+Normally, `.then` returns a value that gets wrapped with promise that gets immediately resolved when passed to the next handler. However, if `then` returns a pending promise, then the further execution is suspended until it settles. After that, the result of that promise is given to the next `.then` handler.
 
 For instance:
 
