@@ -9,17 +9,15 @@ Most JavaScript methods deal with one of two coordinate systems:
 2. **Relative to the document** - similar to `position:absolute` in the document root, calculated from the document top/left edge.
     - we'll denote them `pageX/pageY`.
 
-When the page is scrolled to the top, so that the top/left corner of the window is exactly the document top/left corner, these coordinates equal each other. But after the document shifts, window-relative coordinates of elements change, as elements move across the window, while document-relative coordinates remain the same.
+When the page is scrolled to the very beginning, so that the top/left corner of the window is exactly the document top/left corner, these coordinates equal each other. But after the document shifts, window-relative coordinates of elements change, as elements move across the window, while document-relative coordinates remain the same.
 
-Here's the picture, the left part is before the scroll, and the right part - after scrolling the page up:
+On this picture we take a point in the document and demonstrate its coordinates before the scroll (left) and after it (right):
 
 ![](document-and-window-coordinates-scrolled.svg)
 
-As the document moved up:
-- `pageY` - document-relative coordinate of the same point stayed the same, it's counted from the document top (now scrolled out).
+When the document scrolled:
+- `pageY` - document-relative coordinate stayed the same, it's counted from the document top (now scrolled out).
 - `clientY` - window-relative coordinate did change (the arrow became shorter), as the same point became closer to window top.
-
-We'll see more examples of window and document coordinates through this chapter.
 
 ## Element coordinates: getBoundingClientRect
 
@@ -62,13 +60,14 @@ Here's the picture of `elem.getBoundingClientRect()` output:
 
 ![](coordinates.svg)
 
-As you can see, `x/y` and `width/height` fully describe the rectangle. Derived properties can be easily calculated:
+As you can see, `x/y` and `width/height` fully describe the rectangle. Derived properties can be easily calculated from them:
+
 - `left = x`
 - `top = y`
 - `right = x + width`
 - `bottom = y + height`
 
-Also:
+Please note:
 
 - Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.position.left/top`.
 - Coordinates may be negative. For instance, if the page is scrolled so that `elem` is now above the window, then `elem.getBoundingClientRect().top` is negative.
@@ -76,7 +75,7 @@ Also:
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
 Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`. So the additional derived properties are for convenience.
 
-Technically it's possible for `width/height` to be negative, that's useful for  "directed" rectangles, e.g. to represent mouse selection with properly marked start and end.
+Technically it's possible for `width/height` to be negative, that allows for  "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
 
 Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
 
@@ -85,12 +84,14 @@ Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `heigh
 The rectangle starts at its bottom-right corner and then spans left/up, as negative `width/height` lead it backwards by coordinates.
 
 As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. Their formula can be adjusted to cover negative `width/height`, that's simple enough, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
+
+Here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
 ```
 
 ```warn header="Internet Explorer and Edge: no support for `x/y`"
 Internet Explorer and Edge don't support `x/y` properties for historical reasons.
 
-So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for `elem.getBoundingClientRect()`.
+So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
 ```
 
 ```warn header="Coordinates right/bottom are different from CSS position properties"
@@ -143,9 +144,9 @@ elem.style.background = ''; // Error!
 
 ## Using for "fixed" positioning
 
-Most of time we need coordinates to position something. In CSS, to position an element relative to the viewport we use `position:fixed` together with `left/top` (or `right/bottom`).
+Most of time we need coordinates in order to position something.
 
-We can use `getBoundingClientRect` to get coordinates of an element, and then to show something near it.
+To show something near an element, we can use `getBoundingClientRect` to get its coordinates, and then CSS `position` together with `left/top` (or `right/bottom`).
 
 For instance, the function `createMessageUnder(elem, html)` below shows the message under `elem`:
 
@@ -220,7 +221,7 @@ function getCoords(elem) {
 }
 ```
 
-If in the example above we use it with `position:absolute`, that would work right.
+If in the example above we used it with `position:absolute`, then the message would stay near the element on scroll.
 
 The modified `createMessageUnder` function:
 
@@ -239,8 +240,6 @@ function createMessageUnder(elem, html) {
   return message;
 }
 ```
-
-You'll find other examples in the task.
 
 ## Summary
 
