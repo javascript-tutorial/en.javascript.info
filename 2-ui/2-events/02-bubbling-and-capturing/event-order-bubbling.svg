@@ -19,7 +19,7 @@
                 <tspan x="157" y="181">3</tspan>
             </text>
             <text id="Most-deeply-nested-e" font-family="OpenSans-Bold, Open Sans" font-size="14" font-weight="bold" fill="#8A704D">
-                <tspan x="228.480469" y="175">Most deeply </tspan>
+                <tspan x="228.480469" y="175">Most deeply</tspan>
                 <tspan x="216.305664" y="194">nested element</tspan>
             </text>
             <path d="M179.5,177.5 L209.5,177.5" id="Line-30" stroke="#EE6B47" stroke-width="2" stroke-linecap="square" stroke-dasharray="3,6"></path>
