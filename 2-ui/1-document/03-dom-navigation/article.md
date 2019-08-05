@@ -195,7 +195,7 @@ For instance, here `<head>` and `<body>` are siblings:
 - `<body>` is said to be the "next" or "right" sibling of `<head>`,
 - `<head>` is said to be the "previous" or "left" sibling of `<body>`.
 
-The next sibling is is `nextSibling`, and the previous one is `previousSibling`.
+The next sibling is `nextSibling`, and the previous one is `previousSibling`.
 
 The parent is available as `parentNode`.
 
