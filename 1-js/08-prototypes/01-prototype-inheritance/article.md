@@ -315,7 +315,7 @@ The answer is simple: it's not enumerable. Just like all other properties of `Ob
 ```smart header="Almost all other key/value-getting methods ignore inherited properties"
 Almost all other key/value-getting methods, such as `Object.keys`, `Object.values` and so on ignore inherited properties.
 
-They only operate on the object itself. Properties from the prototype are taken into account.
+They only operate on the object itself. Properties from the prototype are *not* taken into account.
 ```
 
 ## Summary
