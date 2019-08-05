@@ -77,4 +77,4 @@ alert( speedy.stomach ); // apple
 alert( lazy.stomach ); // <nothing>
 ```
 
-As a common solution, all properties that describe the state of a particular object, like `stomach` above, are usually written into that object. That prevents such problems.
+As a common solution, all properties that describe the state of a particular object, like `stomach` above, should be written into that object. That prevents such problems.
