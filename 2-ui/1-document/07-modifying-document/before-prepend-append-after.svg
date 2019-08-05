@@ -62,8 +62,8 @@
             <text id="ol.before" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
                 <tspan x="111" y="26">ol.before</tspan>
             </text>
-            <text id="ol.*(…nodes-or-strin" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8B572A">
-                <tspan x="198" y="112">ol.*(…nodes or strings)</tspan>
+            <text id="(…nodes-or-strings)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8B572A">
+                <tspan x="198" y="112">(…nodes or strings)</tspan>
             </text>
         </g>
     </g>
