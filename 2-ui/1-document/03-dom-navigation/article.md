@@ -195,11 +195,11 @@ For instance, here `<head>` and `<body>` are siblings:
 - `<body>` is said to be the "next" or "right" sibling of `<head>`,
 - `<head>` is said to be the "previous" or "left" sibling of `<body>`.
 
-The next sibling is `nextSibling`, and the previous one is `previousSibling`.
+The next sibling is in `nextSibling` property, and the previous one - in `previousSibling`.
 
 The parent is available as `parentNode`.
 
-So all these tests are truthy:
+For example:
 
 ```js
 // parent of <body> is <html>
