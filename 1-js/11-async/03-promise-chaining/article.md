@@ -102,9 +102,9 @@ In practice we rarely need multiple handlers for one promise. Chaining is used m
 
 ## Returning promises
 
-Normally, a value returned by a `.then` handler is immediately passed to the next handler. But there's an exception.
+A handler, used in `.then(handler)` may create and return a promise.
 
-If the returned value is a promise, then the further execution is suspended until it settles. After that, the result of that promise is given to the next `.then` handler.
+In that case further handlers wait till it settles, and then get its result.
 
 For instance:
 
