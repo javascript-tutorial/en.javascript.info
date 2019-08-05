@@ -10,7 +10,7 @@ Let's look carefully at what's going on in the call `speedy.eat("apple")`.
 
 So all hamsters share a single stomach!
 
-Every time the `stomach` is taken from the prototype, then `stomach.push` modifies it "at place".
+Both for `lazy.stomach.push(...)` and `speedy.stomach.push()`, the property `stomach` is found in the prototype (as it's not in the object itself), then the new data is pushed into it.
 
 Please note that such thing doesn't happen in case of a simple assignment `this.stomach=`:
 
