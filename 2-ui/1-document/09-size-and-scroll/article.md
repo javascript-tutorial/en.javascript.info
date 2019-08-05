@@ -2,8 +2,7 @@
 
 There are many JavaScript properties that allow us to read information about element width, height and other geometry features.
 
-We often need them when moving or positioning elements in JavaScript, to correctly calculate coordinates.
-
+We often need them when moving or positioning elements in JavaScript.
 
 ## Sample element
 
