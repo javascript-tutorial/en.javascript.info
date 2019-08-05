@@ -105,13 +105,13 @@ Explanations:
 3. In case of nested tables, `event.target` may be a `<td>` lying outside of the current table. So we check if that's actually *our table's* `<td>`.
 4. And, if it's so, then highlight it.
 
+As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
+
 ## Delegation example: actions in markup
 
-The event delegation may be used to optimize event handling. We use a single handler for similar actions on many elements. Like we did it for highlighting `<td>`.
+There are other uses for event delegation.
 
-But we can also use a single handler as an entry point for many different things.
-
-For instance, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`....
+Let's say, we want to make a menu with buttons "Save", "Load", "Search" and so on. And there's an object with methods `save`, `load`, `search`... How to match them?
 
 The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
 
@@ -161,7 +161,7 @@ The handler reads the attribute and executes the method. Take a look at the work
 </script>
 ```
 
-Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the menu object, and `this[action]` would not be what we need.
+Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
 
 So, what the delegation gives us here?
 
@@ -177,10 +177,10 @@ We could also use classes `.action-save`, `.action-load`, but an attribute `data
 We can also use event delegation to add "behaviors" to elements *declaratively*, with special attributes and classes.
 
 The pattern has two parts:
-1. We add a special attribute to an element.
+1. We add a custom attribute to an element that describes its behavior.
 2. A document-wide handler tracks events, and if an event happens on an attributed element -- performs the action.
 
-### Counter
+### Behavior: Counter
 
 For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
 
@@ -204,14 +204,14 @@ If we click a button -- its value is increased. Not buttons, but the general app
 There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
 
 ```warn header="For document-level handlers -- always `addEventListener`"
-When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.onclick`, because the latter will cause conflicts: new handlers overwrite old ones.
+When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
 
 For real projects it's normal that there are many handlers on `document` set by different parts of the code.
 ```
 
-### Toggler
+### Behavior: Toggler
 
-One more example. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
+One more example of behavior. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
 
 ```html autorun run height=60
 <button *!*data-toggle-id="subscribe-mail"*/!*>

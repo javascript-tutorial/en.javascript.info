@@ -131,7 +131,7 @@
                     <path d="M482.015924,458.014925 L482.015924,477.891045" id="tr_2_td_2-text" fill="#000000"></path>
                 </g>
                 <g id="event-flow" transform="translate(103.700637, 14.691045)">
-                    <g id="target_phase" transform="translate(186.277070, 443.323881)">
+                    <g id="target_phase" transform="translate(180.277070, 443.323881)">
                         <text id="Target" fill="#0000FF" font-family="OpenSans-Regular, Open Sans" font-size="17.2835821" font-weight="normal">
                             <tspan x="0.960191083" y="34.1477612">Target</tspan>
                         </text>
@@ -141,7 +141,7 @@
                         <text id="(2)" fill="#0000FF" font-family="OpenSans-Regular, Open Sans" font-size="17.2835821" font-weight="normal">
                             <tspan x="15.8431529" y="68.7149254">(2)</tspan>
                         </text>
-                        <rect id="Rectangle-path" stroke="#000000" stroke-width="5" x="69.133758" y="0" width="96.0191083" height="34.5671642" rx="5"></rect>
+                        <rect id="Rectangle-path" stroke="#000000" stroke-width="5" x="75.133758" y="0" width="96.0191083" height="34.5671642" rx="5"></rect>
                     </g>
                     <g id="capture_phase">
                         <text id="Capture" fill="#FF0000" font-family="OpenSans-Regular, Open Sans" font-size="17.2835821" font-weight="normal">
