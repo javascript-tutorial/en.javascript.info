@@ -22,7 +22,6 @@ let sayHi = function() {
 
 Here, the function is created and assigned to the variable explicitly, like any other value. No matter how the function is defined, it's just a value stored in the variable `sayHi`.
 
-
 The meaning of these code samples is the same: "create a function and put it into the variable `sayHi`".
 
 We can even print out that value using `alert`:
@@ -67,13 +66,15 @@ Here's what happens above in detail:
 Note that we could also have used a Function Expression to declare `sayHi`, in the first line:
 
 ```js
-let sayHi = function() { ... };
+let sayHi = function() {
+  alert( "Hello" );
+};
 
 let func = sayHi;
 // ...
 ```
 
-Everything would work the same. Even more obvious what's going on, right?
+Everything would work the same.
 
 
 ````smart header="Why is there a semicolon at the end?"
@@ -131,11 +132,11 @@ function showCancel() {
 ask("Do you agree?", showOk, showCancel);
 ```
 
-Before we explore how we can write it in a much shorter way, let's note that in the browser (and on the server-side in some cases) such functions are quite popular. The major difference between a real-life implementation and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such a function usually draws a nice-looking question window. But that's another story.
+In practice, such functions are quite useful. The major difference between a real-life `ask` and the example above is that real-life functions use more complex ways to interact with the user than a simple `confirm`. In the browser, such function usually draws a nice-looking question window. But that's another story.
 
 **The arguments `showOk` and `showCancel` of `ask` are called *callback functions* or just *callbacks*.**
 
-The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for the "yes" answer, and `showCancel` for the "no" answer.
+The idea is that we pass a function and expect it to be "called back" later if necessary. In our case, `showOk` becomes the callback for "yes" answer, and `showCancel` for "no" answer.
 
 We can use Function Expressions to write the same function much shorter:
 
@@ -154,11 +155,9 @@ ask(
 */!*
 ```
 
-
 Here, functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask` (because they are not assigned to variables), but that's just what we want here.
 
 Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
-
 
 ```smart header="A function is a value representing an \"action\""
 Regular values like strings or numbers represent the *data*.
@@ -464,7 +463,6 @@ For now, we can already use them for one-line actions and callbacks.
 - If the function is created as a part of an expression, it's called a "Function Expression".
 - Function Declarations are processed before the code block is executed. They are visible everywhere in the block.
 - Function Expressions are created when the execution flow reaches them.
-
 
 In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
 
