@@ -44,4 +44,4 @@ function f() {
 f(); // cleanup!
 ```
 
-It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run.
+It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run in these situations.
