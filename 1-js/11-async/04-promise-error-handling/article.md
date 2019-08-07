@@ -1,11 +1,9 @@
 
 # Error handling with promises
 
-Asynchronous actions may sometimes fail: in case of an error the corresponding promise becomes rejected. For instance, `fetch` fails if the remote server is not available. We can use `.catch` to handle errors (rejections).
+Promise chains are great at error handling. When a promise rejects, the control jumps to the closest rejection handler. That's very convenient in practice.
 
-Promise chaining is great at that aspect. When a promise rejects, the control jumps to the closest rejection handler down the chain. That's very convenient in practice.
-
-For instance, in the code below the URL is wrong (no such site) and `.catch` handles the error:
+For instance, in the code below the URL to `fetch` is wrong (no such site) and `.catch` handles the error:
 
 ```js run
 *!*
@@ -15,17 +13,9 @@ fetch('https://no-such-server.blabla') // rejects
   .catch(err => alert(err)) // TypeError: failed to fetch (the text may vary)
 ```
 
-Or, maybe, everything is all right with the site, but the response is not valid JSON:
+As you can see, the `.catch` doesn't have to be immediate. It may appear after one or maybe several `.then`.
 
-```js run
-fetch('/') // fetch works fine now, the server responds with the HTML page
-*!*
-  .then(response => response.json()) // rejects: the page is HTML, not a valid json
-*/!*
-  .catch(err => alert(err)) // SyntaxError: Unexpected token < in JSON at position 0
-```
-
-The easiest way to catch all errors is to append `.catch` to the end of chain:
+Or, maybe, everything is all right with the site, but the response is not valid JSON. The easiest way to catch all errors is to append `.catch` to the end of chain:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
@@ -48,7 +38,7 @@ fetch('/article/promise-chaining/user.json')
 */!*
 ```
 
-Normally, `.catch` doesn't trigger at all, because there are no errors. But if any of the promises above rejects (a network problem or invalid json or whatever), then it would catch it.
+Normally, such `.catch` doesn't trigger at all. But if any of the promises above rejects (a network problem or invalid json or whatever), then it would catch it.
 
 ## Implicit try..catch
 
@@ -74,9 +64,9 @@ new Promise((resolve, reject) => {
 }).catch(alert); // Error: Whoops!
 ```
 
-The "invisible `try..catch`" around the executor automatically catches the error and treats it as a rejection.
+The "invisible `try..catch`" around the executor automatically catches the error and turns it into rejected promise.
 
-This happens not only in the executor, but in its handlers as well. If we `throw` inside a `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
+This happens not only in the executor function, but in its handlers as well. If we `throw` inside a `.then` handler, that means a rejected promise, so the control jumps to the nearest error handler.
 
 Here's an example:
 
@@ -106,7 +96,7 @@ The final `.catch` not only catches explicit rejections, but also occasional err
 
 ## Rethrowing
 
-As we already noticed, `.catch` behaves like `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
+As we already noticed, `.catch` at the end of the chain is similar to `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
 In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
 
@@ -150,7 +140,7 @@ new Promise((resolve, reject) => {
   }
 
 }).then(function() {
-  /* never runs here */
+  /* doesn't runs here */
 }).catch(error => { // (**)
 
   alert(`The unknown error has occurred: ${error}`);
@@ -159,101 +149,11 @@ new Promise((resolve, reject) => {
 });
 ```
 
-Then the execution jumps from the first `.catch` `(*)` to the next one `(**)` down the chain.
-
-In the section below we'll see a practical example of rethrowing.
-
-## Fetch error handling example
-
-Let's improve error handling for the user-loading example.
-
-The promise returned by [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) rejects when it's impossible to make a request. For instance, a remote server is not available, or the URL is malformed. But if the remote server responds with error 404, or even error 500, then it's considered a valid response.
-
-What if the server returns a non-JSON page with error 500 in the line `(*)`? What if there's no such user, and GitHub returns a page with error 404 at `(**)`?
-
-```js run
-fetch('no-such-user.json') // (*)
-  .then(response => response.json())
-  .then(user => fetch(`https://api.github.com/users/${user.name}`)) // (**)
-  .then(response => response.json())
-  .catch(alert); // SyntaxError: Unexpected token < in JSON at position 0
-  // ...
-```
-
-
-As of now, the code tries to load the response as JSON no matter what and dies with a syntax error. You can see that by running the example above, as the file `no-such-user.json` doesn't exist.
-
-That's not good, because the error just falls through the chain, without details: what failed and where.
-
-So let's add one more step: we should check the `response.status` property that has HTTP status, and if it's not 200, then throw an error.
-
-```js run
-class HttpError extends Error { // (1)
-  constructor(response) {
-    super(`${response.status} for ${response.url}`);
-    this.name = 'HttpError';
-    this.response = response;
-  }
-}
-
-function loadJson(url) { // (2)
-  return fetch(url)
-    .then(response => {
-      if (response.status == 200) {
-        return response.json();
-      } else {
-        throw new HttpError(response);
-      }
-    })
-}
-
-loadJson('no-such-user.json') // (3)
-  .catch(alert); // HttpError: 404 for .../no-such-user.json
-```
-
-1. We make a custom class for HTTP Errors to distinguish them from other types of errors. Besides, the new class has a constructor that accepts `response` object and saves it in the error. So error-handling code will be able to access the response.
-2. Then we put together the requesting and error-handling code into a function that fetches the `url` *and* treats any non-200 status as an error. That's convenient, because we often need such logic.
-3. Now `alert` shows a more helpful descriptive message.
-
-The great thing about having our own class for errors is that we can easily check for it in error-handling code using `instanceof`.
-
-For instance, we can make a request, and then if we get 404 -- ask the user to modify the information.
-
-The code below loads a user with the given name from GitHub. If there's no such user, then it asks for the correct name:
-
-```js run
-function demoGithubUser() {
-  let name = prompt("Enter a name?", "iliakan");
-
-  return loadJson(`https://api.github.com/users/${name}`)
-    .then(user => {
-      alert(`Full name: ${user.name}.`);
-      return user;
-    })
-    .catch(err => {
-*!*
-      if (err instanceof HttpError && err.response.status == 404) {
-*/!*
-        alert("No such user, please reenter.");
-        return demoGithubUser();
-      } else {
-        throw err; // (*)
-      }
-    });
-}
-
-demoGithubUser();
-```
-
-Please note: `.catch` here catches all errors, but it "knows how to handle" only `HttpError 404`. In that particular case it means that there's no such user, and `.catch` just retries in that case.
-
-For other errors, it has no idea what could go wrong. Maybe a programming error or something. So it just rethrows it in the line `(*)`.
+The execution jumps from the first `.catch` `(*)` to the next one `(**)` down the chain.
 
 ## Unhandled rejections
 
-What happens when an error is not handled? For instance, after the rethrow `(*)` in the example above.
-
-Or we could just forget to append an error handler to the end of the chain, like here:
+What happens when an error is not handled? For instance, we forgot to append `.catch` to the end of the chain, like here:
 
 ```js untrusted run refresh
 new Promise(function() {
@@ -264,13 +164,13 @@ new Promise(function() {
   }); // without .catch at the end!
 ```
 
-In case of an error, the promise state becomes "rejected", and the execution should jump to the closest rejection handler. But there is no such handler in the examples above. So the error gets "stuck". There's no code to handle it.
+In case of an error, the promise becomes rejected, and the execution should jump to the closest rejection handler. But there is none. So the error gets "stuck". There's no code to handle it.
 
-In practice, just like with a regular unhandled errors, it means that something has terribly gone wrong.
+In practice, just like with a regular unhandled errors in code, it means that something has terribly gone wrong.
 
-What happens when a regular error occurs and is not caught by `try..catch`? The script dies. Similar thing happens with unhandled promise rejections.
+What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in console. Similar thing happens with unhandled promise rejections.
 
-The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
+JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
@@ -294,52 +194,11 @@ If an error occurs, and there's no `.catch`, the `unhandledrejection` handler tr
 
 Usually such errors are unrecoverable, so our best way out is to inform the user about the problem and probably report the incident to the server.
 
-In non-browser environments like Node.js there are other similar ways to track unhandled errors.
-
+In non-browser environments like Node.js there are other ways to track unhandled errors.
 
 ## Summary
 
-- `.catch` handles promise rejections of all kinds: be it a `reject()` call, or an error thrown in a handler.
-- We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones.
+- `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
+- We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
 - It's ok not to use `.catch` at all, if there's no way to recover from an error.
 - In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments), to track unhandled errors and inform the user (and probably our server) about the them, so that our app never "just dies".
-
-And finally, if we have load-indication, then `.finally` is a great handler to stop it when the fetch is complete:
-
-```js run
-function demoGithubUser() {
-  let name = prompt("Enter a name?", "iliakan");
-
-*!*
-  document.body.style.opacity = 0.3; // (1) start the indication
-*/!*
-
-  return loadJson(`https://api.github.com/users/${name}`)
-*!*
-    .finally(() => { // (2) stop the indication
-      document.body.style.opacity = '';
-      return new Promise(resolve => setTimeout(resolve)); // (*)
-    })
-*/!*
-    .then(user => {
-      alert(`Full name: ${user.name}.`);
-      return user;
-    })
-    .catch(err => {
-      if (err instanceof HttpError && err.response.status == 404) {
-        alert("No such user, please reenter.");
-        return demoGithubUser();
-      } else {
-        throw err;
-      }
-    });
-}
-
-demoGithubUser();
-```
-
-Here on the line `(1)` we indicate loading by dimming the document. The method doesn't matter, could use any type of indication instead.
-
-When the promise is settled, be it a successful fetch or an error, `finally` triggers at the line `(2)` and stops the indication.
-
-There's a little browser trick `(*)` with returning a zero-timeout promise from `finally`. That's because some browsers (like Chrome) need "a bit time" outside promise handlers to paint document changes. So it ensures that the indication is visually stopped before going further on the chain.

@@ -209,9 +209,9 @@ function showMessage(from, text = anotherFunction()) {
 ```
 
 ```smart header="Evaluation of default parameters"
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
 
-This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
+In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
 ```
 
 ````smart header="Default parameters old-style"
