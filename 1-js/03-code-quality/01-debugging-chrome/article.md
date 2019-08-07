@@ -6,13 +6,13 @@ All modern browsers and most other environments support "debugging" -- a special
 
 We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
 
-## The "sources" pane
+## The "Sources" pane
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
 
 - Open the [example page](debugging/index.html) in Chrome.
 - Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `sources` pane.
+- Select the `Sources` pane.
 
 Here's what you should see if you are doing it for the first time:
 
