@@ -453,7 +453,7 @@ alert( sum(1, 2) ); // 3
 ```smart header="More to come"
 Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
 
-For now, we can already use them for one-line actions and callbacks.
+For now, we can already use arrow functions for one-line actions and callbacks.
 ```
 
 ## Summary
