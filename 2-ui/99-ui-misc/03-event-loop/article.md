@@ -42,7 +42,7 @@ So far, quite simple, right?
 
 Two more details:
 1. Rendering never happens while the engine executes a task. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" and suggesting to kill the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to infinite loop.
+2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" suggesting to kill the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to infinite loop.
 
 That was a theory. Now let's see how we can apply that knowledge.
 
@@ -52,7 +52,7 @@ Let's say we have a CPU-hungry task.
 
 For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot of time.
 
-While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hang" for a bit, which is unacceptable.
+While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
 
 We can evade problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) another 100 lines, and so on.
 
@@ -269,9 +269,9 @@ The richer event loop picture looks like this:
 
 **All microtasks are completed before any other event handling or rendering or any other macrotask takes place.**
 
-That's important, as it guarantees that the application environment be basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
+That's important, as it guarantees that the application environment is basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
 
-If we'd like to execute a function asynchronously (after the current code), but before changes are rendered or new events, we can schedule it with `queueMicrotask`.
+If we'd like to execute a function asynchronously (after the current code), but before changes are rendered or new events handled, we can schedule it with `queueMicrotask`.
 
 Here's an example with "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end. Just like the synchronous code:
 

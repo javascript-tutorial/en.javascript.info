@@ -25,15 +25,16 @@ loadScript('/my/script.js');
 
 The function is called "asynchronously," because the action (script loading) finishes not now, but later.
 
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
+If there's a code below `loadScript(…)`, it doesn't wait until the loading finishes.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript doesn't wait for the script loading to finish
+// the code below loadScript
+// doesn't wait for the script loading to finish
 // ...
 ```
 
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
+We'd like to use the new script as soon as it loads. It declares new functions, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
@@ -45,7 +46,7 @@ newFunction(); // no such function!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
 
 Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
 

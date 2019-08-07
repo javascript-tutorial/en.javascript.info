@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="512px" height="106px" viewBox="0 0 512 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="538px" height="106px" viewBox="0 0 538 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>promise-resolve-1.svg</title>
     <desc>Created with sketchtool.</desc>
     <g id="promise" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
         <g id="promise-resolve-1.svg">
-            <path d="M9,34 L9,92 L184,92 L184,34 L9,34 Z" id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <path d="M6,34 L6,92 L187,92 L187,34 L6,34 Z" id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
             <text id="new-Promise(executor" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#707175">
-                <tspan x="10" y="22">new Promise(executor)</tspan>
+                <tspan x="8" y="22">new Promise(executor)</tspan>
             </text>
             <text id="state:-&quot;pending&quot;-res" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
-                <tspan x="21" y="54.4316406">state:   "pending"</tspan>
-                <tspan x="21" y="74.4316406">result:  undefined</tspan>
+                <tspan x="19" y="54">state:   "pending"</tspan>
+                <tspan x="19" y="74">result:  undefined</tspan>
             </text>
-            <path id="Line-Copy" d="M295.500387,61.4861111 L196.490385,61.4861111 L196.490385,59.4861111 L295.500387,59.4861111 L295.500387,53.4861111 L309.500387,60.4861111 L295.500387,67.4861111 L295.500387,61.4861111 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M329,61 L196,61 L196,59 L329,59 L329,53 L343,60 L329,67 L329,61 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="resolve(&quot;done&quot;)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="192" y="49">resolve("done")</tspan>
+                <tspan x="200.5" y="49">resolve("done")</tspan>
             </text>
-            <rect id="Rectangle-1-Copy" stroke="#7ED321" stroke-width="2" fill="#FFF9EB" x="323" y="35" width="181" height="57"></rect>
+            <rect id="Rectangle-1-Copy" stroke="#7ED321" stroke-width="2" fill="#FFF9EB" x="353" y="35" width="181" height="57"></rect>
             <text id="state:-&quot;fulfilled&quot;-r" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#417505">
-                <tspan x="338" y="55.4316406">state:  "fulfilled"</tspan>
-                <tspan x="338" y="75.4316406">result: "done"</tspan>
+                <tspan x="368" y="55">state:  "fulfilled"</tspan>
+                <tspan x="368" y="75">result: "done"</tspan>
             </text>
         </g>
     </g>

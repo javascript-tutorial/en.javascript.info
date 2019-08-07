@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="512px" height="106px" viewBox="0 0 512 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="535px" height="106px" viewBox="0 0 535 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>promise-reject-1.svg</title>
     <desc>Created with sketchtool.</desc>
@@ -10,18 +10,18 @@
                 <tspan x="10" y="22">new Promise(executor)</tspan>
             </text>
             <text id="state:-&quot;pending&quot;-res" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#8A704D">
-                <tspan x="21" y="54.4316406">state:   "pending"</tspan>
-                <tspan x="21" y="74.4316406">result:  undefined</tspan>
+                <tspan x="21" y="54">state:   "pending"</tspan>
+                <tspan x="21" y="74">result:  undefined</tspan>
             </text>
-            <path id="Line-Copy" d="M297.500387,61.4861111 L198.490385,61.4861111 L198.490385,59.4861111 L297.500387,59.4861111 L297.500387,53.4861111 L311.500387,60.4861111 L297.500387,67.4861111 L297.500387,61.4861111 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="reject(error)" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#EE6B47">
-                <tspan x="201.4" y="49">reject(error)</tspan>
+                <tspan x="212.4" y="49">reject(error)</tspan>
             </text>
-            <rect id="Rectangle-1-Copy-3" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="322" y="34" width="175" height="58"></rect>
+            <rect id="Rectangle-1-Copy-3" stroke="#C74A6C" stroke-width="2" fill="#FCDFE1" x="353" y="34" width="175" height="58"></rect>
             <text id="state:-&quot;rejected&quot;-re" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" line-spacing="20" fill="#727155">
-                <tspan x="337" y="55.4316406">state:  "rejected"</tspan>
-                <tspan x="337" y="75.4316406">result: error</tspan>
+                <tspan x="368" y="55">state:  "rejected"</tspan>
+                <tspan x="368" y="75">result: error</tspan>
             </text>
+            <path id="Line-Copy" d="M329,61 L196,61 L196,59 L329,59 L329,53 L343,60 L329,67 L329,61 Z" fill="#EE6B47" fill-rule="nonzero"></path>
         </g>
     </g>
 </svg>
