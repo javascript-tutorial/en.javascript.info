@@ -89,7 +89,7 @@ That's very convenient when we are in a code editor and don't want to switch to 
 
 ## Pause and look around
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+In our example, `say()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
