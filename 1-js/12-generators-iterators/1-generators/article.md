@@ -347,16 +347,16 @@ generator.next(4); // --> pass the result into the generator
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
 3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
-Please note, the outer code does not have to immediately call`next(4)`. It may take time to calculate the value. That's not a problem: the generator will resume when the call is made.
+Please note, the outer code does not have to immediately call`next(4)`. It may take time. That's not a problem: the generator will wait.
 
-This is also a valid code:
+For instance:
 
 ```js
 // resume the generator after some time
 setTimeout(() => generator.next(4), 1000);
 ```
 
-As we can see, unlike regular functions, generators and the calling code can exchange results by passing values in `next/yield`.
+As we can see, unlike regular functions, a generator and the calling code can exchange results by passing values in `next/yield`.
 
 To make things more obvious, here's another example, with more calls:
 
