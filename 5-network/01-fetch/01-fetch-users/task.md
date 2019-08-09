@@ -8,5 +8,6 @@ There's a test example in the sandbox.
 
 Important details:
 
-1. There should be one `fetch` request per user. And requests shouldn't wait for each other. So that the data arrives as soon as possible.
-2. If any request fails, or if there's no such user, the function should return `null` in the resulting array.
+1. There should be one `fetch` request per user.
+2. Requests shouldn't wait for each other. So that the data arrives as soon as possible.
+3. If any request fails, or if there's no such user, the function should return `null` in the resulting array.
