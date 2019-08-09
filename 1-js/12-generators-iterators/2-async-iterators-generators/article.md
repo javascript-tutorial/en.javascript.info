@@ -361,4 +361,4 @@ In web-development we often meet streams of data, when it flows chunk-by-chunk. 
 
 We can use async generators to process such data, but it's also worth to mention that there's also another API called Streams, that provides special interfaces to work with such streams, to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere).
 
-Streams and async generators complement each other, but Streams API not a part of JavaScript language standard. 
+Streams API is not a part of JavaScript language standard. 
