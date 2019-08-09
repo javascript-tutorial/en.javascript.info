@@ -21,6 +21,14 @@ For example:
 
 We will learn functions (a way to group commands) soon. Looking ahead, let's note that `"use strict"` can be put at the start of most kinds of functions instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
 
+```js
+function strict() { // this function works the modern way
+'use strict';
+
+...
+
+}
+```
 
 ````warn header="Ensure that \"use strict\" is at the top"
 Please make sure that `"use strict"` is at the top of your scripts, otherwise strict mode may not be enabled.
