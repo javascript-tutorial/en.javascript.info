@@ -53,7 +53,7 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 ...
 ```
 
-The directive must be at the top of a script or at the top of the function body.
+The directive must be at the top of a script or at the top of a function body.
 
 Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
 
