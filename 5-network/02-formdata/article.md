@@ -1,16 +1,20 @@
 
 # FormData
 
-This chapter is about sending HTML forms: with or without files, with additional fields and so on. [FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects can help with that.
+This chapter is about sending HTML forms: with or without files, with additional fields and so on.
+
+[FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects can help with that. As you might have guessed, it's the object to represent HTML form data.
 
 The constructor is:
 ```js
 let formData = new FormData([form]);
 ```
 
-If HTML `form` element is provided, it automatically captures its fields. As you may have already guessed, `FormData` is  an object to store and send form data.
+If HTML `form` element is provided, it automatically captures its fields.
 
-The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: form/multipart`. So, from the server point of view, that looks like a usual form submission.
+The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: form/multipart`.
+
+From the server point of view, that looks like a usual form submission.
 
 ## Sending a simple form
 
@@ -43,7 +47,7 @@ As you can see, that's almost one-liner:
 </script>
 ```
 
-Here, the server accepts the POST request with the form and replies "User saved".
+In this example, the server code is not presented, as it's beyound our scope. The server accepts the POST request and replies "User saved".
 
 ## FormData Methods
 
@@ -57,11 +61,10 @@ We can modify fields in `FormData` with methods:
 
 A form is technically allowed to have many fields with the same `name`, so multiple calls to `append` add more same-named fields.
 
-There's also method `set`, with the same syntax as `append`. The difference is that `.set` removes all fields with the given `name`, and then appends a new field. So it makes sure there's only field with such `name`:
+There's also method `set`, with the same syntax as `append`. The difference is that `.set` removes all fields with the given `name`, and then appends a new field. So it makes sure there's only field with such `name`, the rest is just like `append`:
 
 - `formData.set(name, value)`,
 - `formData.set(name, blob, fileName)`.
-
 
 Also we can iterate over formData fields using `for..of` loop:
 
@@ -109,13 +112,13 @@ Here's an example with such form:
 
 ## Sending a form with Blob data
 
-As we've seen in the chapter <info:fetch>, sending a dynamically generated `Blob`, e.g. an image, is easy. We can supply it directly as `fetch` parameter `body`.
+As we've seen in the chapter <info:fetch>, it's easy to send dynamically generated binary data e.g. an image, as `Blob`. We can supply it directly as `fetch` parameter `body`.
 
 In practice though, it's often convenient to send an image not separately, but as a part of the form, with additional fields, such as "name" and other metadata.
 
 Also, servers are usually more suited to accept multipart-encoded forms, rather than raw binary data.
 
-This example submits an image from `<canvas>`, along with some other fields, using `FormData`:
+This example submits an image from `<canvas>`, along with some other fields, as a form, using `FormData`:
 
 ```html run autorun height="90"
 <body style="margin:0">
@@ -157,21 +160,24 @@ Please note how the image `Blob` is added:
 formData.append("image", imageBlob, "image.png");
 ```
 
-That's same as if there were `<input type="file" name="image">` in the form, and the visitor submitted a file named `image.png` (3rd argument) from their filesystem.
+That's same as if there were `<input type="file" name="image">` in the form, and the visitor submitted a file named `"image.png"` (3rd argument) with the data `imageBlob` (2nd argument) from their filesystem.
+
+The server reads form data and the file, as if it were a regular form submission.
 
 ## Summary
 
 [FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects are used to capture HTML form and submit it using `fetch` or another network method.
 
-We can either create `new FormData(form)` from an HTML form, or create an empty object, and then append fields with methods:
+We can either create `new FormData(form)` from an HTML form, or create a object without a form at all, and then append fields with methods:
 
 - `formData.append(name, value)`
 - `formData.append(name, blob, fileName)`
 - `formData.set(name, value)`
 - `formData.set(name, blob, fileName)`
 
-Two peculiarities here:
-1. The `set` method removes fields with the same name, `append` doesn't.
+Let's note two peculiarities here:
+
+1. The `set` method removes fields with the same name, `append` doesn't. That's the only difference between them.
 2. To send a file, 3-argument syntax is needed, the last argument is a file name, that normally is taken from user filesystem for `<input type="file">`.
 
 Other methods are:
