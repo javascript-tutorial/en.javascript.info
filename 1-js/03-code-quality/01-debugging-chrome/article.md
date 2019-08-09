@@ -6,13 +6,13 @@ Before writing more complex code, let's talk about debugging.
 
 We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
 
-## The "Sources" pane
+## The "Sources" panel
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
 
 - Open the [example page](debugging/index.html) in Chrome.
 - Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `Sources` pane.
+- Select the `Sources` panel.
 
 Here's what you should see if you are doing it for the first time:
 
@@ -56,8 +56,8 @@ A *breakpoint* is a point of code where the debugger will automatically pause th
 
 While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
 
-We can always find a list of breakpoints in the right pane. That's useful when we have many breakpoints in various files. It allows us to:
-- Quickly jump to the breakpoint in the code (by clicking on it in the right pane).
+We can always find a list of breakpoints in the right panel. That's useful when we have many breakpoints in various files. It allows us to:
+- Quickly jump to the breakpoint in the code (by clicking on it in the right panel).
 - Temporarily disable the breakpoint by unchecking it.
 - Remove the breakpoint by right-clicking and selecting Remove.
 - ...And so on.
@@ -118,7 +118,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
 Now it's time to *trace* the script.
 
-There are buttons for it at the top of the right pane. Let's engage them.
+There are buttons for it at the top of the right panel. Let's engage them.
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
 : Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
@@ -127,7 +127,7 @@ There are buttons for it at the top of the right pane. Let's engage them.
 
     ![](chrome-sources-debugger-trace-1.svg)
 
-    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
+    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call Stack" at the right. It has increased by one more call. We're inside `say()` now.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
 : If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
@@ -159,11 +159,11 @@ For instance, this outputs values from `0` to `4` to console:
 ```js run
 // open console to see
 for (let i = 0; i < 5; i++) {
-  console.log("значение", i);
+  console.log("value,", i);
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it, either open the Console tab of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
+Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
 
 If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
 
