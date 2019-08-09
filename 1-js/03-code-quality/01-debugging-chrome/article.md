@@ -163,7 +163,7 @@ for (let i = 0; i < 5; i++) {
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
+Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another panel: that opens the console at the bottom.
 
 If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
 
