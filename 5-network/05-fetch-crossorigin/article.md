@@ -174,7 +174,7 @@ For cross-origin request, by default JavaScript may only access so-called "simpl
 - `Last-Modified`
 - `Pragma`
 
-Any other response header is forbidden.
+Accessing any other response header causes an error.
 
 ```smart header="Please note: no `Content-Length`"
 Please note: there's no `Content-Length` header in the list!
@@ -182,7 +182,7 @@ Please note: there's no `Content-Length` header in the list!
 This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
 
-To grant JavaScript access to any other response header, the server must list it in the `Access-Control-Expose-Headers` header.
+To grant JavaScript access to any other response header, the server must send  `Access-Control-Expose-Headers` header. It contains a comma-separated list of non-simple header names that should be made accessible.
 
 For example:
 
@@ -197,8 +197,7 @@ Access-Control-Expose-Headers: Content-Length,API-Key
 */!*
 ```
 
-With such `Access-Control-Expose-Headers` header, the script is allowed to access `Content-Length` and `API-Key` headers of the response.
-
+With such `Access-Control-Expose-Headers` header, the script is allowed to read `Content-Length` and `API-Key` headers of the response.
 
 ## "Non-simple" requests
 
@@ -208,14 +207,15 @@ Some time ago no one could even assume that a webpage is able to do such request
 
 So, to avoid misunderstandings, any "non-simple" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
 
-A preflight request uses method `OPTIONS` and has no body.
-- `Access-Control-Request-Method` header has the requested method.
+A preflight request uses method `OPTIONS`, no body and two headers:
+
+- `Access-Control-Request-Method` header has the method of a non-simple request.
 - `Access-Control-Request-Headers` header provides a comma-separated list of non-simple HTTP-headers.
 
-If the server agrees to serve the requests, then it should respond with status 200, without body.
+If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
-- The response header `Access-Control-Allow-Methods` must have the allowed method.
-- The response header `Access-Control-Allow-Headers` must have a list of allowed headers.
+- `Access-Control-Allow-Methods` must have the allowed method.
+- `Access-Control-Allow-Headers` must have a list of allowed headers.
 - Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
 
 ![](xhr-preflight.svg)

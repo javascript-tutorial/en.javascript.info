@@ -20,7 +20,7 @@
             <path d="M66,81 L66,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
             <path d="M326,81 L326,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
             <path d="M569,81 L569,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path id="Line" d="M311,141 L66,141 L66,139 L311,139 L311,133 L325,140 L311,147 L311,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M312,141 L66,141 L66,139 L312,139 L312,133 L326,140 L312,147 L312,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="Origin:-https://java" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="26" fill="#8A704D">
                 <tspan x="354.3125" y="205">Origin: https://javascript.info</tspan>
             </text>
@@ -45,7 +45,7 @@
             </text>
             <path id="Line" d="M554,188 L328,188 L328,186 L554,186 L554,180 L568,187 L554,194 L554,188 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <path id="Line-2" d="M340,264 L568,264 L568,266 L340,266 L340,272 L326,265 L340,258 L340,264 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-3" d="M81,332 L325,332 L325,334 L81,334 L81,340 L67,333 L81,326 L81,332 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M80,332 L327,332 L327,334 L80,334 L80,340 L66,333 L80,326 L80,332 Z" fill="#EE6B47" fill-rule="nonzero"></path>
         </g>
     </g>
 </svg>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="610px" height="633px" viewBox="0 0 610 633" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="620px" height="633px" viewBox="0 0 620 633" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>xhr-preflight.svg</title>
     <desc>Created with sketchtool.</desc>
@@ -13,33 +13,32 @@
             <text id="Browser" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="278" y="48">Browser</tspan>
             </text>
-            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="480" y="16" width="128" height="64"></rect>
+            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="491" y="16" width="128" height="64"></rect>
             <text id="Server" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="523" y="50">Server</tspan>
+                <tspan x="534" y="50">Server</tspan>
             </text>
             <path d="M66,82 L66,602" id="Line" stroke="#979797" stroke-linecap="square"></path>
             <path d="M305,82 L305,602" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path d="M545,82 L545,602" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path id="Line" d="M287.5,140.5 L66.5,140.5 L66.5,138.5 L287.5,138.5 L287.5,132.5 L301.5,139.5 L287.5,146.5 L287.5,140.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path d="M556,82 L556,602" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path id="Line" d="M291,141 L67,141 L67,139 L291,139 L291,133 L305,140 L291,147 L291,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="fetch()" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="164" y="130">fetch()</tspan>
+                <tspan x="166" y="131">fetch()</tspan>
             </text>
-            <text id="OPTIONS-Origin-Acces" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="395.000977" y="174">OPTIONS</tspan>
-                <tspan x="405.080566" y="192">Origin</tspan>
-                <tspan x="320.366211" y="210">Access-Control-Request-Method</tspan>
-                <tspan x="318.5" y="228">Access-Control-Request-Headers</tspan>
+            <text id="OPTIONS" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="400" y="173">OPTIONS</tspan>
             </text>
-            <path id="Line" d="M528.5,293.5 L307.5,293.5 L307.5,291.5 L528.5,291.5 L528.5,285.5 L542.5,292.5 L528.5,299.5 L528.5,293.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="Origin-Access-Contro" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="406.580566" y="198">Origin</tspan>
+                <tspan x="321.866211" y="216">Access-Control-Request-Method</tspan>
+                <tspan x="320" y="234">Access-Control-Request-Headers</tspan>
+            </text>
+            <path id="Line" d="M541,293.5 L304,293.5 L304,291.5 L541,291.5 L541,285.5 L555,292.5 L541,299.5 L541,293.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="200-OK" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="402.913574" y="287">200 OK</tspan>
-                <tspan x="330.866211" y="305">Access-Control-Allow-Method</tspan>
-                <tspan x="329" y="323">Access-Control-Allow-Headers</tspan>
-                <tspan x="347.82959" y="341">Access-Control-Max-Age</tspan>
+                <tspan x="407" y="285">200 OK</tspan>
             </text>
-            <path id="Line-4" d="M527.5,180.5 L306.5,180.5 L306.5,178.5 L527.5,178.5 L527.5,172.5 L541.5,179.5 L527.5,186.5 L527.5,180.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-2" d="M322.5,500.5 L543.5,500.5 L543.5,502.5 L322.5,502.5 L322.5,508.5 L308.5,501.5 L322.5,494.5 L322.5,500.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-3" d="M90,552 L304,552 L304,555 L90,555 L90,563 L71,553.5 L90,544 L90,552 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-4" d="M542,181 L305,181 L305,179 L542,179 L542,173 L556,180 L542,187 L542,181 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M319,501 L556,501 L556,503 L319,503 L319,509 L305,502 L319,495 L319,501 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M90.5,552.5 L304.5,552.5 L304.5,555.5 L90.5,555.5 L90.5,563.5 L71.5,554 L90.5,544.5 L90.5,552.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="Access-Control-Allow" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
                 <tspan x="336" y="524">Access-Control-Allow-Origin</tspan>
             </text>
@@ -47,35 +46,41 @@
                 <tspan x="355" y="495">Main HTTP-response</tspan>
             </text>
             <text id="otherwise-error" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="130" y="569">otherwise error</tspan>
+                <tspan x="130" y="570">otherwise error</tspan>
             </text>
             <text id="if-allowed:-success," font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
                 <tspan x="116" y="545">if allowed: success,</tspan>
             </text>
-            <path id="Line-5" d="M527.5,436.5 L306.5,436.5 L306.5,434.5 L527.5,434.5 L527.5,428.5 L541.5,435.5 L527.5,442.5 L527.5,436.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-5" d="M542,437 L304,437 L304,435 L542,435 L542,429 L556,436 L542,443 L542,437 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="Origin" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="405" y="456">Origin</tspan>
+                <tspan x="405" y="454">Origin</tspan>
             </text>
             <text id="Main-HTTP-request" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="360" y="425">Main HTTP-request</tspan>
+                <tspan x="360" y="429">Main HTTP-request</tspan>
             </text>
             <text id="preflight" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#9B9B9B">
-                <tspan x="205.943359" y="186">preflight</tspan>
+                <tspan x="206.443359" y="186">preflight</tspan>
             </text>
             <text id="if-allowed" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#9B9B9B">
-                <tspan x="193.609375" y="441">if allowed</tspan>
+                <tspan x="194.109375" y="441">if allowed</tspan>
             </text>
             <text id="1" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#000000">
-                <tspan x="559.138672" y="186">1</tspan>
+                <tspan x="570.138672" y="186">1</tspan>
             </text>
             <text id="2" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#000000">
-                <tspan x="559.138672" y="302">2</tspan>
+                <tspan x="570.138672" y="302">2</tspan>
             </text>
             <text id="3" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#000000">
-                <tspan x="559.138672" y="443">3</tspan>
+                <tspan x="570.138672" y="443">3</tspan>
             </text>
             <text id="4" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#000000">
-                <tspan x="559.138672" y="509">4</tspan>
+                <tspan x="570.138672" y="509">4</tspan>
+            </text>
+            <text id="Access-Control-Allow" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
+                <tspan x="439.18457" y="294"></tspan>
+                <tspan x="335.866211" y="311.330078">Access-Control-Allow-Method</tspan>
+                <tspan x="334" y="329.330078">Access-Control-Allow-Headers</tspan>
+                <tspan x="352.82959" y="347.330078">Access-Control-Max-Age</tspan>
             </text>
         </g>
     </g>
