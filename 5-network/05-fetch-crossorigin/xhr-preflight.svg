@@ -58,11 +58,11 @@
             <text id="Main-HTTP-request" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
                 <tspan x="360" y="429">Main HTTP-request</tspan>
             </text>
-            <text id="preflight" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#9B9B9B">
-                <tspan x="206.443359" y="186">preflight</tspan>
+            <text id="preflight" font-family="OpenSans-Regular, Open Sans" font-size="22" font-weight="normal" fill="#9B9B9B">
+                <tspan x="210.364746" y="186">preflight</tspan>
             </text>
-            <text id="if-allowed" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#9B9B9B">
-                <tspan x="194.109375" y="441">if allowed</tspan>
+            <text id="if-allowed" font-family="OpenSans-Regular, Open Sans" font-size="22" font-weight="normal" fill="#9B9B9B">
+                <tspan x="198.558594" y="441">if allowed</tspan>
             </text>
             <text id="1" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#000000">
                 <tspan x="570.138672" y="186">1</tspan>
