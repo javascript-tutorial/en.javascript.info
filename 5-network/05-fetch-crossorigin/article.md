@@ -1,10 +1,6 @@
 # Fetch: Cross-Origin Requests
 
-If we make a `fetch` from an arbitrary web-site, that will probably fail.
-
-The core concept here is *origin* -- a domain/port/protocol triplet.
-
-Cross-origin requests -- those sent to another domain (even a subdomain) or protocol or port -- require special headers from the remote side. That policy is called "CORS": Cross-Origin Resource Sharing.
+If we send a `fetch` request to another web-site, it will probably fail.
 
 For instance, let's try fetching `http://example.com`:
 
@@ -18,19 +14,25 @@ try {
 
 Fetch fails, as expected.
 
-## Why? A brief history
+The core concept here is *origin* -- a domain/port/protocol triplet.
 
-Because cross-origin restrictions protect the internet from evil hackers.
+Cross-origin requests -- those sent to another domain (even a subdomain) or protocol or port -- require special headers from the remote side.
+
+That policy is called "CORS": Cross-Origin Resource Sharing.
+
+## Why CORS is needed? A brief history
+
+CORS exists protect the internet from evil hackers.
 
 Seriously. Let's make a very brief historical digression.
 
 **For many years a script from one site could not access the content of another site.**
 
-That simple, yet powerful rule was a foundation of the internet security. E.g. a script from the page `hacker.com` could not access user's mailbox at `gmail.com`. People felt safe.
+That simple, yet powerful rule was a foundation of the internet security. E.g. an evil script from website `hacker.com` could not access user's mailbox at website `gmail.com`. People felt safe.
 
 JavaScript also did not have any special methods to perform network requests at that time. It was a toy language to decorate a web page.
 
-But web developers demanded more power. A variety of tricks were invented to work around the limitation.
+But web developers demanded more power. A variety of tricks were invented to work around the limitation and make requests to other websites.
 
 ### Using forms
 
@@ -50,34 +52,36 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 </form>
 ```
 
-So, it was possible to make a GET/POST request to another site, even without networking methods. But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
+So, it was possible to make a GET/POST request to another site, even without networking methods, as forms can send data anywhere. But as it's forbidden to access the content of an `<iframe>` from another site, it wasn't possible to read the response.
 
-As we can see, forms allowed to send data anywhere, but not receive the response. To be precise, there wre actually tricks for that (required special scripts at both the iframe and the page), but let these dinosaurs rest in peace.
+To be precise, there were actually tricks for that, they required special scripts at both the iframe and the page. So the communication with the iframe was technically possible. Right now there's no point to go into details, let these dinosaurs rest in peace.
 
 ### Using scripts
 
-Another trick was to use a `<script src="http://another.com/…">` tag. A script could have any `src`, from any domain. But again -- it was impossible to access the raw content of such script.
+Another trick was to use a `script` tag. A script could have any `src`, with any domain, like `<script src="http://another.com/…">`. It's possible to execute a script from any website.
 
-If `another.com` intended to expose data for this kind of access, then a so-called "JSONP (JSON with padding)" protocol was used.
+If a website, e.g. `another.com` intended to expose data for this kind of access, then a so-called "JSONP (JSON with padding)" protocol was used.
 
-Let's say we need to get the data from `http://another.com` this way:
+Here's how it worked.
+
+Let's say we, at our site, need to get the data from `http://another.com`, such as the weather:
 
 1. First, in advance, we declare a global function to accept the data, e.g. `gotWeather`.
 
     ```js
-    // 1. Declare the function to process the data
+    // 1. Declare the function to process the weather data
     function gotWeather({ temperature, humidity }) {
       alert(`temperature: ${temperature}, humidity: ${humidity}`);
     }
     ```
-2. Then we make a `<script>` tag with `src="http://another.com/weather.json?callback=gotWeather"`,  please note that the name of our function is its `callback` parameter.
+2. Then we make a `<script>` tag with `src="http://another.com/weather.json?callback=gotWeather"`, using the name of our function as the `callback` URL-parameter.
 
     ```js
     let script = document.createElement('script');
     script.src = `http://another.com/weather.json?callback=gotWeather`;
     document.body.append(script);
     ```
-3. The remote server dynamically generates a script that calls `gotWeather(...)` with the data it wants us to receive.
+3. The remote server `another.com` dynamically generates a script that calls `gotWeather(...)` with the data it wants us to receive.
     ```js
     // The expected answer from the server looks like this:
     gotWeather({
@@ -87,17 +91,16 @@ Let's say we need to get the data from `http://another.com` this way:
     ```
 4. When the remote script loads and executes, `gotWeather` runs, and, as it's our function, we have the data.
 
-
-
 That works, and doesn't violate security, because both sides agreed to pass the data this way. And, when both sides agree, it's definitely not a hack. There are still services that provide such access, as it works even for very old browsers.
 
-After a while, networking methods appeared, such as `XMLHttpRequest`.
+After a while, networking methods appeared in browser JavaScript.
 
-At first, cross-origin requests were forbidden. But as a result of long discussions, cross-domain requests were  allowed, in a way that does not add any capabilities unless explicitly allowed by the server.
+At first, cross-origin requests were forbidden. But as a result of long discussions, cross-origin requests were allowed, but any new capabilities unless require an explicit allowance by the server, expressed in special headers.
 
 ## Simple requests
 
-There are two types of cross-domain requests:
+There are two types of cross-origin requests:
+
 1. Simple requests.
 2. All the others.
 
@@ -124,7 +127,7 @@ When we try to make a non-simple request, the browser sends a special "preflight
 
 And, unless the server explicitly confirms that with headers, a non-simple request is not sent.
 
-Now we'll go into details. All of them serve a single purpose -- to ensure that new cross-origin capabilities are only accessible with an explicit permission from the server.
+Now we'll go into details.
 
 ## CORS for simple requests
 
@@ -141,13 +144,13 @@ Origin: https://javascript.info
 ...
 ```
 
-As you can see, `Origin` contains exactly the origin (domain/protocol/port), without a path.
+As you can see, `Origin` header contains exactly the origin (domain/protocol/port), without a path.
 
 The server can inspect the `Origin` and, if it agrees to accept such a request, adds a special header `Access-Control-Allow-Origin` to the response. That header should contain the allowed origin (in our case `https://javascript.info`), or a star `*`. Then the response is successful, otherwise an error.
 
 The browser plays the role of a trusted mediator here:
-1. It ensures that the corrent `Origin` is sent with a cross-domain request.
-2. If checks for correct `Access-Control-Allow-Origin` in the response, if it is so, then JavaScript access, otherwise forbids with an error.
+1. It ensures that the corrent `Origin` is sent with a cross-origin request.
+2. If checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
 
 ![](xhr-another-domain.svg)
 
@@ -217,7 +220,7 @@ If the server agrees to serve the requests, then it should respond with status 2
 
 ![](xhr-preflight.svg)
 
-Let's see how it works step-by-step on example, for a cross-domain `PATCH` request (this method is often used to update data):
+Let's see how it works step-by-step on example, for a cross-origin `PATCH` request (this method is often used to update data):
 
 ```js
 let response = await fetch('https://site.com/service.json', {
@@ -303,7 +306,7 @@ Now everything's correct. JavaScript is able to read the full response.
 
 A cross-origin request by default does not bring any credentials (cookies or HTTP authentication).
 
-That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-domain requests made by JavaScript methods are an exception.
+That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-origin requests made by JavaScript methods are an exception.
 
 For example, `fetch('http://another.com')` does not send any cookies, even those that belong to `another.com` domain.
 

@@ -118,7 +118,7 @@ That's all. Now they can interact without limitations. Again, that's only possib
 
 ## Iframe: wrong document pitfall
 
-When an iframe comes from the same origin, and we may access its  `document`, there's a pitfall. It's not related to cross-domain things, but important to know.
+When an iframe comes from the same origin, and we may access its  `document`, there's a pitfall. It's not related to cross-origin things, but important to know.
 
 Upon its creation an iframe immediately has a document. But that document is different from the one that loads into it!
 
@@ -326,7 +326,7 @@ window.addEventListener("message", function(event) {
   }
 
   alert( "received: " + event.data );
-  
+
   // can message back using event.source.postMessage(...)
 });
 ```

@@ -91,7 +91,7 @@ Let's explain that step-by-step:
     Please note, we can't use both these methods to read the same response: either use a reader or a response method to get the result.
 2. Prior to reading, we can figure out the full response length from the `Content-Length` header.
 
-    It may be absent for cross-domain requests (see chapter <info:fetch-crossorigin>) and, well, technically a server doesn't have to set it. But usually it's at place.
+    It may be absent for cross-origin requests (see chapter <info:fetch-crossorigin>) and, well, technically a server doesn't have to set it. But usually it's at place.
 3. Call `await reader.read()` until it's done.
 
     We gather response chunks in the array `chunks`. That's important, because after the response is consumed, we won't be able to "re-read" it using `response.json()` or another way (you can try, there'll be an error).
