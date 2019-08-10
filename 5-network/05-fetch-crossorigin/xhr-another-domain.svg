@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="621px" height="411px" viewBox="0 0 621 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="633px" height="411px" viewBox="0 0 633 411" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
     <title>xhr-another-domain.svg</title>
     <desc>Created with sketchtool.</desc>
@@ -9,43 +9,43 @@
             <text id="JavaScript" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
                 <tspan x="35" y="50">JavaScript</tspan>
             </text>
-            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="249" y="16" width="128" height="64"></rect>
+            <rect id="Rectangle-228" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="261" y="16" width="128" height="64"></rect>
             <text id="Browser" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="284" y="50">Browser</tspan>
+                <tspan x="296" y="50">Browser</tspan>
             </text>
-            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="492" y="16" width="128" height="64"></rect>
+            <rect id="Rectangle-229" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB" x="504" y="16" width="128" height="64"></rect>
             <text id="Server" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="532" y="50">Server</tspan>
+                <tspan x="544" y="50">Server</tspan>
             </text>
             <path d="M66,81 L66,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path d="M314,81 L314,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path d="M557,81 L557,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
-            <path id="Line" d="M295,141 L67,141 L67,139 L295,139 L295,133 L309,140 L295,147 L295,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path d="M326,81 L326,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path d="M569,81 L569,401" id="Line" stroke="#979797" stroke-linecap="square"></path>
+            <path id="Line" d="M311,141 L66,141 L66,139 L311,139 L311,133 L325,140 L311,147 L311,141 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="Origin:-https://java" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="26" fill="#8A704D">
-                <tspan x="342.3125" y="205">Origin: https://javascript.info</tspan>
+                <tspan x="354.3125" y="205">Origin: https://javascript.info</tspan>
             </text>
             <text id="HTTP-request" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="26" fill="#8A704D">
-                <tspan x="389.015137" y="174">HTTP-request</tspan>
+                <tspan x="401.015137" y="174">HTTP-request</tspan>
             </text>
             <text id="fetch()" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" fill="#8A704D">
-                <tspan x="159" y="131">fetch()</tspan>
+                <tspan x="171" y="131">fetch()</tspan>
             </text>
             <text id="HTTP-response" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="27" fill="#8A704D">
-                <tspan x="386.418945" y="250">HTTP-response</tspan>
+                <tspan x="398.418945" y="250">HTTP-response</tspan>
             </text>
             <text id="Access-Control-Allow" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="343" y="287">Access-Control-Allow-Origin: </tspan>
-                <tspan x="348.130371" y="305">* OR https://javascript.info</tspan>
+                <tspan x="355" y="287">Access-Control-Allow-Origin: </tspan>
+                <tspan x="360.130371" y="305">* OR https://javascript.info</tspan>
             </text>
             <text id="if-the-header-allows" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="97" y="324">if the header allows, success,</tspan>
+                <tspan x="85" y="325">if the header allows, then success,</tspan>
             </text>
             <text id="otherwise-fail" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="147" y="353">otherwise fail</tspan>
+                <tspan x="148" y="353">otherwise fail</tspan>
             </text>
-            <path id="Line" d="M542,188 L316,188 L316,186 L542,186 L542,180 L556,187 L542,194 L542,188 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-2" d="M328,264 L556,264 L556,266 L328,266 L328,272 L314,265 L328,258 L328,264 Z" fill="#EE6B47" fill-rule="nonzero"></path>
-            <path id="Line-3" d="M85,332 L313,332 L313,334 L85,334 L85,340 L71,333 L85,326 L85,332 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M554,188 L328,188 L328,186 L554,186 L554,180 L568,187 L554,194 L554,188 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-2" d="M340,264 L568,264 L568,266 L340,266 L340,272 L326,265 L340,258 L340,264 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-3" d="M81,332 L325,332 L325,334 L81,334 L81,340 L67,333 L81,326 L81,332 Z" fill="#EE6B47" fill-rule="nonzero"></path>
         </g>
     </g>
 </svg>

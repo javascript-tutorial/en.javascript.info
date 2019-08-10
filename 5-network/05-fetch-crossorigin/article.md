@@ -165,7 +165,7 @@ Access-Control-Allow-Origin: https://javascript.info
 
 ## Response headers
 
-For cross-origin request, by default JavaScript may only access "simple response headers":
+For cross-origin request, by default JavaScript may only access so-called "simple" response headers:
 
 - `Cache-Control`
 - `Content-Language`
