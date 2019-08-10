@@ -220,5 +220,5 @@ It has few limitations:
 - We can't send megabytes: the body limit for `keepalive` requests is 64kb.
     - If gather more data, we can send it out regularly in packets, so that there won't be a lot left for the last `onunload` request.
     - The limit is for all currently ongoing requests. So we can't cheat it by creating 100 requests, each 64kb.
-- We can't handle the server response if the request is made in `onunload`, because the document is already unloaded at that time.
+- We can't handle the server response if the request is made in `onunload`, because the document is already unloaded at that time, functions won't work.
     - Usually, the server sends empty response to such requests, so it's not a problem.

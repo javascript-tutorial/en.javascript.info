@@ -7,16 +7,22 @@ There are no networking methods that require exactly an `URL` object, strings ar
 
 ## Creating an URL
 
-The syntax to create a new URL object:
+The syntax to create a new `URL` object:
 
 ```js
 new URL(url, [base])
 ```
 
-- **`url`** -- the URL string or path (if base is set, see below).
-- **`base`** -- an optional base, if set and `url` has only path, then the URL is generated relative to `base`.
+- **`url`** -- the full URL or only path (if base is set, see below),
+- **`base`** -- an optional base URL: if set and `url` argument has only path, then the URL is generated relative to `base`.
 
-For example, these two URLs are same:
+For example:
+
+```js
+let url = new URL('https://javascript.info/profile/admin');
+```
+
+These two URLs are same:
 
 ```js run
 let url1 = new URL('https://javascript.info/profile/admin');
@@ -26,15 +32,14 @@ alert(url1); // https://javascript.info/profile/admin
 alert(url2); // https://javascript.info/profile/admin
 ```
 
-Go to the path relative to the current URL:
+We can easily create a new URL based on the path relative to an existing URL:
 
 ```js run
 let url = new URL('https://javascript.info/profile/admin');
-let testerUrl = new URL('tester', url);
+let newUrl = new URL('tester', url);
 
-alert(testerUrl); // https://javascript.info/profile/tester
+alert(newUrl); // https://javascript.info/profile/tester
 ```
-
 
 The `URL` object immediately allows us to access its components, so it's a nice way to parse the url, e.g.:
 
@@ -46,7 +51,7 @@ alert(url.host);     // javascript.info
 alert(url.pathname); // /url
 ```
 
-Here's the cheatsheet:
+Here's the cheatsheet for URL components:
 
 ![](url-object.svg)
 
@@ -57,10 +62,10 @@ Here's the cheatsheet:
 - there may be also `user` and `password` properties if HTTP authentication is present: `http://login:password@site.com` (not painted above, rarely used).
 
 
-```smart header="We can use `URL` everywhere instead of a string"
-We can use an `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a string url is expected.
+```smart header="We can pass `URL` objects to networking (and most other) methods instead of a string"
+We can use an `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where an URL-string is expected.
 
-In the vast majority of methods it's automatically converted to a string.
+Generally, `URL` object can be passed to any method instead of a string, as most method will perform the string conversion, that turns an `URL` object into a string with full URL.
 ```
 
 ## SearchParams "?..."
@@ -79,25 +84,27 @@ So there's URL property for that: `url.searchParams`, an object of type [URLSear
 
 It provides convenient methods for search parameters:
 
-- **`append(name, value)`** -- add the parameter,
-- **`delete(name)`** -- remove the parameter,
-- **`get(name)`** -- get the parameter,
+- **`append(name, value)`** -- add the parameter by `name`,
+- **`delete(name)`** -- remove the parameter by `name`,
+- **`get(name)`** -- get the parameter by `name`,
 - **`getAll(name)`** -- get all parameters with the same `name` (that's possible, e.g. `?user=John&user=Pete`),
-- **`has(name)`** -- check for the existance of the parameter,
+- **`has(name)`** -- check for the existance of the parameter by `name`,
 - **`set(name, value)`** -- set/replace the parameter,
 - **`sort()`** -- sort parameters by name, rarely needed,
-- ...and also iterable, similar to `Map`.
+- ...and it's also iterable, similar to `Map`.
 
-For example:
+An example with parameters that contain spaces and punctuation marks:
 
 ```js run
 let url = new URL('https://google.com/search');
+
 url.searchParams.set('q', 'test me!'); // added parameter with a space and !
 
 alert(url); // https://google.com/search?q=test+me%21
 
-url.searchParams.set('tbs', 'qdr:y'); // this parameter specifies for date range for Google Search
+url.searchParams.set('tbs', 'qdr:y'); // added parameter with a colon :
 
+// parameters are automatically encoded
 alert(url); // https://google.com/search?q=test+me%21&tbs=qdr%3Ay
 
 // iterate over search parameters (decoded)
