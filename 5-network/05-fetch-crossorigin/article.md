@@ -135,7 +135,7 @@ If a request is cross-origin, the browser always adds `Origin` header to it.
 
 For instance, if we request `https://anywhere.com/request` from `https://javascript.info/page`, the headers will be like:
 
-```
+```http
 GET /request
 Host: anywhere.com
 *!*
@@ -155,7 +155,7 @@ The browser plays the role of a trusted mediator here:
 ![](xhr-another-domain.svg)
 
 Here's an example of a permissive server response:
-```
+```http
 200 OK
 Content-Type:text/html; charset=UTF-8
 *!*
@@ -186,7 +186,7 @@ To grant JavaScript access to any other response header, the server must send  `
 
 For example:
 
-```
+```http
 200 OK
 Content-Type:text/html; charset=UTF-8
 Content-Length: 12345
@@ -209,8 +209,8 @@ So, to avoid misunderstandings, any "non-simple" request -- that couldn't be don
 
 A preflight request uses method `OPTIONS`, no body and two headers:
 
-- `Access-Control-Request-Method` header has the method of a non-simple request.
-- `Access-Control-Request-Headers` header provides a comma-separated list of non-simple HTTP-headers.
+- `Access-Control-Request-Method` header has the method of an the non-simple request.
+- `Access-Control-Request-Headers` header provides a comma-separated list of its non-simple HTTP-headers.
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
@@ -234,14 +234,14 @@ let response = await fetch('https://site.com/service.json', {
 
 There are three reasons why the request is not simple (one is enough):
 - Method `PATCH`
-- `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`,  `text/plain`.
+- `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`.
 - "Non-simple" `API-Key` header.
 
 ### Step 1 (preflight request)
 
-Prior to sending our request, the browser, on its own, sends a preflight request that looks like this:
+Prior to sending such request, the browser, on its own, sends a preflight request that looks like this:
 
-```
+```http
 OPTIONS /service.json
 Host: site.com
 Origin: https://javascript.info
@@ -264,26 +264,26 @@ The server should respond with status 200 and headers:
 
 That allows future communication, otherwise an error is triggered.
 
-If the server expects other methods and headers in the future, makes sense to allow them in advance by adding to the list:
+If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding to the list:
 
-```
+```http
 200 OK
 Access-Control-Allow-Methods: PUT,PATCH,DELETE
 Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Control
 Access-Control-Max-Age: 86400
 ```
 
-Now the browser can see that `PATCH` is in the list of allowed methods, and both headers are in the list too, so it sends out the main request.
+Now the browser can see that `PATCH` in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
 
-Besides, the preflight response is cached for time, specified by `Access-Control-Max-Age` header (86400 seconds, one day), so subsequent requests will not cause a preflight. Assuming that they fit the allowances, they will be sent directly.
+Besides, the preflight response is cached for time, specified by `Access-Control-Max-Age` header (86400 seconds, one day), so subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
 
 ### Step 3 (actual request)
 
-When the preflight is successful, the browser now makes the real request. Here the flow is the same as for simple requests.
+When the preflight is successful, the browser now makes the main request. The algorithm here is the same as for simple requests.
 
-The real request has `Origin` header (because it's cross-origin):
+The main request has `Origin` header (because it's cross-origin):
 
-```
+```http
 PATCH /service.json
 Host: site.com
 Content-Type: application/json
@@ -293,14 +293,19 @@ Origin: https://javascript.info
 
 ### Step 4 (actual response)
 
-The server should not forget to add `Access-Control-Allow-Origin` to the response. A successful preflight does not relieve from that:
+The server should not forget to add `Access-Control-Allow-Origin` to the main response. A successful preflight does not relieve from that:
 
-```
+```http
 Access-Control-Allow-Origin: https://javascript.info
 ```
 
-Now everything's correct. JavaScript is able to read the full response.
+Then JavaScript is able to read the main server response.
 
+```smart
+Preflight request occurs "behind the scenes", it's invisible to JavaScript.
+
+JavaScript only gets the response to the main request or an error if there's no server permission.
+```
 
 ## Credentials
 
@@ -308,15 +313,15 @@ A cross-origin request by default does not bring any credentials (cookies or HTT
 
 That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-origin requests made by JavaScript methods are an exception.
 
-For example, `fetch('http://another.com')` does not send any cookies, even those that belong to `another.com` domain.
+For example, `fetch('http://another.com')` does not send any cookies, even those  (!) that belong to `another.com` domain.
 
 Why?
 
-That's because a request with credentials is much more powerful than an anonymous one. If allowed, it grants JavaScript the full power to act and access sensitive information on behalf of a user.
+That's because a request with credentials gives much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.
 
-Does the server really trust pages from `Origin` that much? Then it must explicitly allow requests with credentials with an additional header.
+Does the server really trust the script that much? Then it must explicitly allow requests with credentials with an additional header.
 
-To send credentials, we need to add the option `credentials: "include"`, like this:
+To send credentials in `fetch`, we need to add the option `credentials: "include"`, like this:
 
 ```js
 fetch('http://another.com', {
@@ -326,22 +331,21 @@ fetch('http://another.com', {
 
 Now `fetch` sends cookies originating from `another.com` with out request to that site.
 
-If the server wishes to accept the request with credentials, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
+If the server agrees to accept the request *with credentials*, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 
 For example:
 
-```
+```http
 200 OK
 Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true
 ```
 
-Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. There must be exactly the origin there, like above. That's an additional safety measure, to ensure that the server really knows who it trusts.
-
+Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. There must be exactly the origin there, like above. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
 
 ## Summary
 
-Networking methods split cross-origin requests into two kinds: "simple" and all the others.
+From the browser point of view, there are to kinds of cross-origin requests: "simple" and all the others.
 
 [Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
 - Method: GET, POST or HEAD.
@@ -353,7 +357,7 @@ Networking methods split cross-origin requests into two kinds: "simple" and all 
 
 The essential difference is that simple requests were doable since ancient times using `<form>` or `<script>` tags, while non-simple were impossible for browsers for a long time.
 
-So, practical difference is that simple requests are sent right away, with `Origin` header, but for other ones the browser makes a preliminary "preflight" request, asking for permission.
+So, the practical difference is that simple requests are sent right away, with `Origin` header, while for the other ones the browser makes a preliminary "preflight" request, asking for permission.
 
 **For simple requests:**
 
@@ -364,21 +368,13 @@ So, practical difference is that simple requests are sent right away, with `Orig
     - `Access-Control-Allow-Origin` to same value as `Origin`
     - `Access-Control-Allow-Credentials` to `true`
 
-Additionally, if JavaScript wants to access non-simple response headers:
-- `Cache-Control`
-- `Content-Language`
-- `Content-Type`
-- `Expires`
-- `Last-Modified`
-- `Pragma`
-
-...Then the server should list the allowed ones in `Access-Control-Expose-Headers` header.
+Additionally, to grant JavaScript access to any response headers except `Cache-Control`,  `Content-Language`, `Content-Type`, `Expires`, `Last-Modified` or `Pragma`, the server should list the allowed ones in `Access-Control-Expose-Headers` header.
 
 **For non-simple requests, a preliminary "preflight" request is issued before the requested one:**
 
 - → The browser sends `OPTIONS` request to the same url, with headers:
     - `Access-Control-Request-Method` has requested method.
-    - `Access-Control-Request-Headers` lists non-simple requested headers
+    - `Access-Control-Request-Headers` lists non-simple requested headers.
 - ← The server should respond with status 200 and headers:
     - `Access-Control-Allow-Methods` with a list of allowed methods,
     - `Access-Control-Allow-Headers` with a list of allowed headers,
