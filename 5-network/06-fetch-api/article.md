@@ -5,6 +5,12 @@ So far, we know quite a bit about `fetch`.
 
 Let's see the rest of API, to cover all its abilities.
 
+```smart
+Please note: most of these options are used rarely. You may skip this chapter and still use `fetch` well.
+
+Still, it's good to know what `fetch` can do, so if the need arises, you can return and read the details.
+```
+
 Here's the full list of all possible `fetch` options with their default values (alternatives in comments):
 
 ```js
@@ -103,7 +109,7 @@ Here's a table with all combinations:
 
 Let's say we have an admin zone with URL structure that shouldn't be known from outside of the site.
 
-If we send a `fetch`, then by default it sends the `Referer` header with the full url of our page (except when we request from HTTPS to HTTP, then no `Referer`).
+If we send a `fetch`, then by default it always sends the `Referer` header with the full url of our page (except when we request from HTTPS to HTTP, then no `Referer`).
 
 E.g. `Referer: https://javascript.info/admin/secret/paths`.
 
@@ -111,13 +117,14 @@ If we'd like other websites know only the origin part, not URL-path, we can set 
 
 ```js
 fetch('https://another.com/page', {
+  // ...
   referrerPolicy: "origin-when-cross-origin" // Referer: https://javascript.info
 });
 ```
 
 We can put it to all `fetch` calls, maybe integrate into JavaScript library of our project that does all requests and uses `fetch` inside.
 
-Its only difference compared to the default behavior is that for requests to another origin `fetch` only sends the origin part of the URL. For requests to our origin we still get the full `Referer` (maybe useful for debugging purposes).
+Its only difference compared to the default behavior is that for requests to another origin `fetch` sends only the origin part of the URL (e.g. `https://javascript.info`, without path). For requests to our origin we still get the full `Referer` (maybe useful for debugging purposes).
 
 ```smart header="Referrer policy is not only for `fetch`"
 Referrer policy, described in the [specification](https://w3c.github.io/webappsec-referrer-policy/), is not just for `fetch`, but more global.
@@ -133,14 +140,14 @@ The `mode` option is a safe-guard that prevents occasional cross-origin requests
 - **`"same-origin"`** -- cross-origin requests are forbidden,
 - **`"no-cors"`** -- only simple cross-origin requests are allowed.
 
-This option may be useful when the URL comes from 3rd-party, and we want a "power off switch" to limit cross-origin capabilities.
+This option may be useful when the URL for `fetch` comes from a 3rd-party, and we want a "power off switch" to limit cross-origin capabilities.
 
 ## credentials
 
 The `credentials` option specifies whether `fetch` should send cookies and HTTP-Authorization headers with the request.
 
 - **`"same-origin"`** -- the default, don't send for cross-origin requests,
-- **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server,
+- **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server in order for JavaScript to access the response, that was covered in the chapter <info:fetch-crossorigin>,
 - **`"omit"`** -- never send, even for same-origin requests.
 
 ## cache
@@ -186,13 +193,13 @@ Then `fetch` will calculate SHA-256 on its own and compare it with our string. I
 
 ## keepalive
 
-The `keepalive` option indicates that the request may outlive the page.
+The `keepalive` option indicates that the request may "outlive" the webpage that initiated it.
 
-For example, we gather statistics about how the current visitor uses our page (mouse clicks,  page fragments he views), to improve user experience.
+For example, we gather statistics about how the current visitor uses our page (mouse clicks, page fragments he views), to analyze and improve user experience.
 
-When the visitor leaves our page -- we'd like to save it on our server.
+When the visitor leaves our page -- we'd like to save the data at our server.
 
-We can use `window.onunload` for that:
+We can use `window.onunload` event for that:
 
 ```js run
 window.onunload = function() {
@@ -206,10 +213,12 @@ window.onunload = function() {
 };
 ```
 
-Normally, when a document is unloaded, all associated network requests are aborted. But `keepalive` option tells the browser to perform the request in background, even after it leaves the page. So it's essential for our request to succeed.
+Normally, when a document is unloaded, all associated network requests are aborted. But `keepalive` option tells the browser to perform the request in background, even after it leaves the page. So this option is essential for our request to succeed.
 
-- We can't send megabytes: the body limit for keepalive requests is 64kb.
-    - If we gather more data, we can send it out regularly, then there won't be a lot for the "onunload" request.
-    - The limit is for all currently ongoing requests. So we cheat it by creating 100 requests, each 64kb.
-- We don't get the server response if the request is made `onunload`, because the document is already unloaded at that time.
+It has few limitations:
+
+- We can't send megabytes: the body limit for `keepalive` requests is 64kb.
+    - If gather more data, we can send it out regularly in packets, so that there won't be a lot left for the last `onunload` request.
+    - The limit is for all currently ongoing requests. So we can't cheat it by creating 100 requests, each 64kb.
+- We can't handle the server response if the request is made in `onunload`, because the document is already unloaded at that time.
     - Usually, the server sends empty response to such requests, so it's not a problem.

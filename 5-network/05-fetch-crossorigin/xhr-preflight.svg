@@ -32,7 +32,7 @@
                 <tspan x="321.866211" y="216">Access-Control-Request-Method</tspan>
                 <tspan x="320" y="234">Access-Control-Request-Headers</tspan>
             </text>
-            <path id="Line" d="M541,293.5 L304,293.5 L304,291.5 L541,291.5 L541,285.5 L555,292.5 L541,299.5 L541,293.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line" d="M319,291.5 L556,291.5 L556,293.5 L319,293.5 L319,299.5 L305,292.5 L319,285.5 L319,291.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="200-OK" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
                 <tspan x="407" y="285">200 OK</tspan>
             </text>
@@ -40,7 +40,7 @@
             <path id="Line-2" d="M319,501 L556,501 L556,503 L319,503 L319,509 L305,502 L319,495 L319,501 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <path id="Line-3" d="M90.5,552.5 L304.5,552.5 L304.5,555.5 L90.5,555.5 L90.5,563.5 L71.5,554 L90.5,544.5 L90.5,552.5 Z" fill="#EE6B47" fill-rule="nonzero"></path>
             <text id="Access-Control-Allow" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
-                <tspan x="336" y="524">Access-Control-Allow-Origin</tspan>
+                <tspan x="336" y="522">Access-Control-Allow-Origin</tspan>
             </text>
             <text id="Main-HTTP-response" font-family="OpenSans-Regular, Open Sans" font-size="14" font-weight="normal" line-spacing="18" fill="#8A704D">
                 <tspan x="355" y="495">Main HTTP-response</tspan>
