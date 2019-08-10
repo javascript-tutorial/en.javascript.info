@@ -5,7 +5,7 @@ The `fetch` method allows to track *download* progress.
 
 Please note: there's currently no way for `fetch` to track *upload* progress. For that purpose, please use [XMLHttpRequest](info:xmlhttprequest), we'll cover it later.
 
-To track download progress, we can use `response.body` property. It's a "readable stream" -- a special object that provides body chunk-by-chunk, as it comes.
+To track download progress, we can use `response.body` property. It's  `ReadableStream` -- a special object that provides body chunk-by-chunk, as it comes. Readable streams are described in the [Streams API](https://streams.spec.whatwg.org/#rs-class) specification.
 
 Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can count how much is consumed at any moment.
 
@@ -30,14 +30,18 @@ while(true) {
 ```
 
 The result of `await reader.read()` call is an object with two properties:
-- **`done`** -- true when the reading is complete.
+- **`done`** -- `true` when the reading is complete, otherwise `false`.
 - **`value`** -- a typed array of bytes: `Uint8Array`.
 
-We wait for more chunks in the loop, until `done` is `true`.
+```smart
+Streams API also describes asynchronous iteration over `ReadableStream` with `for await..of` loop, but it's not yet widely supported (see [browser issues](https://github.com/whatwg/streams/issues/778#issuecomment-461341033)), so we use `while` loop.
+```
 
-To log the progress, we just need for every `value` add its length to the counter.
+We receive response chunks in the loop, until the loading finishes, that is: until `done` becomes `true`.
 
-Here's the full code to get response and log the progress, more explanations follow:
+To log the progress, we just need for every received fragment `value` to add its length to the counter.
+
+Here's the full working example that gets the response and logs the progress in console, more explanations to follow:
 
 ```js run async
 // Step 1: start the fetch and obtain a reader
@@ -49,7 +53,7 @@ const reader = response.body.getReader();
 const contentLength = +response.headers.get('Content-Length');
 
 // Step 3: read the data
-let receivedLength = 0; // length at the moment
+let receivedLength = 0; // received that many bytes at the moment
 let chunks = []; // array of received binary chunks (comprises the body)
 while(true) {
   const {done, value} = await reader.read();
@@ -84,21 +88,21 @@ Let's explain that step-by-step:
 
 1. We perform `fetch` as usual, but instead of calling `response.json()`, we obtain a stream reader `response.body.getReader()`.
 
-    Please note, we can't use both these methods to read the same response. Either use a reader or a response method to get the result.
+    Please note, we can't use both these methods to read the same response: either use a reader or a response method to get the result.
 2. Prior to reading, we can figure out the full response length from the `Content-Length` header.
 
     It may be absent for cross-domain requests (see chapter <info:fetch-crossorigin>) and, well, technically a server doesn't have to set it. But usually it's at place.
 3. Call `await reader.read()` until it's done.
 
-    We gather response `chunks` in the array. That's important, because after the response is consumed, we won't be able to "re-read" it using `response.json()` or another way (you can try, there'll be an error).
+    We gather response chunks in the array `chunks`. That's important, because after the response is consumed, we won't be able to "re-read" it using `response.json()` or another way (you can try, there'll be an error).
 4. At the end, we have `chunks` -- an array of `Uint8Array` byte chunks. We need to join them into a single result. Unfortunately, there's no single method that concatenates those, so there's some code to do that:
-    1. We create `new Uint8Array(receivedLength)` -- a same-typed array with the combined length.
-    2. Then use `.set(chunk, position)` method to copy each `chunk` one after another in the resulting array.
+    1. We create `chunksAll = new Uint8Array(receivedLength)` -- a same-typed array with the combined length.
+    2. Then use `.set(chunk, position)` method to copy each `chunk` one after another in it.
 5. We have the result in `chunksAll`. It's a byte array though, not a string.
 
-    To create a string, we need to interpret these bytes. The built-in [TextDecoder](info:text-decoder) does exactly that. Then we can `JSON.parse` it.
+    To create a string, we need to interpret these bytes. The built-in [TextDecoder](info:text-decoder) does exactly that. Then we can `JSON.parse` it, if necessary.
 
-    What if we need binary content instead of JSON? That's even simpler. Replace steps 4 and 5 with a single call to a blob from all chunks:
+    What if we need binary content instead of a string? That's even simpler. Replace steps 4 and 5 with a single line that creates a `Blob` from all chunks:
     ```js
     let blob = new Blob(chunks);
     ```
