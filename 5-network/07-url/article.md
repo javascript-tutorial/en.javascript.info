@@ -116,11 +116,11 @@ for(let [name, value] of url.searchParams) {
 
 ## Encoding
 
-There's a standard [RFC3986](https://tools.ietf.org/html/rfc3986) that defines which characters are allowed and which are not.
+There's a standard [RFC3986](https://tools.ietf.org/html/rfc3986) that defines which characters are allowed in URLs and which are not.
 
-Those that are not allowed, must be encoded, for instance non-latin letters and spaces - replaced with their UTF-8 codes, prefixed by `%`, such as `%20` (a space can be encoded by `+`, for historical reasons that's allowed in URL too).
+Those that are not allowed, must be encoded, for instance non-latin letters and spaces - replaced with their UTF-8 codes, prefixed by `%`, such as `%20` (a space can be encoded by `+`, for historical reasons, but that's an exception).
 
-The good news is that `URL` objects handle all that automatically. We just supply all parameters unencoded, and then convert the URL to the string:
+The good news is that `URL` objects handle all that automatically. We just supply all parameters unencoded, and then convert the `URL` to string:
 
 ```js run
 // using some cyrillic characters for this example
@@ -130,18 +130,27 @@ let url = new URL('https://ru.wikipedia.org/wiki/Тест');
 url.searchParams.set('key', 'ъ');
 alert(url); //https://ru.wikipedia.org/wiki/%D0%A2%D0%B5%D1%81%D1%82?key=%D1%8A
 ```
+
 As you can see, both `Тест` in the url path and `ъ` in the parameter are encoded.
+
+The URL became longer, because each cyrillic letter is represented with two bytes in UTF-8, so there are two `%..` entities.
 
 ### Encoding strings
 
-If we're using strings instead of URL objects, then we can encode manually using built-in functions:
+In old times, before `URL` objects appeared, people used strings for URLs.
 
-- [encodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI) - encode URL as a whole.
-- [decodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI) - decode it back.
-- [encodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) - encode URL components, such as search parameters, or a hash, or a pathname.
+As of now, `URL` objects are often more convenient, but strings can still be used as well. In many cases using a string makes the code shorter.
+
+If we use a string though, we need to encode/decode special characters manually.
+
+There are built-in functions for that:
+
+- [encodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI) - encodes URL as a whole.
+- [decodeURI](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURI) - decodes it back.
+- [encodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent) - encodes a URL component, such as a search parameter, or a hash, or a pathname.
 - [decodeURIComponent](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent) - decodes it back.
 
-What's the difference between `encodeURIComponent` and `encodeURI`?
+A natural question is: "What's the difference between `encodeURIComponent` and `encodeURI`? When we should use either?"
 
 That's easy to understand if we look at the URL, that's split into components in the picture above:
 
@@ -149,24 +158,23 @@ That's easy to understand if we look at the URL, that's split into components in
 http://site.com:8080/path/page?p1=v1&p2=v2#hash
 ```
 
-As we can see, characters such as `:`, `?`, `=`, `&`, `#` are allowed in URL. Some others, including non-latin letters and spaces, must be encoded.
+As we can see, characters such as `:`, `?`, `=`, `&`, `#` are allowed in URL.
 
-That's what `encodeURI` does:
+...On the other hand, if we look at a single URL component, such as a search parameter, these characters must be encoded, not to break the formatting.
+
+- `encodeURI` encodes only characters that are totally forbidden in URL.
+- `encodeURIComponent` encodes same characters, and, in addition to them, characters `#`, `$`, `&`, `+`, `,`, `/`, `:`, `;`, `=`, `?` and `@`.
+
+So, for a whole URL we can use `encodeURI`:
 
 ```js run
-// using cyrcillic characters in url path
+// using cyrillic characters in url path
 let url = encodeURI('http://site.com/привет');
 
-// each cyrillic character is encoded with two %xx
-// together they form UTF-8 code for the character
 alert(url); // http://site.com/%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82
 ```
 
-...On the other hand, if we look at a single URL component, such as a search parameter, we should encode more characters, e.g. `?`, `=` and `&` are used for formatting.
-
-That's what `encodeURIComponent` does. It encodes same characters as `encodeURI`, plus a lot of others, to make the resulting value safe to use in any URL component.
-
-For example:
+...While for URL parameters we should use `encodeURIComponent` instead:
 
 ```js run
 let music = encodeURIComponent('Rock&Roll');
@@ -175,7 +183,7 @@ let url = `https://google.com/search?q=${music}`;
 alert(url); // https://google.com/search?q=Rock%26Roll
 ```
 
-Compare with `encodeURI`:
+Compare it with `encodeURI`:
 
 ```js run
 let music = encodeURI('Rock&Roll');
@@ -188,17 +196,12 @@ As we can see, `encodeURI` does not encode `&`, as this is a legit character in 
 
 But we should encode `&` inside a search parameter, otherwise, we get `q=Rock&Roll` - that is actually `q=Rock` plus some obscure parameter `Roll`. Not as intended.
 
-So we should use only `encodeURIComponent` for each search parameter, to correctly insert it in the URL string. The safest is to encode both name and value, unless we're absolutely sure that either has only allowed characters.
+So we should use only `encodeURIComponent` for each search parameter, to correctly insert it in the URL string. The safest is to encode both name and value, unless we're absolutely sure that it has only allowed characters.
 
-### Why URL?
+````smart header="Encoding difference compared to `URL`"
+Classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams) are based on the latest URI specification: [RFC3986](https://tools.ietf.org/html/rfc3986), while `encode*` functions are based on the obsolete version [RFC2396](https://www.ietf.org/rfc/rfc2396.txt).
 
-Lots of old code uses these functions, these are sometimes convenient, and by no means not dead.
-
-But in modern code, it's recommended to use classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams).
-
-One of the reason is: they are based on the recent URI spec: [RFC3986](https://tools.ietf.org/html/rfc3986), while `encode*` functions are based on the obsolete version [RFC2396](https://www.ietf.org/rfc/rfc2396.txt).
-
-For example, IPv6 addresses are treated differently:
+There are few differences, e.g. IPv6 addresses are encoded differently:
 
 ```js run
 // valid url with IPv6 address
@@ -210,4 +213,5 @@ alert(new URL(url)); // http://[2607:f8b0:4005:802::1007]/
 
 As we can see, `encodeURI` replaced square brackets `[...]`, that's not correct, the reason is: IPv6 urls did not exist at the time of RFC2396 (August 1998).
 
-Such cases are rare, `encode*` functions work well most of the time, it's just one of the reason to prefer new APIs.
+Such cases are rare, `encode*` functions work well most of the time.
+````
