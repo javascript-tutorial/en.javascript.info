@@ -64,8 +64,8 @@ For every internal method, there's a trap in this table: the name of the method 
 | `[[IsExtensible]]` | `isExtensible` | [Object.isExtensible](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible) |
 | `[[PreventExtensions]]` | `preventExtensions` | [Object.preventExtensions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions) |
 | `[[DefineOwnProperty]]` | `defineProperty` | [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty), [Object.defineProperties](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) |
-| `[[GetOwnProperty]]` | `getOwnPropertyDescriptor` | [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor), `for..in` |
-| `[[OwnPropertyKeys]]` | `ownKeys` | [Object.keys](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys), [Object.getOwnPropertyNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in` |
+| `[[GetOwnProperty]]` | `getOwnPropertyDescriptor` | [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor), `for..in`, `Object.keys/values/entries` |
+| `[[OwnPropertyKeys]]` | `ownKeys` | [Object.getOwnPropertyNames](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in`, `Object/keys/values/entries` |
 
 ```warn header="Invariants"
 JavaScript enforces some invariants -- conditions that must be fulfilled by internal methods and traps.
@@ -76,7 +76,7 @@ Most of them are for return values:
 - ...and so on, we'll see more in examples below.
 
 There are some other invariants, like:
-- `[[GetPrototypeOf]]`, applied to the proxy object must return the same value as `[[GetPrototypeOf]]` applied to the proxy object's target object. In other words, reading prototype of a `proxy` must always return the prototype of the target object.
+- `[[GetPrototypeOf]]`, applied to the proxy object must return the same value as `[[GetPrototypeOf]]` applied to the proxy object's target object. In other words, reading prototype of a proxy must always return the prototype of the target object.
 
 Traps can intercept these operations, but they must follow these rules.
 
@@ -181,8 +181,6 @@ The proxy should totally replace the target object everywhere. No one should eve
 
 ## Validation with "set" trap
 
-Now let's intercept writing as well.
-
 Let's say we want an array exclusively for numbers. If a value of another type is added, there should be an error.
 
 The `set` trap triggers when a property is written.
@@ -194,7 +192,7 @@ The `set` trap triggers when a property is written.
 - `value` -- property value,
 - `receiver` -- similar to `get` trap, matters only for setter properties.
 
-The `set` trap should return `true` if setting is successful, and `false` otherwise (leads to `TypeError`).
+The `set` trap should return `true` if setting is successful, and `false` otherwise (triggers `TypeError`).
 
 Let's use it to validate new values:
 
@@ -535,7 +533,7 @@ sayHi("John"); // Hello, John! (after 3 seconds)
 
 As we've seen already, that mostly works. The wrapper function `(*)` performs the call after the timeout.
 
-But a wrapper function does not forward property read/write operations or anything else. So if we have a property on the original function, we can't access it after wrapping:
+But a wrapper function does not forward property read/write operations or anything else. After the wrapping, the access is lost to properties of the original functions, such as `name`, `length` and others:
 
 ```js run
 function delay(f, ms) {
@@ -609,9 +607,21 @@ Here are examples of operations and `Reflect` calls that do the same:
 | `new F(value)` | `Reflect.construct(F, value)` | `[[Construct]]` |
 | ... | ... | ... |
 
-In particular, `Reflect` allows to call operators (`new`, `delete`...) as functions. That's an interesting capability, but here another thing is important.
+For example:
 
-For every internal method, trappable by `Proxy`, there's a corresponding method in `Reflect`, with the same name and arguments as `Proxy` trap. So we can use `Reflect` to forward an operation to the original object.
+```js run
+let user = {};
+
+Reflect.set(user, 'name', 'John');
+
+alert(user.name); // John
+```
+
+In particular, `Reflect` allows to call operators (`new`, `delete`...) as functions (`Reflect.construct`, `Reflect.deleteProperty`, ...). That's an interesting capability, but here another thing is important.
+
+**For every internal method, trappable by `Proxy`, there's a corresponding method in `Reflect`, with the same name and arguments as `Proxy` trap.**
+
+So we can use `Reflect` to forward an operation to the original object.
 
 In this example both traps `get` and `set` transparently (as if they didn't exist) forward reading/writing operations to the object, showing a message:
 
@@ -691,7 +701,7 @@ let user = {
 
 let userProxy = new Proxy(user, {
   get(target, prop, receiver) {
-    return target[prop]; // (*)
+    return target[prop]; // (*) target = user
   }
 });
 
@@ -710,7 +720,7 @@ Reading `admin.name` should return `"Admin"`, not `"Guest"`!
 
 What's the matter? Maybe we did something wrong with the inheritance?
 
-But if we remove the proxy (delete lines 8-12), then everything will be fine.
+But if we remove the proxy, then everything will work as expected.
 
 The problem is actually in the proxy, in the line `(*)`.
 
@@ -718,7 +728,7 @@ The problem is actually in the proxy, in the line `(*)`.
 2. The prototype is `userProxy`.
 3. When reading `name` property from the proxy, its `get` trap triggers and returns it from the original object as `target[prop]` in the line `(*)`.
 
-    A call to `target[prop]`, when `prop` is a getter, runs it in the context `this=target`. So the result is `this._name` from the original object `target`, that is: from `user`.
+    A call to `target[prop]`, when `prop` is a getter, runs its code in the context `this=target`. So the result is `this._name` from the original object `target`, that is: from `user`.
 
 To fix such situations, we need `receiver`, the third argument of `get` trap. It keeps the correct `this` to be passed to a getter. In our case that's `admin`.
 
