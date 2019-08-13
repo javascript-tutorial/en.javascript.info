@@ -1,6 +1,6 @@
 # Eval: run a code string
 
-The built-in `eval` function allows to execute a string of `code`.;
+The built-in `eval` function allows to execute a string of code.
 
 The syntax is:
 
@@ -15,7 +15,9 @@ let code = 'alert("Hello")';
 eval(code); // Hello
 ```
 
-A call to `eval` returns the result of the last statement.
+A string of code may be long, contain line breaks, function declarations, variables and so on.
+
+The result of `eval` is the result of the last statement.
 
 For example:
 ```js run
@@ -23,7 +25,12 @@ let value = eval('1+1');
 alert(value); // 2
 ```
 
-The code is executed in the current lexical environment, so it can see outer variables:
+```js run
+let value = eval('let i = 0; ++i');
+alert(value); // 1
+```
+
+The eval'ed code is executed in the current lexical environment, so it can see outer variables:
 
 ```js run no-beautify
 let a = 1;
@@ -68,13 +75,13 @@ The reason is simple: long, long time ago JavaScript was a much weaker language,
 
 Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
 
-Still, if you're sure you need to dynamically `eval` a string of code, please note that its ability to access outer variables has side-effects.
+Please note that its ability to access outer variables has side-effects.
 
-Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones for brewity. That's usually safe, but not if `eval` is used, as it may reference them. So minifiers don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
+Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones for optimization. That's usually safe, but not if `eval` is used, as it may reference them. So minifiers don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
 
 Using outer local variables inside `eval` is a bad programming practice, as it makes maintaining the code more difficult.
 
-There are two ways how to evade any eval-related problems.
+There are two ways how to be totally safe from such problems.
 
 **If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
 
@@ -88,7 +95,7 @@ let x = 1;
 }
 ```
 
-**If your code needs local variables, execute it with `new Function` and pass them as arguments:**
+**If eval'ed code needs local variables, change `eval` to `new Function` and pass them as arguments:**
 
 ```js run
 let f = new Function('a', 'alert(a)');
