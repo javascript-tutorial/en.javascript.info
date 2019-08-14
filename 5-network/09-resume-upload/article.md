@@ -12,9 +12,9 @@ To resume upload, we need to know how much was uploaded till the connection was 
 
 There's `xhr.upload.onprogress` to track upload progress.
 
-Unfortunately, it's useless here, as it triggers when the data is *sent*, but was it received by the server? The browser doesn't know.
+Unfortunately, it won't help us to resume the upload here, as it triggers when the data is *sent*, but was it received by the server? The browser doesn't know.
 
-Maybe it was buffered by a local network proxy, or maybe the remote server process just died and couldn't process them, or it was just lost in the middle when the connection broke, and didn't reach the receiver.
+Maybe it was buffered by a local network proxy, or maybe the remote server process just died and couldn't process them, or it was just lost in the middle and didn't reach the receiver.
 
 So, this event is only useful to show a nice progress bar.
 

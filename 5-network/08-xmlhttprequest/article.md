@@ -6,7 +6,7 @@ Despite of having the word "XML" in its name, it can operate on any data, not on
 
 Right now, there's another, more modern method `fetch`, that somewhat deprecates `XMLHttpRequest`.
 
-In modern web-development `XMLHttpRequest` may be used for three reasons:
+In modern web-development `XMLHttpRequest` is used for three reasons:
 
 1. Historical reasons: we need to support existing scripts with `XMLHttpRequest`.
 2. We need to support old browsers, and don't want polyfills (e.g. to keep scripts tiny).
@@ -51,7 +51,7 @@ To do the request, we need 3 steps:
 
     Some request methods like `GET` do not have a body. And some of them like `POST` use `body` to send the data to the server. We'll see examples later.
 
-4. Listen to events for response.
+4. Listen to `xhr` events for response.
 
     These three are the most widely used:
     - `load` -- when the result is ready, that includes HTTP errors like 404.
@@ -110,7 +110,7 @@ xhr.onerror = function() {
 };
 ```
 
-Once the server has responded, we can receive the result in the following properties of the request object:
+Once the server has responded, we can receive the result in the following `xhr` properties:
 
 `status`
 : HTTP status code (a number): `200`, `404`, `403` and so on, can be `0` in case of a non-HTTP failure.
@@ -119,7 +119,7 @@ Once the server has responded, we can receive the result in the following proper
 : HTTP status message (a string): usually `OK` for `200`, `Not Found` for `404`, `Forbidden` for `403` and so on.
 
 `response` (old scripts may use `responseText`)
-: The server response.
+: The server response body.
 
 We can also specify a timeout using the corresponding property:
 
@@ -130,7 +130,7 @@ xhr.timeout = 10000; // timeout in ms, 10 seconds
 If the request does not succeed within the given time, it gets canceled and `timeout` event triggers.
 
 ````smart header="URL search parameters"
-To pass URL parameters, like `?name=value`, and ensure the proper encoding, we can use [URL](info:url) object:
+To add parameters to URL, like `?name=value`, and ensure the proper encoding, we can use [URL](info:url) object:
 
 ```js
 let url = new URL('https://google.com/search');
@@ -208,9 +208,7 @@ xhr.onreadystatechange = function() {
 };
 ```
 
-You can find `readystatechange` listeners in really old code, it's there for historical reasons, as there was a time when there were no `load` and other events.
-
-Nowadays, `load/error/progress` handlers deprecate it.
+You can find `readystatechange` listeners in really old code, it's there for historical reasons, as there was a time when there were no `load` and other events. Nowadays, `load/error/progress` handlers deprecate it.
 
 ## Aborting request
 
@@ -305,7 +303,7 @@ There are 3 methods for HTTP-headers:
 
     Headers are returned as a single line, e.g.:
 
-    ```
+    ```http
     Cache-Control: max-age=31536000
     Content-Length: 4260
     Content-Type: image/png
@@ -327,6 +325,8 @@ There are 3 methods for HTTP-headers:
         result[name] = value;
         return result;
       }, {});
+
+    // headers['Content-Type'] = 'image/png'
     ```
 
 ## POST, FormData
@@ -340,14 +340,14 @@ let formData = new FormData([form]); // creates an object, optionally fill from 
 formData.append(name, value); // appends a field
 ```
 
-We create it, optionally from a form, `append` more fields if needed, and then:
+We create it, optionally fill from a form, `append` more fields if needed, and then:
 
 1. `xhr.open('POST', ...)` – use `POST` method.
 2. `xhr.send(formData)` to submit the form to the server.
 
 For instance:
 
-```html run
+```html run refresh
 <form name="person">
   <input name="name" value="John">
   <input name="surname" value="Smith">
@@ -365,6 +365,7 @@ For instance:
   xhr.open("POST", "/article/xmlhttprequest/post/user");
   xhr.send(formData);
 
+  xhr.onload = () => alert(xhr.response);
 </script>
 ```
 
@@ -388,19 +389,19 @@ xhr.setRequestHeader('Content-type', 'application/json; charset=utf-8');
 xhr.send(json);
 ```
 
-The `.send(body)` method is pretty omnivore. It can send almost everything, including `Blob` and `BufferSource` objects.
+The `.send(body)` method is pretty omnivore. It can send almost any `body`, including `Blob` and `BufferSource` objects.
 
 ## Upload progress
 
-The `progress` event only works on the downloading stage.
+The `progress` event triggers only on the downloading stage.
 
 That is: if we `POST` something, `XMLHttpRequest` first uploads our data (the request body), then downloads the response.
 
 If we're uploading something big, then we're surely more interested in tracking the upload progress. But `xhr.onprogress` doesn't help here.
 
-There's another object `xhr.upload`, without methods, exclusively for upload events.
+There's another object, without methods, exclusively to track upload events: `xhr.upload`.
 
-The event list is similar to `xhr` events, but `xhr.upload` triggers them on uploading:
+It generates events, similar to `xhr`, but `xhr.upload` triggers them solely on uploading:
 
 - `loadstart` -- upload started.
 - `progress` -- triggers periodically during the upload.
@@ -519,7 +520,7 @@ There are actually more events, the [modern specification](http://www.w3.org/TR/
 
 The `error`, `abort`, `timeout`, and `load` events are mutually exclusive. Only one of them may happen.
 
-The most used events are load completion (`load`), load failure (`error`), or we can use a single `loadend` handler and check the response to see what happened.
+The most used events are load completion (`load`), load failure (`error`), or we can use a single `loadend` handler and check the properties of the request object `xhr` to see what happened.
 
 We've already seen another event: `readystatechange`. Historically, it appeared long ago, before the specification settled. Nowadays, there's no need to use it, we can replace it with newer events, but it can often be found in older scripts.
 

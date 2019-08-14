@@ -223,6 +223,30 @@ As calls become more nested, the code becomes deeper and increasingly more diffi
 
 That's sometimes called "callback hell" or "pyramid of doom."
 
+<!--
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...
+          }
+        });
+      }
+    })
+  }
+});
+-->
+
 ![](callback-hell.svg)
 
 The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
