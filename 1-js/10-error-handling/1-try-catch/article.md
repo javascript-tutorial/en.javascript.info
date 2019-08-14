@@ -298,7 +298,7 @@ try {
 *!*
   alert(e.name); // SyntaxError
 */!*
-  alert(e.message); // Unexpected token o in JSON at position 0
+  alert(e.message); // Unexpected token o in JSON at position 2
 }
 ```
 

@@ -14,4 +14,5 @@ The demo:
 [iframe border="1" src="solution" height=180]
 
 P.S. For this task we can assume that list items are text-only. No nested tags.
+
 P.P.S. Prevent the native browser selection of the text on clicks.
