@@ -140,7 +140,7 @@ new Promise((resolve, reject) => {
   }
 
 }).then(function() {
-  /* doesn't runs here */
+  /* doesn't run here */
 }).catch(error => { // (**)
 
   alert(`The unknown error has occurred: ${error}`);
@@ -166,7 +166,7 @@ new Promise(function() {
 
 In case of an error, the promise becomes rejected, and the execution should jump to the closest rejection handler. But there is none. So the error gets "stuck". There's no code to handle it.
 
-In practice, just like with a regular unhandled errors in code, it means that something has terribly gone wrong.
+In practice, just like with regular unhandled errors in code, it means that something has terribly gone wrong.
 
 What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in console. Similar thing happens with unhandled promise rejections.
 
