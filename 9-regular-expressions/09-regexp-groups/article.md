@@ -35,7 +35,7 @@ The pattern: `pattern:[-.\w]+@([\w-]+\.)+[\w-]{2,20}`.
 
 That regexp is not perfect, but good enough to fix errors or occasional mistypes.
 
-For instance,  we can find all emails in the string:
+For instance, we can find all emails in the string:
 
 ```js run
 let reg = /[-.\w]+@([\w-]+\.)+[\w-]{2,20}/g;
@@ -43,7 +43,7 @@ let reg = /[-.\w]+@([\w-]+\.)+[\w-]{2,20}/g;
 alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com, his@site.com.uk
 ```
 
-In this example parentheses were used to make a group for repeating `pattern:(...)+`. But there are other uses too, let's see them.
+In this example parentheses were used to make a group for repetitions `pattern:([\w-]+\.)+`. But there are other uses too, let's see them.
 
 ## Contents of parentheses  
 
@@ -53,7 +53,7 @@ For instance, we'd like to find HTML tags `pattern:<.*?>`, and process them.
 
 Let's wrap the inner content into parentheses, like this: `pattern:<(.*?)>`.
 
-We'll get both the tag as a whole and its content as an array:
+Then we'll get both the tag as a whole and its content:
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
@@ -111,7 +111,7 @@ Then groups, numbered from left to right. Whichever opens first gives the first 
 
 Then in `result[2]` goes the group from the second opening `pattern:(` till the corresponding `pattern:)` -- tag name, then we don't group spaces, but group attributes for `result[3]`.
 
-**If a group is optional and doesn't exist in the match, the corresponding `result` index is present (and equals `undefined`).**
+**Even if a group is optional and doesn't exist in the match, the corresponding `result` array item is present (and equals `undefined`).**
 
 For instance, let's consider the regexp `pattern:a(z)?(c)?`. It looks for `"a"` optionally followed by `"z"` optionally followed by `"c"`.
 
@@ -208,7 +208,7 @@ let rearranged = str.replace(dateRegexp, (str, ...args) => {
 
 ## Non-capturing groups with ?:
 
-Sometimes we need parentheses to correctly apply a quantifier, but we don't want the contents in results.
+Sometimes we need parentheses to correctly apply a quantifier, but we don't want their contents in results.
 
 A group may be excluded by adding `pattern:?:` in the beginning.
 

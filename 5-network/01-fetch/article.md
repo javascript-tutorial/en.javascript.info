@@ -12,11 +12,11 @@ For example, we can use a network request to:
 
 ...And all of that without reloading the page!
 
-There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) for network requests from JavaScript. We don't have to use XML though: the term comes from old times, that's that word is there. You may have heard that term already.
+There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) for network requests from JavaScript. We don't have to use XML though: the term comes from old times, that's why that word is there. You may have heard that term already.
 
 There are multiple ways to send a network request and get information from the server.
 
-The `fetch()` method is modern and versatile, so we'll start with it. It's not supported by old browsers (can be polyfilled), but very well supported among the new ones.
+The `fetch()` method is modern and versatile, so we'll start with it. It's not supported by old browsers (can be polyfilled), but very well supported among the modern ones.
 
 The basic syntax is:
 
@@ -27,11 +27,13 @@ let promise = fetch(url, [options])
 - **`url`** -- the URL to access.
 - **`options`** -- optional parameters: method, headers etc.
 
+Without `options`, that is a simple GET request, downloading the contents of the `url`.
+
 The browser starts the request right away and returns a promise that the calling code should use to get the result.
 
 Getting a response is usually a two-stage process.
 
-**First, the `promise` resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
+**First, the `promise`, returned by `fetch`, resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
 
 At this stage we can check HTTP status, to see whether it is successful or not, check headers, but don't have the body yet.
 
