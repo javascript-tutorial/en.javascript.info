@@ -3,11 +3,11 @@
 
 By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
 
-Till now we've only seen strings. Now let's see the advantages that symbols can give us.
+Till now we've been using only strings. Now let's see the benefits that symbols can give us.
 
 ## Symbols
 
-"Symbol" value represents a unique identifier.
+A "symbol" represents a unique identifier.
 
 A value of this type can be created using `Symbol()`:
 
