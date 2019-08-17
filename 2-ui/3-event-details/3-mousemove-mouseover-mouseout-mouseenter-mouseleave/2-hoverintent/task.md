@@ -4,16 +4,17 @@ importance: 5
 
 # "Smart" tooltip
 
-Write a function that shows a tooltip over an element only if the visitor moves the mouse *over it*, but not *through it*.
+Write a function that shows a tooltip over an element only if the visitor moves the mouse *to it*, but not *through it*.
 
-In other words, if the visitor moves the mouse on the element and stopped -- show the tooltip. And if they just moved the mouse through fast, then no need, who wants extra blinking?
+In other words, if the visitor moves the mouse to the element and stops there -- show the tooltip. And if they just moved the mouse through, then no need, who wants extra blinking?
 
 Technically, we can measure the mouse speed over the element, and if it's slow then we assume that it comes "over the element" and show the tooltip, if it's fast -- then we ignore it.
 
-Make a universal object `new HoverIntent(options)` for it. With `options`:
+Make a universal object `new HoverIntent(options)` for it.
 
+Its `options`:
 - `elem` -- element to track.
-- `over` -- a function to call if the mouse is slowly moving over the element.
+- `over` -- a function to call if the mouse came to the element: that is, it moves slowly or stopped over it.
 - `out` -- a function to call when the mouse leaves the element (if `over` was called).
 
 An example of using such object for the tooltip:
