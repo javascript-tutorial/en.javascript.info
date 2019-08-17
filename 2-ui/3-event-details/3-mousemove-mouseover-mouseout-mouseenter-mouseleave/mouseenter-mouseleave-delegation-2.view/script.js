@@ -28,17 +28,15 @@ table.onmouseout = function(event) {
   // e.g. from <tr> to another <tr>
   if (!currentElem) return;
 
-  // we're leaving the element -- where to? Maybe to a descendant?
+  // we're leaving the element – where to? Maybe to a descendant?
   let relatedTarget = event.relatedTarget;
 
-  if (relatedTarget) { // possible: relatedTarget = null
-    while (relatedTarget) {
-      // go up the parent chain and check -- if we're still inside currentElem
-      // then that's an internal transition -- ignore it
-      if (relatedTarget == currentElem) return;
+  while (relatedTarget) {
+    // go up the parent chain and check – if we're still inside currentElem
+    // then that's an internal transition – ignore it
+    if (relatedTarget == currentElem) return;
 
-      relatedTarget = relatedTarget.parentNode;
-    }
+    relatedTarget = relatedTarget.parentNode;
   }
 
   // we left the <td>. really.

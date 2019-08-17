@@ -92,7 +92,15 @@ The `mouseover` event on a descendant bubbles up. So, if the parent element has 
 
 ![](mouseover-bubble-nested.svg)
 
-So, when we move from a parent element to a child, then two handlers trigger on the parent element: `mouseout` and `mouseover`:
+```online
+You can see that very well in the example below: `<div id="child">` is inside the `<div id="parent">`. There are handlers on the parent that listen for `mouseover/out` events and output their details.
+
+If you move the mouse from the parent to the child, you see two events: `mouseout [target: parent]` (left the parent) and `mouseover [target: child]` (came to the child, bubbled).
+
+[codetabs height=360 src="mouseoverout-child"]
+```
+
+When we move from a parent element to a child, then two handlers trigger on the parent element: `mouseout` and `mouseover`:
 
 ```js
 parent.onmouseout = function(event) {
@@ -104,14 +112,6 @@ parent.onmouseover = function(event) {
 ```
 
 If the code inside the handlers doesn't look at `target`, then it might think that the mouse left the `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
-
-```online
-In the example below the `<div id="child">` is inside the `<div id="parent">`. There are handlers on the parent that listen for `mouseover/out` events and output their details.
-
-If you move the mouse from the parent to the child, you see two events: `mouseout [target: parent]` (left the parent) and `mouseover [target: child]` (came to the child, bubbled).
-
-[codetabs height=360 src="mouseoverout-child"]
-```
 
 If there's some action upon leaving the element, e.g. animation runs, then such interpretation may bring unwanted side effects.
 
@@ -125,7 +125,7 @@ Events `mouseenter/mouseleave` are like `mouseover/mouseout`. They trigger when 
 
 But there are two important differences:
 
-1. Transitions inside the element are not counted.
+1. Transitions inside the element, to/from descendants, are not counted.
 2. Events `mouseenter/mouseleave` do not bubble.
 
 These events are extremely simple.
@@ -154,7 +154,7 @@ Handlers for `mouseenter/leave` on `<table>` only trigger when the pointer enter
 
 So, let's use `mouseover/mouseout`.
 
-Let's start with handlers that highlight the element under mouse:
+Let's start with simple handlers that highlight the element under mouse:
 
 ```js
 // let's highlight an element under the pointer
@@ -203,5 +203,7 @@ These things are good to note:
 
 - A fast mouse move may skip intermediate elements.
 - Events `mouseover/out` and `mouseenter/leave` have an additional property: `relatedTarget`. That's the element that we are coming from/to, complementary to `target`.
-- Events `mouseover/out` trigger even when we go from the parent element to a child element. The browser assumes that the mouse can be only over one element at one time -- the deepest one.
-- Events `mouseenter/leave` do not bubble and do not trigger when the mouse goes to a child element. They only track whether the mouse comes inside and outside the element as a whole. So, they are simpler than `mouseover/out`, but we can't implement delegation using them.
+
+Events `mouseover/out` trigger even when we go from the parent element to a child element. The browser assumes that the mouse can be only over one element at one time -- the deepest one.
+
+Events `mouseenter/leave` are different in that aspect: they only trigger when the mouse comes in and out the element as a whole. Also they do not bubble. 
