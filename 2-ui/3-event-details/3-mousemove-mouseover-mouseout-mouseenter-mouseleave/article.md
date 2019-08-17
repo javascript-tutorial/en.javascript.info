@@ -99,7 +99,7 @@ parent.onmouseout = function(event) {
   /* event.target: parent element */
 };
 parent.onmouseover = function(event) {
-  /* event.target: child element */
+  /* event.target: child element (bubbled) */
 };
 ```
 
