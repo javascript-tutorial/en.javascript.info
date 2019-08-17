@@ -136,7 +136,7 @@ And here we modify the contents after loading:
 let newWindow = open('/', 'example', 'width=300,height=300')
 newWindow.focus();
 
-alert(newWin.location.href); // (*) about:blank, loading hasn't started yet
+alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
 
 newWindow.onload = function() {
   let html = `<div style="font-size:30px">Welcome!</div>`;
@@ -172,7 +172,7 @@ So the connection between the windows is bidirectional: the main window and the 
 
 ## Closing a popup
 
-To close a window: `win.close()`. 
+To close a window: `win.close()`.
 
 To check if a window is closed: `win.closed`.
 
@@ -274,4 +274,3 @@ To close the popup: use `close()` call. Also the user may close them (just like 
 
 - Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
 - Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
-
