@@ -74,15 +74,19 @@ alert(id.description); // id
 
 Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
 
-For instance, if we're working with `user` objects, that belong to a third-party code and don't have any `id` field. We'd like to add identifiers to them.
+For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
 
 Let's use a symbol key for it:
 
 ```js run
-let user = { name: "John" };
+let user = { // belongs to another code
+  name: "John"
+};
+
 let id = Symbol("id");
 
-user[id] = "ID Value";
+user[id] = 1;
+
 alert( user[id] ); // we can access the data using the symbol as the key
 ```
 
@@ -108,13 +112,13 @@ There will be no conflict between our and their identifiers, because symbols are
 ```js run
 let user = { name: "John" };
 
-// our script uses "id" property
-user.id = "ID Value";
+// Our script uses "id" property
+user.id = "Our id value";
 
-// ...if later another script the uses "id" for its purposes...
+// ...Another script also wants "id" for its purposes...
 
 user.id = "Their id value"
-// boom! overwritten! it did not mean to harm the colleague, but did it!
+// Boom! overwritten by another script!
 ```
 
 ### Symbols in a literal
