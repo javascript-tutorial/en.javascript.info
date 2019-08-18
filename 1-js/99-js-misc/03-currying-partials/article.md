@@ -40,7 +40,7 @@ As you can see, the implementation is straightforward: it's just two wrappers.
 
 - The result of `curry(func)` is a wrapper `function(a)`.
 - When it is called like `sum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
-- Then `sum(1)(2)` finally calls `function(b)` providing `2`, and it passes the call to the original multi-argument `sum`.
+- Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
 
 More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
 
@@ -73,10 +73,15 @@ Let's curry it!
 log = _.curry(log);
 ```
 
-After that `log` work both the normal way and in the curried form:
+After that `log` work normally:
 
 ```js
-log(new Date(), "DEBUG", "some debug"); // log(a,b,c)
+log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
+```
+
+...But also works in the curried form:
+
+```js
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
 
@@ -102,11 +107,11 @@ debugNow("message"); // [HH:mm] DEBUG message
 
 So:
 1. We didn't lose anything after currying: `log` is still callable normally.
-2. We were able to generate partial functions such as for today's logs.
+2. We can easily generate partial functions such as for today's logs.
 
 ## Advanced curry implementation
 
-In case you'd like to get in details, here's the "advanced" curry implementation that we could use above.
+In case you'd like to get in details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
 
 It's pretty short:
 
@@ -142,7 +147,7 @@ alert( curriedSum(1)(2)(3) ); // 6, full currying
 
 The new `curry` may look complicated, but it's actually easy to understand.
 
-The result of `curry(func)` is the wrapper `curried` that looks like this:
+The result of `curry(func)` call is the wrapper `curried` that looks like this:
 
 ```js
 // func is the function to transform
@@ -157,7 +162,7 @@ function curried(...args) {
 };
 ```
 
-When we run it, there are two execution branches:
+When we run it, there are two `if` execution branches:
 
 1. Call now: if passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
 2. Get a partial: otherwise, `func` is not called yet. Instead, another wrapper `pass` is returned, that will re-apply `curried` providing previous arguments together with the new ones. Then on a new call, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
@@ -173,7 +178,9 @@ For the call `curried(1)(2)(3)`:
 If that's still not obvious, just trace the calls sequence in your mind or on the paper.
 
 ```smart header="Fixed-length functions only"
-The currying requires the function to have a known fixed number of arguments.
+The currying requires the function to have a fixed number of arguments.
+
+A function that uses rest parameters, such as `f(...args)`, can't be curried this way.
 ```
 
 ```smart header="A little more than currying"
