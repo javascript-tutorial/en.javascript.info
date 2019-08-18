@@ -241,7 +241,7 @@ An extended code of `onMouseMove` to find "droppable" elements:
 
 ```js
 // potential droppable that we're flying over right now
-let currentDroppable = null; 
+let currentDroppable = null;
 
 function onMouseMove(event) {
   moveAt(event.pageX, event.pageY);
@@ -251,13 +251,13 @@ function onMouseMove(event) {
   ball.hidden = false;
 
   // mousemove events may trigger out of the window (when the ball is dragged off-screen)
-  // if clientX/clientY are out of the window, then elementfromPoint returns null
+  // if clientX/clientY are out of the window, then elementFromPoint returns null
   if (!elemBelow) return;
 
   // potential droppables are labeled with the class "droppable" (can be other logic)
   let droppableBelow = elemBelow.closest('.droppable');
 
-  if (currentDroppable != droppableBelow) { // if there are any changes
+  if (currentDroppable != droppableBelow) {
     // we're flying in or out...
     // note: both values can be null
     //   currentDroppable=null if we were not over a droppable before this event (e.g over an empty space)
@@ -288,13 +288,13 @@ We considered a basic Drag'n'Drop algorithm.
 
 The key components:
 
-1. Events flow: `ball.mousedown` -> `document.mousemove` -> `ball.mouseup` (cancel native `ondragstart`).
+1. Events flow: `ball.mousedown` -> `document.mousemove` -> `ball.mouseup` (don't forget to cancel native `ondragstart`).
 2. At the drag start -- remember the initial shift of the pointer relative to the element: `shiftX/shiftY` and keep it during the dragging.
 3. Detect droppable elements under the pointer using `document.elementFromPoint`.
 
 We can lay a lot on this foundation.
 
-- On `mouseup` we can finalize the drop: change data, move elements around.
+- On `mouseup` we can intellectually finalize the drop: change data, move elements around.
 - We can highlight the elements we're flying over.
 - We can limit dragging by a certain area or direction.
 - We can use event delegation for `mousedown/up`. A large-area event handler that checks  `event.target` can manage Drag'n'Drop for hundreds of elements.

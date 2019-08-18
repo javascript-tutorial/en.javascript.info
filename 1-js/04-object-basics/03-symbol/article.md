@@ -52,7 +52,7 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
 
-If we really want to show a symbol, we need to call `.toString()` on it, like here:
+If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
 ```js run
 let id = Symbol("id");
 *!*
@@ -60,7 +60,7 @@ alert(id.toString()); // Symbol(id), now it works
 */!*
 ```
 
-Or get `symbol.description` property to get the description only:
+Or get `symbol.description` property to show the description only:
 ```js run
 let id = Symbol("id");
 *!*
@@ -133,7 +133,7 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not just "id: 123"
+  [id]: 123 // not "id: 123"
 */!*
 };
 ```
