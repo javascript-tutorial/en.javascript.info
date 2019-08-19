@@ -99,7 +99,7 @@ It triggers when a property is read, with following arguments:
 
 Let's use `get` to implement default values for an object.
 
-We'll make a numeric array that returns return `0` for non-existant values.
+We'll make a numeric array that returns `0` for non-existant values.
 
 Usually when one tries to get a non-existing array item, they get `undefined`, but we'll wrap a regular array into proxy that traps reading and returns `0` if there's no such property:
 
