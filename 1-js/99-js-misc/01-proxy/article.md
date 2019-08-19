@@ -43,7 +43,7 @@ As we can see, without any traps, `proxy` is a transparent wrapper around `targe
 
 To activate more capabilities, let's add traps.
 
-What can we intercept by them?
+What can we intercept with them?
 
 For most operations on objects, there's a so-called "internal method" in JavaScript specificaiton, that describes on the lowest level, how it works. For instance, `[[Get]]` - the internal method to read a property, `[[Set]]` -- the internal method to write a property, and so on. These methods are only used in the specification, we can't call them directly by name.
 

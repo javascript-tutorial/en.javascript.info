@@ -51,11 +51,13 @@ let form = document.forms[0];
 
 let ageElems = form.elements.age;
 
-alert(ageElems[0].value); // 10, the first input value
+*!*
+alert(ageElems[0].value); // 10, the value of the first input name="age"
+*/!*
 </script>
 ```
 
-These navigation properties do not depend on the tag structure. All elements, no matter how deep they are in the form, are available in `form.elements`.
+These navigation properties do not depend on the tag structure. All control elements, no matter how deep they are in the form, are available in `form.elements`.
 
 
 ````smart header="Fieldsets as \"subforms\""
