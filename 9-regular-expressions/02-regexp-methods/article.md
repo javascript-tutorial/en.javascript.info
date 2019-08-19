@@ -2,8 +2,8 @@
 
 There are two sets of methods to deal with regular expressions.
 
-1. First, regular expressions are objects of the built-in [RegExp](mdn:js/RegExp) class, it provides many methods.
-2. Besides that, there are methods in regular strings can work with regexps.
+1. First, regular expressions are objects of the built-in [RegExp](mdn:js/RegExp) class, which provides many methods.
+2. Additionally, there are methods in regular strings that can work with regexps.
 
 
 ## Recipes
