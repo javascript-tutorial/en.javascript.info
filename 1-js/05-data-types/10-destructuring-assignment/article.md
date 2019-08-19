@@ -428,7 +428,7 @@ In real-life, the problem is how to remember the order of arguments. Usually IDE
 Like this?
 
 ```js
-// undefined where detauls values are fine
+// undefined where default values are fine
 showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
 ```
 
