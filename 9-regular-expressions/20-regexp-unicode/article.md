@@ -72,7 +72,7 @@ alert( '𝒳'.match(/[𝒳𝒴]/u) ); // 𝒳
 
 Let's see one more example.
 
-If we forget the `u` flag and occasionally use surrogate pairs, then we can get an error:
+If we forget the `u` flag and accidentally use surrogate pairs, then we can get an error:
 
 ```js run
 '𝒳'.match(/[𝒳-𝒴]/); // SyntaxError: invalid range in character class
