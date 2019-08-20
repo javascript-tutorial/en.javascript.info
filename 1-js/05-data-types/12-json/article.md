@@ -286,13 +286,13 @@ The first call is special. It is made using a special "wrapper object": `{"": me
 The idea is to provide as much power for `replacer` as possible: it has a chance to analyze and replace/skip even the whole object if necessary.
 
 
-## Formatting: spacer
+## Formatting: space
 
-The third argument of `JSON.stringify(value, replacer, spaces)` is the number of spaces to use for pretty formatting.
+The third argument of `JSON.stringify(value, replacer, space)` is the number of spaces to use for pretty formatting.
 
-Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `spacer` argument is used exclusively for a nice output.
+Previously, all stringified objects had no indents and extra spaces. That's fine if we want to send an object over a network. The `space` argument is used exclusively for a nice output.
 
-Here `spacer = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
+Here `space = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
 
 ```js run
 let user = {
@@ -328,7 +328,7 @@ alert(JSON.stringify(user, null, 2));
 */
 ```
 
-The `spaces` parameter is used solely for logging and nice-output purposes.
+The `space` parameter is used solely for logging and nice-output purposes.
 
 ## Custom "toJSON"
 
