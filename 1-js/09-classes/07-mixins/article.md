@@ -205,4 +205,4 @@ Some other languages like allow multiple inheritance. JavaScript does not suppor
 
 We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
 
-Mixins may become a point of conflict if they occasionally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
+Mixins may become a point of conflict if they accidentally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
