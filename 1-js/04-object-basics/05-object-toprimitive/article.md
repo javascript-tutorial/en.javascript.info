@@ -196,7 +196,7 @@ For instance:
       }
     };
 
-    alert(obj + 2); // 22 (toString returned string => concatenation)
+    alert(obj + 2); // 22 (conversion to primitive returned a string => concatenation)
     ```
 
 ## Summary
