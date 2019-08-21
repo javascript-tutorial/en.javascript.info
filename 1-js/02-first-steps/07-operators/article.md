@@ -26,7 +26,7 @@ Before we move on, let's grasp some common terminology.
     alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+    Strictly speaking, we've considered two different operators that share the same symbol: the former, known as the negation operator, is a unary operator; the later, known as the substraction operator, is a binary operator. 
 
 ## String concatenation, binary +
 
