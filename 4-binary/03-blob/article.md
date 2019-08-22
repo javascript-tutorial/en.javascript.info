@@ -57,7 +57,7 @@ This behavior is similar to JavaScript strings: we can't change a character in a
 
 A Blob can be easily used as an URL for `<a>`, `<img>` or other tags, to show its contents.
 
-Thanks to `type`, we can allso download/upload blobs, and it naturally becomes `Content-Type` in network requests.
+Thanks to `type`, we can also download/upload blobs, and it naturally becomes `Content-Type` in network requests.
 
 Let's start with a simple example. By clicking on a link you download a dynamically-generated blob with `hello world` contents as a file:
 
