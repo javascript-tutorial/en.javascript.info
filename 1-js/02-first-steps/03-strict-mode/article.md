@@ -6,6 +6,10 @@ That had the benefit of never breaking existing code. But the downside was that 
 
 This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
 
+````smart header="Modules also enable modern features"
+Another way to enable strict mode is to use modules, which are always in strict mode. This can be done simply by adding the `type="module"` attribute to a script tag. Only modern browsers support modules however, so they will not work in Internet Explorer 11 or lower. Modules are discussed in [a later chapter](/modules).
+````
+
 ## "use strict"
 
 The directive looks like a string: `"use strict"` or `'use strict'`. When it is located at the top of a script, the whole script works the "modern" way.
@@ -82,4 +86,4 @@ For now, it's enough to know about it in general:
 1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details later in the tutorial.
 2. Strict mode is enabled by placing `"use strict"` at the top of a script or function. Several language features, like "classes" and "modules", enable strict mode automatically.
 3. Strict mode is supported by all modern browsers.
-4. We recommended always starting scripts with `"use strict"`. All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+4. Unless you're using modules, we recommended always starting scripts with `"use strict"`. All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
