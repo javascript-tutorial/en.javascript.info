@@ -313,7 +313,7 @@ Hopefully, the situation with outer variables is clear now. For most situations 
 
 ## Environments in detail
 
-Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you know things in the very detail.
+Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand how it works in detail.
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
