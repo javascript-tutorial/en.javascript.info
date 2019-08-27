@@ -140,6 +140,8 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
 Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
+
+> A note on notation: in this tutorial "str" will be sometimes used to mean "a string", as in the "str.length" example above. It ("str") has no special meaning in itself. (Also, in the examples "str" may also be used as a string variable name). Similarly "num" will be used as shorthand for "a number", and "obj" as a shorthand for "an object". 
 ```
 
 ## Accessing characters
