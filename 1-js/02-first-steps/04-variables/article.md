@@ -12,13 +12,13 @@ A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "na
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+The statement below creates (in other words: *declares*) a variable with the name "message":
 
 ```js
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Now, we can put some data into it by using the assignment operator `=`: 
 
 ```js
 let message;
@@ -27,6 +27,8 @@ let message;
 message = 'Hello'; // store the string
 */!*
 ```
+
+Assigning a value to the variable is how we *define* the variable. This is precisely why a variable with no value assigned is considered [undefined](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined).
 
 The string is now saved into the memory area associated with the variable. We can access it using the variable name:
 
