@@ -1,8 +1,8 @@
 # Fetch users from GitHub
 
-Create an async function `getUsers(names)`, that gets an array of GitHub logins, fetche the users from GitHub and returns an array of GitHub users.
+Create an async function `getUsers(names)`, that gets an array of GitHub logins, fetches the users from GitHub and returns an array of GitHub users.
 
-The GitHub url with user informaiton for the given `USERNAME` is: `https://api.github.com/users/USERNAME`.
+The GitHub url with user information for the given `USERNAME` is: `https://api.github.com/users/USERNAME`.
 
 There's a test example in the sandbox.
 
