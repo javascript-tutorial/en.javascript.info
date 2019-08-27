@@ -10,7 +10,7 @@ There are also cases when we need to explicitly convert a value to the expected 
 In this chapter, we won't cover objects. Instead, we'll study primitives first. Later, after we learn about objects, we'll see how object conversion works in the chapter <info:object-toprimitive>.
 ```
 
-## ToString
+## To String
 
 String conversion happens when we need the string form of a value.
 
@@ -30,7 +30,7 @@ alert(typeof value); // string
 
 String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
 
-## ToNumber
+## To Number
 
 Numeric conversion happens in mathematical functions and expressions automatically.
 
@@ -94,7 +94,7 @@ alert( '1' + 2 ); // '12' (string to the left)
 This only happens when at least one of the arguments is a string. Otherwise, values are converted to numbers.
 ````
 
-## ToBoolean
+## To Boolean
 
 Boolean conversion is the simplest one.
 
@@ -129,9 +129,9 @@ alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 
 The three most widely used type conversions are to string, to number, and to boolean.
 
-**`ToString`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`To String`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
 
-**`ToNumber`** -- Occurs in math operations. Can be performed with `Number(value)`.
+**`To Number`** -- Occurs in math operations. Can be performed with `Number(value)`.
 
 The conversion follows the rules:
 
@@ -142,7 +142,7 @@ The conversion follows the rules:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
 
-**`ToBoolean`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+**`To Boolean`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
 
 Follows the rules:
 
