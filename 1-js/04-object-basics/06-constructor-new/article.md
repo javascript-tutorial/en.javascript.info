@@ -162,9 +162,6 @@ function SmallUser() {
   this.name = "John";
 
   return; // finishes the execution, returns this
-
-  // ...
-
 }
 
 alert( new SmallUser().name );  // John
