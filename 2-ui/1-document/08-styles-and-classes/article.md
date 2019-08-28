@@ -164,7 +164,7 @@ For instance, we should not set `elem.style.top` to `10`, but rather to `10px`. 
   *!*
     // doesn't work!
     document.body.style.margin = 20;
-    alert(document.body.style.margin); // '' (empty string, the assignment is ignored)
+    alert(document.body.style.margin); // 20px (it deduces that they are pixels, that works but not it's proper)
   */!*
 
     // now add the CSS unit (px) - and it works
