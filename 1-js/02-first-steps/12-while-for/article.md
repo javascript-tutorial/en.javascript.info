@@ -108,8 +108,8 @@ Let's examine the `for` statement part-by-part:
 |-------|----------|----------------------------------------------------------------------------|
 | begin | `i = 0`    | Executes once upon entering the loop.                                      |
 | condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
-| step| `i++`      | Executes after the body on each iteration but before the condition check. |
 | body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
 
 The general loop algorithm works like this:
 
