@@ -14,6 +14,7 @@ true + false = 1
 " -9  " - 5 = -14 // (4)
 null + 1 = 1 // (5)
 undefined + 1 = NaN // (6)
+" \t \n" - 2 = -2 // (7)
 ```
 
 1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
@@ -22,3 +23,4 @@ undefined + 1 = NaN // (6)
 4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
 5. `null` becomes `0` after the numeric conversion.
 6. `undefined` becomes `NaN` after the numeric conversion.
+7. Space characters, such as `\t` and `\n`, are trimmed off string start and end when a string is converted to a number. So a string `\t \n`, similarly to an empty string, becomes `0`.
