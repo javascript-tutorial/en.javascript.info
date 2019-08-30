@@ -12,7 +12,7 @@ A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "na
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+The statement below creates (in other words: *declares*) a variable with the name "message":
 
 ```js
 let message;

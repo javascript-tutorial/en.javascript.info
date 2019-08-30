@@ -23,4 +23,4 @@ undefined + 1 = NaN // (6)
 4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
 5. `null` becomes `0` after the numeric conversion.
 6. `undefined` becomes `NaN` after the numeric conversion.
-7. Space characters, such as `\t` and `\n`, are trimmed off string start and end when a string is converted to a number. So a string `\t \n`, similarly to an empty string, becomes `0`.
+7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
