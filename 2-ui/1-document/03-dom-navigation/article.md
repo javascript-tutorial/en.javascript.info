@@ -22,7 +22,7 @@ Let's discuss them in more detail.
 The topmost tree nodes are available directly as `document` properties:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's DOM node of `<html>` tag.
+: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
 
 `<body>` = `document.body`
 : Another widely used DOM node is the `<body>` element -- `document.body`.
@@ -239,7 +239,7 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-The reason is that root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
 
 This detail may be useful when we want to travel up from an arbitrary element `elem` to `<html>`, but not to the `document`:
 ```js
@@ -280,7 +280,7 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example and important particular case of that.
+Tables are a great example and a particularly important case for that.
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
