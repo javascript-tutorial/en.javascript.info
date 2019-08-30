@@ -8,13 +8,13 @@ Look at this page:
 
 ```html
 <html>
-<body>
-  <div>Users:</div>
-  <ul>
-    <li>John</li>
-    <li>Pete</li>
-  </ul>
-</body>
+  <body>
+    <div>Users:</div>
+    <ul>
+      <li>John</li>
+      <li>Pete</li>
+    </ul>
+  </body>
 </html>
 ```
 
