@@ -155,7 +155,7 @@ We can avoid it by switching to `WeakMap` instead:
 
 ```js
 // 📁 visitsCount.js
-let visitsCountMap = new WeakMap(); // map: user => visits count
+let visitsCountMap = new WeakMap(); // weakmap: user => visits count
 
 // increase the visits count
 function countUser(user) {
@@ -164,7 +164,7 @@ function countUser(user) {
 }
 ```
 
-Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable by all means except as a key of `WeakMap`, it gets removed from memory, along with the   information by that key from `WeakMap`.
+Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable by all means except as a key of `WeakMap`, it gets removed from memory, along with the information by that key from `WeakMap`.
 
 ## Use case: caching
 
