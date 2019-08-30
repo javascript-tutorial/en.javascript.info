@@ -284,6 +284,6 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 `WeakSet` is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
 
-Both of them do not support methods and properties that refer to all keys or their count. Only individial operations are allowed.
+Both of them do not support methods and properties that refer to all keys or their count. Only individual operations are allowed.
 
 `WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
