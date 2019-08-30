@@ -1,9 +1,9 @@
 libs:
-  - d3
-  - domtree
+
+- d3
+- domtree
 
 ---
-
 
 # Walking the DOM
 
@@ -22,7 +22,7 @@ Let's discuss them in more detail.
 The topmost tree nodes are available directly as `document` properties:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's DOM node of `<html>` tag.
+: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
 
 `<body>` = `document.body`
 : Another widely used DOM node is the `<body>` element -- `document.body`.
@@ -30,7 +30,7 @@ The topmost tree nodes are available directly as `document` properties:
 `<head>` = `document.head`
 : The `<head>` tag is available as `document.head`.
 
-````warn header="There's a catch: `document.body` can be `null`"
+``warn header="There's a catch: `document.body` can be `null`"
 A script cannot access an element that doesn't exist at the moment of running.
 
 In particular, if a script is inside `<head>`, then `document.body` is unavailable, because the browser did not read it yet.
@@ -39,25 +39,23 @@ So, in the example below the first `alert` shows `null`:
 
 ```html run
 <html>
+  <head>
+    <script>
+      *!*
+          alert( "From HEAD: " + document.body ); // null, there's no <body> yet
+      */!*
+    </script>
+  </head>
 
-<head>
-  <script>
-*!*
-    alert( "From HEAD: " + document.body ); // null, there's no <body> yet
-*/!*
-  </script>
-</head>
-
-<body>
-
-  <script>
-    alert( "From BODY: " + document.body ); // HTMLBodyElement, now it exists
-  </script>
-
-</body>
+  <body>
+    <script>
+      alert("From BODY: " + document.body); // HTMLBodyElement, now it exists
+    </script>
+  </body>
 </html>
 ```
-````
+
+`````
 
 ```smart header="In the DOM world `null` means \"doesn't exist\""
 In the DOM, the `null` value means "doesn't exist" or "no such node".
@@ -178,17 +176,22 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
   for (let prop in document.body.childNodes) alert(prop);
 </script>
 </body>
-````
+`````
 
 ## Siblings and the parent
 
-*Siblings* are nodes that are children of the same parent.
+_Siblings_ are nodes that are children of the same parent.
 
 For instance, here `<head>` and `<body>` are siblings:
 
 ```html
 <html>
-  <head>...</head><body>...</body>
+  <head>
+    ...
+  </head>
+  <body>
+    ...
+  </body>
 </html>
 ```
 
@@ -203,22 +206,22 @@ For example:
 
 ```js
 // parent of <body> is <html>
-alert( document.body.parentNode === document.documentElement ); // true
+alert(document.body.parentNode === document.documentElement); // true
 
 // after <head> goes <body>
-alert( document.head.nextSibling ); // HTMLBodyElement
+alert(document.head.nextSibling); // HTMLBodyElement
 
 // before <body> goes <head>
-alert( document.body.previousSibling ); // HTMLHeadElement
+alert(document.body.previousSibling); // HTMLHeadElement
 ```
 
 ## Element-only navigation
 
-Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
+Navigation properties listed above refer to _all_ nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
 
 But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and form the structure of the page.
 
-So let's see more navigation links that only take *element nodes* into account:
+So let's see more navigation links that only take _element nodes_ into account:
 
 ![](dom-links-elements.svg)
 
@@ -229,24 +232,27 @@ The links are similar to those given above, just with `Element` word inside:
 - `previousElementSibling`, `nextElementSibling` -- neighbour elements.
 - `parentElement` -- parent element.
 
-````smart header="Why `parentElement`? Can the parent be *not* an element?"
+``smart header="Why `parentElement`? Can the parent be _not_ an element?"
 The `parentElement` property returns the "element" parent, while `parentNode` returns "any node" parent. These properties are usually the same: they both get the parent.
 
 With the one exception of `document.documentElement`:
 
 ```js run
-alert( document.documentElement.parentNode ); // document
-alert( document.documentElement.parentElement ); // null
+alert(document.documentElement.parentNode); // document
+alert(document.documentElement.parentElement); // null
 ```
 
-The reason is that root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
 
 This detail may be useful when we want to travel up from an arbitrary element `elem` to `<html>`, but not to the `document`:
+
 ```js
-while(elem = elem.parentElement) { // go up till <html>
-  alert( elem );
+while ((elem = elem.parentElement)) {
+  // go up till <html>
+  alert(elem);
 }
 ```
+
 ````
 
 Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
@@ -280,7 +286,7 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example and important particular case of that.
+Tables are a great example and a particularly important case for that.
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
@@ -330,3 +336,4 @@ There are two main sets of them:
 - For element nodes only: `parentElement`, `children`, `firstElementChild`, `lastElementChild`, `previousElementSibling`, `nextElementSibling`.
 
 Some types of DOM elements, e.g. tables, provide additional properties and collections to access their content.
+````
