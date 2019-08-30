@@ -272,6 +272,7 @@ alert(visitedSet.has(john)); // true
 alert(visitedSet.has(mary)); // false
 
 john = null;
+pete = null;
 
 // visitedSet will be cleaned automatically
 ```
