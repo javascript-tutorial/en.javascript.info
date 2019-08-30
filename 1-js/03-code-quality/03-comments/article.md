@@ -175,6 +175,6 @@ Good comments allow us to maintain the code well, come back to it after a delay 
 **Avoid comments:**
 
 - That tell "how code works" and "what it does".
-- Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
 
 Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
