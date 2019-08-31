@@ -22,7 +22,7 @@ Let's discuss them in more detail.
 The topmost tree nodes are available directly as `document` properties:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's the DOM node of the`<html>` tag.
+: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
 
 `<body>` = `document.body`
 : Another widely used DOM node is the `<body>` element -- `document.body`.
