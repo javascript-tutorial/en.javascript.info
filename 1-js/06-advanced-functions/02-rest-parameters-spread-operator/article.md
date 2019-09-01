@@ -25,7 +25,7 @@ alert( sum(1, 2, 3, 4, 5) );
 
 There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
 
-The rest parameters can be mentioned in a function definition with three dots `...`. They literally mean "gather the remaining parameters into an array".
+The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
 
 For instance, to gather all arguments into array `args`:
 
