@@ -42,29 +42,11 @@ Here the flow is:
 
 As the result is passed along the chain of handlers, we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
 
-![](promise-then-chain.png)
+![](promise-then-chain.svg)
 
 The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
-
-To make these words more clear, here's the start of the chain:
-
-```js run
-new Promise(function(resolve, reject) {
-
-  setTimeout(() => resolve(1), 1000);
-
-}).then(function(result) {
-
-  alert(result);
-  return result * 2; // <-- (1)
-
-}) // <-- (2)
-// .then…
-```
-
-The value returned by `.then` is a promise, that's why we are able to add another `.then` at `(2)`. When the value is returned in `(1)`, that promise becomes resolved, so the next handler runs with the value.
 
 **A classic newbie error: technically we can also add many `.then` to a single promise. This is not chaining.**
 
@@ -94,7 +76,7 @@ What we did here is just several handlers to one promise. They don't pass the re
 
 Here's the picture (compare it with the chaining above):
 
-![](promise-then-many.png)
+![](promise-then-many.svg)
 
 All `.then` on the same promise get the same result -- the result of that promise. So in the code above all `alert` show the same: `1`.
 
@@ -102,9 +84,9 @@ In practice we rarely need multiple handlers for one promise. Chaining is used m
 
 ## Returning promises
 
-Normally, a value returned by a `.then` handler is immediately passed to the next handler. But there's an exception.
+A handler, used in `.then(handler)` may create and return a promise.
 
-If the returned value is a promise, then the further execution is suspended until it settles. After that, the result of that promise is given to the next `.then` handler.
+In that case further handlers wait till it settles, and then get its result.
 
 For instance:
 
@@ -138,15 +120,15 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Here the first `.then` shows `1` returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result*2`) is passed on to handler of the second `.then` in the line `(**)`. It shows `2` and does the same thing.
+Here the first `.then` shows `1` and returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result * 2`) is passed on to handler of the second `.then`. That handler is in the line `(**)`, it shows `2` and does the same thing.
 
-So the output is again 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
+So the output is the same as in the previous example: 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
 
 Returning promises allows us to build chains of asynchronous actions.
 
 ## Example: loadScript
 
-Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](/promise-basics#loadscript), to load scripts one by one, in sequence:
+Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](info:promise-basics#loadscript), to load scripts one by one, in sequence:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -184,7 +166,7 @@ Here each `loadScript` call returns a promise, and the next `.then` runs when it
 
 We can add more asynchronous actions to the chain. Please note that code is still "flat", it grows down, not to the right. There are no signs of "pyramid of doom".
 
-Please note that technically we can add `.then` directly to each `loadScript`, like this:
+Technically, we could add `.then` directly to each `loadScript`, like this:
 
 ```js run
 loadScript("/article/promise-chaining/one.js").then(script1 => {
@@ -207,9 +189,7 @@ Sometimes it's ok to write `.then` directly, because the nested function has acc
 
 
 ````smart header="Thenables"
-To be precise, `.then` may return an arbitrary "thenable" object, and it will be treated the same way as a promise.
-
-A "thenable" object is any object with a method `.then`.
+To be precise, a handler may return not exactly a promise, but a so-called "thenable" object - an arbitrary object that has method `.then`, and it will be treated the same way as a promise.
 
 The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have extended set of methods, but also be compatible with native promises, because they implement `.then`.
 
@@ -229,7 +209,9 @@ class Thenable {
 
 new Promise(resolve => resolve(1))
   .then(result => {
+*!*
     return new Thenable(result); // (*)
+*/!*
   })
   .then(alert); // shows 2 after 1000ms
 ```
@@ -244,7 +226,7 @@ This feature allows to integrate custom objects with promise chains without havi
 
 In frontend programming promises are often used for network requests. So let's see an extended example of that.
 
-We'll use the [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) method to load the information about the user from the remote server. The method is quite complex, it has many optional parameters, but the basic usage is quite simple:
+We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](info:fetch), but the basic syntax is quite simple:
 
 ```js
 let promise = fetch(url);
@@ -261,7 +243,7 @@ fetch('/article/promise-chaining/user.json')
   // .then below runs when the remote server responds
   .then(function(response) {
     // response.text() returns a new promise that resolves with the full response text
-    // when we finish downloading it
+    // when it loads
     return response.text();
   })
   .then(function(text) {
@@ -278,7 +260,7 @@ We'll also use arrow functions for brevity:
 // same as above, but response.json() parses the remote content as JSON
 fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
-  .then(user => alert(user.name)); // iliakan
+  .then(user => alert(user.name)); // iliakan, got user name
 ```
 
 Now let's do something with the loaded user.
@@ -319,7 +301,7 @@ fetch('/article/promise-chaining/user.json')
   .then(user => fetch(`https://api.github.com/users/${user.name}`))
   .then(response => response.json())
 *!*
-  .then(githubUser => new Promise(function(resolve, reject) {
+  .then(githubUser => new Promise(function(resolve, reject) { // (*)
 */!*
     let img = document.createElement('img');
     img.src = githubUser.avatar_url;
@@ -329,7 +311,7 @@ fetch('/article/promise-chaining/user.json')
     setTimeout(() => {
       img.remove();
 *!*
-      resolve(githubUser);
+      resolve(githubUser); // (**)
 */!*
     }, 3000);
   }))
@@ -337,9 +319,11 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
-Now right after `setTimeout` runs `img.remove()`, it calls `resolve(githubUser)`, thus passing the control to the next `.then` in the chain and passing forward the user data.
+That is, `.then` handler in the line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`.
 
-As a rule, an asynchronous action should always return a promise.
+The next `.then` in chain will wait for that.
+
+As a good rule, an asynchronous action should always return a promise.
 
 That makes it possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
 
@@ -384,4 +368,4 @@ If a `.then` (or `catch/finally`, doesn't matter) handler returns a promise, the
 
 Here's a full picture:
 
-![](promise-handler-variants.png)
+![](promise-handler-variants.svg)

@@ -41,7 +41,13 @@
      * relative to the anchor element.
      */
     function showNote(anchor, position, html) {
-      // ... your code ...
+
+      let note = document.createElement('div');
+      note.className = "note";
+      note.innerHTML = html;
+      document.body.append(note);
+
+      positionAt(anchor, position, note);
     }
 
     // test it

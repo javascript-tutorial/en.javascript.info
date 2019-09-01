@@ -26,7 +26,7 @@ Before we move on, let's grasp some common terminology.
     alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
 
 ## String concatenation, binary +
 
@@ -93,9 +93,7 @@ alert( +"" );   // 0
 
 It actually does the same thing as `Number(...)`, but is shorter.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
-
-What if we want to sum them?
+The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
 
 The binary plus would add them as strings:
 
@@ -253,14 +251,14 @@ So, there are special operators for it:
 
     ```js run no-beautify
     let counter = 2;
-    counter++;      // works the same as counter = counter + 1, but is shorter
+    counter++;        // works the same as counter = counter + 1, but is shorter
     alert( counter ); // 3
     ```
 - **Decrement** `--` decreases a variable by 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;      // works the same as counter = counter - 1, but is shorter
+    counter--;        // works the same as counter = counter - 1, but is shorter
     alert( counter ); // 1
     ```
 

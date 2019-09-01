@@ -35,4 +35,6 @@ alert(HTMLDocument.prototype.__proto__.constructor.name); // Document
 alert(HTMLDocument.prototype.__proto__.__proto__.constructor.name); // Node
 ```
 
+That's the hierarchy.
+
 We also could examine the object using `console.dir(document)` and see these names by opening `__proto__`. The console takes them from `constructor` internally.

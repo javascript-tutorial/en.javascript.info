@@ -12,15 +12,15 @@ There may be 2, 3, 4 or more.
 
 For instance, two points curve:
 
-![](bezier2.png)
+![](bezier2.svg)
 
 Three points curve:
 
-![](bezier3.png)
+![](bezier3.svg)
 
 Four points curve:
 
-![](bezier4.png)
+![](bezier4.svg)
 
 If you look closely at these curves, you can immediately notice:
 
@@ -29,7 +29,7 @@ If you look closely at these curves, you can immediately notice:
 For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for four points -- cubic curve.
 3. **A curve is always inside the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of control points:**
 
-    ![](bezier4-e.png) ![](bezier3-e.png)
+    ![](bezier4-e.svg) ![](bezier3-e.svg)
 
 Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection or convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
 
@@ -45,7 +45,7 @@ After some practice it becomes obvious how to place points to get the needed cur
 
 Here are some examples:
 
-![](bezier-car.png) ![](bezier-letter.png) ![](bezier-vase.png)
+![](bezier-car.svg) ![](bezier-letter.svg) ![](bezier-vase.svg)
 
 ## De Casteljau's algorithm
 
@@ -77,7 +77,7 @@ Control points (1,2 and 3) can be moved by the mouse. Press the "play" button to
 
 | For `t=0.25`             | For `t=0.5`            |
 | ------------------------ | ---------------------- |
-| ![](bezier3-draw1.png)   | ![](bezier3-draw2.png) |
+| ![](bezier3-draw1.svg)   | ![](bezier3-draw2.svg) |
 
 4. Now in the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
 

@@ -2,7 +2,7 @@
 
 The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
 
-We'll see how it is for plain objects first, and then for more complex ones.
+First we'll see at the details, and then how to use it for adding new capabilities to built-in objects.
 
 ## Object.prototype
 
@@ -19,11 +19,11 @@ Where's the code that generates the string `"[object Object]"`? That's a built-i
 
 Here's what's going on:
 
-![](object-prototype.png)
+![](object-prototype.svg)
 
 When `new Object()` is called (or a literal object `{...}` is created), the `[[Prototype]]` of it is set to `Object.prototype` according to the rule that we discussed in the previous chapter:
 
-![](object-prototype-1.png)
+![](object-prototype-1.svg)
 
 So then when `obj.toString()` is called the method is taken from `Object.prototype`.
 
@@ -36,7 +36,7 @@ alert(obj.__proto__ === Object.prototype); // true
 // obj.toString === obj.__proto__.toString == Object.prototype.toString
 ```
 
-Please note that there is no additional `[[Prototype]]` in the chain above `Object.prototype`:
+Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
 
 ```js run
 alert(Object.prototype.__proto__); // null
@@ -46,13 +46,13 @@ alert(Object.prototype.__proto__); // null
 
 Other built-in objects such as `Array`, `Date`, `Function` and others also keep methods in prototypes.
 
-For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is  used internally. So the array data is written into the new object, and `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
 
-By specification, all of the built-in prototypes have `Object.prototype` on the top. Sometimes people say that "everything inherits from objects".
+By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
 
 Here's the overall picture (for 3 built-ins to fit):
 
-![](native-prototypes-classes.png)
+![](native-prototypes-classes.svg)
 
 Let's check the prototypes manually:
 
@@ -79,7 +79,7 @@ alert(arr); // 1,2,3 <-- the result of Array.prototype.toString
 As we've seen before, `Object.prototype` has `toString` as well, but `Array.prototype` is closer in the chain, so the array variant is used.
 
 
-![](native-prototypes-array-tostring.png)
+![](native-prototypes-array-tostring.svg)
 
 
 In-browser tools like Chrome developer console also show inheritance (`console.dir` may need to be used for built-in objects):
@@ -122,7 +122,7 @@ String.prototype.show = function() {
 During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
 
 ```warn
-Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the other.
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
 
 So, generally, modifying a native prototype is considered a bad idea.
 ```
@@ -144,7 +144,7 @@ if (!String.prototype.repeat) { // if there's no such method
 
     // actually, the code should be a little bit more complex than that
     // (the full algorithm is in the specification)
-    // but even an imperfect polyfill is often considered good enough
+    // but even an imperfect polyfill is often considered good enough for use
     return new Array(n + 1).join(this);
   };
 }
@@ -161,7 +161,7 @@ That's when we take a method from one object and copy it into another.
 
 Some methods of native prototypes are often borrowed.
 
-For instance, if we're making an array-like object, we may want to copy some array methods to it.
+For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
 
 E.g.
 

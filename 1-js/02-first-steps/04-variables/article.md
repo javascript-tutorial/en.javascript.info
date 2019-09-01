@@ -12,7 +12,7 @@ A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "na
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+The statement below creates (in other words: *declares*) a variable with the name "message":
 
 ```js
 let message;
@@ -99,7 +99,7 @@ We can easily grasp the concept of a "variable" if we imagine it as a "box" for 
 
 For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
 
-![](variable.png)
+![](variable.svg)
 
 We can put any value in the box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 When the value is changed, the old data is removed from the variable:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 We can also declare two variables and copy data from one into the other.
 
@@ -323,7 +323,7 @@ Modern JavaScript minifiers and browsers optimize code well enough, so it won't 
 
 We can declare variables to store data by using the `var`, `let`, or `const` keywords.
 
-- `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
+- `let` -- is a modern variable declaration.
 - `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
 - `const` -- is like `let`, but the value of the variable can't be changed.
 

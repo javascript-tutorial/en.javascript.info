@@ -7,20 +7,21 @@ There are generally two ways to style an element:
 1. Create a class in CSS and add it: `<div class="...">`
 2. Write properties directly into `style`: `<div style="...">`.
 
-CSS is always the preferred way -- not only for HTML, but in JavaScript as well.
+JavaScript can modify both classes and `style` properties.
 
-We should only manipulate the `style` property if classes "can't handle it".
+We should always prefer CSS classes to `style`. The latter should only be used if classes "can't handle it".
 
-For instance, `style` is acceptable if we calculate coordinates of an element dynamically and want to set them from JavaScript, like this:
+For example, `style` is acceptable if we calculate coordinates of an element dynamically and want to set them from JavaScript, like this:
 
 ```js
 let top = /* complex calculations */;
 let left = /* complex calculations */;
-elem.style.left = left; // e.g '123px'
+
+elem.style.left = left; // e.g '123px', calculated at run-time
 elem.style.top = top; // e.g '456px'
 ```
 
-For other cases, like making the text red, adding a background icon -- describe that in CSS and then apply the class. That's more flexible and easier to support.
+For other cases, like making the text red, adding a background icon -- describe that in CSS and then add the class (JavaScript can do that). That's more flexible and easier to support.
 
 ## className and classList
 
@@ -40,11 +41,11 @@ For instance:
 </body>
 ```
 
-If we assign something to `elem.className`, it replaces the whole strings of classes. Sometimes that's what we need, but often we want to add/remove a single class.
+If we assign something to `elem.className`, it replaces the whole string of classes. Sometimes that's what we need, but often we want to add/remove a single class.
 
 There's another property for that: `elem.classList`.
 
-The `elem.classList` is a special object with methods to `add/remove/toggle` classes.
+The `elem.classList` is a special object with methods to `add/remove/toggle` a single class.
 
 For instance:
 
@@ -67,7 +68,7 @@ Methods of `classList`:
 
 - `elem.classList.add/remove("class")` -- adds/removes the class.
 - `elem.classList.toggle("class")` -- adds the class if it doesn't exist, otherwise removes it.
-- `elem.classList.contains("class")` -- returns `true/false`, checks for the given class.
+- `elem.classList.contains("class")` -- checks for the given class, returns `true/false`.
 
 Besides, `classList` is iterable, so we can list all classes with `for..of`, like this:
 
@@ -83,7 +84,7 @@ Besides, `classList` is iterable, so we can list all classes with `for..of`, lik
 
 ## Element style
 
-The property `elem.style` is an object that corresponds to what's written in the `"style"` attribute. Setting `elem.style.width="100px"` works as if we had in the attribute `style="width:100px"`.
+The property `elem.style` is an object that corresponds to what's written in the `"style"` attribute. Setting `elem.style.width="100px"` works the same as if we had in the attribute `style` a string `width:100px`.
 
 For multi-word property the camelCase is used:
 
@@ -100,14 +101,14 @@ document.body.style.backgroundColor = prompt('background color?', 'green');
 ```
 
 ````smart header="Prefixed properties"
-Browser-prefixed properties like `-moz-border-radius`, `-webkit-border-radius` also follow the same rule, for instance:
+Browser-prefixed properties like `-moz-border-radius`, `-webkit-border-radius` also follow the same rule: a dash means upper case.
+
+For instance:
 
 ```js
 button.style.MozBorderRadius = '5px';
 button.style.WebkitBorderRadius = '5px';
 ```
-
-That is: a dash `"-"` becomes an uppercase.
 ````
 
 ## Resetting the style property
@@ -119,13 +120,13 @@ For instance, to hide an element, we can set `elem.style.display = "none"`.
 Then later we may want to remove the `style.display` as if it were not set. Instead of `delete elem.style.display` we should assign an empty string to it: `elem.style.display = ""`.
 
 ```js run
-// if we run this code, the <body> "blinks"
+// if we run this code, the <body> will blink
 document.body.style.display = "none"; // hide
 
 setTimeout(() => document.body.style.display = "", 1000); // back to normal
 ```
 
-If we set `display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `display` property at all.
+If we set `style.display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style.display` property at all.
 
 ````smart header="Full rewrite with `style.cssText`"
 Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
@@ -154,7 +155,7 @@ The same can be accomplished by setting an attribute: `div.setAttribute('style',
 
 ## Mind the units
 
-CSS units must be provided in style values.
+Don't forget to add CSS units to values.
 
 For instance, we should not set `elem.style.top` to `10`, but rather to `10px`. Otherwise it wouldn't work:
 
@@ -177,11 +178,11 @@ For instance, we should not set `elem.style.top` to `10`, but rather to `10px`. 
 </body>
 ```
 
-Please note how the browser "unpacks" the property `style.margin` in the last lines and infers `style.marginLeft` and `style.marginTop` (and other partial margins) from it.
+Please note: the browser "unpacks" the property `style.margin` in the last lines and infers `style.marginLeft` and `style.marginTop` from it.
 
 ## Computed styles: getComputedStyle
 
-Modifying a style is easy. But how to *read* it?
+So, modifying a style is easy. But how to *read* it?
 
 For instance, we want to know the size, margins, the color of an element. How to do it?
 
@@ -207,14 +208,14 @@ For instance, here `style` doesn't see the margin:
 </body>
 ```
 
-...But what if we need, say, to increase the margin by 20px? We would want the current value of it.
+...But what if we need, say, to increase the margin by `20px`? We would want the current value of it.
 
 There's another method for that: `getComputedStyle`.
 
 The syntax is:
 
 ```js
-getComputedStyle(element[, pseudo])
+getComputedStyle(element, [pseudo])
 ```
 
 element
@@ -223,7 +224,7 @@ element
 pseudo
 : A pseudo-element if required, for instance `::before`. An empty string or no argument means the element itself.
 
-The result is an object with style properties, like `elem.style`, but now with respect to all CSS classes.
+The result is an object with styles, like `elem.style`, but now with respect to all CSS classes.
 
 For instance:
 
@@ -253,7 +254,7 @@ There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values)
 
 A long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
 
-So nowadays `getComputedStyle` actually returns the resolved value of the property.
+So nowadays `getComputedStyle` actually returns the resolved value of the property, usually in `px` for geometry.
 ```
 
 ````warn header="`getComputedStyle` requires the full property name"
@@ -276,7 +277,7 @@ There are other inconsistencies. As an example, some browsers (Chrome) show `10p
 ```
 ````
 
-```smart header="\"Visited\" links styles are hidden!"
+```smart header="Styles applied to `:visited` links are hidden!"
 Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
@@ -299,4 +300,4 @@ To change the styles:
 
 To read the resolved styles (with respect to all classes, after all CSS is applied and final values are calculated):
 
-- The `getComputedStyle(elem[, pseudo])` returns the style-like object with them. Read-only.
+- The `getComputedStyle(elem, [pseudo])` returns the style-like object with them. Read-only.

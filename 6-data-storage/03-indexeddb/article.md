@@ -35,18 +35,18 @@ We can have many databases with different names, but all of them exist within th
 
 After the call, we need to listen to events on `openRequest` object:
 - `success`: database is ready, there's the "database object" in `openRequest.result`, that we should use it for further calls.
-- `error`: open failed.
-- `upgradeneeded`: database version is outdated (see below).
+- `error`: opening failed.
+- `upgradeneeded`: database is ready, but its version is outdated (see below).
 
 **IndexedDB has a built-in mechanism of "schema versioning", absent in server-side databases.**
 
-Unlike server-side databases, IndexedDB is client-side, in the browser, so we don't have the data at hands. But when we publish a new version of our app, we may need to update the database.
+Unlike server-side databases, IndexedDB is client-side, the data is stored in the browser, so we, developers, don't have direct access to it. But when we publish a new version of our app, we may need to update the database.
 
 If the local database version is less than specified in `open`, then a special event `upgradeneeded` is triggered, and we can compare versions and upgrade data structures as needed.
 
 The event also triggers when the database did not exist yet, so we can perform initialization.
 
-For instance, when we first publish our app, we open it with version `1` and perform the initialization in `upgradeneeded` handler:
+When we first publish our app, we open it with version `1` and perform the initialization in `upgradeneeded` handler:
 
 ```js
 let openRequest = indexedDB.open("store", *!*1*/!*);
@@ -71,10 +71,10 @@ When we publish the 2nd version:
 ```js
 let openRequest = indexedDB.open("store", *!*2*/!*);
 
-//  check the existing database version, do the updates if needed:
 openRequest.onupgradeneeded = function() {
+  // the existing database version is less than 2 (or it doesn't exist)
   let db = openRequest.result;
-  switch(db.version) { // existing (old) db version
+  switch(db.version) { // existing db version
     case 0:
       // version 0 means that the client had no database
       // perform initialization
@@ -85,6 +85,8 @@ openRequest.onupgradeneeded = function() {
 };
 ```
 
+So, in `openRequest.onupgradeneeded` we update the database. Soon we'll see how it's done. And then, only if its handler finishes without errors, `openRequest.onsuccess` triggers.
+
 After `openRequest.onsuccess` we have the database object in `openRequest.result`, that we'll use for further operations.
 
 To delete a database:
@@ -94,8 +96,69 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 // deleteRequest.onsuccess/onerror tracks the result
 ```
 
+```warn header="Can we open an old version?"
+Now what if we try to open a database with a lower version than the current one? E.g. the existing DB version is 3, and we try to `open(...2)`.
+
+That's an error, `openRequest.onerror` triggers.
+
+Such thing may happen if the visitor loaded an outdated code, e.g. from a proxy cache. We should check `db.version`, suggest him to reload the page. And also re-check our caching headers to ensure that the visitor never gets old code.
+```
+
+### Parallel update problem
+
+As we're talking about versioning, let's tackle a small related problem.
+
+Let's say, a visitor opened our site in a browser tab, with database version 1.
+
+Then we rolled out an update, and the same visitor opens our site in another tab. So there are two tabs, both with our site, but one has an open connection with DB version 1, while the other one attempts to update it in `upgradeneeded` handler.
+
+The problem is that a database is shared between two tabs, as that's the same site, same origin. And it can't be both version 1 and 2. To perform the update to version 2, all connections to version 1 must be closed.
+
+In order to organize that, the `versionchange` event triggers an open database object when a parallel upgrade is attempted. We should listen to it, so that we should close the database (and probably suggest the visitor to reload the page, to load the updated code).
+
+If we don't close it, then the second, new connection will be blocked with `blocked` event instead of `success`.
+
+Here's the code to do that:
+
+```js
+let openRequest = indexedDB.open("store", 2);
+
+openRequest.onupgradeneeded = ...;
+openRequest.onerror = ...;
+
+openRequest.onsuccess = function() {
+  let db = openRequest.result;
+
+  *!*
+  db.onversionchange = function() {
+    db.close();
+    alert("Database is outdated, please reload the page.")
+  };
+  */!*
+
+  // ...the db is ready, use it...
+};
+
+*!*
+openRequest.onblocked = function() {
+  // there's another open connection to same database
+  // and it wasn't closed after db.onversionchange triggered for them
+};
+*/!*
+```
+
+Here we do two things:
+
+1. Add `db.onversionchange` listener after a successful opening, to be informed about a parallel update attempt.
+2. Add `openRequest.onblocked` listener to handle the case when an old connection wasn't closed. This doesn't happen if we close it in `db.onversionchange`.
+
+There are other variants. For example, we can take time to close things gracefully in `db.onversionchange`, prompt the visitor to save the data before the connection is closed. The new updating connection will be blocked immediatelly after `db.onversionchange` finished without closing, and we can ask the visitor in the new tab to close other tabs for the update.
+
+Such update collision happens rarely, but we should at least have some handling for it, e.g. `onblocked` handler, so that our script doesn't surprise the user by dying silently.
 
 ## Object store
+
+To store stomething in IndexedDB, we need an *object store*.
 
 An object store is a core concept of IndexedDB. Counterparts in other databases are called "tables" or "collections". It's where the data is stored. A database may have multiple stores: one for users, another one for goods, etc.
 
@@ -111,7 +174,7 @@ An example of object that can't be stored: an object with circular references. S
 
 A key must have a type one of: number, date, string, binary, or array. It's an unique identifier: we can search/remove/update values by the key.
 
-![](indexeddb-structure.png)
+![](indexeddb-structure.svg)
 
 
 As we'll see very soon, we can provide a key when we add a value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows to setup an object property as the key, that's much more convenient. Or we can auto-generate keys.
@@ -146,12 +209,12 @@ To perform database version upgrade, there are two main approaches:
 1. We can implement per-version upgrade functions: from 1 to 2, from 2 to 3, from 3 to 4 etc. Then, in `upgradeneeded` we can compare versions (e.g. old 2, now 4) and run per-version upgrades step by step, for every intermediate version (2 to 3, then 3 to 4).
 2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existance. And then we can do updates depending on what exists and what doesn't.
 
-For small databases the second path may be simpler.
+For small databases the second variant may be simpler.
 
 Here's the demo of the second approach:
 
 ```js
-let openRequest = indexedDB.open("db", 1);
+let openRequest = indexedDB.open("db", 2);
 
 // create/upgrade the database without version checks
 openRequest.onupgradeneeded = function() {
@@ -488,7 +551,7 @@ openRequest.onupgradeneeded = function() {
 
 Imagine that our `inventory` has 4 books. Here's the picture that shows exactly what the `index` is:
 
-![](indexeddb-index.png)
+![](indexeddb-index.svg)
 
 As said, the index for each value of `price` (second argument) keeps the list of keys that have that price.
 
@@ -615,7 +678,7 @@ In the example above the cursor was made for the object store.
 
 But we also can make a cursor over an index. As we remember, indexes allow to search by an object field. Cursors over indexes to precisely the same as over object stores -- they save memory by returning one value at a time.
 
-For cursors over indexes, `cursor.key` is the index key (e.g. price), and we should use `cursor.primaryKey` property the object key:
+For cursors over indexes, `cursor.key` is the index key (e.g. price), and we should use `cursor.primaryKey` property for the object key:
 
 ```js
 let request = priceIdx.openCursor(IDBKeyRange.upperBound(5));
@@ -737,12 +800,11 @@ IndexedDB can be thought of as a "localStorage on steroids". It's a simple key-v
 
 The best manual is the specification, [the current one](https://w3c.github.io/IndexedDB) is 2.0, but few methods from [3.0](https://w3c.github.io/IndexedDB/) (it's not much different) are partially supported.
 
-The usage can be described with a few phrases:
+The basic usage can be described with a few phrases:
 
 1. Get a promise wrapper like [idb](https://github.com/jakearchibald/idb).
 2. Open a database: `idb.openDb(name, version, onupgradeneeded)`
-    - Create object storages in indexes in `onupgradeneeded` handlers.
-    - Update version if needed - either by comparing numbers or just checking what exists.
+    - Create object storages and indexes in `onupgradeneeded` handler or perform version update if needed.
 3. For requests:
     - Create transaction `db.transaction('books')` (readwrite if needed).
     - Get the object store `transaction.objectStore('books')`.

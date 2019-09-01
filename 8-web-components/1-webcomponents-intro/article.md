@@ -44,7 +44,7 @@ Let's take a look at a website, for example Twitter.
 
 It naturally splits into components:
 
-![](web-components-twitter.png)
+![](web-components-twitter.svg)
 
 1. Top navigation.
 2. User info.

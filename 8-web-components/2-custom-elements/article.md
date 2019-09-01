@@ -3,7 +3,7 @@
 
 We can create custom HTML elements, described by our class, with its own methods and properties, events and so on.
 
-Once an custom element is defined, we can use it on par with built-in HTML elements.
+Once a custom element is defined, we can use it on par with built-in HTML elements.
 
 That's great, as HTML dictionary is rich, but not infinite. There are no `<easy-tabs>`, `<sliding-carousel>`, `<beautiful-upload>`... Just think of any other tag we might need.
 
@@ -12,9 +12,9 @@ We can define them with a special class, and then use as if they were always a p
 There are two kinds of custom elements:
 
 1. **Autonomous custom elements** -- "all-new" elements, extending the abstract `HTMLElement` class.
-2. **Customized built-in elements** -- extending built-in elements, like customized `HTMLButtonElement` etc.
+2. **Customized built-in elements** -- extending built-in elements, like a customized button, based on `HTMLButtonElement` etc.
 
-First we'll create autonomous elements, and then customized built-in ones.
+First we'll cover autonomous elements, and then move to customized built-in ones.
 
 To create a custom element, we need to tell the browser several details about it: how to show it, what to do when the element is added or removed to page, etc.
 
@@ -30,12 +30,12 @@ class MyElement extends HTMLElement {
   }
 
   connectedCallback() {
-    // browser calls it when the element is added to the document
+    // browser calls this method when the element is added to the document
     // (can be called many times if an element is repeatedly added/removed)
   }
 
   disconnectedCallback() {
-    // browser calls it when the element is removed from the document
+    // browser calls this method when the element is removed from the document
     // (can be called many times if an element is repeatedly added/removed)
   }
 
@@ -138,7 +138,7 @@ In the example above, element content is rendered (created) in `connectedCallbac
 
 Why not in the `constructor`?
 
-The reason is simple: when `constructor` is called, it's yet too early. The element instance is created, but not populated yet. The browser did not yet process/assign attributes at this stage: calls to `getAttribute` would return `null`. So we can't really render there.
+The reason is simple: when `constructor` is called, it's yet too early. The element is created, but the browser did not yet process/assign attributes at this stage: calls to `getAttribute` would return `null`. So we can't really render there.
 
 Besides, if you think about it, that's better performance-wise -- to delay the work until it's really needed.
 
@@ -242,7 +242,7 @@ customElements.define('user-info', class extends HTMLElement {
 
 If you run it, the `alert` is empty.
 
-That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element `<user-info>`, and will now proceed to its children, but just didn't yet.
+That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element `<user-info>`, and is going to proceed to its children, but just didn't yet.
 
 If we'd like to pass information to custom element, we can use attributes. They are available immediately.
 
@@ -297,12 +297,12 @@ Output order:
 
 1. outer connected.
 2. inner connected.
-2. outer initialized.
+3. outer initialized.
 4. inner initialized.
 
-We can clearly see that the outer element does not wait for the inner one.
+We can clearly see that the outer element finishes initialization `(3)` before the inner one `(4)`.
 
-There's no built-in callback that triggers after nested elements are ready. But we can implement such thing on our own. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
+There's no built-in callback that triggers after nested elements are ready. If needed, we can implement such thing on our own. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
 
 ## Customized built-in elements
 
@@ -310,7 +310,7 @@ New elements that we create, such as `<time-formatted>`, don't have any associat
 
 But such things can be important. E.g, a search engine would be interested to know that we actually show a time. And if we're making a special kind of button, why not reuse the existing `<button>` functionality?
 
-We can extend and customize built-in elements by inheriting from their classes.
+We can extend and customize built-in HTML elements by inheriting from their classes.
 
 For example, buttons are instances of `HTMLButtonElement`, let's build upon it.
 
@@ -324,7 +324,8 @@ For example, buttons are instances of `HTMLButtonElement`, let's build upon it.
     ```js
     customElements.define('hello-button', HelloButton, *!*{extends: 'button'}*/!*);
     ```    
-    There exist different tags that share the same class, that's why it's needed.
+
+    There may be different tags that share the same DOM-class, that's why specifying `extends` is needed.
 
 3. At the end, to use our custom element, insert a regular `<button>` tag, but add `is="hello-button"` to it:
     ```html

@@ -19,7 +19,7 @@ Here Babel comes to the rescue.
 
 Actually, there are two parts in Babel:
 
-1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build system like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that very easy to integrate into development process.
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that very easy to integrate into development process.
 
 2. Second, the polyfill.
 
@@ -29,8 +29,8 @@ Actually, there are two parts in Babel:
     A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
 
     Two interesting polyfills are:
-    - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) that supports a lot, but is big.
-    - [polyfill.io](http://polyfill.io) service that allows to load/construct polyfills on-demand, depending on the features we need.
+    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
 
 So, if we're going to use modern language features, a transpiler and a polyfill are necessary.
 

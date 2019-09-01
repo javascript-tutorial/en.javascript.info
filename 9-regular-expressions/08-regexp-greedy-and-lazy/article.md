@@ -46,19 +46,19 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
     Then it advances: goes to the next positions in the source string and tries to find the first character of the pattern there, and finally finds the quote at the 3rd position:
 
-    ![](witch_greedy1.png)
+    ![](witch_greedy1.svg)
 
 2. The quote is detected, and then the engine tries to find a match for the rest of the pattern. It tries to see if the rest of the subject string conforms to `pattern:.+"`.
 
     In our case the next pattern character is `pattern:.` (a dot). It denotes "any character except a newline", so the next string letter `match:'w'` fits:
 
-    ![](witch_greedy2.png)
+    ![](witch_greedy2.svg)
 
 3. Then the dot repeats because of the quantifier `pattern:.+`. The regular expression engine builds the match by taking characters one by one while it is possible.
 
-    ...When it becomes impossible? All characters match the dot, so it only stops when it reaches the end of the string:
+    ...When does it become impossible? All characters match the dot, so it only stops when it reaches the end of the string:
 
-    ![](witch_greedy3.png)
+    ![](witch_greedy3.svg)
 
 4. Now the engine finished repeating for `pattern:.+` and tries to find the next character of the pattern. It's the quote `pattern:"`. But there's a problem: the string has finished, there are no more characters!
 
@@ -66,7 +66,7 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
     In other words, it shortens the match for the quantifier by one character:
 
-    ![](witch_greedy4.png)
+    ![](witch_greedy4.svg)
 
     Now it assumes that `pattern:.+` ends one character before the end and tries to match the rest of the pattern from that position.
 
@@ -74,13 +74,13 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
 5. ...So the engine decreases the number of repetitions of `pattern:.+` by one more character:
 
-    ![](witch_greedy5.png)
+    ![](witch_greedy5.svg)
 
     The quote `pattern:'"'` does not match `subject:'n'`.
 
 6. The engine keep backtracking: it decreases the count of repetition for `pattern:'.'` until the rest of the pattern (in our case `pattern:'"'`) matches:
 
-    ![](witch_greedy6.png)
+    ![](witch_greedy6.svg)
 
 7. The match is complete.
 
@@ -116,29 +116,29 @@ To clearly understand the change, let's trace the search step by step.
 
 1. The first step is the same: it finds the pattern start `pattern:'"'` at the 3rd position:
 
-    ![](witch_greedy1.png)
+    ![](witch_greedy1.svg)
 
 2. The next step is also similar: the engine finds a match for the dot `pattern:'.'`:
 
-    ![](witch_greedy2.png)
+    ![](witch_greedy2.svg)
 
 3. And now the search goes differently. Because we have a lazy mode for `pattern:+?`, the engine doesn't try to match a dot one more time, but stops and tries to match the rest of the pattern  `pattern:'"'` right now:
 
-    ![](witch_lazy3.png)
+    ![](witch_lazy3.svg)
 
     If there were a quote there, then the search would end, but there's `'i'`, so there's no match.
 4. Then the regular expression engine increases the number of repetitions for the dot and tries one more time:
 
-    ![](witch_lazy4.png)
+    ![](witch_lazy4.svg)
 
     Failure again. Then the number of repetitions is increased again and again...
 5. ...Till the match for the rest of the pattern is found:
 
-    ![](witch_lazy5.png)
+    ![](witch_lazy5.svg)
 
 6. The next search starts from the end of the current match and yield one more result:
 
-    ![](witch_lazy6.png)
+    ![](witch_lazy6.svg)
 
 In this example we saw how the lazy mode works for `pattern:+?`. Quantifiers `pattern:+?` and `pattern:??` work the similar way -- the regexp engine increases the number of repetitions only if the rest of the pattern can't match on the given position.
 

@@ -2,11 +2,11 @@
 
 Cookies are small strings of data that are stored directly in the browser. They are a part of HTTP protocol, defined by [RFC 6265](https://tools.ietf.org/html/rfc6265) specification.
 
-Most of the time, cookies are set by a web server. Then they are automatically added to every request to the same domain.
+Cookies are usually set by a web-server using response `Set-Cookie` HTTP-header. Then the browser automatically adds them to (almost) every request to the same domain using `Cookie` HTTP-header.
 
 One of the most widespread use cases is authentication:
 
-1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
+1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
 2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
@@ -17,11 +17,11 @@ There are many tricky things about cookies and their options. In this chapter we
 ## Reading from document.cookie
 
 ```online
-Do you have any cookies on this site? Let's see:
+Does your browser store any cookies from this site? Let's see:
 ```
 
 ```offline
-Assuming you're on a website, it's possible to see the cookies, like this:
+Assuming you're on a website, it's possible to see the cookies from it, like this:
 ```
 
 ```js run
@@ -39,9 +39,9 @@ We leave it as an exercise for the reader. Also, at the end of the chapter you'l
 
 ## Writing to document.cookie
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor.
+We can write to `document.cookie`. But it's not a data property, it's an accessor (getter/setter). An assignment to it is treated specially.
 
-**A write operation to `document.cookie` passes through the browser that updates cookies mentioned in it, but doesn't touch other cookies.**
+**A write operation to `document.cookie` updates only cookies mentioned in it, but doesn't touch other cookies.**
 
 For instance, this call sets a cookie with the name `user` and value `John`:
 
@@ -52,10 +52,10 @@ alert(document.cookie); // show all cookies
 
 If you run it, then probably you'll see multiple cookies. That's because `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
 
-Technically, name and value can have any characters, but to keep the formatting valid they should be escaped using a built-in `encodeURIComponent` function:
+Technically, name and value can have any characters, to keep the valid formatting they should be escaped using a built-in `encodeURIComponent` function:
 
 ```js run
-// special values, need encoding
+// special characters (spaces), need encoding
 let name = "my name";
 let value = "John Smith"
 
@@ -84,11 +84,11 @@ document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 
 - **`path=/mypath`**
 
-The url path prefix, where the cookie is accessible. Must be absolute. By default, it's the current path.
+The url path prefix, the cookie will be accessible for pages under that path. Must be absolute. By default, it's the current path.
 
 If a cookie is set with `path=/admin`, it's visible at pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
 
-Usually, we set `path=/` to make the cookie accessible from all website pages.
+Usually, we should set `path` to the root: `path=/` to make the cookie accessible from all website pages.
 
 ## domain
 
@@ -110,19 +110,22 @@ alert(document.cookie); // no user
 
 **There's no way to let a cookie be accessible from another 2nd-level domain, so `other.com` will never receive a cookie set at `site.com`.**
 
-It's a safety restriction, to allow us to store sensitive data in cookies.
+It's a safety restriction, to allow us to store sensitive data in cookies, that should be available only on one site.
 
-...But if we'd like to grant access to subdomains like `forum.site.com`, that's possible. We  should explicitly set `domain` option to the root domain: `domain=site.com`:
+...But if we'd like to allow subdomains like `forum.site.com` get a cookie, that's possible. When setting a cookie at `site.com`, we should explicitly set `domain` option to the root domain: `domain=site.com`:
 
 ```js
-// at site.com, make the cookie accessible on any subdomain:
+// at site.com
+// make the cookie accessible on any subdomain *.site.com:
 document.cookie = "user=John; domain=site.com"
 
+// later
+
 // at forum.site.com
-alert(document.cookie); // with user
+alert(document.cookie); // has cookie user=John
 ```
 
-For historical reasons, `domain=.site.com` (a dot at the start) also works this way, it might better to add the dot to support very old browsers.
+For historical reasons, `domain=.site.com` (a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation, should be used if we need to support very old browsers.
 
 So, `domain` option allows to make a cookie accessible at subdomains.
 
@@ -181,25 +184,25 @@ document.cookie = "user=John; secure";
 
 ## samesite
 
-That's another security option, to protect from so-called XSRF (cross-site request forgery) attacks.
+That's another security attribute `samesite`. It's designed to protect from so-called XSRF (cross-site request forgery) attacks.
 
-To understand when it's useful, let's introduce the following attack scenario.
+To understand how it works and when it's useful, let's take a look at XSRF attacks.
 
 ### XSRF attack
 
 Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request, so that it recognizes you and performs all sensitive financial operations.
 
-Now, while browsing the web in another window, you occasionally come to another site `evil.com`, that automatically submits a form `<form action="https://bank.com/pay">` to `bank.com` with input fields that initiate a transaction to the hacker's account.
+Now, while browsing the web in another window, you accidentally come to another site `evil.com`. That site has JavaScript code that submits a form `<form action="https://bank.com/pay">` to `bank.com` with fields that initiate a transaction to the hacker's account.
 
-The form is submitted from `evil.com` directly to the bank site, and your cookie is also sent, just because it's sent every time you visit `bank.com`. So the bank recognizes you and actually performs the payment.
+The browser sends cookies every time you visit the site `bank.com`, even if the form was submitted from `evil.com`. So the bank recognizes you and actually performs the payment.
 
-![](cookie-xsrf.png)
+![](cookie-xsrf.svg)
 
-That's called a cross-site request forgery (or XSRF) attack.
+That's called a "Cross-Site Request Forgery" (in short, XSRF) attack.
 
-Real banks are protected from it of course. All forms generated by `bank.com` have a special field, so called "xsrf protection token", that an evil page can't neither generate, nor somehow extract from a remote page (it can submit a form there, but can't get the data back).
+Real banks are protected from it of course. All forms generated by `bank.com` have a special field, so called "XSRF protection token", that an evil page can't generate or extract from a remote page (it can submit a form there, but can't get the data back). And the site `bank.com` checks for such token in every form it receives.
 
-But that takes time to implement: we need to ensure that every form has the token field, and we must also check all requests.
+But such protection takes time to implement: we need to ensure that every form has the token field, and we must also check all requests.
 
 ### Enter cookie samesite option
 
@@ -209,19 +212,19 @@ It has two possible values:
 
 - **`samesite=strict` (same as `samesite` without value)**
 
-A cookie with `samesite=strict` is never sent if the user comes from outside the site.
+A cookie with `samesite=strict` is never sent if the user comes from outside the same site.
 
 In other words, whether a user follows a link from their mail or submits a form from `evil.com`, or does any operation that originates from another domain, the cookie is not sent.
 
 If authentication cookies have `samesite` option, then XSRF attack has no chances to succeed, because a submission from `evil.com` comes without cookies. So `bank.com` will not recognize the user and will not proceed with the payment.
 
-The protection is quite reliable. Only operations that come from `bank.com` will send the `samesite` cookie.
+The protection is quite reliable. Only operations that come from `bank.com` will send the `samesite` cookie, e.g. a form submission from another page at `bank.com`.
 
 Although, there's a small inconvenience.
 
 When a user follows a legitimate link to `bank.com`, like from their own notes, they'll be surprised that `bank.com` does not recognize them. Indeed, `samesite=strict` cookies are not sent in that case.
 
-We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then a person coming from outside of the site will see a welcome, but payments must be initiated from the bank website.
+We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then a person coming from outside of the site will see a welcome, but payments must be initiated from the bank website, for the second cookie to be sent.
 
 - **`samesite=lax`**
 
@@ -236,11 +239,11 @@ A `samesite=lax` cookie is sent if both of these conditions are true:
 
 2. The operation performs top-level navigation (changes URL in the browser address bar).
 
-    That's usually true, but if the navigation is performed in an `<iframe>`, then it's not top-level. Also, AJAX requests do not perform any navigation, hence they don't fit.
+    That's usually true, but if the navigation is performed in an `<iframe>`, then it's not top-level. Also, JavaScript methods for network requests do not perform any navigation, hence they don't fit.
 
 So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
 
-But anything more complicated, like AJAX request from another site or a form submittion loses cookies.
+But anything more complicated, like a network request from another site or a form submittion loses cookies.
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
@@ -262,7 +265,7 @@ This option forbids any JavaScript access to the cookie. We can't see such cooki
 That's used as a precaution measure, to protect from certain attacks when a hacker injects his own JavaScript code into a page and waits for a user to visit that page. That shouldn't be possible at all, a hacker should not be able to inject their code into our site, but there may be bugs that let hackers do it.
 
 
-Normally, if such thing happens, and a user visits a web-page with hacker's code, then that code executes and gains access to `document.cookie` with user cookies containing authentication information. That's bad.
+Normally, if such thing happens, and a user visits a web-page with hacker's JavaScript code, then that code executes and gains access to `document.cookie` with user cookies containing authentication information. That's bad.
 
 But if a cookie is `httpOnly`, then `document.cookie` doesn't see it, so it is protected.
 
@@ -349,21 +352,21 @@ Together: [cookie.js](cookie.js).
 
 ## Appendix: Third-party cookies
 
-A cookie is called "third-party" if it's placed by domain other than the user is visiting.
+A cookie is called "third-party" if it's placed by domain other than the page user is visiting.
 
 For instance:
 1. A page at `site.com` loads a banner from another site: `<img src="https://ads.com/banner.png">`.
 2. Along with the banner, the remote server at `ads.com` may set `Set-Cookie` header with cookie like `id=1234`. Such cookie originates from `ads.com` domain, and will only be visible at `ads.com`:
 
-    ![](cookie-third-party.png)
+    ![](cookie-third-party.svg)
 
 3. Next time when `ads.com` is accessed, the remote server gets the `id` cookie and recognizes the user:
 
-    ![](cookie-third-party-2.png)
+    ![](cookie-third-party-2.svg)
 
 4. What's even more important, when the users moves from `site.com` to another site `other.com` that also has a banner, then `ads.com` gets the cookie, as it belongs to `ads.com`, thus recognizing the visitor and tracking him as he moves between sites:
 
-    ![](cookie-third-party-3.png)
+    ![](cookie-third-party-3.svg)
 
 
 Third-party cookies are traditionally used for tracking and ads services, due to their nature. They are bound to the originating domain, so `ads.com` can track the same user between different sites, if they all access it.
@@ -378,7 +381,7 @@ Also, some modern browsers employ special policies for such cookies:
 ```smart
 If we load a script from a third-party domain, like `<script src="https://google-analytics.com/analytics.js">`, and that script uses `document.cookie` to set a cookie, then such cookie is not third-party.
 
-If a script sets a cookie, then no matter where the script came from -- it belongs to the domain of the current webpage.
+If a script sets a cookie, then no matter where the script came from -- the cookie belongs to the domain of the current webpage.
 ```
 
 ## Appendix: GDPR
@@ -387,7 +390,7 @@ This topic is not related to JavaScript at all, just something to keep in mind w
 
 There's a legislation in Europe called GDPR, that enforces a set of rules for websites to respect users' privacy. And one of such rules is to require an explicit permission for tracking cookies from a user.
 
-Please note, that's only about tracking/identifying cookies.
+Please note, that's only about tracking/identifying/authorizing cookies.
 
 So, if we set a cookie that just saves some information, but neither tracks nor identifies the user, then we are free to do it.
 
@@ -397,7 +400,7 @@ Websites generally have two variants of following GDPR. You must have seen them 
 
 1. If a website wants to set tracking cookies only for authenticated users.
 
-    To do so, the registration form should have a checkbox like "accept the privacy policy", the user must check it, and then the website is free to set auth cookies.
+    To do so, the registration form should have a checkbox like "accept the privacy policy" (that describes how cookies are used), the user must check it, and then the website is free to set auth cookies.
 
 2. If a website wants to set tracking cookies for everyone.
 

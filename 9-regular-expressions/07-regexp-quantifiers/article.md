@@ -111,7 +111,7 @@ Regexp "open HTML-tag without attributes", like `<span>` or `<p>`: `pattern:/<[a
     alert( "<body> ... </body>".match(/<[a-z]+>/gi) ); // <body>
     ```
 
-    We look for character `pattern:'<'` followed by one or more English letters, and then  `pattern:'>'`.
+    We look for character `pattern:'<'` followed by one or more Latin letters, and then  `pattern:'>'`.
 
 Regexp "open HTML-tag without attributes" (improved): `pattern:/<[a-z][a-z0-9]*>/i`
 : Better regexp: according to the standard, HTML tag name may have a digit at any position except the first one, like `<h1>`.
@@ -132,7 +132,7 @@ We can see one common rule in these examples: the more precise is the regular ex
 
 For instance, for HTML tags we could use a simpler regexp: `pattern:<\w+>`.
 
-...But because `pattern:\w` means any English letter or a digit or `'_'`, the regexp also matches non-tags, for instance `match:<_>`. So it's much simpler than `pattern:<[a-z][a-z0-9]*>`, but less reliable.
+...But because `pattern:\w` means any Latin letter or a digit or `'_'`, the regexp also matches non-tags, for instance `match:<_>`. So it's much simpler than `pattern:<[a-z][a-z0-9]*>`, but less reliable.
 
 Are we ok with `pattern:<\w+>` or we need `pattern:<[a-z][a-z0-9]*>`?
 

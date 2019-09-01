@@ -112,7 +112,7 @@ First, one may notice that the regexp is a little bit strange. The quantifier `p
 
 Indeed, the regexp is artificial. But the reason why it is slow is the same as those we saw above. So let's understand it, and then the previous example will become obvious.
 
-What happen during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
+What happens during the search of `pattern:(\d+)*$` in the line `subject:123456789z`?
 
 1. First, the regexp engine tries to find a number `pattern:\d+`. The plus `pattern:+` is greedy by default, so it consumes all digits:
 
@@ -264,7 +264,9 @@ In other words:
 - The lookahead `pattern:?=` looks for the maximal count `pattern:a+` from the current position.
 - And then they are "consumed into the result" by the backreference `pattern:\1` (`pattern:\1` corresponds to the content of the second parentheses, that is `pattern:a+`).
 
-There will be no backtracking, because lookahead does not backtrack. If it found like 5 times of `pattern:a+` and the further match failed, then it doesn't go back to 4.
+There will be no backtracking, because lookahead does not backtrack. If, for
+example, it found 5 instances of `pattern:a+` and the further match failed,
+it won't go back to the 4th instance.
 
 ```smart
 There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups).

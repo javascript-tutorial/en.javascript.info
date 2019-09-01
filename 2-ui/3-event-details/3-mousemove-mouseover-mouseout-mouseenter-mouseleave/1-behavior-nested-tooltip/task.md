@@ -4,9 +4,11 @@ importance: 5
 
 # Improved tooltip behavior
 
-Write JavaScript that shows a tooltip over an element with the attribute `data-tooltip`.
+Write JavaScript that shows a tooltip over an element with the attribute `data-tooltip`. The value of this attribute should become the tooltip text.
 
 That's like the task <info:task/behavior-tooltip>, but here the annotated elements can be nested. The most deeply nested tooltip is shown.
+
+Only one tooltip may show up at the same time.
 
 For instance:
 
@@ -21,5 +23,3 @@ For instance:
 The result in iframe:
 
 [iframe src="solution" height=300 border=1]
-
-P.S. Hint: only one tooltip may show up at the same time.

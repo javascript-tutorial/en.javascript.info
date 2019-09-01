@@ -1,7 +1,7 @@
 
 # Accessing array[-1]
 
-In some languages, we can access array elements using negative indexes, counted from the end.
+In some programming languages, we can access array elements using negative indexes, counted from the end.
 
 Like this:
 

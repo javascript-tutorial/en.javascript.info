@@ -124,7 +124,7 @@ Here's an extended demo of working with attributes:
 
     elem.setAttribute('Test', 123); // (2), writing
 
-    alert( elem.outerHTML ); // (3), see it's there
+    alert( elem.outerHTML ); // (3), see if the attribute is in HTML (yes)
 
     for (let attr of elem.attributes) { // (4) list all
       alert( `${attr.name} = ${attr.value}` );
@@ -260,7 +260,7 @@ Like this:
   for(let div of document.querySelectorAll('[show-info]')) {
     // insert the corresponding info into the field
     let field = div.getAttribute('show-info');
-    div.innerHTML = user[field]; // Pete, then age
+    div.innerHTML = user[field]; // first Pete into "name", then 25 into "age"
   }
 </script>
 ```

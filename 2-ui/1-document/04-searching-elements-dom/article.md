@@ -105,7 +105,7 @@ Pseudo-classes in the CSS selector like `:hover` and `:active` are also supporte
 
 The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and shorter to write.
+In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and also shorter to write.
 
 ## matches
 
@@ -113,7 +113,7 @@ Previous methods were searching the DOM.
 
 The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
 
-The method comes handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
+The method comes in handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
 
 For instance:
 

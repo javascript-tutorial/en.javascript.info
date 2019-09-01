@@ -66,7 +66,7 @@ alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // ' HTML5'
 
 The match (each character class corresponds to one result character):
 
-![](love-html5-classes.png)
+![](love-html5-classes.svg)
 
 ## Word boundary: \b
 
@@ -89,22 +89,23 @@ When regular expression engine is doing the search, it's moving along the string
 
 When the pattern contains `pattern:\b`, it tests that the position in string is a word boundary, that is one of three variants:
 
-- Immediately before is `\w`, and immediately after -- not `\w`, or vise versa.
-- At string start, and the first string character is `\w`.
-- At string end, and the last string character is `\w`.
+There are three different positions that qualify as word boundaries:
+
+- At string start, if the first string character is a word character `\w`.
+- Between two characters in the string, where one is a word character `\w` and the other is not.
+- At string end, if the last string character is a word character `\w`.
 
 For instance, in the string `subject:Hello, Java!` the following positions match `\b`:
 
-![](hello-java-boundaries.png)
+![](hello-java-boundaries.svg)
 
 So it matches `pattern:\bHello\b`, because:
 
 1. At the beginning of the string the first `\b` test matches.
 2. Then the word `Hello` matches.
-3. Then `\b` matches, as we're between `o` and a space.
+3. Then `\b` matches, as we're between `o` (a word character) and a space (not a word character).
 
 Pattern `pattern:\bJava\b` also matches. But not `pattern:\bHell\b` (because there's no word boundary after `l`) and not `Java!\b` (because the exclamation sign is not a wordly character, so there's no word boundary after it).
-
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello

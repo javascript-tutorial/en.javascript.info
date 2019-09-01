@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="312px" height="291px" viewBox="0 0 312 291" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 55.2 (78181) - https://sketchapp.com -->
+    <title>indexeddb-cursor.svg</title>
+    <desc>Created with sketchtool.</desc>
+    <g id="data-storage" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="indexeddb-cursor.svg">
+            <path d="M161,43 L161,101 L268,101 L268,43 L161,43 Z" id="Rectangle-1" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <path d="M161,43 L161,101 L274,101 L274,43 L161,43 Z" id="Rectangle-1-Copy" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="id:-'html'-price:-3" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="171" y="66">id: 'html'</tspan>
+                <tspan x="171" y="81">price: 3</tspan>
+            </text>
+            <path d="M161,101 L161,159 L274,159 L274,101 L161,101 Z" id="Rectangle-1-Copy-2" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="id:-'css'-price:-5" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="171" y="124">id: 'css'</tspan>
+                <tspan x="171" y="139">price: 5</tspan>
+            </text>
+            <path d="M161,159 L161,217 L274,217 L274,159 L161,159 Z" id="Rectangle-1-Copy-3" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="id:-'js'-price:-10" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="171" y="182">id: 'js'</tspan>
+                <tspan x="171" y="197">price: 10</tspan>
+            </text>
+            <path d="M161,217 L161,275 L274,275 L274,217 L161,217 Z" id="Rectangle-1-Copy-4" stroke="#E8C48E" stroke-width="2" fill="#FFF9EB"></path>
+            <text id="id:-'nodejs'-price:" font-family="PTMono-Regular, PT Mono" font-size="14" font-weight="normal" fill="#8A704D">
+                <tspan x="171" y="240">id: 'nodejs'</tspan>
+                <tspan x="171" y="255">price: 10</tspan>
+            </text>
+            <text id="books" font-family="OpenSans-Regular, Open Sans" font-size="18" font-weight="normal" fill="#8A704D">
+                <tspan x="160" y="31">books</tspan>
+            </text>
+            <text id="cursor" font-family="OpenSans-Regular, Open Sans" font-size="24" font-weight="normal" fill="#8A704D">
+                <tspan x="1" y="79">cursor</tspan>
+            </text>
+            <path id="Line" d="M92.5290935,61.9295774 L167.596553,69.6069312 L167.393069,71.5965528 L92.3256094,63.919199 L91.7151573,69.8880639 L78.5,61.5 L93.1395456,55.9607125 L92.5290935,61.9295774 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <path id="Line-Copy" d="M91.9207297,79.2074366 L166.941663,74.9448836 L167.055116,76.9416631 L92.0341831,81.2042161 L92.3745433,87.1945546 L78,81 L91.5803696,73.2170981 L91.9207297,79.2074366 Z" fill="#EE6B47" fill-rule="nonzero"></path>
+            <text id="primaryKey" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="66" y="51">primaryKey</tspan>
+            </text>
+            <text id="key" font-family="OpenSans-Regular, Open Sans" font-size="16" font-weight="normal" fill="#8A704D">
+                <tspan x="93" y="101">key</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

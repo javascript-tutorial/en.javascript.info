@@ -57,12 +57,12 @@ Here's the same example, but closer to reality, with `opacity:0` for `<iframe>`:
 
 [codetabs src="clickjacking" height=160]
 
-All we need to attack -- is to position the `<iframe>` on the evil page in such a way that the button is right over the link. That's usually possible with CSS.
+All we need to attack -- is to position the `<iframe>` on the evil page in such a way that the button is right over the link. So that when a user clicks the link, they actually click the button. That's usually doable with CSS.
 
 ```smart header="Clickjacking is for clicks, not for keyboard"
-The attack only affects mouse actions.
+The attack only affects mouse actions (or similar, like taps on mobile).
 
-Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input they see on the page, they actually focus on the input inside the iframe.
+Keyboard input is much difficult to redirect. Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input they see on the page, they actually focus on the input inside the iframe.
 
 But then there's a problem. Everything that the visitor types will be hidden, because the iframe is not visible.
 
@@ -87,19 +87,19 @@ This not a reliable defence, because there are many ways to hack around it. Let'
 
 ### Blocking top-navigation
 
-We can block the transition caused by changing `top.location` in the [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event.
+We can block the transition caused by changing `top.location` in  [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event handler.
 
-The top page (belonging to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking them whether they want to leave.
+The top page (enclosing one, belonging to the hacker) sets a preventing handler to it, like this:
 
-Like this:
 ```js
 window.onbeforeunload = function() {
-  window.onbeforeunload = null;
-  return "Want to leave without learning all the secrets (he-he)?";
+  return false;
 };
 ```
 
-In most cases the visitor would answer negatively because they don't know about the iframe - all they can see is the top page, leading them to think there is no reason to leave. So `top.location` won't change!
+When the `iframe` tries to change `top.location`, the visitor gets a message asking them whether they want to leave.
+
+In most cases the visitor would answer negatively because they don't know about the iframe - all they can see is the top page, there's no reason to leave. So `top.location` won't change!
 
 In action:
 
@@ -123,7 +123,7 @@ There are other ways to work around that simple protection too.
 
 The server-side header `X-Frame-Options` can permit or forbid displaying the page inside a frame.
 
-It must be sent *by the server*: the browser will ignore it if found in a `<meta>` tag. So, `<meta http-equiv="X-Frame-Options"...>` won't do anything.
+It must be sent exactly as HTTP-header: the browser will ignore it if found in HTML `<meta>` tag. So, `<meta http-equiv="X-Frame-Options"...>` won't do anything.
 
 The header may have 3 values:
 
@@ -156,7 +156,7 @@ Depending on your browser, the `iframe` above is either empty or alerting you th
 
 The `X-Frame-Options` header has a side-effect. Other sites won't be able to show our page in a frame, even if they have good reasons to do so.
 
-So there are other solutions... For instance, we can "cover" the page with a `<div>` with `height: 100%; width: 100%;`, so that it intercepts all clicks. That `<div>` should disappear if `window == top` or if we figure out that we don't need the protection.
+So there are other solutions... For instance, we can "cover" the page with a `<div>` with styles `height: 100%; width: 100%;`, so that it will intercept all clicks. That `<div>` is to be removed if `window == top` or if we figure out that we don't need the protection.
 
 Something like this:
 
@@ -191,43 +191,25 @@ The demo:
 
 ## Samesite cookie attribute
 
-The `samesite` cookie attribute can also prevent clickjacking attacks. The purpose of the attribute is to prevent cookies from being sent to a website when the user doesn't intend to visit the website. It is designed to prevent cross-site request forgery attacks, but also helps with clickjacking because a hijacked click usually results in an unintended request to a different site. When a cookie has the `samesite` attribute, whether the value is `strict` or `lax`, cookies are not sent to a website when it is loaded inside an iframe. 
+The `samesite` cookie attribute can also prevent clickjacking attacks.
 
-The `samesite` attribute can be set using HTTP response headers or JavaScript. Via HTTP, it looks like: 
+A cookie with such attribute is only sent to a website if it's opened directly, not via a frame, or otherwise. More information in the chapter <info:cookie#samesite>.
 
-`Set-Cookie: demoCookie=demoValue; samesite=lax`
+If the site, such as Facebook, had `samesite` attribute on its authentication cookie, like this:
 
-or
-
-`Set-Cookie: demoCookie=demoValue; samesite=strict`
-
-In JavaScript, it is: 
-
-```html
-document.cookie = "demoCookie=demoValue; SameSite=Lax";
-document.cookie = "demoCookie=demoValue; SameSite=Strict";
+```
+Set-Cookie: authorization=secret; samesite
 ```
 
-When the value is `lax`, these types of requests are blocked: 
-- Form POST submit (&lt;form method="POST" action="..."&gt;)
-- iframe (&lt;iframe src="..."&gt;&lt;/iframe&gt;)
-- AJAX ($.get("..."))
-- Image (&lt;img src="..."&gt;)
-- Script (&lt;script src="..."&gt;&lt;/script&gt;)
-- Stylesheet (&lt;link rel="stylesheet" type="text/css" href="..."&gt;)
+...Then such cookie wouldn't be sent when Facebook is open in iframe from another site. So the attack would fail.
 
-When the value is `strict`, these types of requests are also blocked, in addition to those under `lax`: 
-- Clicking a link (&lt;a href="..."&gt;&lt;/a&gt;)
-- Prerender (&lt;link rel="prerender" href=".."/&gt;)
-- Form GET submit (&lt;form method="GET" action="..."&gt;)
+The `samesite` cookie attribute will not have an effect when cookies are not used. This may allow other websites to easily show our public, unauthenticated pages in iframes.
 
-In this case, we are concerned with iframe requests. A clickjacking attempt would fail because the user is not considered logged into, for example, Facebook, so they can't "Like" anything through the iframe. 
-
-The `samesite` attribute will not have an effect when cookies are not used. This may allow websites to easily show public, unauthenticated pages in iframes on unaffiliated websites. However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies. 
+However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies.
 
 ## Summary
 
-Clickjacking is a way to "trick" users into clicking on a malicious site without even knowing what's happening. That's dangerous if there are important click-activated actions.
+Clickjacking is a way to "trick" users into clicking on a victim site without even knowing what's happening. That's dangerous if there are important click-activated actions.
 
 A hacker can post a link to their evil page in a message, or lure visitors to their page by some other means. There are many variations.
 

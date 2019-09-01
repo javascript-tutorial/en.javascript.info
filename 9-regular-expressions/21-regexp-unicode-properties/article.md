@@ -34,7 +34,7 @@ For the full Unicode Character Database in text format (along with all propertie
 
 There are also other derived categories, like:
 - `Alphabetic` (`Alpha`), includes Letters `L`, plus letter numbers `Nl` (e.g. roman numbers Ⅻ), plus some other symbols `Other_Alphabetic` (`OAltpa`).
-- `Hex_Digit` includes hexadimal digits: `0-9`, `a-f`.
+- `Hex_Digit` includes hexadecimal digits: `0-9`, `a-f`.
 - ...Unicode is a big beast, it includes a lot of properties.
 
 For instance, let's look for a 6-digit hex number:

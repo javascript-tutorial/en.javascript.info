@@ -36,7 +36,7 @@ Setting `Rabbit.prototype = animal` literally states the following: "When a `new
 
 That's the resulting picture:
 
-![](proto-constructor-animal-rabbit.png)
+![](proto-constructor-animal-rabbit.svg)
 
 On the picture, `"prototype"` is a horizontal arrow, meaning a regular property, and `[[Prototype]]` is vertical, meaning the inheritance of `rabbit` from `animal`.
 
@@ -62,7 +62,7 @@ Rabbit.prototype = { constructor: Rabbit };
 */
 ```
 
-![](function-prototype-constructor.png)
+![](function-prototype-constructor.svg)
 
 We can check it:
 
@@ -86,7 +86,7 @@ let rabbit = new Rabbit(); // inherits from {constructor: Rabbit}
 alert(rabbit.constructor == Rabbit); // true (from prototype)
 ```
 
-![](rabbit-prototype-constructor.png)
+![](rabbit-prototype-constructor.svg)
 
 We can use `constructor` property to create a new object using the same constructor as the existing one.
 
@@ -160,8 +160,8 @@ In this chapter we briefly described the way of setting a `[[Prototype]]` for ob
 
 Everything is quite simple, just few notes to make things clear:
 
-- The `F.prototype` property is not the same as `[[Prototype]]`. The only thing `F.prototype` does: it sets `[[Prototype]]` of new objects when `new F()` is called.
-- The value of `F.prototype` should be either an object or null: other values won't work.
+- The `F.prototype` property (don't mess with `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
+- The value of `F.prototype` should be either an object or `null`: other values won't work.
 -  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
 
 On regular objects the `prototype` is nothing special:

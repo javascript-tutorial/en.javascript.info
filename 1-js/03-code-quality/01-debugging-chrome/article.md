@@ -2,27 +2,27 @@
 
 Before writing more complex code, let's talk about debugging.
 
-All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier.
+[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
 
-We'll be using Chrome here, because it's probably the most feature-rich in this aspect.
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
 
-## The "sources" pane
+## The "Sources" panel
 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
 
 - Open the [example page](debugging/index.html) in Chrome.
 - Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-- Select the `sources` pane.
+- Select the `Sources` panel.
 
 Here's what you should see if you are doing it for the first time:
 
-![](chrome-open-sources.png)
+![](chrome-open-sources.svg)
 
 The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
 
 Let's click it and select `hello.js` in the tree view. Here's what should show up:
 
-![](chrome-tabs.png)
+![](chrome-tabs.svg)
 
 Here we can see three zones:
 
@@ -40,7 +40,7 @@ After a statement is executed, its result is shown below.
 
 For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing, so the result is `undefined`:
 
-![](chrome-sources-console.png)
+![](chrome-sources-console.svg)
 
 ## Breakpoints
 
@@ -50,14 +50,14 @@ Congratulations! You've set a breakpoint. Please also click on the number for li
 
 It should look like this (blue is where you should click):
 
-![](chrome-sources-breakpoint.png)
+![](chrome-sources-breakpoint.svg)
 
 A *breakpoint* is a point of code where the debugger will automatically pause the JavaScript execution.
 
 While the code is paused, we can examine current variables, execute commands in the console etc. In other words, we can debug it.
 
-We can always find a list of breakpoints in the right pane. That's useful when we have many breakpoints in various files. It allows us to:
-- Quickly jump to the breakpoint in the code (by clicking on it in the right pane).
+We can always find a list of breakpoints in the right panel. That's useful when we have many breakpoints in various files. It allows us to:
+- Quickly jump to the breakpoint in the code (by clicking on it in the right panel).
 - Temporarily disable the breakpoint by unchecking it.
 - Remove the breakpoint by right-clicking and selecting Remove.
 - ...And so on.
@@ -70,7 +70,7 @@ That's handy when we need to stop only for a certain variable value or for certa
 
 ## Debugger command
 
-We can also pause the code by using the `debugger` command, like this:
+We can also pause the code by using the `debugger` command in it, like this:
 
 ```js
 function hello(name) {
@@ -89,11 +89,11 @@ That's very convenient when we are in a code editor and don't want to switch to 
 
 ## Pause and look around
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
-![](chrome-sources-debugger-pause.png)
+![](chrome-sources-debugger-pause.svg)
 
 Please open the informational dropdowns to the right (labeled with arrows). They allow you to examine the current code state:
 
@@ -105,7 +105,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
     At the current moment the debugger is inside `hello()` call, called by a script in `index.html` (no function there, so it's called "anonymous").
 
-    If you click on a stack item, the debugger jumps to the corresponding code, and all its variables can be examined as well.
+    If you click on a stack item (e.g. "anonymous"), the debugger jumps to the corresponding code, and all its variables can be examined as well.
 3. **`Scope` -- current variables.**
 
     `Local` shows local function variables. You can also see their values highlighted right over the source.
@@ -118,16 +118,16 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
 Now it's time to *trace* the script.
 
-There are buttons for it at the top of the right pane. Let's engage them.
+There are buttons for it at the top of the right panel. Let's engage them.
 
 <span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
 : Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
 
     Here's what we can see after a click on it:
 
-    ![](chrome-sources-debugger-trace-1.png)
+    ![](chrome-sources-debugger-trace-1.svg)
 
-    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call stack" at the right. It has increased by one more call. We're inside `say()` now.
+    The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call Stack" at the right. It has increased by one more call. We're inside `say()` now.
 
 <span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
 : If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
@@ -147,23 +147,23 @@ There are buttons for it at the top of the right pane. Let's engage them.
 ```smart header="Continue to here"
 Right click on a line of code opens the context menu with a great option called "Continue to here".
 
-That's handy when we want to move multiple steps forward, but we're too lazy to set a breakpoint.
+That's handy when we want to move multiple steps forward to the line, but we're too lazy to set a breakpoint.
 ```
 
 ## Logging
 
-To output something to console, there's `console.log` function.
+To output something to console from our code, there's `console.log` function.
 
 For instance, this outputs values from `0` to `4` to console:
 
 ```js run
 // open console to see
 for (let i = 0; i < 5; i++) {
-  console.log("value", i);
+  console.log("value,", i);
 }
 ```
 
-Regular users don't see that output, it is in the console. To see it, either open the Console tab of developer tools or press `key:Esc` while in another tab: that opens the console at the bottom.
+Regular users don't see that output, it is in the console. To see it, either open the Console panel of developer tools or press `key:Esc` while in another panel: that opens the console at the bottom.
 
 If we have enough logging in our code, then we can see what's going on from the records, without the debugger.
 
@@ -174,10 +174,10 @@ As we can see, there are three main ways to pause a script:
 2. The `debugger` statements.
 3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
 
-Then we can examine variables and step on to see where the execution goes wrong.
+When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
 
 There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
 
 The information from this chapter is enough to begin debugging, but later, especially if you do a lot of browser stuff, please go there and look through more advanced capabilities of developer tools.
 
-Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click as well!
+Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click and context menus!

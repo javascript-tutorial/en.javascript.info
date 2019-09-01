@@ -5,7 +5,7 @@ The unicode flag `/.../u` enables the correct support of surrogate pairs.
 
 Surrogate pairs are explained in the chapter <info:string>.
 
-Let's briefly remind them here. In short, normally characters are encoded with 2 bytes. That gives us 65536 characters maximum. But there are more characters in the world.
+Let's briefly review them here. In short, normally characters are encoded with 2 bytes. That gives us 65536 characters maximum. But there are more characters in the world.
 
 So certain rare characters are encoded with 4 bytes, like `𝒳` (mathematical X) or `😄` (a smile).
 
@@ -72,7 +72,7 @@ alert( '𝒳'.match(/[𝒳𝒴]/u) ); // 𝒳
 
 Let's see one more example.
 
-If we forget the `u` flag and occasionally use surrogate pairs, then we can get an error:
+If we forget the `u` flag and accidentally use surrogate pairs, then we can get an error:
 
 ```js run
 '𝒳'.match(/[𝒳-𝒴]/); // SyntaxError: invalid range in character class

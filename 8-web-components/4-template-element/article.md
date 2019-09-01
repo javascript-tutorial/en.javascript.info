@@ -87,7 +87,7 @@ Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
 </script>
 ```
 
-In the line `(*)` when we clone and insert `tmpl.content`, as it's `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
+In the line `(*)` when we clone and insert `tmpl.content`, as its `DocumentFragment`, its children (`<style>`, `<p>`) are inserted instead.
 
 They form the shadow DOM:
 
@@ -110,7 +110,7 @@ To summarize:
 The `<template>` tag is quite unique, because:
 
 - The browser checks HTML syntax inside it (as opposed to using a template string inside a script).
-- ...But still allows to use any top-level HTML tags, even those that don't make sense without proper wrappers (e.g. `<tr>`).
+- ...But still allows use of any top-level HTML tags, even those that don't make sense without proper wrappers (e.g. `<tr>`).
 - The content becomes interactive: scripts run, `<video autoplay>` plays etc, when inserted into the document.
 
 The `<template>` element does not feature any iteration mechanisms, data binding or variable substitutions, but we can implement those on top of it.

@@ -70,7 +70,7 @@ pow(x, n) =
 
 We can also say that `pow` *recursively calls itself* till `n == 1`.
 
-![recursive diagram of pow](recursion-pow.png)
+![recursive diagram of pow](recursion-pow.svg)
 
 
 For example, to calculate `pow(2, 4)` the recursive variant does these steps:
@@ -96,7 +96,7 @@ function pow(x, n) {
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
 
 That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
 
@@ -326,18 +326,18 @@ In other words, a company has departments.
 
 Now let's say we want a function to get the sum of all salaries. How can we do that?
 
-An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`. ...And then another subloop inside those for 3rd level departments that might appear in the future? Should we stop on level 3 or make 4 levels of loops? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`... And then another subloop inside those for 3rd level departments that might appear in the future? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
 
 Let's try recursion.
 
 As we can see, when our function gets a department to sum, there are two possible cases:
 
-1. Either it's a "simple" department with an *array of people* -- then we can sum the salaries in a simple loop.
-2. Or it's *an object with `N` subdepartments* -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+1. Either it's a "simple" department with an *array* of people -- then we can sum the salaries in a simple loop.
+2. Or it's *an object* with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
 
-The (1) is the base of recursion, the trivial case.
+The 1st case is the base of recursion, the trivial case, when we get an array.
 
-The (2) is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
 
 The algorithm is probably even easier to read from the code:
 
@@ -373,7 +373,7 @@ The code is short and easy to understand (hopefully?). That's the power of recur
 
 Here's the diagram of calls:
 
-![recursive salaries](recursive-salaries.png)
+![recursive salaries](recursive-salaries.svg)
 
 We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
 
@@ -444,7 +444,7 @@ let list = {
 
 Graphical representation of the list:
 
-![linked list](linked-list.png)
+![linked list](linked-list.svg)
 
 An alternative code for creation:
 
@@ -464,7 +464,7 @@ let secondList = list.next.next;
 list.next.next = null;
 ```
 
-![linked list split](linked-list-split.png)
+![linked list split](linked-list-split.svg)
 
 To join:
 
@@ -488,7 +488,7 @@ list = { value: "new item", next: list };
 */!*
 ```
 
-![linked list](linked-list-0.png)
+![linked list](linked-list-0.svg)
 
 To remove a value from the middle, change `next` of the previous one:
 
@@ -496,7 +496,7 @@ To remove a value from the middle, change `next` of the previous one:
 list.next = list.next.next;
 ```
 
-![linked list](linked-list-remove-1.png)
+![linked list](linked-list-remove-1.svg)
 
 We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
 

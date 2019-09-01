@@ -3,7 +3,7 @@
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
-In that case objects are auto-converted to primitives, and then the operation is carried out.
+In that case, objects are auto-converted to primitives, and then the operation is carried out.
 
 In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
 
@@ -15,9 +15,7 @@ In the chapter <info:type-conversions> we've seen the rules for numeric, string 
 
 We can fine-tune string and numeric conversion, using special object methods.
 
-The conversion algorithm is called `ToPrimitive` in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive). It's called with a "hint" that specifies the conversion type.
-
-There are three variants:
+There are three variants of type conversion, so-called "hints", described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
 
 `"string"`
 : For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
@@ -66,7 +64,7 @@ Please note -- there are only three hints. It's that simple. There is no "boolea
 
 **To do the conversion, JavaScript tries to find and call three object methods:**
 
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
+1. Call `obj[Symbol.toPrimitive](hint)` - the method with the symbolic key `Symbol.toPrimitive` (system symbol), if such method exists,
 2. Otherwise if hint is `"string"`
     - try `obj.toString()` and `obj.valueOf()`, whatever exists.
 3. Otherwise if hint is `"number"` or `"default"`
@@ -78,9 +76,9 @@ Let's start from the first method. There's a built-in symbol named `Symbol.toPri
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // return a primitive value
+  // must return a primitive value
   // hint = one of "string", "number", "default"
-}
+};
 ```
 
 For instance, here `user` object implements it:
@@ -138,7 +136,9 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case we can implement `toString` only, like this:
+As we can see, the behavior is the same as the previous example with `Symbol.toPrimitive`.
+
+Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
 
 ```js run
 let user = {
@@ -171,25 +171,24 @@ In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there wil
 
 ## Further operations
 
-An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary.
+An operation that initiated the conversion gets the primitive, and then continues to work with it, applying further conversions if necessary.
 
 For instance:
 
-- Mathematical operations (except binary plus) perform `ToNumber` conversion:
+- Mathematical operations, except binary plus, convert the primitive to a number:
 
     ```js run
     let obj = {
-      toString() { // toString handles all conversions in the absence of other methods
+      // toString handles all conversions in the absence of other methods
+      toString() {
         return "2";
       }
     };
 
-    alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
+    alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
     ```
 
-- Binary plus checks the primitive -- if it's a string, then it does concatenation, otherwise it performs `ToNumber` and works with numbers.
-
-    String example:
+- Binary plus will concatenate strings in the same situation:
     ```js run
     let obj = {
       toString() {
@@ -197,27 +196,15 @@ For instance:
       }
     };
 
-    alert(obj + 2); // 22 (ToPrimitive returned string => concatenation)
+    alert(obj + 2); // 22 (conversion to primitive returned a string => concatenation)
     ```
-
-    Number example:
-    ```js run
-    let obj = {
-      toString() {
-        return true;
-      }
-    };
-
-    alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
-    ```
-
 
 ## Summary
 
 The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
 
 There are 3 types (hints) of it:
-- `"string"` (for `alert` and other string conversions)
+- `"string"` (for `alert` and other operations that need a string)
 - `"number"` (for maths)
 - `"default"` (few operators)
 

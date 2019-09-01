@@ -1,9 +1,9 @@
 
 # Async iterators and generators
 
-Asynchronous iterators allow to iterate over data that comes asynchronously, on-demand.
+Asynchronous iterators allow to iterate over data that comes asynchronously, on-demand. For instance, when we download something chunk-by-chunk over a network. Asynchronous generators make it even more convenient.
 
-For instance, when we download something chunk-by-chunk, and expect data fragments to come asynchronously and would like to iterate over them -- async iterators and generators may come in handy. Let's see a simple example first, to grasp the syntax, and then review a real-life use case.
+Let's see a simple example first, to grasp the syntax, and then review a real-life use case.
 
 ## Async iterators
 
@@ -21,7 +21,8 @@ let range = {
   [Symbol.iterator]() {
 */!*
     // ...it returns the iterator object:
-    // onward, for..of works only with that object, asking it for next values
+    // onward, for await..of works only with that object,
+    // asking it for next values using next()
     return {
       current: this.from,
       last: this.to,
@@ -65,7 +66,8 @@ let range = {
   [Symbol.asyncIterator]() { // (1)
 */!*
     // ...it returns the iterator object:
-    // onward, for await..of works only with that object, asking it for next values
+    // onward, for await..of works only with that object,
+    // asking it for next values using next()
     return {
       current: this.from,
       last: this.to,
@@ -104,8 +106,8 @@ let range = {
 As we can see, the structure is similar to regular iterators:
 
 1. To make an object asynchronously iterable, it must have a method `Symbol.asyncIterator` `(1)`.
-2. It must return the object with `next()` method returning a promise `(2)`.
-3. The `next()` method doesn't have to be `async`, it may be a regular method returning a promise, but `async` allows to use `await` inside. Here we just delay for a second `(3)`.
+2. This method must return the object with `next()` method returning a promise `(2)`.
+3. The `next()` method doesn't have to be `async`, it may be a regular method returning a promise, but `async` allows to use `await`, so that's convenient. Here we just delay for a second `(3)`.
 4. To iterate, we use `for await(let value of range)` `(4)`, namely add "await" after "for". It calls `range[Symbol.asyncIterator]()` once, and then its `next()` for values.
 
 Here's a small cheatsheet:
@@ -117,7 +119,7 @@ Here's a small cheatsheet:
 | to loop, use                          | `for..of`         | `for await..of` |
 
 
-````warn header="The spread operator ...  doesn't work asynchronously"
+````warn header="The spread operator `...` doesn't work asynchronously"
 Features that require regular, synchronous iterators, don't work with asynchronous ones.
 
 For instance, a spread operator won't work:
@@ -146,8 +148,7 @@ for(let value of generateSequence(1, 5)) {
 }
 ```
 
-
-Normally, we can't use `await` in generators. All values must come synchronously: there's no place for delay in `for..of`, it's a synchronous construct.
+In regular generators we can't use `await`. All values must come synchronously: there's no place for delay in `for..of`, it's a synchronous construct.
 
 But what if we need to use `await` in the generator body? To perform network requests, for instance.
 
@@ -178,7 +179,7 @@ No problem, just prepend it with `async`, like this:
 })();
 ```
 
-Now we have an the async generator, iterable with `for await...of`.
+Now we have the async generator, iterable with `for await...of`.
 
 It's indeed very simple. We add the `async` keyword, and the generator now can use `await` inside of it, rely on promises and other async functions.
 
@@ -190,7 +191,7 @@ In a regular generator we'd use `result = generator.next()` to get values. In an
 result = await generator.next(); // result = {value: ..., done: true/false}
 ```
 
-## Iterables via async generators
+## Async iterables
 
 As we already know, to make an object iterable, we should add `Symbol.iterator` to it.
 
@@ -199,7 +200,9 @@ let range = {
   from: 1,
   to: 5,
 *!*
-  [Symbol.iterator]() { ...return object with next to make range iterable...  }
+  [Symbol.iterator]() {
+    return <object with next to make range iterable>
+  }
 */!*
 }
 ```
@@ -262,7 +265,7 @@ Now values come with a delay of 1 second between them.
 
 So far we've seen simple examples, to gain basic understanding. Now let's review a real-life use case.
 
-There are many online APIs that deliver paginated data. For instance, when we need a list of users, then we can fetch it page-by-page: a request returns a pre-defined count (e.g. 100 users), and provides an URL to the next page.
+There are many online services that deliver paginated data. For instance, when we need a list of users, a request returns a pre-defined count (e.g. 100 users) - "one page", and provides an URL to the next page.
 
 The pattern is very common, it's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
 
@@ -270,7 +273,7 @@ The pattern is very common, it's not about users, but just about anything. For i
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
 - Then we can use that link for the next request, to get more commits, and so on.
 
-What we'd like to have is a simpler API: an iterable object with commits, so that we could go over them like this:
+But we'd like to have is a simpler API: an iterable object with commits, so that we could go over them like this:
 
 ```js
 let repo = 'javascript-tutorial/en.javascript.info'; // GitHub repository to get commits from
@@ -280,7 +283,7 @@ for await (let commit of fetchCommits(repo)) {
 }
 ```
 
-We'd like `fetchCommits` to get commits for us, making requests whenever needed. And let it care about all pagination stuff, for us it'll be a simple `for await..of`.
+We'd like to make a function `fetchCommits(repo)` that gets commits for us, making requests whenever needed. And let it care about all pagination stuff, for us it'll be a simple `for await..of`.
 
 With async generators that's pretty easy to implement:
 
@@ -293,7 +296,7 @@ async function* fetchCommits(repo) {
       headers: {'User-Agent': 'Our script'}, // github requires user-agent header
     });
 
-    const body = await response.json(); // (2) parses response as JSON (array of commits)
+    const body = await response.json(); // (2) response is JSON (array of commits)
 
     // (3) the URL of the next page is in the headers, extract it
     let nextPage = response.headers.get('Link').match(/<(.*?)>; rel="next"/);
@@ -308,9 +311,9 @@ async function* fetchCommits(repo) {
 }
 ```
 
-1. We use the browser `fetch` method to download from a remote URL. It allows to supply authorization and other headers if needed, here GitHub requires `User-Agent`.
+1. We use the browser [fetch](info:fetch) method to download from a remote URL. It allows to supply authorization and other headers if needed, here GitHub requires `User-Agent`.
 2. The fetch result is parsed as JSON, that's again a `fetch`-specific method.
-3. We can get the next page URL from the `Link` header of the response. It has a special format, so we use a regexp for that. The next page URL may look like this: `https://api.github.com/repositories/93253246/commits?page=2`, it's generated by GitHub itself.
+3. We should get the next page URL from the `Link` header of the response. It has a special format, so we use a regexp for that. The next page URL may look like `https://api.github.com/repositories/93253246/commits?page=2`, it's generated by GitHub itself.
 4. Then we yield all commits received, and when they finish -- the next `while(url)` iteration will trigger, making one more request.
 
 An example of use (shows commit authors in console):
@@ -356,6 +359,6 @@ Syntax differences between async and regular generators:
 
 In web-development we often meet streams of data, when it flows chunk-by-chunk. For instance, downloading or uploading a big file.
 
-We can use async generators to process such data, but it's worth to mention that there's also another API called Streams, that provides special interfaces to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere).
+We can use async generators to process such data, but it's also worth to mention that there's also another API called Streams, that provides special interfaces to work with such streams, to transform the data and to pass it from one stream to another (e.g. download from one place and immediately send elsewhere).
 
-Streams API not a part of JavaScript language standard. Streams and async generators complement each other, both are great ways to handle async data flows.
+Streams API is not a part of JavaScript language standard.

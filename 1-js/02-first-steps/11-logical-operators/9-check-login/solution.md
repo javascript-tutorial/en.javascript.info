@@ -10,7 +10,7 @@ if (userName == 'Admin') {
   if (pass == 'TheMaster') {
     alert( 'Welcome!' );
   } else if (pass == '' || pass == null) {
-    alert( 'Canceled.' );
+    alert( 'Canceled' );
   } else {
     alert( 'Wrong password' );
   }

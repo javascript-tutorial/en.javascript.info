@@ -35,7 +35,7 @@ If you click on the button, the messages are:
 1. Inner target: `BUTTON` -- internal event handler gets the correct target, the element inside shadow DOM.
 2. Outer target: `USER-CARD` -- document event handler gets shadow host as the target.
 
-Event retargeting is a great thing to have, because the outer document doesn't have no know  about component internals. From its point of view, the event happened on `<user-card>`.
+Event retargeting is a great thing to have, because the outer document doesn't have to know  about component internals. From its point of view, the event happened on `<user-card>`.
 
 **Retargeting does not occur if the event occurs on a slotted element, that physically lives in the light DOM.**
 

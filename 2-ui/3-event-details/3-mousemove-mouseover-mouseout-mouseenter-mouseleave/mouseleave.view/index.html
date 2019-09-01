@@ -1,15 +1,15 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <div id="blue" onmouseenter="log(event)" onmouseleave="log(event)">
-    <div id="red"></div>
+  <div id="parent" onmouseenter="mouselog(event)" onmouseleave="mouselog(event)">parent
+    <div id="child">child</div>
   </div>
 
   <textarea id="text"></textarea>

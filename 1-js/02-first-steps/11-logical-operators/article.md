@@ -64,7 +64,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## OR finds the first truthy value
+## OR "||" finds the first truthy value
 
 The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
 
@@ -186,7 +186,7 @@ if (1 && 0) { // evaluated as true && false
 ```
 
 
-## AND finds the first falsy value
+## AND "&&" finds the first falsy value
 
 Given multiple AND'ed values:
 

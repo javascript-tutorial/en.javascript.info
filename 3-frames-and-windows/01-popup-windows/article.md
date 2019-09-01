@@ -7,11 +7,19 @@ Basically, you just run:
 window.open('https://javascript.info/')
 ```
 
-... And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
+...And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
+
+Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
+
+Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
+
+Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
+
+1. A popup is a separate window with its own independent JavaScript environment. So opening a popup with a third-party non-trusted site is safe.
+2. It's very easy to open a popup.
+3. A popup can navigate (change URL) and send messages to the opener window.
 
 ## Popup blocking
-
-Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: JavaScript is able to send requests for server, so popups are rarely used. But sometimes they are still handy.
 
 In the past, evil sites abused popups a lot. A bad page could open tons of popup windows with ads. So now most browsers try to block popups and protect the user.
 
@@ -49,14 +57,6 @@ setTimeout(() => window.open('http://google.com'), 1000);
 ```
 
 The difference is that Firefox treats a timeout of 2000ms or less are acceptable, but after it -- removes the "trust", assuming that now it's "outside of the user action". So the first one is blocked, and the second one is not.
-
-## Modern usage
-
-As of now, we have many methods to load and show data on-page with JavaScript. But there are still situations when a popup works good, because:
-
-1. A popup is a separate window with its own independent JavaScript environment. So opening a popup with a third-party non-trusted site is safe.
-2. It's very easy to open a popup, little to no overhead. 
-3. A popup may persist even if the user left the page. In also can navigate (change URL) in the opener window.
 
 ## window.open
 
@@ -118,15 +118,25 @@ Rules for omitted settings:
 - If there is no `left/top` in params, then the browser tries to open a new window near the last opened window.
 - If there is no `width/height`, then the new window will be the same size as the last opened.
 
-## Accessing a popup
+## Accessing popup from window
 
 The `open` call returns a reference to the new window. It can be used to manipulate it's properties, change location and even more.
 
-In the example below, the contents of the new window is modified after loading.
+In this example, we generate popup content from JavaScript:
+
+```js
+let newWin = window.open("about:blank", "hello", "width=200,height=200");
+
+newWin.document.write("Hello, world!");
+```
+
+And here we modify the contents after loading:
 
 ```js run
 let newWindow = open('/', 'example', 'width=300,height=300')
 newWindow.focus();
+
+alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
 
 newWindow.onload = function() {
   let html = `<div style="font-size:30px">Welcome!</div>`;
@@ -136,35 +146,96 @@ newWindow.onload = function() {
 };
 ```
 
-Please note that external `document` content is only accessible for windows from the same origin (the same protocol://domain:port).
+Please note: immediately after `window.open`, the new window isn't loaded yet. That's demonstrated by `alert` in line `(*)`. So we wait for `onload` to modify it. We could also use `DOMContentLoaded` handler for `newWin.document`.
 
-For windows with URLs from another sites, we are able to change the location by assigning `newWindow.location=...`, but we can't read the location or access the content. That's for user safety, so that an evil page can't open a popup with `http://gmail.com` and read the data. We'll talk more about it later.
+```warn header="Same origin policy"
+Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
 
-## Accessing the opener window   
+Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
+```
 
-A popup may access the "opener" window as well. A JavaScript in it may use `window.opener` to access the window that opened it. It is `null` for all windows except popups.
+## Accessing window from popup   
 
-So both the main window and the popup have a reference to each other. They may modify each other freely assuming that they come from the same origin. If that's not so, then there are still means to communicate, to be covered in the next chapter <info:cross-window-communication>.
+A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
+
+If you run the code below, it replaces the opener (current) window content with "Test":
+
+```js run
+let newWin = window.open("about:blank", "hello", "width=200,height=200");
+
+newWin.document.write(
+  "<script>window.opener.document.body.innerHTML = 'Test'<\/script>"
+);
+```
+
+So the connection between the windows is bidirectional: the main window and the popup have a reference to each other.
 
 ## Closing a popup
 
-If we don't need a popup any more, we can call `newWindow.close()` on it.
+To close a window: `win.close()`.
 
-Technically, the `close()` method is available for any `window`, but `window.close()` is ignored by most browsers if `window` is not created with `window.open()`.
+To check if a window is closed: `win.closed`.
 
-The `newWindow.closed` is `true` if the window is closed. That's useful to check if the popup (or the main window) is still open or not. A user could close it, and our code should take that possibility into account.
+Technically, the `close()` method is available for any `window`, but `window.close()` is ignored by most browsers if `window` is not created with `window.open()`. So it'll only work on a popup.
+
+The `closed` property is `true` if the window is closed. That's useful to check if the popup (or the main window) is still open or not. A user can close it anytime, and our code should take that possibility into account.
 
 This code loads and then closes the window:
 
 ```js run
-let newWindow = open('/', 'example', 'width=300,height=300')
+let newWindow = open('/', 'example', 'width=300,height=300');
+
 newWindow.onload = function() {
   newWindow.close();
   alert(newWindow.closed); // true
 };
 ```
 
-## Focus/blur on a popup
+
+## Scrolling and resizing
+
+There are methods to move/resize a window:
+
+`win.moveBy(x,y)`
+: Move the window relative to current position `x` pixels to the right and `y` pixels down. Negative values are allowed (to move left/up).
+
+`win.moveTo(x,y)`
+: Move the window to coordinates `(x,y)` on the screen.
+
+`win.resizeBy(width,height)`
+: Resize the window by given `width/height` relative to the current size. Negative values are allowed.
+
+`win.resizeTo(width,height)`
+: Resize the window to the given size.
+
+There's also `window.onresize` event.
+
+```warn header="Only popups"
+To prevent abuse, the browser usually blocks these methods. They only work reliably on popups that we opened, that have no additional tabs.
+```
+
+```warn header="No minification/maximization"
+JavaScript has no way to minify or maximize a window. These OS-level functions are hidden from Frontend-developers.
+
+Move/resize methods do not work for maximized/minimized windows.
+```
+
+## Scrolling a window
+
+We already talked about scrolling a window in the chapter <info:size-and-scroll-window>.
+
+`win.scrollBy(x,y)`
+: Scroll the window `x` pixels right and `y` down relative the current scroll. Negative values are allowed.
+
+`win.scrollTo(x,y)`
+: Scroll the window to the given coordinates `(x,y)`.
+
+`elem.scrollIntoView(top = true)`
+: Scroll the window to make `elem` show up at the top (the default) or at the bottom for `elem.scrollIntoView(false)`.
+
+There's also `window.onscroll` event.
+
+## Focus/blur on a window
 
 Theoretically, there are `window.focus()` and `window.blur()` methods to focus/unfocus on a window.  Also there are `focus/blur` events that allow to focus a window and catch the moment when the visitor switches elsewhere.
 
@@ -189,12 +260,17 @@ For instance:
 
 ## Summary   
 
-- A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
-- By default, browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
-- The popup may access the opener window using the `window.opener` property, so the two are connected.
-- If the main window and the popup come from the same origin, they can freely read and modify each other. Otherwise, they can change location of each other and communicate using messages (to be covered).
-- To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
-- Methods `focus()` and `blur()` allow to focus/unfocus a window. Sometimes.
-- Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
+Popup windows are used rarely, as there are alternatives: loading and displaying information in-page, or in iframe.
 
-Also if we open a popup, a good practice is to notify the user about it. An icon with the opening window can help the visitor to survive the focus shift and keep both windows in mind.
+If we're going to open a popup, a good practice is to inform the user about it. An "opening window" icon near a link or button would allow the visitor to survive the focus shift and keep both windows in mind.
+
+- A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
+- Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
+- Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
+- The popup may access the opener window using the `window.opener` property.
+- The main window and the popup can freely read and modify each other if they havee the same origin. Otherwise, they can change location of each other and [exchange messages.
+
+To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
+
+- Methods `focus()` and `blur()` allow to focus/unfocus a window. But they don't work all the time.
+- Events `focus` and `blur` allow to track switching in and out of the window. But please note that a  window may still be visible even in the background state, after `blur`.
