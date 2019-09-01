@@ -27,7 +27,7 @@ alert(user.name); // Jack
 alert(user.isAdmin); // false
 ```
 
-When a function is executed as `new User(...)`, it does the following steps:
+When a function is executed as `new Func(...)`, it does the following:
 
 1. A new empty object is created and assigned to `this`.
 2. The function body executes. Usually it modifies `this`, adds new properties to it.
