@@ -341,7 +341,7 @@ Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true
 ```
 
-Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. Like shown above, the origin must be explicit. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
+Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. Like shown above, there must be exactly the origin there. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
 
 ## Summary
 
