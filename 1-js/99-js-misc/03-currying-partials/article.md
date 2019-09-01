@@ -49,7 +49,7 @@ function sum(a, b) {
   return a + b;
 }
 
-let carriedSum = _.curry(sum); // using _.carry from lodash library
+let carriedSum = _.curry(sum); // using _.curry from lodash library
 
 alert( carriedSum(1, 2) ); // 3, still callable normally
 alert( carriedSum(1)(2) ); // 3, called partially
