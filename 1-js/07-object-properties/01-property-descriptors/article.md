@@ -227,8 +227,6 @@ To be precise, non-configurability imposes several restrictions on `defineProper
 3. Can't change `writable: false` to `true` (the other way round works).
 4. Can't change `get/set` for an accessor property (but can assign them if absent).
 
-Notable exception: a value of non-configurable, but writable property still can be changed.
-
 Here we are making `user.name` a "forever sealed" constant:
 
 ```js run
@@ -249,6 +247,14 @@ Object.defineProperty(user, "name", {
 Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
+
+```smart header="Non-configurable doesn't mean \"non-writable\""
+Notable exception: a value of non-configurable, but writable property can be changed.
+
+The idea of `configurable: false` is to prevent changes to property flags and its deletion, not changes to its value.
+```
+
+
 
 ## Object.defineProperties
 
