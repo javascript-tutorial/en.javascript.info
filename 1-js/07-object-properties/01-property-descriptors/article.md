@@ -11,7 +11,7 @@ In this chapter we'll study additional configuration options, and in the next we
 
 Object properties, besides a **`value`**, have three special attributes (so-called "flags"):
 
-- **`writable`** -- if `true`, can be changed, otherwise it's read-only.
+- **`writable`** -- if `true`, the value can be changed, otherwise it's read-only.
 - **`enumerable`** -- if `true`, then listed in loops, otherwise not listed.
 - **`configurable`** -- if `true`, the property can be deleted and these attributes can be modified, otherwise not.
 
@@ -100,9 +100,9 @@ Compare it with "normally created" `user.name` above: now all flags are falsy. I
 
 Now let's see effects of the flags by example.
 
-## Read-only
+## Non-writable
 
-Let's make `user.name` read-only by changing `writable` flag:
+Let's make `user.name` non-writable (can't be reassigned) by changing `writable` flag:
 
 ```js run
 let user = {
@@ -123,7 +123,7 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
 ```smart header="Errors appear only in strict mode"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+In the non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
 ```
 
 Here's the same example, but the property is created from scratch:
@@ -194,9 +194,9 @@ alert(Object.keys(user)); // name
 
 The non-configurable flag (`configurable:false`) is sometimes preset for built-in objects and properties.
 
-A non-configurable property can not be deleted or altered with `defineProperty`.
+A non-configurable property can not be deleted.
 
-For instance, `Math.PI` is read-only, non-enumerable and non-configurable:
+For instance, `Math.PI` is non-writable, non-enumerable and non-configurable:
 
 ```js run
 let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
@@ -219,7 +219,15 @@ Math.PI = 3; // Error
 // delete Math.PI won't work either
 ```
 
-Making a property non-configurable is a one-way road. We cannot change it back, because `defineProperty` doesn't work on non-configurable properties.
+Making a property non-configurable is a one-way road. We cannot change it back with `defineProperty`.
+
+To be precise, non-configurability imposes several restrictions on `defineProperty`:
+1. Can't change `configurable` flag.
+2. Can't change `enumerable` flag.
+3. If a property is non-writable, then can't make it writable or change value.
+4. Can't change `get/set` for an accessor property.
+
+So, few things about the property still can be changed. E.g. a value may change, if the property is writable. The idea is that we can't change flags of a non-configurable property.
 
 Here we are making `user.name` a "forever sealed" constant:
 
@@ -237,7 +245,7 @@ Object.defineProperty(user, "name", {
 // all this won't work:
 //   user.name = "Pete"
 //   delete user.name
-//   defineProperty(user, "name", ...)
+//   defineProperty(user, "name", { value: "Pete" })
 Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
