@@ -224,10 +224,10 @@ Making a property non-configurable is a one-way road. We cannot change it back w
 To be precise, non-configurability imposes several restrictions on `defineProperty`:
 1. Can't change `configurable` flag.
 2. Can't change `enumerable` flag.
-3. If a property is non-writable, then can't make it writable or change value.
-4. Can't change `get/set` for an accessor property.
+3. Can't change `writable: false` to `true` (the other way round works).
+4. Can't change `get/set` for an accessor property (but can assign them if absent).
 
-So, few things about the property still can be changed. E.g. a value may change, if the property is writable. The idea is that we can't change flags of a non-configurable property.
+Notable exception: a value of non-configurable, but writable property still can be changed.
 
 Here we are making `user.name` a "forever sealed" constant:
 
