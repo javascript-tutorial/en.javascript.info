@@ -61,7 +61,6 @@ To summarize, there are several benefits of using a separate `cachingDecorator` 
 - The caching logic is separate, it did not increase the complexity of `slow` itself (if there was any).
 - We can combine multiple decorators if needed (other decorators will follow).
 
-
 ## Using "func.call" for the context
 
 The caching decorator mentioned above is not suited to work with object methods.
@@ -168,9 +167,7 @@ let user = { name: "John" };
 say.call( user, "Hello" ); // John: Hello
 ```
 
-
 In our case, we can use `call` in the wrapper to pass the context to the original function:
-
 
 ```js run
 let worker = {
@@ -393,11 +390,19 @@ Taken from the specification almost "as-is":
 
 So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. It's intentionally written in a way that allows any array-like `this` (not a coincidence, many methods follow this practice). That's why it also works with `this=arguments`.
 
+## Decorators and function properties
+
+It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them.
+
+E.g. in the example above if `slow` function had any properties on it, then `cachingDecorator(slow)` is a wrapper without them.
+
+Some decorators may provide their own properties. E.g. a decorator may count how many times a function was invoked and how much time it took, and expose this information via wrapper properties.
+
+There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article <info:proxy#proxy-apply>.
+
 ## Summary
 
 *Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
-
-It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them. Some decorators provide their own properties.
 
 Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
 

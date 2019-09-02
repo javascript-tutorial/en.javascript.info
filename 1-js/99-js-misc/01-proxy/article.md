@@ -497,7 +497,7 @@ alert(50 in range); // false
 
 A nice syntactic sugar, isn't it? And very simple to implement.
 
-## Wrapping functions: "apply"
+## Wrapping functions: "apply" [#proxy-apply]
 
 We can wrap a proxy around a function as well.
 
