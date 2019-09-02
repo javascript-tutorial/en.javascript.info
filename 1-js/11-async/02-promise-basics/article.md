@@ -22,7 +22,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The function passed to `new Promise` is called the *executor*. When the promise is created, it runs automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
+The function passed to `new Promise` is called the *executor*. When `new Promise` is created, it runs automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
 
 Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. Our code is only inside executor.
 
