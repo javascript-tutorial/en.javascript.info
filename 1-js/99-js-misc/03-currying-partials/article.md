@@ -31,9 +31,9 @@ function sum(a, b) {
   return a + b;
 }
 
-let carriedSum = curry(sum);
+let curriedSum = curry(sum);
 
-alert( carriedSum(1)(2) ); // 3
+alert( curriedSum(1)(2) ); // 3
 ```
 
 As you can see, the implementation is straightforward: it's just two wrappers.
@@ -49,10 +49,10 @@ function sum(a, b) {
   return a + b;
 }
 
-let carriedSum = _.curry(sum); // using _.carry from lodash library
+let curriedSum = _.curry(sum); // using _.curry from lodash library
 
-alert( carriedSum(1, 2) ); // 3, still callable normally
-alert( carriedSum(1)(2) ); // 3, called partially
+alert( curriedSum(1, 2) ); // 3, still callable normally
+alert( curriedSum(1)(2) ); // 3, called partially
 ```
 
 ## Currying? What for?
