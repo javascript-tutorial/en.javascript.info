@@ -150,7 +150,7 @@ The server can inspect the `Origin` and, if it agrees to accept such a request, 
 
 The browser plays the role of a trusted mediator here:
 1. It ensures that the corrent `Origin` is sent with a cross-origin request.
-2. If checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
+2. It checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
 
 ![](xhr-another-domain.svg)
 
@@ -176,8 +176,8 @@ For cross-origin request, by default JavaScript may only access so-called "simpl
 
 Accessing any other response header causes an error.
 
-```smart header="Please note: no `Content-Length`"
-Please note: there's no `Content-Length` header in the list!
+```smart
+There's no `Content-Length` header in the list!
 
 This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
@@ -317,7 +317,7 @@ For example, `fetch('http://another.com')` does not send any cookies, even those
 
 Why?
 
-That's because a request with credentials gives much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.
+That's because a request with credentials is much more powerful than without them. If allowed, it grants JavaScript the full power to act on behalf of the user and access sensitive information using their credentials.
 
 Does the server really trust the script that much? Then it must explicitly allow requests with credentials with an additional header.
 
@@ -329,7 +329,7 @@ fetch('http://another.com', {
 });
 ```
 
-Now `fetch` sends cookies originating from `another.com` with out request to that site.
+Now `fetch` sends cookies originating from `another.com` without request to that site.
 
 If the server agrees to accept the request *with credentials*, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 
@@ -341,11 +341,11 @@ Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true
 ```
 
-Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. There must be exactly the origin there, like above. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
+Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` for requests with credentials. Like shown above, there must be exactly the origin there. That's an additional safety measure, to ensure that the server really knows who it trusts to make such requests.
 
 ## Summary
 
-From the browser point of view, there are to kinds of cross-origin requests: "simple" and all the others.
+From the browser point of view, there are two kinds of cross-origin requests: "simple" and all the others.
 
 [Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
 - Method: GET, POST or HEAD.
@@ -372,7 +372,7 @@ Additionally, to grant JavaScript access to any response headers except `Cache-C
 
 **For non-simple requests, a preliminary "preflight" request is issued before the requested one:**
 
-- → The browser sends `OPTIONS` request to the same url, with headers:
+- → The browser sends `OPTIONS` request to the same URL, with headers:
     - `Access-Control-Request-Method` has requested method.
     - `Access-Control-Request-Headers` lists non-simple requested headers.
 - ← The server should respond with status 200 and headers:
