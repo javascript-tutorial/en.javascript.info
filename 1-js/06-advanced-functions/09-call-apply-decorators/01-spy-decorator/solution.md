@@ -1,1 +1,1 @@
-Here we can use `calls.push(args)` to store all arguments in the log and `f.apply(this, args)` to forward the call.
+The wrapper returned by `spy(f)` should store all arguments and then use `f.apply` to forward the call.
