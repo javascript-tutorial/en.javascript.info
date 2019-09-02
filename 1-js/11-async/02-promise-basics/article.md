@@ -60,9 +60,9 @@ We can see two things by running the code above:
 1. The executor is called automatically and immediately (by `new Promise`).
 2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We only should call one of them when ready.
 
-After one second of "processing" the executor calls `resolve("done")` to produce the result:
+    After one second of "processing" the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
 
-![](promise-resolve-1.svg)
+    ![](promise-resolve-1.svg)
 
 That was an example of a successful job completion, a "fulfilled promise".
 
@@ -75,14 +75,16 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
+The call to `reject(...)` moves the promise object to `"rejected"` state:
+
 ![](promise-reject-1.svg)
 
-To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding Promise object.
+To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding promise object.
 
-The Promise that is either resolved or rejected is called "settled", as opposed to a initially "pending" Promise.
+A promise that is either resolved or rejected is called "settled", as opposed to a initially "pending" promise.
 
 ````smart header="There can be only a single result or an error"
-The executor should call only one `resolve` or one `reject`. The promise's state change is final.
+The executor should call only one `resolve` or one `reject`. Any state change is final.
 
 All further calls of `resolve` and `reject` are ignored:
 
