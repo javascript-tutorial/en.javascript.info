@@ -280,7 +280,7 @@ alert( worker.slow(3, 5) ); // works
 alert( "Again " + worker.slow(3, 5) ); // same (cached)
 ```
 
-Now it works with any number of arguments (though the hash function would need to be adjusted for a different number of arguments than two).
+Now it works with any number of arguments (though the hash function would also need to be adjusted to allow any number of arguments. An interesting way to handle this will be covered below).
 
 There are two changes:
 
