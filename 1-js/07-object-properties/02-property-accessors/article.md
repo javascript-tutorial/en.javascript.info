@@ -96,10 +96,9 @@ alert(user.surname); // Cooper
 
 As the result, we have a "virtual" property `fullName`. It is readable and writable, but in fact does not exist.
 
-```smart header="No support for `delete`"
-An attempt to `delete` on accessor property causes an error.
+```smart header="No way to handle `delete`"
+There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
 ```
-
 
 ## Accessor descriptors
 
