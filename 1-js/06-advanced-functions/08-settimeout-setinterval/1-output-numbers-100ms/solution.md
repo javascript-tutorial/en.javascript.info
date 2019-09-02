@@ -18,7 +18,7 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Using recursive `setTimeout`:
+Using nested `setTimeout`:
 
 
 ```js run

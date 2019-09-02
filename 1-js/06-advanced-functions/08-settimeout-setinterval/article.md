@@ -132,11 +132,11 @@ In most browsers, including Chrome and Firefox the internal timer continues "tic
 So if you run the code above and don't dismiss the `alert` window for some time, then in the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
 ```
 
-## Recursive setTimeout
+## Nested setTimeout
 
 There are two ways of running something regularly.
 
-One is `setInterval`. The other one is a recursive `setTimeout`, like this:
+One is `setInterval`. The other one is a nested `setTimeout`, like this:
 
 ```js
 /** instead of:
@@ -153,7 +153,7 @@ let timerId = setTimeout(function tick() {
 
 The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
 
-The recursive `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+The nested `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
 
 For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
 
@@ -177,7 +177,7 @@ let timerId = setTimeout(function request() {
 
 And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
 
-**Recursive `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
 
 Let's compare two code fragments. The first one uses `setInterval`:
 
@@ -188,7 +188,7 @@ setInterval(function() {
 }, 100);
 ```
 
-The second one uses recursive `setTimeout`:
+The second one uses nested `setTimeout`:
 
 ```js
 let i = 1;
@@ -214,11 +214,11 @@ In this case the engine waits for `func` to complete, then checks the scheduler 
 
 In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
 
-And here is the picture for the recursive `setTimeout`:
+And here is the picture for the nested `setTimeout`:
 
 ![](settimeout-interval.svg)
 
-**The recursive `setTimeout` guarantees the fixed delay (here 100ms).**
+**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
 
 That's because a new call is planned at the end of the previous one.
 
