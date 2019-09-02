@@ -7,7 +7,7 @@ Answers:
 
 2. `false`. 
 
-    Objects are assigned by reference. The object from `Rabbit.prototype` is not duplicated, it's still a single object is referenced both by `Rabbit.prototype` and by the `[[Prototype]]` of `rabbit`. 
+    Objects are assigned by reference. The object from `Rabbit.prototype` is not duplicated, it's still a single object referenced both by `Rabbit.prototype` and by the `[[Prototype]]` of `rabbit`. 
 
     So when we change its content through one reference, it is visible through the other one.
 
