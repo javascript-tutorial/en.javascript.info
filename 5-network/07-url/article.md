@@ -155,7 +155,7 @@ A natural question is: "What's the difference between `encodeURIComponent` and `
 That's easy to understand if we look at the URL, that's split into components in the picture above:
 
 ```
-http://site.com:8080/path/page?p1=v1&p2=v2#hash
+https://site.com:8080/path/page?p1=v1&p2=v2#hash
 ```
 
 As we can see, characters such as `:`, `?`, `=`, `&`, `#` are allowed in URL.

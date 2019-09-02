@@ -248,13 +248,11 @@ Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
 
-```smart header="Non-configurable doesn't mean \"non-writable\""
+```smart header="\"Non-configurable\" doesn't mean \"non-writable\""
 Notable exception: a value of non-configurable, but writable property can be changed.
 
 The idea of `configurable: false` is to prevent changes to property flags and its deletion, not changes to its value.
 ```
-
-
 
 ## Object.defineProperties
 
