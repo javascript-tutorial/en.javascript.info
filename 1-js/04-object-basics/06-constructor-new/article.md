@@ -51,7 +51,7 @@ function User(name) {
 }
 ```
 
-So the result of `new User("Jack")` is the same object as:
+So `let user = new User("Jack")` gives the same result as:
 
 ```js
 let user = {
