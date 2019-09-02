@@ -38,7 +38,7 @@ The `promise` object returned by `new Promise` constructor has internal properti
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
 - `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
 
-So the executor moves `promise` to one of these states:
+So the executor eventually moves `promise` to one of these states:
 
 ![](promise-resolve-reject.svg)
 
