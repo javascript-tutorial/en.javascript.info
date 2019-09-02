@@ -31,6 +31,6 @@ The task consists of two parts.
     alert( result ); // 8
     ```
 
-- No brackets or complex expressions in this task.
+- No parentheses or complex expressions in this task.
 - The numbers and the operator are delimited with exactly one space.
 - There may be error handling if you'd like to add it.

@@ -6,7 +6,9 @@ for (let li of document.querySelectorAll('li')) {
 }
 ```
 
-In the loop we need to get the text inside every `li`. We can read it directly from the first child node, that is the text node:
+In the loop we need to get the text inside every `li`.
+
+We can read the text from the first child node of `li`, that is the text node:
 
 ```js
 for (let li of document.querySelectorAll('li')) {
@@ -16,4 +18,4 @@ for (let li of document.querySelectorAll('li')) {
 }
 ```
 
-Then we can get the number of descendants `li.getElementsByTagName('li')`.
+Then we can get the number of descendants as `li.getElementsByTagName('li').length`.

@@ -3,14 +3,15 @@
   margin: 0;
   padding: 0;
   display: block;
-  resize: none;
+  
   /* remove resizing handle in Firefox */
+  resize: none;
   
-  outline: none;
   /* remove outline on focus in Chrome */
+  outline: none;
   
-  overflow: auto;
   /* remove scrollbar in IE */
+  overflow: auto;
 }
 
 .edit-controls {

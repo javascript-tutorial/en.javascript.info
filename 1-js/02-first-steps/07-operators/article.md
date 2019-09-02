@@ -26,7 +26,7 @@ Before we move on, let's grasp some common terminology.
     alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
 
 ## String concatenation, binary +
 
@@ -93,9 +93,7 @@ alert( +"" );   // 0
 
 It actually does the same thing as `Number(...)`, but is shorter.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
-
-What if we want to sum them?
+The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
 
 The binary plus would add them as strings:
 
@@ -127,11 +125,11 @@ Why are unary pluses applied to values before the binary ones? As we're going to
 
 ## Operator precedence
 
-If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the implicit priority order of operators.
+If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
 
 From school, we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
 
-Parentheses override any precedence, so if we're not satisfied with the implicit order, we can use them to change it. For example: `(1 + 2) * 2`.
+Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
 
 There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the larger number executes first. If the precedence is the same, the execution order is from left to right.
 
@@ -199,9 +197,9 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to subtract from `3`.
+In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
 
-Funny code, isn't it? We should understand how it works, because sometimes we see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
 ````
 
 ## Remainder %
@@ -253,14 +251,14 @@ So, there are special operators for it:
 
     ```js run no-beautify
     let counter = 2;
-    counter++;      // works the same as counter = counter + 1, but is shorter
+    counter++;        // works the same as counter = counter + 1, but is shorter
     alert( counter ); // 3
     ```
 - **Decrement** `--` decreases a variable by 1:
 
     ```js run no-beautify
     let counter = 2;
-    counter--;      // works the same as counter = counter - 1, but is shorter
+    counter--;        // works the same as counter = counter - 1, but is shorter
     alert( counter ); // 1
     ```
 
@@ -427,10 +425,10 @@ Here, the first expression `1 + 2` is evaluated and its result is thrown away. T
 ```smart header="Comma has a very low precedence"
 Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns    `a = 3`, and finally the number after the comma, `7`, is not processed so it's ignored.
+Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
 ```
 
-Why do we need an operator that throws away everything except the last part?
+Why do we need an operator that throws away everything except the last expression?
 
 Sometimes, people use it in more complex constructs to put several actions in one line.
 
@@ -443,4 +441,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But, usually, they don't improve code readability so we should think well before using them.
+Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.

@@ -1,9 +1,0 @@
-todo:
-
-localstorage
-fetch
-indexdb
-
-addEventLitener options once passive
-
-security? xsrf xss csp etc?

@@ -12,20 +12,20 @@ Let's check the real-life application to better understand that requirement and 
 
 **For instance, we want to track mouse movements.**
 
-In browser we can setup a function to run at every mouse micro-movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
+In browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
 
-**The tracking function should update some information on the web-page.**
+**We'd like to update some information on the web-page when the pointer moves.**
 
-Updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in making it more often than once per 100ms.
+...But updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in updating more often than once per 100ms.
 
-So we'll assign `throttle(update, 100)` as the function to run on each mouse move instead of the original `update()`. The decorator will be called often, but `update()` will be called at maximum once per 100ms.
+So we'll wrap it into the decorator: use `throttle(update, 100)` as the function to run on each mouse move instead of the original `update()`. The decorator will be called often, but forward the call to `update()` at maximum once per 100ms.
 
 Visually, it will look like this:
 
-1. For the first mouse movement the decorated variant passes the call to `update`. That's important, the user sees our reaction to their move immediately.
+1. For the first mouse movement the decorated variant immediately passes the call to `update`. That's important, the user sees our reaction to their move immediately.
 2. Then as the mouse moves on, until `100ms` nothing happens. The decorated variant ignores calls.
-3. At the end of `100ms` -- one more `update` happens with the last coordinates. 
-4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` with last coordinates. So, perhaps the most important, the final mouse coordinates are processed.
+3. At the end of `100ms` -- one more `update` happens with the last coordinates.
+4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` with last coordinates. So, quite important, the final mouse coordinates are processed.
 
 A code example:
 

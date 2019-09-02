@@ -15,7 +15,7 @@ try {
 
   // code...
 
-} catch (err)] {
+} catch (err) {
 
   // error handling
 
@@ -25,14 +25,14 @@ try {
 It works like this:
 
 1. First, the code in `try {...}` is executed.
-2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and then jumps over `catch`.
+2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and goes on skipping `catch`.
 3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) contains an error object with details about what's happened.
 
-![](try-catch-flow.png)
+![](try-catch-flow.svg)
 
 So, an error inside the `try {…}` block does not kill the script: we have a chance to handle it in `catch`.
 
-Let's see more examples.
+Let's see examples.
 
 - An errorless example: shows `alert` `(1)` and `(2)`:
 
@@ -50,8 +50,6 @@ Let's see more examples.
       alert('Catch is ignored, because there are no errors'); // (3)
 
     }
-
-    alert("...Then the execution continues");
     ```
 - An example with an error: shows `(1)` and `(3)`:
 
@@ -68,11 +66,9 @@ Let's see more examples.
 
     } catch(err) {
 
-      alert(`Error has occured!`); // *!*(3) <--*/!*
+      alert(`Error has occurred!`); // *!*(3) <--*/!*
 
     }
-
-    alert("...Then the execution continues");
     ```
 
 
@@ -108,7 +104,7 @@ try {
 }
 ```
 
-That's because `try..catch` actually wraps the `setTimeout` call that schedules the function. But the function itself is executed later, when the engine has already left the `try..catch` construct.
+That's because the function itself is executed later, when the engine has already left the `try..catch` construct.
 
 To catch an exception inside a scheduled function, `try..catch` must be inside that function:
 ```js run
@@ -134,10 +130,10 @@ try {
 }
 ```
 
-For all built-in errors, the error object inside `catch` block has two main properties:
+For all built-in errors, the error object has two main properties:
 
 `name`
-: Error name. For an undefined variable that's `"ReferenceError"`.
+: Error name. For instance, for an undefined variable that's `"ReferenceError"`.
 
 `message`
 : Textual message about error details.
@@ -157,7 +153,7 @@ try {
 } catch(err) {
   alert(err.name); // ReferenceError
   alert(err.message); // lalala is not defined
-  alert(err.stack); // ReferenceError: lalala is not defined at ...
+  alert(err.stack); // ReferenceError: lalala is not defined at (...call stack)
 
   // Can also show an error as a whole
   // The error is converted to string as "name: message"
@@ -174,8 +170,8 @@ If we don't need error details, `catch` may omit it:
 ```js
 try {
   // ...
-} catch {
-  // error object omitted
+} catch { // <-- without (err)
+  // ...
 }
 ```
 
@@ -187,7 +183,7 @@ As we already know, JavaScript supports the [JSON.parse(str)](mdn:js/JSON/parse)
 
 Usually it's used to decode data received over the network, from the server or another source.
 
-We receive it and call `JSON.parse`, like this:
+We receive it and call `JSON.parse` like this:
 
 ```js run
 let json = '{"name":"John", "age": 30}'; // data from the server
@@ -302,13 +298,13 @@ try {
 *!*
   alert(e.name); // SyntaxError
 */!*
-  alert(e.message); // Unexpected token o in JSON at position 0
+  alert(e.message); // Unexpected token o in JSON at position 2
 }
 ```
 
 As we can see, that's a `SyntaxError`.
 
-And in our case, the absence of `name` could be treated as a syntax error also, assuming that users must have a `name`.
+And in our case, the absence of `name` is an error, as users must have a `name`.
 
 So let's throw it:
 
@@ -338,7 +334,7 @@ Now `catch` became a single place for all error handling: both for `JSON.parse` 
 
 ## Rethrowing
 
-In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a variable is undefined or something else, not just that "incorrect data" thing.
+In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just that "incorrect data" thing.
 
 Like this:
 
@@ -355,7 +351,7 @@ try {
 }
 ```
 
-Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a crazy bug may be discovered that leads to terrible hacks (like it happened with the `ssh` tool).
+Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a bug may be discovered that leads to terrible hacks.
 
 In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
 
@@ -489,7 +485,7 @@ The code has two ways of execution:
 1. If you answer "Yes" to "Make an error?", then `try -> catch -> finally`.
 2. If you say "No", then `try -> finally`.
 
-The `finally` clause is often used when we start doing something before `try..catch` and want to finalize it in any case of outcome.
+The `finally` clause is often used when we start doing something and want to finalize it in any case of outcome.
 
 For instance, we want to measure the time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what if there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
 
@@ -521,20 +517,20 @@ try {
 }
 */!*
 
-alert(result || "error occured");
+alert(result || "error occurred");
 
 alert( `execution took ${diff}ms` );
 ```
 
 You can check by running the code with entering `35` into `prompt` -- it executes normally, `finally` after `try`. And then enter `-1` -- there will be an immediate error, an the execution will take `0ms`. Both measurements are done correctly.
 
-In other words, there may be two ways to exit a function: either a `return` or `throw`. The `finally` clause handles them both.
+In other words, the function may finish with `return` or `throw`, that doesn't matter. The `finally` clause executes in both cases.
 
 
 ```smart header="Variables are local inside `try..catch..finally`"
 Please note that `result` and `diff` variables in the code above are declared *before* `try..catch`.
 
-Otherwise, if `let` were made inside the `{...}` block, it would only be visible inside of it.
+Otherwise, if we declared `let` in `try` block, it would only be visible inside of it.
 ```
 
 ````smart header="`finally` and `return`"
@@ -565,7 +561,7 @@ alert( func() ); // first works alert from finally, and then this one
 
 ````smart header="`try..finally`"
 
-The `try..finally` construct, without `catch` clause, is also useful. We apply it when we don't want to handle errors right here, but want to be sure that processes that we started are finalized.
+The `try..finally` construct, without `catch` clause, is also useful. We apply it when we don't want to handle errors here (let them fall through), but want to be sure that processes that we started are finalized.
 
 ```js
 function func() {
@@ -577,7 +573,7 @@ function func() {
   }
 }
 ```
-In the code above, an error inside `try` always falls out, because there's no `catch`. But `finally` works before the execution flow jumps outside.
+In the code above, an error inside `try` always falls out, because there's no `catch`. But `finally` works before the execution flow leaves the function.
 ````
 
 ## Global catch
@@ -590,7 +586,7 @@ Let's imagine we've got a fatal error outside of `try..catch`, and the script di
 
 Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages) etc.
 
-There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.JS has [process.on('uncaughtException')](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property. It will run in case of an uncaught error.
+There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [`process.on("uncaughtException")`](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property, that will run in case of an uncaught error.
 
 The syntax:
 
@@ -637,13 +633,13 @@ There are also web-services that provide error-logging for such cases, like <htt
 They work like this:
 
 1. We register at the service and get a piece of JS (or a script URL) from them to insert on pages.
-2. That JS script has a custom `window.onerror` function.
+2. That JS script sets a custom `window.onerror` function.
 3. When an error occurs, it sends a network request about it to the service.
 4. We can log in to the service web interface and see errors.
 
 ## Summary
 
-The `try..catch` construct allows to handle runtime errors. It literally allows to try running the code and catch errors that may occur in it.
+The `try..catch` construct allows to handle runtime errors. It literally allows to "try" running the code and "catch" errors that may occur in it.
 
 The syntax is:
 
@@ -658,18 +654,18 @@ try {
 }
 ```
 
-There may be no `catch` section or no `finally`, so `try..catch` and `try..finally` are also valid.
+There may be no `catch` section or no `finally`, so shorter constructs `try..catch` and `try..finally` are also valid.
 
 Error objects have following properties:
 
 - `message` -- the human-readable error message.
 - `name` -- the string with error name (error constructor name).
-- `stack` (non-standard) -- the stack at the moment of error creation.
+- `stack` (non-standard, but well-supported) -- the stack at the moment of error creation.
 
-If error is not needed, we can omit it by using `catch {` instead of `catch(err) {`.
+If an error object is not needed, we can omit it by using `catch {` instead of `catch(err) {`.
 
 We can also generate our own errors using the `throw` operator. Technically, the argument of `throw` can be anything, but usually it's an error object inheriting from the built-in `Error` class. More on extending errors in the next chapter.
 
-Rethrowing is a basic pattern of error handling: a `catch` block usually expects and knows how to handle the particular error type, so it should rethrow errors it doesn't know.
+*Rethrowing* is a very important pattern of error handling: a `catch` block usually expects and knows how to handle the particular error type, so it should rethrow errors it doesn't know.
 
 Even if we don't have `try..catch`, most environments allow to setup a "global" error handler to catch errors that "fall out". In-browser that's `window.onerror`.

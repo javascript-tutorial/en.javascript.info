@@ -9,5 +9,4 @@ Write a function `printNumbers(from, to)` that outputs a number every second, st
 Make two variants of the solution.
 
 1. Using `setInterval`.
-2. Using recursive `setTimeout`.
-
+2. Using nested `setTimeout`.

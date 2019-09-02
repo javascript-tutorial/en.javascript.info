@@ -20,9 +20,13 @@ function showMessage() {
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
 
-![](function_basics.png)
+```js
+function name(parameters) {
+  ...body...
+}
+```
 
 Our new function can be called by its name: `showMessage()`.
 
@@ -101,7 +105,7 @@ showMessage();
 alert( userName ); // *!*Bob*/!*, the value was modified by the function
 ```
 
-The outer variable is only used if there's no local one. So an occasional modification may happen if we forget `let`.
+The outer variable is only used if there's no local one.
 
 If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
 
@@ -128,7 +132,7 @@ Variables declared outside of any function, such as the outer `userName` in the 
 
 Global variables are visible from any function (unless shadowed by locals).
 
-Usually, a function declares all variables specific to its task. Global variables only store project-level data, and it's important that these variables are accessible from anywhere. Modern code has few or no globals. Most variables reside in their functions.
+It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
 ```
 
 ## Parameters
@@ -205,11 +209,10 @@ function showMessage(from, text = anotherFunction()) {
 ```
 
 ```smart header="Evaluation of default parameters"
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
 
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter. This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
-
+In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
 ```
-
 
 ````smart header="Default parameters old-style"
 Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
@@ -335,7 +338,19 @@ That doesn't work, because JavaScript assumes a semicolon after `return`. That'l
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-So, it effectively becomes an empty return. We should put the value on the same line instead.
+
+So, it effectively becomes an empty return.
+
+If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
+
+```js
+return (
+  some + long + expression
+  + or +
+  whatever * f(a) + f(b)
+  )
+```
+And it will work just as we expect it to.
 ````
 
 ## Naming a function [#function-naming]
@@ -376,13 +391,13 @@ A few examples of breaking this rule:
 - `createForm` -- would be bad if it modifies the document, adding a form to it (should only create it and return).
 - `checkPermission` -- would be bad if it displays the `access granted/denied` message (should only perform the check and return the result).
 
-These examples assume common meanings of prefixes. What they mean for you is determined by you and your team. Maybe it's pretty normal for your code to behave differently. But you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
+These examples assume common meanings of prefixes. You and your team are free to agree on other meanings, but usually they're not much different. In any case, you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
 ```
 
 ```smart header="Ultrashort function names"
 Functions that are used *very often* sometimes have ultrashort names.
 
-For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [LoDash](http://lodash.com/) library has its core function named `_`.
+For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [Lodash](http://lodash.com/) library has its core function named `_`.
 
 These are exceptions. Generally functions names should be concise and descriptive.
 ```

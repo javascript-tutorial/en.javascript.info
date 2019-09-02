@@ -1,7 +1,7 @@
 
 # Function object, NFE
 
-As we already know, functions in JavaScript are values.
+As we already know, a function in JavaScript is a value.
 
 Every value in JavaScript has a type. What type is a function?
 
@@ -12,7 +12,7 @@ A good way to imagine functions is as callable "action objects". We can not only
 
 ## The "name" property
 
-Function objects contain a few useable properties.
+Function objects contain some useable properties.
 
 For instance, a function's name is accessible as the "name" property:
 
@@ -24,14 +24,14 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-What's more funny, the name-assigning logic is smart. It also assigns the correct name to functions that are used in assignments:
+What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
 
 ```js run
 let sayHi = function() {
   alert("Hi");
-}
+};
 
-alert(sayHi.name); // sayHi (works!)
+alert(sayHi.name); // sayHi (there's a name!)
 ```
 
 It also works if the assignment is done via a default value:
@@ -93,7 +93,7 @@ alert(many.length); // 2
 
 Here we can see that rest parameters are not counted.
 
-The `length` property is sometimes used for introspection in functions that operate on other functions.
+The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
 
 For instance, in the code below the `ask` function accepts a `question` to ask and an arbitrary number of `handler` functions to call.
 
@@ -102,9 +102,9 @@ Once a user provides their answer, the function calls the handlers. We can pass 
 - A zero-argument function, which is only called when the user gives a positive answer.
 - A function with arguments, which is called in either case and returns an answer.
 
-The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to provide universal handlers as well.
+To call `handler` the right way, we examine the `handler.length` property.
 
-To call `handlers` the right way, we examine the `length` property:
+The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
 
 ```js run
 function ask(question, ...handlers) {
@@ -153,7 +153,7 @@ alert( `Called ${sayHi.counter} times` ); // Called 2 times
 ```warn header="A property is not a variable"
 A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables never use function properties and vice versa. These are just parallel worlds.
+We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
 ```
 
 Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
@@ -241,7 +241,7 @@ let sayHi = function *!*func*/!*(who) {
 sayHi("John"); // Hello, John
 ```
 
-There are two special things about the name `func`:
+There are two special things about the name `func`, that are the reasons for it:
 
 1. It allows the function to reference itself internally.
 2. It is not visible outside of the function.
@@ -282,7 +282,7 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that the value of `sayHi` may change. The function may go to another variable, and the code will start to give errors:
+The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
 
 ```js run
 let sayHi = function(who) {
@@ -340,13 +340,14 @@ Functions are objects.
 
 Here we covered their properties:
 
-- `name` -- the function name. Exists not only when given in the function definition, but also for assignments and object properties.
+- `name` -- the function name. Usually taken from the function definition, but if there's none, JavaScript tries to guess it from the context (e.g. an assignment).
 - `length` -- the number of arguments in the function definition. Rest parameters are not counted.
 
 If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
 
 Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jquery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`. And then adds `_.clone`, `_.keyBy` and other properties to (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+
 
 So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.

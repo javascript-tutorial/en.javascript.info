@@ -38,7 +38,7 @@ let user = {
 };
 ```
 
-![](memory-user-john.png)
+![](memory-user-john.svg)
 
 Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
 
@@ -48,7 +48,7 @@ If the value of `user` is overwritten, the reference is lost:
 user = null;
 ```
 
-![](memory-user-john-lost.png)
+![](memory-user-john-lost.svg)
 
 Now John becomes unreachable. There's no way to access it, no references to it. Garbage collector will junk the data and free the memory.
 
@@ -67,7 +67,7 @@ let admin = user;
 */!*
 ```
 
-![](memory-user-john-admin.png)
+![](memory-user-john-admin.svg)
 
 Now if we do the same:
 ```js
@@ -102,7 +102,7 @@ Function `marry` "marries" two objects by giving them references to each other a
 
 The resulting memory structure:
 
-![](family.png)
+![](family.svg)
 
 As of now, all objects are reachable.
 
@@ -113,19 +113,19 @@ delete family.father;
 delete family.mother.husband;
 ```
 
-![](family-delete-refs.png)
+![](family-delete-refs.svg)
 
 It's not enough to delete only one of these two references, because all objects would still be reachable.
 
 But if we delete both, then we can see that John has no incoming reference any more:
 
-![](family-no-father.png)
+![](family-no-father.svg)
 
 Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
 
 After garbage collection:
 
-![](family-no-father-2.png)
+![](family-no-father-2.svg)
 
 ## Unreachable island
 
@@ -139,7 +139,7 @@ family = null;
 
 The in-memory picture becomes:
 
-![](family-no-family.png)
+![](family-no-family.svg)
 
 This example demonstrates how important the concept of reachability is.
 
@@ -161,25 +161,25 @@ The following "garbage collection" steps are regularly performed:
 
 For instance, let our object structure look like this:
 
-![](garbage-collection-1.png)
+![](garbage-collection-1.svg)
 
 We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
 
 The first step marks the roots:
 
-![](garbage-collection-2.png)
+![](garbage-collection-2.svg)
 
 Then their references are marked:
 
-![](garbage-collection-3.png)
+![](garbage-collection-3.svg)
 
 ...And their references, while possible:
 
-![](garbage-collection-4.png)
+![](garbage-collection-4.svg)
 
 Now the objects that could not be visited in the process are considered unreachable and will be removed:
 
-![](garbage-collection-5.png)
+![](garbage-collection-5.svg)
 
 That's the concept of how garbage collection works.
 
@@ -207,6 +207,6 @@ A general book "The Garbage Collection Handbook: The Art of Automatic Memory Man
 
 If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-[V8 blog](http://v8project.blogspot.com/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+[V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
 
 In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  

@@ -1,6 +1,6 @@
 # Type Conversions
 
-Most of the time, operators and functions automatically convert the values given to them to the right type. This is called "type conversion".
+Most of the time, operators and functions automatically convert the values given to them to the right type. 
 
 For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
 
@@ -123,7 +123,6 @@ alert( Boolean("0") ); // true
 alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 ```
 ````
-
 
 ## Summary
 

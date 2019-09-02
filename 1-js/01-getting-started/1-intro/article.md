@@ -6,7 +6,7 @@ Let's see what's so special about JavaScript, what we can achieve with it, and w
 
 *JavaScript* was initially created to *"make web pages alive"*.
 
-The programs in this language are called *scripts*. They can be written right in a web page's HTML and executed automatically as the page loads.
+The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
 
 Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
 
@@ -45,7 +45,7 @@ The engine applies optimizations at each step of the process. It even watches th
 
 Modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
 
-Javascript's capabilities greatly depend on the environment it's running in. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
+JavaScript's capabilities greatly depend on the environment it's running in. For instance, [Node.js](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
 
 In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver.
 
@@ -70,12 +70,12 @@ Examples of such restrictions include:
     There are ways to interact with camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
 - Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other if they come from different sites (from a different domain, protocol or port).
 
-    This is called the "Same Origin Policy". To work around that, *both pages* must contain a special JavaScript code that handles data exchange.
+    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain a special JavaScript code that handles it. We'll cover that in the tutorial.
 
     This limitation is, again, for the user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com` and steal information from there.
 - JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's a safety limitation.
 
-![](limitations.png)
+![](limitations.svg)
 
 Such limits do not exist if JavaScript is used outside of the browser, for example on a server. Modern browsers also allow plugin/extensions which may ask for extended permissions.
 
@@ -88,12 +88,11 @@ There are at least *three* great things about JavaScript:
 + Simple things are done simply.
 + Support by all major browsers and enabled by default.
 ```
-Javascript is the only browser technology that combines these three things.
+JavaScript is the only browser technology that combines these three things.
 
 That's what makes JavaScript unique. That's why it's the most widespread tool for creating browser interfaces.
 
-While planning to learn a new technology, it's beneficial to check its perspectives. So let's move on to the modern trends affecting it,  including new languages and browser abilities.
-
+That said, JavaScript also allows to create servers, mobile applications, etc.
 
 ## Languages "over" JavaScript
 
@@ -109,9 +108,10 @@ Examples of such languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
 - [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
-- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
 
-There are more. Of course, even if we use one of these languages, we should also know JavaScript to really understand what we're doing.
+There are more. Of course, even if we use one of transpiled languages, we should also know JavaScript to really understand what we're doing.
 
 ## Summary
 

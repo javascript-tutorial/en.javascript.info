@@ -2,13 +2,13 @@
 
 An element receives a focus when the user either clicks on it or uses the `key:Tab` key on the keyboard. There's also an `autofocus` HTML attribute that puts the focus into an element by default when a page loads and other means of getting a focus.
 
-Focusing generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize or load something.
+Focusing on an element generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize the required functionality.
 
 The moment of losing the focus ("blur") can be even more important. That's when a user clicks somewhere else or presses `key:Tab` to go to the next form field, or there are other means as well.
 
 Losing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
 
-There are important peculiarities when working with focus events. We'll do the best to cover them here.
+There are important peculiarities when working with focus events. We'll do the best to cover them further on.
 
 ## Events focus/blur
 
@@ -203,7 +203,6 @@ So here's another working variant:
 
 <script>
 *!*
-  // put the handler on capturing phase (last argument true)
   form.addEventListener("focusin", () => form.classList.add('focused'));
   form.addEventListener("focusout", () => form.classList.remove('focused'));
 */!*

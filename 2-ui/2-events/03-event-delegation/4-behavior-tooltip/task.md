@@ -18,7 +18,7 @@ Should work like this:
 
 [iframe src="solution" height=200 border=1]
 
-In this task we assume that all elements with `data-tooltip` have only text inside. No nested tags.
+In this task we assume that all elements with `data-tooltip` have only text inside. No nested tags (yet).
 
 Details:
 
@@ -33,4 +33,4 @@ Please use event delegation: set up two handlers on `document` to track all "ove
 
 After the behavior is implemented, even people unfamiliar with JavaScript can add annotated elements.
 
-P.S. To keep things natural and simple: only one tooltip may show up at a time.
+P.S. Only one tooltip may show up at a time.

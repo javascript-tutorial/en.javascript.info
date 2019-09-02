@@ -8,12 +8,12 @@ Let's use window-relative coordinates.
 
 The document is represented (and contained) within `<html>` tag, that is `document.documentElement`.
 
-We can get window-relative coordinates of the whole document as `document.documentElement.getBoundingClientRect()`. And the `bottom` property will be window-relative coordinate of the document end.
+We can get window-relative coordinates of the whole document as `document.documentElement.getBoundingClientRect()`, the `bottom` property will be window-relative coordinate of the document bottom.
 
-For instance, if the height of the whole HTML document is 2000px, then:
+For instance, if the height of the whole HTML document is `2000px`, then:
 
 ```js
-// When we're on the top of the page
+// when we're on the top of the page
 // window-relative top = 0
 document.documentElement.getBoundingClientRect().top = 0
 
@@ -41,11 +41,11 @@ document.documentElement.getBoundingClientRect().top = -1400
 document.documentElement.getBoundingClientRect().bottom = 600
 ```
 
-Please note that the bottom can't be 0, because it never reaches the window top. The lowest limit of the bottom coordinate is the window height, we can't scroll it any more up.
+Please note that the `bottom` can't be `0`, because it never reaches the window top. The lowest limit of the `bottom` coordinate is the window height (we assumed it to be `600`), we can't scroll it any more up.
 
-And the window height is `document.documentElement.clientHeight`.
+We can obtain the window height as `document.documentElement.clientHeight`.
 
-We want the document bottom be no more than `100px` away from it.
+For our task, we need to know when the document bottom is not no more than `100px` away from it (that is: `600-700px`, if the height is `600`).
 
 So here's the function:
 
@@ -55,12 +55,11 @@ function populate() {
     // document bottom
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 
-    // if it's greater than window height + 100px, then we're not at the page back
-    // (see examples above, big bottom means we need to scroll more)
-    if (windowRelativeBottom > document.documentElement.clientHeight + 100) break;
-
-    // otherwise let's add more data
-    document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
+    // if the user scrolled far enough (<100px to the end)
+    if (windowRelativeBottom < document.documentElement.clientHeight + 100) {
+      // let's add more data
+      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
+    }
   }
 }
 ```

@@ -4,25 +4,28 @@
 
   function showmesg(t, form) {
 
-     if (timer==0) timer = new Date()
-
-     let tm = new Date()
-     if (tm-timer > 300) {
-  	t = '------------------------------\n'+t
+     if (timer == 0) {
+       timer = new Date();
      }
 
-     let area = document.forms[form+'form'].getElementsByTagName('textarea')[0]
+     let tm = new Date();
+
+     if (tm - timer > 300) {
+       t = '------------------------------\n' + t;
+     }
+
+     let area = document.forms[form + 'form'].getElementsByTagName('textarea')[0];
 
      area.value += t + '\n';
-     area.scrollTop = area.scrollHeight
+     area.scrollTop = area.scrollHeight;
 
-     timer = tm
+     timer = tm;
   }
 
   function logMouse(e) {
      let evt = e.type;
      while (evt.length < 11) evt += ' ';
-     showmesg(evt+" which="+e.which, 'test')
+     showmesg(evt + " which=" + e.which, 'test')
      return false;
   }
 

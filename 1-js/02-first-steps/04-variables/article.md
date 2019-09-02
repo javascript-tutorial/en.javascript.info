@@ -12,7 +12,7 @@ A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "na
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+The statement below creates (in other words: *declares*) a variable with the name "message":
 
 ```js
 let message;
@@ -99,7 +99,7 @@ We can easily grasp the concept of a "variable" if we imagine it as a "box" for 
 
 For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
 
-![](variable.png)
+![](variable.svg)
 
 We can put any value in the box.
 
@@ -116,7 +116,7 @@ alert(message);
 
 When the value is changed, the old data is removed from the variable:
 
-![](variable-change.png)
+![](variable-change.svg)
 
 We can also declare two variables and copy data from one into the other.
 
@@ -136,7 +136,7 @@ alert(message); // Hello world!
 ```
 
 ```smart header="Functional languages"
-It's interesting to note that [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/), forbid changing variable values.
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
 
 In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
 
@@ -157,7 +157,7 @@ let userName;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word starting with a capital letter: `myVeryLongName`.
+When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
 
 What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
 
@@ -182,7 +182,7 @@ let my-name; // hyphens '-' aren't allowed in the name
 Variables named `apple` and `AppLE` are two different variables.
 ```
 
-````smart header="Non-English letters are allowed, but not recommended"
+````smart header="Non-Latin letters are allowed, but not recommended"
 It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
 
 ```js
@@ -254,7 +254,7 @@ There is a widespread practice to use constants as aliases for difficult-to-reme
 
 Such constants are named using capital letters and underscores.
 
-Like this:
+For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
 
 ```js run
 const COLOR_RED = "#F00";
@@ -290,7 +290,7 @@ In other words, capital-named constants are only used as aliases for "hard-coded
 
 Talking about variables, there's one more extremely important thing.
 
-Please name your variables sensibly. Take time to think about this.
+A variable name should have a clean, obvious meaning, describe the data that it stores.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
 
@@ -323,7 +323,7 @@ Modern JavaScript minifiers and browsers optimize code well enough, so it won't 
 
 We can declare variables to store data by using the `var`, `let`, or `const` keywords.
 
-- `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
+- `let` -- is a modern variable declaration.
 - `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
 - `const` -- is like `let`, but the value of the variable can't be changed.
 

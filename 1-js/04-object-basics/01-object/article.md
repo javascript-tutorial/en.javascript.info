@@ -9,7 +9,7 @@ An object can be created with figure brackets `{…}` with an optional list of *
 
 We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
 
-![](object.png)
+![](object.svg)
 
 An empty object ("empty cabinet") can be created using one of two syntaxes:
 
@@ -18,7 +18,7 @@ let user = new Object(); // "object constructor" syntax
 let user = {};  // "object literal" syntax
 ```
 
-![](object-user-empty.png)
+![](object-user-empty.svg)
 
 Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
 
@@ -42,14 +42,14 @@ In the `user` object, there are two properties:
 
 The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
 
-![user object](object-user.png)
+![user object](object-user.svg)
 
 We can add, remove and read files from it any time.
 
 Property values are accessible using the dot notation:
 
 ```js
-// get fields of the object:
+// get property values of the object:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
@@ -60,7 +60,7 @@ The value can be of any type. Let's add a boolean one:
 user.isAdmin = true;
 ```
 
-![user object 2](object-user-isadmin.png)
+![user object 2](object-user-isadmin.svg)
 
 To remove a property, we can use `delete` operator:
 
@@ -68,7 +68,7 @@ To remove a property, we can use `delete` operator:
 delete user.age;
 ```
 
-![user object 3](object-user-delete.png)
+![user object 3](object-user-delete.svg)
 
 We can also use multiword property names, but then they must be quoted:
 
@@ -80,7 +80,7 @@ let user = {
 };
 ```
 
-![](object-user-props.png)
+![](object-user-props.svg)
 
 
 The last property in the list may end with a comma:
@@ -104,7 +104,6 @@ user.likes birds = true
 That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
 
 There's an alternative "square bracket notation" that works with any string:
-
 
 ```js run
 let user = {};
@@ -130,7 +129,7 @@ let key = "likes birds";
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
 
 For instance:
 
@@ -146,6 +145,17 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+alert( user.key ) // undefined
+```
 
 ### Computed properties
 
@@ -222,10 +232,11 @@ As we see from the code, the assignment to a primitive `5` is ignored.
 
 That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
 
-In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
+In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
 
 There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
-There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+
+There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
 ````
 
 
@@ -311,7 +322,7 @@ alert( *!*key*/!* in user ); // true, takes the name from key and checks for suc
 ```
 
 ````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check works fine. But there's a special case when it fails, but `"in"` works correctly.
+Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
 
 It's when an object property exists, but stores `undefined`:
 
@@ -330,7 +341,6 @@ In the code above, the property `obj.test` technically exists. So the `in` opera
 
 Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 ````
-
 
 ## The "for..in" loop
 
@@ -464,7 +474,7 @@ let phrase = message;
 
 As a result we have two independent variables, each one is storing the string `"Hello!"`.
 
-![](variable-copy-value.png)
+![](variable-copy-value.svg)
 
 Objects are not like that.
 
@@ -478,7 +488,7 @@ let user = {
 };
 ```
 
-![](variable-contains-reference.png)
+![](variable-contains-reference.svg)
 
 Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
 
@@ -496,7 +506,7 @@ let admin = user; // copy the reference
 
 Now we have two variables, each one with the reference to the same object:
 
-![](variable-copy-reference.png)
+![](variable-copy-reference.svg)
 
 We can use any variable to access the cabinet and modify its contents:
 
@@ -520,7 +530,7 @@ The equality `==` and strict equality `===` operators for objects work exactly t
 
 **Two objects are equal only if they are the same object.**
 
-For instance, two variables reference the same object, they are equal:
+For instance, if two variables reference the same object, they are equal:
 
 ```js run
 let a = {};
@@ -559,7 +569,7 @@ user.age = 25; // (*)
 alert(user.age); // 25
 ```
 
-It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes the value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
 
 The `const` would give an error if we try to set `user` to something else, for instance:
 
@@ -616,7 +626,7 @@ Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
 The syntax is:
 
 ```js
-Object.assign(dest[, src1, src2, src3...])
+Object.assign(dest, [src1, src2, src3...])
 ```
 
 - Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.

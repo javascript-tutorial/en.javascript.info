@@ -16,6 +16,7 @@
   vertical-align: bottom;
   padding-top: 5px;
   padding-bottom: 12px;
+  cursor: pointer;
 }
 
 #table .nw {

@@ -12,9 +12,9 @@ async function f() {
 }
 ```
 
-The word "async" before a function means one simple thing: a function always returns a promise. Even If a function actually returns a non-promise value, prepending the function definition with the "async" keyword directs Javascript to automatically wrap that value in a resolved promise.
+The word "async" before a function means one simple thing: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
 
-For instance, the code above returns a resolved promise with the result of `1`, let's test it:
+For instance, this function returns a resolved promise with the result of `1`, let's test it:
 
 ```js run
 async function f() {
@@ -72,7 +72,7 @@ Let's emphasize: `await` literally makes JavaScript wait until the promise settl
 It's just a more elegant syntax of getting the promise result than `promise.then`, easier to read and write.
 
 ````warn header="Can't use `await` in regular functions"
-If we try to use `await` in non-async function, that would be a syntax error:
+If we try to use `await` in non-async function, there would be a syntax error:
 
 ```js run
 function f() {
@@ -130,19 +130,30 @@ let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 ```
 
-So we need to have a wrapping async function for the code that awaits. Just as in the example above.
-````
-````smart header="`await` accepts thenables"
-Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). Again, the idea is that a 3rd-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+We can wrap it into an anonymous async function, like this:
 
-For instance, here `await` accepts `new Thenable(1)`:
+```js run
+(async () => {
+  let response = await fetch('/article/promise-chaining/user.json');
+  let user = await response.json();
+  ...
+})();
+```
+
+
+````
+````smart header="`await` accepts \"thenables\""
+Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). The idea is that a 3rd-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+
+Here's a demo `Thenable` class, the `await` below accepts its instances:
+
 ```js run
 class Thenable {
   constructor(num) {
     this.num = num;
   }
   then(resolve, reject) {
-    alert(resolve); // function() { native code }
+    alert(resolve);
     // resolve with this.num*2 after 1000ms
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
@@ -160,10 +171,8 @@ f();
 If `await` gets a non-promise object with `.then`, it calls that method providing native functions `resolve`, `reject` as arguments. Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
 
-````smart header="Async methods"
-A class method can also be async, just put `async` before it.
-
-Like here:
+````smart header="Async class methods"
+To declare an async class method, just prepend it with `async`:
 
 ```js run
 class Waiter {
@@ -205,7 +214,7 @@ async function f() {
 }
 ```
 
-In real situations, the promise may take some time before it rejects. So `await` will wait, and then throw an error.
+In real situations, the promise may take some time before it rejects. In that case there will be a delay before `await` throws an error.
 
 We can catch that error using `try..catch`, the same way as a regular `throw`:
 
@@ -254,7 +263,7 @@ f().catch(alert); // TypeError: failed to fetch // (*)
 */!*
 ```
 
-If we forget to add `.catch` there, then we get an unhandled promise error (and can see it in the console). We can catch such errors using a global event handler as described in the chapter <info:promise-error-handling>.
+If we forget to add `.catch` there, then we get an unhandled promise error (viewable in the console). We can catch such errors using a global event handler as described in the chapter <info:promise-error-handling>.
 
 
 ```smart header="`async/await` and `promise.then/catch`"
@@ -281,34 +290,6 @@ In case of an error, it propagates as usual: from the failed promise to `Promise
 
 ````
 
-## Microtask queue [#microtask-queue]
-
-As we've seen in the chapter <info:microtask-queue>, promise handlers are executed asynchronously. Every `.then/catch/finally` handler first gets into the "microtask queue" and executed after the current code is complete.
-
-`Async/await` is based on promises, so it uses the same microtask queue internally, and has the similar priority over macrotasks.
-
-For instance, we have:
-- `setTimeout(handler, 0)`, that should run `handler` with zero delay.
-- `let x = await f()`, function `f()` is async, but returns immediateley.
-
-Which one runs first if `await` is *below* `setTimeout` in the code?
-
-```js run
-async function f() {
-  return 1;
-}
-
-(async () => {
-    setTimeout(() => alert('timeout'), 0);
-
-    await f();
-
-    alert('await');
-})();
-```
-
-There's no ambiguity here: `await` always finishes first, because (as a microtask) it has a higher priority than `setTimeout` handling.
-
 ## Summary
 
 The `async` keyword before a function has two effects:
@@ -319,7 +300,7 @@ The `async` keyword before a function has two effects:
 The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
 
 1. If it's an error, the exception is generated, same as if `throw error` were called at that very place.
-2. Otherwise, it returns the result, so we can assign it to a value.
+2. Otherwise, it returns the result.
 
 Together they provide a great framework to write asynchronous code that is easy both to read and write.
 

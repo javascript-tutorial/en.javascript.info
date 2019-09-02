@@ -25,15 +25,16 @@ loadScript('/my/script.js');
 
 The function is called "asynchronously," because the action (script loading) finishes not now, but later.
 
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
+If there's a code below `loadScript(…)`, it doesn't wait until the loading finishes.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript doesn't wait for the script loading to finish
+// the code below loadScript
+// doesn't wait for the script loading to finish
 // ...
 ```
 
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
+We'd like to use the new script as soon as it loads. It declares new functions, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
@@ -45,7 +46,7 @@ newFunction(); // no such function!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
 
 Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
 
@@ -98,7 +99,7 @@ Here we did it in `loadScript`, but of course, it's a general approach.
 
 ## Callback in callback
 
-How to load two scripts sequentially: the first one, and then the second one after it?
+How can we load two scripts sequentially: the first one, and then the second one after it?
 
 The natural solution would be to put the second `loadScript` call inside the callback, like this:
 
@@ -140,7 +141,7 @@ So, every new action is inside a callback. That's fine for few actions, but not 
 
 ## Handling errors
 
-In examples above we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
@@ -222,7 +223,31 @@ As calls become more nested, the code becomes deeper and increasingly more diffi
 
 That's sometimes called "callback hell" or "pyramid of doom."
 
-![](callback-hell.png)
+<!--
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...
+          }
+        });
+      }
+    })
+  }
+});
+-->
+
+![](callback-hell.svg)
 
 The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
 
@@ -262,7 +287,7 @@ function step3(error, script) {
 
 See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that. One needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
+It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
 Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
 

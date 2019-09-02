@@ -17,7 +17,7 @@ while (condition) {
 }
 ```
 
-While the `condition` is `true`, the `code` from the loop body is executed.
+While the `condition` is truthy, the `code` from the loop body is executed.
 
 For instance, the loop below outputs `i` while `i < 3`:
 
@@ -47,8 +47,8 @@ while (i) { // when i becomes 0, the condition becomes falsy, and the loop stops
 }
 ```
 
-````smart header="Brackets are not required for a single-line body"
-If the loop body has a single statement, we can omit the brackets `{…}`:
+````smart header="Curly braces are not required for a single-line body"
+If the loop body has a single statement, we can omit the curly braces `{…}`:
 
 ```js run
 let i = 3;
@@ -84,7 +84,7 @@ This form of syntax should only be used when you want the body of the loop to ex
 
 ## The "for" loop
 
-The `for` loop is the most commonly used loop.
+The `for` loop is more complex, but it's also the most commonly used loop.
 
 It looks like this:
 
@@ -108,11 +108,11 @@ Let's examine the `for` statement part-by-part:
 |-------|----------|----------------------------------------------------------------------------|
 | begin | `i = 0`    | Executes once upon entering the loop.                                      |
 | condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
-| step| `i++`      | Executes after the body on each iteration but before the condition check. |
 | body | `alert(i)`| Runs again and again while the condition is truthy.                         |
-
+| step| `i++`      | Executes after the body on each iteration. |
 
 The general loop algorithm works like this:
+
 ```
 Run begin
 → (if condition → run body and run step)
@@ -120,6 +120,8 @@ Run begin
 → (if condition → run body and run step)
 → ...
 ```
+
+That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
 
 If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
 
@@ -289,8 +291,7 @@ if (i > 5) {
 (i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
 ```
 
-...it stops working. Code like this will give a syntax error:
-
+...it stops working: there's a syntax error.
 
 This is just another reason not to use the question mark operator `?` instead of `if`.
 ````
@@ -299,7 +300,7 @@ This is just another reason not to use the question mark operator `?` instead of
 
 Sometimes we need to break out from multiple nested loops at once.
 
-For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(3,3)`:
+For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(2,2)`:
 
 ```js run no-beautify
 for (let i = 0; i < 3; i++) {
@@ -308,8 +309,7 @@ for (let i = 0; i < 3; i++) {
 
     let input = prompt(`Value at coords (${i},${j})`, '');
 
-    // what if I want to exit from here to Done (below)?
-
+    // what if we want to exit from here to Done (below)?
   }
 }
 
@@ -358,12 +358,12 @@ for (let i = 0; i < 3; i++) { ... }
 
 The `continue` directive can also be used with a label. In this case, code execution jumps to the next iteration of the labeled loop.
 
-````warn header="Labels are not a \"goto\""
+````warn header="Labels do not allow to \"jump\" anywhere"
 Labels do not allow us to jump into an arbitrary place in the code.
 
 For example, it is impossible to do this:
 ```js
-break label;  // jumps to label? No.
+break label; // doesn't jumps to the label below
 
 label: for (...)
 ```

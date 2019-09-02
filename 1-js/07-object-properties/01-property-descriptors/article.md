@@ -63,7 +63,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: The object and property to work on.
+: The object and its property to apply the descriptor.
 
 `descriptor`
 : Property descriptor to apply.
@@ -116,30 +116,33 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
+user.name = "Pete"; // Error: Cannot assign to read only property 'name'
 */!*
 ```
 
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
-Here's the same operation, but for the case when a property doesn't exist:
+```smart header="Errors appear only in strict mode"
+In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+```
+
+Here's the same example, but the property is created from scratch:
 
 ```js run
 let user = { };
 
 Object.defineProperty(user, "name", {
 *!*
-  value: "Pete",
+  value: "John",
   // for new properties need to explicitly list what's true
   enumerable: true,
   configurable: true
 */!*
 });
 
-alert(user.name); // Pete
-user.name = "Alice"; // Error
+alert(user.name); // John
+user.name = "Pete"; // Error
 ```
-
 
 ## Non-enumerable
 
@@ -239,10 +242,6 @@ Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
 
-```smart header="Errors appear only in use strict"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
-```
-
 ## Object.defineProperties
 
 There's a method [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) that allows to define many properties at once.
@@ -298,14 +297,13 @@ Property descriptors work at the level of individual properties.
 There are also methods that limit access to the *whole* object:
 
 [Object.preventExtensions(obj)](mdn:js/Object/preventExtensions)
-: Forbids to add properties to the object.
+: Forbids the addition of new properties to the object.
 
 [Object.seal(obj)](mdn:js/Object/seal)
-: Forbids to add/remove properties, sets for all existing properties `configurable: false`.
+: Forbids adding/removing of properties. Sets `configurable: false` for all existing properties.
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
-: Forbids to add/remove/change properties, sets for all existing properties `configurable: false, writable: false`.
-
+: Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
 And also there are tests for them:
 
 [Object.isExtensible(obj)](mdn:js/Object/isExtensible)

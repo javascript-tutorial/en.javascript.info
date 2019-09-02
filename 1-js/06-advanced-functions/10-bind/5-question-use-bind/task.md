@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Ask losing this
+# Fix a function that loses "this"
 
 The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
 
@@ -34,5 +34,3 @@ let user = {
 askPassword(user.loginOk, user.loginFail);
 */!*
 ```
-
-
