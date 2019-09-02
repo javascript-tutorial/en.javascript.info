@@ -44,7 +44,7 @@ So the executor eventually moves `promise` to one of these states:
 
 Later we'll see how "fans" can subscribe to these changes.
 
-Here's an example of a Promise constructor and a simple executor function with delayed "producing code" (via `setTimeout`):
+Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -57,7 +57,7 @@ let promise = new Promise(function(resolve, reject) {
 
 We can see two things by running the code above:
 
-1. The executor is called automatically and immediately (by the `new Promise`).
+1. The executor is called automatically and immediately (by `new Promise`).
 2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We only should call one of them when ready.
 
 After one second of "processing" the executor calls `resolve("done")` to produce the result:
