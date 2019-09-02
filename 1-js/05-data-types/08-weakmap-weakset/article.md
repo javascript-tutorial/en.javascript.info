@@ -147,7 +147,7 @@ countUser(john);
 john = null;
 ```
 
-Now `john` object should be garbage collected, but remains is memory, as it's a key in `visitsCountMap`.
+Now `john` object should be garbage collected, but remains in memory, as it's a key in `visitsCountMap`.
 
 We need to clean `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
 
