@@ -239,9 +239,9 @@ There's a side-effect. A function references the outer lexical environment, so, 
 
 There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the current code (i.e. the currently executing script) is complete.
+This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the currently executing script is complete.
 
-So the function is scheduled to run "right after" the current code.
+So the function is scheduled to run "right after" the current script.
 
 For instance, this outputs "Hello", then immediately "World":
 
@@ -251,7 +251,7 @@ setTimeout(() => alert("World"));
 alert("Hello");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current code is complete, so `"Hello"` is first, and `"World"` -- after it.
+The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
 
 There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
 
@@ -289,7 +289,7 @@ For server-side JavaScript, that limitation does not exist, and there exist othe
 - Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
 - To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
 - Nested `setTimeout` calls is a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
-- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code (script) is complete".
+- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
 - The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
 
 Please note that all scheduling methods do not *guarantee* the exact delay.
