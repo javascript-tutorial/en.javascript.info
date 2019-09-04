@@ -109,7 +109,7 @@ parent.onmouseover = function(event) {
 };
 ```
 
-If we don't examine `event.target` inside the handlers, then it may seem that the mouse left `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
+If we don't examine `event.target` inside the handlers, then it may seem that the mouse pointer left `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
 
 If there's some action upon leaving the element, e.g. animation runs, then such interpretation may bring unwanted side effects.
 
