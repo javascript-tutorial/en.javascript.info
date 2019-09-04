@@ -25,29 +25,28 @@ So, it matches the pattern `pattern:\bHello\b`, because:
 
 1. At the beginning of the string matches the first test `pattern:\b`.
 2. Then matches the word `pattern:Hello`.
-3. Then the test `pattern:\b` - matches again, as we're between `subject:o` and a space.
+3. Then the test `pattern:\b` matches again, as we're between `subject:o` and a space.
 
-Шаблон `pattern:\bJava\b` также совпадёт. Но не `pattern:\bHell\b` (потому что после `subject:l` нет границы слова), и не `pattern:Java!\b` (восклицательный знак не является "символом слова" `pattern:\w`, поэтому после него нет границы слова).
+The pattern `pattern:\bJava\b` would also match. But not `pattern:\bHell\b` (because there's no word boundary after `l`) and not `Java!\b` (because the exclamation sign is not a wordly character `pattern:\w`, so there's no word boundary after it).
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello
 alert( "Hello, Java!".match(/\bJava\b/) );  // Java
-alert( "Hello, Java!".match(/\bHell\b/) );  // null (нет совпадения)
-alert( "Hello, Java!".match(/\bJava!\b/) ); // null (нет совпадения)
+alert( "Hello, Java!".match(/\bHell\b/) );  // null (no match)
+alert( "Hello, Java!".match(/\bJava!\b/) ); // null (no match)
 ```
 
-Так как `pattern:\b` является проверкой, то не добавляет символ после границы к результату.
+We can use `pattern:\b` not only with words, but with digits as well.
 
-Мы можем использовать `pattern:\b` не только со словами, но и с цифрами.
-
-Например, регулярное выражение `pattern:\b\d\d\b` ищет отдельно стоящие двузначные числа. Другими словами, оно требует, чтобы до и после `pattern:\d\d` был символ, отличный от `pattern:\w` (или начало/конец строки)
+For example, the pattern `pattern:\b\d\d\b` looks for standalone 2-digit numbers. In other words, it looks for 2-digit numbers that are surrounded by characters different from `pattern:\w`, such as spaces or punctuation (or text start/end).
 
 ```js run
 alert( "1 23 456 78".match(/\b\d\d\b/g) ); // 23,78
+alert( "12,34,56".match(/\b\d\d\b/g) ); // 12,34,56
 ```
 
-```warn header="Граница слова `pattern:\b` не работает для алфавитов, не основанных на латинице"
-Проверка границы слова `pattern:\b` проверяет границу, должно быть `pattern:\w` с одной стороны и "не `pattern:\w`" - с другой.
+```warn header="Word boundary `pattern:\b` doesn't work for non-latin alphabets"
+The word boundary test `pattern:\b` checks that there should be `pattern:\w` on the one side from the position and "not `pattern:\w`" - on the other side.
 
-Но `pattern:\w` означает латинскую букву (или цифру или знак подчёркивания), поэтому проверка не будет работать для других символов (например, кириллицы или иероглифов).
+But `pattern:\w` means a latin letter `a-z` (or a digit or an underscore), so the test doesn't work for other characters, e.g. cyrillic letters or hieroglyphs.
 ```

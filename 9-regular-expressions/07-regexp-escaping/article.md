@@ -1,7 +1,7 @@
 
 # Escaping, special characters
 
-As we've seen, a backslash `"\"` is used to denote character classes. So it's a special character in regexps (just like in a regular string).
+As we've seen, a backslash `pattern:\` is used to denote character classes, e.g. `pattern:\d`. So it's a special character in regexps (just like in regular strings).
 
 There are other special characters as well, that have special meaning in a regexp. They are used to do more powerful searches. Here's a full list of them: `pattern:[ \ ^ $ . | ? * + ( )`.
 
@@ -9,7 +9,7 @@ Don't try to remember the list -- soon we'll deal with each of them separately a
 
 ## Escaping
 
-Let's say we want to find a dot literally. Not "any character", but just a dot.
+Let's say we want to find literally a dot. Not "any character", but just a dot.
 
 To use a special character as a regular one, prepend it with a backslash: `pattern:\.`.
 
@@ -43,11 +43,11 @@ Here's what a search for a slash `'/'` looks like:
 alert( "/".match(/\//) ); // '/'
 ```
 
-On the other hand, if we're not using `/.../`, but create a regexp using `new RegExp`, then we don't need to escape it:
+On the other hand, if we're not using `pattern:/.../`, but create a regexp using `new RegExp`, then we don't need to escape it:
 
 ```js run
-alert( "/".match(new RegExp("/")) ); // '/'
-```                                                                                                                                                                                   
+alert( "/".match(new RegExp("/")) ); // finds /
+```
 
 ## new RegExp
 
@@ -61,25 +61,25 @@ let reg = new RegExp("\d\.\d");
 alert( "Chapter 5.1".match(reg) ); // null
 ```
 
-The search worked with `pattern:/\d\.\d/`, but with `new RegExp("\d\.\d")` it doesn't work, why?
+The similar search in one of previous examples worked with `pattern:/\d\.\d/`, but `new RegExp("\d\.\d")` doesn't work, why?
 
-The reason is that backslashes are "consumed" by a string. Remember, regular strings have their own special characters like `\n`, and a backslash is used for escaping.
+The reason is that backslashes are "consumed" by a string. As we may recall, regular strings have their own special characters, such as `\n`, and a backslash is used for escaping.
 
-Please, take a look, what "\d\.\d" really is:
+Here's how "\d\.\d" is preceived:
 
 ```js run
 alert("\d\.\d"); // d.d
 ```
 
-The quotes "consume" backslashes and interpret them, for instance:
+String quotes "consume" backslashes and interpret them on their own, for instance:
 
 - `\n` -- becomes a newline character,
 - `\u1234` -- becomes the Unicode character with such code,
 - ...And when there's no special meaning: like `pattern:\d` or `\z`, then the backslash is simply removed.
 
-So the call to `new RegExp` gets a string without backslashes. That's why the search doesn't work!
+So `new RegExp` gets a string without backslashes. That's why the search doesn't work!
 
-To fix it, we need to double backslashes, because quotes turn `\\` into `\`:
+To fix it, we need to double backslashes, because string quotes turn `\\` into `\`:
 
 ```js run
 *!*
@@ -94,6 +94,6 @@ alert( "Chapter 5.1".match(reg) ); // 5.1
 
 ## Summary
 
-- To search special characters `pattern:[ \ ^ $ . | ? * + ( )` literally, we need to prepend them with `\` ("escape them").
+- To search for special characters `pattern:[ \ ^ $ . | ? * + ( )` literally, we need to prepend them with a backslash `\` ("escape them").
 - We also need to escape `/` if we're inside `pattern:/.../` (but not inside `new RegExp`).
-- When passing a string `new RegExp`, we need to double backslashes `\\`, cause strings consume one of them.
+- When passing a string `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.
