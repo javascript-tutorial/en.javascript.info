@@ -4,8 +4,8 @@ We may decide to execute a function not right now, but at a certain time later. 
 
 There are two methods for it:
 
-- `setTimeout` allows to run a function once after the interval of time.
-- `setInterval` allows to run a function regularly with the interval between the runs.
+- `setTimeout` allows us to run a function once after the interval of time.
+- `setInterval` allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
 
 These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.js.
 
@@ -239,7 +239,7 @@ There's a side-effect. A function references the outer lexical environment, so, 
 
 There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
+This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the current code (i.e. the currently executing script) is complete.
 
 So the function is scheduled to run "right after" the current code.
 
@@ -286,10 +286,10 @@ For server-side JavaScript, that limitation does not exist, and there exist othe
 
 ## Summary
 
-- Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
-- To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
-- Nested `setTimeout` calls is a more flexible alternative to `setInterval`, allowing to set the time *between* executions more precisely.
-- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code is complete".
+- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
+- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
+- Nested `setTimeout` calls is a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
+- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code (script) is complete".
 - The browser limits the minimal delay for five or more nested call of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
 
 Please note that all scheduling methods do not *guarantee* the exact delay.
