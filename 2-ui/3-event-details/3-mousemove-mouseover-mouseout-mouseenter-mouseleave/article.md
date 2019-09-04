@@ -67,9 +67,7 @@ Also move the pointer into the child `div`, and then move it out quickly down th
 ```
 
 ```smart header="If `mouseover` triggered, there must be `mouseout`"
-In case of fast mouse movements, intermediate elements may be ignores, but one thing we know for sure: elements can be only skipped as a whole.
-
-If the pointer "officially" entered an element with `mouseover`, then upon leaving it we always get `mouseout`.
+In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer "officially" entered an element with `mouseover`, then upon leaving it we always get `mouseout`.
 ```
 
 ## Mouseout when leaving for a child
@@ -111,7 +109,7 @@ parent.onmouseover = function(event) {
 };
 ```
 
-If the code inside the handlers doesn't look at `target`, then it might think that the mouse left the `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
+If we don't examine `event.target` inside the handlers, then it may seem that the mouse left `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
 
 If there's some action upon leaving the element, e.g. animation runs, then such interpretation may bring unwanted side effects.
 
@@ -206,4 +204,4 @@ These things are good to note:
 
 Events `mouseover/out` trigger even when we go from the parent element to a child element. The browser assumes that the mouse can be only over one element at one time -- the deepest one.
 
-Events `mouseenter/leave` are different in that aspect: they only trigger when the mouse comes in and out the element as a whole. Also they do not bubble. 
+Events `mouseenter/leave` are different in that aspect: they only trigger when the mouse comes in and out the element as a whole. Also they do not bubble.
