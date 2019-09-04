@@ -220,7 +220,7 @@ In this case `this` is `undefined` in strict mode. If we try to access `this.nam
 
 In non-strict mode the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later in the chapter [](info:global-object)). This is a historical behavior that `"use strict"` fixes.
 
-Usually such call is an programming error. If there's `this` inside a function, it expects to be called in an object context.
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
 ````
 
 ```smart header="The consequences of unbound `this`"
