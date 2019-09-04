@@ -44,7 +44,7 @@ alert( "Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g) ); // xAF
 
 Please note that in the word `subject:Exception` there's a substring `subject:xce`. It didn't match the pattern, because the letters are lowercase, while in the set `pattern:[0-9A-F]` they are uppercase.
 
-If we want to find it too, then we can add a range `a-f`: `pattern:[0-9A-Fa-f]`. The `i` flag would allow lowercase too.
+If we want to find it too, then we can add a range `a-f`: `pattern:[0-9A-Fa-f]`. The `pattern:i` flag would allow lowercase too.
 
 **Character classes are shorthands for certain character sets.**
 
@@ -58,7 +58,7 @@ We can use character classes inside `[…]` as well.
 
 For instance, we want to match all wordly characters or a dash, for words like "twenty-third". We can't do it with `pattern:\w+`, because `pattern:\w` class does not include a dash. But we can use `pattern:[\w-]`.
 
-We also can use several classes, for example `pattern:[\s\S]` matches spaces or non-spaces -- any character. That's wider than a dot `"."`, because the dot matches any character except a newline (unless `s` flag is set).
+We also can use several classes, for example `pattern:[\s\S]` matches spaces or non-spaces -- any character. That's wider than a dot `"."`, because the dot matches any character except a newline (unless `pattern:s` flag is set).
 
 ## Excluding ranges
 
@@ -69,7 +69,7 @@ They are denoted by a caret character `^` at the start and match any character *
 For instance:
 
 - `pattern:[^aeyo]` -- any character except  `'a'`, `'e'`, `'y'` or `'o'`.
-- `pattern:[^0-9]` -- any character except a digit, the same as `\D`.
+- `pattern:[^0-9]` -- any character except a digit, the same as `pattern:\D`.
 - `pattern:[^\s]` -- any non-space character, same as `\S`.
 
 The example below looks for any characters except letters, digits and spaces:

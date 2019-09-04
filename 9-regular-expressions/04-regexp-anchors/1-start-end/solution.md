@@ -1,5 +1,4 @@
-
-The empty string is the only match: it starts and immediately finishes.
+An empty string is the only match: it starts and immediately finishes.
 
 The task once again demonstrates that anchors are not characters, but tests.
 

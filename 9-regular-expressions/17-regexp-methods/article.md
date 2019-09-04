@@ -16,12 +16,12 @@ So, here are general recipes, the details to follow:
 
 **To search for all matches:**
 
-Use regexp `g` flag and:
+Use regexp `pattern:g` flag and:
 - Get a flat array of matches -- `str.match(reg)`
 - Get an array or matches with details -- `str.matchAll(reg)`.
 
 **To search for the first match only:**
-- Get the full first match -- `str.match(reg)` (without `g` flag).
+- Get the full first match -- `str.match(reg)` (without `pattern:g` flag).
 - Get the string position of the first match -- `str.search(reg)`.
 - Check if there's a match -- `regexp.test(str)`.
 - Find the match from the given position -- `regexp.exec(str)` (set `regexp.lastIndex` to position).
@@ -50,9 +50,9 @@ We can't find next matches using `search`, there's just no syntax for that. But 
 
 ## str.match(reg), no "g" flag
 
-The behavior of `str.match` varies depending on whether `reg` has `g` flag or not.
+The behavior of `str.match` varies depending on whether `reg` has `pattern:g` flag or not.
 
-First, if there's no `g` flag, then `str.match(reg)` looks for the first match only.
+First, if there's no `pattern:g` flag, then `str.match(reg)` looks for the first match only.
 
 The result is an array with that match and additional properties:
 
@@ -90,7 +90,7 @@ alert( result.index ); // 0
 alert( result.input ); // JavaScript is a programming language
 ```
 
-Due to the `i` flag the search is case-insensitive, so it finds `match:JavaScript`. The part of the match that corresponds to `pattern:SCRIPT` becomes a separate array item.
+Due to the `pattern:i` flag the search is case-insensitive, so it finds `match:JavaScript`. The part of the match that corresponds to `pattern:SCRIPT` becomes a separate array item.
 
 So, this method is used to find one full match with all details.
 
@@ -119,7 +119,7 @@ let result = str.match( *!*/h(o)/ig*/!* );
 alert( result ); // HO, Ho, ho
 ```
 
-**So, with `g` flag `str.match` returns a simple array of all matches, without details.**
+**So, with `pattern:g` flag `str.match` returns a simple array of all matches, without details.**
 
 If we want to get information about match positions and contents of parentheses then we should use `matchAll`  method that we'll cover below.
 
@@ -230,14 +230,14 @@ There's a pitfall though.
 
 You can see that in the example above: only the first `"-"` is replaced by `":"`.
 
-To find all dashes, we need to use not the string `"-"`, but a regexp `pattern:/-/g`, with an obligatory `g` flag:
+To find all dashes, we need to use not the string `"-"`, but a regexp `pattern:/-/g`, with an obligatory `pattern:g` flag:
 
 ```js run
 // replace all dashes by a colon
 alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 ```
 
-The second argument is a replacement string. We can use special characters in it:
+The second argument is a replacement string. We can use special character in it:
 
 | Symbol | Inserts |
 |--------|--------|
@@ -339,17 +339,17 @@ Using a function gives us the ultimate replacement power, because it gets all th
 We've already seen these searching methods:
 
 - `search` -- looks for the position of the match,
-- `match` -- if there's no `g` flag, returns the first match with parentheses and all details,
-- `match` -- if there's a `g` flag -- returns all matches, without details parentheses,
+- `match` -- if there's no `pattern:g` flag, returns the first match with parentheses and all details,
+- `match` -- if there's a `pattern:g` flag -- returns all matches, without details parentheses,
 - `matchAll` -- returns all matches with details.
 
 The `regexp.exec` method is the most flexible searching method of all. Unlike previous methods, `exec` should be called on a regexp, rather than on a string.
 
-It behaves differently depending on whether the regexp has the `g` flag.
+It behaves differently depending on whether the regexp has the `pattern:g` flag.
 
-If there's no `g`, then `regexp.exec(str)` returns the first match, exactly as `str.match(reg)`. Such behavior does not give us anything new.
+If there's no `pattern:g`, then `regexp.exec(str)` returns the first match, exactly as `str.match(reg)`. Such behavior does not give us anything new.
 
-But if there's `g`, then:
+But if there's `pattern:g`, then:
 - `regexp.exec(str)` returns the first match and *remembers* the position after it in `regexp.lastIndex` property.
 - The next call starts to search from `regexp.lastIndex` and returns the next match.
 - If there are no more matches then `regexp.exec` returns `null` and `regexp.lastIndex` is set to `0`.

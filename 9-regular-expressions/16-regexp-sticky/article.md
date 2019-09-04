@@ -1,7 +1,7 @@
 
 # Sticky flag "y", searching at position
 
-To grasp the use case of `y` flag, and see how great it is, let's explore a practical use case.
+To grasp the use case of `pattern:y` flag, and see how great it is, let's explore a practical use case.
 
 One of common tasks for regexps is "parsing": when we get a text and analyze it for logical components, build a structure.
 
@@ -43,7 +43,7 @@ We could work around that by checking if "`regexp.exec(str).index` property is `
 
 So we've came to the problem: how to search for a match exactly at the given position.
 
-That's what `y` flag does. It makes the regexp search only at the `lastIndex` position.
+That's what `pattern:y` flag does. It makes the regexp search only at the `lastIndex` position.
 
 Here's an example
 
@@ -66,8 +66,8 @@ alert (regexp.exec(str)); // function (match!)
 
 As we can see, now the regexp is only matched at the given position.
 
-So what `y` does is truly unique, and very important for writing parsers.
+So what `pattern:y` does is truly unique, and very important for writing parsers.
 
-The `y` flag allows to test a regular expression exactly at the given position and when we understand what's there, we can move on -- step by step examining the text.
+The `pattern:y` flag allows to test a regular expression exactly at the given position and when we understand what's there, we can move on -- step by step examining the text.
 
-Without the flag the regexp engine always searches till the end of the text, that takes time, especially if the text is large. So our parser would be very slow. The `y` flag is exactly the right thing here.
+Without the flag the regexp engine always searches till the end of the text, that takes time, especially if the text is large. So our parser would be very slow. The `pattern:y` flag is exactly the right thing here.

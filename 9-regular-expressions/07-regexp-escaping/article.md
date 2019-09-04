@@ -75,7 +75,7 @@ The quotes "consume" backslashes and interpret them, for instance:
 
 - `\n` -- becomes a newline character,
 - `\u1234` -- becomes the Unicode character with such code,
-- ...And when there's no special meaning: like `\d` or `\z`, then the backslash is simply removed.
+- ...And when there's no special meaning: like `pattern:\d` or `\z`, then the backslash is simply removed.
 
 So the call to `new RegExp` gets a string without backslashes. That's why the search doesn't work!
 

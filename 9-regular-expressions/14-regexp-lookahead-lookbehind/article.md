@@ -101,9 +101,9 @@ Lookaround types:
 
 | Pattern            | type             | matches |
 |--------------------|------------------|---------|
-| `pattern:x(?=y)`   | Positive lookahead | `x` if followed by `y` |
-| `pattern:x(?!y)`   | Negative lookahead | `x` if not followed by `y` |
-| `pattern:(?<=y)x` |  Positive lookbehind | `x` if after `y` |
-| `pattern:(?<!y)x` | Negative lookbehind | `x` if not after `y` |
+| `pattern:x(?=y)`   | Positive lookahead | `x` if followed by `pattern:y` |
+| `pattern:x(?!y)`   | Negative lookahead | `x` if not followed by `pattern:y` |
+| `pattern:(?<=y)x` |  Positive lookbehind | `x` if after `pattern:y` |
+| `pattern:(?<!y)x` | Negative lookbehind | `x` if not after `pattern:y` |
 
 Lookahead can also used to disable backtracking. Why that may be needed and other details  -- see in the next chapter.

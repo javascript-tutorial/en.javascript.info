@@ -1,7 +1,7 @@
 
 Opening tag is `pattern:\[(b|url|quote)\]`.
 
-Then to find everything till the closing tag -- let's use the pattern `pattern:.*?` with flag `s` to match any character including the newline and then add a backreference to the closing tag.
+Then to find everything till the closing tag -- let's use the pattern `pattern:.*?` with flag `pattern:s` to match any character including the newline and then add a backreference to the closing tag.
 
 The full pattern: `pattern:\[(b|url|quote)\].*?\[/\1\]`.
 
