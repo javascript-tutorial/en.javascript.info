@@ -65,7 +65,7 @@ That regexp is not perfect, but mostly works and helps to fix accidental mistype
 
 ## Parentheses contents in the match
 
-Parentheses are numbered from left to right. The search engine remembers the content matched by each of them and allows to get it in the result.
+Parentheses are numbered from left to right. The search engine memorizes the content matched by each of them and allows to get it in the result.
 
 The method `str.match(regexp)`, if `regexp` has no flag `g`, looks for the first match and returns it as an array:
 
@@ -347,4 +347,4 @@ If the parentheses have no name, then their contents is available in the match a
 
 We can also use parentheses contents in the replacement string in `str.replace`: by the number `$n` or the name `$<name>`.
 
-A group may be excluded from remembering by adding `pattern:?:` in its start. That's used when we need to apply a quantifier to the whole group, but don't remember it as a separate item in the results array. We also can't reference such parentheses in the replacement string.
+A group may be excluded from numbering by adding `pattern:?:` in its start. That's used when we need to apply a quantifier to the whole group, but don't want it as a separate item in the results array. We also can't reference such parentheses in the replacement string.
