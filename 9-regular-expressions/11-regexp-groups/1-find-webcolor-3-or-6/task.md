@@ -11,4 +11,4 @@ let str = "color: #3f3; background-color: #AA00ef; and: #abcd";
 alert( str.match(reg) ); // #3f3 #AA00ef
 ```
 
-P.S. This should be exactly 3 or 6 hex digits: values like `#abcd` should not match.
+P.S. This should be exactly 3 or 6 hex digits. Values with 4 digits, such as `#abcd`, should not match.

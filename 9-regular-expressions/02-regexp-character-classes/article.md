@@ -41,7 +41,7 @@ Most used are:
 : A digit: a character from `0` to `9`.
 
 `pattern:\s` ("s" is from "space")
-: A space symbol: includes spaces, tabs `\t`, newlines `\n` and few other rare characters: `\v`, `\f` and `\r`.
+: A space symbol: includes spaces, tabs `\t`, newlines `\n` and few other rare characters, such as `\v`, `\f` and `\r`.
 
 `pattern:\w` ("w" is from "word")
 : A "wordly" character: either a letter of Latin alphabet or a digit or an underscore `_`. Non-Latin letters (like cyrillic or hindi) do not belong to `pattern:\w`.

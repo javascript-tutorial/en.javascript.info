@@ -8,7 +8,7 @@ Let's take the following task as an example.
 
 We have a text and need to replace all quotes `"..."` with guillemet marks: `«...»`. They are preferred for typography in many countries.
 
-For instance: `"Hello, world"` should become `«Hello, world»`. Some countries prefer other quotes, like `„Witam, świat!”` (Polish) or `「你好，世界」` (Chinese), but for our task let's choose `«...»`.
+For instance: `"Hello, world"` should become `«Hello, world»`. There exist other quotes, such as `„Witam, świat!”` (Polish) or `「你好，世界」` (Chinese), but for our task let's choose `«...»`.
 
 The first thing to do is to locate quoted strings, and then we can replace them.
 
@@ -35,7 +35,7 @@ That can be described as "greediness is the cause of all evil".
 To find a match, the regular expression engine uses the following algorithm:
 
 - For every position in the string
-    - Match the pattern at that position.
+    - Try to match the pattern at that position.
     - If there's no match, go to the next position.
 
 These common words do not make it obvious why the regexp fails, so let's elaborate how the search works for the pattern `pattern:".+"`.
@@ -44,7 +44,7 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
     The regular expression engine tries to find it at the zero position of the source string `subject:a "witch" and her "broom" is one`, but there's `subject:a` there, so there's immediately no match.
 
-    Then it advances: goes to the next positions in the source string and tries to find the first character of the pattern there, and finally finds the quote at the 3rd position:
+    Then it advances: goes to the next positions in the source string and tries to find the first character of the pattern there, fails again, and finally finds the quote at the 3rd position:
 
     ![](witch_greedy1.svg)
 
@@ -54,13 +54,13 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
     ![](witch_greedy2.svg)
 
-3. Then the dot repeats because of the quantifier `pattern:.+`. The regular expression engine builds the match by taking characters one by one while it is possible.
+3. Then the dot repeats because of the quantifier `pattern:.+`. The regular expression engine adds to the match one character after another.
 
-    ...When does it become impossible? All characters match the dot, so it only stops when it reaches the end of the string:
+    ...Until when? All characters match the dot, so it only stops when it reaches the end of the string:
 
     ![](witch_greedy3.svg)
 
-4. Now the engine finished repeating for `pattern:.+` and tries to find the next character of the pattern. It's the quote `pattern:"`. But there's a problem: the string has finished, there are no more characters!
+4. Now the engine finished repeating `pattern:.+` and tries to find the next character of the pattern. It's the quote `pattern:"`. But there's a problem: the string has finished, there are no more characters!
 
     The regular expression engine understands that it took too many `pattern:.+` and starts to *backtrack*.
 
@@ -68,9 +68,9 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
     ![](witch_greedy4.svg)
 
-    Now it assumes that `pattern:.+` ends one character before the end and tries to match the rest of the pattern from that position.
+    Now it assumes that `pattern:.+` ends one character before the string end and tries to match the rest of the pattern from that position.
 
-    If there were a quote there, then that would be the end, but the last character is `subject:'e'`, so there's no match.
+    If there were a quote there, then the search would end, but the last character is `subject:'e'`, so there's no match.
 
 5. ...So the engine decreases the number of repetitions of `pattern:.+` by one more character:
 
@@ -84,19 +84,19 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
 7. The match is complete.
 
-8. So the first match is `match:"witch" and her "broom"`. The further search starts where the first match ends, but there are no more quotes in the rest of the string `subject:is one`, so no more results.
+8. So the first match is `match:"witch" and her "broom"`. If the regular expression has flag `pattern:g`, then the search will continue from where the first match ends. There are no more quotes in the rest of the string `subject:is one`, so no more results.
 
 That's probably not what we expected, but that's how it works.
 
-**In the greedy mode (by default) the quantifier is repeated as many times as possible.**
+**In the greedy mode (by default) a quantifier is repeated as many times as possible.**
 
-The regexp engine tries to fetch as many characters as it can by `pattern:.+`, and then shortens that one by one.
+The regexp engine adds to the match as many characters as it can for `pattern:.+`, and then shortens that one by one, if the rest of the pattern doesn't match.
 
-For our task we want another thing. That's what the lazy quantifier mode is for.
+For our task we want another thing. That's where a lazy mode can help.
 
 ## Lazy mode
 
-The lazy mode of quantifier is an opposite to the greedy mode. It means: "repeat minimal number of times".
+The lazy mode of quantifiers is an opposite to the greedy mode. It means: "repeat minimal number of times".
 
 We can enable it by putting a question mark `pattern:'?'` after the quantifier, so that it becomes  `pattern:*?` or `pattern:+?` or even `pattern:??` for `pattern:'?'`.
 
@@ -149,20 +149,19 @@ Other quantifiers remain greedy.
 For instance:
 
 ```js run
-alert( "123 456".match(/\d+ \d+?/g) ); // 123 4
+alert( "123 456".match(/\d+ \d+?/) ); // 123 4
 ```
 
-1. The pattern `pattern:\d+` tries to match as many numbers as it can (greedy mode), so it finds  `match:123` and stops, because the next character is a space `pattern:' '`.
-2. Then there's a space in pattern, it matches.
+1. The pattern `pattern:\d+` tries to match as many digits as it can (greedy mode), so it finds  `match:123` and stops, because the next character is a space `pattern:' '`.
+2. Then there's a space in the pattern, it matches.
 3. Then there's `pattern:\d+?`. The quantifier is in lazy mode, so it finds one digit `match:4` and tries to check if the rest of the pattern matches from there.
 
     ...But there's nothing in the pattern after `pattern:\d+?`.
 
     The lazy mode doesn't repeat anything without a need. The pattern finished, so we're done. We have a match `match:123 4`.
-4. The next search starts from the character `5`.
 
 ```smart header="Optimizations"
-Modern regular expression engines can optimize internal algorithms to work faster. So they may work a bit different from the described algorithm.
+Modern regular expression engines can optimize internal algorithms to work faster. So they may work a bit differently from the described algorithm.
 
 But to understand how regular expressions work and to build regular expressions, we don't need to know about that. They are only used internally to optimize things.
 
@@ -264,7 +263,7 @@ That's what's going on:
 2. Then it looks for `pattern:.*?`: takes one character (lazily!), check if there's a match for `pattern:" class="doc">` (none).
 3. Then takes another character into `pattern:.*?`, and so on... until it finally reaches `match:" class="doc">`.
 
-But the problem is: that's already beyond the link, in another tag `<p>`. Not what we want.
+But the problem is: that's already beyond the link `<a...>`, in another tag `<p>`. Not what we want.
 
 Here's the picture of the match aligned with the text:
 
@@ -273,11 +272,9 @@ Here's the picture of the match aligned with the text:
 <a href="link1" class="wrong">... <p style="" class="doc">
 ```
 
-So the laziness did not work for us here.
+So, we need the pattern to look for `<a href="...something..." class="doc">`, but both greedy and lazy variants have problems.
 
-We need the pattern to look for `<a href="...something..." class="doc">`, but both greedy and lazy variants have problems.
-
-The correct variant would be: `pattern:href="[^"]*"`. It will take all characters inside the `href` attribute till the nearest quote, just what we need.
+The correct variant can be: `pattern:href="[^"]*"`. It will take all characters inside the `href` attribute till the nearest quote, just what we need.
 
 A working example:
 
@@ -301,4 +298,4 @@ Greedy
 Lazy
 : Enabled by the question mark `pattern:?` after the quantifier. The regexp engine tries to match the rest of the pattern before each repetition of the quantifier.
 
-As we've seen, the lazy mode is not a "panacea" from the greedy search. An alternative is a "fine-tuned" greedy search, with exclusions. Soon we'll see more examples of it.
+As we've seen, the lazy mode is not a "panacea" from the greedy search. An alternative is a "fine-tuned" greedy search, with exclusions, as in the pattern `pattern:"[^"]+"`.

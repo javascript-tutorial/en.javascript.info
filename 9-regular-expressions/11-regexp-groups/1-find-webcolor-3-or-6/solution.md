@@ -1,12 +1,10 @@
 A regexp to search 3-digit color `#abc`: `pattern:/#[a-f0-9]{3}/i`.
 
-We can add exactly 3 more optional hex digits. We don't need more or less. Either we have them or we don't.
+We can add exactly 3 more optional hex digits. We don't need more or less. The color has either 3 or 6 digits.
 
-The simplest way to add them -- is to append to the regexp: `pattern:/#[a-f0-9]{3}([a-f0-9]{3})?/i`
+Let's use the quantifier `pattern:{1,2}` for that: we'll have `pattern:/#([a-f0-9]{3}){1,2}/i`.
 
-We can do it in a smarter way though: `pattern:/#([a-f0-9]{3}){1,2}/i`.
-
-Here the regexp `pattern:[a-f0-9]{3}` is in parentheses to apply the quantifier `pattern:{1,2}` to it as a whole.
+Here the pattern `pattern:[a-f0-9]{3}` is enclosed in parentheses to apply the quantifier `pattern:{1,2}`.
 
 In action:
 
