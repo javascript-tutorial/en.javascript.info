@@ -524,7 +524,7 @@ In the example below a non-method syntax is used for comparison. `[[HomeObject]]
 
 ```js run
 let animal = {
-  eat: function() { // should be the short syntax: eat() {...}
+  eat: function() { // intentially writing like this instead of eat() {...
     // ...
   }
 };
