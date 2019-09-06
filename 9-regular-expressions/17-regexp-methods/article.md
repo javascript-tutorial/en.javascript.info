@@ -316,7 +316,7 @@ alert( *!*/love/i*/!*.test(str) ); // false
 alert( str.search(*!*/love/i*/!*) != -1 ); // false
 ```
 
-If the regexp has flag `pattern:g`, then `regexp.test` looks from `regexp.lastIndex` property and updates it, just like `regexp.exec`.
+If the regexp has flag `pattern:g`, then `regexp.test` looks from `regexp.lastIndex` property and updates this property, just like `regexp.exec`.
 
 So we can use it to search from a given position:
 
@@ -326,13 +326,11 @@ let regexp = /love/gi;
 let str = "I love JavaScript";
 
 // start the search from position 10:
-regexp.lastIndex = 10
+regexp.lastIndex = 10;
 alert( regexp.test(str) ); // false (no match)
 ```
 
-
-
-````warn header="Same global regexp tested repeatedly may fail to match"
+````warn header="Same global regexp tested repeatedly on different sources may fail"
 If we apply the same global regexp to different inputs, it may lead to wrong result, because `regexp.test` call advances `regexp.lastIndex` property, so the search in another string may start from non-zero position.
 
 For instance, here we call `regexp.test` twice on the same text, and the second time fails:
@@ -344,15 +342,7 @@ alert( regexp.test("javascript") ); // true (regexp.lastIndex=10 now)
 alert( regexp.test("javascript") ); // false
 ```
 
-That's exactly because `regexp.lastIndex` is non-zero on the second test.
+That's exactly because `regexp.lastIndex` is non-zero in the second test.
 
-To work around that, one could use non-global regexps or re-adjust `regexp.lastIndex=0` before a new search.
+To work around that, we can set `regexp.lastIndex = 0` before each search. Or instead of calling methods on regexp, use string methods `str.match/search/...`, they don't use `lastIndex`.
 ````
-
-## Summary
-
-There's a variety of many methods on both regexps and strings.
-
-Their abilities and methods overlap quite a bit, we can do the same by different calls. Sometimes that may cause confusion when starting to learn the language.
-
-Then please refer to the recipes at the beginning of this chapter, as they provide solutions for the majority of regexp-related tasks.
