@@ -658,7 +658,7 @@ The value of `thisArg` parameter becomes `this` for `func`.
 For instance, here we use an object method as a filter and `thisArg` helps with that:
 
 ```js run
-let user = {
+let john = {
   age: 18,
   younger(otherUser) {
     return otherUser.age < this.age;
@@ -672,14 +672,14 @@ let users = [
 ];
 
 *!*
-// find all users younger than user
-let youngerUsers = users.filter(user.younger, user);
+// find all users younger than john
+let youngerUsers = users.filter(john.younger, john);
 */!*
 
 alert(youngerUsers.length); // 2
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+In the call above, we use `john.younger` as a filter and also provide `john` as the context for it. If we didn't provide the context, `users.filter(john.younger)` would call `john.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
 
 ## Summary
 
