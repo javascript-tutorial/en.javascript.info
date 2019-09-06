@@ -56,9 +56,9 @@ If we are creating a regular expression with `new RegExp`, then we don't have to
 For instance, consider this:
 
 ```js run
-let reg = new RegExp("\d\.\d");
+let regexp = new RegExp("\d\.\d");
 
-alert( "Chapter 5.1".match(reg) ); // null
+alert( "Chapter 5.1".match(regexp) ); // null
 ```
 
 The similar search in one of previous examples worked with `pattern:/\d\.\d/`, but `new RegExp("\d\.\d")` doesn't work, why?
@@ -87,9 +87,9 @@ let regStr = "\\d\\.\\d";
 */!*
 alert(regStr); // \d\.\d (correct now)
 
-let reg = new RegExp(regStr);
+let regexp = new RegExp(regStr);
 
-alert( "Chapter 5.1".match(reg) ); // 5.1
+alert( "Chapter 5.1".match(regexp) ); // 5.1
 ```
 
 ## Summary

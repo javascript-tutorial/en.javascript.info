@@ -13,9 +13,9 @@ For instance, the let's find the first digit in the phone number:
 ```js run
 let str = "+7(903)-123-45-67";
 
-let reg = /\d/;
+let regexp = /\d/;
 
-alert( str.match(reg) ); // 7
+alert( str.match(regexp) ); // 7
 ```
 
 Without the flag `pattern:g`, the regular expression only looks for the first match, that is the first digit `pattern:\d`.
@@ -25,12 +25,12 @@ Let's add the `pattern:g` flag to find all digits:
 ```js run
 let str = "+7(903)-123-45-67";
 
-let reg = /\d/g;
+let regexp = /\d/g;
 
-alert( str.match(reg) ); // array of matches: 7,9,0,3,1,2,3,4,5,6,7
+alert( str.match(regexp) ); // array of matches: 7,9,0,3,1,2,3,4,5,6,7
 
 // let's make the digits-only phone number of them:
-alert( str.match(reg).join('') ); // 79035419441
+alert( str.match(regexp).join('') ); // 79035419441
 ```
 
 That was a character class for digits. There are other character classes as well.
@@ -54,9 +54,9 @@ For instance, `pattern:CSS\d` matches a string `match:CSS` with a digit after it
 
 ```js run
 let str = "Is there CSS4?";
-let reg = /CSS\d/
+let regexp = /CSS\d/
 
-alert( str.match(reg) ); // CSS4
+alert( str.match(regexp) ); // CSS4
 ```
 
 Also we can use many character classes:
@@ -113,11 +113,11 @@ alert( "Z".match(/./) ); // Z
 Or in the middle of a regexp:
 
 ```js run
-let reg = /CS.4/;
+let regexp = /CS.4/;
 
-alert( "CSS4".match(reg) ); // CSS4
-alert( "CS-4".match(reg) ); // CS-4
-alert( "CS 4".match(reg) ); // CS 4 (space is also a character)
+alert( "CSS4".match(regexp) ); // CSS4
+alert( "CS-4".match(regexp) ); // CS-4
+alert( "CS 4".match(regexp) ); // CS 4 (space is also a character)
 ```
 
 Please note that a dot means "any character", but not the "absense of a character". There must be a character to match it:

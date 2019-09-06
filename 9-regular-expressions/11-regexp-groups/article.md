@@ -200,7 +200,8 @@ let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 // results - is not an array, but an iterable object
 alert(results); // [object RegExp String Iterator]
-alert(results[0]); // undefined
+
+alert(results[0]); // undefined (*)
 
 results = Array.from(results); // let's turn it into array
 
@@ -208,7 +209,7 @@ alert(results[0]); // <h1>,h1 (1st tag)
 alert(results[1]); // <h2>,h2 (2nd tag)
 ```
 
-As we can see, the first difference is very important. We can't get the match as  `results[0]`, because that object isn't pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article <info:iterable>.
+As we can see, the first difference is very important, as demonstrated in the line `(*)`. We can't get the match as `results[0]`, because that object isn't pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article <info:iterable>.
 
 There's no need in `Array.from` if we're looping over results:
 
@@ -226,6 +227,19 @@ for(let result of results) {
 
 ```js
 let [tag1, tag2] = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
+```
+
+Every match, returned by `matchAll`, has the same format as returned by `match` without flag `pattern:g`: it's an array with additional properties `index` (match index in the string) and `input` (source string):
+
+```js run
+let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
+
+let [tag1, tag2] = results;
+
+alert( tag1[0] ); // <h1>
+alert( tag1[1] ); // h1
+alert( tag1.index ); // 0
+alert( tag1.input ); // <h1> <h2>
 ```
 
 ```smart header="Why is a result of `matchAll` an iterable object, not an array?"

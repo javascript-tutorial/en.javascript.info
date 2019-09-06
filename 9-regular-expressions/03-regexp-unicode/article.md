@@ -118,9 +118,9 @@ For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is
 A hex digit can be denoted as `pattern:\p{Hex_Digit}`:
 
 ```js run
-let reg = /x\p{Hex_Digit}\p{Hex_Digit}/u;
+let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
 
-alert("number: xAF".match(reg)); // xAF
+alert("number: xAF".match(regexp)); // xAF
 ```
 
 ### Example: Chinese hieroglyphs

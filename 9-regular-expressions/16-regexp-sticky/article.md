@@ -1,73 +1,127 @@
 
 # Sticky flag "y", searching at position
 
+The flag `pattern:y` allows to perform the search at the given position in the source string.
+
 To grasp the use case of `pattern:y` flag, and see how great it is, let's explore a practical use case.
 
-One of common tasks for regexps is "parsing": when we get a text and analyze it for logical components, build a structure.
+One of common tasks for regexps is "lexical analysis": we get a text, e.g. in a programming language, and analyze it for structural elements.
 
-For instance, there are HTML parsers for browser pages, that turn text into a structured document. There are parsers for programming languages, like JavaScript, etc.
+For instance, HTML has tags and attributes, JavaScript code has functions, variables, and so on.
 
-Writing parsers is a special area, with its own tools and algorithms, so we don't go deep in there, but there's a very common question in them, and, generally, for text analysis: "What kind of entity is at the given position?".
+Writing lexical analyzers is a special area, with its own tools and algorithms, so we don't go deep in there, but there's a common task: to read something at the given position.
 
-For instance, for a programming language variants can be like:
-- Is it a "name" `pattern:\w+`?
-- Or is it a number `pattern:\d+`?
-- Or an operator `pattern:[+-/*]`?
-- (a syntax error if it's not anything in the expected list)
+E.g. we have a code string `subject:let varName = "value"`, and we need to read the variable name from it, that starts at position `4`.
 
-So, we should try to match a couple of regular expressions, and make a decision what's at the given position.
+We'll look for variable name using regexp `pattern:\w+`. Actually, JavaScript variable names need a bit more complex regexp for accurate matching, but here it doesn't matter.
 
-In JavaScript, how can we perform a search starting from a given position? Regular calls start searching from the text start.
+A call to `str.match(/\w+/)` will find only the first word in the line. Or all words with the flag `pattern:g`. But we need only one word at position `4`.
 
-We'd like to avoid creating substrings, as this slows down the execution considerably.
+To search from the given position, we can use method `regexp.exec(str)`.
 
-One option is to use `regexp.exec` with `regexp.lastIndex` property, but that's not what we need, as this would search the text starting from `lastIndex`, while we only need to text the match *exactly* at the given position.
+If the `regexp` doesn't have flags `pattern:g` or `pattern:y`, then this method looks for the first match in the string `str`, exactly like `str.match(regexp)`. Such simple no-flags case doesn't interest us here.
 
-Here's a (failing) attempt to use `lastIndex`:
+If there's flag `pattern:g`, then it performs the search in the string `str`, starting from position stored in its `regexp.lastIndex` property. And, if it finds a match, then sets `regexp.lastIndex` to the index immediately after the match.
 
-```js run
-let str = "(text before) function ...";
+When a regexp is created, its `lastIndex` is `0`.
 
-// attempting to find function at position 5:
-let regexp = /function/g; // must use "g" flag, otherwise lastIndex is ignored
-regexp.lastIndex = 5
+So, successive calls to `regexp.exec(str)` return matches one after another.
 
-alert (regexp.exec(str)); // function
-```
-
-The match is found, because `regexp.exec` starts to search from the given position and goes on by the text, successfully matching "function" later.
-
-We could work around that by checking if "`regexp.exec(str).index` property is `5`, and if not, ignore the match. But the main problem here is performance. The regexp engine does a lot of unnecessary work by scanning at further positions. The delays are clearly noticeable if the text is long, because there are many such searches in a parser.
-
-## The "y" flag
-
-So we've came to the problem: how to search for a match exactly at the given position.
-
-That's what `pattern:y` flag does. It makes the regexp search only at the `lastIndex` position.
-
-Here's an example
+An example (with flag `pattern:g`):
 
 ```js run
-let str = "(text before) function ...";
+let str = 'let varName';
 
-*!*
-let regexp = /function/y;
-regexp.lastIndex = 5;
-*/!*
+let regexp = /\w+/g;
+alert(regexp.lastIndex); // 0 (initially lastIndex=0)
 
-alert (regexp.exec(str)); // null (no match, unlike "g" flag!)
+let word1 = regexp.exec(str);
+alert(word1[0]); // let (1st word)
+alert(regexp.lastIndex); // 3 (position after the match)
 
-*!*
-regexp.lastIndex = 14;
-*/!*
+let word2 = regexp.exec(str);
+alert(word2[0]); // varName (2nd word)
+alert(regexp.lastIndex); // 11 (position after the match)
 
-alert (regexp.exec(str)); // function (match!)
+let word3 = regexp.exec(str);
+alert(word3); // null (no more matches)
+alert(regexp.lastIndex); // 0 (resets at search end)
 ```
 
-As we can see, now the regexp is only matched at the given position.
+Every match is returned as an array with groups and additional properties.
 
-So what `pattern:y` does is truly unique, and very important for writing parsers.
+We can get all matches in the loop:
 
-The `pattern:y` flag allows to test a regular expression exactly at the given position and when we understand what's there, we can move on -- step by step examining the text.
+```js run
+let str = 'let varName';
+let regexp = /\w+/g;
 
-Without the flag the regexp engine always searches till the end of the text, that takes time, especially if the text is large. So our parser would be very slow. The `pattern:y` flag is exactly the right thing here.
+let result;
+
+while (result = regexp.exec(str)) {
+  alert( `Found ${result[0]} at position ${result.index}` );
+  // Found let at position 0, then
+  // Found varName at position 4
+}
+```
+
+Such use of `regexp.exec` is an alternative to method `str.matchAll`.
+
+Unlike other methods, we can set our own `lastIndex`, to start the search from the given position.
+
+For instance, let's find a word, starting from position `4`:
+
+```js run
+let str = 'let varName = "value"';
+
+let regexp = /\w+/g; // without flag "g", property lastIndex is ignored
+
+*!*
+regexp.lastIndex = 4;
+*/!*
+
+let word = regexp.exec(str);
+alert(word); // varName
+```
+
+We performed a search of `pattern:\w+`, starting from position `regexp.lastIndex = 4`.
+
+Please note: the search starts at position `lastIndex` and then goes further. If there's no word at position `lastIndex`, but it's somewhere after it, then it will be found:
+
+```js run
+let str = 'let varName = "value"';
+
+let regexp = /\w+/g;
+
+*!*
+regexp.lastIndex = 3;
+*/!*
+
+let word = regexp.exec(str);
+alert(word[0]); // varName
+alert(word.index); // 4
+```
+
+...So, with flag `pattern:g` property `lastIndex` sets the starting position for the search.
+
+**Flag `pattern:y` makes `regexp.exec` to look exactly at position `lastIndex`, not before, not after it.**
+
+Here's the same search with flag `pattern:y`:
+
+```js run
+let str = 'let varName = "value"';
+
+let regexp = /\w+/y;
+
+regexp.lastIndex = 3;
+alert( regexp.exec(str) ); // null (there's a space at position 3, not a word)
+
+regexp.lastIndex = 4;
+alert( regexp.exec(str) ); // varName (word at position 4)
+```
+
+As we can see, regexp `pattern:/\w+/y` doesn't match at position `3` (unlike the flag  `pattern:g`), but matches at position `4`.
+
+Imagine, we have a long text, and there are no matches in it, at all. Then searching with flag `pattern:g` will go till the end of the text, and this will take significantly more time than the search with flag `pattern:y`.
+
+In such tasks like lexical analysis, there are usually many searches at an exact position. Using flag `pattern:y` is the key for a good performance.

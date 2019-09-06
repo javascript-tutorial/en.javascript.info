@@ -81,7 +81,7 @@ It has 3 working modes:
     ```js run
     let str = "We will, we will rock you";
 
-    alert( str.match(/we/gi) ); // We,we (an array of 2 matches)
+    alert( str.match(/we/gi) ); // We,we (an array of 2 substrings that match)
     ```
     Please note that both `match:We` and `match:we` are found, because flag `pattern:i` makes the regular expression case-insensitive.
 
@@ -159,9 +159,9 @@ The method `regexp.test(str)` looks for at least one match, if found, returns `t
 
 ```js run
 let str = "I love JavaScript";
-let reg = /LOVE/i;
+let regexp = /LOVE/i;
 
-alert( reg.test(str) ); // true
+alert( regexp.test(str) ); // true
 ```
 
 Further in this chapter we'll study more regular expressions, come across many other examples and also meet other methods.

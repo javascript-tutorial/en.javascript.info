@@ -106,22 +106,27 @@ The best recipe is to be careful when using these events. If we want to track us
 
 By default many elements do not support focusing.
 
-The list varies between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
+The list varies a bit between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
 
-From the other hand, elements that exist to format something like `<div>`, `<span>`, `<table>` -- are unfocusable by default. The method `elem.focus()` doesn't work on them, and `focus/blur` events are never triggered.
+From the other hand, elements that exist to format something, such as `<div>`, `<span>`, `<table>` -- are unfocusable by default. The method `elem.focus()` doesn't work on them, and `focus/blur` events are never triggered.
 
 This can be changed using HTML-attribute `tabindex`.
 
-The purpose of this attribute is to specify the order number of the element when `key:Tab` is used to switch between them.
+Any element becomes focusable if it has `tabindex`. The value of the attribute is the order number of the element when `key:Tab` (or something like that) is used to switch between them.
 
-That is: if we have two elements, the first has `tabindex="1"`, and the second has `tabindex="2"`, then pressing `key:Tab` while in the first element -- moves us to the second one.
+That is: if we have two elements, the first has `tabindex="1"`, and the second has `tabindex="2"`, then pressing `key:Tab` while in the first element -- moves the focus into the second one.
+
+The switch order is: elements with `tabindex` from `1` and above go first (in the `tabindex` order), and then elements without `tabindex` (e.g. a regular `<input>`).
+
+Elements with matching `tabindex` are switched in the document source order (the default order).
 
 There are two special values:
 
-- `tabindex="0"` makes the element the last one.
-- `tabindex="-1"` means that `key:Tab` should ignore that element.
+- `tabindex="0"` puts an element among those without `tabindex`. That is, when we switch elements, elements with `tabindex=0` go after elements with `tabindex ≥ 1`.
 
-**Any element supports focusing if it has `tabindex`.**
+    Usually it's used to make an element focusable, but keep the default switching order. To make an element a part of the form on par with `<input>`.
+
+- `tabindex="-1"` allows only programmatic focusing on an element. The `key:Tab` key ignores such elements, but method `elem.focus()` works.
 
 For instance, here's a list. Click the first item and press `key:Tab`:
 
@@ -140,9 +145,9 @@ Click the first item and press Tab. Keep track of the order. Please note that ma
 </style>
 ```
 
-The order is like this: `1 - 2 - 0` (zero is always the last). Normally, `<li>` does not support focusing, but `tabindex` full enables it, along with events and styling with `:focus`.
+The order is like this: `1 - 2 - 0`. Normally, `<li>` does not support focusing, but `tabindex` full enables it, along with events and styling with `:focus`.
 
-```smart header="`elem.tabIndex` works too"
+```smart header="The property `elem.tabIndex` works too"
 We can add `tabindex` from JavaScript by using the `elem.tabIndex` property. That has the same effect.
 ```
 

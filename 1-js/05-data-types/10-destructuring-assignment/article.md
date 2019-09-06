@@ -403,7 +403,7 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables:
+All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
 
 ![](destructuring-complex.svg)
 
