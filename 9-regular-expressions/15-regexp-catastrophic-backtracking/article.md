@@ -19,10 +19,10 @@ We'll use a regexp `pattern:^(\w+\s?)*$`, it specifies 0 or more such words.
 In action:
 
 ```js run
-let reg = /^(\w+\s?)*$/;
+let regexp = /^(\w+\s?)*$/;
 
-alert( reg.test("A good string") ); // true
-alert( reg.test("Bad characters: $@#") ); // false
+alert( regexp.test("A good string") ); // true
+alert( regexp.test("Bad characters: $@#") ); // false
 ```
 
 It seems to work. The result is correct. Although, on certain strings it takes a lot of time. So long that JavaScript engine "hangs" with 100% CPU consumption.
@@ -30,11 +30,11 @@ It seems to work. The result is correct. Although, on certain strings it takes a
 If you run the example below, you probably won't see anything, as JavaScript will just "hang". A web-browser will stop reacting on events, the UI will stop working. After some time it will suggest to reloaad the page. So be careful with this:
 
 ```js run
-let reg = /^(\w+\s?)*$/;
+let regexp = /^(\w+\s?)*$/;
 let str = "An input string that takes a long time or even makes this regexp to hang!";
 
 // will take a very long time
-alert( reg.test(str) );
+alert( regexp.test(str) );
 ```
 
 Some regular expression engines can handle such search, but most of them can't.
@@ -50,12 +50,12 @@ And, to make things more obvious, let's replace `pattern:\w` with `pattern:\d`. 
 <!-- let str = `AnInputStringThatMakesItHang!`; -->
 
 ```js run
-let reg = /^(\d+)*$/;
+let regexp = /^(\d+)*$/;
 
 let str = "012345678901234567890123456789!";
 
 // will take a very long time
-alert( reg.test(str) );
+alert( regexp.test(str) );
 ```
 
 So what's wrong with the regexp?
@@ -189,10 +189,10 @@ Let's rewrite the regular expression as `pattern:^(\w+\s)*\w*` - we'll look for 
 This regexp is equivalent to the previous one (matches the same) and works well:
 
 ```js run
-let reg = /^(\w+\s)*\w*$/;
+let regexp = /^(\w+\s)*\w*$/;
 let str = "An input string that takes a long time or even makes this regex to hang!";
 
-alert( reg.test(str) ); // false
+alert( regexp.test(str) ); // false
 ```
 
 Why did the problem disappear?
@@ -272,26 +272,26 @@ There's more about the relation between possessive quantifiers and lookahead in 
 Let's rewrite the first example using lookahead to prevent backtracking:
 
 ```js run
-let reg = /^((?=(\w+))\2\s?)*$/;
+let regexp = /^((?=(\w+))\2\s?)*$/;
 
-alert( reg.test("A good string") ); // true
+alert( regexp.test("A good string") ); // true
 
 let str = "An input string that takes a long time or even makes this regex to hang!";
 
-alert( reg.test(str) ); // false, works and fast!
+alert( regexp.test(str) ); // false, works and fast!
 ```
 
 Here `pattern:\2` is used instead of `pattern:\1`, because there are additional outer parentheses. To avoid messing up with the numbers, we can give the parentheses a name, e.g. `pattern:(?<word>\w+)`.
 
 ```js run
 // parentheses are named ?<word>, referenced as \k<word>
-let reg = /^((?=(?<word>\w+))\k<word>\s?)*$/;
+let regexp = /^((?=(?<word>\w+))\k<word>\s?)*$/;
 
 let str = "An input string that takes a long time or even makes this regex to hang!";
 
-alert( reg.test(str) ); // false
+alert( regexp.test(str) ); // false
 
-alert( reg.test("A correct string") ); // true
+alert( regexp.test("A correct string") ); // true
 ```
 
 The problem described in this article is called "catastrophic backtracking".

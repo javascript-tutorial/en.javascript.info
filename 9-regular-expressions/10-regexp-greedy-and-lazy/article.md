@@ -17,11 +17,11 @@ A regular expression like `pattern:/".+"/g` (a quote, then something, then the o
 Let's try it:
 
 ```js run
-let reg = /".+"/g;
+let regexp = /".+"/g;
 
 let str = 'a "witch" and her "broom" is one';
 
-alert( str.match(reg) ); // "witch" and her "broom"
+alert( str.match(regexp) ); // "witch" and her "broom"
 ```
 
 ...We can see that it works not as intended!
@@ -105,11 +105,11 @@ To make things clear: usually a question mark `pattern:?` is a quantifier by its
 The regexp `pattern:/".+?"/g` works as intended: it finds `match:"witch"` and `match:"broom"`:
 
 ```js run
-let reg = /".+?"/g;
+let regexp = /".+?"/g;
 
 let str = 'a "witch" and her "broom" is one';
 
-alert( str.match(reg) ); // witch, broom
+alert( str.match(regexp) ); // witch, broom
 ```
 
 To clearly understand the change, let's trace the search step by step.
@@ -175,11 +175,11 @@ With regexps, there's often more than one way to do the same thing.
 In our case we can find quoted strings without lazy mode using the regexp `pattern:"[^"]+"`:
 
 ```js run
-let reg = /"[^"]+"/g;
+let regexp = /"[^"]+"/g;
 
 let str = 'a "witch" and her "broom" is one';
 
-alert( str.match(reg) ); // witch, broom
+alert( str.match(regexp) ); // witch, broom
 ```
 
 The regexp `pattern:"[^"]+"` gives correct results, because it looks for a quote `pattern:'"'` followed by one or more non-quotes `pattern:[^"]`, and then the closing quote.
@@ -201,20 +201,20 @@ The first idea might be: `pattern:/<a href=".*" class="doc">/g`.
 Let's check it:
 ```js run
 let str = '...<a href="link" class="doc">...';
-let reg = /<a href=".*" class="doc">/g;
+let regexp = /<a href=".*" class="doc">/g;
 
 // Works!
-alert( str.match(reg) ); // <a href="link" class="doc">
+alert( str.match(regexp) ); // <a href="link" class="doc">
 ```
 
 It worked. But let's see what happens if there are many links in the text?
 
 ```js run
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
-let reg = /<a href=".*" class="doc">/g;
+let regexp = /<a href=".*" class="doc">/g;
 
 // Whoops! Two links in one match!
-alert( str.match(reg) ); // <a href="link1" class="doc">... <a href="link2" class="doc">
+alert( str.match(regexp) ); // <a href="link1" class="doc">... <a href="link2" class="doc">
 ```
 
 Now the result is wrong for the same reason as our "witches" example. The quantifier `pattern:.*` took too many characters.
@@ -230,10 +230,10 @@ Let's modify the pattern by making the quantifier `pattern:.*?` lazy:
 
 ```js run
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
-let reg = /<a href=".*?" class="doc">/g;
+let regexp = /<a href=".*?" class="doc">/g;
 
 // Works!
-alert( str.match(reg) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
+alert( str.match(regexp) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
 ```
 
 Now it seems to work, there are two matches:
@@ -247,10 +247,10 @@ Now it seems to work, there are two matches:
 
 ```js run
 let str = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
-let reg = /<a href=".*?" class="doc">/g;
+let regexp = /<a href=".*?" class="doc">/g;
 
 // Wrong match!
-alert( str.match(reg) ); // <a href="link1" class="wrong">... <p style="" class="doc">
+alert( str.match(regexp) ); // <a href="link1" class="wrong">... <p style="" class="doc">
 ```
 
 Now it fails. The match includes not just a link, but also a lot of text after it, including `<p...>`.
@@ -281,11 +281,11 @@ A working example:
 ```js run
 let str1 = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
 let str2 = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
-let reg = /<a href="[^"]*" class="doc">/g;
+let regexp = /<a href="[^"]*" class="doc">/g;
 
 // Works!
-alert( str1.match(reg) ); // null, no matches, that's correct
-alert( str2.match(reg) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
+alert( str1.match(regexp) ); // null, no matches, that's correct
+alert( str2.match(regexp) ); // <a href="link1" class="doc">, <a href="link2" class="doc">
 ```
 
 ## Summary

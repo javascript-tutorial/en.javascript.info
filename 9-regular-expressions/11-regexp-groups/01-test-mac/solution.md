@@ -9,13 +9,13 @@ Now let's show that the match should capture all the text: start at the beginnin
 Finally:
 
 ```js run
-let reg = /^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}$/i;
+let regexp = /^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}$/i;
 
-alert( reg.test('01:32:54:67:89:AB') ); // true
+alert( regexp.test('01:32:54:67:89:AB') ); // true
 
-alert( reg.test('0132546789AB') ); // false (no colons)
+alert( regexp.test('0132546789AB') ); // false (no colons)
 
-alert( reg.test('01:32:54:67:89') ); // false (5 numbers, need 6)
+alert( regexp.test('01:32:54:67:89') ); // false (5 numbers, need 6)
 
-alert( reg.test('01:32:54:67:89:ZZ') ) // false (ZZ in the end)
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ in the end)
 ```

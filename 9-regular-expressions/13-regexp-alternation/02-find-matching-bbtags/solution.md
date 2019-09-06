@@ -8,7 +8,7 @@ The full pattern: `pattern:\[(b|url|quote)\].*?\[/\1\]`.
 In action:
 
 ```js run
-let reg = /\[(b|url|quote)\].*?\[\/\1\]/gs;
+let regexp = /\[(b|url|quote)\].*?\[\/\1\]/gs;
 
 let str = `
   [b]hello![/b]
@@ -17,7 +17,7 @@ let str = `
   [/quote]
 `;
 
-alert( str.match(reg) ); // [b]hello![/b],[quote][url]http://google.com[/url][/quote]
+alert( str.match(regexp) ); // [b]hello![/b],[quote][url]http://google.com[/url][/quote]
 ```
 
 Please note that we had to escape a slash for the closing tag `pattern:[/\1]`, because normally the slash closes the pattern.

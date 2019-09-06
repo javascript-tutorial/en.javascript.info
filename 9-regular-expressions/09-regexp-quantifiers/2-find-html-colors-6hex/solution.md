@@ -7,11 +7,11 @@ Then we can look for 6 of them using the quantifier `pattern:{6}`.
 As a result, we have the regexp: `pattern:/#[a-f0-9]{6}/gi`.
 
 ```js run
-let reg = /#[a-f0-9]{6}/gi;
+let regexp = /#[a-f0-9]{6}/gi;
 
 let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
 
-alert( str.match(reg) );  // #121212,#AA00ef
+alert( str.match(regexp) );  // #121212,#AA00ef
 ```
 
 The problem is that it finds the color in longer sequences:

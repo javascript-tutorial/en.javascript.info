@@ -96,18 +96,18 @@ In the example below the currency sign `pattern:(€|kr)` is captured, along wit
 
 ```js run
 let str = "1 turkey costs 30€";
-let reg = /\d+(?=(€|kr))/; // extra parentheses around €|kr
+let regexp = /\d+(?=(€|kr))/; // extra parentheses around €|kr
 
-alert( str.match(reg) ); // 30, €
+alert( str.match(regexp) ); // 30, €
 ```
 
 And here's the same for lookbehind:
 
 ```js run
 let str = "1 turkey costs $30";
-let reg = /(?<=(\$|£))\d+/;
+let regexp = /(?<=(\$|£))\d+/;
 
-alert( str.match(reg) ); // 30, $
+alert( str.match(regexp) ); // 30, $
 ```
 
 ## Summary

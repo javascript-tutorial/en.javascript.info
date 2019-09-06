@@ -11,11 +11,11 @@ The corresponding regexp: `pattern:html|php|java(script)?`.
 A usage example:
 
 ```js run
-let reg = /html|php|css|java(script)?/gi;
+let regexp = /html|php|css|java(script)?/gi;
 
 let str = "First HTML appeared, then CSS, then JavaScript";
 
-alert( str.match(reg) ); // 'HTML', 'CSS', 'JavaScript'
+alert( str.match(regexp) ); // 'HTML', 'CSS', 'JavaScript'
 ```
 
 We already saw a similar thing -- square brackets. They allow to choose between multiple characters, for instance `pattern:gr[ae]y` matches `match:gray` or `match:grey`.
@@ -64,7 +64,7 @@ But that's wrong, the alternation should only be used in the "hours" part of the
 The final solution:
 
 ```js run
-let reg = /([01]\d|2[0-3]):[0-5]\d/g;
+let regexp = /([01]\d|2[0-3]):[0-5]\d/g;
 
-alert("00:00 10:10 23:59 25:99 1:2".match(reg)); // 00:00,10:10,23:59
+alert("00:00 10:10 23:59 25:99 1:2".match(regexp)); // 00:00,10:10,23:59
 ```

@@ -71,9 +71,9 @@ Usage example:
 
 ```js run
 let str = '<h1>Hello, world!</h1>';
-let reg = /<(.*?)>/g;
+let regexp = /<(.*?)>/g;
 
-let matchAll = str.matchAll(reg);
+let matchAll = str.matchAll(regexp);
 
 alert(matchAll); // [object RegExp String Iterator], not array, but an iterable
 
@@ -118,7 +118,7 @@ alert( str.search( /ink/i ) ); // 10 (first match position)
 
 If we need positions of further matches, we should use other means, such as finding them all with `str.matchAll(regexp)`.
 
-## str.replace(str|reg, str|func)
+## str.replace(str|regexp, str|func)
 
 This is a generic method for searching and replacing, one of most useful ones. The swiss army knife for searching and replacing.  
 
@@ -238,7 +238,7 @@ The method `regexp.exec(str)` method returns a match for `regexp` in the string 
 
 It behaves differently depending on whether the regexp has flag `pattern:g`.
 
-If there's no `pattern:g`, then `regexp.exec(str)` returns the first match exactly as  `str.match(reg)`. This behavior doesn't bring anything new.
+If there's no `pattern:g`, then `regexp.exec(str)` returns the first match exactly as  `str.match(regexp)`. This behavior doesn't bring anything new.
 
 But if there's flag `pattern:g`, then:
 - A call to `regexp.exec(str)` returns the first match and saves the position immediately after it in the property `regexp.lastIndex`.
@@ -272,7 +272,7 @@ For instance:
 ```js run
 let str = 'Hello, world!';
 
-let reg = /\w+/g; // without flag "g", lastIndex property is ignored
+let regexp = /\w+/g; // without flag "g", lastIndex property is ignored
 regexp.lastIndex = 5; // search from 5th position (from the comma)
 
 alert( regexp.exec(str) ); // world
@@ -285,7 +285,7 @@ Let's replace flag `pattern:g` with `pattern:y` in the example above. There will
 ```js run
 let str = 'Hello, world!';
 
-let reg = /\w+/y;
+let regexp = /\w+/y;
 regexp.lastIndex = 5; // search exactly at position 5
 
 alert( regexp.exec(str) ); // null

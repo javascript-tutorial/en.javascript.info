@@ -7,7 +7,7 @@ Write a regexp to find the tag `<style...>`. It should match the full tag: it ma
 For instance:
 
 ```js
-let reg = /your regexp/g;
+let regexp = /your regexp/g;
 
-alert( '<style> <styler> <style test="...">'.match(reg) ); // <style>, <style test="...">
+alert( '<style> <styler> <style test="...">'.match(regexp) ); // <style>, <style test="...">
 ```

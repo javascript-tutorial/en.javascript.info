@@ -7,7 +7,7 @@
 Например:
 
 ```js
-let reg = /ваше регулярное выражение/;
+let regexp = /ваше регулярное выражение/;
 
 let str = `
 <html>
@@ -17,7 +17,7 @@ let str = `
 </html>
 `;
 
-str = str.replace(reg, `<h1>Hello</h1>`);
+str = str.replace(regexp, `<h1>Hello</h1>`);
 ```
 
 После этого значение `str`:

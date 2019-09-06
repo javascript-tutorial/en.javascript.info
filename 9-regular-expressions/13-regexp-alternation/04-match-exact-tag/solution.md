@@ -10,7 +10,7 @@ In the regexp language: `pattern:<style(>|\s.*?>)`.
 In action:
 
 ```js run
-let reg = /<style(>|\s.*?>)/g;
+let regexp = /<style(>|\s.*?>)/g;
 
-alert( '<style> <styler> <style test="...">'.match(reg) ); // <style>, <style test="...">
+alert( '<style> <styler> <style test="...">'.match(regexp) ); // <style>, <style test="...">
 ```

@@ -5,11 +5,11 @@ An acceptable variant is `pattern:<!--.*?-->` -- the lazy quantifier makes the d
 Otherwise multiline comments won't be found:
 
 ```js run
-let reg = /<!--.*?-->/gs;
+let regexp = /<!--.*?-->/gs;
 
 let str = `... <!-- My -- comment
  test --> ..  <!----> ..
 `;
 
-alert( str.match(reg) ); // '<!-- My -- comment \n test -->', '<!---->'
+alert( str.match(regexp) ); // '<!-- My -- comment \n test -->', '<!---->'
 ```

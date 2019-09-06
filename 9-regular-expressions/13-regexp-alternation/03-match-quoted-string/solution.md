@@ -10,8 +10,8 @@ Step by step:
 In action:
 
 ```js run
-let reg = /"(\\.|[^"\\])*"/g;
+let regexp = /"(\\.|[^"\\])*"/g;
 let str = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
 
-alert( str.match(reg) ); // "test me","Say \"Hello\"!","\\ \""
+alert( str.match(regexp) ); // "test me","Say \"Hello\"!","\\ \""
 ```

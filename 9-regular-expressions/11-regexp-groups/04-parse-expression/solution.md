@@ -18,9 +18,9 @@ To make each of these parts a separate element of the result array, let's enclos
 In action:
 
 ```js run
-let reg = /(-?\d+(\.\d+)?)\s*([-+*\/])\s*(-?\d+(\.\d+)?)/;
+let regexp = /(-?\d+(\.\d+)?)\s*([-+*\/])\s*(-?\d+(\.\d+)?)/;
 
-alert( "1.2 + 12".match(reg) );
+alert( "1.2 + 12".match(regexp) );
 ```
 
 The result includes:
@@ -42,9 +42,9 @@ The final solution:
 
 ```js run
 function parse(expr) {
-  let reg = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
+  let regexp = /(-?\d+(?:\.\d+)?)\s*([-+*\/])\s*(-?\d+(?:\.\d+)?)/;
 
-  let result = expr.match(reg);
+  let result = expr.match(regexp);
 
   if (!result) return [];
   result.shift();

@@ -56,9 +56,9 @@ The email format is: `name@domain`. Any word can be the name, hyphens and dots a
 The pattern:
 
 ```js run
-let reg = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
+let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
 
-alert("my@mail.com @ his@site.com.uk".match(reg)); // my@mail.com, his@site.com.uk
+alert("my@mail.com @ his@site.com.uk".match(regexp)); // my@mail.com, his@site.com.uk
 ```
 
 That regexp is not perfect, but mostly works and helps to fix accidental mistypes. The only truly reliable check for an email can only be done by sending a letter.
@@ -110,9 +110,9 @@ In action:
 ```js run
 let str = '<span class="my">';
 
-let reg = /<(([a-z]+)\s*([^>]*))>/;
+let regexp = /<(([a-z]+)\s*([^>]*))>/;
 
-let result = str.match(reg);
+let result = str.match(regexp);
 alert(result[0]); // <span class="my">
 alert(result[1]); // span class="my"
 alert(result[2]); // span
@@ -336,10 +336,10 @@ let str = "Gogogo John!";
 
 *!*
 // ?: exludes 'go' from capturing
-let reg = /(?:go)+ (\w+)/i;
+let regexp = /(?:go)+ (\w+)/i;
 */!*
 
-let result = str.match(reg);
+let result = str.match(regexp);
 
 alert( result[0] ); // Gogogo John (full match)
 alert( result[1] ); // John

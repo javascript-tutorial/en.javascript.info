@@ -32,17 +32,17 @@ Create a regexp to find all BB-tags with their contents.
 For instance:
 
 ```js
-let reg = /your regexp/flags;
+let regexp = /your regexp/flags;
 
 let str = "..[url]http://google.com[/url]..";
-alert( str.match(reg) ); // [url]http://google.com[/url]
+alert( str.match(regexp) ); // [url]http://google.com[/url]
 ```
 
 If tags are nested, then we need the outer tag (if we want we can continue the search in its content):
 
 ```js
-let reg = /your regexp/flags;
+let regexp = /your regexp/flags;
 
 let str = "..[url][b]http://google.com[/b][/url]..";
-alert( str.match(reg) ); // [url][b]http://google.com[/b][/url]
+alert( str.match(regexp) ); // [url][b]http://google.com[/b][/url]
 ```

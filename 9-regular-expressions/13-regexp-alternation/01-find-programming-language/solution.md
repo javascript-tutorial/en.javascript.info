@@ -4,11 +4,11 @@ The first idea can be to list the languages with `|` in-between.
 But that doesn't work right:
 
 ```js run
-let reg = /Java|JavaScript|PHP|C|C\+\+/g;
+let regexp = /Java|JavaScript|PHP|C|C\+\+/g;
 
 let str = "Java, JavaScript, PHP, C, C++";
 
-alert( str.match(reg) ); // Java,Java,PHP,C,C
+alert( str.match(regexp) ); // Java,Java,PHP,C,C
 ```
 
 The regular expression engine looks for alternations one-by-one. That is: first it checks if we have  `match:Java`, otherwise -- looks for `match:JavaScript` and so on.
@@ -25,9 +25,9 @@ There are two solutions for that problem:
 In action:
 
 ```js run
-let reg = /Java(Script)?|C(\+\+)?|PHP/g;
+let regexp = /Java(Script)?|C(\+\+)?|PHP/g;
 
 let str = "Java, JavaScript, PHP, C, C++";
 
-alert( str.match(reg) ); // Java,JavaScript,PHP,C,C++
+alert( str.match(regexp) ); // Java,JavaScript,PHP,C,C++
 ```

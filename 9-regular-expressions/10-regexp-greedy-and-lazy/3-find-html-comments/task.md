@@ -3,11 +3,11 @@
 Find all HTML comments in the text:
 
 ```js
-let reg = /your regexp/g;
+let regexp = /your regexp/g;
 
 let str = `... <!-- My -- comment
  test --> ..  <!----> .. 
 `;
 
-alert( str.match(reg) ); // '<!-- My -- comment \n test -->', '<!---->'
+alert( str.match(regexp) ); // '<!-- My -- comment \n test -->', '<!---->'
 ```

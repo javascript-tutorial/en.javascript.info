@@ -17,10 +17,10 @@ We can put both kinds of quotes in the square brackets: `pattern:['"](.*?)['"]`,
 ```js run
 let str = `He said: "She's the one!".`;
 
-let reg = /['"](.*?)['"]/g;
+let regexp = /['"](.*?)['"]/g;
 
 // The result is not what we'd like to have
-alert( str.match(reg) ); // "She'
+alert( str.match(regexp) ); // "She'
 ```
 
 As we can see, the pattern found an opening quote `match:"`, then the text is consumed till the other quote `match:'`, that closes the match.
@@ -33,10 +33,10 @@ Here's the correct code:
 let str = `He said: "She's the one!".`;
 
 *!*
-let reg = /(['"])(.*?)\1/g;
+let regexp = /(['"])(.*?)\1/g;
 */!*
 
-alert( str.match(reg) ); // "She's the one!"
+alert( str.match(regexp) ); // "She's the one!"
 ```
 
 Now it works! The regular expression engine finds the first quote `pattern:(['"])` and memorizes its content. That's the first capturing group.
@@ -65,8 +65,8 @@ In the example below the group with quotes is named `pattern:?<quote>`, so the b
 let str = `He said: "She's the one!".`;
 
 *!*
-let reg = /(?<quote>['"])(.*?)\k<quote>/g;
+let regexp = /(?<quote>['"])(.*?)\k<quote>/g;
 */!*
 
-alert( str.match(reg) ); // "She's the one!"
+alert( str.match(regexp) ); // "She's the one!"
 ```

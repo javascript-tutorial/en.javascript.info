@@ -130,18 +130,18 @@ In the example below the regexp `pattern:[-().^+]` looks for one of the characte
 
 ```js run
 // No need to escape
-let reg = /[-().^+]/g;
+let regexp = /[-().^+]/g;
 
-alert( "1 + 2 - 3".match(reg) ); // Matches +, -
+alert( "1 + 2 - 3".match(regexp) ); // Matches +, -
 ```
 
 ...But if you decide to escape them "just in case", then there would be no harm:
 
 ```js run
 // Escaped everything
-let reg = /[\-\(\)\.\^\+]/g;
+let regexp = /[\-\(\)\.\^\+]/g;
 
-alert( "1 + 2 - 3".match(reg) ); // also works: +, -
+alert( "1 + 2 - 3".match(regexp) ); // also works: +, -
 ```
 
 ## Ranges and flag "u"
