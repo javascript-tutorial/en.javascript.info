@@ -95,7 +95,7 @@ It triggers when a property is read, with following arguments:
 
 - `target` -- is the target object, the one passed as the first argument to `new Proxy`,
 - `property` -- property name,
-- `receiver` -- if the target property is a getter, then `receiver` is the object that's going to be used as `this` in its call. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don't need this argument, will be explained in more details letter.
+- `receiver` -- if the target property is a getter, then `receiver` is the object that's going to be used as `this` in its call. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don't need this argument, will be explained in more details later.
 
 Let's use `get` to implement default values for an object.
 
