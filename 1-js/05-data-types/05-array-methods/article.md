@@ -655,31 +655,37 @@ arr.map(func, thisArg);
 
 The value of `thisArg` parameter becomes `this` for `func`.
 
-For instance, here we use an object method as a filter and `thisArg` helps with that:
+For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
 
 ```js run
-let john = {
-  age: 18,
-  younger(otherUser) {
-    return otherUser.age < this.age;
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
   }
 };
 
 let users = [
-  {age: 12},
   {age: 16},
-  {age: 32}
+  {age: 20},
+  {age: 23},
+  {age: 30}
 ];
 
 *!*
-// find all users younger than john
-let youngerUsers = users.filter(john.younger, john);
+// find users, for who army.canJoin returns true
+let soldiers = users.filter(army.canJoin, army);
 */!*
 
-alert(youngerUsers.length); // 2
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
 ```
 
-In the call above, we use `john.younger` as a filter and also provide `john` as the context for it. If we didn't provide the context, `users.filter(john.younger)` would call `john.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+
+That said, a call `users.filter(user => army.canJoin(user))` also guarantees the correct `this`, and it's more obvious what's going on, so in practice the arrow function is used most of time, instead of `thisArg`.
 
 ## Summary
 
