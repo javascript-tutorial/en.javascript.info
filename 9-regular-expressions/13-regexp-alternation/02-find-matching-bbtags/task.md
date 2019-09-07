@@ -15,7 +15,7 @@ Normal:
 [url] [b]http://google.com[/b] [/url]
 [quote] [b]text[/b] [/quote]
 
-Impossible:
+Can't happen:
 [b][b]text[/b][/b]
 ```
 

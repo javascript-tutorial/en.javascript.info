@@ -20,4 +20,4 @@ let str = `
 alert( str.match(regexp) ); // [b]hello![/b],[quote][url]http://google.com[/url][/quote]
 ```
 
-Please note that we had to escape a slash for the closing tag `pattern:[/\1]`, because normally the slash closes the pattern.
+Please note that besides escaping `pattern:[` and `pattern:]`, we had to escape a slash for the closing tag `pattern:[\/\1]`, because normally the slash closes the pattern.
