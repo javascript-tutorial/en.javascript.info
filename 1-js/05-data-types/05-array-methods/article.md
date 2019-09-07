@@ -685,7 +685,7 @@ alert(soldiers[1].age); // 23
 
 If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
 
-That said, a call `users.filter(user => army.canJoin(user))` also guarantees the correct `this`, and it's more obvious what's going on, so in practice the arrow function is used most of time, instead of `thisArg`.
+A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The former is used more often, as it's a bit easier to understand for most people.
 
 ## Summary
 
