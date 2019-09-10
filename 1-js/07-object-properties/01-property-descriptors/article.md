@@ -316,6 +316,7 @@ There are also methods that limit access to the *whole* object:
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
 : Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
+
 And also there are tests for them:
 
 [Object.isExtensible(obj)](mdn:js/Object/isExtensible)
