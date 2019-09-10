@@ -29,7 +29,7 @@ let blob = new Blob(["<html>…</html>"], {type: 'text/html'});
 
 ```js
 // create Blob from a typed array and strings
-let hello = new Uint8Array([72, 101, 108, 108, 111]); // "hello" in binary form
+let hello = new Uint8Array([72, 101, 108, 108, 111]); // "Hello" in binary form
 
 let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
 ```
