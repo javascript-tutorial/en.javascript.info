@@ -27,7 +27,7 @@ The getter works when `obj.propName` is read, the setter -- when it is assigned.
 
 For instance, we have a `user` object with `name` and `surname`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
