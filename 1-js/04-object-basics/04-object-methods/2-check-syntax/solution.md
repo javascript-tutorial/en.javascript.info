@@ -11,7 +11,7 @@ let user = {
 (user.go)() // error!
 ```
 
-The error message in most browsers does not give understanding what went wrong.
+The error message in most browsers does not give us much of a clue about what went wrong.
 
 **The error appears because a semicolon is missing after `user = {...}`.**
 
