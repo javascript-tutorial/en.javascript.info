@@ -275,7 +275,7 @@ let User = user.default; // the default export
 new User('John');
 ```
 
-### A word agains default exports
+### A word against default exports
 
 Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
 
