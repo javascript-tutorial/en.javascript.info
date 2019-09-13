@@ -324,6 +324,6 @@ They only operate on the object itself. Properties from the prototype are *not* 
 - We can use `obj.__proto__` to access it (a historical getter/setter, there are other ways, to be covered soon).
 - The object referenced by `[[Prototype]]` is called a "prototype".
 - If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype.
-- Write/delete operations for act directly on the object, they don't use the prototype (assuming it's a data property, not is a setter).
+- Write/delete operations act directly on the object, they don't use the prototype (assuming it's a data property, not a setter).
 - If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
-- The `for..in` loop iterates over both own and inherited properties. All other key/value-getting methods only operate on the object itself.
+- The `for..in` loop iterates over both its own and its inherited properties. All other key/value-getting methods only operate on the object itself.
