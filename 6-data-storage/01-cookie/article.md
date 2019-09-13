@@ -7,7 +7,7 @@ Cookies are usually set by a web-server using response `Set-Cookie` HTTP-header.
 One of the most widespread use cases is authentication:
 
 1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
+2. Next time when the request is set to the same domain, the browser sends the cookie over the net using `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
 We can also access cookies from the browser, using `document.cookie` property.
