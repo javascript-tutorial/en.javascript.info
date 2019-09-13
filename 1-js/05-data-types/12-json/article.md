@@ -244,7 +244,7 @@ Now everything except `occupiedBy` is serialized. But the list of properties is 
 
 Fortunately, we can use a function instead of an array as the `replacer`.
 
-The function will be called for every `(key, value)` pair and should return the "replaced" value, which will be used instead of the original one. Or `undefined` if the value is to be skipped.
+The function will be called for every `(key, value)` pair and should return the value to be "replaced" instead of the original one. Or `undefined` if the value is to be skipped.
 
 In our case, we can return `value` "as is" for everything except `occupiedBy`. To ignore `occupiedBy`, the code below returns `undefined`:
 
