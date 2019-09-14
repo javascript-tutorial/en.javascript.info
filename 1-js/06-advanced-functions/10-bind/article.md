@@ -104,7 +104,7 @@ let boundFunc = func.bind(context);
 
 The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
 
-In other words, calling `boundFunc` is like `func` with fixed `this`.
+In other words, calling `boundFunc` is like `func` with fixed `this`. (But note that the bound function will not contain any custom properties (https://javascript.info/function-object#custom-properties) that may have been assigned to the function).  
 
 For instance, here `funcUser` passes a call to `func` with `this=user`:
 
