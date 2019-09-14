@@ -211,7 +211,7 @@ The answer is simple: `this` is not affected by prototypes at all.
 
 So, the setter call `admin.fullName=` uses `admin` as `this`, not `user`.
 
-That is actually a super-important thing, because we may have a big object with many methods and inherit from it. Then inherited objects can run its methods, and they will modify the state of these objects, not the big one.
+That is actually a super-important thing, because we may have a big object with many methods, and one or more objects that inherit them from it, and we need to be clear that when the inheriting objects run the inherited methods they only modify their own states, not the states of the object from which they inherit the methods.
 
 For instance, here `animal` represents a "method storage", and `rabbit` makes use of it.
 
