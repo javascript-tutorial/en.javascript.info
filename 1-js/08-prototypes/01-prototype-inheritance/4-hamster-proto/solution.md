@@ -44,7 +44,7 @@ alert( lazy.stomach ); // <nothing>
 
 Now all works fine, because `this.stomach=` does not perform a lookup of `stomach`. The value is written directly into `this` object.
 
-Also we can totally evade the problem by making sure that each hamster has their own stomach:
+Also we can totally avoid the problem by making sure that each hamster has their own stomach:
 
 ```js run
 let hamster = {
