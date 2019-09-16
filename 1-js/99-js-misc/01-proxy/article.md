@@ -11,7 +11,7 @@ let proxy = new Proxy(target, handler)
 ```
 
 - `target` -- is an object to wrap, can be anything, including functions.
-- `handler` -- proxy configuration: an object with "traps": methods that intercept operations., e.g. `get` trap is for reading a property of `target`, `set` trap - for writing a property into `target`, etc.
+- `handler` -- proxy configuration: an object with "traps", methods that intercept operations. - e.g. `get` trap for reading a property of `target`, `set` trap for writing a property into `target`, and so on.
 
 For operations on `proxy`, if there's a corresponding trap in `handler`, then it runs, and the proxy has a chance to handle it, otherwise the operation is performed on `target`.
 
@@ -45,11 +45,11 @@ To activate more capabilities, let's add traps.
 
 What can we intercept with them?
 
-For most operations on objects, there's a so-called "internal method" in JavaScript specificaiton, that describes on the lowest level, how it works. For instance, `[[Get]]` - the internal method to read a property, `[[Set]]` -- the internal method to write a property, and so on. These methods are only used in the specification, we can't call them directly by name.
+For most operations on objects, there's a so-called "internal method" in the JavaScript specification that describes how it works at the lowest level. For instance `[[Get]]`, the internal method to read a property, `[[Set]]`, the internal method to write a property, and so on. These methods are only used in the specification, we can't call them directly by name.
 
-Proxy traps intercept invocations of these methods. They are listed in [Proxy specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots) and in the table below.
+Proxy traps intercept invocations of these methods. They are listed in the [Proxy specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots) and in the table below.
 
-For every internal method, there's a trap in this table: the name of the method that we can add to `handler` parameter of `new Proxy` to intercept the operation:
+For every internal method, there's a trap in this table: the name of the method that we can add to the `handler` parameter of `new Proxy` to intercept the operation:
 
 | Internal Method | Handler Method | Triggers when... |
 |-----------------|----------------|-------------|
@@ -80,28 +80,28 @@ There are some other invariants, like:
 
 Traps can intercept these operations, but they must follow these rules.
 
-Invariants ensure correct and consistent behavior of language features. The full invariants list is in [the specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots), you probably won't violate them, if not doing something weird.
+Invariants ensure correct and consistent behavior of language features. The full invariants list is in [the specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots). You probably won't violate them if you're not doing something weird.
 ```
 
-Let's see how that works on practical examples.
+Let's see how that works in practical examples.
 
 ## Default value with "get" trap
 
 The most common traps are for reading/writing properties.
 
-To intercept the reading, the `handler` should have a method `get(target, property, receiver)`.
+To intercept reading, the `handler` should have a method `get(target, property, receiver)`.
 
 It triggers when a property is read, with following arguments:
 
 - `target` -- is the target object, the one passed as the first argument to `new Proxy`,
 - `property` -- property name,
-- `receiver` -- if the target property is a getter, then `receiver` is the object that's going to be used as `this` in its call. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don't need this argument, will be explained in more details later.
+- `receiver` -- if the target property is a getter, then `receiver` is the object that's going to be used as `this` in its call. Usually that's the `proxy` object itself (or an object that inherits from it, if we inherit from proxy). Right now we don't need this argument, so it will be explained in more detail later.
 
 Let's use `get` to implement default values for an object.
 
-We'll make a numeric array that returns `0` for non-existant values.
+We'll make a numeric array that returns `0` for nonexistent values.
 
-Usually when one tries to get a non-existing array item, they get `undefined`, but we'll wrap a regular array into proxy that traps reading and returns `0` if there's no such property:
+Usually when one tries to get a non-existing array item, they get `undefined`, but we'll wrap a regular array into the proxy that traps reading and returns `0` if there's no such property:
 
 ```js run
 let numbers = [0, 1, 2];
@@ -122,11 +122,11 @@ alert( numbers[123] ); // 0 (no such item)
 */!*
 ```
 
-As we can see, it's quite easy to do with `get` trap.
+As we can see, it's quite easy to do with a `get` trap.
 
 We can use `Proxy` to implement any logic for "default" values.
 
-Imagine, we have a dictionary with phrases along with translations:
+Imagine we have a dictionary, with phrases and their translations:
 
 ```js run
 let dictionary = {
@@ -138,7 +138,7 @@ alert( dictionary['Hello'] ); // Hola
 alert( dictionary['Welcome'] ); // undefined
 ```
 
-Right now, if there's no phrase, reading from `dictionary` returns `undefined`. But in practice, leaving a phrase non-translated is usually better than `undefined`. So let's make it return a non-translated phrase in that case instead of `undefined`.
+Right now, if there's no phrase, reading from `dictionary` returns `undefined`. But in practice, leaving a phrase untranslated is usually better than `undefined`. So let's make it return an untranslated phrase in that case instead of `undefined`.
 
 To achieve that, we'll wrap `dictionary` in a proxy that intercepts reading operations:
 
@@ -162,7 +162,7 @@ dictionary = new Proxy(dictionary, {
 });
 
 // Look up arbitrary phrases in the dictionary!
-// At worst, they are not translated.
+// At worst, they're not translated.
 alert( dictionary['Hello'] ); // Hola
 *!*
 alert( dictionary['Welcome to Proxy']); // Welcome to Proxy (no translation)
@@ -225,7 +225,7 @@ alert("This line is never reached (error in the line above)");
 
 Please note: the built-in functionality of arrays is still working! Values are added by `push`. The `length` property auto-increases when values are added. Our proxy doesn't break anything.
 
-We don't have to override value-adding array methods like `push` and `unshift`, and so on, to add checks in there, because internally they use `[[Set]]` operation, that's intercepted by the proxy.
+We don't have to override value-adding array methods like `push` and `unshift`, and so on, to add checks in there, because internally they use the `[[Set]]` operation that's intercepted by the proxy.
 
 So the code is clean and concise.
 
@@ -292,11 +292,11 @@ user = new Proxy(user, {
 alert( Object.keys(user) ); // <empty>
 ```
 
-Why? The reason is simple: `Object.keys` returns only properties with `enumerable` flag. To check for it, it calls the internal method `[[GetOwnProperty]]` for every property to get [its descriptor](info:property-descriptors). And here, as there's no property, its descriptor is empty, no `enumerable` flag, so it's skipped.
+Why? The reason is simple: `Object.keys` returns only properties with the `enumerable` flag. To check for it, it calls the internal method `[[GetOwnProperty]]` for every property to get [its descriptor](info:property-descriptors). And here, as there's no property, its descriptor is empty, no `enumerable` flag, so it's skipped.
 
-For `Object.keys` to return a property, we need it either exist in the object, with `enumerable` flag, or we can intercept calls to `[[GetOwnProperty]]` (the trap `getOwnPropertyDescriptor` does it), and return a descriptor with `enumerable: true`.
+For `Object.keys` to return a property, we need it to either exist in the object, with the `enumerable` flag, or we can intercept calls to `[[GetOwnProperty]]` (the trap `getOwnPropertyDescriptor` does it), and return a descriptor with `enumerable: true`.
 
-Here's a working code:
+Here's an example of that:
 
 ```js run
 let user = { };
@@ -325,7 +325,7 @@ Let's note once again: we only need to intercept `[[GetOwnProperty]]` if the pro
 
 There's a widespread convention that properties and methods prefixed by an underscore `_` are internal. They shouldn't be accessed from outside the object.
 
-Technically, that's possible though:
+Technically that's possible though:
 
 ```js run
 let user = {
@@ -408,7 +408,7 @@ try {
 for(let key in user) alert(key); // name
 ```
 
-Please note the important detail in `get` trap, in the line `(*)`:
+Please note the important detail in the `get` trap, in the line `(*)`:
 
 ```js
 get(target, prop) {
@@ -420,7 +420,7 @@ get(target, prop) {
 }
 ```
 
-Why do we need for a function to call `value.bind(target)`?
+Why do we need a function to call `value.bind(target)`?
 
 The reason is that object methods, such as `user.checkPassword()`, must be able to access `_password`:
 
@@ -439,11 +439,11 @@ A call to `user.checkPassword()` call gets proxied `user` as `this` (the object 
 
 So we bind the context of object methods to the original object, `target`, in the line `(*)`. Then their future calls will use `target` as `this`, without any traps.
 
-That solution usually works, but isn't ideal, as a method may pass the unproxied object somewhere else, and then we'll get messed up: where's the original object, and where's the proxied one.
+That solution usually works, but isn't ideal, as a method may pass the unproxied object somewhere else, and then we'll get messed up: where's the original object, and where's the proxied one?
 
 Besides, an object may be proxied multiple times (multiple proxies may add different "tweaks" to the object), and if we pass an unwrapped object to a method, there may be unexpected consequences.
 
-So, such proxy shouldn't be used everywhere.
+So, such a proxy shouldn't be used everywhere.
 
 ```smart header="Private properties of a class"
 Modern JavaScript engines natively support private properties in classes, prefixed with `#`. They are described in the chapter <info:private-protected-properties-methods>. No proxies required.
@@ -464,7 +464,7 @@ let range = {
 };
 ```
 
-We'd like to use `in` operator to check that a number is in `range`.
+We'd like to use the `in` operator to check that a number is in `range`.
 
 The `has` trap intercepts `in` calls.
 
@@ -495,7 +495,7 @@ alert(50 in range); // false
 */!*
 ```
 
-A nice syntactic sugar, isn't it? And very simple to implement.
+Nice syntactic sugar, isn't it? And very simple to implement.
 
 ## Wrapping functions: "apply" [#proxy-apply]
 
@@ -587,7 +587,7 @@ The result is the same, but now not only calls, but all operations on the proxy 
 
 We've got a "richer" wrapper.
 
-There exist other traps: the full list is in the beginning of this chapter. Their usage pattern is similar to the above.
+Other traps exist: the full list is in the beginning of this chapter. Their usage pattern is similar to the above.
 
 ## Reflect
 
@@ -595,7 +595,7 @@ There exist other traps: the full list is in the beginning of this chapter. Thei
 
 It was said previously that internal methods, such as `[[Get]]`, `[[Set]]` and others are specifiction only, they can't be called directly.
 
-`Reflect` object makes that somewhat possible. Its methods are minimal wrappers around the internal methods.
+The `Reflect` object makes that somewhat possible. Its methods are minimal wrappers around the internal methods.
 
 Here are examples of operations and `Reflect` calls that do the same:
 
@@ -617,13 +617,13 @@ Reflect.set(user, 'name', 'John');
 alert(user.name); // John
 ```
 
-In particular, `Reflect` allows to call operators (`new`, `delete`...) as functions (`Reflect.construct`, `Reflect.deleteProperty`, ...). That's an interesting capability, but here another thing is important.
+In particular, `Reflect` allows us to call operators (`new`, `delete`...) as functions (`Reflect.construct`, `Reflect.deleteProperty`, ...). That's an interesting capability, but here another thing is important.
 
 **For every internal method, trappable by `Proxy`, there's a corresponding method in `Reflect`, with the same name and arguments as `Proxy` trap.**
 
 So we can use `Reflect` to forward an operation to the original object.
 
-In this example both traps `get` and `set` transparently (as if they didn't exist) forward reading/writing operations to the object, showing a message:
+In this example, both traps `get` and `set` transparently (as if they didn't exist) forward reading/writing operations to the object, showing a message:
 
 ```js run
 let user = {
@@ -790,9 +790,9 @@ Many built-in objects, for example `Map`, `Set`, `Date`, `Promise` and others ma
 
 These are like properties, but reserved for internal, specification-only purposes. For instance, `Map` stores items in the internal slot `[[MapData]]`. Built-in methods access them directly, not via `[[Get]]/[[Set]]` internal methods. So `Proxy` can't intercept that.
 
-Why care? They are internal anyway!
+Why care? They're internal anyway!
 
-Well, here's the issue. After such built-in object gets proxied, the proxy doesn't have these internal slots, so built-in methods will fail.
+Well, here's the issue. After a built-in object like that gets proxied, the proxy doesn't have these internal slots, so built-in methods will fail.
 
 For example:
 
@@ -806,7 +806,7 @@ proxy.set('test', 1); // Error
 */!*
 ```
 
-Internally, a `Map` stores all data in its `[[MapData]]` internal slot. The proxy doesn't have such slot. The [built-in method `Map.prototype.set`](https://tc39.es/ecma262/#sec-map.prototype.set) method tries to access the internal property `this.[[MapData]]`, but because `this=proxy`, can't find it in `proxy` and just fails.
+Internally, a `Map` stores all data in its `[[MapData]]` internal slot. The proxy doesn't have such a slot. The [built-in method `Map.prototype.set`](https://tc39.es/ecma262/#sec-map.prototype.set) method tries to access the internal property `this.[[MapData]]`, but because `this=proxy`, can't find it in `proxy` and just fails.
 
 Fortunately, there's a way to fix it:
 
@@ -887,11 +887,11 @@ user = new Proxy(user, {
 alert(user.getName()); // Guest
 ```
 
-That said, the solution has drawbacks, explained previously: it exposes the original object to the method, potentially allowing it to be passed further and breaking other proxied functionality.
+That said, the solution has drawbacks, as explained previously: it exposes the original object to the method, potentially allowing it to be passed further and breaking other proxied functionality.
 
 ### Proxy != target
 
-Proxy and the original object are different objects. That's natural, right?
+The proxy and the original object are different objects. That's natural, right?
 
 So if we use the original object as a key, and then proxy it, then the proxy can't be found:
 
@@ -932,7 +932,7 @@ A *revocable* proxy is a proxy that can be disabled.
 
 Let's say we have a resource, and would like to close access to it any moment.
 
-What we can do is to wrap it into a revocable proxy, without any traps. Such proxy will forward operations to object, and we can disable it at any moment.
+What we can do is to wrap it into a revocable proxy, without any traps. Such a proxy will forward operations to object, and we can disable it at any moment.
 
 The syntax is:
 
@@ -985,9 +985,9 @@ revoke();
 alert(proxy.data); // Error (revoked)
 ```
 
-The benefit of such approach is that we don't have to carry `revoke` around. We can get it from the map by `proxy` when needeed.
+The benefit of such an approach is that we don't have to carry `revoke` around. We can get it from the map by `proxy` when needed.
 
-Using `WeakMap` instead of `Map` here, because it should not block garbage collection. If a proxy object becomes "unreachable" (e.g. no variable references it any more), `WeakMap` allows it to be wiped from memory together with its `revoke` that we won't need any more.
+We use `WeakMap` instead of `Map` here because it won't block garbage collection. If a proxy object becomes "unreachable" (e.g. no variable references it any more), `WeakMap` allows it to be wiped from memory together with its `revoke` that we won't need any more.
 
 ## References
 
