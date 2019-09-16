@@ -151,7 +151,7 @@ say.*!*hi*/!*('John'); // Hello, John!
 say.*!*bye*/!*('John'); // Bye, John!
 ```
 
-## export default
+## Export default
 
 In practice, there are mainly two kinds of modules.
 
