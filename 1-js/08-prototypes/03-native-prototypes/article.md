@@ -129,7 +129,7 @@ So, generally, modifying a native prototype is considered a bad idea.
 
 **In modern programming, there is only one case where modifying native prototypes is approved. That's polyfilling.**
 
-Polyfilling is a term for making a substitute for a method that exists in JavaScript specification, but not yet supported by current JavaScript engine.
+Polyfilling is a term for making a substitute for a method that exists in JavaScript specification, but is not yet supported by current JavaScript engine.
 
 Then we may implement it manually and populate the built-in prototype with it.
 
