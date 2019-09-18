@@ -102,7 +102,7 @@ There's no similar method to handle deletion of an accessor property. Only gette
 
 ## Accessor descriptors
 
-Descriptors for accessor properties are different -- as compared with data properties.
+Descriptors for accessor properties are different from those for data properties.
 
 For accessor properties, there is no `value` or `writable`, but instead there are `get` and `set` functions.
 
