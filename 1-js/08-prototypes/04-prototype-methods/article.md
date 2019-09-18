@@ -108,17 +108,17 @@ That shouldn't surprise us. The `__proto__` property is special: it must be eith
 
 But we didn't *intend* to implement such behavior, right? We want to store key/value pairs, and the key named `"__proto__"` was not properly saved. So that's a bug!
 
-Here the consequences are not terrible. But in other cases, we may be assigning object values, then the prototype may indeed be changed. As the result, the execution will go wrong in totally unexpected ways.
+Here the consequences are not terrible. But in other cases we may be assigning object values, and then the prototype may indeed be changed. As the result, the execution will go wrong in totally unexpected ways.
 
-What's worst -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
+What's worse -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
-Unexpected things also may happen when assigning to `toString` -- that's a function by default, and other built-in methods.
+Unexpected things also may happen when assigning to `toString`, which is a function by default, and to other built-in methods.
 
-How to evade the problem?
+How to avoid the problem?
 
 First, we can just switch to using `Map`, then everything's fine.
 
-But `Object` also can serve us well here, because language creators gave a thought to that problem long ago.
+But `Object` also can serve us well here, because language creators gave thought to that problem long ago.
 
 The `__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
 
