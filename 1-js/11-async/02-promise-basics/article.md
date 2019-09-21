@@ -267,7 +267,7 @@ It's not exactly an alias of `then(f,f)` though. There are several important dif
 If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they execute immediately:
 
 ```js run
-// an immediately resolved promise
+// the promise becomes resolved immediately upon creation
 let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
