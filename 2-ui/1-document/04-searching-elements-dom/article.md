@@ -6,40 +6,7 @@ There are additional searching methods for that.
 
 ## document.getElementById or just id
 
-If an element has the `id` attribute, then there's a global variable by the name from that `id`.
-
-We can use it to immediately access the element no matter where it is:
-
-```html run
-<div id="*!*elem*/!*">
-  <div id="*!*elem-content*/!*">Element</div>
-</div>
-
-<script>
-  alert(elem); // DOM-element with id="elem"
-  alert(window.elem); // accessing global variable like this also works
-
-  // for elem-content things are a bit more complex
-  // that has a dash inside, so it can't be a variable name
-  alert(window['elem-content']); // ...but accessible using square brackets [...]
-</script>
-```
-
-The behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), but it is supported mainly for compatibility. The browser tries to help us by mixing namespaces of JS and DOM. Good for very simple scripts, but there may be name conflicts. Also, when we look in JS and don't have HTML in view, it's not obvious where the variable comes from.
-
-If we declare a variable with the same name, it takes precedence:
-
-```html run untrusted height=0
-<div id="elem"></div>
-
-<script>
-  let elem = 5;
-
-  alert(elem); // 5
-</script>
-```
-
-The better alternative is to use a special method `document.getElementById(id)`.
+If an element has the `id` attribute, we can get the element using the method `document.getElementById(id)`, no matter where it is.
 
 For instance:
 
@@ -49,23 +16,61 @@ For instance:
 </div>
 
 <script>
+  // get the element
 *!*
   let elem = document.getElementById('elem');
 */!*
 
+  // make its background red
   elem.style.background = 'red';
 </script>
 ```
 
-Here in the tutorial we'll often use `id` to directly reference an element, but that's only to keep things short. In real life `document.getElementById` is the preferred method.
+Also, there's a global variable named by `id` that references the element:
 
-```smart header="There can be only one"
-The `id` must be unique. There can be only one element in the document with the given `id`.
+```html run
+<div id="*!*elem*/!*">
+  <div id="*!*elem-content*/!*">Element</div>
+</div>
 
-If there are multiple elements with the same `id`, then the behavior of corresponding methods is unpredictable. The browser may return any of them at random. So please stick to the rule and keep `id` unique.
+<script>
+  // elem is a reference to DOM-element with id="elem"
+  elem.style.background = 'red';
+
+  // id="elem-content" has a hyphen inside, so it can't be a variable name
+  // ...but we can access it using square brackets: window['elem-content']
+</script>
 ```
 
-```warn header="Only `document.getElementById`, not `anyNode.getElementById`"
+...That's unless we declare a JavaScript variable with the same name, then it takes precedence:
+
+```html run untrusted height=0
+<div id="elem"></div>
+
+<script>
+  let elem = 5; // now elem is 5, not a reference to <div id="elem">
+
+  alert(elem); // 5
+</script>
+```
+
+```warn header="Please don't use id-named global variables to access elements"
+This behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), so it's kind of standard. But it is supported mainly for compatibility.
+
+The browser tries to help us by mixing namespaces of JS and DOM. That's fine for simple scripts, inlined into HTML, but generally isn't a good thing. There may be naming conflicts. Also, when one reads JS code and doesn't have HTML in view, it's not obvious where the variable comes from.
+
+Here in the tutorial we use `id` to directly reference an element for brevity, when it's obvious where the element comes from.
+
+In real life `document.getElementById` is the preferred method.
+```
+
+```smart header="The `id` must be unique"
+The `id` must be unique. There can be only one element in the document with the given `id`.
+
+If there are multiple elements with the same `id`, then the behavior of methods that use it is unpredictable, e.g. `document.getElementById` may return any of such elements at random. So please stick to the rule and keep `id` unique.
+```
+
+```warn header="Only `document.getElementById`, not `anyElem.getElementById`"
 The method `getElementById` that can be called only on `document` object. It looks for the given `id` in the whole document.
 ```
 
