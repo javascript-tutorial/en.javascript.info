@@ -21,7 +21,7 @@ let range = {
   [Symbol.iterator]() {
 */!*
     // ...it returns the iterator object:
-    // onward, for await..of works only with that object,
+    // onward, for..of works only with that object,
     // asking it for next values using next()
     return {
       current: this.from,
