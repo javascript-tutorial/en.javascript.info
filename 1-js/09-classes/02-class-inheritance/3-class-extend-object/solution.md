@@ -26,7 +26,7 @@ Even after the fix, there's still important difference in `"class Rabbit extends
 As we know, the "extends" syntax sets up two prototypes:
 
 1. Between `"prototype"` of the constructor functions (for methods).
-2. Between the constructor functions itself (for static methods).
+2. Between the constructor functions themselves (for static methods).
 
 In our case, for `class Rabbit extends Object` it means:
 
