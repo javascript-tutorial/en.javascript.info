@@ -1,4 +1,4 @@
-**The answer: from `0` to `4` in both cases.**
+두 경우 모두 '0'부터 '4'까지 출력됩니다.
 
 ```js run
 for (let i = 0; i < 5; ++i) alert( i );
@@ -6,12 +6,12 @@ for (let i = 0; i < 5; ++i) alert( i );
 for (let i = 0; i < 5; i++) alert( i );
 ```
 
-That can be easily deducted from the algorithm of `for`:
+'for'문의 알고리즘을 떠올려보면 쉽게 추론할 수 있는 문제입니다.
 
-1. Execute once `i = 0` before everything (begin).
-2. Check the condition `i < 5`
-3. If `true` -- execute the loop body `alert(i)`, and then `i++`
+1. 모든 작업이 시작되기 전 일단 'i=0'입니다.
+2. 'i<5' 조건을 만족하는지 확인합니다.
+3. 위 조건이 'true'이면 반복문의 본문 'alert(i)'가 실행되고, 그 이후 'i++'가 실행됩니다
 
-The increment `i++` is separated from the condition check (2). That's just another statement.
+'i++'는 위 알고리즘의 두 번째 단계(조건 확인)와 별개로 실행됩니다. 전혀 다른 구문이기 때문이죠.
 
-The value returned by the increment is not used here, so there's no difference between `i++` and `++i`.
+증가 연산자가 반환하는 값은 (2) 에서 쓰이지 않기 때문에 'i++'와 '++i'에 차이가 없습니다.
