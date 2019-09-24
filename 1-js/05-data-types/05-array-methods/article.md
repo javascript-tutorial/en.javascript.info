@@ -169,7 +169,7 @@ alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays. Other objects, even if they look like arrays, added as a whole:
+Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
 
 ```js run
 let arr = [1, 2];
@@ -183,7 +183,7 @@ alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 //[1, 2, arrayLike]
 ```
 
-...But if an array-like object has a special property `Symbol.isConcatSpreadable` property, the it's treated as array by `concat`: its elements are added instead:
+...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
 
 ```js run
 let arr = [1, 2];
