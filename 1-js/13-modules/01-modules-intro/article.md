@@ -266,7 +266,7 @@ Compare to regular script below:
 
 Please note: the second script actually works before the first! So we'll see `undefined` first, and then `object`.
 
-That's because modules are deferred, so way wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
+That's because modules are deferred, so we wait for the document to be processed. The regular scripts runs immediately, so we saw its output first.
 
 When using modules, we should be aware that HTML-page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
