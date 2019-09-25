@@ -77,9 +77,9 @@ Right now, there's almost no reason to use `eval`. If someone is using it, there
 
 Please note that its ability to access outer variables has side-effects.
 
-Code minifiers (tools used before JS gets to production, to compress it) replace local variables with shorter ones for optimization. That's usually safe, but not if `eval` is used, as it may reference them. So minifiers don't replace all local variables that might be visible from `eval`. That negatively affects code compression ratio.
+Code minifiers (tools used before JS gets to production, to compress it) rename local variables into shorter ones (like `a`, `b` etc) to make the code smaller. That's usually safe, but not if `eval` is used, as local variables may be accessed from eval'ed code string. So minifiers don't do that renaming for all variables potentially visible from `eval`. That negatively affects code compression ratio.
 
-Using outer local variables inside `eval` is a bad programming practice, as it makes maintaining the code more difficult.
+Using outer local variables inside `eval` is also considered a bad programming practice, as it makes maintaining the code more difficult.
 
 There are two ways how to be totally safe from such problems.
 
