@@ -40,7 +40,7 @@ Please note that the last line does not run the function, because there are no p
 
 In JavaScript, a function is a value, so we can deal with it as a value. The code above shows its string representation, which is the source code.
 
-Surely, a function is a special values, in the sense that we can call it like `sayHi()`.
+Surely, a function is a special value, in the sense that we can call it like `sayHi()`.
 
 But it's still a value. So we can work with it like with other kinds of values.
 
