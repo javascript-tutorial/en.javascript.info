@@ -261,7 +261,7 @@ The short answer is: constructors in inheriting classes must call `super(...)`, 
 
 Of course, there's an explanation. Let's get into details, so you'll really understand what's going on.
 
-In JavaScript, there's a distinction between a "constructor function of an inheriting class" and all others. In an inheriting class, the corresponding constructor function is labelled with a special internal property `[[ConstructorKind]]:"derived"`.
+In JavaScript, there's a distinction between a "constructor function of an inheriting class" and all others. In an inheriting class, the corresponding constructor function is labeled with a special internal property `[[ConstructorKind]]:"derived"`.
 
 The difference is:
 
