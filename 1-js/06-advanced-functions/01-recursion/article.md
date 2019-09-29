@@ -185,7 +185,7 @@ Here's the context stack when we entered the subcall `pow(2, 2)`:
 
 The new current execution context is on top (and bold), and previous remembered contexts are below.
 
-When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped. Here in the picture we use the word "line", but of course it's more precise.
+When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped. Here in the picture we use the word "line", but of course it's more precise in the real stacks.
 
 ### pow(2, 1)
 
