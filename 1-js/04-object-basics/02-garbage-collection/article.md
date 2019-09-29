@@ -156,7 +156,7 @@ The following "garbage collection" steps are regularly performed:
 - The garbage collector takes roots and "marks" (remembers) them.
 - Then it visits and "marks" all references from them.
 - Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until there are unvisited references (reachable from the roots).
+- ...And so on until there isn't any unvisited reference (reachable from the roots).
 - All objects except marked ones are removed.
 
 For instance, let our object structure look like this:
