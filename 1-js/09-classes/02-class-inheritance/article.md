@@ -312,7 +312,7 @@ If you're reading the tutorial for the first time - this section may be skipped.
 It's about the internal mechanisms behind inheritance and `super`.
 ```
 
-Let's get a little deeper under the hood of `super`. We'll see some interesting things by the way.
+Let's get a little deeper under the hood of `super`. We'll see some interesting things along the way.
 
 First to say, from all that we've learned till now, it's impossible for `super` to work at all!
 
