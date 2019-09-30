@@ -46,9 +46,9 @@ That means that if the visitor is moving the mouse very fast then some DOM-eleme
 
 ![](mouseover-mouseout-over-elems.svg)
 
-If the mouse moves very fast from `#FROM` to `#TO` elements as painted above, then intermediate `<div>` (or some of them) may be skipped. The `mouseout` event may trigger on `#FROM` and then immediately `mouseover` on `#TO`.
+If the mouse moves very fast from `#FROM` to `#TO` elements as painted above, then intermediate `<div>` elements (or some of them) may be skipped. The `mouseout` event may trigger on `#FROM` and then immediately `mouseover` on `#TO`.
 
-That's good for performance, because if there may be many intermediate elements. We don't really want to process in and out of each one.
+That's good for performance, because there may be many intermediate elements. We don't really want to process in and out of each one.
 
 On the other hand, we should keep in mind that the mouse pointer doesn't "visit" all elements along the way. It can "jump".
 
@@ -67,38 +67,46 @@ Also move the pointer into the child `div`, and then move it out quickly down th
 ```
 
 ```smart header="If `mouseover` triggered, there must be `mouseout`"
-In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer "officially" entered an element with `mouseover`, then upon leaving it we always get `mouseout`.
+In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer "officially" entered an element (`mouseover` event generated), then upon leaving it we always get `mouseout`.
 ```
 
 ## Mouseout when leaving for a child
 
-An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant.
+An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant, e.g. from `#parent` to `#child` in this HTML:
 
-Visually, the pointer is still on the element, but we get `mouseout`!
+```html
+<div id="parent">
+  <div id="child">...</div>
+</div>
+```
+
+If we're on `#parent` and then move the pointer deeper into `#child`, but we get `mouseout` on `#parent`!
 
 ![](mouseover-to-child.svg)
 
-That looks strange, but can be easily explained.
+That may seem strange, but can be easily explained.
 
 **According to the browser logic, the mouse cursor may be only over a *single* element at any time -- the most nested one and top by z-index.**
 
 So if it goes to another element (even a descendant), then it leaves the previous one.
 
-Please note an important detail.
+Please note another important detail of event processing.
 
-The `mouseover` event on a descendant bubbles up. So, if the parent element has such handler, it triggers.
+The `mouseover` event on a descendant bubbles up. So, if `#parent` has `mouseover` handler, it triggers:
 
 ![](mouseover-bubble-nested.svg)
 
 ```online
-You can see that very well in the example below: `<div id="child">` is inside the `<div id="parent">`. There are handlers on the parent that listen for `mouseover/out` events and output their details.
+You can see that very well in the example below: `<div id="child">` is inside the `<div id="parent">`. There are `mouseover/out` handlers on `#parent` element that output event details.
 
-If you move the mouse from the parent to the child, you see two events: `mouseout [target: parent]` (left the parent) and `mouseover [target: child]` (came to the child, bubbled).
+If you move the mouse from `#parent` to `#child`, you see two events on `#parent`:
+1. `mouseout [target: parent]` (left the parent), then
+2. `mouseover [target: child]` (came to the child, bubbled).
 
 [codetabs height=360 src="mouseoverout-child"]
 ```
 
-When we move from a parent element to a child, then two handlers trigger on the parent element: `mouseout` and `mouseover`:
+As shown, when the pointer moves from `#parent` element to `#child`, two handlers trigger on the parent element: `mouseout` and `mouseover`:
 
 ```js
 parent.onmouseout = function(event) {
@@ -109,11 +117,13 @@ parent.onmouseover = function(event) {
 };
 ```
 
-If we don't examine `event.target` inside the handlers, then it may seem that the mouse pointer left `parent` element, and then came back over it. But it's not the case! The mouse never left, it just moved to the child element.
+**If we don't examine `event.target` inside the handlers, then it may seem that the mouse pointer left `#parent` element, and then immediately came back over it.**
 
-If there's some action upon leaving the element, e.g. animation runs, then such interpretation may bring unwanted side effects.
+But that's not the case! The pointer is still over the parent, it just moved deeper into the child element.
 
-To avoid it, we can check `relatedTarget` and, if the mouse is still inside the element, then ignore such event.
+If there are some actions upon leaving the parent element, e.g. an animation runs in `parent.onmouseout`, we usually don't want it when the pointer just goes deeper into `#parent`.
+
+To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.
 
 Alternatively we can use other events: `mouseenter` и `mouseleave`, that we'll be covering now, as they don't have such problems.
 
