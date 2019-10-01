@@ -43,7 +43,7 @@ If we look for a property in `rabbit`, and it's missing, JavaScript automaticall
 
 For instance:
 
-```js run
+```js
 let animal = {
   eats: true
 };
