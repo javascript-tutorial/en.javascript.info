@@ -181,7 +181,7 @@ A `<select>` element has 3 important properties:
 2. `select.value` -- the value of the currently selected `<option>`,
 3. `select.selectedIndex` -- the number of the currently selected `<option>`.
 
-So we have three ways to set the value of a `<select>`, that do the same:
+They provide three different ways of setting a value for a `<select>`:
 
 1. Find the corresponding `<option>` element and set `option.selected` to `true`.
 2. Set `select.value` to the value.
@@ -206,7 +206,7 @@ Here is an example:
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. That's feature is rarely used. In that case we need to use the first ways: add/remove the `selected` property from `<option>` subelements.
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. That's feature is rarely used. In that case we need to use the first way: add/remove the `selected` property from `<option>` subelements.
 
 We can get their collection as `select.options`, for instance:
 
