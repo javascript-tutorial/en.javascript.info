@@ -239,8 +239,8 @@ function* generateSequence(start, end) {
 
 Now we'd like to reuse it for generation of a more complex sequence:
 - first, digits `0..9` (with character codes 48..57),
-- followed by alphabet letters `A..Z` (character codes 65..90)
-- followed by uppercased letters `a..z` (character codes 97..122)
+- followed by uppercase alphabet letters `A..Z` (character codes 65..90)
+- followed by lowercase alphabet letters `a..z` (character codes 97..122)
 
 We can use this sequence e.g. to create passwords by selecting characters from it (could add syntax characters as well), but let's generate it first.
 
