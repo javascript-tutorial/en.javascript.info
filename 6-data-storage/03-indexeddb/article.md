@@ -158,7 +158,7 @@ Such update collision happens rarely, but we should at least have some handling 
 
 ## Object store
 
-To store stomething in IndexedDB, we need an *object store*.
+To store something in IndexedDB, we need an *object store*.
 
 An object store is a core concept of IndexedDB. Counterparts in other databases are called "tables" or "collections". It's where the data is stored. A database may have multiple stores: one for users, another one for goods, etc.
 
