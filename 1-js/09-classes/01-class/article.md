@@ -89,7 +89,7 @@ What `class User {...}` construct really does is:
 1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
 2. Stores class methods, such as `sayHi`, in `User.prototype`.
 
-Afterwards, for `new User` objects, when we call a method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
 
 We can illustrate the result of `class User` declaration as:
 
