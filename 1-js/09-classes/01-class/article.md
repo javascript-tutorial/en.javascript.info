@@ -146,7 +146,7 @@ Although, there are important differences.
 
 1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
 
-    Unlike a regular function, a class constructor must be called with `new`:
+    And unlike a regular function, a class constructor must be called with `new`:
 
     ```js run
     class User {
