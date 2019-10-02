@@ -99,6 +99,4 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```   
 
-It may look difficult from the first sight, but becomes easy to understand after you use it once or twice.
-
-We can make powerful one-liners for more complex transforms this way. It's only important to keep balance, so that the code is still simple enough to understand it.
+It may look difficult from the first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way. 
