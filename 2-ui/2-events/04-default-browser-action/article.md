@@ -1,23 +1,23 @@
 # Browser default actions
 
-Many events automatically lead to browser actions.
+Many events automatically lead to certain actions performed by the browser.
 
 For instance:
 
-- A click on a link -- initiates going to its URL.
-- A click on submit button inside a form -- initiates its submission to the server.
-- Pressing a mouse button over a text and moving it -- selects the text.
+- A click on a link - initiates navigation to its URL.
+- A click on a form submit button - initiates its submission to the server.
+- Pressing a mouse button over a text and moving it - selects the text.
 
-If we handle an event in JavaScript, often we don't want browser actions. Fortunately, it can be prevented.
+If we handle an event in JavaScript, we may not want the corresponding browser action to happen, to implement another behavior instead.
 
 ## Preventing browser actions
 
 There are two ways to tell the browser we don't want it to act:
 
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
-- If the handler is assigned using `on<event>` (not by `addEventListener`), then we can also return `false` from it.
+- If the handler is assigned using `on<event>` (not by `addEventListener`), then returning `false` also works the same.
 
-In the example below a click to links doesn't lead to URL change:
+In this HTML a click on a link doesn't lead to navigation, browser doesn't do anything:
 
 ```html autorun height=60 no-beautify
 <a href="/" onclick="return false">Click here</a>
@@ -25,12 +25,14 @@ or
 <a href="/" onclick="event.preventDefault()">here</a>
 ```
 
-```warn header="Not necessary to return `true`"
+In the next example we'll use this technique to create a JavaScript-powered menu.
+
+```warn header="Returning `false` from a handler is an exception"
 The value returned by an event handler is usually ignored.
 
-The only exception -- is `return false` from a handler assigned using `on<event>`.
+The only exception is `return false` from a handler assigned using `on<event>`.
 
-In all other cases, `return` is not needed and it's not processed anyhow.
+In all other cases, `return` value is ignored. In particular, there's no sense in returning `true`.
 ```
 
 ### Example: the menu
@@ -49,7 +51,7 @@ Here's how it looks with some CSS:
 
 [iframe height=70 src="menu" link edit]
 
-Menu items are links `<a>`, not buttons. There are several benefits, for instance:
+Menu items are implemented as HTML-links `<a>`, not buttons `<button>`. There are several reasons to do so, for instance:
 
 - Many people like to use "right click" -- "open in a new window". If we use `<button>` or `<span>`, that doesn't work.
 - Search engines follow `<a href="...">` links while indexing.
