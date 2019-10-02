@@ -156,7 +156,7 @@ The following "garbage collection" steps are regularly performed:
 - The garbage collector takes roots and "marks" (remembers) them.
 - Then it visits and "marks" all references from them.
 - Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until there are unvisited references (reachable from the roots).
+- ...And so on until every reachable (from the roots) references are visited.
 - All objects except marked ones are removed.
 
 For instance, let our object structure look like this:
@@ -181,9 +181,9 @@ Now the objects that could not be visited in the process are considered unreacha
 
 ![](garbage-collection-5.svg)
 
-That's the concept of how garbage collection works.
+We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
 
-JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
 
 Some of the optimizations:
 
@@ -191,7 +191,7 @@ Some of the optimizations:
 - **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the garbage collection into pieces. Then the pieces are executed one by one, separately. That requires some extra bookkeeping between them to track changes, but we have many tiny delays instead of a big one.
 - **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
-There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so going deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
 
 ## Summary
 
