@@ -1,6 +1,6 @@
 # Browser environment, specs
 
-The JavaScript language was initially created for web browsers. Since then, it has evolved and become a language with many uses and platforms.
+The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
 
 A platform may be a browser, or a web-server or another *host*, even a coffee machine. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
@@ -60,14 +60,14 @@ For instance, server-side scripts that download HTML pages and process them can 
 ```
 
 ```smart header="CSSOM for styling"
-CSS rules and stylesheets are structured in a different way than HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
+CSS rules and stylesheets are structured in a different way than HTML. There's a separate specification, [CSS Object Model (CSSOM)](https://www.w3.org/TR/cssom-1/), that explains how they are represented as objects, and how to read and write them.
 
 CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, but that's also possible.
 ```
 
-## BOM (Browser object model)
+## BOM (Browser Object Model)
 
-Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
+The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
 
 For instance:
 
