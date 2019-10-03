@@ -193,4 +193,4 @@ Borrowing methods is flexible, it allows to mix functionality from different obj
     - The methods are stored in the prototype (`Array.prototype`, `Object.prototype`, `Date.prototype` etc).
     - The object itself stores only the data (array items, object properties, the date).
 - Primitives also store methods in prototypes of wrapper objects: `Number.prototype`, `String.prototype`, `Boolean.prototype`. Only `undefined` and `null` do not have wrapper objects.
-- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. Probably the only allowable cause is when we add-in a new standard, but not yet supported by the engine JavaScript method.
+- Built-in prototypes can be modified or populated with new methods. But it's not recommended to change them. Probably the only allowable case is when we add-in a new standard, but not yet supported by the engine JavaScript method.
