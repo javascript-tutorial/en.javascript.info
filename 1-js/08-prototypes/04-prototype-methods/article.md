@@ -71,7 +71,7 @@ Why so?
 
 That's for historical reasons.
 
-- The `"prototype"` property of a constructor function works since very ancient times.
+- The `"prototype"` property of a constructor function has worked since very ancient times.
 - Later, in the year 2012: `Object.create` appeared in the standard. It gave the ability to create objects with a given prototype, but did not provide the ability to get/set it. So browsers implemented the non-standard `__proto__` accessor that allowed the user to get/set a prototype at any time.
 - Later, in the year 2015: `Object.setPrototypeOf` and `Object.getPrototypeOf` were added to the standard, to perform the same functionality as `__proto__`. As `__proto__` was de-facto implemented everywhere, it was kind-of deprecated and made its way to the Annex B of the standard, that is: optional for non-browser environments.
 
