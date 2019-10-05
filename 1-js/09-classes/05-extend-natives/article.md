@@ -74,7 +74,7 @@ Built-in objects have their own static methods, for instance `Object.keys`, `Arr
 
 As we already know, native classes extend each other. For instance, `Array` extends `Object`.
 
-Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
+Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article [](info:static-properties-methods#statics-and-inheritance).
 
 But built-in classes are an exception. They don't inherit statics from each other.
 
