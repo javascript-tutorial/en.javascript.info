@@ -78,7 +78,7 @@ Normally, when one class extends another, both static and non-static methods are
 
 But built-in classes are an exception. They don't inherit statics from each other.
 
-For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no `Array.keys()` and `Date.keys()` static methods.
+For example, both `Array` and `Date` inherit from `Object`, so their instances have methods from `Object.prototype`. But `Array.[[Prototype]]` does not reference `Object`, so there's no, for instance, `Array.keys()` (or `Date.keys()`) static method.
 
 Here's the picture structure for `Date` and `Object`:
 
