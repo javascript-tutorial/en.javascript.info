@@ -28,7 +28,7 @@ let rabbit = Object.create(animal);
 alert(rabbit.eats); // true
 
 *!*
-alert(Object.getPrototypeOf(rabbit) === animal); // get the prototype of rabbit
+alert(Object.getPrototypeOf(rabbit) === animal); // true
 */!*
 
 *!*
