@@ -72,7 +72,7 @@ let range = {
       current: this.from,
       last: this.to,
 
-      // next() is called on each iteration by the for..of loop
+      // next() is called on each iteration by the for await..of loop
 *!*
       async next() { // (2)
         // it should return the value as an object {done:.., value :...}
@@ -183,7 +183,7 @@ Now we have the async generator, iterable with `for await...of`.
 
 It's indeed very simple. We add the `async` keyword, and the generator now can use `await` inside of it, rely on promises and other async functions.
 
-Technically, another the difference of an async generator is that its `generator.next()` method is now asynchronous also, it returns promises.
+Technically, another difference of an async generator is that its `generator.next()` method is now asynchronous also, it returns promises.
 
 In a regular generator we'd use `result = generator.next()` to get values. In an async generator, we should add `await`, like this:
 
@@ -265,7 +265,7 @@ Now values come with a delay of 1 second between them.
 
 So far we've seen simple examples, to gain basic understanding. Now let's review a real-life use case.
 
-There are many online services that deliver paginated data. For instance, when we need a list of users, a request returns a pre-defined count (e.g. 100 users) - "one page", and provides an URL to the next page.
+There are many online services that deliver paginated data. For instance, when we need a list of users, a request returns a pre-defined count (e.g. 100 users) - "one page", and provides a URL to the next page.
 
 The pattern is very common, it's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
 
@@ -273,7 +273,7 @@ The pattern is very common, it's not about users, but just about anything. For i
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
 - Then we can use that link for the next request, to get more commits, and so on.
 
-But we'd like to have is a simpler API: an iterable object with commits, so that we could go over them like this:
+But we'd like to have a simpler API: an iterable object with commits, so that we could go over them like this:
 
 ```js
 let repo = 'javascript-tutorial/en.javascript.info'; // GitHub repository to get commits from
