@@ -21,7 +21,7 @@ alert(filteredArr); // 10, 50
 alert(filteredArr.isEmpty()); // false
 ```
 
-Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses object `constructor` property for that.
+Please note a very interesting thing. Built-in methods like `filter`, `map` and others -- return new objects of exactly the inherited type `PowerArray`. Their internal implementation uses the object's `constructor` property for that.
 
 In the example above,
 ```js
@@ -74,7 +74,7 @@ Built-in objects have their own static methods, for instance `Object.keys`, `Arr
 
 As we already know, native classes extend each other. For instance, `Array` extends `Object`.
 
-Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the chapter [](info:static-properties-methods#statics-and-inheritance).
+Normally, when one class extends another, both static and non-static methods are inherited. That was thoroughly explained in the article [](info:static-properties-methods#statics-and-inheritance).
 
 But built-in classes are an exception. They don't inherit statics from each other.
 

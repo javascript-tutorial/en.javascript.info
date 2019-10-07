@@ -132,9 +132,9 @@ To make the document unscrollable, it's enough to set `document.body.style.overf
 ```online
 Try it:
 
-<button onclick="document.body.style.overflow = 'hidden'">`document.body.style.overflow = 'hidden'`</button>
+<button onclick="document.body.style.overflow = 'hidden'">document.body.style.overflow = 'hidden'</button>
 
-<button onclick="document.body.style.overflow = ''">`document.body.style.overflow = ''`</button>
+<button onclick="document.body.style.overflow = ''">document.body.style.overflow = ''</button>
 
 The first button freezes the scroll, the second one resumes it.
 ```

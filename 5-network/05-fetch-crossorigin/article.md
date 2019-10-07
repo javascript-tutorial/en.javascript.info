@@ -22,7 +22,7 @@ That policy is called "CORS": Cross-Origin Resource Sharing.
 
 ## Why CORS is needed? A brief history
 
-CORS exists protect the internet from evil hackers.
+CORS exists to protect the internet from evil hackers.
 
 Seriously. Let's make a very brief historical digression.
 
@@ -149,7 +149,7 @@ As you can see, `Origin` header contains exactly the origin (domain/protocol/por
 The server can inspect the `Origin` and, if it agrees to accept such a request, adds a special header `Access-Control-Allow-Origin` to the response. That header should contain the allowed origin (in our case `https://javascript.info`), or a star `*`. Then the response is successful, otherwise an error.
 
 The browser plays the role of a trusted mediator here:
-1. It ensures that the corrent `Origin` is sent with a cross-origin request.
+1. It ensures that the correct `Origin` is sent with a cross-origin request.
 2. It checks for permitting `Access-Control-Allow-Origin` in the response, if it exists, then JavaScript is allowed to access the response, otherwise it fails with an error.
 
 ![](xhr-another-domain.svg)
@@ -203,13 +203,13 @@ With such `Access-Control-Expose-Headers` header, the script is allowed to read 
 
 We can use any HTTP-method: not just `GET/POST`, but also `PATCH`, `DELETE` and others.
 
-Some time ago no one could even assume that a webpage is able to do such requests. So there may exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
+Some time ago no one could even imagine that a webpage could make such requests. So there may still exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
 
 So, to avoid misunderstandings, any "non-simple" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
 
 A preflight request uses method `OPTIONS`, no body and two headers:
 
-- `Access-Control-Request-Method` header has the method of an the non-simple request.
+- `Access-Control-Request-Method` header has the method of the non-simple request.
 - `Access-Control-Request-Headers` header provides a comma-separated list of its non-simple HTTP-headers.
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
@@ -273,7 +273,7 @@ Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Contr
 Access-Control-Max-Age: 86400
 ```
 
-Now the browser can see that `PATCH` in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
+Now the browser can see that `PATCH` is in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
 
 Besides, the preflight response is cached for time, specified by `Access-Control-Max-Age` header (86400 seconds, one day), so subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
 
