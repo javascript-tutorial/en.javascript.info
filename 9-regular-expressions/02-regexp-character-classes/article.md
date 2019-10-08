@@ -128,6 +128,10 @@ alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for
 
 ### Dot as literally any character with "s" flag
 
+```warn header="Not supported in Firefox and Edge"
+See [browser compatibility](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/dotAll#Browser_compatibility) for more information.
+```
+
 Usually a dot doesn't match a newline character `\n`.
 
 For instance, the regexp `pattern:A.B` matches `match:A`, and then `match:B` with any character between them, except a newline `\n`:
