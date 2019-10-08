@@ -12,11 +12,10 @@ Scripts are provided and executed as plain text. They don't need special prepara
 
 In this aspect, JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
-```smart header="Why <u>Java</u>Script?"
+## Why <u>Java</u>Script?
 When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
 
 But as it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
-```
 
 Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
@@ -30,7 +29,7 @@ Different engines have different "codenames". For example:
 
 The terms above are good to remember because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
 
-```smart header="How do engines work?"
+## How do engines work?
 
 Engines are complicated. But the basics are easy.
 
@@ -39,7 +38,7 @@ Engines are complicated. But the basics are easy.
 3. And then the machine code runs, pretty fast.
 
 The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and applies optimizations to the machine code based on that knowledge. When it's done, scripts run quite fast.
-```
+
 
 ## What can in-browser JavaScript do?
 
