@@ -197,6 +197,7 @@ alert(admin.fullName); // John Smith (*)
 
 // setter triggers!
 admin.fullName = "Alice Cooper"; // (**)
+alert(admin.fullName); // Alice Cooper
 ```
 
 Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property has a setter in the prototype, so it is called.
