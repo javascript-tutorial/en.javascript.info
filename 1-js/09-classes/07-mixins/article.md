@@ -113,9 +113,9 @@ An important feature of many browser objects (for instance) is that they can gen
 
 - The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
 - Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from `.trigger` call.
-- ...And the method `.off(name, handler)` that removes `handler` listener.
+- ...And the method `.off(name, handler)` that removes the `handler` listener.
 
-After adding the mixin, an object `user` will become able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen to such events to load the calendar for the logged-in person.
+After adding the mixin, an object `user` will be able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen for such events to load the calendar for the logged-in person.
 
 Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
 
@@ -165,7 +165,7 @@ let eventMixin = {
 ```
 
 
-- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name happens. Technically, there's `_eventHandlers` property, that stores an array of handlers for each event name. So it just adds it to the list.
+- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name occurs. Technically, there's an `_eventHandlers` property that stores an array of handlers for each event name, and it just adds it to the list.
 - `.off(eventName, handler)` -- removes the function from the handlers list.
 - `.trigger(eventName, ...args)` -- generates the event: all handlers from `_eventHandlers[eventName]` are called, with a list of arguments `...args`.
 
@@ -193,7 +193,7 @@ menu.on("select", value => alert(`Value selected: ${value}`));
 menu.choose("123");
 ```
 
-Now if we'd like any code to react on menu selection, we can listen to it with `menu.on(...)`.
+Now, if we'd like any code to react to a menu selection, we can listen for it with `menu.on(...)`.
 
 And `eventMixin` mixin makes it easy to add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
 
