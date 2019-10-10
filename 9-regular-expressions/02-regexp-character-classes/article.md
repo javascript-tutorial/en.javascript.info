@@ -128,7 +128,7 @@ alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for
 
 ### Dot as literally any character with "s" flag
 
-Usually a dot doesn't match a newline character `\n`.
+By default, a dot doesn't match the newline character `\n`.
 
 For instance, the regexp `pattern:A.B` matches `match:A`, and then `match:B` with any character between them, except a newline `\n`:
 
