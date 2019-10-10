@@ -23,7 +23,7 @@ Our function `readUser(json)` will not only read JSON, but check ("validate") th
 
 Our `ValidationError` class should inherit from the built-in `Error` class.
 
-That class is built-in, here's it approximate code, for us to understand what we're extending:
+That class is built-in, but here's its approximate code so we can understand what we're extending:
 
 ```js
 // The "pseudocode" for the built-in Error class defined by JavaScript itself
@@ -215,9 +215,9 @@ Now custom errors are much shorter, especially `ValidationError`, as we got rid 
 
 The purpose of the function `readUser` in the code above is "to read the user data". There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow and probably generate other kinds of errors.
 
-The code which calls `readUser` should handle these errors. Right now it uses multiple `if` in the `catch` block, that check the class and handle known errors and rethrow the unknown ones. But if `readUser` function generates several kinds of errors -- then we should ask ourselves: do we really want to check for all error types one-by-one in every code that calls `readUser`?
+The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones. But if the `readUser` function generates several kinds of errors, then we should ask ourselves: do we really want to check for all error types one-by-one in every code that calls `readUser`?
 
-Often the answer is "No": the outer code wants to be "one level above all that". It wants to have some kind of "data reading error". Why exactly it happened -- is often irrelevant (the error message describes it). Or, even better if there is a way to get error details, but only if we need to.
+Often the answer is "No": the outer code wants to be "one level above all that", it just wants to have some kind of "data reading error" -- why exactly it happened is often irrelevant (the error message describes it). Or, even better, it could have a way to get the error details, but only if we need to.
 
 So let's make a new class `ReadError` to represent such errors. If an error occurs inside `readUser`, we'll catch it there and generate `ReadError`. We'll also keep the reference to the original error in its `cause` property. Then the outer code will only have to check for `ReadError`.
 
