@@ -69,7 +69,7 @@ As you can see, `x/y` and `width/height` fully describe the rectangle. Derived p
 
 Please note:
 
-- Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.position.left/top`.
+- Coordinates may be decimal fractions, such as `10.5`. That's normal, internally browser uses fractions in calculations. We don't have to round them when setting to `style.left/top`.
 - Coordinates may be negative. For instance, if the page is scrolled so that `elem` is now above the window, then `elem.getBoundingClientRect().top` is negative.
 
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
