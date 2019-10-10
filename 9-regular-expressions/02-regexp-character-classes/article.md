@@ -100,7 +100,7 @@ let str = "+7(903)-123-45-67";
 alert( str.replace(/\D/g, "") ); // 79031234567
 ```
 
-## A dot is any character
+## A dot is "any character"
 
 A dot `pattern:.` is a special character class that matches "any character except a newline".
 
