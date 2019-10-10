@@ -144,6 +144,17 @@ That's what flag `pattern:s` does. If a regexp has it, then a dot `pattern:.` ma
 alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
 ```
 
+````warn header="Not supported in Firefox, IE, Edge"
+Check <https://caniuse.com/#search=dotall> for the most recent state of support.
+
+Luckily, there's an alternative. We can use a regexp like `pattern:[\s\S]` to match "any character".
+
+```js run
+alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
+```
+This works everywhere.
+````
+
 ````warn header="Pay attention to spaces"
 Usually we pay little attention to spaces. For us strings `subject:1-5` and `subject:1 - 5` are nearly identical.
 
