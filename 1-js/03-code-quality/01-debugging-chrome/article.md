@@ -18,7 +18,7 @@ Here's what you should see if you are doing it for the first time:
 
 ![](chrome-open-sources.svg)
 
-The toggler button <span class="devtools" style="background-position:-168px -76px"></span> opens the tab with files.
+The toggler button <span class="devtools" style="background-position:-172px -98px"></span> opens the tab with files.
 
 Let's click it and select `hello.js` in the tree view. Here's what should show up:
 
@@ -30,7 +30,7 @@ Here we can see three zones:
 2. The **Source zone** shows the source code.
 3. The **Information and control zone** is for debugging, we'll explore it soon.
 
-Now you could click the same toggler <span class="devtools" style="background-position:-200px -76px"></span> again to hide the resources list and give the code some space.
+Now you could click the same toggler <span class="devtools" style="background-position:-172px -122px"></span> again to hide the resources list and give the code some space.
 
 ## Console
 
@@ -119,8 +119,8 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 Now it's time to *trace* the script.
 
 There are buttons for it at the top of the right panel. Let's engage them.
-
-<span class="devtools" style="background-position:-7px -76px"></span> -- continue the execution, hotkey `key:F8`.
+<!-- https://github.com/ChromeDevTools/devtools-frontend/blob/master/front_end/Images/src/largeIcons.svg -->
+<span class="devtools" style="background-position:-146px -168px"></span> -- "Resume": continue the execution, hotkey `key:F8`.
 : Resumes the execution. If there are no additional breakpoints, then the execution just continues and the debugger loses control.
 
     Here's what we can see after a click on it:
@@ -129,19 +129,32 @@ There are buttons for it at the top of the right panel. Let's engage them.
 
     The execution has resumed, reached another breakpoint inside `say()` and paused there. Take a look at the "Call Stack" at the right. It has increased by one more call. We're inside `say()` now.
 
-<span class="devtools" style="background-position:-137px -76px"></span> -- make a step (run the next command), but *don't go into the function*, hotkey `key:F10`.
-: If we click it now, `alert` will be shown. The important thing is that `alert` can be any function, the execution "steps over it", skipping the function internals.
+<span class="devtools" style="background-position:-200px -190px"></span> -- "Step": run the next command, hotkey `key:F9`.
+: Run the next statement. If we click it now, `alert` will be shown.
 
-<span class="devtools" style="background-position:-72px -76px"></span> -- make a step, hotkey `key:F11`.
-: The same as the previous one, but "steps into" nested functions. Clicking this will step through all script actions one by one.
+    Clicking this again and again will step through all script statements one by one.
 
-<span class="devtools" style="background-position:-104px -76px"></span> -- continue the execution till the end of the current function, hotkey `key:Shift+F11`.
-: The execution would stop at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-72px -76px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
+: Similar to the previous the "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
 
-<span class="devtools" style="background-position:-7px -28px"></span> -- enable/disable all breakpoints.
+    The "Step" command goes into it and and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
+
+    The execution is then paused immediately after that function.
+
+    That's good if we're not interested to see what happens inside the function call.
+
+<span class="devtools" style="background-position:-4px -194px"></span> -- "Step into", hotkey `key:F11`.
+: That's similar to "Step", but behaves differently in case of asynchronous function calls. If you're only starting to learn JavaScript, then you can ignore the difference, as we don't have asynchronous calls yet.
+
+    For the future, just note that "Step" command ignores async actions, such as `setTimeout` (scheduled function call), that execute later. The "Step into" goes into their code, waiting for them if necessary. See [DevTools manual](https://developers.google.com/web/updates/2018/01/devtools#async) for more details.
+
+<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue the execution till the end of the current function, hotkey `key:Shift+F11`.
+: Continue the execution and stop it at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-200px -190px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
+
+<span class="devtools" style="background-position:-61px -74px"></span> -- enable/disable all breakpoints.
 : That button does not move the execution. Just a mass on/off for breakpoints.
 
-<span class="devtools" style="background-position:-264px -4px"></span> -- enable/disable automatic pause in case of an error.
+<span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
 : When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
 
 ```smart header="Continue to here"
@@ -172,7 +185,7 @@ If we have enough logging in our code, then we can see what's going on from the 
 As we can see, there are three main ways to pause a script:
 1. A breakpoint.
 2. The `debugger` statements.
-3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-264px -4px"></span> is "on").
+3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-90px -146px"></span> is "on").
 
 When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
 
