@@ -145,14 +145,17 @@ alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
 ```
 
 ````warn header="Not supported in Firefox, IE, Edge"
-Check <https://caniuse.com/#search=dotall> for the most recent state of support.
+Check <https://caniuse.com/#search=dotall> for the most recent state of support. At the time of writing it doesn't include Firefox, IE, Edge.
 
-Luckily, there's an alternative. We can use a regexp like `pattern:[\s\S]` to match "any character".
+Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character".
 
 ```js run
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
 ```
-This works everywhere.
+
+The pattern `regexp:[\s\S]` literally says: "a space character OR not a space character", that is "anything".
+
+This works everywhere. Also we can use it if we don't want to use `pattern:s` flag, in cases when we want a regular "no-newline" dot too in the pattern.
 ````
 
 ````warn header="Pay attention to spaces"
