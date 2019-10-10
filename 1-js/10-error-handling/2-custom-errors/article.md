@@ -23,7 +23,7 @@ Our function `readUser(json)` will not only read JSON, but check ("validate") th
 
 Our `ValidationError` class should inherit from the built-in `Error` class.
 
-That class is built-in, here's it approximate code, for us to understand what we're extending:
+That class is built-in, but here's its approximate code so we can understand what we're extending:
 
 ```js
 // The "pseudocode" for the built-in Error class defined by JavaScript itself
