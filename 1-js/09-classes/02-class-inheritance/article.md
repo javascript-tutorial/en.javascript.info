@@ -61,9 +61,9 @@ Internally, `extends` keyword works using the good old prototype mechanics. It s
 
 ![](animal-rabbit-extends.svg)
 
-For instance, to find a method for `rabbit.hide()`, the engine checks:
-1. The `rabbit` object (no `hide`).
-2. Its prototype, that is `Rabbit.prototype` (also no `hide`).
+For instance, to find `rabbit.run` method, the engine checks:
+1. The `rabbit` object (has no `run`, only `name`).
+2. Its prototype, that is `Rabbit.prototype` (has `hide`, but not `run`).
 3. Its prototype, that is (due to `extends`) `Animal.prototype`, that finally has the method.
 
 As we can recall from the chapter <info:native-prototypes>, JavaScript uses prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`, so dates have generic object methods.
