@@ -66,7 +66,7 @@ For instance, to find `rabbit.run` method, the engine checks (bottom-up on the p
 2. Its prototype, that is `Rabbit.prototype` (has `hide`, but not `run`).
 3. Its prototype, that is (due to `extends`) `Animal.prototype`, that finally has the `run` method.
 
-As we can recall from the chapter <info:native-prototypes>, JavaScript uses prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`, so dates have generic object methods.
+As we can recall from the chapter <info:native-prototypes>, JavaScript itself uses prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`. That's why dates have access to generic object methods.
 
 ````smart header="Any expression is allowed after `extends`"
 Class syntax allows to specify not just a class, but any expression after `extends`.
