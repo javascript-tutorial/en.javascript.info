@@ -11,7 +11,7 @@ The first idea can be: run a function every `100ms` and measure the distance bet
 
 Unfortunately, there's no way to get "current mouse coordinates" in JavaScript. There's no function like `getCurrentMouseCoordinates()`.
 
-The only way to get coordinates is to listen to mouse events, like `mousemove`, and take coordinates from the event object.
+The only way to get coordinates is to listen for mouse events, like `mousemove`, and take coordinates from the event object.
 
 So let's set a handler on `mousemove` to track coordinates and remember them. And then compare them, once per `100ms`.
 

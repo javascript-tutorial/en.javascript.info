@@ -159,7 +159,7 @@ Details may vary depending on the browser, but the idea is same: any information
 
 Why do we need error details?
 
-There are many services (and we can build our own) that listen to global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's no much information about errors in it, as we've just seen.
+There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's no much information about errors in it, as we've just seen.
 
 Similar cross-origin policy (CORS) is enforced for other types of resources as well.
 
