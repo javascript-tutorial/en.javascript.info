@@ -34,7 +34,7 @@ Here's how we can represent `animal` object and `Animal` class graphically:
 
 ...And we would like to create another `class Rabbit`.
 
-As rabbits are animals, `Rabbit` class should be based on `Animal`, have access to animal methods.
+As rabbits are animals, `Rabbit` class should be based on `Animal`, have access to animal methods, so that it can do what "generic" animals can do.
 
 The syntax to extend another class is: `class Child extends Parent`.
 
