@@ -320,7 +320,7 @@ The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.
 
 There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
 
-# Summary
+## Summary
 
 Given a DOM node, we can go to its immediate neighbours using navigation properties.
 
