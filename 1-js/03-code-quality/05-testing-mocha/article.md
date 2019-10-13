@@ -79,7 +79,7 @@ So, the development is *iterative*. We write the spec, implement it, make sure t
 
 Let's see this development flow in our practical case.
 
-The first step is already complete: we have an initial spec for `pow`. Now, before making the implementaton, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
 
 ## The spec in action
 
