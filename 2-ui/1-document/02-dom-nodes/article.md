@@ -32,10 +32,10 @@ Let's start with the following simple document:
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>About elks</title>
+  <title>About elk</title>
 </head>
 <body>
-  The truth about elks.
+  The truth about elk.
 </body>
 </html>
 ```
@@ -45,7 +45,7 @@ The DOM represents HTML as a tree structure of tags. Here's how it looks:
 <div class="domtree"></div>
 
 <script>
-let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elks"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n  "},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elks."}]}]}
+let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n  "},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk."}]}]}
 
 drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
@@ -60,7 +60,7 @@ Tags are *element nodes* (or just elements) and form the tree structure: `<html>
 
 The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
 
-For instance, the `<title>` tag has the text `"About elks"`.
+For instance, the `<title>` tag has the text `"About elk"`.
 
 Please note the special characters in text nodes:
 
@@ -79,13 +79,13 @@ Here are no space-only text nodes:
 
 ```html no-beautify
 <!DOCTYPE HTML>
-<html><head><title>About elks</title></head><body>The truth about elks.</body></html>
+<html><head><title>About elk</title></head><body>The truth about elk.</body></html>
 ```
 
 <div class="domtree"></div>
 
 <script>
-let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elks"}]}]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"The truth about elks."}]}]}
+let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]}]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"The truth about elk."}]}]}
 
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
@@ -167,7 +167,7 @@ For example, comments:
 <!DOCTYPE HTML>
 <html>
 <body>
-  The truth about elks.
+  The truth about elk.
   <ol>
     <li>An elk is a smart</li>
 *!*
@@ -182,7 +182,7 @@ For example, comments:
 <div class="domtree"></div>
 
 <script>
-let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elks.\n    "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n    "}]},{"name":"#text","nodeType":3,"content":"\n  \n"}]}]};
+let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n    "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n      "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n    "}]},{"name":"#text","nodeType":3,"content":"\n  \n"}]}]};
 
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
@@ -210,11 +210,11 @@ To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hix
 
 Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
 
-To do so, open the web page [elks.html](elks.html), turn on the browser developer tools and switch to the Elements tab.
+To do so, open the web page [elk.html](elk.html), turn on the browser developer tools and switch to the Elements tab.
 
 It should look like this:
 
-![](elks.png)
+![](elk.svg)
 
 You can see the DOM, click on elements, see their details and so on.
 
@@ -224,7 +224,7 @@ Clicking the <span class="devtools" style="background-position:-328px -124px"></
 
 Another way to do it would be just right-clicking on a webpage and selecting "Inspect" in the context menu.
 
-![](inspect.png)
+![](inspect.svg)
 
 At the right part of the tools there are the following subtabs:
 - **Styles** -- we can see CSS applied to the current element rule by rule, including built-in rules (gray). Almost everything can be edited in-place, including the dimensions/margins/paddings of the box below.
@@ -247,7 +247,7 @@ Now the last selected element is available as `$0`, the previously selected is `
 
 We can run commands on them. For instance, `$0.style.background = 'red'` makes the selected list item red, like this:
 
-![](domconsole0.png)
+![](domconsole0.svg)
 
 That's how to get a node from Elements in Console.
 
@@ -255,7 +255,7 @@ There's also a road back. If there's a variable referencing a DOM node, then we 
 
 Or we can just output the DOM node in the console and explore "in-place", like `document.body` below:
 
-![](domconsole1.png)
+![](domconsole1.svg)
 
 That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using JavaScript.
 
