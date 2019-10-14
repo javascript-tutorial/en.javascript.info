@@ -64,7 +64,7 @@ A component has:
 
 Once again, the whole "component" thing is nothing special.
 
-There exist many frameworks and development methodologies to build them, each one equipped with its own bells and whistles. Usually, special CSS classes and conventions are used to provide "component feel" -- CSS scoping and DOM encapsulation.
+There exist many frameworks and development methodologies to build them, each with its own bells and whistles. Usually, special CSS classes and conventions are used to provide "component feel" -- CSS scoping and DOM encapsulation.
 
 "Web components" provide built-in browser capabilities for that, so we don't have to emulate them any more.
 
