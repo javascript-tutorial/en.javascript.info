@@ -157,7 +157,7 @@ DOM collections, and even more -- *all* navigation properties listed in this cha
 
 We can't replace a child by something else by assigning `childNodes[i] = ...`.
 
-Changing DOM needs other methods. We will see them in the next chapter.
+Changing the DOM requires other methods. We will see them in the next chapter.
 ```
 
 ```warn header="DOM collections are live"
