@@ -2,9 +2,19 @@
 
 # Introduction: callbacks
 
+```warn header="We use browser methods here"
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll use browser methods. Namely, load scripts and perform simple document manipulations.
+
+If you're not familiar with them, please read few chapters from the [next part](/document) of the tutorial.
+
+Or, maybe examples will be clear enough for you even without that.
+```
+
 Many actions in JavaScript are *asynchronous*.
 
-For instance, take a look at the function `loadScript(src)`:
+For instance, we can schedule such actions using `setTimeout`.
+
+There are other real-world examples of asynchronous actions, e.g. take a look at the function `loadScript(src)`, that should load a new script with the given `src`:
 
 ```js
 function loadScript(src) {
@@ -14,18 +24,18 @@ function loadScript(src) {
 }
 ```
 
-The purpose of the function is to load a new script. When it adds the `<script src="…">` to the document, the browser loads and executes it.
+When it appends the new, dynamically created, tag `<script src="…">` to the document, the browser loads and executes it.
 
-We can use it like this:
+We can use this function like this:
 
 ```js
-// loads and executes the script
+// load and execute the script at the given path
 loadScript('/my/script.js');
 ```
 
-The function is called "asynchronously," because the action (script loading) finishes not now, but later.
+The script is executed "asynchronously", because script loading finishes not right now, but later.
 
-If there's a code below `loadScript(…)`, it doesn't wait until the loading finishes.
+If there's a code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
 ```js
 loadScript('/my/script.js');
@@ -34,7 +44,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-We'd like to use the new script as soon as it loads. It declares new functions, and we want to run them.
+Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
