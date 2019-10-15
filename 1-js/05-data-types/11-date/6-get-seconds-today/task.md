@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# How many seconds has passed today?
+# How many seconds have passed today?
 
 Write a function `getSecondsToday()` that returns the number of seconds from the beginning of today.
 
-For instance, if now `10:00 am`, and there was no daylight savings shift, then:
+For instance, if now were `10:00 am`, and there was no daylight savings shift, then:
 
 ```js
 getSecondsToday() == 36000 // (3600 * 10)
