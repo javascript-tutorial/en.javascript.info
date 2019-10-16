@@ -63,7 +63,7 @@ Let's consider two situations to begin with, and then study the internal mechani
 
 To understand what's going on, let's first discuss what a "variable" actually is.
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+In JavaScript, every running function, code block `{...}`, and the script as a whole has an internal (hidden) associated object known as the *Lexical Environment*.
 
 The Lexical Environment object consists of two parts:
 
