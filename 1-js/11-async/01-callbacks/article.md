@@ -3,9 +3,9 @@
 # Introduction: callbacks
 
 ```warn header="We use browser methods here"
-To demonstrate the use of callbacks, promises and other abstract concepts, we'll use browser methods. Namely, load scripts and perform simple document manipulations.
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods; specifically, loading scripts and performing simple document manipulations.
 
-If you're not familiar with them, please read few chapters from the [next part](/document) of the tutorial. Or, hopefully, examples will be clear for you even without that.
+If you're not familiar with these methods, and their usage in the examples is confusing, or if you would just like to understand them better, you may want to read a few chapters from the [next part](/document) of the tutorial.
 ```
 
 Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
