@@ -63,7 +63,7 @@ Let's consider two situations to begin with, and then study the internal mechani
 
 To understand what's going on, let's first discuss what a "variable" actually is.
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole has an internal (hidden) associated object known as the *Lexical Environment*.
+In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
 
 The Lexical Environment object consists of two parts:
 
@@ -117,7 +117,7 @@ The code below demonstrates that the Lexical Environment is non-empty from the b
 
 Now let's go on and explore what happens when a function accesses an outer variable.
 
-During the call, `say()` uses the outer variable `phrase`, let's look at the details of what's going on.
+During the call, `say()` uses the outer variable `phrase`. Let's look at the details of what's going on.
 
 When a function runs, a new Lexical Environment is created automatically to store local variables and parameters of the call.
 
@@ -149,7 +149,7 @@ The inner Lexical Environment has a reference to the `outer` one.
 
 **When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
 
-If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to a non-existing variable, like `user = "John"` creates a new global variable `user`, that's for backwards compatibility).
+If a variable is not found anywhere, that's an error in strict mode. Without `use strict`, an assignment to a non-existing variable like `user = "John"` creates a new global variable `user`. That's for backwards compatibility.
 
 Let's see how the search proceeds in our example:
 
