@@ -10,11 +10,13 @@ If you're not familiar with them, please read few chapters from the [next part](
 Or, maybe examples will be clear enough for you even without that.
 ```
 
-Many actions in JavaScript are *asynchronous*.
+Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
 
 For instance, we can schedule such actions using `setTimeout`.
 
-There are other real-world examples of asynchronous actions, e.g. take a look at the function `loadScript(src)`, that should load a new script with the given `src`:
+There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
+
+Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
 
 ```js
 function loadScript(src) {
@@ -24,7 +26,7 @@ function loadScript(src) {
 }
 ```
 
-When it appends the new, dynamically created, tag `<script src="…">` to the document, the browser loads and executes it.
+When it appends to the document the new, dynamically created, tag `<script src="…">`, the browser loads and executes it.
 
 We can use this function like this:
 
@@ -33,7 +35,7 @@ We can use this function like this:
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously", because script loading finishes not right now, but later.
+The script is executed "asynchronously", as it starts loading starts now, but runs later, when the function has already finished.
 
 If there's a code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
