@@ -100,7 +100,7 @@ To summarize:
 
 ### Function Declaration
 
-Till now, we only observed variables. Now enter Function Declarations.
+Until now, we only observed variables. Now enter Function Declarations.
 
 **Unlike `let` variables, they are fully initialized not when the execution reaches them, but earlier, when a Lexical Environment is created.**
 
