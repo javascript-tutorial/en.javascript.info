@@ -313,25 +313,25 @@ Hopefully, the situation with outer variables is clear now. For most situations 
 
 ## Environments in detail
 
-Here's what's going on in the `makeCounter` example step-by-step, follow it to make sure that you understand how it works in detail.
+Here's what's going on in the `makeCounter` example step-by-step. Follow it to make sure that you understand how it works in detail.
 
 Please note the additional `[[Environment]]` property is covered here. We didn't mention it before for simplicity.
 
-1. When the script has just started, there is only global Lexical Environment:
+1. When the script has just started, there is only the global Lexical Environment:
 
     ![](lexenv-nested-makecounter-1.svg)
 
-    At that starting moment there is only `makeCounter` function, because it's a Function Declaration. It did not run yet.
+    At that starting moment there is only the `makeCounter` function, because it's a Function Declaration. It did not run yet.
 
     **All functions "on birth" receive a hidden property `[[Environment]]` with a reference to the Lexical Environment of their creation.**
 
-    We didn't talk about it yet, that's how the function knows where it was made.
+    We didn't talk about it before. That's how the function knows where it was made.
 
     Here, `makeCounter` is created in the global Lexical Environment, so `[[Environment]]` keeps a reference to it.
 
     In other words, a function is "imprinted" with a reference to the Lexical Environment where it was born. And `[[Environment]]` is the hidden function property that has that reference.
 
-2. The code runs on, the new global variable `counter` is declared and gets the result of `makeCounter()` call. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
+2. The code runs on, the new global variable `counter` is declared and gets the result of the `makeCounter()` call. Here's a snapshot of the moment when the execution is on the first line inside `makeCounter()`:
 
     ![](lexenv-nested-makecounter-2.svg)
 
@@ -392,7 +392,7 @@ A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a f
 
 That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and all of them can access outer variables.
 
-When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
+When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
 ```
 
 ## Code blocks and loops, IIFE
@@ -469,13 +469,13 @@ The code outside of the block (or inside another script) doesn't see variables i
 
 ### IIFE
 
-In the past, there were no block-level lexical environment in JavaScript.
+In the past, there were no block-level lexical environments in JavaScript.
 
-So programmers had to invent something. And what they did is called "immediately-invoked function expressions" (abbreviated as IIFE).
+So programmers had to invent something. And what they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
 
 That's not a thing we should use nowadays, but you can find them in old scripts, so it's better to understand them.
 
-IIFE looks like this:
+An IIFE looks like this:
 
 ```js run
 (function() {
@@ -511,7 +511,7 @@ function go() {
 }(); // <-- can't call Function Declaration immediately
 ```
 
-So, parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
 
 There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
 
@@ -539,7 +539,7 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 ## Garbage collection
 
-Usually, a Lexical Environment is cleaned up and deleted after the function run. For instance:
+Usually, a Lexical Environment is cleaned up and deleted after the function runs. For instance:
 
 ```js
 function f() {
@@ -550,7 +550,7 @@ function f() {
 f();
 ```
 
-Here two values are technically the properties of the Lexical Environment. But after `f()` finishes that Lexical Environment becomes unreachable, so it's deleted from the memory.
+Here, two values are technically the properties of the Lexical Environment. But after `f()` finishes, that Lexical Environment becomes unreachable, so it's deleted from the memory.
 
 ...But if there's a nested function that is still reachable after the end of `f`, then it has `[[Environment]]` property that references the outer lexical environment, so it's also reachable and alive:
 
@@ -584,7 +584,7 @@ let arr = [f(), f(), f()];
 
 A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
 
-In the code below, after `g` becomes unreachable, enclosing Lexical Environment (and hence the `value`) is  cleaned from memory;
+In the code below, after `g` becomes unreachable, its enclosing Lexical Environment (and hence the `value`) is  cleaned from memory;
 
 ```js
 function f() {
