@@ -57,7 +57,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
     xhr.setRequestHeader('X-Start-Byte', startByte);
 
     xhr.upload.onprogress = (e) => {
-      console.log(`Отправлено ${startByte + e.loaded} из ${startByte + e.total}`);
+      console.log(`Uploaded ${startByte + e.loaded} of ${startByte + e.total}`);
     };
 
     // file can be from input.files[0] or another source
