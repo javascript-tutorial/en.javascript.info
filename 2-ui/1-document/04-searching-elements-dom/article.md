@@ -118,7 +118,7 @@ Previous methods were searching the DOM.
 
 The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
 
-The method comes in handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
+The method comes in handy when we are iterating over elements (like in an array or something) and trying to filter out those that interest us.
 
 For instance:
 
