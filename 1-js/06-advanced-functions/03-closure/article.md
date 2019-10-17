@@ -184,8 +184,8 @@ sayHi(); // Pete
 The execution flow of the code above:
 
 1. The global Lexical Environment has `name: "John"`.
-2. At the line `(*)` the global variable is changed, now it has `name: "Pete"`.
-3. When the function `sayHi()`, is executed and takes `name` from outside. Here that's from the global Lexical Environment where it's already `"Pete"`.
+2. At the line `(*)` the global variable is changed. Now it has `name: "Pete"`.
+3. When the function `sayHi()` is executed it takes `name` from outside, the global Lexical Environment, where its value is already `"Pete"`.
 
 
 ```smart header="One call -- one Lexical Environment"
