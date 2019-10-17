@@ -57,7 +57,7 @@ alert( str.match(/\d$/gm) ); // 1,2,3
 Without the flag `m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
 
 ```smart
-"End of a line" formally means "immediately before a line break": the test  `pattern:^` in multiline mode matches at all positions succeeded by a newline character `\n`.
+"End of a line" formally means "immediately before a line break": the test  `pattern:$` in multiline mode matches at all positions succeeded by a newline character `\n`.
 
 And at the text end.
 ```
