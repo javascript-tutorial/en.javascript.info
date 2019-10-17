@@ -22,7 +22,13 @@ document.body.style.background = 'red'; // make the background red
 setTimeout(() => document.body.style.background = '', 3000); // return back
 ```
 
-That was just a glimpse of the DOM's power. Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
+Here we used `style.background` to change the background color of `document.body`, but there are many other properties, such as:
+
+- `innerHTML` -- HTML contents of the node.
+- `offsetWidth` -- the node width (in pixels)
+- ...and so on.
+
+Soon we'll learn more ways to manipulate the DOM, but first we need to know about its structure.
 
 ## An example of the DOM
 

@@ -149,7 +149,7 @@ There are two important consequences:
 The first thing is nice. The second is tolerable, because we can use `Array.from` to create a "real" array from the collection, if we want array methods:
 
   ```js run
-  alert( Array.from(document.body.childNodes).filter ); // now it's there
+  alert( Array.from(document.body.childNodes).filter ); // function
   ```
 
 ```warn header="DOM collections are read-only"
@@ -311,8 +311,9 @@ An example of usage:
 </table>
 
 <script>
-  // get the content of the first row, second cell
-  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
+  // get td with "two" (first row, second column)
+  let td = table.*!*rows[0].cells[1]*/!*;
+  td.style.backgroundColor = "red"; // highlight it
 </script>
 ```
 
