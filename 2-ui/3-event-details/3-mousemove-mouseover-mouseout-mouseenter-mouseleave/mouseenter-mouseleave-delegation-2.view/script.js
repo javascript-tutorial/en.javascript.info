@@ -19,6 +19,10 @@ table.onmouseover = function(event) {
   // hooray! we entered a new <td>
   currentElem = target;
   target.style.background = 'pink';
+
+  // show that in textarea
+  text.value += `OVER -> ${currentElem.tagName}.${currentElem.className}\n`;
+  text.scrollTop = 1e6;
 };
 
 
@@ -41,5 +45,10 @@ table.onmouseout = function(event) {
 
   // we left the <td>. really.
   currentElem.style.background = '';
+
+  // show that in textarea
+  text.value += `OUT <- ${currentElem.tagName}.${currentElem.className}\n`;
+  text.scrollTop = 1e6;
+
   currentElem = null;
 };
