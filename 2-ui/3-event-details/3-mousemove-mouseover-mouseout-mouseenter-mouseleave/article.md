@@ -202,7 +202,7 @@ Once again, the important features are:
 ```online
 Here's the full example with all details:
 
-[codetabs height=380 src="mouseenter-mouseleave-delegation-2"]
+[codetabs height=460 src="mouseenter-mouseleave-delegation-2"]
 
 Try to move the cursor in and out of table cells and inside them. Fast or slow -- doesn't matter. Only `<td>` as a whole is highlighted, unlike the example before.
 ```
