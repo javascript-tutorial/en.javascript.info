@@ -195,6 +195,10 @@ Here's an example of code that accounts for all possible situations:
 
 [js src="mouseenter-mouseleave-delegation-2/script.js"]
 
+Once again, the important features are:
+1. It uses event delegation to handle entering/leaving of any `<td>` inside the table. So it relies on `mouseover/out` instead of `mouseenter/leave` that don't bubble and hence allow no delegation.
+2. Extra events, such as moving between descendants of `<td>` are filtered out, so that `onEnter/Leave` runs only if the pointer leaves or enters `<td>` as a whole.
+
 ```online
 Here's the full example with all details:
 
