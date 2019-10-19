@@ -187,7 +187,7 @@ For instance, let's compare `tagName` and `nodeName` for the `document` and a co
 
 If we only deal with elements, then we can use both `tagName` and `nodeName` - there's no difference.
 
-```smart header="The tag name is always uppercase except XHTML"
+```smart header="The tag name is always uppercase except in XML mode"
 The browser has two modes of processing documents: HTML and XML. Usually the HTML-mode is used for webpages. XML-mode is enabled when the browser receives an XML-document with the header: `Content-Type: application/xml+xhtml`.
 
 In HTML mode `tagName/nodeName` is always uppercased: it's `BODY` either for `<body>` or `<BoDy>`.
