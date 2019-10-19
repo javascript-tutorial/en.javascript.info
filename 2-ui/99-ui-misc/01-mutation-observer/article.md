@@ -207,13 +207,13 @@ let demoElem = document.getElementById('highlight-demo');
 observer.observe(demoElem, {childList: true, subtree: true});
 ```
 
-Here's an HTML-element and JavaScript that dynamically fills it using `innerHTML`.
+Here, below, there's an HTML-element and JavaScript that dynamically fills it using `innerHTML`.
 
 Please run the previous code (above, observes that element), and then the code below. You'll see how `MutationObserver` detects and highlights the snippet.
 
-<p id="highlight-demo" style="border: 1px solid #ddd">Демо-элемент с <code>id="highlight-demo"</code>, за которым следит код примера выше.</p>
+<p id="highlight-demo" style="border: 1px solid #ddd">A demo-element with <code>id="highlight-demo"</code>, run the code above to observe it.</p>
 
-The code below populates `innerHTML`. Please run the code above first, it will watch and highlight the new content:
+The following code populates its `innerHTML`. Please run the code above first, it will watch and highlight the new content:
 
 ```js run
 let demoElem = document.getElementById('highlight-demo');
