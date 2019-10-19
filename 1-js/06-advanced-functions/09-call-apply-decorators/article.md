@@ -75,7 +75,7 @@ let worker = {
   },
 
   slow(x) {
-    // actually, there can be a scary CPU-heavy task here  
+    // scary CPU-heavy task here  
     alert("Called with " + x);
     return x * this.someMethod(); // (*)
   }
