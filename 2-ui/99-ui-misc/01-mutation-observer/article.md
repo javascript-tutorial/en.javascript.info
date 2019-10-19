@@ -3,7 +3,7 @@
 
 `MutationObserver` is a built-in object that observes a DOM element and fires a callback in case of changes.
 
-We'll first see syntax, and then explore a real-world use case.
+We'll first take a look at the syntax, and then explore a real-world use case.
 
 ## Syntax
 
@@ -46,7 +46,7 @@ Then after any changes, the `callback` is executed: changes are passed in the fi
 - `attributeName/attributeNamespace` -- the name/namespace (for XML) of the changed attribute,
 - `oldValue` -- the previous value, only for attribute or text changes, if the corresponding option is set `attributeOldValue`/`characterDataOldValue`.
 
-For example, here's a `<div>` with `contentEditable` attribute. That attribute allows us to focus on it and edit.
+For example, here's a `<div>` with a `contentEditable` attribute. That attribute allows us to focus on it and edit.
 
 ```html run
 <div contentEditable id="elem">Click and <b>edit</b>, please</div>
@@ -117,7 +117,7 @@ There are also situations when `MutationObserver` is good from architectural sta
 
 Let's say we're making a website about programming. Naturally, articles and other materials may contain source code snippets.
 
-Such snippet in HTML markup looks like this:
+Such snippet in an HTML markup looks like this:
 
 ```html
 ...
@@ -130,7 +130,7 @@ Such snippet in HTML markup looks like this:
 
 Also we'll use a JavaScript highlighting library on our site, e.g. [Prism.js](https://prismjs.com/). A call to `Prism.highlightElem(pre)` examines the contents of such `pre` elements and adds into them special tags and styles for colored syntax highlighting, similar to what you see in examples here, at this page.
 
-When exactly to run that highlighting method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+When exactly to run that highlighting method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have our DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
 
 ```js
 // highlight all code snippets on the page
@@ -207,7 +207,7 @@ let demoElem = document.getElementById('highlight-demo');
 observer.observe(demoElem, {childList: true, subtree: true});
 ```
 
-Here's HTML-element and JavaScript that dynamically fills it using `innerHTML`.
+Here's an HTML-element and JavaScript that dynamically fills it using `innerHTML`.
 
 Please run the previous code (above, observes that element), and then the code below. You'll see how `MutationObserver` detects and highlights the snippet.
 
