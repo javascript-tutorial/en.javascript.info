@@ -31,7 +31,7 @@ There are some workarounds to that. For instance, we can put a script at the bot
 
 But this solution is far from perfect. For example, the browser notices the script (and can start downloading it) only after it downloaded the full HTML document. For long HTML documents, that may be a noticeable delay.
 
-Such things are invisible for people using very fast connections, but many people in the world still have slow internet speeds and use far-from-perfect mobile internet.
+Such things are invisible for people using very fast connections, but many people in the world still have slow internet speeds and use a far-from-perfect mobile internet connecion.
 
 Luckily, there are two `<script>` attributes that solve the problem for us: `defer` and `async`.
 
@@ -68,7 +68,7 @@ The following example demonstrates that:
 ```
 
 1. The page content shows up immediately.
-2. `DOMContentLoaded` waits for the deferred script. It only triggers when the script `(2)` is downloaded and is executed.
+2. `DOMContentLoaded` waits for the deferred script. It only triggers when the script `(2)` is downloaded and executed.
 
 Deferred scripts keep their relative order, just like regular scripts.
 
@@ -146,7 +146,6 @@ That is:
 - They don't wait for anything, nothing waits for them.
 - The script that loads first -- runs first ("load-first" order).
 
-We can change the load-first order into the document order (just like regular scripts) by explicitly setting `async` property to `false`:
 
 ```js run
 let script = document.createElement('script');
@@ -192,7 +191,7 @@ Please note that if you're using `defer`, then the page is visible *before* the 
 
 So the user may read the page, but some graphical components are probably not ready yet.
 
-There should be a "loading" indication in proper places, set not-working buttons to disabled, to clearly show the user what's ready and what's not.
+There should be "loading" indications in proper places, set not-working buttons to disabled, to clearly show the user what's ready and what's not.
 ```
 
 In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
