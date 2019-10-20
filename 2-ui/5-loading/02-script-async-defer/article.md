@@ -7,7 +7,7 @@ When the browser loads HTML and comes across a `<script>...</script>` tag, it ca
 
 That leads to two important issues:
 
-1. Scripts can't see DOM elements below them, so it can't add handlers etc.
+1. Scripts can't see DOM elements below them, so they can't add handlers etc.
 2. If there's a bulky script at the top of the page, it "blocks the page". Users can't see the page content till it downloads and runs:
 
 ```html run height=100
