@@ -74,7 +74,7 @@ Please note that we can't get HTTP error details here. We don't know if it was a
 ```warn
 Events `onload`/`onerror` track only the loading itself.
 
-Errors during script processing and execution are out of scope for these events. To track script errors, one can use `window.onerror` global handler.
+Errors that may occur during script processing and execution are out of scope for these events. That is: if a script loaded successfully, then `onload` triggers, even if it has programming errors in it. To track script errors, one can use `window.onerror` global handler.
 ```
 
 ## Other resources
