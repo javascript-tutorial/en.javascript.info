@@ -8,7 +8,7 @@ But the attribute-property mapping is not one-to-one! In this chapter we'll pay 
 
 ## DOM properties
 
-We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add our own.
+We've already seen built-in DOM properties. There are a lot. But technically no one limits us, and if there aren't enough, we can add our own.
 
 DOM nodes are regular JavaScript objects. We can alter them.
 
