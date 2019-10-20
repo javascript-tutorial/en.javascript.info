@@ -284,7 +284,7 @@ Here's an example:
 </script>
 ```
 
-**Beware: unlike `innerHTML`, writing to `outerHTML` does not change the element. Instead, it replaces it as a whole in the outer context.**
+**Beware: unlike `innerHTML`, writing to `outerHTML` does not change the element. Instead, it replaces it in the DOM.**
 
 Yeah, sounds strange, and strange it is, that's why we make a separate note about it here. Take a look.
 
@@ -302,7 +302,7 @@ Consider the example:
   div.outerHTML = '<p>A new element</p>'; // (*)
 
 *!*
-  // Wow! The div is still the same!
+  // Wow! 'div' is still the same!
 */!*
   alert(div.outerHTML); // <div>Hello, world!</div> (**)
 </script>
@@ -310,18 +310,18 @@ Consider the example:
 
 Looks really odd, right?
 
-In the line `(*)` we replaced `div` with `<p>A new element</p>`. In the outer document we can see the new content instead of the `<div>`. But, as we can see in line `(**)`, the old `div` variable is still the same!
+In the line `(*)` we replaced `div` with `<p>A new element</p>`. In the outer document (the DOM) we can see the new content instead of the `<div>`. But, as we can see in line `(**)`, the value of the old `div` variable hasn't changed!
 
-The `outerHTML` assignment does not modify the DOM element, but removes it from the outer context and inserts a new piece of HTML instead of it.
+The `outerHTML` assignment does not modify the DOM element (the object referenced by, in this case, the variable 'div'), but removes it from the DOM and inserts the new HTML in its place.
 
 So what happened in `div.outerHTML=...` is:
 - `div` was removed from the document.
-- Another HTML `<p>A new element</p>` was inserted instead.
-- `div` still has the old value. The new HTML wasn't saved to any variable.
+- Another piece of HTML `<p>A new element</p>` was inserted in its place.
+- `div` still has its old value. The new HTML wasn't saved to any variable.
 
 It's so easy to make an error here: modify `div.outerHTML` and then continue to work with `div` as if it had the new content in it. But it doesn't. Such thing is correct for `innerHTML`, but not for `outerHTML`.
 
-We can write to `elem.outerHTML`, but should keep in mind that it doesn't change the element we're writing to. It creates the new HTML on its place instead. We can get references to new elements by querying DOM.
+We can write to `elem.outerHTML`, but should keep in mind that it doesn't change the element we're writing to ('elem'). It puts the new HTML in its place instead. We can get references to the new elements by querying the DOM.
 
 ## nodeValue/data: text node content
 
