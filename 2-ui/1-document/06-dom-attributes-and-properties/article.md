@@ -298,9 +298,9 @@ For instance, here for the order state the attribute `order-state` is used:
 </div>
 ```
 
-Why the attribute may be preferable to classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
+Why would using an attribute be preferable to having classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
 
-That's because an attribute is more convenient to manage. The state can be changed as easy as:
+Because an attribute is more convenient to manage. The state can be changed as easy as:
 
 ```js
 // a bit simpler than removing old/adding a new class
