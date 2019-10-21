@@ -191,7 +191,7 @@ Please note that if you're using `defer`, then the page is visible *before* the 
 
 So the user may read the page, but some graphical components are probably not ready yet.
 
-There should be "loading" indications in proper places, set not-working buttons to disabled, to clearly show the user what's ready and what's not.
+There should be "loading" indications in proper places, and not-working buttons should be visually disabled, to clearly show the user what's ready and what's not.
 ```
 
 In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
