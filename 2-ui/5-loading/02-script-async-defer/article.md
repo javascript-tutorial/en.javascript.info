@@ -31,7 +31,7 @@ There are some workarounds to that. For instance, we can put a script at the bot
 
 But this solution is far from perfect. For example, the browser notices the script (and can start downloading it) only after it downloaded the full HTML document. For long HTML documents, that may be a noticeable delay.
 
-Such things are invisible for people using very fast connections, but many people in the world still have slow internet speeds and use a far-from-perfect mobile internet connecion.
+Such things are invisible for people using very fast connections, but many people in the world still have slow internet speeds and use a far-from-perfect mobile internet connection.
 
 Luckily, there are two `<script>` attributes that solve the problem for us: `defer` and `async`.
 
@@ -191,7 +191,7 @@ Please note that if you're using `defer`, then the page is visible *before* the 
 
 So the user may read the page, but some graphical components are probably not ready yet.
 
-There should be "loading" indications in proper places, and not-working buttons should be visually disabled, to clearly show the user what's ready and what's not.
+There should be "loading" indications in the proper places, and not-working buttons should be visually disabled, to clearly show the user what's ready and what's not.
 ```
 
 In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
