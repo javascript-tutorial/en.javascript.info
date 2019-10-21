@@ -4,7 +4,7 @@ importance: 3
 
 # Explain the value of "this"
 
-In the code below we intend to call `user.go()` method 4 times in a row.
+In the code below we intend to call `obj.go()` method 4 times in a row.
 
 But calls `(1)` and `(2)` works differently from `(3)` and `(4)`. Why?
 
