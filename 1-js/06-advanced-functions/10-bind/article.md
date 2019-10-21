@@ -98,7 +98,7 @@ Functions provide a built-in method [bind](mdn:js/Function/bind) that allows to 
 The basic syntax is:
 
 ```js
-// more complex syntax will be little later
+// more complex syntax will come a little later
 let boundFunc = func.bind(context);
 ```
 
