@@ -199,7 +199,7 @@ For instance:
 <p>Bye</p>
 ```
 
-That's how we can append an arbitrary HTML to the page.
+That's how we can append arbitrary HTML to the page.
 
 Here's the picture of insertion variants:
 
