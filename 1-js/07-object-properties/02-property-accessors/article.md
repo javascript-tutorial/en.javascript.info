@@ -3,7 +3,7 @@
 
 There are two kinds of properties.
 
-The first kind is *data properties*. We already know how to work with them. All properties that we've been using till now were data properties.
+The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
 
 The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
 
@@ -189,9 +189,9 @@ Technically, external code is able to access the name directly by using `user._n
 
 ## Using for compatibility
 
-One of the great uses of accessors -- they allow to take control over a "regular" data property at any moment by replacing it with getter and setter and tweak its behavior.
+One of the great uses of accessors is that they allow to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweak its behavior.
 
-Imagine, we started implementing user objects using data properties `name` and `age`:
+Imagine we started implementing user objects using data properties `name` and `age`:
 
 ```js
 function User(name, age) {

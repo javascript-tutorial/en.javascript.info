@@ -246,7 +246,7 @@ The resulting picture:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
-If we had other objects like `bird`, `snake` etc., inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+If we had other objects, like `bird`, `snake`, etc., inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
 
 As a result, methods are shared, but the object state is not.
 

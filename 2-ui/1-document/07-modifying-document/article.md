@@ -1,12 +1,12 @@
 # Modifying the document
 
-DOM modifications is the key to create "live" pages.
+DOM modification is the key to creating "live" pages.
 
 Here we'll see how to create new elements "on the fly" and modify the existing page content.
 
 ## Example: show a message
 
-Let's see the methods on example. We'll add a message on the page that looks nicer than `alert`.
+Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
 
 Here's how it will look:
 
@@ -93,9 +93,9 @@ Here's the full code:
 This set of methods provides more ways to insert:
 
 - `node.append(...nodes or strings)` -- append nodes or strings at the end of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings into the beginning of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings before the `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings after the `node`,
+- `node.prepend(...nodes or strings)` -- insert nodes or strings at the beginning of `node`,
+- `node.before(...nodes or strings)` –- insert nodes or strings before `node`,
+- `node.after(...nodes or strings)` –- insert nodes or strings after `node`,
 - `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
 
 Here's an example of using these methods to add items to a list and the text before/after it:
@@ -199,7 +199,7 @@ For instance:
 <p>Bye</p>
 ```
 
-That's how we can append an arbitrary HTML to the page.
+That's how we can append arbitrary HTML to the page.
 
 Here's the picture of insertion variants:
 
