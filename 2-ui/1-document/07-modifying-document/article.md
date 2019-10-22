@@ -1,12 +1,12 @@
 # Modifying the document
 
-DOM modifications is the key to create "live" pages.
+DOM modification is the key to creating "live" pages.
 
 Here we'll see how to create new elements "on the fly" and modify the existing page content.
 
 ## Example: show a message
 
-Let's see the methods on example. We'll add a message on the page that looks nicer than `alert`.
+Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
 
 Here's how it will look:
 
