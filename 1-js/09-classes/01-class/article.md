@@ -68,7 +68,7 @@ So, what exactly is a `class`? That's not an entirely new language-level entity,
 
 Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
 
-In JavaScript, a class is a kind of a function.
+In JavaScript, a class is a kind of function.
 
 Here, take a look:
 
@@ -179,7 +179,7 @@ Besides, `class` syntax brings many other features that we'll explore later.
 
 ## Class Expression
 
-Just like functions, classes can be defined inside another expression, passed around, returned, assigned etc.
+Just like functions, classes can be defined inside another expression, passed around, returned, assigned, etc.
 
 Here's an example of a class expression:
 
@@ -344,6 +344,6 @@ class MyClass {
 }
 ```
 
-`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and settors are written to `MyClass.prototype`.
+`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and setters are written to `MyClass.prototype`.
 
 In the next chapters we'll learn more about classes, including inheritance and other features.
