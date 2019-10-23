@@ -169,7 +169,7 @@ rabbits.sort(Rabbit.compare);
 rabbits[0].run(); // Black Rabbit runs with speed 5.
 ```
 
-Now when we can call `Rabbit.compare`, the inherited `Animal.compare` will be called.
+Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
 
 How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
@@ -180,7 +180,7 @@ So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
 1. `Rabbit` function prototypally inherits from `Animal` function.
 2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
 
-As the result, inheritance works both for regular and static methods.
+As a result, inheritance works both for regular and static methods.
 
 Here, let's check that by code:
 
@@ -197,7 +197,7 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 
 ## Summary
 
-Static methods are used for the functionality that belongs to the class "as a whole", doesn't relate to a concrete class instance.
+Static methods are used for the functionality that belongs to the class "as a whole". It doesn't relate to a concrete class instance.
 
 For example, a method for comparison `Article.compare(article1, article2)` or a factory method `Article.createTodays()`.
 
