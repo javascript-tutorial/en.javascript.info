@@ -66,7 +66,7 @@ For instance, to find `rabbit.run` method, the engine checks (bottom-up on the p
 2. Its prototype, that is `Rabbit.prototype` (has `hide`, but not `run`).
 3. Its prototype, that is (due to `extends`) `Animal.prototype`, that finally has the `run` method.
 
-As we can recall from the chapter <info:native-prototypes>, JavaScript itself uses prototypal inheritance for build-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`. That's why dates have access to generic object methods.
+As we can recall from the chapter <info:native-prototypes>, JavaScript itself uses prototypal inheritance for built-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`. That's why dates have access to generic object methods.
 
 ````smart header="Any expression is allowed after `extends`"
 Class syntax allows to specify not just a class, but any expression after `extends`.
@@ -181,7 +181,7 @@ setTimeout(function() { super.stop() }, 1000);
 
 With constructors it gets a little bit tricky.
 
-Till now, `Rabbit` did not have its own `constructor`.
+Until now, `Rabbit` did not have its own `constructor`.
 
 According to the [specification](https://tc39.github.io/ecma262/#sec-runtime-semantics-classdefinitionevaluation), if a class extends another class and has no `constructor`, then the following "empty" `constructor` is generated:
 
@@ -245,7 +245,7 @@ The difference is:
 
 So if we're making a constructor of our own, then we must call `super`, because otherwise the object for `this` won't be created. And we'll get an error.
 
-For `Rabbit` constructor to work, it needs to call `super()` before using `this`, like here:
+For the `Rabbit` constructor to work, it needs to call `super()` before using `this`, like here:
 
 ```js run
 class Animal {
@@ -529,4 +529,4 @@ rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
     - So it's not safe to copy a method with `super` from one object to another.
 
 Also:
-- Arrow functions don't have own `this` or `super`, so they transparently fit into the surrounding context.
+- Arrow functions don't have their own `this` or `super`, so they transparently fit into the surrounding context.
