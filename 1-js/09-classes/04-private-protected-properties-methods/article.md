@@ -50,7 +50,7 @@ That was a general introduction.
 
 In JavaScript, there are two types of object fields (properties and methods):
 
-- Public: accessible from anywhere. They comprise the external interface. Till now we were only using public properties and methods.
+- Public: accessible from anywhere. They comprise the external interface. Until now we were only using public properties and methods.
 - Private: accessible only from inside the class. These are for the internal interface.
 
 In many other languages there also exist "protected" fields: accessible only from inside the class and those extending it (like private, but plus access from inheriting classes). They are also useful for the internal interface. They are in a sense more widespread than private ones, because we usually want inheriting classes to gain access to them.
@@ -257,7 +257,7 @@ class MegaCoffeeMachine extends CoffeeMachine {
 }
 ```
 
-In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reason to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
+In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
 
 ````warn header="Private fields are not available as this[name]"
 Private fields are special.
@@ -283,7 +283,7 @@ In terms of OOP, delimiting of the internal interface from the external one is c
 
 It gives the following benefits:
 
-Protection for users, so that they don't shoot themselves in the feet
+Protection for users, so that they don't shoot themselves in the foot
 : Imagine, there's a team of developers using a coffee machine. It was made by the "Best CoffeeMachine" company, and works fine, but a protective cover was removed. So the internal interface is exposed.
 
     All developers are civilized -- they use the coffee machine as intended. But one of them, John, decided that he's the smartest one, and made some tweaks in the coffee machine internals. So the coffee machine failed two days later.
@@ -308,9 +308,9 @@ Hiding complexity
 
     **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
 
-To hide internal interface we use either protected or private properties:
+To hide an internal interface we use either protected or private properties:
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
-- Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
+- Private fields start with `#`. JavaScript makes sure we can only access those from inside the class.
 
 Right now, private fields are not well-supported among browsers, but can be polyfilled.
