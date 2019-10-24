@@ -534,13 +534,13 @@ So if we need to add a lot of text into HTML dynamically, and we're at page load
 
     All these methods return `node`.
 
-- Given some HTML in `html`: `elem.insertAdjacentHTML(where, html)`, inserts it depending on the value of `where`:
+- Given some HTML in `html`, `elem.insertAdjacentHTML(where, html)` inserts it depending on the value of `where`:
     - `"beforebegin"` -- insert `html` right before `elem`,
     - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
     - `"beforeend"` -- insert `html` into `elem`, at the end,
     - `"afterend"` -- insert `html` right after `elem`.
 
-    Also there are similar methods `elem.insertAdjacentText` and `elem.insertAdjacentElement`, they insert text strings and elements, but they are rarely used.
+    Also there are also similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
 
 - To append HTML to the page before it has finished loading:
     - `document.write(html)`
