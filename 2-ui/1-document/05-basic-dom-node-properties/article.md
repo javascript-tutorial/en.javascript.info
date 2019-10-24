@@ -496,4 +496,4 @@ Main DOM node properties are:
 
 DOM nodes also have other properties depending on their class. For instance, `<input>` elements (`HTMLInputElement`) support `value`, `type`, while `<a>` elements (`HTMLAnchorElement`) support `href` etc. Most standard HTML attributes have a corresponding DOM property.
 
-Although, HTML attributes and DOM properties are not always the same, as we'll see in the next chapter.
+However, HTML attributes and DOM properties are not always the same, as we'll see in the next chapter.
