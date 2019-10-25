@@ -34,7 +34,7 @@ rabbit.__proto__ = animal;
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
 Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it.
 
-It exists for historical reasons, in modern language it is replaced with functions `Object.getPrototypeOf/Object.setPrototypeOf` that also get/set the prototype. We'll study the reasons for that and these functions later.
+It exists for historical reasons. In modern language it is replaced with functions `Object.getPrototypeOf/Object.setPrototypeOf` that also get/set the prototype. We'll study the reasons for that and these functions later.
 
 By the specification, `__proto__` must only be supported by browsers, but in fact all environments including server-side support it. For now, as `__proto__` notation is a little bit more intuitively obvious, we'll use it in the examples.
 ```
@@ -203,7 +203,7 @@ Here in the line `(*)` the property `admin.fullName` has a getter in the prototy
 
 ## The value of "this"
 
-An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where the properties `this.name` and `this.surname` are written: into `user` or `admin`?
+An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where are the properties `this.name` and `this.surname` written: into `user` or `admin`?
 
 The answer is simple: `this` is not affected by prototypes at all.
 
@@ -252,7 +252,7 @@ As a result, methods are shared, but the object state is not.
 
 ## for..in loop
 
-The `for..in` loops over inherited properties too.
+The `for..in` loop iterates over inherited properties too.
 
 For instance:
 
@@ -267,7 +267,7 @@ let rabbit = {
 };
 
 *!*
-// Object.keys only return own keys
+// Object.keys only returns own keys
 alert(Object.keys(rabbit)); // jumps
 */!*
 
