@@ -201,7 +201,7 @@ You can find more detailed information about JSON in the <info:json> chapter.
 
 **If `json` is malformed, `JSON.parse` generates an error, so the script "dies".**
 
-Should we be satisfied with that? Of course, not!
+Should we be satisfied with that? Of course not!
 
 This way, if something's wrong with the data, the visitor will never know that (unless they open the developer console). And people really don't like when something "just dies" without any error message.
 
@@ -334,9 +334,9 @@ Now `catch` became a single place for all error handling: both for `JSON.parse` 
 
 ## Rethrowing
 
-In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just that "incorrect data" thing.
+In the example above we use `try..catch` to handle incorrect data. But is it possible that *another unexpected error* occurs within the `try {...}` block? Like a programming error (variable is not defined) or something else, not just this "incorrect data" thing.
 
-Like this:
+For example:
 
 ```js run
 let json = '{ "age": 30 }'; // incomplete data
@@ -374,8 +374,8 @@ The rule is simple:
 The "rethrowing" technique can be explained in more detail as:
 
 1. Catch gets all errors.
-2. In `catch(err) {...}` block we analyze the error object `err`.
-2. If we don't know how to handle it, then we do `throw err`.
+2. In the `catch(err) {...}` block we analyze the error object `err`.
+2. If we don't know how to handle it, we do `throw err`.
 
 In the code below, we use rethrowing so that `catch` only handles `SyntaxError`:
 
@@ -582,11 +582,11 @@ In the code above, an error inside `try` always falls out, because there's no `c
 The information from this section is not a part of the core JavaScript.
 ```
 
-Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or something else terrible.
+Let's imagine we've got a fatal error outside of `try..catch`, and the script died. Like a programming error or some other terrible thing.
 
-Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages) etc.
+Is there a way to react on such occurrences? We may want to log the error, show something to the user (normally they don't see error messages), etc.
 
-There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [`process.on("uncaughtException")`](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property, that will run in case of an uncaught error.
+There is none in the specification, but environments usually provide it, because it's really useful. For instance, Node.js has [`process.on("uncaughtException")`](https://nodejs.org/api/process.html#process_event_uncaughtexception) for that. And in the browser we can assign a function to the special [window.onerror](mdn:api/GlobalEventHandlers/onerror) property, that will run in case of an uncaught error.
 
 The syntax:
 
