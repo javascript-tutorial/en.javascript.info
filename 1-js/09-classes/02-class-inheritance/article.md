@@ -236,11 +236,11 @@ The short answer is: constructors in inheriting classes must call `super(...)`, 
 
 Of course, there's an explanation. Let's get into details, so you'll really understand what's going on.
 
-In JavaScript, there's a distinction between a "derived constructor" (constructor function of an inheriting class) and other functions. A derived constructor has a special internal property `[[ConstructorKind]]:"derived"`. In other words, the constructor function of a class that "extends" something bears a "special label".
+In JavaScript, there's a distinction between a constructor function of an inheriting class (so-called "derived constructor") and other functions. A derived constructor has a special internal property `[[ConstructorKind]]:"derived"`. That's a special internal label.
 
 That label affects its behavior with `new`.
 
-- When a regular function `F` is executed as `new F`, it creates an empty object and assigns it to `this`.
+- When a regular function is executed with `new`, it creates an empty object and assigns it to `this`.
 - But when a derived constructor runs, it doesn't do this. It expects the parent constructor to do this job.
 
 So a derived constructor must call `super` in order to execute its parent (non-derived) constructor, otherwise the object for `this` won't be created. And we'll get an error.
