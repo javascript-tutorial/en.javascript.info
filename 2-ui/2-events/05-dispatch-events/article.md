@@ -207,7 +207,7 @@ Any handler can listen for that event with `rabbit.addEventListener('hide',...)`
 </script>
 ```
 
-Обратите внимание: событие должно иметь флаг `cancelable: true`, иначе вызов `event.preventDefault()` будет проигнорирован.
+Please note: the event must have the flag `cancelable: true`, otherwise the call `event.preventDefault()` is ignored.
 
 ## Events-in-events are synchronous
 
