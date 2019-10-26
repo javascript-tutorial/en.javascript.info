@@ -65,9 +65,9 @@ This call makes a truly exact copy of `obj`, including all properties: enumerabl
 
 ## Brief history
 
-If we count all the ways to manage `[[Prototype]]`, there's a lot! Many ways to do the same!
+If we count all the ways to manage `[[Prototype]]`, there are a lot! Many ways to do the same!
 
-Why so?
+Why?
 
 That's for historical reasons.
 
@@ -80,9 +80,9 @@ As of now we have all these ways at our disposal.
 Why was `__proto__` replaced by the functions `getPrototypeOf/setPrototypeOf`? That's an interesting question, requiring us to understand why `__proto__` is bad. Read on to get the answer.
 
 ```warn header="Don't change `[[Prototype]]` on existing objects if speed matters"
-Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
+Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time and don't modify it anymore: `rabbit` inherits from `animal`, and that is not going to change.
 
-And JavaScript engines are highly optimized for this. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So avoid it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
+And JavaScript engines are highly optimized for this. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation as it breaks internal optimizations for object property access operations. So avoid it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
 ```
 
 ## "Very plain" objects [#very-plain]
@@ -102,25 +102,25 @@ obj[key] = "some value";
 alert(obj[key]); // [object Object], not "some value"!
 ```
 
-Here if the user types in `__proto__`, the assignment is ignored!
+Here, if the user types in `__proto__`, the assignment is ignored!
 
-That shouldn't surprise us. The `__proto__` property is special: it must be either an object or `null`, a string can not become a prototype.
+That shouldn't surprise us. The `__proto__` property is special: it must be either an object or `null`. A string can not become a prototype.
 
 But we didn't *intend* to implement such behavior, right? We want to store key/value pairs, and the key named `"__proto__"` was not properly saved. So that's a bug!
 
-Here the consequences are not terrible. But in other cases we may be assigning object values, and then the prototype may indeed be changed. As the result, the execution will go wrong in totally unexpected ways.
+Here the consequences are not terrible. But in other cases we may be assigning object values, and then the prototype may indeed be changed. As a result, the execution will go wrong in totally unexpected ways.
 
 What's worse -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
 
 Unexpected things also may happen when assigning to `toString`, which is a function by default, and to other built-in methods.
 
-How to avoid the problem?
+How can we avoid this problem?
 
 First, we can just switch to using `Map`, then everything's fine.
 
-But `Object` also can serve us well here, because language creators gave thought to that problem long ago.
+But `Object` can also serve us well here, because language creators gave thought to that problem long ago.
 
-The `__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
+`__proto__` is not a property of an object, but an accessor property of `Object.prototype`:
 
 ![](object-prototype-2.svg)
 
@@ -147,7 +147,7 @@ alert(obj[key]); // "some value"
 
 So, there is no inherited getter/setter for `__proto__`. Now it is processed as a regular data property, so the example above works right.
 
-We can call such object "very plain" or "pure dictionary objects", because they are even simpler than regular plain object `{...}`.
+We can call such objects "very plain" or "pure dictionary" objects, because they are even simpler than the regular plain object `{...}`.
 
 A downside is that such objects lack any built-in object methods, e.g. `toString`:
 
@@ -174,13 +174,13 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 
 ## Summary
 
-Modern methods to setup and directly access the prototype are:
+Modern methods to set up and directly access the prototype are:
 
-- [Object.create(proto[, descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` (can be `null`) and optional property descriptors.
+- [Object.create(proto[, descriptors])](mdn:js/Object/create) -- creates an empty object with a given `proto` as `[[Prototype]]` (can be `null`) and optional property descriptors.
 - [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- returns the `[[Prototype]]` of `obj` (same as `__proto__` getter).
 - [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- sets the `[[Prototype]]` of `obj` to `proto` (same as `__proto__` setter).
 
-The built-in `__proto__` getter/setter is unsafe if we'd want to put user-generated keys in to an object. Just because a user may enter `"__proto__"` as the key, and there'll be an error, with hopefully light, but generally unpredictable consequences.
+The built-in `__proto__` getter/setter is unsafe if we'd want to put user-generated keys into an object. Just because a user may enter `"__proto__"` as the key, and there'll be an error, with hopefully light, but generally unpredictable consequences.
 
 So we can either use `Object.create(null)` to create a "very plain" object without `__proto__`, or stick to `Map` objects for that.
 
@@ -200,6 +200,6 @@ Other methods:
 - [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) -- returns an array of all own symbolic keys.
 - [Object.getOwnPropertyNames(obj)](mdn:js/Object/getOwnPropertyNames) -- returns an array of all own string keys.
 - [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) -- returns an array of all own keys.
-- [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) key named `key`.
+- [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): returns `true` if `obj` has its own (not inherited) key named `key`.
 
-All methods that return object properties (like `Object.keys` and others) -- return "own" properties. If we want inherited ones, then we can use `for..in`.
+All methods that return object properties (like `Object.keys` and others) -- return "own" properties. If we want inherited ones, we can use `for..in`.
