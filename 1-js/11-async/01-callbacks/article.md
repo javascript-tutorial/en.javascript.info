@@ -24,7 +24,7 @@ function loadScript(src) {
 }
 ```
 
-It appends to the document the new, dynamically created, tag `<script src="…">`, the browser loads and executes it.
+It appends to the document the new, dynamically created, tag `<script src="…">`. The browser loads and executes it.
 
 We can use this function like this:
 
@@ -33,9 +33,9 @@ We can use this function like this:
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously", as it starts loading starts now, but runs later, when the function has already finished.
+The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
 
-If there's a code below `loadScript(…)`, it doesn't wait until the script loading finishes.
+If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
 ```js
 loadScript('/my/script.js');
@@ -97,7 +97,7 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-  alert(`Cool, the ${script.src} is loaded`);
+  alert(`Cool, the script ${script.src} is loaded`);
   alert( _ ); // function declared in the loaded script
 });
 */!*
@@ -229,7 +229,7 @@ In the code above:
 2. We load `2.js`, then if there's no error.
 3. We load `3.js`, then if there's no error -- do something else `(*)`.
 
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have a real code instead of `...`, that may include more loops, conditional statements and so on.
+As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have real code instead of `...` that may include more loops, conditional statements and so on.
 
 That's sometimes called "callback hell" or "pyramid of doom."
 
@@ -299,7 +299,7 @@ See? It does the same, and there's no deep nesting now because we made every act
 
 It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
+Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
 
 We'd like to have something better.
 
