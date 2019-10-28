@@ -58,7 +58,7 @@ let promise = new Promise(function(resolve, reject) {
 We can see two things by running the code above:
 
 1. The executor is called automatically and immediately (by `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We only should call one of them when ready.
+2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We should only call one of them when ready.
 
     After one second of "processing" the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
 
@@ -81,7 +81,7 @@ The call to `reject(...)` moves the promise object to `"rejected"` state:
 
 To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding promise object.
 
-A promise that is either resolved or rejected is called "settled", as opposed to a initially "pending" promise.
+A promise that is either resolved or rejected is called "settled", as opposed to an initially "pending" promise.
 
 ````smart header="There can be only a single result or an error"
 The executor should call only one `resolve` or one `reject`. Any state change is final.
@@ -263,7 +263,7 @@ It's not exactly an alias of `then(f,f)` though. There are several important dif
 
 3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
 
-````smart header="On settled promises handlers runs immediately"
+````smart header="On settled promises handlers run immediately"
 If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they execute immediately:
 
 ```js run
@@ -274,7 +274,7 @@ promise.then(alert); // done! (shows up right now)
 ```
 ````
 
-Next, let's see more practical examples of how promises can help us to write asynchronous code.
+Next, let's see more practical examples of how promises can help us write asynchronous code.
 
 ## Example: loadScript [#loadscript]
 
