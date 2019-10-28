@@ -36,7 +36,7 @@ That's natural, because `delete obj.key` removes a value by the `key`. It's all 
 
 So, special methods should be used.
 
-The [arr.splice(str)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+The [arr.splice(start)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
 
 The syntax is:
 
