@@ -45,3 +45,17 @@ describe("throttle(f, 1000)", function() {
   });
 
 });
+
+describe('prevent duplicate calls', () => {
+  let log = '';
+  const f = str => log += str;
+  const f10 = throttle(f, 10);
+  f10('once');
+
+  it('a forwarded call should run just once', done => {
+    setTimeout(() => {
+      assert.equal(log, 'once');
+      done();
+    }, 20);
+  });
+});
