@@ -351,7 +351,7 @@ Please note the additional `[[Environment]]` property is covered here. We didn't
 
     ![](lexenv-nested-makecounter-3.svg)
 
-    Please note that on this step the inner function was created, but not yet called. The code inside `function() { return count++; }` is not running.
+    Please note that on this step the inner function was created, but not yet called. The code inside `return count++;` is not running.
 
 4. As the execution goes on, the call to `makeCounter()` finishes, and the result (the tiny nested function) is assigned to the global variable `counter`:
 
