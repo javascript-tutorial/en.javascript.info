@@ -565,7 +565,7 @@ function f() {
 */!*
 }
 
-let g = f(); // g is reachable, and keeps the outer lexical environment in memory
+let h = f(); // g is reachable, and keeps the outer lexical environment in memory
 ```
 
 Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
@@ -595,10 +595,10 @@ function f() {
   return g;
 }
 
-let g = f(); // while g is alive
+let h = f(); // while g is alive
 // their corresponding Lexical Environment lives
 
-g = null; // ...and now the memory is cleaned up
+h = null; // ...and now the memory is cleaned up
 ```
 
 ### Real-life optimizations
