@@ -155,7 +155,7 @@ In the above examples we didn't consider errors. What if the script loading fail
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
-```js run
+```js
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
