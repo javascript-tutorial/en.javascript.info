@@ -574,7 +574,7 @@ The calculation flow:
 
 Or in the form of a table, where each row represents a function call on the next array element:
 
-|   |`sum`|`current`|`result`|
+|   |`sum`|`current`|result|
 |---|-----|---------|---------|
 |the first call|`0`|`1`|`1`|
 |the second call|`1`|`2`|`3`|
