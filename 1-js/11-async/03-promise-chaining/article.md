@@ -86,7 +86,7 @@ In practice we rarely need multiple handlers for one promise. Chaining is used m
 
 A handler, used in `.then(handler)` may create and return a promise.
 
-In that case further handlers wait till it settles, and then get its result.
+In that case further handlers wait until it settles, and then get its result.
 
 For instance:
 
@@ -164,7 +164,7 @@ loadScript("/article/promise-chaining/one.js")
 
 Here each `loadScript` call returns a promise, and the next `.then` runs when it resolves. Then it initiates the loading of the next script. So scripts are loaded one after another.
 
-We can add more asynchronous actions to the chain. Please note that code is still "flat", it grows down, not to the right. There are no signs of "pyramid of doom".
+We can add more asynchronous actions to the chain. Please note that the code is still "flat", it grows down, not to the right. There are no signs of "pyramid of doom".
 
 Technically, we could add `.then` directly to each `loadScript`, like this:
 
@@ -189,9 +189,9 @@ Sometimes it's ok to write `.then` directly, because the nested function has acc
 
 
 ````smart header="Thenables"
-To be precise, a handler may return not exactly a promise, but a so-called "thenable" object - an arbitrary object that has method `.then`, and it will be treated the same way as a promise.
+To be precise, a handler may return not exactly a promise, but a so-called "thenable" object - an arbitrary object that has a method `.then`. It will be treated the same way as a promise.
 
-The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have extended set of methods, but also be compatible with native promises, because they implement `.then`.
+The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have an extended set of methods, but also be compatible with native promises, because they implement `.then`.
 
 Here's an example of a thenable object:
 
@@ -216,7 +216,7 @@ new Promise(resolve => resolve(1))
   .then(alert); // shows 2 after 1000ms
 ```
 
-JavaScript checks the object returned by `.then` handler in the line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
+JavaScript checks the object returned by the `.then` handler in line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to an executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
 
 This feature allows us to integrate custom objects with promise chains without having to inherit from `Promise`.
 ````
@@ -234,7 +234,7 @@ let promise = fetch(url);
 
 This makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but *before the full response is downloaded*.
 
-To read the full response, we should call a method `response.text()`: it returns a promise that resolves  when the full text downloaded from the remote server, with that text as a result.
+To read the full response, we should call the method `response.text()`: it returns a promise that resolves when the full text is downloaded from the remote server, with that text as a result.
 
 The code below makes a request to `user.json` and loads its text from the server:
 
@@ -265,7 +265,7 @@ fetch('/article/promise-chaining/user.json')
 
 Now let's do something with the loaded user.
 
-For instance, we can make one more request to GitHub, load the user profile and show the avatar:
+For instance, we can make one more requests to GitHub, load the user profile and show the avatar:
 
 ```js run
 // Make a request for user.json
@@ -287,7 +287,7 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works, see comments about the details. Although, there's a potential problem in it, a typical error of those who begin to use promises.
+The code works, see comments about the details. However, there's a potential problem in it, a typical error of those who begin to use promises.
 
 Look at the line `(*)`: how can we do something *after* the avatar has finished showing and gets removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
 
@@ -319,11 +319,11 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
-That is, `.then` handler in the line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`.
+That is, `.then` handler in line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`.
 
 The next `.then` in chain will wait for that.
 
-As a good rule, an asynchronous action should always return a promise.
+As a good practice, an asynchronous action should always return a promise.
 
 That makes it possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
 
