@@ -71,7 +71,7 @@ The method `str.match(regexp)`, if `regexp` has no flag `g`, looks for the first
 
 1. At index `0`: the full match.
 2. At index `1`: the contents of the first parentheses.
-3. На позиции `2`: the contents of the second parentheses.
+3. At index `2`: the contents of the second parentheses.
 4. ...and so on...
 
 For instance, we'd like to find HTML tags `pattern:<.*?>`, and process them. It would be convenient to have tag content (what's inside the angles), in a separate variable.
