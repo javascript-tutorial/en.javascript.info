@@ -52,11 +52,12 @@ alert( 2 + '1' ); // "21"
 
 See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, the other one is converted into a string as well.
 
-However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
+However, note that operations run from left to right. If there are more then a number followed by a string, the numbers will be added before being converted to a string:
 
 
 ```js run
 alert(2 + 2 + '1' ); // "41" and not "221"
+alert(2 + 2 + 2 + '1' ); // "61" and not "2221"
 ```
 
 String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers and always convert their operands to numbers.
