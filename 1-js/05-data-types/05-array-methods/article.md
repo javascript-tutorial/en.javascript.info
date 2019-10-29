@@ -268,7 +268,7 @@ alert( arr.includes(NaN) );// true (correct)
 
 Imagine we have an array of objects. How do we find an object with the specific condition?
 
-Here the [arr.find](mdn:js/Array/find) method comes in handy.
+Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
 
 The syntax is:
 ```js
