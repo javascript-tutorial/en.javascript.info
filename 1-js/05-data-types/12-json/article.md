@@ -90,14 +90,14 @@ For instance:
 
 ```js run
 // a number in JSON is just a number
-alert( JSON.stringify(1) ) // 1
+alert( JSON.stringify(1) ) // "1"
 
 // a string in JSON is still a string, but double-quoted
 alert( JSON.stringify('test') ) // "test"
 
-alert( JSON.stringify(true) ); // true
+alert( JSON.stringify(true) ); // "true"
 
-alert( JSON.stringify([1, 2, 3]) ); // [1,2,3]
+alert( JSON.stringify([1, 2, 3]) ); // "[1,2,3]"
 ```
 
 JSON is data-only language-independent specification, so some JavaScript-specific object properties are skipped by `JSON.stringify`.
