@@ -40,9 +40,11 @@ If a value is so important that you'd like to make it available globally, write 
 ```js run
 *!*
 // make current user information global, to let all scripts access it
-window.currentUser = {
-  name: "John"
-};
+if (!window.currentUser) { //to avoid override built-in properties in window object
+  window.currentUser = {
+    name: "John"
+  };
+}
 */!*
 
 // somewhere else in code
