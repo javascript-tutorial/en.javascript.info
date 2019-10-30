@@ -166,11 +166,11 @@ new Promise(function() {
 
 In case of an error, the promise becomes rejected, and the execution should jump to the closest rejection handler. But there is none. So the error gets "stuck". There's no code to handle it.
 
-In practice, just like with regular unhandled errors in code, it means that something has terribly gone wrong.
+In practice, just like with regular unhandled errors in code, it means that something has gone terribly wrong.
 
-What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in console. Similar thing happens with unhandled promise rejections.
+What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in the console. A similar thing happens with unhandled promise rejections.
 
-JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
+The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
@@ -201,4 +201,4 @@ In non-browser environments like Node.js there are other ways to track unhandled
 - `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
 - We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
 - It's ok not to use `.catch` at all, if there's no way to recover from an error.
-- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments), to track unhandled errors and inform the user (and probably our server) about the them, so that our app never "just dies".
+- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments) to track unhandled errors and inform the user (and probably our server) about them, so that our app never "just dies".
