@@ -184,7 +184,7 @@ Let's compare two code fragments. The first one uses `setInterval`:
 ```js
 let i = 1;
 setInterval(function() {
-  func(i);
+  func(i++);
 }, 100);
 ```
 
@@ -198,7 +198,7 @@ setTimeout(function run() {
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i)` every 100ms:
+For `setInterval` the internal scheduler will run `func(i++)` every 100ms:
 
 ![](setinterval-interval.svg)
 
