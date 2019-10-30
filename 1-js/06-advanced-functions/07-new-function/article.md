@@ -33,10 +33,10 @@ The major difference from other ways we've seen is that the function is created 
 
 All previous declarations required us, programmers, to write the function code in the script.
 
-But `new Function` allows to turn any string into a function. For example, we can receive a new function from a server and then execute it:
+But `new Function` allows to turn any string into a function. For example, we can receive a new code from a server and then execute it:
 
 ```js
-let str = ... receive the code from a server dynamically ...
+let str = receiveCodeFromServer(); // asume that it returns code in string format.
 
 let func = new Function(str);
 func();
