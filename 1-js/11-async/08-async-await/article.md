@@ -56,7 +56,7 @@ async function f() {
   });
 
 *!*
-  let result = await promise; // wait till the promise resolves (*)
+  let result = await promise; // wait until the promise resolves (*)
 */!*
 
   alert(result); // "done!"
