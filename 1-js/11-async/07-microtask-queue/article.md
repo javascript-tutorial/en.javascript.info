@@ -30,17 +30,17 @@ As said in the [specification](https://tc39.github.io/ecma262/#sec-jobs-and-job-
 - The queue is first-in-first-out: tasks enqueued first are run first.
 - Execution of a task is initiated only when nothing else is running.
 
-Or, to say that simply, when a promise is ready, its `.then/catch/finally` handlers are put into the queue. They are not executed yet. JavaScript engine takes a task from the queue and executes it, when it becomes free from the current code.
+Or, to say that simply, when a promise is ready, its `.then/catch/finally` handlers are put into the queue. They are not executed yet. When the JavaScript engine becomes free from the current code, it takes a task from the queue and executes it.
 
 That's why "code finished" in the example above shows first.
 
 ![](promiseQueue.svg)
 
-Promise handlers always go through that internal queue.
+Promise handlers always go through this internal queue.
 
 If there's a chain with multiple `.then/catch/finally`, then every one of them is executed asynchronously. That is, it first gets queued, and executed when the current code is complete and previously queued handlers are finished.
 
-**What if the order matters for us? How can we make `code finished` work after `promise done`?**
+**What if the order matters for us? How can we make `code finished` run after `promise done`?**
 
 Easy, just put it into the queue with `.then`:
 
@@ -54,7 +54,7 @@ Now the order is as intended.
 
 ## Unhandled rejection
 
-Remember `unhandledrejection` event from the chapter <info:promise-error-handling>?
+Remember the `unhandledrejection` event from the chapter <info:promise-error-handling>?
 
 Now we can see exactly how JavaScript finds out that there was an unhandled rejection
 
@@ -93,9 +93,9 @@ setTimeout(() => promise.catch(err => alert('caught')), 1000);
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-Now, if you run it, we'll see `Promise Failed!` message first, and then `caught`. 
+Now, if you run it, we'll see `Promise Failed!` first and then `caught`. 
 
-If we didn't know about microtasks queue, we could wonder: "Why did `unhandledrejection` handler run? We did catch the error!".
+If we didn't know about the microtasks queue, we could wonder: "Why did `unhandledrejection` handler run? We did catch the error!".
 
 But now we understand that `unhandledrejection` is generated when the microtask queue is complete: the engine examines promises and, if any of them is in "rejected" state, then the event triggers.
 
