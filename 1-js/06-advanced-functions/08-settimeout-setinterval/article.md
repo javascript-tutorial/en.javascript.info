@@ -61,7 +61,7 @@ So, this will also work:
 setTimeout("alert('Hello')", 1000);
 ```
 
-But using strings is not recommended, use functions instead of them, like this:
+But using strings is not recommended, use arrow functions instead of them, like this:
 
 ```js run no-beautify
 setTimeout(() => alert('Hello'), 1000);
