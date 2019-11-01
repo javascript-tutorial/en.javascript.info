@@ -226,7 +226,7 @@ Let's see how it works step-by-step on example, for a cross-origin `PATCH` reque
 let response = await fetch('https://site.com/service.json', {
   method: 'PATCH',
   headers: {
-    'Content-Type': 'application/json'  
+    'Content-Type': 'application/json',
     'API-Key': 'secret'
   }
 });
