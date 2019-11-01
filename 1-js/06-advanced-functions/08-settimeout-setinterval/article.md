@@ -193,7 +193,7 @@ The second one uses nested `setTimeout`:
 ```js
 let i = 1;
 setTimeout(function run() {
-  func(i);
+  func(i++);
   setTimeout(run, 100);
 }, 100);
 ```
