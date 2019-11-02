@@ -269,14 +269,14 @@ For instance:
 ```js no-beautify
 describe("test", function() {
 
-  before(() => alert("Testing started – before all tests"));
-  after(() => alert("Testing finished – after all tests"));
+  before(() => console.log("Testing started – before all tests"));
+  after(() => console.log("Testing finished – after all tests"));
 
-  beforeEach(() => alert("Before a test – enter a test"));
-  afterEach(() => alert("After a test – exit a test"));
+  beforeEach(() => console.log("Before a test – enter a test"));
+  afterEach(() => console.log("After a test – exit a test"));
 
-  it('test 1', () => alert(1));
-  it('test 2', () => alert(2));
+  it('test 1', () => console.log(1));
+  it('test 2', () => console.log(2));
 
 });
 ```
