@@ -83,10 +83,12 @@ let user = {
 
 setTimeout(() => user.sayHi(), 1000);
 
-// ...within 1 second
-user = { sayHi() { alert("Another user in setTimeout!"); } };
+// ...the value of user changes within 1 second
+user = {
+  sayHi() { alert("Another user in setTimeout!"); }
+};
 
-// Another user in setTimeout?!?
+// Another user in setTimeout!
 ```
 
 The next solution guarantees that such thing won't happen.
@@ -159,9 +161,16 @@ let user = {
 let sayHi = user.sayHi.bind(user); // (*)
 */!*
 
+// can run it without an object
 sayHi(); // Hello, John!
 
 setTimeout(sayHi, 1000); // Hello, John!
+
+// even if the value of user changes within 1 second
+// sayHi uses the pre-bound value
+user = {
+  sayHi() { alert("Another user in setTimeout!"); }
+};
 ```
 
 In the line `(*)` we take the method `user.sayHi` and bind it to `user`. The `sayHi` is a "bound" function, that can be called alone or passed to `setTimeout` -- doesn't matter, the context will be right.
