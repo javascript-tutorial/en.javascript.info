@@ -162,6 +162,10 @@ let sayHi = user.sayHi.bind(user); // (*)
 sayHi(); // Hello, John!
 
 setTimeout(sayHi, 1000); // Hello, John!
+
+// ...within 1 second
+user = { sayHi() { alert("Another user in setTimeout!"); } };
+//setTimeout() is still using first user object definition
 ```
 
 In the line `(*)` we take the method `user.sayHi` and bind it to `user`. The `sayHi` is a "bound" function, that can be called alone or passed to `setTimeout` -- doesn't matter, the context will be right.
