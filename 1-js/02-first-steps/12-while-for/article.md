@@ -212,7 +212,7 @@ But we can force the exit at any time using the special `break` directive.
 
 For example, the loop below asks the user for a series of numbers, "breaking" when no number is entered:
 
-```js
+```js run
 let sum = 0;
 
 while (true) {
