@@ -310,7 +310,7 @@ user = new Proxy(user, {
     return {
       enumerable: true,
       configurable: true
-      /* ...other flags, probable "value:..."" */
+      /* ...other flags, probable "value:..." */
     };
   }
 

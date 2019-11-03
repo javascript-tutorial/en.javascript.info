@@ -56,7 +56,7 @@ Now the order is as intended.
 
 Remember the `unhandledrejection` event from the chapter <info:promise-error-handling>?
 
-Now we can see exactly how JavaScript finds out that there was an unhandled rejection
+Now we can see exactly how JavaScript finds out that there was an unhandled rejection.
 
 **"Unhandled rejection" occurs when a promise error is not handled at the end of the microtask queue.**
 

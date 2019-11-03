@@ -142,7 +142,7 @@ for (let char of str) {
 
 For deeper understanding let's see how to use an iterator explicitly.
 
-We'll iterate over a string in exactlly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
+We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
 ```js run
 let str = "Hello";
@@ -150,7 +150,9 @@ let str = "Hello";
 // does the same as
 // for (let char of str) alert(char);
 
+*!*
 let iterator = str[Symbol.iterator]();
+*/!*
 
 while (true) {
   let result = iterator.next();
@@ -268,7 +270,7 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But is shorter.    
+...But it is shorter.    
 
 We can even build surrogate-aware `slice` on it:
 
