@@ -214,7 +214,7 @@ let arr = Array.from(arrayLike); // (*)
 alert(arr.pop()); // World (method works)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies all items to it.
 
 The same happens for an iterable:
 
