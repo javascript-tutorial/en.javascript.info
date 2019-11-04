@@ -161,7 +161,7 @@ That's when we take a method from one object and copy it into another.
 
 Some methods of native prototypes are often borrowed.
 
-For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
+For instance, if we're making an array-like object, we may want to assign some `Array` methods to it.
 
 E.g.
 
