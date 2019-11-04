@@ -280,7 +280,7 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example of that, and a particularly important case.
+Tables are a great example of that, and represent a particularly important case:
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
