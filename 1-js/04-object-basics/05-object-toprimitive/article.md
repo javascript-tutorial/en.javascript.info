@@ -123,7 +123,7 @@ These methods must return a primitive value. If `toString` or `valueOf` returns 
 By default, a plain object has following `toString` and `valueOf` methods:
 
 - The `toString` method returns a string `"[object Object]"`.
-- The `valueOf` method returns an object itself.
+- The `valueOf` method returns the object itself.
 
 Here's the demo:
 
