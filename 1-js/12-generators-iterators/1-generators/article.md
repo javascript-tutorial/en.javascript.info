@@ -40,7 +40,7 @@ The function code execution hasn't started yet:
 
 ![](generateSequence-1.svg)
 
-The main method of a generator is `next()`. When called, it runs the execution till the nearest `yield <value>` statement (`value` can be omitted, then it's `undefined`). Then the function execution pauses, and the yielded `value` is returned to the outer code.
+The main method of a generator is `next()`. When called, it runs the execution until the nearest `yield <value>` statement (`value` can be omitted, then it's `undefined`). Then the function execution pauses, and the yielded `value` is returned to the outer code.
 
 The result of `next()` is always an object with two properties:
 - `value`: the yielded value.
@@ -78,7 +78,7 @@ alert(JSON.stringify(two)); // {value: 2, done: false}
 
 ![](generateSequence-3.svg)
 
-And, if we call it the third time, then the execution reaches `return` statement that finishes the function:
+And, if we call it a third time, the execution reaches the `return` statement that finishes the function:
 
 ```js
 let three = generator.next();
@@ -90,7 +90,7 @@ alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 
 Now the generator is done. We should see it from `done:true` and process `value:3` as the final result.
 
-New calls `generator.next()` don't make sense any more. If we do them, they return the same object: `{done: true}`.
+New calls to `generator.next()` don't make sense any more. If we do them, they return the same object: `{done: true}`.
 
 ```smart header="`function* f(…)` or `function *f(…)`?"
 Both syntaxes are correct.
@@ -154,7 +154,7 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
-In the code above, `...generateSequence()` turns the iterable generator object into array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
+In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
 
 ## Using generators for iterables
 
@@ -212,17 +212,17 @@ alert( [...range] ); // 1,2,3,4,5
 ```
 
 That works, because `range[Symbol.iterator]()` now returns a generator, and generator methods are exactly what `for..of` expects:
-- it has `.next()` method
+- it has a `.next()` method
 - that returns values in the form `{value: ..., done: true/false}`
 
-That's not a coincidence, of course. Generators were added to JavaScript language with iterators in mind, to implement them easier.
+That's not a coincidence, of course. Generators were added to JavaScript language with iterators in mind, to implement them easily.
 
 The variant with a generator is much more concise than the original iterable code of `range`, and keeps the same functionality.
 
 ```smart header="Generators may generate values forever"
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
 
-That surely would require a `break` (or `return`) in `for..of` over such generator, otherwise the loop would repeat forever and hang.
+That surely would require a `break` (or `return`) in `for..of` over such generator. Otherwise, the loop would repeat forever and hang.
 ```
 
 ## Generator composition
@@ -237,7 +237,7 @@ function* generateSequence(start, end) {
 }
 ```
 
-Now we'd like to reuse it for generation of a more complex sequence:
+Now we'd like to reuse it to generate a more complex sequence:
 - first, digits `0..9` (with character codes 48..57),
 - followed by uppercase alphabet letters `A..Z` (character codes 65..90)
 - followed by lowercase alphabet letters `a..z` (character codes 97..122)
@@ -316,7 +316,7 @@ A generator composition is a natural way to insert a flow of one generator into 
 
 ## "yield" is a two-way road
 
-Till this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
+Until this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
 
 That's because `yield` is a two-way road: it not only returns the result outside, but also can pass the value inside the generator.
 
@@ -422,7 +422,7 @@ generator.throw(new Error("The answer is not found in my database")); // (2)
 */!*
 ```
 
-The error, thrown into the generator at the line `(2)` leads to an exception in the line `(1)` with `yield`. In the example above, `try..catch` catches it and shows.
+The error, thrown into the generator at line `(2)` leads to an exception in line `(1)` with `yield`. In the example above, `try..catch` catches it and shows it.
 
 If we don't catch it, then just like any exception, it "falls out" the generator into the calling code.
 
@@ -456,6 +456,6 @@ If we don't catch the error there, then, as usual, it falls through to the outer
 
 In modern JavaScript, generators are rarely used. But sometimes they come in handy, because the ability of a function to exchange data with the calling code during the execution is quite unique. And, surely, they are great for making iterable objects.
 
-Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data (e.g paginated fetches over a network) in `for await ... of` loop.
+Also, in the next chapter we'll learn async generators, which are used to read streams of asynchronously generated data (e.g paginated fetches over a network) in `for await ... of` loops.
 
 In web-programming we often work with streamed data, so that's another very important use case.
