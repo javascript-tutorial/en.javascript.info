@@ -157,7 +157,7 @@ alert( "La".repeat(3) ); // LaLaLa
 
 In the chapter <info:call-apply-decorators#method-borrowing> we talked about method borrowing.
 
-That's when we take a method from one object and copy it into another.
+That's when we take a method from one object and use it like another object's method.
 
 Some methods of native prototypes are often borrowed.
 
