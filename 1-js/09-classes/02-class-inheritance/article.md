@@ -200,7 +200,7 @@ As we can see, it basically calls the parent `constructor` passing it all the ar
 
 Now let's add a custom constructor to `Rabbit`. It will specify the `earLength` in addition to `name`:
 
-```js run
+```js
 class Animal {
   constructor(name) {
     this.speed = 0;
