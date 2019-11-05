@@ -19,12 +19,14 @@ User.staticMethod(); // true
 
 That actually does the same as assigning it as a property directly:
 
-```js
+```js run
 class User() { }
 
 User.staticMethod = function() {
   alert(this === User);
 };
+
+User.staticMethod(); // true
 ```
 
 The value of `this` in `User.staticMethod()` call is the class constructor `User` itself (the "object before dot" rule).
