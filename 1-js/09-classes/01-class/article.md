@@ -106,7 +106,7 @@ class User {
 // class is a function
 alert(typeof User); // function
 
-// ...or, more precisely, the constructor method
+// ...or, more precisely, the constructor function 
 alert(User === User.prototype.constructor); // true
 
 // The methods are in User.prototype, e.g:
