@@ -282,7 +282,7 @@ Object.defineProperties(User.prototype, {
 });
 ```
 
-Here's an example with a computed property in brackets `[...]`:
+Here's an example with a computed property name in brackets `[...]`:
 
 ```js run
 class User {
