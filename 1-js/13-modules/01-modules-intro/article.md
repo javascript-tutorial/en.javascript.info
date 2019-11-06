@@ -274,9 +274,9 @@ When using modules, we should be aware that HTML-page shows up as it loads, and 
 
 For non-module scripts, `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
 
-For module scripts, it works on any script.
+For module scripts, it works on inline scripts as well.
 
-For example, the script below has `async`, so it doesn't wait for anyone.
+For example, the inline script below has `async`, so it doesn't wait for anything.
 
 It performs the import (fetches `./analytics.js`) and runs when ready, even if the HTML document is not finished yet, or if other scripts are still pending.
 
