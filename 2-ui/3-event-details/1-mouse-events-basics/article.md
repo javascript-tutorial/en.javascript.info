@@ -21,15 +21,15 @@ The most used simple events are:
 `mousemove`
 : Every mouse move over an element triggers that event.
 
+`contextmenu`
+: Triggers when opening a context menu is attempted. In the most common case, that happens when the right mouse button is pressed. Although, there are other ways to open a context menu, e.g. using a special keyboard key, so it's not exactly the mouse event.
+
 ...There are several other event types too, we'll cover them later.
 
 ### Complex events
 
 `click`
 : Triggers after `mousedown` and then `mouseup` over the same element if the left mouse button was used.
-
-`contextmenu`
-: Triggers after `mousedown` if the right mouse button was used.
 
 `dblclick`
 : Triggers after a double click over an element.
