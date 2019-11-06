@@ -155,14 +155,14 @@ say.*!*bye*/!*('John'); // Bye, John!
 
 In practice, there are mainly two kinds of modules.
 
-1. Module that contains a library, pack of functions, like `say.js` above.
-2. Module that declares a single entity, e.g. a module `user.js` exports only `class User`.
+1. Modules that contain a library, pack of functions, like `say.js` above.
+2. Modules that declare a single entity, e.g. a module `user.js` exports only `class User`.
 
 Mostly, the second approach is preferred, so that every "thing" resides in its own module.
 
-Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier, if files are well-named and structured into folders.
+Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier if files are well-named and structured into folders.
 
-Modules provide special `export default` ("the default export") syntax to make "one thing per module" way look better.
+Modules provide special `export default` ("the default export") syntax to make the "one thing per module" way look better.
 
 Put `export default` before the entity to export:
 
@@ -291,7 +291,7 @@ import {User} from './user.js';
 ```js
 import User from './user.js'; // works
 import MyUser from './user.js'; // works too
-// could be import Anything..., and it'll be work
+// could be import Anything... and it'll still work
 ```
 
 So team members may use different names to import the same thing, and that's not good.
@@ -319,7 +319,7 @@ export {sayHi} from './say.js'; // re-export sayHi
 export {default as User} from './user.js'; // re-export default
 ```
 
-Why that may be needed? Let's see a practical use case.
+Why would that be needed? Let's see a practical use case.
 
 Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow to publish and distribute such packages), and many modules are just "helpers", for the internal use in other package modules.
 
@@ -389,9 +389,9 @@ export default class User {
 
 1. `export User from './user.js'` won't work. What can go wrong?... But that's a syntax error!
 
-    To re-export the default export, we should write `export {default as User}`, as in the example above.    
+    To re-export the default export, we have to write `export {default as User}`, as in the example above.    
 
-2. `export * from './user.js'` re-exports only named exports, ignores the default one.
+2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
 
     If we'd like to re-export both named and the default export, then two statements are needed:
     ```js
@@ -399,7 +399,7 @@ export default class User {
     export {default} from './user.js'; // to re-export the default export
     ```
 
-Such oddities of re-exporting the default export is one of the reasons, why some developers don't like them.
+Such oddities of re-exporting the default export are one of the reasons why some developers don't like them.
 
 ## Summary
 
