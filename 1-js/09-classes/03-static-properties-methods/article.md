@@ -123,14 +123,15 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
-## Inheritance of static methods
+## Inheritance of static properties and methods
 
-Static methods are inherited.
+Static properties and methods are inherited.
 
-For instance, `Animal.compare` in the code below is inherited and accessible as `Rabbit.compare`:
+For instance, `Animal.compare` and `Animal.planet` in the code below are inherited and accessible as `Rabbit.compare` and `Rabbit.planet`:
 
 ```js run
 class Animal {
+  static planet = "Earth";
 
   constructor(name, speed) {
     this.speed = speed;
@@ -167,6 +168,8 @@ rabbits.sort(Rabbit.compare);
 */!*
 
 rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
 
 Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
