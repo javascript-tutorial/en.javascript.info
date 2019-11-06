@@ -447,7 +447,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 ````
 
 ````smart header="Arrow functions for the best"
-Remember [arrow functions](info:function-expressions-arrows#arrow-functions)? We can use them here for neater sorting:
+Remember [arrow functions](info:arrow-functions-basics)? We can use them here for neater sorting:
 
 ```js
 arr.sort( (a, b) => a - b );

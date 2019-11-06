@@ -1,4 +1,4 @@
-# Function expressions and arrows
+# Function expressions
 
 In JavaScript, a function is not a "magical language structure", but a special kind of value.
 
@@ -355,107 +355,6 @@ That's also better for readability, as it's easier to look up `function f(…) {
 ...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
 ```
 
-
-## Arrow functions [#arrow-functions]
-
-There's one more very simple and concise syntax for creating functions, that's often better than Function Expressions. It's called "arrow functions", because it looks like this:
-
-
-```js
-let func = (arg1, arg2, ...argN) => expression
-```
-
-...This creates a function `func` that has arguments `arg1..argN`, evaluates the `expression` on the right side with their use and returns its result.
-
-In other words, it's roughly the same as:
-
-```js
-let func = function(arg1, arg2, ...argN) {
-  return expression;
-};
-```
-
-...But much more concise.
-
-Let's see an example:
-
-```js run
-let sum = (a, b) => a + b;
-
-/* The arrow function is a shorter form of:
-
-let sum = function(a, b) {
-  return a + b;
-};
-*/
-
-alert( sum(1, 2) ); // 3
-
-```
-
-If we have only one argument, then parentheses around parameters can be omitted, making that even shorter:
-
-```js run
-// same as
-// let double = function(n) { return n * 2 }
-*!*
-let double = n => n * 2;
-*/!*
-
-alert( double(3) ); // 6
-```
-
-If there are no arguments, parentheses should be empty (but they should be present):
-
-```js run
-let sayHi = () => alert("Hello!");
-
-sayHi();
-```
-
-Arrow functions can be used in the same way as Function Expressions.
-
-For instance, here's the rewritten example with `welcome()`:
-
-```js run
-let age = prompt("What is your age?", 18);
-
-let welcome = (age < 18) ?
-  () => alert('Hello') :
-  () => alert("Greetings!");
-
-welcome(); // ok now
-```
-
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
-
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
-
-```smart header="Multiline arrow functions"
-
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
-
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
-
-Like this:
-
-```js run
-let sum = (a, b) => {  // the curly brace opens a multiline function
-  let result = a + b;
-*!*
-  return result; // if we use curly braces, use return to get results
-*/!*
-};
-
-alert( sum(1, 2) ); // 3
-```
-
-```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all! Arrow functions have other interesting features. We'll return to them later in the chapter <info:arrow-functions>.
-
-For now, we can already use arrow functions for one-line actions and callbacks.
-```
-
 ## Summary
 
 - Functions are values. They can be assigned, copied or declared in any place of the code.
@@ -467,8 +366,3 @@ For now, we can already use arrow functions for one-line actions and callbacks.
 In most cases when we need to declare a function, a Function Declaration is preferable, because it is visible prior to the declaration itself. That gives us more flexibility in code organization, and is usually more readable.
 
 So we should use a Function Expression only when a Function Declaration is not fit for the task. We've seen a couple of examples of that in this chapter, and will see more in the future.
-
-Arrow functions are handy for one-liners. They come in two flavors:
-
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
