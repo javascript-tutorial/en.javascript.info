@@ -9,7 +9,7 @@ Let's see a simple example first, to grasp the syntax, and then review a real-li
 
 Asynchronous iterators are similar to regular iterators, with a few syntactic differences.
 
-"Regular" iterable object, as described in the chapter <info:iterable>, look like this:
+A "regular" iterable object, as described in the chapter <info:iterable>, looks like this:
 
 ```js run
 let range = {
@@ -79,8 +79,10 @@ let range = {
         // (automatically wrapped into a promise by async)
 */!*
 
+*!*
         // can use await inside, do async stuff:
         await new Promise(resolve => setTimeout(resolve, 1000)); // (3)
+*/!*
 
         if (this.current <= this.last) {
           return { done: false, value: this.current++ };
@@ -267,7 +269,7 @@ So far we've seen simple examples, to gain basic understanding. Now let's review
 
 There are many online services that deliver paginated data. For instance, when we need a list of users, a request returns a pre-defined count (e.g. 100 users) - "one page", and provides a URL to the next page.
 
-The pattern is very common, it's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
+This pattern is very common. It's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
 
 - We should make a request to URL in the form `https://api.github.com/repos/<repo>/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
@@ -283,7 +285,7 @@ for await (let commit of fetchCommits(repo)) {
 }
 ```
 
-We'd like to make a function `fetchCommits(repo)` that gets commits for us, making requests whenever needed. And let it care about all pagination stuff, for us it'll be a simple `for await..of`.
+We'd like to make a function `fetchCommits(repo)` that gets commits for us, making requests whenever needed. And let it care about all pagination stuff. For us it'll be a simple `for await..of`.
 
 With async generators that's pretty easy to implement:
 
