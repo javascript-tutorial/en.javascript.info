@@ -593,7 +593,7 @@ Other traps exist: the full list is in the beginning of this chapter. Their usag
 
 `Reflect` is a built-in object that simplifies creation of `Proxy`.
 
-It was said previously that internal methods, such as `[[Get]]`, `[[Set]]` and others are specifiction only, they can't be called directly.
+It was said previously that internal methods, such as `[[Get]]`, `[[Set]]` and others are specification-only, they can't be called directly.
 
 The `Reflect` object makes that somewhat possible. Its methods are minimal wrappers around the internal methods.
 
