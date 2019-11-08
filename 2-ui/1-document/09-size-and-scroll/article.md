@@ -55,9 +55,9 @@ Let's start exploring the properties starting from the outside of the element.
 
 These properties are rarely needed, but still they are the "most outer" geometry properties, so we'll start with them.
 
-The `offsetParent` is the nearest ancestor, that browser uses for calculating coordinates during rendering.
+The `offsetParent` is the nearest ancestor that the browser uses for calculating coordinates during rendering.
 
-That's the nearest ancestor, that satisfies following conditions:
+That's the nearest ancestor that satisfies one of the following conditions:
 
 1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`),
 2. or `<td>`, `<th>`, `<table>`,
