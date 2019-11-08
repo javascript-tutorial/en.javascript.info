@@ -57,11 +57,11 @@ These properties are rarely needed, but still they are the "most outer" geometry
 
 The `offsetParent` is the nearest ancestor that the browser uses for calculating coordinates during rendering.
 
-That's the nearest ancestor that satisfies one of the following conditions:
+That's the nearest ancestor that is one of the following:
 
-1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`),
-2. or `<td>`, `<th>`, `<table>`,
-2. or `<body>`.
+1. CSS-positioned (`position` is `absolute`, `relative`, `fixed` or `sticky`), or
+2. `<td>`, `<th>`, or `<table>`, or
+3. `<body>`.
 
 Properties `offsetLeft/offsetTop` provide x/y coordinates relative to `offsetParent` upper-left corner.
 
