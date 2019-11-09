@@ -2,7 +2,7 @@
 
 How do we find the width and height of the browser window? How do we get the full width and height of the document, including the scrolled out part? How do we scroll the page using JavaScript?
 
-For most such requests, we can use the root document element `document.documentElement`, that corresponds to `<html>` tag. But there are additional methods and peculiarities important enough to consider.
+For most such requests, we can use the root document element `document.documentElement`, that corresponds to the `<html>` tag. But there are additional methods and peculiarities important enough to consider.
 
 ## Width/height of the window
 
