@@ -148,7 +148,7 @@ In the code below `button` shows its contents using `this.innerHTML`:
 
 ## Possible mistakes
 
-If you're starting to work with event -- please note some subtleties.
+If you're starting to work with events -- please note some subtleties.
 
 **The function should be assigned as `sayThanks`, not `sayThanks()`.**
 
