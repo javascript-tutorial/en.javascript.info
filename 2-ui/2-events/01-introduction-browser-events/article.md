@@ -181,7 +181,7 @@ button.onclick = function() {
 
 **Use functions, not strings.**
 
-The assignment `elem.onclick = "alert(1)"` would work too. It works for compatibility reasons, but strongly not recommended.
+The assignment `elem.onclick = "alert(1)"` would work too. It works for compatibility reasons, but is strongly not recommended.
 
 **Don't use `setAttribute` for handlers.**
 
