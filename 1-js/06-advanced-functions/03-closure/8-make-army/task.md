@@ -31,5 +31,5 @@ army[5](); // and number 5 also outputs 10...
 // ... all shooters show 10 instead of their 0, 1, 2, 3...
 ```
 
-Why all shooters show the same? Fix the code so that they work as intended.
+Why do all of the shooters show the same value? Fix the code so that they work as intended.
 
