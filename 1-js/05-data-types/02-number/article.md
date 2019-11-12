@@ -201,7 +201,7 @@ Strange! What is it then if not `0.3`?
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
-Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their chart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their cart. The order total will be `$0.30000000000000004`. That would surprise anyone.
 
 But why does this happen?
 
