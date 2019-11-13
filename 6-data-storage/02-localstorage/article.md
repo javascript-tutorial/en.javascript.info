@@ -71,53 +71,37 @@ That's allowed for historical reasons, and mostly works, but generally not recom
 
 2. There's a `storage` event, it triggers when we modify the data. That event does not happen for object-like access. We'll see that later in this chapter.
 
-## Looping over keys
+## Looping over localStorage's content
 
 As we've seen, the methods provide "get/set/remove by key" functionality. But how to get all saved values or keys?
 
-Unfortunately, storage objects are not iterable.
+Fortunately, localStorage is a JavaScript object so we have a few possibilities:
 
-One way is to loop over them as over an array:
+- Loop over the keys using `Object.keys(localStorage).forEach()`
+- Loop over the values using `Object.values(localStorage).forEach()`
+- Loop over the entries using `Object.entries(localStorage).forEach()`
 
-```js run
-for(let i=0; i<localStorage.length; i++) {
-  let key = localStorage.key(i);
-  alert(`${key}: ${localStorage.getItem(key)}`);
-}
-```
-
-Another way is to use `for key in localStorage` loop, just as we do with regular objects.
-
-It iterates over keys, but also outputs few built-in fields that we don't need:
+For example, if we want to show all keys:
 
 ```js run
-// bad try
-for(let key in localStorage) {
-  alert(key); // shows getItem, setItem and other built-in stuff
-}
+Object.keys(localStorage).forEach(key => alert(key));
 ```
 
-...So we need either to filter fields from the prototype with `hasOwnProperty` check:
+Values can be shown the same way using `Object.values()`. More interestingly, we can access the keys and their corresponding values with `Object.entries()`:
 
 ```js run
-for(let key in localStorage) {
-  if (!localStorage.hasOwnProperty(key)) {
-    continue; // skip keys like "setItem", "getItem" etc
-  }
-  alert(`${key}: ${localStorage.getItem(key)}`);
-}
+Object.entries(localStorage).forEach( (entry) => {
+   alert(`${entry[0]}: ${entry[1]}`);
+});
 ```
 
-...Or just get the "own" keys with `Object.keys` and then loop over them if needed:
+Or even better:
 
 ```js run
-let keys = Object.keys(localStorage);
-for(let key of keys) {
-  alert(`${key}: ${localStorage.getItem(key)}`);
-}
+Object.entries(localStorage).forEach( ([key,value]) => {
+   alert(`${key}: ${value}`);
+});
 ```
-
-The latter works, because `Object.keys` only returns the keys that belong to the object, ignoring the prototype.
 
 
 ## Strings only
