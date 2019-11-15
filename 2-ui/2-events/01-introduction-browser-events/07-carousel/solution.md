@@ -1,6 +1,6 @@
 The images ribbon can be represented as `ul/li` list of images `<img>`.
 
-Normally, such a ribbon is wide, but we put a fixed-size `<div>` around to "cut" it, so that only a part of the ribbon is visibble:
+Normally, such a ribbon is wide, but we put a fixed-size `<div>` around to "cut" it, so that only a part of the ribbon is visible:
 
 ![](carousel1.svg)
 
