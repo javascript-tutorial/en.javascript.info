@@ -68,7 +68,7 @@ For instance, if we have a single handler `form.onclick`, then it can "catch" al
 
 In `form.onclick` handler:
 
-- `this` (`=event.currentTarget`) is the `<form>` element, because the handler runs on it.
+- `this` (='event.currentTarget`) is the `<form>` element, because the handler runs on it.
 - `event.target` is the actual element inside the form that was clicked.
 
 Check it out:
