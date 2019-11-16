@@ -102,7 +102,7 @@ To stop the bubbling and prevent handlers on the current element from running, t
 ```
 
 ```warn header="Don't stop bubbling without a need!"
-Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well-thought.
+Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
 
 Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
 
