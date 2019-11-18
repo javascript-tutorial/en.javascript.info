@@ -36,7 +36,7 @@ Letter-sorting is done by the chain of calls in the line `(*)`.
 For convenience let's split it into multiple lines:
 
 ```js
-let sorted = arr[i] // PAN
+let sorted = word // PAN
   .toLowerCase() // pan
   .split('') // ['p','a','n']
   .sort() // ['a','n','p']
