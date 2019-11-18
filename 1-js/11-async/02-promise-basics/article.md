@@ -205,7 +205,7 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
-// .catch(f) is the same as promise.then(null, f)
+// .catch(f) is the same as .then(null, f)
 promise.catch(alert); // shows "Error: Whoops!" after 1 second
 */!*
 ```
