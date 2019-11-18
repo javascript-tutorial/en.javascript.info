@@ -3,7 +3,7 @@
 # Introduction: callbacks
 
 ```warn header="We use browser methods here"
-To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods; specifically, loading scripts and performing simple document manipulations.
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods— specifically, loading scripts and performing simple document manipulations.
 
 If you're not familiar with these methods, and their usage in the examples is confusing, or if you would just like to understand them better, you may want to read a few chapters from the [next part](/document) of the tutorial.
 ```
@@ -14,7 +14,7 @@ For instance, we can schedule such actions using `setTimeout`.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
-Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
+Take a look at the function `loadScript(src)` that loads a script with the given `src`:
 
 ```js
 function loadScript(src) {
@@ -33,7 +33,7 @@ We can use this function like this:
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
+The script is executed "asynchronously," as it starts loading now but runs later when the function has already finished.
 
 If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
@@ -105,13 +105,13 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Here we did it in `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 
-How can we load two scripts sequentially: the first one, and then the second one after it?
+How can we load two scripts sequentially: the first one and then the second one after it?
 
-The natural solution would be to put the second `loadScript` call inside the callback, like this:
+The natural solution would be to put the second `loadScript` call inside the callback like this:
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -129,7 +129,7 @@ loadScript('/my/script.js', function(script) {
 
 After the outer `loadScript` is complete, the callback initiates the inner one.
 
-What if we want one more script...?
+What if we want one more script?
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -147,11 +147,11 @@ loadScript('/my/script.js', function(script) {
 });
 ```
 
-So, every new action is inside a callback. That's fine for few actions, but not good for many, so we'll see other variants soon.
+So every new action is inside a callback. That's fine for a few actions but not good for many, so we'll see other variants soon.
 
 ## Handling errors
 
-In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+In the above examples, we didn't consider errors. What if the script loading fails? Our callback should be able to react to that.
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
@@ -192,7 +192,7 @@ So the single `callback` function is used both for reporting errors and passing 
 
 ## Pyramid of Doom
 
-From the first look, it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+Initially it looks like a viable approach for asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
 
 But for multiple asynchronous actions that follow one after another we'll have code like this:
 
@@ -299,7 +299,7 @@ See? It does the same, and there's no deep nesting now because we made every act
 
 It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
+Also, the functions named `step*` are all of single use— they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
 
 We'd like to have something better.
 
