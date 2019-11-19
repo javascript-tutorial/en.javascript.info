@@ -163,7 +163,7 @@ The handler reads the attribute and executes the method. Take a look at the work
 
 Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
 
-So, what the delegation gives us here?
+So, what advantages does delegation give us here?
 
 ```compare
 + We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
