@@ -242,7 +242,7 @@ That may become really convenient -- no need to write JavaScript for every such 
 
 We can combine multiple behaviors on a single element as well.
 
-The "behavior" pattern can be an alternative of mini-fragments of JavaScript.
+The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
 
 ## Summary
 
