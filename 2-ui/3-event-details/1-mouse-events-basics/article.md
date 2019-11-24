@@ -110,7 +110,7 @@ So if we want to support combinations like `key:Ctrl`+click, then for Mac it mak
 
 Even if we'd like to force Mac users to `key:Ctrl`+click -- that's kind of difficult. The problem is: a left-click with `key:Ctrl` is interpreted as a *right-click* on MacOS, and it generates the `contextmenu` event, not `click` like Windows/Linux.
 
-So if we want users of all operational systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
+So if we want users of all operating systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
 
 For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
 ```
