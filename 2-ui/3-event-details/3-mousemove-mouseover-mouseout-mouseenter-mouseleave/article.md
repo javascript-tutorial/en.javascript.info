@@ -145,7 +145,7 @@ When the pointer leaves an element -- `mouseleave` triggers.
 ```online
 This example is similar to the one above, but now the top element has `mouseenter/mouseleave` instead of `mouseover/mouseout`.
 
-As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignores
+As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignored
 
 [codetabs height=340 src="mouseleave"]
 ```
