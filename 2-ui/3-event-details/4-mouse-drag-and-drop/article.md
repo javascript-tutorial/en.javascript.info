@@ -124,7 +124,7 @@ Let's update our algorithm:
 
     ```js
     // onmousemove
-    // у мяча ball стоит position:absoute
+    // ball has position:absoute
     ball.style.left = event.pageX - *!*shiftX*/!* + 'px';
     ball.style.top = event.pageY - *!*shiftY*/!* + 'px';
     ```
