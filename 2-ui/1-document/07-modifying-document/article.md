@@ -540,7 +540,7 @@ So if we need to add a lot of text into HTML dynamically, and we're at page load
     - `"beforeend"` -- insert `html` into `elem`, at the end,
     - `"afterend"` -- insert `html` right after `elem`.
 
-    Also there are also similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
+    Also there are similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
 
 - To append HTML to the page before it has finished loading:
     - `document.write(html)`
