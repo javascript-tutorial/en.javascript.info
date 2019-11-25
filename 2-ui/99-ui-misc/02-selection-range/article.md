@@ -428,7 +428,7 @@ Form elements, such as `input` and `textarea` provide [special API for selection
 
 Properties:
 - `input.selectionStart` -- position of selection start (writeable),
-- `input.selectionEnd` -- position of selection start (writeable),
+- `input.selectionEnd` -- position of selection end (writeable),
 - `input.selectionDirection` -- selection direction, one of: "forward", "backward" or "none" (if e.g. selected with a double mouse click),
 
 Events:
