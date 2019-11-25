@@ -2,6 +2,10 @@
   color: red;
 }
 
+body {
+  margin: 0;
+}
+
 .minutes {
   color: green;
 }
@@ -20,9 +24,15 @@
   top: 0;
 }
 
-.tooltip {
+#tooltip {
   position: absolute;
-  background: #eee;
-  border: 1px brown solid;
-  padding: 3px;
+  padding: 10px 20px;
+  border: 1px solid #b3c9ce;
+  border-radius: 4px;
+  text-align: center;
+  font: italic 14px/1.3 sans-serif;
+  color: #333;
+  background: #fff;
+  z-index: 100000;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, .3);
 }
