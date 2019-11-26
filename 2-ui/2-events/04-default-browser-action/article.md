@@ -8,7 +8,7 @@ For instance:
 - A click on a form submit button - initiates its submission to the server.
 - Pressing a mouse button over a text and moving it - selects the text.
 
-If we handle an event in JavaScript, we may not want the corresponding browser action to happen, to implement another behavior instead.
+If we handle an event in JavaScript, we may not want the corresponding browser action to happen, and want to implement another behavior instead.
 
 ## Preventing browser actions
 
