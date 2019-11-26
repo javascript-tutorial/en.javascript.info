@@ -207,7 +207,7 @@ As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (a
 ```
 
 ```smart header="Nested context menus architecture"
-There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow to store other handlers in it.
+There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow us to store other handlers in it.
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 
