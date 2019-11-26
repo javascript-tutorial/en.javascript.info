@@ -20,7 +20,7 @@ The fix is simple:
   }
 </script>
 
-<a href="http://w3.org" onclick="*!*return handler()*/!*">w3.org</a>
+<a href="https://w3.org" onclick="*!*return handler()*/!*">w3.org</a>
 ```
 
 Also we can use `event.preventDefault()`, like this:
@@ -35,5 +35,5 @@ Also we can use `event.preventDefault()`, like this:
 */!*
 </script>
 
-<a href="http://w3.org" onclick="*!*handler(event)*/!*">w3.org</a>
+<a href="https://w3.org" onclick="*!*handler(event)*/!*">w3.org</a>
 ```
