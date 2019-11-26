@@ -40,7 +40,7 @@ In modern HTML we should always write `DOCTYPE`.
 
 ## Width/height of the document
 
-Theoretically, as the root document element is `documentElement.clientWidth/Height`, and it encloses all the content, we could measure document full size as `documentElement.scrollWidth/scrollHeight`.
+Theoretically, as the root document element is `document.documentElement`, and it encloses all the content, we could measure document full size as `document.documentElement.scrollWidth/scrollHeight`.
 
 But on that element, for the whole page, these properties do not work as intended. In Chrome/Safari/Opera if there's no scroll, then `documentElement.scrollHeight` may be even less than  `documentElement.clientHeight`! Sounds like a nonsense, weird, right?
 
@@ -62,7 +62,7 @@ Why so? Better don't ask. These inconsistencies come from ancient times, not a "
 
 DOM elements have their current scroll state in `elem.scrollLeft/scrollTop`.
 
-For document scroll `document.documentElement.scrollLeft/Top` works in most browsers, except oldler WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
+For document scroll `document.documentElement.scrollLeft/Top` works in most browsers, except older WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
 
 Luckily, we don't have to remember these peculiarities at all, because the scroll is available in the special properties `window.pageXOffset/pageYOffset`:
 
