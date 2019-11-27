@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+ 
+<body>
+
+   <p>before the script...</p>
+   
+   <script>
+     alert ( 'Hello World!' );
+    </script>
+    
+    <p>...after the script.</p>
+    
+</body>
+
+</html>
