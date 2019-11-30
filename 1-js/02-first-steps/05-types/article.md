@@ -185,13 +185,13 @@ The `symbol` type is used to create unique identifiers for objects. We mention i
 In JavaScript, the Number type cannot represent integer values larger than 2<sup>53</sup>-1. This limitation has forced many of us to use inefficient workarounds. BigInt is a new data type intended to fix just that. A BigInt is created by appending n to the end of an integer literal — 10n — or by calling the function BigInt().
 
 ```js run
-const theBiggestInt = 9007199254740991n;
+const huge = 9007199254740991n;
 
-const huge = BigInt(9007199254740991);
-
-alert(typeof biggestInt); // shows "bigint"
+const huge2 = BigInt(9007199254740991);
 
 alert(typeof huge); // shows "bigint"
+
+alert(typeof huge2); // shows "bigint"
 ```
 Bigint can mostly be used like number but there are some key differences
 - Most math operatioons work on it normally
