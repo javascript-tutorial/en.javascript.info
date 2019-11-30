@@ -10,7 +10,7 @@ message = 123456;
 
 Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
 
-There are seven basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
 
 ## A number
 
@@ -180,6 +180,31 @@ All other types are called "primitive" because their values can contain only a s
 
 The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study it after objects.
 
+## BigInt
+
+In JavaScript, the Number type cannot represent integer values larger than 2<sup>53</sup>-1. This limitation has forced many of us to use inefficient workarounds. BigInt is a new data type intended to fix just that. A BigInt is created by appending n to the end of an integer literal — 10n — or by calling the function BigInt().
+
+```js run
+const theBiggestInt = 9007199254740991n;
+
+const huge = BigInt(9007199254740991);
+
+alert(typeof biggestInt); // shows "bigint"
+
+alert(typeof huge); // shows "bigint"
+```
+Bigint can mostly be used like number but there are some key differences
+- Most math operatioons work on it normally
+- It cannot be mixed and match with number while apllying binary operations it has to be coerced into each other but be careful it can lead to some precision losses
+- The / operator also works as expected with whole numbers. However, since these are BigInts and not BigDecimals, this operation will round towards 0, which is to say, it will not return any fractional digits.
+
+To  know more in detail about the java script newest addition in prmitive types please visit [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) docs for it
+
+
+```smart header="Compatability issues"
+Right now it only compatible with firefox and chrome but is not supported in Safari.
+```
+
 ## The typeof operator [#type-typeof]
 
 The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently or just want to do a quick check.
@@ -226,7 +251,7 @@ The last three lines may need additional explanation:
 
 ## Summary
 
-There are 7 basic data types in JavaScript.
+There are 8 basic data types in JavaScript.
 
 - `number` for numbers of any kind: integer or floating-point.
 - `string` for strings. A string may have one or more characters, there's no separate single-character type.
@@ -235,6 +260,7 @@ There are 7 basic data types in JavaScript.
 - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
 - `object` for more complex data structures.
 - `symbol` for unique identifiers.
+- `bigint` is for displaying numbers greater than 2<sup>53</sup>-1
 
 The `typeof` operator allows us to see which type is stored in a variable.
 
