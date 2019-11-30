@@ -23,7 +23,7 @@ For instance:
 
 *!*
   <script>
-    alert( 'Hello, world!' );
+    alert('Hello, world!');
   </script>
 */!*
 
