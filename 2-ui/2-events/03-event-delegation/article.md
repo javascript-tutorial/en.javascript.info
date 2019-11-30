@@ -163,7 +163,7 @@ The handler reads the attribute and executes the method. Take a look at the work
 
 Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
 
-So, what the delegation gives us here?
+So, what advantages does delegation give us here?
 
 ```compare
 + We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
@@ -242,13 +242,13 @@ That may become really convenient -- no need to write JavaScript for every such 
 
 We can combine multiple behaviors on a single element as well.
 
-The "behavior" pattern can be an alternative of mini-fragments of JavaScript.
+The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
 
 ## Summary
 
 Event delegation is really cool! It's one of the most helpful patterns for DOM events.
 
-It's often used to add same handling for many similar elements, but not only for that.
+It's often used to add the same handling for many similar elements, but not only for that.
 
 The algorithm:
 
@@ -261,12 +261,12 @@ Benefits:
 ```compare
 + Simplifies initialization and saves memory: no need to add many handlers.
 + Less code: when adding or removing elements, no need to add/remove handlers.
-+ DOM modifications: we can mass add/remove elements with `innerHTML` and alike.
++ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
 ```
 
 The delegation has its limitations of course:
 
 ```compare
 - First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
-- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter if they interest us or not. But usually the load is negligible, so we don't take it into account.
+- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
 ```

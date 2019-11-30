@@ -8,7 +8,7 @@ For instance:
 - A click on a form submit button - initiates its submission to the server.
 - Pressing a mouse button over a text and moving it - selects the text.
 
-If we handle an event in JavaScript, we may not want the corresponding browser action to happen, to implement another behavior instead.
+If we handle an event in JavaScript, we may not want the corresponding browser action to happen, and want to implement another behavior instead.
 
 ## Preventing browser actions
 
@@ -207,7 +207,7 @@ As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (a
 ```
 
 ```smart header="Nested context menus architecture"
-There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow to store other handlers in it.
+There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow us to store other handlers in it.
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 
@@ -240,5 +240,5 @@ But we should generally keep the semantic meaning of HTML elements. For instance
 
 Besides being "just a good thing", that makes your HTML better in terms of accessibility.
 
-Also if we consider the example with `<a>`, then please note: a browser allows to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
+Also if we consider the example with `<a>`, then please note: a browser allows us to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
 ```

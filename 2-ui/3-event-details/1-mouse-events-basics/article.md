@@ -47,7 +47,7 @@ In cases when a single action initiates multiple events, their order is fixed. T
 ```online
 Click the button below and you'll see the events. Try double-click too.
 
-On the teststand below all mouse events are logged, and if there are more than 1 second delay between them, then they are separated by a horizontal ruler.
+On the teststand below all mouse events are logged, and if there is more than a 1 second delay between them they are separated by a horizontal ruler.
 
 Also we can see the `which` property that allows to detect the mouse button.
 
@@ -110,7 +110,7 @@ So if we want to support combinations like `key:Ctrl`+click, then for Mac it mak
 
 Even if we'd like to force Mac users to `key:Ctrl`+click -- that's kind of difficult. The problem is: a left-click with `key:Ctrl` is interpreted as a *right-click* on MacOS, and it generates the `contextmenu` event, not `click` like Windows/Linux.
 
-So if we want users of all operational systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
+So if we want users of all operating systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
 
 For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
 ```

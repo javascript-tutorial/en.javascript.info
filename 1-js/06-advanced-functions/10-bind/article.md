@@ -279,7 +279,7 @@ What if we'd like to fix some arguments, but not the context `this`? For example
 
 The native `bind` does not allow that. We can't just omit the context and jump to arguments.
 
-Fortunately, a helper function `partial` for binding only arguments can be easily implemented.
+Fortunately, a function `partial` for binding only arguments can be easily implemented.
 
 Like this:
 
