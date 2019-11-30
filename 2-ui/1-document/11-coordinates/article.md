@@ -75,17 +75,17 @@ Please note:
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
 Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`. So the additional derived properties are for convenience.
 
-Technically it's possible for `width/height` to be negative, that allows for  "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
+Technically it's possible for `width/height` to be negative, that allows for "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
+
+Negative `width/height` values mean that the rectangle starts at its bottom-right corner and then "grows" left-upwards.
 
 Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
 
 ![](coordinates-negative.svg)
 
-The rectangle starts at its bottom-right corner and then spans left/up, as negative `width/height` lead it backwards by coordinates.
+As you can see, `left/top` do not equal `x/y` in such case.
 
-As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. Their formula can be adjusted to cover negative `width/height`, that's simple enough, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
-
-Here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
+In practice though, `elem.getBoundingClientRect()` always returns positive width/height, here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
 ```
 
 ```warn header="Internet Explorer and Edge: no support for `x/y`"
