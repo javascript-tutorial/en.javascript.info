@@ -42,7 +42,7 @@ Only comments may appear above `"use strict"`.
 ```warn header="There's no way to cancel `use strict`"
 There is no directive like `"no use strict"` that reverts the engine to old behavior.
 
-Once we enter strict mode, there's no return.
+Once we enter strict mode, there's no going back.
 ```
 
 ## Browser console
