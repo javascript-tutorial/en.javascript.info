@@ -31,7 +31,7 @@ function makeUser(){
 
 alert( makeUser().name ); // Error: Cannot read property 'name' of undefined
 ```
-As you can see the result of `alert( makeUser().name )` is the same as `alert( user.ref.name )`
+As you can see the result of `alert( makeUser().name )` is the same as the result of `alert( user.ref.name )` from the previous example.
 
 Here's the opposite case:
 
