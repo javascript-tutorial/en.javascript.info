@@ -48,7 +48,7 @@ alert(Number(bigint) + number); // 3
 The conversion of bigint to number is always silent, but if the bigint is too huge and won't fit the number type, then extra bits will be cut off, causing a precision loss.
 
 ````smart header="The unary plus is not supported on bigints"
-The unary plus operator `+value` is a well-known way to convert a `value` to number.
+The unary plus operator `+value` is a well-known way to convert `value` to a number.
 
 On bigints it's not supported, to avoid confusion:
 ```js run
@@ -56,6 +56,7 @@ let bigint = 1n;
 
 alert( +bigint ); // error
 ```
+So we should use `Number()` to convert a bigint to a number.
 ````
 
 ## Comparisons
