@@ -82,7 +82,7 @@ alert( Number(false) );       // 0
 Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
 
 ````smart header="Addition '+' concatenates strings"
-Almost all mathematical operations convert values to numbers. A notable exception is addition `+`. If one of the added values is a string, the other one is also converted to a string.
+Almost all mathematical operations convert values to numbers. A notable exception is the addition `+` operator. If one of the added values is a string, the other one is also converted to a string.
 
 Then, it concatenates (joins) them:
 
