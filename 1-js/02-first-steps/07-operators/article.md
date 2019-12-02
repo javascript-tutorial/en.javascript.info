@@ -214,7 +214,26 @@ For instance:
 alert( 5 % 2 ); // 1 is a remainder of 5 divided by 2
 alert( 8 % 3 ); // 2 is a remainder of 8 divided by 3
 alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
+
+alert( -5 % 2 ); // -1 is a remainder of -5 divided by 2
+alert( -8 % 3 ); // -2 is a remainder of -8 divided by 3
+alert( -6 % 3 ); // 0 is a remainder of -6 divided by 3
+
+alert( 5 % -2 ); // 1 is a remainder of 5 divided by -2
+alert( 8 % -3 ); // 2 is a remainder of 8 divided by -3
+alert( 6 % -3 ); // 0 is a remainder of 6 divided by -3
+
+alert( 2 % 0 ); // NaN
+alert( NaN % 5 ); // NaN
+alert( 7 % NaN ); // NaN
+
+alert( 5.5 % 2 ); // 1.5 is a remainder of 5.5 divided by -2
+alert( 5.5 % -4 ); // -1.5 is a remainder of 5.5 divided by -4
+alert( -5.5 % 4 ); // -1.5 is a remainder of 5.5 divided by 4
+alert( -5.5 % -4 ); // -1 is a remainder of 5.5 divided by -4
 ```
+
+It may also be referred to as the modulo operator, but note that the remainder operator is not the same as the modulo operator and they produce different results in certain situations. There is no modolus operation in JavaScript.
 
 ## Exponentiation **
 
