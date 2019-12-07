@@ -37,7 +37,7 @@ We can use this function like this:
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously," as it starts loading now but runs later when the function has already finished.
+The script is executed "asynchronously", as it starts loading now but runs later when the function has already finished.
 
 If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
@@ -155,7 +155,7 @@ So every new action is inside a callback. That's fine for a few actions but not 
 
 ## Handling errors
 
-In the above examples, we didn't consider errors. What if the script loading fails? Our callback should be able to react to that.
+In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react to that.
 
 Here's an improved version of `loadScript` that tracks loading errors:
 
@@ -303,7 +303,7 @@ See? It does the same, and there's no deep nesting now because we made every act
 
 It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
 
-Also, the functions named `step*` are all of single use— they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
+Also, the functions named `step*` are all of single use — they are created only to avoid the "pyramid of doom". No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
 
 We'd like to have something better.
 
