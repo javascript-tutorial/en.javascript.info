@@ -121,7 +121,7 @@ During the call, `say()` uses the outer variable `phrase`. Let's look at the det
 
 When a function runs, a new Lexical Environment is created automatically to store local variables and parameters of the call.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+For instance, for `say("John")`, it looks like this (the execution is at the line labeled with an arrow):
 
 <!--
     ```js
