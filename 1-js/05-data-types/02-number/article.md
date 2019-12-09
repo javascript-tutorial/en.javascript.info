@@ -413,7 +413,7 @@ There are more functions and constants in `Math` object, including trigonometry,
 To write numbers with many zeroes:
 
 - Append `"e"` with the zeroes count to the number. Like: `123e6` is the same as `123` with 6 zeroes `123000000`.
-- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. E.g. `123e-6` means `0.000123` (`123` millionth).
+- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. E.g. `123e-6` means `0.000123` (`123` millionths).
 
 For different numeral systems:
 
