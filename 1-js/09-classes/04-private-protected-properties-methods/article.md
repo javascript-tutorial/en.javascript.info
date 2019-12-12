@@ -281,6 +281,7 @@ With private fields that's impossible: `this['#name']` doesn't work. That's a sy
 
 In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)).
 
+
 It gives the following benefits:
 
 Protection for users, so that they don't shoot themselves in the foot
