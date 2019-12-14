@@ -3,16 +3,18 @@ The solution is short, yet may look a bit tricky, so here I provide it with exte
 
 ```js
 let sortedRows = Array.from(table.tBodies[0].rows) // (1)
-  .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1); // (2)
+  .slice(1) // (2)
+  .sort((rowA, rowB) => rowA.cells[0].innerHTML > rowB.cells[0].innerHTML ? 1 : -1); // (3)
 
-table.tBodies[0].append(...sortedRows); // (3)
+table.tBodies[0].append(...sortedRows); // (4)
 ```
 
 The step-by-step algorthm:
 
 1. Get all `<tr>`, from `<tbody>`.
-2. Then sort them comparing by the content of the first `<td>` (the name field).
-3. Now insert nodes in the right order by `.append(...sortedRows)`.
+2. Remove the first row which contains headers: `<th>`. We want to sort only the rows containing `<td>`.
+3. Then sort them comparing by the content of the first `<td>` (the name field).
+4. Now insert nodes in the right order by `.append(...sortedRows)`.
 
 Please note: we don't have to remove row elements, just "re-insert", they leave the old place automatically.
 
