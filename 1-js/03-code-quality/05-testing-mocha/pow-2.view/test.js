@@ -5,7 +5,7 @@ describe("pow", function() {
   });
 
   it("3 raised to power 3 is 27", function() {
-    assert.equal(pow(3, 3), 27);
+    assert.equal(pow(3, 4), 81);
   });
 
 });
