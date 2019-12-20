@@ -361,6 +361,96 @@ let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 alert(lengths); // 5,7,6
 ```
 
+### flat and flatMap
+
+The [arr.flat](mdn:js/Array/flat) and [arr.flatMap](mdn:js/Array/flatMap) methods are two recent additions to the language (introduced in [ES2019](https://github.com/tc39/proposal-flatMap)). As their names suggest, these methods allow us to _flatten_ arrays. Both methods return a new array, which also means that neither one modifies the original array.
+
+````smart header="Concept of flattening arrays"
+By flattening arrays, we refer to the process of concatenating multidimensional arrays into a single array - this is the definition of "flatten". This will ultimately make our data structures easier to work with.
+````
+
+The [arr.flat](mdn:js/Array/flat) method returns a new array that is a flattened version of the array it was called on.
+
+The syntax is:
+
+```js
+let flattenedArray = arr.flat(depth);
+```
+
+For instance, here we flatten a 1-level nested array:
+
+```js run
+let numbers = [1, 2, 3, [4, 5]].flat();
+alert(numbers); // 1,2,3,4,5
+```
+
+````smart header="The depth argument"
+If we don't provide a depth argument, it defaults to a depth of 1. Otherwise, if we pass in a number as argument, it will be used as the maximum depth to flatten the array.
+````
+
+Let's flatten a 2-level nested array:
+
+```js run
+let numbers = [1, 2, 3, [4, 5, [6, 7]]].flat(2);
+alert(numbers); // 1,2,3,4,5,6,7
+```
+
+Now, let's see what happens when the array's total depth is greater than the maximum depth specified for the flat method:
+
+```js run
+let numbers = [1, 2, 3, [4, 5, [6, 7, [8]]]].flat(2);
+console.log(numbers); // [1,2,3,4,5,6,7,[8]]
+```
+
+We can pass in [Infinity](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity) as the argument to flatten an array of any given depth.
+
+```js run
+let numbers = [1, 2, 3, [4, 5, [6, 7, [8]]]].flat(Infinity);
+alert(numbers); // 1,2,3,4,5,6,7,8
+```
+
+````smart header="Flattening arrays with empty slots"
+One curious thing about the flat() method: it removes empty slots in arrays.
+````
+
+For instance:
+```js run
+let numbers = [1, 2, 3, , 5, 6, , 8].flat();
+alert(numbers); // 1,2,3,5,6,8
+```
+
+The [arr.flatMap](mdn:js/Array/flatMap) method works the same as applying the [arr.map](mdn:js/Array/map) method followed by the [arr.flat](mdn:js/Array/flat) method with a default depth of 1. In other words, this method maps each value of the array to a new value and then the resulting array is flattened up to a maximum depth of 1.
+
+The syntax is:
+
+```js
+let flatMappedArray = arr.flatMap(function(item, index, array) {
+  // returns the new value instead of item, flattened up to a maximum depth of 1
+});
+```
+
+Let’s take a look at the use of the flatMap method:
+
+```js run
+let double = [1, 2, 3, 4].flatMap(number => number * 2);
+alert(double); // 2,4,6,8
+```
+
+In many cases, the same might be achieved using the regular  [arr.map](mdn:js/Array/map) method itself, but there are case scenarios in which the [arr.flatMap](mdn:js/Array/flatMap) method is a better choice since merging both in one method is slightly more efficient.
+
+```js run
+const numbers = [1, 2, 3, 4];
+const numberNames = ["One", "Two", "Three", "Four"];
+let mappedOnly = numbers.map((number, index) => [number, numberNames[index]]);
+let mappedAndFlattened = numbers.flatMap((number, index) => [number, numberNames[index]]);
+console.log(mappedOnly); // [[1, "One"], [2, "Two"], [3, "Three"], [4, "Four"]]
+console.log(mappedAndFlattened); // [1, "One", 2, "Two", 3, "Three", 4, "Four"]
+```
+
+````smart header="Browser compatibility: No IE nor Edge."
+[Browser compatibility](mdn:js/Array/flat#Browser_compatibility) is pretty good (despite being a new feature introduced in ES2019). However, at the time of writing, there is no support for Internet Explorer or Edge.
+````
+
 ### sort(fn)
 
 The call to [arr.sort()](mdn:js/Array/sort) sorts the array *in place*, changing its element order.
