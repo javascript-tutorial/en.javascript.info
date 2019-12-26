@@ -24,12 +24,7 @@
 
 <script>
   let sortedRows = Array.from(table.tBodies[0].rows)
-    .sort((rowA, rowB) => {
-      let valueA = rowA.cells[0].innerHTML;
-      let valueB = rowB.cells[0].innerHTML;
-      return valueA > valueB ? 1 :
-        valueA == valueB ? 0 : -1;
-    });
+    .sort((rowA, rowB) => rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML));
 
   table.tBodies[0].append(...sortedRows);
 </script>
