@@ -272,6 +272,7 @@ let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
 ```
+Note that this is different, and more powerful than the real life "subscription list" scenario or the "observer" pattern. If the singer has already released a song and then a person signs up on the subscription list, in real life, he or she probably won't receive that song, but rather, only any song in the future. The same with the "observer" pattern: if an object has changed and some code register an observer on that object, the observer will not get notifified on that change, but only on future changes. However, with a promise, the code that calls `promise.then()` can "retroactively" specify what happens. It is like: when a person signs up on the subscription list, he or she will immediately get sent the song. 
 ````
 
 Next, let's see more practical examples of how promises can help us write asynchronous code.
