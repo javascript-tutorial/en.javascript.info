@@ -397,4 +397,4 @@ Custom elements can be of two types:
     /* <button is="my-button"> */
     ```
 
-Custom elements are well-supported among browsers. Edge is a bit behind, but there's a polyfill <https://github.com/webcomponents/webcomponentsjs>.
+Custom elements are well-supported among browsers. Edge is a bit behind, but there's a polyfill <https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs>.
