@@ -8,7 +8,7 @@ Everyone is happy: you, because the people don't crowd you anymore, and fans, be
 
 This is a real-life analogy for things we often have in programming:
 
-1. A "producing code" that does something and takes time. For instance, a code that loads the data over a network. That's a "singer".
+1. A "producing code" that does something and takes time. For instance, some code that loads the data over a network. That's a "singer".
 2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
 3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
 
@@ -22,7 +22,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-The function passed to `new Promise` is called the *executor*. When `new Promise` is created, it runs automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
+The function passed to `new Promise` is called the *executor*. When `new Promise` is created, the executor runs automatically. It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the "singer".
 
 Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. Our code is only inside the executor.
 
@@ -31,7 +31,7 @@ When the executor obtains the result, be it soon or late - doesn't matter, it sh
 - `resolve(value)` — if the job finished successfully, with result `value`.
 - `reject(error)` — if an error occurred, `error` is the error object.
 
-So to summarize: the executor runs automatically, it should do a job and then call either `resolve` or `reject`.
+So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
 
 The `promise` object returned by `new Promise` constructor has internal properties:
 
