@@ -384,7 +384,7 @@ The order became `1, 15, 2`. Incorrect. But why?
 
 **The items are sorted as strings by default.**
 
-Literally, all elements are converted to strings for comparisons. For strings,  lexicographic ordering is applied and indeed `"2" > "15"`.
+Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed `"2" > "15"`.
 
 To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
 
@@ -431,7 +431,6 @@ By the way, if we ever want to know which elements are compared -- nothing preve
 
 The algorithm may compare an element with multiple others in the process, but it tries to make as few comparisons as possible.
 
-
 ````smart header="A comparison function may return any number"
 Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
 
@@ -454,6 +453,22 @@ arr.sort( (a, b) => a - b );
 ```
 
 This works exactly the same as the longer version above.
+````
+
+````smart header="Use `localeCompare` for strings"
+Remember [strings](info:string#correct-comparisons) comparison algorithm? It compares letters by their codes by default.
+
+For many alphabets, it's better to use `str.localeCompare` method to correctly sort letters, such as `Ö`.
+
+For example, let's sort a few countries in German:
+
+```js run
+let countries = ['Österreich', 'Andorra', 'Vietnam'];
+
+alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
+
+alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
+```
 ````
 
 ### reverse
