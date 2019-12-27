@@ -545,7 +545,7 @@ The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array
 The syntax is:
 
 ```js
-let value = arr.reduce(function(previousValue, item, index, array) {
+let value = arr.reduce(function(accumulator, item, index, array) {
   // ...
 }, [initial]);
 ```
@@ -554,14 +554,16 @@ The function is applied to all array elements one after another and "carries on"
 
 Arguments:
 
-- `previousValue` -- is the result of the previous function call, equals `initial` the first time (if `initial` is provided).
+- `accumulator` -- is the result of the previous function call, equals `initial` the first time (if `initial` is provided).
 - `item` -- is the current array item.
 - `index` -- is its position.
 - `array` -- is the array.
 
 As function is applied, the result of the previous function call is passed to the next one as the first argument.
 
-Sounds complicated, but it's not if you think about the first argument as the "accumulator" that stores the combined result of all previous execution. And at the end it becomes the result of `reduce`.
+So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
+
+Sounds complicated?
 
 The easiest way to grasp that is by example.
 
@@ -625,7 +627,6 @@ let arr = [];
 // if the initial value existed, reduce would return it for the empty arr.
 arr.reduce((sum, current) => sum + current);
 ```
-
 
 So it's advised to always specify the initial value.
 
