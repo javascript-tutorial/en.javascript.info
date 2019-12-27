@@ -264,7 +264,7 @@ It's not exactly an alias of `then(f,f)` though. There are several important dif
 3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
 
 ````smart header="On settled promises handlers run immediately"
-If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they execute immediately:
+If a promise is pending, `.then/catch/finally` handlers wait to be called. Otherwise, if a promise has already settled, they execute immediately:
 
 ```js run
 // the promise becomes resolved immediately upon creation
