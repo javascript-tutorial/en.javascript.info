@@ -120,11 +120,10 @@ Here's a small cheatsheet:
 | `next()` return value is              | any value         | `Promise`  |
 | to loop, use                          | `for..of`         | `for await..of` |
 
-
-````warn header="The spread operator `...` doesn't work asynchronously"
+````warn header="The spread syntax `...` doesn't work asynchronously"
 Features that require regular, synchronous iterators, don't work with asynchronous ones.
 
-For instance, a spread operator won't work:
+For instance, a spread syntax won't work:
 ```js
 alert( [...range] ); // Error, no Symbol.iterator
 ```
