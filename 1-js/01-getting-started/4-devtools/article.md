@@ -55,6 +55,12 @@ Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom
 
 Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
 
+## Node.js
+
+If you are familiar with the command prompt, Terminal on a Mac, or Bash in general, you can try [Node.js](https://nodejs.org/).  After installing, you can use the interactive console by typing `node` and Enter. Type `.help` for initial help, or any JavaScript code or expression such as `[1, ...[3,5,7], 9, 11]` to start running or evaluating. The result and returned value will be shown immediately. To quit, usually it is CTRL-D on a blank line, on any Unix-like system.
+
+You can also use `node myFile.js` to run JavaScript code contained in a file.  This has an advantage of a new environment every time you run it. If you run the code in a web browser or inside of Node.js interactive console, then a variable previously defined by `let a = 1` will get a complaint if you are to run this line again (if you copy and paste some code to try out).
+
 ## Summary
 
 - Developer tools allow us to see errors, run commands, examine variables, and much more.
