@@ -41,6 +41,10 @@ alert( map.size ); // 3
 
 As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
+```smart header="`map[key]` may appear to work but it is not the proper way"
+When starting to use `Map`, it may appear that `map[key]` also works, but this is treating `map` as a plain JavaScript object, and using it as a dictionary. As we can check, if we set `map[1] = 2`, then `map.get(1)` will not be able to retrieve the value.
+```
+
 **Map can also use objects as keys.**
 
 For instance:
