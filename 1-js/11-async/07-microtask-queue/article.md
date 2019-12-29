@@ -109,4 +109,4 @@ So, `.then/catch/finally` handlers are always called after the current code is f
 
 If we need to guarantee that a piece of code is executed after `.then/catch/finally`, we can add it into a chained `.then` call.
 
-In most Javascript engines, including browsers and Node.js, the concept of microtasks is closely tied with "event loop" and "macrotasks". As these have no direct relation to promises, they are covered in another part of the tutorial, in the chapter <info:event-loop>.
+In most JavaScript engines, including browsers and Node.js, the concept of microtasks is closely tied with "event loop" and "macrotasks". As these have no direct relation to promises, they are covered in another part of the tutorial, in the chapter <info:event-loop>.
