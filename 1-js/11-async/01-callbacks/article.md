@@ -16,7 +16,7 @@ For instance, we can schedule such actions using `setTimeout`.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
-Take a look at the function `loadScript(src)` that loads a script with the given `src`:
+Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
 
 ```js
 function loadScript(src) {
@@ -37,7 +37,7 @@ We can use this function like this:
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously", as it starts loading now but runs later when the function has already finished.
+The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
 
 If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
 
@@ -115,7 +115,7 @@ Here we did it in `loadScript`, but of course it's a general approach.
 
 How can we load two scripts sequentially: the first one, and then the second one after it?
 
-The natural solution would be to put the second `loadScript` call inside the callback like this:
+The natural solution would be to put the second `loadScript` call inside the callback, like this:
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -151,7 +151,7 @@ loadScript('/my/script.js', function(script) {
 });
 ```
 
-So every new action is inside a callback. That's fine for a few actions but not good for many, so we'll see other variants soon.
+So, every new action is inside a callback. That's fine for a few actions, but not good for many, so we'll see other variants soon.
 
 ## Handling errors
 
