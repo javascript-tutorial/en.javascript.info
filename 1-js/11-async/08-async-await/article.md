@@ -24,7 +24,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-We could explicitly return a promise, which would be the same:
+...We could explicitly return a promise, which would be the same:
 
 ```js run
 async function f() {
@@ -34,7 +34,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-So, `async` ensures that the function returns a promise and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
+So, `async` ensures that the function returns a promise, and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
 
 ## Await
 
@@ -168,7 +168,7 @@ async function f() {
 f();
 ```
 
-If `await` gets a non-promise object with `.then`, it calls that method providing built-in functions `resolve` and `reject` as arguments (just as it does for a regular `Promise` executor). Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
+If `await` gets a non-promise object with `.then`, it calls that method providing the built-in functions `resolve` and `reject` as arguments (just as it does for a regular `Promise` executor). Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
 
 ````smart header="Async class methods"
@@ -192,7 +192,7 @@ The meaning is the same: it ensures that the returned value is a promise and ena
 ````
 ## Error handling
 
-If a promise resolves normally, then `await promise` returns the result. But in the case of a rejection, it throws the error, just as if there was a `throw` statement at that line.
+If a promise resolves normally, then `await promise` returns the result. But in the case of a rejection, it throws the error, just as if there were a `throw` statement at that line.
 
 This code:
 
@@ -292,14 +292,14 @@ In the case of an error, it propagates as usual, from the failed promise to `Pro
 
 The `async` keyword before a function has two effects:
 
-1. Makes it always return a promise
-2. Allows `await` to be used in it
+1. Makes it always return a promise.
+2. Allows `await` to be used in it.
 
 The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
 
-1. If it's an error, the exception is generated — same as if `throw error` was called at that very place.
+1. If it's an error, the exception is generated — same as if `throw error` were called at that very place.
 2. Otherwise, it returns the result.
 
 Together they provide a great framework to write asynchronous code that is easy to both read and write.
 
-With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also `Promise.all` is nice when waiting for many tasks simultaneously.
+With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also `Promise.all` is nice when we are waiting for many tasks simultaneously.
