@@ -299,13 +299,13 @@ The only syntax difference between `call` and `apply` is that `call` expects a l
 So these two calls are almost equivalent:
 
 ```js
-func.call(context, ...args); // pass an array as list with spread operator
+func.call(context, ...args); // pass an array as list with spread syntax
 func.apply(context, args);   // is same as using apply
 ```
 
 There's only a minor difference:
 
-- The spread operator `...` allows to pass *iterable* `args` as the list to `call`.
+- The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
 - The `apply` accepts only *array-like* `args`.
 
 So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
