@@ -97,7 +97,7 @@ Now, if we run it, we'll see `Promise Failed!` first and then `caught`.
 
 If we didn't know about the microtasks queue, we could wonder: "Why did `unhandledrejection` handler run? We did catch and handle the error!"
 
-But now we understand that `unhandledrejection` is generated when the microtask queue is complete: The engine examines promises and, if any of them is in the "rejected" state, then the event triggers.
+But now we understand that `unhandledrejection` is generated when the microtask queue is complete: the engine examines promises and, if any of them is in the "rejected" state, then the event triggers.
 
 In the example above, `.catch` added by `setTimeout` also triggers. But it does so later, after `unhandledrejection` has already occurred, so it doesn't change anything.
 
