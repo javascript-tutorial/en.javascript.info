@@ -38,7 +38,7 @@ That's why "code finished" in the example above shows first.
 
 Promise handlers always go through this internal queue.
 
-If there's a chain with multiple `.then/catch/finally`, then every one of them is executed asynchronously. That is, it first gets queued then executed when the current code is complete and previously queued handlers are finished.
+If there's a chain with multiple `.then/catch/finally`, then every one of them is executed asynchronously. That is, it first gets queued, then executed when the current code is complete and previously queued handlers are finished.
 
 **What if the order matters for us? How can we make `code finished` run after `promise done`?**
 
@@ -72,7 +72,7 @@ promise.catch(err => alert('caught'));
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-But if we forget to add `.catch`, then after the microtask queue is empty, the engine triggers the event:
+But if we forget to add `.catch`, then, after the microtask queue is empty, the engine triggers the event:
 
 ```js run
 let promise = Promise.reject(new Error("Promise Failed!"));
@@ -93,11 +93,11 @@ setTimeout(() => promise.catch(err => alert('caught')), 1000);
 window.addEventListener('unhandledrejection', event => alert(event.reason));
 ```
 
-Now if we run it, we'll see `Promise Failed!` first and then `caught`.
+Now, if we run it, we'll see `Promise Failed!` first and then `caught`.
 
 If we didn't know about the microtasks queue, we could wonder: "Why did `unhandledrejection` handler run? We did catch and handle the error!"
 
-But now we understand that `unhandledrejection` is generated once the microtask queue is complete. The engine examines promises and, if any of them is in the "rejected" state, then the event triggers.
+But now we understand that `unhandledrejection` is generated when the microtask queue is complete: The engine examines promises and, if any of them is in the "rejected" state, then the event triggers.
 
 In the example above, `.catch` added by `setTimeout` also triggers. But it does so later, after `unhandledrejection` has already occurred, so it doesn't change anything.
 
