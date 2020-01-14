@@ -7,7 +7,7 @@ Insert after tag `<body>` (it may have attributes) line `<h1>Hello</h1>`.
 For instance:
 
 ```js
-let regexp = /ваше регулярное выражение/;
+let regexp = /your regular expression/;
 
 let str = `
 <html>
