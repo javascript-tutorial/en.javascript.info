@@ -8,7 +8,7 @@ libs:
 
 In this chapter we'll cover selection in the document, as well as selection in form fields, such as `<input>`.
 
-JavaScript can do get the existing selection, select/deselect both as a whole or partially, remove the selected part from the document, wrap it into a tag, and so on.
+JavaScript can get the existing selection, select/deselect both as a whole or partially, remove the selected part from the document, wrap it into a tag, and so on.
 
 You can get ready to use recipes at the end, in "Summary" section. But you'll get much more if you read the whole chapter. The underlying `Range` and `Selection` objects are easy to grasp, and then you'll need no recipes to make them do what you want.
 
@@ -16,7 +16,7 @@ You can get ready to use recipes at the end, in "Summary" section. But you'll ge
 
 The basic concept of selection is [Range](https://dom.spec.whatwg.org/#ranges): basically, a pair of "boundary points": range start and range end.
 
-Each point represented as a parent DOM node with the relative offset from its start. If the parent node is an element element node, then the offset is a child number, for a text node it's the position in the text. Examples to follow.
+Each point represented as a parent DOM node with the relative offset from its start. If the parent node is an element node, then the offset is a child number, for a text node it's the position in the text. Examples to follow.
 
 Let's select something.
 
@@ -95,8 +95,8 @@ Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (cou
 </script>
 ```
 
-- `range.setStart(p, 0)` -- sets the start at the 0th child of `<p>` (that's a text node `"Example: "`).
-- `range.setEnd(p, 2)` -- spans the range up to (but not including) 2nd child of `<p>` (that's a text node `" and "`, but as the end is not included, so the last selected node is `<i>`).
+- `range.setStart(p, 0)` -- sets the start at the 0th child of `<p>` (that's the text node `"Example: "`).
+- `range.setEnd(p, 2)` -- spans the range up to (but not including) 2nd child of `<p>` (that's the text node `" and "`, but as the end is not included, so the last selected node is `<i>`).
 
 Here's a more flexible test stand where you try more variants:
 
@@ -387,7 +387,7 @@ Also, there are convenience methods to manipulate the selection range directly, 
 - `setBaseAndExtent(anchorNode, anchorOffset, focusNode, focusOffset)` - replace selection range with the given start `anchorNode/anchorOffset` and end `focusNode/focusOffset`. All content in-between them is selected.
 - `selectAllChildren(node)` -- select all children of the `node`.
 - `deleteFromDocument()` -- remove selected content from the document.
-- `containsNode(node, allowPartialContainment = false)` -- checks whether the selection contains `node` (partically if the second argument is `true`)
+- `containsNode(node, allowPartialContainment = false)` -- checks whether the selection contains `node` (partially if the second argument is `true`)
 
 So, for many tasks we can call `Selection` methods, no need to access the underlying `Range` object.
 
@@ -551,7 +551,7 @@ If nothing is selected, or we use equal `start` and `end` in `setRangeText`, the
 
 We can also insert something "at the cursor" using `setRangeText`.
 
-Here's an button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can do detect in by comparing `selectionStart!=selectionEnd` and do something else instead):
+Here's a button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can detect it by comparing `selectionStart!=selectionEnd` and do something else instead):
 
 ```html run autorun
 <input id="input" style="width:200px" value="Text Text Text Text Text">
@@ -583,7 +583,7 @@ To make something unselectable, there are three ways:
 
     This doesn't allow the selection to start at `elem`. But the user may start the selection elsewhere and include `elem` into it.
 
-    Then `elem` will become a part of `document.getSelection()`, so the selection actully happens, but its content is usually ignored in copy-paste.
+    Then `elem` will become a part of `document.getSelection()`, so the selection actually happens, but its content is usually ignored in copy-paste.
 
 
 2. Prevent default action in `onselectstart` or `mousedown` events.
@@ -632,7 +632,7 @@ The most used recipes are probably:
       cloned.append(selection.getRangeAt(i).cloneContents());
     }
     ```
-2. Setting the selection
+2. Setting the selection:
     ```js run
     let selection = document.getSelection();
 
