@@ -472,7 +472,7 @@ Ranges are created using following calls:
 
 - `IDBKeyRange.lowerBound(lower, [open])` means: `≥lower` (or `>lower` if `open` is true)
 - `IDBKeyRange.upperBound(upper, [open])` means: `≤upper` (or `<upper` if `open` is true)
-- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`. If the open flags is true, the corresponding key is not included in the range. 
+- `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`. If the open flags is true, the corresponding key is not included in the range.
 - `IDBKeyRange.only(key)` -- a range that consists of only one `key`, rarely used.
 
 All searching methods accept a `query` argument that can be either an exact key or a key range:
@@ -494,8 +494,8 @@ books.get('js')
 // get books with 'css' <= id <= 'html'
 books.getAll(IDBKeyRange.bound('css', 'html'))
 
-// get books with 'html' < id
-books.getAll(IDBKeyRange.lowerBound('html', true))
+// get books with id < 'html'
+books.getAll(IDBKeyRange.upperBound('html', true))
 
 // get all books
 books.getAll()

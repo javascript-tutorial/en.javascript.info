@@ -45,7 +45,7 @@ alert(bigint + BigInt(number)); // 3
 alert(Number(bigint) + number); // 3
 ```
 
-The conversion of bigint to number is always silent, but if the bigint is too huge and won't fit the number type, then extra bits will be cut off, causing a precision loss.
+The conversion operations are always silent, never give errors, but if the bigint is too huge and won't fit the number type, then extra bits will be cut off, so we should be careful doing such conversion.
 
 ````smart header="The unary plus is not supported on bigints"
 The unary plus operator `+value` is a well-known way to convert `value` to a number.
@@ -69,7 +69,7 @@ alert( 2n > 1n ); // true
 alert( 2n > 1 ); // true
 ```
 
-As numbers and bigints belong to different types, they can be equal `==`, but not strictly equal `===`:
+Please note though, as numbers and bigints belong to different types, they can be equal `==`, but not strictly equal `===`:
 
 ```js run
 alert( 1 == 1n ); // true
@@ -101,15 +101,15 @@ alert( 0n || 2 ); // 2 (0n is considered falsy)
 
 Polyfilling bigints is tricky. The reason is that many JavaScript operators, such as `+`, `-` and so on behave differently with bigints compared to regular numbers.
 
-For example, division of bigints always returns an integer.
+For example, division of bigints always returns a bigint (rounded if necessary).
 
-To emulate such behavior, a polyfill would need to replace all such operators with its functions. But doing so is cumbersome and would cost a lot of performance.
+To emulate such behavior, a polyfill would need to analyze the code and replace all such operators with its functions. But doing so is cumbersome and would cost a lot of performance.
 
 So, there's no well-known good polyfill.
 
 Although, the other way around is proposed by the developers of [https://github.com/GoogleChromeLabs/jsbi](JSBI) library.
 
-They suggest to use JSBI library calls instead of native bigints:
+This library implements big numbers using its own methods. We can use them instead of native bigints:
 
 | Operation | native `BigInt` | JSBI |
 |-----------|-----------------|------|
@@ -120,7 +120,9 @@ They suggest to use JSBI library calls instead of native bigints:
 
 ...And then use the polyfill (Babel plugin) to convert JSBI calls to native bigints for those browsers that support them.
 
-In other words, this approach suggests that we write code in JSBI instead of native bigints. But JSBI works with numbers as with bigints internally, closely following the specification, so the code will be "bigint-ready".
+In other words, this approach suggests that we write code in JSBI instead of native bigints. But JSBI works with numbers as with bigints internally, emulates them closely following the specification, so the code will be "bigint-ready".
+
+We can use such JSBI code "as is" for engines that don't support bigints and for those that do support - the polyfill will convert the calls to native bigints.
 
 ## References
 
