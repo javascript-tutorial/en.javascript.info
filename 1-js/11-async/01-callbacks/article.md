@@ -109,7 +109,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Here we did it in `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 

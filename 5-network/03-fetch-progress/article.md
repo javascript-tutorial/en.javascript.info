@@ -107,6 +107,6 @@ Let's explain that step-by-step:
     let blob = new Blob(chunks);
     ```
 
-At we end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
+At the end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
 
 Once again, please note, that's not for *upload* progress (no way now with `fetch`), only for *download* progress.

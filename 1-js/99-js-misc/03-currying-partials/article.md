@@ -73,7 +73,7 @@ Let's curry it!
 log = _.curry(log);
 ```
 
-After that `log` work normally:
+After that `log` works normally:
 
 ```js
 log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
