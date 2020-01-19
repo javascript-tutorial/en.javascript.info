@@ -31,9 +31,9 @@ When the executor obtains the result, be it soon or late - doesn't matter, it sh
 - `resolve(value)` — if the job finished successfully, with result `value`.
 - `reject(error)` — if an error occurred, `error` is the error object.
 
-So to summarize: the executor runs automatically, it should do a job, and then call either `resolve` or `reject`.
+So to summarize: the executor runs automatically and performs a job. Then it should call `resolve` if it was succssful or `reject` if there was an error.
 
-The `promise` object returned by `new Promise` constructor has internal properties:
+The `promise` object returned by the `new Promise` constructor has internal properties:
 
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
 - `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
@@ -58,7 +58,7 @@ let promise = new Promise(function(resolve, reject) {
 We can see two things by running the code above:
 
 1. The executor is called automatically and immediately (by `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We should only call one of them when ready.
+2. The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don't need to create them. We should only call one of them when ready.
 
     After one second of "processing" the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
 
@@ -79,7 +79,7 @@ The call to `reject(...)` moves the promise object to `"rejected"` state:
 
 ![](promise-reject-1.svg)
 
-To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding promise object.
+To summarize, the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
 
 A promise that is either resolved or rejected is called "settled", as opposed to an initially "pending" promise.
 
@@ -166,7 +166,7 @@ promise.then(
 
 The first function was executed.
 
-And in the case of a rejection -- the second one:
+And in the case of a rejection, the second one:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
@@ -205,7 +205,7 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
-// .catch(f) is the same as .then(null, f)
+// .catch(f) is the same as promise.then(null, f)
 promise.catch(alert); // shows "Error: Whoops!" after 1 second
 */!*
 ```
@@ -255,7 +255,7 @@ It's not exactly an alias of `then(f,f)` though. There are several important dif
     })
       .finally(() => alert("Promise ready"))
       .catch(err => alert(err));  // <-- .catch handles the error object
-    ```  
+    ```
 
     That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
 
@@ -303,7 +303,7 @@ Let's rewrite it using Promises.
 The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
 
 ```js run
-function loadScript(src) {  
+function loadScript(src) {
   return new Promise(function(resolve, reject) {
     let script = document.createElement('script');
     script.src = src;
