@@ -1,8 +1,9 @@
-In order to insert after the `<body>` tag, you must first find it. We will use the regular expression pattern `pattern:<body.*>`.
+In order to insert after the `<body>` tag, we must first find it. We can use the regular expression pattern `pattern:<body.*>` for that.
 
-Next, we need to leave the `<body>` tag in place and add text after it.
+In this task we don't need to modify the `<body>` tag. We only need to add the text after it.
 
-This can be done like this:
+Here's how we can do it:
+
 ```js run
 let str = '...<body style="...">...';
 str = str.replace(/<body.*>/, '$&<h1>Hello</h1>');
@@ -10,9 +11,9 @@ str = str.replace(/<body.*>/, '$&<h1>Hello</h1>');
 alert(str); // ...<body style="..."><h1>Hello</h1>...
 ```
 
-In the replacement string `$&` means the match itself, that is, we replace `pattern:<body.*>` Is replaced by itself plus  `<h1>Hello</h1>`.
+In the replacement string `$&` means the match itself, that is, the part of the source text that corresponds to `pattern:<body.*>`. It gets replaced by itself plus `<h1>Hello</h1>`.
 
-An alternative is to use retrospective validation:
+An alternative is to use lookbehind:
 
 ```js run
 let str = '...<body style="...">...';
@@ -21,8 +22,15 @@ str = str.replace(/(?<=<body.*>)/, `<h1>Hello</h1>`);
 alert(str); // ...<body style="..."><h1>Hello</h1>...
 ```
 
-Such a regular expression at each position will check if `pattern:<body.*>`does not go directly in front of it. If yes, a match is found. But the tag `pattern:<body.*>` does not coincide, it only participates in the verification. And there are no other characters after checking in it, so the match text will be empty.
+As you can see, there's only lookbehind part in this regexp.
 
-This replaces the "empty line", followed by `pattern:<body.*>` With `<h1>Hello</h1>`. Which, exactly, is the insertion of this line after `<body>`.
+It works like this:
+- At every position in the text.
+- Check if it's preceeded by `pattern:<body.*>`.
+- If it's so then we have the match.
 
-P.S. The flags: `pattern:/<body.*>/si`, will not interfere with this regular expression, so that a line break appears in the "dot" (a tag can span several lines), and also that the tags are in a different register of the `match:<BODY>` type, too.
+The tag `pattern:<body.*>` won't be returned. The result of this regexp is literally an empty string, but it matches only at positions preceeded by `pattern:<body.*>`.
+
+So we replaces the "empty line", preceeded by `pattern:<body.*>`, with `<h1>Hello</h1>`. That's the insertion after `<body>`.
+
+P.S. Regexp flags, such as `pattern:s` and `pattern:i` can also useful: `pattern:/<body.*>/si`. The `pattern:s` flag makes the dot `pattern:.` match a newline character, and `pattern:i` flag makes `pattern:<body>` also match `match:<BODY>` case-insensitively.

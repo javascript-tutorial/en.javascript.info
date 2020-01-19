@@ -1,8 +1,8 @@
 # Insert After Head
 
-There is a line with an HTML Document.
+We have a string with an HTML Document.
 
-Insert after tag `<body>` (it may have attributes) line `<h1>Hello</h1>`.
+Write a regular expression that inserts `<h1>Hello</h1>` immediately after `<body>` tag. The tag may have attributes.
 
 For instance:
 
@@ -20,7 +20,7 @@ let str = `
 str = str.replace(regexp, `<h1>Hello</h1>`);
 ```
 
-After that value `str`:
+After that the value of `str` should be:
 ```html
 <html>
   <body style="height: 200px"><h1>Hello</h1>
