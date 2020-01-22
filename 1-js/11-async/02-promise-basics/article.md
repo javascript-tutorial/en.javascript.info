@@ -31,9 +31,9 @@ When the executor obtains the result, be it soon or late - doesn't matter, it sh
 - `resolve(value)` — if the job finished successfully, with result `value`.
 - `reject(error)` — if an error occurred, `error` is the error object.
 
-So to summarize: the executor runs automatically and performs a job. Then it should call `resolve` if it was succssful or `reject` if there was an error.
+So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt it calls `resolve` if it was successful or `reject` if there was an error."
 
-The `promise` object returned by the `new Promise` constructor has internal properties:
+The `promise` object returned by the `new Promise` constructor has these internal properties:
 
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
 - `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
