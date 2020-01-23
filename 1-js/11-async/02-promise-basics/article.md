@@ -26,7 +26,7 @@ The function passed to `new Promise` is called the *executor*. When `new Promise
 
 Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. Our code is only inside the executor.
 
-When the executor obtains the result, be it soon or late - doesn't matter, it should call one of these callbacks:
+When the executor obtains the result, be it soon or late, doesn't matter, it should call one of these callbacks:
 
 - `resolve(value)` — if the job finished successfully, with result `value`.
 - `reject(error)` — if an error occurred, `error` is the error object.
