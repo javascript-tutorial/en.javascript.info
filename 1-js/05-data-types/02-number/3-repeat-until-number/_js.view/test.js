@@ -18,7 +18,7 @@ describe("readNumber", function() {
     assert.strictEqual(readNumber(), 0);
   });
 
-  it("continues the loop unti meets a number", function() {
+  it("continues the loop until meets a number", function() {
     prompt.onCall(0).returns("not a number");
     prompt.onCall(1).returns("not a number again");
     prompt.onCall(2).returns("1");

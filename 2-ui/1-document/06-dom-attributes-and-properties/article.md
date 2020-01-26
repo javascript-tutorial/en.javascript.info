@@ -1,6 +1,6 @@
 # Attributes and properties
 
-When the browser loads the page, it "reads" (another word: "parses") HTML text and generates DOM objects from it. For element nodes most standard HTML attributes automatically become properties of DOM objects.
+When the browser loads the page, it "reads" (another word: "parses") the HTML and generates DOM objects from it. For element nodes, most standard HTML attributes automatically become properties of DOM objects.
 
 For instance, if the tag is `<body id="page">`, then the DOM object has `body.id="page"`.
 
@@ -8,7 +8,7 @@ But the attribute-property mapping is not one-to-one! In this chapter we'll pay 
 
 ## DOM properties
 
-We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add our own.
+We've already seen built-in DOM properties. There are a lot. But technically no one limits us, and if there aren't enough, we can add our own.
 
 DOM nodes are regular JavaScript objects. We can alter them.
 
@@ -51,7 +51,7 @@ So, DOM properties and methods behave just like those of regular JavaScript obje
 
 ## HTML attributes
 
-In HTML language, tags may have attributes. When the browser reads HTML text and creates DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
+In HTML, tags may have attributes. When the browser parses the HTML to create DOM objects for tags, it recognizes *standard* attributes and creates DOM properties from them.
 
 So when an element has `id` or another *standard* attribute, the corresponding property gets created. But that doesn't happen if the attribute is non-standard.
 
@@ -83,9 +83,9 @@ Here we can see it:
 </body>
 ```
 
-So, if an attribute is non-standard, there won't be DOM-property for it. Is there a way to access such attributes?
+So, if an attribute is non-standard, there won't be a DOM-property for it. Is there a way to access such attributes?
 
-Sure. All attributes are accessible using following methods:
+Sure. All attributes are accessible by using the following methods:
 
 - `elem.hasAttribute(name)` -- checks for existence.
 - `elem.getAttribute(name)` -- gets the value.
@@ -124,7 +124,7 @@ Here's an extended demo of working with attributes:
 
     elem.setAttribute('Test', 123); // (2), writing
 
-    alert( elem.outerHTML ); // (3), see it's there
+    alert( elem.outerHTML ); // (3), see if the attribute is in HTML (yes)
 
     for (let attr of elem.attributes) { // (4) list all
       alert( `${attr.name} = ${attr.value}` );
@@ -138,7 +138,7 @@ Please note:
 1. `getAttribute('About')` -- the first letter is uppercase here, and in HTML it's all lowercase. But that doesn't matter: attribute names are case-insensitive.
 2. We can assign anything to an attribute, but it becomes a string. So here we have `"123"` as the value.
 3. All attributes including ones that we set are visible in `outerHTML`.
-4. The `attributes` collection is iterable and has all attributes with `name` and `value`.
+4. The `attributes` collection is iterable and has all the attributes of the element (standard and non-standard) as objects with `name` and `value` properties.
 
 ## Property-attribute synchronization
 
@@ -186,7 +186,7 @@ In the example above:
 - Changing the attribute `value` updates the property.
 - But the property change does not affect the attribute.
 
-That "feature" may actually come in handy, because the user may modify `value`, and then after it, if we want to recover the "original" value from HTML, it's in the attribute.
+That "feature" may actually come in handy, because the user actions may lead to `value` changes, and then after them, if we want to recover the "original" value from HTML, it's in the attribute.
 
 ## DOM properties are typed
 
@@ -216,9 +216,9 @@ There are other examples. The `style` attribute is a string, but the `style` pro
 </script>
 ```
 
-That's an important difference. But even if a DOM property type is a string, it may differ from the attribute!
+Most properties are strings though.
 
-For instance, the `href` DOM property is always a *full* URL, even if the attribute contains a relative URL or just a `#hash`.
+Quite rarely, even if a DOM property type is a string, it may differ from the attribute. For instance, the `href` DOM property is always a *full* URL, even if the attribute contains a relative URL or just a `#hash`.
 
 Here's an example:
 
@@ -260,7 +260,7 @@ Like this:
   for(let div of document.querySelectorAll('[show-info]')) {
     // insert the corresponding info into the field
     let field = div.getAttribute('show-info');
-    div.innerHTML = user[field]; // Pete, then age
+    div.innerHTML = user[field]; // first Pete into "name", then 25 into "age"
   }
 </script>
 ```
@@ -298,16 +298,16 @@ For instance, here for the order state the attribute `order-state` is used:
 </div>
 ```
 
-Why the attribute may be preferable to classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
+Why would using an attribute be preferable to having classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
 
-That's because an attribute is more convenient to manage. The state can be changed as easy as:
+Because an attribute is more convenient to manage. The state can be changed as easy as:
 
 ```js
 // a bit simpler than removing old/adding a new class
 div.setAttribute('order-state', 'canceled');
 ```
 
-But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
+But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, and more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
 
 To avoid conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 
@@ -380,7 +380,7 @@ Methods to work with attributes are:
 - `elem.removeAttribute(name)` -- to remove the attribute.
 - `elem.attributes` is a collection of all attributes.
 
-For most needs, DOM properties can serve us well. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
+For most situations using DOM properties is preferable. We should refer to attributes only when DOM properties do not suit us, when we need exactly attributes, for instance:
 
 - We need a non-standard attribute. But if it starts with `data-`, then we should use `dataset`.
 - We want to read the value "as written" in HTML. The value of the DOM property may be different, for instance the `href` property is always a full URL, and we may want to get the "original" value.

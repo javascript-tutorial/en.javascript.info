@@ -2,9 +2,9 @@
 # HTML/CSS
 First let's create HTML/CSS.
 
-A menu is a standalone graphical component on the page, so its better to put it into a single DOM element.
+A menu is a standalone graphical component on the page, so it's better to put it into a single DOM element.
 
-A list of menu items can be layed out as a list `ul/li`.
+A list of menu items can be laid out as a list `ul/li`.
 
 Here's the example structure:
 
@@ -29,7 +29,7 @@ Like this:
 
 So if we set `onclick` on it, then it will catch clicks to the right of the text.
 
-...but `<span>` has an implicit `display: inline`, so it occupies exactly enough place to fit all the text:
+As `<span>` has an implicit `display: inline`, it occupies exactly enough place to fit all the text:
 
 ```html autorun height=50
 <span style="border: solid red 1px" onclick="alert(1)">Sweeties (click me)!</span>

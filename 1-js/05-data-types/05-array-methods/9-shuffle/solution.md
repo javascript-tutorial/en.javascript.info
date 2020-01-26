@@ -45,7 +45,7 @@ for (let key in count) {
 }
 ```
 
-An example result (for V8, July 2017):
+An example result (depends on JS engine):
 
 ```js
 123: 250706
@@ -68,7 +68,13 @@ There are other good ways to do the task. For instance, there's a great algorith
 function shuffle(array) {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-    [array[i], array[j]] = [array[j], array[i]]; // swap elements
+
+    // swap elements array[i] and array[j]
+    // we use "destructuring assignment" syntax to achieve that
+    // you'll find more details about that syntax in later chapters
+    // same can be written as:
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
   }
 }
 ```

@@ -1,0 +1,9 @@
+<!doctype html>
+<script src="time-formatted.js"></script>
+<script src="live-timer.js"></script>
+
+<live-timer id="elem"></live-timer>
+
+<script>
+  elem.addEventListener('tick', event => console.log(event.detail));
+</script>

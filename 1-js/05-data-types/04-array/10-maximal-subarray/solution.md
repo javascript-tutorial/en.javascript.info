@@ -1,4 +1,4 @@
-# The slow solution
+# Slow solution
 
 We can calculate all possible subsums.
 
@@ -29,8 +29,8 @@ For instance, for `[-1, 2, 3, -9, 11]`:
 -9
 -9 + 11
 
-// Starting from -11
--11
+// Starting from 11
+11
 ```
 
 The code is actually a nested loop: the external loop over array elements, and the internal counts subsums starting with the current element.
@@ -59,7 +59,7 @@ alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 
 The solution has a time complexety of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
 
-For big arrays (1000, 10000 or more items) such algorithms can lead to a seroius sluggishness.
+For big arrays (1000, 10000 or more items) such algorithms can lead to a serious sluggishness.
 
 # Fast solution
 
@@ -67,7 +67,7 @@ Let's walk the array and keep the current partial sum of elements in the variabl
 
 If the description is too vague, please see the code, it's short enough:
 
-```js run
+```js run demo
 function getMaxSubSum(arr) {
   let maxSum = 0;
   let partialSum = 0;

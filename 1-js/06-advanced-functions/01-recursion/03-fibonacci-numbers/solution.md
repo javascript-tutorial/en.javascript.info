@@ -29,7 +29,7 @@ Here we can see that the value of `fib(3)` is needed for both `fib(5)` and `fib(
 
 Here's the full recursion tree:
 
-![fibonacci recursion tree](fibonacci-recursion-tree.png)
+![fibonacci recursion tree](fibonacci-recursion-tree.svg)
 
 We can clearly notice that `fib(3)` is evaluated two times and `fib(2)` is evaluated three times. The total amount of computations grows much faster than `n`, making it enormous even for `n=77`.
 

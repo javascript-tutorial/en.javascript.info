@@ -2,37 +2,61 @@
 let currentElem = null;
 
 table.onmouseover = function(event) {
-  if (currentElem) {
-    // before entering a new element, the mouse always leaves the previous one
-    // if we didn't leave <td> yet, then we're still inside it, so can ignore the event
-    return;
-  }
+  // before entering a new element, the mouse always leaves the previous one
+  // if currentElem is set, we didn't leave the previous <td>,
+  // that's a mouseover inside it, ignore the event
+  if (currentElem) return;
 
   let target = event.target.closest('td');
-  if (!target || !table.contains(target)) return;
 
-  // yeah we're inside <td> now
+  // we moved not into a <td> - ignore
+  if (!target) return;
+
+  // moved into <td>, but outside of our table (possible in case of nested tables)
+  // ignore
+  if (!table.contains(target)) return;
+
+  // hooray! we entered a new <td>
   currentElem = target;
-  target.style.background = 'pink';
+  onEnter(currentElem);
 };
 
 
 table.onmouseout = function(event) {
   // if we're outside of any <td> now, then ignore the event
+  // that's probably a move inside the table, but out of <td>,
+  // e.g. from <tr> to another <tr>
   if (!currentElem) return;
 
-  // we're leaving the element -- where to? Maybe to a child element?
+  // we're leaving the element – where to? Maybe to a descendant?
   let relatedTarget = event.relatedTarget;
-  if (relatedTarget) { // possible: relatedTarget = null
-    while (relatedTarget) {
-      // go up the parent chain and check -- if we're still inside currentElem
-      // then that's an internal transition -- ignore it
-      if (relatedTarget == currentElem) return;
-      relatedTarget = relatedTarget.parentNode;
-    }
+
+  while (relatedTarget) {
+    // go up the parent chain and check – if we're still inside currentElem
+    // then that's an internal transition – ignore it
+    if (relatedTarget == currentElem) return;
+
+    relatedTarget = relatedTarget.parentNode;
   }
 
-  // we left the element. really.
-  currentElem.style.background = '';
+  // we left the <td>. really.
+  onLeave(currentElem);
   currentElem = null;
 };
+
+// any functions to handle entering/leaving an element
+function onEnter(elem) {
+  elem.style.background = 'pink';
+
+  // show that in textarea
+  text.value += `over -> ${currentElem.tagName}.${currentElem.className}\n`;
+  text.scrollTop = 1e6;
+}
+
+function onLeave(elem) {
+  elem.style.background = '';
+
+  // show that in textarea
+  text.value += `out <- ${elem.tagName}.${elem.className}\n`;
+  text.scrollTop = 1e6;
+}

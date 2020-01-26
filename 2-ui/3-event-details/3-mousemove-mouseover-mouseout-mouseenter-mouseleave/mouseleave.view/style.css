@@ -1,21 +1,22 @@
-#blue {
-  background: blue;
+#parent {
+  background: #99C0C3;
   width: 160px;
-  height: 160px;
+  height: 120px;
   position: relative;
 }
 
-#red {
-  background: red;
-  width: 70px;
-  height: 70px;
+#child {
+  background: #FFDE99;
+  width: 50%;
+  height: 50%;
   position: absolute;
-  left: 45px;
-  top: 45px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
-#text {
+textarea {
+  height: 140px;
+  width: 300px;
   display: block;
-  height: 100px;
-  width: 400px;
 }

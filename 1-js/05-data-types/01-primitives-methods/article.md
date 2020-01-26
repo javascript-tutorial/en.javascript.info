@@ -1,18 +1,20 @@
 # Methods of primitives
 
-JavaScript allows us to work with primitives (strings, numbers etc) as if they were objects.
+JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
 
-They also provide methods to call as such. We will study those soon, but first we'll see how it works, because, of course, primitives are not objects (and here we will make it even more clear).
-
-Let's look at the key distinction between primitives and objects.
+Let's look at the key distinctions between primitives and objects.
 
 A primitive
 
-An object
-: Is capable of storing multiple values as properties.
-Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript, e.g. functions are objects.
+- Is a value of a primitive type.
+- There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
 
-One of the best things about objects is that we can store a function as one of its properties:
+An object
+
+- Is capable of storing multiple values as properties.
+- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
+
+One of the best things about objects is that we can store a function as one of its properties.
 
 ```js run
 let john = {
@@ -27,11 +29,11 @@ john.sayHi(); // Hi buddy!
 
 So here we've made an object `john` with the method `sayHi`.
 
-Many built-in objects already exist, such as those that work with dates, errors, HTML elements etc. They have different properties and methods.
+Many built-in objects already exist, such as those that work with dates, errors, HTML elements, etc. They have different properties and methods.
 
 But, these features come with a cost!
 
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery. But as properties and methods are very useful in programming, JavaScript engines try to optimize them to reduce the additional burden.
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
 
 ## A primitive as an object
 
@@ -44,11 +46,11 @@ The solution looks a little bit awkward, but here it is:
 
 1. Primitives are still primitive. A single value, as desired.
 2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. When this happens, a special "object wrapper" is created that provides the extra functionality, and then is destroyed.
+3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
 
 The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean` and `Symbol`. Thus, they provide different sets of methods.
 
-For instance, there exists a method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized string.
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
 
 Here's how it works:
 
@@ -80,25 +82,25 @@ We'll see more specific methods in chapters <info:number> and <info:string>.
 
 
 ````warn header="Constructors `String/Number/Boolean` are for internal use only"
-Some languages like Java allow us to create "wrapper objects" for primitives explicitly using a syntax like `new Number(1)` or `new Boolean(false)`.
+Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
 
 In JavaScript, that's also possible for historical reasons, but highly **unrecommended**. Things will go crazy in several places.
 
 For instance:
 
 ```js run
-alert( typeof 1 ); // "number"
+alert( typeof 0 ); // "number"
 
-alert( typeof new Number(1) ); // "object"!
+alert( typeof new Number(0) ); // "object"!
 ```
 
-And because what follows, `zero`, is an object, the alert will show up:
+Objects are always truthy in `if`, so here the alert will show up:
 
 ```js run
 let zero = new Number(0);
 
 if (zero) { // zero is true, because it's an object
-  alert( "zero is truthy?!?" );
+  alert( "zero is truthy!?!" );
 }
 ```
 

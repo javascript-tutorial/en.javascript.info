@@ -22,28 +22,28 @@ Then the ball will be positioned relatively to the field:
 }
 ```
 
-Next we need to assign the correct `ball.style.position.left/top`. They contain field-relative coordinates now.
+Next we need to assign the correct `ball.style.left/top`. They contain field-relative coordinates now.
 
 Here's the picture:
 
-![](move-ball-coords.png)
+![](move-ball-coords.svg)
 
 We have `event.clientX/clientY` -- window-relative coordinates of the click.
 
 To get field-relative `left` coordinate of the click, we can substract the field left edge and the border width:
 
 ```js
-let left = event.clientX - fieldInnerCoords.left - field.clientLeft;
+let left = event.clientX - fieldCoords.left - field.clientLeft;
 ```
 
-Normally, `ball.style.position.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge would be under the mouse cursor.
+Normally, `ball.style.left` means the "left edge of the element" (the ball). So if we assign that `left`, then the ball edge, not center, would be under the mouse cursor.
 
 We need to move the ball half-width left and half-height up to make it center.
 
 So the final `left` would be:
 
 ```js
-let left = event.clientX - fieldInnerCoords.left - field.clientLeft - ball.offsetWidth/2;
+let left = event.clientX - fieldCoords.left - field.clientLeft - ball.offsetWidth/2;
 ```
 
 The vertical coordinate is calculated using the same logic.

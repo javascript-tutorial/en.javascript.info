@@ -18,7 +18,7 @@ Here's a list of the most useful DOM events, just to take a look at:
 **Keyboard events:**
 - `keydown` and `keyup` -- when the visitor presses and then releases the button.
 
-**Document events**
+**Document events:**
 - `DOMContentLoaded` -- when the HTML is loaded and processed, DOM is fully built.
 
 **CSS events:**
@@ -30,7 +30,7 @@ There are many other events. We'll get into more details of particular events in
 
 To react on events we can assign a *handler* -- a function that runs in case of an event.
 
-Handlers is a way to run JavaScript code in case of user actions.
+Handlers are a way to run JavaScript code in case of user actions.
 
 There are several ways to assign a handler. Let's see them, starting from the simplest one.
 
@@ -148,7 +148,7 @@ In the code below `button` shows its contents using `this.innerHTML`:
 
 ## Possible mistakes
 
-If you're starting to work with event -- please note some subtleties.
+If you're starting to work with events -- please note some subtleties.
 
 **The function should be assigned as `sayThanks`, not `sayThanks()`.**
 
@@ -160,17 +160,17 @@ button.onclick = sayThanks;
 button.onclick = sayThanks();
 ```
 
-If we add brackets, then `sayThanks()` --  will be the *result* of the function execution, so `onclick` in the last code becomes `undefined` (the function returns nothing). That won't work.
+If we add parentheses, `sayThanks()` --  is a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
 
-...But in the markup we do need the brackets:
+...On the other hand, in the markup we do need the parentheses:
 
 ```html
 <input type="button" id="button" onclick="sayThanks()">
 ```
 
-The difference is easy to explain. When the browser reads the attribute, it creates a handler function with the body from its content.
+The difference is easy to explain. When the browser reads the attribute, it creates a handler function with *body from its content*: `sayThanks()`.
 
-So the last example is the same as:
+So the markup generates this property:
 ```js
 button.onclick = function() {
 *!*
@@ -181,7 +181,7 @@ button.onclick = function() {
 
 **Use functions, not strings.**
 
-The assignment `elem.onclick = "alert(1)"` would work too. It works for compatibility reasons, but strongly not recommended.
+The assignment `elem.onclick = "alert(1)"` would work too. It works for compatibility reasons, but is strongly not recommended.
 
 **Don't use `setAttribute` for handlers.**
 
@@ -216,7 +216,7 @@ Web-standard developers understood that long ago and suggested an alternative wa
 The syntax to add a handler:
 
 ```js
-element.addEventListener(event, handler[, phase]);
+element.addEventListener(event, handler[, options]);
 ```
 
 `event`
@@ -225,15 +225,17 @@ element.addEventListener(event, handler[, phase]);
 `handler`
 : The handler function.
 
-`phase`
-: An optional argument, the "phase" for the handler to work. To be covered later. Usually we don't use it.
+`options`
+: An additional optional object with properties:
+    - `once`: if `true`, then the listener is automatically removed after it triggers.
+    - `capture`: the phase where to handle the event, to be covered later in the chapter <info:bubbling-and-capturing>. For historical reasons, `options` can also be `false/true`, that's the same as `{capture: false/true}`.
+    - `passive`: if `true`, then the handler will not `preventDefault()`, we'll cover that later in <info:default-browser-action>.
+
 
 To remove the handler, use `removeEventListener`:
 
-
 ```js
-// exactly the same arguments as addEventListener
-element.removeEventListener(event, handler[, phase]);
+element.removeEventListener(event, handler[, options]);
 ```
 
 ````warn header="Removal requires the same function"
@@ -288,7 +290,7 @@ Multiple calls to `addEventListener` allow to add multiple handlers, like this:
 
 As we can see in the example above, we can set handlers *both* using a DOM-property and `addEventListener`. But generally we use only one of these ways.
 
-````warn header="For some events handlers only work with `addEventListener`"
+````warn header="For some events, handlers only work with `addEventListener`"
 There exist events that can't be assigned via a DOM-property. Must use `addEventListener`.
 
 For instance, the event `transitionend` (CSS animation finished) is like that.
@@ -349,12 +351,12 @@ Some properties of `event` object:
 : Event type, here it's `"click"`.
 
 `event.currentTarget`
-: Element that handled the event. That's exactly the same as `this`, unless you bind `this` to something else, and then `event.currentTarget` becomes useful.
+: Element that handled the event. That's exactly the same as `this`, unless the handler is an arrow function, or its `this` is bound to something else, then we can get the element from  `event.currentTarget`.
 
 `event.clientX / event.clientY`
 : Window-relative coordinates of the cursor, for mouse events.
 
-There are more properties. They depend on the event type, so we'll study them later when come to different events in details.
+There are more properties. They depend on the event type, so we'll study them later when we come to different events in details.
 
 ````smart header="The event object is also accessible from HTML"
 If we assign a handler in HTML, we can also use the `event` object, like this:
@@ -369,7 +371,7 @@ That's possible because when the browser reads the attribute, it creates a handl
 
 ## Object handlers: handleEvent
 
-We can assign an object as an event handler using `addEventListener`. When an event occurs, its `handleEvent` method is called with it.
+We can assign not just a function, but an object as an event handler using `addEventListener`. When an event occurs, its `handleEvent` method is called.
 
 For instance:
 
@@ -386,7 +388,7 @@ For instance:
 </script>
 ```
 
-In other words, when `addEventListener` receives an object as the handler, it calls `object.handleEvent(event)` in case of an event.
+As we can see, when `addEventListener` receives an object as the handler, it calls `object.handleEvent(event)` in case of an event.
 
 We could also use a class for that:
 

@@ -1,0 +1,10 @@
+<!doctype html>
+<script>
+  window.addEventListener('storage', event => {
+    alert("index.html: onstorage");
+  });
+</script>
+<button onclick="sessionStorage.setItem('now', new Date())">sessionStorage.setItem</button>
+<iframe src="iframe.html" style="height:100px"></iframe>
+</body>
+</html>

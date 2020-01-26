@@ -6,7 +6,7 @@ importance: 5
 
 The result of `debounce(f, ms)` decorator should be a wrapper that passes the call to `f` at maximum once per `ms` milliseconds.
 
-In other words, when we call a "debounced" function, it guarantees that all other future in the closest `ms` milliseconds will be ignored.
+In other words, when we call a "debounced" function, it guarantees that all future calls to the function made less than `ms` milliseconds after the previous call will be ignored.
 
 For instance:
 

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <button onclick="loadPhones()">Load phones.json!</button>
+
+  <script>
+    function loadPhones() {
+      let xhr = new XMLHttpRequest();
+
+      xhr.open('GET', 'phones.json', false);
+      xhr.send();
+
+      if (xhr.status != 200) {
+        // handle error
+        alert('Error ' + xhr.status + ': ' + xhr.statusText);
+      } else {
+        // show result
+        alert(xhr.responseText);
+      }
+    }
+  </script>
+
+</body>
+</html>

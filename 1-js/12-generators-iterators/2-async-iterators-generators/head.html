@@ -1,0 +1,24 @@
+<script>
+  async function* fetchCommits(repo) {
+    let url = `https://api.github.com/repos/${repo}/commits`;
+
+    while (url) {
+      const response = await fetch(url, {
+        headers: {'User-Agent': 'Our script'}, // github requires user-agent header
+      });
+
+      const body = await response.json(); // parses response as JSON (array of commits)
+
+      // the URL of the next page is in the headers, extract it
+      let nextPage = response.headers.get('Link').match(/<(.*?)>; rel="next"/);
+      nextPage = nextPage && nextPage[1];
+
+      url = nextPage;
+
+      // yield commits one by one, when they finish - fetch a new page url
+      for(let commit of body) {
+        yield commit;
+      }
+    }
+  }
+</script>

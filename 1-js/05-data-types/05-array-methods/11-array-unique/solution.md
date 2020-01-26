@@ -2,7 +2,7 @@ Let's walk the array items:
 - For each item we'll check if the resulting array already has that item.
 - If it is so, then ignore, otherwise add to results.
 
-```js run
+```js run demo
 function unique(arr) {
   let result = [];
 
@@ -36,4 +36,4 @@ So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 mill
 
 So the solution is only good for small arrays.
 
-Further in the chapter <info:map-set-weakmap-weakset> we'll see how to optimize it.
+Further in the chapter <info:map-set> we'll see how to optimize it.

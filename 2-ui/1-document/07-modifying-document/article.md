@@ -1,14 +1,12 @@
 # Modifying the document
 
-DOM modifications is the key to create "live" pages.
+DOM modification is the key to creating "live" pages.
 
 Here we'll see how to create new elements "on the fly" and modify the existing page content.
 
-First we'll see a simple example and then explain the methods.
-
 ## Example: show a message
 
-For a start, let's see how to add a message on the page that looks nicer than `alert`.
+Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
 
 Here's how it will look:
 
@@ -30,15 +28,14 @@ Here's how it will look:
 */!*
 ```
 
-That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are still in the HTML or an external CSS file).
+That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML or an external CSS file).
 
 ## Creating an element
-
 
 To create DOM nodes, there are two methods:
 
 `document.createElement(tag)`
-: Creates a new element with the given tag:
+: Creates a new *element node* with the given tag:
 
     ```js
     let div = document.createElement('div');
@@ -53,21 +50,21 @@ To create DOM nodes, there are two methods:
 
 ### Creating the message
 
-In our case we want to make a `div` with given classes and the message in it:
+In our case the message is a `div` with `alert` class and the HTML in it:
 
 ```js
 let div = document.createElement('div');
-div.className = "alert alert-success";
+div.className = "alert";
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
-After that, we have a ready DOM element. Right now it's in the variable, but can not be seen, because it's not been inserted into the page yet.
+We created the element, but as of now it's only in a variable. We can't see the element on the page, as it's not yet a part of the document.
 
 ## Insertion methods
 
 To make the `div` show up, we need to insert it somewhere into `document`. For instance, in `document.body`.
 
-There's a special method for that: `document.body.appendChild(div)`.
+There's a special method `append` for that: `document.body.append(div)`.
 
 Here's the full code:
 
@@ -84,85 +81,24 @@ Here's the full code:
 
 <script>
   let div = document.createElement('div');
-  div.className = "alert alert-success";
+  div.className = "alert";
   div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 
 *!*
-  document.body.appendChild(div);
+  document.body.append(div);
 */!*
 </script>
 ```
 
-Here's a brief list of methods to insert a node into a parent element (`parentElem` for short):
-
-`parentElem.appendChild(node)`
-: Appends `node` as the last child of `parentElem`.
-
-    The following example adds a new `<li>` to the end of `<ol>`:
-
-    ```html run height=100
-    <ol id="list">
-      <li>0</li>
-      <li>1</li>
-      <li>2</li>
-    </ol>
-
-    <script>
-      let newLi = document.createElement('li');
-      newLi.innerHTML = 'Hello, world!';
-
-      list.appendChild(newLi);
-    </script>
-    ```
-
-`parentElem.insertBefore(node, nextSibling)`
-: Inserts `node` before `nextSibling` into `parentElem`.
-
-    The following code inserts a new list item before the second `<li>`:
-
-    ```html run height=100
-    <ol id="list">
-      <li>0</li>
-      <li>1</li>
-      <li>2</li>
-    </ol>
-    <script>
-      let newLi = document.createElement('li');
-      newLi.innerHTML = 'Hello, world!';
-
-    *!*
-      list.insertBefore(newLi, list.children[1]);
-    */!*
-    </script>
-    ```
-    To insert `newLi` as the first element, we can do it like this:
-    
-    ```js
-    list.insertBefore(newLi, list.firstChild);
-    ```
-
-`parentElem.replaceChild(node, oldChild)`
-: Replaces `oldChild` with `node` among children of `parentElem`.
-
-All these methods return the inserted node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
-
-These methods are "old school": they exist from the ancient times and we can meet them in many old scripts. Unfortunately, there are some tasks that are hard to solve with them.
-
-For instance, how to insert *html* if we have it as a string? Or, given a node, how to insert another node *before* it? Of course, all that is doable, but not in an elegant way.
-
-So there exist two other sets of insertion methods to handle all cases easily.
-
-### prepend/append/before/after
-
-This set of methods provides more flexible insertions:
+This set of methods provides more ways to insert:
 
 - `node.append(...nodes or strings)` -- append nodes or strings at the end of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings into the beginning of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings before the `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings after the `node`,
+- `node.prepend(...nodes or strings)` -- insert nodes or strings at the beginning of `node`,
+- `node.before(...nodes or strings)` –- insert nodes or strings before `node`,
+- `node.after(...nodes or strings)` –- insert nodes or strings after `node`,
 - `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
 
-Here's an example of using these methods to add more items to a list and the text before/after it:
+Here's an example of using these methods to add items to a list and the text before/after it:
 
 ```html autorun
 <ol id="ol">
@@ -172,22 +108,22 @@ Here's an example of using these methods to add more items to a list and the tex
 </ol>
 
 <script>
-  ol.before('before');
-  ol.after('after');
+  ol.before('before'); // insert string "before" before <ol>
+  ol.after('after'); // insert string "after" after <ol>
 
-  let prepend = document.createElement('li');
-  prepend.innerHTML = 'prepend';
-  ol.prepend(prepend);  
+  let liFirst = document.createElement('li');
+  liFirst.innerHTML = 'prepend';
+  ol.prepend(liFirst); // insert liFirst at the beginning of <ol>
 
-  let append = document.createElement('li');
-  append.innerHTML = 'append';
-  ol.append(append);
+  let liLast = document.createElement('li');
+  liLast.innerHTML = 'append';
+  ol.append(liLast); // insert liLast at the end of <ol>
 </script>
 ```
 
-Here's a small picture what methods do:
+Here's a visual picture what methods do:
 
-![](before-prepend-append-after.png)
+![](before-prepend-append-after.svg)
 
 So the final list will be:
 
@@ -232,18 +168,18 @@ So, these methods can only be used to insert DOM nodes or text pieces.
 
 But what if we want to insert HTML "as html", with all tags and stuff working, like `elem.innerHTML`?
 
-### insertAdjacentHTML/Text/Element
+## insertAdjacentHTML/Text/Element
 
-There's another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
+For that we can use another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
 
-The first parameter is a string, specifying where to insert, must be one of the following:
+The first parameter is a code word, specifying where to insert relative to `elem`. Must be one of the following:
 
-- `"beforebegin"` -- insert `html` before `elem`,
+- `"beforebegin"` -- insert `html` immediately before `elem`,
 - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
 - `"beforeend"` -- insert `html` into `elem`, at the end,
-- `"afterend"` -- insert `html` after `elem`.
+- `"afterend"` -- insert `html` immediately after `elem`.
 
-The second parameter is an HTML string, inserted "as is".
+The second parameter is an HTML string, that is inserted "as HTML".
 
 For instance:
 
@@ -263,20 +199,20 @@ For instance:
 <p>Bye</p>
 ```
 
-That's how we can append an arbitrary HTML to our page.
+That's how we can append arbitrary HTML to the page.
 
 Here's the picture of insertion variants:
 
-![](insert-adjacent.png)
+![](insert-adjacent.svg)
 
 We can easily notice similarities between this and the previous picture. The insertion points are actually the same, but this method inserts HTML.
 
 The method has two brothers:
 
-- `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` in inserted "as text" instead of HTML,
+- `elem.insertAdjacentText(where, text)` -- the same syntax, but a string of `text` is inserted "as text" instead of HTML,
 - `elem.insertAdjacentElement(where, elem)` -- the same syntax, but inserts an element.
 
-They exist mainly to make the syntax "uniform". In practice, most of the time only `insertAdjacentHTML` is used, because for elements and text we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
+They exist mainly to make the syntax "uniform". In practice, only `insertAdjacentHTML` is used most of the time. Because for elements and text, we have methods `append/prepend/before/after` -- they are shorter to write and can insert nodes/text pieces.
 
 So here's an alternative variant of showing a message:
 
@@ -292,9 +228,53 @@ So here's an alternative variant of showing a message:
 </style>
 
 <script>
-  document.body.insertAdjacentHTML("afterbegin", `<div class="alert alert-success">
+  document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
     <strong>Hi there!</strong> You've read an important message.
   </div>`);
+</script>
+```
+
+## Node removal
+
+To remove a node, there's a method `node.remove()`.
+
+Let's make our message disappear after a second:
+
+```html run untrusted
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
+
+<script>
+  let div = document.createElement('div');
+  div.className = "alert";
+  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+  document.body.append(div);
+*!*
+  setTimeout(() => div.remove(), 1000);
+*/!*
+</script>
+```
+
+Please note: if we want to *move* an element to another place -- there's no need to remove it from the old one.
+
+**All insertion methods automatically remove the node from the old place.**
+
+For instance, let's swap elements:
+
+```html run height=50
+<div id="first">First</div>
+<div id="second">Second</div>
+<script>
+  // no need to call remove
+  second.after(first); // take #second and after it insert #first
 </script>
 ```
 
@@ -335,61 +315,150 @@ An example of copying the message:
 </script>
 ```
 
-## Removal methods
+## DocumentFragment [#document-fragment]
 
-To remove nodes, there are the following methods:
+`DocumentFragment` is a special DOM node that serves as a wrapper to pass around lists of nodes.
 
+We can append other nodes to it, but when we insert it somewhere, then its content is inserted instead.
 
-`parentElem.removeChild(node)`
-: Removes `elem` from  `parentElem` (assuming it's a child).
+For example, `getListContent` below generates a fragment with `<li>` items, that are later inserted into `<ul>`:
 
-`node.remove()`
-: Removes the `node` from its place.
+```html run
+<ul id="ul"></ul>
 
-We can easily see that the second method is much shorter. The first one exists for historical reasons.
-
-````smart
-If we want to *move* an element to another place -- there's no need to remove it from the old one.
-
-**All insertion methods automatically remove the node from the old place.**
-
-For instance, let's swap elements:
-
-```html run height=50
-<div id="first">First</div>
-<div id="second">Second</div>
 <script>
-  // no need to call remove
-  second.after(first); // take #second and after it - insert #first
-</script>
-```
-````
+function getListContent() {
+  let fragment = new DocumentFragment();
 
-Let's make our message disappear after a second:
+  for(let i=1; i<=3; i++) {
+    let li = document.createElement('li');
+    li.append(i);
+    fragment.append(li);
+  }
 
-```html run untrusted
-<style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
+  return fragment;
 }
-</style>
 
-<script>
-  let div = document.createElement('div');
-  div.className = "alert alert-success";
-  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
-
-  document.body.append(div);
 *!*
-  setTimeout(() => div.remove(), 1000);
-  // or setTimeout(() => document.body.removeChild(div), 1000);
+ul.append(getListContent()); // (*)
 */!*
 </script>
 ```
+
+Please note, at the last line `(*)` we append `DocumentFragment`, but it "blends in", so the resulting structure will be:
+
+```html
+<ul>
+  <li>1</li>
+  <li>2</li>
+  <li>3</li>
+</ul>
+```
+
+`DocumentFragment` is rarely used explicitly. Why append to a special kind of node, if we can return an array of nodes instead? Rewritten example:
+
+```html run
+<ul id="ul"></ul>
+
+<script>
+function getListContent() {
+  let result = [];
+
+  for(let i=1; i<=3; i++) {
+    let li = document.createElement('li');
+    li.append(i);
+    result.push(li);
+  }
+
+  return result;
+}
+
+*!*
+ul.append(...getListContent()); // append + "..." operator = friends!
+*/!*
+</script>
+```
+
+We mention `DocumentFragment` mainly because there are some concepts on top of it, like [template](info:template-element) element, that we'll cover much later.
+
+## Old-school insert/remove methods
+
+[old]
+
+There are also "old school" DOM manipulation methods, existing for historical reasons.
+
+These methods come from really ancient times. Nowadays, there's no reason to use them, as modern methods, such as `append`, `prepend`, `before`, `after`, `remove`, `replaceWith`, are more flexible.
+
+The only reason we list these methods here is that you can find them in many old scripts:
+
+`parentElem.appendChild(node)`
+: Appends `node` as the last child of `parentElem`.
+
+    The following example adds a new `<li>` to the end of `<ol>`:
+
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      let newLi = document.createElement('li');
+      newLi.innerHTML = 'Hello, world!';
+
+      list.appendChild(newLi);
+    </script>
+    ```
+
+`parentElem.insertBefore(node, nextSibling)`
+: Inserts `node` before `nextSibling` into `parentElem`.
+
+    The following code inserts a new list item before the second `<li>`:
+
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+    <script>
+      let newLi = document.createElement('li');
+      newLi.innerHTML = 'Hello, world!';
+
+    *!*
+      list.insertBefore(newLi, list.children[1]);
+    */!*
+    </script>
+    ```
+    To insert `newLi` as the first element, we can do it like this:
+
+    ```js
+    list.insertBefore(newLi, list.firstChild);
+    ```
+
+`parentElem.replaceChild(node, oldChild)`
+: Replaces `oldChild` with `node` among children of `parentElem`.
+
+`parentElem.removeChild(node)`
+: Removes `node` from `parentElem` (assuming `node` is its child).
+
+    The following example removes first `<li>` from `<ol>`:
+
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      let li = list.firstElementChild;
+      list.removeChild(li);
+    </script>
+    ```
+
+All these methods return the inserted/removed node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
 
 ## A word about "document.write"
 
@@ -409,7 +478,7 @@ The syntax:
 
 The call to `document.write(html)` writes the `html` into page "right here and now". The `html` string can be dynamically generated, so it's kind of flexible. We can use JavaScript to create a full-fledged webpage and write it.
 
-The method comes from times when there were no DOM, no standards... Really old times. It still lives, because there are scripts using it.
+The method comes from times when there was no DOM, no standards... Really old times. It still lives, because there are scripts using it.
 
 In modern scripts we can rarely see it, because of the following important limitation:
 
@@ -432,51 +501,48 @@ For instance:
 
 So it's kind of unusable at "after loaded" stage, unlike other DOM methods we covered above.
 
-That was the downside.
+That's the downside.
 
-Technically, when `document.write` is called while the browser is still reading HTML, it appends something to it, and the browser consumes it just as it were initially there.
+There's an upside also. Technically, when `document.write` is called while the browser is reading ("parsing") incoming HTML, and it writes something, the browser consumes it just as if it were initially there, in the HTML text.
 
-That gives us the upside -- it works blazingly fast, because there's *no DOM modification*. It writes directly into the page text, while the DOM is not yet built, and the browser puts it into DOM at generation-time.
+So it works blazingly fast, because there's *no DOM modification* involved. It writes directly into the page text, while the DOM is not yet built.
 
 So if we need to add a lot of text into HTML dynamically, and we're at page loading phase, and the speed matters, it may help. But in practice these requirements rarely come together. And usually we can see this method in scripts just because they are old.
 
 ## Summary
 
-Methods to create new nodes:
+- Methods to create new nodes:
+    - `document.createElement(tag)` -- creates an element with the given tag,
+    - `document.createTextNode(value)` -- creates a text node (rarely used),
+    - `elem.cloneNode(deep)` -- clones the element, if `deep==true` then with all descendants.  
 
-- `document.createElement(tag)` -- creates an element with the given tag,
-- `document.createTextNode(value)` -- creates a text node (rarely used),
-- `elem.cloneNode(deep)` -- clones the element, if `deep==true` then with all descendants.  
+- Insertion and removal:
+    - `node.append(...nodes or strings)` -- insert into `node`, at the end,
+    - `node.prepend(...nodes or strings)` -- insert into `node`, at the beginning,
+    - `node.before(...nodes or strings)` –- insert right before `node`,
+    - `node.after(...nodes or strings)` –- insert right after `node`,
+    - `node.replaceWith(...nodes or strings)` –- replace `node`.
+    - `node.remove()` –- remove the `node`.
 
-Insertion and removal of nodes:
+    Text strings are inserted "as text".
 
-- From the parent:
-  - `parent.appendChild(node)`
-  - `parent.insertBefore(node, nextSibling)`
-  - `parent.removeChild(node)`
-  - `parent.replaceChild(newElem, node)`
+- There are also "old school" methods:
+    - `parent.appendChild(node)`
+    - `parent.insertBefore(node, nextSibling)`
+    - `parent.removeChild(node)`
+    - `parent.replaceChild(newElem, node)`
 
-  All these methods return `node`.
+    All these methods return `node`.
 
-- Given a list of nodes and strings:
-  - `node.append(...nodes or strings)` -- insert into `node`, at the end,
-  - `node.prepend(...nodes or strings)` -- insert into `node`, at the beginning,
-  - `node.before(...nodes or strings)` –- insert right before `node`,
-  - `node.after(...nodes or strings)` –- insert right after `node`,
-  - `node.replaceWith(...nodes or strings)` –- replace `node`.
-  - `node.remove()` –- remove the `node`.
+- Given some HTML in `html`, `elem.insertAdjacentHTML(where, html)` inserts it depending on the value of `where`:
+    - `"beforebegin"` -- insert `html` right before `elem`,
+    - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
+    - `"beforeend"` -- insert `html` into `elem`, at the end,
+    - `"afterend"` -- insert `html` right after `elem`.
 
-  Text strings are inserted "as text".
-
-- Given a piece of HTML: `elem.insertAdjacentHTML(where, html)`, inserts depending on where:
-  - `"beforebegin"` -- insert `html` right before `elem`,
-  - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
-  - `"beforeend"` -- insert `html` into `elem`, at the end,
-  - `"afterend"` -- insert `html` right after `elem`.
-
-  Also there are similar methods `elem.insertAdjacentText` and `elem.insertAdjacentElement`, they  insert text strings and elements, but they are rarely used.
+    Also there are similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
 
 - To append HTML to the page before it has finished loading:
-  - `document.write(html)`
+    - `document.write(html)`
 
-  After the page is loaded such a call erases the document. Mostly seen in old scripts.
+    After the page is loaded such a call erases the document. Mostly seen in old scripts.

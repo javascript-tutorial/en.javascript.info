@@ -18,7 +18,7 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Using recursive `setTimeout`:
+Using nested `setTimeout`:
 
 
 ```js run
@@ -38,5 +38,27 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. Sometimes we need to add a line to make the first output immediately, that's easy to do.
+Note that in both solutions, there is an initial delay before the first output. The function is called after `1000ms` the first time.
 
+If we also want the function to run immediately, then we can add an additional call on a separate line, like this:
+
+```js run
+function printNumbers(from, to) {
+  let current = from;
+
+  function go() {
+    alert(current);
+    if (current == to) {
+      clearInterval(timerId);
+    }
+    current++;
+  }
+
+*!*
+  go();
+*/!*
+  let timerId = setInterval(go, 1000);
+}
+
+printNumbers(5, 10);
+```

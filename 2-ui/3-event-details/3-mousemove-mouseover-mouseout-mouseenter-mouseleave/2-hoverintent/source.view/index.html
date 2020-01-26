@@ -1,12 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html>
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
   <link rel="stylesheet" href="style.css">
   <script src="hoverIntent.js"></script>
-  <script src="https://js.cx/test/libs.js"></script>
+  <script src="https://en.js.cx/test/libs.js"></script>
   <script src="test.js"></script>
 </head>
 
@@ -21,18 +20,17 @@
   <div id="tooltip" hidden>Tooltip</div>
 
   <script>
-    // for the demo
-    setTimeout(function() {
-      new HoverIntent({
-        elem,
-        over() {
-          tooltip.hidden = false;
-        },
-        out() {
-          tooltip.hidden = true;
-        }
-      });
-    }, 2000);
+    new HoverIntent({
+      elem,
+      over() {
+        tooltip.style.left = elem.getBoundingClientRect().left + 5 + 'px';
+        tooltip.style.top = elem.getBoundingClientRect().bottom + 5 + 'px';
+        tooltip.hidden = false;
+      },
+      out() {
+        tooltip.hidden = true;
+      }
+    });
   </script>
 
 </body>

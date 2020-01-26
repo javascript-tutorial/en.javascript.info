@@ -27,12 +27,14 @@ Also, there's a reference to the constructor function inside the `prototype`:
 alert(HTMLDocument.prototype.constructor === HTMLDocument); // true
 ```
 
-For built-in classes in all prototypes there's a `constructor` reference, and we can get `constructor.name` to see the name of the class. Let's do it for all objects in the `document` prototype chain:
+To get a name of the class as a string, we can use `constructor.name`. Let's do it for the whole `document` prototype chain, till class `Node`:
 
 ```js run
 alert(HTMLDocument.prototype.constructor.name); // HTMLDocument
 alert(HTMLDocument.prototype.__proto__.constructor.name); // Document
 alert(HTMLDocument.prototype.__proto__.__proto__.constructor.name); // Node
 ```
+
+That's the hierarchy.
 
 We also could examine the object using `console.dir(document)` and see these names by opening `__proto__`. The console takes them from `constructor` internally.

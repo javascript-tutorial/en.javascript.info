@@ -5,7 +5,7 @@
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
-Programmer ninjas of the past used these tricks to make sharpen the mind of code maintainers.
+Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
 
 Code review gurus look for them in test tasks.
 
@@ -32,7 +32,7 @@ For instance, take a look at this ternary operator `'?'`:
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 
-Cool, right? If you write like that, the developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
+Cool, right? If you write like that, a developer who comes across this line and tries to understand what is the value of `i` is going to have a merry time. Then come to you, seeking for an answer.
 
 Tell them that shorter is always better. Initiate them into the paths of ninja.
 
@@ -83,7 +83,7 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 
     Give them a try. A young initiate may wonder -- are such names really useful for a ninja? Indeed, they are!
 
-    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, he'll be surprised to see that there's actually no information at all! And will ultimately fail to alter your well-thought code.
+    Sure, the variable name still means something. It says what's inside the variable: a string, a number or something else. But when an outsider tries to understand the code, they'll be surprised to see that there's actually no information at all! And will ultimately fail to alter your well-thought code.
 
     The value type is easy to find out by debugging. But what's the meaning of the variable? Which string/number does it store?
 
@@ -137,7 +137,7 @@ Instead, reuse existing names. Just write new values into them.
 
 In a function try to use only variables passed as parameters.
 
-That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
+That would make it really hard to identify what's exactly in the variable *now*. And also where it comes from. The purpose is to develop the intuition and memory of a person reading the code. A person with weak intuition would have to analyze the code line-by-line and track the changes through every code branch.
 
 **An advanced variant of the approach is to covertly (!) replace the value with something alike in the middle of a loop or a function.**
 
@@ -153,9 +153,9 @@ function ninjaFunction(elem) {
 }
 ```
 
-A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that he's working with a clone!
+A fellow programmer who wants to work with `elem` in the second half of the function will be surprised... Only during the debugging, after examining the code they will find out that they're working with a clone!
 
-Deadly effective even against an experienced ninja. Seen in code regularly.
+Seen in code regularly. Deadly effective even against an experienced ninja.
 
 ## Underscores for fun
 
@@ -169,7 +169,8 @@ A smart ninja puts underscores at one spot of code and evades them at other plac
 
 Let everyone see how magnificent your entities are! Names like `superElement`, `megaFrame` and `niceItem` will definitely enlighten a reader.
 
-Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two.
+Indeed, from one hand, something is written: `super..`, `mega..`, `nice..` But from the other hand -- that brings no details. A reader may decide to look for a hidden meaning and meditate for an hour or two of their paid working time.
+
 
 ## Overlap outer variables
 
@@ -178,7 +179,7 @@ When in the light, can't see anything in the darkness.<br>
 When in the darkness, can see everything in the light.
 ```
 
-Use same names for variables inside and outside a function. As simple. No efforts required.
+Use same names for variables inside and outside a function. As simple. No efforts to invent new names.
 
 ```js
 let *!*user*/!* = authenticateUser();
@@ -195,7 +196,7 @@ function render() {
 
 A programmer who jumps inside the `render` will probably fail to notice that there's a local `user` shadowing the outer one.
 
-Then he'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
+Then they'll try to work with `user` assuming that it's the external variable, the result of `authenticateUser()`... The trap is sprung! Hello, debugger...
 
 
 ## Side-effects everywhere!
@@ -204,7 +205,7 @@ There are functions that look like they don't change anything. Like `isReady()`,
 
 **A really beautiful trick is to add a "useful" action to them, besides the main task.**
 
-The expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
+An expression of dazed surprise on the face of your colleague when they see a function named `is..`, `check..` or `find...` changing something -- will definitely broaden your boundaries of reason.
 
 **Another way to surprise is to return a non-standard result.**
 

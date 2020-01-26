@@ -7,9 +7,9 @@ function handler(event) {
     return el.className || el.tagName;
   }
 
-  log.value += event.type + ': ' +
+  log.value += event.type + ':  ' +
     'target=' + str(event.target) +
-    ', relatedTarget=' + str(event.relatedTarget) + "\n";
+    ',  relatedTarget=' + str(event.relatedTarget) + "\n";
   log.scrollTop = log.scrollHeight;
 
   if (event.type == 'mouseover') {

@@ -6,9 +6,9 @@ JavaScript gives exceptional flexibility when dealing with functions. They can b
 
 Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
 
-If the function is called often, we may want to cache (remember) the results for different `x` to avoid spending extra-time on recalculations.
+If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
 
-But instead of adding that functionality into `slow()` we'll create a wrapper. As we'll see, there are many benefits of doing so.
+But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
 
 Here's the code, and explanations follow:
 
@@ -23,13 +23,13 @@ function cachingDecorator(func) {
   let cache = new Map();
 
   return function(x) {
-    if (cache.has(x)) { // if the result is in the map
-      return cache.get(x); // return it
+    if (cache.has(x)) {    // if there's such key in cache
+      return cache.get(x); // read the result from it
     }
 
-    let result = func(x); // otherwise call func
+    let result = func(x);  // otherwise call func
 
-    cache.set(x, result); // and cache (remember) the result
+    cache.set(x, result);  // and cache (remember) the result
     return result;
   };
 }
@@ -49,20 +49,17 @@ The idea is that we can call `cachingDecorator` for any function, and it will re
 
 By separating caching from the main function code we also keep the main code simpler.
 
-Now let's get into details of how it works.
-
 The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
 
-![](decorator-makecaching-wrapper.png)
+![](decorator-makecaching-wrapper.svg)
 
-As we can see, the wrapper returns the result of `func(x)` "as is". From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
 
 To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
 
 - The `cachingDecorator` is reusable. We can apply it to another function.
-- The caching logic is separate, it did not increase the complexity of `slow` itself (if there were any).
+- The caching logic is separate, it did not increase the complexity of `slow` itself (if there was any).
 - We can combine multiple decorators if needed (other decorators will follow).
-
 
 ## Using "func.call" for the context
 
@@ -78,7 +75,7 @@ let worker = {
   },
 
   slow(x) {
-    // actually, there can be a scary CPU-heavy task here  
+    // scary CPU-heavy task here  
     alert("Called with " + x);
     return x * this.someMethod(); // (*)
   }
@@ -152,8 +149,8 @@ let user = { name: "John" };
 let admin = { name: "Admin" };
 
 // use call to pass different objects as "this"
-sayHi.call( user ); // this = John
-sayHi.call( admin ); // this = Admin
+sayHi.call( user ); // John
+sayHi.call( admin ); // Admin
 ```
 
 And here we use `call` to call `say` with the given context and phrase:
@@ -170,9 +167,7 @@ let user = { name: "John" };
 say.call( user, "Hello" ); // John: Hello
 ```
 
-
 In our case, we can use `call` in the wrapper to pass the context to the original function:
-
 
 ```js run
 let worker = {
@@ -231,9 +226,7 @@ let worker = {
 worker.slow = cachingDecorator(worker.slow);
 ```
 
-We have two tasks to solve here.
-
-First is how to use both arguments `min` and `max` for the key in `cache` map. Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
+Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
 
 There are many solutions possible:
 
@@ -241,85 +234,11 @@ There are many solutions possible:
 2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
 3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
 
-
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
 
-The second task to solve is how to pass many arguments to `func`. Currently, the wrapper `function(x)` assumes a single argument, and `func.call(this, x)` passes it.
+Also we need to replace `func.call(this, x)` with `func.call(this, ...arguments)`, to pass all arguments to the wrapped function call, not just the first one.
 
-Here we can use another built-in method [func.apply](mdn:js/Function/apply).
-
-The syntax is:
-
-```js
-func.apply(context, args)
-```
-
-It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
-
-
-For instance, these two calls are almost the same:
-
-```js
-func(1, 2, 3);
-func.apply(context, [1, 2, 3])
-```
-
-Both run `func` giving it arguments `1,2,3`. But `apply` also sets `this=context`.
-
-For instance, here `say` is called with `this=user` and `messageData` as a list of arguments:
-
-```js run
-function say(time, phrase) {
-  alert(`[${time}] ${this.name}: ${phrase}`);
-}
-
-let user = { name: "John" };
-
-let messageData = ['10:00', 'Hello']; // become time and phrase
-
-*!*
-// user becomes this, messageData is passed as a list of arguments (time, phrase)
-say.apply(user, messageData); // [10:00] John: Hello (this=user)
-*/!*
-```
-
-The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
-
-We already know the spread operator `...` from the chapter <info:rest-parameters-spread-operator> that can pass an array (or any iterable) as a list of arguments. So if we use it with `call`, we can achieve almost the same as `apply`.
-
-These two calls are almost equivalent:
-
-```js
-let args = [1, 2, 3];
-
-*!*
-func.call(context, ...args); // pass an array as list with spread operator
-func.apply(context, args);   // is same as using apply
-*/!*
-```
-
-If we look more closely, there's a minor difference between such uses of `call` and `apply`.
-
-- The spread operator `...` allows to pass *iterable* `args` as the list to `call`.
-- The `apply` accepts only *array-like* `args`.
-
-So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
-
-And if `args` is both iterable and array-like, like a real array, then we technically could use any of them, but `apply` will probably be faster, because it's a single operation. Most JavaScript engines internally optimize is better than a pair `call + spread`.
-
-One of the most important uses of `apply` is passing the call to another function, like this:
-
-```js
-let wrapper = function() {
-  return anotherFunction.apply(this, arguments);
-};
-```
-
-That's called *call forwarding*. The `wrapper` passes everything it gets: the context `this` and arguments to `anotherFunction` and returns back its result.
-
-When an external code calls such `wrapper`, it is indistinguishable from the call of the original function.
-
-Now let's bake it all into the more powerful `cachingDecorator`:
+Here's a more powerful `cachingDecorator`:
 
 ```js run
 let worker = {
@@ -340,7 +259,7 @@ function cachingDecorator(func, hash) {
     }
 
 *!*
-    let result = func.apply(this, arguments); // (**)
+    let result = func.call(this, ...arguments); // (**)
 */!*
 
     cache.set(key, result);
@@ -358,13 +277,52 @@ alert( worker.slow(3, 5) ); // works
 alert( "Again " + worker.slow(3, 5) ); // same (cached)
 ```
 
-Now the wrapper operates with any number of arguments.
+Now it works with any number of arguments (though the hash function would also need to be adjusted to allow any number of arguments. An interesting way to handle this will be covered below).
 
 There are two changes:
 
 - In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
-- Then `(**)` uses `func.apply` to pass both the context and all arguments the wrapper got (no matter how many) to the original function.
+- Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
 
+Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
+
+The syntax of built-in method [func.apply](mdn:js/Function/apply) is:
+
+```js
+func.apply(context, args)
+```
+
+It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
+
+The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
+
+So these two calls are almost equivalent:
+
+```js
+func.call(context, ...args); // pass an array as list with spread syntax
+func.apply(context, args);   // is same as using apply
+```
+
+There's only a minor difference:
+
+- The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
+- The `apply` accepts only *array-like* `args`.
+
+So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
+
+And for objects that are both iterable and array-like, like a real array, we technically could use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+
+Passing all arguments along with the context to another function is called *call forwarding*.
+
+That's the simplest form of it:
+
+```js
+let wrapper = function() {
+  return func.apply(this, arguments);
+};
+```
+
+When an external code calls such `wrapper`, it is indistinguishable from the call of the original function `func`.
 
 ## Borrowing a method [#method-borrowing]
 
@@ -414,7 +372,7 @@ hash(1, 2);
 
 The trick is called *method borrowing*.
 
-We take (borrow) a join method from a regular array `[].join`. And use `[].join.call` to run it in the context of `arguments`.
+We take (borrow) a join method from a regular array (`[].join`) and use `[].join.call` to run it in the context of `arguments`.
 
 Why does it work?
 
@@ -432,11 +390,19 @@ Taken from the specification almost "as-is":
 
 So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. It's intentionally written in a way that allows any array-like `this` (not a coincidence, many methods follow this practice). That's why it also works with `this=arguments`.
 
+## Decorators and function properties
+
+It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them.
+
+E.g. in the example above if `slow` function had any properties on it, then `cachingDecorator(slow)` is a wrapper without them.
+
+Some decorators may provide their own properties. E.g. a decorator may count how many times a function was invoked and how much time it took, and expose this information via wrapper properties.
+
+There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article <info:proxy#proxy-apply>.
+
 ## Summary
 
 *Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
-
-It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them. Some decorators provide their own properties.
 
 Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
 
@@ -450,10 +416,9 @@ The generic *call forwarding* is usually done with `apply`:
 ```js
 let wrapper = function() {
   return original.apply(this, arguments);
-}
+};
 ```
 
-We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to arguments. The alternative is to use rest parameters object that is a real array.
-
+We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to `arguments`. The alternative is to use rest parameters object that is a real array.
 
 There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
