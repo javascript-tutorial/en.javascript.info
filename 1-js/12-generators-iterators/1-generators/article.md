@@ -347,7 +347,7 @@ generator.next(4); // --> pass the result into the generator
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
 3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
-Please note, the outer code does not have to immediately call`next(4)`. It may take time. That's not a problem: the generator will wait.
+Please note, the outer code does not have to immediately call `next(4)`. It may take time. That's not a problem: the generator will wait.
 
 For instance:
 
