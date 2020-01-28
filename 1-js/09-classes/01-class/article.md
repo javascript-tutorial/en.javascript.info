@@ -264,7 +264,7 @@ class User {
 let user = new User("John");
 alert(user.name); // John
 
-user = new User(""); // Name too short.
+user = new User(""); // Name is too short.
 ```
 
 The class declaration creates getters and setters in `User.prototype`, like this:
