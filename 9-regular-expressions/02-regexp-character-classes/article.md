@@ -156,6 +156,8 @@ alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
 The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter.
 
 This trick works everywhere. Also we can use it if we don't want to set `pattern:s` flag, in cases when we want a regular "no-newline" dot too in the pattern.
+
+Also worth mentioning is, besides `[\s\S]`, there is another regular expression that can match any character, which is `[^]` -- it means match any character except nothing, and that means to match any character without exception. `[^]` and `[\s\S]` are the two typical regular expressions to solve the missing of `s` flag problem.
 ````
 
 ````warn header="Pay attention to spaces"
