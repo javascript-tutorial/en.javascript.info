@@ -17,7 +17,7 @@ let double = "double-quoted";
 let backticks = `backticks`;
 ```
 
-Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
+Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}` like the code below. String literals allowing embedded expressions are called [Template literals](mdn:/JavaScript/Reference/Template_literals).
 
 ```js run
 function sum(a, b) {
