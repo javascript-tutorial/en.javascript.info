@@ -18,7 +18,7 @@ let id = Symbol();
 
 Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
 
-```js run
+```js
 // id is a symbol with the description "id"
 let id = Symbol("id");
 ```

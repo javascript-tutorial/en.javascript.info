@@ -23,7 +23,7 @@ Why did the `.then` trigger afterwards? What's going on?
 
 ## Microtasks queue
 
-Asynchronous tasks need proper management. For that, the Ecma standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (ES8 term).
+Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (ES8 term).
 
 As stated in the [specification](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
 
