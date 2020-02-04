@@ -94,7 +94,7 @@ But it should be two separate statements, not one. Such a merging in this case i
 
 We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
 
-## Comments
+## Comments [#code-comments]
 
 As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
 
