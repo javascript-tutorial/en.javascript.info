@@ -252,7 +252,7 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
+The `response` object returned from `fetch` also includes the method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
 
 We'll also use arrow functions for brevity:
 
