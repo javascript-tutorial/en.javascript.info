@@ -12,7 +12,7 @@ If an object isn't technically an array, but represents a collection (list, set)
 
 We can easily grasp the concept of iterables by making one of our own.
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
+For instance, we have an object that is not an array, but looks suitable for `for..of`.
 
 Like a `range` object that represents an interval of numbers:
 
