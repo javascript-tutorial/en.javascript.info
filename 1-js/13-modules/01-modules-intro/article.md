@@ -85,7 +85,7 @@ Modules are expected to `export` what they want to be accessible from outside an
 
 So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
 
-That's the correct variant:
+This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
