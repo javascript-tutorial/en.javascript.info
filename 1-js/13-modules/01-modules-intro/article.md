@@ -163,7 +163,7 @@ alert(admin.name); // Pete
 
 So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
 
-Such behavior allows to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
 
 For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
 
