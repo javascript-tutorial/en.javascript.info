@@ -110,7 +110,7 @@ If we really need to make a window-level global variable, we can explicitly assi
 
 If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
 
-That has important consequences. Let's see that on examples.
+That has important consequences. Let's look at them using examples:
 
 First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
 
