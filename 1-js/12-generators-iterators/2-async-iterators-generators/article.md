@@ -270,7 +270,7 @@ There are many online services that deliver paginated data. For instance, when w
 
 This pattern is very common. It's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
 
-- We should make a request to URL in the form `https://api.github.com/repos/<repo>/commits`.
+- We should make a request to `fetch` in the form `https://api.github.com/repos/<repo>/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
 - Then we can use that link for the next request, to get more commits, and so on.
 
