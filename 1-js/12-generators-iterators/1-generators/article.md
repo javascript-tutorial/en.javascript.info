@@ -314,11 +314,11 @@ alert(str); // 0..9A..Za..z
 
 A generator composition is a natural way to insert a flow of one generator into another. It doesn't use extra memory to store intermediate results.
 
-## "yield" is a two-way road
+## "yield" is a two-way street
 
 Until this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
 
-That's because `yield` is a two-way road: it not only returns the result outside, but also can pass the value inside the generator.
+That's because `yield` is a two-way street: it not only returns the result outside, but also can pass the value inside the generator.
 
 To do so, we should call `generator.next(arg)`, with an argument. That argument becomes the result of `yield`.
 
