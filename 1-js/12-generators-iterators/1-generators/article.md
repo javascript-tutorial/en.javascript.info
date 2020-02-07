@@ -318,7 +318,7 @@ A generator composition is a natural way to insert a flow of one generator into 
 
 Until this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
 
-That's because `yield` is a two-way street: it not only returns the result outside, but also can pass the value inside the generator.
+That's because `yield` is a two-way street: it not only returns the result to the outside, but also can pass the value inside the generator.
 
 To do so, we should call `generator.next(arg)`, with an argument. That argument becomes the result of `yield`.
 
