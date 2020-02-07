@@ -268,7 +268,7 @@ Please note: the second script actually runs before the first! So we'll see `und
 
 That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
 
-When using modules, we should be aware that HTML-page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
+When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
 ### Async works on inline scripts
 
