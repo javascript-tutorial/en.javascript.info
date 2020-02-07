@@ -24,7 +24,7 @@ A module is just a file. One script is one module.
 Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
 
 - `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows to import functionality from other modules.
+- `import` allows the import of functionality from other modules.
 
 For instance, if we have a file `sayHi.js` exporting a function:
 
@@ -45,7 +45,7 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative the current file and assigns exported function `sayHi` to the corresponding variable.
+The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
 
 Let's run the example in-browser.
 
