@@ -24,7 +24,7 @@ A module is just a file. One script is one module.
 Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
 
 - `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows to import functionality from other modules.
+- `import` allows the import of functionality from other modules.
 
 For instance, if we have a file `sayHi.js` exporting a function:
 
@@ -45,7 +45,7 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative the current file and assigns exported function `sayHi` to the corresponding variable.
+The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
 
 Let's run the example in-browser.
 
@@ -85,7 +85,7 @@ Modules are expected to `export` what they want to be accessible from outside an
 
 So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
 
-That's the correct variant:
+This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
@@ -110,7 +110,7 @@ If we really need to make a window-level global variable, we can explicitly assi
 
 If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
 
-That has important consequences. Let's see that on examples.
+That has important consequences. Let's look at them using examples:
 
 First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
 
@@ -163,7 +163,7 @@ alert(admin.name); // Pete
 
 So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
 
-Such behavior allows to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
 
 For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
 
@@ -268,11 +268,11 @@ Please note: the second script actually runs before the first! So we'll see `und
 
 That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
 
-When using modules, we should be aware that HTML-page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
+When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
 ### Async works on inline scripts
 
-For non-module scripts, `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
 
 For module scripts, it works on inline scripts as well.
 
