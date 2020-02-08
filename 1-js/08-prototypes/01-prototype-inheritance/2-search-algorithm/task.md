@@ -9,7 +9,7 @@ The task has two parts.
 Given the following objects:
 
 ```js
-let head = {
+let face = {
   glasses: 1
 };
 
@@ -27,5 +27,5 @@ let pockets = {
 };
 ```
 
-1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets` -> `bed` -> `table` -> `head`. For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `head`).
-2. Answer the question: is it faster to get `glasses` as `pockets.glasses` or `head.glasses`? Benchmark if needed.
+1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets` -> `bed` -> `table` -> `face`. For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `face`).
+2. Answer the question: is it faster to get `glasses` as `pockets.glasses` or `face.glasses`? Benchmark if needed.
