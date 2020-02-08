@@ -272,7 +272,7 @@ When using modules, we should be aware that the HTML page shows up as it loads, 
 
 ### Async works on inline scripts
 
-For non-module scripts, `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
 
 For module scripts, it works on inline scripts as well.
 
