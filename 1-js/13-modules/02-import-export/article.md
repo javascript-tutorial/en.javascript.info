@@ -439,7 +439,7 @@ sayHi();
 import {sayHi} from './say.js'; // import at the end of the file
 ```
 
-In practice imports are usually at the start of the file, but that's only for better convenience.
+In practice imports are usually at the start of the file, but that's only for more convenience.
 
 **Please note that import/export statements don't work if inside `{...}`.**
 
