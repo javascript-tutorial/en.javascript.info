@@ -121,7 +121,7 @@ The first idea may be to assign a separate handler to each button. But there's a
 
 The handler reads the attribute and executes the method. Take a look at the working example:
 
-```html autorun height=60 run
+```html autorun height=60 run untrusted
 <div id="menu">
   <button data-action="save">Save</button>
   <button data-action="load">Load</button>
