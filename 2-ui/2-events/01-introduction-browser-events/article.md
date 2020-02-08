@@ -293,36 +293,20 @@ As we can see in the example above, we can set handlers *both* using a DOM-prope
 ````warn header="For some events, handlers only work with `addEventListener`"
 There exist events that can't be assigned via a DOM-property. Must use `addEventListener`.
 
-For instance, the event `transitionend` (CSS animation finished) is like that.
+For instance, the event `DOMContentLoaded`, that triggers when the document is loaded and DOM is built.
 
-Try the code below. In most browsers only the second handler works, not the first one.
-
-```html run
-<style>
-  input {
-    transition: width 1s;
-    width: 100px;
-  }
-
-  .wide {
-    width: 300px;
-  }
-</style>
-
-<input type="button" id="elem" onclick="this.classList.toggle('wide')" value="Click me">
-
-<script>
-  elem.ontransitionend = function() {
-    alert("DOM property"); // doesn't work
-  };
-
-*!*
-  elem.addEventListener("transitionend", function() {
-    alert("addEventListener"); // shows up when the animation finishes
-  });
-*/!*
-</script>
+```js
+document.onDOMContentLoaded = function() {
+  alert("DOM built"); // will never run
+};
 ```
+
+```js
+document.addEventListener("DOMContentLoaded", function() {
+  alert("DOM built"); // this way it works
+});
+```
+So `addEventListener` is more universal. Although, such events are an exception rather than the rule.
 ````
 
 ## Event object
