@@ -107,7 +107,7 @@ To emulate such behavior, a polyfill would need to analyze the code and replace 
 
 So, there's no well-known good polyfill.
 
-Although, the other way around is proposed by the developers of [https://github.com/GoogleChromeLabs/jsbi](JSBI) library.
+Although, the other way around is proposed by the developers of [JSBI](https://github.com/GoogleChromeLabs/jsbi) library.
 
 This library implements big numbers using its own methods. We can use them instead of native bigints:
 
