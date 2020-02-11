@@ -175,7 +175,7 @@ For the call `curried(1)(2)(3)`:
 2. The wrapper `pass` is called with `(2)`: it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together. As the argument count is still less than 3, `curry` returns `pass`.
 3. The wrapper `pass` is called again with `(3)`,  for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
 
-If that's still not obvious, just trace the calls sequence in your mind or on the paper.
+If that's still not obvious, just trace the calls sequence in your mind or on paper.
 
 ```smart header="Fixed-length functions only"
 The currying requires the function to have a fixed number of arguments.
