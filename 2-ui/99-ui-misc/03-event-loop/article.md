@@ -263,7 +263,7 @@ What's going to be the order here?
 2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
 3. `timeout` shows last, because it's a macrotask.
 
-The richer event loop picture looks like this:
+The richer event loop picture looks like this (order is from bottom to top, that is: `setTimeout` first, then microtasks and so on):
 
 ![](eventLoop-full.svg)
 
