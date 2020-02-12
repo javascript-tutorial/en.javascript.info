@@ -119,7 +119,7 @@ The notable thing is that both variants -- with and without splitting the job by
 
 To make them closer, let's make an improvement.
 
-We'll move the scheduling in the beginning of the `count()`:
+We'll move the scheduling to the beginning of the `count()`:
 
 ```js run
 let i = 0;
@@ -128,7 +128,7 @@ let start = Date.now();
 
 function count() {
 
-  // move the scheduling at the beginning
+  // move the scheduling to the beginning
   if (i < 1e9 - 1e6) {
     setTimeout(count); // schedule the new call
   }
