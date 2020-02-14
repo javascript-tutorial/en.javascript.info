@@ -111,7 +111,7 @@ So:
 
 ## Advanced curry implementation
 
-In case you'd like to get in details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
+In case you'd like to get in to the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
 
 It's pretty short:
 
