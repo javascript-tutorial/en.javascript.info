@@ -162,7 +162,7 @@ Another benefit of splitting heavy tasks for browser scripts is that we can show
 
 Usually the browser renders after the currently running code is complete. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is finished.
 
-From one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
+On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
 
 Here's the demo, the changes to `i` won't show up until the function finishes, so we'll see only the last value:
 
