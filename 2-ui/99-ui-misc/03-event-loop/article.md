@@ -80,7 +80,7 @@ count();
 
 The browser may even show "the script takes too long" warning.
 
-Let's split the job using nested `setTimeout`:
+Let's split the job using nested `setTimeout` calls:
 
 ```js run
 let i = 0;
