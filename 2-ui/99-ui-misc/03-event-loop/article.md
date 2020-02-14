@@ -78,7 +78,7 @@ function count() {
 count();
 ```
 
-The browser may even show "the script takes too long" warning.
+The browser may even show a "the script takes too long" warning.
 
 Let's split the job using nested `setTimeout` calls:
 
