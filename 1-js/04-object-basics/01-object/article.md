@@ -305,7 +305,7 @@ Later we'll see workarounds for the problem:
 1. We'll see how to make an objects treat `__proto__` as a regular property in the chapter [](info:prototype-methods).
 2. There's also study another data structure [Map](info:map-set) in the chapter <info:map-set>, which supports arbitrary keys.
 
-## Property existance test, "in" operator
+## Property existence test, "in" operator
 
 A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
 
