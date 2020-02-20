@@ -2,7 +2,9 @@
 
 A `Proxy` object wraps another object and intercepts operations, like reading/writing properties and others, optionally handling them on its own, or transparently allowing the object to handle them.
 
-Proxies are used in many libraries and some browser frameworks. We'll see many practical applications in this chapter.
+Proxies are used in many libraries and some browser frameworks. We'll see many practical applications in this article.
+
+## Proxy
 
 The syntax:
 
@@ -244,7 +246,7 @@ If we forget to do it or return any falsy value, the operation triggers `TypeErr
 Such methods differ in details:
 - `Object.getOwnPropertyNames(obj)` returns non-symbol keys.
 - `Object.getOwnPropertySymbols(obj)` returns symbol keys.
-- `Object.keys/values()` returns non-symbol keys/values with `enumerable` flag (property flags were explained in the chapter <info:property-descriptors>).
+- `Object.keys/values()` returns non-symbol keys/values with `enumerable` flag (property flags were explained in the article <info:property-descriptors>).
 - `for..in` loops over non-symbol keys with `enumerable` flag, and also prototype keys.
 
 ...But all of them start with that list.
@@ -446,14 +448,14 @@ Besides, an object may be proxied multiple times (multiple proxies may add diffe
 So, such a proxy shouldn't be used everywhere.
 
 ```smart header="Private properties of a class"
-Modern JavaScript engines natively support private properties in classes, prefixed with `#`. They are described in the chapter <info:private-protected-properties-methods>. No proxies required.
+Modern JavaScript engines natively support private properties in classes, prefixed with `#`. They are described in the article <info:private-protected-properties-methods>. No proxies required.
 
 Such properties have their own issues though. In particular, they are not inherited.
 ```
 
 ## "In range" with "has" trap
 
-Let's see more examples.
+Let's see more examples.ar
 
 We have a range object:
 
@@ -485,7 +487,7 @@ range = new Proxy(range, {
 *!*
   has(target, prop) {
 */!*
-    return prop >= target.start && prop <= target.end
+    return prop >= target.start && prop <= target.end;
   }
 });
 
@@ -507,9 +509,9 @@ The `apply(target, thisArg, args)` trap handles calling a proxy as function:
 - `thisArg` is the value of `this`.
 - `args` is a list of arguments.
 
-For example, let's recall `delay(f, ms)` decorator, that we did in the chapter <info:call-apply-decorators>.
+For example, let's recall `delay(f, ms)` decorator, that we did in the article <info:call-apply-decorators>.
 
-In that chapter we did it without proxies. A call to `delay(f, ms)` returned a function that forwards all calls to `f` after `ms` milliseconds.
+In that article we did it without proxies. A call to `delay(f, ms)` returned a function that forwards all calls to `f` after `ms` milliseconds.
 
 Here's the previous, function-based implementation:
 
@@ -587,7 +589,7 @@ The result is the same, but now not only calls, but all operations on the proxy 
 
 We've got a "richer" wrapper.
 
-Other traps exist: the full list is in the beginning of this chapter. Their usage pattern is similar to the above.
+Other traps exist: the full list is in the beginning of this article. Their usage pattern is similar to the above.
 
 ## Reflect
 
@@ -619,7 +621,7 @@ alert(user.name); // John
 
 In particular, `Reflect` allows us to call operators (`new`, `delete`...) as functions (`Reflect.construct`, `Reflect.deleteProperty`, ...). That's an interesting capability, but here another thing is important.
 
-**For every internal method, trappable by `Proxy`, there's a corresponding method in `Reflect`, with the same name and arguments as `Proxy` trap.**
+**For every internal method, trappable by `Proxy`, there's a corresponding method in `Reflect`, with the same name and arguments as the `Proxy` trap.**
 
 So we can use `Reflect` to forward an operation to the original object.
 

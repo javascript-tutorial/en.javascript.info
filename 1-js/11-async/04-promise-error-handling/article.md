@@ -92,7 +92,7 @@ new Promise((resolve, reject) => {
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
-The final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
+The final `.catch` not only catches explicit rejections, but also accidental errors in the handlers above.
 
 ## Rethrowing
 
@@ -100,7 +100,7 @@ As we already noticed, `.catch` at the end of the chain is similar to `try..catc
 
 In a regular `try..catch` we can analyze the error and maybe rethrow it if it can't be handled. The same thing is possible for promises.
 
-If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the closest successful `.then` handler.
+If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful `.then` handler.
 
 In the example below the `.catch` successfully handles the error:
 

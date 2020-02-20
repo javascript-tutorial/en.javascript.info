@@ -141,7 +141,6 @@ And here's another part of the code, maybe another file using it:
 let john = { name: "John" };
 
 countUser(john); // count his visits
-countUser(john);
 
 // later john leaves us
 john = null;

@@ -143,7 +143,7 @@ But we can wrap it into an anonymous async function, like this:
 
 ````
 ````smart header="`await` accepts \"thenables\""
-Like `promise.then`, `await` allows to use thenable objects (those with a callable `then` method). The idea is that a third-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use with `await`.
+Like `promise.then`, `await` allows us to use thenable objects (those with a callable `then` method). The idea is that a third-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use it with `await`.
 
 Here's a demo `Thenable` class; the `await` below accepts its instances:
 

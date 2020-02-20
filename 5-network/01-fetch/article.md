@@ -1,7 +1,7 @@
 
 # Fetch
 
-JavaScript can send network requests to the server and load new information whenever is needed.
+JavaScript can send network requests to the server and load new information whenever it's needed.
 
 For example, we can use a network request to:
 
@@ -66,7 +66,7 @@ if (response.ok) { // if HTTP-status is 200-299
 - **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](info:formdata)),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representaion of binary data),
-- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
+- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
 
 For instance, let's get a JSON-object with latest commits from GitHub:
 
@@ -230,7 +230,7 @@ But, as we're going to send JSON, we use `headers` option to send `application/j
 
 We can also submit binary data with `fetch` using `Blob` or `BufferSource` objects.
 
-In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to server:
+In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to the server:
 
 ```html run autorun height="90"
 <body style="margin:0">

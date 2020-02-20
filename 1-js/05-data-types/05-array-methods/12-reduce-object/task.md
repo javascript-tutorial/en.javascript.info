@@ -20,7 +20,7 @@ let users = [
 let usersById = groupById(users);
 
 /*
-// after the call we have:
+// after the call we should have:
 
 usersById = {
   john: {id: 'john', name: "John Smith", age: 20}

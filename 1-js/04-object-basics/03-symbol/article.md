@@ -18,7 +18,7 @@ let id = Symbol();
 
 Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
 
-```js run
+```js
 // id is a symbol with the description "id"
 let id = Symbol("id");
 ```
@@ -178,22 +178,6 @@ alert( clone[id] ); // 123
 
 There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
 
-````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are converted to strings.
-
-For instance, a number `0` becomes a string `"0"` when used as a property key:
-
-```js run
-let obj = {
-  0: "test" // same as "0": "test"
-};
-
-// both alerts access the same property (the number 0 is converted to string "0")
-alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
-```
-````
-
 ## Global symbols
 
 As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
@@ -241,7 +225,7 @@ alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and returns `undefined`.
 
 That said, any symbols have `description` property.
 

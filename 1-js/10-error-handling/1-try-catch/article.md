@@ -4,7 +4,7 @@ No matter how great we are at programming, sometimes our scripts have errors. Th
 
 Usually, a script "dies" (immediately stops) in case of an error, printing it to console.
 
-But there's a syntax construct `try..catch` that allows to "catch" errors and, instead of dying, do something more reasonable.
+But there's a syntax construct `try..catch` that allows us to "catch" errors so the script can, instead of dying, do something more reasonable.
 
 ## The "try..catch" syntax
 
@@ -26,13 +26,13 @@ It works like this:
 
 1. First, the code in `try {...}` is executed.
 2. If there were no errors, then `catch(err)` is ignored: the execution reaches the end of `try` and goes on, skipping `catch`.
-3. If an error occurs, then `try` execution is stopped, and the control flows to the beginning of `catch(err)`. The `err` variable (can use any name for it) will contain an error object with details about what happened.
+3. If an error occurs, then the `try` execution is stopped, and control flows to the beginning of `catch(err)`. The `err` variable (we can use any name for it) will contain an error object with details about what happened.
 
 ![](try-catch-flow.svg)
 
-So, an error inside the `try {…}` block does not kill the script: we have a chance to handle it in `catch`.
+So, an error inside the `try {…}` block does not kill the script -- we have a chance to handle it in `catch`.
 
-Let's see examples.
+Let's look at some examples.
 
 - An errorless example: shows `alert` `(1)` and `(2)`:
 
@@ -87,7 +87,7 @@ try {
 
 The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
 
-So, `try..catch` can only handle errors that occur in the valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
+So, `try..catch` can only handle errors that occur in valid code. Such errors are called "runtime errors" or, sometimes, "exceptions".
 ````
 
 
