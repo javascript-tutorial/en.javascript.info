@@ -67,7 +67,7 @@ let welcome = (age < 18) ?
   () => alert('Hello') :
   () => alert("Greetings!");
 
-welcome(); // ok now
+welcome();
 ```
 
 Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
