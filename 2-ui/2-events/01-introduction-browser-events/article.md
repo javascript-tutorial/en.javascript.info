@@ -216,7 +216,7 @@ Web-standard developers understood that long ago and suggested an alternative wa
 The syntax to add a handler:
 
 ```js
-element.addEventListener(event, handler[, options]);
+element.addEventListener(event, handler, [options]);
 ```
 
 `event`
@@ -235,7 +235,7 @@ element.addEventListener(event, handler[, options]);
 To remove the handler, use `removeEventListener`:
 
 ```js
-element.removeEventListener(event, handler[, options]);
+element.removeEventListener(event, handler, [options]);
 ```
 
 ````warn header="Removal requires the same function"
