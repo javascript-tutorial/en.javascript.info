@@ -300,7 +300,7 @@ So these two calls are almost equivalent:
 
 ```js
 func.call(context, ...args); // pass an array as list with spread syntax
-func.apply(context, args);   // is same as using apply
+func.apply(context, args);   // is same as using call
 ```
 
 There's only a minor difference:
