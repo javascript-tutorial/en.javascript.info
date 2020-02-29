@@ -1,7 +1,7 @@
 
 # Async iterators and generators
 
-Asynchronous iterators allow to iterate over data that comes asynchronously, on-demand. For instance, when we download something chunk-by-chunk over a network. Asynchronous generators make it even more convenient.
+Asynchronous iterators allow us to iterate over data that comes asynchronously, on-demand. Like, for instance, when we download something chunk-by-chunk over a network. And asynchronous generators make it even more convenient.
 
 Let's see a simple example first, to grasp the syntax, and then review a real-life use case.
 
