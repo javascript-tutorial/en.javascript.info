@@ -52,7 +52,7 @@ If necessary, please refer to the [chapter about iterables](info:iterable) for d
 To make the object iterable asynchronously:
 1. We need to use `Symbol.asyncIterator` instead of `Symbol.iterator`.
 2. `next()` should return a promise.
-3. To iterate over such an object, we should use `for await (let item of iterable)` loop.
+3. To iterate over such an object, we should use a `for await (let item of iterable)` loop.
 
 Let's make an iterable `range` object, like the one before, but now it will return values asynchronously, one per second:
 
