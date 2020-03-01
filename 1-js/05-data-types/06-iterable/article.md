@@ -1,7 +1,7 @@
 
 # Iterables
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+*Iterable* objects is a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
 
@@ -224,12 +224,12 @@ let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
 ```
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
+The full syntax for `Array.from` also allows us to provide an optional "mapping" function:
 ```js
 Array.from(obj[, mapFn, thisArg])
 ```
 
-The optional second argument `mapFn` can be a function that will be applied to each element before adding to the array, and `thisArg` allows to set `this` for it.
+The optional second argument `mapFn` can be a function that will be applied to each element before adding it to the array, and `thisArg` allows us to set `this` for it.
 
 For instance:
 

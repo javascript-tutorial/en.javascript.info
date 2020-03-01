@@ -345,7 +345,7 @@ let arr = [f(), f(), f()];
 
 A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
 
-In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory;
+In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
 
 ```js
 function f() {

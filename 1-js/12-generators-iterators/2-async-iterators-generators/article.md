@@ -1,7 +1,7 @@
 
 # Async iterators and generators
 
-Asynchronous iterators allow to iterate over data that comes asynchronously, on-demand. For instance, when we download something chunk-by-chunk over a network. Asynchronous generators make it even more convenient.
+Asynchronous iterators allow us to iterate over data that comes asynchronously, on-demand. Like, for instance, when we download something chunk-by-chunk over a network. And asynchronous generators make it even more convenient.
 
 Let's see a simple example first, to grasp the syntax, and then review a real-life use case.
 
@@ -52,7 +52,7 @@ If necessary, please refer to the [chapter about iterables](info:iterable) for d
 To make the object iterable asynchronously:
 1. We need to use `Symbol.asyncIterator` instead of `Symbol.iterator`.
 2. `next()` should return a promise.
-3. To iterate over such an object, we should use `for await (let item of iterable)` loop.
+3. To iterate over such an object, we should use a `for await (let item of iterable)` loop.
 
 Let's make an iterable `range` object, like the one before, but now it will return values asynchronously, one per second:
 
@@ -109,7 +109,7 @@ As we can see, the structure is similar to regular iterators:
 
 1. To make an object asynchronously iterable, it must have a method `Symbol.asyncIterator` `(1)`.
 2. This method must return the object with `next()` method returning a promise `(2)`.
-3. The `next()` method doesn't have to be `async`, it may be a regular method returning a promise, but `async` allows to use `await`, so that's convenient. Here we just delay for a second `(3)`.
+3. The `next()` method doesn't have to be `async`, it may be a regular method returning a promise, but `async` allows us to use `await`, so that's convenient. Here we just delay for a second `(3)`.
 4. To iterate, we use `for await(let value of range)` `(4)`, namely add "await" after "for". It calls `range[Symbol.asyncIterator]()` once, and then its `next()` for values.
 
 Here's a small cheatsheet:
@@ -268,7 +268,7 @@ So far we've seen simple examples, to gain basic understanding. Now let's review
 
 There are many online services that deliver paginated data. For instance, when we need a list of users, a request returns a pre-defined count (e.g. 100 users) - "one page", and provides a URL to the next page.
 
-This pattern is very common. It's not about users, but just about anything. For instance, GitHub allows to retrieve commits in the same, paginated fashion:
+This pattern is very common. It's not about users, but just about anything. For instance, GitHub allows us to retrieve commits in the same, paginated fashion:
 
 - We should make a request to URL in the form `https://api.github.com/repos/<repo>/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.

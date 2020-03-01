@@ -153,7 +153,7 @@ So in the example above, `if (false)` branch never executes, but that doesn't ma
 
 **Declarations are hoisted, but assignments are not.**
 
-That's better to demonstrate with an example, like this:
+That's best demonstrated with an example:
 
 ```js run
 function sayHi() {
