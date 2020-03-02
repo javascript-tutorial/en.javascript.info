@@ -455,7 +455,7 @@ Such properties have their own issues though. In particular, they are not inheri
 
 ## "In range" with "has" trap
 
-Let's see more examples.ar
+Let's see more examples.
 
 We have a range object:
 
