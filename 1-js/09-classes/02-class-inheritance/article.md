@@ -16,7 +16,7 @@ class Animal {
     this.name = name;
   }
   run(speed) {
-    this.speed += speed;
+    this.speed = speed;
     alert(`${this.name} runs with speed ${this.speed}.`);
   }
   stop() {
@@ -124,7 +124,7 @@ class Animal {
   }
 
   run(speed) {
-    this.speed += speed;
+    this.speed = speed;
     alert(`${this.name} runs with speed ${this.speed}.`);
   }
 
