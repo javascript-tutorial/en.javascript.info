@@ -478,7 +478,7 @@ tree.sayHi();  // I'm an animal (?!?)
 */!*
 ```
 
-A call to `tree.sayHi()` shows "I'm an animal". Definitevely wrong.
+A call to `tree.sayHi()` shows "I'm an animal". Definitely wrong.
 
 The reason is simple:
 - In the line `(*)`, the method `tree.sayHi` was copied from `rabbit`. Maybe we just wanted to avoid code duplication?
