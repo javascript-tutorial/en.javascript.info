@@ -32,6 +32,7 @@ Here's an example of such code (it doesn't work -- why? fix it?):
 ```js
 class Rabbit extends Object {
   constructor(name) {
+    super();
     this.name = name;
   }
 }
