@@ -1,4 +1,4 @@
-importance: 5
+importance: 3
 
 ---
 
@@ -32,12 +32,11 @@ Here's an example of such code (it doesn't work -- why? fix it?):
 ```js
 class Rabbit extends Object {
   constructor(name) {
-    super();
     this.name = name;
   }
 }
 
 let rabbit = new Rabbit("Rab");
 
-alert( rabbit.hasOwnProperty('name') ); // true
+alert( rabbit.hasOwnProperty('name') ); // Error
 ```
