@@ -244,10 +244,10 @@ Often the answer is "No": we'd like to be "one level above all that". We just wa
 The technique that we describe here is called "wrapping exceptions".
 
 1. We'll make a new class `ReadError` to represent a generic "data reading" error.
-2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate `ReadError` instead.
+2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate a `ReadError` instead.
 3. The `ReadError` object will keep the reference to the original error in its `cause` property.
 
-Then the code that calls `readUser` will only have to check for `ReadError`, not for every kind of data reading errors.
+Then the code that calls `readUser` will only have to check for `ReadError`, not for every kind of data reading errors. And if it needs more details of an error, it can check its `cause` property.
 
 Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
 
