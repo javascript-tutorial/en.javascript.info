@@ -24,19 +24,13 @@ function shuffle(array) {
 }
 
 // counts of appearances for all possible permutations
-let count = {
-  '123': 0,
-  '132': 0,
-  '213': 0,
-  '231': 0,
-  '321': 0,
-  '312': 0
-};
+let count = {};
 
 for (let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
   shuffle(array);
-  count[array.join('')]++;
+  let key = array.join('');
+  count[key] = (count[key] || 0) + 1;
 }
 
 // show counts of all possible permutations
@@ -90,19 +84,13 @@ function shuffle(array) {
 }
 
 // counts of appearances for all possible permutations
-let count = {
-  '123': 0,
-  '132': 0,
-  '213': 0,
-  '231': 0,
-  '321': 0,
-  '312': 0
-};
+let count = {};
 
 for (let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
   shuffle(array);
-  count[array.join('')]++;
+  let key = array.join('');
+  count[key] = (count[key] || 0) + 1;
 }
 
 // show counts of all possible permutations
