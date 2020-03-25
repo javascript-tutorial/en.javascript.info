@@ -440,7 +440,7 @@ There are 3 ways to assign event handlers:
 
 1. HTML attribute: `onclick="..."`.
 2. DOM property: `elem.onclick = function`.
-3. Methods: `elem.addEventListener(event, handler[, phase])` to add, `removeEventListener` to remove.
+3. Methods: `elem.addEventListener(event, handler, [phase])` to add, `removeEventListener` to remove.
 
 HTML attributes are used sparingly, because JavaScript in the middle of an HTML tag looks a little bit odd and alien. Also can't write lots of code in there.
 
