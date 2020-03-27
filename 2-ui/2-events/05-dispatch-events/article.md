@@ -236,7 +236,7 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 The output order is: 1 -> nested -> 2.
 
