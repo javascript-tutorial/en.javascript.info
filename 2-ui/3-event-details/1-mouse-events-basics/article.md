@@ -65,8 +65,8 @@ But if we track `mousedown` and `mouseup`, then we need it, because these events
 There are the three possible values:
 
 - `event.which == 1` -- the left button
-- `event.which == 2` - the middle button
-- `event.which == 3` - the right button
+- `event.which == 2` -- the middle button
+- `event.which == 3` -- the right button
 
 The middle button is somewhat exotic right now and is very rarely used.
 
@@ -116,8 +116,7 @@ For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
 ```
 
 ```warn header="There are also mobile devices"
-Keyboard combinations are good as an addition to the workflow. So that if the visitor has a
- keyboard -- it works. And if their device doesn't have it -- then there should be another way to do the same.
+Keyboard combinations are good as an addition to the workflow. So that if the visitor has a keyboard -- it works. And if their device doesn't have it -- then there should be another way to do the same.
 ```
 
 ## Coordinates: clientX/Y, pageX/Y
