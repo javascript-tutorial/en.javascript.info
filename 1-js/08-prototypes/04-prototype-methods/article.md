@@ -65,7 +65,7 @@ This call makes a truly exact copy of `obj`, including all properties: enumerabl
 
 ## Brief history
 
-If we count all the ways to manage `[[Prototype]]`, there are a lot! Many ways to do the same!
+If we count all the ways to manage `[[Prototype]]`, there are a lot! Many ways to do the same thing!
 
 Why?
 
