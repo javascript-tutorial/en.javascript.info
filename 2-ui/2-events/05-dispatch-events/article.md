@@ -236,7 +236,7 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 The output order is: 1 -> nested -> 2.
 
@@ -263,7 +263,7 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
 
