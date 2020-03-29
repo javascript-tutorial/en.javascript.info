@@ -231,7 +231,7 @@ Remember when we talked about `Object.assign()` [in the past](https://javascript
 
 It is possible to do the same thing with the spread operator!
 
-```
+```js run
 let arr = [1, 2, 3];
 let arrCopy = [...arr]; // spread the array into a list of parameters
                         // then put the result into a new array
@@ -250,7 +250,7 @@ alert(arrCopy); // 1, 2, 3
 
 Note that it is possible to do the same thing to make a copy of an object:
 
-```
+```js run
 let obj = { a: 1, b: 2, c: 3 };
 let objCopy = { ...obj }; // spread the object into a list of parameters
                           // then return the result in a new object
