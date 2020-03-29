@@ -1,6 +1,6 @@
 # Outer corners
 
-Outer corners are basically what we get from  [elem.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/DOM/element.getBoundingClientRect).
+Outer corners are basically what we get from [elem.getBoundingClientRect()](https://developer.mozilla.org/en-US/docs/DOM/element.getBoundingClientRect).
 
 Coordinates of the upper-left corner `answer1` and the bottom-right corner `answer2`:
 
