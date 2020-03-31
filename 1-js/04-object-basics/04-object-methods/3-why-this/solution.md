@@ -3,7 +3,7 @@ Here's the explanations.
 
 1. That's a regular object method call.
 
-2. The same, brackets do not change the order of operations here, the dot is first anyway.
+2. The same, parentheses do not change the order of operations here, the dot is first anyway.
 
 3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
 
