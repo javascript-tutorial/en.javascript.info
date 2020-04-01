@@ -227,7 +227,7 @@ So, for the task of turning something into an array, `Array.from` tends to be mo
 
 ## Get a new copy of an object/array
 
-Remember when we talked about `Object.assign()` [in the past](https://javascript.info/symbol#symbols-are-skipped-by-for-in)?
+Remember when we talked about `Object.assign()` [in the past](https://javascript.info/object#cloning-and-merging-object-assign)?
 
 It is possible to do the same thing with the spread operator!
 
