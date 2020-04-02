@@ -117,7 +117,7 @@ Several variants of `case` which share the same code can be grouped.
 For example, if we want the same code to run for `case 3` and `case 5`:
 
 ```js run no-beautify
-let a = 2 + 2;
+let a = 3;
 
 switch (a) {
   case 4:
