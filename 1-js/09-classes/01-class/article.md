@@ -306,7 +306,7 @@ Class fields are a recent addition to the language.
 
 Previously, classes only had methods.
 
-"Class fields" is a synctax that allows to add any properties.
+"Class fields" is a syntax that allows to add any properties.
 
 For instance, let's add `name` property to `class User`:
 
