@@ -298,13 +298,17 @@ class User {
 new User().sayHi();
 ```
 
-## Class properties
+## Class fields
 
 ```warn header="Old browsers may need a polyfill"
-Class-level properties are a recent addition to the language.
+Class fields are a recent addition to the language.
 ```
 
-In the example above, `User` only had methods. Let's add a property:
+Previously, classes only had methods.
+
+"Class fields" is a synctax that allows to add any properties.
+
+For instance, let's add `name` property to `class User`:
 
 ```js run
 class User {
@@ -323,7 +327,47 @@ alert(User.prototype.sayHi); // placed in User.prototype
 alert(User.prototype.name); // undefined, not placed in User.prototype
 ```
 
-The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
+The important thing about class fields is that they are set on individual objects, not `User.prototype`.
+
+Technically, they are processed after the constructor has done it's job.
+
+### Making bound methods with class fields
+
+Class fields together with arrow functions are often used to create methods with fixed `this`, bound to the object.
+
+In the example below, `button.click()` method always has `this = button`:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+*!*
+  click = () => {
+    alert(this.value);
+  }
+*/!*
+}
+
+let button = new Button("button");
+
+setTimeout(button.click, 1000); // shows "button" after 1000ms
+```
+
+That's especially useful in browser environment, when we need to setup a method as an event listener.
+
+The same thing coded less elegantly:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+*!*
+    this.click = this.click.bound(this);
+*/!*
+  }
+}
+```
 
 ## Summary
 
