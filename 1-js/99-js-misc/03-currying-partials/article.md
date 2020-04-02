@@ -39,7 +39,7 @@ alert( curriedSum(1)(2) ); // 3
 As you can see, the implementation is straightforward: it's just two wrappers.
 
 - The result of `curry(func)` is a wrapper `function(a)`.
-- When it is called like `sum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
+- When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
 - Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
 
 More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
