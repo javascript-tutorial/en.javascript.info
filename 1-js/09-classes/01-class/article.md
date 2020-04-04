@@ -333,8 +333,6 @@ Technically, they are processed after the constructor has done it's job.
 
 ### Making bound methods with class fields
 
-Class fields together with arrow functions can be used to create "bound" methods, with fixed `this` that always references the object.
-
 As demonstrated in the chapter <info:bind> functions in JavaScript have a dynamic `this`. It depends on the context of the call.
 
 So if an object method is passed around and called in another context, `this` won't be a reference to its object any more.
@@ -361,17 +359,17 @@ setTimeout(button.click, 1000); // undefined
 
 The problem is called "losing `this`".
 
-There are two ways to fix it, as discussed in the chapter <info:bind>:
+There are two approaches to fixing it, as discussed in the chapter <info:bind>:
 
 1. Pass a wrapper-function, such as `setTimeout(() => button.click(), 1000)`.
-2. Bind the method to object in the constructor:
+2. Bind the method to object, e.g. in the constructor:
 
 ```js run
 class Button {
   constructor(value) {
     this.value = value;
 *!*
-    this.click = this.click.bound(this);
+    this.click = this.click.bind(this);
 */!*
   }
 
@@ -406,7 +404,7 @@ let button = new Button("hello");
 setTimeout(button.click, 1000); // hello
 ```
 
-As you can see, `click = () => {...}` creates an independent function on each `Button` object, with `this` bound to the object.
+The class field `click = () => {...}` creates an independent function on each `Button` object, with `this` bound to the object. Then we can pass `button.click` around anywhere, and it will be called with the right `this`.
 
 That's especially useful in browser environment, when we need to setup a method as an event listener.
 
