@@ -333,9 +333,57 @@ Technically, they are processed after the constructor has done it's job.
 
 ### Making bound methods with class fields
 
-Class fields together with arrow functions are often used to create methods with fixed `this`, bound to the object.
+Class fields together with arrow functions are often used to create methods with fixed `this`, that always references the object.
 
-In the example below, `button.click()` method always has `this = button`:
+As demonstrated in the chapter <info:bind>, object methods, just like any functions, have a dynamic `this`. It depends on the context of the call.
+
+So, for instance, this code will show `undefined`:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+*!*
+setTimeout(button.click, 1000); // undefined
+*/!*
+```
+
+There are two ways to fix this, as discussed in the chapter <info:bind>:
+
+1. Pass a wrapper-function, such as `setTimeout(() => button.click(), 1000)`.
+2. Bind the method to object in the constructor:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+*!*
+    this.click = this.click.bound(this);
+*/!*
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("hello");
+
+*!*
+setTimeout(button.click, 1000); // hello
+*/!*
+```
+
+Class fields provide a more elegant syntax for the latter solution:
 
 ```js run
 class Button {
@@ -349,25 +397,14 @@ class Button {
 */!*
 }
 
-let button = new Button("button");
+let button = new Button("hello");
 
-setTimeout(button.click, 1000); // shows "button" after 1000ms
+setTimeout(button.click, 1000); // hello
 ```
+
+As you can see, `click = () => {...}` creates an independent function on each `Button` object, with `this` bound to the object.
 
 That's especially useful in browser environment, when we need to setup a method as an event listener.
-
-The same thing coded less elegantly:
-
-```js run
-class Button {
-  constructor(value) {
-    this.value = value;
-*!*
-    this.click = this.click.bound(this);
-*/!*
-  }
-}
-```
 
 ## Summary
 
