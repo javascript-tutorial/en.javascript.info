@@ -333,11 +333,13 @@ Technically, they are processed after the constructor has done it's job.
 
 ### Making bound methods with class fields
 
-Class fields together with arrow functions are often used to create methods with fixed `this`, that always references the object.
+Class fields together with arrow functions can be used to create "bound" methods, with fixed `this` that always references the object.
 
-As demonstrated in the chapter <info:bind>, object methods, just like any functions, have a dynamic `this`. It depends on the context of the call.
+As demonstrated in the chapter <info:bind> functions in JavaScript have a dynamic `this`. It depends on the context of the call.
 
-So, for instance, this code will show `undefined`:
+So if an object method is passed around and called in another context, `this` won't be a reference to its object any more.
+
+For instance, this code will show `undefined`:
 
 ```js run
 class Button {
@@ -357,7 +359,9 @@ setTimeout(button.click, 1000); // undefined
 */!*
 ```
 
-There are two ways to fix this, as discussed in the chapter <info:bind>:
+The problem is called "losing `this`".
+
+There are two ways to fix it, as discussed in the chapter <info:bind>:
 
 1. Pass a wrapper-function, such as `setTimeout(() => button.click(), 1000)`.
 2. Bind the method to object in the constructor:
