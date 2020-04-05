@@ -231,7 +231,7 @@ Previously, for a single argument `x` we could just `cache.set(x, result)` to sa
 There are many solutions possible:
 
 1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
-2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
+2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(min, result)`. So we can get `result` as `cache.get(min).get(max)`.
 3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
