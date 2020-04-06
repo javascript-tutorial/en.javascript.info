@@ -154,7 +154,7 @@ Windows may freely access content of each other only if they come from the same 
 Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
 ```
 
-## Accessing window from popup   
+## Accessing window from popup
 
 A popup may access the "opener" window as well using `window.opener` reference. It is `null` for all windows except popups.
 
