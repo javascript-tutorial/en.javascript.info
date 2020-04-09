@@ -130,6 +130,7 @@ If we've already got the response with `response.text()`, then `response.json()`
 ```js
 let text = await response.text(); // response body consumed
 let parsed = await response.json(); // fails (already consumed)
+```
 ````
 
 ## Response headers
