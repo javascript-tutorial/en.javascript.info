@@ -89,7 +89,7 @@ Possible values are described in the [Referrer Policy specification](https://w3c
 - **`"no-referrer"`** -- never send `Referer`.
 - **`"origin"`** -- only send the origin in `Referer`, not the full page URL, e.g. only `http://site.com` instead of `http://site.com/path`.
 - **`"origin-when-cross-origin"`** -- send full `Referer` to the same origin, but only the origin part for cross-origin requests (as above).
-- **`"same-origin"`** -- send full `Referer` to the same origin, but no referer for for cross-origin requests.
+- **`"same-origin"`** -- send full `Referer` to the same origin, but no `Referer` for cross-origin requests.
 - **`"strict-origin"`** -- send only origin, don't send `Referer` for HTTPS→HTTP requests.
 - **`"strict-origin-when-cross-origin"`** -- for same-origin send full `Referer`, for cross-origin send only origin, unless it's HTTPS→HTTP request, then send nothing.
 - **`"unsafe-url"`** -- always send full url in `Referer`, even for HTTPS→HTTP requests.
