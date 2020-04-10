@@ -2,7 +2,7 @@
 
 Export and import directives have several syntax variants.
 
-In the previous chapter we saw a simple use, now let's explore more examples.
+In the previous article we saw a simple use, now let's explore more examples.
 
 ## Export before declarations
 
@@ -403,7 +403,7 @@ Such oddities of re-exporting the default export are one of the reasons why some
 
 ## Summary
 
-Here are all types of `export` that we covered in this and previous chapters.
+Here are all types of `export` that we covered in this and previous articles.
 
 You can check yourself by reading them and recalling what they mean:
 
@@ -452,4 +452,4 @@ if (something) {
 
 ...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
 
-We'll see dynamic imports in the next chapter.
+We'll see dynamic imports in the next article.
