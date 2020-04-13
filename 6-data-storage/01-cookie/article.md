@@ -162,7 +162,7 @@ document.cookie = "user=John; max-age=3600";
 
 // delete cookie (let it expire right now)
 document.cookie = "user=John; max-age=0";
-```  
+```
 
 ## secure
 
