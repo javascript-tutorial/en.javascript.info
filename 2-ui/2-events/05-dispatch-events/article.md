@@ -211,9 +211,7 @@ Please note: the event must have the flag `cancelable: true`, otherwise the call
 
 ## Events-in-events are synchronous
 
-Usually events are processed asynchronously. That is: if the browser is processing `onclick` and in the process a new event occurs, then it waits until the `onclick` processing is finished.
-
-The exception is when one event is initiated from within another one.
+Usually events are processed asynchronously. However, they are synchornous in a single process. That is: if the browser is processing `onclick` and in the process a new event occurs, then it waits until the `onclick` processing is finished.
 
 Then the control jumps to the nested event handler, and after it goes back.
 
