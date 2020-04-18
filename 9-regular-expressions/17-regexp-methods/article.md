@@ -86,7 +86,7 @@ alert( firstMatch.index );  // 0
 alert( firstMatch.input );  // <h1>Hello, world!</h1>
 ```
 
-If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from`, разумеется, не нужен.
+If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from` any more.
 
 ## str.split(regexp|substr, limit)
 
@@ -144,7 +144,6 @@ alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 
 The second argument is a replacement string. We can use special character in it:
 
-| Symbols | Action in the replacement string |
 | Symbols | Action in the replacement string |
 |--------|--------|
 |`$&`|inserts the whole match|
