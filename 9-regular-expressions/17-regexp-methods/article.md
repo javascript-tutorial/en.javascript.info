@@ -204,9 +204,6 @@ alert(result); // Smith, John
 
 If there are many groups, it's convenient to use rest parameters to access them:
 
-
-Если в регулярном выражении много скобочных групп, то бывает удобно использовать остаточные аргументы для обращения к ним:
-
 ```js run
 let str = "John Smith";
 
