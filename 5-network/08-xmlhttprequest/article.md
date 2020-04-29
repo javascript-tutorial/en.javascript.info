@@ -93,7 +93,7 @@ xhr.onload = function() {
   if (xhr.status != 200) { // analyze HTTP status of the response
     alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
   } else { // show the result
-    alert(`Done, got ${xhr.response.length} bytes`); // responseText is the server
+    alert(`Done, got ${xhr.response.length} bytes`); // response is the server
   }
 };
 
@@ -512,7 +512,7 @@ xhr.onerror = function() {
 There are actually more events, the [modern specification](http://www.w3.org/TR/XMLHttpRequest/#events) lists them (in the lifecycle order):
 
 - `loadstart` -- the request has started.
-- `progress` -- a data packet of the response has arrived, the whole response body at the moment is in `responseText`.
+- `progress` -- a data packet of the response has arrived, the whole response body at the moment is in `response`.
 - `abort` -- the request was canceled by the call `xhr.abort()`.
 - `error` -- connection error has occurred, e.g. wrong domain name. Doesn't happen for HTTP-errors like 404.
 - `load` -- the request has finished successfully.
