@@ -121,6 +121,23 @@ for (let [key, value] of user) {
 }
 ```
 ````
+
+### Swap variables
+
+It is also possible to use destructuring assignment to easily swap variables
+
+```js run
+let a = "1";
+let b = "2";
+alert(`${a}, ${b}`); // 1, 2
+
+[a, b] = [b, a];
+alert(`${a}, ${b}`); // 2, 1: successfully swapped!
+```
+
+The trick is that `a` and `b` values are assigned to a new array, from which `a` and `b` take their new values.
+This is much easier than using a temporary value to store a value until one of the variables is assigned the new value, then assign the temporary value to the other variable.
+
 ### The rest '...'
 
 If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
