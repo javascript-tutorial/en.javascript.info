@@ -122,21 +122,23 @@ for (let [key, value] of user) {
 ```
 ````
 
-### Swap variables
-
-It is also possible to use destructuring assignment to easily swap variables
+```smart header="Swap variables trick"
+A well-known trick for swapping values of two variables:
 
 ```js run
-let a = "1";
-let b = "2";
-alert(`${a}, ${b}`); // 1, 2
+let guest = "Jane";
+let admin = "Pete";
 
-[a, b] = [b, a];
-alert(`${a}, ${b}`); // 2, 1: successfully swapped!
+// Swap values: make guest=Pete, admin=Jane
+[guest, admin] = [admin, guest];
+
+alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
 ```
 
-The trick is that `a` and `b` values are assigned to a new array, from which `a` and `b` take their new values.
-This is much easier than using a temporary value to store a value until one of the variables is assigned the new value, then assign the temporary value to the other variable.
+Here we create a temporary array of two variables and immediately destructure it in swapped order.
+
+We can swap more than two variables this way.
+```
 
 ### The rest '...'
 
