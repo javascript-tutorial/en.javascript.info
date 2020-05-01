@@ -78,7 +78,7 @@ const bigInt = 1234567890123456789012345678901234567890n;
 As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
 
 ```smart header="Compatability issues"
-Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+Right now `BigInt` is supported in Firefox/Chrome/Edge, but not in Safari/IE.
 ```
 
 ## String
