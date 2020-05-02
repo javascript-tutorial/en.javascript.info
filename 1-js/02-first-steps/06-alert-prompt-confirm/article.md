@@ -1,18 +1,10 @@
 # Interaction: alert, prompt, confirm
 
-In this part of the tutorial we cover JavaScript language "as is", without environment-specific tweaks.
-
-But we'll still be using the browser as our demo environment, so we should know at least a few of its user-interface functions. In this chapter, we'll get familiar with the browser functions `alert`, `prompt` and `confirm`.
+As we'll be using the browser as our demo environment, let's see a couple of functions to interact with the user: `alert`, `prompt` and `confirm`.
 
 ## alert
 
-Syntax:
-
-```js
-alert(message);
-```
-
-This shows a message and pauses script execution until the user presses "OK".
+This one we've seen already. It shows shows a message and waits for the user to presses "OK".
 
 For example:
 
@@ -20,7 +12,7 @@ For example:
 alert("Hello");
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc. until they have dealt with the window. In this case -- until they press "OK".
+The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc, until they have dealt with the window. In this case -- until they press "OK".
 
 ## prompt
 
@@ -38,7 +30,11 @@ It shows a modal window with a text message, an input field for the visitor, and
 `default`
 : An optional second parameter, the initial value for the input field.
 
-The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key.
+```smart header="The square brackets in syntax `[...]`"
+The square brackets around `default` in the syntax above denote that the parameter as optional, not required.
+```
+
+The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
 
 The call to `prompt` returns the text from the input field or `null` if the input was canceled.
 

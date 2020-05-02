@@ -214,36 +214,48 @@ In JavaScript, a default parameter is evaluated every time the function is calle
 In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
 ```
 
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+### Alternative default parameters
 
-For instance, an explicit check for being `undefined`:
+Sometimes it makes sense to set default values for parameters not in the function declaration, but at a later stage, during its execution.
 
-```js
-function showMessage(from, text) {
+To check for an omitted parameter, we can compare it with `undefined`:
+
+```js run
+function showMessage(text) {
 *!*
   if (text === undefined) {
-    text = 'no text given';
+    text = 'empty message';
   }
 */!*
 
-  alert( from + ": " + text );
+  alert(text);
 }
+
+showMessage(); // empty message
 ```
 
-...Or the `||` operator:
+...Or we could use the `||` operator:
 
 ```js
-function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
-  text = text || 'no text given';
+// if text parameter is omitted or "" is passed, set it to 'empty'
+function showMessage(text) {
+  text = text || 'empty';
   ...
 }
 ```
 
+Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when falsy values, such as `0`, are considered regular:
 
-````
+```js run
+// if there's no "count" parameter, show "unknown"
+function showCount(count) {
+  alert(count ?? "unknown");
+}
 
+showCount(0); // 0
+showCount(null); // unknown
+showCount(); // unknown
+```
 
 ## Returning a value
 
