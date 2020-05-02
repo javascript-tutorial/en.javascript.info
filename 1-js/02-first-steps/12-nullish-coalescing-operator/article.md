@@ -93,7 +93,7 @@ The code below triggers a syntax error:
 let x = 1 && 2 ?? 3; // Syntax error
 ```
 
-The limitation is surely debatable, but somewhy was added to the language specification.
+The limitation is surely debatable, but for some reason it was added to the language specification.
 
 Use explicit parentheses to fix it:
 
