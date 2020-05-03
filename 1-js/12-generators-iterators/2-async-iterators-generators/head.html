@@ -11,7 +11,7 @@
 
       // the URL of the next page is in the headers, extract it
       let nextPage = response.headers.get('Link').match(/<(.*?)>; rel="next"/);
-      nextPage = nextPage && nextPage[1];
+      nextPage = nextPage?.[1];
 
       url = nextPage;
 
