@@ -1,15 +1,19 @@
 # Comparisons
 
-We know many comparison operators from maths:
+We know many comparison operators from maths.
+
+In JavaScript they are written like this:
 
 - Greater/less than: <code>a &gt; b</code>, <code>a &lt; b</code>.
 - Greater/less than or equals: <code>a &gt;= b</code>, <code>a &lt;= b</code>.
-- Equals: `a == b` (please note the double equals sign `=`. A single symbol `a = b` would mean an assignment).
-- Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as an assignment with an exclamation sign before it: <code>a != b</code>.
+- Equals: `a == b`, please note the double equality sign `=` means the equality test, while a single one `a = b` means an assignment.
+- Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript the it's written as <code>a != b</code>.
+
+In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities.
 
 ## Boolean is the result
 
-Like all other operators, a comparison returns a value. In this case, the value is a boolean.
+All comparison operators return a boolean value:
 
 - `true` -- means "yes", "correct" or "the truth".
 - `false` -- means "no", "wrong" or "not the truth".
