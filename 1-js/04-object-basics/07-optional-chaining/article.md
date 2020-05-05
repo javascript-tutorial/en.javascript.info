@@ -3,7 +3,7 @@
 
 [recent browser="new"]
 
-The optional chaining `?.` is an error-prone way to access nested object properties, even if an intermediate property doesn't exist.
+The optional chaining `?.` is an error-proof way to access nested object properties, even if an intermediate property doesn't exist.
 
 ## The problem
 
@@ -40,7 +40,7 @@ AND'ing the whole path to the property ensures that all components exist, but is
 
 The optional chaining `?.` stops the evaluation and returns `undefined` if the part before `?.` is `undefined` or `null`.
 
-Further in this article, for brewity, we'll be saying that something "exists" if it's not `null` and not `undefined`.
+Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.
 
 
 Here's the safe way to access `user.address.street`:
