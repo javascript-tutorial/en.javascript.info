@@ -360,7 +360,7 @@ alert( *!*key*/!* in user ); // true, property "age" exists
 
 Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
 
-Well, most of the time the comparison with `undefined` works fine. But there's But there's a special case when it fails, but `"in"` works correctly.
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
 
 It's when an object property exists, but stores `undefined`:
 
