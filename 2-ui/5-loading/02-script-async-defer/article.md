@@ -146,8 +146,21 @@ That is:
 - They don't wait for anything, nothing waits for them.
 - The script that loads first -- runs first ("load-first" order).
 
-For example, here we add two scripts. Without `script.async=false` they would execute in load-first order (the `small.js` probably first). But with that flag the order is "as in the document":
+For example, here we add two scripts. They would execute in load-first order (the `small.js` probably first):
 
+```js run
+function loadScript(src) {
+  let script = document.createElement('script');
+  script.src = src;
+  document.body.append(script);
+}
+
+// small.js probably runs first
+loadScript("/article/script-async-defer/long.js");
+loadScript("/article/script-async-defer/small.js");
+```
+
+And if we explicitly set `script.async=false`, then scripts execute in the document order (the first appened always runs first, even if it's slow to load):
 
 ```js run
 function loadScript(src) {
