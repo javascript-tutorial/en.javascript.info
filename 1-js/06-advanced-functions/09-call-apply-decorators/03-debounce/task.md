@@ -4,11 +4,9 @@ importance: 5
 
 # Debounce decorator
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
+The result of `debounce(f, ms)` decorator is a wrapper that suspends calls to `f` until there's `ms` milliseconds of inactivity (no calls, "cooldown period"), then invokes `f` once with the latest arguments.
 
-The result of `debounce(f, ms)` decorator should be a wrapper that suspends any calls to `f` and invokes `f` once after `ms` of inactivity.
-
-Let's say we had a function `f` and replaced it with `f = debounce(f, 1000)`.
+For instance, we had a function `f` and replaced it with `f = debounce(f, 1000)`.
 
 Then if the wrapped function is called at 0ms, 200ms and 500ms, and then there are no calls, then the actual `f` will be only called once, at 1500ms. That is: after the cooldown period of 1000ms from the last call.
 
