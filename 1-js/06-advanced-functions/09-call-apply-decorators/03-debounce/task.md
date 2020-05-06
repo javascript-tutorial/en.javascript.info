@@ -46,6 +46,6 @@ So, `debounce` is a great way to process a sequence of events: be it a sequence 
 
 It waits the given time after the last call, and then runs its function, that can process the result.
 
-Implement `debounce` decorator. 
+The task is to implement `debounce` decorator.
 
 Hint: that's just a few lines if you think about it :)
