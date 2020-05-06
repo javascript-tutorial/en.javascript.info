@@ -44,4 +44,5 @@ describe('debounce', function () {
     obj.f('test');
     this.clock.tick(5000);
   });
+  
 });
