@@ -7,33 +7,30 @@ describe("debounce", function() {
     this.clock.restore();
   });
 
-  it("trigger the fuction execution immediately", function () {
-    let mode;
-    const f = () => mode='leading';
-    
-    debounce(f, 1000)(); // runs without a delay
+  it("for one call - runs it after given ms", function () {
+    const f = sinon.spy();
+    const debounced = debounce(f, 1000); 
   
-    assert.equal(mode, 'leading');
+    debounced("test");
+    assert(f.notCalled);
+    this.clock.tick(1000);
+    assert(f.calledOnceWith("test"));
   });
   
-  it("calls the function at maximum once in ms milliseconds", function() {
-    let log = '';
+  it("for 3 calls - runs the last one after given ms", function() {
+    const f = sinon.spy();
+    const debounced = debounce(f, 1000);
 
-    function f(a) {
-      log += a;
-    }
+    f("a")
+    setTimeout(() => f("b"), 200);  // ignored (too early)
+    setTimeout(() => f("c"), 500); // runs (1000 ms passed)
+    this.clock.tick(1000);
 
-    f = debounce(f, 1000);
+    assert(f.notCalled);
 
-    f(1); // runs at once
-    f(2); // ignored
+    this.clock.tick(500);
 
-    setTimeout(() => f(3), 100);  // ignored (too early)
-    setTimeout(() => f(4), 1100); // runs (1000 ms passed)
-    setTimeout(() => f(5), 1500); // ignored (less than 1000 ms from the last run)
-
-    this.clock.tick(5000);
-    assert.equal(log, "14");
+    assert(f.calledOnceWith('c'));
   });
 
   it("keeps the context of the call", function() {
@@ -45,6 +42,7 @@ describe("debounce", function() {
 
     obj.f = debounce(obj.f, 1000);
     obj.f("test");
+    this.clock.tick(5000);
   });
 
 });

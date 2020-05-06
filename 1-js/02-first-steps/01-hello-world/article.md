@@ -78,7 +78,7 @@ Here, `/path/to/script.js` is an absolute path to the script from the site root.
 We can give a full URL as well. For instance:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 To attach several scripts, use multiple tags:

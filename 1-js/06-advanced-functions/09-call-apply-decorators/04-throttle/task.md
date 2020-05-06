@@ -4,16 +4,19 @@ importance: 5
 
 # Throttle decorator
 
-Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper, passing the call to `f` at maximum once per `ms` milliseconds. Those calls that fall into the "cooldown" period, are ignored.
+Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper.
 
-**The difference with `debounce` -- if an ignored call is the last during the cooldown, then it executes at the end of the delay.**
+When it's called multiple times, it passes the call to `f` at maximum once per `ms` milliseconds. 
+
+The difference with debounce is that it's completely different decorator:
+- `debounce` runs the function once after the "cooldown" period. Good for processing the final result.
+- `throttle` runs it not more often than given `ms` time. Good for regular updates that shouldn't be very often.
 
 Let's check the real-life application to better understand that requirement and to see where it comes from.
 
 **For instance, we want to track mouse movements.**
 
 In a browser we can setup a function to run at every mouse movement and get the pointer location as it moves. During an active mouse usage, this function usually runs very frequently, can be something like 100 times per second (every 10 ms).
-
 **We'd like to update some information on the web-page when the pointer moves.**
 
 ...But updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in updating more often than once per 100ms.
