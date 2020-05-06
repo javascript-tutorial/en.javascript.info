@@ -26,9 +26,9 @@ setTimeout( () => f("c"), 500);
 ```
 
 
-Now a practical example. Let's say, the user types something, and we'd like to send a request to the server once they're finished.
+Now a practical example. Let's say, the user types something, and we'd like to send a request to the server when the input is finished.
 
-There's no point in sending the request for every character typed. Instead we'd like to wait, and then process the whole result. The `debounce` decorator makes this easy.
+There's no point in sending the request for every character typed. Instead we'd like to wait, and then process the whole result.
 
 In a web-browser, we can setup an event handler -- a function that's called on every change of an input field. Normally, an event handler is called very often, for every typed key. But if we `debounce` it by 1000ms, then it will be only called once, after 1000ms after the last input.
 
