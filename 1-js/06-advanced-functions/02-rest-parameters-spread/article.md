@@ -225,11 +225,11 @@ But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
 So, for the task of turning something into an array, `Array.from` tends to be more universal.
 
 
-## Get a new copy of an object/array
+## Get a new copy of an array/object
 
 Remember when we talked about `Object.assign()` [in the past](https://javascript.info/object#cloning-and-merging-object-assign)?
 
-It is possible to do the same thing with the spread operator!
+It is possible to do the same thing with the spread syntax.
 
 ```js run
 let arr = [1, 2, 3];

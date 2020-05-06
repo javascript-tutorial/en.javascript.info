@@ -9,7 +9,7 @@ arr.push(function() {
   alert( this );
 })
 
-arr[2](); // "a","b",function
+arr[2](); // a,b,function(){...}
 ```
 
 The array has 3 values: initially it had two, plus the function. 
