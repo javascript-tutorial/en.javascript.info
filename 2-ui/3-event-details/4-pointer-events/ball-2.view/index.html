@@ -1,0 +1,38 @@
+<!doctype html>
+<body style="height: 200px">
+  <style>
+    #ball {
+      touch-action: none;
+    }
+  </style>
+
+  <p>Drag the ball.</p>
+
+  <img src="https://js.cx/clipart/ball.svg" style="cursor:pointer" width="40" height="40" id="ball">
+
+  <script>
+
+    ball.onpointerdown = log;
+    ball.onpointerup = log;
+    ball.onpointermove = log;
+    ball.onpointercancel = log;
+
+    ball.ondragstart = () => false;
+
+    let lastEventType;
+    let n = 1;
+    function log(event) {
+      if (lastEventType == event.type) {
+        n++;
+        text.value = text.value.replace(/.*\n$/, `${event.type} * ${n}\n`);
+        return;
+      }
+      lastEventType = event.type;
+      n = 1;
+      text.value += event.type + '\n';
+      text.scrollTop = 1e9;
+    }
+  </script>
+
+  <textarea id="text" style="display:block;width:300px;height:100px"></textarea>
+</body>
