@@ -128,13 +128,13 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     In the example below, the first message is printed, while the second is not:
 
     ```js run no-beautify
-    *!*true*/!* || alert("printed");
-    *!*false*/!* || alert("not printed");
+    *!*false*/!* || alert("printed");
+    *!*true*/!* || alert("not printed");
     ```
 
-    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+    In the second line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
 
-    Sometimes, people use this feature to execute commands only if the condition on the left part is truthy.
+    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
 ## && (AND)
 
