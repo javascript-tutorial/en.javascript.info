@@ -248,7 +248,7 @@ fetch('/article/promise-chaining/user.json')
   })
   .then(function(text) {
     // ...and here's the content of the remote file
-    alert(text); // {"name": "iliakan", isAdmin: true}
+    alert(text); // {"name": "iliakan", "isAdmin": true}
   });
 ```
 
