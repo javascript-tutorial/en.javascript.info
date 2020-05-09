@@ -4,9 +4,9 @@ Drag'n'Drop is a great interface solution. Taking something and dragging and dro
 
 In the modern HTML standard there's a [section about Drag and Drop](https://html.spec.whatwg.org/multipage/interaction.html#dnd) with special events such as `dragstart`, `dragend`, and so on.
 
-These events are useful in that they allow us to solve simple tasks easily. For instance, they allow us to handle the drag'n'drop of "external" files into the browser, so we can take a file in the OS file-manager and drop it into the browser window, thereby giving JavaScript access to its contents.
+These events allow us to support special kinds of drag'n'drop, such as handling dragging a file from OS file-manager and dropping it into the browser window. Then JavaScript can access the contents of such files.
 
-But native Drag Events also have limitations. For instance, we can't limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. And there are other drag'n'drop tasks that can't be done using that API. Also, mobile device support for such events is almost non-existant.
+But native Drag Events also have limitations. For instance, we can't prevent dragging from a certain area. Also we can't make the dragging "horizontal" or "vertical" only. And there are many other drag'n'drop tasks that can't be done using them. Also, mobile device support for such events is very weak.
 
 So here we'll see how to implement Drag'n'Drop using mouse events.
 
@@ -14,26 +14,23 @@ So here we'll see how to implement Drag'n'Drop using mouse events.
 
 The basic Drag'n'Drop algorithm looks like this:
 
-1. On `mousedown` - prepare the element for moving, if needed (maybe create a copy of it).
-2. Then on `mousemove` move it by changing `left/top` and `position:absolute`.
-3. On `mouseup` - perform all actions related to a finished Drag'n'Drop.
+1. On `mousedown` - prepare the element for moving, if needed (maybe create a clone of it, add a class to it or whatever).
+2. Then on `mousemove` move it by changing `left/top` with `position:absolute`.
+3. On `mouseup` - perform all actions related to finishing the drag'n'drop.
 
-These are the basics. Later we can extend it, for instance, by highlighting droppable (available for the drop) elements when hovering over them.
+These are the basics. Later we'll see how to other features, such as highlighting current underlying elements while we drag over them.
 
-Here's the algorithm for drag'n'drop of a ball:
+Here's the implementation of dragging a ball:
 
 ```js
-ball.onmousedown = function(event) { // (1) start the process
-
-  // (2) prepare to moving: make absolute and on top by z-index
+ball.onmousedown = function(event) { 
+  // (1) prepare to moving: make absolute and on top by z-index
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
+
   // move it out of any current parents directly into body
   // to make it positioned relative to the body
   document.body.append(ball);  
-  // ...and put that absolutely positioned ball under the pointer
-
-  moveAt(event.pageX, event.pageY);
 
   // centers the ball at (pageX, pageY) coordinates
   function moveAt(pageX, pageY) {
@@ -41,14 +38,17 @@ ball.onmousedown = function(event) { // (1) start the process
     ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
   }
 
+  // move our absolutely positioned ball under the pointer
+  moveAt(event.pageX, event.pageY);
+
   function onMouseMove(event) {
     moveAt(event.pageX, event.pageY);
   }
 
-  // (3) move the ball on mousemove
+  // (2) move the ball on mousemove
   document.addEventListener('mousemove', onMouseMove);
 
-  // (4) drop the ball, remove unneeded handlers
+  // (3) drop the ball, remove unneeded handlers
   ball.onmouseup = function() {
     document.removeEventListener('mousemove', onMouseMove);
     ball.onmouseup = null;
@@ -64,10 +64,10 @@ Here's an example in action:
 
 [iframe src="ball" height=230]
 
-Try to drag'n'drop the mouse and you'll see such behavior.
+Try to drag'n'drop with the mouse and you'll see such behavior.
 ```
 
-That's because the browser has its own Drag'n'Drop for images and some other elements that runs automatically and conflicts with ours.
+That's because the browser has its own drag'n'drop support for images and some other elements. It runs automatically and conflicts with ours.
 
 To disable it:
 
