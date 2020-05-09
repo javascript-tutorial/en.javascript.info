@@ -41,26 +41,42 @@ Click the button below and you'll see the events. Try double-click too.
 
 On the teststand below all mouse events are logged, and if there is more than a 1 second delay between them they are separated by a horizontal ruler.
 
-Also we can see the `which` property that allows to detect the mouse button.
+Also we can see the `button` property that allows to detect the mouse button, it's explained below.
 
 <input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Click me with the right or the left mouse button" type="button"> <input onclick="logClear('test')" value="Clear" type="button"> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form>
 ```
 
-## Mouse button: "which"
+## Mouse button
 
-Click-related events always have the `which` property, which allows to get the exact mouse button.
+Click-related events always have the `button` property, which allows to get the exact mouse button.
 
-It is not used for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
+We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click. 
 
-But if we track `mousedown` and `mouseup`, then we need it, because these events trigger on any button, so `which` allows to distinguish between "right-mousedown" and "left-mousedown".
+From the other hand, `mousedown` and `mouseup` handlers we may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
 
-There are the three possible values:
+The possible values of `event.button` are:
 
-- `event.which == 1` -- the left button
-- `event.which == 2` -- the middle button
-- `event.which == 3` -- the right button
+| Button state | `event.button` |
+|--------------|----------------|
+| Left button (primary) | 0 |
+| Middle button (auxillary) | 1 |
+| Right button (secondary) | 2 |
+| X1 button (back) | 3 |
+| X2 button (forward) | 4 |
 
-The middle button is somewhat exotic right now and is very rarely used.
+Most mouse devices only have the left and right buttons, so possible values are `0` or `2`. Touch devices also generate similar events when one taps on them.
+
+Also there's `event.buttons` property that has all currently pressed buttons as an integer, one bit per button. In practice this property is very rarely used, you can find details at [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons) if you ever need it.
+
+```warn header="The outdated `event.which`"
+Old code may use `event.which` property that's an old non-standard way of getting a button, with possible values:
+
+- `event.which == 1` – left button,
+- `event.which == 2` – middle button,
+- `event.which == 3` – right button.
+
+As of now, `event.which` is deprecated, we shouldn't use it.
+```
 
 ## Modifiers: shift, alt, ctrl and meta
 
@@ -183,7 +199,7 @@ Surely the user has access to HTML-source of the page, and can take the content 
 
 Mouse events have the following properties:
 
-- Button: `which`.
+- Button: `button`.
 - Modifier keys (`true` if pressed): `altKey`, `ctrlKey`, `shiftKey` and `metaKey` (Mac).
   - If you want to handle `key:Ctrl`, then don't forget Mac users, they usually use `key:Cmd`, so it's better to check `if (e.metaKey || e.ctrlKey)`.
 
