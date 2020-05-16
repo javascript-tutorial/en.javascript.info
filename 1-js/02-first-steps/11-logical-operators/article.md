@@ -125,11 +125,11 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
 
-    In the example below, the first message is printed, while the second is not:
+    In the example below, the first message isn't printed, while the second is:
 
     ```js run no-beautify
-    *!*true*/!* || alert("printed");
-    *!*false*/!* || alert("not printed");
+    *!*true*/!* || alert("not printed");
+    *!*false*/!* || alert("printed");
     ```
 
     In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
