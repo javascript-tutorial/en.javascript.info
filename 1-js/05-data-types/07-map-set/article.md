@@ -140,7 +140,7 @@ Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
 ```js
 // runs the function for each (key, value) pair
-recipeMap.forEach( (value, key, map) => {
+recipeMap.forEach( (key, value, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
