@@ -1,7 +1,7 @@
 # Ninja code
 
 
-```quote author="Confucius"
+```quote author="Confucius (Analects)"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
@@ -104,7 +104,7 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 
 ## Smart synonyms
 
-```quote author="Confucius"
+```quote author="Misunderstood to be Confucius"
 The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
 ```
 
