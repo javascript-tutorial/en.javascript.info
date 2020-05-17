@@ -134,7 +134,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
 
-    Sometimes, people use this feature to execute commands only if the condition on the left part is truthy.
+    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
 ## && (AND)
 
