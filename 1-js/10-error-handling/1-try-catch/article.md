@@ -355,7 +355,9 @@ Of course, everything's possible! Programmers do make mistakes. Even in open-sou
 
 In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
 
-Fortunately, we can find out which error we get, for instance from its `name`:
+Fortunately, there are multiple ways to determine the type of error. Common methods are shown below.
+
+Using its `name` property:
 
 ```js run
 try {
@@ -366,6 +368,48 @@ try {
 */!*
 }
 ```
+
+Using its `constructor.name` property (read-only):
+
+```js run
+try {
+  user = { /*...*/ };
+} catch(e) {
+*!*
+  alert(e.constructor.name); // "ReferenceError" for accessing an undefined variable
+*/!*
+}
+```
+
+Comparing its `constructor` property to the specific error type:
+
+```js run
+try {
+  user = { /*...*/ };
+} catch(e) {
+*!*
+  if (e.constructor === RefferenceError) {
+    alert('e is a ReferenceError'); // "ReferenceError" for accessing an undefined variable
+  }
+*/!*
+}
+```
+
+Comparing its class type to another error type using the `instanceof` operator:
+
+```js run
+try {
+  user = { /*...*/ };
+} catch(e) {
+*!*
+  if (e instanceof RefferenceError) {
+    alert('e is an instance of ReferenceError'); // "ReferenceError" for accessing an undefined variable
+  }
+*/!*
+}
+```
+
+MDN suggests using the `constructor` property or `instanceof` operator in its [error examples](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error#Handling_a_specific_error).
 
 The rule is simple:
 
@@ -398,7 +442,7 @@ try {
 } catch(e) {
 
 *!*
-  if (e.name == "SyntaxError") {
+  if (e instanceof SyntaxError) {
     alert( "JSON Error: " + e.message );
   } else {
     throw e; // rethrow (*)
@@ -425,7 +469,7 @@ function readData() {
 */!*
   } catch (e) {
     // ...
-    if (e.name != 'SyntaxError') {
+    if (!(e instanceof SyntaxError)) {
 *!*
       throw e; // rethrow (don't know how to deal with it)
 */!*
