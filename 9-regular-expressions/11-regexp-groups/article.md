@@ -18,7 +18,7 @@ Without parentheses, the pattern `pattern:go+` means `subject:g` character, foll
 Parentheses group characters together, so `pattern:(go)+` means `match:go`, `match:gogo`, `match:gogogo` and so on.
 
 ```js run
-alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
+alert( 'Gogogo now!'.match(/(go)+/ig) ); // "Gogogo"
 ```
 
 ### Example: domain
