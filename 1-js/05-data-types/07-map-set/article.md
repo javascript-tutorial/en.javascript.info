@@ -198,7 +198,7 @@ let prices = Object.fromEntries([
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get an plain object from `Map`.
+We can use `Object.fromEntries` to get a plain object from `Map`.
 
 E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
 
