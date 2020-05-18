@@ -220,7 +220,7 @@ let obj = Object.fromEntries(map.entries()); // make a plain object (*)
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an array of key/value pairs, exactly in the right format for `Object.fromEntries`.
+A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
 
 We could also make line `(*)` shorter:
 ```js
