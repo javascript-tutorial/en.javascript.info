@@ -104,7 +104,7 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 
 ## Smart synonyms
 
-```quote author="Misattributed to be Confucius"
+```quote author="Misattributed to Confucius"
 The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
 ```
 
