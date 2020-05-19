@@ -19,7 +19,7 @@ For example:
 ...
 ```
 
-Quite soon we're going to learn functions (a way to group commands) soon, so let's note in advance that `"use strict"` can be put at the beginning of a function. Doing that enables strict mode in that function only. But usually people use it for the whole script.
+Quite soon we're going to learn functions (a way to group commands), so let's note in advance that `"use strict"` can be put at the beginning of a function. Doing that enables strict mode in that function only. But usually people use it for the whole script.
 
 ````warn header="Ensure that \"use strict\" is at the top"
 Please make sure that `"use strict"` is at the top of your scripts, otherwise strict mode may not be enabled.
