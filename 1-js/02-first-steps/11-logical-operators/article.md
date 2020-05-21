@@ -125,7 +125,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
 
-    In the example below, the first message is printed, while the second is not:
+    In the example below, only the second message is printed:
 
     ```js run no-beautify
     *!*true*/!* || alert("not printed");
