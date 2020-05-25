@@ -4,7 +4,7 @@ importance: 4
 
 # Why 6.35.toFixed(1) == 6.3?
 
-According to the documentation `Math.round` and `toFixed` both round to the nearest number: `0..4` lead down while `5..9` lead up.
+According to the documentation `Math.round` and `toFixed` both round to the nearest number: `0.4` lead down while `5.9` lead up.
 
 For instance:
 
