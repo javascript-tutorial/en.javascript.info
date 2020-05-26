@@ -105,7 +105,7 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 ## Smart synonyms
 
 ```quote author="Laozi (Tao Te Ching)"
-The name that can be named is not the eternal name.
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
 ```
 
 Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
