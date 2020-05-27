@@ -125,7 +125,9 @@ In order to organize that, the `versionchange` event triggers in such case on th
 
 If we don't listen to `versionchange` event and don't close the old connection, then the second, new connection won't be made. The `openRequest` object will emit the `blocked` event instead of `success`. So the second tab won't work.
 
-Here's the code to correctly handle the parallel upgrade:
+Here's the code to correctly handle the parallel upgrade.
+
+It installs `onversionchange` handler after the database is opened, that closes the old connection:
 
 ```js
 let openRequest = indexedDB.open("store", 2);
