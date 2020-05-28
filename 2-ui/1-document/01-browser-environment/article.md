@@ -26,7 +26,7 @@ function sayHi() {
 window.sayHi();
 ```
 
-And here we use it as a browser window, to see the window height:
+And here we use it as a browser object, to see the window height:
 
 ```js run
 alert(window.innerHeight); // inner window height
