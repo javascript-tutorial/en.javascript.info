@@ -156,7 +156,7 @@ In computer science the data structure that allows this, is called [deque](https
 `shift`
 : Extracts the first element of the array and returns it:
 
-    ```js
+    ```js run
     let fruits = ["Apple", "Orange", "Pear"];
 
     alert( fruits.shift() ); // remove Apple and alert it
@@ -167,7 +167,7 @@ In computer science the data structure that allows this, is called [deque](https
 `unshift`
 : Add the element to the beginning of the array:
 
-    ```js
+    ```js run
     let fruits = ["Orange", "Pear"];
 
     fruits.unshift('Apple');

@@ -201,7 +201,7 @@ The parent is available as `parentNode`.
 
 For example:
 
-```js
+```js run
 // parent of <body> is <html>
 alert( document.body.parentNode === document.documentElement ); // true
 

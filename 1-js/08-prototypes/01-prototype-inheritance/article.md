@@ -32,7 +32,7 @@ rabbit.__proto__ = animal;
 ```
 
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
-Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it.
+Please note that `__proto__` is *not the same* as `[[Prototype]]`. It's a getter/setter for it.
 
 It exists for historical reasons. In modern language it is replaced with functions `Object.getPrototypeOf/Object.setPrototypeOf` that also get/set the prototype. We'll study the reasons for that and these functions later.
 

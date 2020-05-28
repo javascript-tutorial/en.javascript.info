@@ -85,7 +85,7 @@ External style sheets don't affect DOM, so `DOMContentLoaded` does not wait for 
 
 But there's a pitfall. If we have a script after the style, then that script must wait until the stylesheet loads:
 
-```html
+```html run
 <link type="text/css" rel="stylesheet" href="style.css">
 <script>
   // the script doesn't not execute until the stylesheet is loaded
@@ -108,13 +108,13 @@ So if `DOMContentLoaded` is postponed by long-loading scripts, then autofill als
 
 ## window.onload [#window-onload]
 
-The `load` event on the `window` object triggers when the whole page is loaded including styles, images and other resources.
+The `load` event on the `window` object triggers when the whole page is loaded including styles, images and other resources. This event is available via the `onload` property.
 
 The example below correctly shows image sizes, because `window.onload` waits for all images:
 
 ```html run height=200 refresh
 <script>
-  window.onload = function() {
+  window.onload = function() { // same as window.addEventListener('load', (event) => {
     alert('Page loaded');
 
     // image is loaded at this time
@@ -157,7 +157,7 @@ When the `sendBeacon` request is finished, the browser probably has already left
 There's also a `keepalive` flag for doing such "after-page-left" requests in  [fetch](info:fetch) method for generic network requests. You can find more information in the chapter <info:fetch-api>.
 
 
-If we want to cancel the transition to another page, we can't do it here. But we can use  another event -- `onbeforeunload`.
+If we want to cancel the transition to another page, we can't do it here. But we can use another event -- `onbeforeunload`.
 
 ## window.onbeforeunload [#window.onbeforeunload]
 
@@ -277,7 +277,7 @@ Page load events:
   - Images and other resources may also still continue loading.
 - The `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
 - The `beforeunload` event on `window` triggers when the user wants to leave the page. If we cancel the event, browser asks whether the user really wants to leave (e.g we have unsaved changes).
-- `The unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used. We can send out a network request with `navigator.sendBeacon`.
+- The `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used. We can send out a network request with `navigator.sendBeacon`.
 - `document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
   - `loading` -- the document is loading.
   - `interactive` -- the document is parsed, happens at about the same time as `DOMContentLoaded`, but before it.

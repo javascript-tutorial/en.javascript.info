@@ -17,7 +17,7 @@ alert( str.match(regexp) );  // #121212,#AA00ef
 The problem is that it finds the color in longer sequences:
 
 ```js run
-alert( "#12345678".match( /#[a-f0-9]{6}/gi ) ) // #12345678
+alert( "#12345678".match( /#[a-f0-9]{6}/gi ) ) // #123456
 ```
 
 To fix that, we can add `pattern:\b` to the end:

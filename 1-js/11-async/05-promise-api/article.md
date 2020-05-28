@@ -191,7 +191,7 @@ if(!Promise.allSettled) {
 
 In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
 
-That handler turns a successful result `v` into `{state:'fulfilled', value:v}`, and an error `r` into `{state:'rejected', reason:r}`. That's exactly the format of `Promise.allSettled`.
+That handler turns a successful result `value` into `{state:'fulfilled', value}`, and an error `reason` into `{state:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
 
 Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
 

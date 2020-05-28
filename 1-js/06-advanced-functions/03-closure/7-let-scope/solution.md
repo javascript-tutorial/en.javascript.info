@@ -31,7 +31,7 @@ function func() {
   // hence the error
 */!*
 
-  console.log(x); // ReferenceError: Cannot access 'vx before initialization
+  console.log(x); // ReferenceError: Cannot access 'x' before initialization
 
   let x = 2;
 }

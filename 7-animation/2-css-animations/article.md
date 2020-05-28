@@ -307,7 +307,7 @@ So the process would go like this:
 - ...
 - `9s` -- `-90%`
 
-Here's `step(9, end)` in action (note the pause between the first digit change):
+Here's `steps(9, end)` in action (note the pause between the first digit change):
 
 [codetabs src="step-end"]
 

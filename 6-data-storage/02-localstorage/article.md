@@ -19,7 +19,7 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
-As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows to access by index with `key(index)`.
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows access by index with `key(index)`.
 
 Let's see how it works.
 
@@ -202,7 +202,7 @@ If both windows are listening for `window.onstorage`, then each one will react o
 
 ```js run
 // triggers on updates made to the same storage from other documents
-window.onstorage = event => {
+window.onstorage = event => { // same as window.addEventListener('storage', () => {
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };

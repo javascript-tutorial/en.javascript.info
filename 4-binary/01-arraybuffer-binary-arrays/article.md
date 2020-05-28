@@ -73,8 +73,11 @@ for(let num of view) {
 
 The common term for all these views (`Uint8Array`, `Uint32Array`, etc) is [TypedArray](https://tc39.github.io/ecma262/#sec-typedarray-objects). They share the same set of methods and properities.
 
-They are much more like regular arrays: have indexes and iterable.
+Please note, there's no constructor called `TypedArray`, it's just a common "umbrella" term to represent one of views over `ArrayBuffer`: `Int8Array`, `Uint8Array` and so on, the full list will soon follow.
 
+When you see something like `new TypedArray`, it means any of `new Int8Array`, `new Uint8Array`, etc.
+
+Typed array behave like regular arrays: have indexes and iterable.
 
 A typed array constructor (be it `Int8Array` or `Float64Array`, doesn't matter) behaves differently depending on argument types.
 

@@ -211,13 +211,14 @@ Please note: the event must have the flag `cancelable: true`, otherwise the call
 
 ## Events-in-events are synchronous
 
-Usually events are processed asynchronously. That is: if the browser is processing `onclick` and in the process a new event occurs, then it waits until the `onclick` processing is finished.
+Usually events are processed in a queue. That is: if the browser is processing `onclick` and a new event occurs, e.g. mouse moved, then it's handing is queued up, corresponding `mousemove` handlers will be called after `onclick` processing is finished.
 
-The exception is when one event is initiated from within another one.
+The notable exception is when one event is initiated from within another one, e.g. using `dispatchEvent`. Such events are processed immediately: the new event handlers are called, and then the current event handling is resumed.
 
-Then the control jumps to the nested event handler, and after it goes back.
+For instance, in the code below the `menu-open` event is triggered during the `onclick`.
 
-For instance, here the nested `menu-open` event is processed synchronously, during the `onclick`:
+It's processed immediately, without waiting for `onlick` handler to end:
+
 
 ```html run autorun
 <button id="menu">Menu (click me)</button>
@@ -226,7 +227,6 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
   menu.onclick = function() {
     alert(1);
 
-    // alert("nested")
     menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
     }));
@@ -234,17 +234,20 @@ For instance, here the nested `menu-open` event is processed synchronously, duri
     alert(2);
   };
 
+  // triggers between 1 and 2
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 The output order is: 1 -> nested -> 2.
 
-Please note that the nested event `menu-open` fully bubbles up and is handled on the `document`. The propagation and handling of the nested event must be fully finished before the processing gets back to the outer code (`onclick`).
+Please note that the nested event `menu-open` is caught on the `document`. The propagation and handling of the nested event is finished before the processing gets back to the outer code (`onclick`).
 
-That's not only about `dispatchEvent`, there are other cases. JavaScript in an event handler can call methods that lead to other events -- they are too processed synchronously.
+That's not only about `dispatchEvent`, there are other cases. If an event handler calls methods that trigger to other events -- they are too processed synchronously, in a nested fashion.
 
-If we don't like it, we can either put the `dispatchEvent` (or other event-triggering call) at the end of `onclick` or, maybe better, wrap it in zero-delay `setTimeout`:
+Let's say we don't like it. We'd want `onclick` to be fully processed first, independently from `menu-open` or any other nested events.
+
+Then we can either put the `dispatchEvent` (or another event-triggering call) at the end of `onclick` or, maybe better, wrap it in the zero-delay `setTimeout`:
 
 ```html run
 <button id="menu">Menu (click me)</button>
@@ -253,7 +256,6 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
   menu.onclick = function() {
     alert(1);
 
-    // alert(2)
     setTimeout(() => menu.dispatchEvent(new CustomEvent("menu-open", {
       bubbles: true
     })));
@@ -263,7 +265,7 @@ If we don't like it, we can either put the `dispatchEvent` (or other event-trigg
 
   document.addEventListener('menu-open', () => alert('nested'));
 </script>
-```    
+```
 
 Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
 

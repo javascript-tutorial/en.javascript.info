@@ -41,7 +41,7 @@ That's the resulting picture:
 On the picture, `"prototype"` is a horizontal arrow, meaning a regular property, and `[[Prototype]]` is vertical, meaning the inheritance of `rabbit` from `animal`.
 
 ```smart header="`F.prototype` only used at `new F` time"
-`F.prototype` property is only used when `new F` is called, it assigns `[[Prototype]]` of the new object. After that, there's no connection between `F.prototype` and the new object. Think of it as a "one-time gift".
+`F.prototype` property is only used when `new F` is called, it assigns `[[Prototype]]` of the new object.
 
 If, after the creation, `F.prototype` property changes (`F.prototype = <another object>`), then new objects created by `new F` will have another object as `[[Prototype]]`, but already existing objects keep the old one.
 ```

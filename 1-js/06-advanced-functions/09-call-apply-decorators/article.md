@@ -209,7 +209,7 @@ To make it all clear, let's see more deeply how `this` is passed along:
 2. So when `worker.slow(2)` is executed, the wrapper gets `2` as an argument and `this=worker` (it's the object before dot).
 3. Inside the wrapper, assuming the result is not yet cached, `func.call(this, x)` passes the current `this` (`=worker`) and the current argument (`=2`) to the original method.
 
-## Going multi-argument with "func.apply"
+## Going multi-argument
 
 Now let's make `cachingDecorator` even more universal. Till now it was working only with single-argument functions.
 
@@ -236,7 +236,7 @@ There are many solutions possible:
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
 
-Also we need to replace `func.call(this, x)` with `func.call(this, ...arguments)`, to pass all arguments to the wrapped function call, not just the first one.
+Also we need to pass not just `x`, but all arguments in `func.call`. Let's recall that in a `function()` we can get a pseudo-array of its arguments as `arguments`, so `func.call(this, x)` should be replaced with `func.call(this, ...arguments)`.
 
 Here's a more powerful `cachingDecorator`:
 
@@ -284,6 +284,8 @@ There are two changes:
 - In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
 - Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
 
+## func.apply
+
 Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
 
 The syntax of built-in method [func.apply](mdn:js/Function/apply) is:
@@ -300,17 +302,17 @@ So these two calls are almost equivalent:
 
 ```js
 func.call(context, ...args); // pass an array as list with spread syntax
-func.apply(context, args);   // is same as using apply
+func.apply(context, args);   // is same as using call
 ```
 
-There's only a minor difference:
+There's only a subtle difference:
 
 - The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
 - The `apply` accepts only *array-like* `args`.
 
-So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
+So, where we expect an iterable, `call` works, and where we expect an array-like, `apply` works.
 
-And for objects that are both iterable and array-like, like a real array, we technically could use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+And for objects that are both iterable and array-like, like a real array, we can use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
 
 Passing all arguments along with the context to another function is called *call forwarding*.
 
@@ -344,7 +346,7 @@ function hash(args) {
 }
 ```
 
-...Unfortunately, that won't work. Because we are calling `hash(arguments)` and `arguments` object is both iterable and array-like, but not a real array.
+...Unfortunately, that won't work. Because we are calling `hash(arguments)`, and `arguments` object is both iterable and array-like, but not a real array.
 
 So calling `join` on it would fail, as we can see below:
 

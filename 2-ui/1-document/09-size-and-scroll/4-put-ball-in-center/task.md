@@ -10,7 +10,7 @@ Here's how the source document looks:
 
 What are coordinates of the field center?
 
-Calculate them and use to place the ball into the center of the field:
+Calculate them and use to place the ball into the center of the green field:
 
 [iframe src="solution" height=180]
 

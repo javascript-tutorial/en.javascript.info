@@ -1,4 +1,4 @@
-importance: 5
+importance: 3
 
 ---
 
@@ -38,5 +38,5 @@ class Rabbit extends Object {
 
 let rabbit = new Rabbit("Rab");
 
-alert( rabbit.hasOwnProperty('name') ); // true
+alert( rabbit.hasOwnProperty('name') ); // Error
 ```

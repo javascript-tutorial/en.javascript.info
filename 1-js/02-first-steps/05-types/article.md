@@ -1,6 +1,10 @@
 # Data types
 
-A variable in JavaScript can contain any data. A variable can at one moment be a string and at another be a number:
+A value in JavaScript is always of a certain type. For example, a string or a number.
+
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:
 
 ```js
 // no error
@@ -8,9 +12,7 @@ let message = "hello";
 message = 123456;
 ```
 
-Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
-
-There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are not bound to any of them.
 
 ## Number
 
@@ -64,21 +66,23 @@ We'll see more about working with numbers in the chapter <info:number>.
 
 ## BigInt
 
-In JavaScript, the "number" type cannot represent integer values larger than <code>2<sup>53</sup></code> (or less than <code>-2<sup>53</sup></code> for negatives), that's a technical limitation caused by their internal representation. That's about 16 decimal digits, so for most purposes the limitation isn't a problem, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+In JavaScript, the "number" type cannot represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(-2<sup>53</sup>-1)</code> for negatives. It's a technical limitation caused by their internal representation.
+
+For most purposes that's quite enough, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
 
 `BigInt` type was recently added to the language to represent integers of arbitrary length.
 
-A `BigInt` is created by appending `n` to the end of an integer literal:
+A `BigInt` value is created by appending `n` to the end of an integer:
 
 ```js
 // the "n" at the end means it's a BigInt
 const bigInt = 1234567890123456789012345678901234567890n;
 ```
 
-As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
 
 ```smart header="Compatability issues"
-Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+Right now `BigInt` is supported in Firefox/Chrome/Edge, but not in Safari/IE.
 ```
 
 ## String
@@ -163,7 +167,7 @@ In JavaScript, `null` is not a "reference to a non-existing object" or a "null p
 
 It's just a special value which represents "nothing", "empty" or "value unknown".
 
-The code above states that `age` is unknown or empty for some reason.
+The code above states that `age` is unknown.
 
 ## The "undefined" value
 
@@ -174,30 +178,33 @@ The meaning of `undefined` is "value is not assigned".
 If a variable is declared, but not assigned, then its value is `undefined`:
 
 ```js run
-let x;
+let age;
 
-alert(x); // shows "undefined"
+alert(age); // shows "undefined"
 ```
 
-Technically, it is possible to assign `undefined` to any variable:
+Technically, it is possible to explicitly assign `undefined` to a variable:
 
 ```js run
-let x = 123;
+let age = 100;
 
-x = undefined;
+// change the value to undefined
+age = undefined;
 
-alert(x); // "undefined"
+alert(age); // "undefined"
 ```
 
-...But we don't recommend doing that. Normally, we use `null` to assign an "empty" or "unknown" value to a variable, and we use `undefined` for checks like seeing if a variable has been assigned.
+...But we don't recommend doing that. Normally, one uses `null` to assign an "empty" or "unknown" value to a variable, while `undefined` is reserved as a default initial value for unassigned things.
 
 ## Objects and Symbols
 
 The `object` type is special.
 
-All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities. We'll deal with them later in the chapter <info:object> after we learn more about primitives.
+All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
 
-The `symbol` type is used to create unique identifiers for objects. We mention it here for completeness, but we'll study it after objects.
+Being that important, objects deserve a special treatment. We'll deal with them later in the chapter <info:object>, after we learn more about primitives.
+
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for the sake of completeness, but also postpone the details till we know objects.
 
 ## The typeof operator [#type-typeof]
 
@@ -241,8 +248,8 @@ typeof alert // "function"  (3)
 The last three lines may need additional explanation:
 
 1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
-2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, this is an error in the language.
-3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That's not quite correct, but very convenient in practice.
+2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof` behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
 
 ## Summary
 
@@ -250,7 +257,7 @@ There are 8 basic data types in JavaScript.
 
 - `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
 - `bigint` is for integer numbers of arbitrary length.
-- `string` for strings. A string may have one or more characters, there's no separate single-character type.
+- `string` for strings. A string may have zero or more characters, there's no separate single-character type.
 - `boolean` for `true`/`false`.
 - `null` for unknown values -- a standalone type that has a single value `null`.
 - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.

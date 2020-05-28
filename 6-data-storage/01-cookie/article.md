@@ -162,7 +162,7 @@ document.cookie = "user=John; max-age=3600";
 
 // delete cookie (let it expire right now)
 document.cookie = "user=John; max-age=0";
-```  
+```
 
 ## secure
 
@@ -243,7 +243,7 @@ A `samesite=lax` cookie is sent if both of these conditions are true:
 
 So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
 
-But anything more complicated, like a network request from another site or a form submittion loses cookies.
+But anything more complicated, like a network request from another site or a form submission loses cookies.
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 

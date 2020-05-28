@@ -2,7 +2,7 @@
 
 Export and import directives have several syntax variants.
 
-In the previous chapter we saw a simple use, now let's explore more examples.
+In the previous article we saw a simple use, now let's explore more examples.
 
 ## Export before declarations
 
@@ -162,7 +162,7 @@ Mostly, the second approach is preferred, so that every "thing" resides in its o
 
 Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier if files are well-named and structured into folders.
 
-Modules provide special `export default` ("the default export") syntax to make the "one thing per module" way look better.
+Modules provide a special `export default` ("the default export") syntax to make the "one thing per module" way look better.
 
 Put `export default` before the entity to export:
 
@@ -216,9 +216,9 @@ export default function(user) { // no function name
 export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
 
-Not giving a name is fine, because `export default` is only one per file, so `import` without curly braces knows what to import.
+Not giving a name is fine, because there is only one `export default` per file, so `import` without curly braces knows what to import.
 
-Without `default`, such export would give an error:
+Without `default`, such an export would give an error:
 
 ```js
 export class { // Error! (non-default export needs a name)
@@ -241,7 +241,7 @@ function sayHi(user) {
 export {sayHi as default};
 ```
 
-Or, another situation, let's say a module `user.js` exports one main "default" thing and a few named ones (rarely the case, but happens):
+Or, another situation, let's say a module `user.js` exports one main "default" thing, and a few named ones (rarely the case, but it happens):
 
 ```js
 // 📁 user.js
@@ -277,9 +277,9 @@ new User('John');
 
 ### A word against default exports
 
-Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
+Named exports are explicit. They exactly name what they import, so we have that information from them; that's a good thing.
 
-Named exports enforce us to use exactly the right name to import:
+Named exports force us to use exactly the right name to import:
 
 ```js
 import {User} from './user.js';
@@ -321,7 +321,7 @@ export {default as User} from './user.js'; // re-export default
 
 Why would that be needed? Let's see a practical use case.
 
-Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow to publish and distribute such packages), and many modules are just "helpers", for the internal use in other package modules.
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages), and many modules are just "helpers", for internal use in other package modules.
 
 The file structure could be like this:
 ```
@@ -403,7 +403,7 @@ Such oddities of re-exporting the default export are one of the reasons why some
 
 ## Summary
 
-Here are all types of `export` that we covered in this and previous chapters.
+Here are all types of `export` that we covered in this and previous articles.
 
 You can check yourself by reading them and recalling what they mean:
 
@@ -452,4 +452,4 @@ if (something) {
 
 ...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
 
-We'll see dynamic imports in the next chapter.
+We'll see dynamic imports in the next article.

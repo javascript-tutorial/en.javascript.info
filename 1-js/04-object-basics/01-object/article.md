@@ -92,6 +92,30 @@ let user = {
 ```
 That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
 
+````smart header="Object with const can be changed"
+Please note: an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but no. The `const` fixes the value of `user`, but not its contents.
+
+The `const` would give an error only if we try to set `user=...` as a whole.
+
+There's another way to make constant object properties, we'll cover it later in the chapter <info:property-descriptors>.
+````
+
 ## Square brackets
 
 For multiword properties, the dot access doesn't work:
@@ -103,7 +127,7 @@ user.likes birds = true
 
 JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
 
-The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` и `_` are allowed).
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
 
 There's an alternative "square bracket notation" that works with any string:
 
@@ -161,7 +185,7 @@ alert( user.key ) // undefined
 
 ### Computed properties
 
-We can use square brackets in an object literal. That's called *computed properties*.
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
 
 For instance:
 
@@ -215,7 +239,7 @@ For instance:
 function makeUser(name, age) {
   return {
     name: name,
-    age: age
+    age: age,
     // ...other properties
   };
 }
@@ -233,7 +257,7 @@ function makeUser(name, age) {
 *!*
   return {
     name, // same as name: name
-    age   // same as age: age
+    age,  // same as age: age
     // ...
   };
 */!*
@@ -249,9 +273,25 @@ let user = {
 };
 ```
 
+
 ## Property names limitations
 
-Property names (keys) must be either strings or symbols (a special type for identifiers, to be covered later).
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
 
 Other types are automatically converted to strings.
 
@@ -267,25 +307,7 @@ alert( obj["0"] ); // test
 alert( obj[0] ); // test (same property)
 ```
 
-**Reserved words are allowed as property names.**
-
-As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
-
-But for an object property, there's no such restriction. Any name is fine:
-
-```js run
-let obj = {
-  for: 1,
-  let: 2,
-  return: 3
-};
-
-alert( obj.for + obj.let + obj.return );  // 6
-```
-
-We can use any string as a key, but there's a special property named `__proto__` that gets special treatment for historical reasons.
-
-For instance, we can't set it to a non-object value:
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
 
 ```js run
 let obj = {};
@@ -295,19 +317,13 @@ alert(obj.__proto__); // [object Object] - the value is an object, didn't work a
 
 As we see from the code, the assignment to a primitive `5` is ignored.
 
-The nature of `__proto__` will be revealed in detail later in the chapter [](info:prototype-inheritance).
-
-As for now, it's important to know that such behavior of `__proto__` can become a source of bugs and even vulnerabilities if we intend to store user-provided keys in an object.
-
-The problem is that a visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
-
-There are two workarounds for the problem:
-1. Modify the object's behavior to treat `__proto__` as a regular property. We'll learn how to do it in the chapter [](info:prototype-methods).
-2. Using [Map](info:map-set) data structure which supports arbitrary keys. We'll learn it in the chapter <info:map-set>.
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
 
 ## Property existence test, "in" operator
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
 
 ```js run
 let user = {};
@@ -315,7 +331,7 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true means "no such property"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+There's also a special operator `"in"` for that.
 
 The syntax is:
 ```js
@@ -333,17 +349,18 @@ alert( "blabla" in user ); // false, user.blabla doesn't exist
 
 Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+If we omit quotes, that means a variable, it should contain the actual name to be tested. For instance:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+alert( *!*key*/!* in user ); // true, property "age" exists
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
 
 It's when an object property exists, but stores `undefined`:
 
@@ -357,11 +374,10 @@ alert( obj.test ); // it's undefined, so - no such property?
 alert( "test" in obj ); // true, the property does exist!
 ```
 
-
 In the code above, the property `obj.test` technically exists. So the `in` operator works right.
 
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
-````
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
 
 ## The "for..in" loop
 
@@ -395,7 +411,6 @@ for (let key in user) {
 Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
 
 Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
-
 
 ### Ordered like an object
 
@@ -480,262 +495,6 @@ for (let code in codes) {
 
 Now it works as intended.
 
-## Copying by reference
-
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
-
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
-
-For instance:
-
-```js
-let message = "Hello!";
-let phrase = message;
-```
-
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
-
-![](variable-copy-value.svg)
-
-Objects are not like that.
-
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
-
-Here's the picture for the object:
-
-```js
-let user = {
-  name: "John"
-};
-```
-
-![](variable-contains-reference.svg)
-
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
-
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
-
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
-
-For instance:
-
-```js no-beautify
-let user = { name: "John" };
-
-let admin = user; // copy the reference
-```
-
-Now we have two variables, each one with the reference to the same object:
-
-![](variable-copy-reference.svg)
-
-We can use any variable to access the cabinet and modify its contents:
-
-```js run
-let user = { name: 'John' };
-
-let admin = user;
-
-*!*
-admin.name = 'Pete'; // changed by the "admin" reference
-*/!*
-
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
-```
-
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
-
-### Comparison by reference
-
-The equality `==` and strict equality `===` operators for objects work exactly the same.
-
-**Two objects are equal only if they are the same object.**
-
-For instance, if two variables reference the same object, they are equal:
-
-```js run
-let a = {};
-let b = a; // copy the reference
-
-alert( a == b ); // true, both variables reference the same object
-alert( a === b ); // true
-```
-
-And here two independent objects are not equal, even though both are empty:
-
-```js run
-let a = {};
-let b = {}; // two independent objects
-
-alert( a == b ); // false
-```
-
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
-
-### Const object
-
-An object declared as `const` *can* be changed.
-
-For instance:
-
-```js run
-const user = {
-  name: "John"
-};
-
-*!*
-user.age = 25; // (*)
-*/!*
-
-alert(user.age); // 25
-```
-
-It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
-
-The `const` would give an error if we try to set `user` to something else, for instance:
-
-```js run
-const user = {
-  name: "John"
-};
-
-*!*
-// Error (can't reassign user)
-*/!*
-user = {
-  name: "Pete"
-};
-```
-
-...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
-
-## Cloning and merging, Object.assign
-
-So, copying an object variable creates one more reference to the same object.
-
-But what if we need to duplicate an object? Create an independent copy, a clone?
-
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
-
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
-
-Like this:
-
-```js run
-let user = {
-  name: "John",
-  age: 30
-};
-
-*!*
-let clone = {}; // the new empty object
-
-// let's copy all user properties into it
-for (let key in user) {
-  clone[key] = user[key];
-}
-*/!*
-
-// now clone is a fully independent clone
-clone.name = "Pete"; // changed the data in it
-
-alert( user.name ); // still John in the original object
-```
-
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
-
-The syntax is:
-
-```js
-Object.assign(dest, [src1, src2, src3...])
-```
-
-- Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
-- It copies the properties of all objects `src1, ..., srcN` into `dest`. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns `dest`.
-
-For instance, we can use it to merge several objects into one:
-```js
-let user = { name: "John" };
-
-let permissions1 = { canView: true };
-let permissions2 = { canEdit: true };
-
-*!*
-// copies all properties from permissions1 and permissions2 into user
-Object.assign(user, permissions1, permissions2);
-*/!*
-
-// now user = { name: "John", canView: true, canEdit: true }
-```
-
-If the receiving object (`user`) already has the same named property, it will be overwritten:
-
-```js
-let user = { name: "John" };
-
-// overwrite name, add isAdmin
-Object.assign(user, { name: "Pete", isAdmin: true });
-
-// now user = { name: "Pete", isAdmin: true }
-```
-
-We also can use `Object.assign` to replace the loop for simple cloning:
-
-```js
-let user = {
-  name: "John",
-  age: 30
-};
-
-*!*
-let clone = Object.assign({}, user);
-*/!*
-```
-
-It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
-
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
-
-Like this:
-```js run
-let user = {
-  name: "John",
-  sizes: {
-    height: 182,
-    width: 50
-  }
-};
-
-alert( user.sizes.height ); // 182
-```
-
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
-
-Like this:
-```js run
-let user = {
-  name: "John",
-  sizes: {
-    height: 182,
-    width: 50
-  }
-};
-
-let clone = Object.assign({}, user);
-
-alert( user.sizes === clone.sizes ); // true, same object
-
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
-```
-
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
-
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
-
-
-
 ## Summary
 
 Objects are associative arrays with several special features.
@@ -752,10 +511,6 @@ Additional operators:
 - To delete a property: `delete obj.prop`.
 - To check if a property with the given key exists: `"key" in obj`.
 - To iterate over an object: `for (let key in obj)` loop.
-
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
-
-To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 What we've studied in this chapter is called a "plain object", or just `Object`.
 

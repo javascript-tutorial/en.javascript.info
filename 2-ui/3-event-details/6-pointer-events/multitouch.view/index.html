@@ -1,0 +1,28 @@
+<!doctype html>
+<body>
+  <style>
+    #area {
+      border: 1px solid black; 
+      width: 90%; 
+      height: 180px; 
+      cursor: pointer;
+      overflow: scroll;
+      user-select: none;
+    }
+  </style>
+  
+  <div id="area">
+  Multi-touch here
+  </div>
+  <script>
+    document.onpointerdown = document.onpointerup = log;
+
+    function log(event) {
+      area.insertAdjacentHTML("beforeend", `
+        <div>${event.type} isPrimary=${event.isPrimary} pointerId=${event.pointerId}</div>
+      `)
+     area.scrollTop = 1e9;
+    }
+  </script>
+
+</body>
