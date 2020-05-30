@@ -18,13 +18,6 @@ The statement below creates (in other words: *declares*) a variable with the nam
 let message;
 ```
 
-Be careful not to use `let` to redeclare a variable in the same scope. You will get a syntax error complaining that the identifier has already been declared.
-
-```js run no-beautify
-let message; // declared
-let message; // SyntaxError: Identifier 'message' has already been declared
-```
-
 Now, we can put some data into it by using the assignment operator `=`:
 
 ```js
@@ -244,7 +237,7 @@ To declare a constant (unchanging) variable, use `const` instead of `let`:
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be reassigned, nor can they be redeclared in the same scope (a trait shared with `let`). An attempt to reassign would cause an error:
+Variables declared using `const` are called "constants" because they cannot be reassigned. An attempt to reassign would cause an error:
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -252,7 +245,19 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // error, can't reassign the constant!
 ```
 
-Hopefully, we can all agree that birthdays remain constant. Names, maybe not so much. When a programmer is sure that a variable will never be reassigned nor redeclared, they can use `const` to clearly communicate that information to other developers which will help with maintaining and debugging the codebase in the long run.
+Hopefully, we can all agree that birthdays remain constant. Names, maybe not so much. When a programmer is sure that a variable will never be reassigned, they can use `const` to clearly communicate that information to other developers which will help with maintaining and debugging the codebase in the long run.
+
+````warn header="You cannot use `let` or `const` to redeclare a variable in the same function or block scope"
+
+This is simply not allowed in JavaScript. You will get a syntax error complaining that the identifier has already been declared. If you want to learn more about variable scope, you can skip ahead and refer to the chapter on [variable scope](/closure).
+
+This won't work:
+
+```js
+let message; // declared
+let message; // SyntaxError: Identifier 'message' has already been declared
+```
+````
 
 ### Uppercase constants
 
