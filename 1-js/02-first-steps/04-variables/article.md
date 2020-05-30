@@ -18,6 +18,13 @@ The statement below creates (in other words: *declares*) a variable with the nam
 let message;
 ```
 
+Be careful not to use `let` to redeclare a variable. You will get a syntax error complaining that the identifier has already been declared.
+
+```js run no-beautify
+let message; // declared
+let message; // SyntaxError: Identifier 'message' has already been declared
+```
+
 Now, we can put some data into it by using the assignment operator `=`:
 
 ```js
@@ -190,7 +197,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
 ````
 
 ````warn header="Reserved names"
@@ -237,7 +244,7 @@ To declare a constant (unchanging) variable, use `const` instead of `let`:
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
+Variables declared using `const` are called "constants". They cannot be reassigned, nor can they be redeclared (a trait shared with `let`). An attempt to reassign would cause an error:
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -245,8 +252,7 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // error, can't reassign the constant!
 ```
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
-
+Hopefully, we can all agree that birthdays remain constant. Names, maybe not so much. When a programmer is sure that a variable will never be reassigned nor redeclared, they can use `const` to clearly communicate that information to other developers which will help with maintaining and debugging the codebase in the long run.
 
 ### Uppercase constants
 
