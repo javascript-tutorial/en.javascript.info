@@ -18,7 +18,7 @@ The statement below creates (in other words: *declares*) a variable with the nam
 let message;
 ```
 
-Be careful not to use `let` to redeclare a variable. You will get a syntax error complaining that the identifier has already been declared.
+Be careful not to use `let` to redeclare a variable in the same scope. You will get a syntax error complaining that the identifier has already been declared.
 
 ```js run no-beautify
 let message; // declared
@@ -244,7 +244,7 @@ To declare a constant (unchanging) variable, use `const` instead of `let`:
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be reassigned, nor can they be redeclared (a trait shared with `let`). An attempt to reassign would cause an error:
+Variables declared using `const` are called "constants". They cannot be reassigned, nor can they be redeclared in the same scope (a trait shared with `let`). An attempt to reassign would cause an error:
 
 ```js run
 const myBirthday = '18.04.1982';
