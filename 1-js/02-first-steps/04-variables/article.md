@@ -80,20 +80,6 @@ let user = 'John'
 
 Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
 
-````warn header="Declaring twice triggers an error"
-A variable should be declared only once.
-
-A repeated declaration of the same variable is an error:
-
-```js run
-let message = "This";
-
-// repeated 'let' leads to an error
-let message = "That"; // SyntaxError: 'message' has already been declared
-```
-So, we declare a variable once, and then should refer to it without `let`.
-````
-
 ````smart header="`var` instead of `let`"
 In older scripts, you may also find another keyword: `var` instead of `let`:
 
@@ -147,6 +133,20 @@ message = hello;
 alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
+
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we declare a variable once, and then should refer to it without `let`.
+````
 
 ```smart header="Functional languages"
 It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
