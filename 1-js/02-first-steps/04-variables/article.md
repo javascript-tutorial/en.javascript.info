@@ -145,7 +145,7 @@ let message = "This";
 // repeated 'let' leads to an error
 let message = "That"; // SyntaxError: 'message' has already been declared
 ```
-So, we declare a variable once, and then should refer to it without `let`.
+So, we declare a should variable once, and then refer to it without `let`.
 ````
 
 ```smart header="Functional languages"
