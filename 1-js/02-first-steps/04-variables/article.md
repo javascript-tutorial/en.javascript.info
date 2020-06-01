@@ -80,6 +80,19 @@ let user = 'John'
 
 Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
 
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we declare a variable once, and then should refer to it without `let`.
+````
 
 ````smart header="`var` instead of `let`"
 In older scripts, you may also find another keyword: `var` instead of `let`:
@@ -190,7 +203,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
 ````
 
 ````warn header="Reserved names"
