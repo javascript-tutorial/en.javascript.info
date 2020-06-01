@@ -181,7 +181,7 @@ The code sets click handlers on *every* element in the document to see which one
 If you click on `<p>`, then the sequence is:
 
 1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
-2. `P` (target phrase, triggers two times, as we've set two listeners: capturing and bubbling)
+2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
 3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
