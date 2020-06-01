@@ -57,11 +57,11 @@ The descriptors are in the same format as described in the chapter <info:propert
 We can use `Object.create` to perform an object cloning more powerful than copying properties in `for..in`:
 
 ```js
-// fully identical shallow clone of obj
+// fully identical 'shallow-clone' of obj
 let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 ```
 
-This call makes a truly exact copy of `obj`, including all properties: enumerable and non-enumerable, data properties and setters/getters -- everything, and with the right `[[Prototype]]`.
+This call makes a truly exact ``shallow-copy`` of `obj`, including all properties: enumerable and non-enumerable, data properties and setters/getters -- everything, and with the right `[[Prototype]]`.
 
 ## Brief history
 
