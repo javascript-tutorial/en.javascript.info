@@ -138,7 +138,7 @@ alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
 Here we create a temporary array of two variables and immediately destructure it in swapped order.
 
 We can swap more than two variables this way.
-```
+
 
 ### The rest '...'
 
