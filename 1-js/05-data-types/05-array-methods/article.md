@@ -698,7 +698,7 @@ alert(soldiers[0].age); // 20
 alert(soldiers[1].age); // 23
 ```
 
-If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function. `window` global object is default value for `this` in standlone functions, thus leading to a wrong result.
+If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, the value of `this` in a standalone function is default global object 'window'. So, it will lead to wrong result.
 
 A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The former is used more often, as it's a bit easier to understand for most people.
 
