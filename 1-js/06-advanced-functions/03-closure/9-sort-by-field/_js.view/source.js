@@ -1,7 +1,5 @@
-"use strict";
-
 function byField(fieldName){
-  
-  //Your code goes here.
+
+  // Your code goes here.
 
 }
