@@ -1,3 +1,3 @@
 function byField(fieldName){
-  return (a, b) => a[field] > b[field] ? 1 : -1;
+  return (a, b) => a[fieldName] > b[fieldName] ? 1 : -1;
 }
