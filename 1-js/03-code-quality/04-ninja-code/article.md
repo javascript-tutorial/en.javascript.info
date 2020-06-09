@@ -43,7 +43,7 @@ The Dao hides in wordlessness. Only the Dao is well begun and well
 completed.
 ```
 
-Another way to code faster is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
 
 A short variable disappears in the code like a real ninja in the forest. No one will be able to find it using "search" of the editor. And even if someone does, they won't be able to "decipher" what the name `a` or `b` means.
 
