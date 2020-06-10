@@ -14,15 +14,12 @@ describe("sum", function(){
     [0, 1, 2, 3, 4, 5],
   ];
 
-  for (let argumentList of testArgumentLists){
-    
+  for (let argumentList of testArgumentLists){    
     it(makeTestCaseName(argumentList), function(){
       assert.equal(traditionalSum(argumentList), chainCallSum(argumentList));
     });
   }
-
 });
-
 
 function traditionalSum(arr){
   return arr.reduce(
