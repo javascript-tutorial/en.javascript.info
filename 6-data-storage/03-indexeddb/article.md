@@ -5,7 +5,7 @@ libs:
 
 # IndexedDB
 
-IndexedDB is a database, that is built into browser, much more powerful than `localStorage`.
+IndexedDB is a database that is built into browser, much more powerful than `localStorage`.
 
 - Stores almost any kind of values by keys, multiple key types.
 - Supports transactions for reliability.
@@ -75,10 +75,10 @@ We can open it with version `2` and perform the upgrade like this:
 ```js
 let openRequest = indexedDB.open("store", *!*2*/!*);
 
-openRequest.onupgradeneeded = function() {
+openRequest.onupgradeneeded = function(event) {
   // the existing database version is less than 2 (or it doesn't exist)
   let db = openRequest.result;
-  switch(db.version) { // existing db version
+  switch(event.oldVersion) { // existing db version
     case 0:
       // version 0 means that the client had no database
       // perform initialization
