@@ -179,10 +179,10 @@ If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
 if(!Promise.allSettled) {
   Promise.allSettled = function(promises) {
     return Promise.all(promises.map(p => Promise.resolve(p).then(value => ({
-      state: 'fulfilled',
+      status: 'fulfilled',
       value
     }), reason => ({
-      state: 'rejected',
+      status: 'rejected',
       reason
     }))));
   };
@@ -191,7 +191,7 @@ if(!Promise.allSettled) {
 
 In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
 
-That handler turns a successful result `value` into `{state:'fulfilled', value}`, and an error `reason` into `{state:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
+That handler turns a successful result `value` into `{status:'fulfilled', value}`, and an error `reason` into `{status:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
 
 Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
 
@@ -277,7 +277,7 @@ There are 5 static methods of `Promise` class:
 
 1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
 2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
-    - `state`: `"fulfilled"` or `"rejected"`
+    - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
 4. `Promise.resolve(value)` -- makes a resolved promise with the given value.
