@@ -74,7 +74,7 @@ Usually that's convenient. But if we want symbolic keys too, then there's a sepa
 
 Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others.
 
-If we'd like to apply them, then we can use `Object.entries` followed `Object.fromEntries`:
+If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
 
 1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
 2. Use array methods on that array, e.g. `map`.
