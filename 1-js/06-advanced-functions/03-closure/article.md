@@ -183,7 +183,7 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 
 1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
     - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
-2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable since this moment.
+2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
 3. `phrase` is assigned a value.
 4. `phrase` changes the value.
 
