@@ -15,7 +15,7 @@ To name some (for historical reasons):
 
 Now all these slowly become a part of history, but we still can find them in old scripts.
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study the modern modules from now on.
+The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study the modern JavaScript modules from now on.
 
 ## What is a module?
 
