@@ -1,13 +1,13 @@
 
 # Modules, introduction
 
-As our application grows bigger, we want to split it into multiple files, so called "modules". A module usually contains a class or a library of functions.
+As our application grows bigger, we want to split it into multiple files, so called "modules". A module may contain a class or a library of functions for a specific purpose.
 
 For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple, so there was no need.
 
 But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
 
-For instance:
+To name some (for historical reasons):
 
 - [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- one of the most ancient module systems, initially implemented by the library [require.js](http://requirejs.org/).
 - [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- the module system created for Node.js server.
@@ -15,11 +15,11 @@ For instance:
 
 Now all these slowly become a part of history, but we still can find them in old scripts.
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study it from now on.
+The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study the modern modules from now on.
 
 ## What is a module?
 
-A module is just a file. One script is one module.
+A module is just a file. One script is one module. As simple as that.
 
 Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
 
@@ -57,8 +57,8 @@ Like this:
 
 The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
 
-```warn header="Modules work only via HTTP, not in local files"
-If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test them.
+```warn header="Modules work only via HTTP(s), not in local files"
+If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
 ```
 
 ## Core module features

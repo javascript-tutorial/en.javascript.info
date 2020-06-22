@@ -9,7 +9,9 @@ In JavaScript they are written like this:
 - Equals: `a == b`, please note the double equality sign `=` means the equality test, while a single one `a = b` means an assignment.
 - Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as <code>a != b</code>.
 
-In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities.
+In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities. 
+
+At the end you'll find a good recipe to avoid "javascript quirks"-related issues.
 
 ## Boolean is the result
 
@@ -24,7 +26,7 @@ For example:
 alert( 2 > 1 );  // true (correct)
 alert( 2 == 1 ); // false (wrong)
 alert( 2 != 1 ); // true (correct)
-```
+``` 
 
 A comparison result can be assigned to a variable, just like any value:
 
@@ -196,13 +198,12 @@ We get these results because:
 - Comparisons `(1)` and `(2)` return `false` because `undefined` gets converted to `NaN` and `NaN` is a special numeric value which returns `false` for all comparisons.
 - The equality check `(3)` returns `false` because `undefined` only equals `null`, `undefined`, and no other value.
 
-### Evade problems
+### Avoid problems
 
-Why did we go over these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to evade problems with them:
+Why did we go over these examples? Should we remember these peculiarities all the time? Well, not really. Actually, these tricky things will gradually become familiar over time, but there's a solid way to avoid problems with them:
 
-Just treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
-
-Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
+- Treat any comparison with `undefined/null` except the strict equality `===` with exceptional care.
+- Don't use comparisons `>= > < <=` with a variable which may be `null/undefined`, unless you're really sure of what you're doing. If a variable can have these values, check for them separately.
 
 ## Summary
 
