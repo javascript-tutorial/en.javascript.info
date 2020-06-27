@@ -28,7 +28,7 @@ Here's how it will look:
 */!*
 ```
 
-That was an HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML or an external CSS file).
+That was the HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML/CSS already).
 
 ## Creating an element
 
@@ -48,21 +48,28 @@ To create DOM nodes, there are two methods:
     let textNode = document.createTextNode('Here I am');
     ```
 
+Most of the time we need to create element nodes, such as the `div` for the message.
+
 ### Creating the message
 
-In our case the message is a `div` with `alert` class and the HTML in it:
+Creating the message div takes 3 steps:
 
 ```js
+// 1. Create <div> element
 let div = document.createElement('div');
+
+// 2. Set its class to "alert"
 div.className = "alert";
+
+// Fill it with the content
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
-We created the element, but as of now it's only in a variable. We can't see the element on the page, as it's not yet a part of the document.
+We've created the element. But as of now it's only in a variable named `div`, not in the page yet. So we can't see it.
 
 ## Insertion methods
 
-To make the `div` show up, we need to insert it somewhere into `document`. For instance, in `document.body`.
+To make the `div` show up, we need to insert it somewhere into `document`. For instance, into `<body>` element, referenced by `document.body`.
 
 There's a special method `append` for that: `document.body.append(div)`.
 
@@ -90,13 +97,19 @@ Here's the full code:
 </script>
 ```
 
-This set of methods provides more ways to insert:
+Here we called `append` on `document.body`, but we can call `append` method on any other element, to put another element into it. For instance, we can append something to `<div>` by calling `div.append(anotherElement)`.
 
-- `node.append(...nodes or strings)` -- append nodes or strings at the end of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings at the beginning of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings before `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings after `node`,
+Here are more insertion methods, they specify different places where to insert:
+
+- `node.append(...nodes or strings)` -- append nodes or strings *at the end* of `node`,
+- `node.prepend(...nodes or strings)` -- insert nodes or strings *at the beginning* of `node`,
+- `node.before(...nodes or strings)` –- insert nodes or strings *before* `node`,
+- `node.after(...nodes or strings)` –- insert nodes or strings *after* `node`,
 - `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
+
+Arguments of these methods are an arbitrary list of DOM nodes to insert, or text strings (that become text nodes automatically).
+
+Let's see them in action.
 
 Here's an example of using these methods to add items to a list and the text before/after it:
 
@@ -121,7 +134,7 @@ Here's an example of using these methods to add items to a list and the text bef
 </script>
 ```
 
-Here's a visual picture what methods do:
+Here's a visual picture of what the methods do:
 
 ![](before-prepend-append-after.svg)
 
@@ -139,7 +152,7 @@ before
 after
 ```
 
-These methods can insert multiple lists of nodes and text pieces in a single call.
+As said, these methods can insert multiple nodes and text pieces in a single call.
 
 For instance, here a string and an element are inserted:
 
@@ -150,7 +163,7 @@ For instance, here a string and an element are inserted:
 </script>
 ```
 
-All text is inserted *as text*.
+Please note: the text is inserted "as text", not "as HTML", with proper escaping of characters such as `<`, `>`.
 
 So the final HTML is:
 
@@ -166,7 +179,7 @@ In other words, strings are inserted in a safe way, like `elem.textContent` does
 
 So, these methods can only be used to insert DOM nodes or text pieces.
 
-But what if we want to insert HTML "as html", with all tags and stuff working, like `elem.innerHTML`?
+But what if we'd like to insert an HTML string "as html", with all tags and stuff working, in the same manner as `elem.innerHTML` does it?
 
 ## insertAdjacentHTML/Text/Element
 
