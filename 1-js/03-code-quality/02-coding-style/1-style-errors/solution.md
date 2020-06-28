@@ -12,7 +12,7 @@ function pow(x,n)  // <- no space between arguments
 
 let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
 // but better make it 2 lines, also there's no spaces and missing ;
-if (n<0)  // <- no spaces inside (n < 0), and should be extra line above it
+if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
 {   // <- figure bracket on a separate line
   // below - long lines can be split into multiple lines for improved readability
   alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
@@ -39,7 +39,7 @@ function pow(x, n) {
 let x = prompt("x?", "");
 let n = prompt("n?", "");
 
-if (n < 0) {
+if (n <= 0) {
   alert(`Power ${n} is not supported,
     please enter an integer number greater than zero`);
 } else {
