@@ -208,7 +208,7 @@ The `symbol` type is used to create unique identifiers for objects. We have to m
 
 ## The typeof operator [#type-typeof]
 
-The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently or just want to do a quick check.
+The `typeof` operator returns the type of the operand/argument. It's useful when we want to process values of different types differently or just want to do a quick check.
 
 It supports two forms of syntax:
 
