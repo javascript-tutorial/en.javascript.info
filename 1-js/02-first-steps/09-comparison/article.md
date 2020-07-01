@@ -26,7 +26,7 @@ For example:
 alert( 2 > 1 );  // true (correct)
 alert( 2 == 1 ); // false (wrong)
 alert( 2 != 1 ); // true (correct)
-``` 
+```
 
 A comparison result can be assigned to a variable, just like any value:
 
