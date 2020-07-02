@@ -245,7 +245,7 @@ That label affects its behavior with `new`.
 - When a regular function is executed with `new`, it creates an empty object and assigns it to `this`.
 - But when a derived constructor runs, it doesn't do this. It expects the parent constructor to do this job.
 
-So a derived constructor must call `super` in order to execute its parent (non-derived) constructor, otherwise the object for `this` won't be created. And we'll get an error.
+So a derived constructor must call `super` in order to execute its parent (base) constructor, otherwise the object for `this` won't be created. And we'll get an error.
 
 For the `Rabbit` constructor to work, it needs to call `super()` before using `this`, like here:
 
