@@ -90,7 +90,9 @@ That would work be the same as:
 
 ```js
 // probably not correct
-let area = height ?? (100 * width) ?? 50;
+let area = height ?? 100 * width ?? 50; // multiplication operation be performed first
+
+alert(area); // 0
 ```
 
 There's also a related language-level limitation.
