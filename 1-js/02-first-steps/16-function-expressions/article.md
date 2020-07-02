@@ -276,7 +276,7 @@ let age = 16; // take 16 as an example
 
 if (age < 18) {
 *!*
-  welcome();               // \   (runs)
+  welcome();               // \   (runs) --> Hello
 */!*
                            //  |
   function welcome() {     //  |  
@@ -284,14 +284,21 @@ if (age < 18) {
   }                        //  |  everywhere in the block where it's declared
                            //  |
 *!*
-  welcome();               // /   (runs)
+  welcome();               // /   (runs) --> Hello
 */!*
 
 } else {
-
-  function welcome() {    
-    alert("Greetings!");
-  }
+*!*
+  welcome();               // \   (runs) --> Greetings
+*/!*
+                           //  |
+  function welcome() {     //  |  
+    alert("Greetings!");   //  |  Function Declaration is available
+  }                        //  |  everywhere in the block where it's declared
+                           //  |
+*!*
+  welcome();               // /   (runs) --> Greetings
+*/!*
 }
 
 // Here we're out of curly braces,
