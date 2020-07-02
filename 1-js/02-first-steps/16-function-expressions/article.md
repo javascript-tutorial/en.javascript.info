@@ -276,7 +276,7 @@ let age = 16; // take 16 as an example
 
 if (age < 18) {
 *!*
-  welcome();               // \   (runs) --> Hello
+  welcome();               // \   (runs) --> Hello!
 */!*
                            //  |
   function welcome() {     //  |  
@@ -284,12 +284,12 @@ if (age < 18) {
   }                        //  |  everywhere in the block where it's declared
                            //  |
 *!*
-  welcome();               // /   (runs) --> Hello
+  welcome();               // /   (runs) --> Hello!
 */!*
 
 } else {
 *!*
-  welcome();               // \   (runs) --> Greetings
+  welcome();               // \   (runs) --> Greetings!
 */!*
                            //  |
   function welcome() {     //  |  
@@ -297,7 +297,7 @@ if (age < 18) {
   }                        //  |  everywhere in the block where it's declared
                            //  |
 *!*
-  welcome();               // /   (runs) --> Greetings
+  welcome();               // /   (runs) --> Greetings!
 */!*
 }
 
