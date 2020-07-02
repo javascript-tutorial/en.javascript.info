@@ -4,7 +4,7 @@ As we'll be using the browser as our demo environment, let's see a couple of fun
 
 ## alert
 
-This one we've seen already. It shows a message and waits for the user to presses "OK".
+This one we've seen already. It shows a message and waits for the user to press "OK".
 
 For example:
 
