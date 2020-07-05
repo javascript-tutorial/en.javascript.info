@@ -148,7 +148,7 @@ There are two ways to do so:
 
 1. Multiply-and-divide.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
