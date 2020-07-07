@@ -6,7 +6,7 @@ importance: 5
 
 Create a "throttling" decorator `throttle(f, ms)` -- that returns a wrapper.
 
-When it's called multiple times, it passes the call to `f` at maximum once per `ms` milliseconds. 
+When it's called multiple times, it passes the call to `f` at maximum once per `ms` milliseconds.
 
 The difference with debounce is that it's completely different decorator:
 - `debounce` runs the function once after the "cooldown" period. Good for processing the final result.
