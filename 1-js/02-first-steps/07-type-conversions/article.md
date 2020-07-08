@@ -138,7 +138,7 @@ Follows the rules:
 
 | Value |  Becomes... |
 |-------|-------------|
-|`0`, `null`, `undefined`, `NaN`, `""` |`false`|
+|`0`, `-0`, `0n`, `null`, `undefined`, `NaN`, `""` |`false`|
 |any other value| `true` |
 
 
