@@ -122,7 +122,7 @@ Here the `.catch` block finishes normally. So the next successful `.then` handle
 In the example below we see the other situation with `.catch`. The handler `(*)` catches the error and just can't handle it (e.g. it only knows how to handle `URIError`), so it throws it again:
 
 ```js run
-// the execution: catch -> catch -> then
+// the execution: catch -> catch
 new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");
