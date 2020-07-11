@@ -166,7 +166,7 @@ The regular expression engine thinks that `[𝒳𝒴]` -- are not two, but four 
 We can see their codes like this:
 
 ```js run
-for(let i=0; i<'𝒳𝒴'.length; i++) {
+for(let i = 0; i < '𝒳𝒴'.length; i++) {
   alert('𝒳𝒴'.charCodeAt(i)); // 55349, 56499, 55349, 56500
 };
 ```
