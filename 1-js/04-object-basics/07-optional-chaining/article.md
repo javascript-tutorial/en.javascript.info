@@ -40,8 +40,7 @@ AND'ing the whole path to the property ensures that all components exist, but is
 
 The optional chaining `?.` stops the evaluation and returns `undefined` if the part before `?.` is `undefined` or `null`.
 
-Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.
-
+**Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.**
 
 Here's the safe way to access `user.address.street`:
 
@@ -57,14 +56,14 @@ Reading the address with `user?.address` works even if `user` object doesn't exi
 let user = null;
 
 alert( user?.address ); // undefined
-
 alert( user?.address.street ); // undefined
-alert( user?.address.street.anything ); // undefined
 ```
 
-Please note: the `?.` syntax works exactly where it's placed, not any further.
+Please note: the `?.` syntax makes optional the value before it, but not any further.
 
-In the last two lines the evaluation stops immediately after `user?.`, never accessing further properties. But if the `user` actually exists, then the further intermediate properties, such as `user.address` must exist.
+In the example above, `user?.` allows only `user` to be `null/undefined`.
+
+On the other hand, if `user` does exist, then it must have `user.address` property, otherwise `user?.address.street` gives an error at the second dot.
 
 ```warn header="Don't overuse the optional chaining"
 We should use `?.` only where it's ok that something doesn't exist.
@@ -75,13 +74,13 @@ So, if `user` happens to be undefined due to a mistake, we'll know about it and 
 ```
 
 ````warn header="The variable before `?.` must be declared"
-If there's no variable `user`, then `user?.anything` triggers an error:
+If there's no variable `user` at all, then `user?.anything` triggers an error:
 
 ```js run
 // ReferenceError: user is not defined
 user?.address;
 ```
-The optional chaining only tests for `null/undefined`, doesn't interfere with any other language mechanics.
+There must be `let/const/var user`. The optional chaining works only for declared variables. 
 ````
 
 ## Short-circuiting
