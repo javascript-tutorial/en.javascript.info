@@ -74,7 +74,7 @@ For example, if according to our coding logic `user` object must be there, but `
 So, if `user` happens to be undefined due to a mistake, we'll know about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
 
-````warn header="The variable before `?.` must exist"
+````warn header="The variable before `?.` must be declared"
 If there's no variable `user`, then `user?.anything` triggers an error:
 
 ```js run
