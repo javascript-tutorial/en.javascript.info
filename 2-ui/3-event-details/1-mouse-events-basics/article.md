@@ -24,7 +24,7 @@ We've already seen some of these events:
 : Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
 
 `contextmenu`
-: Triggers when when the right mouse button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it's not exactly the mouse event.
+: Triggers when the right mouse button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it's not exactly the mouse event.
 
 ...There are several other events too, we'll cover them later.
 
