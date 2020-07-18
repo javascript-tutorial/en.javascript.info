@@ -34,7 +34,7 @@ As you can see from the list above, a user action may trigger multiple events.
 
 For instance, a left-button click first triggers `mousedown`, when the button is pressed, then `mouseup` and `click` when it's released.
 
-In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`. 
+In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`.
 
 ```online
 Click the button below and you'll see the events. Try double-click too.
