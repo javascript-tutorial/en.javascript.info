@@ -222,7 +222,7 @@ Modern browsers also support [Broadcast channel API](https://developer.mozilla.o
 
 Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
 - Both `key` and `value` must be strings.
-- The limit is 2mb+, depends on the browser.
+- The limit is 5mb+, depends on the browser.
 - They do not expire.
 - The data is bound to the origin (domain/port/protocol).
 
