@@ -24,7 +24,7 @@ We've already seen some of these events:
 : Triggers after two clicks on the same element within a short timeframe. Rarely used nowadays.
 
 `contextmenu`
-: Triggers when when the right mouse button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it's not exactly the mouse event.
+: Triggers when the right mouse button is pressed. There are other ways to open a context menu, e.g. using a special keyboard key, it triggers in that case also, so it's not exactly the mouse event.
 
 ...There are several other events too, we'll cover them later.
 
@@ -34,7 +34,7 @@ As you can see from the list above, a user action may trigger multiple events.
 
 For instance, a left-button click first triggers `mousedown`, when the button is pressed, then `mouseup` and `click` when it's released.
 
-In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`. 
+In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`.
 
 ```online
 Click the button below and you'll see the events. Try double-click too.
@@ -50,7 +50,7 @@ Also we can see the `button` property that allows to detect the mouse button, it
 
 Click-related events always have the `button` property, which allows to get the exact mouse button.
 
-We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click. 
+We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
 
 From the other hand, `mousedown` and `mouseup` handlers we may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
 
