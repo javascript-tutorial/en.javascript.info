@@ -61,7 +61,7 @@ let div = document.createElement('div');
 // 2. Set its class to "alert"
 div.className = "alert";
 
-// Fill it with the content
+// 3. Fill it with the content
 div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 ```
 
