@@ -190,7 +190,7 @@ For most environment-specific objects, there is such a property. Here are some b
 
 ```js run
 // toStringTag for the environment-specific object and class:
-alert( window[Symbol.toStringTag]); // window
+alert( window[Symbol.toStringTag]); // Window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
 alert( {}.toString.call(window) ); // [object Window]
