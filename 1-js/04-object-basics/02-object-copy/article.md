@@ -225,4 +225,4 @@ Objects are assigned and copied by reference. In other words, a variable stores 
 
 All operations via copied references (like adding/removing properties) are performed on the same single object.
 
-To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+To make a "real copy" (a clone) we can use: `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference), or a "deep cloning" function such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
