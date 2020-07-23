@@ -121,7 +121,7 @@ user.id = "Their id value"
 // Boom! overwritten by another script!
 ```
 
-### Symbols in a literal
+### Symbols in an object literal
 
 If we want to use a symbol in an object literal `{...}`, we need square brackets around it.
 
