@@ -236,7 +236,7 @@ element.removeEventListener(event, handler, [options]);
 ````warn header="Removal requires the same function"
 To remove a handler we should pass exactly the same function as was assigned.
 
-That doesn't work:
+This doesn't work:
 
 ```js no-beautify
 elem.addEventListener( "click" , () => alert('Thanks!'));
