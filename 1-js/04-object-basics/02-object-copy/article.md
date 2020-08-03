@@ -219,6 +219,24 @@ There's a standard algorithm for deep cloning that handles the case above and mo
 
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
+## Use spread syntax
+
+And we can use spread syntax like this:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = {...user}; // <-- use spread for copy from object
+
+clone.name = "Pete"; // changed the data in it
+
+alert( user.name ); // John
+alert( clone.name ); // Pete
+```
+
 ## Summary
 
 Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object.
