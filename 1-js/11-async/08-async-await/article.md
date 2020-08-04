@@ -83,7 +83,7 @@ function f() {
 }
 ```
 
-We may get this error if we forget to put `async` before a function. As said, `await` only works inside an `async function`.
+We may get this error if we forget to put `async` before a function. As said, `await` only works inside an `async` function.
 ````
 
 Let's take the `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
