@@ -276,7 +276,7 @@ function onMouseMove(event) {
 }
 ```
 
-In the example below when the ball is dragged over the soccer gate, the gate is highlighted.
+In the example below when the ball is dragged over the soccer goal, the goal is highlighted.
 
 [codetabs height=250 src="ball4"]
 
@@ -300,4 +300,4 @@ We can lay a lot on this foundation.
 - We can use event delegation for `mousedown/up`. A large-area event handler that checks  `event.target` can manage Drag'n'Drop for hundreds of elements.
 - And so on.
 
-There are frameworks that build architecture over it: `DragZone`, `Droppable`, `Draggable` and other classes. Most of them do the similar stuff to what's described above, so it should be easy to understand them now. Or roll your own, as you can see that that's easy enough to do, sometimes easier than adapting a third-part solution.
+There are frameworks that build architecture over it: `DragZone`, `Droppable`, `Draggable` and other classes. Most of them do the similar stuff to what's described above, so it should be easy to understand them now. Or roll your own, as you can see that that's easy enough to do, sometimes easier than adapting a third-party solution.
