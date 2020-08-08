@@ -401,7 +401,7 @@ alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
 
 Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
 
-While reading code, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+While reading code, a fast "horizontal" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
 
 We advise a style of "one line -- one action":
 
