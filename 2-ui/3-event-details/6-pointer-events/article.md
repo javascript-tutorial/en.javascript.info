@@ -84,7 +84,7 @@ Please note: there `pointerId` is assigned not to the whole device, but for each
 
 The events associated with the first finger always have `isPrimary=true`.
 
-We can track multiple touching fingers using their `pointerId`. When the user moves move and then detouches a finger, we get `pointermove` and `pointerup` events with the same `pointerId` as we had in `pointerdown`.
+We can track multiple touching fingers using their `pointerId`. When the user moves and then detouches a finger, we get `pointermove` and `pointerup` events with the same `pointerId` as we had in `pointerdown`.
 
 ```online
 Here's the demo that logs `pointerdown` and `pointerup` events:
