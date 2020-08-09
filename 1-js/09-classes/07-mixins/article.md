@@ -115,9 +115,9 @@ An important feature of many browser objects (for instance) is that they can gen
 - Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from the `.trigger` call.
 - ...And the method `.off(name, handler)` that removes the `handler` listener.
 
-After adding the mixin, an object `user` will be able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen for such events to load the calendar for the logged-in person.
+After adding the mixin, a `menu` object will be able to generate a `"select"` event when a menu item is chosen. That same object can attach handler functions in order to process selections. Writing the code in this way allows the logic for menu selection and downstream side-effects (e.g. logging) to be decoupled.
 
-Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
+Note that the example code does not propagate events between distinct objects, since the handler functions are stored on `this`. For example, if you have `user` objects that generate `"login"` events, and want a `calendar` object to listen to such events, modifications much be made to the following code.
 
 Here's the code:
 
