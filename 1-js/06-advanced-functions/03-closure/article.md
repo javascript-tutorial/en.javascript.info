@@ -1,11 +1,15 @@
 
 # Variable scope
 
-JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created dynamically, passed as an argument to another function and called from a totally different place of code later.
+JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
 
 We already know that a function can access variables outside of it.
 
-Now let's expand our knowledge to include more complex scenarios.
+But what happens if these "outer" variables change since a function is created? Will the function see newer values the old ones?
+
+And if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
+
+Let's expand our knowledge to understand these scenarios and more complex ones.
 
 ```smart header="We'll talk about `let/const` variables here"
 In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
