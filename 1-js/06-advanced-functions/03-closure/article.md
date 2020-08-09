@@ -3,9 +3,9 @@
 
 JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
 
-We already know that a function can access variables outside of it.
+We already know that a function can access variables outside of it ("outer" variables).
 
-But what happens if these "outer" variables change since a function is created? Will the function see newer values the old ones?
+But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
 
 And if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
 
