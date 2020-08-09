@@ -110,6 +110,7 @@ Examples of such languages:
 - [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
 - [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
 - [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that allow to write application in pure Python without JavaScript.
 
 There are more. Of course, even if we use one of transpiled languages, we should also know JavaScript to really understand what we're doing.
 
