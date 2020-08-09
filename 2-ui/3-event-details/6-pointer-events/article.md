@@ -18,7 +18,7 @@ Let's make a small overview, so that you understand the general picture and the 
 
 As of now, [Pointer Events Level 2](https://www.w3.org/TR/pointerevents2/) specification is supported in all major browsers, while [Pointer Events Level 3](https://w3c.github.io/pointerevents/) is in the works. Unless you code for Internet Explorer 10, or for Safari 12 or below, there's no point in using mouse or touch events any more -- we can switch to pointer events.
 
-That said, there are important peculiarities one should know them to use them correctly and avoid surprises.  We'll make note of them in this article.
+That being said, they have some important peculiarities that one should know in order to use them correctly and avoid surprises. We'll make note of them in this article.
 
 ## Pointer event types
 
