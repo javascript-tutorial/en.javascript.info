@@ -317,7 +317,7 @@ new User().sayHi(); // Hello, John!
 
 So, we just write "<property name> = <value>" in the declaration, and that's it.
 
-The important difference of class fields is that they are set on individual objects, not `User.prototype`:
+The important difference of properties defined this way is that they are set on the individual objects, not shared in User.prototype:
 
 ```js run
 class User {
