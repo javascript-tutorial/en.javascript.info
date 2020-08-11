@@ -193,7 +193,7 @@ An array is a special kind of object. The square brackets used to access a prope
 
 They extend objects providing special methods to work with ordered collections of data and also the `length` property. But at the core it's still an object.
 
-Remember, there are only 7 basic types in JavaScript. Array is an object and thus behaves like an object.
+Remember, there are only eight basic data types in JavaScript (see the [Data types](https://javascript.info/types) chapter for more info). Array is an object and thus behaves like an object.
 
 For instance, it is copied by reference:
 
