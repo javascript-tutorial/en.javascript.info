@@ -89,7 +89,7 @@ In practice though, `elem.getBoundingClientRect()` always returns positive width
 ```
 
 ```warn header="Internet Explorer: no support for `x/y`"
-Internet Explorer don't support `x/y` properties for historical reasons.
+Internet Explorer doesn't support `x/y` properties for historical reasons.
 
 So we can either make a polyfill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
 ```
