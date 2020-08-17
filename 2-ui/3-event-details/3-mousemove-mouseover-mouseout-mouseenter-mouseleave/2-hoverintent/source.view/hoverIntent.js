@@ -1,5 +1,3 @@
-'use strict';
-
 // Here's a brief sketch of the class
 // with things that you'll need anyway
 class HoverIntent {
