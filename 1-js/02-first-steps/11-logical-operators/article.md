@@ -224,7 +224,7 @@ So the code `a && b || c && d` is essentially the same as if the `&&` expression
 ````
 
 ````warn header="Don't replace `if` with || or &&"
-Sometimes, people use the AND `&&` operator as a "shorter to write `if`".
+Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
 
 For instance:
 
