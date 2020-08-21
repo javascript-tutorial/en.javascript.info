@@ -33,12 +33,6 @@ Unlike strings, regular expressions have flag `pattern:u` that fixes such proble
 
 ## Unicode properties \p{...}
 
-```warn header="Not supported in Firefox and Edge"
-Despite being a part of the standard since 2018, unicode properties are not supported in Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1361876)) and Edge ([bug](https://github.com/Microsoft/ChakraCore/issues/2969)).
-
-There's [XRegExp](http://xregexp.com) library that provides "extended" regular expressions with cross-browser support for unicode properties.
-```
-
 Every character in Unicode has a lot of properties. They describe what "category" the character belongs to, contain miscellaneous information about it.
 
 For instance, if a character has `Letter` property, it means that the character belongs to an alphabet (of any language). And `Number` property means that it's a digit: maybe Arabic or Chinese, and so on.
