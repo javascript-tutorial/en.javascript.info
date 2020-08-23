@@ -72,7 +72,7 @@ The server architecture must be able to work with many pending connections.
 
 Certain server architectures run one process per connect. So there will be as many processes as connections, and each process takes a lot of memory. Too many connections just will consume it all.
 
-That's often the case for backends written in PHP, Ruby languages, but technically isn't a language, but rather implementation issue. Most modern language allow to implement a proper backend, but some of them make it easier than the other.
+That's often the case for backends written in PHP, Ruby languages, but technically isn't a language issue, but rather implementation one. Most modern language allow to implement a proper backend, but some of them make it easier than others..
 
 Backends written using Node.js usually don't have such problems.
 ```
