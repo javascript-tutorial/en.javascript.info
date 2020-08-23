@@ -70,7 +70,7 @@ As you can see, `subscribe` function makes a fetch, then waits for the response,
 ```warn header="Server should be ok with many pending connections"
 The server architecture must be able to work with many pending connections.
 
-Certain server architectures run a process per connect. For many connections there will be as many processes, and each process takes a lot of memory. So many connections just consume it all.
+Certain server architectures run one process per connect. So there will be as many processes as connections, and each process takes a lot of memory. Too many connections just will consume it all.
 
 That's often the case for backends written in PHP, Ruby languages, but technically isn't a language, but rather implementation issue. Most modern language allow to implement a proper backend, but some of them make it easier than the other.
 
