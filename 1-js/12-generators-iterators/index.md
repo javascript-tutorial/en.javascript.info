@@ -1,2 +1,0 @@
-
-# Generators, advanced iteration
