@@ -2,7 +2,7 @@
 
 The lifecycle of an HTML page has three important events:
 
-- `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may be not yet loaded.  
+- `DOMContentLoaded` -- the browser fully loaded HTML, and the DOM tree is built, but external resources like pictures `<img>` and stylesheets may not yet have loaded.  
 - `load` -- not only HTML is loaded, but also all the external resources: images, styles etc.
 - `beforeunload/unload` -- the user is leaving the page.
 
@@ -33,7 +33,7 @@ For instance:
   function ready() {
     alert('DOM is ready');
 
-    // image is not yet loaded (unless was cached), so the size is 0x0
+    // image is not yet loaded (unless it was cached), so the size is 0x0
     alert(`Image size: ${img.offsetWidth}x${img.offsetHeight}`);
   }
 
@@ -209,7 +209,7 @@ Like this:
 function work() { /*...*/ }
 
 if (document.readyState == 'loading') {
-  // loading yet, wait for the event
+  // still loading, wait for the event
   document.addEventListener('DOMContentLoaded', work);
 } else {
   // DOM is ready!
