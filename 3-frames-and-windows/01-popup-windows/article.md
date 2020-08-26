@@ -15,7 +15,7 @@ Also, popups are tricky on mobile devices, that don't show multiple windows simu
 
 Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
 
-1. A popup is a separate window with its own independent JavaScript environment. So opening a popup with a third-party non-trusted site is safe.
+1. A popup is a separate window with its own independent JavaScript environment. So opening a popup from a third-party non-trusted site is safe.
 2. It's very easy to open a popup.
 3. A popup can navigate (change URL) and send messages to the opener window.
 
