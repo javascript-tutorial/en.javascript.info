@@ -237,21 +237,23 @@ There's also `window.onscroll` event.
 
 ## Focus/blur on a window
 
-Theoretically, there are `window.focus()` and `window.blur()` methods to focus/unfocus on a window.  Also there are `focus/blur` events that allow to focus a window and catch the moment when the visitor switches elsewhere.
+Theoretically, there are `window.focus()` and `window.blur()` methods to focus/unfocus on a window. And there are also `focus/blur` events that allow to catch the moment when the visitor focuses on a window and switches elsewhere.
 
-In the past evil pages abused those. For instance, look at this code:
+Although, in practice they are severely limited, because in the past evil pages abused them. 
+
+For instance, look at this code:
 
 ```js run
 window.onblur = () => window.focus();
 ```
 
-When a user attempts to switch out of the window (`blur`), it brings it back to focus. The intention is to "lock" the user within the `window`.
+When a user attempts to switch out of the window (`window.onblur`), it brings the window back into focus. The intention is to "lock" the user within the `window`.
 
-So, there are limitations that forbid the code like that. There are many limitations to protect the user from ads and evils pages. They depend on the browser.
+So browsers had to introduce many limitations to forbid the code like that and protect the user from ads and evils pages. They depend on the browser.
 
-For instance, a mobile browser usually ignores that call completely. Also focusing doesn't work when a popup opens in a separate tab rather than a new window.
+For instance, a mobile browser usually ignores `window.focus()` completely. Also focusing doesn't work when a popup opens in a separate tab rather than a new window.
 
-Still, there are some things that can be done.
+Still, there are some use cases when such calls do work and can be useful.
 
 For instance:
 
