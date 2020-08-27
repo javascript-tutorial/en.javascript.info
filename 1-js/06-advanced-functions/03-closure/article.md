@@ -98,6 +98,22 @@ alert(i); // Error, no such variable
 
 Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
 
+In fact, `for (let ...) { }` is more complicated than you think, but fortunately in most of time, we don't need touch these things:
+
+```js run
+let iValues = []
+
+for 
+(let i = (setTimeout(() => iValues.push('async: let initializer ' + i)), 0);
+ i < (iValues.push('sync: test expression ' + i), setTimeout(() => iValues.push('async: test expression ' + i)), i++, 6);
+ i += (iValues.push('sync: increment expression ' + i), setTimeout(() => iValues.push('async: increment expression ' + i)), 1)
+) {
+  setTimeout((iValues.push('sync: loop body ' + i), () => iValues.push('async: loop body ' + i)), i++)
+}
+
+setTimeout(() => alert(iValues.join('\n')))
+```
+
 ## Nested functions
 
 A function is called "nested" when it is created inside another function.
