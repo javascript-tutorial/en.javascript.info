@@ -68,7 +68,7 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 ```warn header="Limitations"
 There are few limitations:
-- The `name=value` pair, after `encodeURIComponent`, should not exceed 4kb. So we can't store anything huge in a cookie.
+- The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on a browser.
 ```
 
@@ -415,7 +415,7 @@ GDPR is not only about cookies, it's about other privacy-related issues too, but
 `document.cookie` provides access to cookies
 - write operations modify only cookies mentioned in it.
 - name/value must be encoded.
-- one cookie up to 4kb, 20+ cookies per site (depends on a browser).
+- one cookie up to 4KB, 20+ cookies per site (depends on a browser).
 
 Cookie options:
 - `path=/`, by default current path, makes the cookie visible only under that path.
