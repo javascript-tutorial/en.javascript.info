@@ -252,7 +252,7 @@ let mutationRecords = observer.takeRecords();
 ```
 
 ```smart header="Garbage collection interaction"
-Observers use weak references to nodes internally. That is: if a node is removed from the DOM, and becomes unreachable, then it can be garbage collected.
+Observers use weak references to nodes internally. That is, if a node is removed from the DOM, and becomes unreachable, then it can be garbage collected.
 
 The mere fact that a DOM node is observed doesn't prevent the garbage collection.
 ```
