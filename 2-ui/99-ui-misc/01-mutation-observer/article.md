@@ -259,7 +259,7 @@ The mere fact that a DOM node is observed doesn't prevent the garbage collection
 
 ## Summary  
 
-`MutationObserver` can react to changes in DOM: attributes, added/removed elements, text content.
+`MutationObserver` can react to changes in DOM - attributes, text content and adding/removing elements.
 
 We can use it to track changes introduced by other parts of our code, as well as to integrate with third-party scripts.
 
