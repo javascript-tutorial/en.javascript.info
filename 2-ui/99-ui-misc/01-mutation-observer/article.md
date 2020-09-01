@@ -164,7 +164,7 @@ snippets.forEach(Prism.highlightElem);
 
 ...But, imagine if we have many places in the code where we load our content - articles, quizzes, forum posts, etc. Do we need to put the highlighting call everywhere? That's not very convenient, right? It is also easy to forget where we put them and therefore, making it harder if we want to make some changes to the code later.
 
-And what if the content is loaded by a third-party module? E.g. we have a forum written by someone else, that loads content dynamically, and we'd like to add syntax highlighting to it. No one likes patching third-party scripts.
+And what if the content is loaded by a third-party module? For example, we have a forum written by someone else, that loads content dynamically, and we'd like to add syntax highlighting to it. No one likes patching third-party scripts.
 
 Luckily, there's another option.
 
