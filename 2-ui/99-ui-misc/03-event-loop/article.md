@@ -9,7 +9,7 @@ In this chapter we first cover theoretical details about how things work, and th
 
 ## Event Loop
 
-The *event loop* concept is very simple. There's an endless loop, when the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
+The *event loop* concept is very simple. There's an endless loop, where the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
 
 The general algorithm of the engine:
 
