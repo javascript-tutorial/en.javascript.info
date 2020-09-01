@@ -160,7 +160,7 @@ Finally, we've split a CPU-hungry task into parts - now it doesn't block the use
 
 Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
 
-Usually the browser renders after the currently running code is complete. It doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is finished.
+As mentioned earlier, changes to DOM are painted only after the currently running task is completed, irrespective of how long it takes.
 
 On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
 
