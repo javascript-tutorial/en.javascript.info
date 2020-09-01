@@ -238,7 +238,7 @@ There's a method to stop observing the node:
 
 When we stop the observing, it might be possible that some changes were not yet processed by the observer. In such cases, we use
 
-- `observer.takeRecords()` -- gets a list of unprocessed mutation records, those that happened, but the callback has not handled them.
+- `observer.takeRecords()` -- gets a list of unprocessed mutation records - those that happened, but the callback has not handled them.
 
 These methods can be used together, like this:
 
