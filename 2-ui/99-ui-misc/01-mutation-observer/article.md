@@ -1,7 +1,7 @@
 
 # Mutation observer
 
-`MutationObserver` is a built-in object that observes a DOM element and fires a callback if there are changes.
+`MutationObserver` is a built-in object that observes a DOM element and fires a callback when it detects a change.
 
 We'll first take a look at the syntax, and then explore a real-world use case, to see where such thing may be useful.
 
