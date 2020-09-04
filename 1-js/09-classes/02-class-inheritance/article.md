@@ -364,7 +364,7 @@ Why is there the difference?
 
 Well, the reason is in the field initialization order. The class field is initialized:
 - Before constructor for the base class (that doesn't extend anything),
-- Imediately after `super()` for the derived class.
+- Immediately after `super()` for the derived class.
 
 In our case, `Rabbit` is the derived class. There's no `constructor()` in it. As said previously, that's the same as if there was an empty constructor with only `super(...args)`.
 
