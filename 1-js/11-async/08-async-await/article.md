@@ -45,7 +45,7 @@ The syntax:
 let value = await promise;
 ```
 
-The keyword `await` makes JavaScript wait until that promise settles and returns its result.
+The keyword `await` makes JavaScript wait until that promise fulfils and returns its result.
 
 Here's an example with a promise that resolves in 1 second:
 ```js run
@@ -65,9 +65,9 @@ async function f() {
 f();
 ```
 
-The function execution "pauses" at the line `(*)` and resumes when the promise settles, with `result` becoming its result. So the code above shows "done!" in one second.
+The function execution "pauses" at the line `(*)` and resumes when the promise fulfils, with `result` becoming its result. So the code above shows "done!" in one second.
 
-Let's emphasize: `await` literally suspends the function execution until the promise settles, and then resumes it with the promise result. That doesn't cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
+Let's emphasize: `await` literally suspends the function execution until the promise fulfils, and then resumes it with the promise result. That doesn't cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
 
 It's just a more elegant syntax of getting the promise result than `promise.then`, easier to read and write.
 
@@ -294,7 +294,7 @@ The `async` keyword before a function has two effects:
 1. Makes it always return a promise.
 2. Allows `await` to be used in it.
 
-The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
+The `await` keyword before a promise makes JavaScript wait until that promise fulfils, and then:
 
 1. If it's an error, the exception is generated — same as if `throw error` were called at that very place.
 2. Otherwise, it returns the result.
