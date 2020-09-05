@@ -16,7 +16,7 @@ Then if the wrapped function is called at 0ms, 200ms and 500ms, and then there a
 
 ...And it will get the arguments of the very last call, other calls are ignored.
 
-Here's the code for it (uses the debounce decorator from the [Lodash library](https://lodash.com/docs/4.17.15#debounce):
+Here's the code for it (uses the debounce decorator from the [Lodash library](https://lodash.com/docs/4.17.15#debounce)):
 
 ```js
 let f = _.debounce(alert, 1000);
