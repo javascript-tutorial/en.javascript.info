@@ -194,6 +194,8 @@ if (age < 3) {
   message = 'Hello!';
 } else if (age < 100) {
   message = 'Greetings!';
+} else if (age > 100) {
+  message= 'You are a Veteran';
 } else {
   message = 'What an unusual age!';
 }
