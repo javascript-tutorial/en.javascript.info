@@ -127,7 +127,7 @@ We'll cover strings more thoroughly in the chapter <info:string>.
 ```smart header="There is no *character* type."
 In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
 
-In JavaScript, there is no such type. There's only one type: `string`. A string may consist of only one character or many of them.
+In JavaScript, there is no such type. There's only one type: `string`. A string may consist of zero characters (be empty), one character or many of them.
 ```
 
 ## Boolean (logical type)
