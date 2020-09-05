@@ -137,7 +137,7 @@ When exactly should we run that highlighting method? Well, we can do it on `DOMC
 document.querySelectorAll('pre[class*="language"]').forEach(Prism.highlightElem);
 ```
 
-Everything's simple so far, right? Where there are `<pre>` code snippets in HTML, we highlight them.
+Everything's simple so far, right? We find code snippets in HTML and highlight them.
 
 Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](info:fetch). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
 
@@ -162,7 +162,7 @@ snippets.forEach(Prism.highlightElem);
 */!*
 ```
 
-...But, imagine if we have many places in the code where we load our content - articles, quizzes, forum posts, etc. Do we need to put the highlighting call everywhere? That's not very convenient, right? It is also easy to forget where we put them and therefore, making it harder if we want to make some changes to the code later.
+...But, imagine if we have many places in the code where we load our content - articles, quizzes, forum posts, etc. Do we need to put the highlighting call everywhere, to highlight the code in content after loading? That's not very convenient.
 
 And what if the content is loaded by a third-party module? For example, we have a forum written by someone else, that loads content dynamically, and we'd like to add syntax highlighting to it. No one likes patching third-party scripts.
 
