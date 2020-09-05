@@ -1,13 +1,13 @@
 
-# Async iterators and generators
+# Async iteration and generators
 
-Asynchronous iterators allow us to iterate over data that comes asynchronously, on-demand. Like, for instance, when we download something chunk-by-chunk over a network. And asynchronous generators make it even more convenient.
+Asynchronous iteration allow us to iterate over data that comes asynchronously, on-demand. Like, for instance, when we download something chunk-by-chunk over a network. And asynchronous generators make it even more convenient.
 
 Let's see a simple example first, to grasp the syntax, and then review a real-life use case.
 
-## Recall iterators
+## Recall iterables
 
-Let's recall the topic about iterators. 
+Let's recall the topic about iterables. 
 
 The idea is that we have an object, such as `range` here:
 ```js
@@ -17,17 +17,17 @@ let range = {
 };
 ```
 
-...And we'd like to use `for..of` loop on it, such as `for(value of range)`, to get values from `1` to `5`. And otherwise use the object, as if it were an array.
+...And we'd like to use `for..of` loop on it, such as `for(value of range)`, to get values from `1` to `5`.
 
 In other words, we want to add an *iteration ability* to the object.
 
 That can be implemented using a special method with the name `Symbol.iterator`:
 
-- This method is called in the beginning of a `for..of` loop, and it should return an object with the `next` method.
-- For each iteration of `for..of`, the `next()` method is invoked for the next value.
-- The `next()` should return a value in the form `{done: true/false, value:<loop value>}`.
+- This method is called in by the `for..of` construct when the loop is started, and it should return an object with the `next` method.
+- For each iteration, the `next()` method is invoked for the next value.
+- The `next()` should return a value in the form `{done: true/false, value:<loop value>}`, where `done:true` means the end of the loop.
 
-Here's an implementation for the `range`, with all the comments:
+Here's an implementation for the iterable `range`:
 
 ```js run
 let range = {
@@ -59,19 +59,17 @@ for(let value of range) {
 }
 ```
 
-If anything is unclear, please visit the [chapter about iterables](info:iterable), it gives all the details about regular iterators.
+If anything is unclear, please visit the chapter [](info:iterable), it gives all the details about regular iterables.
 
-## Async iterators
+## Async iterables
 
-Asynchronous iterators are similar to regular iterators. We also need to have an iterable object, but values are expected to come asynchronously. 
+Asynchronous iteration is needed when values come asynchronously: after `setTimeout` or another kind of delay. 
 
-The most common case is that the object needs to make a network request to deliver the next value.
+The most common case is that the object needs to make a network request to deliver the next value, we'll see a real-life example of it a bit later.
 
-Regular iterators, as the one above, require `next()` to return the next value right away. That's where asynchronous iterators come into play.
+To make an object iterable asynchronously:
 
-To make the object iterable asynchronously:
-
-1. We need to use `Symbol.asyncIterator` instead of `Symbol.iterator`.
+1. Use `Symbol.asyncIterator` instead of `Symbol.iterator`.
 2. The `next()` method should return a promise (to be fulfilled with the next value).
     - The `async` keyword handles it, we can simply make `async next()`.
 3. To iterate over such an object, we should use a `for await (let item of iterable)` loop.
@@ -153,9 +151,9 @@ It's also the case for `for..of`: the syntax without `await` needs `Symbol.itera
 
 ## Recall generators
 
-Now let's recall generators. They are explained in detail in the chapter [](info:generators).
+Now let's recall generators, as they allow to make iteration code much shorter. Most of the time, when we'd like to make an iterable, we'll use generators.
 
-For sheer simplicity, omitting some important stuff, they are "functions that generate (yield) values".
+For sheer simplicity, omitting some important stuff, they are "functions that generate (yield) values". They are explained in detail in the chapter [](info:generators).
 
 Generators are labelled with `function*` (note the start) and use `yield` to generate a value, then we can use `for..of` to loop over them.
 
@@ -187,7 +185,7 @@ let range = {
 }
 ```
 
-A common practice for `Symbol.iterator` is to return a generator, it makes the code shorter:
+A common practice for `Symbol.iterator` is to return a generator, it makes the code shorter, as you can see:
 
 ```js run
 let range = {
@@ -208,15 +206,19 @@ for(let value of range) {
 
 Please see the chapter [](info:generators) if you'd like more details.
 
-Once again, what if we'd like to generate values asynchronously? From network requests, for instance. 
-
 In regular generators we can't use `await`. All values must come synchronously, as required by the `for..of` construct.
 
-Let's switch to asynchronous generators, to make it possible.
+What if we'd like to generate values asynchronously? From network requests, for instance. 
 
-## Async generators
+Let's switch to asynchronous generators to make it possible.
 
-To make an asynchronous generator, prepend `function*` with `async`, like this:
+## Async generators (finally)
+
+For most practical applications, when we'd like to make an object that asynchronously generates a sequence of values, we can use an asynchronous generator.
+
+The syntax is simple: prepend `function*` with `async`. That makes the generator asynchronous.
+
+And then use `for await (...)` to iterate over it, like this:
 
 ```js run
 *!*async*/!* function* generateSequence(start, end) {
@@ -237,15 +239,13 @@ To make an asynchronous generator, prepend `function*` with `async`, like this:
 
   let generator = generateSequence(1, 5);
   for *!*await*/!* (let value of generator) {
-    alert(value); // 1, then 2, then 3, then 4, then 5
+    alert(value); // 1, then 2, then 3, then 4, then 5 (with delay between)
   }
 
 })();
 ```
 
-Now we have the async generator, iterable with `for await...of`.
-
-It's really simple. We add the `async` keyword, and the generator now can use `await` inside of it, rely on promises and other async functions.
+As the generator is asynchronous, we can use `await` inside it, rely on promises, perform network requests and so on.
 
 ````smart header="Under-the-hood difference"
 Technically, if you're an advanced reader who remembers the details about generators, there's an internal difference.
@@ -260,7 +260,13 @@ result = await generator.next(); // result = {value: ..., done: true/false}
 That's why async generators work with `for await...of`.
 ````
 
-We can make the `range` object generate values asynchronously, once per second, by replacing synchronous `Symbol.iterator` with asynchronous `Symbol.asyncIterator`:
+### Async iterable range
+
+Regular generators can be used as `Symbol.iterator` to make the iteration code shorter.
+
+Similar to that, async generators can be used as `Symbol.asyncIterator` to implement the asynchronous iteration.
+
+For instance, we can make the `range` object generate values asynchronously, once per second, by replacing synchronous `Symbol.iterator` with asynchronous `Symbol.asyncIterator`:
 
 ```js run
 let range = {
@@ -292,7 +298,11 @@ let range = {
 
 Now values come with a delay of 1 second between them.
 
-So, we can make any object asynchronously iterable by adding an async generator as its `Symbol.asyncIterator` method, and letting it to generate values.
+```smart
+Technically, we can add both `Symbol.iterator` and `Symbol.asyncIterator` to the object, so it's both synchronously (`for..of`) and asynchronously (`for await..of`) iterable.
+
+In practice though, that would be an weird thing to do.
+```
 
 ## Real-life example: paginated data
 
