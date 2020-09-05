@@ -9,7 +9,7 @@ In this chapter we first cover theoretical details about how things work, and th
 
 ## Event Loop
 
-The concept of *event loop* is very simple. There's an endless loop, when JavaScript engine waits for tasks, executes them and then sleeps waiting for more tasks.
+The *event loop* concept is very simple. There's an endless loop, where the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
 
 The general algorithm of the engine:
 
@@ -17,7 +17,7 @@ The general algorithm of the engine:
     - execute them, starting with the oldest task.
 2. Sleep until a task appears, then go to 1.
 
-That's a formalization for what we see when browsing a page. JavaScript engine does nothing most of the time, only runs if a script/handler/event activates.
+That's a formalization for what we see when browsing a page. The JavaScript engine does nothing most of the time, it only runs if a script/handler/event activates.
 
 Examples of tasks:
 
@@ -41,10 +41,10 @@ Tasks from the queue are processed on "first come – first served" basis. When 
 So far, quite simple, right?
 
 Two more details:
-1. Rendering never happens while the engine executes a task. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" suggesting to kill the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to infinite loop.
+1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
+2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
 
-That was a theory. Now let's see how we can apply that knowledge.
+That was the theory. Now let's see how we can apply that knowledge.
 
 ## Use-case 1: splitting CPU-hungry tasks
 
@@ -160,7 +160,7 @@ Finally, we've split a CPU-hungry task into parts - now it doesn't block the use
 
 Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
 
-Usually the browser renders after the currently running code is complete. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is finished.
+As mentioned earlier, changes to DOM are painted only after the currently running task is completed, irrespective of how long it takes.
 
 On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
 
@@ -238,7 +238,7 @@ menu.onclick = function() {
 
 ## Macrotasks and Microtasks
 
-Along with *macrotasks*, described in this chapter, there exist *microtasks*, mentioned in the chapter <info:microtask-queue>.
+Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter <info:microtask-queue>.
 
 Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
 
@@ -303,7 +303,7 @@ Here's an example with "counting progress bar", similar to the one shown previou
 
 ## Summary
 
-The more detailed algorithm of the event loop (though still simplified compare to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
+A more detailed event loop algorithm (though still simplified compared to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
 
 1. Dequeue and run the oldest task from the *macrotask* queue (e.g. "script").
 2. Execute all *microtasks*:
@@ -316,7 +316,7 @@ The more detailed algorithm of the event loop (though still simplified compare t
 To schedule a new *macrotask*:
 - Use zero delayed `setTimeout(f)`.
 
-That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react on user events and show progress between them.
+That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react to user events and show progress between them.
 
 Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
 
