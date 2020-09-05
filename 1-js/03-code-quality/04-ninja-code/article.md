@@ -1,7 +1,7 @@
 # Ninja code
 
 
-```quote author="Confucius"
+```quote author="Confucius (Analects)"
 Learning without thought is labor lost; thought without learning is perilous.
 ```
 
@@ -104,8 +104,8 @@ A quick read of such code becomes impossible. And when there's a typo... Ummm...
 
 ## Smart synonyms
 
-```quote author="Confucius"
-The hardest thing of all is to find a black cat in a dark room, especially if there is no cat.
+```quote author="Laozi (Tao Te Ching)"
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
 ```
 
 Using *similar* names for *same* things makes life more interesting and shows your creativity to the public.
