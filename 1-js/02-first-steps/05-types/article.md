@@ -255,7 +255,7 @@ The last three lines may need additional explanation:
 
 There are 8 basic data types in JavaScript.
 
-- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
+- `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
 - `bigint` is for integer numbers of arbitrary length.
 - `string` for strings. A string may have zero or more characters, there's no separate single-character type.
 - `boolean` for `true`/`false`.
