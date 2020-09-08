@@ -31,7 +31,7 @@ It shows a modal window with a text message, an input field for the visitor, and
 : An optional second parameter, the initial value for the input field.
 
 ```smart header="The square brackets in syntax `[...]`"
-The square brackets around `default` in the syntax above denote that the parameter as optional, not required.
+The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
 ```
 
 The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
