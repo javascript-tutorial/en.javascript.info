@@ -259,6 +259,7 @@ Access-Control-Request-Headers: Content-Type,API-Key
 ### Step 2 (preflight response)
 
 The server should respond with status 200 and headers:
+- `Access-Control-Allow-Origin: https://javascript.info`
 - `Access-Control-Allow-Methods: PATCH`
 - `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
