@@ -1,5 +1,5 @@
 
-Let's examine what's done inside `makeArmy`, and the solution will become obvious.
+Let's examine what exactly happens inside `makeArmy`, and the solution will become obvious.
 
 1. It creates an empty array `shooters`:
 
@@ -27,11 +27,11 @@ Let's examine what's done inside `makeArmy`, and the solution will become obviou
 
 3. The array is returned from the function.
 
-Then, later, the call to `army[5]()` will get the element `army[5]` from the array (it will be a function) and call it.
+Then, later, the call to any member, e.g. `army[5]()` will get the element `army[5]` from the array (that's a function) and call it.
 
 Now why do all such functions show the same value, `10`?
 
-That's because there's no local variable `i` inside `shooter` functions and neither in the code block of `while {...}`. When such a function is called, it takes `i` from its outer lexical environment.
+That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
 
 What will be the value of `i`?
 
@@ -51,11 +51,11 @@ function makeArmy() {
 }
 ```
 
-We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (at the end of `while`).
+We can see that all `shooter` functions are created in the lexical environment, associated with the one `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10`(`while` finishes at `10`).
 
-As a result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
+As the result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
 
-![](task-while-lexenv-makearmy.svg)
+![](lexenv-makearmy.svg)
 
 As you can see above, on each iteration of a `while {...} ` block, a new lexical environment is created. This implies that as long as we store the value of `i` in a variable in the `while {...}` block, created Lexical Environment will have that variable with value of `i`.
 
