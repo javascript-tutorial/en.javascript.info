@@ -55,10 +55,11 @@ We can see that all `shooter` functions are created in the lexical environment, 
 
 As the result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
 
-![](lexenv-makearmy.svg)
+![](lexenv-makearmy-empty.svg)
 
-As you can see above, on each iteration of a `while {...} ` block, a new lexical environment is created. This implies that as long as we store the value of `i` in a variable in the `while {...}` block, created Lexical Environment will have that variable with value of `i`.
+As you can see above, on each iteration of a `while {...} ` block, a new lexical environment is created. 
 
+So, to fix a problem we can copy the value of `i` into a variable within the `while {...}` block, like this:
 
 ```js run
 function makeArmy() {
@@ -81,13 +82,18 @@ function makeArmy() {
 
 let army = makeArmy();
 
+// Now the code works correctly
 army[0](); // 0
 army[5](); // 5
 ```
 
-Here `let j = i` makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+Here `let j = i` declares an "iteration-local" variable `j` and copies `i` into it. Primitives are copied "by value", so we actually get an independent copy of `i`, belonging to the current loop iteration.
 
-In `for` loop, this is written as:
+The shooters work correctly, because, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration:
+
+![](lexenv-makearmy-while-fixed.svg)
+
+Such problem could also be avoided if we used `for` in the beginning, like this:
 
 ```js run demo
 function makeArmy() {
@@ -112,8 +118,13 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-In this case, on each iteration, a new lexical environment is created for it, with variable i and its current value.
+That's essentially, the same, as `for` on each iteration generates the new lexical environment, with its own variable `i`. So `shooter` generated in every iteration references its own `i`, from that very iteration.
 
-So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration.
+![](lexenv-makearmy-for-fixed.svg)
 
-![](for-solution-lexenv-makearmy.svg)
+Now, as you've put so much effort into reading this, and the final recipe is so simple - just use `for`, you may wonder: was it worth that?
+
+Well, if you could easily answer the question of that task, you wouldn't read the solution, so hopefully this task must have helped you to understand things a bit better. 
+
+Besides, there are indeed cases when one prefers `while` to `for`, and other scenarios where such problems are real.
+
