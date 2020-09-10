@@ -51,7 +51,7 @@ function makeArmy() {
 }
 ```
 
- we can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (at the end of `while`).
+We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (at the end of `while`).
 
 As a result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
 
