@@ -314,7 +314,7 @@ When on an interview, a frontend developer gets a question about "what's a closu
 
 Usually, a Lexical Environment is removed from memory with all the variables after the function call finishes. That's because there are no references to it. As any JavaScript object, it's only kept in memory while it's reachable.
 
-...But if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
 
 In that case the Lexical Environment is still reachable even after the completion of the function, so it stays alive.
 
@@ -333,7 +333,7 @@ let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
 // of the corresponding f() call
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. All 3 of them in the code below:
+Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
 
 ```js
 function f() {
@@ -415,4 +415,4 @@ g();
 
 This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
 
-That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You always can check for it by running the examples on this page.
+That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.

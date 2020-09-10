@@ -29,9 +29,9 @@ Let's examine what's done inside `makeArmy`, and the solution will become obviou
 
 Then, later, the call to `army[5]()` will get the element `army[5]` from the array (it will be a function) and call it.
 
-Now why all such functions show the same?
+Now why do all such functions show the same value, `10`?
 
-That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
+That's because there's no local variable `i` inside `shooter` functions and neither in the code block of `while {...}`. When such a function is called, it takes `i` from its outer lexical environment.
 
 What will be the value of `i`?
 
@@ -51,11 +51,43 @@ function makeArmy() {
 }
 ```
 
-...We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and `i` has the last value: `10` (the end of `while`).
+We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (at the end of `while`).
 
-As a result, all `shooter` functions get from the outer lexical envrironment the same, last value `i=10`.
+As a result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
 
-We can fix it by moving the variable definition into the loop:
+![](task-while-lexenv-makearmy.svg)
+
+As you can see above, on each iteration of a `while {...} ` block, a new lexical environment is created. This implies that as long as we store the value of `i` in a variable in the `while {...}` block, created Lexical Environment will have that variable with value of `i`.
+
+
+```js run
+function makeArmy() {
+  let shooters = [];
+
+  let i = 0;
+  while (i < 10) {
+    *!*
+      let j = i;
+    */!*
+      let shooter = function() { // shooter function
+        alert( *!*j*/!* ); // should show its number
+      };
+    shooters.push(shooter);
+    i++;
+  }
+
+  return shooters;
+}
+
+let army = makeArmy();
+
+army[0](); // 0
+army[5](); // 5
+```
+
+Here `let j = i` makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+
+In `for` loop, this is written as:
 
 ```js run demo
 function makeArmy() {
@@ -80,41 +112,8 @@ army[0](); // 0
 army[5](); // 5
 ```
 
-Now it works correctly, because every time the code block in `for (let i=0...) {...}` is executed, a new Lexical Environment is created for it, with the corresponding variable `i`.
+In this case, on each iteration, a new lexical environment is created for it, with variable i and its current value.
 
-So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration. That's why now it works.
+So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration.
 
-![](lexenv-makearmy.svg)
-
-Here we rewrote `while` into `for`.
-
-Another trick could be possible, let's see it for better understanding of the subject:
-
-```js run
-function makeArmy() {
-  let shooters = [];
-
-  let i = 0;
-  while (i < 10) {
-*!*
-    let j = i;
-*/!*
-    let shooter = function() { // shooter function
-      alert( *!*j*/!* ); // should show its number
-    };
-    shooters.push(shooter);
-    i++;
-  }
-
-  return shooters;
-}
-
-let army = makeArmy();
-
-army[0](); // 0
-army[5](); // 5
-```
-
-The `while` loop, just like `for`, makes a new Lexical Environment for each run. So here we make sure that it gets the right value for a `shooter`.
-
-We copy `let j = i`. This makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+![](for-solution-lexenv-makearmy.svg)

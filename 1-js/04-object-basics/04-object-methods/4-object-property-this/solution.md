@@ -7,7 +7,7 @@ function makeUser() {
     name: "John",
     ref: this
   };
-};
+}
 
 let user = makeUser();
 
@@ -45,7 +45,7 @@ function makeUser() {
     }
 */!*
   };
-};
+}
 
 let user = makeUser();
 
