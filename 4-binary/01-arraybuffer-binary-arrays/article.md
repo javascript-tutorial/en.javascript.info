@@ -235,7 +235,7 @@ let dataView = new DataView(buffer);
 // get 8-bit number at offset 0
 alert( dataView.getUint8(0) ); // 255
 
-// now get 16-bit number at offset 0, it consists of 2 bytes, together iterpreted as 65535
+// now get 16-bit number at offset 0, it consists of 2 bytes, together interpreted as 65535
 alert( dataView.getUint16(0) ); // 65535 (biggest 16-bit unsigned int)
 
 // get 32-bit number at offset 0
@@ -244,7 +244,7 @@ alert( dataView.getUint32(0) ); // 4294967295 (biggest 32-bit unsigned int)
 dataView.setUint32(0, 0); // set 4-byte number to zero, thus setting all bytes to 0
 ```
 
-`DataView` is great when we store mixed-format data in the same buffer. E.g we store a sequence of pairs (16-bit integer, 32-bit float). Then `DataView` allows to access them easily.
+`DataView` is great when we store mixed-format data in the same buffer. For example, when we store a sequence of pairs (16-bit integer, 32-bit float), `DataView` allows to access them easily.
 
 ## Summary
 

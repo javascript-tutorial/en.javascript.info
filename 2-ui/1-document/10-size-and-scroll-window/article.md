@@ -60,11 +60,11 @@ Why so? Better don't ask. These inconsistencies come from ancient times, not a "
 
 ## Get the current scroll [#page-scroll]
 
-DOM elements have their current scroll state in `elem.scrollLeft/scrollTop`.
+DOM elements have their current scroll state in their `scrollLeft/scrollTop` properties.
 
-For document scroll `document.documentElement.scrollLeft/Top` works in most browsers, except older WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
+For document scroll, `document.documentElement.scrollLeft/Top` works in most browsers, except older WebKit-based ones, like Safari (bug [5991](https://bugs.webkit.org/show_bug.cgi?id=5991)), where we should use `document.body` instead of `document.documentElement`.
 
-Luckily, we don't have to remember these peculiarities at all, because the scroll is available in the special properties `window.pageXOffset/pageYOffset`:
+Luckily, we don't have to remember these peculiarities at all, because the scroll is available in the special properties, `window.pageXOffset/pageYOffset`:
 
 ```js run
 alert('Current scroll from the top: ' + window.pageYOffset);
