@@ -70,9 +70,9 @@ As you can see, `subscribe` function makes a fetch, then waits for the response,
 ```warn header="Server should be ok with many pending connections"
 The server architecture must be able to work with many pending connections.
 
-Certain server architectures run one process per connect. So there will be as many processes as connections, and each process takes a lot of memory. Too many connections just will consume it all.
+Certain server architectures run one process per connection; resulting in there being as many processes as there are connections, and each process will take a lot of memory. So, too many connections will just consume it all and thereby limiting the number of connections it can handle.
 
-That's often the case for backends written in PHP, Ruby languages, but technically isn't a language issue, but rather implementation one. Most modern language allow to implement a proper backend, but some of them make it easier than others..
+That's often the case for backends written in languages like PHP and Ruby. However, technically this isn't a language issue, but rather an implementation one. Most modern languages allow to implement a proper backend, but some make it easier than others.
 
 Backends written using Node.js usually don't have such problems.
 ```
