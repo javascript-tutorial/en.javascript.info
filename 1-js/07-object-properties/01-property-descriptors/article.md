@@ -243,7 +243,7 @@ Object.defineProperty(user, "name", {
 // all this won't work:
 //   user.name = "Pete"
 //   delete user.name
-//   defineProperty(user, "name", { value: "Pete" })
+//   Object.defineProperty(user, "name", { value: "Pete" })
 Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
