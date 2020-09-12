@@ -214,6 +214,7 @@ A preflight request uses method `OPTIONS`, no body and two headers:
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
+- `Access-Control-Allow-Origin` must be either `*` or the requesting origin, such as `https://javascript.info`, to allow it.
 - `Access-Control-Allow-Methods` must have the allowed method.
 - `Access-Control-Allow-Headers` must have a list of allowed headers.
 - Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
@@ -265,10 +266,13 @@ The server should respond with status 200 and headers:
 
 That allows future communication, otherwise an error is triggered.
 
-If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding to the list:
+If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding to the list.
+
+For example, this response also allows `PUT`, `DELETE` and additional headers:
 
 ```http
 200 OK
+Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Methods: PUT,PATCH,DELETE
 Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Control
 Access-Control-Max-Age: 86400
@@ -276,7 +280,7 @@ Access-Control-Max-Age: 86400
 
 Now the browser can see that `PATCH` is in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
 
-Besides, the preflight response is cached for time, specified by `Access-Control-Max-Age` header (86400 seconds, one day), so subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
+If there's header `Access-Control-Max-Age` with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
 
 ### Step 3 (actual request)
 
