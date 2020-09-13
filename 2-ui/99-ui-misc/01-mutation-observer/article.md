@@ -244,7 +244,8 @@ These methods can be used together, like this:
 
 ```js
 // get a list of unprocessed mutations
-// should be called before disconnecting if you care about possibly unhandled recent mutations
+// should be called before disconnecting,
+// if you care about possibly unhandled recent mutations
 let mutationRecords = observer.takeRecords();
 
 // stop tracking changes
