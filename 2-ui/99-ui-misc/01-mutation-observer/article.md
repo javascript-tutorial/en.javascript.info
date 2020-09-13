@@ -243,12 +243,17 @@ When we stop the observing, it might be possible that some changes were not yet 
 These methods can be used together, like this:
 
 ```js
-// we'd like to stop tracking changes
-observer.disconnect();
-
-// handle unprocessed some mutations
+// get a list of unprocessed mutations
 let mutationRecords = observer.takeRecords();
+
+// stop tracking changes
+observer.disconnect();
 ...
+```
+
+
+```smart header="Records returned by `observer.takeRecords()` are removed from the processing queue"
+The callback won't be called for records, returned by `observer.takeRecords()`.
 ```
 
 ```smart header="Garbage collection interaction"
