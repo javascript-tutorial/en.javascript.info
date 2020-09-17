@@ -85,7 +85,7 @@ As `BigInt` numbers are rarely needed, we don't cover them here, but devoted the
 Right now `BigInt` is supported in the latest version Firefox/Chrome/Edge and Safari with iOS 14, but not in IE. 
 
 ```
-[More Detial](https://caniuse.com/?search=bigint) about BigInt compatibility.
+[More Details](https://caniuse.com/?search=bigint) about BigInt compatibility.
 
 ## String
 
