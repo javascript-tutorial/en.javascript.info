@@ -153,7 +153,7 @@ That is:
 - They don't wait for anything, nothing waits for them.
 - The script that loads first -- runs first ("load-first" order).
 
-This can be changed if we explicitly set `script.async=true`. Then scripts will be executed in the document order, just like `defer`.
+This can be changed if we explicitly set `script.async=false`. Then scripts will be executed in the document order, just like `defer`.
 
 In this example, `loadScript(src)` function adds a script and also sets `async` to `false`.
 
