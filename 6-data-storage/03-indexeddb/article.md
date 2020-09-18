@@ -183,7 +183,7 @@ An example of an object that can't be stored: an object with circular references
 
 **There must be a unique `key` for every value in the store.**     
 
-A key must be one of the these types: number, date, string, binary, or array. It's a unique identifier: we can search/remove/update values by the key.
+A key must be one of the these types - number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
 
 ![](indexeddb-structure.svg)
 
