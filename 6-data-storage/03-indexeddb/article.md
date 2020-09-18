@@ -105,7 +105,7 @@ If the current user database has a higher version than in the `open` call, e.g. 
 
 That's rare, but such a thing may happen when a visitor loads outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
 
-To protect from errors, we should check `db.version` and suggest he reloads the page. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problems.
+To protect from errors, we should check `db.version` and suggest a page reload. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problems.
 ```
 
 ### Parallel update problem
