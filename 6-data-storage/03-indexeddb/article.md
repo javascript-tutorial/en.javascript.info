@@ -343,7 +343,7 @@ So, in the example above no special call is needed to finish the transaction.
 
 Transactions auto-commit principle has an important side effect. We can't insert an async operation like `fetch`, `setTimeout` in the middle of transaction. IndexedDB will not keep the transaction waiting till these are done.
 
-In the code below `request2` in line `(*)` fails, because the transaction is already committed, and can't make any request in it:
+In the code below, `request2` in line `(*)` fails, because the transaction is already committed, and can't make any request in it:
 
 ```js
 let request1 = books.add(book);
