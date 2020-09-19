@@ -59,9 +59,9 @@ if (1) { // 1 is truthy
 We can also pass a pre-evaluated boolean value to `if`, like this:
 
 ```js
-let cond = (year == 2015); // equality evaluates to true or false
+let condition = (year == 2015); // equality evaluates to true or false
 
-if (cond) {
+if (condition) {
   ...
 }
 ```
