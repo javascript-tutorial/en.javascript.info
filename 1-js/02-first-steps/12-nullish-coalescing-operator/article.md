@@ -41,7 +41,7 @@ The important difference is that:
 - `||` returns the first *truthy* value.
 - `??` returns the first *defined* value.
 
-This matters a lot when we'd like to treat `null/undefined` differently from `0`.
+This matters a lot when we'd like to treat `null/undefined` differently from `0` or an empty string `''`.
 
 For example, consider this:
 
@@ -64,7 +64,7 @@ Here, `height || 100` treats zero height as unset, same as `null`, `undefined` o
 
 The `height ?? 100` returns `100` only if `height` is exactly `null` or `undefined`. So the `alert` shows the height value `0` "as is".
 
-Which behavior is better depends on a particular use case. When zero height is a valid value, then `??` is preferrable.
+Which behavior is better depends on a particular use case. When zero height is a valid value, then `??` is preferable.
 
 ## Precedence
 
@@ -86,7 +86,7 @@ alert(area); // 5000
 
 Otherwise, if we omit parentheses, `*` has the higher precedence than `??` and would run first.
 
-That would work be the same as:
+That would work the same as:
 
 ```js
 // probably not correct
