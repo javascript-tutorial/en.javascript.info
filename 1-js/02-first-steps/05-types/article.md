@@ -86,7 +86,7 @@ As `BigInt` numbers are rarely needed, we don't cover them here, but devoted the
 Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
 ```
 
-You can check [*Can I Use* BigInt compatibility table](https://caniuse.com/bigint) to know which versions of a browser are supported.
+You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
 
 ## String
 
