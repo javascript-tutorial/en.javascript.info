@@ -332,7 +332,7 @@ There are 3 methods for HTTP-headers:
 
 ## POST, FormData
 
-To make a POST request, we can use the built-in [FormData](https://developer.mozilla.org/en-US/docs/Web/API/FormData) object.
+To make a POST request, we can use the built-in [FormData](mdn:api/FormData) object.
 
 The syntax:
 

@@ -126,5 +126,5 @@ We can use such JSBI code "as is" for engines that don't support bigints and for
 
 ## References
 
-- [MDN docs on BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt).
+- [MDN docs on BigInt](mdn:/JavaScript/Reference/Global_Objects/BigInt).
 - [Specification](https://tc39.es/ecma262/#sec-bigint-objects).
