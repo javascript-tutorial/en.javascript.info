@@ -9,7 +9,7 @@ The usage is very straightforward:
 
 ## The AbortController object
 
-Step 1: create a controller:
+Create a controller:
 
 ```js
 let controller = new AbortController();
