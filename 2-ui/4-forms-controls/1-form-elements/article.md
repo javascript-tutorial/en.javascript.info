@@ -205,7 +205,7 @@ Here is an example:
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. That feature is rarely used. In that case we need to use the first way: add/remove the `selected` property from `<option>` subelements.
+Unlike most other controls, `<select>` allows to select multiple options at once if it has the attribute, `multiple`. In such cases, we need to use the first way - add/remove the `selected` property from `<option>` subelements.
 
 We can get their collection as `select.options`, for instance:
 
