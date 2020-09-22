@@ -250,7 +250,7 @@ Why it happens is pretty obvious if we look at the graph of the given Bezier cur
 
 We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
 
-As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond than the starting `left` and `y>1` -- past the final `left`.
+As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond the starting `left` and `y>1` -- past the final `left`.
 
 That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then the train would jump out of the range much more.
 
