@@ -74,7 +74,7 @@ Now, let's cover animation properties one by one.
 
 ## transition-property
 
-In `transition-property` we write a list of properties to animate, for instance: `left`, `margin-left`, `height`, `color`.
+In `transition-property`, we write a list of properties to animate, for instance: `left`, `margin-left`, `height`, `color`. Or we could write `all`, which means "animate all properties".
 
 Not all properties can be animated, but [many of them can](http://www.w3.org/TR/css3-transitions/#animatable-properties-). The value `all` means "animate all properties".
 
