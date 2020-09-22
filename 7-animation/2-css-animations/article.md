@@ -369,7 +369,7 @@ The event object for `transitionend` has a few specific properties:
 
 We can join multiple simple animations together using the `@keyframes` CSS rule.
 
-It specifies the "name" of the animation and rules: what, when and where to animate. Then using the `animation` property we can attach the animation to the element and specify additional parameters for it.
+It specifies the "name" of the animation and rules - what, when and where to animate. Then using the `animation` property, we can attach the animation to the element and specify additional parameters for it.
 
 Here's an example with explanations:
 
