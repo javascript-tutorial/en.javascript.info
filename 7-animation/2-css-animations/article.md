@@ -84,7 +84,7 @@ In `transition-duration` we can specify how long the animation should take. The 
 
 ## transition-delay
 
-In `transition-delay` we can specify the delay *before* the animation. For instance, if  `transition-delay: 1s`, then the animation starts 1 second after the property change.
+In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is 2s, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
 
 Negative values are also possible. Then the animation starts from the middle. For instance, if `transition-duration` is `2s`, and the delay is `-1s`, then the animation takes 1 second and starts from the halfway point.
 
