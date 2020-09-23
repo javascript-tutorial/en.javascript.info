@@ -69,7 +69,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     new Date(2011, 0, 1); // the same, hours etc are 0 by default
     ```
 
-    The minimal precision is 1 ms (1/1000 sec):
+    The maximal precision is 1 ms (1/1000 sec):
 
     ```js run
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
@@ -124,7 +124,7 @@ Besides the given methods, there are two special ones that do not have a UTC-var
 : Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
 
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
-: Returns the difference between the local time zone and UTC, in minutes:
+: Returns the difference between UTC and the local time zone, in minutes:
 
     ```js run
     // if you are in timezone UTC-1, outputs 60

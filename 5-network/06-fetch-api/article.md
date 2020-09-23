@@ -89,7 +89,7 @@ Possible values are described in the [Referrer Policy specification](https://w3c
 - **`"no-referrer"`** -- never send `Referer`.
 - **`"origin"`** -- only send the origin in `Referer`, not the full page URL, e.g. only `http://site.com` instead of `http://site.com/path`.
 - **`"origin-when-cross-origin"`** -- send full `Referer` to the same origin, but only the origin part for cross-origin requests (as above).
-- **`"same-origin"`** -- send full `Referer` to the same origin, but no referer for for cross-origin requests.
+- **`"same-origin"`** -- send full `Referer` to the same origin, but no `Referer` for cross-origin requests.
 - **`"strict-origin"`** -- send only origin, don't send `Referer` for HTTPS→HTTP requests.
 - **`"strict-origin-when-cross-origin"`** -- for same-origin send full `Referer`, for cross-origin send only origin, unless it's HTTPS→HTTP request, then send nothing.
 - **`"unsafe-url"`** -- always send full url in `Referer`, even for HTTPS→HTTP requests.
@@ -215,10 +215,10 @@ window.onunload = function() {
 
 Normally, when a document is unloaded, all associated network requests are aborted. But `keepalive` option tells the browser to perform the request in background, even after it leaves the page. So this option is essential for our request to succeed.
 
-It has few limitations:
+It has a few limitations:
 
 - We can't send megabytes: the body limit for `keepalive` requests is 64kb.
-    - If gather more data, we can send it out regularly in packets, so that there won't be a lot left for the last `onunload` request.
-    - The limit is for all currently ongoing requests. So we can't cheat it by creating 100 requests, each 64kb.
-- We can't handle the server response if the request is made in `onunload`, because the document is already unloaded at that time, functions won't work.
-    - Usually, the server sends empty response to such requests, so it's not a problem.
+    - If we need to gather a lot of statistics about the visit, we should send it out regularly in packets, so that there won't be a lot left for the last `onunload` request.
+    - This limit applies to all `keepalive` requests together. In other words, we can perform multiple `keepalive` requests in parallel, but the sum of their body lengths should not exceed 64kb.
+- We can't handle the server response if the document is unloaded. So in our example `fetch` will succeed due to `keepalive`, but subsequent functions  won't work.
+    - In most cases, such as sending out statistics, it's not a problem, as server just accepts the data and usually sends an empty response to such requests.

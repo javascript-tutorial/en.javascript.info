@@ -1,13 +1,13 @@
-# Вставьте после фрагмента
+# Insert After Head
 
-Есть строка с HTML-документом.
+We have a string with an HTML Document.
 
-Вставьте после тега `<body>` (у него могут быть атрибуты) строку `<h1>Hello</h1>`.
+Write a regular expression that inserts `<h1>Hello</h1>` immediately after `<body>` tag. The tag may have attributes.
 
-Например:
+For instance:
 
 ```js
-let regexp = /ваше регулярное выражение/;
+let regexp = /your regular expression/;
 
 let str = `
 <html>
@@ -20,7 +20,7 @@ let str = `
 str = str.replace(regexp, `<h1>Hello</h1>`);
 ```
 
-После этого значение `str`:
+After that the value of `str` should be:
 ```html
 <html>
   <body style="height: 200px"><h1>Hello</h1>

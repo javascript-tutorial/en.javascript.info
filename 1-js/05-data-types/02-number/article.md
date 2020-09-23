@@ -148,7 +148,7 @@ There are two ways to do so:
 
 1. Multiply-and-divide.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
@@ -324,7 +324,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 
 ```smart header="Compare with `Object.is`"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
 2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
@@ -417,7 +417,7 @@ To write numbers with many zeroes:
 
 For different numeral systems:
 
-- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems
+- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems.
 - `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
 - `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
 

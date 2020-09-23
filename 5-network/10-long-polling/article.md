@@ -6,7 +6,7 @@ Being very easy to implement, it's also good enough in a lot of cases.
 
 ## Regular Polling
 
-The simplest way to get new information from the server is periodic polling. That is, regular requests to the server: "Hello, I'm here, do you have any information for me?". For example, once in 10 seconds.
+The simplest way to get new information from the server is periodic polling. That is, regular requests to the server: "Hello, I'm here, do you have any information for me?". For example, once every 10 seconds.
 
 In response, the server first takes a notice to itself that the client is online, and second - sends a packet of messages it got till that moment.
 
@@ -70,11 +70,13 @@ As you can see, `subscribe` function makes a fetch, then waits for the response,
 ```warn header="Server should be ok with many pending connections"
 The server architecture must be able to work with many pending connections.
 
-Certain server architectures run a process per connect. For many connections there will be as many processes, and each process takes a lot of memory. So many connections just consume it all.
+Certain server architectures run one process per connection; resulting in there being as many processes as there are connections, while each process consumes quite a bit of memory. So, too many connections will just consume it all.
 
-That's often the case for backends written in PHP, Ruby languages, but technically isn't a language, but rather implementation issue. Most modern language allow to implement a proper backend, but some of them make it easier than the other.
+That's often the case for backends written in languages like PHP and Ruby.
 
-Backends written using Node.js usually don't have such problems.
+Servers written using Node.js usually don't have such problems.
+
+That said, it isn't a programming language issue. Most modern languages, including PHP and Ruby allow to implement a proper backend. Just please make sure that your server architecture works fine with many simultaneous connections.
 ```
 
 ## Demo: a chat

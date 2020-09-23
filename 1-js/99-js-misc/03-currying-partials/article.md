@@ -39,7 +39,7 @@ alert( curriedSum(1)(2) ); // 3
 As you can see, the implementation is straightforward: it's just two wrappers.
 
 - The result of `curry(func)` is a wrapper `function(a)`.
-- When it is called like `sum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
+- When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
 - Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
 
 More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
@@ -73,7 +73,7 @@ Let's curry it!
 log = _.curry(log);
 ```
 
-After that `log` work normally:
+After that `log` works normally:
 
 ```js
 log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
@@ -111,7 +111,7 @@ So:
 
 ## Advanced curry implementation
 
-In case you'd like to get in details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
+In case you'd like to get in to the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
 
 It's pretty short:
 
@@ -175,7 +175,7 @@ For the call `curried(1)(2)(3)`:
 2. The wrapper `pass` is called with `(2)`: it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together. As the argument count is still less than 3, `curry` returns `pass`.
 3. The wrapper `pass` is called again with `(3)`,  for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
 
-If that's still not obvious, just trace the calls sequence in your mind or on the paper.
+If that's still not obvious, just trace the calls sequence in your mind or on paper.
 
 ```smart header="Fixed-length functions only"
 The currying requires the function to have a fixed number of arguments.
@@ -191,6 +191,6 @@ But most implementations of currying in JavaScript are advanced, as described: t
 
 ## Summary
 
-*Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if arguments count is not enough.
+*Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
 
-Currying allows to easily get partials. As we've seen in the logging example: the universal function `log(date, importance, message)` after currying gives us partials when called with one argument like `log(date)` or two arguments `log(date, importance)`.  
+Currying allows us to easily get partials. As we've seen in the logging example, after currying the three argument universal function `log(date, importance, message)` gives us partials when called with one argument (like `log(date)`) or two arguments (like `log(date, importance)`).  

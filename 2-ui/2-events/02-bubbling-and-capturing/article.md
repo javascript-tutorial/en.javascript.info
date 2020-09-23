@@ -181,7 +181,7 @@ The code sets click handlers on *every* element in the document to see which one
 If you click on `<p>`, then the sequence is:
 
 1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
-2. `P` (target phrase, triggers two times, as we've set two listeners: capturing and bubbling)
+2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
 3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
@@ -204,9 +204,9 @@ elem.addEventListener("click", e => alert(2));
 
 When an event happens -- the most nested element where it happens gets labeled as the "target element" (`event.target`).
 
-- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(...., true)` on the way (`true` is a shorthand for `{capture: true}`).
+- Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
 - Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` up to the root, calling handlers assigned using `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>` and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
 
 Each handler can access `event` object properties:
 
@@ -220,6 +220,6 @@ The capturing phase is used very rarely, usually we handle events on bubbling. A
 
 In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum  details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last.
+The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
 
 Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.

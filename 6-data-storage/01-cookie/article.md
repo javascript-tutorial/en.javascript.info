@@ -68,7 +68,7 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 ```warn header="Limitations"
 There are few limitations:
-- The `name=value` pair, after `encodeURIComponent`, should not exceed 4kb. So we can't store anything huge in a cookie.
+- The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on a browser.
 ```
 
@@ -162,7 +162,7 @@ document.cookie = "user=John; max-age=3600";
 
 // delete cookie (let it expire right now)
 document.cookie = "user=John; max-age=0";
-```  
+```
 
 ## secure
 
@@ -243,7 +243,7 @@ A `samesite=lax` cookie is sent if both of these conditions are true:
 
 So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
 
-But anything more complicated, like a network request from another site or a form submittion loses cookies.
+But anything more complicated, like a network request from another site or a form submission loses cookies.
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
@@ -310,7 +310,7 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires && options.expires.toUTCString) {
+  if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 
@@ -415,7 +415,7 @@ GDPR is not only about cookies, it's about other privacy-related issues too, but
 `document.cookie` provides access to cookies
 - write operations modify only cookies mentioned in it.
 - name/value must be encoded.
-- one cookie up to 4kb, 20+ cookies per site (depends on a browser).
+- one cookie up to 4KB, 20+ cookies per site (depends on a browser).
 
 Cookie options:
 - `path=/`, by default current path, makes the cookie visible only under that path.

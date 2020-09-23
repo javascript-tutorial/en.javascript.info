@@ -125,7 +125,7 @@ If there are some actions upon leaving the parent element, e.g. an animation run
 
 To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.
 
-Alternatively we can use other events: `mouseenter` и `mouseleave`, that we'll be covering now, as they don't have such problems.
+Alternatively we can use other events: `mouseenter` and `mouseleave`, that we'll be covering now, as they don't have such problems.
 
 ## Events mouseenter and mouseleave
 

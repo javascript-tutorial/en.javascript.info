@@ -1,6 +1,6 @@
 # Character classes
 
-Consider a practical task -- we have a phone number like `"+7(903)-123-45-67"`, and we need to turn it into pure numbers: `79035419441`.
+Consider a practical task -- we have a phone number like `"+7(903)-123-45-67"`, and we need to turn it into pure numbers: `79031234567`.
 
 To do so, we can find and remove anything that's not a number. Character classes can help with that.
 
@@ -30,7 +30,7 @@ let regexp = /\d/g;
 alert( str.match(regexp) ); // array of matches: 7,9,0,3,1,2,3,4,5,6,7
 
 // let's make the digits-only phone number of them:
-alert( str.match(regexp).join('') ); // 79035419441
+alert( str.match(regexp).join('') ); // 79031234567
 ```
 
 That was a character class for digits. There are other character classes as well.
@@ -153,9 +153,9 @@ Luckily, there's an alternative, that works everywhere. We can use a regexp like
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
 ```
 
-The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter.
+The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter. Or even the `pattern:[^]` -- as it means match any character except nothing.
 
-This trick works everywhere. Also we can use it if we don't want to set `pattern:s` flag, in cases when we want a regular "no-newline" dot too in the pattern.
+Also we can use this trick if we want both kind of "dots" in the same pattern: the actual dot `pattern:.` behaving the regular way ("not including a newline"), and also a way to match "any character" with `pattern:[\s\S]` or alike.
 ````
 
 ````warn header="Pay attention to spaces"

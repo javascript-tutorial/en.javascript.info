@@ -1,7 +1,7 @@
 
 # Mutation observer
 
-`MutationObserver` is a built-in object that observes a DOM element and fires a callback in case of changes.
+`MutationObserver` is a built-in object that observes a DOM element and fires a callback when it detects a change.
 
 We'll first take a look at the syntax, and then explore a real-world use case, to see where such thing may be useful.
 
@@ -128,16 +128,16 @@ Such snippet in an HTML markup looks like this:
 ...
 ```
 
-Also we'll use a JavaScript highlighting library on our site, e.g. [Prism.js](https://prismjs.com/). A call to `Prism.highlightElem(pre)` examines the contents of such `pre` elements and adds into them special tags and styles for colored syntax highlighting, similar to what you see in examples here, at this page.
+For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for above snippet in Prism, `Prism.highlightElem(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
 
-When exactly to run that highlighting method? We can do it on `DOMContentLoaded` event, or at the bottom of the page. At that moment we have our DOM ready, can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
+When exactly should we run that highlighting method? Well, we can do it on `DOMContentLoaded` event, or put the script at the bottom of the page. The moment our DOM is ready, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
 
 ```js
 // highlight all code snippets on the page
 document.querySelectorAll('pre[class*="language"]').forEach(Prism.highlightElem);
 ```
 
-Everything's simple so far, right? There are `<pre>` code snippets in HTML, we highlight them.
+Everything's simple so far, right? We find code snippets in HTML and highlight them.
 
 Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](info:fetch). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
 
@@ -162,13 +162,13 @@ snippets.forEach(Prism.highlightElem);
 */!*
 ```
 
-...But imagine, we have many places in the code where we load contents: articles, quizzes, forum posts. Do we need to put the highlighting call everywhere? That's not very convenient, and also easy to forget.
+...But, imagine if we have many places in the code where we load our content - articles, quizzes, forum posts, etc. Do we need to put the highlighting call everywhere, to highlight the code in content after loading? That's not very convenient.
 
-And what if the content is loaded by a third-party module? E.g. we have a forum written by someone else, that loads contents dynamically, and we'd like to add syntax highlighting to it. No one likes to patch third-party scripts.
+And what if the content is loaded by a third-party module? For example, we have a forum written by someone else, that loads content dynamically, and we'd like to add syntax highlighting to it. No one likes patching third-party scripts.
 
 Luckily, there's another option.
 
-We can use `MutationObserver` to automatically detect when code snippets are inserted in the page and highlight them.
+We can use `MutationObserver` to automatically detect when code snippets are inserted into the page and highlight them.
 
 So we'll handle the highlighting functionality in one place, relieving us from the need to integrate it.
 
@@ -236,30 +236,37 @@ There's a method to stop observing the node:
 
 - `observer.disconnect()` -- stops the observation.
 
-When we stop the observing, it might be possible that some changes were not processed by the observer yet.
+When we stop the observing, it might be possible that some changes were not yet processed by the observer. In such cases, we use
 
-- `observer.takeRecords()` -- gets a list of unprocessed mutation records, those that happened, but the callback did not handle them.
+- `observer.takeRecords()` -- gets a list of unprocessed mutation records - those that happened, but the callback has not handled them.
 
 These methods can be used together, like this:
 
 ```js
-// we'd like to stop tracking changes
-observer.disconnect();
-
-// handle unprocessed some mutations
+// get a list of unprocessed mutations
+// should be called before disconnecting,
+// if you care about possibly unhandled recent mutations
 let mutationRecords = observer.takeRecords();
+
+// stop tracking changes
+observer.disconnect();
 ...
 ```
 
+
+```smart header="Records returned by `observer.takeRecords()` are removed from the processing queue"
+The callback won't be called for records, returned by `observer.takeRecords()`.
+```
+
 ```smart header="Garbage collection interaction"
-Observers use weak references to nodes internally. That is: if a node is removed from DOM, and becomes unreachable, then it becomes garbage collected.
+Observers use weak references to nodes internally. That is, if a node is removed from the DOM, and becomes unreachable, then it can be garbage collected.
 
 The mere fact that a DOM node is observed doesn't prevent the garbage collection.
 ```
 
 ## Summary  
 
-`MutationObserver` can react on changes in DOM: attributes, added/removed elements, text content.
+`MutationObserver` can react to changes in DOM - attributes, text content and adding/removing elements.
 
 We can use it to track changes introduced by other parts of our code, as well as to integrate with third-party scripts.
 

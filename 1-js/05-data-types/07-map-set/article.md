@@ -41,6 +41,12 @@ alert( map.size ); // 3
 
 As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
+```smart header="`map[key]` isn't the right way to use a `Map`"
+Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (no object keys and so on).
+
+So we should use `map` methods: `set`, `get` and so on.
+```
+
 **Map can also use objects as keys.**
 
 For instance:
@@ -192,7 +198,7 @@ let prices = Object.fromEntries([
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get an plain object from `Map`.
+We can use `Object.fromEntries` to get a plain object from `Map`.
 
 E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
 
@@ -214,7 +220,7 @@ let obj = Object.fromEntries(map.entries()); // make a plain object (*)
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an array of key/value pairs, exactly in the right format for `Object.fromEntries`.
+A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
 
 We could also make line `(*)` shorter:
 ```js

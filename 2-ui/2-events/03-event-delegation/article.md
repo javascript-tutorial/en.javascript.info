@@ -101,8 +101,8 @@ table.onclick = function(event) {
 
 Explanations:
 1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
-2. If `event.target` is not inside any `<td>`, then the call returns `null`, and we don't have to do anything.
-3. In case of nested tables, `event.target` may be a `<td>` lying outside of the current table. So we check if that's actually *our table's* `<td>`.
+2. If `event.target` is not inside any `<td>`, then the call returns immediately, as there's nothing to do.
+3. In case of nested tables, `event.target` may be a `<td>`, but lying outside of the current table. So we check if that's actually *our table's* `<td>`.
 4. And, if it's so, then highlight it.
 
 As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
@@ -121,7 +121,7 @@ The first idea may be to assign a separate handler to each button. But there's a
 
 The handler reads the attribute and executes the method. Take a look at the working example:
 
-```html autorun height=60 run
+```html autorun height=60 run untrusted
 <div id="menu">
   <button data-action="save">Save</button>
   <button data-action="load">Load</button>

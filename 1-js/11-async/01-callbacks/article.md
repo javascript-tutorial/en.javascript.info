@@ -10,9 +10,9 @@ If you're not familiar with these methods, and their usage in the examples is co
 Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
 ```
 
-Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
 
-For instance, we can schedule such actions using `setTimeout`.
+For instance, one such function is the `setTimeout` function.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
@@ -109,7 +109,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Here we did it in `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 

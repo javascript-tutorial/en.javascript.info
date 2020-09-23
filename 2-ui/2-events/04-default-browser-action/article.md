@@ -113,7 +113,7 @@ The property `event.defaultPrevented` is `true` if the default action was preven
 
 There's an interesting use case for it.
 
-You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()`  and why stopping bubbling is bad?
+You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()` and why stopping bubbling is bad?
 
 Sometimes we can use `event.defaultPrevented` instead, to signal other event handlers that the event was handled.
 

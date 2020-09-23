@@ -55,11 +55,11 @@ function populate() {
     // document bottom
     let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
 
-    // if the user scrolled far enough (<100px to the end)
-    if (windowRelativeBottom < document.documentElement.clientHeight + 100) {
-      // let's add more data
-      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
-    }
+    // if the user hasn't scrolled far enough (>100px to the end)
+    if (windowRelativeBottom > document.documentElement.clientHeight + 100) break;
+    
+    // let's add more data
+    document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
   }
 }
 ```

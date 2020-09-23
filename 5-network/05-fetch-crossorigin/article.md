@@ -214,6 +214,7 @@ A preflight request uses method `OPTIONS`, no body and two headers:
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
+- `Access-Control-Allow-Origin` must be either `*` or the requesting origin, such as `https://javascript.info`, to allow it.
 - `Access-Control-Allow-Methods` must have the allowed method.
 - `Access-Control-Allow-Headers` must have a list of allowed headers.
 - Additionally, the header `Access-Control-Max-Age` may specify a number of seconds to cache the permissions. So the browser won't have to send a preflight for subsequent requests that satisfy given permissions.
@@ -259,15 +260,19 @@ Access-Control-Request-Headers: Content-Type,API-Key
 ### Step 2 (preflight response)
 
 The server should respond with status 200 and headers:
+- `Access-Control-Allow-Origin: https://javascript.info`
 - `Access-Control-Allow-Methods: PATCH`
 - `Access-Control-Allow-Headers: Content-Type,API-Key`.
 
 That allows future communication, otherwise an error is triggered.
 
-If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding to the list:
+If the server expects other methods and headers in the future, it makes sense to allow them in advance by adding to the list.
+
+For example, this response also allows `PUT`, `DELETE` and additional headers:
 
 ```http
 200 OK
+Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Methods: PUT,PATCH,DELETE
 Access-Control-Allow-Headers: API-Key,Content-Type,If-Modified-Since,Cache-Control
 Access-Control-Max-Age: 86400
@@ -275,7 +280,7 @@ Access-Control-Max-Age: 86400
 
 Now the browser can see that `PATCH` is in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
 
-Besides, the preflight response is cached for time, specified by `Access-Control-Max-Age` header (86400 seconds, one day), so subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
+If there's header `Access-Control-Max-Age` with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
 
 ### Step 3 (actual request)
 
@@ -309,7 +314,7 @@ JavaScript only gets the response to the main request or an error if there's no 
 
 ## Credentials
 
-A cross-origin request by default does not bring any credentials (cookies or HTTP authentication).
+A cross-origin request initiated by JavaScript code by default does not bring any credentials (cookies or HTTP authentication).
 
 That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. But cross-origin requests made by JavaScript methods are an exception.
 
@@ -329,7 +334,7 @@ fetch('http://another.com', {
 });
 ```
 
-Now `fetch` sends cookies originating from `another.com` without request to that site.
+Now `fetch` sends cookies originating from `another.com` with request to that site.
 
 If the server agrees to accept the request *with credentials*, it should add a header `Access-Control-Allow-Credentials: true` to the response, in addition to `Access-Control-Allow-Origin`.
 

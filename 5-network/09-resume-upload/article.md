@@ -44,7 +44,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
 
     This assumes that the server tracks file uploads by `X-File-Id` header. Should be implemented at server-side.
 
-    If the file don't yet exist at the server, then the server response should be `0`
+    If the file doesn't yet exist at the server, then the server response should be `0`
 
 3. Then, we can use `Blob` method `slice` to send the file from `startByte`:
     ```js

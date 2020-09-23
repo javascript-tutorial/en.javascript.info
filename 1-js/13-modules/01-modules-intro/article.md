@@ -1,13 +1,13 @@
 
 # Modules, introduction
 
-As our application grows bigger, we want to split it into multiple files, so called "modules". A module usually contains a class or a library of functions.
+As our application grows bigger, we want to split it into multiple files, so called "modules". A module may contain a class or a library of functions for a specific purpose.
 
 For a long time, JavaScript existed without a language-level module syntax. That wasn't a problem, because initially scripts were small and simple, so there was no need.
 
 But eventually scripts became more and more complex, so the community invented a variety of ways to organize code into modules, special libraries to load modules on demand.
 
-For instance:
+To name some (for historical reasons):
 
 - [AMD](https://en.wikipedia.org/wiki/Asynchronous_module_definition) -- one of the most ancient module systems, initially implemented by the library [require.js](http://requirejs.org/).
 - [CommonJS](http://wiki.commonjs.org/wiki/Modules/1.1) -- the module system created for Node.js server.
@@ -15,16 +15,16 @@ For instance:
 
 Now all these slowly become a part of history, but we still can find them in old scripts.
 
-The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study it from now on.
+The language-level module system appeared in the standard in 2015, gradually evolved since then, and is now supported by all major browsers and in Node.js. So we'll study the modern JavaScript modules from now on.
 
 ## What is a module?
 
-A module is just a file. One script is one module.
+A module is just a file. One script is one module. As simple as that.
 
 Modules can load each other and use special directives `export` and `import` to interchange functionality, call functions of one module from another one:
 
 - `export` keyword labels variables and functions that should be accessible from outside the current module.
-- `import` allows to import functionality from other modules.
+- `import` allows the import of functionality from other modules.
 
 For instance, if we have a file `sayHi.js` exporting a function:
 
@@ -45,7 +45,7 @@ alert(sayHi); // function...
 sayHi('John'); // Hello, John!
 ```
 
-The `import` directive loads the module by path `./sayHi.js` relative the current file and assigns exported function `sayHi` to the corresponding variable.
+The `import` directive loads the module by path `./sayHi.js` relative to the current file, and assigns exported function `sayHi` to the corresponding variable.
 
 Let's run the example in-browser.
 
@@ -56,6 +56,10 @@ Like this:
 [codetabs src="say" height="140" current="index.html"]
 
 The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
+
+```warn header="Modules work only via HTTP(s), not in local files"
+If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
+```
 
 ## Core module features
 
@@ -85,7 +89,7 @@ Modules are expected to `export` what they want to be accessible from outside an
 
 So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
 
-That's the correct variant:
+This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
@@ -110,7 +114,7 @@ If we really need to make a window-level global variable, we can explicitly assi
 
 If the same module is imported into multiple other places, its code is executed only the first time, then exports are given to all importers.
 
-That has important consequences. Let's see that on examples.
+That has important consequences. Let's look at them using examples:
 
 First, if executing a module code brings side-effects, like showing a message, then importing it multiple times will trigger it only once -- the first time:
 
@@ -163,7 +167,7 @@ alert(admin.name); // Pete
 
 So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
 
-Such behavior allows to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
+Such behavior allows us to *configure* modules on first import. We can setup its properties once, and then in further imports it's ready.
 
 For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
 
@@ -268,11 +272,11 @@ Please note: the second script actually runs before the first! So we'll see `und
 
 That's because modules are deferred, so we wait for the document to be processed. The regular script runs immediately, so we see its output first.
 
-When using modules, we should be aware that HTML-page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
+When using modules, we should be aware that the HTML page shows up as it loads, and JavaScript modules run after that, so the user may see the page before the JavaScript application is ready. Some functionality may not work yet. We should put "loading indicators", or otherwise ensure that the visitor won't be confused by that.
 
 ### Async works on inline scripts
 
-For non-module scripts, `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
+For non-module scripts, the `async` attribute only works on external scripts. Async scripts run immediately when ready, independently of other scripts or the HTML document.
 
 For module scripts, it works on inline scripts as well.
 

@@ -103,11 +103,11 @@ The result is called "flattened" DOM:
 
 ...But the flattened DOM exists only for rendering and event-handling purposes. It's kind of "virtual". That's how things are shown. But the nodes in the document are actually not moved around!
 
-That can be easily checked if we run `querySelector`: nodes are still at their places.
+That can be easily checked if we run `querySelectorAll`: nodes are still at their places.
 
 ```js
 // light DOM <span> nodes are still at the same place, under `<user-card>`
-alert( document.querySelector('user-card span').length ); // 2
+alert( document.querySelectorAll('user-card span').length ); // 2
 ```
 
 So, the flattened DOM is derived from shadow DOM by inserting slots. The browser renders it and uses for style inheritance, event propagation (more about that later). But JavaScript still sees the document "as is", before flattening.

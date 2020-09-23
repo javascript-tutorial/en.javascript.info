@@ -58,7 +58,7 @@ alert( new TextDecoder().decode(binaryString) ); // Hello
 
 The syntax is:
 
-```js run
+```js
 let encoder = new TextEncoder();
 ```
 

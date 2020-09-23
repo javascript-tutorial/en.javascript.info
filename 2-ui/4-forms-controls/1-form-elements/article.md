@@ -125,8 +125,7 @@ That's usually not a problem, because we rarely change names of form elements.
 
 ## Backreference: element.form
 
-For any element, the form is available as `element.form`. So a form references all elements, and elements
-reference the form.
+For any element, the form is available as `element.form`. So a form references all elements, and elements reference the form.
 
 Here's the picture:
 

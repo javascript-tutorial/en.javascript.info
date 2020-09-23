@@ -84,16 +84,16 @@ The OR `||` operator does the following:
 
 A value is returned in its original form, without the conversion.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no truthy value is found.
+In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
 
 For instance:
 
 ```js run
 alert( 1 || 0 ); // 1 (1 is truthy)
-alert( true || 'no matter what' ); // (true is truthy)
 
 alert( null || 1 ); // 1 (1 is the first truthy value)
 alert( null || 0 || 1 ); // 1 (the first truthy value)
+
 alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
 ```
 
@@ -101,53 +101,40 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
 1. **Getting the first truthy value from a list of variables or expressions.**
 
-    Imagine we have a list of variables which can either contain data or be `null/undefined`. How can we find the first one with data?
+    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
 
-    We can use OR `||`:
+    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
 
     ```js run
-    let currentUser = null;
-    let defaultUser = "John";
+    let firstName = "";
+    let lastName = "";
+    let nickName = "SuperCoder";
 
     *!*
-    let name = currentUser || defaultUser || "unnamed";
+    alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
     */!*
-
-    alert( name ); // selects "John" – the first truthy value
     ```
 
-    If both `currentUser` and `defaultUser` were falsy, `"unnamed"` would be the result.
+    If all variables were falsy, `"Anonymous"` would show up.
+
 2. **Short-circuit evaluation.**
 
-    Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. This process is called "a short-circuit evaluation" because it goes as short as possible from left to right.
+    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
 
-    This is clearly seen when the expression given as the second argument has a side effect like a variable assignment.
+    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
 
-    In the example below, `x` does not get assigned:
+    That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
 
-    ```js run no-beautify
-    let x;
-
-    *!*true*/!* || (x = 1);
-
-    alert(x); // undefined, because (x = 1) not evaluated
-    ```
-
-    If, instead, the first argument is `false`, `||` evaluates the second one, thus running the assignment:
+    In the example below, only the second message is printed:
 
     ```js run no-beautify
-    let x;
-
-    *!*false*/!* || (x = 1);
-
-    alert(x); // 1
+    *!*true*/!* || alert("not printed");
+    *!*false*/!* || alert("printed");
     ```
 
-    An assignment is a simple case. There may be side effects, that won't show up if the evaluation doesn't reach them.
+    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
 
-    As we can see, such a use case is a "shorter way of doing `if`". The first operand is converted to boolean. If it's false, the second one is evaluated.
-
-    Most of time, it's better to use a "regular" `if` to keep the code easy to understand, but sometimes this can be handy.
+    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
 ## && (AND)
 
@@ -236,7 +223,8 @@ The precedence of AND `&&` operator is higher than OR `||`.
 So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
 ````
 
-Just like OR, the AND `&&` operator can sometimes replace `if`.
+````warn header="Don't replace `if` with `||` or `&&`"
+Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
 
 For instance:
 
@@ -253,14 +241,12 @@ So we basically have an analogue for:
 ```js run
 let x = 1;
 
-if (x > 0) {
-  alert( 'Greater than zero!' );
-}
+if (x > 0) alert( 'Greater than zero!' );
 ```
 
-The variant with `&&` appears shorter. But `if` is more obvious and tends to be a little bit more readable.
+Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
+````
 
-So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
 
 ## ! (NOT)
 
