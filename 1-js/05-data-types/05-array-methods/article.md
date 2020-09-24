@@ -742,6 +742,15 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
   The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
 
+  We can use `every` to compare arrays:
+  ```js run
+  function arraysEqual(arr1, arr2) {
+    return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+  }
+
+  alert( arraysEqual([1, 2], [1, 2])); // true
+  ```
+
 - [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
 
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
