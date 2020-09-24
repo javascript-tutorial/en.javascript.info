@@ -702,6 +702,50 @@ If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin
 
 A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The former is used more often, as it's a bit easier to understand for most people.
 
+## == comparison opreator on Arrays
+
+Unlike other languages we must be here careful while using '==' comparison operator on arrays
+
+```js run
+
+alert('0'==0); //true
+alert(0==[]); //true
+
+alert('0'==[]); //false
+
+```
+.. why the last statement is false ?
+it is because complier cannot coerce both operand to same data type for comparison.Hence It should not be used for array comparison because it will always return false (except if compared it with itself).
+
+```js run
+let array1=[1,2,3];
+let array2=[1,2,3];
+
+alert(array1==array2]); //false
+alert(array1==array1]); //true
+
+```
+Also there is no direct array method to do array comparsion. Usually we need check by ourself.
+Let us assume we have two sorted numeric array without duplicates then to compare them:
+1) Both should have equal length
+2) Each element of one array should be present in other
+
+```js run
+let arrA=[1,2,3];
+let arrB=[1,2,3];
+let arrC=[1,2,4];
+let arrD=[1,2];
+
+let compareArray=(array1,array2)=>array1.length==array2.length ? array1.filter(element=>array2.includes(element)).length==array2.length:false;
+
+alert(compareArray(arrA,arrB)); //true
+
+alert(compareArray(arrA,arrC)); //false
+
+alert(compareArray(arrA,arrD)); //false
+```
+
+
 ## Summary
 
 A cheat sheet of array methods:
