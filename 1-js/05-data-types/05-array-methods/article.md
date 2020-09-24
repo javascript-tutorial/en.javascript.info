@@ -41,10 +41,10 @@ The [arr.splice(start)](mdn:js/Array/splice) method is a swiss army knife for ar
 The syntax is:
 
 ```js
-arr.splice(index[, deleteCount, elem1, ..., elemN])
+arr.splice(pos[, deleteCount, elem1, ..., elemN])
 ```
 
-It starts from the position `index`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+It starts from the position `pos`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
 
 This method is easy to grasp by examples.
 
@@ -711,7 +711,7 @@ A cheat sheet of array methods:
   - `pop()` -- extracts an item from the end,
   - `shift()` -- extracts an item from the beginning,
   - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
+  - `splice(pos, deleteCount, ...items)` -- from position `pos` delete `deleteCount` elements and insert `items`.
   - `slice(start, end)` -- creates a new array, copies elements from position `start` till `end` (not inclusive) into it.
   - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
 
