@@ -371,7 +371,7 @@ As we've seen, in theory while a function is alive, all outer variables are also
 
 But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
 
-**An important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging.**
+**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
 
 Try running the example below in Chrome with the Developer Tools open.
 
@@ -413,6 +413,6 @@ let g = f();
 g();
 ```
 
-This feature of V8 is good to know. If you are debugging with Chrome/Opera, sooner or later you will meet it.
+This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
 
 That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
