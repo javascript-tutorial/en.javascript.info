@@ -9,9 +9,9 @@ In JavaScript they are written like this:
 - Equals: `a == b`, please note the double equality sign `==` means the equality test, while a single one `a = b` means an assignment.
 - Not equals. In maths the notation is <code>&ne;</code>, but in JavaScript it's written as <code>a != b</code>.
 
-In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities. 
+In this article we'll learn more about different types of comparisons, how JavaScript makes them, including important peculiarities.
 
-At the end you'll find a good recipe to avoid "javascript quirks"-related issues.
+At the end you'll find a good recipe to avoid "JavaScript quirks"-related issues.
 
 ## Boolean is the result
 
@@ -57,7 +57,7 @@ The algorithm to compare two strings is simple:
 4. Repeat until the end of either string.
 5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
 
-In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `"Glow"` and `"Glee"` are compared character-by-character:
+In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `'Glow'` and `'Glee'` are compared character-by-character:
 
 1. `G` is the same as `G`.
 2. `l` is the same as `l`.
