@@ -179,7 +179,7 @@ alert( from ); // Ann
 
 If a parameter is not provided, then its value becomes `undefined`.
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+For instance, the above mentioned function `showMessage(from, text)` can be called with a single argument:
 
 ```js
 showMessage("Ann");
