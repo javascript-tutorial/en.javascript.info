@@ -41,7 +41,7 @@ alert(user ?? "Anonymous"); // John
 
 We can also use a sequence of `??` to select the first defined value from a list.
 
-Let's say we a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be undefined, if the user decided not to enter a value.
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be undefined, if the user decided not to enter a value.
 
 We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are undefined.
 
