@@ -466,7 +466,7 @@ Here, in both cases, we compare a primitive with an array object. So the array `
 Then the comparison process goes on, as described in the chapter <info:type-conversions>:
 
 ```js run
-// [] converted to ''
+// [] was converted to ''
 alert( 0 == '' ); // true, as '' becomes converted to number 0
 
 alert('0' == '' ); // false, no type conversion, different strings
