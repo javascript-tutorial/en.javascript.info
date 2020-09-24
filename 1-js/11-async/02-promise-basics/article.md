@@ -229,11 +229,12 @@ new Promise((resolve, reject) => {
 *!*
   // runs when the promise is settled, doesn't matter successfully or not
   .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we process the result/error
 */!*
   .then(result => show result, err => show error)
 ```
 
-It's not exactly an alias of `then(f,f)` though. There are several important differences:
+That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are few subtle differences:
 
 1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
 2. A `finally` handler passes through results and errors to the next handler.
@@ -257,14 +258,13 @@ It's not exactly an alias of `then(f,f)` though. There are several important dif
       .catch(err => alert(err));  // <-- .catch handles the error object
     ```
 
-    That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
+That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
 
-    We'll talk more about promise chaining and result-passing between handlers in the next chapter.
+We'll talk more about promise chaining and result-passing between handlers in the next chapter.
 
-3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
 
-````smart header="On settled promises handlers run immediately"
-If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they execute immediately:
+````smart header="We can attach handlers to settled promises"
+If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they just run:
 
 ```js run
 // the promise becomes resolved immediately upon creation
@@ -273,9 +273,9 @@ let promise = new Promise(resolve => resolve("done!"));
 promise.then(alert); // done! (shows up right now)
 ```
 
-Note that this is different, and more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
+Note that this makes promises more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
 
-Promises are more flexible. We can add handlers any time: if the result is already there, our handlers get it immediately.
+Promises are more flexible. We can add handlers any time: if the result is already there, they just execute.
 ````
 
 Next, let's see more practical examples of how promises can help us write asynchronous code.
