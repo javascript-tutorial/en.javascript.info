@@ -463,7 +463,7 @@ alert('0' == [] ); // false
 
 Here, in both cases, we compare a primitive with an array object. So the array `[]` gets converted to primitive for the purpose of comparison and becomes an empty string `''`. 
 
-Then the comparison process goes on, as described in the chapter <info:type-conversions>:
+Then the comparison process goes on with the primitives, as described in the chapter <info:type-conversions>:
 
 ```js run
 // [] was converted to ''
