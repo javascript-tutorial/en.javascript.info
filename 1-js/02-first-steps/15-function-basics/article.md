@@ -426,7 +426,7 @@ The first variant uses a label:
 
 ```js
 function showPrimes(n) {
-  nextPrime: for (let i = 2; i < n; i++) {
+  nextPrime: for (let i = 2; i <= n; i++) {
 
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
@@ -442,7 +442,7 @@ The second variant uses an additional function `isPrime(n)` to test for primalit
 ```js
 function showPrimes(n) {
 
-  for (let i = 2; i < n; i++) {
+  for (let i = 2; i <= n; i++) {
     *!*if (!isPrime(i)) continue;*/!*
 
     alert(i);  // a prime
