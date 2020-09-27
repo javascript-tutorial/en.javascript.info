@@ -109,7 +109,7 @@ If we assume that zero height is a valid value, that shouldn't be replaced with 
 
 The precedence of the `??` operator is rather low: `5` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table). So `??` is evaluated before `=` and `?`, but after most other operations, such as `+`, `*`.
 
-So if we'd like to choose a value with `??` an expression with other operators, consider adding parentheses:
+So if we'd like to choose a value with `??` in an expression with other operators, consider adding parentheses:
 
 ```js run
 let height = null;
