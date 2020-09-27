@@ -155,7 +155,7 @@ Now let's recall generators, as they allow to make iteration code much shorter. 
 
 For sheer simplicity, omitting some important stuff, they are "functions that generate (yield) values". They are explained in detail in the chapter [](info:generators).
 
-Generators are labelled with `function*` (note the start) and use `yield` to generate a value, then we can use `for..of` to loop over them.
+Generators are labelled with `function*` (note the star) and use `yield` to generate a value, then we can use `for..of` to loop over them.
 
 This example generates a sequence of values from `start` to `end`:
 
