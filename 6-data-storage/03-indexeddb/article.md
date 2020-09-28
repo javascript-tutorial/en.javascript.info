@@ -551,7 +551,7 @@ openRequest.onupgradeneeded = function() {
   // we must create the index here, in versionchange transaction
   let books = db.createObjectStore('books', {keyPath: 'id'});
 *!*
-  let index = inventory.createIndex('price_idx', 'price');
+  let index = books.createIndex('price_idx', 'price');
 */!*
 };
 ```
@@ -698,7 +698,7 @@ let request = priceIdx.openCursor(IDBKeyRange.upperBound(5));
 request.onsuccess = function() {
   let cursor = request.result;
   if (cursor) {
-    let key = cursor.primaryKey; // next object store key (id field)
+    let primaryKey = cursor.primaryKey; // next object store key (id field)
     let value = cursor.value; // next object store object (book object)
     let key = cursor.key; // next index key (price)
     console.log(key, value);
@@ -718,7 +718,7 @@ Let's use a thin promise wrapper <https://github.com/jakearchibald/idb> further 
 Then, instead of `onsuccess/onerror` we can write like this:
 
 ```js
-let db = await idb.openDb('store', 1, db => {
+let db = await idb.openDB('store', 1, db => {
   if (db.oldVersion == 0) {
     // perform the initialization
     db.createObjectStore('books', {keyPath: 'id'});
