@@ -5,8 +5,8 @@ Any string except an empty one (and `"0"` is not empty) becomes `true` in the lo
 We can run and check:
 
 ```js run
-if ("0") {
-  alert( 'Hello' );
+if(string_name == 0) {
+  alert( "Hello" );
 }
 ```
 
