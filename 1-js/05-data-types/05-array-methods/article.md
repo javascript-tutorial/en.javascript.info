@@ -248,11 +248,14 @@ let arr = [1, 0, false];
 alert( arr.indexOf(0) ); // 1
 alert( arr.indexOf(false) ); // 2
 alert( arr.indexOf(null) ); // -1
+alert( arr.indexOf(1) ); // 0
 
 alert( arr.includes(1) ); // true
 ```
 
 Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+
+`arr.indexOf(1)` return 0 which is falsy value so we don't puth statement like `if(arr.indexOf(1)){...}`.
 
 If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
 
