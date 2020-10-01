@@ -1,6 +1,6 @@
 # The Modern JavaScript Tutorial
 
-This repository hosts the English content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
 
 ## Translations
 
@@ -28,7 +28,7 @@ The type of the material is defined by the file inside the folder:
 
   - `index.md` stands for a chapter
   - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file aswell)
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
 
 Each of these files starts from the `# Main header`.
 
