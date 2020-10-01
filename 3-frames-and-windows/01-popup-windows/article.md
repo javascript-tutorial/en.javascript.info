@@ -7,7 +7,7 @@ Basically, you just run:
 window.open('https://javascript.info/')
 ```
 
-...And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
+...And it will open a new window with given URL. Most modern browsers are configured to open url in new tabs instead of separate windows.
 
 Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
 
@@ -15,7 +15,7 @@ Also, popups are tricky on mobile devices, that don't show multiple windows simu
 
 Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
 
-1. A popup is a separate window with its own independent JavaScript environment. So opening a popup from a third-party non-trusted site is safe.
+1. A popup is a separate window which has its own independent JavaScript environment. So opening a popup from a third-party, non-trusted site is safe.
 2. It's very easy to open a popup.
 3. A popup can navigate (change URL) and send messages to the opener window.
 
@@ -89,7 +89,7 @@ There is also a number of less supported browser-specific features, which are us
 
 ## Example: a minimalistic window   
 
-Let's open a window with minimal set of features just to see which of them browser allows to disable:
+Let's open a window with minimal set of features, just to see which of them browser allows to disable:
 
 ```js run
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
