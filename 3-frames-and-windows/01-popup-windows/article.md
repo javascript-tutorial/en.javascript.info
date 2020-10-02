@@ -1,19 +1,21 @@
 # Popups and window methods
 
-A popup window is one of the oldest methods to show additional document to user.
+A popup window is one of the oldest methods to show additional document to user. 
+Popup windows can be helpful as they can provide the user additional external links while still opening the current window.
 
 Basically, you just run:
 ```js
 window.open('https://javascript.info/')
+//write the complete URL in single inverted commas
 ```
 
-...And it will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
+This will open a new window with given URL. Most modern browsers are configured to open new tabs instead of separate windows.
 
 Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
 
 Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
 
-Still, there are tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
+Still, there are various tasks where popups are still used, e.g. for OAuth authorization (login with Google/Facebook/...), because:
 
 1. A popup is a separate window with its own independent JavaScript environment. So opening a popup from a third-party non-trusted site is safe.
 2. It's very easy to open a popup.
@@ -54,13 +56,14 @@ The popup opens in Chrome, but gets blocked in Firefox.
 ```js run
 // open after 1 seconds
 setTimeout(() => window.open('http://google.com'), 1000);
+//The dealy time is passed as a parameter in ms.
 ```
 
 The difference is that Firefox treats a timeout of 2000ms or less are acceptable, but after it -- removes the "trust", assuming that now it's "outside of the user action". So the first one is blocked, and the second one is not.
 
 ## window.open
 
-The syntax to open a popup is: `window.open(url, name, params)`:
+The syntax to open a popup is: `window.open('url', name, params)`:
 
 url
 : An URL to load into the new window.
@@ -98,7 +101,7 @@ width=0,height=0,left=-1000,top=-1000`;
 open('/', 'test', params);
 ```
 
-Here most "window features" are disabled and window is positioned offscreen. Run it and see what really happens. Most browsers "fix" odd things like zero `width/height` and offscreen `left/top`. For instance, Chrome open such a window with full width/height, so that it occupies the full screen.
+Here most of the "window features" are disabled and window is positioned offscreen. Run it and see what really happens. Most browsers "fix" odd things like zero `width/height` and offscreen `left/top`. For instance, Chrome open such a window with full width/height, so that it occupies the full screen.
 
 Let's add normal positioning options and reasonable `width`, `height`, `left`, `top` coordinates:
 
@@ -183,10 +186,10 @@ The `closed` property is `true` if the window is closed. That's useful to check 
 This code loads and then closes the window:
 
 ```js run
-let newWindow = open('/', 'example', 'width=300,height=300');
-
+let newWindow = open('/', 'example', 'width=300,height=300'); 
+//new window
 newWindow.onload = function() {
-  newWindow.close();
+  newWindow.close(); //closing
   alert(newWindow.closed); // true
 };
 ```
@@ -197,13 +200,13 @@ newWindow.onload = function() {
 There are methods to move/resize a window:
 
 `win.moveBy(x,y)`
-: Move the window relative to current position `x` pixels to the right and `y` pixels down. Negative values are allowed (to move left/up).
+: Move the window relative to current position `x` pixels to the right and `y` pixels down. Negative values are allowed (can be used to move left/up).
 
 `win.moveTo(x,y)`
-: Move the window to coordinates `(x,y)` on the screen.
+: Move the window to coordinates `(x,y)` on the screen(cannot be negative).
 
 `win.resizeBy(width,height)`
-: Resize the window by given `width/height` relative to the current size. Negative values are allowed.
+: Resize the window by given `width/height` relative to the current size. Negative values are allowed(can be used to decrease).
 
 `win.resizeTo(width,height)`
 : Resize the window to the given size.
@@ -266,7 +269,7 @@ Popup windows are used rarely, as there are alternatives: loading and displaying
 
 If we're going to open a popup, a good practice is to inform the user about it. An "opening window" icon near a link or button would allow the visitor to survive the focus shift and keep both windows in mind.
 
-- A popup can be opened by the `open(url, name, params)` call. It returns the reference to the newly opened window.
+- A popup can be opened by the `open('url', name, params)` call. It returns the reference to the newly opened window. The address, name and the size of popup can be adjusted using   the parameters of the call.
 - Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
 - The popup may access the opener window using the `window.opener` property.
