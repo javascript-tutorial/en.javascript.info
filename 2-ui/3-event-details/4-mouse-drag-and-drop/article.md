@@ -119,7 +119,7 @@ Let's update our algorithm:
     let shiftX = event.clientX - ball.getBoundingClientRect().left;
     let shiftY = event.clientY - ball.getBoundingClientRect().top;
     
-    // There's another quick way to calculate the shifts.You can use event.offsetX and event.offsetY which will give you the position of the pointer relative to that target         // element.The offset values are calculated from the border of target element.So in case you have border set around the element then the values may be different otherwise       // this values will be equal to the one we get from above calculation for shifts.
+    <!-- There's another quick way to calculate the shifts.You can use event.offsetX and event.offsetY which will give you the position of the pointer relative to that target         element.The offset values are calculated from the border of target element.So in case you have border set around the element then the values may be different otherwise        this values will be equal to the one we get from above calculation for shifts.-->
      
     ```
     
