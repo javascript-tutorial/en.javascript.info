@@ -3,13 +3,15 @@
 
 [recent browser="new"]
 
-The optional chaining `?.` is an error-proof way to access nested object properties, even if an intermediate property doesn't exist.
+The optional chaining `?.` is a safe way to access nested object properties, even if an intermediate property doesn't exist.
 
-## The problem
+## The "non-existing property" problem
 
 If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
 
-For example, some of our users have addresses, but few did not provide them. Then we can't safely read `user.address.street`:
+As an example, let's consider objects for user data. Most of our users enter addresses, but some did not provide them. 
+
+In such case, when we attempt to get `user.address.street`, we'll get an error:
 
 ```js run
 let user = {}; // the user happens to be without address
@@ -17,7 +19,7 @@ let user = {}; // the user happens to be without address
 alert(user.address.street); // Error!
 ```
 
-Or, in the web development, we'd like to get an information about an element on the page, but it may not exist:
+Another example. In the web development, we may need to get an information about an element on the page, that sometimes doesn't exist:
 
 ```js run
 // Error if the result of querySelector(...) is null
@@ -34,7 +36,7 @@ let user = {}; // user has no address
 alert( user && user.address && user.address.street ); // undefined (no error)
 ```
 
-AND'ing the whole path to the property ensures that all components exist, but is cumbersome to write.
+AND'ing the whole path to the property ensures that all components exist (if not, the evaluation stops), but is cumbersome to write.
 
 ## Optional chaining
 
@@ -70,7 +72,7 @@ We should use `?.` only where it's ok that something doesn't exist.
 
 For example, if according to our coding logic `user` object must be there, but `address` is optional, then `user.address?.street` would be better.
 
-So, if `user` happens to be undefined due to a mistake, we'll know about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
+So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
 
 ````warn header="The variable before `?.` must be declared"
@@ -80,25 +82,27 @@ If there's no variable `user` at all, then `user?.anything` triggers an error:
 // ReferenceError: user is not defined
 user?.address;
 ```
-There must be `let/const/var user`. The optional chaining works only for declared variables.
+There must be a declaration (e.g. `let/const/var user`). The optional chaining works only for declared variables.
 ````
 
 ## Short-circuiting
 
 As it was said before, the `?.` immediately stops ("short-circuits") the evaluation if the left part doesn't exist.
 
-So, if there are any further function calls or side effects, they don't occur:
+So, if there are any further function calls or side effects, they don't occur.
+
+For instance:
 
 ```js run
 let user = null;
 let x = 0;
 
-user?.sayHi(x++); // nothing happens
+user?.sayHi(x++); // no "sayHi", so the execution doesn't reach x++
 
 alert(x); // 0, value not incremented
 ```
 
-## Other cases: ?.(), ?.[]
+## Other variants: ?.(), ?.[]
 
 The optional chaining `?.` is not an operator, but a special syntax construct, that also works with functions and square brackets.
 
@@ -121,9 +125,9 @@ user2.admin?.();
 */!*
 ```
 
-Here, in both lines we first use the dot `.` to get `admin` property, because the user object must exist, so it's safe read from it.
+Here, in both lines we first use the dot (`user1.admin`) to get `admin` property, because the user object must exist, so it's safe read from it.
 
-Then `?.()` checks the left part: if the admin function exists, then it runs (for `user1`). Otherwise (for `user2`) the evaluation stops without errors.
+Then `?.()` checks the left part: if the admin function exists, then it runs (that's so for `user1`). Otherwise (for `user2`) the evaluation stops without errors.
 
 The `?.[]` syntax also works, if we'd like to use brackets `[]` to access properties instead of dot `.`. Similar to previous cases, it allows to safely read a property from an object that may not exist.
 
@@ -148,19 +152,23 @@ Also we can use `?.` with `delete`:
 delete user?.name; // delete user.name if user exists
 ```
 
-```warn header="We can use `?.` for safe reading and deleting, but not writing"
-The optional chaining `?.` has no use at the left side of an assignment:
+````warn header="We can use `?.` for safe reading and deleting, but not writing"
+The optional chaining `?.` has no use at the left side of an assignment.
 
+For example:
 ```js run
-// the idea of the code below is to write user.name, if user exists
+let user = null;
 
 user?.name = "John"; // Error, doesn't work
 // because it evaluates to undefined = "John"
 ```
 
+It's just not that smart.
+````
+
 ## Summary
 
-The `?.` syntax has three forms:
+The optional chaining `?.` syntax has three forms:
 
 1. `obj?.prop` -- returns `obj.prop` if `obj` exists, otherwise `undefined`.
 2. `obj?.[prop]` -- returns `obj[prop]` if `obj` exists, otherwise `undefined`.
@@ -170,6 +178,4 @@ As we can see, all of them are straightforward and simple to use. The `?.` check
 
 A chain of `?.` allows to safely access nested properties.
 
-Still, we should apply `?.` carefully, only where it's ok that the left part doesn't to exist.
-
-So that it won't hide programming errors from us, if they occur.
+Still, we should apply `?.` carefully, only where it's acceptable that the left part doesn't to exist. So that it won't hide programming errors from us, if they occur.
