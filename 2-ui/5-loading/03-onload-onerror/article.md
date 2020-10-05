@@ -41,8 +41,8 @@ document.head.append(script);
 
 *!*
 script.onload = function() {
-  // the script creates a helper function "_"
-  alert(_); // the function is available
+  // the script creates a variable "_"
+  alert( _.VERSION ); // shows library version
 };
 */!*
 ```
