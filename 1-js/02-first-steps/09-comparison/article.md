@@ -57,7 +57,9 @@ The algorithm to compare two strings is simple:
 4. Repeat until the end of either string.
 5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
 
-In the examples above, the comparison `'Z' > 'A'` gets to a result at the first step while the strings `'Glow'` and `'Glee'` are compared character-by-character:
+In the first example above, the comparison `'Z' > 'A'` gets to a result at the first step.
+
+The second comparison `'Glow'` and `'Glee'` needs more steps as strings are compared character-by-character:
 
 1. `G` is the same as `G`.
 2. `l` is the same as `l`.

@@ -11,7 +11,7 @@ The result of `a ?? b` is:
 - if `a` isn't defined, then `b`.
 
 
-In other words, `??` returns the first argument if it's defined. Otherwise, the second one.
+In other words, `??` returns the first argument if it's not `null/undefined`. Otherwise, the second one.
 
 The nullish coalescing operator isn't anything completely new. It's just a nice syntax to get the first "defined" value of the two.
 
@@ -39,7 +39,7 @@ let user = "John";
 alert(user ?? "Anonymous"); // John
 ```
 
-We can also use a sequence of `??` to select the first defined value from a list.
+We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
 
 Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be undefined, if the user decided not to enter a value.
 
@@ -77,9 +77,9 @@ alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
 
 The OR `||` operator exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
 
-On the other hand, the nullish coalescing operator `??` was added only recently, and the reason for that was that people weren't quite happy with `||`.
+On the other hand, the nullish coalescing operator `??` was added to JavaScript only recently, and the reason for that was that people weren't quite happy with `||`.
 
-The subtle, yet important difference is that:
+The important difference between them is that:
 - `||` returns the first *truthy* value.
 - `??` returns the first *defined* value.
 
@@ -96,14 +96,12 @@ alert(height || 100); // 100
 alert(height ?? 100); // 0
 ```
 
-Here, we have a zero height.
-
 - The `height || 100` checks `height` for being a falsy value, and it really is.
     - so the result is the second argument, `100`.
 - The `height ?? 100` checks `height` for being `null/undefined`, and it's not,
     - so the result is `height` "as is", that is `0`.
 
-If we assume that zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
+If the zero height is a valid value, that shouldn't be replaced with the default, then `??` does just the right thing.
 
 ## Precedence
 
@@ -155,7 +153,7 @@ alert(x); // 2
 
 ## Summary
 
-- The nullish coalescing operator `??` provides a short way to choose a "defined" value from the list.
+- The nullish coalescing operator `??` provides a short way to choose the first "defined" value from a list.
 
     It's used to assign default values to variables:
 
@@ -164,5 +162,5 @@ alert(x); // 2
     height = height ?? 100;
     ```
 
-- The operator `??` has a very low precedence, a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
+- The operator `??` has a very low precedence, only a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
 - It's forbidden to use it with `||` or `&&` without explicit parentheses.
