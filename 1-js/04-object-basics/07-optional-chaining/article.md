@@ -9,17 +9,19 @@ The optional chaining `?.` is a safe way to access nested object properties, eve
 
 If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
 
-As an example, let's consider objects for user data. Most of our users enter addresses, but some did not provide them. 
+As an example, let's consider objects for user data. Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them. 
 
 In such case, when we attempt to get `user.address.street`, we'll get an error:
 
 ```js run
-let user = {}; // the user happens to be without address
+let user = {}; // the user without "address" property
 
 alert(user.address.street); // Error!
 ```
 
-Another example. In the web development, we may need to get an information about an element on the page, that sometimes doesn't exist:
+That's the expected result, JavaScript works like this, but many practical cases we'd prefer to get `undefined` instead of an error (meaning "no street").
+
+...And another example. In the web development, we may need to get an information about an element on the page, that sometimes doesn't exist:
 
 ```js run
 // Error if the result of querySelector(...) is null
