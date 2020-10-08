@@ -1,4 +1,4 @@
-# The Modern JavaScript Tutorial
+# The Modern JavaScript Tutorial For Beginners
 
 This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
 
@@ -33,7 +33,7 @@ The type of the material is defined by the file inside the folder:
 Each of these files starts from the `# Main header`.
 
 It's very easy to add something new.
-
+## This is very easy language.
 ---
 ♥  
 Ilya Kantor @iliakan
