@@ -755,6 +755,8 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
 
+- [arr.flat(depth)](mdn:js/Array/flat)/[arr.flatMap(fn)](mdn:js/Array/flatMap) create a new flat array from a multidimensional array.
+
 For the full list, see the [manual](mdn:js/Array).
 
 From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier.
