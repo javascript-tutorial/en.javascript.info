@@ -1,10 +1,12 @@
-# Object copying, references
+# Object references and copying
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", as opposed to primitive values: strings, numbers, booleans, etc -- that are always copied "as a whole value".
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+That's easy to understand if we look a bit "under a cover" of what happens when we copy a value.
 
-For instance:
+Let's start with a primitive, such as a string.
+
+Here we put a copy of `message` into `phrase`:
 
 ```js
 let message = "Hello!";
@@ -15,11 +17,13 @@ As a result we have two independent variables, each one is storing the string `"
 
 ![](variable-copy-value.svg)
 
+Quite an obvious result, right?
+
 Objects are not like that.
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**A variable assigned to an object stores not the object itself, but its "address in memory", in other words "a reference" to it.**
 
-Here's the picture for the object:
+Let's look at an example of such variable:
 
 ```js
 let user = {
@@ -27,9 +31,17 @@ let user = {
 };
 ```
 
+And here's how it's actually stored in memory:
+
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
+
+We may think of an object variable, such as `user`, as of a sheet of paper with the address.
+
+When we perform actions with the object, e.g. take a property `user.name`, JavaScript engine looks into that address and performs the operation on the actual object.
+
+Now here's why it's important.
 
 **When an object variable is copied -- the reference is copied, the object is not duplicated.**
 
@@ -45,6 +57,8 @@ Now we have two variables, each one with the reference to the same object:
 
 ![](variable-copy-reference.svg)
 
+As you can see, there's still one object, now with two variables that reference it.
+
 We can use any variable to access the object and modify its contents:
 
 ```js run
@@ -59,15 +73,14 @@ admin.name = 'Pete'; // changed by the "admin" reference
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
+
+It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
 
 ## Comparison by reference
 
-The equality `==` and strict equality `===` operators for objects work exactly the same.
+Two objects are equal only if they are the same object.
 
-**Two objects are equal only if they are the same object.**
-
-Here two variables reference the same object, thus they are equal:
+For instance, here `a` and `b` reference the same object, thus they are equal:
 
 ```js run
 let a = {};
@@ -77,7 +90,7 @@ alert( a == b ); // true, both variables reference the same object
 alert( a === b ); // true
 ```
 
-And here two independent objects are not equal, even though both are empty:
+And here two independent objects are not equal, even though they look alike (both are empty):
 
 ```js run
 let a = {};
@@ -86,7 +99,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons occur very rarely, usually as a result of a coding mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely, usually they appear as a result of a programming mistake.
 
 ## Cloning and merging, Object.assign
 
