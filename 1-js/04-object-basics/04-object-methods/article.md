@@ -160,7 +160,9 @@ let user = {
 let admin = user;
 user = null; // overwrite to make things obvious
 
-admin.sayHi(); // TypeError: Cannot read property 'name' of null!
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
 ```
 
 If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.
