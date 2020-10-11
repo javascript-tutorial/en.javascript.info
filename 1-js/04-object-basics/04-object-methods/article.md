@@ -167,7 +167,7 @@ If we used `this.name` instead of `user.name` inside the `alert`, then the code 
 
 ## "this" is not bound
 
-In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
 
 There's no syntax error in the following example:
 
