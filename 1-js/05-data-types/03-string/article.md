@@ -110,7 +110,7 @@ alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
 
 As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
 
-Of course, only to the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
 
 ```js run
 alert( `I'm the Walrus!` ); // I'm the Walrus!
@@ -345,7 +345,7 @@ It is usually not recommended to use language features in a non-obvious way, but
 
 Just remember: `if (~str.indexOf(...))` reads as "if found".
 
-To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is not that long.
+To be precise though, as big numbers are truncated to 32 bits by `~` operator, there exist other numbers that give `0`, the smallest is `~4294967295=0`. That makes such check correct only if a string is not that long.
 
 Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
 
