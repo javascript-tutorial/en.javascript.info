@@ -7,21 +7,35 @@ The optional chaining `?.` is a safe way to access nested object properties, eve
 
 ## The "non-existing property" problem
 
-If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
+If you've just started reading the tutorial and learned JavaScript, perhaps the problem hasn't occurred to you yet, but it's quite a common scenario where you get an error reading a value of property located deep within a chain in a given object.
 
-As an example, let's consider objects for user data. Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them. 
+As an example, let's consider a `user` object which has an `address` property and under that property has a `street` property. 
 
-In such case, when we attempt to get `user.address.street`, we'll get an error:
+It looks like this below:
+
+```js
+const user = {
+  address: {
+     city: "Cebu City"
+  }
+}
+```
+
+The value `Cebu City` can be accessed via `user.address.city`. However, in cases where you try to access a property that doesn't exist such as `user.address.street` where `street` property doesn't exist above in our `user` object, then it's gonna throw you an error.
 
 ```js run
-let user = {}; // the user without "address" property
+const user = {
+  address: {
+     city: "Cebu City"
+  }
+}; // the user without "street" property
 
 alert(user.address.street); // Error!
 ```
 
-That's the expected result, JavaScript works like this, but many practical cases we'd prefer to get `undefined` instead of an error (meaning "no street").
+That's the expected result because JavaScript returns an error if the reference is `nullish` (`null` or `undefined`). But in many practical cases we'd prefer to get `undefined` instead of an error (meaning "no street").
 
-...And another example. In the web development, we may need to get an information about an element on the page, that sometimes doesn't exist:
+Another example would be like, in web development, we may need to get an information about an element on the page that sometimes doesn't exist:
 
 ```js run
 // Error if the result of querySelector(...) is null
@@ -42,7 +56,7 @@ AND'ing the whole path to the property ensures that all components exist (if not
 
 ## Optional chaining
 
-The optional chaining `?.` stops the evaluation and returns `undefined` if the part before `?.` is `undefined` or `null`.
+The optional chaining `?.` stops the evaluation and returns `undefined` if the part before `?.` is `undefined` or `null`. In other words, it short-circuits with a return value of `undefined` instead of getting an error if something goes wrong.
 
 **Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.**
 
@@ -63,7 +77,7 @@ alert( user?.address ); // undefined
 alert( user?.address.street ); // undefined
 ```
 
-Please note: the `?.` syntax makes optional the value before it, but not any further.
+Please note: the `?.` syntax makes the value optional before it, but not any further.
 
 In the example above, `user?.` allows only `user` to be `null/undefined`.
 
