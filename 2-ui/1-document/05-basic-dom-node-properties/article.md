@@ -413,7 +413,7 @@ In most cases, we expect the text from a user, and want to treat it as text. We 
 
 The "hidden" attribute and the DOM property specifies whether the element is visible or not.
 
-We can use it in HTML or assign using JavaScript, like this:
+We can use it in HTML or assign it using JavaScript, like this:
 
 ```html run height="80"
 <div>Both divs below are hidden</div>
