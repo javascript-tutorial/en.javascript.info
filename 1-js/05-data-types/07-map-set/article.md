@@ -304,10 +304,10 @@ The same methods `Map` has for iterators are also supported:
 Methods and properties:
 
 - `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- `map.set(key, value)` -- stores the value by the key.
+- `map.set(key, value)` -- stores the value by the key, returns the map itself.
 - `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
+- `map.delete(key)` -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
 - `map.clear()` -- removes everything from the map.
 - `map.size` -- returns the current element count.
 
