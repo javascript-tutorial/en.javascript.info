@@ -205,7 +205,7 @@ Here is an example:
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. Although such functionality is available, it is rarely used because of the different ways of doing the selection which vary in different operating systems and browser. And also, because you have to inform the user that multiple selection is available, it is more user-friendly to use checkboxes instead. 
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. Although such functionality is available, it is rarely used. 
 
 In cases that you have to, then use the first way: add/remove the `selected` property from `<option>` subelements.
 
