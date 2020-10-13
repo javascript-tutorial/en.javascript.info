@@ -63,7 +63,7 @@ alert( user?.address ); // undefined
 alert( user?.address.street ); // undefined
 ```
 
-Please note: the `?.` syntax makes optional the value before it, but not any further.
+Please note: the `?.` syntax makes the value optional before it, but not any further.
 
 In the example above, `user?.` allows only `user` to be `null/undefined`.
 
