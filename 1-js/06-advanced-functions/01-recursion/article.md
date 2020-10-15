@@ -132,7 +132,7 @@ We can sketch it as:
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is false, so the flow continues into the second branch of `if`:
+That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
 
 ```js run
 function pow(x, n) {
