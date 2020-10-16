@@ -129,7 +129,7 @@ let area = height ?? 100 * width ?? 50;
 let area = height ?? (100 * width) ?? 50;
 ```
 
-### Using ?? with && or ||
+### Using `??` with `&&` or `||`
 
 Due to safety reasons, JavaScript forbids using `??` together with `&&` and `||` operators, unless the precedence is explicitly specified with parentheses.
 
