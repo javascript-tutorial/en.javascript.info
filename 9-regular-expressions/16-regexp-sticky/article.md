@@ -3,7 +3,7 @@
 
 The flag `pattern:y` allows to perform the search at the given position in the source string.
 
-To grasp the use case of `pattern:y` flag, and see how great it is, let's explore a practical use case.
+To grasp the use case of `pattern:y` flag, and see how great it is, let's explore a practical example.
 
 One of common tasks for regexps is "lexical analysis": we get a text, e.g. in a programming language, and analyze it for structural elements.
 
