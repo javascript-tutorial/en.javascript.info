@@ -9,36 +9,64 @@ The optional chaining `?.` is a safe way to access nested object properties, eve
 
 If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
 
-As an example, let's consider objects for user data. Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them. 
+As an example, consider objects for user data. Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
 
-In such case, when we attempt to get `user.address.street`, we'll get an error:
+In such case, when we attempt to get `user.address.street`, we may get an error:
 
 ```js run
-let user = {}; // the user without "address" property
+let user = {}; // a user without "address" property
 
 alert(user.address.street); // Error!
 ```
 
-That's the expected result, JavaScript works like this, but many practical cases we'd prefer to get `undefined` instead of an error (meaning "no street").
+That's the expected result, JavaScript works like this. As `user.address` is `undefined`, the attempt to get `user.address.street` fails with an error. Although, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 
-...And another example. In the web development, we may need to get an information about an element on the page, that sometimes doesn't exist:
+...And another example. In the web development, we may need the information about an element on the page. The element is returned by `document.querySelector('.elem')`, and the catch is again - that it sometimes doesn't exist:
 
 ```js run
-// Error if the result of querySelector(...) is null
-let html = document.querySelector('.my-element').innerHTML;
+// the result of the call document.querySelector('.elem') may be an object or null
+let html = document.querySelector('.elem').innerHTML; // error if it's null
 ```
 
-Before `?.` appeared in the language, the `&&` operator was used to work around that.
+Once again, we may want to avoid the error in such case.
 
-For example:
+How can we do this?
+
+The obvious solution would be to check the value using `if` or the conditional operator `?`, before accessing it, like this:
+
+```js
+let user = {};
+
+alert(user.address ? user.address.street : undefined);
+```
+
+...But that's quite inelegant. As you can see, the `user.address` is duplicated in the code. For more deeply nested properties, that becomes a problem.
+
+E.g. let's try getting `user.address.street.name`.
+
+We need to check both `user.address` and `user.address.street`:
+
+```js
+let user = {}; // user has no address
+
+alert(user.address ? user.address.street ? user.address.street.name : null : null);
+```
+
+That looks awful.
+
+Before the optional chaining `?.` was added to the language, people used the `&&` operator for such cases:
 
 ```js run
 let user = {}; // user has no address
 
-alert( user && user.address && user.address.street ); // undefined (no error)
+alert( user.address && user.address.street && user.address.street.name ); // undefined (no error)
 ```
 
-AND'ing the whole path to the property ensures that all components exist (if not, the evaluation stops), but is cumbersome to write.
+AND'ing the whole path to the property ensures that all components exist (if not, the evaluation stops), but also isn't ideal.
+
+As you can see, the property names are still duplicated in the code. E.g. in the code above, `user.address` appears three times.
+
+And now, finally, the optional chaining comes to the rescue!
 
 ## Optional chaining
 
@@ -46,13 +74,15 @@ The optional chaining `?.` stops the evaluation and returns `undefined` if the p
 
 **Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.**
 
-Here's the safe way to access `user.address.street`:
+Here's the safe way to access `user.address.street` using `?.`:
 
 ```js run
 let user = {}; // user has no address
 
 alert( user?.address?.street ); // undefined (no error)
 ```
+
+The code is short and clean, there's no duplication at all.
 
 Reading the address with `user?.address` works even if `user` object doesn't exist:
 
@@ -65,14 +95,14 @@ alert( user?.address.street ); // undefined
 
 Please note: the `?.` syntax makes optional the value before it, but not any further.
 
-In the example above, `user?.` allows only `user` to be `null/undefined`.
+In the example above, `user?.address.street` allows only `user` to be `null/undefined`.
 
 On the other hand, if `user` does exist, then it must have `user.address` property, otherwise `user?.address.street` gives an error at the second dot.
 
 ```warn header="Don't overuse the optional chaining"
 We should use `?.` only where it's ok that something doesn't exist.
 
-For example, if according to our coding logic `user` object must be there, but `address` is optional, then `user.address?.street` would be better.
+For example, if according to our coding logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
 
 So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
@@ -84,7 +114,7 @@ If there's no variable `user` at all, then `user?.anything` triggers an error:
 // ReferenceError: user is not defined
 user?.address;
 ```
-There must be a declaration (e.g. `let/const/var user`). The optional chaining works only for declared variables.
+The variable must be declared (e.g. `let/const/var user` or as a function parameter). The optional chaining works only for declared variables.
 ````
 
 ## Short-circuiting
