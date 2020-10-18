@@ -1,0 +1,14 @@
+<html>
+     <head><title>javascript</title>
+	 </head>
+	 <body>
+	     <button id="button">click me</button>
+		   <p id="hello">hello and welcome</p>
+	  <script type="text/javascript">
+		     document.getElementById("hello").innerHTML="very much thanks";
+			   document.getElementById("button").onclick = function(){
+			     document.getElementById("hello").innerHTML="hello your welcome";
+				 }
+		</script>
+	 </body>
+</html>
