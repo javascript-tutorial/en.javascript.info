@@ -16,6 +16,36 @@ It's in the very spirit of JavaScript to create a function and pass it somewhere
 
 And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
 
+Let's write a short code using arrow function to check whether number is odd or even
+Method-1 (Short Approach)
+```
+var isEven = (num) => {
+    return num%2===0;
+};
+
+console.log(isEven(2));
+```
+Method-2
+```
+var isEven = (num) => {
+     if (num%2===0 ){
+         return 0;
+     }
+     else{
+         return 1;
+     }
+};
+
+console.log(isEven(2));
+```
+
+Let's see some examples og arrow function to perform looping 
+
+```
+var result = [2,4,3,8].every(( ele )=>( ele%2===0 ));
+console.log(result);
+
+```
 ## Arrow functions have no "this"
 
 As we remember from the chapter <info:object-methods>, arrow functions do not have `this`. If `this` is accessed, it is taken from the outside.
