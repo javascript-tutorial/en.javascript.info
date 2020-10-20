@@ -73,7 +73,7 @@ Now if we run the code, only the first `alert` is shown and then we have an erro
 
 But everything is fine again if we add a semicolon after `alert`:
 ```js run
-alert("All fine now");
+alert("All fine now")
 
 [1, 2].forEach(alert)  
 ```
