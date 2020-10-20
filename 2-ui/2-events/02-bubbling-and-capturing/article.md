@@ -94,7 +94,7 @@ For instance, here `body.onclick` doesn't work if you click on `<button>`:
 ```
 
 ```smart header="event.stopImmediatePropagation()"
-If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
+If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still executes.
 
 In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
 
