@@ -36,7 +36,7 @@ Once again, if the element doesn't exist, we'll get an error accessing `.innerHT
 
 How can we do this?
 
-The obvious solution would be to check the value using `if` or the conditional operator `?`, before accessing it, like this:
+The obvious solution would be to check the value using `if` or the conditional operator `?`, before accessing its property, like this:
 
 ```js
 let user = {};
