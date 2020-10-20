@@ -149,17 +149,20 @@ For example, `?.()` is used to call a function that may not exist.
 In the code below, some of our users have `admin` method, and some don't:
 
 ```js run
-let user1 = {
+let userAdmin = {
   admin() {
     alert("I am admin");
   }
 }
 
-let user2 = {};
+let userGuest = {};
 
 *!*
-user1.admin?.(); // I am admin
-user2.admin?.();
+userAdmin.admin?.(); // I am admin
+*/!*
+
+*!*
+userGuest.admin?.(); // nothing (no such method)
 */!*
 ```
 
