@@ -28,7 +28,7 @@ In many practical cases we'd prefer to get `undefined` instead of an error here 
 ...And another example. In the web development, we can get an object that corresponds to a web page element using a special method call, such as `document.querySelector('.elem')`, and it returns `null` when there's no such element.
 
 ```js run
-// the result of the call document.querySelector('.elem') may be null
+// document.querySelector('.elem') is null if there's no element
 let html = document.querySelector('.elem').innerHTML; // error if it's null
 ```
 
