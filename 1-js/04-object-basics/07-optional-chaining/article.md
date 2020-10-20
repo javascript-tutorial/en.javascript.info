@@ -9,9 +9,11 @@ The optional chaining `?.` is a safe way to access nested object properties, eve
 
 If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
 
-As an example, consider objects for user data. Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
+As an example, consider objects that hold user data. 
 
-In such case, when we attempt to get `user.address.street`, we may get an error:
+Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
+
+In such case, when we attempt to get `user.address.street` of a user, and there's no address, then we get an error:
 
 ```js run
 let user = {}; // a user without "address" property
