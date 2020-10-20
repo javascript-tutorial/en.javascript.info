@@ -25,7 +25,7 @@ That's the expected result. JavaScript works like this. As `user.address` is `un
 
 In many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 
-...And another example. In the web development, we may need the information about an element on the page. We can find this element using a special method call, such as `document.querySelector('.elem')`, and it either returns an object or `null` when there's no such element.
+...And another example. In the web development, we can get an object that corresponds to a web page element using a special method call, such as `document.querySelector('.elem')`, and it returns `null` when there's no such element.
 
 ```js run
 // the result of the call document.querySelector('.elem') may be null
