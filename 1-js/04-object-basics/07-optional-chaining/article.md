@@ -68,7 +68,7 @@ alert( user.address && user.address.street && user.address.street.name ); // und
 
 AND'ing the whole path to the property ensures that all components exist (if not, the evaluation stops), but also isn't ideal.
 
-As you can see, the property names are still duplicated in the code. E.g. in the code above, `user.address` appears three times.
+As you can see, property names are still duplicated in the code. E.g. in the code above, `user.address` appears three times.
 
 That's why the optional chaining `?.` was added to the language. To solve this problem once and for all!
 
