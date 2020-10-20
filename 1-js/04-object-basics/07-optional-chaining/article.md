@@ -13,7 +13,7 @@ As an example, let's say we have `user` objects that hold the information about 
 
 Most of our users have addresses in `user.address` property, with the street `user.address.street`, but some did not provide them.
 
-In such case, when we attempt to get `user.address.street` of a user, and there's no address, then we get an error:
+In such case, when we attempt to get `user.address.street`, and the user happens to be without an address, we get an error:
 
 ```js run
 let user = {}; // a user without "address" property
