@@ -101,10 +101,6 @@ alert( user?.address ); // undefined
 alert( user?.address.street ); // undefined
 ```
 
-Please note: the `?.` syntax makes optional the value before it, but not any further.
-
-In the example above, `user?.address.street` allows `user` to be `null/undefined`, but `user` does exist, then further access uses a plain dot `.`, so it must have `user.address` property, otherwise `user?.address.street` gives an error at the second dot.
-
 ```warn header="Don't overuse the optional chaining"
 We should use `?.` only where it's ok that something doesn't exist.
 
