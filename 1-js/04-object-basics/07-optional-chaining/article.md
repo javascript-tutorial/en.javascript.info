@@ -25,14 +25,14 @@ That's the expected result. JavaScript works like this. As `user.address` is `un
 
 That said, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 
-...And another example. In the web development, we may need the information about an element on the page. The element is returned by `document.querySelector('.elem')`, and the catch is again - that it sometimes doesn't exist:
+...And another example. In the web development, we may need the information about an element on the page. We can find this element using a special method call, such as `document.querySelector('.elem')`, and it either returns an object or `null` when there's no such element.
 
 ```js run
-// the result of the call document.querySelector('.elem') may be an object or null
+// the result of the call document.querySelector('.elem') may be null
 let html = document.querySelector('.elem').innerHTML; // error if it's null
 ```
 
-Once again, we may want to avoid the error in such case.
+Once again, if the element doesn't exist, we'll get an error accessing `.innerHTML` of `null`. And in some cases, when the absence of the element is normal, we'd like to avoid the error and just accept `html = null` as the result.
 
 How can we do this?
 
@@ -44,7 +44,7 @@ let user = {};
 alert(user.address ? user.address.street : undefined);
 ```
 
-...But that's quite inelegant. As you can see, the `user.address` is duplicated in the code. For more deeply nested properties, that becomes a problem.
+It works, there's no error... But it's quite inelegant. As you can see, the `"user.address"` appears twice in the code. For more deeply nested properties, that becomes a problem as more repetitions are required.
 
 E.g. let's try getting `user.address.street.name`.
 
@@ -56,9 +56,9 @@ let user = {}; // user has no address
 alert(user.address ? user.address.street ? user.address.street.name : null : null);
 ```
 
-That looks awful.
+That's just awful, one may even problems understanding such code. 
 
-Before the optional chaining `?.` was added to the language, people used the `&&` operator for such cases:
+Don't even care to, as there's a better way to write it, using the `&&` operator:
 
 ```js run
 let user = {}; // user has no address
@@ -70,7 +70,7 @@ AND'ing the whole path to the property ensures that all components exist (if not
 
 As you can see, the property names are still duplicated in the code. E.g. in the code above, `user.address` appears three times.
 
-And now, finally, the optional chaining comes to the rescue!
+That's why the optional chaining `?.` was added to the language. To solve this problem once and for all!
 
 ## Optional chaining
 
