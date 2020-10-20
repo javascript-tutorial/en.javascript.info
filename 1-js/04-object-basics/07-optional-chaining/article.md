@@ -153,7 +153,7 @@ let userAdmin = {
   admin() {
     alert("I am admin");
   }
-}
+};
 
 let userGuest = {};
 
