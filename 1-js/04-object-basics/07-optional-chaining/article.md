@@ -21,7 +21,9 @@ let user = {}; // a user without "address" property
 alert(user.address.street); // Error!
 ```
 
-That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error. That said, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
+That's the expected result. JavaScript works like this. As `user.address` is `undefined`, an attempt to get `user.address.street` fails with an error. 
+
+That said, in many practical cases we'd prefer to get `undefined` instead of an error here (meaning "no street").
 
 ...And another example. In the web development, we may need the information about an element on the page. The element is returned by `document.querySelector('.elem')`, and the catch is again - that it sometimes doesn't exist:
 
