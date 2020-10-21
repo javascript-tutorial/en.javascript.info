@@ -1,0 +1,41 @@
+When to use let or const?
+
+One of the features that came with ES6 is the addition of let and const, which can be used for variable declaration. 
+
+let keyword
+It used for the variables that are scoped in the braces{}.
+
+	for(let i = 0; i<10; i++) {
+  		console.log(i)
+	}
+	console.log(i) //reference error. i is out of scope
+
+The variable declared with let keyword can be updated within its scope but cannot be redeclared.
+
+let today = "Wednesday";
+    today = "Thursday";
+
+let today = "Wednesday";
+    let today = "Thursday"; // error: Identifier 'greeting' has already been declared
+
+The const keyword
+variables declared with const keyword are also scoped. But the difference that const keyword creates is that it can be used for values that you dont want changed or that will never change.Like the value of mathematical pi, they can be assigned to const in javascript. Const actually means that once the variable is assigned it cannot be assigned again and an attempt to do so will throw an error.
+
+const cannot be updated or re-declared
+
+const greeting = {
+        message: "say Hi",
+        times: 4
+    }
+
+const greeting = {
+        words: "Hello",
+        number: "five"
+    } // error:  Assignment to constant variable.
+
+we can do this:
+
+greeting.message = "say Hello instead";
+
+Conclusion
+Use let keyword to properly utilise the scope monster thing. Only use the const keyword when there values that you don't want to change but also won't be immutable.
