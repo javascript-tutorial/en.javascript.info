@@ -20,7 +20,7 @@ It has 3 modes:
     alert( result.length ); // 2
 
     // Additional information:
-    alert( result.index );  // 0 (match position)
+    alert( result.index );  // 7 (match position)
     alert( result.input );  // I love JavaScript (source string)
     ```
 
