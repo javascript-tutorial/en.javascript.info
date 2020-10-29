@@ -76,8 +76,8 @@ For instance, a function call that generates the parent class:
 ```js run
 function f(phrase) {
   return class {
-    sayHi() { alert(phrase) }
-  }
+    sayHi() { alert(phrase); }
+  };
 }
 
 *!*
@@ -300,7 +300,7 @@ Consider this example:
 
 ```js run
 class Animal {
-  name = 'animal'
+  name = 'animal';
 
   constructor() {
     alert(this.name); // (*)
