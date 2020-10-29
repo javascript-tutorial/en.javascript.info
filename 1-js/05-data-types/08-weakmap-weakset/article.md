@@ -30,7 +30,8 @@ let array = [ john ];
 john = null; // overwrite the reference
 
 *!*
-// john is stored inside the array, so it won't be garbage-collected
+// the object previously referenced by john is stored inside the array 
+// therefore it won't be garbage-collected
 // we can get it as array[0]
 */!*
 ```
