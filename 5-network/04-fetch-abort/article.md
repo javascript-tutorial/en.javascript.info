@@ -65,7 +65,7 @@ fetch(url, {
 
 The `fetch` method knows how to work with `AbortController`. It will listen to `abort` events on `signal`.
 
-Now, to to abort, call `controller.abort()`:
+Now, to abort, call `controller.abort()`:
 
 ```js
 controller.abort();
