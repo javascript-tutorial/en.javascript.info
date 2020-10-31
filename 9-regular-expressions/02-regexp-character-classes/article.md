@@ -120,7 +120,7 @@ alert( "CS-4".match(regexp) ); // CS-4
 alert( "CS 4".match(regexp) ); // CS 4 (space is also a character)
 ```
 
-Please note that a dot means "any character", but not the "absense of a character". There must be a character to match it:
+Please note that a dot means "any character", but not the "absence of a character". There must be a character to match it:
 
 ```js run
 alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for the dot
