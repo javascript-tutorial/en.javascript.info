@@ -27,11 +27,11 @@ Let's promisify it. The new `loadScriptPromise(src)` function achieves the same 
 let loadScriptPromise = function(src) {
   return new Promise((resolve, reject) => {
     loadScript(src, (err, script) => {
-      if (err) reject(err)
+      if (err) reject(err);
       else resolve(script);
     });
-  })
-}
+  });
+};
 
 // usage:
 // loadScriptPromise('path/script.js').then(...)
@@ -62,7 +62,7 @@ function promisify(f) {
       f.call(this, ...args); // call the original function
     });
   };
-};
+}
 
 // usage:
 let loadScriptPromise = promisify(loadScript);
@@ -94,11 +94,11 @@ function promisify(f, manyArgs = false) {
       f.call(this, ...args);
     });
   };
-};
+}
 
 // usage:
 f = promisify(f, true);
-f(...).then(arrayOfResults => ..., err => ...)
+f(...).then(arrayOfResults => ..., err => ...);
 ```
 
 For more exotic callback formats, like those without `err` at all: `callback(result)`, we can promisify such functions manually without using the helper.
