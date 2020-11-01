@@ -122,6 +122,8 @@ alert(longEar.jumps); // true (from rabbit)
 
 ![](proto-animal-rabbit-chain.svg)
 
+Now if we read something from `longEar`, and it's missing, JavaScript will look for it in `rabbit`, and then in `animal`.
+
 There are only two limitations:
 
 1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
