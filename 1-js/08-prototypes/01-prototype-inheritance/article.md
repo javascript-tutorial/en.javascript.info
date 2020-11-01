@@ -12,7 +12,7 @@ In JavaScript, objects have a special hidden property `[[Prototype]]` (as named 
 
 ![prototype](object-prototype-empty.svg)
 
-The prototype is a little bit "magical". When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". Many cool language features and programming techniques are based on it.
+When we  read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". And soon we'll see the examples.
 
 The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
 
@@ -30,6 +30,8 @@ let rabbit = {
 rabbit.__proto__ = animal;
 */!*
 ```
+
+Here, the `rabbit` object has `animal` as its prototype.
 
 ```smart header="`__proto__` is a historical getter/setter for `[[Prototype]]`"
 Please note that `__proto__` is *not the same* as `[[Prototype]]`. It's a getter/setter for it.
