@@ -10,12 +10,12 @@ Compare the two code fragments.
 
     ```js
     try {
-      work work
+      // work work
     } catch (e) {
-      handle errors
+      // handle errors
     } finally {
     *!*
-      cleanup the working space
+      // cleanup the working space
     */!*
     }
     ```
@@ -23,13 +23,13 @@ Compare the two code fragments.
 
     ```js
     try {
-      work work
+      // work work
     } catch (e) {
-      handle errors
+      // handle errors
     }
 
     *!*
-    cleanup the working space
+    // cleanup the working space
     */!*
     ```
 
