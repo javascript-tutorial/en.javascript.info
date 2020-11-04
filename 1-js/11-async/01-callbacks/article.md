@@ -70,6 +70,7 @@ function loadScript(src, *!*callback*/!*) {
   script.src = src;
 
 *!*
+  // Local variables passed in as arguments will be available for use later in the callback scope
   script.onload = () => callback(script);
 */!*
 
