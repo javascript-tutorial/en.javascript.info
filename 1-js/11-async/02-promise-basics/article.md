@@ -17,7 +17,7 @@ The analogy isn't terribly accurate, because JavaScript promises are more comple
 The constructor syntax for a promise object is:
 
 ```js
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   // executor (the producing code, "singer")
 });
 ```
@@ -47,7 +47,7 @@ Later we'll see how "fans" can subscribe to these changes.
 Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
 
 ```js run
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   // the function is executed automatically when the promise is constructed
 
   // after 1 second signal that the job is done with the result "done"
@@ -69,7 +69,7 @@ That was an example of a successful job completion, a "fulfilled promise".
 And now an example of the executor rejecting the promise with an error:
 
 ```js
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   // after 1 second signal that the job is finished with an error
   setTimeout(() => *!*reject(new Error("Whoops!"))*/!*, 1000);
 });
@@ -89,7 +89,7 @@ The executor should call only one `resolve` or one `reject`. Any state change is
 All further calls of `resolve` and `reject` are ignored:
 
 ```js
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
 *!*
   resolve("done");
 */!*
@@ -112,7 +112,7 @@ In case something goes wrong, the executor should call `reject`. That can be don
 In practice, an executor usually does something asynchronously and calls `resolve`/`reject` after some time, but it doesn't have to. We also can call `resolve` or `reject` immediately, like this:
 
 ```js
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   // not taking our time to do the job
   resolve(123); // immediately give the result: 123
 });
@@ -151,7 +151,7 @@ The second argument of `.then` is a function that runs when the promise is rejec
 For instance, here's a reaction to a successfully resolved promise:
 
 ```js run
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve("done!"), 1000);
 });
 
@@ -169,7 +169,7 @@ The first function was executed.
 And in the case of a rejection, the second one:
 
 ```js run
-let promise = new Promise(function(resolve, reject) {
+const promise = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
@@ -185,7 +185,7 @@ promise.then(
 If we're interested only in successful completions, then we can provide only one function argument to `.then`:
 
 ```js run
-let promise = new Promise(resolve => {
+const promise = new Promise(resolve => {
   setTimeout(() => resolve("done!"), 1000);
 });
 
@@ -200,7 +200,7 @@ If we're interested only in errors, then we can use `null` as the first argument
 
 
 ```js run
-let promise = new Promise((resolve, reject) => {
+const promise = new Promise((resolve, reject) => {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
@@ -268,7 +268,7 @@ If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, 
 
 ```js run
 // the promise becomes resolved immediately upon creation
-let promise = new Promise(resolve => resolve("done!"));
+const promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
 ```
@@ -319,7 +319,7 @@ function loadScript(src) {
 Usage:
 
 ```js run
-let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
+const promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
 
 promise.then(
   script => alert(`${script.src} is loaded!`),
