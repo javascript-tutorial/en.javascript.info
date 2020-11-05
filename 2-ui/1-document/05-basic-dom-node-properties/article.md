@@ -198,7 +198,7 @@ In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
 
 ## innerHTML: the contents
 
-The [innerHTML](https://w3c.github.io/DOM-Parsing/#widl-Element-innerHTML) property allows to get the HTML inside the element as a string.
+The [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) property allows to get the HTML inside the element as a string.
 
 We can also modify it. So it's one of the most powerful ways to change the page.
 
