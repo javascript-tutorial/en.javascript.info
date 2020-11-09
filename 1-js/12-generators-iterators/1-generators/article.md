@@ -90,7 +90,7 @@ alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
 
 Now the generator is done. We should see it from `done:true` and process `value:3` as the final result.
 
-New calls to `generator.next()` don't make sense any more. If we do them, they return the same object: `{done: true}`.
+New calls to `generator.next()` don't make sense any more. If we do then, they return the same object: `{value: undefined, done: true}`.
 
 ```smart header="`function* f(…)` or `function *f(…)`?"
 Both syntaxes are correct.
