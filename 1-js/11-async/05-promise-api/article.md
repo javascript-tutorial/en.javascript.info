@@ -176,15 +176,14 @@ So for each promise we get its status and `value/error`.
 If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
 
 ```js
-if(!Promise.allSettled) {
-  Promise.allSettled = function(promises) {
-    return Promise.all(promises.map(p => Promise.resolve(p).then(value => ({
-      status: 'fulfilled',
-      value
-    }), reason => ({
-      status: 'rejected',
-      reason
-    }))));
+if (!Promise.allSettled) {
+  const rejectHandler = reason => ({ status: 'rejected', reason });
+
+  const resolveHandler = value => ({ status: 'fulfilled', value });
+
+  Promise.allSettled = function (promises) {
+    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
+    return Promise.all(convertedPromises);
   };
 }
 ```
