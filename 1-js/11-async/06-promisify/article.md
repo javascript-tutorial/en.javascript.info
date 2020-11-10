@@ -36,11 +36,11 @@ Here it is:
 let loadScriptPromise = function(src) {
   return new Promise((resolve, reject) => {
     loadScript(src, (err, script) => {
-      if (err) reject(err)
+      if (err) reject(err);
       else resolve(script);
     });
-  })
-}
+  });
+};
 
 // usage:
 // loadScriptPromise('path/script.js').then(...)
@@ -71,7 +71,7 @@ function promisify(f) {
       f.call(this, ...args); // call the original function
     });
   };
-};
+}
 
 // usage:
 let loadScriptPromise = promisify(loadScript);
@@ -110,11 +110,11 @@ function promisify(f, manyArgs = false) {
       f.call(this, ...args);
     });
   };
-};
+}
 
 // usage:
 f = promisify(f, true);
-f(...).then(arrayOfResults => ..., err => ...)
+f(...).then(arrayOfResults => ..., err => ...);
 ```
 
 As you can see it's essentially the same as above, but `resolve` is called with only one or all arguments depending on whether `manyArgs` is truthy.
