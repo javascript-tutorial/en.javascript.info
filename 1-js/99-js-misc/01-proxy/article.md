@@ -39,7 +39,7 @@ As there are no traps, all operations on `proxy` are forwarded to `target`.
 
 As we can see, without any traps, `proxy` is a transparent wrapper around `target`.
 
-![](proxy.svg)  
+![](proxy.svg)
 
 `Proxy` is a special "exotic object". It doesn't have own properties. With an empty `handler` it transparently forwards operations to `target`.
 
@@ -335,7 +335,7 @@ let user = {
   _password: "secret"
 };
 
-alert(user._password); // secret  
+alert(user._password); // secret
 ```
 
 Let's use proxies to prevent any access to properties starting with `_`.
@@ -376,7 +376,7 @@ user = new Proxy(user, {
   },
 *!*
   deleteProperty(target, prop) { // to intercept property deletion
-*/!*  
+*/!*
     if (prop.startsWith('_')) {
       throw new Error("Access denied");
     } else {
@@ -437,7 +437,7 @@ user = {
 ```
 
 
-A call to `user.checkPassword()` call gets proxied `user` as `this` (the object before dot becomes `this`), so when it tries to access `this._password`, the `get` trap activates (it triggers on any property read) and throws an error.
+A call to `user.checkPassword()` gets proxied `user` as `this` (the object before dot becomes `this`), so when it tries to access `this._password`, the `get` trap activates (it triggers on any property read) and throws an error.
 
 So we bind the context of object methods to the original object, `target`, in the line `(*)`. Then their future calls will use `target` as `this`, without any traps.
 
