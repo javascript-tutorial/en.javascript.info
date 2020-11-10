@@ -80,7 +80,7 @@ The optional chaining `?.` stops the evaluation if the part before `?.` is `unde
 
 In other words, `value?.prop`:
 - is the same as `value.prop` if `value` exists,
-- otherwise (when `value` is `undefined/null`) it returns that `value`.
+- otherwise (when `value` is `undefined/null`) it returns `undefined`.
 
 Here's the safe way to access `user.address.street` using `?.`:
 
