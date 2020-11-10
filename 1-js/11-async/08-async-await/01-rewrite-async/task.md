@@ -12,7 +12,7 @@ function loadJson(url) {
       } else {
         throw new Error(response.status);
       }
-    })
+    });
 }
 
 loadJson('no-such-user.json')
