@@ -71,7 +71,7 @@ If there are multiple elements with the same `id`, then the behavior of methods 
 ```
 
 ```warn header="Only `document.getElementById`, not `anyElem.getElementById`"
-The method `getElementById` that can be called only on `document` object. It looks for the given `id` in the whole document.
+The method `getElementById` can be called only on `document` object. It looks for the given `id` in the whole document.
 ```
 
 ## querySelectorAll [#querySelectorAll]
@@ -363,7 +363,7 @@ There are 6 main methods to search for nodes in DOM:
 </tbody>
 </table>
 
-By far the most used are `querySelector` and `querySelectorAll`, but `getElementBy*` can be sporadically helpful or found in the old scripts.
+By far the most used are `querySelector` and `querySelectorAll`, but `getElement(s)By*` can be sporadically helpful or found in the old scripts.
 
 Besides that:
 
