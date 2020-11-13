@@ -12,12 +12,12 @@ An IDE loads the project (which can be many files), allows navigation between fi
 
 If you haven't selected an IDE yet, consider the following options:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [Visual Studio](https://visualstudio.microsoft.com) (cross-platform, free/paid).
 - [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
 
-For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+There's also "Visual Studio Code", not to be confused with "Visual Studio". "Visual Studio" is paid and well-suited IDE for the .NET platform. It's also good at JavaScript. Detailed information about their difference can be found in [Visual Studio Code FAQ](https://code.visualstudio.com/docs/supporting/faq) page.
 
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you. In addition, student packs are found in most of them.
 
 ## Lightweight editors
 
