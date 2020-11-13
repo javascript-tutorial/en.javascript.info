@@ -50,7 +50,7 @@ As we can see, `AbortController` is just a means to pass `abort` events when `ab
 
 We could implement same kind of event listening in our code on our own, without `AbortController` object at all.
 
-But what's valuable is that `fetch` knows how to work with `AbortController` object, it's integrated with it. 
+But what's valuable is that `fetch` knows how to work with `AbortController` object, it's integrated with it.
 
 ## Using with fetch
 
