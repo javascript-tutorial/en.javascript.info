@@ -26,7 +26,7 @@ When `abort()` is called:
 
 Generally, we have two parties in the process: 
 1. The one that performs an cancelable operation, it sets a listener on `controller.signal`.
-2. The one one that cancels: it calls `controller.abort()` when needed.
+2. The one that cancels: it calls `controller.abort()` when needed.
 
 Here's the full example (without `fetch` yet):
 
