@@ -56,7 +56,7 @@ let user = {}; // user has no address
 alert(user.address ? user.address.street ? user.address.street.name : null : null);
 ```
 
-That's just awful, one may even have problems understanding such code. 
+That's just awful, one may even have problems understanding such code.
 
 Don't even care to, as there's a better way to write it, using the `&&` operator:
 
