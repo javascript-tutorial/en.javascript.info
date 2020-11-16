@@ -50,7 +50,7 @@ As we can see, the new function is a wrapper around the original `loadScript` fu
 
 Now `loadScriptPromise` fits well in promise-based code. If we like promises more than callbacks (and soon we'll see more reasons for that), then we will use it instead.
 
-In practice we may need to promisify more than one function, so it makes sense to use a helper. 
+In practice we may need to promisify more than one function, so it makes sense to use a helper.
 
 We'll call it `promisify(f)`: it accepts a to-promisify function `f` and returns a wrapper function.
 
