@@ -15,7 +15,7 @@ If you haven't selected an IDE yet, consider the following options:
 - [Visual Studio](https://visualstudio.microsoft.com) (cross-platform, free/paid).
 - [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
 
-There's also "Visual Studio Code", not to be confused with "Visual Studio". "Visual Studio" is paid and well-suited IDE for the .NET platform. It's also good at JavaScript. Detailed information about their difference can be found in [Visual Studio Code FAQ](https://code.visualstudio.com/docs/supporting/faq) page.
+There's also "Visual Studio Code", not to be confused with "Visual Studio". "Visual Studio" is paid and well-suited IDE for the .NET platform. It's also good for JavaScript. There is also a free edition of "Visual Studio" called [Visual Studio Community](https://www.visualstudio.com/vs/community/), albeit with limited features. Detailed information about the difference between "Visual Studio" and "Visual Studio Code" can be found in [Visual Studio Code FAQ](https://code.visualstudio.com/docs/supporting/faq) page.
 
 Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you. In addition, student packs are found in most of them.
 
