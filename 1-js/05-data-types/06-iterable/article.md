@@ -1,7 +1,7 @@
 
 # Iterables
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
+*Iterable* objects are a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
 
@@ -26,7 +26,7 @@ let range = {
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
-To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
+To make the `range` object iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
 1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
 2. Onward, `for..of` works *only with that returned object*.
@@ -140,7 +140,7 @@ for (let char of str) {
 
 ## Calling an iterator explicitly
 
-For deeper understanding let's see how to use an iterator explicitly.
+For deeper understanding, let's see how to use an iterator explicitly.
 
 We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
@@ -165,16 +165,16 @@ That is rarely needed, but gives us more control over the process than `for..of`
 
 ## Iterables and array-likes [#array-like]
 
-There are two official terms that look similar, but are very different. Please make sure you understand them well to avoid the confusion.
+Two official terms look similar, but are very different. Please make sure you understand them well to avoid the confusion.
 
 - *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
 - *Array-likes* are objects that have indexes and `length`, so they look like arrays.
 
-When we use JavaScript for practical tasks in browser or other environments, we may meet objects that are iterables or array-likes, or both.
+When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
 
 For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
-But an iterable may be not array-like. And vice versa an array-like may be not iterable.
+But an iterable may not be array-like. And vice versa an array-like may not be iterable.
 
 For example, the `range` in the example above is iterable, but not array-like, because it does not have indexed properties and `length`.
 
@@ -293,7 +293,7 @@ alert( str.slice(1, 3) ); // garbage (two pieces from different surrogate pairs)
 Objects that can be used in `for..of` are called *iterable*.
 
 - Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles the further iteration process.
+    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles further iteration process.
     - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
 - The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
