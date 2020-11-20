@@ -237,7 +237,7 @@ Promise.race([
 ]).then(alert); // 1
 ```
 
-The first promise here was fastest, but it rejecets, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
+The first promise here was fastest, but it was rejected, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
 
 
 ## Promise.resolve/reject
