@@ -5,6 +5,6 @@ Note that there is actually a single unicode character for an ellipsis. That's n
 ```js run demo
 function truncate(str, maxlength) {
   return (str.length > maxlength) ?
-    str.slice(0, maxlength - 1) + '…' : str;
+    str.slice(0, maxlength) + '…' : str;
 }
 ```
