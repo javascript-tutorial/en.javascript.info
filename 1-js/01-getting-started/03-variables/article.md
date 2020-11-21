@@ -18,13 +18,13 @@ The statement below creates (in other words: *declares*) a variable with the nam
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Now, we can put some data into it by using the assignment `=`:
 
 ```js
 let message;
 
 *!*
-message = 'Hello'; // store the string
+message = "Hello"; // store the string
 */!*
 ```
 
@@ -32,7 +32,7 @@ The string is now saved into the memory area associated with the variable. We ca
 
 ```js run
 let message;
-message = 'Hello!';
+message = "Hello!";
 
 *!*
 alert(message); // shows the variable content
@@ -42,7 +42,7 @@ alert(message); // shows the variable content
 To be concise, we can combine the variable declaration and assignment into a single line:
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let message = "Hello!"; // define the variable and assign the value
 
 alert(message); // Hello!
 ```
@@ -50,7 +50,7 @@ alert(message); // Hello!
 We can also declare multiple variables in one line:
 
 ```js no-beautify
-let user = 'John', age = 25, message = 'Hello';
+let user = "John", age = 25, message = "Hello";
 ```
 
 That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
@@ -58,24 +58,24 @@ That might seem shorter, but we don't recommend it. For the sake of better reada
 The multiline variant is a bit longer, but easier to read:
 
 ```js
-let user = 'John';
+let user = "John";
 let age = 25;
-let message = 'Hello';
+let message = "Hello";
 ```
 
 Some people also define multiple variables in this multiline style:
 ```js no-beautify
-let user = 'John',
+let user = "John",
   age = 25,
-  message = 'Hello';
+  message = "Hello";
 ```
 
 ...Or even in the "comma-first" style:
 
 ```js no-beautify
-let user = 'John'
+let user = "John"
   , age = 25
-  , message = 'Hello';
+  , message = "Hello";
 ```
 
 Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
@@ -84,12 +84,12 @@ Technically, all these variants do the same thing. So, it's a matter of personal
 In older scripts, you may also find another keyword: `var` instead of `let`:
 
 ```js
-*!*var*/!* message = 'Hello';
+*!*var*/!* message = "Hello";
 ```
 
 The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
   
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
+There are subtle differences between `let` and `var`, but they do not matter for us now. We'll cover them in the optional chapter <info:var>. We should never use `var` in modern scripts.
 ````
 
 ## A real-life analogy
@@ -106,9 +106,9 @@ We can also change it as many times as we want:
 ```js run
 let message;
 
-message = 'Hello!';
+message = "Hello!";
 
-message = 'World!'; // value changed
+message = "World!"; // value changed
 
 alert(message);
 ```
@@ -120,12 +120,12 @@ When the value is changed, the old data is removed from the variable:
 We can also declare two variables and copy data from one into the other.
 
 ```js run
-let hello = 'Hello world!';
+let hello = "Hello!";
 
 let message;
 
 *!*
-// copy 'Hello world' from hello into message
+// copy "Hello!" from hello into message
 message = hello;
 */!*
 
@@ -134,29 +134,51 @@ alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-````warn header="Declaring twice triggers an error"
-A variable should be declared only once.
+Now we have two variables, both store the same string:
+
+![](variable-copy-value.svg)
+
+
+````warn header="Re-declaration triggers an error"
+A variable can be declared only once.
 
 A repeated declaration of the same variable is an error:
 
 ```js run
-let message = "This";
+let message = "One";
 
 // repeated 'let' leads to an error
-let message = "That"; // SyntaxError: 'message' has already been declared
+let message = "Two"; // SyntaxError: 'message' has already been declared
 ```
 So, we should declare a variable once and then refer to it without `let`.
 ````
 
-```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+````warn header="Without `use strict` it's possible to assign to an undeclared variable"
+Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`.
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
+This still works now, without strict mode:
 
-Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if you're not planning to use it soon) is recommended to broaden the mind.
+```js run no-strict
+// note: no "use strict" in this example
+
+num = 5; // the variable "num" is created if it didn't exist
+
+alert(num); // 5
 ```
 
-## Variable naming [#variable-naming]
+This is a bad practice and would cause an error in strict mode:
+
+```js
+"use strict";
+
+*!*
+num = 5; // error: num is not defined
+*/!*
+```
+````
+
+
+### Variable naming
 
 There are two limitations on variable names in JavaScript:
 
@@ -170,7 +192,7 @@ let userName;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
+When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word after the first one starting with a capital letter: `myVeryLongName`.
 
 What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
 
@@ -203,7 +225,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if you're writing a small script, it may have a long life ahead. People from other countries may need to read it in the future.
 ````
 
 ````warn header="Reserved names"
@@ -216,29 +238,6 @@ The code below gives a syntax error:
 ```js run no-beautify
 let let = 5; // can't name a variable "let", error!
 let return = 5; // also can't name it "return", error!
-```
-````
-
-````warn header="An assignment without `use strict`"
-
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
-
-```js run no-strict
-// note: no "use strict" in this example
-
-num = 5; // the variable "num" is created if it didn't exist
-
-alert(num); // 5
-```
-
-This is a bad practice and would cause an error in strict mode:
-
-```js
-"use strict";
-
-*!*
-num = 5; // error: num is not defined
-*/!*
 ```
 ````
 
@@ -297,7 +296,7 @@ const pageLoadTime = /* time taken by a webpage to load */;
 
 The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
 
-In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+In other words, capital-named constants are only used as aliases for "hard-coded" values, known prior to execution.  
 
 ## Name things right
 
@@ -307,7 +306,7 @@ A variable name should have a clean, obvious meaning, describing the data that i
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
 
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
+In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely new from scratch. When we look at someone else's code, and even if we return to our code after  a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
 
 Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
 
