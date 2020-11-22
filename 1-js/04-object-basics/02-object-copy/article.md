@@ -73,7 +73,6 @@ admin.name = 'Pete'; // changed by the "admin" reference
 alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
 ```
 
-
 It's just as if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use another key (`user`) we can see changes.
 
 ## Comparison by reference
@@ -229,6 +228,30 @@ alert(clone.sizes.width); // 51, see the result from the other one
 To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
 
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
+
+```smart header="Const objects can be modified"
+An important "side effect" of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but no. The value of `user` is constant, it must always reference the same object. But properties of that object are free to change.
+
+In other words, the `const user` gives an error only if we try to set `user=...` as a whole, and that's all.
+
+That said, if we really need to make constant object properties, it's also possible, but using totally different methods, we'll mention that in the chapter <info:property-descriptors>.
+```
 
 ## Summary
 

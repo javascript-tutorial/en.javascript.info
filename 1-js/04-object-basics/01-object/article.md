@@ -92,30 +92,6 @@ let user = {
 ```
 That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
 
-````smart header="Object with const can be changed"
-Please note: an object declared as `const` *can* be modified.
-
-For instance:
-
-```js run
-const user = {
-  name: "John"
-};
-
-*!*
-user.name = "Pete"; // (*)
-*/!*
-
-alert(user.name); // Pete
-```
-
-It might seem that the line `(*)` would cause an error, but no. The `const` fixes the value of `user`, but not its contents.
-
-The `const` would give an error only if we try to set `user=...` as a whole.
-
-There's another way to make constant object properties, we'll cover it later in the chapter <info:property-descriptors>.
-````
-
 ## Square brackets
 
 For multiword properties, the dot access doesn't work:
