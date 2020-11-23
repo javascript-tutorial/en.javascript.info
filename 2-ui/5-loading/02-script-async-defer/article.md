@@ -103,7 +103,7 @@ The `async` attribute means that a script is completely independent:
     - `DOMContentLoaded` may happen both before an async script (if an async script finishes loading after the page is complete)
     - ...or after an async script (if an async script is short or was in HTTP-cache)
 
-In other words, `async` scripts load in the background and run when ready. The DOM and other scripts don't wait for them, and they don't wait for anything. A fully independent script that runs when loaded. As simple, at it can get, right?
+In other words, `async` scripts load in the background and run when ready. The DOM and other scripts don't wait for them, and they don't wait for anything. A fully independent script that runs when loaded. As simple, as it can get, right?
 
 Here's an example similar to what we've seen with `defer`: two scripts `long.js` and `small.js`, but now with `async` instead of `defer`.
 
