@@ -9,7 +9,7 @@ So first, let's see how we attach a script to a webpage. For server-side environ
 
 ## The "script" tag
 
-JavaScript programs can be inserted into any part of an HTML document with the help of the `<script>` tag.
+JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
 
 For instance:
 

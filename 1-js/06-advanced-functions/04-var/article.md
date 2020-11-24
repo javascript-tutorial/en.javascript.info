@@ -82,7 +82,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined (Check the Developer Console)
+alert(phrase); // Error: phrase is not defined
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
@@ -279,7 +279,7 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 There are two main differences of `var` compared to `let/const`:
 
-1. `var` variables have no block scope; their visibility is scoped to current function, or global, if declared outside function.
+1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
 2. `var` declarations are processed at function start (script start for globals).
 
 There's one more very minor difference related to the global object, that we'll cover in the next chapter.

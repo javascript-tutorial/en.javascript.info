@@ -27,6 +27,6 @@ user = wrap(user);
 
 alert(user.name); // John
 *!*
-alert(user.age); // ReferenceError: Property doesn't exist "age"
+alert(user.age); // ReferenceError: Property doesn't exist: "age"
 */!*
 ```

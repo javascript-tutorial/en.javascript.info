@@ -156,7 +156,7 @@ class Thenable {
     // resolve with this.num*2 after 1000ms
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
-};
+}
 
 async function f() {
   // waits for 1 second, then result becomes 2
