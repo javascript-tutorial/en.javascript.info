@@ -229,7 +229,7 @@ To fix that, we should use the cloning loop that examines each value of `user[ke
 
 We can use recursion to implement it. Or, not to reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
-```smart header="Const objects can be modified"
+````smart header="Const objects can be modified"
 An important "side effect" of storing objects as references is that an object declared as `const` *can* be modified.
 
 For instance:
@@ -251,7 +251,7 @@ It might seem that the line `(*)` would cause an error, but no. The value of `us
 In other words, the `const user` gives an error only if we try to set `user=...` as a whole, and that's all.
 
 That said, if we really need to make constant object properties, it's also possible, but using totally different methods, we'll mention that in the chapter <info:property-descriptors>.
-```
+````
 
 ## Summary
 
