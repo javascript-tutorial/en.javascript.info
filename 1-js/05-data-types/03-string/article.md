@@ -239,7 +239,7 @@ alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
 alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
 ```
 
-The optional second parameter allows us to search starting from the given position.
+The optional second parameter allows us to start searching from a given position.
 
 For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
 
