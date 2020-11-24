@@ -248,7 +248,7 @@ obj = null;
 - An object exists in the set while it is reachable from somewhere else.
 - Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
 
-Being "weak", it also serves as additional storage. But not for arbitrary data, but rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
+Being "weak", it also serves as additional storage. But not for arbitrary data, rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
 
 For instance, we can add users to `WeakSet` to keep track of those who visited our site:
 
@@ -280,9 +280,9 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-`WeakMap` is `Map` like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
+`WeakMap` is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
 
-`WeakSet` is `Set` like collection that stores only objects and removes them once they become inaccessible by other means.
+`WeakSet` is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
 
 It's main advantages are that they have weak reference to objects, so they can easily be removed by garbage colector. 
 That comes at the cost of not having support for `clear`, `size`, `keys`, `values` ...
