@@ -37,7 +37,7 @@ And here's how it's actually stored in memory:
 
 The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
 
-We may think of an object variable, such as `user`, as like a sheet of paper with the address.
+We may think of an object variable, such as `user`, as like a sheet of paper with the address of the object on it.
 
 When we perform actions with the object, e.g. take a property `user.name`, the JavaScript engine looks at what's at that address and performs the operation on the actual object.
 
@@ -246,7 +246,7 @@ user.name = "Pete"; // (*)
 alert(user.name); // Pete
 ```
 
-It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object. But properties of that object are free to change.
+It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
 
 In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
 
