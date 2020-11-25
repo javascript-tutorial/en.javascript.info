@@ -494,7 +494,7 @@ Focus on me, the cursor will be at position 10.
     // zero delay setTimeout to run after browser "focus" action finishes
     setTimeout(() => {
       // we can set any selection
-      // if start=end, the cursor it exactly at that place
+      // if start=end, the cursor is exactly at that place
       area.selectionStart = area.selectionEnd = 10;
     });
   };
