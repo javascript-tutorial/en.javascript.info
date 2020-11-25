@@ -34,6 +34,6 @@ Each of these files starts from the `# Main header`.
 
 It's very easy to add something new.
 
----
-♥
+---  
+♥. 
 Ilya Kantor @iliakan
