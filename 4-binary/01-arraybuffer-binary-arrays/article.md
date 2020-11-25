@@ -34,7 +34,7 @@ A view object does not store anything on it's own. It's the "eyeglasses" that gi
 
 For instance:
 
-- **`Uint8Array`** -- treats each byte in `ArrayBuffer` as a separate number, with possible values are from 0 to 255 (a byte is 8-bit, so it can hold only that much). Such value is called a "8-bit unsigned integer".
+- **`Uint8Array`** -- treats each byte in `ArrayBuffer` as a separate number, with possible values from 0 to 255 (a byte is 8-bit, so it can hold only that much). Such value is called a "8-bit unsigned integer".
 - **`Uint16Array`** -- treats every 2 bytes as an integer, with possible values from 0 to 65535. That's called a "16-bit unsigned integer".
 - **`Uint32Array`** -- treats every 4 bytes as an integer, with possible values from 0 to 4294967295. That's called a "32-bit unsigned integer".
 - **`Float64Array`** -- treats every 8 bytes as a floating point number with possible values from <code>5.0x10<sup>-324</sup></code> to <code>1.8x10<sup>308</sup></code>.
@@ -77,7 +77,7 @@ Please note, there's no constructor called `TypedArray`, it's just a common "umb
 
 When you see something like `new TypedArray`, it means any of `new Int8Array`, `new Uint8Array`, etc.
 
-Typed array behave like regular arrays: have indexes and iterable.
+Typed arrays behave like regular arrays: have indexes and are iterable.
 
 A typed array constructor (be it `Int8Array` or `Float64Array`, doesn't matter) behaves differently depending on argument types.
 
@@ -259,7 +259,7 @@ To do almost any operation on `ArrayBuffer`, we need a view.
     - `Float32Array`, `Float64Array` -- for signed floating-point numbers of 32 and 64 bits.
 - Or a `DataView` -- the view that uses methods to specify a format, e.g. `getUint8(offset)`.
 
-In most cases we create and operate directly on typed arrays, leaving `ArrayBuffer` under cover, as a "common discriminator". We can access it as `.buffer` and make another view if needed.
+In most cases we create and operate directly on typed arrays, leaving `ArrayBuffer` under cover, as a "common denominator". We can access it as `.buffer` and make another view if needed.
 
 There are also two additional terms, that are used in descriptions of methods that operate on binary data:
 - `ArrayBufferView` is an umbrella term for all these kinds of views.
