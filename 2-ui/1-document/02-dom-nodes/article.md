@@ -199,7 +199,7 @@ We may think -- why is a comment added to the DOM? It doesn't affect the visual 
 
 **Everything in HTML, even comments, becomes a part of the DOM.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, we even don't draw it on diagrams for that reason, but it's there.
+Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, we even don't draw it on diagrams, but it's there.
 
 The `document` object that represents the whole document is, formally, a DOM node as well.
 
