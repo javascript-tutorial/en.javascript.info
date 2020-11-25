@@ -192,7 +192,7 @@ newWindow.onload = function() {
 ```
 
 
-## Scrolling and resizing
+## Moving and resizing
 
 There are methods to move/resize a window:
 
