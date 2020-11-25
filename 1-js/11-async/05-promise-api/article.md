@@ -302,7 +302,7 @@ There are 5 static methods of `Promise` class:
     - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome.If all of the given promises rejects, it becomes the error of `Promise.any`.
+4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises rejects, it becomes the error of `Promise.any`.
 5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
 6. `Promise.reject(error)` -- makes a rejected promise with the given error.
 
