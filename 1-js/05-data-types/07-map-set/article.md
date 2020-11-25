@@ -1,10 +1,10 @@
 
 # Map and Set
 
-Now we've learned about the following complex data structures:
+Till now, we've learned about the following complex data structures:
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- Objects are used for storing keyed collections.
+- Arrays are used for storing ordered collections.
 
 But that's not enough for real life. That's why `Map` and `Set` also exist.
 
@@ -63,24 +63,26 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
+Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
 
 Let's try:
 
 ```js run
 let john = { name: "John" };
+let ben = { name: "Ben" };
 
 let visitsCountObj = {}; // try to use an object
 
-visitsCountObj[john] = 123; // try to use john object as the key
+visitsCountObj[ben] = 234; // try to use ben object as the key
+visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
 
 *!*
 // That's what got written!
-alert( visitsCountObj["[object Object]"] ); // 123
+alert( visitsCountObj["[object Object]"] ); // 123 
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all keys, such as `john` to strings, so we've got the string key `"[object Object]"`. Definitely not what we want.
+As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
 
 ```smart header="How `Map` compares keys"
 To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
