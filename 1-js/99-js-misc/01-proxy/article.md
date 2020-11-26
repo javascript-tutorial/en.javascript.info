@@ -963,7 +963,7 @@ revoke();
 alert(proxy.data); // Error
 ```
 
-A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. The target object can be garbage-collected after that.
+A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. Any further attempt to access it will throw a distinctive error you can catch.
 
 We can also store `revoke` in a `WeakMap`, to be able to easily find it by a proxy object:
 
