@@ -952,7 +952,6 @@ let object = {
 };
 
 let {proxy, revoke} = Proxy.revocable(object, {});
-object = null; // use proxy from now on
 
 // pass the proxy somewhere instead of object...
 alert(proxy.data); // Valuable data
@@ -964,7 +963,7 @@ revoke();
 alert(proxy.data); // Error
 ```
 
-A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. The target object can be garbage-collected after that.
+A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. The target object could be garbage-collected after that, but in our example `object` variable is still referencing it.
 
 We can also store `revoke` in a `WeakMap`, to be able to easily find it by a proxy object:
 
