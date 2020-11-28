@@ -151,7 +151,7 @@ We can use `xhr.responseType` property to set the response format:
 - `"text"` -- get as string,
 - `"arraybuffer"` -- get as `ArrayBuffer` (for binary data, see chapter <info:arraybuffer-binary-arrays>),
 - `"blob"` -- get as `Blob` (for binary data, see chapter <info:blob>),
-- `"document"` -- get as XML document (can use XPath and other XML methods),
+- `"document"` -- get as XML document (can use XPath and other XML methods) or HTML document (based on the MIME type of the received data),
 - `"json"` -- get as JSON (parsed automatically).
 
 For example, let's get the response as JSON:
