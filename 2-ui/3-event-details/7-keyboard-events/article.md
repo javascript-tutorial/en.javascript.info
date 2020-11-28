@@ -21,6 +21,8 @@ Try different key combinations in the text field.
 [codetabs src="keyboard-dump" height=480]
 ```
 
+If you'd like to see some of the many other properties inside a `KeyboardEvent`, you can use [Key.js](https://keyjs.dev), a similar keyboard event inspection tool.
+
 
 ## Keydown and keyup
 
@@ -169,6 +171,12 @@ Now arrows and deletion works well.
 In the past, there was a `keypress` event, and also `keyCode`, `charCode`, `which` properties of the event object.
 
 There were so many browser incompatibilities while working with them, that developers of the specification had no way, other than deprecating all of them and creating new, modern events (described above in this chapter). The old code still works, as browsers keep supporting them, but there's totally no need to use those any more.
+
+## Mobile Keyboards
+
+When using virtual/mobile keyboards, formally know as IME (Input-Method Editor), the W3C standard states that a KeyboardEvent's [`e.keyCode` should be `229`](https://www.w3.org/TR/uievents/#determine-keydown-keyup-keyCode) and [`e.key` should be `"Unidentified"`](https://www.w3.org/TR/uievents-key/#key-attr-values).
+
+While some of these keyboards might still use the right values for `e.key`, `e.code`, `e.keyCode`... when pressing certain keys such as arrows or backspace, there's no guarantee, so your keyboard logic might not always work on mobile devices.
 
 ## Summary
 
