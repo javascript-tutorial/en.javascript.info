@@ -50,7 +50,7 @@ These options govern how `fetch` sets HTTP `Referer` header.
 
 Usually that header is set automatically and contains the url of the page that made the request. In most scenarios, it's not important at all, sometimes, for security purposes, it makes sense to remove or shorten it.
 
-**The `referrer` option allows to set any `Referer` within the current origin) or remove it.**
+**The `referrer` option allows to set any `Referer` (within the current origin) or remove it.**
 
 To send no referer, set an empty string:
 ```js
