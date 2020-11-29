@@ -238,7 +238,7 @@ socket.onclose = event => {
 Most common code values:
 
 - `1000` -- the default, normal closure (used if no `code` supplied),
-- `1006` -- no way to such code manually, indicates that the connection was lost (no close frame).
+- `1006` -- no way to set such code manually, indicates that the connection was lost (no close frame).
 
 There are other codes like:
 
