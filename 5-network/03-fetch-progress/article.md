@@ -109,4 +109,10 @@ Let's explain that step-by-step:
 
 At the end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
 
+```warn header="Best practices: care the size"
+It is easy to make a blob. That doesn't mean always adviceable. Many apps/OS lags come from poorly managed memory.
+
+If we are using blob to download, say a 8GB size video, we will be using 8GB of memory. Sure, the blob object and the OS will do their best to avoid memory collapse, but do we need to do that? If we can, we take the chunk and dispose it inmediatly: pass it to the device or specialized library that will manage it, then forget it (meaning releasing memory resource) and just wait for the next chunk. 
+```
+
 Once again, please note, that's not for *upload* progress (no way now with `fetch`), only for *download* progress.
