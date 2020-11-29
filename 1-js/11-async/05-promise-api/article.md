@@ -217,6 +217,29 @@ Promise.race([
 The first promise here was fastest, so it became the result. After the first settled promise "wins the race", all further results/errors are ignored.
 
 
+## Promise.any
+
+Similar to `Promise.race`, but waits only for the first fulfilled promise and gets its result. If all of the given promises are rejected, then the returned promise is rejected.
+
+The syntax is:
+
+```js
+let promise = Promise.any(iterable);
+```
+
+For instance, here the result will be `1`:
+
+```js run
+Promise.any([
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
+]).then(alert); // 1
+```
+
+The first promise here was fastest, but it was rejected, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
+
+
 ## Promise.resolve/reject
 
 Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](info:async-await)) makes them somewhat obsolete.
@@ -279,7 +302,8 @@ There are 5 static methods of `Promise` class:
     - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.resolve(value)` -- makes a resolved promise with the given value.
-5. `Promise.reject(error)` -- makes a rejected promise with the given error.
+4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises rejects, it becomes the error of `Promise.any`.
+5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
+6. `Promise.reject(error)` -- makes a rejected promise with the given error.
 
 Of these five, `Promise.all` is probably the most common in practice.
