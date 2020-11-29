@@ -963,9 +963,13 @@ revoke();
 alert(proxy.data); // Error
 ```
 
-A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. The target object can be garbage-collected after that.
+A call to `revoke()` removes all internal references to the target object from the proxy, so they are no longer connected. 
 
-We can also store `revoke` in a `WeakMap`, to be able to easily find it by a proxy object:
+Initially, `revoke` is separate from `proxy`, so that we can pass `proxy` around while leaving `revoke` in the current scope.
+
+We can also bind `revoke` method to proxy by setting `proxy.revoke = revoke`.
+
+Another option is to create a `WeakMap` that has `proxy` as the key the corresponding `revoke` as the value, that allows to easily find `revoke` for a proxy:
 
 ```js run
 *!*
@@ -980,14 +984,12 @@ let {proxy, revoke} = Proxy.revocable(object, {});
 
 revokes.set(proxy, revoke);
 
-// ..later in our code..
+// ..somewhere else in our code..
 revoke = revokes.get(proxy);
 revoke();
 
 alert(proxy.data); // Error (revoked)
 ```
-
-The benefit of such an approach is that we don't have to carry `revoke` around. We can get it from the map by `proxy` when needed.
 
 We use `WeakMap` instead of `Map` here because it won't block garbage collection. If a proxy object becomes "unreachable" (e.g. no variable references it any more), `WeakMap` allows it to be wiped from memory together with its `revoke` that we won't need any more.
 
