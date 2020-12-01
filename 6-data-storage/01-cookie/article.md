@@ -7,7 +7,7 @@ Cookies are usually set by a web-server using response `Set-Cookie` HTTP-header.
 One of the most widespread use cases is authentication:
 
 1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the cookie over the net using `Cookie` HTTP-header.
+2. Next time when the request is sent to the same domain, the browser sends the cookie over the net using `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
 We can also access cookies from the browser, using `document.cookie` property.
@@ -96,7 +96,7 @@ Usually, we should set `path` to the root: `path=/` to make the cookie accessibl
 
 A domain where the cookie is accessible. In practice though, there are limitations. We can't set any domain.
 
-By default, a cookie is accessible only at the domain that set it. So, if the cookie was set by `site.com`, we won't get it `other.com`.
+By default, a cookie is accessible only at the domain that set it. So, if the cookie was set by `site.com`, we won't get it at `other.com`.
 
 ...But what's more tricky, we also won't get the cookie at a subdomain `forum.site.com`!
 
@@ -404,7 +404,7 @@ Websites generally have two variants of following GDPR. You must have seen them 
 
 2. If a website wants to set tracking cookies for everyone.
 
-    To do so legally, a website shows a modal "splash screen" for newcomers, and require them to agree for cookies. Then the website can set them and let people see the content. That can be disturbing for new visitors though. No one likes to see "must-click" modal splash screens instead of the content. But GDPR requires an explicit agreement.
+    To do so legally, a website shows a modal "splash screen" for newcomers, and requires them to agree for cookies. Then the website can set them and let people see the content. That can be disturbing for new visitors though. No one likes to see "must-click" modal splash screens instead of the content. But GDPR requires an explicit agreement.
 
 
 GDPR is not only about cookies, it's about other privacy-related issues too, but that's too much beyond our scope.
