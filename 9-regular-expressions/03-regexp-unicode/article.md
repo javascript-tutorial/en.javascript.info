@@ -41,13 +41,13 @@ We can search for characters with a property, written as `pattern:\p{…}`. To u
 
 For instance, `\p{Letter}` denotes a letter in any of language. We can also use `\p{L}`, as `L` is an alias of `Letter`. There are shorter aliases for almost every property.
 
-In the example below three kinds of letters will be found: English, Georgean and Korean.
+In the example below three kinds of letters will be found: English, Georgian and Korean.
 
 ```js run
 let str = "A ბ ㄱ";
 
 alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
-alert( str.match(/\p{L}/g) ); // null (no matches, as there's no flag "u")
+alert( str.match(/\p{L}/g) ); // null (no matches, \p doesn't work without the flag "u")
 ```
 
 Here's the main character categories and their subcategories:
