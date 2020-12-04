@@ -27,19 +27,21 @@ In the example below:
   #error { color: red }
 </style>
 
-Your email please: <input type="email" id="input">
+<label for="email">Your email please:</label><input type="email" id="emailInput">
 
 <div id="error"></div>
 
 <script>
-*!*input.onblur*/!* = function() {
-  if (!input.value.includes('@')) { // not email
-    input.classList.add('invalid');
+  var emailInput = document.querySelector('#emailInput');
+  
+*!*emailInput.onblur*/!* = function() {
+  if (!emailInput.value.includes('@')) { // not email
+    emailInput.classList.add('invalid');
     error.innerHTML = 'Please enter a correct email.'
   }
 };
 
-*!*input.onfocus*/!* = function() {
+*!*emailInput.onfocus*/!* = function() {
   if (this.classList.contains('invalid')) {
     // remove the "error" indication, because the user wants to re-enter something
     this.classList.remove('invalid');
@@ -65,17 +67,18 @@ For instance, let's make the visitor unable to leave the input if the value is i
   }
 </style>
 
-Your email please: <input type="email" id="input">
+<label for="email">Your email please:</label><input type="email" id="emailInput">
 <input type="text" style="width:220px" placeholder="make email invalid and try to focus here">
 
 <script>
-  input.onblur = function() {
+  var emailInput = document.querySelector('#emailInput');
+  emailInput.onblur = function() {
     if (!this.value.includes('@')) { // not email
       // show the error
       this.classList.add("error");
 *!*
       // ...and put the focus back
-      input.focus();
+      emailInput.focus();
 */!*
     } else {
       this.classList.remove("error");
@@ -176,7 +179,7 @@ First, there's a funny historical feature: `focus/blur` do not bubble up, but pr
 This will work:
 
 ```html autorun height=80
-<form id="form">
+<form id="userNameForm">
   <input type="text" name="name" value="Name">
   <input type="text" name="surname" value="Surname">
 </form>
@@ -185,9 +188,11 @@ This will work:
 
 <script>
 *!*
+  var userNameForm = document.querySelector('#userNameForm');
+  
   // put the handler on capturing phase (last argument true)
-  form.addEventListener("focus", () => form.classList.add('focused'), true);
-  form.addEventListener("blur", () => form.classList.remove('focused'), true);
+  userNameForm.addEventListener("focus", () => form.classList.add('focused'), true);
+  userNameForm.addEventListener("blur", () => form.classList.remove('focused'), true);
 */!*
 </script>
 ```
@@ -199,7 +204,7 @@ Note that they must be assigned using `elem.addEventListener`, not `on<event>`.
 So here's another working variant:
 
 ```html autorun height=80
-<form id="form">
+<form id="userNameForm">
   <input type="text" name="name" value="Name">
   <input type="text" name="surname" value="Surname">
 </form>
@@ -208,8 +213,10 @@ So here's another working variant:
 
 <script>
 *!*
-  form.addEventListener("focusin", () => form.classList.add('focused'));
-  form.addEventListener("focusout", () => form.classList.remove('focused'));
+  var userNameForm = document.querySelector('#userNameForm');
+  
+  userNameForm.addEventListener("focusin", () => form.classList.add('focused'));
+  userNameForm.addEventListener("focusout", () => form.classList.remove('focused'));
 */!*
 </script>
 ```
