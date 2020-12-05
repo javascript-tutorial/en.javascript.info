@@ -31,7 +31,7 @@ If you run the example below, you probably won't see anything, as JavaScript wil
 
 ```js run
 let regexp = /^(\w+\s?)*$/;
-let str = "An input string that takes a long time or even makes this regexp to hang!";
+let str = "An input string that takes a long time or even makes this regexp hang!";
 
 // will take a very long time
 alert( regexp.test(str) );
@@ -41,7 +41,7 @@ To be fair, let's note that some regular expression engines can handle such a se
 
 ## Simplified example
 
-What's the matter? Why the regular expression hangs?
+What's the matter? Why does the regular expression hang?
 
 To understand that, let's simplify the example: remove spaces `pattern:\s?`. Then it becomes `pattern:^(\w+)*$`.
 
@@ -60,7 +60,7 @@ So what's wrong with the regexp?
 
 First, one may notice that the regexp `pattern:(\d+)*` is a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+`.
 
-Indeed, the regexp is artificial, we got it by simplifying the previous example. But the reason why it is slow is the same. So let's understand it, and then the previous example will become obvious.
+Indeed, the regexp is artificial; we got it by simplifying the previous example. But the reason why it is slow is the same. So let's understand it, and then the previous example will become obvious.
 
 What happens during the search of `pattern:^(\d+)*$` in the line `subject:123456789z` (shortened a bit for clarity, please note a non-digit character `subject:z` at the end, it's important), why does it take so long?
 
@@ -111,7 +111,7 @@ Here's what the regexp engine does:
     ```
 
 
-4. There's no match, so the engine will continue backtracking, decreasing the number of repetitions. Backtracking generally works like this: the last greedy quantifier decreases the number of repetitions until it can. Then the previous greedy quantifier decreases, and so on.
+4. There's no match, so the engine will continue backtracking, decreasing the number of repetitions. Backtracking generally works like this: the last greedy quantifier decreases the number of repetitions until it reaches the minimum. Then the previous greedy quantifier decreases, and so on.
 
     All possible combinations are attempted. Here are their examples.
 
@@ -196,7 +196,7 @@ This regexp is equivalent to the previous one (matches the same) and works well:
 
 ```js run
 let regexp = /^(\w+\s)*\w*$/;
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false
 ```
@@ -254,7 +254,7 @@ We can emulate them though using a "lookahead transform".
 
 So we've come to real advanced topics. We'd like a quantifier, such as `pattern:+` not to backtrack, because sometimes backtracking makes no sense.
 
-The pattern to take as much repetitions of `pattern:\w` as possible without backtracking is: `pattern:(?=(\w+))\1`. Of course, we could take another pattern instead of `pattern:\w`.
+The pattern to take as many repetitions of `pattern:\w` as possible without backtracking is: `pattern:(?=(\w+))\1`. Of course, we could take another pattern instead of `pattern:\w`.
 
 That may seem odd, but it's actually a very simple transform.
 
@@ -293,7 +293,7 @@ let regexp = /^((?=(\w+))\2\s?)*$/;
 
 alert( regexp.test("A good string") ); // true
 
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false, works and fast!
 ```
@@ -304,7 +304,7 @@ Here `pattern:\2` is used instead of `pattern:\1`, because there are additional 
 // parentheses are named ?<word>, referenced as \k<word>
 let regexp = /^((?=(?<word>\w+))\k<word>\s?)*$/;
 
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false
 
