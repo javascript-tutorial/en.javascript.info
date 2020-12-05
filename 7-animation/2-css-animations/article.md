@@ -285,7 +285,7 @@ The first argument of `steps(9, start)` is the number of steps. The transform wi
 
 The second argument is one of two words: `start` or `end`.
 
-The `start` means that in the beginning of animation we need to do make the first step immediately.
+The `start` means that in the beginning of animation we need to make the first step immediately.
 
 We can observe that during the animation: when we click on the digit it changes to `1` (the first step) immediately, and then changes in the beginning of the next second.
 

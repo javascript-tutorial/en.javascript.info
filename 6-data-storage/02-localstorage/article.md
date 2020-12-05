@@ -202,7 +202,7 @@ If both windows are listening for `window.onstorage`, then each one will react o
 
 ```js run
 // triggers on updates made to the same storage from other documents
-window.onstorage = event => { // same as window.addEventListener('storage', () => {
+window.onstorage = event => { // same as window.addEventListener('storage', event => {
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
