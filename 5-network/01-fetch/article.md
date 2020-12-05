@@ -27,7 +27,7 @@ let promise = fetch(url, [options])
 - **`url`** -- the URL to access.
 - **`options`** -- optional parameters: method, headers etc.
 
-Without `options`, that is a simple GET request, downloading the contents of the `url`.
+Without `options`, this is a simple GET request, downloading the contents of the `url`.
 
 The browser starts the request right away and returns a promise that the calling code should use to get the result.
 

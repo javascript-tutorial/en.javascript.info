@@ -138,7 +138,7 @@ The `mode` option is a safe-guard that prevents occasional cross-origin requests
 
 - **`"cors"`** -- the default, cross-origin requests are allowed, as described in <info:fetch-crossorigin>,
 - **`"same-origin"`** -- cross-origin requests are forbidden,
-- **`"no-cors"`** -- only simple cross-origin requests are allowed.
+- **`"no-cors"`** -- only safe cross-origin requests are allowed.
 
 This option may be useful when the URL for `fetch` comes from a 3rd-party, and we want a "power off switch" to limit cross-origin capabilities.
 

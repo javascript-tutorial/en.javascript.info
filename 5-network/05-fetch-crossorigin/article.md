@@ -97,39 +97,39 @@ After a while, networking methods appeared in browser JavaScript.
 
 At first, cross-origin requests were forbidden. But as a result of long discussions, cross-origin requests were allowed, but with any new capabilities requiring an explicit allowance by the server, expressed in special headers.
 
-## Simple requests
+## Safe requests
 
 There are two types of cross-origin requests:
 
-1. Simple requests.
+1. Safe requests.
 2. All the others.
 
-Simple Requests are, well, simpler to make, so let's start with them.
+Safe Requests are simpler to make, so let's start with them.
 
-A [simple request](http://www.w3.org/TR/cors/#terminology) is a request that satisfies two conditions:
+A request is safe if it satisfies two conditions:
 
-1. [Simple method](http://www.w3.org/TR/cors/#simple-method): GET, POST or HEAD
-2. [Simple headers](http://www.w3.org/TR/cors/#simple-header) -- the only allowed custom headers are:
+1. [Safe method](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, POST or HEAD
+2. [Safe headers](https://fetch.spec.whatwg.org/#cors-safelisted-request-header) -- the only allowed custom headers are:
     - `Accept`,
     - `Accept-Language`,
     - `Content-Language`,
     - `Content-Type` with the value `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.
 
-Any other request is considered "non-simple". For instance, a request with `PUT` method or with an `API-Key` HTTP-header does not fit the limitations.
+Any other request is considered "unsafe". For instance, a request with `PUT` method or with an `API-Key` HTTP-header does not fit the limitations.
 
-**The essential difference is that a "simple request" can be made with a `<form>` or a `<script>`, without any special methods.**
+**The essential difference is that a safe request can be made with a `<form>` or a `<script>`, without any special methods.**
 
-So, even a very old server should be ready to accept a simple request.
+So, even a very old server should be ready to accept a safe request.
 
 Contrary to that, requests with non-standard headers or e.g. method `DELETE` can't be created this way. For a long time JavaScript was unable to do such requests. So an old server may assume that such requests come from a privileged source, "because a webpage is unable to send them".
 
-When we try to make a non-simple request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
+When we try to make a unsafe request, the browser sends a special "preflight" request that asks the server -- does it agree to accept such cross-origin requests, or not?
 
-And, unless the server explicitly confirms that with headers, a non-simple request is not sent.
+And, unless the server explicitly confirms that with headers, a unsafe request is not sent.
 
 Now we'll go into details.
 
-## CORS for simple requests
+## CORS for safe requests
 
 If a request is cross-origin, the browser always adds `Origin` header to it.
 
@@ -165,7 +165,7 @@ Access-Control-Allow-Origin: https://javascript.info
 
 ## Response headers
 
-For cross-origin request, by default JavaScript may only access so-called "simple" response headers:
+For cross-origin request, by default JavaScript may only access so-called "safe" response headers:
 
 - `Cache-Control`
 - `Content-Language`
@@ -182,7 +182,7 @@ There's no `Content-Length` header in the list!
 This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
 ```
 
-To grant JavaScript access to any other response header, the server must send  `Access-Control-Expose-Headers` header. It contains a comma-separated list of non-simple header names that should be made accessible.
+To grant JavaScript access to any other response header, the server must send  `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
 
 For example:
 
@@ -199,18 +199,18 @@ Access-Control-Expose-Headers: Content-Length,API-Key
 
 With such `Access-Control-Expose-Headers` header, the script is allowed to read `Content-Length` and `API-Key` headers of the response.
 
-## "Non-simple" requests
+## "Unsafe" requests
 
 We can use any HTTP-method: not just `GET/POST`, but also `PATCH`, `DELETE` and others.
 
 Some time ago no one could even imagine that a webpage could make such requests. So there may still exist webservices that treat a non-standard method as a signal: "That's not a browser". They can take it into account when checking access rights.
 
-So, to avoid misunderstandings, any "non-simple" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
+So, to avoid misunderstandings, any "unsafe" request -- that couldn't be done in the old times, the browser does not make such requests right away. Before it sends a preliminary, so-called "preflight" request, asking for permission.
 
 A preflight request uses method `OPTIONS`, no body and two headers:
 
-- `Access-Control-Request-Method` header has the method of the non-simple request.
-- `Access-Control-Request-Headers` header provides a comma-separated list of its non-simple HTTP-headers.
+- `Access-Control-Request-Method` header has the method of the unsafe request.
+- `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
@@ -233,10 +233,10 @@ let response = await fetch('https://site.com/service.json', {
 });
 ```
 
-There are three reasons why the request is not simple (one is enough):
+There are three reasons why the request is unsafe (one is enough):
 - Method `PATCH`
 - `Content-Type` is not one of: `application/x-www-form-urlencoded`, `multipart/form-data`, `text/plain`.
-- "Non-simple" `API-Key` header.
+- "Unsafe" `API-Key` header.
 
 ### Step 1 (preflight request)
 
@@ -255,7 +255,7 @@ Access-Control-Request-Headers: Content-Type,API-Key
 - Cross-origin special headers:
     - `Origin` -- the source origin.
     - `Access-Control-Request-Method` -- requested method.
-    - `Access-Control-Request-Headers` -- a comma-separated list of "non-simple" headers.
+    - `Access-Control-Request-Headers` -- a comma-separated list of "unsafe" headers.
 
 ### Step 2 (preflight response)
 
@@ -284,7 +284,7 @@ If there's header `Access-Control-Max-Age` with a number of seconds, then the pr
 
 ### Step 3 (actual request)
 
-When the preflight is successful, the browser now makes the main request. The algorithm here is the same as for simple requests.
+When the preflight is successful, the browser now makes the main request. The algorithm here is the same as for safe requests.
 
 The main request has `Origin` header (because it's cross-origin):
 
@@ -350,9 +350,9 @@ Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` f
 
 ## Summary
 
-From the browser point of view, there are two kinds of cross-origin requests: "simple" and all the others.
+From the browser point of view, there are two kinds of cross-origin requests: "safe" and all the others.
 
-[Simple requests](http://www.w3.org/TR/cors/#terminology) must satisfy the following conditions:
+"Safe" requests must satisfy the following conditions:
 - Method: GET, POST or HEAD.
 - Headers -- we can set only:
     - `Accept`
@@ -360,11 +360,11 @@ From the browser point of view, there are two kinds of cross-origin requests: "s
     - `Content-Language`
     - `Content-Type` to the value `application/x-www-form-urlencoded`, `multipart/form-data` or `text/plain`.
 
-The essential difference is that simple requests were doable since ancient times using `<form>` or `<script>` tags, while non-simple were impossible for browsers for a long time.
+The essential difference is that safe requests were doable since ancient times using `<form>` or `<script>` tags, while unsafe were impossible for browsers for a long time.
 
-So, the practical difference is that simple requests are sent right away, with `Origin` header, while for the other ones the browser makes a preliminary "preflight" request, asking for permission.
+So, the practical difference is that safe requests are sent right away, with `Origin` header, while for the other ones the browser makes a preliminary "preflight" request, asking for permission.
 
-**For simple requests:**
+**For safe requests:**
 
 - → The browser sends `Origin` header with the origin.
 - ← For requests without credentials (not sent default), the server should set:
@@ -375,13 +375,13 @@ So, the practical difference is that simple requests are sent right away, with `
 
 Additionally, to grant JavaScript access to any response headers except `Cache-Control`,  `Content-Language`, `Content-Type`, `Expires`, `Last-Modified` or `Pragma`, the server should list the allowed ones in `Access-Control-Expose-Headers` header.
 
-**For non-simple requests, a preliminary "preflight" request is issued before the requested one:**
+**For unsafe requests, a preliminary "preflight" request is issued before the requested one:**
 
 - → The browser sends `OPTIONS` request to the same URL, with headers:
     - `Access-Control-Request-Method` has requested method.
-    - `Access-Control-Request-Headers` lists non-simple requested headers.
+    - `Access-Control-Request-Headers` lists unsafe requested headers.
 - ← The server should respond with status 200 and headers:
     - `Access-Control-Allow-Methods` with a list of allowed methods,
     - `Access-Control-Allow-Headers` with a list of allowed headers,
     - `Access-Control-Max-Age` with a number of seconds to cache permissions.
-- Then the actual request is sent, the previous "simple" scheme is applied.
+- Then the actual request is sent, the previous "safe" scheme is applied.
