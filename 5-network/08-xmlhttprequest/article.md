@@ -269,7 +269,7 @@ There are 3 methods for HTTP-headers:
 
     ```warn header="Headers limitations"
     Several headers are managed exclusively by the browser, e.g. `Referer` and `Host`.
-    The full list is [in the specification](http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader-method).
+    The full list is [in the specification](https://xhr.spec.whatwg.org/#the-setrequestheader()-method).
 
     `XMLHttpRequest` is not allowed to change them, for the sake of user safety and correctness of the request.
     ```
@@ -509,7 +509,7 @@ xhr.onerror = function() {
 };
 ```
 
-There are actually more events, the [modern specification](http://www.w3.org/TR/XMLHttpRequest/#events) lists them (in the lifecycle order):
+There are actually more events, the [modern specification](https://xhr.spec.whatwg.org/#events) lists them (in the lifecycle order):
 
 - `loadstart` -- the request has started.
 - `progress` -- a data packet of the response has arrived, the whole response body at the moment is in `response`.
