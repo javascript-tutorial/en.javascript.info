@@ -320,7 +320,7 @@ For example, buttons are instances of `HTMLButtonElement`, let's build upon it.
     class HelloButton extends HTMLButtonElement { /* custom element methods */ }
     ```
 
-2. Provide an third argument to `customElements.define`, that specifies the tag:
+2. Provide the third argument to `customElements.define`, that specifies the tag:
     ```js
     customElements.define('hello-button', HelloButton, *!*{extends: 'button'}*/!*);
     ```    
