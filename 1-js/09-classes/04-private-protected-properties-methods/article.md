@@ -96,6 +96,7 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   set waterAmount(value) {
+    // "throw new Error" generates an error, we'll cover it later in the tutorial
     if (value < 0) throw new Error("Negative water");
     this._waterAmount = value;
   }
