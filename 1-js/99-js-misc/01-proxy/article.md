@@ -969,7 +969,7 @@ Initially, `revoke` is separate from `proxy`, so that we can pass `proxy` around
 
 We can also bind `revoke` method to proxy by setting `proxy.revoke = revoke`.
 
-Another option is to create a `WeakMap` that has `proxy` as the key the corresponding `revoke` as the value, that allows to easily find `revoke` for a proxy:
+Another option is to create a `WeakMap` that has `proxy` as the key and the corresponding `revoke` as the value, that allows to easily find `revoke` for a proxy:
 
 ```js run
 *!*
