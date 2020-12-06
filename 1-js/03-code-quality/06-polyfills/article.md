@@ -24,9 +24,9 @@ Here, in this chapter, our purpose is to get the gist of how they work, and thei
 
 A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that can parse ("read and understand") modern code, and rewrite it using older syntax constructs, so that the result would be the same.
 
-E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if the visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
+E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
 
-A transpiler would analyze our code and rewrite `height ?? 100` as `(height !== undefined && height !== null) ? height : 100`.
+A transpiler would analyze our code and rewrite `height ?? 100` into `(height !== undefined && height !== null) ? height : 100`.
 
 ```js
 // before running the transpiler
