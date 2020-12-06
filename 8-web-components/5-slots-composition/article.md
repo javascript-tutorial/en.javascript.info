@@ -227,11 +227,11 @@ The flattened DOM looks like this:
       </slot>
     </div>
     <fieldset>
-      <legend>About me</legend>
+      <legend>Other information</legend>
 *!*
       <slot>
-        <div>Hello</div>
-        <div>I am John!</div>
+        <div>I like to swim.</div>
+        <div>...And play volleyball too!</div>
       </slot>
 */!*
     </fieldset>
