@@ -56,7 +56,7 @@ There are only 6 of them in JavaScript:
 : Enables "dotall" mode, that allows a dot `pattern:.` to match newline character `\n` (covered in the chapter <info:regexp-character-classes>).
 
 `pattern:u`
-: Enables full unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+: Enables full Unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
 
 `pattern:y`
 : "Sticky" mode: searching at the exact position in the text  (covered in the chapter <info:regexp-sticky>)

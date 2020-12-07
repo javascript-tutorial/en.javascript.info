@@ -4,9 +4,9 @@ JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for st
 
 That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
 
-Here are the unicode values of some characters:
+Here are the Unicode values of some characters:
 
-| Character  | Unicode | Bytes count in unicode  |
+| Character  | Unicode | Bytes count in Unicode  |
 |------------|---------|--------|
 | a | `0x0061` |  2 |
 | ≈ | `0x2248` |  2 |
@@ -121,7 +121,7 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
-There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+There's a Unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
@@ -135,7 +135,7 @@ alert( str.match(regexp) ); // 你,好
 
 ### Example: currency
 
-Characters that denote a currency, such as `$`, `€`, `¥`, have unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
+Characters that denote a currency, such as `$`, `€`, `¥`, have Unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
 
 Let's use it to look for prices in the format "currency, followed by a digit":
 

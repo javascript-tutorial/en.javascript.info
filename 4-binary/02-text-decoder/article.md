@@ -12,7 +12,7 @@ let decoder = new TextDecoder([label], [options]);
 - **`label`** -- the encoding, `utf-8` by default, but `big5`, `windows-1251` and many other are also supported.
 - **`options`** -- optional object:
   - **`fatal`** -- boolean, if `true` then throw an exception for invalid (non-decodable) characters, otherwise (default) replace them with character `\uFFFD`.
-  - **`ignoreBOM`** -- boolean, if `true` then ignore BOM (an optional byte-order unicode mark), rarely needed.
+  - **`ignoreBOM`** -- boolean, if `true` then ignore BOM (an optional byte-order Unicode mark), rarely needed.
 
 ...And then decode:
 
