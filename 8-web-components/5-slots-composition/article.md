@@ -408,7 +408,7 @@ customElements.define('custom-menu', class extends HTMLElement {
       <ul><slot name="item"></slot></ul>
     </div>`;
 
-    // slottable is added/removed/replaced
+    // triggers when slot content changes
 *!*
     this.shadowRoot.firstElementChild.addEventListener('slotchange', e => {
       let slot = e.target;
