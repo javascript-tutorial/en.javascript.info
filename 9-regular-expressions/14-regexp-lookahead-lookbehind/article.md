@@ -54,7 +54,7 @@ The syntax is: `pattern:X(?!Y)`, it means "search `pattern:X`, but only if not f
 ```js run
 let str = "2 turkeys cost 60€";
 
-alert( str.match(/\d+(?!€)/) ); // 2 (the price is skipped)
+alert( str.match(/\d+\b(?!€)/g) ); // 2 (the price is not matched)
 ```
 
 ## Lookbehind
@@ -81,7 +81,7 @@ And, if we need the quantity -- a number, not preceded by `subject:$`, then we c
 ```js run
 let str = "2 turkeys cost $60";
 
-alert( str.match(/(?<!\$)\d+/) ); // 2 (skipped the price)
+alert( str.match(/(?<!\$)\b\d+/g) ); // 2 (the price is not matched)
 ```
 
 ## Capturing groups
