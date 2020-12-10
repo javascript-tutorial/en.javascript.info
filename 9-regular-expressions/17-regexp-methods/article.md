@@ -142,7 +142,7 @@ To find all hyphens, we need to use not the string `"-"`, but a regexp `pattern:
 alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 ```
 
-The second argument is a replacement string. We can use special character in it:
+The second argument is a replacement string. We can use special characters in it:
 
 | Symbols | Action in the replacement string |
 |--------|--------|
