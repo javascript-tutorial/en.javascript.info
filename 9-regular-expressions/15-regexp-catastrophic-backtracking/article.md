@@ -37,7 +37,7 @@ let str = "An input string that takes a long time or even makes this regexp hang
 alert( regexp.test(str) );
 ```
 
-To be fair, let's note that some regular expression engines can handle such a search effectively. But most of them can't. Browser engines usually hang.
+To be fair, let's note that some regular expression engines can handle such a search effectively. But most of them can't. Browser engines usually hang (Google Chrome can handle such a search since version 88 due to a new experimental regular expression engine shipped in V8, JavaScript engine for browsers and Node.js).
 
 ## Simplified example
 
@@ -74,7 +74,7 @@ Here's what the regexp engine does:
     ```
 
     After all digits are consumed, `pattern:\d+` is considered found (as `match:123456789`).
-    
+
     Then the star quantifier `pattern:(\d+)*` applies. But there are no more digits in the text, so the star doesn't give anything.
 
     The next character in the pattern is the string end `pattern:$`. But in the text we have `subject:z` instead, so there's no match:
@@ -220,7 +220,7 @@ The time needed to try a lot of (actually most of) combinations is now saved.
 
 ## Preventing backtracking
 
-It's not always convenient to rewrite a regexp though. In the example above it was easy, but it's not always obvious how to do it. 
+It's not always convenient to rewrite a regexp though. In the example above it was easy, but it's not always obvious how to do it.
 
 Besides, a rewritten regexp is usually more complex, and that's not good. Regexps are complex enough without extra efforts.
 
@@ -246,7 +246,7 @@ Possessive quantifiers are in fact simpler than "regular" ones. They just match 
 
 There are also so-called "atomic capturing groups" - a way to disable backtracking inside parentheses.
 
-...But the bad news is that, unfortunately, in JavaScript they are not supported. 
+...But the bad news is that, unfortunately, in JavaScript they are not supported.
 
 We can emulate them though using a "lookahead transform".
 
