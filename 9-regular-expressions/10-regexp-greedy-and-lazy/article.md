@@ -88,7 +88,7 @@ These common words do not make it obvious why the regexp fails, so let's elabora
 
 That's probably not what we expected, but that's how it works.
 
-**In the greedy mode (by default) a quantifier is repeated as many times as possible.**
+**In the greedy mode (by default) a quantified character is repeated as many times as possible.**
 
 The regexp engine adds to the match as many characters as it can for `pattern:.+`, and then shortens that one by one, if the rest of the pattern doesn't match.
 
@@ -109,7 +109,7 @@ let regexp = /".+?"/g;
 
 let str = 'a "witch" and her "broom" is one';
 
-alert( str.match(regexp) ); // witch, broom
+alert( str.match(regexp) ); // "witch", "broom"
 ```
 
 To clearly understand the change, let's trace the search step by step.
@@ -179,7 +179,7 @@ let regexp = /"[^"]+"/g;
 
 let str = 'a "witch" and her "broom" is one';
 
-alert( str.match(regexp) ); // witch, broom
+alert( str.match(regexp) ); // "witch", "broom"
 ```
 
 The regexp `pattern:"[^"]+"` gives correct results, because it looks for a quote `pattern:'"'` followed by one or more non-quotes `pattern:[^"]`, and then the closing quote.
@@ -293,9 +293,9 @@ alert( str2.match(regexp) ); // <a href="link1" class="doc">, <a href="link2" cl
 Quantifiers have two modes of work:
 
 Greedy
-: By default the regular expression engine tries to repeat the quantifier as many times as possible. For instance, `pattern:\d+` consumes all possible digits. When it becomes impossible to consume more (no more digits or string end), then it continues to match the rest of the pattern. If there's no match then it decreases the number of repetitions (backtracks) and tries again.
+: By default the regular expression engine tries to repeat the quantified character as many times as possible. For instance, `pattern:\d+` consumes all possible digits. When it becomes impossible to consume more (no more digits or string end), then it continues to match the rest of the pattern. If there's no match then it decreases the number of repetitions (backtracks) and tries again.
 
 Lazy
-: Enabled by the question mark `pattern:?` after the quantifier. The regexp engine tries to match the rest of the pattern before each repetition of the quantifier.
+: Enabled by the question mark `pattern:?` after the quantifier. The regexp engine tries to match the rest of the pattern before each repetition of the quantified character.
 
 As we've seen, the lazy mode is not a "panacea" from the greedy search. An alternative is a "fine-tuned" greedy search, with exclusions, as in the pattern `pattern:"[^"]+"`.
