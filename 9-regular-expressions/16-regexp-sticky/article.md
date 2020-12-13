@@ -93,7 +93,7 @@ The result is correct.
 
 ...But wait, not so fast.
 
-Please note: the `regexp.exec` call start searching at position `lastIndex` and then goes further. If there's no word at position `lastIndex`, but it's somewhere after it, then it will be found:
+Please note: the `regexp.exec` call starts searching at position `lastIndex` and then goes further. If there's no word at position `lastIndex`, but it's somewhere after it, then it will be found:
 
 ```js run
 let str = 'let varName = "value"';
