@@ -211,7 +211,7 @@ With these methods we can do basically anything with selected nodes.
 
 Here's the test stand to see them in action:
 
-```html run autorun height=260
+```html run refresh autorun height=260
 Click buttons to run methods on the selection, "resetExample" to reset it.
 
 <p id="p">Example: <i>italic</i> and <b>bold</b></p>
