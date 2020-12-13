@@ -1,4 +1,4 @@
-A regexp for a number is: `pattern:-?\d+(\.\d+)?`. We created it in previous tasks.
+A regexp for a number is: `pattern:-?\d+(\.\d+)?`. We created it in the previous task.
 
 An operator is `pattern:[-+*/]`. The hyphen `pattern:-` goes first in the square brackets, because in the middle it would mean a character range, while we just want a character `-`.
 

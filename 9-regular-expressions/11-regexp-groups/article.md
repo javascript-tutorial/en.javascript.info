@@ -249,7 +249,7 @@ The call to `matchAll` does not perform the search. Instead, it returns an itera
 
 So, there will be found as many results as needed, not more.
 
-E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and make a `break`. Then the engine won't spend time finding other 95 matches.
+E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and made a `break`. Then the engine won't spend time finding other 95 matches.
 ```
 
 ## Named groups
