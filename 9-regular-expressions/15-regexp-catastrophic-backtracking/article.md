@@ -37,7 +37,9 @@ let str = "An input string that takes a long time or even makes this regexp hang
 alert( regexp.test(str) );
 ```
 
-To be fair, let's note that some regular expression engines can handle such a search effectively. But most of them can't. Browser engines usually hang (Google Chrome can handle such a search since version 88 due to a new experimental regular expression engine shipped in V8, JavaScript engine for browsers and Node.js).
+To be fair, let's note that some regular expression engines can handle such a search effectively, while some can't.
+
+For example, V8 engine version starting from 8.8 can handle such a search (so Google Chrome 88 doesn't hang here).
 
 ## Simplified example
 
