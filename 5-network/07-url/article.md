@@ -65,7 +65,7 @@ Here's the cheatsheet for URL components:
 ```smart header="We can pass `URL` objects to networking (and most other) methods instead of a string"
 We can use a `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a URL-string is expected.
 
-Generally, `URL` object can be passed to any method instead of a string, as most method will perform the string conversion, that turns a `URL` object into a string with full URL.
+Generally, the `URL` object can be passed to any method instead of a string, as most methods will perform the string conversion, that turns a `URL` object into a string with full URL.
 ```
 
 ## SearchParams "?..."
@@ -80,7 +80,7 @@ new URL('https://google.com/search?query=JavaScript')
 
 ...But parameters need to be encoded if they contain spaces, non-latin letters, etc (more about that below).
 
-So there's URL property for that: `url.searchParams`, an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
+So there's a URL property for that: `url.searchParams`, an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
 
 It provides convenient methods for search parameters:
 
@@ -201,7 +201,7 @@ So we should use only `encodeURIComponent` for each search parameter, to correct
 ````smart header="Encoding difference compared to `URL`"
 Classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams) are based on the latest URI specification: [RFC3986](https://tools.ietf.org/html/rfc3986), while `encode*` functions are based on the obsolete version [RFC2396](https://www.ietf.org/rfc/rfc2396.txt).
 
-There are few differences, e.g. IPv6 addresses are encoded differently:
+There are a few differences, e.g. IPv6 addresses are encoded differently:
 
 ```js run
 // valid url with IPv6 address
