@@ -68,7 +68,7 @@ if (cond) {
 
 ## The "else" clause
 
-The `if` statement may contain an optional "else" block. It executes when the condition is false.
+The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
 
 For example:
 ```js run
