@@ -155,7 +155,7 @@ We need to create a range, that:
   range.setStart(p.firstChild, 2);
   range.setEnd(p.querySelector('b').firstChild, 3);
 
-  alert(range); // ample: italic and bol
+  console.log(range); // ample: italic and bol
 
   // use this range for selection (explained later)
   window.getSelection().addRange(range);
@@ -244,7 +244,7 @@ Click buttons to run methods on the selection, "resetExample" to reset it.
       let newNode = document.createElement('u');
       try {
         range.surroundContents(newNode);
-      } catch(e) { alert(e) }
+      } catch(e) { console.log(e) }
     },
     resetExample() {
       p.innerHTML = `Example: <i>italic</i> and <b>bold</b>`;
