@@ -274,7 +274,7 @@ let target = "as";
 
 *!*
 let pos = -1;
-while ((pos = str.indexOf(target, pos += target.length)) != -1) {
+while ((pos = str.indexOf(target, pos + target.length)) != -1) {
   alert( pos );
 }
 */!*
