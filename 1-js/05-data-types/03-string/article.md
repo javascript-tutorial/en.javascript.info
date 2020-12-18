@@ -266,7 +266,7 @@ while (true) {
 }
 ```
 
-The same algorithm can be layed out shorter:
+The same algorithm can be layed out shorter and more efficient:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -274,7 +274,7 @@ let target = "as";
 
 *!*
 let pos = -1;
-while ((pos = str.indexOf(target, pos + 1)) != -1) {
+while ((pos = str.indexOf(target, pos += target.length)) != -1) {
   alert( pos );
 }
 */!*
