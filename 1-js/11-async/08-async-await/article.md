@@ -139,6 +139,8 @@ But we can wrap it into an anonymous async function, like this:
   ...
 })();
 ```
+
+P.S. The notable exception is V8 engine version 8.9+, where top-level await works in [modules](info:modules).
 ````
 
 ````smart header="`await` accepts \"thenables\""
