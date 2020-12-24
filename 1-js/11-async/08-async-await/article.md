@@ -27,7 +27,7 @@ f().then(alert); // 1
 ...We could explicitly return a promise, which would be the same:
 
 ```js run
-async function f() {
+function f() {
   return Promise.resolve(1);
 }
 
