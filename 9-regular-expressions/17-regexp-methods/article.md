@@ -104,7 +104,7 @@ But we can split by a regular expression, the same way:
 alert('12, 34, 56'.split(/,\s*/)) // array of ['12', '34', '56']
 ```
 
-Also we can use `limit` for limit output, like this:
+Also we can use `limit` to limit output, like this:
 
 ```js run
 alert('12-34-56'.split('-', 2)) // array of ['12', '34']
