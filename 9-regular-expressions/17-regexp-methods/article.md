@@ -95,13 +95,13 @@ Splits the string using the regexp (or a substring) as a delimiter.
 We can use `split` with strings, like this:
 
 ```js run
-alert('12-34-56'.split('-')) // array of [12, 34, 56]
+alert('12-34-56'.split('-')) // array of ['12', '34', '56']
 ```
 
 But we can split by a regular expression, the same way:
 
 ```js run
-alert('12, 34, 56'.split(/,\s*/)) // array of [12, 34, 56]
+alert('12, 34, 56'.split(/,\s*/)) // array of ['12', '34', '56']
 ```
 
 ## str.search(regexp)
