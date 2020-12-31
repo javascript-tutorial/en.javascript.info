@@ -52,7 +52,7 @@ if (true) {
 }
 
 *!*
-alert(test); // Error: test is not defined
+alert(test); // ReferenceError: test is not defined
 */!*
 ```
 
@@ -82,7 +82,7 @@ function sayHi() {
 }
 
 sayHi();
-alert(phrase); // Error: phrase is not defined
+alert(phrase); // ReferenceError: phrase is not defined
 ```
 
 As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
@@ -231,7 +231,7 @@ The Function Expression is wrapped with parenthesis `(function {...})`, because 
 
 ```js run
 // Tries to declare and immediately call a function
-function() { // <-- Error: Function statements require a function name
+function() { // <-- SyntaxError: Function statements require a function name
 
   var message = "Hello";
 
