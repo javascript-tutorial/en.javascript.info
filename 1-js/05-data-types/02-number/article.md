@@ -383,7 +383,7 @@ JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaS
 A few examples:
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+: Returns a random number from 0 to 1 (not including 1).
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
@@ -400,7 +400,7 @@ A few examples:
     ```
 
 `Math.pow(n, power)`
-: Returns `n` raised the given power
+: Returns `n` raised to the given power.
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
