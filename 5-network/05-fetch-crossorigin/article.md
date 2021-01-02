@@ -280,7 +280,7 @@ Access-Control-Max-Age: 86400
 
 Now the browser can see that `PATCH` is in `Access-Control-Allow-Methods` and `Content-Type,API-Key` are in the list `Access-Control-Allow-Headers`, so it sends out the main request.
 
-If there's the header `Access-Control-Max-Age` with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached permissions. They will be sent directly.
+If there's the header `Access-Control-Max-Age` with a number of seconds, then the preflight permissions are cached for the given time. The response above will be cached for 86400 seconds (one day). Within this timeframe, subsequent requests will not cause a preflight. Assuming that they fit the cached allowances, they will be sent directly.
 
 ### Step 3 (actual request)
 
@@ -384,4 +384,4 @@ Additionally, to grant JavaScript access to any response headers except `Cache-C
     - `Access-Control-Allow-Methods` with a list of allowed methods,
     - `Access-Control-Allow-Headers` with a list of allowed headers,
     - `Access-Control-Max-Age` with a number of seconds to cache the permissions.
-- Then the actual request is sent and the previous "safe" scheme is applied.
+- Then the actual request is sent, and the previous "safe" scheme is applied.
