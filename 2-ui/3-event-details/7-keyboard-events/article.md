@@ -21,8 +21,6 @@ Try different key combinations in the text field.
 [codetabs src="keyboard-dump" height=480]
 ```
 
-If you'd like to see some of the many other properties inside a `KeyboardEvent`, you can use [Key.js](https://keyjs.dev), a similar keyboard event inspection tool.
-
 
 ## Keydown and keyup
 
