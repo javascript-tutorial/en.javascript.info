@@ -234,9 +234,9 @@ The basic syntax is:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
-We should have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. 
+We should have an existing object at the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
 
-Usually, that's a list of variable names in `{...}`, for instance:
+For instance:
 
 ```js run
 let options = {
