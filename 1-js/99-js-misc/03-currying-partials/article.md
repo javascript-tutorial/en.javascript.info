@@ -150,7 +150,7 @@ The result of `curry(func)` call is the wrapper `curried` that looks like this:
 function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
-  } else return curried.bind(this, ...args);
+  } else return curried.bind(this, ...args); // (2)
 };
 ```
 
