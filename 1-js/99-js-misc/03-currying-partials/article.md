@@ -121,7 +121,9 @@ function curry(func) {
   return function curried(...args) {
     if (args.length >= func.length) {
       return func.apply(this, args);
-    } else return curried.bind(this, ...args);
+    } else {
+      return curried.bind(this, ...args);
+    }
   };
 
 }
@@ -150,24 +152,18 @@ The result of `curry(func)` call is the wrapper `curried` that looks like this:
 function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
-  } else return curried.bind(this, ...args); // (2)
+  } else {
+    return curried.bind(this, ...args); // (2)
+  }
 };
 ```
 
 When we run it, there are two `if` execution branches:
 
-1. Call now: if passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
-2. Get a partial: otherwise, `func` is not called yet. Instead, a new bounded function using curried is returned, that takes the `...args` i.e. the current arguments as pre-specified. Then on a new call, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
+2. Otherwise, get a partial: we don't call `func` just yet. Instead, `curried.bind(this, ...args)` returns a "bound" function: the same as `curried`, but with pre-set `this` and pre-specified arguments. In other words, this is exactly where the partial variant of function is created, with first arguments fixed.
 
-For instance, let's see what happens in the case of `sum(a, b, c)`. Three arguments, so `sum.length = 3`.
-
-For the call `curried(1)(2)(3)`:
-
-1. The first call `curried(1)` returns a new bounded `curried` with `1` as pre-specified argument.
-2. The bounded `curried` is called with `(2)`: it takes previous args (`1`) due to bind, and new leading argument `(2)` and calls `curried(2)`. As the argument count is still less than 3, `curry` returns new bounded `curried` with (`1`, `2`) as pre-specified arguments.
-3. The bounded `curried` is called again with `(3)`, for the next call `curried(3)` takes previous args (`1`, `2`) and new leading argument `3`, making the call `curried(3)` -- there are `3` arguments at last, they are given to the original function.
-
-If that's still not obvious, just trace the calls sequence in your mind or on paper.
+Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
 
 ```smart header="Fixed-length functions only"
 The currying requires the function to have a fixed number of arguments.
