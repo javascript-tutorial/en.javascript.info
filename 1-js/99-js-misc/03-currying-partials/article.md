@@ -122,7 +122,9 @@ function curry(func) {
     if (args.length >= func.length) {
       return func.apply(this, args);
     } else {
-      return curried.bind(this, ...args);
+      return function(...args2) {
+        return curried.apply(this, args.concat(args2));
+      }
     }
   };
 
@@ -153,7 +155,9 @@ function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
   } else {
-    return curried.bind(this, ...args); // (2)
+    return function(...args2) { // (2)
+      return curried.apply(this, args.concat(args2));
+    }
   }
 };
 ```
@@ -161,7 +165,7 @@ function curried(...args) {
 When we run it, there are two `if` execution branches:
 
 1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
-2. Otherwise, get a partial: we don't call `func` just yet. Instead, `curried.bind(this, ...args)` returns a "bound" function: the same as `curried`, but with pre-set `this` and pre-specified arguments. In other words, this is exactly where the partial variant of function is created, with first arguments fixed.
+2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
 
 Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
 
