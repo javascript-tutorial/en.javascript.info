@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Multiply numeric property values by 2
+# Multiply number typed property values by 2
 
-Create a function `multiplyNumeric(obj)` that multiplies all numeric property values of `obj` by `2`.
+Create a function `multiplyNumeric(obj)` that multiplies all number typed property values of `obj` by `2`.
 
 For instance:
 
