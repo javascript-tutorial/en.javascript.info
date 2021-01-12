@@ -173,18 +173,23 @@ Then `?.()` checks the left part: if the admin function exists, then it runs (th
 The `?.[]` syntax also works, if we'd like to use brackets `[]` to access properties instead of dot `.`. Similar to previous cases, it allows to safely read a property from an object that may not exist.
 
 ```js run
-let user1 = {
-  firstName: "John"
+let user = {
+  "first name": "Sherlock",
+  "house address": {
+      "street name": "Baker Street",
+      "door number": "221b"
+  }
 };
 
-let user2 = null; // Imagine, we couldn't authorize the user
 
-let key = "firstName";
+alert( user?.["first name"] ); // Sherlock
 
-alert( user1?.[key] ); // John
-alert( user2?.[key] ); // undefined
+alert( user?.["house address"]?.["street name"] ); // Baker Street
+alert( user?.["house address"]?.["door number"] ); // 221b
 
-alert( user1?.[key]?.something?.not?.existing); // undefined
+// "office address" object doen't exist in user
+alert( user?.["office address"]?.["street name"]); // undefined
+alert( user?.["office address"]?.["door number"]); // undefined
 ```
 
 Also we can use `?.` with `delete`:
