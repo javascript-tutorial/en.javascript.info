@@ -74,7 +74,7 @@ That's why the optional chaining `?.` was added to the language. To solve this p
 
 ## Optional chaining
 
-The optional chaining `?.` stops the evaluation if the part before `?.` is `undefined` or `null` and returns that part.
+The optional chaining `?.` stops the evaluation if the part before `?.` is `undefined` or `null` and returns that part as `undefined`.
 
 **Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.**
 
