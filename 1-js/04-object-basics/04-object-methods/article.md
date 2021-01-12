@@ -60,6 +60,24 @@ user.sayHi = sayHi;
 user.sayHi(); // Hello!
 ```
 
+Also we could use a pre-declared function and property value shorthand concept to create a method, like this:
+
+```js run
+*!*
+// first, declare
+function sayHi() {
+  alert("Hello");
+}
+
+// then use property value shorthand to add as method
+let user = {
+  sayHi
+};
+*/!*
+
+user.sayHi(); // Hello!
+```
+
 ```smart header="Object-oriented programming"
 When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
 
