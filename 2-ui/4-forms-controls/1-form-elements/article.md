@@ -177,18 +177,16 @@ It stores only the HTML that was initially on the page, not the current value.
 A `<select>` element has 3 important properties:
 
 1. `select.options` -- the collection of `<option>` subelements,
-2. `select.value` -- the value of the currently selected `<option>`,
-3. `select.selectedIndex` -- the number of the currently selected `<option>`.
+2. `select.value` -- the *value* of the currently selected `<option>`,
+3. `select.selectedIndex` -- the *number* of the currently selected `<option>`.
 
 They provide three different ways of setting a value for a `<select>`:
 
-1. Find the corresponding `<option>` element and set `option.selected` to `true`.
-2. Set `select.value` to the value.
-3. Set `select.selectedIndex` to the number of the option.
+1. Find the corresponding `<option>` element (e.g. among `select.options`) and set its `option.selected` to `true`.
+2. If we know a new value: set `select.value` to the new value.
+3. If we know the new option number: set `select.selectedIndex` to that number.
 
-The first way is the most obvious, but `(2)` and `(3)` are usually more convenient.
-
-Here is an example:
+Here is an example of all three methods:
 
 ```html run
 <select id="select">
@@ -199,17 +197,18 @@ Here is an example:
 
 <script>
   // all three lines do the same thing
-  select.options[2].selected = true;
+  select.options[2].selected = true; 
   select.selectedIndex = 2;
   select.value = 'banana';
+  // please note: options start from zero, so index 2 means the 3rd option.
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. Although such functionality is available, it is rarely used. 
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used though.
 
-In cases that you have to, then use the first way: add/remove the `selected` property from `<option>` subelements.
+For multiple selected values, use the first way of setting values: add/remove the `selected` property from `<option>` subelements.
 
-We can get their collection as `select.options`, for instance:
+Here's an example of how to get selected values from a multi-select:
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -232,31 +231,31 @@ The full specification of the `<select>` element is available in the specificati
 
 ### new Option
 
-This is rarely used on its own. But there's still an interesting thing.
-
-In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create an `<option>` element:
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Parameters:
+This syntax is optional. We can use `document.createElement('option')` and set attributes manually. Still, it may be shorter, so here are the parameters:
 
 - `text` -- the text inside the option,
 - `value` -- the option value,
 - `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
 - `selected` -- if `true`, then the option is selected.
 
-There may be a small confusion about `defaultSelected` and `selected`. That's simple: `defaultSelected` sets HTML-attribute, that we can get using `option.getAttribute('selected')`. And `selected` - whether the option is selected or not, that's more important. Usually both values are either set to `true` or not set (same as `false`).
+The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.
 
-For instance:
+In practice, we usually should set both values to `true` or `false` (or omit, that's the same as `false`).
+
+For instance, here's a new "unselected" option:
 
 ```js
 let option = new Option("Text", "value");
 // creates <option value="value">Text</option>
 ```
 
-The same element selected:
+The same option, but selected:
 
 ```js
 let option = new Option("Text", "value", true, true);
