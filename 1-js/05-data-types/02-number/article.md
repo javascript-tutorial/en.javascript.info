@@ -133,7 +133,7 @@ There are several built-in functions for rounding:
 : Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`, the middle case: `3.5` rounds up to `4` too.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
