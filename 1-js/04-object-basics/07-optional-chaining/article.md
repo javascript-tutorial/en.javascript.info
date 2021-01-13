@@ -74,12 +74,12 @@ That's why the optional chaining `?.` was added to the language. To solve this p
 
 ## Optional chaining
 
-The optional chaining `?.` stops the evaluation if the part before `?.` is `undefined` or `null` and returns that part.
+The optional chaining `?.` stops the evaluation if the value before `?.` is `undefined` or `null` and returns `undefined`.
 
 **Further in this article, for brevity, we'll be saying that something "exists" if it's not `null` and not `undefined`.**
 
 In other words, `value?.prop`:
-- is the same as `value.prop` if `value` exists,
+- works as `value.prop`, if `value` exists,
 - otherwise (when `value` is `undefined/null`) it returns `undefined`.
 
 Here's the safe way to access `user.address.street` using `?.`:
