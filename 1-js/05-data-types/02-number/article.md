@@ -16,21 +16,29 @@ Imagine we need to write 1 billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+We also can use underscope `_` as the separator:
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+```js
+let billion = 1_000_000_000;
+```
+
+Here the underscore `_` plays the role of the "syntactic sugar", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+
+In real life though, we try to avoid writing long sequences of zeroes. We're too lazy for that. We'll try to write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
 
 ```js run
 let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+In other words, `e` multiplies the number by `1` with the given zeroes count.
 
 ```js
-1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000
+1e3 = 1 * 1000 // e3 means *1000
+1.23e6 = 1.23 * 1000000 // e6 means *1000000
 ```
 
 Now let's write something very small. Say, 1 microsecond (one millionth of a second):
