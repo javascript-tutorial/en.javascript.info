@@ -14,8 +14,8 @@ Simply put, "reachable" values are those that are accessible or usable somehow. 
 
     For instance:
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
+    - The currently executing function, its local variables and parameters.
+    - Other functions on the current chain of nested calls, their local variables and parameters.
     - Global variables.
     - (there are some other, internal ones as well)
 
