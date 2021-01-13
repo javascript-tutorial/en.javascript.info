@@ -16,7 +16,7 @@ Imagine we need to write 1 billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-We also can use underscope `_` as the separator:
+We also can use underscore `_` as the separator:
 
 ```js
 let billion = 1_000_000_000;
