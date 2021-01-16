@@ -36,9 +36,9 @@ For instance:
 </script>
 ```
 
-There may be multiple elements with the same name. This is often the case for radio buttons or checkboxes.
+There may be multiple elements with the same name. This is typical with radio buttons and checkboxes.
 
-In these cases, `form.elements[name]` is a *collection*. For instance:
+In that case, `form.elements[name]` is a *collection*. For instance:
 
 ```html run height=40
 <form>
