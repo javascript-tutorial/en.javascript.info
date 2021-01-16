@@ -8,7 +8,7 @@ Working with forms will be much more convenient when we learn them.
 
 Document forms are members of the special collection `document.forms`.
 
-That's a so-called <dfn>"named collection"</dfn>: it's both named and ordered. We can use both the name or the number in the document to get the form.
+That's a so-called **"named collection"**: it's both named and ordered. We can use both the name or the number in the document to get the form.
 
 ```js no-beautify
 document.forms.my - the form with name="my"
@@ -38,7 +38,7 @@ For instance:
 
 There may be multiple elements with the same name. This is often the case for radio buttons or checkboxes.
 
-In these cases, `form.elements[name]` is a _collection_. For instance:
+In these cases, `form.elements[name]` is a *collection*. For instance:
 
 ```html run height=40
 <form>
