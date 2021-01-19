@@ -1,30 +1,35 @@
 # Variables
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+To do its job, our code needs needs to store and process information.
+
+The exact kind of information depends on the application.
+
+For example:
+
+- An online shop -- the information includes goods being sold and a shopping cart.
+- A chat application -- the information includes users, messages, etc.
 
 Variables are used to store this information.
 
 ## A variable
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goods, visitors and so on.
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares*) a variable with the name "message":
+The statement below creates (in formal terms: *declares*) a variable with the name "message":
 
 ```js
 let message;
 ```
 
-Now, we can put some data into it by using the assignment `=`:
+Now we can put some data into it by using the assignment `=`:
 
 ```js
 let message;
 
 *!*
-message = "Hello"; // store the string
+message = "Hello"; // store the string "Hello"
 */!*
 ```
 
@@ -42,7 +47,7 @@ alert(message); // shows the variable content
 To be concise, we can combine the variable declaration and assignment into a single line:
 
 ```js run
-let message = "Hello!"; // define the variable and assign the value
+let message = "Hello!"; // define the variable and assign the value to it
 
 alert(message); // Hello!
 ```
@@ -153,7 +158,7 @@ let message = "Two"; // SyntaxError: 'message' has already been declared
 So, we should declare a variable once and then refer to it without `let`.
 ````
 
-````warn header="Without `use strict` it's possible to assign to an undeclared variable"
+````warn header="Without `use strict`: it's possible to assign to an undeclared variable"
 Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`.
 
 This still works now, without strict mode:
@@ -175,8 +180,9 @@ This is a bad practice and would cause an error in strict mode:
 num = 5; // error: num is not defined
 */!*
 ```
-````
 
+We provide details about how things work without `use strict` just to make sure you won't be surprised by such scripts. Luckily, there aren't many differences. As said before, we should always be in the strict mode.
+````
 
 ### Variable naming
 

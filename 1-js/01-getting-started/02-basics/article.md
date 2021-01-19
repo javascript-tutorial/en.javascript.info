@@ -3,7 +3,9 @@
 
 ## Statements
 
-Statements are syntax constructs and commands that perform actions, make JavaScript "do" something.
+Just like a human speech consists of sentences, JavaScript code consists of *statements*.
+
+Statements are commands and syntax constructs that perform actions, "do" something.
 
 Here's an example of a statement:
 
@@ -17,7 +19,7 @@ We can have as many statements in our code as we want.
 
 Statements can be separated with a semicolon.
 
-For example, here we split "Hello World" into two alerts:
+For example, we can split "Hello World" into two messages, one after the other:
 
 ```js run no-beautify
 alert("Hello"); alert("World");
@@ -30,33 +32,35 @@ alert("Hello");
 alert("World");
 ```
 
-## Semicolons..or not?
+### Semicolons..or not?
 
-A semicolon may be omitted in most cases when a line break exists.
+A semicolon may be omitted in most cases when a line break exists beween statements.
 
-This would also work:
+This code is the same as above, just without semicolons:
 
 ```js run no-beautify
 alert("Hello")
 alert("World")
 ```
 
-Usually, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+It also works, because usually JavaScript interprets a line break as an "implicit" semicolon. This is called an "automatic semicolon insertion".
 
-But there are exceptions, like this:
+There are exceptions for that rule, for example:
 
 ```js run no-beautify
 alert(1 +
 2);
 ```
 
-The code outputs `3` because JavaScript does not insert semicolons after the plus `+`. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an incomplete expression, that's continued on the next line. And in this case that works as intended.
+This code outputs `3`, same as a single-line `alert(1 + 2)`. Here JavaScript does not treat the line-break after `+` as the end of the statement. 
+
+Why so? It's intuitively obvious that if the line ends with a plus `+`, then the expression is incomplete and will be continued on the next line. JavaScript "understands" that too. And in this case that works as intended.
 
 **But there are situations where our intuition differs from JavaScript auto-insertion rules.**
 
 That may lead to subtle errors.
 
-````spoiler header="Read more about it"
+````spoiler header="See an example of such error"
 
 If you're curious to see a concrete example of such an error, check this code out:
 
@@ -96,9 +100,9 @@ alert("There will be an error")[1, 2].forEach(alert)
 But such a merge in this case is just wrong, hence the error. This can happen in other situations as well.
 ````
 
-To prevent such errors, we recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community.
+To prevent such errors, we recommend putting semicolons between statements, even if they are separated by newlines.
 
-Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer, especially for a beginner, to use them.
 
 ## Comments
 
@@ -106,9 +110,9 @@ As time goes on, programs become more and more complex. It becomes necessary to 
 
 Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
 
-**One-line comments start with two forward slash characters `//`.**
+**One-line comments start with two forward slash characters `//`. The rest of the line is a comment.**
 
-The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
+Such comment may occupy a full line of its own or follow a statement.
 
 Like here:
 ```js run
@@ -117,6 +121,8 @@ alert("Hello");
 
 alert("World"); // This comment follows the statement
 ```
+
+For longer, descriptive comments that span multiple lines, we can use the `/* ... */` syntax.
 
 **Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
 
@@ -130,9 +136,9 @@ alert("Hello");
 alert("World");
 ```
 
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
+The content of comments is ignored, so if we wrap a piece of code into `/* ... */`, it won't execute.
 
-Sometimes it can be handy to temporarily disable a part of code:
+It can be handy to temporarily disable a part of code:
 
 ```js run
 /* Commenting out the code
@@ -142,7 +148,9 @@ alert("World");
 ```
 
 ```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). 
+
+For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
 ```
 
 ````warn header="Nested comments are not supported!"
@@ -152,7 +160,7 @@ Such code will die with an error:
 
 ```js run no-beautify
 /*
-  /* nested comment ?!? */
+  /* nested comment leads to an error! */
 */
 alert( "World" );
 ```
@@ -164,19 +172,21 @@ Comments increase the overall code footprint, but that's not a problem at all. T
 
 ## Strict mode
 
-JavaScript appeared many years ago, in 1995. Then ,for a long time, it evolved without compatibility issues. New features were added to the language while old functionality didn't change.
+JavaScript appeared in 1995 as a simple, browser-only language. Then, for a long time, it evolved without compatibility issues. New features were added to the language while old functionality didn't change.
 
-That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript's creators got stuck in the language forever.
+That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript creators got stuck in the language forever.
 
 This was the case until 2009, when the 5th version of the standard appeared. It added new features to the language and modified some of the existing ones. 
 
-Now the important part. 
+Now the important part about it. 
 
-**To keep the old code working, these newer modifications are off by default.** 
+**To keep the old code working, the newer 2009+ modifications are off by default.** 
+
+Yes, a lot of time has passed, but still it's so. 
 
 We need to explicitly enable them with a special directive: `"use strict"`
 
-With that directive on top the script runs in so-called "strict mode". Or, we'd better say "modern mode", because that's what it essentially is.
+A script with the `"use strict"` directive on top runs in so-called "strict mode". Or we'd better say "modern mode", because that's what it essentially is.
 
 ![](use-strict.svg)
 
@@ -184,4 +194,4 @@ Some JavaScript features enable strict mode automatically, e.g. classes and modu
 
 **Here, in the tutorial, we'll always use strict mode, unless explicitly stated otherwise.**
 
-We're studying modern JavaScript after all. But you'll also see notes about how things work without `use strict`, just in case you come across an old script.
+We're studying modern JavaScript after all. But you'll also see notes about how things work without `use strict`, just in case you forget to put that directive or meet a script without it.
