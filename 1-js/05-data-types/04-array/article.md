@@ -438,7 +438,7 @@ This operator has no special treatment for arrays, it works with them as with an
 Let's recall the rules:
 
 - Two objects are equal `==` only if they're references to the same object.
-- If one of arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
+- If one of the arguments of `==` is an object, and the other one is a primitive, then the object gets converted to primitive, as explained in the chapter <info:object-toprimitive>.
 - ...With an exception of `null` and `undefined` that equal `==` each other and nothing else.
 
 The strict comparison `===` is even simpler, as it doesn't convert types. 
