@@ -6,7 +6,7 @@ importance: 5
 
 Here the function `makeUser` returns an object.
 
-What is the result of accessing its `ref`? Why?
+What is the result of accessing its `ref` in strict mode? Why?
 
 ```js
 function makeUser() {
