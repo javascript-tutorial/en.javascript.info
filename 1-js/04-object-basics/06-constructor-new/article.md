@@ -124,6 +124,7 @@ function User(name) {
 
 let john = User("John"); // redirects call to new User
 alert(john.name); // John
+alert(User('John').name); // John
 ```
 
 This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
