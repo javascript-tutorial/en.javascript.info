@@ -69,7 +69,7 @@ let sayMixin = {
 };
 
 let sayHiMixin = {
-  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
+  __proto__: sayMixin, // (or we could use Object.setPrototypeOf to set the prototype here)
 
   sayHi() {
     *!*
