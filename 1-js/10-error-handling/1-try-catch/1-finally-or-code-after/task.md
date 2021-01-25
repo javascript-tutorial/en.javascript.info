@@ -6,12 +6,12 @@ importance: 5
 
 Compare the two code fragments.
 
-1. The first one uses `finally` to execute the code after `try..catch`:
+1. The first one uses `finally` to execute the code after `try...catch`:
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     } finally {
     *!*
@@ -19,12 +19,12 @@ Compare the two code fragments.
     */!*
     }
     ```
-2. The second fragment puts the cleaning right after `try..catch`:
+2. The second fragment puts the cleaning right after `try...catch`:
 
     ```js
     try {
       work work
-    } catch (e) {
+    } catch (err) {
       handle errors
     }
 
