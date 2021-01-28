@@ -186,6 +186,19 @@ let clone = Object.assign({}, user);
 
 It copies all properties of `user` into the empty object and returns it.
 
+As an ES6 Javacscript addition, now we can also use the Spread operator `...` which provides us a more simple and elegant syntaxe:
+
+```js
+let user = {
+  name: "John",
+  age: 30
+};
+
+*!*
+let clone = {...user}
+*/!*
+```
+
 ## Nested cloning
 
 Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
