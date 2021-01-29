@@ -20,8 +20,8 @@ let hamster = {
 
   eat(food) {
 *!*
-    // assign to this.stomach instead of this.stomach.push
-    this.stomach = [food];
+    // conditional assignment
+    this.stomach ? this.stomach = [food] : this.stomach.push(food);
 */!*
   }
 };
