@@ -18,7 +18,7 @@ let controller = new AbortController();
 A controller is an extremely simple object.
 
 - It has a single method `abort()`,
-- And a single property `signal` that allows to set event liseners on it.
+- And a single property `signal` that allows to set event listeners on it.
 
 When `abort()` is called:
 - `controller.signal` emits the `"abort"` event.
