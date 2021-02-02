@@ -182,7 +182,7 @@ A `<select>` element has 3 important properties:
 
 They provide three different ways of setting a value for a `<select>`:
 
-1. Find the corresponding `<option>` element (e.g., among `select.options`) and set its `option.selected` to `true`.
+1. Find the corresponding `<option>` element (e.g. among `select.options`) and set its `option.selected` to `true`.
 2. If we know a new value: set `select.value` to the new value.
 3. If we know the new option number: set `select.selectedIndex` to that number.
 
