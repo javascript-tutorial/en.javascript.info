@@ -27,7 +27,7 @@ alert(window.gVar); // 5 (became a property of the global object)
 
 The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
 
 If we used `let` instead, such thing wouldn't happen:
 
