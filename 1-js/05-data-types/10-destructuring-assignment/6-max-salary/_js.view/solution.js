@@ -4,7 +4,7 @@ function topSalary(salaries) {
   let maxName = null;
 
   for(const [name, salary] of Object.entries(salaries)) {
-    if (max < salary) {
+    if (maxSalary < salary) {
       maxSalary = salary;
       maxName = name;
     }
