@@ -5,7 +5,7 @@ There's another very simple and concise syntax for creating functions, that's of
 It's called "arrow functions", because it looks like this:
 
 ```js
-let func = (arg1, arg2, ...argN) => expression
+let func = (arg1, arg2, ..., argN) => expression
 ```
 
 ...This creates a function `func` that accepts arguments `arg1..argN`, then evaluates the `expression` on the right side with their use and returns its result.
@@ -13,7 +13,7 @@ let func = (arg1, arg2, ...argN) => expression
 In other words, it's the shorter version of:
 
 ```js
-let func = function(arg1, arg2, ...argN) {
+let func = function(arg1, arg2, ..., argN) {
   return expression;
 };
 ```
