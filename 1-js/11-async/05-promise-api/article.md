@@ -1,6 +1,6 @@
 # Promise API
 
-There are 5 static methods in the `Promise` class. We'll quickly cover their use cases here.
+There are 6 static methods in the `Promise` class. We'll quickly cover their use cases here.
 
 ## Promise.all
 
