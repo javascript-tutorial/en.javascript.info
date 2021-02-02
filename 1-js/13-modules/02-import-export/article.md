@@ -362,7 +362,7 @@ export {User};
 
 Now users of our package can `import {login} from "auth/index.js"`.
 
-The syntax `export ... from ...` is just a shorter notation for such import-export:
+The syntax `export ... from ...` is just a shorter notation for such import-export, but note that the symbols do not become available inside the current module.
 
 ```js
 // 📁 auth/index.js
