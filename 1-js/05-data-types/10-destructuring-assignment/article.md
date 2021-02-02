@@ -151,7 +151,7 @@ We can swap more than two variables this way.
 
 ### The rest '...'
 
-Usually, if the array is longer when the list at the left, the "extra" items are omitted.
+Usually, if the array is longer than the list at the left, the "extra" items are omitted.
 
 For example, here only two items are taken, and the rest is just ignored:
 
