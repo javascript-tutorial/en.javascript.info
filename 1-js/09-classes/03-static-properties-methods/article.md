@@ -125,7 +125,7 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
-## Inheritance of static properties and methods
+## Inheritance of static properties and methods [#statics-and-inheritance]
 
 Static properties and methods are inherited.
 
