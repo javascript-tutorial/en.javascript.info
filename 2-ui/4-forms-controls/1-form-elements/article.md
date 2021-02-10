@@ -12,7 +12,7 @@ That's a so-called "named collection": it's both named and ordered. We can use b
 
 ```js no-beautify
 document.forms.my; // the form with name="my"
-document.forms[0]  // the first form in the document
+document.forms[0]; // the first form in the document
 ```
 
 When we have a form, then any element is available in the named collection `form.elements`.
