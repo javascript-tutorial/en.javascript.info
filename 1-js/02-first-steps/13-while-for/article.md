@@ -368,7 +368,7 @@ break label; // doesn't jumps to the label below
 label: for (...)
 ```
 
-A call to `break/continue` is only possible from inside a loop and the label must be somewhere above the directive.
+If we work with labeled loops, a call to `break/continue` is only possible from inside the loop and the label must be somewhere above the directive.
 ````
 
 ## Summary
