@@ -185,7 +185,7 @@ Omitting parentheses here is not considered a "good style", but the syntax is pe
 
 Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
 
-Of course, we can add to `this` not only properties, but methods as well.
+Of course, we can add `this` to, not only properties, but methods as well.
 
 For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
 
