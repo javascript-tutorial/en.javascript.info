@@ -18,6 +18,8 @@ The native interface to IndexedDB, described in the specification <https://www.w
 
 We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
 
+Please note the data stored is browser/user profile/site dependent. The local data is not meant to be shared among local users nor browser vendors. If the user switches to another browser, it will work on its own database.
+
 ## Open database
 
 To start working with IndexedDB, we first need to `open` (connect to) a database.
