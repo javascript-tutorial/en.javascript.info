@@ -107,7 +107,7 @@ alert( Boolean("") ); // false
 ```
 
 ````warn header="Please note: the string with zero `\"0\"` is `true`"
-Some languages (e.g: PHP, Perl) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
+Some languages (PHP and Perl, for example) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
 
 ```js run
 alert( Boolean("0") ); // true
