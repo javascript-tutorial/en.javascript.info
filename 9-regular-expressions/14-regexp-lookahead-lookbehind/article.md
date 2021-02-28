@@ -33,7 +33,7 @@ In other words, such pattern means that we're looking for `pattern:X` followed b
 
 That's only possible if patterns `pattern:Y` and `pattern:Z` aren't mutually exclusive.
 
-For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` only if it's followed by a space, and there's `30` somewhere after it:
+For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` that is followed by a space `pattern:(?=\s)`, and there's `30` somewhere after it `pattern:(?=.*30)`:
 
 ```js run
 let str = "1 turkey costs 30€";
