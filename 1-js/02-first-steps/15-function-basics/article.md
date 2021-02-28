@@ -154,7 +154,7 @@ showMessage('Ann', "What's up?"); // Ann: What's up? (**)
 
 When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: although the function changes `from`, the change is not seen outside out the function. This is because when functions receive primitive data types as arguments, they always get a copy of the value instead:
+Here's one more example: we have a variable `from` and pass it to the function. Please note: although the function changes `from`, the change is not seen outside the function. This is because when functions receive primitive data types as arguments, they always get a copy of the value instead:
 
 
 ```js run
