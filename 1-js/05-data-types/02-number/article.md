@@ -150,7 +150,7 @@ Here's the table to summarize the differences between them:
 
 These functions cover all of the possible ways to deal with the decimal part of a number. But what if we'd like to round the number to `n-th` digit after the decimal?
 
-For instance, we have `1.2345` and want to round it to 2 digits, getting only `1.23`.
+For instance, we have `1.2385` and want to round it to 2 digits, getting only `1.24`.
 
 There are two ways to do so:
 
@@ -158,23 +158,23 @@ There are two ways to do so:
 
     For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
     ```js run
-    let num = 1.23456;
+    let num = 1.2385;
 
-    alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+    alert( Math.round(num * 100) / 100 ); // 1.2385 -> 123.85 -> 124 -> 1.24
     ```
 
 2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
 
     ```js run
-    let num = 12.34;
-    alert( num.toFixed(1) ); // "12.3"
+    let num = 12.38;
+    alert( num.toFixed(1) ); // "12.4"
     ```
 
     This rounds up or down to the nearest value, similar to `Math.round`:
 
     ```js run
-    let num = 12.36;
-    alert( num.toFixed(1) ); // "12.4"
+    let num = 12.31;
+    alert( num.toFixed(1) ); // "12.3"
     ```
 
     Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
