@@ -318,7 +318,7 @@ alert('Done!');
 
 We need a way to stop the process if the user cancels the input.
 
-The ordinary `break` after `input` would only break the inner loop. That's not sufficient--labels, come to the rescue!
+The ordinary `break` after `input` would only break the inner loop. That's not sufficient -- labels, come to the rescue!
 
 A *label* is an identifier with a colon before a loop:
 ```js
