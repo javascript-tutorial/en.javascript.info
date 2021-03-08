@@ -90,8 +90,6 @@ user = {
 
 As demonstrated, we can omit `"function"` and just write `sayHi()`.
 
-To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
-
 ## "this" in methods
 
 It's common that an object method needs to access the information stored in the object to do its job.
