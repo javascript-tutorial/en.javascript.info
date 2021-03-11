@@ -14,9 +14,9 @@ IndexedDB is a database that is built into browser, much more powerful than `loc
 
 That power is usually excessive for traditional client-server apps. IndexedDB is intended for offline apps, to be combined with ServiceWorkers and other technologies.
 
-The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
+The native interface to IndexedDB, described in the specification [IndexedDB](https://www.w3.org/TR/IndexedDB), is event-based.
 
-We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
+We can also use `async/await` with the help of a promise-based wrapper, like [jakearchibald's idb](https://github.com/jakearchibald/idb). That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
 
 ## Open database
 
@@ -183,7 +183,7 @@ An example of an object that can't be stored: an object with circular references
 
 **There must be a unique `key` for every value in the store.**     
 
-A key must be one of the these types - number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
+A key must be one of the these types -- number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
 
 ![](indexeddb-structure.svg)
 
@@ -475,7 +475,7 @@ There are two main types of search in an object store:
 1. By a key or a key range. That is: by `book.id` in our "books" storage.
 2. By another object field, e.g. `book.price`.
 
-First let's deal with the keys and key ranges `(1)`.
+First let's deal with the keys and key ranges.
 
 Methods that involve searching support either exact keys or so-called "range queries" -- [IDBKeyRange](https://www.w3.org/TR/IndexedDB/#keyrange) objects that specify a "key range".
 
@@ -511,7 +511,7 @@ books.getAll(IDBKeyRange.upperBound('html', true))
 // get all books
 books.getAll()
 
-// get all keys: id > 'js'
+// get all keys with id > 'js'
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
