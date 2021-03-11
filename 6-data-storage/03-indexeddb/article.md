@@ -790,7 +790,7 @@ The workaround is same as when working with native IndexedDB: either make a new 
 
 Internally, the wrapper performs a native IndexedDB request, adding `onerror/onsuccess` to it, and returns a promise that rejects/resolves with the result.
 
-That works fine most of the time. The examples are at the lib page <https://github.com/jakearchibald/idb>.
+That works fine most of the time. The examples are at the lib page of [idb](https://github.com/jakearchibald/idb).
 
 In few rare cases, when we need the original `request` object, we can access it as `promise.request` property of the promise:
 
