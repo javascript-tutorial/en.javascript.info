@@ -511,7 +511,7 @@ books.getAll(IDBKeyRange.upperBound('html', true))
 // get all books
 books.getAll()
 
-// get all keys with id > 'js'
+// get all keys where id > 'js'
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
