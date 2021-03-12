@@ -528,7 +528,7 @@ The characters are compared by their numeric code. The greater code means that t
 - All lowercase letters go after uppercase letters because their codes are greater.
 - Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
 
-### Correct comparisons
+### Correct comparisons [#correct-comparisons]
 
 The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
 
