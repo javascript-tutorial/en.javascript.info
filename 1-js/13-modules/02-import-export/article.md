@@ -428,14 +428,14 @@ You can check yourself by reading them and recalling what they mean:
 
 Import:
 
-- Named exports from module:
+- Importing named exports:
   - `import {x [as y], ...} from "module"`
-- Default export:  
+- Importing the default export:  
   - `import x from "module"`
   - `import {default as x} from "module"`
-- Everything:
+- Import all:
   - `import * as obj from "module"`
-- Import the module (its code runs), but do not assign it to a variable:
+- Import the module (its code runs), but do not assign any of its exports to variables:
   - `import "module"`
 
 We can put `import/export` statements at the top or at the bottom of a script, that doesn't matter.
