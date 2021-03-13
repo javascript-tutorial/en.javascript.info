@@ -133,7 +133,7 @@ If we don't listen for the `versionchange` event and don't close the old connect
 
 Here's the code to correctly handle the parallel upgrade.
 
-It installs an `onversionchange` handler after the database is opened, that closes the old connection:
+It installs, after the database is opened, an `onversionchange` handler that closes the connection:
 
 ```js
 let openRequest = indexedDB.open("store", 2);
