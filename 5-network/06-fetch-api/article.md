@@ -171,7 +171,7 @@ The `redirect` option allows to change that:
 
 - **`"follow"`** -- the default, follow HTTP-redirects,
 - **`"error"`** -- error in case of HTTP-redirect,
-- **`"manual"`** -- don't follow HTTP-redirect, but `response.url` will be the new URL, and `response.redirected` will be `true`, so that we can perform the redirect manually to the new URL (if needed).
+- **`"manual"`** -- allows to process HTTP-redirects manually. In case of redirect, we'll get a special response object, with `response.type="opaqueredirect"` and and zeroed/empty status and most other properies.
 
 ## integrity
 
