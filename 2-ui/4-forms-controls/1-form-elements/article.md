@@ -8,7 +8,7 @@ Working with forms will be much more convenient when we learn them.
 
 Document forms are members of the special collection `document.forms`.
 
-That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
+That's a so-called *"named collection"*: it's both named and ordered. We can use both the name or the number in the document to get the form.
 
 ```js no-beautify
 document.forms.my; // the form with name="my"
@@ -36,9 +36,9 @@ For instance:
 </script>
 ```
 
-There may be multiple elements with the same name, that's often the case with radio buttons.
+There may be multiple elements with the same name. This is typical with radio buttons and checkboxes.
 
-In that case `form.elements[name]` is a collection, for instance:
+In that case, `form.elements[name]` is a *collection*. For instance:
 
 ```html run height=40
 <form>
@@ -119,7 +119,7 @@ That's easy to see in an example:
 </script>
 ```
 
-That's usually not a problem, because we rarely change names of form elements.
+That's usually not a problem, however, because we rarely change names of form elements.
 
 ````
 
@@ -204,7 +204,7 @@ Here is an example of all three methods:
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used though.
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used, though.
 
 For multiple selected values, use the first way of setting values: add/remove the `selected` property from `<option>` subelements.
 
@@ -246,7 +246,7 @@ This syntax is optional. We can use `document.createElement('option')` and set a
 
 The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.
 
-In practice, we usually should set both values to `true` or `false` (or omit, that's the same as `false`).
+In practice, one should usually set _both_ values to `true` or `false`. (Or, simply omit them; both default to `false`.)
 
 For instance, here's a new "unselected" option:
 
@@ -289,9 +289,9 @@ Form navigation:
 `element.form`
 : Elements reference their form in the `form` property.
 
-Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
+Value is available as `input.value`, `textarea.value`, `select.value`, etc. (For checkboxes and radio buttons, use `input.checked` to determine whether a value is selected.)
 
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
+For `<select>`, one can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
 
 These are the basics to start working with forms. We'll meet many examples further in the tutorial.
 
