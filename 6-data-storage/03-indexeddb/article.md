@@ -475,9 +475,9 @@ There are two main types of search in an object store:
 1. By a key or a key range. That is: by `book.id` in our "books" storage.
 2. By another object field, e.g. `book.price`.
 
-First let's deal with the keys and key ranges `(1)`.
+First let's deal with the first type of search: by a key.
 
-Methods that involve searching support either exact keys or so-called "range queries" -- [IDBKeyRange](https://www.w3.org/TR/IndexedDB/#keyrange) objects that specify a "key range".
+Searching methods support both exact keys and so-called "ranges" -- [IDBKeyRange](https://www.w3.org/TR/IndexedDB/#keyrange) objects that specify an acceptable "key range".
 
 Ranges are created using following calls:
 
@@ -486,7 +486,7 @@ Ranges are created using following calls:
 - `IDBKeyRange.bound(lower, upper, [lowerOpen], [upperOpen])` means: between `lower` and `upper`. If the open flags is true, the corresponding key is not included in the range.
 - `IDBKeyRange.only(key)` -- a range that consists of only one `key`, rarely used.
 
-All searching methods accept a `query` argument that can be either an exact key or a key range:
+Searching methods accept a `query` argument that can be either an exact key or a key range:
 
 - `store.get(query)` -- search for the first value by a key or a range.
 - `store.getAll([query], [count])` -- search for all values, limit by `count` if given.
@@ -511,7 +511,7 @@ books.getAll(IDBKeyRange.upperBound('html', true))
 // get all books
 books.getAll()
 
-// get all keys: id > 'js'
+// get all keys, where id > 'js'
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
