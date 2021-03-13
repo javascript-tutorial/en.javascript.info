@@ -363,12 +363,14 @@ Labels do not allow us to jump into an arbitrary place in the code.
 
 For example, it is impossible to do this:
 ```js
-break label; // doesn't jumps to the label below
+break label; // jump to the label below (doesn't work)
 
 label: for (...)
 ```
 
-A call to `break/continue` is only possible from inside a loop and the label must be somewhere above the directive.
+A call to `continue` is only possible from inside the loop.
+
+The `break` directive may be placed before code blocks too, as `label: { ... }`, but it's almost never used like that. And it also works only inside-out.
 ````
 
 ## Summary
