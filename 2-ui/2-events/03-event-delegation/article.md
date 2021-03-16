@@ -5,7 +5,7 @@ Capturing and bubbling allow us to implement one of most powerful event handling
 
 The idea is that if we have a lot of elements handled in a similar way, then instead of assigning a handler to each of them -- we put a single handler on their common ancestor.
 
-In the handler we get `event.target`, see where the event actually happened and handle it.
+In the handler we get `event.target` to see where the event actually happened and handle it.
 
 Let's see an example -- the [Ba-Gua diagram](http://en.wikipedia.org/wiki/Ba_gua) reflecting the ancient Chinese philosophy.
 
@@ -101,8 +101,8 @@ table.onclick = function(event) {
 
 Explanations:
 1. The method `elem.closest(selector)` returns the nearest ancestor that matches the selector. In our case we look for `<td>` on the way up from the source element.
-2. If `event.target` is not inside any `<td>`, then the call returns `null`, and we don't have to do anything.
-3. In case of nested tables, `event.target` may be a `<td>` lying outside of the current table. So we check if that's actually *our table's* `<td>`.
+2. If `event.target` is not inside any `<td>`, then the call returns immediately, as there's nothing to do.
+3. In case of nested tables, `event.target` may be a `<td>`, but lying outside of the current table. So we check if that's actually *our table's* `<td>`.
 4. And, if it's so, then highlight it.
 
 As the result, we have a fast, efficient highlighting code, that doesn't care about the total number of `<td>` in the table.
@@ -121,7 +121,7 @@ The first idea may be to assign a separate handler to each button. But there's a
 
 The handler reads the attribute and executes the method. Take a look at the working example:
 
-```html autorun height=60 run
+```html autorun height=60 run untrusted
 <div id="menu">
   <button data-action="save">Save</button>
   <button data-action="load">Load</button>
@@ -163,7 +163,7 @@ The handler reads the attribute and executes the method. Take a look at the work
 
 Please note that `this.onClick` is bound to `this` in `(*)`. That's important, because otherwise `this` inside it would reference the DOM element (`elem`), not the `Menu` object, and `this[action]` would not be what we need.
 
-So, what the delegation gives us here?
+So, what advantages does delegation give us here?
 
 ```compare
 + We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
@@ -242,13 +242,13 @@ That may become really convenient -- no need to write JavaScript for every such 
 
 We can combine multiple behaviors on a single element as well.
 
-The "behavior" pattern can be an alternative of mini-fragments of JavaScript.
+The "behavior" pattern can be an alternative to mini-fragments of JavaScript.
 
 ## Summary
 
 Event delegation is really cool! It's one of the most helpful patterns for DOM events.
 
-It's often used to add same handling for many similar elements, but not only for that.
+It's often used to add the same handling for many similar elements, but not only for that.
 
 The algorithm:
 
@@ -261,12 +261,12 @@ Benefits:
 ```compare
 + Simplifies initialization and saves memory: no need to add many handlers.
 + Less code: when adding or removing elements, no need to add/remove handlers.
-+ DOM modifications: we can mass add/remove elements with `innerHTML` and alike.
++ DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
 ```
 
 The delegation has its limitations of course:
 
 ```compare
 - First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
-- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter if they interest us or not. But usually the load is negligible, so we don't take it into account.
+- Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
 ```

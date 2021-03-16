@@ -3,11 +3,11 @@
 
 There are many areas where we need random data.
 
-One of them is testing. We may need random data: text, numbers etc, to test things out well.
+One of them is testing. We may need random data: text, numbers, etc. to test things out well.
 
 In JavaScript, we could use `Math.random()`. But if something goes wrong, we'd like to be able to repeat the test, using exactly the same data.
 
-For that, so called "seeded pseudo-random generators" are used. They take a "seed", the first value, and then generate next ones using a formula. So that the same seed yields the same sequence, and hence the whole flow is easily reproducible. We only need to remember the seed to repeat it.
+For that, so called "seeded pseudo-random generators" are used. They take a "seed", the first value, and then generate the next ones using a formula so that the same seed yields the same sequence, and hence the whole flow is easily reproducible. We only need to remember the seed to repeat it.
 
 An example of such formula, that generates somewhat uniformly distributed values:
 

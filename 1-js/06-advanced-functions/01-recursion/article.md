@@ -132,7 +132,7 @@ We can sketch it as:
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is false, so the flow continues into the second branch of `if`:
+That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
 
 ```js run
 function pow(x, n) {
@@ -188,7 +188,7 @@ The new current execution context is on top (and bold), and previous remembered 
 When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
 
 ```smart
-Here in the picture we use the word "line", as our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
 
 So it would be more precise to say that the execution resumes "immediately after the subcall".
 ```
@@ -302,7 +302,7 @@ let company = {
     salary: 1000
   }, {
     name: 'Alice',
-    salary: 600
+    salary: 1600
   }],
 
   development: {
@@ -350,7 +350,7 @@ The algorithm is probably even easier to read from the code:
 
 ```js run
 let company = { // the same object, compressed for brevity
-  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
   development: {
     sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
     internals: [{name: 'Jack', salary: 1300}]
@@ -372,7 +372,7 @@ function sumSalaries(department) {
 }
 */!*
 
-alert(sumSalaries(company)); // 6700
+alert(sumSalaries(company)); // 7700
 ```
 
 The code is short and easy to understand (hopefully?). That's the power of recursion. It also works for any level of subdepartment nesting.
@@ -459,9 +459,10 @@ let list = { value: 1 };
 list.next = { value: 2 };
 list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
+list.next.next.next.next = null;
 ```
 
-Here we can even more clearer see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
 
 The list can be easily split into multiple parts and later joined back:
 

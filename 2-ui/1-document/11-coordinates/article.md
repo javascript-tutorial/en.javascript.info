@@ -75,23 +75,23 @@ Please note:
 ```smart header="Why derived properties are needed? Why does `top/left` exist if there's `x/y`?"
 Mathematically, a rectangle is uniquely defined with its starting point `(x,y)` and the direction vector `(width,height)`. So the additional derived properties are for convenience.
 
-Technically it's possible for `width/height` to be negative, that allows for  "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
+Technically it's possible for `width/height` to be negative, that allows for "directed" rectangle, e.g. to represent mouse selection with properly marked start and end.
+
+Negative `width/height` values mean that the rectangle starts at its bottom-right corner and then "grows" left-upwards.
 
 Here's a rectangle with negative `width` and `height` (e.g. `width=-200`, `height=-100`):
 
 ![](coordinates-negative.svg)
 
-The rectangle starts at its bottom-right corner and then spans left/up, as negative `width/height` lead it backwards by coordinates.
+As you can see, `left/top` do not equal `x/y` in such case.
 
-As you can see, `left/top` are not `x/y` here. So these are actually not duplicates. Their formula can be adjusted to cover negative `width/height`, that's simple enough, but rarely needed, as the result of `elem.getBoundingClientRect()` always has positive width/height.
-
-Here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
+In practice though, `elem.getBoundingClientRect()` always returns positive width/height, here we mention negative `width/height` only for you to understand why these seemingly duplicate properties are not actually duplicates.
 ```
 
-```warn header="Internet Explorer and Edge: no support for `x/y`"
-Internet Explorer and Edge don't support `x/y` properties for historical reasons.
+```warn header="Internet Explorer: no support for `x/y`"
+Internet Explorer doesn't support `x/y` properties for historical reasons.
 
-So we can either make a polywill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
+So we can either make a polyfill (add getters in `DomRect.prototype`) or just use `top/left`, as they are always the same as `x/y` for positive `width/height`, in particular in the result of `elem.getBoundingClientRect()`.
 ```
 
 ```warn header="Coordinates right/bottom are different from CSS position properties"
@@ -215,8 +215,10 @@ function getCoords(elem) {
   let box = elem.getBoundingClientRect();
 
   return {
-    top: box.top + pageYOffset,
-    left: box.left + pageXOffset
+    top: box.top + window.pageYOffset,
+    right: box.right + window.pageXOffset,
+    bottom: box.bottom + window.pageYOffset,
+    left: box.left + window.pageXOffset
   };
 }
 ```
@@ -250,4 +252,4 @@ Any point on the page has coordinates:
 
 Window coordinates are great to use with `position:fixed`, and document coordinates do well with `position:absolute`.
 
-Both coordinate systems have their "pro" and "contra", there are times we need one or the other one, just like CSS `position` `absolute` and `fixed`.
+Both coordinate systems have their pros and cons; there are times we need one or the other one, just like CSS `position` `absolute` and `fixed`.

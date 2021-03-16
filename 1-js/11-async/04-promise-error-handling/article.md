@@ -60,7 +60,7 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
 *!*
   reject(new Error("Whoops!"));
-*/!*  
+*/!*
 }).catch(alert); // Error: Whoops!
 ```
 
@@ -92,15 +92,15 @@ new Promise((resolve, reject) => {
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
-The final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
+The final `.catch` not only catches explicit rejections, but also accidental errors in the handlers above.
 
 ## Rethrowing
 
 As we already noticed, `.catch` at the end of the chain is similar to `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
-In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
+In a regular `try..catch` we can analyze the error and maybe rethrow it if it can't be handled. The same thing is possible for promises.
 
-If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the closest successful `.then` handler.
+If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful `.then` handler.
 
 In the example below the `.catch` successfully handles the error:
 
@@ -122,7 +122,7 @@ Here the `.catch` block finishes normally. So the next successful `.then` handle
 In the example below we see the other situation with `.catch`. The handler `(*)` catches the error and just can't handle it (e.g. it only knows how to handle `URIError`), so it throws it again:
 
 ```js run
-// the execution: catch -> catch -> then
+// the execution: catch -> catch
 new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");
@@ -166,11 +166,11 @@ new Promise(function() {
 
 In case of an error, the promise becomes rejected, and the execution should jump to the closest rejection handler. But there is none. So the error gets "stuck". There's no code to handle it.
 
-In practice, just like with regular unhandled errors in code, it means that something has terribly gone wrong.
+In practice, just like with regular unhandled errors in code, it means that something has gone terribly wrong.
 
-What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in console. Similar thing happens with unhandled promise rejections.
+What happens when a regular error occurs and is not caught by `try..catch`? The script dies with a message in the console. A similar thing happens with unhandled promise rejections.
 
-JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
+The JavaScript engine tracks such rejections and generates a global error in that case. You can see it in the console if you run the example above.
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
@@ -201,4 +201,4 @@ In non-browser environments like Node.js there are other ways to track unhandled
 - `.catch` handles errors in promises of all kinds: be it a `reject()` call, or an error thrown in a handler.
 - We should place `.catch` exactly in places where we want to handle errors and know how to handle them. The handler should analyze errors (custom error classes help) and rethrow unknown ones (maybe they are programming mistakes).
 - It's ok not to use `.catch` at all, if there's no way to recover from an error.
-- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments), to track unhandled errors and inform the user (and probably our server) about the them, so that our app never "just dies".
+- In any case we should have the `unhandledrejection` event handler (for browsers, and analogs for other environments) to track unhandled errors and inform the user (and probably our server) about them, so that our app never "just dies".

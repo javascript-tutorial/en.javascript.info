@@ -8,7 +8,7 @@ To see errors and get a lot of other useful information about scripts, "develope
 
 Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
 
-Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+Developer tools are potent, they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
 
 ## Google Chrome
 
@@ -29,10 +29,15 @@ The exact look of developer tools depends on your version of Chrome. It changes 
 - Here we can see the red-colored error message. In this case, the script contains an unknown "lalala" command.
 - On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occurred.
 
-Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
 
 Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
 
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
 
 ## Firefox, Edge, and others
 
@@ -49,12 +54,6 @@ Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom
 ![safari](safari.png)
 
 Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
-
-```smart header="Multi-line input"
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
-
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
-```
 
 ## Summary
 

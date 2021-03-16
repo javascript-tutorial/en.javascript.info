@@ -1,7 +1,7 @@
 
 # Fetch
 
-JavaScript can send network requests to the server and load new information whenever is needed.
+JavaScript can send network requests to the server and load new information whenever it's needed.
 
 For example, we can use a network request to:
 
@@ -27,7 +27,7 @@ let promise = fetch(url, [options])
 - **`url`** -- the URL to access.
 - **`options`** -- optional parameters: method, headers etc.
 
-Without `options`, that is a simple GET request, downloading the contents of the `url`.
+Without `options`, this is a simple GET request, downloading the contents of the `url`.
 
 The browser starts the request right away and returns a promise that the calling code should use to get the result.
 
@@ -65,8 +65,8 @@ if (response.ok) { // if HTTP-status is 200-299
 - **`response.json()`** -- parse the response as JSON,
 - **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](info:formdata)),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representaion of binary data),
-- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representation of binary data),
+- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
 
 For instance, let's get a JSON-object with latest commits from GitHub:
 
@@ -89,7 +89,7 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
-To get the reponse text, `await response.text()` instead of `.json()`:
+To get the response text, `await response.text()` instead of `.json()`:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
@@ -130,6 +130,7 @@ If we've already got the response with `response.text()`, then `response.json()`
 ```js
 let text = await response.text(); // response body consumed
 let parsed = await response.json(); // fails (already consumed)
+```
 ````
 
 ## Response headers
@@ -230,7 +231,7 @@ But, as we're going to send JSON, we use `headers` option to send `application/j
 
 We can also submit binary data with `fetch` using `Blob` or `BufferSource` objects.
 
-In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to server:
+In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to the server:
 
 ```html run autorun height="90"
 <body style="margin:0">

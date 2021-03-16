@@ -8,19 +8,17 @@ libs:
 
 In this chapter we'll cover selection in the document, as well as selection in form fields, such as `<input>`.
 
-JavaScript can do get the existing selection, select/deselect both as a whole or partially, remove the selected part from the document, wrap it into a tag, and so on.
+JavaScript can access an existing selection, select/deselect DOM nodes as a whole or partially, remove the selected content from the document, wrap it into a tag, and so on.
 
-You can get ready to use recipes at the end, in "Summary" section. But you'll get much more if you read the whole chapter. The underlying `Range` and `Selection` objects are easy to grasp, and then you'll need no recipes to make them do what you want.
+You can find some recipes for common tasks at the end of the chapter, in "Summary" section. Maybe that covers your current needs, but you'll get much more if you read the whole text.
+
+The underlying `Range` and `Selection` objects are easy to grasp, and then you'll need no recipes to make them do what you want.
 
 ## Range
 
-The basic concept of selection is [Range](https://dom.spec.whatwg.org/#ranges): basically, a pair of "boundary points": range start and range end.
+The basic concept of selection is [Range](https://dom.spec.whatwg.org/#ranges), that is essentially a pair of "boundary points": range start and range end.
 
-Each point represented as a parent DOM node with the relative offset from its start. If the parent node is an element element node, then the offset is a child number, for a text node it's the position in the text. Examples to follow.
-
-Let's select something.
-
-First, we can create a range (the constructor has no parameters):
+A `Range` object is created without parameters:
 
 ```js
 let range = new Range();
@@ -28,13 +26,18 @@ let range = new Range();
 
 Then we can set the selection boundaries using `range.setStart(node, offset)` and `range.setEnd(node, offset)`.
 
-For example, consider this fragment of HTML:
+The first argument `node` can be either a text node or an element node. The meaning of the second argument depends on that:
 
-```html
+- If `node` is a text node, then `offset` must be the position in the text.
+- If `node` is an element node, then `offset` must be the child number.
+
+For example, let's create a range in this fragment:
+
+```html autorun
 <p id="p">Example: <i>italic</i> and <b>bold</b></p>
 ```
 
-Here's its DOM structure, note that here text nodes are important for us:
+Here's its DOM structure:
 
 <div class="select-p-domtree"></div>
 
@@ -72,9 +75,16 @@ let selectPDomtree = {
 drawHtmlTree(selectPDomtree, 'div.select-p-domtree', 690, 320);
 </script>
 
-Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (counting text nodes):
+Let's make a range for `"Example: <i>italic</i>"`.
+
+As we can see, this phrase consists of exactly the first and the second children of `<p>`:
 
 ![](range-example-p-0-1.svg)
+
+- The starting point has `<p>` as the parent `node`, and `0` as the offset.
+- The ending point also has `<p>` as the parent `node`, but `2` as the offset (it specifies the range up to, but not including `offset`).
+
+Here's the demo, if you run it, you can see that the text gets selected:
 
 ```html run
 <p id="p">Example: <i>italic</i> and <b>bold</b></p>
@@ -87,16 +97,13 @@ Let's select `"Example: <i>italic</i>"`. That's two first children of `<p>` (cou
   range.setEnd(p, 2);
 */!*
 
-  // toString of a range returns its content as text (without tags)
-  alert(range); // Example: italic
+  // toString of a range returns its content as text, without tags
+  console.log(range); // Example: italic
 
-  // apply this range for document selection (explained later)
+  // let's apply this range for document selection (explained later)
   document.getSelection().addRange(range);
 </script>
 ```
-
-- `range.setStart(p, 0)` -- sets the start at the 0th child of `<p>` (that's a text node `"Example: "`).
-- `range.setEnd(p, 2)` -- spans the range up to (but not including) 2nd child of `<p>` (that's a text node `" and "`, but as the end is not included, so the last selected node is `<i>`).
 
 Here's a more flexible test stand where you try more variants:
 
@@ -121,7 +128,7 @@ From <input id="start" type="number" value=1> – To <input id="end" type="numbe
 </script>
 ```
 
-E.g. selecting from `1` to `4` gives range `<i>italic</i> and <b>bold</b>`.
+E.g. selecting in the same `<p>` from offset `1` to `4` gives range `<i>italic</i> and <b>bold</b>`:
 
 ![](range-example-p-1-3.svg)
 
@@ -148,7 +155,7 @@ We need to create a range, that:
   range.setStart(p.firstChild, 2);
   range.setEnd(p.querySelector('b').firstChild, 3);
 
-  alert(range); // ample: italic and bol
+  console.log(range); // ample: italic and bol
 
   // use this range for selection (explained later)
   window.getSelection().addRange(range);
@@ -194,9 +201,9 @@ Others:
 
 To manipulate the content within the range:
 
-- `deleteContents()` - remove range content from the document
-- `extractContents()` - remove range content from the document and return as [DocumentFragment](info:modifying-document#document-fragment)
-- `cloneContents()` - clone range content and return as [DocumentFragment](info:modifying-document#document-fragment)
+- `deleteContents()` -- remove range content from the document
+- `extractContents()` -- remove range content from the document and return as [DocumentFragment](info:modifying-document#document-fragment)
+- `cloneContents()` -- clone range content and return as [DocumentFragment](info:modifying-document#document-fragment)
 - `insertNode(node)` -- insert `node` into the document at the beginning of the range
 - `surroundContents(node)` -- wrap `node` around range content. For this to work, the range must contain both opening and closing tags for all elements inside it: no partial ranges like `<i>abc`.
 
@@ -204,7 +211,7 @@ With these methods we can do basically anything with selected nodes.
 
 Here's the test stand to see them in action:
 
-```html run autorun height=260
+```html run refresh autorun height=260
 Click buttons to run methods on the selection, "resetExample" to reset it.
 
 <p id="p">Example: <i>italic</i> and <b>bold</b></p>
@@ -237,7 +244,7 @@ Click buttons to run methods on the selection, "resetExample" to reset it.
       let newNode = document.createElement('u');
       try {
         range.surroundContents(newNode);
-      } catch(e) { alert(e) }
+      } catch(e) { console.log(e) }
     },
     resetExample() {
       p.innerHTML = `Example: <i>italic</i> and <b>bold</b>`;
@@ -259,16 +266,14 @@ Click buttons to run methods on the selection, "resetExample" to reset it.
 </script>
 ```
 
-There also exist methods to compare ranges, but these are rarely used. When you need them, please refer to the [spec](https://dom.spec.whatwg.org/#interface-range) or [MDN manual](https://developer.mozilla.org/en-US/docs/Web/API/Range).
+There also exist methods to compare ranges, but these are rarely used. When you need them, please refer to the [spec](https://dom.spec.whatwg.org/#interface-range) or [MDN manual](mdn:/api/Range).
 
 
 ## Selection
 
-`Range` is a generic object for managing selection ranges. We may create such objects, pass them around -- they do not visually select anything on their own.
+`Range` is a generic object for managing selection ranges. We may create `Range` objects, pass them around -- they do not visually select anything on their own.
 
-The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`.
-
-A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows to select multiple ranges in the document by using `key:Ctrl+click` (`key:Cmd+click` for Mac).
+The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`. A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows to select multiple ranges in the document by using `key:Ctrl+click` (`key:Cmd+click` for Mac).
 
 Here's a screenshot of a selection with 3 ranges, made in Firefox:
 
@@ -289,7 +294,7 @@ The main selection properties are:
 - `isCollapsed` -- `true` if selection selects nothing (empty range), or doesn't exist.
 - `rangeCount` -- count of ranges in the selection, maximum `1` in all browsers except Firefox.
 
-````smart header="Selection end may be in the document before start"
+````smart header="Usually, the selection end `focusNode` is after its start `anchorNode`, but it's not always the case"
 There are many ways to select the content, depending on the user agent: mouse, hotkeys, taps on a mobile etc.
 
 Some of them, such as a mouse, allow the same selection can be created in two directions: "left-to-right" and "right-to-left".
@@ -318,8 +323,7 @@ There are events on to keep track of selection:
 
 ### Selection tracking demo
 
-Here's a small demo that shows selection boundaries
-dynamically as it changes:
+Here's a small demo that shows selection boundaries dynamically as it changes:
 
 ```html run height=80
 <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
@@ -387,7 +391,7 @@ Also, there are convenience methods to manipulate the selection range directly, 
 - `setBaseAndExtent(anchorNode, anchorOffset, focusNode, focusOffset)` - replace selection range with the given start `anchorNode/anchorOffset` and end `focusNode/focusOffset`. All content in-between them is selected.
 - `selectAllChildren(node)` -- select all children of the `node`.
 - `deleteFromDocument()` -- remove selected content from the document.
-- `containsNode(node, allowPartialContainment = false)` -- checks whether the selection contains `node` (partically if the second argument is `true`)
+- `containsNode(node, allowPartialContainment = false)` -- checks whether the selection contains `node` (partially if the second argument is `true`)
 
 So, for many tasks we can call `Selection` methods, no need to access the underlying `Range` object.
 
@@ -428,7 +432,7 @@ Form elements, such as `input` and `textarea` provide [special API for selection
 
 Properties:
 - `input.selectionStart` -- position of selection start (writeable),
-- `input.selectionEnd` -- position of selection start (writeable),
+- `input.selectionEnd` -- position of selection end (writeable),
 - `input.selectionDirection` -- selection direction, one of: "forward", "backward" or "none" (if e.g. selected with a double mouse click),
 
 Events:
@@ -495,7 +499,7 @@ Focus on me, the cursor will be at position 10.
     // zero delay setTimeout to run after browser "focus" action finishes
     setTimeout(() => {
       // we can set any selection
-      // if start=end, the cursor it exactly at that place
+      // if start=end, the cursor is exactly at that place
       area.selectionStart = area.selectionEnd = 10;
     });
   };
@@ -551,7 +555,7 @@ If nothing is selected, or we use equal `start` and `end` in `setRangeText`, the
 
 We can also insert something "at the cursor" using `setRangeText`.
 
-Here's an button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can do detect in by comparing `selectionStart!=selectionEnd` and do something else instead):
+Here's a button that inserts `"HELLO"` at the cursor position and puts the cursor immediately after it. If the selection is not empty, then it gets replaced (we can detect it by comparing `selectionStart!=selectionEnd` and do something else instead):
 
 ```html run autorun
 <input id="input" style="width:200px" value="Text Text Text Text Text">
@@ -583,7 +587,7 @@ To make something unselectable, there are three ways:
 
     This doesn't allow the selection to start at `elem`. But the user may start the selection elsewhere and include `elem` into it.
 
-    Then `elem` will become a part of `document.getSelection()`, so the selection actully happens, but its content is usually ignored in copy-paste.
+    Then `elem` will become a part of `document.getSelection()`, so the selection actually happens, but its content is usually ignored in copy-paste.
 
 
 2. Prevent default action in `onselectstart` or `mousedown` events.
@@ -621,7 +625,7 @@ The second API is very simple, as it works with text.
 The most used recipes are probably:
 
 1. Getting the selection:
-    ```js run
+    ```js
     let selection = document.getSelection();
 
     let cloned = /* element to clone the selected nodes to */;
@@ -632,8 +636,8 @@ The most used recipes are probably:
       cloned.append(selection.getRangeAt(i).cloneContents());
     }
     ```
-2. Setting the selection
-    ```js run
+2. Setting the selection:
+    ```js
     let selection = document.getSelection();
 
     // directly:

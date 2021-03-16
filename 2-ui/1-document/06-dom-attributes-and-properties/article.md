@@ -8,7 +8,7 @@ But the attribute-property mapping is not one-to-one! In this chapter we'll pay 
 
 ## DOM properties
 
-We've already seen built-in DOM properties. There's a lot. But technically no one limits us, and if it's not enough -- we can add our own.
+We've already seen built-in DOM properties. There are a lot. But technically no one limits us, and if there aren't enough, we can add our own.
 
 DOM nodes are regular JavaScript objects. We can alter them.
 
@@ -298,16 +298,16 @@ For instance, here for the order state the attribute `order-state` is used:
 </div>
 ```
 
-Why the attribute may be preferable to classes like `.order-state-new`, `.order-state-pending`, `order-state-canceled`?
+Why would using an attribute be preferable to having classes like `.order-state-new`, `.order-state-pending`, `.order-state-canceled`?
 
-That's because an attribute is more convenient to manage. The state can be changed as easy as:
+Because an attribute is more convenient to manage. The state can be changed as easy as:
 
 ```js
 // a bit simpler than removing old/adding a new class
 div.setAttribute('order-state', 'canceled');
 ```
 
-But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
+But there may be a possible problem with custom attributes. What if we use a non-standard attribute for our purposes and later the standard introduces it and makes it do something? The HTML language is alive, it grows, and more attributes appear to suit the needs of developers. There may be unexpected effects in such case.
 
 To avoid conflicts, there exist [data-*](https://html.spec.whatwg.org/#embedding-custom-non-visible-data-with-the-data-*-attributes) attributes.
 

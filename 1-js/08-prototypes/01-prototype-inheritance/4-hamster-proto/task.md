@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Why two hamsters are full?
+# Why are both hamsters full?
 
 We have two hamsters: `speedy` and `lazy` inheriting from the general `hamster` object. 
 
-When we feed one of them, the other one is also full. Why? How to fix it?
+When we feed one of them, the other one is also full. Why? How can we fix it?
 
 ```js run
 let hamster = {

@@ -19,8 +19,7 @@ For example:
 ...
 ```
 
-We will learn functions (a way to group commands) soon. Looking ahead, let's note that `"use strict"` can be put at the beginning of the function body instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
-
+Quite soon we're going to learn functions (a way to group commands), so let's note in advance that `"use strict"` can be put at the beginning of a function. Doing that enables strict mode in that function only. But usually people use it for the whole script.
 
 ````warn header="Ensure that \"use strict\" is at the top"
 Please make sure that `"use strict"` is at the top of your scripts, otherwise strict mode may not be enabled.
@@ -42,16 +41,18 @@ Only comments may appear above `"use strict"`.
 ```warn header="There's no way to cancel `use strict`"
 There is no directive like `"no use strict"` that reverts the engine to old behavior.
 
-Once we enter strict mode, there's no return.
+Once we enter strict mode, there's no going back.
 ```
 
 ## Browser console
 
-For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+When you use a [developer console](info:devtools) to run code, please note that it doesn't `use strict` by default.
 
 Sometimes, when `use strict` makes a difference, you'll get incorrect results.
 
-You can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+So, how to actually `use strict` in the console?
+
+First, you can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
 
 ```js
 'use strict'; <Shift+Enter for a newline>
@@ -61,25 +62,28 @@ You can try to press `key:Shift+Enter` to input multiple lines, and put `use str
 
 It works in most browsers, namely Firefox and Chrome.
 
-If it doesn't, the most reliable way to ensure `use strict` would be to input the code into console like this:
+If it doesn't, e.g. in an old browser, there's an ugly, but reliable way to ensure `use strict`. Put it inside this kind of wrapper:
 
 ```js
 (function() {
   'use strict';
 
-  // ...your code...
+  // ...your code here...
 })()
 ```
 
-## Always "use strict"
+## Should we "use strict"?
 
-We have yet to cover the differences between strict mode and the "default" mode.
+The question may sound obvious, but it's not so.
 
-In the next chapters, as we learn language features, we'll note the differences between the strict and default modes. Luckily, there aren't many and they actually make our lives better.
+One could recommend to start scripts with `"use strict"`... But you know what's cool?
 
-For now, it's enough to know about it in general:
+Modern JavaScript supports "classes" and "modules" - advanced language structures (we'll surely get to them), that enable `use strict` automatically. So we don't need to add the `"use strict"` directive, if we use them.
 
-1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details later in the tutorial.
-2. Strict mode is enabled by placing `"use strict"` at the top of a script or function. Several language features, like "classes" and "modules", enable strict mode automatically.
-3. Strict mode is supported by all modern browsers.
-4. We recommended always starting scripts with `"use strict"`. All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+**So, for now `"use strict";` is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it.**
+
+As of now, we've got to know about `use strict` in general.
+
+In the next chapters, as we learn language features, we'll see the differences between the strict and old modes. Luckily, there aren't many and they actually make our lives better.
+
+All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.

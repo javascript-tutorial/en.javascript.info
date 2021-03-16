@@ -1,7 +1,7 @@
 
 # Iterables
 
-*Iterable* objects is a generalization of arrays. That's a concept that allows to make any object useable in a `for..of` loop.
+*Iterable* objects are a generalization of arrays. That's a concept that allows us to make any object useable in a `for..of` loop.
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
 
@@ -12,7 +12,7 @@ If an object isn't technically an array, but represents a collection (list, set)
 
 We can easily grasp the concept of iterables by making one of our own.
 
-For instance, we have an object, that is not an array, but looks suitable for `for..of`.
+For instance, we have an object that is not an array, but looks suitable for `for..of`.
 
 Like a `range` object that represents an interval of numbers:
 
@@ -26,7 +26,7 @@ let range = {
 // for(let num of range) ... num=1,2,3,4,5
 ```
 
-To make the `range` iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
+To make the `range` object iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
 
 1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
 2. Onward, `for..of` works *only with that returned object*.
@@ -140,9 +140,9 @@ for (let char of str) {
 
 ## Calling an iterator explicitly
 
-For deeper understanding let's see how to use an iterator explicitly.
+For deeper understanding, let's see how to use an iterator explicitly.
 
-We'll iterate over a string in exactlly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
+We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
 ```js run
 let str = "Hello";
@@ -150,7 +150,9 @@ let str = "Hello";
 // does the same as
 // for (let char of str) alert(char);
 
+*!*
 let iterator = str[Symbol.iterator]();
+*/!*
 
 while (true) {
   let result = iterator.next();
@@ -163,12 +165,12 @@ That is rarely needed, but gives us more control over the process than `for..of`
 
 ## Iterables and array-likes [#array-like]
 
-There are two official terms that look similar, but are very different. Please make sure you understand them well to avoid the confusion.
+Two official terms look similar, but are very different. Please make sure you understand them well to avoid the confusion.
 
 - *Iterables* are objects that implement the `Symbol.iterator` method, as described above.
 - *Array-likes* are objects that have indexes and `length`, so they look like arrays.
 
-When we use JavaScript for practical tasks in browser or other environments, we may meet objects that are iterables or array-likes, or both.
+When we use JavaScript for practical tasks in a browser or any other environment, we may meet objects that are iterables or array-likes, or both.
 
 For instance, strings are both iterable (`for..of` works on them) and array-like (they have numeric indexes and `length`).
 
@@ -212,7 +214,7 @@ let arr = Array.from(arrayLike); // (*)
 alert(arr.pop()); // World (method works)
 ```
 
-`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies there all items.
+`Array.from` at the line `(*)` takes the object, examines it for being an iterable or array-like, then makes a new array and copies all items to it.
 
 The same happens for an iterable:
 
@@ -222,12 +224,12 @@ let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
 ```
 
-The full syntax for `Array.from` allows to provide an optional "mapping" function:
+The full syntax for `Array.from` also allows us to provide an optional "mapping" function:
 ```js
 Array.from(obj[, mapFn, thisArg])
 ```
 
-The optional second argument `mapFn` can be a function that will be applied to each element before adding to the array, and `thisArg` allows to set `this` for it.
+The optional second argument `mapFn` can be a function that will be applied to each element before adding it to the array, and `thisArg` allows us to set `this` for it.
 
 For instance:
 
@@ -268,7 +270,7 @@ for (let char of str) {
 alert(chars);
 ```
 
-...But is shorter.    
+...But it is shorter.    
 
 We can even build surrogate-aware `slice` on it:
 
@@ -291,8 +293,8 @@ alert( str.slice(1, 3) ); // garbage (two pieces from different surrogate pairs)
 Objects that can be used in `for..of` are called *iterable*.
 
 - Technically, iterables must implement the method named `Symbol.iterator`.
-    - The result of `obj[Symbol.iterator]` is called an *iterator*. It handles the further iteration process.
-    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the iteration end, otherwise the `value` is the next value.
+    - The result of `obj[Symbol.iterator]()` is called an *iterator*. It handles further iteration process.
+    - An iterator must have the method named `next()` that returns an object `{done: Boolean, value: any}`, here `done:true` denotes the end of the iteration process, otherwise the `value` is the next value.
 - The `Symbol.iterator` method is called automatically by `for..of`, but we also can do it directly.
 - Built-in iterables like strings or arrays, also implement `Symbol.iterator`.
 - String iterator knows about surrogate pairs.
@@ -302,4 +304,4 @@ Objects that have indexed properties and `length` are called *array-like*. Such 
 
 If we look inside the specification -- we'll see that most built-in methods assume that they work with iterables or array-likes instead of "real" arrays, because that's more abstract.
 
-`Array.from(obj[, mapFn, thisArg])` makes a real `Array` of an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.
+`Array.from(obj[, mapFn, thisArg])` makes a real `Array` from an iterable or array-like `obj`, and we can then use array methods on it. The optional arguments `mapFn` and `thisArg` allow us to apply a function to each item.

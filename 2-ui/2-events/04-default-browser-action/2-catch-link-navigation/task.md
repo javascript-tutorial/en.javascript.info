@@ -12,5 +12,5 @@ Like this:
 
 Details:
 
-- HTML inside the element may be loaded or regenerated dynamically at any time, so we can't find all links and put handlers on them. Use the event delegation.
+- HTML inside the element may be loaded or regenerated dynamically at any time, so we can't find all links and put handlers on them. Use event delegation.
 - The content may have nested tags. Inside links too, like `<a href=".."><i>...</i></a>`.

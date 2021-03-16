@@ -80,7 +80,7 @@ An important feature of `mouseout` -- it triggers, when the pointer moves from a
 </div>
 ```
 
-If we're on `#parent` and then move the pointer deeper into `#child`, but we get `mouseout` on `#parent`!
+If we're on `#parent` and then move the pointer deeper into `#child`, we get `mouseout` on `#parent`!
 
 ![](mouseover-to-child.svg)
 
@@ -125,7 +125,7 @@ If there are some actions upon leaving the parent element, e.g. an animation run
 
 To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.
 
-Alternatively we can use other events: `mouseenter` и `mouseleave`, that we'll be covering now, as they don't have such problems.
+Alternatively we can use other events: `mouseenter` and `mouseleave`, that we'll be covering now, as they don't have such problems.
 
 ## Events mouseenter and mouseleave
 
@@ -145,7 +145,7 @@ When the pointer leaves an element -- `mouseleave` triggers.
 ```online
 This example is similar to the one above, but now the top element has `mouseenter/mouseleave` instead of `mouseover/mouseout`.
 
-As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignores
+As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignored
 
 [codetabs height=340 src="mouseleave"]
 ```

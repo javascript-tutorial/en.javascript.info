@@ -8,7 +8,7 @@ The task is a little more complex variant of <info:task/question-use-bind>.
 
 The `user` object was modified. Now instead of two functions `loginOk/loginFail`, it has a single function `user.login(true/false)`.
 
-What to pass `askPassword` in the code below, so that it calls `user.login(true)` as `ok` and `user.login(false)` as `fail`?
+What should we pass `askPassword` in the code below, so that it calls `user.login(true)` as `ok` and `user.login(false)` as `fail`?
 
 ```js
 function askPassword(ok, fail) {

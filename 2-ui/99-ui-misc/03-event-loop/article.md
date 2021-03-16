@@ -9,7 +9,7 @@ In this chapter we first cover theoretical details about how things work, and th
 
 ## Event Loop
 
-The concept of *event loop* is very simple. There's an endless loop, when JavaScript engine waits for tasks, executes them and then sleeps waiting for more tasks.
+The *event loop* concept is very simple. There's an endless loop, where the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
 
 The general algorithm of the engine:
 
@@ -17,7 +17,7 @@ The general algorithm of the engine:
     - execute them, starting with the oldest task.
 2. Sleep until a task appears, then go to 1.
 
-That's a formalization for what we see when browsing a page. JavaScript engine does nothing most of the time, only runs if a script/handler/event activates.
+That's a formalization for what we see when browsing a page. The JavaScript engine does nothing most of the time, it only runs if a script/handler/event activates.
 
 Examples of tasks:
 
@@ -41,22 +41,22 @@ Tasks from the queue are processed on "first come – first served" basis. When 
 So far, quite simple, right?
 
 Two more details:
-1. Rendering never happens while the engine executes a task. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, process user events, so after a time it raises an alert like "Page Unresponsive" suggesting to kill the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to infinite loop.
+1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
+2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
 
-That was a theory. Now let's see how we can apply that knowledge.
+That was the theory. Now let's see how we can apply that knowledge.
 
 ## Use-case 1: splitting CPU-hungry tasks
 
 Let's say we have a CPU-hungry task.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot of time.
+For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a large amount of text that takes a lot of time.
 
 While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
 
-We can evade problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) another 100 lines, and so on.
+We can avoid problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) for the next 100 lines, and so on.
 
-To demonstrate the approach, for the sake of simplicity, instead of syntax-highlighting let's take a function that counts from `1` to `1000000000`.
+To demonstrate this approach, for the sake of simplicity, instead of text-highlighting, let's take a function that counts from `1` to `1000000000`.
 
 If you run the code below, the engine will "hang" for some time. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to click other buttons on the page -- you'll see that no other events get handled until the counting finishes.
 
@@ -78,9 +78,9 @@ function count() {
 count();
 ```
 
-The browser may even show "the script takes too long" warning.
+The browser may even show a "the script takes too long" warning.
 
-Let's split the job using nested `setTimeout`:
+Let's split the job using nested `setTimeout` calls:
 
 ```js run
 let i = 0;
@@ -113,13 +113,13 @@ A single run of `count` does a part of the job `(*)`, and then re-schedules itse
 2. Second run counts: `i=1000001..2000000`.
 3. ...and so on.
 
-Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react on other user actions.
+Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to the event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react to other user actions.
 
-The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's no much difference in the overall counting time.
+The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's not much difference in the overall counting time.
 
 To make them closer, let's make an improvement.
 
-We'll move the scheduling in the beginning of the `count()`:
+We'll move the scheduling to the beginning of the `count()`:
 
 ```js run
 let i = 0;
@@ -128,7 +128,7 @@ let start = Date.now();
 
 function count() {
 
-  // move the scheduling at the beginning
+  // move the scheduling to the beginning
   if (i < 1e9 - 1e6) {
     setTimeout(count); // schedule the new call
   }
@@ -160,9 +160,9 @@ Finally, we've split a CPU-hungry task into parts - now it doesn't block the use
 
 Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
 
-Usually the browser renders after the currently running code is complete. Doesn't matter if the task takes a long time. Changes to DOM are painted only after the task is finished.
+As mentioned earlier, changes to DOM are painted only after the currently running task is completed, irrespective of how long it takes.
 
-From one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
+On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
 
 Here's the demo, the changes to `i` won't show up until the function finishes, so we'll see only the last value:
 
@@ -238,7 +238,7 @@ menu.onclick = function() {
 
 ## Macrotasks and Microtasks
 
-Along with *macrotasks*, described in this chapter, there exist *microtasks*, mentioned in the chapter <info:microtask-queue>.
+Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter <info:microtask-queue>.
 
 Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
 
@@ -263,11 +263,11 @@ What's going to be the order here?
 2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
 3. `timeout` shows last, because it's a macrotask.
 
-The richer event loop picture looks like this:
+The richer event loop picture looks like this (order is from top to bottom, that is: the script first, then microtasks, rendering and so on):
 
 ![](eventLoop-full.svg)
 
-**All microtasks are completed before any other event handling or rendering or any other macrotask takes place.**
+All microtasks are completed before any other event handling or rendering or any other macrotask takes place.
 
 That's important, as it guarantees that the application environment is basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
 
@@ -303,7 +303,7 @@ Here's an example with "counting progress bar", similar to the one shown previou
 
 ## Summary
 
-The more detailed algorithm of the event loop (though still simplified compare to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
+A more detailed event loop algorithm (though still simplified compared to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
 
 1. Dequeue and run the oldest task from the *macrotask* queue (e.g. "script").
 2. Execute all *microtasks*:
@@ -316,7 +316,7 @@ The more detailed algorithm of the event loop (though still simplified compare t
 To schedule a new *macrotask*:
 - Use zero delayed `setTimeout(f)`.
 
-That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react on user events and show progress between them.
+That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react to user events and show progress between them.
 
 Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
 
@@ -335,5 +335,5 @@ That's a way to run code in another, parallel thread.
 
 Web Workers can exchange messages with the main process, but they have their own variables, and their own event loop.
 
-Web Workers do not have access to DOM, so they are useful, mainly, for calculations, to use multiplle CPU cores simultaneously.
+Web Workers do not have access to DOM, so they are useful, mainly, for calculations, to use multiple CPU cores simultaneously.
 ```

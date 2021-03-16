@@ -52,7 +52,7 @@ let group = {
 *!*
     this.students.forEach(function(student) {
       // Error: Cannot read property 'title' of undefined
-      alert(this.title + ': ' + student)
+      alert(this.title + ': ' + student);
     });
 */!*
   }
@@ -87,7 +87,7 @@ For instance, `defer(f, ms)` gets a function and returns a wrapper around it tha
 ```js run
 function defer(f, ms) {
   return function() {
-    setTimeout(() => f.apply(this, arguments), ms)
+    setTimeout(() => f.apply(this, arguments), ms);
   };
 }
 
@@ -118,9 +118,9 @@ Here we had to create additional variables `args` and `ctx` so that the function
 
 Arrow functions:
 
-- Do not have `this`.
-- Do not have `arguments`.
-- Can't be called with `new`.
-- (They also don't have `super`, but we didn't study it. Will be in the chapter <info:class-inheritance>).
+- Do not have `this`
+- Do not have `arguments`
+- Can't be called with `new`
+- They also don't have `super`, but we didn't study it yet. We will on the chapter <info:class-inheritance>
 
-That's because they are meant for short pieces of code that do not have their own "context", but rather works in the current one. And they really shine in that use case.
+That's because they are meant for short pieces of code that do not have their own "context", but rather work in the current one. And they really shine in that use case.

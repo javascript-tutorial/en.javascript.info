@@ -50,7 +50,7 @@ That was a general introduction.
 
 In JavaScript, there are two types of object fields (properties and methods):
 
-- Public: accessible from anywhere. They comprise the external interface. Till now we were only using public properties and methods.
+- Public: accessible from anywhere. They comprise the external interface. Until now we were only using public properties and methods.
 - Private: accessible only from inside the class. These are for the internal interface.
 
 In many other languages there also exist "protected" fields: accessible only from inside the class and those extending it (like private, but plus access from inheriting classes). They are also useful for the internal interface. They are in a sense more widespread than private ones, because we usually want inheriting classes to gain access to them.
@@ -96,7 +96,9 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   set waterAmount(value) {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) {
+      value = 0;
+    }
     this._waterAmount = value;
   }
 
@@ -117,7 +119,7 @@ let coffeeMachine = new CoffeeMachine(100);
 coffeeMachine.waterAmount = -10; // Error: Negative water
 ```
 
-Now the access is under control, so setting the water below zero fails.
+Now the access is under control, so setting the water amount below zero becomes impossible.
 
 ## Read-only "power"
 
@@ -159,7 +161,7 @@ class CoffeeMachine {
   _waterAmount = 0;
 
   *!*setWaterAmount(value)*/!* {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) value = 0;
     this._waterAmount = value;
   }
 
@@ -199,11 +201,15 @@ class CoffeeMachine {
 */!*
 
 *!*
-  #checkWater(value) {
-    if (value < 0) throw new Error("Negative water");
-    if (value > this.#waterLimit) throw new Error("Too much water");
+  #fixWaterAmount(value) {
+    if (value < 0) return 0;
+    if (value > this.#waterLimit) return this.#waterLimit;
   }
 */!*
+
+  setWaterAmount(value) {
+    this.#waterLimit = this.#fixWaterAmount(value);
+  }
 
 }
 
@@ -211,7 +217,7 @@ let coffeeMachine = new CoffeeMachine();
 
 *!*
 // can't access privates from outside of the class
-coffeeMachine.#checkWater(); // Error
+coffeeMachine.#fixWaterAmount(123); // Error
 coffeeMachine.#waterLimit = 1000; // Error
 */!*
 ```
@@ -232,7 +238,7 @@ class CoffeeMachine {
   }
 
   set waterAmount(value) {
-    if (value < 0) throw new Error("Negative water");
+    if (value < 0) value = 0;
     this.#waterAmount = value;
   }
 }
@@ -257,7 +263,7 @@ class MegaCoffeeMachine extends CoffeeMachine {
 }
 ```
 
-In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reason to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
+In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
 
 ````warn header="Private fields are not available as this[name]"
 Private fields are special.
@@ -279,11 +285,11 @@ With private fields that's impossible: `this['#name']` doesn't work. That's a sy
 
 ## Summary
 
-In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation]("https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)").
+In terms of OOP, delimiting of the internal interface from the external one is called [encapsulation](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)).
 
 It gives the following benefits:
 
-Protection for users, so that they don't shoot themselves in the feet
+Protection for users, so that they don't shoot themselves in the foot
 : Imagine, there's a team of developers using a coffee machine. It was made by the "Best CoffeeMachine" company, and works fine, but a protective cover was removed. So the internal interface is exposed.
 
     All developers are civilized -- they use the coffee machine as intended. But one of them, John, decided that he's the smartest one, and made some tweaks in the coffee machine internals. So the coffee machine failed two days later.
@@ -308,9 +314,9 @@ Hiding complexity
 
     **It's always convenient when implementation details are hidden, and a simple, well-documented external interface is available.**
 
-To hide internal interface we use either protected or private properties:
+To hide an internal interface we use either protected or private properties:
 
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
-- Private fields start with `#`. JavaScript makes sure we only can access those from inside the class.
+- Private fields start with `#`. JavaScript makes sure we can only access those from inside the class.
 
 Right now, private fields are not well-supported among browsers, but can be polyfilled.

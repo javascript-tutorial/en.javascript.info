@@ -19,12 +19,14 @@ User.staticMethod(); // true
 
 That actually does the same as assigning it as a property directly:
 
-```js
-class User() { }
+```js run
+class User { }
 
 User.staticMethod = function() {
   alert(this === User);
 };
+
+User.staticMethod(); // true
 ```
 
 The value of `this` in `User.staticMethod()` call is the class constructor `User` itself (the "object before dot" rule).
@@ -123,14 +125,15 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
-## Inheritance of static methods
+## Inheritance of static properties and methods
 
-Static methods are inherited.
+Static properties and methods are inherited.
 
-For instance, `Animal.compare` in the code below is inherited and accessible as `Rabbit.compare`:
+For instance, `Animal.compare` and `Animal.planet` in the code below are inherited and accessible as `Rabbit.compare` and `Rabbit.planet`:
 
 ```js run
 class Animal {
+  static planet = "Earth";
 
   constructor(name, speed) {
     this.speed = speed;
@@ -167,9 +170,11 @@ rabbits.sort(Rabbit.compare);
 */!*
 
 rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
 
-Now when we can call `Rabbit.compare`, the inherited `Animal.compare` will be called.
+Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
 
 How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
@@ -180,7 +185,7 @@ So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
 1. `Rabbit` function prototypally inherits from `Animal` function.
 2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
 
-As the result, inheritance works both for regular and static methods.
+As a result, inheritance works both for regular and static methods.
 
 Here, let's check that by code:
 
@@ -197,7 +202,7 @@ alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 
 ## Summary
 
-Static methods are used for the functionality that belongs to the class "as a whole", doesn't relate to a concrete class instance.
+Static methods are used for the functionality that belongs to the class "as a whole". It doesn't relate to a concrete class instance.
 
 For example, a method for comparison `Article.compare(article1, article2)` or a factory method `Article.createTodays()`.
 

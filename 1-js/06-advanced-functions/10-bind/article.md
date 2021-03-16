@@ -83,10 +83,12 @@ let user = {
 
 setTimeout(() => user.sayHi(), 1000);
 
-// ...within 1 second
-user = { sayHi() { alert("Another user in setTimeout!"); } };
+// ...the value of user changes within 1 second
+user = {
+  sayHi() { alert("Another user in setTimeout!"); }
+};
 
-// Another user in setTimeout?!?
+// Another user in setTimeout!
 ```
 
 The next solution guarantees that such thing won't happen.
@@ -98,7 +100,7 @@ Functions provide a built-in method [bind](mdn:js/Function/bind) that allows to 
 The basic syntax is:
 
 ```js
-// more complex syntax will be little later
+// more complex syntax will come a little later
 let boundFunc = func.bind(context);
 ```
 
@@ -159,9 +161,16 @@ let user = {
 let sayHi = user.sayHi.bind(user); // (*)
 */!*
 
+// can run it without an object
 sayHi(); // Hello, John!
 
 setTimeout(sayHi, 1000); // Hello, John!
+
+// even if the value of user changes within 1 second
+// sayHi uses the pre-bound value which is reference to the old user object
+user = {
+  sayHi() { alert("Another user in setTimeout!"); }
+};
 ```
 
 In the line `(*)` we take the method `user.sayHi` and bind it to `user`. The `sayHi` is a "bound" function, that can be called alone or passed to `setTimeout` -- doesn't matter, the context will be right.
@@ -193,7 +202,7 @@ for (let key in user) {
 }
 ```
 
-JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(obj)](http://lodash.com/docs#bindAll) in lodash.
+JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) in lodash.
 ````
 
 ## Partial functions
@@ -238,7 +247,7 @@ The call to `mul.bind(null, 2)` creates a new function `double` that passes call
 
 That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
 
-Please note that here we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Please note that we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
 
 The function `triple` in the code below triples the value:
 
@@ -270,7 +279,7 @@ What if we'd like to fix some arguments, but not the context `this`? For example
 
 The native `bind` does not allow that. We can't just omit the context and jump to arguments.
 
-Fortunately, a helper function `partial` for binding only arguments can be easily implemented.
+Fortunately, a function `partial` for binding only arguments can be easily implemented.
 
 Like this:
 
@@ -304,7 +313,7 @@ The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that call
 - Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
 - Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
 
-So easy to do it with the spread operator, right?
+So easy to do it with the spread syntax, right?
 
 Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
 

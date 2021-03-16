@@ -1,6 +1,6 @@
 # Resource loading: onload and onerror
 
-The browser allows to track the loading of external resources -- scripts, iframes, pictures and so on.
+The browser allows us to track the loading of external resources -- scripts, iframes, pictures and so on.
 
 There are two events for it:
 
@@ -41,19 +41,19 @@ document.head.append(script);
 
 *!*
 script.onload = function() {
-  // the script creates a helper function "_"
-  alert(_); // the function is available
+  // the script creates a variable "_"
+  alert( _.VERSION ); // shows library version
 };
 */!*
 ```
 
 So in `onload` we can use script variables, run functions etc.
 
-...And what if the loading failed? For instance, there's no such script (error 404) or the server or the server is down (unavailable).
+...And what if the loading failed? For instance, there's no such script (error 404) or the server is down (unavailable).
 
 ### script.onerror
 
-Errors that occur during the loading of the script can be tracked on `error` event.
+Errors that occur during the loading of the script can be tracked in an `error` event.
 
 For instance, let's request a script that doesn't exist:
 
@@ -69,12 +69,12 @@ script.onerror = function() {
 */!*
 ```
 
-Please note that we can't get HTTP error details here. We don't know was it error 404 or 500 or something else. Just that the loading failed.
+Please note that we can't get HTTP error details here. We don't know if it was an error 404 or 500 or something else. Just that the loading failed.
 
 ```warn
 Events `onload`/`onerror` track only the loading itself.
 
-Errors during script processing and execution are out of the scope of these events. To track script errors, one can use `window.onerror` global handler.
+Errors that may occur during script processing and execution are out of scope for these events. That is: if a script loaded successfully, then `onload` triggers, even if it has programming errors in it. To track script errors, one can use `window.onerror` global handler.
 ```
 
 ## Other resources
@@ -98,7 +98,7 @@ img.onerror = function() {
 
 There are some notes though:
 
-- Most resources start loading when they are added to the document. But `<img>` is an exception. It starts loading when it gets an src `(*)`.
+- Most resources start loading when they are added to the document. But `<img>` is an exception. It starts loading when it gets a src `(*)`.
 - For `<iframe>`, the `iframe.onload` event triggers when the iframe loading finished, both for successful load and in case of an error.
 
 That's for historical reasons.
@@ -107,7 +107,7 @@ That's for historical reasons.
 
 There's a rule: scripts from one site can't access contents of the other site. So, e.g. a script at `https://facebook.com` can't read the user's mailbox at `https://gmail.com`.
 
-Or, to be more precise, one origin (domain/port/protocol triplet) can't access the content from another one. So even if we have a subdomain, or just another port, these are different origins, no access to each other.
+Or, to be more precise, one origin (domain/port/protocol triplet) can't access the content from another one. So even if we have a subdomain, or just another port, these are different origins with no access to each other.
 
 This rule also affects resources from other domains.
 
@@ -155,24 +155,24 @@ Script error.
 , 0:0
 ```
 
-Details may vary depending on the browser, but the idea is same: any information about the internals of a script, including error stack traces, is hidden. Exactly because it's from another domain.
+Details may vary depending on the browser, but the idea is the same: any information about the internals of a script, including error stack traces, is hidden. Exactly because it's from another domain.
 
 Why do we need error details?
 
-There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's no much information about errors in it, as we've just seen.
+There are many services (and we can build our own) that listen for global errors using `window.onerror`, save errors and provide an interface to access and analyze them. That's great, as we can see real errors, triggered by our users. But if a script comes from another origin, then there's not much information about errors in it, as we've just seen.
 
 Similar cross-origin policy (CORS) is enforced for other types of resources as well.
 
-**To allow cross-origin access, the `<script>` tag needs to have `crossorigin` attribute, plus the remote server must provide special headers.**
+**To allow cross-origin access, the `<script>` tag needs to have the `crossorigin` attribute, plus the remote server must provide special headers.**
 
 There are three levels of cross-origin access:
 
 1. **No `crossorigin` attribute** -- access prohibited.
 2. **`crossorigin="anonymous"`** -- access allowed if the server responds with the header `Access-Control-Allow-Origin` with `*` or our origin. Browser does not send authorization information and cookies to remote server.
-3. **`crossorigin="use-credentials"`** -- access allowed if the server sends back the header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials: true`.  Browser sends authorization information and cookies to remote server.
+3. **`crossorigin="use-credentials"`** -- access allowed if the server sends back the header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials: true`. Browser sends authorization information and cookies to remote server.
 
 ```smart
-You can read more about cross-origin access in the chapter <info:fetch-crossorigin>. It describes `fetch` method for network requests, but the policy is exactly the same.
+You can read more about cross-origin access in the chapter <info:fetch-crossorigin>. It describes the `fetch` method for network requests, but the policy is exactly the same.
 
 Such thing as "cookies" is out of our current scope, but you can read about them in the chapter <info:cookie>.
 ```
@@ -181,7 +181,7 @@ In our case, we didn't have any crossorigin attribute. So the cross-origin acces
 
 We can choose between `"anonymous"` (no cookies sent, one server-side header needed) and `"use-credentials"` (sends cookies too, two server-side headers needed).
 
-If we don't care about cookies, then `"anonymous"` is a way to go:
+If we don't care about cookies, then `"anonymous"` is the way to go:
 
 ```html run height=0
 <script>
@@ -192,7 +192,7 @@ window.onerror = function(message, url, line, col, errorObj) {
 <script *!*crossorigin="anonymous"*/!* src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
 ```
 
-Now, assuming that the server provides `Access-Control-Allow-Origin` header, everything's fine. We have the full error report.
+Now, assuming that the server provides an `Access-Control-Allow-Origin` header, everything's fine. We have the full error report.
 
 ## Summary
 

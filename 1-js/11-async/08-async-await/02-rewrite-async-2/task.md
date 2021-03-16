@@ -1,7 +1,7 @@
 
 # Rewrite "rethrow" with async/await
 
-Below you can find the "rethrow" example from the chapter <info:promise-chaining>. Rewrite it using `async/await` instead of `.then/catch`.
+Below you can find the "rethrow" example. Rewrite it using `async/await` instead of `.then/catch`.
 
 And get rid of the recursion in favour of a loop in `demoGithubUser`: with `async/await` that becomes easy to do.
 
@@ -22,7 +22,7 @@ function loadJson(url) {
       } else {
         throw new HttpError(response);
       }
-    })
+    });
 }
 
 // Ask for a user name until github returns a valid user

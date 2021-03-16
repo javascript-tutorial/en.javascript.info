@@ -259,7 +259,6 @@ For example, in shadow DOM we can use `--user-card-field-color` CSS variable to 
 </style>
 <div class="field">Name: <slot name="username"></slot></div>
 <div class="field">Birthday: <slot name="birthday"></slot></div>
-</style>
 ```
 
 Then, we can declare this property in the outer document for `<user-card>`:
