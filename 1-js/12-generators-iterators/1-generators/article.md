@@ -102,7 +102,7 @@ But usually the first syntax is preferred, as the star `*` denotes that it's a g
 
 As you probably already guessed looking at the `next()` method, generators are [iterable](info:iterable).
 
-We can loop over their values using `for..of`:
+We can loop over their `value`s using `for..of`:
 
 ```js run
 function* generateSequence() {

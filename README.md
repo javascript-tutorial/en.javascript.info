@@ -14,7 +14,7 @@ We'd also like to collaborate on the tutorial with other people.
 
 Something's wrong? A topic is missing? Explain it to people, add as PR 👏
 
-**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.  
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
 
 The list of contributors is available at <https://javascript.info/about#contributors>.
 
@@ -34,6 +34,6 @@ Each of these files starts from the `# Main header`.
 
 It's very easy to add something new.
 
----
+---  
 ♥  
 Ilya Kantor @iliakan

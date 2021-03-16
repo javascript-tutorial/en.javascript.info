@@ -2,19 +2,22 @@
 
 The two most used data structures in JavaScript are `Object` and `Array`.
 
-Objects allow us to create a single entity that stores data items by key, and arrays allow us to gather data items into an ordered collection.
+- Objects allow us to create a single entity that stores data items by key. 
+- Arrays allow us to gather data items into an ordered list.
 
-But when we pass those to a function, it may need not an object/array as a whole, but rather individual pieces.
+Although, when we pass those to a function, it may need not an object/array as a whole. It may need individual pieces.
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and so on.
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. 
+
+Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
 
 ## Array destructuring
 
-An example of how the array is destructured into variables:
+Here's an example of how an array is destructured into variables:
 
 ```js
 // we have an array with the name and surname
-let arr = ["Ilya", "Kantor"]
+let arr = ["John", "Smith"]
 
 *!*
 // destructuring assignment
@@ -23,17 +26,21 @@ let arr = ["Ilya", "Kantor"]
 let [firstName, surname] = arr;
 */!*
 
-alert(firstName); // Ilya
-alert(surname);  // Kantor
+alert(firstName); // John
+alert(surname);  // Smith
 ```
 
 Now we can work with variables instead of array members.
 
 It looks great when combined with `split` or other array-returning methods:
 
-```js
-let [firstName, surname] = "Ilya Kantor".split(' ');
+```js run
+let [firstName, surname] = "John Smith".split(' ');
+alert(firstName); // John
+alert(surname);  // Smith
 ```
+
+As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
 
 ````smart header="\"Destructuring\" does not mean \"destructive\"."
 It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
@@ -69,26 +76,25 @@ In the code above, the second element of the array is skipped, the third one is 
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-
+That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
 ````smart header="Assign to anything at the left-side"
-
 We can use any "assignables" at the left side.
 
 For instance, an object property:
 ```js run
 let user = {};
-[user.name, user.surname] = "Ilya Kantor".split(' ');
+[user.name, user.surname] = "John Smith".split(' ');
 
-alert(user.name); // Ilya
+alert(user.name); // John
+alert(user.surname); // Smith
 ```
 
 ````
 
 ````smart header="Looping with .entries()"
-
 In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
 
 We can use it with destructuring to loop over keys-and-values of an object:
@@ -107,7 +113,7 @@ for (let [key, value] of Object.entries(user)) {
 }
 ```
 
-...And the same for a map:
+The similar code for a `Map` is simpler, as it's iterable:
 
 ```js run
 let user = new Map();
@@ -115,6 +121,7 @@ user.set("name", "John");
 user.set("age", "30");
 
 *!*
+// Map iterates as [key, value] pairs, very convenient for destructuring
 for (let [key, value] of user) {
 */!*
   alert(`${key}:${value}`); // name:John, then age:30
@@ -122,15 +129,17 @@ for (let [key, value] of user) {
 ```
 ````
 
-```smart header="Swap variables trick"
-A well-known trick for swapping values of two variables:
+````smart header="Swap variables trick"
+There's a well-known trick for swapping values of two variables using a destructuring assignment:
 
 ```js run
 let guest = "Jane";
 let admin = "Pete";
 
-// Swap values: make guest=Pete, admin=Jane
+// Let's swap the values: make guest=Pete, admin=Jane
+*!*
 [guest, admin] = [admin, guest];
+*/!*
 
 alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
 ```
@@ -138,31 +147,47 @@ alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
 Here we create a temporary array of two variables and immediately destructure it in swapped order.
 
 We can swap more than two variables this way.
-
+````
 
 ### The rest '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
+Usually, if the array is longer than the list at the left, the "extra" items are omitted.
+
+For example, here only two items are taken, and the rest is just ignored:
+
+```js run
+let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+
+alert(name1); // Julius
+alert(name2); // Caesar
+// Further items aren't assigned anywhere
+```
+
+If we'd like also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
 
 ```js run
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
-alert(name1); // Julius
-alert(name2); // Caesar
-
 *!*
-// Note that type of `rest` is Array.
+// rest is array of items, starting from the 3rd one
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+The value of `rest` is the array of the remaining array elements. 
+
+We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
+
+```js run
+let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// now titles = ["Consul", "of the Roman Republic"]
+```
 
 ### Default values
 
-If there are fewer values in the array than variables in the assignment, there will be no error. Absent values are considered undefined:
+If the array is shorter than the list of variables at the left, there'll be no errors. Absent values are considered undefined:
 
 ```js run
 *!*
@@ -187,7 +212,7 @@ alert(surname); // Anonymous (default used)
 
 Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
 
-For instance, here we use the `prompt` function for two defaults. But it will run only for the missing one:
+For instance, here we use the `prompt` function for two defaults:
 
 ```js run
 // runs only prompt for surname
@@ -197,7 +222,7 @@ alert(name);    // Julius (from array)
 alert(surname); // whatever prompt gets
 ```
 
-
+Please note: the `prompt` will run only for the missing value (`surname`).
 
 ## Object destructuring
 
@@ -209,7 +234,7 @@ The basic syntax is:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
-We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
+We should have an existing object at the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
 
 For instance:
 
@@ -229,7 +254,9 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter. This works too:
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. 
+
+The order does not matter. This works too:
 
 ```js
 // changed the order in let {...}
@@ -238,7 +265,7 @@ let {height, width, title} = { title: "Menu", height: 200, width: 100 }
 
 The pattern on the left side may be more complex and specify the mapping between properties and variables.
 
-If we want to assign a property to a variable with another name, for instance, `options.width` to go into the variable named `w`, then we can set it using a colon:
+If we want to assign a property to a variable with another name, for instance, make `options.width` go into the variable named `w`, then we can set the variable name using a colon:
 
 ```js run
 let options = {

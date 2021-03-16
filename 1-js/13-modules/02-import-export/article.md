@@ -321,7 +321,7 @@ export {default as User} from './user.js'; // re-export default
 
 Why would that be needed? Let's see a practical use case.
 
-Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages), and many modules are just "helpers", for internal use in other package modules.
+Imagine, we're writing a "package": a folder with a lot of modules, with some of the functionality exported outside (tools like NPM allow us to publish and distribute such packages, but we don't have to use them), and many modules are just "helpers", for internal use in other package modules.
 
 The file structure could be like this:
 ```
@@ -337,13 +337,19 @@ auth/
         ...
 ```
 
-We'd like to expose the package functionality via a single entry point, the "main file" `auth/index.js`, to be used like this:
+We'd like to expose the package functionality via a single entry point.
+
+In other words, a person who would like to use our package, should import only from the "main file" `auth/index.js`.
+
+Like this:
 
 ```js
 import {login, logout} from 'auth/index.js'
 ```
 
-The idea is that outsiders, developers who use our package, should not meddle with its internal structure, search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
+The "main file", `auth/index.js` exports all the functionality that we'd like to provide in our package.
+
+The idea is that outsiders, other programmers who use our package, should not meddle with its internal structure, search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
 
 As the actual exported functionality is scattered among the package, we can import it into `auth/index.js` and export from it:
 
@@ -366,19 +372,21 @@ The syntax `export ... from ...` is just a shorter notation for such import-expo
 
 ```js
 // 📁 auth/index.js
-// import login/logout and immediately export them
+// re-export login/logout 
 export {login, logout} from './helpers.js';
 
-// import default as User and export it
+// re-export the default export as User
 export {default as User} from './user.js';
 ...
 ```
+
+The notable difference of `export ... from` compared to `import/export` is that re-exported modules aren't available in the current file. So inside the above example of `auth/index.js` we can't use re-exported `login/logout` functions. 
 
 ### Re-exporting the default export
 
 The default export needs separate handling when re-exporting.
 
-Let's say we have `user.js`, and we'd like to re-export class `User` from it:
+Let's say we have `user.js` with the `export default class User` and would like to re-export it:
 
 ```js
 // 📁 user.js
@@ -387,7 +395,9 @@ export default class User {
 }
 ```
 
-1. `export User from './user.js'` won't work. What can go wrong?... But that's a syntax error!
+We can come across two problems with it:
+
+1. `export User from './user.js'` won't work. That would lead to a syntax error.
 
     To re-export the default export, we have to write `export {default as User}`, as in the example above.    
 
@@ -399,7 +409,7 @@ export default class User {
     export {default} from './user.js'; // to re-export the default export
     ```
 
-Such oddities of re-exporting the default export are one of the reasons why some developers don't like them.
+Such oddities of re-exporting a default export are one of the reasons why some developers don't like default exports and prefer named ones.
 
 ## Summary
 

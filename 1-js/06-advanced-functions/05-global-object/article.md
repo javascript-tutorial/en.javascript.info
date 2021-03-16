@@ -5,7 +5,7 @@ The global object provides variables and functions that are available anywhere. 
 
 In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major  browsers.
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
 
 We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
 
@@ -25,7 +25,9 @@ var gVar = 5;
 alert(window.gVar); // 5 (became a property of the global object)
 ```
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
+
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
 
 If we used `let` instead, such thing wouldn't happen:
 

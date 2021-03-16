@@ -8,7 +8,7 @@ We can generate not only completely new events, that we invent for our own purpo
 
 ## Event constructor
 
-Build-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
+Built-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
 
 We can create `Event` objects like this:
 
@@ -266,7 +266,7 @@ Then we can either put the `dispatchEvent` (or another event-triggering call) at
 </script>
 ```
 
-Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `mouse.onclick`, so event handlers are totally separate.
+Now `dispatchEvent` runs asynchronously after the current code execution is finished, including `menu.onclick`, so event handlers are totally separate.
 
 The output order becomes: 1 -> 2 -> nested.
 

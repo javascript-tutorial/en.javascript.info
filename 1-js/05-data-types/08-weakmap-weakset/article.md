@@ -30,7 +30,8 @@ let array = [ john ];
 john = null; // overwrite the reference
 
 *!*
-// john is stored inside the array, so it won't be garbage-collected
+// the object previously referenced by john is stored inside the array
+// therefore it won't be garbage-collected
 // we can get it as array[0]
 */!*
 ```
@@ -59,7 +60,7 @@ Let's see what it means on examples.
 
 ## WeakMap
 
-The first difference from `Map` is that `WeakMap` keys must be objects, not primitive values:
+The first difference between `Map` and `WeakMap` is that keys must be objects, not primitive values:
 
 ```js run
 let weakMap = new WeakMap();
@@ -100,9 +101,9 @@ Compare it with the regular `Map` example above. Now if `john` only exists as th
 
 Why such a limitation? That's for technical reasons. If an object has lost all other references (like `john` in the code above), then it is to be garbage-collected automatically. But technically it's not exactly specified *when the cleanup happens*.
 
-The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically the current element count of a `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason, methods that access all keys/values are not supported.
+The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically, the current element count of a `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason, methods that access all keys/values are not supported.
 
-Now where do we need such data structure?
+Now, where do we need such a data structure?
 
 ## Use case: additional data
 
@@ -146,7 +147,7 @@ countUser(john); // count his visits
 john = null;
 ```
 
-Now `john` object should be garbage collected, but remains in memory, as it's a key in `visitsCountMap`.
+Now, `john` object should be garbage collected, but remains in memory, as it's a key in `visitsCountMap`.
 
 We need to clean `visitsCountMap` when we remove users, otherwise it will grow in memory indefinitely. Such cleaning can become a tedious task in complex architectures.
 
@@ -163,13 +164,13 @@ function countUser(user) {
 }
 ```
 
-Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable by all means except as a key of `WeakMap`, it gets removed from memory, along with the information by that key from `WeakMap`.
+Now we don't have to clean `visitsCountMap`. After `john` object becomes unreachable, by all means except as a key of `WeakMap`, it gets removed from memory, along with the information by that key from `WeakMap`.
 
 ## Use case: caching
 
-Another common example is caching: when a function result should be remembered ("cached"), so that future calls on the same object reuse it.
+Another common example is caching. We can store ("cache") results from a function, so that future calls on the same object can reuse it.
 
-We can use `Map` to store results, like this:
+To achieve that, we can use `Map` (not optimal scenario):
 
 ```js run
 // 📁 cache.js
@@ -206,7 +207,7 @@ alert(cache.size); // 1 (Ouch! The object is still in cache, taking memory!)
 
 For multiple calls of `process(obj)` with the same object, it only calculates the result the first time, and then just takes it from `cache`. The downside is that we need to clean `cache` when the object is not needed any more.
 
-If we replace `Map` with `WeakMap`, then this problem disappears: the cached result will be removed from memory automatically after the object gets garbage collected.
+If we replace `Map` with `WeakMap`, then this problem disappears. The cached result will be removed from memory automatically after the object gets garbage collected.
 
 ```js run
 // 📁 cache.js
@@ -247,7 +248,7 @@ obj = null;
 - An object exists in the set while it is reachable from somewhere else.
 - Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
 
-Being "weak", it also serves as an additional storage. But not for an arbitrary data, but rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
+Being "weak", it also serves as additional storage. But not for arbitrary data, rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
 
 For instance, we can add users to `WeakSet` to keep track of those who visited our site:
 
@@ -275,7 +276,7 @@ john = null;
 // visitedSet will be cleaned automatically
 ```
 
-The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterations, and inability to get all current content. That may appear inconvenient, but does not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
+The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterations, and the inability to get all current content. That may appear inconvenient, but does not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
 
 ## Summary
 
@@ -283,6 +284,8 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 `WeakSet` is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
 
-Both of them do not support methods and properties that refer to all keys or their count. Only individual operations are allowed.
+Their main advantages are that they have weak reference to objects, so they can easily be removed by garbage collector.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "main" object storage. Once the object is removed from the main storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
+That comes at the cost of not having support for `clear`, `size`, `keys`, `values`...
+
+`WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "primary" object storage. Once the object is removed from the primary storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.

@@ -1,5 +1,5 @@
 
-# Polyfills
+# Polyfills and transpilers
 
 The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
@@ -9,46 +9,84 @@ So it's quite common for an engine to implement only the part of the standard.
 
 A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
-## Babel
+As programmers, we'd like to use most recent features. The more good stuff - the better!
 
-When we use modern features of the language, some engines may fail to support such code. Just as said, not all features are implemented everywhere.
+On the other hand, how to make our modern code work on older engines that don't understand recent features yet?
 
-Here Babel comes to the rescue.
+There are two tools for that:
 
-[Babel](https://babeljs.io) is a [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler). It rewrites modern JavaScript code into the previous standard.
+1. Transpilers.
+2. Polyfills.
 
-Actually, there are two parts in Babel:
+Here, in this chapter, our purpose is to get the gist of how they work, and their place in web development.
 
-1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
+## Transpilers
 
-2. Second, the polyfill.
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that can parse ("read and understand") modern code, and rewrite it using older syntax constructs, so that the result would be the same.
 
-    New language features may include new built-in functions and syntax constructs.
-    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
 
-    A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+A transpiler would analyze our code and rewrite `height ?? 100` into `(height !== undefined && height !== null) ? height : 100`.
 
-    Two interesting polyfills are:
-    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+```js
+// before running the transpiler
+height = height ?? 100;
 
-So, if we're going to use modern language features, a transpiler and a polyfill are necessary.
-
-## Examples in the tutorial
-
-
-````online
-Most examples are runnable at-place, like this:
-
-```js run
-alert('Press the "Play" button in the upper-right corner to run');
+// after running the transpiler
+height = (height !== undefined && height !== null) ? height : 100;
 ```
 
-Examples that use modern JS will work only if your browser supports it.
-````
+Now the rewritten code is suitable for older JavaScript engines.
 
-```offline
-As you're reading the offline version, in PDF examples are not runnable. In EPUB some of them can run.
+Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server.
+
+Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there. 
+
+Modern project build systems, such as [webpack](http://webpack.github.io/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
+
+## Polyfills
+
+New language features may include not only syntax constructs and operators, but also built-in functions.
+
+For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23) = 1`.
+
+In some (very outdated) JavaScript engines, there's no `Math.trunc`, so such code will fail.
+
+As we're talking about new functions, not syntax changes, there's no need to transpile anything here. We just need to declare the missing function.
+
+A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+
+For this particular case, the polyfill for `Math.trunc` is a script that implements it, like this:
+
+```js
+if (!Math.trunc) { // if no such function
+  // implement it
+  Math.trunc = function(number) {
+    // Math.ceil and Math.floor exist even in ancient JavaScript engines
+    // they are covered later in the tutorial
+    return number < 0 ? Math.ceil(number) : Math.floor(number);
+  };
+}
 ```
 
-Google Chrome is usually the most up-to-date with language features, good to run bleeding-edge demos without any transpilers, but other modern browsers also work fine.
+JavaScript is a highly dynamic language, scripts may add/modify any functions, even including built-in ones. 
+
+Two interesting libraries of polyfills are:
+- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+- [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+
+
+## Summary
+
+In this chapter we'd like to motivate you to study modern and even "bleeding-edge" language features, even if they aren't yet well-supported by JavaScript engines.
+
+Just don't forget to use transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). And they'll ensure that the code works.
+
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](http://webpack.github.io/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
+
+Good resources that show the current state of support for various features:
+- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
+- <https://caniuse.com/> - for browser-related functions.
+
+P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
+

@@ -1,10 +1,10 @@
 
 # Map and Set
 
-Now we've learned about the following complex data structures:
+Till now, we've learned about the following complex data structures:
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- Objects are used for storing keyed collections.
+- Arrays are used for storing ordered collections.
 
 But that's not enough for real life. That's why `Map` and `Set` also exist.
 
@@ -42,7 +42,7 @@ alert( map.size ); // 3
 As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
 ```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (no object keys and so on).
+Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
 
 So we should use `map` methods: `set`, `get` and so on.
 ```
@@ -63,24 +63,26 @@ visitsCountMap.set(john, 123);
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but not for object keys.
+Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
 
 Let's try:
 
 ```js run
 let john = { name: "John" };
+let ben = { name: "Ben" };
 
 let visitsCountObj = {}; // try to use an object
 
-visitsCountObj[john] = 123; // try to use john object as the key
+visitsCountObj[ben] = 234; // try to use ben object as the key
+visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
 
 *!*
 // That's what got written!
-alert( visitsCountObj["[object Object]"] ); // 123
+alert( visitsCountObj["[object Object]"] ); // 123 
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all keys, such as `john` to strings, so we've got the string key `"[object Object]"`. Definitely not what we want.
+As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
 
 ```smart header="How `Map` compares keys"
 To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
@@ -304,10 +306,10 @@ The same methods `Map` has for iterators are also supported:
 Methods and properties:
 
 - `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- `map.set(key, value)` -- stores the value by the key.
+- `map.set(key, value)` -- stores the value by the key, returns the map itself.
 - `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
+- `map.delete(key)` -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
 - `map.clear()` -- removes everything from the map.
 - `map.size` -- returns the current element count.
 

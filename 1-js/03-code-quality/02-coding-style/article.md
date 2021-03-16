@@ -116,7 +116,7 @@ There are two types of indents:
 
     One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
 
-    For instance, we can align the arguments with the opening bracket, like this:
+    For instance, we can align the parameters with the opening bracket, like this:
 
     ```js no-beautify
     show(parameters,
@@ -328,7 +328,7 @@ Here's an example of an `.eslintrc` file:
   },
   "rules": {
     "no-console": 0,
-    "indent": ["warning", 2]
+    "indent": 2
   }
 }
 ```

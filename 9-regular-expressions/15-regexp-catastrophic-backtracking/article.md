@@ -31,17 +31,17 @@ If you run the example below, you probably won't see anything, as JavaScript wil
 
 ```js run
 let regexp = /^(\w+\s?)*$/;
-let str = "An input string that takes a long time or even makes this regexp to hang!";
+let str = "An input string that takes a long time or even makes this regexp hang!";
 
 // will take a very long time
 alert( regexp.test(str) );
 ```
 
-To be fair, let's note that some regular expression engines can handle such a search effectively. But most of them can't. Browser engines usually hang.
+To be fair, let's note that some regular expression engines can handle such a search effectively, for example V8 engine version starting from 8.8 can do that (so Google Chrome 88 doesn't hang here), while Firefox browser does hang. 
 
 ## Simplified example
 
-What's the matter? Why the regular expression hangs?
+What's the matter? Why does the regular expression hang?
 
 To understand that, let's simplify the example: remove spaces `pattern:\s?`. Then it becomes `pattern:^(\w+)*$`.
 
@@ -60,7 +60,7 @@ So what's wrong with the regexp?
 
 First, one may notice that the regexp `pattern:(\d+)*` is a little bit strange. The quantifier `pattern:*` looks extraneous. If we want a number, we can use `pattern:\d+`.
 
-Indeed, the regexp is artificial, we got it by simplifying the previous example. But the reason why it is slow is the same. So let's understand it, and then the previous example will become obvious.
+Indeed, the regexp is artificial; we got it by simplifying the previous example. But the reason why it is slow is the same. So let's understand it, and then the previous example will become obvious.
 
 What happens during the search of `pattern:^(\d+)*$` in the line `subject:123456789z` (shortened a bit for clarity, please note a non-digit character `subject:z` at the end, it's important), why does it take so long?
 
@@ -74,7 +74,7 @@ Here's what the regexp engine does:
     ```
 
     After all digits are consumed, `pattern:\d+` is considered found (as `match:123456789`).
-    
+
     Then the star quantifier `pattern:(\d+)*` applies. But there are no more digits in the text, so the star doesn't give anything.
 
     The next character in the pattern is the string end `pattern:$`. But in the text we have `subject:z` instead, so there's no match:
@@ -111,7 +111,7 @@ Here's what the regexp engine does:
     ```
 
 
-4. There's no match, so the engine will continue backtracking, decreasing the number of repetitions. Backtracking generally works like this: the last greedy quantifier decreases the number of repetitions until it can. Then the previous greedy quantifier decreases, and so on.
+4. There's no match, so the engine will continue backtracking, decreasing the number of repetitions. Backtracking generally works like this: the last greedy quantifier decreases the number of repetitions until it reaches the minimum. Then the previous greedy quantifier decreases, and so on.
 
     All possible combinations are attempted. Here are their examples.
 
@@ -160,7 +160,7 @@ Trying each of them is exactly the reason why the search takes so long.
 
 ## Back to words and strings
 
-The similar thing happens in our first example, when we look words by pattern `pattern:^(\w+\s?)*$` in the string `subject:An input that hangs!`.
+The similar thing happens in our first example, when we look for words by pattern `pattern:^(\w+\s?)*$` in the string `subject:An input that hangs!`.
 
 The reason is that a word can be represented as one `pattern:\w+` or many:
 
@@ -196,7 +196,7 @@ This regexp is equivalent to the previous one (matches the same) and works well:
 
 ```js run
 let regexp = /^(\w+\s)*\w*$/;
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false
 ```
@@ -220,7 +220,7 @@ The time needed to try a lot of (actually most of) combinations is now saved.
 
 ## Preventing backtracking
 
-It's not always convenient to rewrite a regexp though. In the example above it was easy, but it's not always obvious how to do it. 
+It's not always convenient to rewrite a regexp though. In the example above it was easy, but it's not always obvious how to do it.
 
 Besides, a rewritten regexp is usually more complex, and that's not good. Regexps are complex enough without extra efforts.
 
@@ -238,7 +238,7 @@ E.g. in the regexp `pattern:(\d+)*$` it's obvious for a human, that `pattern:+` 
 (1234)(56789)!
 ```
 
-And in the original example `pattern:^(\w+\s?)*$` we may want to forbid backtracking in `pattern:\w+`. That is: `pattern:\w+` should match a whole word, with the maximal possible length. There's no need to lower the repetitions count in `pattern:\w+`, try to split it into two words `pattern:\w+\w+` and so on.
+And in the original example `pattern:^(\w+\s?)*$` we may want to forbid backtracking in `pattern:\w+`. That is: `pattern:\w+` should match a whole word, with the maximal possible length. There's no need to lower the repetitions count in `pattern:\w+` or to split it into two words `pattern:\w+\w+` and so on.
 
 Modern regular expression engines support possessive quantifiers for that. Regular quantifiers become possessive if we add `pattern:+` after them. That is, we use `pattern:\d++` instead of `pattern:\d+` to stop `pattern:+` from backtracking.
 
@@ -246,7 +246,7 @@ Possessive quantifiers are in fact simpler than "regular" ones. They just match 
 
 There are also so-called "atomic capturing groups" - a way to disable backtracking inside parentheses.
 
-...But the bad news is that, unfortunately, in JavaScript they are not supported. 
+...But the bad news is that, unfortunately, in JavaScript they are not supported.
 
 We can emulate them though using a "lookahead transform".
 
@@ -254,7 +254,7 @@ We can emulate them though using a "lookahead transform".
 
 So we've come to real advanced topics. We'd like a quantifier, such as `pattern:+` not to backtrack, because sometimes backtracking makes no sense.
 
-The pattern to take as much repetitions of `pattern:\w` as possible without backtracking is: `pattern:(?=(\w+))\1`. Of course, we could take another pattern instead of `pattern:\w`.
+The pattern to take as many repetitions of `pattern:\w` as possible without backtracking is: `pattern:(?=(\w+))\1`. Of course, we could take another pattern instead of `pattern:\w`.
 
 That may seem odd, but it's actually a very simple transform.
 
@@ -293,7 +293,7 @@ let regexp = /^((?=(\w+))\2\s?)*$/;
 
 alert( regexp.test("A good string") ); // true
 
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false, works and fast!
 ```
@@ -304,7 +304,7 @@ Here `pattern:\2` is used instead of `pattern:\1`, because there are additional 
 // parentheses are named ?<word>, referenced as \k<word>
 let regexp = /^((?=(?<word>\w+))\k<word>\s?)*$/;
 
-let str = "An input string that takes a long time or even makes this regex to hang!";
+let str = "An input string that takes a long time or even makes this regex hang!";
 
 alert( regexp.test(str) ); // false
 

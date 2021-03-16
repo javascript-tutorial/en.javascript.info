@@ -388,7 +388,7 @@ The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 - `YYYY-MM-DD` -- is the date: year-month-day.
 - The character `"T"` is used as the delimiter.
 - `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
-- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` that would mean UTC+0.
+- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
 
 Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
 
@@ -427,7 +427,7 @@ Sometimes we need more precise time measurements. JavaScript itself does not hav
 alert(`Loading started ${performance.now()}ms ago`);
 // Something like: "Loading started 34731.26000000001ms ago"
 // .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, but only the first 3 are correct
+// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
 ```
 
 Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.

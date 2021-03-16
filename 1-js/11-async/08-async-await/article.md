@@ -139,6 +139,8 @@ But we can wrap it into an anonymous async function, like this:
   ...
 })();
 ```
+
+P.S. New feature: starting from V8 engine version 8.9+, top-level await works in [modules](info:modules).
 ````
 
 ````smart header="`await` accepts \"thenables\""
@@ -156,7 +158,7 @@ class Thenable {
     // resolve with this.num*2 after 1000ms
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
-};
+}
 
 async function f() {
   // waits for 1 second, then result becomes 2

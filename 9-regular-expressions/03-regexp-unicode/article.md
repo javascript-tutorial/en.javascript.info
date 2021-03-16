@@ -4,9 +4,9 @@ JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for st
 
 That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
 
-Here are the unicode values of some characters:
+Here are the Unicode values of some characters:
 
-| Character  | Unicode | Bytes count in unicode  |
+| Character  | Unicode | Bytes count in Unicode  |
 |------------|---------|--------|
 | a | `0x0061` |  2 |
 | ≈ | `0x2248` |  2 |
@@ -39,15 +39,15 @@ For instance, if a character has `Letter` property, it means that the character 
 
 We can search for characters with a property, written as `pattern:\p{…}`. To use `pattern:\p{…}`, a regular expression must have flag `pattern:u`.
 
-For instance, `\p{Letter}` denotes a letter in any of language. We can also use `\p{L}`, as `L` is an alias of `Letter`. There are shorter aliases for almost every property.
+For instance, `\p{Letter}` denotes a letter in any language. We can also use `\p{L}`, as `L` is an alias of `Letter`. There are shorter aliases for almost every property.
 
-In the example below three kinds of letters will be found: English, Georgean and Korean.
+In the example below three kinds of letters will be found: English, Georgian and Korean.
 
 ```js run
 let str = "A ბ ㄱ";
 
 alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
-alert( str.match(/\p{L}/g) ); // null (no matches, as there's no flag "u")
+alert( str.match(/\p{L}/g) ); // null (no matches, \p doesn't work without the flag "u")
 ```
 
 Here's the main character categories and their subcategories:
@@ -121,7 +121,7 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
-There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+There's a Unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
@@ -135,7 +135,7 @@ alert( str.match(regexp) ); // 你,好
 
 ### Example: currency
 
-Characters that denote a currency, such as `$`, `€`, `¥`, have unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
+Characters that denote a currency, such as `$`, `€`, `¥`, have Unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
 
 Let's use it to look for prices in the format "currency, followed by a digit":
 

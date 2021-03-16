@@ -110,3 +110,5 @@ Let's explain that step-by-step:
 At the end we have the result (as a string or a blob, whatever is convenient), and progress-tracking in the process.
 
 Once again, please note, that's not for *upload* progress (no way now with `fetch`), only for *download* progress.
+
+Also, if the size is unknown, we should check `receivedLength` in the loop and break it once it reaches a certain limit. So that the `chunks` won't overflow the memory. 

@@ -132,7 +132,7 @@ We can sketch it as:
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is false, so the flow continues into the second branch of `if`:
+That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
 
 ```js run
 function pow(x, n) {
@@ -188,7 +188,7 @@ The new current execution context is on top (and bold), and previous remembered 
 When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
 
 ```smart
-Here in the picture we use the word "line", as our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
 
 So it would be more precise to say that the execution resumes "immediately after the subcall".
 ```

@@ -1,6 +1,6 @@
 # Lookahead and lookbehind
 
-Sometimes we need to find only those matches for a pattern that are followed or preceeded by another pattern.
+Sometimes we need to find only those matches for a pattern that are followed or preceded by another pattern.
 
 There's a special syntax for that, called "lookahead" and "lookbehind", together referred to as "lookaround".
 
@@ -33,7 +33,7 @@ In other words, such pattern means that we're looking for `pattern:X` followed b
 
 That's only possible if patterns `pattern:Y` and `pattern:Z` aren't mutually exclusive.
 
-For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` only if it's followed by a space, and there's `30` somewhere after it:
+For example, `pattern:\d+(?=\s)(?=.*30)` looks for `pattern:\d+` that is followed by a space `pattern:(?=\s)`, and there's `30` somewhere after it `pattern:(?=.*30)`:
 
 ```js run
 let str = "1 turkey costs 30€";
@@ -54,7 +54,7 @@ The syntax is: `pattern:X(?!Y)`, it means "search `pattern:X`, but only if not f
 ```js run
 let str = "2 turkeys cost 60€";
 
-alert( str.match(/\d+(?!€)/) ); // 2 (the price is skipped)
+alert( str.match(/\d+\b(?!€)/g) ); // 2 (the price is not matched)
 ```
 
 ## Lookbehind
@@ -81,7 +81,7 @@ And, if we need the quantity -- a number, not preceded by `subject:$`, then we c
 ```js run
 let str = "2 turkeys cost $60";
 
-alert( str.match(/(?<!\$)\d+/) ); // 2 (skipped the price)
+alert( str.match(/(?<!\$)\b\d+/g) ); // 2 (the price is not matched)
 ```
 
 ## Capturing groups

@@ -117,7 +117,7 @@ There may be additional headers `Sec-WebSocket-Extensions` and `Sec-WebSocket-Pr
 
 For instance:
 
-- `Sec-WebSocket-Extensions: deflate-frame` means that the browser supports data compression. An extension is something related to transferring the data, functionality that extends WebSocket protocol. The header `Sec-WebSocket-Extensions` is sent automatically by the browser, with the list of all extenions it supports.
+- `Sec-WebSocket-Extensions: deflate-frame` means that the browser supports data compression. An extension is something related to transferring the data, functionality that extends WebSocket protocol. The header `Sec-WebSocket-Extensions` is sent automatically by the browser, with the list of all extensions it supports.
 
 - `Sec-WebSocket-Protocol: soap, wamp` means that we'd like to transfer not just any data, but the data in [SOAP](http://en.wikipedia.org/wiki/SOAP) or WAMP ("The WebSocket Application Messaging Protocol") protocols. WebSocket subprotocols are registered in the [IANA catalogue](http://www.iana.org/assignments/websocket/websocket.xml). So, this header describes data formats that we're going to use.
 
@@ -194,7 +194,7 @@ Imagine, our app is generating a lot of data to send. But the user has a slow ne
 
 We can call `socket.send(data)` again and again. But the data will be buffered (stored) in memory and sent out only as fast as network speed allows.
 
-The `socket.bufferedAmount` property stores how many bytes are buffered at this moment, waiting to be sent over the network.
+The `socket.bufferedAmount` property stores how many bytes remain buffered at this moment, waiting to be sent over the network.
 
 We can examine it to see whether the socket is actually available for transmission.
 
@@ -238,7 +238,7 @@ socket.onclose = event => {
 Most common code values:
 
 - `1000` -- the default, normal closure (used if no `code` supplied),
-- `1006` -- no way to such code manually, indicates that the connection was lost (no close frame).
+- `1006` -- no way to set such code manually, indicates that the connection was lost (no close frame).
 
 There are other codes like:
 

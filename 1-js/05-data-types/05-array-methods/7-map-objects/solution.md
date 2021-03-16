@@ -25,7 +25,7 @@ alert( usersMapped[0].id ); // 1
 alert( usersMapped[0].fullName ); // John Smith
 ```
 
-Please note that in for the arrow functions we need to use additional brackets. 
+Please note that in the arrow functions we need to use additional brackets. 
 
 We can't write like this:
 ```js

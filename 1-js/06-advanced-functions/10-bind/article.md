@@ -247,7 +247,7 @@ The call to `mul.bind(null, 2)` creates a new function `double` that passes call
 
 That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
 
-Please note that here we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Please note that we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
 
 The function `triple` in the code below triples the value:
 

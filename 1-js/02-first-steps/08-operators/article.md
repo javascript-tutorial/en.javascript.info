@@ -104,7 +104,12 @@ Here's a more complex example:
 alert(2 + 2 + '1' ); // "41" and not "221"
 ```
 
-Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = 41`.
+Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
+
+```js run
+alert('1' + 2 + 2); // "122" and not "14"
+```
+Here, the first operand is a string, the compiler treats the other two operands as strings too. The `2` gets concatenated to `'1'`, so it's like `'1' + 2 = "12"` and `"12" + 2 = "122"`.
 
 The binary `+` is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
 
@@ -214,7 +219,7 @@ alert( x ); // 5
 
 The fact of `=` being an operator, not a "magical" language construct has an interesting implication.
 
-Most operators in JavaScript return a value. That's obvious for `+` and `-`, but also true for `=`.
+All operators in JavaScript return a value. That's obvious for `+` and `-`, but also true for `=`.
 
 The call `x = value` writes the `value` into `x` *and then returns it*.
 

@@ -93,7 +93,7 @@ xhr.onload = function() {
   if (xhr.status != 200) { // analyze HTTP status of the response
     alert(`Error ${xhr.status}: ${xhr.statusText}`); // e.g. 404: Not Found
   } else { // show the result
-    alert(`Done, got ${xhr.response.length} bytes`); // response is the server
+    alert(`Done, got ${xhr.response.length} bytes`); // response is the server response
   }
 };
 
@@ -151,7 +151,7 @@ We can use `xhr.responseType` property to set the response format:
 - `"text"` -- get as string,
 - `"arraybuffer"` -- get as `ArrayBuffer` (for binary data, see chapter <info:arraybuffer-binary-arrays>),
 - `"blob"` -- get as `Blob` (for binary data, see chapter <info:blob>),
-- `"document"` -- get as XML document (can use XPath and other XML methods),
+- `"document"` -- get as XML document (can use XPath and other XML methods) or HTML document (based on the MIME type of the received data),
 - `"json"` -- get as JSON (parsed automatically).
 
 For example, let's get the response as JSON:
@@ -190,7 +190,7 @@ All states, as in [the specification](https://xhr.spec.whatwg.org/#states):
 UNSENT = 0; // initial state
 OPENED = 1; // open called
 HEADERS_RECEIVED = 2; // response headers received
-LOADING = 3; // response is loading (a data packed is received)
+LOADING = 3; // response is loading (a data packet is received)
 DONE = 4; // request complete
 ```
 
@@ -269,7 +269,7 @@ There are 3 methods for HTTP-headers:
 
     ```warn header="Headers limitations"
     Several headers are managed exclusively by the browser, e.g. `Referer` and `Host`.
-    The full list is [in the specification](http://www.w3.org/TR/XMLHttpRequest/#the-setrequestheader-method).
+    The full list is [in the specification](https://xhr.spec.whatwg.org/#the-setrequestheader()-method).
 
     `XMLHttpRequest` is not allowed to change them, for the sake of user safety and correctness of the request.
     ```
@@ -509,7 +509,7 @@ xhr.onerror = function() {
 };
 ```
 
-There are actually more events, the [modern specification](http://www.w3.org/TR/XMLHttpRequest/#events) lists them (in the lifecycle order):
+There are actually more events, the [modern specification](https://xhr.spec.whatwg.org/#events) lists them (in the lifecycle order):
 
 - `loadstart` -- the request has started.
 - `progress` -- a data packet of the response has arrived, the whole response body at the moment is in `response`.

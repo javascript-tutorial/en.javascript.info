@@ -24,7 +24,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
 
 1. First, create a file id, to uniquely identify the file we're going to upload:
     ```js
-    let fileId = file.name + '-' + file.size + '-' + +file.lastModifiedDate;
+    let fileId = file.name + '-' + file.size + '-' + file.lastModified;
     ```
     That's needed for resume upload, to tell the server what we're resuming.
 

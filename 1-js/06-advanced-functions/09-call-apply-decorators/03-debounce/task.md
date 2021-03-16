@@ -21,9 +21,9 @@ Here's the code for it (uses the debounce decorator from the [Lodash library](ht
 ```js
 let f = _.debounce(alert, 1000);
 
-f("a"); 
+f("a");
 setTimeout( () => f("b"), 200);
-setTimeout( () => f("c"), 500); 
+setTimeout( () => f("c"), 500);
 // debounced function waits 1000ms after the last call and then runs: alert("c")
 ```
 

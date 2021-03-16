@@ -14,8 +14,8 @@ Simply put, "reachable" values are those that are accessible or usable somehow. 
 
     For instance:
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
+    - The currently executing function, its local variables and parameters.
+    - Other functions on the current chain of nested calls, their local variables and parameters.
     - Global variables.
     - (there are some other, internal ones as well)
 
@@ -23,7 +23,7 @@ Simply put, "reachable" values are those that are accessible or usable somehow. 
 
 2. Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
 
-    For instance, if there's an object in a global variable, and that object has a property referencing another object, that object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
+    For instance, if there's an object in a global variable, and that object has a property referencing another object, *that* object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
 
 There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
 

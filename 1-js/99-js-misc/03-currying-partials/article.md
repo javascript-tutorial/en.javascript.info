@@ -155,7 +155,7 @@ function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
   } else {
-    return function pass(...args2) { // (2)
+    return function(...args2) { // (2)
       return curried.apply(this, args.concat(args2));
     }
   }
@@ -164,18 +164,10 @@ function curried(...args) {
 
 When we run it, there are two `if` execution branches:
 
-1. Call now: if passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
-2. Get a partial: otherwise, `func` is not called yet. Instead, another wrapper `pass` is returned, that will re-apply `curried` providing previous arguments together with the new ones. Then on a new call, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
+2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
 
-For instance, let's see what happens in the case of `sum(a, b, c)`. Three arguments, so `sum.length = 3`.
-
-For the call `curried(1)(2)(3)`:
-
-1. The first call `curried(1)` remembers `1` in its Lexical Environment, and returns a wrapper `pass`.
-2. The wrapper `pass` is called with `(2)`: it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together. As the argument count is still less than 3, `curry` returns `pass`.
-3. The wrapper `pass` is called again with `(3)`,  for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
-
-If that's still not obvious, just trace the calls sequence in your mind or on paper.
+Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
 
 ```smart header="Fixed-length functions only"
 The currying requires the function to have a fixed number of arguments.

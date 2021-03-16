@@ -1,10 +1,10 @@
 # Promise
 
-Imagine that you're a top singer, and fans ask day and night for your upcoming single.
+Imagine that you're a top singer, and fans ask day and night for your upcoming song.
 
 To get some relief, you promise to send it to them when it's published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can't publish the song, they will still be notified.
 
-Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the single.
+Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the song.
 
 This is a real-life analogy for things we often have in programming:
 
