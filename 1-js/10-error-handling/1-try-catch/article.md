@@ -353,21 +353,9 @@ try {
 
 Of course, everything's possible! Programmers do make mistakes. Even in open-source utilities used by millions for decades -- suddenly a bug may be discovered that leads to terrible hacks.
 
-In our case, `try..catch` is meant to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
+In our case, `try..catch` is placed to catch "incorrect data" errors. But by its nature, `catch` gets *all* errors from `try`. Here it gets an unexpected error, but still shows the same `"JSON Error"` message. That's wrong and also makes the code more difficult to debug.
 
-Fortunately, we can find out which error we get, for instance from its `name`:
-
-```js run
-try {
-  user = { /*...*/ };
-} catch(e) {
-*!*
-  alert(e.name); // "ReferenceError" for accessing an undefined variable
-*/!*
-}
-```
-
-The rule is simple:
+To avoid such problems, we can employ the "rethrowing" technique. The rule is simple:
 
 **Catch should only process errors that it knows and "rethrow" all others.**
 
@@ -375,7 +363,23 @@ The "rethrowing" technique can be explained in more detail as:
 
 1. Catch gets all errors.
 2. In the `catch(err) {...}` block we analyze the error object `err`.
-2. If we don't know how to handle it, we do `throw err`.
+3. If we don't know how to handle it, we do `throw err`.
+
+Usually, we can check the error type using the `instanceof` operator:
+
+```js run
+try {
+  user = { /*...*/ };
+} catch(err) {
+*!*
+  if (err instanceof ReferenceError) {
+*/!*
+    alert('ReferenceError'); // "ReferenceError" for accessing an undefined variable
+  }
+}
+```
+
+We can also get the error class name from `err.name` property. All native errors have it. Another option is to read `err.constructor.name`.
 
 In the code below, we use rethrowing so that `catch` only handles `SyntaxError`:
 
@@ -398,7 +402,7 @@ try {
 } catch(e) {
 
 *!*
-  if (e.name == "SyntaxError") {
+  if (e instanceof SyntaxError) {
     alert( "JSON Error: " + e.message );
   } else {
     throw e; // rethrow (*)
@@ -425,7 +429,7 @@ function readData() {
 */!*
   } catch (e) {
     // ...
-    if (e.name != 'SyntaxError') {
+    if (!(e instanceof SyntaxError)) {
 *!*
       throw e; // rethrow (don't know how to deal with it)
 */!*

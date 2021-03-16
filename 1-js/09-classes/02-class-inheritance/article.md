@@ -16,7 +16,7 @@ class Animal {
     this.name = name;
   }
   run(speed) {
-    this.speed += speed;
+    this.speed = speed;
     alert(`${this.name} runs with speed ${this.speed}.`);
   }
   stop() {
@@ -55,7 +55,7 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.hide(); // White Rabbit hides!
 ```
 
-Object of `Rabbit` class have access to both `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
+Object of `Rabbit` class have access both to `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
 
 Internally, `extends` keyword works using the good old prototype mechanics. It sets `Rabbit.prototype.[[Prototype]]` to `Animal.prototype`. So, if a method is not found in `Rabbit.prototype`, JavaScript takes it from `Animal.prototype`.
 
@@ -76,8 +76,8 @@ For instance, a function call that generates the parent class:
 ```js run
 function f(phrase) {
   return class {
-    sayHi() { alert(phrase) }
-  }
+    sayHi() { alert(phrase); }
+  };
 }
 
 *!*
@@ -124,7 +124,7 @@ class Animal {
   }
 
   run(speed) {
-    this.speed += speed;
+    this.speed = speed;
     alert(`${this.name} runs with speed ${this.speed}.`);
   }
 
@@ -230,7 +230,9 @@ let rabbit = new Rabbit("White Rabbit", 10); // Error: this is not defined.
 
 Whoops! We've got an error. Now we can't create rabbits. What went wrong?
 
-The short answer is: constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.
+The short answer is:
+
+- **Constructors in inheriting classes must call `super(...)`, and (!) do it before using `this`.**
 
 ...But why? What's going on here? Indeed, the requirement seems strange.
 
@@ -243,7 +245,7 @@ That label affects its behavior with `new`.
 - When a regular function is executed with `new`, it creates an empty object and assigns it to `this`.
 - But when a derived constructor runs, it doesn't do this. It expects the parent constructor to do this job.
 
-So a derived constructor must call `super` in order to execute its parent (non-derived) constructor, otherwise the object for `this` won't be created. And we'll get an error.
+So a derived constructor must call `super` in order to execute its parent (base) constructor, otherwise the object for `this` won't be created. And we'll get an error.
 
 For the `Rabbit` constructor to work, it needs to call `super()` before using `this`, like here:
 
@@ -277,6 +279,102 @@ alert(rabbit.name); // White Rabbit
 alert(rabbit.earLength); // 10
 */!*
 ```
+
+
+
+### Overriding class fields: a tricky note
+
+```warn header="Advanced note"
+This note assumes you have a certain experience with classes, maybe in other programming languages.
+
+It provides better insight into the language and also explains the behavior that might be a source of bugs (but not very often).
+
+If you find it difficult to understand, just go on, continue reading, then return to it some time later.
+```
+
+We can override not only methods, but also class fields.
+
+Although, there's a tricky behavior when we access an overridden field in parent constructor, quite different from most other programming languages.
+
+Consider this example:
+
+```js run
+class Animal {
+  name = 'animal';
+
+  constructor() {
+    alert(this.name); // (*)
+  }
+}
+
+class Rabbit extends Animal {
+  name = 'rabbit';
+}
+
+new Animal(); // animal
+*!*
+new Rabbit(); // animal
+*/!*
+```
+
+Here, class `Rabbit` extends `Animal` and overrides `name` field with its own value.
+
+There's no own constructor in `Rabbit`, so `Animal` constructor is called.
+
+What's interesting is that in both cases: `new Animal()` and `new Rabbit()`, the `alert` in the line `(*)` shows `animal`.
+
+**In other words, parent constructor always uses its own field value, not the overridden one.**
+
+What's odd about it?
+
+If it's not clear yet, please compare with methods.
+
+Here's the same code, but instead of `this.name` field we call `this.showName()` method:
+
+```js run
+class Animal {
+  showName() {  // instead of this.name = 'animal'
+    alert('animal');
+  }
+
+  constructor() {
+    this.showName(); // instead of alert(this.name);
+  }
+}
+
+class Rabbit extends Animal {
+  showName() {
+    alert('rabbit');
+  }
+}
+
+new Animal(); // animal
+*!*
+new Rabbit(); // rabbit
+*/!*
+```
+
+Please note: now the output is different.
+
+And that's what we naturally expect. When the parent constructor is called in the derived class, it uses the overridden method.
+
+...But for class fields it's not so. As said, the parent constructor always uses the parent field.
+
+Why is there the difference?
+
+Well, the reason is in the field initialization order. The class field is initialized:
+- Before constructor for the base class (that doesn't extend anything),
+- Immediately after `super()` for the derived class.
+
+In our case, `Rabbit` is the derived class. There's no `constructor()` in it. As said previously, that's the same as if there was an empty constructor with only `super(...args)`.
+
+So, `new Rabbit()` calls `super()`, thus executing the parent constructor, and (per the rule for derived classes) only after that its class fields are initialized. At the time of the parent constructor execution, there are no `Rabbit` class fields yet, that's why `Animal` fields are used.
+
+This subtle difference between fields and methods is specific to JavaScript
+
+Luckily, this behavior only reveals itself if an overridden field is used in the parent constructor. Then it may be difficult to understand what's going on, so we're explaining it here.
+
+If it becomes a problem, one can fix it by using methods or getters/setters instead of fields.
 
 
 ## Super: internals, [[HomeObject]]
@@ -438,7 +536,7 @@ It works as intended, due to `[[HomeObject]]` mechanics. A method, such as `long
 
 As we've known before, generally functions are "free", not bound to objects in JavaScript. So they can be copied between objects and called with another `this`.
 
-The very existance of `[[HomeObject]]` violates that principle, because methods remember their objects. `[[HomeObject]]` can't be changed, so this bond is forever.
+The very existence of `[[HomeObject]]` violates that principle, because methods remember their objects. `[[HomeObject]]` can't be changed, so this bond is forever.
 
 The only place in the language where `[[HomeObject]]` is used -- is `super`. So, if a method does not use `super`, then we can still consider it free and copy between objects. But with `super` things may go wrong.
 
@@ -447,7 +545,7 @@ Here's the demo of a wrong `super` result after copying:
 ```js run
 let animal = {
   sayHi() {
-    console.log(`I'm an animal`);
+    alert(`I'm an animal`);
   }
 };
 
@@ -461,7 +559,7 @@ let rabbit = {
 
 let plant = {
   sayHi() {
-    console.log("I'm a plant");
+    alert("I'm a plant");
   }
 };
 
@@ -478,7 +576,7 @@ tree.sayHi();  // I'm an animal (?!?)
 */!*
 ```
 
-A call to `tree.sayHi()` shows "I'm an animal". Definitevely wrong.
+A call to `tree.sayHi()` shows "I'm an animal". Definitely wrong.
 
 The reason is simple:
 - In the line `(*)`, the method `tree.sayHi` was copied from `rabbit`. Maybe we just wanted to avoid code duplication?

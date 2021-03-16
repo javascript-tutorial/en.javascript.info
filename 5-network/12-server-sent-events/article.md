@@ -66,7 +66,7 @@ eventSource.onmessage = function(event) {
 
 ### Cross-origin requests
 
-`EventSource` supports cross-origin requests, like `fetch` any other networking methods. We can use any URL:
+`EventSource` supports cross-origin requests, like `fetch` and any other networking methods. We can use any URL:
 
 ```js
 let source = new EventSource("https://another-site.com/events");
@@ -215,7 +215,7 @@ It offers:
 - Message ids to resume events, the last received identifier is sent in `Last-Event-ID` header upon reconnection.
 - The current state is in the `readyState` property.
 
-That makes `EventSource` a viable alternative to `WebSocket`, as it's more low-level and lacks such built-in features (though they can be implemented).
+That makes `EventSource` a viable alternative to `WebSocket`, as the latter is more low-level and lacks such built-in features (though they can be implemented).
 
 In many real-life applications, the power of `EventSource` is just enough.
 

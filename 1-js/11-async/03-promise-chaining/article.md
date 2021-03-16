@@ -248,11 +248,11 @@ fetch('/article/promise-chaining/user.json')
   })
   .then(function(text) {
     // ...and here's the content of the remote file
-    alert(text); // {"name": "iliakan", isAdmin: true}
+    alert(text); // {"name": "iliakan", "isAdmin": true}
   });
 ```
 
-There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
+The `response` object returned from `fetch` also includes the method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
 
 We'll also use arrow functions for brevity:
 
@@ -265,7 +265,7 @@ fetch('/article/promise-chaining/user.json')
 
 Now let's do something with the loaded user.
 
-For instance, we can make one more requests to GitHub, load the user profile and show the avatar:
+For instance, we can make one more request to GitHub, load the user profile and show the avatar:
 
 ```js run
 // Make a request for user.json

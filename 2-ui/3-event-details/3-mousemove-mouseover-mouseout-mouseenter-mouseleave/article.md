@@ -80,7 +80,7 @@ An important feature of `mouseout` -- it triggers, when the pointer moves from a
 </div>
 ```
 
-If we're on `#parent` and then move the pointer deeper into `#child`, but we get `mouseout` on `#parent`!
+If we're on `#parent` and then move the pointer deeper into `#child`, we get `mouseout` on `#parent`!
 
 ![](mouseover-to-child.svg)
 

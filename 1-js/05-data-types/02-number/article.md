@@ -16,21 +16,29 @@ Imagine we need to write 1 billion. The obvious way is:
 let billion = 1000000000;
 ```
 
-But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+We also can use underscore `_` as the separator:
 
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+```js
+let billion = 1_000_000_000;
+```
+
+Here the underscore `_` plays the role of the "syntactic sugar", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+
+In real life though, we try to avoid writing long sequences of zeroes. We're too lazy for that. We'll try to write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
 
 ```js run
 let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
 ```
 
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
+In other words, `e` multiplies the number by `1` with the given zeroes count.
 
 ```js
-1e3 = 1 * 1000
-1.23e6 = 1.23 * 1000000
+1e3 = 1 * 1000 // e3 means *1000
+1.23e6 = 1.23 * 1000000 // e6 means *1000000
 ```
 
 Now let's write something very small. Say, 1 microsecond (one millionth of a second):
@@ -125,7 +133,7 @@ There are several built-in functions for rounding:
 : Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`, the middle case: `3.5` rounds up to `4` too.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
@@ -148,7 +156,7 @@ There are two ways to do so:
 
 1. Multiply-and-divide.
 
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
@@ -324,7 +332,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 
 ```smart header="Compare with `Object.is`"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
 2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
@@ -383,7 +391,7 @@ JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaS
 A few examples:
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+: Returns a random number from 0 to 1 (not including 1).
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
@@ -400,13 +408,13 @@ A few examples:
     ```
 
 `Math.pow(n, power)`
-: Returns `n` raised the given power
+: Returns `n` raised to the given power.
 
     ```js run
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
     ```
 
-There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object.
+There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
 
 ## Summary
 
@@ -417,7 +425,7 @@ To write numbers with many zeroes:
 
 For different numeral systems:
 
-- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems
+- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems.
 - `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
 - `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
 

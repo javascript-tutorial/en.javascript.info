@@ -6,7 +6,7 @@ importance: 5
 
 We have an empty DOM element `elem` and a string `text`.
 
-Which of these 3 commands do exactly the same?
+Which of these 3 commands will do exactly the same?
 
 1. `elem.append(document.createTextNode(text))`
 2. `elem.innerHTML = text`
