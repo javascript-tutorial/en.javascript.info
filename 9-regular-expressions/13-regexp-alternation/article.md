@@ -20,7 +20,7 @@ alert( str.match(regexp) ); // 'HTML', 'CSS', 'JavaScript'
 
 We already saw a similar thing -- square brackets. They allow to choose between multiple characters, for instance `pattern:gr[ae]y` matches `match:gray` or `match:grey`.
 
-Square brackets allow only characters or character sets. Alternation allows any expressions. A regexp `pattern:A|B|C` means one of expressions `A`, `B` or `C`.
+Square brackets allow only characters or character classes. Alternation allows any expressions. A regexp `pattern:A|B|C` means one of expressions `A`, `B` or `C`.
 
 For instance:
 
@@ -33,7 +33,7 @@ To apply alternation to a chosen part of the pattern, we can enclose it in paren
 
 ## Example: regexp for time
 
-In previous articles there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time (as 99 seconds match the pattern, but that time is invalid).
+In previous articles there was a task to build a regexp for searching time in the form `hh:mm`, for instance `12:00`. But a simple `pattern:\d\d:\d\d` is too vague. It accepts `25:99` as the time (as 99 minutes match the pattern, but that time is invalid).
 
 How can we make a better pattern?
 
@@ -47,7 +47,7 @@ We can write both variants in a regexp using alternation: `pattern:[01]\d|2[0-3]
 
 Next, minutes must be from `00` to `59`. In the regular expression language that can be written as `pattern:[0-5]\d`: the first digit `0-5`, and then any digit.
 
-If we glue minutes and seconds together, we get the pattern: `pattern:[01]\d|2[0-3]:[0-5]\d`.
+If we glue hours and minutes together, we get the pattern: `pattern:[01]\d|2[0-3]:[0-5]\d`.
 
 We're almost done, but there's a problem. The alternation `pattern:|` now happens to be between `pattern:[01]\d` and `pattern:2[0-3]:[0-5]\d`.
 

@@ -215,11 +215,39 @@ Now custom errors are much shorter, especially `ValidationError`, as we got rid 
 
 The purpose of the function `readUser` in the code above is "to read the user data". There may occur different kinds of errors in the process. Right now we have `SyntaxError` and `ValidationError`, but in the future `readUser` function may grow and probably generate other kinds of errors.
 
-The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones. But if the `readUser` function generates several kinds of errors, then we should ask ourselves: do we really want to check for all error types one-by-one in every code that calls `readUser`?
+The code which calls `readUser` should handle these errors. Right now it uses multiple `if`s in the `catch` block, that check the class and handle known errors and rethrow the unknown ones.
 
-Often the answer is "No": the outer code wants to be "one level above all that", it just wants to have some kind of "data reading error" -- why exactly it happened is often irrelevant (the error message describes it). Or, even better, it could have a way to get the error details, but only if we need to.
+The scheme is like this:
 
-So let's make a new class `ReadError` to represent such errors. If an error occurs inside `readUser`, we'll catch it there and generate `ReadError`. We'll also keep the reference to the original error in its `cause` property. Then the outer code will only have to check for `ReadError`.
+```js
+try {
+  ...
+  readUser()  // the potential error source
+  ...
+} catch (err) {
+  if (err instanceof ValidationError) {
+    // handle validation errors
+  } else if (err instanceof SyntaxError) {
+    // handle syntax errors
+  } else {
+    throw err; // unknown error, rethrow it
+  }
+}
+```
+
+In the code above we can see two types of errors, but there can be more.
+
+If the `readUser` function generates several kinds of errors, then we should ask ourselves: do we really want to check for all error types one-by-one every time?
+
+Often the answer is "No": we'd like to be "one level above all that". We just want to know if there was a "data reading error" -- why exactly it happened is often irrelevant (the error message describes it). Or, even better, we'd like to have a way to get the error details, but only if we need to.
+
+The technique that we describe here is called "wrapping exceptions".
+
+1. We'll make a new class `ReadError` to represent a generic "data reading" error.
+2. The function `readUser` will catch data reading errors that occur inside it, such as `ValidationError` and `SyntaxError`, and generate a `ReadError` instead.
+3. The `ReadError` object will keep the reference to the original error in its `cause` property.
+
+Then the code that calls `readUser` will only have to check for `ReadError`, not for every kind of data reading errors. And if it needs more details of an error, it can check its `cause` property.
 
 Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
 
@@ -293,7 +321,7 @@ In the code above, `readUser` works exactly as described -- catches syntax and v
 
 So the outer code checks `instanceof ReadError` and that's it. No need to list all possible error types.
 
-The approach is called "wrapping exceptions", because we take "low level exceptions" and "wrap" them into `ReadError` that is more abstract and more convenient to use for the calling code. It is widely used in object-oriented programming.
+The approach is called "wrapping exceptions", because we take "low level" exceptions and "wrap" them into `ReadError` that is more abstract. It is widely used in object-oriented programming.
 
 ## Summary
 

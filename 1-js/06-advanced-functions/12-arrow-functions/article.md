@@ -52,7 +52,7 @@ let group = {
 *!*
     this.students.forEach(function(student) {
       // Error: Cannot read property 'title' of undefined
-      alert(this.title + ': ' + student)
+      alert(this.title + ': ' + student);
     });
 */!*
   }
@@ -87,7 +87,7 @@ For instance, `defer(f, ms)` gets a function and returns a wrapper around it tha
 ```js run
 function defer(f, ms) {
   return function() {
-    setTimeout(() => f.apply(this, arguments), ms)
+    setTimeout(() => f.apply(this, arguments), ms);
   };
 }
 

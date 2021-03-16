@@ -71,7 +71,7 @@ If there are multiple elements with the same `id`, then the behavior of methods 
 ```
 
 ```warn header="Only `document.getElementById`, not `anyElem.getElementById`"
-The method `getElementById` that can be called only on `document` object. It looks for the given `id` in the whole document.
+The method `getElementById` can be called only on `document` object. It looks for the given `id` in the whole document.
 ```
 
 ## querySelectorAll [#querySelectorAll]
@@ -103,7 +103,7 @@ Here we look for all `<li>` elements that are last children:
 This method is indeed powerful, because any CSS selector can be used.
 
 ```smart header="Can use pseudo-classes as well"
-Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is  over now (in nesting order: from the outermost `<html>` to the most nested one).
+Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is over now (in nesting order: from the outermost `<html>` to the most nested one).
 ```
 
 ## querySelector [#querySelector]
@@ -142,7 +142,7 @@ For instance:
 
 *Ancestors* of an element are: parent, the parent of parent, its parent and so on. The ancestors together form the chain of parents from the element to the top.
 
-The method `elem.closest(css)` looks the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
+The method `elem.closest(css)` looks for the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
 
 In other words, the method `closest` goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned.
 
@@ -178,7 +178,7 @@ So here we cover them mainly for completeness, while you can still find them in 
 
 - `elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` parameter can also be a star `"*"` for "any tags".
 - `elem.getElementsByClassName(className)` returns elements that have the given CSS class.
-- `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. very rarely used.
+- `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. Very rarely used.
 
 For instance:
 ```js
@@ -363,7 +363,7 @@ There are 6 main methods to search for nodes in DOM:
 </tbody>
 </table>
 
-By far the most used are `querySelector` and `querySelectorAll`, but `getElementBy*` can be sporadically helpful or found in the old scripts.
+By far the most used are `querySelector` and `querySelectorAll`, but `getElement(s)By*` can be sporadically helpful or found in the old scripts.
 
 Besides that:
 

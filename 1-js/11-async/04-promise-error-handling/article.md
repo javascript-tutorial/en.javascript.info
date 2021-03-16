@@ -60,7 +60,7 @@ new Promise((resolve, reject) => {
 new Promise((resolve, reject) => {
 *!*
   reject(new Error("Whoops!"));
-*/!*  
+*/!*
 }).catch(alert); // Error: Whoops!
 ```
 
@@ -92,15 +92,15 @@ new Promise((resolve, reject) => {
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
-The final `.catch` not only catches explicit rejections, but also occasional errors in the handlers above.
+The final `.catch` not only catches explicit rejections, but also accidental errors in the handlers above.
 
 ## Rethrowing
 
 As we already noticed, `.catch` at the end of the chain is similar to `try..catch`. We may have as many `.then` handlers as we want, and then use a single `.catch` at the end to handle errors in all of them.
 
-In a regular `try..catch` we can analyze the error and maybe rethrow it if can't handle. The same thing is possible for promises.
+In a regular `try..catch` we can analyze the error and maybe rethrow it if it can't be handled. The same thing is possible for promises.
 
-If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the closest successful `.then` handler.
+If we `throw` inside `.catch`, then the control goes to the next closest error handler. And if we handle the error and finish normally, then it continues to the next closest successful `.then` handler.
 
 In the example below the `.catch` successfully handles the error:
 
@@ -122,7 +122,7 @@ Here the `.catch` block finishes normally. So the next successful `.then` handle
 In the example below we see the other situation with `.catch`. The handler `(*)` catches the error and just can't handle it (e.g. it only knows how to handle `URIError`), so it throws it again:
 
 ```js run
-// the execution: catch -> catch -> then
+// the execution: catch -> catch
 new Promise((resolve, reject) => {
 
   throw new Error("Whoops!");

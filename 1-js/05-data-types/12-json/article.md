@@ -105,7 +105,7 @@ JSON is data-only language-independent specification, so some JavaScript-specifi
 Namely:
 
 - Function properties (methods).
-- Symbolic properties.
+- Symbolic keys and values.
 - Properties that store `undefined`.
 
 ```js run
@@ -276,6 +276,7 @@ name:         John
 name:         Alice
 place:        [object Object]
 number:       23
+occupiedBy: [object Object]
 */
 ```
 
@@ -327,6 +328,8 @@ alert(JSON.stringify(user, null, 2));
 }
 */
 ```
+
+The third argument can also be a string. In this case, the string is used for indentation instead of a number of spaces.
 
 The `space` parameter is used solely for logging and nice-output purposes.
 

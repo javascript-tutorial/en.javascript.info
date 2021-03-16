@@ -18,7 +18,7 @@ let eventMixin = {
    *  menu.off('select', handler)
    */
   off(eventName, handler) {
-    let handlers = this._eventHandlers && this._eventHandlers[eventName];
+    let handlers = this._eventHandlers?.[eventName];
     if (!handlers) return;
     for(let i = 0; i < handlers.length; i++) {
       if (handlers[i] == handler) {

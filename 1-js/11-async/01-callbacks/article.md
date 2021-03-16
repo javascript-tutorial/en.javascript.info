@@ -2,15 +2,17 @@
 
 # Introduction: callbacks
 
-```warn header="We use browser methods here"
-To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods; specifically, loading scripts and performing simple document manipulations.
+```warn header="We use browser methods in examples here"
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
 
-If you're not familiar with these methods, and their usage in the examples is confusing, or if you would just like to understand them better, you may want to read a few chapters from the [next part](/document) of the tutorial.
+If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
+
+Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
 ```
 
-Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
 
-For instance, we can schedule such actions using `setTimeout`.
+For instance, one such function is the `setTimeout` function.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
@@ -18,13 +20,15 @@ Take a look at the function `loadScript(src)`, that loads a script with the give
 
 ```js
 function loadScript(src) {
+  // creates a <script> tag and append it to the page
+  // this causes the script with given src to start loading and run when complete
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
-It appends to the document the new, dynamically created, tag `<script src="…">`. The browser loads and executes it.
+It appends to the document the new, dynamically created, tag `<script src="…">` with given `src`. The browser automatically starts loading it and executes when complete.
 
 We can use this function like this:
 
@@ -105,7 +109,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
 
-Here we did it in `loadScript`, but of course, it's a general approach.
+Here we did it in `loadScript`, but of course it's a general approach.
 
 ## Callback in callback
 
@@ -142,7 +146,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -219,7 +223,7 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
@@ -252,7 +256,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -292,7 +296,7 @@ function step3(error, script) {
   } else {
     // ...continue after all scripts are loaded (*)
   }
-};
+}
 ```
 
 See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
