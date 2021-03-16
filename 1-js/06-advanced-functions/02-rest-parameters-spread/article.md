@@ -1,4 +1,4 @@
-# Rest parameters and spread operator
+# Rest parameters and spread syntax
 
 Many JavaScript built-in functions support an arbitrary number of arguments.
 
@@ -122,7 +122,7 @@ As we remember, arrow functions don't have their own `this`. Now we know they do
 ````
 
 
-## Spread operator [#spread-operator]
+## Spread syntax [#spread-syntax]
 
 We've just seen how to get an array from the list of parameters.
 
@@ -148,7 +148,7 @@ alert( Math.max(arr) ); // NaN
 
 And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
 
-*Spread operator* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+*Spread syntax* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
 
 When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
 
@@ -169,7 +169,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(...arr1, ...arr2) ); // 8
 ```
 
-We can even combine the spread operator with normal values:
+We can even combine the spread syntax with normal values:
 
 
 ```js run
@@ -179,7 +179,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 ```
 
-Also, the spread operator can be used to merge arrays:
+Also, the spread syntax can be used to merge arrays:
 
 ```js run
 let arr = [3, 5, 1];
@@ -192,9 +192,9 @@ let merged = [0, ...arr, 2, ...arr2];
 alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
 ```
 
-In the examples above we used an array to demonstrate the spread operator, but any iterable will do.
+In the examples above we used an array to demonstrate the spread syntax, but any iterable will do.
 
-For instance, here we use the spread operator to turn the string into array of characters:
+For instance, here we use the spread syntax to turn the string into array of characters:
 
 ```js run
 let str = "Hello";
@@ -202,7 +202,7 @@ let str = "Hello";
 alert( [...str] ); // H,e,l,l,o
 ```
 
-The spread operator internally uses iterators to gather elements, the same way as `for..of` does.
+The spread syntax internally uses iterators to gather elements, the same way as `for..of` does.
 
 So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
 
@@ -220,24 +220,24 @@ The result is the same as `[...str]`.
 But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
 
 - `Array.from` operates on both array-likes and iterables.
-- The spread operator operates only on iterables.
+- The spread syntax works only with iterables.
 
 So, for the task of turning something into an array, `Array.from` tends to be more universal.
 
 
 ## Summary
 
-When we see `"..."` in the code, it is either rest parameters or the spread operator.
+When we see `"..."` in the code, it is either rest parameters or the spread syntax.
 
 There's an easy way to distinguish between them:
 
 - When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
-- When `...` occurs in a function call or alike, it's called a "spread operator" and expands an array into a list.
+- When `...` occurs in a function call or alike, it's called a "spread syntax" and expands an array into a list.
 
 Use patterns:
 
 - Rest parameters are used to create functions that accept any number of arguments.
-- The spread operator is used to pass an array to functions that normally require a list of many arguments.
+- The spread syntax is used to pass an array to functions that normally require a list of many arguments.
 
 Together they help to travel between a list and an array of parameters with ease.
 

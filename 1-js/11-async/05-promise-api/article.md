@@ -4,9 +4,9 @@ There are 5 static methods in the `Promise` class. We'll quickly cover their use
 
 ## Promise.all
 
-Let's say we want to run many promises to execute in parallel, and wait until all of them are ready.
+Let's say we want many promises to execute in parallel and wait until all of them are ready.
 
-For instance, download several URLs in parallel and process the content when all are done.
+For instance, download several URLs in parallel and process the content once they are all done.
 
 That's what `Promise.all` is for.
 
@@ -18,7 +18,7 @@ let promise = Promise.all([...promises...]);
 
 `Promise.all` takes an array of promises (it technically can be any iterable, but is usually an array) and returns a new promise.
 
-The new promise resolves when all listed promises are settled and the array of their results becomes its result.
+The new promise resolves when all listed promises are settled, and the array of their results becomes its result.
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
@@ -89,12 +89,12 @@ Promise.all([
 ]).catch(alert); // Error: Whoops!
 ```
 
-Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the whole `Promise.all`.
+Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the entire `Promise.all`.
 
 ```warn header="In case of an error, other promises are ignored"
 If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
 
-For example, if there are multiple `fetch` calls, like in the example above, and one fails, other ones will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but the result will be ignored.
+For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
 
 `Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](info:fetch-abort) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
 ```
@@ -110,7 +110,7 @@ Promise.all([
     setTimeout(() => resolve(1), 1000)
   }),
   2,
-  3  
+  3
 ]).then(alert); // 1, 2, 3
 ```
 
@@ -121,7 +121,7 @@ So we are able to pass ready values to `Promise.all` where convenient.
 
 [recent browser="new"]
 
-`Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results to go on:
+`Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results successful to proceed:
 
 ```js
 Promise.all([
@@ -131,7 +131,7 @@ Promise.all([
 ]).then(render); // render method needs results of all fetches
 ```
 
-`Promise.allSettled` waits for all promises to settle. The resulting array has:
+`Promise.allSettled` just waits for all promises to settle, regardless of the result. The resulting array has:
 
 - `{status:"fulfilled", value:result}` for successful responses,
 - `{status:"rejected", reason:error}` for errors.
@@ -169,7 +169,7 @@ The `results` in the line `(*)` above will be:
 ]
 ```
 
-So, for each promise we get its status and `value/error`.
+So for each promise we get its status and `value/error`.
 
 ### Polyfill
 
@@ -197,7 +197,7 @@ Now we can use `Promise.allSettled` to get the results of *all* given promises, 
 
 ## Promise.race
 
-Similar to `Promise.all`, but waits only for the first settled promise, and gets its result (or error).
+Similar to `Promise.all`, but waits only for the first settled promise and gets its result (or error).
 
 The syntax is:
 
@@ -222,9 +222,11 @@ The first promise here was fastest, so it became the result. After the first set
 
 Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](info:async-await)) makes them somewhat obsolete.
 
-We cover them here for completeness, and for those who can't use `async/await` for some reason.
+We cover them here for completeness and for those who can't use `async/await` for some reason.
 
-- `Promise.resolve(value)` creates a resolved promise with the result `value`.
+### Promise.resolve
+
+`Promise.resolve(value)` creates a resolved promise with the result `value`.
 
 Same as:
 
@@ -234,7 +236,7 @@ let promise = new Promise(resolve => resolve(value));
 
 The method is used for compatibility, when a function is expected to return a promise.
 
-For example, `loadCached` function below fetches a URL and remembers (caches) its content. For future calls with the same URL it immediately gets the previous content from cache, but uses `Promise.resolve` to make a promise of it, so that the returned value is always a promise:
+For example, the `loadCached` function below fetches a URL and remembers (caches) its content. For future calls with the same URL it immediately gets the previous content from cache, but uses `Promise.resolve` to make a promise of it, so the returned value is always a promise:
 
 ```js
 let cache = new Map();
@@ -259,7 +261,7 @@ We can write `loadCached(url).then(…)`, because the function is guaranteed to 
 
 ### Promise.reject
 
-- `Promise.reject(error)` creates a rejected promise with `error`.
+`Promise.reject(error)` creates a rejected promise with `error`.
 
 Same as:
 

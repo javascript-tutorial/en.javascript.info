@@ -10,9 +10,9 @@ message = 123456;
 
 Programming languages that allow such things are called "dynamically typed", meaning that there are data types, but variables are not bound to any of them.
 
-There are seven basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
 
-## A number
+## Number
 
 ```js
 let n = 123;
@@ -62,14 +62,33 @@ Special numeric values formally belong to the "number" type. Of course they are 
 
 We'll see more about working with numbers in the chapter <info:number>.
 
-## A string
+## BigInt
+
+In JavaScript, the "number" type cannot represent integer values larger than <code>2<sup>53</sup></code> (or less than <code>-2<sup>53</sup></code> for negatives), that's a technical limitation caused by their internal representation. That's about 16 decimal digits, so for most purposes the limitation isn't a problem, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` is created by appending `n` to the end of an integer literal:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we devoted them a separate chapter <info:bigint>.
+
+```smart header="Compatability issues"
+Right now `BigInt` is supported in Firefox and Chrome, but not in Safari/IE/Edge.
+```
+
+## String
 
 A string in JavaScript must be surrounded by quotes.
 
 ```js
 let str = "Hello";
 let str2 = 'Single quotes are ok too';
-let phrase = `can embed ${str}`;
+let phrase = `can embed another ${str}`;
 ```
 
 In JavaScript, there are 3 types of quotes.
@@ -78,7 +97,7 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are "simple" quotes. There's no difference between them in JavaScript.
+Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
 
 Backticks are "extended functionality" quotes. They allow us to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
@@ -102,12 +121,12 @@ alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do n
 We'll cover strings more thoroughly in the chapter <info:string>.
 
 ```smart header="There is no *character* type."
-In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is `char`.
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
 
 In JavaScript, there is no such type. There's only one type: `string`. A string may consist of only one character or many of them.
 ```
 
-## A boolean (logical type)
+## Boolean (logical type)
 
 The boolean type has only two values: `true` and `false`.
 
@@ -198,6 +217,8 @@ typeof undefined // "undefined"
 
 typeof 0 // "number"
 
+typeof 10n // "bigint"
+
 typeof true // "boolean"
 
 typeof "foo" // "string"
@@ -223,12 +244,12 @@ The last three lines may need additional explanation:
 2. The result of `typeof null` is `"object"`. That's wrong. It is an officially recognized error in `typeof`, kept for compatibility. Of course, `null` is not an object. It is a special value with a separate type of its own. So, again, this is an error in the language.
 3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That's not quite correct, but very convenient in practice.
 
-
 ## Summary
 
-There are 7 basic data types in JavaScript.
+There are 8 basic data types in JavaScript.
 
-- `number` for numbers of any kind: integer or floating-point.
+- `number` for numbers of any kind: integer or floating-point, integers are limited by ±2<sup>53</sup>.
+- `bigint` is for integer numbers of arbitrary length.
 - `string` for strings. A string may have one or more characters, there's no separate single-character type.
 - `boolean` for `true`/`false`.
 - `null` for unknown values -- a standalone type that has a single value `null`.

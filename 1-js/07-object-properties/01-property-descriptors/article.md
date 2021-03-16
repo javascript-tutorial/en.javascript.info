@@ -66,7 +66,7 @@ Object.defineProperty(obj, propertyName, descriptor)
 : The object and its property to apply the descriptor.
 
 `descriptor`
-: Property descriptor to apply.
+: Property descriptor object to apply.
 
 If the property exists, `defineProperty` updates its flags. Otherwise, it creates the property with the given value and flags; in that case, if a flag is not supplied, it is assumed `false`.
 

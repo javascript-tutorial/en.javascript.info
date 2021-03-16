@@ -94,11 +94,7 @@ alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
 
-As the result, we have a "virtual" property `fullName`. It is readable and writable, but in fact does not exist.
-
-```smart header="No way to handle `delete`"
-There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
-```
+As the result, we have a "virtual" property `fullName`. It is readable and writable.
 
 ## Accessor descriptors
 
@@ -138,7 +134,7 @@ alert(user.fullName); // John Smith
 for(let key in user) alert(key); // name, surname
 ```
 
-Please note once again that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
+Please note that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
 
 If we try to supply both `get` and `value` in the same descriptor, there will be an error:
 

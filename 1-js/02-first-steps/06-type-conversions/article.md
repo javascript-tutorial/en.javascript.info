@@ -1,6 +1,6 @@
 # Type Conversions
 
-Most of the time, operators and functions automatically convert the values given to them to the right type. 
+Most of the time, operators and functions automatically convert the values given to them to the right type.
 
 For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
 
@@ -81,18 +81,7 @@ alert( Number(false) );       // 0
 
 Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
 
-````smart header="Addition '+' concatenates strings"
-Almost all mathematical operations convert values to numbers. A notable exception is addition `+`. If one of the added values is a string, the other one is also converted to a string.
-
-Then, it concatenates (joins) them:
-
-```js run
-alert( 1 + '2' ); // '12' (string to the right)
-alert( '1' + 2 ); // '12' (string to the left)
-```
-
-This only happens when at least one of the arguments is a string. Otherwise, values are converted to numbers.
-````
+Most mathematical operators also perform such conversion, we'll see that in the next chapter.
 
 ## Boolean Conversion
 

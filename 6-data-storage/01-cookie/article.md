@@ -310,7 +310,7 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires && options.expires.toUTCString) {
+  if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 

@@ -279,7 +279,7 @@ What if we'd like to fix some arguments, but not the context `this`? For example
 
 The native `bind` does not allow that. We can't just omit the context and jump to arguments.
 
-Fortunately, a helper function `partial` for binding only arguments can be easily implemented.
+Fortunately, a function `partial` for binding only arguments can be easily implemented.
 
 Like this:
 
@@ -313,7 +313,7 @@ The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that call
 - Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
 - Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
 
-So easy to do it with the spread operator, right?
+So easy to do it with the spread syntax, right?
 
 Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
 
