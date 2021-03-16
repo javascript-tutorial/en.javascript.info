@@ -1,4 +1,0 @@
-{
-  "name": "iliakan",
-  "isAdmin": true
-}
