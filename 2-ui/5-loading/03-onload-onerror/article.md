@@ -41,8 +41,8 @@ document.head.append(script);
 
 *!*
 script.onload = function() {
-  // the script creates a helper function "_"
-  alert(_); // the function is available
+  // the script creates a variable "_"
+  alert( _.VERSION ); // shows library version
 };
 */!*
 ```
@@ -169,7 +169,7 @@ There are three levels of cross-origin access:
 
 1. **No `crossorigin` attribute** -- access prohibited.
 2. **`crossorigin="anonymous"`** -- access allowed if the server responds with the header `Access-Control-Allow-Origin` with `*` or our origin. Browser does not send authorization information and cookies to remote server.
-3. **`crossorigin="use-credentials"`** -- access allowed if the server sends back the header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials: true`.  Browser sends authorization information and cookies to remote server.
+3. **`crossorigin="use-credentials"`** -- access allowed if the server sends back the header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials: true`. Browser sends authorization information and cookies to remote server.
 
 ```smart
 You can read more about cross-origin access in the chapter <info:fetch-crossorigin>. It describes the `fetch` method for network requests, but the policy is exactly the same.

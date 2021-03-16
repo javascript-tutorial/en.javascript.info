@@ -10,9 +10,9 @@ If you're not familiar with these methods, and their usage in the examples is co
 Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
 ```
 
-Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
 
-For instance, we can schedule such actions using `setTimeout`.
+For instance, one such function is the `setTimeout` function.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
@@ -146,7 +146,7 @@ loadScript('/my/script.js', function(script) {
     });
 */!*
 
-  })
+  });
 
 });
 ```
@@ -223,7 +223,7 @@ loadScript('1.js', function(error, script) {
         });
 
       }
-    })
+    });
   }
 });
 ```
@@ -256,7 +256,7 @@ loadScript('1.js', function(error, script) {
           }
         });
       }
-    })
+    });
   }
 });
 -->
@@ -296,7 +296,7 @@ function step3(error, script) {
   } else {
     // ...continue after all scripts are loaded (*)
   }
-};
+}
 ```
 
 See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.

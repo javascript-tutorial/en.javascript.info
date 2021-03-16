@@ -1,6 +1,6 @@
 # Focusing: focus/blur
 
-An element receives a focus when the user either clicks on it or uses the `key:Tab` key on the keyboard. There's also an `autofocus` HTML attribute that puts the focus into an element by default when a page loads and other means of getting a focus.
+An element receives the focus when the user either clicks on it or uses the `key:Tab` key on the keyboard. There's also an `autofocus` HTML attribute that puts the focus onto an element by default when a page loads and other means of getting the focus.
 
 Focusing on an element generally means: "prepare to accept the data here", so that's the moment when we can run the code to initialize the required functionality.
 
@@ -18,7 +18,7 @@ Let's use them for validation of an input field.
 
 In the example below:
 
-- The `blur` handler checks if the field the email is entered, and if not -- shows an error.
+- The `blur` handler checks if the field has an email entered, and if not -- shows an error.
 - The `focus` handler hides the error message (on `blur` it will be checked again):
 
 ```html run autorun height=60
@@ -108,7 +108,7 @@ By default many elements do not support focusing.
 
 The list varies a bit between browsers, but one thing is always correct: `focus/blur` support is guaranteed for elements that a visitor can interact with: `<button>`, `<input>`, `<select>`, `<a>` and so on.
 
-From the other hand, elements that exist to format something, such as `<div>`, `<span>`, `<table>` -- are unfocusable by default. The method `elem.focus()` doesn't work on them, and `focus/blur` events are never triggered.
+On the other hand, elements that exist to format something, such as `<div>`, `<span>`, `<table>` -- are unfocusable by default. The method `elem.focus()` doesn't work on them, and `focus/blur` events are never triggered.
 
 This can be changed using HTML-attribute `tabindex`.
 
@@ -131,7 +131,7 @@ There are two special values:
 For instance, here's a list. Click the first item and press `key:Tab`:
 
 ```html autorun no-beautify
-Click the first item and press Tab. Keep track of the order. Please note that many subsequent Tabs can move the focus out of the iframe with the example.
+Click the first item and press Tab. Keep track of the order. Please note that many subsequent Tabs can move the focus out of the iframe in the example.
 <ul>
   <li tabindex="1">One</li>
   <li tabindex="0">Zero</li>
@@ -216,7 +216,7 @@ So here's another working variant:
 
 ## Summary
 
-Events `focus` and `blur` trigger on focusing/losing focus on the element.
+Events `focus` and `blur` trigger on an element focusing/losing focus.
 
 Their specials are:
 - They do not bubble. Can use capturing state instead or `focusin/focusout`.

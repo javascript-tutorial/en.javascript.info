@@ -23,7 +23,7 @@ Why did the `.then` trigger afterwards? What's going on?
 
 ## Microtasks queue
 
-Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (ES8 term).
+Asynchronous tasks need proper management. For that, the ECMA standard specifies an internal queue `PromiseJobs`, more often referred to as the "microtask queue" (V8 term).
 
 As stated in the [specification](https://tc39.github.io/ecma262/#sec-jobs-and-job-queues):
 
@@ -54,7 +54,7 @@ Now the order is as intended.
 
 ## Unhandled rejection
 
-Remember the `unhandledrejection` event from the chapter <info:promise-error-handling>?
+Remember the `unhandledrejection` event from the article <info:promise-error-handling>?
 
 Now we can see exactly how JavaScript finds out that there was an unhandled rejection.
 
@@ -103,10 +103,10 @@ In the example above, `.catch` added by `setTimeout` also triggers. But it does 
 
 ## Summary
 
-Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (ES8 term).
+Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (V8 term).
 
 So `.then/catch/finally` handlers are always called after the current code is finished.
 
 If we need to guarantee that a piece of code is executed after `.then/catch/finally`, we can add it into a chained `.then` call.
 
-In most Javascript engines, including browsers and Node.js, the concept of microtasks is closely tied with the "event loop" and "macrotasks". As these have no direct relation to promises, they are covered in another part of the tutorial, in the chapter <info:event-loop>.
+In most Javascript engines, including browsers and Node.js, the concept of microtasks is closely tied with the "event loop" and "macrotasks". As these have no direct relation to promises, they are covered in another part of the tutorial, in the article <info:event-loop>.

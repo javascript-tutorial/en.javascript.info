@@ -24,17 +24,22 @@ ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px
 ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px';
 ```
 
-**Attention: the pitfall!**
+Now the ball is finally centered.
+
+````warn header="Attention: the pitfall!"
 
 The code won't work reliably while `<img>` has no width/height:
 
 ```html
 <img src="ball.png" id="ball">
 ```
+````
 
 When the browser does not know the width/height of an image (from tag attributes or CSS), then it assumes them to equal `0` until the image finishes loading.
 
-After the first load browser usually caches the image, and on next loads it will have the size immediately. But on the first load the value of `ball.offsetWidth` is `0`. That leads to wrong coordinates.
+So the value of `ball.offsetWidth` will be `0` until the image loads. That leads to wrong coordinates in the code above.
+
+After the first load, the browser usually caches the image, and on reloads it will have the size immediately. But on the first load the value of `ball.offsetWidth` is `0`.
 
 We should fix that by adding `width/height` to `<img>`:
 

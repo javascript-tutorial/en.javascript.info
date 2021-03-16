@@ -12,7 +12,7 @@ let formData = new FormData([form]);
 
 If HTML `form` element is provided, it automatically captures its fields.
 
-The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: form/multipart`.
+The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: multipart/form-data`.
 
 From the server point of view, that looks like a usual form submission.
 
@@ -47,7 +47,7 @@ As you can see, that's almost one-liner:
 </script>
 ```
 
-In this example, the server code is not presented, as it's beyound our scope. The server accepts the POST request and replies "User saved".
+In this example, the server code is not presented, as it's beyond our scope. The server accepts the POST request and replies "User saved".
 
 ## FormData Methods
 
@@ -75,13 +75,13 @@ formData.append('key2', 'value2');
 
 // List key/value pairs
 for(let [name, value] of formData) {
-  alert(`${name} = ${value}`); // key1=value1, then key2=value2
+  alert(`${name} = ${value}`); // key1 = value1, then key2 = value2
 }
 ```
 
 ## Sending a form with a file
 
-The form is always sent as `Content-Type: form/multipart`, this encoding allows to send files. So, `<input type="file">` fields are sent also, similar to a usual form submission.
+The form is always sent as `Content-Type: multipart/form-data`, this encoding allows to send files. So, `<input type="file">` fields are sent also, similar to a usual form submission.
 
 Here's an example with such form:
 

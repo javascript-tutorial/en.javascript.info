@@ -34,7 +34,7 @@ A view object does not store anything on it's own. It's the "eyeglasses" that gi
 
 For instance:
 
-- **`Uint8Array`** -- treats each byte in `ArrayBuffer` as a separate number, with possible values are from 0 to 255 (a byte is 8-bit, so it can hold only that much). Such value is called a "8-bit unsigned integer".
+- **`Uint8Array`** -- treats each byte in `ArrayBuffer` as a separate number, with possible values from 0 to 255 (a byte is 8-bit, so it can hold only that much). Such value is called a "8-bit unsigned integer".
 - **`Uint16Array`** -- treats every 2 bytes as an integer, with possible values from 0 to 65535. That's called a "16-bit unsigned integer".
 - **`Uint32Array`** -- treats every 4 bytes as an integer, with possible values from 0 to 4294967295. That's called a "32-bit unsigned integer".
 - **`Float64Array`** -- treats every 8 bytes as a floating point number with possible values from <code>5.0x10<sup>-324</sup></code> to <code>1.8x10<sup>308</sup></code>.
@@ -73,8 +73,11 @@ for(let num of view) {
 
 The common term for all these views (`Uint8Array`, `Uint32Array`, etc) is [TypedArray](https://tc39.github.io/ecma262/#sec-typedarray-objects). They share the same set of methods and properities.
 
-They are much more like regular arrays: have indexes and iterable.
+Please note, there's no constructor called `TypedArray`, it's just a common "umbrella" term to represent one of views over `ArrayBuffer`: `Int8Array`, `Uint8Array` and so on, the full list will soon follow.
 
+When you see something like `new TypedArray`, it means any of `new Int8Array`, `new Uint8Array`, etc.
+
+Typed arrays behave like regular arrays: have indexes and are iterable.
 
 A typed array constructor (be it `Int8Array` or `Float64Array`, doesn't matter) behaves differently depending on argument types.
 
@@ -206,7 +209,7 @@ These methods allow us to copy typed arrays, mix them, create new arrays from ex
 
 ## DataView
 
-[DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView) is a special super-flexible "untyped" view over `ArrayBuffer`. It allows to access the data on any offset in any format.
+[DataView](mdn:/JavaScript/Reference/Global_Objects/DataView) is a special super-flexible "untyped" view over `ArrayBuffer`. It allows to access the data on any offset in any format.
 
 - For typed arrays, the constructor dictates what the format is. The whole array is supposed to be uniform. The i-th number is `arr[i]`.
 - With `DataView` we access the data with methods like `.getUint8(i)` or `.getUint16(i)`. We choose the format at method call time instead of the construction time.
@@ -232,7 +235,7 @@ let dataView = new DataView(buffer);
 // get 8-bit number at offset 0
 alert( dataView.getUint8(0) ); // 255
 
-// now get 16-bit number at offset 0, it consists of 2 bytes, together iterpreted as 65535
+// now get 16-bit number at offset 0, it consists of 2 bytes, together interpreted as 65535
 alert( dataView.getUint16(0) ); // 65535 (biggest 16-bit unsigned int)
 
 // get 32-bit number at offset 0
@@ -241,7 +244,7 @@ alert( dataView.getUint32(0) ); // 4294967295 (biggest 32-bit unsigned int)
 dataView.setUint32(0, 0); // set 4-byte number to zero, thus setting all bytes to 0
 ```
 
-`DataView` is great when we store mixed-format data in the same buffer. E.g we store a sequence of pairs (16-bit integer, 32-bit float). Then `DataView` allows to access them easily.
+`DataView` is great when we store mixed-format data in the same buffer. For example, when we store a sequence of pairs (16-bit integer, 32-bit float), `DataView` allows to access them easily.
 
 ## Summary
 
@@ -256,7 +259,7 @@ To do almost any operation on `ArrayBuffer`, we need a view.
     - `Float32Array`, `Float64Array` -- for signed floating-point numbers of 32 and 64 bits.
 - Or a `DataView` -- the view that uses methods to specify a format, e.g. `getUint8(offset)`.
 
-In most cases we create and operate directly on typed arrays, leaving `ArrayBuffer` under cover, as a "common discriminator". We can access it as `.buffer` and make another view if needed.
+In most cases we create and operate directly on typed arrays, leaving `ArrayBuffer` under cover, as a "common denominator". We can access it as `.buffer` and make another view if needed.
 
 There are also two additional terms, that are used in descriptions of methods that operate on binary data:
 - `ArrayBufferView` is an umbrella term for all these kinds of views.

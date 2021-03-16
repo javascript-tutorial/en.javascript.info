@@ -91,7 +91,7 @@ The syntax from this section is rarely used, skip it unless you want to know eve
 
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
-It is empty for regular calls and equals the function if called with `new`:
+It is undefined for regular calls and equals the function if called with `new`:
 
 ```js run
 function User() {

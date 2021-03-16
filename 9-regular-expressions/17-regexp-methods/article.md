@@ -20,7 +20,7 @@ It has 3 modes:
     alert( result.length ); // 2
 
     // Additional information:
-    alert( result.index );  // 0 (match position)
+    alert( result.index );  // 7 (match position)
     alert( result.input );  // I love JavaScript (source string)
     ```
 
@@ -86,7 +86,7 @@ alert( firstMatch.index );  // 0
 alert( firstMatch.input );  // <h1>Hello, world!</h1>
 ```
 
-If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from`, разумеется, не нужен.
+If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from` any more.
 
 ## str.split(regexp|substr, limit)
 
@@ -95,13 +95,13 @@ Splits the string using the regexp (or a substring) as a delimiter.
 We can use `split` with strings, like this:
 
 ```js run
-alert('12-34-56'.split('-')) // array of [12, 34, 56]
+alert('12-34-56'.split('-')) // array of ['12', '34', '56']
 ```
 
 But we can split by a regular expression, the same way:
 
 ```js run
-alert('12, 34, 56'.split(/,\s*/)) // array of [12, 34, 56]
+alert('12, 34, 56'.split(/,\s*/)) // array of ['12', '34', '56']
 ```
 
 ## str.search(regexp)
@@ -142,9 +142,8 @@ To find all hyphens, we need to use not the string `"-"`, but a regexp `pattern:
 alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 ```
 
-The second argument is a replacement string. We can use special character in it:
+The second argument is a replacement string. We can use special characters in it:
 
-| Symbols | Action in the replacement string |
 | Symbols | Action in the replacement string |
 |--------|--------|
 |`$&`|inserts the whole match|
@@ -205,9 +204,6 @@ alert(result); // Smith, John
 
 If there are many groups, it's convenient to use rest parameters to access them:
 
-
-Если в регулярном выражении много скобочных групп, то бывает удобно использовать остаточные аргументы для обращения к ним:
-
 ```js run
 let str = "John Smith";
 
@@ -231,6 +227,23 @@ alert(result); // Smith, John
 ```
 
 Using a function gives us the ultimate replacement power, because it gets all the information about the match, has access to outer variables and can do everything.
+
+## str.replaceAll(str|regexp, str|func)
+
+This method is essentially the same as `str.replace`, with two major differences:
+
+1. If the first argument is a string, it replaces *all occurences* of the string, while `replace` replaces only the *first occurence*.
+2. If the first argument is a regular expression without the `g` flag, there'll be an error. With `g` flag, it works the same as `replace`.
+
+The main use case for `replaceAll` is replacing all occurences of a string.
+
+Like this:
+
+```js run
+// replace all dashes by a colon
+alert('12-34-56'.replaceAll("-", ":")) // 12:34:56
+```
+
 
 ## regexp.exec(str)
 
