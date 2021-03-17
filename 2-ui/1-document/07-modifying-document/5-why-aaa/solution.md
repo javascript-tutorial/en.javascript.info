@@ -1,6 +1,6 @@
 The HTML in the task is incorrect. That's the reason of the odd thing.
 
-The browser has to fix it automatically. But there may be no text inside the `<table>`: according to the spec only table-specific tags are allowed. So the browser locates `"aaa"` *before* the `<table>`.
+The browser has to fix it automatically. But there may be no text inside the `<table>`: according to the spec only table-specific tags are allowed. So the browser puts `"aaa"` *before* the `<table>`.
 
 Now it's obvious that when we remove the table, it remains.
 
