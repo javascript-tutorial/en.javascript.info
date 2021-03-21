@@ -45,14 +45,13 @@ function showPrimes(n) {
 
 The better variant, with a factored out function `isPrime`:
 
-
 ```js
 function showPrimes(n) {
 
   for (let i = 2; i < n; i++) {
     *!*if (!isPrime(i)) continue;*/!*
 
-    alert(i);  
+    alert(i);
   }
 }
 
@@ -65,7 +64,7 @@ function isPrime(n) {
 }
 ```
 
-Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+Now we can understand the code easily. The function itself becomes the comment. Such code is called _self-descriptive_.
 
 ### Recipe: create functions
 
@@ -73,14 +72,14 @@ And if we have a long "code sheet" like this:
 
 ```js
 // here we add whiskey
-for(let i = 0; i < 10; i++) {
+for (let i = 0; i < 10; i++) {
   let drop = getWhiskey();
   smell(drop);
   add(drop, glass);
 }
 
 // here we add juice
-for(let t = 0; t < 3; t++) {
+for (let t = 0; t < 3; t++) {
   let tomato = getTomato();
   examine(tomato);
   let juice = press(tomato);
@@ -97,14 +96,14 @@ addWhiskey(glass);
 addJuice(glass);
 
 function addWhiskey(container) {
-  for(let i = 0; i < 10; i++) {
+  for (let i = 0; i < 10; i++) {
     let drop = getWhiskey();
     //...
   }
 }
 
 function addJuice(container) {
-  for(let t = 0; t < 3; t++) {
+  for (let t = 0; t < 3; t++) {
     let tomato = getTomato();
     //...
   }
@@ -126,6 +125,7 @@ Document function parameters and usage
 : There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
 
 For instance:
+
 ```js
 /**
  * Returns x raised to the n-th power.
@@ -146,7 +146,7 @@ By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) ca
 Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
 
 Why is the task solved this way?
-: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+: What's written is important. But what's _not_ written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
 
     If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
 
@@ -159,6 +159,20 @@ Why is the task solved this way?
 
 Any subtle features of the code? Where they are used?
 : If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
+
+## TODO comments
+
+We sometimes write parts of the code that we want to revisit later or receive feedback from a co-worker in our coding review session.
+
+To achieve this, we usually write a comment with a `TODO` keyword included, so we can search the code directory and revisit.
+
+To write better comments, there are useful tools to help you (even JSDOc with [`@todo`](https://jsdoc.app/tags-todo.html) param).
+
+Here are some tools to help you write organise comments:
+
+1. JSDOC [@todo](https://jsdoc.app/tags-todo.html)
+2. [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) VScode plugin
+3. [Imdone.io](https://medium.com/imdoneio/the-imdone-pitch-feedback-welcome-386430accf01)
 
 ## Summary
 
