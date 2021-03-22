@@ -370,7 +370,7 @@ label: for (...)
 
 A call to `continue` is only possible from inside the loop.
 
-The `break` directive may be placed before code blocks too, as `label: { ... }`, but it's almost never used like that. And it also works only inside-out.
+The `label` directive may be placed before code blocks too, as `label: { ... }`, but it's almost never used like that. And it also works only inside-out.
 ````
 
 ## Summary
