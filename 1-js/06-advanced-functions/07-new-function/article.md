@@ -110,14 +110,15 @@ The syntax:
 let func = new Function ([arg1, arg2, ...argN], functionBody);
 ```
 
-For historical reasons, arguments can also be given as a comma-separated list.
+For historical reasons, arguments can also be given as a comma-separated list or an array.
 
-These three declarations mean the same:
+These four declarations mean the same:
 
 ```js
 new Function('a', 'b', 'return a + b'); // basic syntax
 new Function('a,b', 'return a + b'); // comma-separated
 new Function('a , b', 'return a + b'); // comma-separated with spaces
+new Function(['a , b'], 'return a + b');
 ```
 
 Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
