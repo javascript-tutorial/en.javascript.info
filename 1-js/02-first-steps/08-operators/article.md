@@ -56,14 +56,14 @@ alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
 
 ### Exponentiation **
 
-The exponentiation operator `a ** b` multiplies `a` by itself `b` times.
+The exponentiation operator `a ** b` multiplies `b` number of `a`s by itself.
 
 For instance:
 
 ```js run
-alert( 2 ** 2 ); // 4  (2 multiplied by itself 2 times)
-alert( 2 ** 3 ); // 8  (2 * 2 * 2, 3 times)
-alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, 4 times)
+alert( 2 ** 2 ); // 4  (2 * 2, two twos are multiplied together)
+alert( 2 ** 3 ); // 8  (2 * 2 * 2, three twos)
+alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2, four twos)
 ```
 
 Mathematically, the exponentiation is defined for non-integer numbers as well. For example, a square root is an exponentiation by `1/2`:
