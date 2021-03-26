@@ -27,7 +27,7 @@ The code above demonstrates it.
 function func() {
 *!*
   // the local variable x is known to the engine from the beginning of the function,
-  // but "unitialized" (unusable) until let ("dead zone")
+  // but "uninitialized" (unusable) until let ("dead zone")
   // hence the error
 */!*
 
