@@ -69,10 +69,10 @@ The function execution "pauses" at the line `(*)` and resumes when the promise s
 
 Let's emphasize: `await` literally suspends the function execution until the promise settles, and then resumes it with the promise result. That doesn't cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
 
-It's just a more elegant syntax of getting the promise result than `promise.then`, easier to read and write.
+It's just a more elegant syntax of getting the promise result than `promise.then`. And, it's easier to read and write.
 
 ````warn header="Can't use `await` in regular functions"
-If we try to use `await` in non-async function, there would be a syntax error:
+If we try to use `await` in a non-async function, there would be a syntax error:
 
 ```js run
 function f() {
@@ -83,7 +83,7 @@ function f() {
 }
 ```
 
-We may get this error if we forget to put `async` before a function. As said, `await` only works inside an `async` function.
+We may get this error if we forget to put `async` before a function. As stated earlier, `await` only works inside an `async` function.
 ````
 
 Let's take the `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
@@ -186,7 +186,7 @@ class Waiter {
 
 new Waiter()
   .wait()
-  .then(alert); // 1
+  .then(alert); // 1 (this is the same as (result => alert(result)))
 ```
 The meaning is the same: it ensures that the returned value is a promise and enables `await`.
 
