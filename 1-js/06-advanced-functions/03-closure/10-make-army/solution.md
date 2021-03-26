@@ -88,11 +88,11 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     
     Here `let j = i` declares an "iteration-local" variable `j` and copies `i` into it. Primitives are copied "by value", so we actually get an independent copy of `i`, belonging to the current loop iteration.
     
-    The shooters work correctly, because the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration:
+    The shooters work correctly, because the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds to the current loop iteration:
     
     ![](lexenv-makearmy-while-fixed.svg)
     
-    Such problem could also be avoided if we used `for` in the beginning, like this:
+    Such a problem could also be avoided if we used `for` in the beginning, like this:
     
     ```js run demo
     function makeArmy() {
