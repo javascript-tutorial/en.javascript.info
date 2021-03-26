@@ -368,9 +368,18 @@ break label; // jump to the label below (doesn't work)
 label: for (...)
 ```
 
-A call to `continue` is only possible from inside the loop.
+A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+```js
+label: {
+  // ...
+  break label; // works
+  // ...
+}
+```
 
-The `break` directive may be placed before code blocks too, as `label: { ... }`, but it's almost never used like that. And it also works only inside-out.
+...Although, 99.9% of the time `break` used is inside loops, as we've seen in the examples above.
+
+A `continue` is only possible from inside a loop.
 ````
 
 ## Summary
