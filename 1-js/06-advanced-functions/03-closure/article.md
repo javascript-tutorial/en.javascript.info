@@ -146,7 +146,7 @@ Despite being simple, slightly modified variants of that code have practical use
 
 How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
 
-Undestanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
 
 ## Lexical Environment
 
