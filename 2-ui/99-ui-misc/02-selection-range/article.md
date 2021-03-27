@@ -377,7 +377,7 @@ E.g. if the user starts selecting with mouse and goes from "Example" to "italic"
 
 There are events on to keep track of selection:
 
-- `elem.onselectstart` -- when a selection *starts* on speficially elemen `elem` (or inside it). For instance, when the user presses the mouse button on it and starts to move the pointer.
+- `elem.onselectstart` -- when a selection *starts* specifically on element `elem` (or inside it). For instance, when the user presses the mouse button on it and starts to move the pointer.
     - Preventing the default action cancels the selection start. So starting a selection from this element becomes impossible, but the element is still selectable. The visitor just needs to start the selection from elsewhere.
 - `document.onselectionchange` -- whenever a selection changes or starts.
     - Please note: this handler can be set only on `document`, it tracks all selections in it.
