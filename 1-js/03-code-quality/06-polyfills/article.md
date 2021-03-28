@@ -48,7 +48,7 @@ Modern project build systems, such as [webpack](http://webpack.github.io/), prov
 
 New language features may include not only syntax constructs and operators, but also built-in functions.
 
-For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23) = 1`.
+For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23)` returns `1`.
 
 In some (very outdated) JavaScript engines, there's no `Math.trunc`, so such code will fail.
 
