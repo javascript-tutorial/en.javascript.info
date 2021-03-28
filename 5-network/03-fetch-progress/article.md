@@ -9,7 +9,7 @@ To track download progress, we can use `response.body` property. It's `ReadableS
 
 Unlike `response.text()`, `response.json()` and other methods, `response.body` gives full control over the reading process, and we can count how much is consumed at any moment.
 
-Here's the sketch of code that reads the reponse from `response.body`:
+Here's the sketch of code that reads the response from `response.body`:
 
 ```js
 // instead of response.json() and other methods
