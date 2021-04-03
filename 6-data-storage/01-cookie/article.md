@@ -100,7 +100,7 @@ A domain defines where the cookie is accessible. In practice though, there are l
 
 It's a safety restriction, to allow us to store sensitive data in cookies that should be available only on one site.
 
-By default, a cookie is accessible only at the domain level that set it.
+By default, a cookie is accessible only at the domain that set it.
 
 ...What's tricky, we won't get the cookie at a subdomain `forum.site.com`!
 
