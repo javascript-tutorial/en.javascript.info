@@ -98,7 +98,7 @@ A domain defines where the cookie is accessible. In practice though, there are l
 
 **There's no way to let a cookie be accessible from another domain, so `other.com` will never receive a cookie set at `site.com`.**
 
-It's a safety restriction, to allow us to store sensitive data in cookies, that should be available only on one site.
+It's a safety restriction, to allow us to store sensitive data in cookies that should be available only on one site.
 
 By default, a cookie is accessible only at the domain level that set it.
 
