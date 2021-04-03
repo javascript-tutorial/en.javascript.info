@@ -96,9 +96,13 @@ Usually, we should set `path` to the root: `path=/` to make the cookie accessibl
 
 A domain defines where the cookie is accessible. In practice though, there are limitations. We can't set any domain.
 
-By default, a cookie is accessible only at the domain that set it. So, if the cookie was set by `site.com`, we won't get it at `other.com`.
+**There's no way to let a cookie be accessible from another domain, so `other.com` will never receive a cookie set at `site.com`.**
 
-...But what's more tricky, we also won't get the cookie at a subdomain `forum.site.com`!
+It's a safety restriction, to allow us to store sensitive data in cookies, that should be available only on one site.
+
+By default, a cookie is accessible only at the domain level that set it.
+
+...What's tricky, we won't get the cookie at a subdomain `forum.site.com`!
 
 ```js
 // at site.com
@@ -107,10 +111,6 @@ document.cookie = "user=John"
 // at forum.site.com
 alert(document.cookie); // no user
 ```
-
-**There's no way to let a cookie be accessible from another 2nd-level domain, so `other.com` will never receive a cookie set at `site.com`.**
-
-It's a safety restriction, to allow us to store sensitive data in cookies, that should be available only on one site.
 
 ...But if we'd like to allow subdomains like `forum.site.com` to get a cookie, that's possible. When setting a cookie at `site.com`, we should explicitly set the `domain` option to the root domain: `domain=site.com`:
 
