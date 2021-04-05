@@ -8,7 +8,7 @@ To see errors and get a lot of other useful information about scripts, "develope
 
 Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
 
-Developer tools are potent, they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
 
 ## Google Chrome
 
