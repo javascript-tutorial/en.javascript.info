@@ -74,7 +74,7 @@ link.href = URL.createObjectURL(blob);
 
 We can also create a link dynamically in JavaScript and simulate a click by `link.click()`, then download starts automatically.
 
-Here's the similar code that causes user to download the dynamicallly created `Blob`, without any HTML:
+Here's the similar code that causes user to download the dynamically created `Blob`, without any HTML:
 
 ```js run
 let link = document.createElement('a');
@@ -186,7 +186,7 @@ let context = canvas.getContext('2d');
 context.drawImage(img, 0, 0);
 // we can context.rotate(), and do many other things on canvas
 
-// toBlob is async opereation, callback is called when done
+// toBlob is async operation, callback is called when done
 canvas.toBlob(function(blob) {
   // blob ready, download it
   let link = document.createElement('a');
@@ -235,7 +235,7 @@ That makes Blobs convenient for upload/download operations, that are so common i
 
 Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch) and so on, can work with `Blob` natively, as well as with other binary types.
 
-We can easily convert betweeen `Blob` and low-level binary data types:
+We can easily convert between `Blob` and low-level binary data types:
 
 - We can make a Blob from a typed array using `new Blob(...)` constructor.
 - We can get back `ArrayBuffer` from a Blob using `FileReader`, and then create a view over it for low-level binary processing.
