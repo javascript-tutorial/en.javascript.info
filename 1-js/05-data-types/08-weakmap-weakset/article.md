@@ -36,7 +36,7 @@ john = null; // overwrite the reference
 */!*
 ```
 
-Similar to that, if we use an object as the key in a regular `Map`, then while the `Map` exists, that object exists as well. It occupies memory and may not be garbage collected.
+Similar to that, if we use an object as the key or the value in a regular `Map`, then while the `Map` exists, that object exists as well. It occupies memory and may not be garbage collected.
 
 For instance:
 
