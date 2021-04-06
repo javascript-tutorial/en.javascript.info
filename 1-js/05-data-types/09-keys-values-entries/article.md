@@ -88,12 +88,10 @@ let prices = {
   orange: 2,
   meat: 4,
 };
-
 *!*
-let doublePrices = Object.fromEntries(
-  // convert to array, map, and then fromEntries gives back the object
-  Object.entries(prices).map(([key, value]) => [key, value * 2])
-);
+let entriesOfPrices = Object.entries(prices); //convert to array
+let doubleEntriesOfPrices = entriesOfPrices.map(price => [price[0], price[1]*2]); //map
+let doublePrices = Object.fromEntries(doubleEntriesOfPrices); //gives back the object
 */!*
 
 alert(doublePrices.meat); // 8
