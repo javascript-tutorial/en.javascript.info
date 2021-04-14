@@ -73,7 +73,7 @@ alert('Current scroll from the left: ' + window.pageXOffset);
 
 These properties are read-only.
 
-(note: `pageXOffset` and `pageYOffset` are aliases for `scrollX` and `scrollY`, but provide greater cross-browser compatibility.)
+(note: `pageXOffset` and `pageYOffset` are aliases for `scrollX` and `scrollY`, but may provide somewhat greater cross-browser compatibility.)
 
 ## Scrolling: scrollTo, scrollBy, scrollIntoView [#window-scroll]
 
