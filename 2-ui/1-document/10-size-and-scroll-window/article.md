@@ -73,6 +73,12 @@ alert('Current scroll from the left: ' + window.pageXOffset);
 
 These properties are read-only.
 
+```smart header="Also available as `window` properties `scrollX` and `scrollY`"
+For historical reasons, both properties exist, but they are the same:
+- `window.pageXOffset` is an alias of `window.scrollX`.
+- `window.pageYOffset` is an alias of `window.scrollY`.
+```
+
 ## Scrolling: scrollTo, scrollBy, scrollIntoView [#window-scroll]
 
 ```warn
