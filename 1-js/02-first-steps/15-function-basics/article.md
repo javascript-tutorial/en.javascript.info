@@ -411,7 +411,7 @@ Functions that are used *very often* sometimes have ultrashort names.
 
 For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [Lodash](http://lodash.com/) library has its core function named `_`.
 
-These are exceptions. Generally functions names should be concise and descriptive.
+These are exceptions. Generally function names should be concise and descriptive.
 ```
 
 ## Functions == Comments
