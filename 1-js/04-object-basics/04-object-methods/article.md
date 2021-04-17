@@ -81,7 +81,7 @@ user = {
 // method shorthand looks better, right?
 user = {
 *!*
-  sayHi() { // same as "sayHi: function()"
+  sayHi() { // same as "sayHi: function(){...}"
 */!*
     alert("Hello");
   }
