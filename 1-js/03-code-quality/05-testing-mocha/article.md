@@ -2,7 +2,7 @@
 
 Automated testing will be used in further tasks, and it's also widely used in real projects.
 
-## Why we need tests?
+## Why do we need tests?
 
 When we write a function, we can usually imagine what it should do: which parameters give which results.
 
