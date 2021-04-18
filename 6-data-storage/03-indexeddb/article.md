@@ -95,7 +95,7 @@ openRequest.onupgradeneeded = function(event) {
 };
 ```
 
-Please note: as our current version is `2`, `onupgradeneeded` handler has a code branch for version `0`, suitable for users that are accessing for the first time and have no database, and also for version `1`, for upgrades.
+Please note: as our current version is `2`, the `onupgradeneeded` handler has a code branch for version `0`, suitable for users that are accessing for the first time and have no database, and also for version `1`, for upgrades.
 
 And then, only if `onupgradeneeded` handler finishes without errors, `openRequest.onsuccess` triggers, and the database is considered successfully opened.
 
@@ -156,7 +156,7 @@ openRequest.onsuccess = function() {
 openRequest.onblocked = function() {
   // this event shouldn't trigger if we handle onversionchange correctly
 
-  // it means that there's another open connection to same database
+  // it means that there's another open connection to the same database
   // and it wasn't closed after db.onversionchange triggered for it
 };
 */!*
@@ -171,7 +171,7 @@ We can handle things more gracefully in `db.onversionchange`, prompt the visitor
 
 Or, an alternative approach would be to not close the database in `db.onversionchange`, but instead use the `onblocked` handler (in the new tab) to alert the visitor, tell him that the newer version can't be loaded until they close other tabs.
 
-These update collisions happen rarely, but we should at least have some handling for them, at least `onblocked` handler, to prevent our script from dying silently.
+These update collisions happen rarely, but we should at least have some handling for them, at least an `onblocked` handler, to prevent our script from dying silently.
 
 ## Object store
 
@@ -189,7 +189,7 @@ An example of an object that can't be stored: an object with circular references
 
 **There must be a unique `key` for every value in the store.**     
 
-A key must be one of the these types - number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
+A key must be one of these types - number, date, string, binary, or array. It's a unique identifier, so we can search/remove/update values by the key.
 
 ![](indexeddb-structure.svg)
 
@@ -253,7 +253,7 @@ db.deleteObjectStore('books')
 
 The term "transaction" is generic, used in many kinds of databases.
 
-A transaction is a group operations, that should either all succeed or all fail.
+A transaction is a group of operations, that should either all succeed or all fail.
 
 For instance, when a person buys something, we need to:
 1. Subtract the money from their account.
@@ -347,9 +347,9 @@ Usually, we can assume that a transaction commits when all its requests are comp
 
 So, in the example above no special call is needed to finish the transaction.
 
-Transactions auto-commit principle has an important side effect. We can't insert an async operation like `fetch`, `setTimeout` in the middle of transaction. IndexedDB will not keep the transaction waiting till these are done.
+Transactions auto-commit principle has an important side effect. We can't insert an async operation like `fetch`, `setTimeout` in the middle of a transaction. IndexedDB will not keep the transaction waiting till these are done.
 
-In the code below, `request2` in line `(*)` fails, because the transaction is already committed, and can't make any request in it:
+In the code below, `request2` in the line `(*)` fails, because the transaction is already committed, and can't make any request in it:
 
 ```js
 let request1 = books.add(book);
@@ -370,7 +370,7 @@ That's because `fetch` is an asynchronous operation, a macrotask. Transactions a
 
 Authors of IndexedDB spec believe that transactions should be short-lived. Mostly for performance reasons.
 
-Notably, `readwrite` transactions "lock" the stores for writing. So if one part of application initiated `readwrite` on `books` object store, then another part that wants to do the same has to wait: the new transaction "hangs" till the first one is done. That can lead to strange delays if transactions take a long time.
+Notably, `readwrite` transactions "lock" the stores for writing. So if one part of the application initiated `readwrite` on `books` object store, then another part that wants to do the same has to wait: the new transaction "hangs" till the first one is done. That can lead to strange delays if transactions take a long time.
 
 So, what to do?
 
@@ -792,7 +792,7 @@ await inventory.add({ id: 'js', price: 10, created: new Date() }); // Error
 
 The next `inventory.add` after `fetch` `(*)` fails with an "inactive transaction" error, because the transaction is already committed and closed at that time.
 
-The workaround is same as when working with native IndexedDB: either make a new transaction or just split things apart.
+The workaround is the same as when working with native IndexedDB: either make a new transaction or just split things apart.
 1. Prepare the data and fetch all that's needed first.
 2. Then save in the database.
 
