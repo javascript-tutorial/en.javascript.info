@@ -301,7 +301,7 @@ The only syntax difference between `call` and `apply` is that `call` expects a l
 So these two calls are almost equivalent:
 
 ```js
-func.call(context, ...args); // pass an array as list with spread syntax
+func.call(context, ...args); // pass an iterable as list with spread syntax
 func.apply(context, args);   // is same as using call
 ```
 
