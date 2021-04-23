@@ -134,9 +134,6 @@ for (let entry of recipeMap) { // the same as of recipeMap.entries()
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
-```
 
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
