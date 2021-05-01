@@ -211,24 +211,6 @@ Its content depends on the environment. In the browser, it contains the url of t
 </script>
 ```
 
-### In a module, "this" is undefined
-
-That's kind of a minor feature, but for completeness we should mention it.
-
-In a module, top-level `this` is undefined.
-
-Compare it to non-module scripts, where `this` is a global object:
-
-```html run height=0
-<script>
-  alert(this); // window
-</script>
-
-<script type="module">
-  alert(this); // undefined
-</script>
-```
-
 ## Browser-specific features
 
 There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
