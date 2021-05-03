@@ -1,6 +1,6 @@
 // Here's a brief sketch of the class
 // with things that you'll need anyway
-class HoverIntent {
+export default class HoverIntent {
 
   constructor({
     sensitivity = 0.1, // speed less than 0.1px/ms means "hovering over an element"
@@ -25,12 +25,9 @@ class HoverIntent {
     elem.addEventListener("mouseout", this.onMouseOut);
 
     // continue from this point
-
   }
 
   onMouseOver(event) {
-    console.error(console.log);
-    
     console.log("OVER", event);
     /* ... */
   }

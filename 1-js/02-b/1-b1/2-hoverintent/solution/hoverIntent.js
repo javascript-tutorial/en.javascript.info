@@ -1,4 +1,4 @@
-class HoverIntent {
+export default class HoverIntent {
 
   constructor({
     sensitivity = 0.1, // speed less than 0.1px/ms means "hovering over an element"

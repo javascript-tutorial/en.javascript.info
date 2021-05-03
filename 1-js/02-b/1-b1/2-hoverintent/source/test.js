@@ -1,5 +1,6 @@
-describe("hoverIntent", function() {
+import HoverIntent from './hoverIntent.js';
 
+describe("hoverIntent", function() {
   function mouse(eventType, x, y, options) {
     let eventOptions = Object.assign({
       bubbles: true,
@@ -16,14 +17,15 @@ describe("hoverIntent", function() {
 
   let isOver;
   let hoverIntent;
+  let clock;
 
 
-  before(function() {
-    this.clock = sinon.useFakeTimers();
+  beforeAll(function() {
+    clock = jasmine.clock().install();
   });
 
-  after(function() {
-    this.clock.restore();
+  afterAll(function() {
+    clock.uninstall();
   });
 
 
@@ -49,13 +51,13 @@ describe("hoverIntent", function() {
 
   it("mouseover -> when the pointer just arrived, no tooltip", function() {
     mouse('mouseover', 10, 10);
-    assert.isFalse(isOver);
+    expect(isOver).toBeFalse();
   });
 
   it("mouseover -> after a delay, the tooltip shows up", function() {
     mouse('mouseover', 10, 10);
-    this.clock.tick(100);
-    assert.isTrue(isOver);
+    clock.tick(100);
+    expect(isOver).toBeTrue();
   });
 
   it("mouseover -> followed by fast mouseout leads doesn't show tooltip", function() {
@@ -64,8 +66,8 @@ describe("hoverIntent", function() {
       () => mouse('mouseout', 300, 300, { relatedTarget: document.body}),
       30
     );
-    this.clock.tick(100);
-    assert.isFalse(isOver);
+    clock.tick(100);
+    expect(isOver).toBeFalse();
   });
 
 
@@ -77,8 +79,8 @@ describe("hoverIntent", function() {
         i
       );
     }
-    this.clock.tick(200);
-    assert.isTrue(isOver);
+    clock.tick(200);
+    expect(isOver).toBeTrue();
   });
 
   it("mouseover -> fast move -> no tooltip", function() {
@@ -89,8 +91,8 @@ describe("hoverIntent", function() {
         i
       );
     }
-    this.clock.tick(200);
-    assert.isFalse(isOver);
+    clock.tick(200);
+    expect(isOver).toBeTrue();
   });
 
 });

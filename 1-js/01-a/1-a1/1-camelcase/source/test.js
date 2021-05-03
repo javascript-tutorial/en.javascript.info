@@ -1,19 +1,18 @@
 describe("camelize", function() {
 
   it("leaves an empty line as is", function() {
-    assert.equal(camelize(""), "");
+    expect(camelize("")).toEqual("");
   });
 
   it("turns background-color into backgroundColor", function() {
-    assert.equal(camelize("background-color"), "backgroundColor");
+    expect(camelize("background-color")).toEqual(["background", "color"])
   });
 
   it("turns list-style-image into listStyleImage", function() {
-    assert.equal(camelize("list-style-image"), "listStyleImage");
+    expect(camelize("list-style-image")).toEqual("listStyleImage");
   });
 
   it("turns -webkit-transition into WebkitTransition", function() {
-    assert.equal(camelize("-webkit-transition"), "WebkitTransition");
+    expect(camelize("-webkit-transition")).toEqual("WebkitTransition")
   });
-
 });

@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="style.css">
-<script src="hoverIntent.js"></script>
 
 <div id="elem" class="clock">
   <span class="hours">12</span> :
@@ -9,7 +8,9 @@
 
 <div id="tooltip" hidden>Tooltip</div>
 
-<script>
+<script type="module">
+  import HoverIntent from './hoverIntent.js';
+
   new HoverIntent({
     elem,
     over() {
