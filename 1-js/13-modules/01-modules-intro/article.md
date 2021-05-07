@@ -69,7 +69,7 @@ There are core features, valid both for browser and server-side JavaScript.
 
 ### Always "use strict"
 
-Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
+Modules always work in strict mode. E.g. assigning to an undeclared variable will give an error.
 
 ```html run
 <script type="module">
