@@ -77,6 +77,19 @@ Modules always `use strict`, by default. E.g. assigning to an undeclared variabl
 </script>
 ```
 
+Because of this inbuilt rule, it's useful to mention that the top-level `this` will be undefined.
+
+Compare it to non-module scripts, where `this` is a global object:
+
+```html run height=0
+<script>
+  alert(this); // window
+</script>
+<script type="module">
+  alert(this); // undefined
+</script>
+```
+
 ### Module-level scope
 
 Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
