@@ -142,7 +142,7 @@ alert(x); // 0, value not incremented
 
 ## Other variants: ?.(), ?.[]
 
-The optional chaining `?.` is not an operator, but a special syntax construct, that also works with functions and square brackets.
+The optional chaining `?.` also works with functions and square brackets.
 
 For example, `?.()` is used to call a function that may not exist.
 
