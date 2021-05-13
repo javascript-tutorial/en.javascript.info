@@ -57,7 +57,7 @@ Like this:
 
 The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
 
-```warn header="Modules work only via HTTP(s), not in local files"
+```warn header="Modules work only via HTTP(s), not locally"
 If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
 ```
 
