@@ -127,17 +127,17 @@ Please note that both key and value must be strings.
 If were any other type, like a number, or an object, it gets converted to string automatically:
 
 ```js run
-sessionStorage.user = {name: "John"};
-alert(sessionStorage.user); // [object Object]
+localStorage.user = {name: "John"};
+alert(localStorage.user); // [object Object]
 ```
 
 We can use `JSON` to store objects though:
 
 ```js run
-sessionStorage.user = JSON.stringify({name: "John"});
+localStorage.user = JSON.stringify({name: "John"});
 
 // sometime later
-let user = JSON.parse( sessionStorage.user );
+let user = JSON.parse( localStorage.user );
 alert( user.name ); // John
 ```
 
