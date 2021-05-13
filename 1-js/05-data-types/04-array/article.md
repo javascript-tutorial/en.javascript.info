@@ -379,9 +379,7 @@ alert( arr[0] ); // undefined! no elements.
 alert( arr.length ); // length 2
 ```
 
-In the code above, `new Array(number)` has all elements `undefined`.
-
-To evade such surprises, we usually use square brackets, unless we really know what we're doing.
+To avoid such surprises, we usually use square brackets, unless we really know what we're doing.
 
 ## Multidimensional arrays
 
