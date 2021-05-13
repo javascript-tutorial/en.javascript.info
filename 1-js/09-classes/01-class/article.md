@@ -144,7 +144,7 @@ The result of this definition is about the same. So, there are indeed reasons wh
 
 Still, there are important differences.
 
-1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
+1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
 
     The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with `new`:
 
