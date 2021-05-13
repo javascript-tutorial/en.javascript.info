@@ -4,7 +4,7 @@
 ```warn header="In-depth language feature"
 This article covers an advanced topic, to understand certain edge-cases better.
 
-It's not important. Many experienced developers live fine without knowing it. Read on if you're  want to know how things work under the hood.
+It's not important. Many experienced developers live fine without knowing it. Read on if you want to know how things work under the hood.
 ```
 
 A dynamically evaluated method call can lose `this`.
