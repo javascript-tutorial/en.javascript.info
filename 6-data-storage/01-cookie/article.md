@@ -247,8 +247,11 @@ But anything more complicated, like a network request from another site or a for
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
-Overall, `samesite` is a great option, but it has an important drawback:
-- `samesite` is ignored (not supported) by old browsers, year 2017 or so.
+Overall, `samesite` is a great option. 
+
+There's a drawback:
+
+- `samesite` is ignored (not supported) by very old browsers, year 2017 or so.
 
 **So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
 
