@@ -61,7 +61,7 @@ If you're curious to see a concrete example of such an error, check this code ou
 
 No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
 
-Now, let's add an `alert` before the code and *not* finish it with a semicolon:
+Let's add an `alert` before the code and *not* finish it with a semicolon:
 
 ```js run no-beautify
 alert("There will be an error")
@@ -69,7 +69,7 @@ alert("There will be an error")
 [1, 2].forEach(alert)
 ```
 
-Now if we run the code, only the first `alert` is shown and then we have an error!
+Now if we run the code, only the first `alert` shows, and then we have an error!
 
 But everything is fine again if we add a semicolon after `alert`:
 ```js run
