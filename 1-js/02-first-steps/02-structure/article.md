@@ -58,17 +58,17 @@ If you're curious to see a concrete example of such an error, check this code ou
 ```js run
 alert("Hello");
 
-[1, 2].forEach(alert);
+["World"].forEach(alert);
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `World`.
 
 Now let's remove the semicolon after the `alert`:
 
 ```js run no-beautify
 alert("Hello")
 
-[1, 2].forEach(alert);
+["World"].forEach(alert);
 ```
 
 The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
@@ -80,7 +80,7 @@ The difference is because JavaScript does not assume a semicolon before square b
 Here's how the engine sees it:
 
 ```js run no-beautify
-alert("Hello")[1, 2].forEach(alert)
+alert("Hello")["World"].forEach(alert)
 ```
 
 Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
