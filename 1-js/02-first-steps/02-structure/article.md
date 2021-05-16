@@ -75,7 +75,7 @@ The difference compared to the code above is only one character: the semicolon a
 
 If we run this code, only the first `Hello` shows (and then you may see the error, but it may also be hidden). There are no numbers any more.
 
-That's because JavaScript does not assume a semicolon before square brackets `[...]`. And, as there's no semicolon, the code in the first example is treated as a single statement. 
+That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the first example is treated as a single statement. 
 
 Here's how the engine sees it:
 
