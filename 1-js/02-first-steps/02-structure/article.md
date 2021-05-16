@@ -56,7 +56,7 @@ Errors which occur in such cases are quite hard to find and fix.
 If you're curious to see a concrete example of such an error, check this code out:
 
 ```js run
-alert("Hello);
+alert("Hello");
 
 [1, 2].forEach(alert);
 ```
