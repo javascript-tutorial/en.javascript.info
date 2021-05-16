@@ -242,7 +242,7 @@ And in the original example `pattern:^(\w+\s?)*$` we may want to forbid backtrac
 
 Modern regular expression engines support possessive quantifiers for that. Regular quantifiers become possessive if we add `pattern:+` after them. That is, we use `pattern:\d++` instead of `pattern:\d+` to stop `pattern:+` from backtracking.
 
-Possessive quantifiers are in fact simpler than "regular" ones. They just match as many as they can, without any backtracking. The search process without bracktracking is simpler.
+Possessive quantifiers are in fact simpler than "regular" ones. They just match as many as they can, without any backtracking. The search process without backtracking is simpler.
 
 There are also so-called "atomic capturing groups" - a way to disable backtracking inside parentheses.
 
