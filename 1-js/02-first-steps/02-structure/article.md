@@ -80,7 +80,7 @@ The difference is because JavaScript does not assume a semicolon before square b
 Here's how the engine sees it:
 
 ```js run no-beautify
-alert("Hello")[1, 2].forEach(alert)
+alert("Hello")[1, 2].forEach(alert);
 ```
 
 Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
