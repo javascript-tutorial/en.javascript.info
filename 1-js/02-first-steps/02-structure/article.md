@@ -56,40 +56,36 @@ Errors which occur in such cases are quite hard to find and fix.
 If you're curious to see a concrete example of such an error, check this code out:
 
 ```js run
-[1, 2].forEach(alert)
+alert("Hello);
+
+[1, 2].forEach(alert);
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
 
-Let's add an `alert` before the code and *not* finish it with a semicolon:
+Now let's remove the semicolon after the `alert`:
 
 ```js run no-beautify
-alert("There will be an error")
+alert("Hello")
 
-[1, 2].forEach(alert)
+[1, 2].forEach(alert);
 ```
 
-Now if we run the code, only the first `alert` shows, and then we have an error!
+The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
 
-But everything is fine again if we add a semicolon after `alert`:
-```js run
-alert("All fine now");
+If we run this code, only the first `Hello` shows. There are no numbers any more.
 
-[1, 2].forEach(alert)  
-```
+The difference is because JavaScript does not assume a semicolon before square brackets `[...]`. And, as there's no semicolon, the code in the first example is treated as a single statement. 
 
-Now we have the "All fine now" message followed by `1` and `2`.
-
-
-The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
-
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
+Here's how the engine sees it:
 
 ```js run no-beautify
-alert("There will be an error")[1, 2].forEach(alert)
+alert("Hello")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
+Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+
+This can happen in other situations also.
 ````
 
 We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
