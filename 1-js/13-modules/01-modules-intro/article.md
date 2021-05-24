@@ -186,7 +186,7 @@ That's exactly because the module is executed only once. Exports are generated, 
 
 **Such behavior is actually very convenient, because it allows us to *configure* modules on first import.**
 
-We can setup its properties once, and then in further imports it's ready.
+In other words, when the module code is evaluated (happens only the first time!), we can setup its properties once. And then in further imports it's ready.
 
 For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
 
