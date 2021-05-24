@@ -114,9 +114,9 @@ Here are two scripts on the same page, both `type="module"`. They don't see each
 ```
 
 ```smart
-In the case of a web browser, we can make a window-level global variable by explicitly assigning it to `window`, e.g. `window.user = "John"`. 
+In the browser, we can make a variable window-level global by explicitly assigning it to a `window` property, e.g. `window.user = "John"`. 
 
-Then all scripts will see it. 
+Then all scripts will see it, both with `type="module"` and without it. 
 
 That said, making such global variables is frowned upon. Please try to avoid them.
 ```
