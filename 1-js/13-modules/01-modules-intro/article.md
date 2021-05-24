@@ -184,39 +184,43 @@ As you can see, when `1.js` changes the `name` property in the imported `admin`,
 
 That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
 
-**Such behavior is actually very convenient, because it allows us to *configure* modules on first import.**
+**Such behavior is actually very convenient, because it allows us to *configure* modules.**
 
-In other words, when the module code is evaluated (happens only the first time!), we can setup its properties once. And then in further imports it's ready.
+In other words, we can create variables with configuration and export them, so that the outer code can modify them.
 
-For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `admin` object from outside:
+For instance, the `admin.js` module may provide certain functionality (e.g. authentication), but expect the credentials to come into the `config` object from outside.
 
+First, we can export the `config` object (here it's initially empty, but that's not always the case):
 ```js
 // 📁 admin.js
-export let admin = { };
+export let config = { };
 
 export function sayHi() {
-  alert(`Ready to serve, ${admin.name}!`);
+  alert(`Ready to serve, ${config.user}!`);
 }
 ```
 
-In `init.js`, the first script of our app, we set `admin.name`. Then everyone will see it, including calls made from inside `admin.js` itself:
+Then in `init.js`, the first script of our app, we set `config.user`:
 
 ```js
 // 📁 init.js
-import {admin} from './admin.js';
-admin.name = "Pete";
+import {config} from './admin.js';
+config.user = "Pete";
 ```
 
-Another module can also see `admin.name`:
+...Now the module is configured. It's `config` property has the right user, and it can say hi to them (or provide authentication or whatever):
 
 ```js
-// 📁 other.js
-import {admin, sayHi} from './admin.js';
-
-alert(admin.name); // *!*Pete*/!*
+// 📁 another.js
+import {sayHi} from './admin.js';
 
 sayHi(); // Ready to serve, *!*Pete*/!*!
 ```
+
+Here's a classical pattern:
+1. A module exports some means of configuration.
+2. On the first import we initialize it.
+3. Further imports use the module.
 
 ### import.meta
 
