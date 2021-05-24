@@ -230,11 +230,12 @@ sayHi(); // Ready to serve, *!*Pete*/!*!
 
 The object `import.meta` contains the information about the current module.
 
-Its content depends on the environment. In the browser, it contains the url of the script, or a current webpage url if inside HTML:
+Its content depends on the environment. In the browser, it contains the URL of the script, or a current webpage URL if inside HTML:
 
 ```html run height=0
 <script type="module">
-  alert(import.meta.url); // script url (url of the html page for an inline script)
+  alert(import.meta.url); // script URL
+  // for an inline script - the URL of the current HTML-page
 </script>
 ```
 
