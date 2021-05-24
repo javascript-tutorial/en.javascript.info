@@ -81,7 +81,7 @@ Modules always work in strict mode. E.g. assigning to an undeclared variable wil
 
 Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
 
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails:
+In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails (you'll see the error in the console):
 
 [codetabs src="scopes" height="140" current="index.html"]
 
