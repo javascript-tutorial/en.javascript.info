@@ -81,19 +81,24 @@ Modules always work in strict mode. E.g. assigning to an undeclared variable wil
 
 Each module has its own top-level scope. In other words, top-level variables and functions from a module are not seen in other scripts.
 
-In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`, and fails (you'll see the error in the console):
+In the example below, two scripts are imported, and `hello.js` tries to use `user` variable declared in `user.js`. It fails, because it's a separate module (you'll see the error in the console):
 
 [codetabs src="scopes" height="140" current="index.html"]
 
-Modules are expected to `export` what they want to be accessible from outside and `import` what they need.
+Modules should `export` what they want to be accessible from outside and `import` what they need.
 
-So we should import `user.js` into `hello.js` and get the required functionality from it instead of relying on global variables.
+- `user.js` should export the `user` variable.
+- `hello.js` should import it from `user.js` module.
+
+In other words, with modules we use import/export instead of relying on global variables.
 
 This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-In the browser, independent top-level scope also exists for each `<script type="module">`:
+In the browser, independent top-level scope also exists for each `<script type="module">`.
+
+Here are two scripts on the same page, both `type="module"`. They don't see each other's top-level variables:
 
 ```html run
 <script type="module">
@@ -108,7 +113,13 @@ In the browser, independent top-level scope also exists for each `<script type="
 </script>
 ```
 
-If we really need to make a window-level global variable, we can explicitly assign it to `window` and access as `window.user`. But that's an exception requiring a good reason.
+```smart
+In the case of a web browser, we can make a window-level global variable by explicitly assigning it to `window`, e.g. `window.user = "John"`. 
+
+Then all scripts will see it. 
+
+That said, making such global variables is frowned upon. Please try to avoid them.
+```
 
 ### A module code is evaluated only the first time when imported
 
