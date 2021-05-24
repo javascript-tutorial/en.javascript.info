@@ -191,7 +191,7 @@ In other words, a module can provide a generic functionality that needs a setup.
 Here's the classical pattern:
 1. A module exports some means of configuration, e.g. a configuration object.
 2. On the first import we initialize it, write to its properties. The top-level application script may do that.
-3. Further imports use the module (it's now configured).
+3. Further imports use the module.
 
 For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `config` object from outside:
 
