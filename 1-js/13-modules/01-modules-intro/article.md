@@ -184,7 +184,7 @@ As you can see, when `1.js` changes the `name` property in the imported `admin`,
 
 That's exactly because the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
 
-**Such behavior is great, because it allows us to *configure* modules on first import.**
+**Such behavior is actually very convenient, because it allows us to *configure* modules on first import.**
 
 We can setup its properties once, and then in further imports it's ready.
 
