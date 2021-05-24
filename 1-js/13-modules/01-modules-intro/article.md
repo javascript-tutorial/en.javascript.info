@@ -186,7 +186,7 @@ That's exactly because the module is executed only once. Exports are generated, 
 
 **Such behavior is actually very convenient, because it allows us to *configure* modules.**
 
-In other words, a module can provide a generic functionality that needs a setup. E.g. authentication needs credentials. Then we export a configuration object expecting the outer code to assign to it.
+In other words, a module can provide a generic functionality that needs a setup. E.g. authentication needs credentials. Then it can export a configuration object expecting the outer code to assign to it.
 
 For instance, the `admin.js` module may provide certain functionality (e.g. authentication), but expect the credentials to come into the `config` object from outside.
 
