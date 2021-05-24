@@ -204,7 +204,7 @@ export function sayHi() {
 }
 ```
 
-Here, `admin.js` exports the `config` object (initially empty, but that's not always the case).
+Here, `admin.js` exports the `config` object (initially empty, but may have default properties too).
 
 Then in `init.js`, the first script of our app, we set `config.user`:
 
