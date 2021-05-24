@@ -206,7 +206,7 @@ export function sayHi() {
 
 Here, `admin.js` exports the `config` object (initially empty, but may have default properties too).
 
-Then in `init.js`, the first script of our app, we set `config.user`:
+Then in `init.js`, the first script of our app, we import `config` from it and set `config.user`:
 
 ```js
 // 📁 init.js
@@ -214,7 +214,7 @@ import {config} from './admin.js';
 config.user = "Pete";
 ```
 
-...Now the module is configured. 
+...Now the module `admin.js` is configured. 
 
 Further importers can call it, and it correctly shows the current user:
 
