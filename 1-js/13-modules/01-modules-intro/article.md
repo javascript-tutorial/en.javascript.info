@@ -146,7 +146,7 @@ import `./alert.js`; // Module is evaluated!
 import `./alert.js`; // (shows nothing)
 ```
 
-In practice, top-level module code is mostly used for initialization, creation of internal data structures, and if we want something to be reusable -- export it.
+Top-level module code should be used for initialization, creation of module-specific internal data structures. If we want to call something multiple times - we need to export it.
 
 Now, a more advanced example.
 
