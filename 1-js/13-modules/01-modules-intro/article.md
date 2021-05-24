@@ -188,9 +188,13 @@ That's exactly because the module is executed only once. Exports are generated, 
 
 In other words, a module can provide a generic functionality that needs a setup. E.g. authentication needs credentials. Then it can export a configuration object expecting the outer code to assign to it.
 
-For instance, the `admin.js` module may provide certain functionality (e.g. authentication), but expect the credentials to come into the `config` object from outside.
+Here's a classical pattern:
+1. A module exports some means of configuration, e.g. a configuration object.
+2. On the first import we initialize it, write to its properties. The top-level application script may do that.
+3. Further imports use the module.
 
-First, we can export the `config` object (here it's initially empty, but that's not always the case):
+For instance, the `admin.js` module may provide certain functionality, but expect the credentials to come into the `config` object from outside:
+
 ```js
 // 📁 admin.js
 export let config = { };
@@ -200,6 +204,8 @@ export function sayHi() {
 }
 ```
 
+Here, `admin.js` exports the `config` object (initially empty, but that's not always the case).
+
 Then in `init.js`, the first script of our app, we set `config.user`:
 
 ```js
@@ -208,7 +214,9 @@ import {config} from './admin.js';
 config.user = "Pete";
 ```
 
-...Now the module is configured. It's `config` property has the right user, and it can say hi to them (or provide authentication or whatever):
+...Now the module is configured. 
+
+Further importers can call it, and it correctly shows the current user:
 
 ```js
 // 📁 another.js
@@ -217,10 +225,6 @@ import {sayHi} from './admin.js';
 sayHi(); // Ready to serve, *!*Pete*/!*!
 ```
 
-Here's a classical pattern:
-1. A module exports some means of configuration.
-2. On the first import we initialize it.
-3. Further imports use the module.
 
 ### import.meta
 
