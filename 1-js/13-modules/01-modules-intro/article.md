@@ -96,7 +96,7 @@ This is the correct variant:
 
 [codetabs src="scopes-working" height="140" current="hello.js"]
 
-In the browser, independent top-level scope also exists for each `<script type="module">`.
+In the browser, if we talk about HTML pages, independent top-level scope also exists for each `<script type="module">`.
 
 Here are two scripts on the same page, both `type="module"`. They don't see each other's top-level variables:
 
