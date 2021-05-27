@@ -75,7 +75,7 @@ setInterval(animate2, 20); // in different places of the script
 setInterval(animate3, 20);
 ```
 
-These several independent redraws should be grouped together, to make the redraw easier for the browser and hence load less CPU load and look smoother.
+These several independent redraws should be grouped together, to make the redraw easier for the browser and hence less CPU load and look smoother.
 
 There's one more thing to keep in mind. Sometimes CPU is overloaded, or there are other reasons to redraw less often (like when the browser tab is hidden), so we really shouldn't run it every `20ms`.
 
