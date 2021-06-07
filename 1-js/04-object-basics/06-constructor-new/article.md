@@ -64,7 +64,7 @@ Now if we want to create other users, we can call `new User("Ann")`, `new User("
 
 That's the main purpose of constructors -- to implement reusable object creation code.
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Let's note once again -- technically, any function (except arrow function, which does not have its own bindings to this or super, does not have arguments, or new.target keywords) can be used as a constructor. That is: any function (except arrow function) can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
 
 ````smart header="new function() { ... }"
 If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
