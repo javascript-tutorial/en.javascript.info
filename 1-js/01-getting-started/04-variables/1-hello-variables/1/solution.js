@@ -1,0 +1,2 @@
+let admin;
+let user;
