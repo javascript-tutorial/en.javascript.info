@@ -5,6 +5,14 @@ What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or p
 
 In that case, objects are auto-converted to primitives, and then the operation is carried out.
 
+```smart header="Ninja code warning"
+In this chapter, we're going to learn what happens when you do something like `myOjb * 2`, and how to implement it. However, it may not be the best practice to write your code this way.
+
+Javascript was designed to be flexible and forgiving, which was why things like `5 * "5"` works. However, in modern real world projects, your team may choose to set up eslint rules that forbids this, and if you're writing typesript, it simply will not compile.
+
+You're free to write your code in a way that makes `user * 2` automatically produce the result of `user.money * 2`, but it'd be more readable to just write `user.money * 2` explicitly.
+```
+
 In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
 
 1. All objects are `true` in a boolean context. There are only numeric and string conversions.
