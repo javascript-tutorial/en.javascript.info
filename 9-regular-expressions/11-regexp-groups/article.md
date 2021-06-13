@@ -335,7 +335,7 @@ In the example below we only get the name `match:John` as a separate member of t
 let str = "Gogogo John!";
 
 *!*
-// ?: exludes 'go' from capturing
+// ?: excludes 'go' from capturing
 let regexp = /(?:go)+ (\w+)/i;
 */!*
 
