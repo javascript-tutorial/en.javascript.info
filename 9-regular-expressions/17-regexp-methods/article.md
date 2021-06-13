@@ -65,7 +65,7 @@ There are 3 differences from `match`:
 
 1. It returns an iterable object with matches instead of an array. We can make a regular array from it using `Array.from`.
 2. Every match is returned as an array with capturing groups (the same format as `str.match` without flag `pattern:g`).
-3. If there are no results, it returns not `null`, but an empty iterable object.
+3. If there are no results, it returns an empty iterable object instead of `null`.
 
 Usage example:
 
