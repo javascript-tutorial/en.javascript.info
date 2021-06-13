@@ -11,7 +11,7 @@ That's an important limitation, as the result of `obj1 + obj2` can't be another 
 
 E.g. we can't make objects representing vectors or matrices (or archievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
 
-So, because we can't do much here, in real projects people don't do maths with objects. When it happens, it's usually because of coding mistake.
+So, because we can't do much here, in real projects people don't do maths with objects. When it happens, it's usually because of a coding mistake.
 
 In this chapter we'll cover how an object converts to primitive and how to customize it.
 
