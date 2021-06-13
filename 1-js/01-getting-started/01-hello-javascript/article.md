@@ -12,7 +12,11 @@ Technically, even a coffee machine can include its own JavaScript engine to allo
 
 ![](javascript-engine.svg)
 
+```smart header="Where to read?"
 There's a formal language description called [ECMAScript Language Specification](https://tc39.es/ecma262/), it describes how a JavaScript engine works. Sometimes we'll give references to it, but, though technically correct, it's hard to read for humans.
+
+Also, there's a good JavaScript reference at [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference). One can type `mdn <a javascript term>` in an internet search engine to find the information about that term there.
+```
 
 Programs in JavaScript are called "scripts". 
 
