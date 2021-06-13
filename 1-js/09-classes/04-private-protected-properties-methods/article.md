@@ -192,7 +192,7 @@ There's a finished JavaScript proposal, almost in the standard, that provides la
 
 Privates should start with `#`. They are only accessible from inside the class.
 
-For instance, here's a private `#waterLimit` property and the water-checking private method `#checkWater`:
+For instance, here's a private `#waterLimit` property and the water-checking private method `#fixWaterAmount`:
 
 ```js run
 class CoffeeMachine {

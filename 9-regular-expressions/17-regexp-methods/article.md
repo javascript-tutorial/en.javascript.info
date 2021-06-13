@@ -65,7 +65,7 @@ There are 3 differences from `match`:
 
 1. It returns an iterable object with matches instead of an array. We can make a regular array from it using `Array.from`.
 2. Every match is returned as an array with capturing groups (the same format as `str.match` without flag `pattern:g`).
-3. If there are no results, it returns not `null`, but an empty iterable object.
+3. If there are no results, it returns an empty iterable object instead of `null`.
 
 Usage example:
 
@@ -247,7 +247,7 @@ alert('12-34-56'.replaceAll("-", ":")) // 12:34:56
 
 ## regexp.exec(str)
 
-The method `regexp.exec(str)` method returns a match for `regexp` in the string `str`.  Unlike previous methods, it's called on a regexp, not on a string.
+The `regexp.exec(str)` method returns a match for `regexp` in the string `str`.  Unlike previous methods, it's called on a regexp, not on a string.
 
 It behaves differently depending on whether the regexp has flag `pattern:g`.
 
