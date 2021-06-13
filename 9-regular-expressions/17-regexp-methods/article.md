@@ -247,7 +247,7 @@ alert('12-34-56'.replaceAll("-", ":")) // 12:34:56
 
 ## regexp.exec(str)
 
-The method `regexp.exec(str)` method returns a match for `regexp` in the string `str`.  Unlike previous methods, it's called on a regexp, not on a string.
+The `regexp.exec(str)` method returns a match for `regexp` in the string `str`.  Unlike previous methods, it's called on a regexp, not on a string.
 
 It behaves differently depending on whether the regexp has flag `pattern:g`.
 
