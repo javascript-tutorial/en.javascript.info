@@ -107,7 +107,7 @@ Unicode supports many different properties, their full list would require a lot 
 
 ### Example: hexadecimal numbers
 
-For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is a hex digit (0..1 or A..F).
+For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is a hex digit (0..9 or A..F).
 
 A hex digit can be denoted as `pattern:\p{Hex_Digit}`:
 
