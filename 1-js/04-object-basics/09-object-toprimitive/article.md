@@ -3,7 +3,24 @@
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
-In that case, objects are auto-converted to primitives, and then the operation is carried out.
+JavaScript doesn't exactly allow to customize how operators work on objects. Unlike some other programming languages, such as Ruby or C++, we can't implement a special object method to handle an addition (or other operators).
+
+In case of such operations, objects are auto-converted to primitives, and then the operation is carried out over these primitives and results in a primitive value.
+
+That's an important limitation, as the result of `obj1 + obj2` can't be another object!
+
+E.g. we can't make objects representing vectors or matrices (or archievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
+
+So, because we can't do much here, in real projects people don't do maths with objects. When it happens, it's usually because of coding mistake.
+
+In this chapter we'll cover how an object converts to primitive and how to customize it.
+
+We have two purposes:
+
+1. It will allow us to understand what's going on in case of coding mistakes, when such an operation happened accidentally.
+2. There are exceptions, where such operations are possible and look good. E.g. subtracting or comparing dates (`Date` objects). We'll come across them later.
+
+## Conversion rules
 
 In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
 
@@ -11,11 +28,11 @@ In the chapter <info:type-conversions> we've seen the rules for numeric, string 
 2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
 3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
-## ToPrimitive
-
 We can fine-tune string and numeric conversion, using special object methods.
 
-There are three variants of type conversion, so-called "hints", described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+There are three variants of type conversion, that happen in various situations.
+
+They're called "hints", as described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
 
 `"string"`
 : For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
@@ -82,10 +99,13 @@ Let's start from the first method. There's a built-in symbol named `Symbol.toPri
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // must return a primitive value
+  // here goes the code to convert this object to a primitive
+  // it must return a primitive value
   // hint = one of "string", "number", "default"
 };
 ```
+
+If the method `Symbol.toPrimitive` exists, it's used for all hints, and no more methods are needed.
 
 For instance, here `user` object implements it:
 
@@ -111,12 +131,12 @@ As we can see from the code, `user` becomes a self-descriptive string or a money
 
 ## toString/valueOf
 
+If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toString` and `valueOf`:
+
+- For the "string" hint: `toString`, and if it doesn't exist, then `valueOf` (so `toString` has the priority for stirng conversions).
+- For other hints: `valueOf`, and if it doesn't exist, then `toString` (so `valueOf` has the priority for maths).
+
 Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
-
-If there's no `Symbol.toPrimitive` then JavaScript tries to find them and try in the order:
-
-- `toString -> valueOf` for "string" hint.
-- `valueOf -> toString` otherwise.
 
 These methods must return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
 
@@ -136,9 +156,9 @@ alert(user.valueOf() === user); // true
 
 So if we try to use an object as a string, like in an `alert` or so, then by default we see `[object Object]`.
 
-And the default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
+The default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
 
-Let's implement these methods.
+Let's implement these methods to customize the conversion.
 
 For instance, here `user` does the same as above using a combination of `toString` and `valueOf` instead of `Symbol.toPrimitive`:
 
@@ -183,7 +203,7 @@ alert(user + 500); // toString -> John500
 
 In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
 
-## Return types
+### A conversion can return any primitive type
 
 The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
 
@@ -252,4 +272,6 @@ The conversion algorithm is:
 3. Otherwise if hint is `"number"` or `"default"`
     - try `obj.valueOf()` and `obj.toString()`, whatever exists.
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that return a "human-readable" representation of an object, for logging or debugging purposes.  
+In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for string conversions that should return a "human-readable" representation of an object, for logging or debugging purposes.  
+
+As for math operations, JavaScript doesn't provide a way to "override" them using methods, so real life projects rarely use them on objects.
