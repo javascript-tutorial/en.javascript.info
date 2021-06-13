@@ -64,10 +64,10 @@ Now if we want to create other users, we can call `new User("Ann")`, `new User("
 
 That's the main purpose of constructors -- to implement reusable object creation code.
 
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
 
 ````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
 
 ```js
 let user = new function() {
@@ -80,7 +80,7 @@ let user = new function() {
 };
 ```
 
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
 ````
 
 ## Constructor mode test: new.target
