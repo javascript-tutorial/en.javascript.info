@@ -39,7 +39,7 @@ In cases when a single action initiates multiple events, their order is fixed. T
 ```online
 Click the button below and you'll see the events. Try double-click too.
 
-In the tests and below, all mouse events are logged, and if there is more than a 1 second delay between them, they are separated by a horizontal rule.
+On the teststand below, all mouse events are logged, and if there is more than a 1 second delay between them, they are separated by a horizontal rule.
 
 Also, we can see the `button` property that allows us to detect the mouse button; it's explained below.
 
