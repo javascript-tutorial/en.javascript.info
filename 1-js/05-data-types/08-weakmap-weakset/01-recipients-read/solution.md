@@ -34,7 +34,7 @@ Another, different solution could be to add a property like `message.isRead=true
 Like this:
 ```js
 // the symbolic property is only known to our code
-let isRead = Symbol("isRead");
+let isRead = Symbol.for("isRead");
 messages[0][isRead] = true;
 ```
 
