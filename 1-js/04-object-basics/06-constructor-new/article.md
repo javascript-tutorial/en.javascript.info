@@ -81,6 +81,8 @@ let user = new function() {
 ```
 
 This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+
+Note: here the logically correct way of writing is `let user = new (function() {...})()`, because we must call the function after creating it. However, the `new` keyword will automatically call the function for you if you omit the `()`, which is why our code works, but many code formatters will automatically add the `()` for you. 
 ````
 
 ## Constructor mode test: new.target
