@@ -70,7 +70,8 @@ Let's note once again -- technically, any function (except arrow functions, as t
 If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
 
 ```js
-let user = new function() {
+// create a function and immediately call it with new
+let user = new function() { 
   this.name = "John";
   this.isAdmin = false;
 
