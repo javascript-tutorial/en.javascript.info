@@ -28,7 +28,7 @@ function loadScript(src) {
 }
 ```
 
-It appends to the document the new, dynamically created, tag `<script src="…">` with given `src`. The browser automatically starts loading it and executes when complete.
+It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
 
 We can use this function like this:
 
