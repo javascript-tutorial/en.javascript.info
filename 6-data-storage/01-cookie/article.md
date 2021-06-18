@@ -39,7 +39,7 @@ We leave it as an exercise for the reader. Also, at the end of the chapter you'l
 
 ## Writing to document.cookie
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor (getter/setter). An assignment to it is treated specially.
+We can write to `document.cookie`. But it's not a data property, it's an [accessor (getter/setter)](info:property-accessors). An assignment to it is treated specially.
 
 **A write operation to `document.cookie` updates only cookies mentioned in it, but doesn't touch other cookies.**
 
