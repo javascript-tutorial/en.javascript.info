@@ -22,7 +22,7 @@ Here, in this chapter, our purpose is to get the gist of how they work, and thei
 
 ## Transpilers
 
-A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. We use it here to parse ("read and understand") modern code and rewrite it using older syntax constructs, so the result would be the same in both, modern and outdated engines.
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so the result would be the same in both, modern and outdated engines.
 
 E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
 
