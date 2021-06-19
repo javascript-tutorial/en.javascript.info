@@ -165,7 +165,9 @@ function checkPhoneKey(key) {
 
 Now arrows and deletion works well.
 
-Even though we have the key filter, one still can enter anything using a mouse and right-click + Paste. So the filter is not 100% reliable. The more reliable approach would be to track the `input` event -- it triggers after any modification. There we can check the new value and highlight/modify it when it's invalid.
+Even though we have the key filter, one still can enter anything using a mouse and right-click + Paste. So the filter is not 100% reliable.
+
+The alternative approach would be to track the `oninput` event -- it triggers *after* any modification. There we can check the new `input.value` and highlight/modify the `<input>` when it's invalid. Or we can use both event handlers together.
 
 ## Legacy
 
