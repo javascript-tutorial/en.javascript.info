@@ -157,7 +157,7 @@ Let's relax the filter a little bit by allowing arrow keys `key:Left`, `key:Righ
 <script>
 function checkPhoneKey(key) {
   return (key >= '0' && key <= '9') ||
-    ['+','(',')','-','ArrowLeft','ArrowRight','Delete','Backspace'].includes(key);
+    ['+','(',')','-',*!*'ArrowLeft','ArrowRight','Delete','Backspace'*/!*].includes(key);
 }
 </script>
 <input onkeydown="return checkPhoneKey(event.key)" placeholder="Phone, please" type="tel">
