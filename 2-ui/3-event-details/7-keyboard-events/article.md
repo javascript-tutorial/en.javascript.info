@@ -151,8 +151,7 @@ As we know, the `false` value returned from the event handler, assigned using a 
 
 Please note that special keys, such as `key:Backspace`, `key:Left`, `key:Right`, do not work in the input. That's a side-effect of the strict filter `checkPhoneKey`. These keys make it return `false`.
 
-Let's relax the filter a little bit by allowing `key:Left`, `key:Right` arrows and `key:Delete`, `key:Backspace`:
-
+Let's relax the filter a little bit by allowing arrow keys `key:Left`, `key:Right` and `key:Delete`, `key:Backspace`:
 
 ```html autorun height=60 run
 <script>
