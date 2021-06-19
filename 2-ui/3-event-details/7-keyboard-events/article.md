@@ -139,11 +139,15 @@ For instance, the `<input>` below expects a phone number, so it does not accept 
 ```html autorun height=60 run
 <script>
 function checkPhoneKey(key) {
-  return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-';
+  return (key >= '0' && key <= '9') || ['+','(',')','-'].includes(key);
 }
 </script>
 <input *!*onkeydown="return checkPhoneKey(event.key)"*/!* placeholder="Phone, please" type="tel">
 ```
+
+The `onkeydown` handler here uses `checkPhoneKey` to check for the key pressed. If it's valid (from `0..9` or one of `+-()`), then it returns `true`, otherwise `false`.
+
+As we know, the `false` value returned from the event handler, assigned using a DOM property or an attribute, such as above, prevents the default action, so nothing appears in the `<input>` for keys that don't pass the test. (The `true` value returned doesn't affect anything, only returning `false` matters)
 
 Please note that special keys, such as `key:Backspace`, `key:Left`, `key:Right`, `key:Ctrl+V`, do not work in the input. That's a side-effect of the strict filter `checkPhoneKey`.
 
@@ -153,8 +157,8 @@ Let's relax it a little bit:
 ```html autorun height=60 run
 <script>
 function checkPhoneKey(key) {
-  return (key >= '0' && key <= '9') || key == '+' || key == '(' || key == ')' || key == '-' ||
-    key == 'ArrowLeft' || key == 'ArrowRight' || key == 'Delete' || key == 'Backspace';
+  return (key >= '0' && key <= '9') ||
+    ['+','(',')','-','ArrowLeft','ArrowRight','Delete','Backspace'].includes(key);
 }
 </script>
 <input onkeydown="return checkPhoneKey(event.key)" placeholder="Phone, please" type="tel">
