@@ -18,7 +18,7 @@ let promise = Promise.all([...promises...]);
 
 `Promise.all` takes an array of promises (it technically can be any iterable, but is usually an array) and returns a new promise.
 
-The new promise resolves when all listed promises are settled, and the array of their results becomes its result.
+The new promise resolves when all listed promises are resolved, and the array of their results becomes its result.
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
