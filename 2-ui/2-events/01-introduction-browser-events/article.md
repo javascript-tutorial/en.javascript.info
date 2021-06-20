@@ -179,14 +179,19 @@ button.onclick = function() {
 };
 ```
 
-**Don't use `setAttribute` for handlers.**
+**While using `setAttribute` for handlers.**
 
 Such a call won't work:
 
 ```js run no-beautify
 // a click on <body> will generate errors,
-// because attributes are always strings, function becomes a string
+// because attributes are always strings
 document.body.setAttribute('onclick', function() { alert(1) });
+```
+But we can make this work by passing the function expression as a string
+
+```js run no-beautify
+document.body.setAttribute('onclick', "function() { alert(1) }");
 ```
 
 **DOM-property case matters.**
