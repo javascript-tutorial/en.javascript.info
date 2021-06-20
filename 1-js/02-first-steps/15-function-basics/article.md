@@ -247,7 +247,7 @@ function showMessage(text) {
 showMessage(); // empty message
 ```
 
-...Or we could use the `??` operator:
+...Or we could use the `||` operator:
 
 ```js
 function showMessage(text) {
