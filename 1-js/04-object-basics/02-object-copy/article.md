@@ -138,12 +138,12 @@ Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
 The syntax is:
 
 ```js
-Object.assign(dest, [src1, src2, src3...])
+Object.assign(dest, ...sources)
 ```
 
 - The first argument `dest` is a target object.
-- Further arguments `src1, ..., srcN` (can be as many as needed) are source objects.
-- It copies the properties of all source objects `src1, ..., srcN` into the target `dest`. In other words, properties of all arguments starting from the second are copied into the first object.
+- Further arguments `...sources` (can be as many as needed) are source objects.
+- It copies the properties of all source objects `...sources` into the target `dest`. In other words, properties of all arguments starting from the second are copied into the first object.
 - The call returns `dest`.
 
 For instance, we can use it to merge several objects into one:
