@@ -168,7 +168,7 @@ The server reads form data and the file, as if it were a regular form submission
 
 [FormData](https://xhr.spec.whatwg.org/#interface-formdata) objects are used to capture HTML form and submit it using `fetch` or another network method.
 
-We can either create `new FormData(form)` from an HTML form, or create a object without a form at all, and then append fields with methods:
+We can either create `new FormData(form)` from an HTML form, or create an object without a form at all, and then append fields with methods:
 
 - `formData.append(name, value)`
 - `formData.append(name, blob, fileName)`
