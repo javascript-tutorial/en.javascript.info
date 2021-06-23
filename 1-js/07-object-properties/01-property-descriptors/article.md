@@ -225,7 +225,7 @@ To be precise, non-configurability imposes several restrictions on `defineProper
 1. Can't change `configurable` flag.
 2. Can't change `enumerable` flag.
 3. Can't change `writable: false` to `true` (the other way round works).
-4. Can't change `get/set` for an accessor property (but can assign them if absent).
+4. Can't change `get/set` for an accessor property.
 
 **The idea of "configurable: false" is to prevent changes of property flags and its deletion, while allowing to change its value.**
 
