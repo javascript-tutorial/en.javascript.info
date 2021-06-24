@@ -407,6 +407,53 @@ There are many articles about `@keyframes` and a [detailed specification](https:
 
 You probably won't need `@keyframes` often, unless everything is in constant motion on your sites.
 
+## Performance of CSS animations
+
+Most CSS properties can be animated, because most of them are numeric values. For instance, `width`, `color`, `font-size` are all numbers. When you animate them, the browser gradually changes these numbers frame by frame, creating a smooth effect.
+
+However, not all animations will look as smooth as you'd like, because different CSS properties cost differently to change. Among all the properties, `transform` and `opacity` are the cheapest to animate, and produce the highest framerate, so in real life projects, you should try to only use these two to achieve your desired effects.
+
+The reason for this is when something is being _transformed_, the browser engine is able to only worry about changing the look of this one thing, without touching other existing things on the page. Same for opacity change.
+
+In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
+
+1. **Layout**: re-compute the geometry and position of each element, then
+2. **Paint**: re-compute how everything should look like, including "layers" which is a big deal, then
+3. **Composite**: render the final results into pixels on screen.
+
+During CSS animation, this process repeats every frame. You can check [how each CSS change triggers these steps](https://csstriggers.com/), and you'll find most changes will trigger ` 1` `2` `3`, while color change only triggers `2` `3`, and transform and opacity only trigger `3`.
+
+Luckily, `transform` is by far the most useful and most powerful property to animate. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [many more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax).
+
+Meanwhile, `opacity` can help with show / hide or fade-in / fade-out effects. By paring `transform` with `opacity` you can usually solve all your needs, for example:
+
+```html run height=80 autorun no-beautify
+<h1 onclick="this.classList.toggle('animated')">click me to start / stop</h1>
+
+<style>
+  h1.animated {
+    animation: hello-goodbye 1.8s infinite;
+    width: fit-content;
+  }
+  @keyframes hello-goodbye {
+    0% {
+      transform: translateY(-60px) rotateX(0.7turn);
+      opacity: 0;
+    }
+    50% {
+      transform: none;
+      opacity: 1;
+    }
+    100% {
+      transform: translateX(230px) rotateZ(90deg) scale(0.5);
+      opacity: 0;
+    }
+  }
+</style>
+```
+
+In earlier examples in this chapter, we've animated `font-size`, `left`, `width`, `height`, etc. In real life projects, they could be replaced by `transform: scale()` and `transform: translate()` for better performance. <!-- More on this topic [here](https://web.dev/animations-overview/) and [here](https://web.dev/animations-guide/). -->
+
 ## Summary
 
 CSS animations allow smoothly (or not) animated changes of one or multiple CSS properties.
