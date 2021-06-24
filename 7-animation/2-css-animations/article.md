@@ -423,7 +423,7 @@ During a CSS animation, this process repeats every frame. However, CSS propertie
 
 The calculations may take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations. 
 
-The animations of properties that skip the Layout and Paint steps are faster.
+The animations of properties that skip the Layout step are faster. It's even better if Paint is skipped too.
 
 For most CSS properties, the rule is simple: if its change may affect geometry, move elements (even in theory), then it triggers Layout. Otherwise (e.g. a `color` change may not shift elements around), the browser doesn't need to calculate geometry and directly goes to Paint, or even Composite step. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>. 
 
