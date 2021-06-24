@@ -505,7 +505,7 @@ Limitations of CSS animations compared to JavaScript animations:
 - Not just property changes. We can create new elements in JavaScript as part of the animation.
 ```
 
-In earlier examples in this chapter, we animate `font-size`, `left`, `width`, `height`, etc. In real life projects, we should use `transform: scale()` and `transform: translate()` for better performance.
+In early examples in this chapter, we animate `font-size`, `left`, `width`, `height`, etc. In real life projects, we should use `transform: scale()` and `transform: translate()` for better performance.
 
 The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
 
