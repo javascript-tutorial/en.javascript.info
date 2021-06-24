@@ -421,7 +421,7 @@ In more technical details, when there's a style change, the browser goes through
 
 During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite.
 
-The Layout step is by far the most expensive: geometry calculations take time. And the delays are actually visible on most devices, leading to a bit more "jittery", less fluid animations. 
+The Layout step is by far the most expensive: geometry calculations take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations. 
 
 **The general recomendation is to animate properties that don't do Layout.**
 
