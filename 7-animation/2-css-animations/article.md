@@ -467,7 +467,7 @@ For example, here clicking on the `#boat` element adds the class with `transform
 Here's a more complex example, with `@keyframes`:
 
 ```html run height=80 autorun no-beautify
-<h1 onclick="this.classList.toggle('animated')">click me to start / stop</h1>
+<h2 onclick="this.classList.toggle('animated')">click me to start / stop</h2>
 <style>
   h1.animated {
     animation: hello-goodbye 1.8s infinite;
