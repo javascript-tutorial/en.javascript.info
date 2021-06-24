@@ -425,7 +425,7 @@ The Layout step is by far the most expensive: geometry calculations take time, e
 
 **The general recomendation is to animate properties that don't do Layout.**
 
-For most CSS properties, the rule is simple: if its change may affect geometry, move elements (even in theory), then it triggers Layout. Otherwise (e.g. a `color` change may not shift elements around), the browser doesn't need to calculate geometry and directly goes to Paint. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>. 
+For most CSS properties, the rule is simple: if its change may affect geometry, move elements (even in theory), then it triggers Layout. Otherwise (e.g. a `color` change may not shift elements around), the browser doesn't need to calculate geometry and directly goes to Paint, or event Composite step. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>. 
 
 The `transform` property is a notable exception:
 - CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
