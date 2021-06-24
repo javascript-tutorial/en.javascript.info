@@ -431,7 +431,7 @@ The `transform` property is a notable exception:
 - CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
 - CSS transforms never affect neighbour elements.
 
-So browsers apply `transform` "on top" of existing Layout and Paint calculations, in the Composite stage.
+...So browsers apply `transform` "on top" of existing Layout and Paint calculations, in the Composite stage.
 
 In other words, the browser calculates the Layout (sizes, positions), paints it with colors, backgrounds, etc at the Paint stage, and then applies `transform` to element boxes that need it. 
 
