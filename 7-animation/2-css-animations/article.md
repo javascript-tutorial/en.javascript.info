@@ -407,29 +407,67 @@ There are many articles about `@keyframes` and a [detailed specification](https:
 
 You probably won't need `@keyframes` often, unless everything is in constant motion on your sites.
 
-## Performance of CSS animations
+## Performance
 
 Most CSS properties can be animated, because most of them are numeric values. For instance, `width`, `color`, `font-size` are all numbers. When you animate them, the browser gradually changes these numbers frame by frame, creating a smooth effect.
 
-However, not all animations will look as smooth as you'd like, because different CSS properties cost differently to change. Among all the properties, `transform` and `opacity` are the cheapest to animate, and produce the highest framerate, so in real life projects, you should try to only use these two to achieve your desired effects.
-
-The reason for this is when something is being _transformed_, the browser engine is able to only worry about changing the look of this one thing, without touching other existing things on the page. Same for opacity change.
+However, not all animations will look as smooth as you'd like, because different CSS properties cost differently to change.
 
 In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
 
 1. **Layout**: re-compute the geometry and position of each element, then
-2. **Paint**: re-compute how everything should look like, including "layers" which is a big deal, then
-3. **Composite**: render the final results into pixels on screen.
+2. **Paint**: re-compute how everything should look like at their places, including background, colors,
+3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
 
-During CSS animation, this process repeats every frame. You can check [how each CSS change triggers these steps](https://csstriggers.com/), and you'll find most changes will trigger ` 1` `2` `3`, while color change only triggers `2` `3`, and transform and opacity only trigger `3`.
+During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite.
 
-Luckily, `transform` is by far the most useful and most powerful property to animate. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [many more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax).
+The Layout step is by far the most expensive: geometry calculations take time. And the delays are actually visible on most devices, leading to a bit more "jittery", less fluid animations. 
 
-Meanwhile, `opacity` can help with show / hide or fade-in / fade-out effects. By paring `transform` with `opacity` you can usually solve all your needs, for example:
+**The general recomendation is to animate properties that don't do Layout.**
+
+For most CSS properties, the rule is simple: if its change may affect geometry, move elements (even in theory), then it triggers Layout. Otherwise (e.g. a `color` change may not shift elements around), the browser directly goes to Paint. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>. 
+
+The `transform` property is a notable exception:
+- CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
+- CSS transforms never affect neighbour elements.
+
+So browsers apply `transform` "on top" of existing Layout and Paint calculations, in the Composite stage.
+
+In other words, the browser calculates the Layout (sizes, positions), paints it with colors, backgrounds, etc at the Paint stage, and then applies `transform` to element boxes that need it. 
+
+Animating the `transform` property never causes Layout and Paint. More than that, the browser  leverages the graphics accelerator (a special chip on the CPU or graphics card) for CSS transforms, thus making them very effecient.
+
+Luckily, the `transform` property is very powerful. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [much more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax).
+
+The `opacity` property also never causes Layout. We can use it for show / hide or fade-in / fade-out effects. 
+
+Paring `transform` with `opacity` can usually solve most of our needs, providing fluid, good-looking animations.
+
+For example, here clicking on the `#boat` element adds the class with `transform: translateX(300)` and `opacity: 0`, thus making it move `300px` to the right and fade out:
+
+```html run height=260 autorun no-beautify
+<img src="https://js.cx/clipart/boat.png" id="boat">
+
+<style>
+#boat {
+  cursor: pointer;
+  transition: transform 2s ease-in-out, opacity 2s ease-in-out;
+}
+
+.move {
+  transform: translateX(300px);
+  opacity: 0;
+}
+</style>
+<script>
+  boat.onclick = () => boat.classList.add('move');
+</script>
+```
+
+Or a more complex example, with `@keyframes`:
 
 ```html run height=80 autorun no-beautify
 <h1 onclick="this.classList.toggle('animated')">click me to start / stop</h1>
-
 <style>
   h1.animated {
     animation: hello-goodbye 1.8s infinite;
@@ -452,8 +490,6 @@ Meanwhile, `opacity` can help with show / hide or fade-in / fade-out effects. By
 </style>
 ```
 
-In earlier examples in this chapter, we've animated `font-size`, `left`, `width`, `height`, etc. In real life projects, they could be replaced by `transform: scale()` and `transform: translate()` for better performance. <!-- More on this topic [here](https://web.dev/animations-overview/) and [here](https://web.dev/animations-guide/). -->
-
 ## Summary
 
 CSS animations allow smoothly (or not) animated changes of one or multiple CSS properties.
@@ -468,6 +504,8 @@ Limitations of CSS animations compared to JavaScript animations:
 - JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
 - Not just property changes. We can create new elements in JavaScript as part of the animation.
 ```
+
+In earlier examples in this chapter, we animate `font-size`, `left`, `width`, `height`, etc. In real life projects, we should use `transform: scale()` and `transform: translate()` for better performance.
 
 The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
 
