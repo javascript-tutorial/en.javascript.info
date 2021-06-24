@@ -469,7 +469,7 @@ Here's a more complex example, with `@keyframes`:
 ```html run height=80 autorun no-beautify
 <h2 onclick="this.classList.toggle('animated')">click me to start / stop</h2>
 <style>
-  h1.animated {
+  .animated {
     animation: hello-goodbye 1.8s infinite;
     width: fit-content;
   }
