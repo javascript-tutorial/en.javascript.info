@@ -419,13 +419,13 @@ In more technical details, when there's a style change, the browser goes through
 2. **Paint**: re-compute how everything should look like at their places, including background, colors,
 3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
 
-During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at https://csstriggers.com.
+During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
 
 The calculations may take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations. 
 
-The animations of properties that skip the Layout step are faster. It's even better if Paint is skipped too.
+Animations of properties that skip the Layout step are faster. It's even better if Paint is skipped too.
 
-The `transform` property is a notable exception:
+The `transform` property is a great choice, because:
 - CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
 - CSS transforms never affect neighbour elements.
 
@@ -435,7 +435,7 @@ In other words, the browser calculates the Layout (sizes, positions), paints it 
 
 Changes (animations) of the `transform` property never cause Layout and Paint steps. More than that, the browser  leverages the graphics accelerator (a special chip on the CPU or graphics card) for CSS transforms, thus making them very effecient.
 
-Luckily, the `transform` property is very powerful. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [much more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax).
+Luckily, the `transform` property is very powerful. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [much more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax). So instead of `left/margin-left` properties we can use `transform: translateX(…)`, use `transform: scale` for increasing element size, etc.
 
 The `opacity` property also never causes Layout (also skips Paint in Gecko). We can use it for show / hide or fade-in / fade-out effects. 
 
