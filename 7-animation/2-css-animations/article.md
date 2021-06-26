@@ -492,7 +492,7 @@ Here's a more complex example, with `@keyframes`:
 
 ## Summary
 
-CSS animations allow smoothly (or not) animated changes of one or multiple CSS properties.
+CSS animations allow smoothly (or step-by-step) animated changes of one or multiple CSS properties.
 
 They are good for most animation tasks. We're also able to use JavaScript for animations, the next chapter is devoted to that.
 
