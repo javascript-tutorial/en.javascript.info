@@ -168,7 +168,7 @@ The CSS `transition` is based on that curve:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* JavaScript sets left to 450px */
+  /* onlick on a train sets left to 450px */
 }
 ```
 
