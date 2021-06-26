@@ -260,7 +260,7 @@ But how do we make a Bezier curve for a specific task? There are many tools. For
 
 ### Steps
 
-The timing function `steps(number of steps[, start/end])` allows splitting an animation into steps.
+The timing function `steps(number of steps[, start/end])` allows splitting an transition into multiple steps.
 
 Let's see that in an example with digits.
 
@@ -301,7 +301,7 @@ The process is progressing like this:
 
 The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
 
-So the process would go like this:
+So the process for `steps(9, end)` would go like this:
 
 - `0s` -- `0`
 - `1s` -- `-10%` (first change at the end of the 1st second)
