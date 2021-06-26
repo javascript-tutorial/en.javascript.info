@@ -21,9 +21,9 @@ Internally, we'll use `JSON.parse`. If it receives malformed `json`, then it thr
 
 Our function `readUser(json)` will not only read JSON, but check ("validate") the data. If there are no required fields, or the format is wrong, then that's an error. And that's not a `SyntaxError`, because the data is syntactically correct, but another kind of error. We'll call it `ValidationError` and create a class for it. An error of that kind should also carry the information about the offending field.
 
-Our `ValidationError` class should inherit from the built-in `Error` class.
+Our `ValidationError` class should inherit from the `Error` class.
 
-That class is built-in, but here's its approximate code so we can understand what we're extending:
+The `Error` class is built-in, but here's its approximate code so we can understand what we're extending:
 
 ```js
 // The "pseudocode" for the built-in Error class defined by JavaScript itself
@@ -117,15 +117,15 @@ We could also look at `err.name`, like this:
 // instead of (err instanceof SyntaxError)
 } else if (err.name == "SyntaxError") { // (*)
 // ...
-```  
+```
 
 The `instanceof` version is much better, because in the future we are going to extend `ValidationError`, make subtypes of it, like `PropertyRequiredError`. And `instanceof` check will continue to work for new inheriting classes. So that's future-proof.
 
-Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (due to a typo in the code or other unknown ones) should fall through.
+Also it's important that if `catch` meets an unknown error, then it rethrows it in the line `(**)`. The `catch` block only knows how to handle validation and syntax errors, other kinds (caused by a typo in the code or other unknown reasons) should fall through.
 
 ## Further inheritance
 
-The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age`). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
+The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age` instead of a number). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
 
 ```js run
 class ValidationError extends Error {
