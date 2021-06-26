@@ -143,6 +143,8 @@ The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control
 2. Last control point: `(1,1)`.
 3. For intermediate points, the values of `x` must be in the interval `0..1`, `y` can be anything.
 
+If you're not familiar with Bezier curves yet, you might want to check the [Bezier curve](/bezier-curve) chapter of the tutorial.
+
 The syntax for a Bezier curve in CSS: `cubic-bezier(x2, y2, x3, y3)`. Here we need to specify only 2nd and 3rd control points, because the 1st one is fixed to `(0,0)` and the 4th one is `(1,1)`.
 
 The timing function describes how fast the animation process goes.
@@ -215,7 +217,7 @@ So we could use `ease-out` for our slowing down train:
 .train {
   left: 0;
   transition: left 5s ease-out;
-  /* transition: left 5s cubic-bezier(0, .5, .5, 1); */
+  /* same as transition: left 5s cubic-bezier(0, .5, .5, 1); */
 }
 ```
 
@@ -230,7 +232,7 @@ In the example below the animation code is:
 .train {
   left: 100px;
   transition: left 5s cubic-bezier(.5, -1, .5, 2);
-  /* JavaScript sets left to 400px */
+  /* click on a train sets left to 450px */
 }
 ```
 
