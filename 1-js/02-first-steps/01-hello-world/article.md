@@ -122,6 +122,18 @@ The example above can be split into two scripts to work:
 ```
 ````
 
+````warn header="Case and filesystems"
+The browser relies on the OS to find a file, so
+
+```html
+<script src="./myscript.js"></script>
+```
+
+...will find a file named *MyScript.js* in Windows, but it won't in Linux. This is an issue on server-side code too, if you work with node js for example. 
+
+It is recommended to name paths and filenames all lowercase.
+````
+
 ## Summary
 
 - We can use a `<script>` tag to add JavaScript code to a page.
