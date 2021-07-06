@@ -561,6 +561,28 @@ function func() {
 
 alert( func() ); // first works alert from finally, and then this one
 ```
+
+If there is a `return` in both `then` and `finally`, function returns the value from `finally`.
+
+```js run
+function func() {
+
+  try {
+*!*
+    return 1;
+*/!*
+
+  } catch (err) {
+    /* ... */
+  } finally {
+*!*
+    return 2;
+*/!*
+  }
+}
+
+alert( func() ); // result is 2
+```
 ````
 
 ````smart header="`try...finally`"
