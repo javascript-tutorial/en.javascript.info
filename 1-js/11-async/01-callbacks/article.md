@@ -10,7 +10,7 @@ If you're not familiar with these methods, and their usage in the examples is co
 Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
 ```
 
-Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
+Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but finish later.
 
 For instance, one such function is the `setTimeout` function.
 
