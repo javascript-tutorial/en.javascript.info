@@ -114,8 +114,8 @@ We could also look at `err.name`, like this:
 
 ```js
 // ...
-// instead of (err instanceof SyntaxError)
-} else if (err.name == "SyntaxError") { // (*)
+// instead of (err instanceof ValidationError)
+} else if (err.name == "ValidationError") { // (*)
 // ...
 ```
 
