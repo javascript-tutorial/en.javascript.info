@@ -24,7 +24,7 @@ Now, we can put some data into it by using the assignment operator `=`:
 let message;
 
 *!*
-message = 'Hello'; // store the string
+message = 'Hello'; // store the string 'Hello' in the variable named message
 */!*
 ```
 
