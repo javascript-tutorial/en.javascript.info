@@ -221,12 +221,6 @@ Math.PI = 3; // Error
 
 Making a property non-configurable is a one-way road. We cannot change it back with `defineProperty`.
 
-To be precise, non-configurability imposes several restrictions on `defineProperty`:
-1. Can't change `configurable` flag.
-2. Can't change `enumerable` flag.
-3. Can't change `writable: false` to `true` (the other way round works).
-4. Can't change `get/set` for an accessor property (but can assign them if absent).
-
 **The idea of "configurable: false" is to prevent changes of property flags and its deletion, while allowing to change its value.**
 
 Here `user.name` is non-configurable, but we can still change it (as it's writable):
@@ -263,6 +257,11 @@ delete user.name;
 Object.defineProperty(user, "name", { value: "Pete" });
 ```
 
+```smart header="The only attribute change possible: writable true -> false"
+There's a minor exception, that we have to mention.
+
+We can change `writable: true` to `false` for a non-configurable property, thus making the property readonly (can add another layer of protection). But not the other way around.
+```
 
 ## Object.defineProperties
 
