@@ -114,7 +114,7 @@ The example below correctly shows image sizes, because `window.onload` waits for
 
 ```html run height=200 refresh
 <script>
-  window.onload = function() {
+  window.onload = function() { // can also use window.addEventListener('load', (event) => {
     alert('Page loaded');
 
     // image is loaded at this time
