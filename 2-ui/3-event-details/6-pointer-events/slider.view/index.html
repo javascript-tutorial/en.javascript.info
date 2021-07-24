@@ -5,19 +5,30 @@
   <div class="thumb"></div>
 </div>
 
+<p style="border:1px solid gray" onmousemove="this.textContent = new Date()">Mouse over here to see the date</p>
+
 <script>
   let thumb = slider.querySelector('.thumb');
   let shiftX;
 
-  thumb.onpointerdown = function(event) {
+  function onThumbDown(event) {
     event.preventDefault(); // prevent selection start (browser action)
 
     shiftX = event.clientX - thumb.getBoundingClientRect().left;
 
     thumb.setPointerCapture(event.pointerId);
+
+    thumb.onpointermove = onThumbMove;
+
+    thumb.onpointerup = event => {
+      // dragging finished, no need to track pointer any more
+      // ...any other "drag end" logic here...
+      thumb.onpointermove = null;
+      thumb.onpointerup = null;
+    }
   };
 
-  thumb.onpointermove = function(event) {
+  function onThumbMove(event) {
     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
 
     // if the pointer is out of slider => adjust left to be within the bounaries
@@ -31,6 +42,8 @@
 
     thumb.style.left = newLeft + 'px';
   };
+
+  thumb.onpointerdown = onThumbDown;
 
   thumb.ondragstart = () => false;
 
