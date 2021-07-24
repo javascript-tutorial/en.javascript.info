@@ -8,16 +8,20 @@
 <script>
   let thumb = slider.querySelector('.thumb');
   let shiftX;
-
+  let mainPointer;
+  
   thumb.onpointerdown = function(event) {
     event.preventDefault(); // prevent selection start (browser action)
 
     shiftX = event.clientX - thumb.getBoundingClientRect().left;
-
-    thumb.setPointerCapture(event.pointerId);
+    
+    mainPointer = event.pointerId;
+    thumb.setPointerCapture(mainPointer);
   };
 
   thumb.onpointermove = function(event) {
+    if (event.pointerId !== mainPointer) return;
+    
     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
 
     // if the pointer is out of slider => adjust left to be within the bounaries
@@ -33,5 +37,9 @@
   };
 
   thumb.ondragstart = () => false;
+  
+  thumb.onlostpointercapture = function(event) {
+    mainPointer = null;
+  };
 
 </script>
