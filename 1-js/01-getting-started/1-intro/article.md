@@ -6,7 +6,7 @@ Let's see what's so special about JavaScript, what we can achieve with it, and w
 
 *JavaScript* was initially created to "make web pages alive".
 
-The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
+A Chunk of Javascript code can fit anywhere between a `<script></script>` tags in a HTML file.
 
 Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
 
@@ -30,7 +30,7 @@ Different engines have different "codenames". For example:
 
 The terms above are good to remember because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
 
-```smart header="How do engines work?"
+## So how do Engines actually work?
 
 Engines are complicated. But the basics are easy.
 
@@ -39,7 +39,7 @@ Engines are complicated. But the basics are easy.
 3. And then the machine code runs, pretty fast.
 
 The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
-```
+
 
 ## What can in-browser JavaScript do?
 
@@ -83,11 +83,10 @@ Such limits do not exist if JavaScript is used outside of the browser, for examp
 
 There are at least *three* great things about JavaScript:
 
-```compare
 + Full integration with HTML/CSS.
 + Simple things are done simply.
 + Support by all major browsers and enabled by default.
-```
+
 JavaScript is the only browser technology that combines these three things.
 
 That's what makes JavaScript unique. That's why it's the most widespread tool for creating browser interfaces.
@@ -96,15 +95,16 @@ That said, JavaScript also allows to create servers, mobile applications, etc.
 
 ## Languages "over" JavaScript
 
-The syntax of JavaScript does not suit everyone's needs. Different people want different features.
 
-That's to be expected, because projects and requirements are different for everyone.
+The syntax of JavaScript does not suit everyone's needs.
 
-So recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
+Features nessesitates a certain switch between languages
+
+So, recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
 Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
 
-Examples of such languages:
+Some of the other languages:
 
 - [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
 - [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
