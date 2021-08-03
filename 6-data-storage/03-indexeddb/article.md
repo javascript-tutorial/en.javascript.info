@@ -37,7 +37,7 @@ let openRequest = indexedDB.open(name, version);
 - `name` -- a string, the database name.
 - `version` -- a positive integer version, by default `1` (explained below).
 
-We can have many databases with different names, but all of them exist within the current origin (domain/protocol/port). Different websites can't access each other's databases.
+A database is bound to its origin forever. We can have many databases with different names, but all of them exist within the current origin (domain/protocol/port). Different websites can't access each other's databases.
 
 The call returns `openRequest` object, we should listen to events on it:
 - `success`: database is ready, there's the "database object" in `openRequest.result`, we should use it for further calls.
