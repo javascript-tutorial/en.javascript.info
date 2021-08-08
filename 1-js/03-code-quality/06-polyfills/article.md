@@ -69,7 +69,7 @@ if (!Math.trunc) { // if no such function
 }
 ```
 
-JavaScript is a highly dynamic language, scripts may add/modify any functions, even including built-in ones. 
+JavaScript is a highly dynamic language, scripts may add/modify any functions, even including built-in ones.
 
 Two interesting libraries of polyfills are:
 - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
