@@ -31,7 +31,7 @@
   function onThumbMove(event) {
     let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left;
 
-    // if the pointer is out of slider => adjust left to be within the bounaries
+    // if the pointer is out of slider => adjust left to be within the boundaries
     if (newLeft < 0) {
       newLeft = 0;
     }
