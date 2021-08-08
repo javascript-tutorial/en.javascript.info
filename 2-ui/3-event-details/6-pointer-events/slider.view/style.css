@@ -8,6 +8,7 @@
 }
 
 .thumb {
+  touch-action: none;
   width: 10px;
   height: 25px;
   border-radius: 3px;
