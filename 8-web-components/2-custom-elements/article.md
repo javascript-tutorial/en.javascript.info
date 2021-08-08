@@ -125,8 +125,7 @@ If the browser encounters any `<time-formatted>` elements before `customElements
 
 Such "undefined" elements can be styled with CSS selector `:not(:defined)`.
 
-When `customElement.define` is called, they are "upgraded": a new instance of `TimeFormatted`
-is created for each, and `connectedCallback` is called. They become `:defined`.
+When `customElement.define` is called, they are "upgraded": a new instance of `TimeFormatted` is created for each, and `connectedCallback` is called. They become `:defined`.
 
 To get the information about custom elements, there are methods:
 - `customElements.get(name)` -- returns the class for a custom element with the given `name`,
