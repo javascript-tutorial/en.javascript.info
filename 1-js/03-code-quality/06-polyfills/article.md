@@ -40,7 +40,7 @@ Now the rewritten code is suitable for older JavaScript engines.
 
 Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server.
 
-Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there. 
+Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there.
 
 Modern project build systems, such as [webpack](http://webpack.github.io/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
 
