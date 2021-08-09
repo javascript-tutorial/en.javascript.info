@@ -203,7 +203,7 @@ Function Declarations are different.
 
 For example, a global Function Declaration is visible in the whole script, no matter where it is.
 
-That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions, also known as hoisting. We can think of it as an "initialization stage".
 
 And after all Function Declarations are processed, the code is executed. So it has access to these functions.
 
