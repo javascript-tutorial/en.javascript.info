@@ -338,6 +338,6 @@ We can declare variables to store data by using the `var`, `let`, or `const` key
 
 - `let` -- is a modern variable declaration.
 - `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
-- `const` -- is like `let`, but the value of the variable can't be changed.
+- `const` -- is like `let`, but the value of the variable can't be changed through reassignment.
 
 Variables should be named in a way that allows us to easily understand what's inside them.
