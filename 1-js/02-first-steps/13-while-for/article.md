@@ -106,7 +106,7 @@ Let's examine the `for` statement part-by-part:
 
 | part  |          |                                                                            |
 |-------|----------|----------------------------------------------------------------------------|
-| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| begin | `let i = 0`    | Executes once upon entering the loop.                                      |
 | condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
 | body | `alert(i)`| Runs again and again while the condition is truthy.                         |
 | step| `i++`      | Executes after the body on each iteration. |
