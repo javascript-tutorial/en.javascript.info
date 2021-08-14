@@ -96,7 +96,7 @@
       let years = form.months.value / 12;
       if (!years) return;
 
-      let result = Math.round(initial * (1 + interest * years));
+      let result = Math.round(initial * (1 + interest) ** years);
 
       let height = result / form.money.value * 100 + 'px';
       document.getElementById('height-after').style.height = height;

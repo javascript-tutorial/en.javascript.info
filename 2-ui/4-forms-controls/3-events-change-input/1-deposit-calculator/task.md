@@ -17,5 +17,5 @@ The formula is:
 // initial: the initial money sum
 // interest: e.g. 0.05 means 5% per year
 // years: how many years to wait
-let result = Math.round(initial * (1 + interest * years));
+let result = Math.round(initial * (1 + interest) ** years);
 ```
