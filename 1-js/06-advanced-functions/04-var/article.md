@@ -4,7 +4,7 @@
 ```smart header="This article is for understanding old scripts"
 The information in this article is useful for understanding old scripts.
 
-That's not how we write a new code.
+That's not how we write new code.
 ```
 
 In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
