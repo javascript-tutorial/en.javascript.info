@@ -19,7 +19,7 @@ We didn't see them yet, because generally they do not show up. When we create a 
 
 First, let's see how to get those flags.
 
-The method [Object.getOwnPropertyDescriptor](mdn:js/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
+The method [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
 
 The syntax is:
 ```js
@@ -54,7 +54,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 */
 ```
 
-To change the flags, we can use [Object.defineProperty](mdn:js/Object/defineProperty).
+To change the flags, we can use [Object.defineProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty).
 
 The syntax is:
 
@@ -274,7 +274,7 @@ We can change `writable: true` to `false` for a non-configurable property, thus 
 
 ## Object.defineProperties
 
-There's a method [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) that allows to define many properties at once.
+There's a method [Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) that allows to define many properties at once.
 
 The syntax is:
 
@@ -300,7 +300,7 @@ So, we can set many properties at once.
 
 ## Object.getOwnPropertyDescriptors
 
-To get all property descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
+To get all property descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors).
 
 Together with `Object.defineProperties` it can be used as a "flags-aware" way of cloning an object:
 
@@ -326,24 +326,24 @@ Property descriptors work at the level of individual properties.
 
 There are also methods that limit access to the *whole* object:
 
-[Object.preventExtensions(obj)](mdn:js/Object/preventExtensions)
+[Object.preventExtensions(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions)
 : Forbids the addition of new properties to the object.
 
-[Object.seal(obj)](mdn:js/Object/seal)
+[Object.seal(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal)
 : Forbids adding/removing of properties. Sets `configurable: false` for all existing properties.
 
-[Object.freeze(obj)](mdn:js/Object/freeze)
+[Object.freeze(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze)
 : Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
 
 And also there are tests for them:
 
-[Object.isExtensible(obj)](mdn:js/Object/isExtensible)
+[Object.isExtensible(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible)
 : Returns `false` if adding properties is forbidden, otherwise `true`.
 
-[Object.isSealed(obj)](mdn:js/Object/isSealed)
+[Object.isSealed(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed)
 : Returns `true` if adding/removing properties is forbidden, and all existing properties have `configurable: false`.
 
-[Object.isFrozen(obj)](mdn:js/Object/isFrozen)
+[Object.isFrozen(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen)
 : Returns `true` if adding/removing/changing properties is forbidden, and all current properties are `configurable: false, writable: false`.
 
 These methods are rarely used in practice.
