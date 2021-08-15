@@ -36,7 +36,7 @@ The idea is that the result is passed through the chain of `.then` handlers.
 
 Here the flow is:
 1. The initial promise resolves in 1 second `(*)`,
-2. Then the `.then` handler is called `(**)`.
+2. Then the `.then` handler is called `(**)` wich in turn creates a new promise.
 3. The value that it returns is passed to the next `.then` handler `(***)`
 4. ...and so on.
 
@@ -44,7 +44,7 @@ As the result is passed along the chain of handlers, we can see a sequence of `a
 
 ![](promise-then-chain.svg)
 
-The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
 
