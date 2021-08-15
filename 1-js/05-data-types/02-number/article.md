@@ -4,7 +4,7 @@ In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
 
-2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't safely exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
 
@@ -53,7 +53,7 @@ Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes
 let ms = 1e-6; // six zeroes to the left from 1
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
+If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
 
 In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
@@ -329,7 +329,7 @@ let num = +prompt("Enter a number", '');
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
+Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.
 
 ```smart header="Compare with `Object.is`"
 
