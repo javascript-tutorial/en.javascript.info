@@ -114,10 +114,13 @@ The function should ask the `question` and, depending on the user's answer, call
 
 ```js run
 *!*
-function ask(question, yes, no) {
-  if (confirm(question)) yes()
-  else no();
-}
+      function ask(question, yes, no) {
+        if (confirm(question)) {
+          yes();
+        } else {
+          no();
+        }
+      }
 */!*
 
 function showOk() {
