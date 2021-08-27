@@ -301,11 +301,11 @@ The great thing about them is that style-checking can also find some bugs, like 
 
 Here are some well-known linting tools:
 
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
+- [JSLint](https://www.jslint.com/) -- one of the first linters.
+- [JSHint](https://jshint.com/) -- more settings than JSLint.
+- [ESLint](https://eslint.org/) -- probably the newest one.
 
-All of them can do the job. The author uses [ESLint](http://eslint.org/).
+All of them can do the job. The author uses [ESLint](https://eslint.org/).
 
 Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
 
@@ -335,7 +335,7 @@ Here's an example of an `.eslintrc` file:
 
 Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
 
-It is also possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
 
 Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
 
