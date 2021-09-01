@@ -22,10 +22,11 @@
 
 <body>
 
-  <button onclick="go()">Click me</button>
+  <button class="btn" >Click me</button>
 
   <script>
-
+let btn=document.querySelector(".btn");
+btn.addEventListener("click",go) ;
   function go() {
     showCircle(150, 150, 100).then(div => {
       div.classList.add('message-ball');
@@ -48,7 +49,7 @@
         div.style.height = radius * 2 + 'px';
 
         div.addEventListener('transitionend', function handler() {
-          div.removeEventListener('transitionend', handler);
+              btn.removeEventListener("click",go);                
           resolve(div);
         });
       }, 0);
