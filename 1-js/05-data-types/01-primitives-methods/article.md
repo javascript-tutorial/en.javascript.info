@@ -48,7 +48,7 @@ The solution looks a little bit awkward, but here it is:
 2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
 3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
 
-The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean` and `Symbol`. Thus, they provide different sets of methods.
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
 
 For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
 
