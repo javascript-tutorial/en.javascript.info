@@ -123,7 +123,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
 
-    That importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+    The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
 
     In the example below, only the second message is printed:
 
