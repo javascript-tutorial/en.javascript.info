@@ -222,7 +222,7 @@ Now the result is wrong for the same reason as our "witches" example. The quanti
 The match looks like this:
 
 ```html
-<a href=".................................................">
+<a href="...................................................
 <a href="link1" class="doc">... <a href="link2" class="doc">
 ```
 
