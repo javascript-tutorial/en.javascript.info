@@ -106,7 +106,7 @@ For browsers, timers are described in the [timers section](https://www.w3.org/TR
 
 ## setInterval
 
-The `setInterval` method has the same syntax as `setTimeout`:
+The `setInterval` function has the same syntax as `setTimeout`:
 
 ```js
 let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
