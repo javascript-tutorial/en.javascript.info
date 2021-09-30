@@ -618,7 +618,7 @@ For instance:
 <script>
 *!*
   window.onerror = function(message, url, line, col, error) {
-    alert(`${message}\n At ${line}:${col} of ${url}`);
+    alert(`${message}\nAt ${line}:${col} of ${url}`);
   };
 */!*
 
