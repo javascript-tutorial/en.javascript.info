@@ -193,7 +193,7 @@ window.addEventListener("beforeunload", (event) => {
 	event.preventDefault();
 });
 ```
-So, there are two alternatives for  this:- 
+So, there are two alternatives for this:- 
 + Using `event.returnValue` to return a string, or false. For instance, `event.returnValue = false`.
 + Returning false from handler assigned via `onbeforeunload`
 
