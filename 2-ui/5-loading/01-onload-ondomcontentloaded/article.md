@@ -185,6 +185,23 @@ window.onbeforeunload = function() {
 
 The behavior was changed, because some webmasters abused this event handler by showing misleading and annoying messages. So right now old browsers still may show it as a message, but aside of that -- there's no way to customize the message shown to the user.
 
+#### `event.preventDefault()` in `beforeunload` event doesn't stop user.
+
+That may sound weird, but most of browsers don't do this. Which means, following code may not work.
+```js  
+window.addEventListener("beforeunload", (event) => {
+		event.preventDefault();
+});
+```
+So, there are two methods to do this:- 
++ Using `event.returnValue` to return a string, or false. For instance, `event.returnValue = false`.
++ Returning false from handler assigned via `onbeforeunload`
+
+
+
+
+
+
 ## readyState
 
 What happens if we set the `DOMContentLoaded` handler after the document is loaded?
