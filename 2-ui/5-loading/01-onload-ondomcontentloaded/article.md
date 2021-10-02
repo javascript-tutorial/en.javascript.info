@@ -187,7 +187,7 @@ The behavior was changed, because some webmasters abused this event handler by s
 
 #### `event.preventDefault()` in `beforeunload` event doesn't stop user.
 
-That may sound weird, but most of browsers don't do this. Which means, following code may not work.
+That may sound weird, but most of browsers don't ask user with `event.preventDefault()`. Which means, following code may not work.
 ```js  
 window.addEventListener("beforeunload", (event) => {
 	event.preventDefault();
