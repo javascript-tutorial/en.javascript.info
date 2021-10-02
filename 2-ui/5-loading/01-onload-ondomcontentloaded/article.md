@@ -190,7 +190,7 @@ The behavior was changed, because some webmasters abused this event handler by s
 That may sound weird, but most of browsers don't do this. Which means, following code may not work.
 ```js  
 window.addEventListener("beforeunload", (event) => {
-		event.preventDefault();
+	event.preventDefault();
 });
 ```
 So, there are two methods to do this:- 
