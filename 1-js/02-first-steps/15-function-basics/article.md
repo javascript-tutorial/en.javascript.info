@@ -171,6 +171,7 @@ showMessage(from, "Hello"); // *Ann*: Hello
 // the value of "from" is the same, the function modified a local copy
 alert( from ); // Ann
 ```
+Earlier it was stated that a function has full access to and can modify an outer variable, in this case the variable was passed as a parameter of the function. When a variable is a function's parameter the function gets a local copy as well, hence it did not update the outer or global variable.
 
 When a value is passed as a function parameter, it's also called an *argument*.
 
