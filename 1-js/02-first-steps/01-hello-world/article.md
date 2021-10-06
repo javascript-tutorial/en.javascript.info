@@ -52,7 +52,7 @@ The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
 : This attribute was meant to show the language of the script. This attribute no longer makes sense because JavaScript is the default language. There is no need to use it.
 
 Comments before and after scripts.
-: In really ancient books and guides, you may find comments inside `<script>` tags, like this:
+: In really ancient books and guides, you may find [comments](https://www.cs.utah.edu/~germain/PPS/Topics/commenting.html) inside `<script>` tags, like this:
 
     ```html no-beautify
     <script type="text/javascript"><!--
