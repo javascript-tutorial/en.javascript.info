@@ -18,7 +18,7 @@ When JavaScript was created, it initially had another name: "LiveScript". But Ja
 But as it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+Today, JavaScript can execute not only in the browser, but can also on a server, or on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
 The browser has an embedded engine sometimes called a "JavaScript virtual machine".
 
@@ -59,7 +59,7 @@ For instance, in-browser JavaScript is able to:
 
 ## What CAN'T in-browser JavaScript do?
 
-JavaScript's abilities in the browser are limited for the sake of the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
+JavaScript's abilities in the browser are limited for the sake of the users safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
 
 Examples of such restrictions include:
 
@@ -86,13 +86,13 @@ There are at least *three* great things about JavaScript:
 ```compare
 + Full integration with HTML/CSS.
 + Simple things are done simply.
-+ Support by all major browsers and enabled by default.
++ Support by all major browsers is enabled by default.
 ```
 JavaScript is the only browser technology that combines these three things.
 
 That's what makes JavaScript unique. That's why it's the most widespread tool for creating browser interfaces.
 
-That said, JavaScript also allows to create servers, mobile applications, etc.
+That being said, JavaScript also allows to create servers, mobile applications, etc.
 
 ## Languages "over" JavaScript
 
@@ -118,5 +118,5 @@ There are more. Of course, even if we use one of transpiled languages, we should
 ## Summary
 
 - JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
-- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration in HTML/CSS.
+- Today, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
 - There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
