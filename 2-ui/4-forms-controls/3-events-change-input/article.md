@@ -60,9 +60,9 @@ These events occur on cutting/copying/pasting a value.
 
 They belong to [ClipboardEvent](https://www.w3.org/TR/clipboard-apis/#clipboard-event-interfaces) class and provide access to the data that is copied/pasted.
 
-We also can use `event.preventDefault()` to abort the action, then nothing gets copied/pasted.
+We also can use event.preventDefault() to abort the action, then nothing gets copied/pasted.
 
-For instance, the code below prevents all such events and shows what we are trying to cut/copy/paste:
+Alternatively, the code below also prevents all such events and additionally shows what we are trying to cut/copy/paste:
 
 ```html autorun height=40 run
 <input type="text" id="input">
