@@ -63,7 +63,7 @@ alert("Hello");
 
 No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
 
-Now let's remove the semicolon after the `alert`:
+Now let's remove the semicolon after the `Hello`:
 
 ```js run no-beautify
 alert("Hello")
