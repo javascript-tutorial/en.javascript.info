@@ -36,8 +36,8 @@ The idea is that the result is passed through the chain of `.then` handlers.
 
 Here the flow is:
 1. The initial promise resolves in 1 second `(*)`,
-2. Then the `.then` handler is called `(**)` wich in turn creates a new promise.
-3. The value that it returns is passed to the next `.then` handler `(***)`
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes the next handler.
 4. ...and so on.
 
 As the result is passed along the chain of handlers, we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
