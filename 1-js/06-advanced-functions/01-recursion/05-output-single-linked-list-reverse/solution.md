@@ -33,7 +33,7 @@ printReverseList(list);
 
 # Using a loop
 
-The loop variant is also a little bit more complicated then the direct output.
+The loop variant is also a little bit more complicated than the direct output.
 
 There is no way to get the last value in our `list`. We also can't "go back".
 
