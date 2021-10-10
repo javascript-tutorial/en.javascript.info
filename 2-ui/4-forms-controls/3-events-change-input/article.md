@@ -67,10 +67,14 @@ For instance, the code below prevents all such events and shows what we are tryi
 ```html autorun height=40 run
 <input type="text" id="input">
 <script>
-  input.oncut = input.oncopy = input.onpaste = function(event) {
+  input.onpaste = function(event) {
     alert(event.type + ' - ' + event.clipboardData.getData('text/plain'));
-    return false;
+    return false; // false prevents changes
   };
+  input.oncut = input.oncopy = function(event) {
+    alert(event.type + '-' + document.getSelection());
+    return false; // false prevents changes
+  }
 </script>
 ```
 
