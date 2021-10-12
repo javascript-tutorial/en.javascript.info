@@ -127,6 +127,9 @@ Async scripts are great when we integrate an independent third-party script into
 <script async src="https://google-analytics.com/analytics.js"></script>
 ```
 
+```smart header="The `async` attribute like The `defer`, it's only for external scripts"
+The `async` attribute is ignored if the `<script>` tag has no `src`.
+```
 
 ## Dynamic scripts
 
