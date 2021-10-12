@@ -1,6 +1,6 @@
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
-    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+    "(?:^|; )" + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + "=([^;]*)"
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
@@ -13,7 +13,7 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires.toUTCString) {
+  if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 

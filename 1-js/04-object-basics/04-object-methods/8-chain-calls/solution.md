@@ -21,7 +21,7 @@ let ladder = {
     return this;
 */!*
   }
-}
+};
 
 ladder.up().up().down().up().down().showStep(); // 1
 ```

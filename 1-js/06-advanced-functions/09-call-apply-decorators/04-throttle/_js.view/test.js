@@ -7,8 +7,8 @@ describe("throttle(f, 1000)", function() {
   }
 
   before(function() {
-    f1000 = throttle(f, 1000);
     this.clock = sinon.useFakeTimers();
+    f1000 = throttle(f, 1000);
   });
 
   it("the first call runs now", function() {

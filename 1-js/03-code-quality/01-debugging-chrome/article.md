@@ -1,10 +1,10 @@
-# Debugging in Chrome
+# Debugging in the browser
 
 Before writing more complex code, let's talk about debugging.
 
 [Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
 
-We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
 
 ## The "Sources" panel
 
@@ -24,11 +24,11 @@ Let's click it and select `hello.js` in the tree view. Here's what should show u
 
 ![](chrome-tabs.svg)
 
-Here we can see three zones:
+The Sources panel has 3 parts:
 
-1. The **Resources zone** lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
-2. The **Source zone** shows the source code.
-3. The **Information and control zone** is for debugging, we'll explore it soon.
+1. The **File Navigator** pane lists HTML, JavaScript, CSS and other files, including images that are attached to the page. Chrome extensions may appear here too.
+2. The **Code Editor** pane shows the source code.
+3. The **JavaScript Debugging** pane is for debugging, we'll explore it soon.
 
 Now you could click the same toggler <span class="devtools" style="background-position:-172px -122px"></span> again to hide the resources list and give the code some space.
 
@@ -135,7 +135,7 @@ There are buttons for it at the top of the right panel. Let's engage them.
     Clicking this again and again will step through all script statements one by one.
 
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
-: Similar to the previous the "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
 
     The "Step" command goes into it and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
 

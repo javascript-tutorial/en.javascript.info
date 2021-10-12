@@ -1,7 +1,7 @@
 
 # Promises chaining
 
-Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts. How can we code it well?
+Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be performed one after another — for instance, loading scripts. How can we code it well?
 
 Promises provide a couple of recipes to do that.
 
@@ -36,15 +36,15 @@ The idea is that the result is passed through the chain of `.then` handlers.
 
 Here the flow is:
 1. The initial promise resolves in 1 second `(*)`,
-2. Then the `.then` handler is called `(**)`.
-3. The value that it returns is passed to the next `.then` handler `(***)`
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes the next handler.
 4. ...and so on.
 
 As the result is passed along the chain of handlers, we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
 
 ![](promise-then-chain.svg)
 
-The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
 
 When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
 
@@ -72,7 +72,7 @@ promise.then(function(result) {
 });
 ```
 
-What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it independently.
+What we did here is just several handlers to one promise. They don't pass the result to each other; instead they process it independently.
 
 Here's the picture (compare it with the chaining above):
 
@@ -164,7 +164,7 @@ loadScript("/article/promise-chaining/one.js")
 
 Here each `loadScript` call returns a promise, and the next `.then` runs when it resolves. Then it initiates the loading of the next script. So scripts are loaded one after another.
 
-We can add more asynchronous actions to the chain. Please note that the code is still "flat", it grows down, not to the right. There are no signs of "pyramid of doom".
+We can add more asynchronous actions to the chain. Please note that the code is still "flat" — it grows down, not to the right. There are no signs of the "pyramid of doom".
 
 Technically, we could add `.then` directly to each `loadScript`, like this:
 
@@ -248,11 +248,11 @@ fetch('/article/promise-chaining/user.json')
   })
   .then(function(text) {
     // ...and here's the content of the remote file
-    alert(text); // {"name": "iliakan", isAdmin: true}
+    alert(text); // {"name": "iliakan", "isAdmin": true}
   });
 ```
 
-There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
+The `response` object returned from `fetch` also includes the method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
 
 We'll also use arrow functions for brevity:
 
@@ -265,7 +265,7 @@ fetch('/article/promise-chaining/user.json')
 
 Now let's do something with the loaded user.
 
-For instance, we can make one more requests to GitHub, load the user profile and show the avatar:
+For instance, we can make one more request to GitHub, load the user profile and show the avatar:
 
 ```js run
 // Make a request for user.json
@@ -287,7 +287,7 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works, see comments about the details. However, there's a potential problem in it, a typical error of those who begin to use promises.
+The code works; see comments about the details. However, there's a potential problem in it, a typical error for those who begin to use promises.
 
 Look at the line `(*)`: how can we do something *after* the avatar has finished showing and gets removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
 
@@ -319,13 +319,9 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
-That is, `.then` handler in line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`.
+That is, the `.then` handler in line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`. The next `.then` in the chain will wait for that.
 
-The next `.then` in chain will wait for that.
-
-As a good practice, an asynchronous action should always return a promise.
-
-That makes it possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
+As a good practice, an asynchronous action should always return a promise. That makes it possible to plan actions after it; even if we don't plan to extend the chain now, we may need it later.
 
 Finally, we can split the code into reusable functions:
 
@@ -336,8 +332,7 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
-  return fetch(`https://api.github.com/users/${name}`)
-    .then(response => response.json());
+  return loadJson(`https://api.github.com/users/${name}`);
 }
 
 function showAvatar(githubUser) {

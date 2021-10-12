@@ -211,7 +211,7 @@ If you click the element below, the code `elem.scrollTop += 10` executes. That m
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Click<br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
 ```
 
-Setting `scrollTop` to `0` or `Infinity` will make the element scroll to the very top/bottom respectively.
+Setting `scrollTop` to `0` or a big value, such as `1e9` will make the element scroll to the very top/bottom respectively.
 ````
 
 ## Don't take width/height from CSS
@@ -268,7 +268,7 @@ Elements have the following geometry properties:
 - `offsetParent` -- is the nearest positioned ancestor or `td`, `th`, `table`, `body`.
 - `offsetLeft/offsetTop` -- coordinates relative to the upper-left edge of `offsetParent`.
 - `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
-- `clientLeft/clientTop` -- the distance from the upper-left outer corner the inner corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
+- `clientLeft/clientTop` -- the distances from the upper-left outer corner to the upper-left inner (content + padding) corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
 - `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
 - `scrollWidth/scrollHeight` -- the width/height of the content, just like `clientWidth/clientHeight`, but also include scrolled-out, invisible part of the element.
 - `scrollLeft/scrollTop` -- width/height of the scrolled out upper part of the element, starting from its upper-left corner.

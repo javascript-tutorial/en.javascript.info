@@ -86,7 +86,7 @@ For example:
 ```js
 // backtick quotes ` allow to split the string into multiple lines
 let str = `
-  Ecma International's TC39 is a group of JavaScript developers,
+  ECMA International's TC39 is a group of JavaScript developers,
   implementers, academics, and more, collaborating with the community
   to maintain and evolve the definition of JavaScript.
 `;
@@ -116,7 +116,7 @@ There are two types of indents:
 
     One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
 
-    For instance, we can align the arguments with the opening bracket, like this:
+    For instance, we can align the parameters with the opening bracket, like this:
 
     ```js no-beautify
     show(parameters,
@@ -285,7 +285,7 @@ Of course, a team can always write their own style guide, but usually there's no
 
 Some popular choices:
 
-- [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
+- [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
@@ -301,11 +301,11 @@ The great thing about them is that style-checking can also find some bugs, like 
 
 Here are some well-known linting tools:
 
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
+- [JSLint](https://www.jslint.com/) -- one of the first linters.
+- [JSHint](https://jshint.com/) -- more settings than JSLint.
+- [ESLint](https://eslint.org/) -- probably the newest one.
 
-All of them can do the job. The author uses [ESLint](http://eslint.org/).
+All of them can do the job. The author uses [ESLint](https://eslint.org/).
 
 Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
 
@@ -328,14 +328,14 @@ Here's an example of an `.eslintrc` file:
   },
   "rules": {
     "no-console": 0,
-    "indent": ["warning", 2]
+    "indent": 2
   }
 }
 ```
 
 Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
 
-It is also possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
 
 Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
 

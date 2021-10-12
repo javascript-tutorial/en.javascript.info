@@ -8,11 +8,11 @@ Working with forms will be much more convenient when we learn them.
 
 Document forms are members of the special collection `document.forms`.
 
-That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
+That's a so-called *"named collection"*: it's both named and ordered. We can use both the name or the number in the document to get the form.
 
 ```js no-beautify
-document.forms.my - the form with name="my"
-document.forms[0] - the first form in the document
+document.forms.my; // the form with name="my"
+document.forms[0]; // the first form in the document
 ```
 
 When we have a form, then any element is available in the named collection `form.elements`.
@@ -36,9 +36,9 @@ For instance:
 </script>
 ```
 
-There may be multiple elements with the same name, that's often the case with radio buttons.
+There may be multiple elements with the same name. This is typical with radio buttons and checkboxes.
 
-In that case `form.elements[name]` is a collection, for instance:
+In that case, `form.elements[name]` is a *collection*. For instance:
 
 ```html run height=40
 <form>
@@ -119,14 +119,13 @@ That's easy to see in an example:
 </script>
 ```
 
-That's usually not a problem, because we rarely change names of form elements.
+That's usually not a problem, however, because we rarely change names of form elements.
 
 ````
 
 ## Backreference: element.form
 
-For any element, the form is available as `element.form`. So a form references all elements, and elements
-reference the form.
+For any element, the form is available as `element.form`. So a form references all elements, and elements reference the form.
 
 Here's the picture:
 
@@ -178,18 +177,16 @@ It stores only the HTML that was initially on the page, not the current value.
 A `<select>` element has 3 important properties:
 
 1. `select.options` -- the collection of `<option>` subelements,
-2. `select.value` -- the value of the currently selected `<option>`,
-3. `select.selectedIndex` -- the number of the currently selected `<option>`.
+2. `select.value` -- the *value* of the currently selected `<option>`,
+3. `select.selectedIndex` -- the *number* of the currently selected `<option>`.
 
 They provide three different ways of setting a value for a `<select>`:
 
-1. Find the corresponding `<option>` element and set `option.selected` to `true`.
-2. Set `select.value` to the value.
-3. Set `select.selectedIndex` to the number of the option.
+1. Find the corresponding `<option>` element (e.g. among `select.options`) and set its `option.selected` to `true`.
+2. If we know a new value: set `select.value` to the new value.
+3. If we know the new option number: set `select.selectedIndex` to that number.
 
-The first way is the most obvious, but `(2)` and `(3)` are usually more convenient.
-
-Here is an example:
+Here is an example of all three methods:
 
 ```html run
 <select id="select">
@@ -200,15 +197,18 @@ Here is an example:
 
 <script>
   // all three lines do the same thing
-  select.options[2].selected = true;
+  select.options[2].selected = true; 
   select.selectedIndex = 2;
   select.value = 'banana';
+  // please note: options start from zero, so index 2 means the 3rd option.
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. That's feature is rarely used. In that case we need to use the first way: add/remove the `selected` property from `<option>` subelements.
+Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used, though.
 
-We can get their collection as `select.options`, for instance:
+For multiple selected values, use the first way of setting values: add/remove the `selected` property from `<option>` subelements.
+
+Here's an example of how to get selected values from a multi-select:
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -231,31 +231,31 @@ The full specification of the `<select>` element is available in the specificati
 
 ### new Option
 
-This is rarely used on its own. But there's still an interesting thing.
-
-In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+In the [specification](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create an `<option>` element:
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Parameters:
+This syntax is optional. We can use `document.createElement('option')` and set attributes manually. Still, it may be shorter, so here are the parameters:
 
 - `text` -- the text inside the option,
 - `value` -- the option value,
 - `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
 - `selected` -- if `true`, then the option is selected.
 
-There may be a small confusion about `defaultSelected` and `selected`. That's simple: `defaultSelected` sets HTML-attribute, that we can get using `option.getAttribute('selected')`. And `selected` - whether the option is selected or not, that's more important. Usually both values are either set to `true` or not set (same as `false`).
+The difference between `defaultSelected` and `selected` is that `defaultSelected` sets the HTML-attribute (that we can get using `option.getAttribute('selected')`, while `selected` sets whether the option is selected or not.
 
-For instance:
+In practice, one should usually set _both_ values to `true` or `false`. (Or, simply omit them; both default to `false`.)
+
+For instance, here's a new "unselected" option:
 
 ```js
 let option = new Option("Text", "value");
 // creates <option value="value">Text</option>
 ```
 
-The same element selected:
+The same option, but selected:
 
 ```js
 let option = new Option("Text", "value", true, true);
@@ -289,9 +289,9 @@ Form navigation:
 `element.form`
 : Elements reference their form in the `form` property.
 
-Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
+Value is available as `input.value`, `textarea.value`, `select.value`, etc. (For checkboxes and radio buttons, use `input.checked` to determine whether a value is selected.)
 
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
+For `<select>`, one can also get the value by the index `select.selectedIndex` or through the options collection `select.options`.
 
 These are the basics to start working with forms. We'll meet many examples further in the tutorial.
 

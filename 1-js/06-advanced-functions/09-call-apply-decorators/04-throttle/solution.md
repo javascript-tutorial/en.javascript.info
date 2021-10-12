@@ -12,10 +12,9 @@ function throttle(func, ms) {
       savedThis = this;
       return;
     }
+    isThrottled = true;
 
     func.apply(this, arguments); // (1)
-
-    isThrottled = true;
 
     setTimeout(function() {
       isThrottled = false; // (3)

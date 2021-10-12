@@ -263,7 +263,7 @@ The window that wants to send a message calls [postMessage](mdn:api/Window.postM
 Arguments:
 
 `data`
-: The data to send. Can be any object, the data is cloned using the "structured cloning algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
+: The data to send. Can be any object, the data is cloned using the "structured serialization algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
 
 `targetOrigin`
 : Specifies the origin for the target window, so that only a window from the given origin will get the message.
@@ -334,10 +334,6 @@ window.addEventListener("message", function(event) {
 The full example:
 
 [codetabs src="postmessage" height=120]
-
-```smart header="There's no delay"
-There's totally no delay between `postMessage` and the `message` event. The event triggers synchronously, faster than `setTimeout(...,0)`.
-```
 
 ## Summary
 

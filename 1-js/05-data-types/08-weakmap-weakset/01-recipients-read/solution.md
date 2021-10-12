@@ -25,7 +25,7 @@ messages.shift();
 // now readMessages has 1 element (technically memory may be cleaned later)
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existance of a message in it.
+The `WeakSet` allows to store a set of messages and easily check for the existence of a message in it.
 
 It cleans up itself automatically. The tradeoff is that we can't iterate over it,  can't get "all read messages" from it directly. But we can do it by iterating over all messages and filtering those that are in the set.
 

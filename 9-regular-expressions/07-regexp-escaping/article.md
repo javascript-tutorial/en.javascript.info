@@ -65,7 +65,7 @@ The similar search in one of previous examples worked with `pattern:/\d\.\d/`, b
 
 The reason is that backslashes are "consumed" by a string. As we may recall, regular strings have their own special characters, such as `\n`, and a backslash is used for escaping.
 
-Here's how "\d\.\d" is preceived:
+Here's how "\d\.\d" is perceived:
 
 ```js run
 alert("\d\.\d"); // d.d
@@ -96,4 +96,4 @@ alert( "Chapter 5.1".match(regexp) ); // 5.1
 
 - To search for special characters `pattern:[ \ ^ $ . | ? * + ( )` literally, we need to prepend them with a backslash `\` ("escape them").
 - We also need to escape `/` if we're inside `pattern:/.../` (but not inside `new RegExp`).
-- When passing a string `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.
+- When passing a string to `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.

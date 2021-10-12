@@ -1,6 +1,6 @@
 # Scrolling
 
-The `scroll` event allows to react on a page or element scrolling. There are quite a few good things we can do here.
+The `scroll` event allows reacting to a page or element scrolling. There are quite a few good things we can do here.
 
 For instance:
 - Show/hide additional controls or information depending on where in the document the user is.
@@ -10,7 +10,7 @@ Here's a small function to show the current scroll:
 
 ```js autorun
 window.addEventListener('scroll', function() {
-  document.getElementById('showScroll').innerHTML = pageYOffset + 'px';
+  document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
 });
 ```
 
@@ -34,4 +34,4 @@ If we add an event handler to these events and `event.preventDefault()` in it, t
 
 There are many ways to initiate a scroll, so it's more reliable to use CSS, `overflow` property.
 
-Here are few tasks that you can solve or look through to see the applications on `onscroll`.
+Here are few tasks that you can solve or look through to see applications of `onscroll`.

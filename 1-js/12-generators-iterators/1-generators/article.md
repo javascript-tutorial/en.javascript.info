@@ -102,7 +102,7 @@ But usually the first syntax is preferred, as the star `*` denotes that it's a g
 
 As you probably already guessed looking at the `next()` method, generators are [iterable](info:iterable).
 
-We can get loop over values by `for..of`:
+We can loop over their values using `for..of`:
 
 ```js run
 function* generateSequence() {
@@ -140,7 +140,7 @@ for(let value of generator) {
 }
 ```
 
-As generators are iterable, we can call all related functionality, e.g. the spread operator `...`:
+As generators are iterable, we can call all related functionality, e.g. the spread syntax `...`:
 
 ```js run
 function* generateSequence() {
@@ -154,7 +154,7 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
-In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread operator in the chapter [](info:rest-parameters-spread-operator#spread-operator))
+In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread syntax in the chapter [](info:rest-parameters-spread#spread-syntax))
 
 ## Using generators for iterables
 
@@ -314,11 +314,11 @@ alert(str); // 0..9A..Za..z
 
 A generator composition is a natural way to insert a flow of one generator into another. It doesn't use extra memory to store intermediate results.
 
-## "yield" is a two-way road
+## "yield" is a two-way street
 
 Until this moment, generators were similar to iterable objects, with a special syntax to generate values. But in fact they are much more powerful and flexible.
 
-That's because `yield` is a two-way road: it not only returns the result outside, but also can pass the value inside the generator.
+That's because `yield` is a two-way street: it not only returns the result to the outside, but also can pass the value inside the generator.
 
 To do so, we should call `generator.next(arg)`, with an argument. That argument becomes the result of `yield`.
 
@@ -347,7 +347,7 @@ generator.next(4); // --> pass the result into the generator
 2. Then, as shown at the picture above, the result of `yield` gets into the `question` variable in the calling code.
 3. On `generator.next(4)`, the generator resumes, and `4` gets in as the result: `let result = 4`.
 
-Please note, the outer code does not have to immediately call`next(4)`. It may take time. That's not a problem: the generator will wait.
+Please note, the outer code does not have to immediately call `next(4)`. It may take time. That's not a problem: the generator will wait.
 
 For instance:
 
@@ -447,6 +447,28 @@ try {
 ```
 
 If we don't catch the error there, then, as usual, it falls through to the outer calling code (if any) and, if uncaught, kills the script.
+
+## generator.return
+
+`generator.return(value)` finishes the generator execution and return the given `value`.
+
+```js
+function* gen() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+
+const g = gen();
+
+g.next();        // { value: 1, done: false }
+g.return('foo'); // { value: "foo", done: true }
+g.next();        // { value: undefined, done: true }
+```
+
+If we again use `generator.return()` in a completed generator, it will return that value again ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator/return)).
+
+Often we don't use it, as most of time we want to get all returning values, but it can be useful when we want to stop generator in a specific condition.
 
 ## Summary
 
