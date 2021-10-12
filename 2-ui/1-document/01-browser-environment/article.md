@@ -17,7 +17,7 @@ There's a "root" object called `window`. It has two roles:
 
 For instance, here we use it as a global object:
 
-```js run
+```js run global
 function sayHi() {
   alert("Hello");
 }
