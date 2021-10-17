@@ -69,7 +69,7 @@ alert(message);
 ```
 ````
 
-For `if`, `for`, `while` and so on, variables declared in `{...}` are also only visible inside:
+`if`, `for`, `while` and so on are blocks themselves. Variables declared inside them are not visible outside:
 
 ```js run
 if (true) {
@@ -96,7 +96,7 @@ for (let i = 0; i < 3; i++) {
 alert(i); // Error, no such variable
 ```
 
-Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
+Visually, `let i` is outside of `{...}`. But the variable `i` was declared inside the `for` block construct.
 
 ## Nested functions
 
