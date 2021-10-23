@@ -35,6 +35,7 @@ The following options deserve your attention:
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
 - [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Nano](https://www.nano-editor.org/) is commonly available on many Unix / Linux systems without any installation. On new Mac computers, emacs is removed, but [mg](https://en.wikipedia.org/wiki/Mg_(text_editor)), which is MicroGnuEmacs, is available without installation.
 
 ## Let's not argue
 
