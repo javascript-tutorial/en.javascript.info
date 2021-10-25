@@ -5,6 +5,8 @@ let lastTime = Date.now();
 function handle(e) {
   if (form.elements[e.type + 'Ignore'].checked) return;
 
+  area.scrollTop = 1e6;
+
   let text = e.type +
     ' key=' + e.key +
     ' code=' + e.code +
