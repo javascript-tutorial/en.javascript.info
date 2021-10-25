@@ -121,16 +121,22 @@ showAvatar();
 
 Pretty clean and easy to read, right? Much better than before.
 
-````smart header="`await` won't work in the top-level code"
-People who are just starting to use `await` tend to forget the fact that we can't use `await` in top-level code. For example, this will not work:
+````smart header="Modern browsers allow top-level `await` in modules"
+In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
 
-```js run
-// syntax error in top-level code
+For instance:
+
+```js run module
+// we assume this code runs at top level, inside a module
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
+
+console.log(user);
 ```
 
-But we can wrap it into an anonymous async function, like this:
+If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
+
+Lke this:
 
 ```js
 (async () => {
@@ -140,7 +146,6 @@ But we can wrap it into an anonymous async function, like this:
 })();
 ```
 
-P.S. New feature: starting from V8 engine version 8.9+, top-level await works in [modules](info:modules).
 ````
 
 ````smart header="`await` accepts \"thenables\""
