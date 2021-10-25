@@ -3,9 +3,9 @@
 
 As we've seen, a backslash `pattern:\` is used to denote character classes, e.g. `pattern:\d`. So it's a special character in regexps (just like in regular strings).
 
-There are other special characters as well, that have special meaning in a regexp. They are used to do more powerful searches. Here's a full list of them: `pattern:[ \ ^ $ . | ? * + ( )`.
+There are other special characters as well, that have special meaning in a regexp, such as `pattern:[ ] { } ( ) \ ^ $ . | ? * +`. They are used to do more powerful searches.
 
-Don't try to remember the list -- soon we'll deal with each of them separately and you'll know them by heart automatically.
+Don't try to remember the list -- soon we'll deal with each of them, and you'll know them by heart automatically.
 
 ## Escaping
 
