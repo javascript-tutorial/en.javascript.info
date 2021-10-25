@@ -261,7 +261,7 @@ Compare it to non-module scripts, where `this` is a global object:
 
 There are also several browser-specific differences of scripts with `type="module"` compared to regular ones.
 
-You may want skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
+You may want to skip this section for now if you're reading for the first time, or if you don't use JavaScript in a browser.
 
 ### Module scripts are deferred
 
