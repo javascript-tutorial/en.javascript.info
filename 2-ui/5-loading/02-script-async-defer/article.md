@@ -133,8 +133,12 @@ Async scripts are great when we integrate an independent third-party script into
 <script async src="https://google-analytics.com/analytics.js"></script>
 ```
 
+```smart header="The `async` attribute is only for external scripts"
+Just like `defer`, the `async` attribute is ignored if the `<script>` tag has no `src`.
+```
+
 ## Dynamic scripts
- 
+
 There's one more important way of adding a script to the page.
 
 We can create a script and append it to the document dynamically using JavaScript:
@@ -188,7 +192,7 @@ But there are also essential differences between them:
 | `async` | *Load-first order*. Their document order doesn't matter -- which loads first runs first |  Irrelevant. May load and execute while the document has not yet been fully downloaded. That happens if scripts are small or cached, and the document is long enough. |
 | `defer` | *Document order* (as they go in the document). |  Execute after the document is loaded and parsed (they wait if needed), right before `DOMContentLoaded`. |
 
-In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important. 
+In practice, `defer` is used for scripts that need the whole DOM and/or their relative execution order is important.
 
 And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
 
