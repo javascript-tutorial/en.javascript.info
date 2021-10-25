@@ -199,7 +199,7 @@ window.addEventListener("beforeunload", (event) => {
 Instead, in such handlers one should set `event.returnValue` to a string to get the result similar to the code above:
 ```js run
 window.addEventListener("beforeunload", (event) => {
-  // same as returning from window.onbeforeunload
+  // works, same as returning from window.onbeforeunload
 	event.returnValue = "There are unsaved changes. Leave now?";
 });
 ```
