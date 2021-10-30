@@ -256,11 +256,11 @@ There exist other ways besides parentheses to tell JavaScript that we mean a Fun
 ```js run
 // Ways to create IIFE
 
-(function() {
+*!*(*/!*function() {
   alert("Parentheses around the function");
 }*!*)*/!*();
 
-(function() {
+*!*(*/!*function() {
   alert("Parentheses around the whole thing");
 }()*!*)*/!*;
 
