@@ -75,7 +75,7 @@ let str = `Winnie: 1
 Piglet: 2
 Eeyore: 3`;
 
-console.log( str.match(/\d\n/gm) ); // 1\n,2\n
+console.log( str.match(/\d\n/g) ); // 1\n,2\n
 ```
 
 As we can see, there are 2 matches instead of 3.
