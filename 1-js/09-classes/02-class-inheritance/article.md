@@ -362,7 +362,7 @@ And that's what we naturally expect. When the parent constructor is called in th
 
 Why is there a difference?
 
-Well, the reason is in the field initialization order. The class field is initialized:
+Well, the reason is the field initialization order. The class field is initialized:
 - Before constructor for the base class (that doesn't extend anything),
 - Immediately after `super()` for the derived class.
 
