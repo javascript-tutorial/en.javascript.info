@@ -360,7 +360,7 @@ And that's what we naturally expect. When the parent constructor is called in th
 
 ...But for class fields it's not so. As said, the parent constructor always uses the parent field.
 
-Why is there the difference?
+Why is there a difference?
 
 Well, the reason is in the field initialization order. The class field is initialized:
 - Before constructor for the base class (that doesn't extend anything),
