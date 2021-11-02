@@ -317,7 +317,7 @@ new Rabbit(); // animal
 */!*
 ```
 
-Here, class `Rabbit` extends `Animal` and overrides `name` field with its own value.
+Here, class `Rabbit` extends `Animal` and overrides the `name` field with its own value.
 
 There's no own constructor in `Rabbit`, so `Animal` constructor is called.
 
