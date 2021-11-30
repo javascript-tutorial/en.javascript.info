@@ -4,7 +4,7 @@ importance: 5
 
 # Extended clock
 
-We've got a `Clock` class. As of now, it prints the time every second.
+We've got a `Clock` class. As for now, it prints the time every second.
 
 
 [js src="source.view/clock.js"]
