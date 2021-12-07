@@ -40,7 +40,7 @@ The function code execution hasn't started yet:
 
 ![](generateSequence-1.svg)
 
-The main method of a generator is `next()`. When called, it runs the execution until the nearest `yield <value>` statement (`value` can be omitted, then it's `undefined`). Then the function execution pauses, and the yielded `value` is returned to the outer code.
+The main method of a generator is `next()`, which implies that a generator is *iterator*. When `next()`, it runs the execution until the nearest `yield <value>` statement (`value` can be omitted, then it's `undefined`). Then the function execution pauses, and the yielded `value` is returned to the outer code.
 
 The result of `next()` is always an object with two properties:
 - `value`: the yielded value.
@@ -100,7 +100,7 @@ But usually the first syntax is preferred, as the star `*` denotes that it's a g
 
 ## Generators are iterable
 
-As you probably already guessed looking at the `next()` method, generators are [iterable](info:iterable).
+Generators are not only iterator but also [iterable](info:iterable).
 
 We can loop over their values using `for..of`:
 
