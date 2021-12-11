@@ -16,7 +16,7 @@ Open the page [bug.html](bug.html).
 
 There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
 
-Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
+Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+I`.
 
 The developer tools will open on the Console tab by default.
 
