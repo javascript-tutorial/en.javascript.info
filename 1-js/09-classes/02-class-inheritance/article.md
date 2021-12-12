@@ -323,7 +323,7 @@ There's no own constructor in `Rabbit`, so `Animal` constructor is called.
 
 What's interesting is that in both cases: `new Animal()` and `new Rabbit()`, the `alert` in the line `(*)` shows `animal`.
 
-**In other words, parent constructor always uses its own field value, not the overridden one.**
+**In other words, the parent constructor always uses its own field value, not the overridden one.**
 
 What's odd about it?
 
@@ -360,9 +360,9 @@ And that's what we naturally expect. When the parent constructor is called in th
 
 ...But for class fields it's not so. As said, the parent constructor always uses the parent field.
 
-Why is there the difference?
+Why is there a difference?
 
-Well, the reason is in the field initialization order. The class field is initialized:
+Well, the reason is the field initialization order. The class field is initialized:
 - Before constructor for the base class (that doesn't extend anything),
 - Immediately after `super()` for the derived class.
 
