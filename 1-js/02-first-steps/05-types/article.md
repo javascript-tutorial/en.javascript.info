@@ -250,7 +250,7 @@ The last three lines may need additional explanation:
 ```smart header="The `typeof(x)` syntax"
 You may also come across another syntax: `typeof(x)`. It's the same as `typeof x`.
 
-To put it clear: `typeof` is an operator, not a function. The parentheses here aren't a part of the `typeof`. It's the kind of parentheses used for mathematical grouping.
+To put it clear: `typeof` is an operator, not a function. The parentheses here aren't a part of `typeof`. It's the kind of parentheses used for mathematical grouping.
 
 Usually, such parentheses contain a mathematical expression, such as `(2 + 2)`, but here they contain only one argument `(x)`. Syntactically, they allow to avoid a space between the `typeof` operator and its argument, and some people like it.
 
