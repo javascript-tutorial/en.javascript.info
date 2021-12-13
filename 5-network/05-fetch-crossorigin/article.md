@@ -211,7 +211,7 @@ A preflight request uses the method `OPTIONS`, no body and three headers:
 
 - `Access-Control-Request-Method` header has the method of the unsafe request.
 - `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
-- `ORIGIN` header tells from where the request came. (such as `https://javascript.info`)
+- `Origin` header tells from where the request came. (such as `https://javascript.info`)
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
