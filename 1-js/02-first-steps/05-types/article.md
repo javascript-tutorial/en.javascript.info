@@ -213,14 +213,7 @@ The `symbol` type is used to create unique identifiers for objects. We have to m
 
 The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently or just want to do a quick check.
 
-It supports two forms of syntax:
-
-1. As an operator: `typeof x`.
-2. As a function: `typeof(x)`.
-
-In other words, it works with parentheses or without them. The result is the same.
-
-The call to `typeof x` returns a string with the type name:
+A call to `typeof x` returns a string with the type name:
 
 ```js
 typeof undefined // "undefined"
@@ -254,6 +247,14 @@ The last three lines may need additional explanation:
 2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof` behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own.
 3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
 
+```smart header="The `typeof(x)` syntax"
+You may also see another syntax in the code: `typeof(x)`. It's the same as `typeof x`.
+
+The parentheses here aren't a part of the `typeof` operator. It's the kind of parentheses used for mathematical grouping. Usually, such parentheses contain a mathematical expression, such as `(2 + 2)`, but here they contain only one argument `(x)`. Syntactically, they allow to avoid a space between the `typeof` operator and its argument, and some people like it.
+
+Some people prefer `typeof(x)`, although the `typeof x` syntax is much more common.
+```
+
 ## Summary
 
 There are 8 basic data types in JavaScript.
@@ -269,7 +270,7 @@ There are 8 basic data types in JavaScript.
 
 The `typeof` operator allows us to see which type is stored in a variable.
 
-- Two forms: `typeof x` or `typeof(x)`.
+- Usually used as `typeof x`, but `typeof(x)` is also possible.
 - Returns a string with the name of the type, like `"string"`.
 - For `null` returns `"object"` -- this is an error in the language, it's not actually an object.
 
