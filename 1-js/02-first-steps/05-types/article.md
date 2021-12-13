@@ -248,7 +248,7 @@ The last three lines may need additional explanation:
 3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
 
 ```smart header="The `typeof(x)` syntax"
-You may also see another syntax in the code: `typeof(x)`. It's the same as `typeof x`.
+You may also come across another syntax in some code: `typeof(x)`. It's the same as `typeof x`.
 
 The parentheses here aren't a part of the `typeof` operator. It's the kind of parentheses used for mathematical grouping. Usually, such parentheses contain a mathematical expression, such as `(2 + 2)`, but here they contain only one argument `(x)`. Syntactically, they allow to avoid a space between the `typeof` operator and its argument, and some people like it.
 
