@@ -168,7 +168,7 @@ alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (an empty string)
 ```
 
-We can also iterate over characters using [for...of](mdn:js/Statements/for...of):
+We can also iterate over characters using [for...of](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of):
 
 ```js run
 for (let char of "Hello") {
