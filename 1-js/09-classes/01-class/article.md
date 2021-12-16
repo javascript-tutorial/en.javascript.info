@@ -118,7 +118,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 ## Not just a syntactic sugar
 
-Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same without `class` keyword at all:
+Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same thing without using the `class` keyword at all:
 
 ```js run
 // rewriting class User in pure functions
