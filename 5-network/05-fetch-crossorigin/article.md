@@ -207,10 +207,11 @@ Some time ago no one could even imagine that a webpage could make such requests.
 
 So, to avoid misunderstandings, any "unsafe" request -- that couldn't be done in the old times, the browser does not make such requests right away. First, it sends a preliminary, so-called "preflight" request, to ask for permission.
 
-A preflight request uses the method `OPTIONS`, no body and two headers:
+A preflight request uses the method `OPTIONS`, no body and three headers:
 
 - `Access-Control-Request-Method` header has the method of the unsafe request.
 - `Access-Control-Request-Headers` header provides a comma-separated list of its unsafe HTTP-headers.
+- `Origin` header tells from where the request came. (such as `https://javascript.info`)
 
 If the server agrees to serve the requests, then it should respond with empty body, status 200 and headers:
 
