@@ -102,22 +102,26 @@ It's a safety restriction, to allow us to store sensitive data in cookies that s
 
 By default, a cookie is accessible only at the domain that set it.
 
-...What's tricky, we won't get the cookie at a subdomain `forum.site.com`!
+Please note, by default a cookie is also not shared to a subdomain as well, such as `forum.site.com`.
 
 ```js
-// at site.com
+// if we set a cookie at site.com website...
 document.cookie = "user=John"
 
-// at forum.site.com
+// ...we won't see it at forum.site.com
 alert(document.cookie); // no user
 ```
 
-...But if we'd like to allow subdomains like `forum.site.com` to get a cookie, that's possible. When setting a cookie at `site.com`, we should explicitly set the `domain` option to the root domain: `domain=site.com`:
+...But this can be changed. If we'd like to allow subdomains like `forum.site.com` to get a cookie set at `site.com`, that's possible.
+
+For that to happen, when setting a cookie at `site.com`, we should explicitly set the `domain` option to the root domain: `domain=site.com`. Then all subdomains will see such cookie.
+
+For example:
 
 ```js
 // at site.com
 // make the cookie accessible on any subdomain *.site.com:
-document.cookie = "user=John; domain=site.com"
+document.cookie = "user=John; *!*domain=site.com*/!*"
 
 // later
 
@@ -125,9 +129,9 @@ document.cookie = "user=John; domain=site.com"
 alert(document.cookie); // has cookie user=John
 ```
 
-For historical reasons, `domain=.site.com` (a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation and should be used if we need to support very old browsers.
+For historical reasons, `domain=.site.com` (with a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation and should be used if we need to support very old browsers.
 
-So, the `domain` option allows to make a cookie accessible at subdomains.
+To summarize, the `domain` option allows to make a cookie accessible at subdomains.
 
 ## expires, max-age
 
@@ -180,7 +184,7 @@ With this option, if a cookie is set by `https://site.com`, then it doesn't appe
 // assuming we're on https:// now
 // set the cookie to be secure (only accessible over HTTPS)
 document.cookie = "user=John; secure";
-```  
+```
 
 ## samesite
 
@@ -247,7 +251,7 @@ But anything more complicated, like a network request from another site or a for
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
-Overall, `samesite` is a great option. 
+Overall, `samesite` is a great option.
 
 There's a drawback:
 
