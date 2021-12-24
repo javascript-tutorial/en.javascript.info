@@ -96,7 +96,7 @@ Usually, we should set `path` to the root: `path=/` to make the cookie accessibl
 
 A domain defines where the cookie is accessible. In practice though, there are limitations. We can't set any domain.
 
-**There's no way to let a cookie be accessible from another domain, so `other.com` will never receive a cookie set at `site.com`.**
+**There's no way to let a cookie be accessible from another 2nd-level domain, so `other.com` will never receive a cookie set at `site.com`.**
 
 It's a safety restriction, to allow us to store sensitive data in cookies that should be available only on one site.
 
