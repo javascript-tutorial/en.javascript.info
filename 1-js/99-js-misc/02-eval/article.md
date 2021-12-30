@@ -59,7 +59,7 @@ In strict mode, `eval` has its own lexical environment. So functions and variabl
 ```js untrusted refresh run
 // reminder: 'use strict' is enabled in runnable examples by default
 
-eval("let x = 5; function f() {}");
+eval("var x = 5; function f() {}");
 
 alert(typeof x); // undefined (no such variable)
 // function f is also not visible
