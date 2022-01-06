@@ -7,7 +7,7 @@ The two most used data structures in JavaScript are `Object` and `Array`.
 
 Although, when we pass those to a function, it may need not an object/array as a whole. It may need individual pieces.
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. 
+*Destructuring assignment* is a special syntax that allows us to "unpack" individual elements of an array or object into separate variables themselves, as sometimes that's more convenient. 
 
 Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
 
