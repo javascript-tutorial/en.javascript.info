@@ -193,7 +193,7 @@ Keyboard events:
 Main keyboard event properties:
 
 - `code` -- the "key code" (`"KeyA"`, `"ArrowLeft"` and so on), specific to the physical location of the key on keyboard.
-- `key` -- the character (`"A"`, `"a"` and so on), for non-character keys, such as `key:Esc`, usually has the same value  as `code`.
+- `key` -- the character (`"A"`, `"a"` and so on). For non-character keys (such as `key:Esc`), usually has the same value  as `code`.
 
 In the past, keyboard events were sometimes used to track user input in form fields. That's not reliable, because the input can come from various sources. We have `input` and `change` events to handle any input (covered later in the chapter <info:events-change-input>). They trigger after any kind of input, including copy-pasting or speech recognition.
 
