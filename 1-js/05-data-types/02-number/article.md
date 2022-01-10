@@ -44,13 +44,13 @@ In other words, `e` multiplies the number by `1` with the given zeroes count.
 Now let's write something very small. Say, 1 microsecond (one millionth of a second):
 
 ```js
-let ms = 0.000001;
+let mсs = 0.000001;
 ```
 
 Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1
+let mcs = 1e-6; // six zeroes to the left from 1
 ```
 
 If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
