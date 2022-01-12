@@ -42,6 +42,12 @@ For example, when division `/` is applied to non-numbers:
 alert( "6" / "2" ); // 3, strings are converted to numbers
 ```
 
+Please note that addition operator (+) doesn't convert strings to numbers.
+
+```js run
+alert("2" + "3"); // 23, not 5
+```
+
 We can use the `Number(value)` function to explicitly convert a `value` to a number:
 
 ```js run
