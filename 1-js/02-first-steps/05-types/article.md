@@ -52,7 +52,7 @@ Besides regular numbers, there are so-called "special numeric values" which also
     alert( "not a number" / 2 + 5 ); // NaN
     ```
 
-    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result.
+    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result, except when used with [exponentiation operator](/operators#exponentiation) (`**`) with `NaN` as base and `0` as exponent (ie, `NaN ** 0` is `1` and not `NaN`).
 
 ```smart header="Mathematical operations are safe"
 Doing maths is "safe" in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
