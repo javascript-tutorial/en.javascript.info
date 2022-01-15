@@ -136,7 +136,7 @@ console.log(user);
 
 If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
 
-Lke this:
+Like this:
 
 ```js
 (async () => {
