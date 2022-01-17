@@ -1,3 +1,3 @@
 function extractCurrencyValue(str) {
-  return +str.slice(1);
+  return parseFloat(str.slice(str.indexOf("$")+1));
 }
