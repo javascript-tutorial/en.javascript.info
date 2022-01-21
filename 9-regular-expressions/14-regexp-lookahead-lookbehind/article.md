@@ -59,6 +59,10 @@ alert( str.match(/\d+\b(?!€)/g) ); // 2 (the price is not matched)
 
 ## Lookbehind
 
+```warn header="Lookbehind browser compatibility"
+Please Note: Lookbehind is not supported in non-V8 browsers, such as Safari, Internet Explorer.
+```
+
 Lookahead allows to add a condition for "what follows".
 
 Lookbehind is similar, but it looks behind. That is, it allows to match a pattern only if there's something before it.
