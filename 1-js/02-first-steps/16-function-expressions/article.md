@@ -12,7 +12,7 @@ function sayHi() {
 
 There is another syntax for creating a function that is called a *Function Expression*.
 
-It allows to create a new function in the middle of any expression.
+It allows us to create a new function in the middle of any expression.
 
 For example:
 
