@@ -358,7 +358,7 @@ alert(title); // Menu
 
 What if the object has more properties than we have variables? Can we take some and then assign the "rest" somewhere?
 
-We can use the rest pattern, just like we did with arrays. It's not supported by some older browsers (IE, use Babel to polyfill it), but works in modern ones.
+We can use the rest pattern, just like we did with arrays. It's not supported by some older browsers but works in modern ones.
 
 It looks like this:
 

@@ -46,22 +46,6 @@ let age = prompt('How old are you?', 100);
 alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
-````warn header="In IE: always supply a `default`"
-The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
-
-Run this code in Internet Explorer to see:
-
-```js run
-let test = prompt("Test");
-```
-
-So, for prompts to look good in IE, we recommend always providing the second argument:
-
-```js run
-let test = prompt("Test", ''); // <-- for IE
-```
-````
-
 ## confirm
 
 The syntax:

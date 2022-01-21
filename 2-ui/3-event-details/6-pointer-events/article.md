@@ -279,4 +279,4 @@ Additional abilities of pointer events are:
 - Device-specific properties, such as `pressure`, `width/height`, and others.
 - Pointer capturing: we can retarget all pointer events to a specific element until `pointerup`/`pointercancel`.
 
-As of now, pointer events are supported in all major browsers, so we can safely switch to them, especially if IE10- and Safari 12- are not needed. And even with those browsers, there are polyfills that enable the support of pointer events.
+As of now, pointer events are supported in all major browsers, so we can safely switch to them. And if we need to support old browsers, there are polyfills that enable the support of pointer events.

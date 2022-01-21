@@ -79,7 +79,7 @@ Settings for `params`:
 - Window features:
   - `menubar` (yes/no) -- shows or hides the browser menu on the new window.
   - `toolbar` (yes/no) -- shows or hides the browser navigation bar (back, forward, reload etc) on the new window.
-  - `location` (yes/no) -- shows or hides the URL field in the new window. FF and IE don't allow to hide it by default.
+  - `location` (yes/no) -- shows or hides the URL field in the new window. FF doesn't allow to hide it by default.
   - `status` (yes/no) -- shows or hides the status bar. Again, most browsers force it to show.
   - `resizable` (yes/no) -- allows to disable the resize for the new window. Not recommended.
   - `scrollbars` (yes/no) -- allows to disable the scrollbars for the new window. Not recommended.

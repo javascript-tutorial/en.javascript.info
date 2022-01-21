@@ -263,7 +263,7 @@ The window that wants to send a message calls [postMessage](mdn:api/Window.postM
 Arguments:
 
 `data`
-: The data to send. Can be any object, the data is cloned using the "structured serialization algorithm". IE supports only strings, so we should `JSON.stringify` complex objects to support that browser.
+: The data to send. Can be any object, the data is cloned using the "structured serialization algorithm".
 
 `targetOrigin`
 : Specifies the origin for the target window, so that only a window from the given origin will get the message.
@@ -365,6 +365,6 @@ The `postMessage` interface allows two windows with any origins to talk:
 3. If it is so, then `targetWin` triggers the `message` event with special properties:
     - `origin` -- the origin of the sender window (like `http://my.site.com`)
     - `source` -- the reference to the sender window.
-    - `data` -- the data, any object in everywhere except IE that supports only strings.
+    - `data` -- the data, any object in everywhere.
 
     We should use `addEventListener` to set the handler for this event inside the target window.

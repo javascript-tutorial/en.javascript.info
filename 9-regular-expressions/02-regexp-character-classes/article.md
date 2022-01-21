@@ -144,20 +144,6 @@ That's what flag `pattern:s` does. If a regexp has it, then a dot `pattern:.` ma
 alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
 ```
 
-````warn header="Not supported in IE"
-The `pattern:s` flag is not supported in IE.
-
-Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character" (this pattern will be covered in the article <info:regexp-character-sets-and-ranges>).
-
-```js run
-alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
-```
-
-The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter. Or even the `pattern:[^]` -- as it means match any character except nothing.
-
-Also we can use this trick if we want both kind of "dots" in the same pattern: the actual dot `pattern:.` behaving the regular way ("not including a newline"), and also a way to match "any character" with `pattern:[\s\S]` or alike.
-````
-
 ````warn header="Pay attention to spaces"
 Usually we pay little attention to spaces. For us strings `subject:1-5` and `subject:1 - 5` are nearly identical.
 

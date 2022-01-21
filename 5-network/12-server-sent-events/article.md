@@ -219,8 +219,6 @@ That makes `EventSource` a viable alternative to `WebSocket`, as the latter is m
 
 In many real-life applications, the power of `EventSource` is just enough.
 
-Supported in all modern browsers (not IE).
-
 The syntax is:
 
 ```js
