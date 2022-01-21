@@ -107,7 +107,7 @@ So, `event.code` may match a wrong character for unexpected layout. Same letters
 
 To reliably track layout-dependent characters, `event.key` may be a better way.
 
-On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location, even if the visitor changes languages. So hotkeys that rely on it work well even in case of a language switch.
+On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location. So hotkeys that rely on it work well even in case of a language switch.
 
 Do we want to handle layout-dependant keys? Then `event.key` is the way to go.
 
