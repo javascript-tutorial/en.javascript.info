@@ -39,9 +39,9 @@ In cases when a single action initiates multiple events, their order is fixed. T
 ```online
 Click the button below and you'll see the events. Try double-click too.
 
-On the teststand below all mouse events are logged, and if there is more than a 1 second delay between them they are separated by a horizontal ruler.
+On the teststand below, all mouse events are logged, and if there is more than a 1 second delay between them, they are separated by a horizontal rule.
 
-Also we can see the `button` property that allows to detect the mouse button, it's explained below.
+Also, we can see the `button` property that allows us to detect the mouse button; it's explained below.
 
 <input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Click me with the right or the left mouse button" type="button"> <input onclick="logClear('test')" value="Clear" type="button"> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form>
 ```
