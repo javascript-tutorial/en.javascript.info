@@ -419,10 +419,10 @@ GDPR is not only about cookies, it's about other privacy-related issues too, but
 
 ## Summary
 
-`document.cookie` provides access to cookies
-- write operations modify only cookies mentioned in it.
-- name/value must be encoded.
-- one cookie must not exceed 4KB, 20+ cookies per site (depends on the browser).
+`document.cookie` provides access to cookies.
+- Write operations modify only cookies mentioned in it.
+- Name/value must be encoded.
+- One cookie may not exceed 4KB in size. The number of cookies allowed on a domain is around 20+ (varies by browser).
 
 Cookie options:
 - `path=/`, by default current path, makes the cookie visible only under that path.
