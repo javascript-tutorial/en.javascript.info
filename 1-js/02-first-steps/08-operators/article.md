@@ -194,11 +194,11 @@ Here's an extract from the [precedence table](https://developer.mozilla.org/en-U
 | Precedence | Name | Sign |
 |------------|------|------|
 | ... | ... | ... |
-| 17 | unary plus | `+` |
-| 17 | unary negation | `-` |
-| 16 | exponentiation | `**` |
-| 15 | multiplication | `*` |
-| 15 | division | `/` |
+| 16 | unary plus | `+` |
+| 16 | unary negation | `-` |
+| 15 | exponentiation | `**` |
+| 14 | multiplication | `*` |
+| 14 | division | `/` |
 | 13 | addition | `+` |
 | 13 | subtraction | `-` |
 | ... | ... | ... |
