@@ -91,7 +91,8 @@ Promise.all([
 
 Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the entire `Promise.all`.
 
-```warn header="In case of an error, other promises are ignored"
+```
+warn header="In case of an error, other promises are ignored"
 If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
 
 For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
@@ -99,7 +100,8 @@ For example, if there are multiple `fetch` calls, like in the example above, and
 `Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](info:fetch-abort) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
 ```
 
-````smart header="`Promise.all(iterable)` allows non-promise \"regular\" values in `iterable`"
+````
+smart header="`Promise.all(iterable)` allows non-promise \"regular\" values in `iterable`"
 Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's passed to the resulting array "as is".
 
 For instance, here the results are `[1, 2, 3]`:
