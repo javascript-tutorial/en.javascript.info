@@ -307,4 +307,4 @@ Also, the functions named `step*` are all of single use, they are created only t
 
 We'd like to have something better.
 
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises," described in the next chapter.
+Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises", described in the next chapter.
