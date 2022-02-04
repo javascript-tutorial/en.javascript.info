@@ -117,7 +117,7 @@ document.domain = 'site.com';
 That's all. Now they can interact without limitations. Again, that's only possible for pages with the same second-level domain.
 
 ```warn header="Deprecated, but still working"
-The `document.domain` property is in the process of being removed from the [specification](https://html.spec.whatwg.org/multipage/origin.html#relaxing-the-same-origin-restriction). The cross-window messaging (explained below) is the suggested replacement.
+The `document.domain` property is in the process of being removed from the [specification](https://html.spec.whatwg.org/multipage/origin.html#relaxing-the-same-origin-restriction). The cross-window messaging (explained soon below) is the suggested replacement.
 
 That said, as of now all browsers support it. And the support will be kept for the future, not to break old code that relies on `document.domain`.
 ```
