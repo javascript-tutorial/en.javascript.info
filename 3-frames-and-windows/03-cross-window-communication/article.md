@@ -102,20 +102,6 @@ The `iframe.onload` event (on the `<iframe>` tag) is essentially the same as `if
 ...But we can't access `iframe.contentWindow.onload` for an iframe from another origin, so using `iframe.onload`.
 ```
 
-## Windows on subdomains: document.domain
-
-By definition, two URLs with different domains have different origins.
-
-But if windows share the same second-level domain, for instance `john.site.com`, `peter.site.com` and `site.com` (so that their common second-level domain is `site.com`), we can make the browser ignore that difference, so that they can be treated as coming from the "same origin" for the purposes of cross-window communication.
-
-To make it work, each such window should run the code:
-
-```js
-document.domain = 'site.com';
-```
-
-That's all. Now they can interact without limitations. Again, that's only possible for pages with the same second-level domain.
-
 ## Iframe: wrong document pitfall
 
 When an iframe comes from the same origin, and we may access its  `document`, there's a pitfall. It's not related to cross-origin things, but important to know.
