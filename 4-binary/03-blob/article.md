@@ -219,30 +219,34 @@ const bufferPromise = await blob.arrayBuffer();
 
 // or
 blob.arrayBuffer().then(buffer => /* process the ArrayBuffer */);
-
 ```
-
-`FileReader.readAsArrayBuffer()` method can also get ArrayBuffer, but it usually fails if the blob memory exceeds 2G. It is recommended to use blob.arrayBuffer(), it's simpler.
 
 ## From Blob to stream
 
-When we read and write to a blob of more than `2G`, the use of `arrayBuffer` becomes more memory intensive for us. At this point, we can directly convert the blob to a `stream`，The `Blob` interface's `stream()` method returns a `ReadableStream` which upon reading returns the data contained within the `Blob`.
+When we read and write to a blob of more than `2G`, the use of `arrayBuffer` becomes more memory intensive for us. At this point, we can directly convert the blob to a stream.
+
+A stream is a special object that allows to read from it (or write into it) portion by portion. It's outside of our scope here, but here's an example, and you can read more at <https://developer.mozilla.org/en-US/docs/Web/API/Streams_API>.
+
+The `Blob` interface's `stream()` method returns a `ReadableStream` which upon reading returns the data contained within the `Blob`.
+
+Then we can read from it, like this:
 
 ```js
-
 // get readableStream from blob
 const readableStream = blob.stream();
-const reader = readableStream.getReader();
+const stream = readableStream.getReader();
 
 while (true) {
-  // value => blob fragments
-  let { done, value } = await reader.read();
+  // for each iteration: data is the next blob fragment
+  let { done, data } = await stream.read();
   if (done) {
+    // no more data in the stream
     console.log('write done.');
     break;
   }
-  // to do sth
-  stream.write(value);
+
+   // do something with the data portion we've just read from the blob
+  console.log(data);
 }
 ```
 
