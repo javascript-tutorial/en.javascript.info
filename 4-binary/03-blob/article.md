@@ -241,7 +241,7 @@ while (true) {
   let { done, data } = await stream.read();
   if (done) {
     // no more data in the stream
-    console.log('write done.');
+    console.log('all blob processed.');
     break;
   }
 
