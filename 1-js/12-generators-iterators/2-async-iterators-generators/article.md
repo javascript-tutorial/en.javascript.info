@@ -376,7 +376,7 @@ An example of use (shows commit authors in console):
 
   for await (const commit of fetchCommits('javascript-tutorial/en.javascript.info')) {
 
-    console.log(commit.author.name);
+    console.log(commit.author.login);
 
     if (++count == 100) { // let's stop at 100 commits
       break;
