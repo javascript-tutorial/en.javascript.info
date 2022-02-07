@@ -93,7 +93,7 @@ At first sight, "import everything" seems such a cool thing, short to write, why
 
 Well, there are few reasons.
 
-1. Modern build tools ([webpack](http://webpack.github.io) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+1. Modern build tools ([webpack](https://webpack.js.org/) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
 
     Let's say, we added a 3rd-party library `say.js` to our project with many functions:
     ```js
@@ -403,7 +403,7 @@ We can come across two problems with it:
 
 2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
 
-    If we'd like to re-export both named and the default export, then two statements are needed:
+    If we'd like to re-export both named and default exports, then two statements are needed:
     ```js
     export * from './user.js'; // to re-export named exports
     export {default} from './user.js'; // to re-export the default export
