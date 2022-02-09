@@ -183,6 +183,8 @@ loadScript("/article/promise-chaining/one.js").then(script1 => {
 
 This code does the same: loads 3 scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
 
+![image](https://user-images.githubusercontent.com/62949851/116860649-8ff85880-ac0a-11eb-9cfa-465da543497e.png)
+
 People who start to use promises sometimes don't know about chaining, so they write it this way. Generally, chaining is preferred.
 
 Sometimes it's ok to write `.then` directly, because the nested function has access to the outer scope. In the example above the most nested callback has access to all variables `script1`, `script2`, `script3`. But that's an exception rather than a rule.
