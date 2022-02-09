@@ -171,7 +171,7 @@ The example above doesn't work, because when user focuses on an `<input>`, the `
 
 There are two solutions.
 
-First, there's a funny historical feature: `focus/blur` do not bubble up, but propagate down on the capturing phase.
+First, we can handle `focus/blur` events during the capturing phase.
 
 This will work:
 
