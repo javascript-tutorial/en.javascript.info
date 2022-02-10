@@ -182,6 +182,8 @@ if (!Promise.allSettled) {
   const resolveHandler = value => ({ status: 'fulfilled', value });
 
   Promise.allSettled = function (promises) {
+    if (!Array.isArray(promises)) 
+    promises = Array.from(promises);
     const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
     return Promise.all(convertedPromises);
   };
