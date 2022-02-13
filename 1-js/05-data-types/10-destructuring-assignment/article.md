@@ -69,7 +69,6 @@ In the code above, the second element of the array is skipped, the third one is 
 ````
 
 ````smart header="Works with any iterable on the right-side"
-
 ...Actually, we can use it with any iterable, not only arrays:
 
 ```js
@@ -78,7 +77,6 @@ let [one, two, three] = new Set([1, 2, 3]);
 ```
 That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
-
 
 ````smart header="Assign to anything at the left-side"
 We can use any "assignables" at the left side.
@@ -91,7 +89,6 @@ let user = {};
 alert(user.name); // John
 alert(user.surname); // Smith
 ```
-
 ````
 
 ````smart header="Looping with .entries()"
