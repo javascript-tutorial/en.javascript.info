@@ -78,7 +78,7 @@ visitsCountObj[john] = 123; // try to use john object as the key, ben object wil
 
 *!*
 // That's what got written!
-alert( visitsCountObj["[object Object]"] ); // 123 
+alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
