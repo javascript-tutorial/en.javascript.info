@@ -210,7 +210,6 @@ class CoffeeMachine {
   setWaterAmount(value) {
     this.#waterLimit = this.#fixWaterAmount(value);
   }
-
 }
 
 let coffeeMachine = new CoffeeMachine();
