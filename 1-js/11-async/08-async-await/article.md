@@ -145,7 +145,6 @@ Like this:
   ...
 })();
 ```
-
 ````
 
 ````smart header="`await` accepts \"thenables\""
