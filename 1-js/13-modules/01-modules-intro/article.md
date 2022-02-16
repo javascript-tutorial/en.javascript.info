@@ -125,7 +125,7 @@ That said, making such global variables is frowned upon. Please try to avoid the
 
 If the same module is imported into multiple other modules, its code is executed only once, upon the first import. Then its exports are given to all further importers.
 
-The one-time evaluation has important consequences, that we should be aware of. 
+The one-time evaluation has important consequences, that we should be aware of.
 
 Let's see a couple of examples.
 
