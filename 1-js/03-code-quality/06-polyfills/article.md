@@ -42,7 +42,7 @@ Usually, a developer runs the transpiler on their own computer, and then deploys
 
 Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there. 
 
-Modern project build systems, such as [webpack](http://webpack.github.io/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
+Modern project build systems, such as [webpack](https://webpack.js.org/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
 
 ## Polyfills
 
@@ -82,7 +82,7 @@ In this chapter we'd like to motivate you to study modern and even "bleeding-edg
 
 Just don't forget to use transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). And they'll ensure that the code works.
 
-For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](http://webpack.github.io/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Good resources that show the current state of support for various features:
 - <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
