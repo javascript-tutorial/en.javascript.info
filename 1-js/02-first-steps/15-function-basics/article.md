@@ -225,9 +225,8 @@ In the example above, `anotherFunction()` isn't called at all, if the `text` par
 On the other hand, it's independently called every time when `text` is missing.
 ```
 
-### Alternative default parameters
-
-Sometimes it makes sense to assign default values for parameters not in the function declaration, but at a later stage.
+````smart header="Using default parameters in early versions of JavaScript"
+Early versions of JavaScript did't support default parameters. Therefore, there are alternative ways that can occur in old scripts.
 
 We can check if the parameter is passed during the function execution, by comparing it with `undefined`:
 
@@ -269,6 +268,7 @@ showCount(0); // 0
 showCount(null); // unknown
 showCount(); // unknown
 ```
+````
 
 ## Returning a value
 
