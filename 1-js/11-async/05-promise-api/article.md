@@ -248,7 +248,7 @@ Promise.any([
 ]).catch(error => {
   console.log(error.constructor.name); // AggregateError
   console.log(error.errors[0]); // Error: Ouch!
-  console.log(error.errors[1]); // Error: Error
+  console.log(error.errors[1]); // Error: Error!
 });
 ```
 
