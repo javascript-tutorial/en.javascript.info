@@ -219,6 +219,8 @@ That's due to internal algorithms. When JavaScript prepares to run the script, i
 
 And after all Function Declarations are processed, the code is executed. So it has access to these functions.
 
+As a result, functions created as Function Declaration can be called before their declarations.
+
 For example, this works:
 
 ```js run refresh untrusted
