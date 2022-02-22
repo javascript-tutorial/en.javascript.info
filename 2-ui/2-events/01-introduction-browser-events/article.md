@@ -433,6 +433,46 @@ The method `handleEvent` does not have to do all the job by itself. It can call 
 
 Now event handlers are clearly separated, that may be easier to support.
 
+````warn header="removeEventListener needs to reference object handler if addEventlistener did."
+As mentioned previously, removal requires the same functional reference as its preceded eventListener arguments. In the instance of object handler, the passing of the same object reference for removeEventListener is required. 
+
+```js no-beautify
+<button id="elem">Click me</button>
+<button id="helperElem">Remove listeners</button>
+<script>
+  class Menu {
+		handleEvent(event) {...}
+		// ....
+  }
+
+  let menu = new Menu(); 
+  elem.addEventListener('mousedown', menu);
+  elem.addEventListener('mouseup', menu);
+	
+	helperElem.onclick = function(event) {
+		elem.removeEventListener('mousedown', menu);
+		elem.removeEventListener('mouseup', menu);
+	})
+	
+</script>
+```
+
+Our reference is tied to the instance of Menu that is `let menu = new Menu()`.  Calling the internal function directly would be a mismatch even if addEventListener internally calls handleEvent.
+
+```js
+<script>  
+	let menu = new Menu(); 
+	  elem.addEventListener('mousedown', menu);
+	  elem.addEventListener('mouseup', menu);
+		
+	helperElem.onclick = function(event) {
+			elem.removeEventListener('mousedown', menu.handleEvent);
+			elem.removeEventListener('mouseup', menu.handleEvent);
+		})
+</script>
+```
+````
+
 ## Summary
 
 There are 3 ways to assign event handlers:
