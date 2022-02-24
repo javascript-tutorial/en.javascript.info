@@ -397,7 +397,7 @@ A few examples:
     ```js run
     alert( Math.random() ); // 0.1234567894322
     alert( Math.random() ); // 0.5435252343232
-    alert( Math.random() ); // ... (any random numbers)
+    alert( Math.random() ); // ... (any pseudorandom  number)
     ```
 
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
