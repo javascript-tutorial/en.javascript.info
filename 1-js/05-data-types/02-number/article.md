@@ -239,7 +239,7 @@ That's why `0.1 + 0.2` is not exactly `0.3`.
 ```smart header="Not only JavaScript"
 The same issue exists in many other programming languages.
 
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
+PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format(IEEE-754).
 ```
 
 Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
