@@ -438,7 +438,7 @@ As text: <span id="astext"></span>
 
 ## Selection methods
 
-We can work with the selection by addding/removing ranges:
+We can work with the selection by adding/removing ranges:
 
 - `getRangeAt(i)` -- get i-th range, starting from `0`. In all browsers except Firefox, only `0` is used.
 - `addRange(range)` -- add `range` to selection. All browsers except Firefox ignore the call, if the selection already has an associated range.
