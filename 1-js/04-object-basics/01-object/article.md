@@ -424,7 +424,7 @@ The phone codes go in the ascending sorted order, because they are integers. So 
 ````smart header="Integer properties? What's that?"
 The "integer property" term here means a string that can be converted to-and-from an integer without a change.
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
 
 ```js run
 // Math.trunc is a built-in function that removes the decimal part
