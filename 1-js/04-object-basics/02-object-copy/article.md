@@ -100,7 +100,7 @@ alert( a == b ); // false
 
 For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
 
-## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
+## Cloning and merging, Object.assign
 
 So, copying an object variable creates one more reference to the same object.
 
