@@ -145,7 +145,7 @@ This example demonstrates how important the concept of reachability is.
 
 It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
+The former `"family"` object has been unlinked from the root, there's no reference to it anymore, so the whole island becomes unreachable and will be removed.
 
 ## Internal algorithms
 
