@@ -343,7 +343,7 @@ For instance, we can take the `bounce` function described above and apply it:
 let bounceEaseOut = makeEaseOut(bounce);
 ```
 
-Then the bounce will be not in the beginning, but at the end of the animation. Looks even better:
+Then the bounce won't be in the beginning, but at the end of the animation. Looks even better:
 
 [codetabs src="bounce-easeout"]
 

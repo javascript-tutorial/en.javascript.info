@@ -830,7 +830,7 @@ alert(proxy.get('test')); // 1 (works!)
 
 Now it works fine, because `get` trap binds function properties, such as `map.set`, to the target object (`map`) itself.
 
-Unlike the previous example, the value of `this` inside `proxy.set(...)` will be not `proxy`, but the original `map`. So when the internal implementation of `set` tries to access `this.[[MapData]]` internal slot, it succeeds.
+Unlike the previous example, the value of `this` inside `proxy.set(...)` won't be `proxy`, but the original `map`. So when the internal implementation of `set` tries to access `this.[[MapData]]` internal slot, it succeeds.
 
 ```smart header="`Array` has no internal slots"
 A notable exception: built-in `Array` doesn't use internal slots. That's for historical reasons, as it appeared so long ago.
