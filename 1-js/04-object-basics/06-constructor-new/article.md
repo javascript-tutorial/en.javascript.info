@@ -81,7 +81,7 @@ let user = new function() {
 };
 ```
 
-This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to [encapsulate](https://en.wikipedia.org/wiki/Encapsulation_(computer_programming)) the code that constructs the single object, without future reuse.
 ````
 
 ## Constructor mode test: new.target
