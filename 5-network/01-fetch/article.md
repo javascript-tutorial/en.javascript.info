@@ -298,7 +298,7 @@ fetch(url, options)
 
 Response properties:
 - `response.status` -- HTTP code of the response,
-- `response.ok` -- `true` is the status is 200-299.
+- `response.ok` -- `true` if the status is 200-299.
 - `response.headers` -- Map-like object with HTTP headers.
 
 Methods to get response body:
