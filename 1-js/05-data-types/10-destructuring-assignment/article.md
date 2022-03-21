@@ -81,7 +81,7 @@ That works, because internally a destructuring assignment works by iterating ove
 
 
 ````smart header="Assign to anything at the left-side"
-We can use any "assignables" at the left side.
+We can use any "assignables" on the left side.
 
 For instance, an object property:
 ```js run
@@ -420,7 +420,7 @@ alert( title ); // Menu
 
 If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
+In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
 
 ```js run
 let options = {

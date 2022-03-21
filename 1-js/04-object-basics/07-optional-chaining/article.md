@@ -192,7 +192,7 @@ delete user?.name; // delete user.name if user exists
 ```
 
 ````warn header="We can use `?.` for safe reading and deleting, but not writing"
-The optional chaining `?.` has no use at the left side of an assignment.
+The optional chaining `?.` has no use on the left side of an assignment.
 
 For example:
 ```js run
