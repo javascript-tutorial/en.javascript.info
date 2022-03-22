@@ -1,9 +1,9 @@
 
 # Static properties and methods
 
-We can also assign a method to the class function itself, not to its `"prototype"`. Such methods are called *static*.
+We can also assign a method to the class as a whole. Such methods are called *static*.
 
-In a class, they are prepended by `static` keyword, like this:
+In a class declaration, they are prepended by `static` keyword, like this:
 
 ```js run
 class User {
@@ -31,9 +31,11 @@ User.staticMethod(); // true
 
 The value of `this` in `User.staticMethod()` call is the class constructor `User` itself (the "object before dot" rule).
 
-Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
+Usually, static methods are used to implement functions that belong to the class as a whole, but not to any particular object of it.
 
-For instance, we have `Article` objects and need a function to compare them. A natural solution would be to add `Article.compare` method, like this:
+For instance, we have `Article` objects and need a function to compare them.
+
+A natural solution would be to add `Article.compare` static method:
 
 ```js run
 class Article {
@@ -63,9 +65,11 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // CSS
 ```
 
-Here `Article.compare` stands "above" articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
+Here `Article.compare` method stands "above" articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
 
-Another example would be a so-called "factory" method. Imagine, we need few ways to create an article:
+Another example would be a so-called "factory" method.
+
+Let's say, we need multiple ways to create an article:
 
 1. Create by given parameters (`title`, `date` etc).
 2. Create an empty article with today's date.
@@ -73,7 +77,7 @@ Another example would be a so-called "factory" method. Imagine, we need few ways
 
 The first way can be implemented by the constructor. And for the second one we can make a static method of the class.
 
-Like `Article.createTodays()` here:
+Such as `Article.createTodays()` here:
 
 ```js run
 class Article {
@@ -101,7 +105,7 @@ Static methods are also used in database-related classes to search/save/remove e
 
 ```js
 // assuming Article is a special class for managing articles
-// static method to remove the article:
+// static method to remove the article by id:
 Article.remove({id: 12345});
 ```
 
