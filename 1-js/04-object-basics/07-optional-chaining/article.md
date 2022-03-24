@@ -110,7 +110,7 @@ We should use `?.` only where it's ok that something doesn't exist.
 
 For example, if according to our code logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
 
-So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
+Then, if `user` happens to be undefined, that definitely is a mistake, we'll see a programming error about it and fix it. Otherwise, if we overuse `?.`, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
 
 ````warn header="The variable before `?.` must be declared"
