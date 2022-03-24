@@ -185,13 +185,13 @@ There are two ways to do so:
     alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
     ```
 
-    We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
+    We can convert it to a number using the unary plus or a `Number()` call, e.g write `+num.toFixed(5)`.
 
 ## Imprecise calculations
 
 Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
 
-If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
+If a number is really huge, it may overflow the 64-bit storage and become a special numeric value `Infinity`:
 
 ```js run
 alert( 1e500 ); // Infinity
@@ -199,7 +199,7 @@ alert( 1e500 ); // Infinity
 
 What may be a little less obvious, but happens quite often, is the loss of precision.
 
-Consider this (falsy!) test:
+Consider this (falsy!) equality test:
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
