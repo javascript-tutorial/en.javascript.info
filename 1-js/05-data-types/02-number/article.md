@@ -47,7 +47,7 @@ Now let's write something very small. Say, 1 microsecond (one millionth of a sec
 let mсs = 0.000001;
 ```
 
-Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
 
 ```js
 let mcs = 1e-6; // six zeroes to the left from 1
