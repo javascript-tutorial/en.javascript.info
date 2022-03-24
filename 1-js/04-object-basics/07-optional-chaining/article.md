@@ -127,7 +127,7 @@ The variable must be declared (e.g. `let/const/var user` or as a function parame
 
 As it was said before, the `?.` immediately stops ("short-circuits") the evaluation if the left part doesn't exist.
 
-So, if there are any further function calls or operations to the right of stopped `?.`, they don't occur.
+So, if there are any further function calls or operations to the right of `?.`, they won't be made.
 
 For instance:
 
