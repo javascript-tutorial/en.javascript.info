@@ -108,7 +108,7 @@ E.g. in `user?.address.street.name` the `?.` allows `user` to safely be `null/un
 ```warn header="Don't overuse the optional chaining"
 We should use `?.` only where it's ok that something doesn't exist.
 
-For example, if according to our coding logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
+For example, if according to our code logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
 
 So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
@@ -179,7 +179,7 @@ let user1 = {
   firstName: "John"
 };
 
-let user2 = null; 
+let user2 = null;
 
 alert( user1?.[key] ); // John
 alert( user2?.[key] ); // undefined
