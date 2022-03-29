@@ -535,7 +535,7 @@ Terms:
     list = { value, next -> list }
     ```
 
-    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they branch and every branch can have other branches.
+    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
 
     Recursive functions can be used to walk them as we've seen in the `sumSalary` example.
 
