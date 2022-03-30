@@ -38,7 +38,7 @@ If we press `key:Esc`, then a console opens below. We can type commands there an
 
 After a statement is executed, its result is shown below.
 
-For example, here `1+2` results in `3`, and `hello("debugger")` returns nothing, so the result is `undefined`:
+For example, here `1+2` results in `3`, while the function call `hello("debugger")` returns nothing, so the result is `undefined`:
 
 ![](chrome-sources-console.svg)
 
@@ -63,12 +63,12 @@ We can always find a list of breakpoints in the right panel. That's useful when 
 - ...And so on.
 
 ```smart header="Conditional breakpoints"
-*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression is truthy.
+*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
 
 That's handy when we need to stop only for a certain variable value or for certain function parameters.
 ```
 
-## Debugger command
+## The command "debugger"
 
 We can also pause the code by using the `debugger` command in it, like this:
 
@@ -84,8 +84,7 @@ function hello(name) {
 }
 ```
 
-That's very convenient when we are in a code editor and don't want to switch to the browser and look up the script in developer tools to set the breakpoint.
-
+Such command works only when the development tools are open, otherwise the browser ignores it.
 
 ## Pause and look around
 
@@ -99,7 +98,7 @@ Please open the informational dropdowns to the right (labeled with arrows). They
 
 1. **`Watch` -- shows current values for any expressions.**
 
-    You can click the plus `+` and input an expression. The debugger will show its value at any moment, automatically recalculating it in the process of execution.
+    You can click the plus `+` and input an expression. The debugger will show its value, automatically recalculating it in the process of execution.
 
 2. **`Call Stack` -- shows the nested calls chain.**
 
@@ -135,11 +134,11 @@ There are buttons for it at the top of the right panel. Let's engage them.
     Clicking this again and again will step through all script statements one by one.
 
 <span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
-: Similar to the previous "Step" command, but behaves differently if the next statement is a function call. That is: not a built-in, like `alert`, but a function of our own.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call (not a built-in, like `alert`, but a function of our own).
 
-    The "Step" command goes into it and pauses the execution at its first line, while "Step over" executes the nested function call invisibly, skipping the function internals.
+    If we compare them, the "Step" command goes into a nested function call and pauses the execution at its first line, while "Step over" executes the nested function call invisibly to us, skipping the function internals.
 
-    The execution is then paused immediately after that function.
+    The execution is then paused immediately after that function call.
 
     That's good if we're not interested to see what happens inside the function call.
 
@@ -155,7 +154,7 @@ There are buttons for it at the top of the right panel. Let's engage them.
 : That button does not move the execution. Just a mass on/off for breakpoints.
 
 <span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
-: When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+: When enabled, if the developer tools is open, an error during the script execution automatically pauses it. Then we can analyze variables in the debugger to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
 
 ```smart header="Continue to here"
 Right click on a line of code opens the context menu with a great option called "Continue to here".
@@ -187,7 +186,7 @@ As we can see, there are three main ways to pause a script:
 2. The `debugger` statements.
 3. An error (if dev tools are open and the button <span class="devtools" style="background-position:-90px -146px"></span> is "on").
 
-When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
+When paused, we can debug: examine variables and trace the code to see where the execution goes wrong.
 
 There are many more options in developer tools than covered here. The full manual is at <https://developers.google.com/web/tools/chrome-devtools>.
 
