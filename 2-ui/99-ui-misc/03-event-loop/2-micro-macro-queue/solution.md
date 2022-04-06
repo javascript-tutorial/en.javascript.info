@@ -48,5 +48,3 @@ To summarize,
 3. After the microtask queue becomes empty, the macrotask queue executes. It outputs `2`, `6`, `4`.
 
 Finally, we have the output: `1 7 3 5 2 6 4`.
-
-Получается вывод `1 7 3 5 2 6 4`.
