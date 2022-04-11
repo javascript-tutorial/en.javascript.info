@@ -138,7 +138,7 @@ If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toStri
 
 Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
 
-These methods must return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
+These methods *must* return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
 
 By default, a plain object has following `toString` and `valueOf` methods:
 
