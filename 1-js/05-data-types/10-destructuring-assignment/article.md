@@ -2,12 +2,12 @@
 
 The two most used data structures in JavaScript are `Object` and `Array`.
 
-- Objects allow us to create a single entity that stores data items by key. 
+- Objects allow us to create a single entity that stores data items by key.
 - Arrays allow us to gather data items into an ordered list.
 
 Although, when we pass those to a function, it may need not be an object/array as a whole. It may need individual pieces.
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient. 
+*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient.
 
 Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
 
@@ -76,7 +76,7 @@ In the code above, the second element of the array is skipped, the third one is 
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
 ```
-That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
+That works, because internally a destructuring assignment works by iterating over the right value. It's a kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
 
@@ -176,7 +176,7 @@ alert(rest.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. 
+The value of `rest` is the array of the remaining array elements.
 
 We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
 
@@ -254,7 +254,7 @@ alert(width);  // 100
 alert(height); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. 
+Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables.
 
 The order does not matter. This works too:
 
@@ -429,7 +429,7 @@ let options = {
     height: 200
   },
   items: ["Cake", "Donut"],
-  extra: true   
+  extra: true
 };
 
 // destructuring assignment split in multiple lines for clarity
