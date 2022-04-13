@@ -306,6 +306,23 @@ Note that in the example we provide to `find` the function `item => item.id == 1
 
 The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself and `-1` is returned when nothing is found.
 
+### at
+
+The [arr.at](mdn:js/Array/at) method returns the element at a given index. 
+
+It is very similar to using square brackets, the only difference is that you can use negative indexes. 
+
+This comes very handy when you want to access the last element of an array without using `arr[arr.length -1]` or `arr.slice(-1)[0]`.
+
+It returns `undefined` if the element was not found.
+
+```js run
+let users = ["John", "Pete", "Mary"];
+let lastItem = users.at(-1);
+
+console.log(lastItem); // "Mary"
+```
+
 ### filter
 
 The `find` method looks for a single (first) element that makes the function return `true`.
@@ -721,6 +738,7 @@ A cheat sheet of array methods:
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
   - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
+  - `at` is like using square brackets `[]`, but you can use negative indexes.
 
 - To iterate over elements:
   - `forEach(func)` -- calls `func` for every element, does not return anything.
