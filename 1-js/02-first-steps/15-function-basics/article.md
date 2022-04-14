@@ -226,9 +226,9 @@ On the other hand, it's independently called every time when `text` is missing.
 ```
 
 ````smart header="Default parameters in old JavaScript code"
-Several years ago, JavaScript didn't support the syntax for default parameters.
+Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
 
-So people used other ways to specify them. Nowadays, we can mostly come across them in old scripts.
+Nowadays, we can come across them in old scripts.
 
 For example, an explicit check for `undefined`:
 
@@ -249,6 +249,7 @@ function showMessage(from, text) {
 ```js
 function showMessage(from, text) {
   // If the value of text is falsy, assign the default value
+  // this assumes that text == "" is the same as no text at all
   text = text || 'no text given';
   ...
 }
