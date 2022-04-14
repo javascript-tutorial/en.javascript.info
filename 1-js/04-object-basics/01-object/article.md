@@ -40,7 +40,7 @@ In the `user` object, there are two properties:
 1. The first property has the name `"name"` and the value `"John"`.
 2. The second one has the name `"age"` and the value `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labelled "name" and "age".
+The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
 
 ![user object](object-user.svg)
 
@@ -120,7 +120,7 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quote will do).
+Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
 
 Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
 
