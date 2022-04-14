@@ -427,6 +427,7 @@ The "integer property" term here means a string that can be converted to-and-fro
 So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
 
 ```js run
+// Number(...) explicitly converts to a number
 // Math.trunc is a built-in function that removes the decimal part
 alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
 alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
