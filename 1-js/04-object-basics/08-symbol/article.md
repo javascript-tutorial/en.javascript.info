@@ -53,6 +53,7 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
 
 If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
+
 ```js run
 let id = Symbol("id");
 *!*
@@ -61,6 +62,7 @@ alert(id.toString()); // Symbol(id), now it works
 ```
 
 Or get `symbol.description` property to show the description only:
+
 ```js run
 let id = Symbol("id");
 *!*
@@ -268,6 +270,7 @@ Symbols are always different values, even if they have the same name. If we want
 Symbols have two main use cases:
 
 1. "Hidden" object properties.
+
     If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
