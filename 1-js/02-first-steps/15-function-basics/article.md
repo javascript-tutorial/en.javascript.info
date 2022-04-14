@@ -225,6 +225,37 @@ In the example above, `anotherFunction()` isn't called at all, if the `text` par
 On the other hand, it's independently called every time when `text` is missing.
 ```
 
+````smart header="Default parameters in old JavaScript code"
+Several years ago, JavaScript didn't support the syntax for default parameters.
+
+So people used some other ways to specify default values, that you meet in old scripts.
+
+For example, an explicit check for `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'no text given';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Or using the `||` operator:
+
+```js
+function showMessage(from, text) {
+  // If the value of text is falsy, assign the default value
+  text = text || 'no text given';
+  ...
+}
+```
+````
+
+
 ### Alternative default parameters
 
 Sometimes it makes sense to assign default values for parameters not in the function declaration, but at a later stage.
