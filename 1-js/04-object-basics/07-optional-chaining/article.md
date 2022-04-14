@@ -103,7 +103,7 @@ The code is short and clean, there's no duplication at all.
 Here's an example with `document.querySelector`:
 
 ```js run
-let html = document.querySelector('.elem')?.innerHTML; // will be null, if there's no element
+let html = document.querySelector('.elem')?.innerHTML; // will be undefined, if there's no element
 ```
 
 Reading the address with `user?.address` works even if `user` object doesn't exist:
