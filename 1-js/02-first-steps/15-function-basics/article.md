@@ -228,7 +228,7 @@ On the other hand, it's independently called every time when `text` is missing.
 ````smart header="Default parameters in old JavaScript code"
 Several years ago, JavaScript didn't support the syntax for default parameters.
 
-So people used some other ways to specify default values, that you meet in old scripts.
+So people used other ways to specify them. Nowadays, we can mostly come across them in old scripts.
 
 For example, an explicit check for `undefined`:
 
