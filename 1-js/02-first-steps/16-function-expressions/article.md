@@ -194,7 +194,7 @@ First, the syntax: how to differentiate between them in the code.
       return a + b;
     }
     ```
-- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
+- *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created on the right side of the "assignment expression" `=`:
 
     ```js
     // Function Expression
@@ -291,7 +291,7 @@ if (age < 18) {
   welcome();               // \   (runs)
 */!*
                            //  |
-  function welcome() {     //  |  
+  function welcome() {     //  |
     alert("Hello!");       //  |  Function Declaration is available
   }                        //  |  everywhere in the block where it's declared
                            //  |
@@ -301,7 +301,7 @@ if (age < 18) {
 
 } else {
 
-  function welcome() {    
+  function welcome() {
     alert("Greetings!");
   }
 }

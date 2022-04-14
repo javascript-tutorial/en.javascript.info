@@ -256,7 +256,7 @@ We covered three ways to create a function in JavaScript:
 3. Arrow functions:
 
     ```js
-    // expression at the right side
+    // expression on the right side
     let sum = (a, b) => a + b;
 
     // or multi-line syntax with { ... }, need return here:

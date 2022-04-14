@@ -81,7 +81,7 @@ That works, because internally a destructuring assignment works by iterating ove
 
 
 ````smart header="Assign to anything at the left-side"
-We can use any "assignables" at the left side.
+We can use any "assignables" on the left side.
 
 For instance, an object property:
 ```js run
@@ -234,7 +234,7 @@ The basic syntax is:
 let {var1, var2} = {var1:…, var2:…}
 ```
 
-We should have an existing object at the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
+We should have an existing object on the right side, that we want to split into variables. The left side contains an object-like "pattern" for corresponding properties. In the simplest case, that's a list of variable names in `{...}`.
 
 For instance:
 
@@ -420,7 +420,7 @@ alert( title ); // Menu
 
 If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
+In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
 
 ```js run
 let options = {
