@@ -7,7 +7,7 @@ For example, `alert` automatically converts any value to a string to show it. Ma
 There are also cases when we need to explicitly convert a value to the expected type.
 
 ```smart header="Not talking about objects yet"
-In this chapter, we won't cover objects. For now we'll just be talking about primitives.
+In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
 
 Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
 ```
