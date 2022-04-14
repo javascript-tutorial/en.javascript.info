@@ -176,7 +176,7 @@ When a value is passed as a function parameter, it's also called an *argument*.
 
 In other words, to put these terms straight:
 
-- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term)
+- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term).
 - An argument is the value that is passed to the function when it is called (it's a call time term).
 
 We declare functions listing their parameters, then call them passing arguments.
