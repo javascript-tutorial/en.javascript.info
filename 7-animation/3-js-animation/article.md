@@ -159,7 +159,7 @@ Function `animate` accepts 3 parameters that essentially describes the animation
     }
     ```
 
-    It's graph:
+    Its graph:
     ![](linear.svg)
 
     That's just like `transition-timing-function: linear`. There are more interesting variants shown below.

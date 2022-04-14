@@ -24,7 +24,7 @@ When `abort()` is called:
 - `controller.signal` emits the `"abort"` event.
 - `controller.signal.aborted` property becomes `true`.
 
-Generally, we have two parties in the process: 
+Generally, we have two parties in the process:
 1. The one that performs a cancelable operation, it sets a listener on `controller.signal`.
 2. The one that cancels: it calls `controller.abort()` when needed.
 
@@ -34,7 +34,7 @@ Here's the full example (without `fetch` yet):
 let controller = new AbortController();
 let signal = controller.signal;
 
-// The party that performs a cancelable operation 
+// The party that performs a cancelable operation
 // gets the "signal" object
 // and sets the listener to trigger when controller.abort() is called
 signal.addEventListener('abort', () => alert("abort!"));
@@ -143,6 +143,6 @@ let results = await Promise.all([...fetchJobs, ourJob]);
 
 ## Summary
 
-- `AbortController` is a simple object that generates an `abort` event on it's `signal` property when the `abort()` method is called (and also sets `signal.aborted` to `true`).
+- `AbortController` is a simple object that generates an `abort` event on its `signal` property when the `abort()` method is called (and also sets `signal.aborted` to `true`).
 - `fetch` integrates with it: we pass the `signal` property as the option, and then `fetch` listens to it, so it's possible to abort the `fetch`.
 - We can use `AbortController` in our code. The "call `abort()`" -> "listen to `abort` event" interaction is simple and universal. We can use it even without `fetch`.

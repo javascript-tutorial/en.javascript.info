@@ -5,7 +5,7 @@ There are two kinds of object properties.
 
 The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
 
-The second type of properties is something new. It's *accessor properties*. They are essentially functions that execute on getting and setting a value, but look like regular properties to an external code.
+The second type of property is something new. It's an *accessor property*. They are essentially functions that execute on getting and setting a value, but look like regular properties to an external code.
 
 ## Getters and setters
 

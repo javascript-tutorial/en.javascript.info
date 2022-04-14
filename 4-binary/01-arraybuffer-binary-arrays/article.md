@@ -30,7 +30,7 @@ Let's eliminate a possible source of confusion. `ArrayBuffer` has nothing in com
 
 **To manipulate an `ArrayBuffer`, we need to use a "view" object.**
 
-A view object does not store anything on it's own. It's the "eyeglasses" that give an interpretation of the bytes stored in the `ArrayBuffer`.
+A view object does not store anything on its own. It's the "eyeglasses" that give an interpretation of the bytes stored in the `ArrayBuffer`.
 
 For instance:
 

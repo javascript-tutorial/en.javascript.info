@@ -275,7 +275,7 @@ Arguments:
 `targetOrigin`
 : Specifies the origin for the target window, so that only a window from the given origin will get the message.
 
-The `targetOrigin` is a safety measure. Remember, if the target window comes from another origin, we can't read it's `location` in the sender window. So we can't be sure which site is open in the intended window right now: the user could navigate away, and the sender window has no idea about it.
+The `targetOrigin` is a safety measure. Remember, if the target window comes from another origin, we can't read its `location` in the sender window. So we can't be sure which site is open in the intended window right now: the user could navigate away, and the sender window has no idea about it.
 
 Specifying `targetOrigin` ensures that the window only receives the data if it's still at the right site. Important when the data is sensitive.
 
