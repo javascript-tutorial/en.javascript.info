@@ -332,8 +332,7 @@ alert( isFinite(num) );
 Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.
 
 ```smart header="Compare with `Object.is`"
-
-There is a special built-in [`Object.is` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
 2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's true, because internally the number has a sign bit that may be different even if all other bits are zeroes.
