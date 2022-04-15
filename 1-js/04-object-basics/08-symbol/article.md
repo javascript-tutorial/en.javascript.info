@@ -19,7 +19,6 @@ A "symbol" represents a unique identifier.
 A value of this type can be created using `Symbol()`:
 
 ```js
-// id is a new symbol
 let id = Symbol();
 ```
 
