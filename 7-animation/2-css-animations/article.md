@@ -294,7 +294,7 @@ The process is progressing like this:
 - `0s` -- `-10%` (first change in the beginning of the 1st second, immediately)
 - `1s` -- `-20%`
 - ...
-- `8s` -- `-80%`
+- `8s` -- `-90%`
 - (the last second shows the final value).
 
 The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
