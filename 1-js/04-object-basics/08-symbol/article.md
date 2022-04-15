@@ -44,7 +44,7 @@ alert(id1 == id2); // false
 
 If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
 
-To summarize, symbols are "special unique values" with optional description. Let's see where we can use them.
+So, to summarize, symbols are "special unique values" with optional description. Let's see where we can use them.
 
 ````warn header="Symbols don't auto-convert to a string"
 Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
