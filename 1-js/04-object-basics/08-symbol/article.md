@@ -1,10 +1,12 @@
 
 # Symbol type
 
-By specification, object property keys may be either of two primitive types:
+By specification, only two primitive types may serve as object property keys:
 
 - string type, or
 - symbol type.
+
+Otherwise, if one uses another type, such as number, it's autoconverted to string. So that `obj[1]` is the same as `obj["1"]` and `obj[true]` is the same as `obj["true"]`.
 
 Till now we've been using only strings.
 
