@@ -219,7 +219,7 @@ That's why the initial idea to put handlers on potential droppables doesn't work
 
 So, what to do?
 
-There's a method called `document.elementFromPoint(clientX, clientY)`. It returns the most nested element on given window-relative coordinates (or `null` if given coordinates are out of the window).
+There's a method called `document.elementFromPoint(clientX, clientY)`. It returns the most nested element on given window-relative coordinates (or `null` if given coordinates are out of the window). If there are multiple overlapping elements on the same coordinates, then the topmost one is returned.
 
 We can use it in any of our mouse event handlers to detect the potential droppable under the pointer, like this:
 
