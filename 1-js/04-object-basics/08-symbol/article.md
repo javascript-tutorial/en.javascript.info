@@ -10,7 +10,7 @@ Otherwise, if one uses another type, such as number, it's autoconverted to strin
 
 Till now we've been using only strings.
 
-Now let's explore symbols, see what they can do good for us.
+Now let's explore symbols, see what they can do for us.
 
 ## Symbols
 
