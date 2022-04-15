@@ -88,7 +88,7 @@ user = {
 };
 ```
 
-As demonstrated, we can omit `"function"` and just write `sayHi()`.
+As demonstrated, we can omit `"function"` and just write `getName()`.
 
 To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
 
@@ -96,7 +96,7 @@ To tell the truth, the notations are not fully identical. There are subtle diffe
 
 It's common that an object method needs to access the information stored in the object to do its job.
 
-For instance, the code inside `user.sayHi()` may need the name of the `user`.
+For instance, the code inside `user.getName()` may need the name of the `user`.
 
 **To access the object, a method can use the `this` keyword.**
 
@@ -109,7 +109,7 @@ let user = {
   name: "John",
   age: 30,
 
-  sayHi() {
+  getName() {
 *!*
     // "this" is the "current object"
     alert(this.name);
@@ -118,10 +118,10 @@ let user = {
 
 };
 
-user.sayHi(); // John
+user.getName(); // John
 ```
 
-Here during the execution of `user.sayHi()`, the value of `this` will be `user`.
+Here during the execution of `user.getName()`, the value of `this` will be `user`.
 
 Technically, it's also possible to access the object without `this`, by referencing it via the outer variable:
 
@@ -130,7 +130,7 @@ let user = {
   name: "John",
   age: 30,
 
-  sayHi() {
+  getName() {
 *!*
     alert(user.name); // "user" instead of "this"
 */!*
@@ -148,7 +148,7 @@ let user = {
   name: "John",
   age: 30,
 
-  sayHi() {
+  getName() {
 *!*
     alert( user.name ); // leads to an error
 */!*
@@ -161,7 +161,7 @@ let admin = user;
 user = null; // overwrite to make things obvious
 
 *!*
-admin.sayHi(); // TypeError: Cannot read property 'name' of null
+admin.getName(); // TypeError: Cannot read property 'name' of null
 */!*
 ```
 
@@ -174,7 +174,7 @@ In JavaScript, keyword `this` behaves unlike most other programming languages. I
 There's no syntax error in the following example:
 
 ```js
-function sayHi() {
+function getName() {
   alert( *!*this*/!*.name );
 }
 ```
@@ -187,7 +187,7 @@ For instance, here the same function is assigned to two different objects and ha
 let user = { name: "John" };
 let admin = { name: "Admin" };
 
-function sayHi() {
+function getName() {
   alert( this.name );
 }
 
@@ -211,11 +211,11 @@ The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call
 We can even call the function without an object at all:
 
 ```js run
-function sayHi() {
+function getName() {
   alert(this);
 }
 
-sayHi(); // undefined
+getName(); // undefined
 ```
 
 In this case `this` is `undefined` in strict mode. If we try to access `this.name`, there will be an error.
@@ -239,18 +239,18 @@ Here our position is not to judge whether this language design decision is good 
 
 Arrow functions are special: they don't have their "own" `this`. If we reference `this` from such a function, it's taken from the outer "normal" function.
 
-For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
+For instance, here `arrow()` uses `this` from the outer `user.getName()` method:
 
 ```js run
 let user = {
   firstName: "Ilya",
-  sayHi() {
+  getName() {
     let arrow = () => alert(this.firstName);
     arrow();
   }
 };
 
-user.sayHi(); // Ilya
+user.getName(); // Ilya
 ```
 
 That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll go more deeply into arrow functions.
