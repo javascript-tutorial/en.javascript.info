@@ -1,9 +1,14 @@
 
 # Symbol type
 
-By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
+By specification, object property keys may be either of two primitive types:
 
-Till now we've been using only strings. Now let's see the benefits that symbols can give us.
+- string type, or
+- symbol type.
+
+Till now we've been using only strings.
+
+Now let's explore symbols, see what they can do good for us.
 
 ## Symbols
 
