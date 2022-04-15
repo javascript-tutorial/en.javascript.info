@@ -100,9 +100,9 @@ Let's say we want a last element of the array.
 
 Some programming languages allow to use negative indexes for the same purpose, like `fruits[-1]`.
 
-Although, in JavaScript it won't work. The result will be `undefined`.
+Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
 
-We can explicitly calculate the last element index and then access it, using `fruits[fruits.length - 1]`:
+We can explicitly calculate the last element index and then access it: `fruits[fruits.length - 1]`.
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
