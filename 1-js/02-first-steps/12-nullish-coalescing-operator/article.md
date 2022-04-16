@@ -4,7 +4,7 @@
 
 The nullish coalescing operator is written as two question marks `??`.
 
-As it treats `null` and `undefined` similarly, we'll use a special term here, in this article. We'll say that an expression is "defined" when it's neither `null` nor `undefined`.
+As it treats `null` and `undefined` similarly, we'll use a special term here, in this article. For brevity, we'll say that a value is "defined" when it's neither `null` nor `undefined`.
 
 The result of `a ?? b` is:
 - if `a` is defined, then `a`,
@@ -22,9 +22,9 @@ result = (a !== null && a !== undefined) ? a : b;
 
 Now it should be absolutely clear what `??` does. Let's see where it helps.
 
-The common use case for `??` is to provide a default value for a potentially undefined variable.
+The common use case for `??` is to provide a default value.
 
-For example, here we show `user` if defined, otherwise `Anonymous`:
+For example, here we show `user` if its value isn't `null/undefined`, otherwise `Anonymous`:
 
 ```js run
 let user;
@@ -42,9 +42,9 @@ alert(user ?? "Anonymous"); // John (user defined)
 
 We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
 
-Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to enter a value.
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to fill in the corresponding values.
 
-We'd like to display the user name using one of these variables, or show "Anonymous" if all of them aren't defined.
+We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are `null/undefined`.
 
 Let's use the `??` operator for that:
 
@@ -110,7 +110,7 @@ The precedence of the `??` operator is the same as `||`. They both equal `4` in 
 
 That means that, just like `||`, the nullish coalescing operator `??` is evaluated before `=` and `?`, but after most other operations, such as `+`, `*`.
 
-So if we'd like to choose a value with `??` in an expression with other operators, consider adding parentheses:
+So we may need to add parentheses in expressions like this:
 
 ```js run
 let height = null;
@@ -128,7 +128,7 @@ Otherwise, if we omit parentheses, then as `*` has the higher precedence than `?
 // without parentheses
 let area = height ?? 100 * width ?? 50;
 
-// ...works the same as this (probably not what we want):
+// ...works this way (not what we want):
 let area = height ?? (100 * width) ?? 50;
 ```
 
