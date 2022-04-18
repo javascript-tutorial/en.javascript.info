@@ -192,7 +192,7 @@ let my-name; // hyphens '-' aren't allowed in the name
 ```
 
 ```smart header="Case matters"
-Variables named `apple` and `AppLE` are two different variables.
+Variables named `apple` and `APPLE` are two different variables.
 ```
 
 ````smart header="Non-Latin letters are allowed, but not recommended"
