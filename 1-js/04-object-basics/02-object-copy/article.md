@@ -37,7 +37,7 @@ And here's how it's actually stored in memory:
 
 The object is stored somewhere in memory (at the right of the picture), while the `user` variable (at the left) has a "reference" to it.
 
-We may think of an object variable, such as `user`, as like a sheet of paper with the address of the object on it.
+We may think of an object variable, such as `user`, like a sheet of paper with the address of the object on it.
 
 When we perform actions with the object, e.g. take a property `user.name`, the JavaScript engine looks at what's at that address and performs the operation on the actual object.
 
@@ -104,11 +104,9 @@ For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj 
 
 So, copying an object variable creates one more reference to the same object.
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+But what if we need to duplicate an object?
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. But there is rarely a need -- copying by reference is good most of the time.
-
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+We can create a new object and replicate the structure of the existing one, by iterating over its properties and copying them on the primitive level.
 
 Like this:
 
@@ -133,7 +131,7 @@ clone.name = "Pete"; // changed the data in it
 alert( user.name ); // still John in the original object
 ```
 
-Also we can use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign) for that.
+We can also use the method [Object.assign](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign).
 
 The syntax is:
 
@@ -190,7 +188,7 @@ There are also other methods of cloning an object, e.g. using the [spread syntax
 
 ## Nested cloning
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects.
 
 Like this:
 ```js run
@@ -205,9 +203,7 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
-
-Like this:
+Now it's not enough to copy `clone.sizes = user.sizes`. `user.sizes` is an object, and will be copied by reference, so `clone` and `user` will share the same sizes:
 
 ```js run
 let user = {
