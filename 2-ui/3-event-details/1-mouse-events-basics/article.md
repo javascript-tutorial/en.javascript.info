@@ -154,7 +154,7 @@ Move the mouse over the input field to see `clientX/clientY` (the example is in 
 
 ## Preventing selection on mousedown
 
-Double mouse click has a side-effect that may be disturbing in some interfaces: it selects text.
+Double mouse click has a side effect that may be disturbing in some interfaces: it selects text.
 
 For instance, double-clicking on the text below selects it in addition to our handler:
 
