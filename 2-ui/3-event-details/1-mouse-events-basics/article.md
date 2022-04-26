@@ -30,7 +30,7 @@ We've already seen some of these events:
 
 ## Events order
 
-As you can see from the list above, a user action may trigger multiple events.
+As you can see z list above, a user action may trigger multiple events.
 
 For instance, a left-button click first triggers `mousedown`, when the button is pressed, then `mouseup` and `click` when it's released.
 
@@ -52,7 +52,7 @@ Click-related events always have the `button` property, which allows to get the 
 
 We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
 
-From the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
+On the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
 
 The possible values of `event.button` are:
 
