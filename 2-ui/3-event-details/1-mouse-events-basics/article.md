@@ -30,7 +30,7 @@ We've already seen some of these events:
 
 ## Events order
 
-As you can see z list above, a user action may trigger multiple events.
+As you can see from the list above, a user action may trigger multiple events.
 
 For instance, a left-button click first triggers `mousedown`, when the button is pressed, then `mouseup` and `click` when it's released.
 
