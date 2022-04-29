@@ -214,7 +214,7 @@ alert( 'Interface'.toLowerCase() ); // interface
 
 Or, if we want a single character lowercased:
 
-```js
+```js run
 alert( 'Interface'[0].toLowerCase() ); // 'i'
 ```
 
