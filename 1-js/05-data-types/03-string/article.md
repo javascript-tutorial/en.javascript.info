@@ -222,7 +222,7 @@ alert( 'Interface'[0].toLowerCase() ); // 'i'
 
 There are multiple ways to look for a substring within a string.
 
-### str.indexOf
+### str.indexOf()
 
 The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
 
