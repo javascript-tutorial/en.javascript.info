@@ -6,7 +6,7 @@ What's interesting about them is that the data survives a page refresh (for `ses
 
 We already have cookies. Why additional objects?
 
-- Unlike cookies, web storage objects are not sent to server with each request. Because of that, we can store much more. Most browsers allow at least 2 megabytes of data (or more) and have settings to configure that.
+- Unlike cookies, web storage objects are not sent to server with each request. Because of that, we can store much more. Most modern browsers allow at least 5 megabytes of data (or more) and have settings to configure that.
 - Also unlike cookies, the server can't manipulate storage objects via HTTP headers. Everything's done in JavaScript.
 - The storage is bound to the origin (domain/protocol/port triplet). That is, different protocols or subdomains infer different storage objects, they can't access data from each other.
 
