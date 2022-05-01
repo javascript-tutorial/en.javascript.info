@@ -101,6 +101,25 @@ alert( article.title ); // Today's digest
 
 Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
 
+Please note that when you create a method as a static method or assigning a method as a property, it wouldn't be available for objects!
+
+```js run
+class Article {
+  static alertName(name) { // create a static method
+    alert(`Hello ${name}`);
+  }
+}
+
+Article.alertAge = function(age) { // create a method as a property
+  alert(`Your age is ${age}`);
+};
+
+let article = new Article();
+
+article.alertName("Fardin"); // Error! alertName is not defined!
+article.alertAge(18); // Error! alertAge is not defined!
+```
+
 Static methods are also used in database-related classes to search/save/remove entries from the database, like this:
 
 ```js
@@ -127,6 +146,20 @@ That is the same as a direct assignment to `Article`:
 
 ```js
 Article.publisher = "Ilya Kantor";
+```
+Also for static properties and direct assignmented properties, they are not available for created objects from class!
+
+```js run 
+class Article {
+  static editor = "Fardin Ebrahimi";
+}
+
+Article.programmingLanguage = "JavaScript";
+
+let article = new Article();
+
+article.editor // Error! such property is not defined!
+article.programmingLanguage //Error! such property is not defined!
 ```
 
 ## Inheritance of static properties and methods [#statics-and-inheritance]
