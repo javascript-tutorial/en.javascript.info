@@ -203,7 +203,7 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Now it's not enough to copy `clone.sizes = user.sizes`. `user.sizes` is an object, and will be copied by reference, so `clone` and `user` will share the same sizes:
+Now it's not enough to copy `clone.sizes = user.sizes`, because `user.sizes` is an object, and will be copied by reference, so `clone` and `user` will share the same sizes:
 
 ```js run
 let user = {
@@ -220,10 +220,10 @@ alert( user.sizes === clone.sizes ); // true, same object
 
 // user and clone share sizes
 user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+alert(clone.sizes.width); // 51, get the result from the other one
 ```
 
-To fix that, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
 
 We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
