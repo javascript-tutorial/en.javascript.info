@@ -130,6 +130,7 @@ For example, the second `<span>` here is ignored (as it's not a top-level child 
 If there are multiple elements in light DOM with the same slot name, they are appended into the slot, one after another.
 
 For example, this:
+
 ```html
 <user-card>
   <span slot="username">John</span>
