@@ -28,4 +28,4 @@ alert(dictionary); // "apple,__proto__"
 
 When we create a property using a descriptor, its flags are `false` by default. So in the code above, `dictionary.toString` is non-enumerable.
 
-See the the chapter [](info:property-descriptors) for review.
+See the chapter [](info:property-descriptors) for review.
