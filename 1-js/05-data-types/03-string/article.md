@@ -604,7 +604,7 @@ You will find more ways to deal with surrogate pairs later in the chapter <info:
 
 ### Diacritical marks and normalization
 
-In many languages there are symbols that are composed of the base character with a mark above/under it.
+In many languages, there are symbols that are composed of the base character with a mark above/under it.
 
 For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
 
