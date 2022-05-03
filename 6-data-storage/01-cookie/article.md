@@ -282,7 +282,6 @@ Here's a small set of functions to work with cookies, more convenient than a man
 
 There exist many cookie libraries for that, so these are for demo purposes. Fully working though.
 
-
 ### getCookie(name)
 
 The shortest way to access a cookie is to use a [regular expression](info:regular-expressions).
