@@ -178,7 +178,7 @@ There are two ways to do so:
     alert( num.toFixed(1) ); // "12.4"
     ```
 
-    Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
+    Please note that the result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
 
     ```js run
     let num = 12.34;
