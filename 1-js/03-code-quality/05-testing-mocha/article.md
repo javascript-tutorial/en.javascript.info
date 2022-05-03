@@ -51,7 +51,7 @@ describe("pow", function() {
 A spec has three main building blocks that you can see above:
 
 `describe("title", function() { ... })`
-: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
 
 `it("use case description", function() { ... })`
 : In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
