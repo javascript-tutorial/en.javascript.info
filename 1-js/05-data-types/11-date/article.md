@@ -57,7 +57,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
-    - The `year` must have 4 digits: `2013` is okay, `98` is not.
+    - The `year` from 1900 to 1999 can be set in full or in short form. That is, numbers from 0 to 99 will be automatically incremented by 1900, numbers from 100 to 275760 will be accepted as is, and a number above 275760 will be an invalid date. In order to set the year exactly from 0 to 99, you need to use the `setFullYear` method.
     - The `month` count starts with `0` (Jan), up to `11` (Dec).
     - The `date` parameter is actually the day of month, if absent then `1` is assumed.
     - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
@@ -67,6 +67,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     ```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
     new Date(2011, 0, 1); // the same, hours etc are 0 by default
+    new Date(82, 8); // 1 Sep 1982, 00:00:00
     ```
 
     The maximal precision is 1 ms (1/1000 sec):
