@@ -368,7 +368,7 @@ In our case, `Rabbit` is the derived class. There's no `constructor()` in it. As
 
 So, `new Rabbit()` calls `super()`, thus executing the parent constructor, and (per the rule for derived classes) only after that its class fields are initialized. At the time of the parent constructor execution, there are no `Rabbit` class fields yet, that's why `Animal` fields are used.
 
-This subtle difference between fields and methods is specific to JavaScript
+This subtle difference between fields and methods is specific to JavaScript.
 
 Luckily, this behavior only reveals itself if an overridden field is used in the parent constructor. Then it may be difficult to understand what's going on, so we're explaining it here.
 
