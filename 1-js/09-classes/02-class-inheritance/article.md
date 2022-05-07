@@ -176,7 +176,6 @@ setTimeout(function() { super.stop() }, 1000);
 ```
 ````
 
-
 ## Overriding constructor
 
 With constructors it gets a little bit tricky.
