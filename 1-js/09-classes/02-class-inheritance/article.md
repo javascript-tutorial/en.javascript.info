@@ -374,7 +374,6 @@ Luckily, this behavior only reveals itself if an overridden field is used in the
 
 If it becomes a problem, one can fix it by using methods or getters/setters instead of fields.
 
-
 ## Super: internals, [[HomeObject]]
 
 ```warn header="Advanced information"
