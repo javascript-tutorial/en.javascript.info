@@ -280,8 +280,6 @@ alert(rabbit.earLength); // 10
 */!*
 ```
 
-
-
 ### Overriding class fields: a tricky note
 
 ```warn header="Advanced note"
