@@ -160,6 +160,7 @@ Now `Rabbit` has the `stop` method that calls the parent `super.stop()` in the p
 As was mentioned in the chapter <info:arrow-functions>, arrow functions do not have `super`.
 
 If accessed, it's taken from the outer function. For instance:
+
 ```js
 class Rabbit extends Animal {
   stop() {
