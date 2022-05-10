@@ -105,6 +105,30 @@ That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixi
 
 As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
 
+````warn header="You can't directly access parent object methods"
+For instance, in the example above, you can only use `say()` inside `sayHiMixin` methods and can't directly access `say()` method from `User` class.
+Look at this:
+```js
+let sayMixin = {
+  say() { ... }
+};
+
+let sayHiMixin = {
+  __proto__: sayMixin,
+  // ...
+};
+
+class User {
+// ...
+}
+
+// copy the methods
+Object.assign(User.prototype, sayHiMixin);
+
+new User("Dude").say(); // say is not a function(not found)
+```
+````
+
 ## EventMixin
 
 Now let's make a mixin for real life.
