@@ -252,6 +252,8 @@ try {
 
 Here `JSON.parse` runs normally, but the absence of `name` is actually an error for us.
 
+As we know, `undefined` is not considered as an error, so `catch` will not execute.
+
 To unify error handling, we'll use the `throw` operator.
 
 ### "Throw" operator
