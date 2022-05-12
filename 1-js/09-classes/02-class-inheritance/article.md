@@ -327,7 +327,7 @@ What's odd about it?
 
 If it's not clear yet, please compare with methods.
 
-Here's the same code, but instead of `this.name` field, we call `this.showName()` method:
+Here's the same code, but instead of `this.name` field we call `this.showName()` method:
 
 ```js run
 class Animal {
