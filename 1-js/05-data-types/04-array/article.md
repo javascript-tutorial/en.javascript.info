@@ -6,7 +6,7 @@ But quite often we find that we need an *ordered collection*, where we have a 1s
 
 It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
 
-There exists a special data structure, named `Array`, to store ordered collections.
+There exists a special data structure named `Array`, to store ordered collections.
 
 ## Declaration
 
@@ -136,7 +136,7 @@ A [queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is one of th
 
 Arrays support both operations.
 
-In practice, we need it very often. For example, a queue of messages that need to be shown on-screen.
+In practice we need it very often. For example, a queue of messages that need to be shown on-screen.
 
 There's another use case for arrays -- the data structure named [stack](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
@@ -145,7 +145,7 @@ It supports two operations:
 - `push` adds an element to the end.
 - `pop` takes an element from the end.
 
-So new elements are added or taken, always from the "end".
+So new elements are added or taken always from the "end".
 
 A stack is usually illustrated as a pack of cards: new cards are added to the top or taken from the top:
 
