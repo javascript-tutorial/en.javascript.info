@@ -57,7 +57,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date(year, month, date, hours, minutes, seconds, ms)`
 : Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
 
-    - The `year` must have 4 digits: `2013` is okay, `98` is not.
+    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is same as `1998` here, but always using 4 digits is strongly encouraged.
     - The `month` count starts with `0` (Jan), up to `11` (Dec).
     - The `date` parameter is actually the day of month, if absent then `1` is assumed.
     - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
@@ -407,7 +407,7 @@ We can instantly create a `new Date` object from the timestamp:
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert(date);  
+alert(date);
 ```
 
 ## Summary
