@@ -512,7 +512,7 @@ That's simple: don't use the `==` operator. Instead, compare them item-by-item i
 
 Array is a special kind of object, suited to storing and managing ordered data items.
 
-- The declaration:
+The declaration:
 
     ```js
     // square brackets (usual)
@@ -526,6 +526,11 @@ Array is a special kind of object, suited to storing and managing ordered data i
 
 - The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.
 - If we shorten `length` manually, the array is truncated.
+
+Getting the elements:
+
+- we can get element by its index, like `arr[0]`
+- also we can use `at(i)` method to get negative-index elements, for negative values of `i`, it steps back from the end of the array. In the rest it works same as `arr[i]`, if `i >= 0`.
 
 We can use an array as a deque with the following operations:
 
