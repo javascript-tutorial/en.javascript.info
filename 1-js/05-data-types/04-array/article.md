@@ -514,15 +514,15 @@ Array is a special kind of object, suited to storing and managing ordered data i
 
 The declaration:
 
-    ```js
-    // square brackets (usual)
-    let arr = [item1, item2...];
+```js
+// square brackets (usual)
+let arr = [item1, item2...];
 
-    // new Array (exceptionally rare)
-    let arr = new Array(item1, item2...);
-    ```
+// new Array (exceptionally rare)
+let arr = new Array(item1, item2...);
+```
 
-    The call to `new Array(number)` creates an array with the given length, but without elements.
+The call to `new Array(number)` creates an array with the given length, but without elements.
 
 - The `length` property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.
 - If we shorten `length` manually, the array is truncated.
