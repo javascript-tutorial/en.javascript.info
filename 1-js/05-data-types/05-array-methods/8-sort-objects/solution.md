@@ -1,6 +1,6 @@
 ```js run no-beautify
 function sortByAge(arr) {
-  arr.sort((a, b) => a.age - b.age);
+  return arr.sort((a, b) => a.age - b.age);  // return is not needed for this task, but it's ok to expect sortBy() behaves the same as sort()
 }
 
 let john = { name: "John", age: 25 };
