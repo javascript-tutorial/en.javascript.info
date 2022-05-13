@@ -530,7 +530,7 @@ The call to `new Array(number)` creates an array with the given length, but with
 Getting the elements:
 
 - we can get element by its index, like `arr[0]`
-- also we can use `at(i)` method to get negative-index elements, for negative values of `i`, it steps back from the end of the array. In the rest it works same as `arr[i]`, if `i >= 0`.
+- also we can use `at(i)` method that allows negative indexes. For negative values of `i`, it steps back from the end of the array. If `i >= 0`, it works same as `arr[i]`.
 
 We can use an array as a deque with the following operations:
 
