@@ -634,7 +634,6 @@ So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
 
-
 ## Array.isArray
 
 Arrays do not form a separate language type. They are based on objects.
