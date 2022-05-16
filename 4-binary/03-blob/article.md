@@ -237,8 +237,8 @@ const readableStream = blob.stream();
 const stream = readableStream.getReader();
 
 while (true) {
-  // for each iteration: data is the next blob fragment
-  let { done, data } = await stream.read();
+  // for each iteration: value is the next blob fragment
+  let { done, value } = await stream.read();
   if (done) {
     // no more data in the stream
     console.log('all blob processed.');
@@ -246,7 +246,7 @@ while (true) {
   }
 
    // do something with the data portion we've just read from the blob
-  console.log(data);
+  console.log(value);
 }
 ```
 
