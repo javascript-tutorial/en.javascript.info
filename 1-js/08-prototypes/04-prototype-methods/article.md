@@ -3,15 +3,14 @@
 
 In the first chapter of this section, we mentioned that there are modern methods to setup a prototype.
 
-The `__proto__` is considered outdated and somewhat deprecated (in browser-only part of the JavaScript standard).
+Setting or reading the prototype with `obj.__proto__` is considered outdated and somewhat deprecated (in browser-only part of the JavaScript standard).
 
 The modern methods are:
 
-- [Object.create(proto, [descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors.
 - [Object.getPrototypeOf(obj)](mdn:js/Object/getPrototypeOf) -- returns the `[[Prototype]]` of `obj`.
 - [Object.setPrototypeOf(obj, proto)](mdn:js/Object/setPrototypeOf) -- sets the `[[Prototype]]` of `obj` to `proto`.
 
-These should be used instead of `__proto__`.
+These should be used instead of `.__proto__`.
 
 For instance:
 
@@ -22,7 +21,9 @@ let animal = {
 
 // create a new object with animal as a prototype
 *!*
-let rabbit = Object.create(animal);
+let rabbit = {
+  __proto__: animal,
+};
 */!*
 
 alert(rabbit.eats); // true
@@ -36,7 +37,7 @@ Object.setPrototypeOf(rabbit, {}); // change the prototype of rabbit to {}
 */!*
 ```
 
-`Object.create` has an optional second argument: property descriptors. We can provide additional properties to the new object there, like this:
+There is also a method called [Object.create(proto, [descriptors])](mdn:js/Object/create) which creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors. We can provide additional properties to the new object in the second argument, like this:
 
 ```js run
 let animal = {
@@ -131,7 +132,7 @@ Now, if we intend to use an object as an associative array and be free of such p
 
 ```js run
 *!*
-let obj = Object.create(null);
+let obj = { __proto__: null };
 */!*
 
 let key = prompt("What's the key?", "__proto__");
@@ -140,7 +141,7 @@ obj[key] = "some value";
 alert(obj[key]); // "some value"
 ```
 
-`Object.create(null)` creates an empty object without a prototype (`[[Prototype]]` is `null`):
+`{ __proto__: null }` creates an empty object without a prototype (`[[Prototype]]` is `null`):
 
 ![](object-prototype-null.svg)
 
@@ -152,7 +153,7 @@ A downside is that such objects lack any built-in object methods, e.g. `toString
 
 ```js run
 *!*
-let obj = Object.create(null);
+let obj = { __proto__: null };
 */!*
 
 alert(obj); // Error (no toString)
@@ -164,7 +165,7 @@ Note that most object-related methods are `Object.something(...)`, like `Object.
 
 
 ```js run
-let chineseDictionary = Object.create(null);
+let chineseDictionary = { __proto__: null };
 chineseDictionary.hello = "你好";
 chineseDictionary.bye = "再见";
 
@@ -181,7 +182,7 @@ Modern methods to set up and directly access the prototype are:
 
 The built-in `__proto__` getter/setter is unsafe if we'd want to put user-generated keys into an object. Just because a user may enter `"__proto__"` as the key, and there'll be an error, with hopefully light, but generally unpredictable consequences.
 
-So we can either use `Object.create(null)` to create a "very plain" object without `__proto__`, or stick to `Map` objects for that.
+So we can either use `{ __proto__: null }` to create a "very plain" object without `__proto__`, or stick to `Map` objects for that.
 
 Also, `Object.create` provides an easy way to shallow-copy an object with all descriptors:
 
@@ -191,7 +192,7 @@ let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescr
 
 We also made it clear that `__proto__` is a getter/setter for `[[Prototype]]` and resides in `Object.prototype`, just like other methods.
 
-We can create an object without a prototype by `Object.create(null)`. Such objects are used as "pure dictionaries", they have no issues with `"__proto__"` as the key.
+We can create an object without a prototype by `{ __proto__: null }`. Such objects are used as "pure dictionaries", they have no issues with `"__proto__"` as the key.
 
 Other methods:
 
