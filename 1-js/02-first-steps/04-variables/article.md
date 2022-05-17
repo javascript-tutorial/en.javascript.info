@@ -292,6 +292,7 @@ When should we use capitals for a constant and when should we name it normally? 
 Being a "constant" just means that a variable's value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are *calculated* in run-time, during the execution, but do not change after their initial assignment.
 
 For instance:
+
 ```js
 const pageLoadTime = /* time taken by a webpage to load */;
 ```
