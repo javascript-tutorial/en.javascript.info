@@ -104,6 +104,7 @@ For instance, the variable `message` can be imagined as a box labeled `"message"
 We can put any value in the box.
 
 We can also change it as many times as we want:
+
 ```js run
 let message;
 
@@ -260,7 +261,6 @@ myBirthday = '01.01.2001'; // error, can't reassign the constant!
 ```
 
 When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
-
 
 ### Uppercase constants
 
