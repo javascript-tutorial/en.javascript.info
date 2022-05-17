@@ -64,6 +64,7 @@ let message = 'Hello';
 ```
 
 Some people also define multiple variables in this multiline style:
+
 ```js no-beautify
 let user = 'John',
   age = 25,
