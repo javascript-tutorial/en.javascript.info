@@ -184,6 +184,8 @@ alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 
 ...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
 
+For correct processing, the object must have numeric keys and `length` property (just like actual array):
+
 ```js run
 let arr = [1, 2];
 
