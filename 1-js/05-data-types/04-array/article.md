@@ -281,7 +281,7 @@ Why is it faster to work with the end of an array than with its beginning? Let's
 fruits.shift(); // take 1 element from the start
 ```
 
-It's not enough to take and remove the element with the number `0`. Other elements need to be renumbered as well.
+It's not enough to take and remove the element with the index `0`. Other elements need to be renumbered as well.
 
 The `shift` operation must do 3 things:
 
