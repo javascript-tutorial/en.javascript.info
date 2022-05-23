@@ -275,7 +275,7 @@ Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
 The syntax is:
 ```js
 let result = arr.find(function(item, index, array) {
-  // if true is returned, item is returned and iteration is stopped
+  // if true is returned, current item is returned and iteration is stopped
   // for falsy scenario returns undefined
 });
 ```
