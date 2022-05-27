@@ -369,6 +369,7 @@ label: for (...)
 ```
 
 A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
 ```js
 label: {
   // ...
