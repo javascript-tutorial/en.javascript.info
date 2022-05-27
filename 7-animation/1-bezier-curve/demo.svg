@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/SVG/DTD/svg10.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink" width="340" height="360">
+<svg xmlns="https://www.w3.org/2000/svg" xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink" width="340" height="360">
 <!--+ no-optimize -->
 <!--
 @see
@@ -41,7 +41,7 @@ http://www.w3.org/Graphics/SVG/IG/resources/svgprimer.html#path_C
 </svg>
 
 <script><![CDATA[
-	let xmlns = "http://www.w3.org/2000/svg";
+	let xmlns = "https://www.w3.org/2000/svg";
 	let xlinkns  = "http://www.w3.org/1999/xlink";
 
 	let box = {left:20, top: 50, right: 320, bottom: 350 };
