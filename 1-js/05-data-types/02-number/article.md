@@ -50,10 +50,10 @@ let mсs = 0.000001;
 Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
 
 ```js
-let mcs = 1e-6; // six zeroes to the left from 1
+let mcs = 1e-6; // five zeroes to the left from 1 and total of six digits
 ```
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
+If we count the zeroes in `0.000001`, there are 5 of them. So naturally it's `1e-6`.
 
 In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
