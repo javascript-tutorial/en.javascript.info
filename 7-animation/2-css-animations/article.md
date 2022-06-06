@@ -256,6 +256,10 @@ That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then 
 
 But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site <http://cubic-bezier.com/>.
 
+Or you can do it right in the developer tools dashboard in Chrome:
+
+https://user-images.githubusercontent.com/104252639/164887739-d17fca89-de67-4171-9a8a-037301abf0e1.jpg
+
 ### Steps
 
 The timing function `steps(number of steps[, start/end])` allows splitting an transition into multiple steps.
