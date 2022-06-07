@@ -26,7 +26,7 @@ As you can see, there's only lookbehind part in this regexp.
 
 It works like this:
 - At every position in the text.
-- Check if it's preceeded by `pattern:<body.*?>`.
+- Check if it's preceded by `pattern:<body.*?>`.
 - If it's so then we have the match.
 
 The tag `pattern:<body.*?>` won't be returned. The result of this regexp is literally an empty string, but it matches only at positions preceeded by `pattern:<body.*?>`.
