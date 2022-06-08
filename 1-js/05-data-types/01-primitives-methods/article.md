@@ -104,7 +104,7 @@ if (zero) { // zero is true, because it's an object
 }
 ```
 
-On the other hand, using the same functions `String/Number/Boolean` without `new` is a totally sane and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+On the other hand, using the same functions `String/Number/Boolean` without `new` is totally same and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
 
 For example, this is entirely valid:
 ```js
