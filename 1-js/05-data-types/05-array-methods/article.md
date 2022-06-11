@@ -519,7 +519,7 @@ The call to `split(s)` with an empty `s` would split the string into an array of
 ```js run
 let str = "test";
 
-alert( str.split('') ); // t,e,s,t
+alert( str.split('') ); // ['t', 'e', 's', 't']
 ```
 ````
 
@@ -532,7 +532,7 @@ let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
 
 let str = arr.join(';'); // glue the array into a string using ;
 
-alert( str ); // Bilbo;Gandalf;Nazgul
+alert( str ); // 'Bilbo;Gandalf;Nazgul'
 ```
 
 ### reduce/reduceRight
