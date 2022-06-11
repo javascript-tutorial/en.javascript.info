@@ -510,7 +510,7 @@ The `split` method has an optional second numeric argument -- a limit on the arr
 ```js run
 let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
 
-alert(arr); // Bilbo, Gandalf
+alert(arr); // ['Bilbo', 'Gandalf']
 ```
 
 ````smart header="Split into letters"
