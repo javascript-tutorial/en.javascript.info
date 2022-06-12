@@ -217,7 +217,7 @@ The range object that we created in the example above has following properties:
 
 ## Range selection methods
 
-There are many convenience methods to manipulate ranges.
+There are many convenient methods to manipulate ranges.
 
 We've already seen `setStart` and `setEnd`, here are other similar methods.
 
