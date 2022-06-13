@@ -260,13 +260,14 @@ Note that the methods use `===` comparison. So, if we look for `false`, it finds
 
 If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
 
-Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+Also, a minor, but noteworthy feature of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
+alert( arr.indexOf(NaN) ); // -1 (should be 0, but equality test === doesn't work for NaN)
 alert( arr.includes(NaN) );// true (correct)
 ```
+
 
 ### find and findIndex
 
