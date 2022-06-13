@@ -169,7 +169,7 @@ The first step marks the roots:
 
 ![](garbage-collection-2.svg)
 
-Then we follow their references are mark referenced objects:
+Then we follow their references and mark referenced objects:
 
 ![](garbage-collection-3.svg)
 
