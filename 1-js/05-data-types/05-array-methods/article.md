@@ -249,6 +249,10 @@ alert( arr.indexOf(0) ); // 1
 alert( arr.indexOf(false) ); // 2
 alert( arr.indexOf(null) ); // -1
 
+let fruits = ['Plum', 'Apple', 'Orange', 'Plum']
+// note that the lastIndexOf method looks for from the end, but index counted from beginning
+alert( fruits.lastIndexOf(Plum)) // 3
+
 alert( arr.includes(1) ); // true
 ```
 
