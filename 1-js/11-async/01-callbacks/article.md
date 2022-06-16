@@ -87,7 +87,7 @@ loadScript('/my/script.js', function() {
 });
 ```
 
-That's the idea: the second argument is a function (usually anonymous) that runs when the action is completed.
+That's the idea: the second argument is a function (usually anonymous) that runs when the action is completed. To understand `onload` read [Document and resource loading](/onload-onerror#loading-a-script).
 
 Here's a runnable example with a real script:
 
