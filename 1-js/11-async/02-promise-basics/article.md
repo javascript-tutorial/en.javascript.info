@@ -266,7 +266,9 @@ That's very convenient, because `finally` is not meant to process a promise resu
     new Promise((resolve, reject) => {
       setTimeout(() => resolve("result"), 1000);
     })
+      *!*
       .finally(() => { throw new Error("error"); })
+      */!*
       .catch((err) => alert(err)); // <-- .catch handles the error object
   ```
 
