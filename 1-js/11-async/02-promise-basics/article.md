@@ -258,7 +258,7 @@ That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are 
       .catch(err => alert(err));  // <-- .catch handles the error object
     ```
 
-That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
+That's very convenient, because `finally` is not meant to process a promise result. So it passes it through. However, if `finally` throws an error, that promise will be rejected with that value instead.
 
 We'll talk more about promise chaining and result-passing between handlers in the next chapter.
 
