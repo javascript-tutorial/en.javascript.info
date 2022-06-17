@@ -242,7 +242,7 @@ That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are 
     For instance, here the result is passed through `finally` to `then`:
     ```js run
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve("result"), 2000)
+      setTimeout(() => resolve("result"), 2000);
     })
       .finally(() => alert("Promise ready"))
       .then(result => alert(result)); // <-- .then handles the result
@@ -260,14 +260,14 @@ That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are 
 
 That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
 
-  However, if `finally` throws an error, that promise will be rejected with that value instead.
+    However, if `finally` throws an error, that promise will be rejected with that value instead.
 
-  ```js run
-  new Promise((resolve, reject) => {
-    throw new Error("error");
-  })
-    .finally(() => { throw new Error("new error"); })
-    .catch((err) => alert(err)); // <-- .catch handles the new error object
+    ```js run
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve("result"), 1000);
+    })
+      .finally(() => { throw new Error("error"); })
+      .catch((err) => alert(err)); // <-- .catch handles the error object
   ```
 
 We'll talk more about promise chaining and result-passing between handlers in the next chapter.
