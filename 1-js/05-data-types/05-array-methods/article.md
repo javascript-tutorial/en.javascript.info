@@ -423,6 +423,7 @@ Literally, all elements are converted to strings for comparisons. For strings, l
 To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
 
 The function should compare two arbitrary values and return:
+
 ```js
 function compare(a, b) {
   if (a > b) return 1; // if the first value is greater than the second
@@ -667,7 +668,6 @@ So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
 
-
 ## Array.isArray
 
 Arrays do not form a separate language type. They are based on objects.
@@ -780,6 +780,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
   These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
 
   We can use `every` to compare arrays:
+  
   ```js run
   function arraysEqual(arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
