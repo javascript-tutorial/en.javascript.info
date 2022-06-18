@@ -96,7 +96,7 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 [recent browser="new"]
 
-Let's say we want a last element of the array.
+Let's say we want the last element of the array.
 
 Some programming languages allow to use negative indexes for the same purpose, like `fruits[-1]`.
 
@@ -403,7 +403,7 @@ It's rarely used, because square brackets `[]` are shorter. Also, there's a tric
 
 If `new Array` is called with a single argument which is a number, then it creates an array *without items, but with the given length*.
 
-Let's see how one can shoot themself in the foot:
+Let's see how one can shoot themselves in the foot:
 
 ```js run
 let arr = new Array(2); // will it create an array of [2] ?
