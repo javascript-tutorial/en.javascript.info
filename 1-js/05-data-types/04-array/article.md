@@ -153,9 +153,9 @@ A stack is usually illustrated as a pack of cards: new cards are added to the to
 
 For stacks, the latest pushed item is received first, that's also called LIFO (Last-In-First-Out) principle. For queues, we have FIFO (First-In-First-Out).
 
-Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements both to/from the beginning or the end.
+Arrays in JavaScript can work both as a queue and as a stack. They allow you to add/remove elements, both to/from the beginning or the end.
 
-In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+In computer science, the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
 
 **Methods that work with the end of the array:**
 
@@ -399,7 +399,7 @@ There is one more syntax to create an array:
 let arr = *!*new Array*/!*("Apple", "Pear", "etc");
 ```
 
-It's rarely used, because square brackets `[]` are shorter. Also there's a tricky feature with it.
+It's rarely used, because square brackets `[]` are shorter. Also, there's a tricky feature with it.
 
 If `new Array` is called with a single argument which is a number, then it creates an array *without items, but with the given length*.
 
