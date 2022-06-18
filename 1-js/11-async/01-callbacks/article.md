@@ -77,6 +77,8 @@ function loadScript(src, *!*callback*/!*) {
 }
 ```
 
+The `onload` event is described in the article <info:onload-onerror#loading-a-script>, it basically executes a function after the script is loaded and executed.
+
 Now if we want to call new functions from the script, we should write that in the callback:
 
 ```js
