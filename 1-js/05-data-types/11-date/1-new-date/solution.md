@@ -13,6 +13,6 @@ We could also create a date from a string, like this:
 
 ```js run
 //new Date(datastring)
-let d2 = new Date("February 20, 2012 03:12:00");
+let d2 = new Date("2012-02-20T03:12");
 alert( d2 );
 ```
