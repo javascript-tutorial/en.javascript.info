@@ -133,7 +133,7 @@ Also there is a special method for that, `elem.style.removeProperty('style prope
 ```js run
 document.body.style.background = 'red'; //set background to red
 
-setTimeout(() => document.body.style.removeProperty('background')); // remove background after 1 second
+setTimeout(() => document.body.style.removeProperty('background'), 1000); // remove background after 1 second
 ```
 
 ````smart header="Full rewrite with `style.cssText`"
