@@ -297,6 +297,6 @@ Please note that all scheduling methods do not *guarantee* the exact delay.
 For example, the in-browser timer may slow down for a lot of reasons:
 - The CPU is overloaded.
 - The browser tab is in the background mode.
-- The laptop is on battery.
+- The laptop is on battery saving mode.
 
 All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.
