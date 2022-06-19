@@ -100,7 +100,6 @@ map.set('1', 'str1')
 ```
 ````
 
-
 ## Iteration over Map
 
 For looping over a `map`, there are 3 methods:
@@ -225,6 +224,7 @@ alert(obj.orange); // 2
 A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
 
 We could also make line `(*)` shorter:
+
 ```js
 let obj = Object.fromEntries(map); // omit .entries()
 ```
