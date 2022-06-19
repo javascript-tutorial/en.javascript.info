@@ -6,6 +6,19 @@ For example, outputting goods from a list one after another or just running the 
 
 *Loops* are a way to repeat the same code multiple times.
 
+```smart header="The for..of and for..in loops"
+A small announcement for advanced readers.
+
+This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+
+If you came to this article searching for other types of loops, here are the pointers:
+
+- See [for..in](info:object#forin) to loop over object properties.
+- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+
+Otherwise, please read on.
+```
+
 ## The "while" loop
 
 The `while` loop has the following syntax:

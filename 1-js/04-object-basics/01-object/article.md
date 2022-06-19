@@ -355,7 +355,7 @@ In the code above, the property `obj.test` technically exists. So the `in` opera
 Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 
 
-## The "for..in" loop
+## The "for..in" loop [#forin]
 
 To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
 
