@@ -278,9 +278,10 @@ There are important differences:
 To summarize:
 
 - A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
-- If a `finally` handler returns something, it's ignored. The notable exception is when `finally` throws an error, then the execution goes to a nearest error handler.
+- If a `finally` handler returns something, it's ignored.
+- When `finally` throws an error, then the execution goes to a nearest error handler.
 
-That's all fine if we use `finally` the right way, how it's supposed to be used: for generic cleanup procedures.
+These features are helpful and make things work just the right way if we `finally` how it's supposed to be used: for generic cleanup procedures.
 
 ````smart header="We can attach handlers to settled promises"
 If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
