@@ -1,3 +1,4 @@
+
 # XMLHttpRequest
 
 `XMLHttpRequest` is a built-in browser object that allows to make HTTP requests in JavaScript.
@@ -23,12 +24,15 @@ Let's see the asynchronous first, as it's used in the majority of cases.
 To do the request, we need 3 steps:
 
 1. Create `XMLHttpRequest`:
+
     ```js
     let xhr = new XMLHttpRequest();
     ```
+    
     The constructor has no arguments.
 
 2. Initialize it, usually right after `new XMLHttpRequest`:
+
     ```js
     xhr.open(method, URL, [async, user, password])
     ```
@@ -476,7 +480,6 @@ xhr.open('POST', 'http://anywhere.com/request');
 ```
 
 See the chapter <info:fetch-crossorigin> for details about cross-origin headers.
-
 
 ## Summary
 
