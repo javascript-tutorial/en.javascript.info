@@ -1,3 +1,4 @@
+
 # Mouse events
 
 In this chapter we'll get into more details about mouse events and their properties.
