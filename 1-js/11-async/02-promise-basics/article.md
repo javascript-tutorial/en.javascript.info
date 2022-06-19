@@ -127,9 +127,9 @@ That's fine. We immediately have a resolved promise.
 The properties `state` and `result` of the Promise object are internal. We can't directly access them. We can use the methods `.then`/`.catch`/`.finally` for that. They are described below.
 ```
 
-## Consumers: then, catch, finally
+## Consumers: then, catch
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then`, `.catch` and `.finally`.
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then` and `.catch`.
 
 ### then
 
@@ -212,59 +212,82 @@ promise.catch(alert); // shows "Error: Whoops!" after 1 second
 
 The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a shorthand.
 
-### finally
+## Cleanup: finally
 
 Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
 
-The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` always runs when the promise is settled: be it resolve or reject.
+The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
 
-`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed anymore, no matter what the outcome is.
+The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
 
-Like this:
+E.g. stopping loading indicators, closing no longer needed connections etc.
+
+Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+
+The code may look like this:
 
 ```js
 new Promise((resolve, reject) => {
-  /* do something that takes time, and then call resolve/reject */
+  /* do something that takes time, and then call resolve or maybe reject */
 })
 *!*
   // runs when the promise is settled, doesn't matter successfully or not
   .finally(() => stop loading indicator)
-  // so the loading indicator is always stopped before we process the result/error
+  // so the loading indicator is always stopped before we go on
 */!*
   .then(result => show result, err => show error)
 ```
 
-That said, `finally(f)` isn't exactly an alias of `then(f,f)` though. There are few subtle differences:
+Please note that `finally(f)` isn't exactly an alias of `then(f,f)` though.
+
+There are important differences:
 
 1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
-2. A `finally` handler "passes through" the result or error to the next handler.
+
+    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled in the next handler.
+2. A `finally` handler "passes through" the result or error to the next suitable handler.
 
     For instance, here the result is passed through `finally` to `then`:
+
     ```js run
     new Promise((resolve, reject) => {
-      setTimeout(() => resolve("result"), 2000)
+      setTimeout(() => resolve("value"), 2000);
     })
-      .finally(() => alert("Promise ready"))
-      .then(result => alert(result)); // <-- .then handles the result
+      .finally(() => alert("Promise ready")) // triggers first
+      .then(result => alert(result)); // <-- .then shows "value"
     ```
 
-    And here there's an error in the promise, passed through `finally` to `catch`:
+    As you can see, the `value` returned by the first promise is passed through `finally` to the next `then`.
+
+    That's very convenient, because `finally` is not meant to process a promise result. As said, it's a place to do generic cleanup, no matter what the outcome was.
+
+    And here's an example of an error, for us to see how it's passed through `finally` to `catch`:
 
     ```js run
     new Promise((resolve, reject) => {
       throw new Error("error");
     })
-      .finally(() => alert("Promise ready"))
-      .catch(err => alert(err));  // <-- .catch handles the error object
+      .finally(() => alert("Promise ready")) // triggers first
+      .catch(err => alert(err));  // <-- .catch shows the error
     ```
 
-That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
+3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
 
-We'll talk more about promise chaining and result-passing between handlers in the next chapter.
+    The only exception from this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
 
+To summarize:
+
+- A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
+- If a `finally` handler returns something, it's ignored. The notable exception is when `finally` throws an error, then the execution goes to a nearest error handler.
+
+That's all fine if we use `finally` the right way, how it's supposed to be used: for generic cleanup procedures.
 
 ````smart header="We can attach handlers to settled promises"
-If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, if a promise has already settled, they just run:
+If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
+
+Sometimes, it might be that a promise is already settled when we add a handler to it.
+
+In such case, these handlers just run immediately:
 
 ```js run
 // the promise becomes resolved immediately upon creation
@@ -278,9 +301,9 @@ Note that this makes promises more powerful than the real life "subscription lis
 Promises are more flexible. We can add handlers any time: if the result is already there, they just execute.
 ````
 
-Next, let's see more practical examples of how promises can help us write asynchronous code.
-
 ## Example: loadScript [#loadscript]
+
+Next, let's see more practical examples of how promises can help us write asynchronous code.
 
 We've got the `loadScript` function for loading a script from the previous chapter.
 
