@@ -1,3 +1,4 @@
+
 # Node properties: type, tag and contents
 
 Let's get a more in-depth look at DOM nodes.
@@ -10,7 +11,7 @@ Different DOM nodes may have different properties. For instance, an element node
 
 Each DOM node belongs to the corresponding built-in class.
 
-The root of the hierarchy is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), that is inherited by  [Node](http://dom.spec.whatwg.org/#interface-node), and other DOM nodes inherit from it.
+The root of the hierarchy is [EventTarget](https://dom.spec.whatwg.org/#eventtarget), that is inherited by  [Node](https://dom.spec.whatwg.org/#interface-node), and other DOM nodes inherit from it.
 
 Here's the picture, explanations to follow:
 
