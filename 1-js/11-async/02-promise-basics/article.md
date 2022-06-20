@@ -273,7 +273,7 @@ There are important differences:
 
 3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
 
-    The only exception from this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+    The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
 
 To summarize:
 
