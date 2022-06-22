@@ -19,7 +19,7 @@ For instance, the CSS below animates changes of `background-color` for 3 seconds
 }
 ```
 
-Now if an element has `.animated` class, any change of `background-color` is animated during 3 seconds.
+As soon as an element has `.animated` class, any change of `background-color` is animated during 3 seconds.
 
 Click the button below to animate the background:
 
