@@ -676,7 +676,7 @@ So `typeof` does not help to distinguish a plain object from an array:
 
 ```js run
 alert(typeof {}); // object
-alert(typeof []); // same
+alert(typeof []); // object (same)
 ```
 
 ...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
@@ -767,7 +767,7 @@ A cheat sheet of array methods:
   - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
 
 - Additionally:
-  - `Array.isArray(arr)` checks `arr` for being an array.
+  - `Array.isArray(value)` checks `value` for being an array, if so return true, otherwise false.
 
 Please note that methods `sort`, `reverse` and `splice` modify the array itself.
 
