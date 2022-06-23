@@ -277,7 +277,7 @@ db.transaction(store[, type]);
   - `readonly` -- can only read, the default.
   - `readwrite` -- can only read and write the data, but not create/remove/alter object stores.
 
-There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
+There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `upgradeneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
 ```smart header="Why are there different types of transactions?"
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
