@@ -767,7 +767,7 @@ A cheat sheet of array methods:
   - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
 
 - Additionally:
-  - `Array.isArray(value)` checks `value` for being an array, if so return true, otherwise false.
+  - `Array.isArray(value)` checks `value` for being an array, if so returns `true`, otherwise `false`.
 
 Please note that methods `sort`, `reverse` and `splice` modify the array itself.
 
@@ -780,7 +780,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
   These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
 
   We can use `every` to compare arrays:
-  
+
   ```js run
   function arraysEqual(arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
