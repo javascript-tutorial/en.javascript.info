@@ -751,7 +751,7 @@ A cheat sheet of array methods:
   - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
 
 - To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if nothing is found.
+  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
   - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
