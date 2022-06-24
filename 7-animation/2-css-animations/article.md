@@ -256,9 +256,18 @@ That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then 
 
 But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site <http://cubic-bezier.com/>.
 
-Or you can do it right in the developer tools dashboard in Chrome:
+Or you can do it right in the developer tools dashboard (most browsers supports editing Bezier curve):
 
-https://user-images.githubusercontent.com/104252639/164887739-d17fca89-de67-4171-9a8a-037301abf0e1.jpg
+- First of all turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
+- Select the `Elements` panel, then pay attention to the `Styles` sub-panel.
+
+![image](https://user-images.githubusercontent.com/73550760/175558991-7fef3a19-7808-4e83-881e-cfad4805a194.png)
+
+Here you need to find your element and click on transition-timing-function property
+
+![Screenshot_4](https://user-images.githubusercontent.com/104252639/164887739-d17fca89-de67-4171-9a8a-037301abf0e1.jpg)
+
+Here you go, you can experiment with your Bezier curve as you wish
 
 ### Steps
 
