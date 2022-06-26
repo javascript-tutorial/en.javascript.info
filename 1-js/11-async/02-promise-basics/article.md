@@ -60,7 +60,7 @@ We can see two things by running the code above:
 1. The executor is called automatically and immediately (by `new Promise`).
 2. The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don't need to create them. We should only call one of them when ready.
 
-    After one second of "processing" the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
+    After one second of "processing", the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
 
     ![](promise-resolve-1.svg)
 
@@ -129,7 +129,7 @@ The properties `state` and `result` of the Promise object are internal. We can't
 
 ## Consumers: then, catch
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then` and `.catch`.
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
 
 ### then
 
@@ -144,9 +144,9 @@ promise.then(
 );
 ```
 
-The first argument of `.then` is a function that runs when the promise is resolved, and receives the result.
+The first argument of `.then` is a function that runs when the promise is resolved and receives the result.
 
-The second argument of `.then` is a function that runs when the promise is rejected, and receives the error.
+The second argument of `.then` is a function that runs when the promise is rejected and receives the error.
 
 For instance, here's a reaction to a successfully resolved promise:
 
@@ -220,7 +220,7 @@ The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs al
 
 The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
 
-E.g. stopping loading indicators, closing no longer needed connections etc.
+E.g. stopping loading indicators, closing no longer needed connections, etc.
 
 Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
 
@@ -244,7 +244,7 @@ There are important differences:
 
 1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
 
-    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled in the next handler.
+    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled by the next handler.
 2. A `finally` handler "passes through" the result or error to the next suitable handler.
 
     For instance, here the result is passed through `finally` to `then`:
@@ -273,13 +273,13 @@ There are important differences:
 
 3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
 
-    The only exception from this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+    The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
 
 To summarize:
 
 - A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
 - If a `finally` handler returns something, it's ignored.
-- When `finally` throws an error, then the execution goes to a nearest error handler.
+- When `finally` throws an error, then the execution goes to the nearest error handler.
 
 These features are helpful and make things work just the right way if we `finally` how it's supposed to be used: for generic cleanup procedures.
 
