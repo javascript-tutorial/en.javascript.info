@@ -216,6 +216,8 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 
 - Getting/setting the prototype using the built-in `__proto__` getter/setter isn't recommended, it's now in the Annex B of the specification.
 
-- We covered prototype-less objects, created with `Object.create(null)` or `{__proto__: null}.
+- We also covered prototype-less objects, created with `Object.create(null)` or `{__proto__: null}`.
 
-    These objects are used as dictionaries, to store any (possibly user-generated) keys. Without explicitly `null` prototype, objects inherit built-in methods and `__proto__` getter/setter from `Object.prototype`, making corresponding keys "occupied" and potentially causing side effects. With `null` prototype objects are truly empty.
+    These objects are used as dictionaries, to store any (possibly user-generated) keys.
+
+    Without explicitly `null` prototype, objects inherit built-in methods and `__proto__` getter/setter from `Object.prototype`, making corresponding keys "occupied" and potentially causing side effects. With `null` prototype objects are truly empty.
