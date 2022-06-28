@@ -76,7 +76,7 @@ There're so many ways to manage `[[Prototype]]`. How did that happen? Why?
 
 That's for historical reasons.
 
-The prototypal inheritance was in the language since its dawn, but the ways to manage it evolved over time.
+The prototypes inheritance was in the language since its dawn, but the ways to manage it evolved over time.
 
 - The `prototype` property of a constructor function has worked since very ancient times. It's the oldest way to create objects with a given prototype.
 - Later, in the year 2012, `Object.create` appeared in the standard. It gave the ability to create objects with a given prototype, but did not provide the ability to get/set it. Some browsers implemented the non-standard `__proto__` accessor that allowed the user to get/set a prototype at any time, to give more flexibility to developers.
