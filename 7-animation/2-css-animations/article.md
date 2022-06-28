@@ -259,7 +259,7 @@ But how do we make a Bezier curve for a specific task? There are many tools.
 - For instance, we can do it on the site <https://cubic-bezier.com>.
 - Browser developer tools also have special support for Bezier curves in CSS:
     1. Open the developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-    2. Select the `Elements` tab, then pay attention to the `Styles` sub-panel at the right side.
+    2. Select the `Elements` tab, then pay attention to the `Styles` sub-panel on the right side.
     3. CSS properties with a word `cubic-bezier` will have an icon before this word.
     4. Click this icon to edit the curve.
 
