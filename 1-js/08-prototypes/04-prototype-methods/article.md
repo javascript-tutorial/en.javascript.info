@@ -220,4 +220,4 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 
     These objects are used as dictionaries, to store any (possibly user-generated) keys.
 
-    Without explicitly `null` prototype, objects inherit built-in methods and `__proto__` getter/setter from `Object.prototype`, making corresponding keys "occupied" and potentially causing side effects. With `null` prototype objects are truly empty.
+    Normally, objects inherit built-in methods and `__proto__` getter/setter from `Object.prototype`, making corresponding keys "occupied" and potentially causing side effects. With `null` prototype, objects are truly empty.
