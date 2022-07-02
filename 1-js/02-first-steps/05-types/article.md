@@ -68,7 +68,7 @@ We'll see more about working with numbers in the chapter <info:number>.
 
 ## BigInt [#bigint-type]
 
-In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that’s `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives. Technically "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> a lot of integer values can't be represented using this data type: some of them are "missed" due to the limitation caused by their internal binary representation. For example, all the odd integers greater than <code>(2<sup>53</sup>-1)</code> are "missed" in the "number" type.
+In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives. Technically "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> a lot of integer values can't be represented using this data type: some of them are "missed" due to the limitation caused by their internal binary representation. For example, all the odd integers greater than <code>(2<sup>53</sup>-1)</code> are "missed" in the "number" type.
 
 For most purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough, but sometimes we need the entire range of really big integers without missing any of them, e.g. for cryptography or microsecond-precision timestamps.
 
