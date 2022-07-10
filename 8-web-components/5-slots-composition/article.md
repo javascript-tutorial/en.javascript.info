@@ -269,7 +269,7 @@ The shadow DOM template with proper slots:
 ```
 
 1. `<span slot="title">` goes into `<slot name="title">`.
-2. There are many `<li slot="item">` in the template, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
+2. There are many `<li slot="item">` in the `<custom-menu>`, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
 
 The flattened DOM becomes:
 
