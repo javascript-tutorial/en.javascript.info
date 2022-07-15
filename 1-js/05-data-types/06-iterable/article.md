@@ -218,7 +218,7 @@ alert(arr.pop()); // World (method works)
 
 The same happens for an iterable:
 
-```js
+```js run
 // assuming that range is taken from the example above
 let arr = Array.from(range);
 alert(arr); // 1,2,3,4,5 (array toString conversion works)
@@ -233,7 +233,7 @@ The optional second argument `mapFn` can be a function that will be applied to e
 
 For instance:
 
-```js
+```js run
 // assuming that range is taken from the example above
 
 // square each number
