@@ -256,6 +256,8 @@ For instance, let's imagine that we need to declare a function `welcome()` depen
 If we use Function Declaration, it won't work as intended:
 
 ```js run
+"use strict";
+
 let age = prompt("What is your age?", 18);
 
 // conditionally declare a function
