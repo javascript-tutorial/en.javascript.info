@@ -189,7 +189,7 @@ The AND `&&` operator does the following:
 
 In other words, AND returns the first falsy value or the last value if none were found.
 
-The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the last *truthy* one.
 
 Examples:
 
