@@ -206,7 +206,7 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 showMessage("Ann"); // Ann: no text given
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
+Now if the `text` parameter is not passed, or if the argument passed evaluates to `undefined`, it will get the value `"no text given"`
 
 Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
 
