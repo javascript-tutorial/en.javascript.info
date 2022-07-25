@@ -24,7 +24,7 @@ The `function` keyword goes first, then goes the *name of the function*, then a 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...body...
+ // body
 }
 ```
 
