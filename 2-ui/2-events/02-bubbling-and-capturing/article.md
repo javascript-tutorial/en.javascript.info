@@ -83,7 +83,7 @@ A bubbling event goes from the target element straight up. Normally it goes upwa
 
 But any handler may decide that the event has been fully processed and stop the bubbling.
 
-The method for it is `event.stopPropagation()`.
+The method for it is `event.stopPropagation()`. By the way, this method also stops capturing phase, which will be introduced in the next section.
 
 For instance, here `body.onclick` doesn't work if you click on `<button>`:
 
