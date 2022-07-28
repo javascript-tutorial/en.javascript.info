@@ -136,8 +136,8 @@ As we can see from the code, `user` becomes a self-descriptive string or a money
 
 If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toString` and `valueOf`:
 
-- For the `"string"` hint: call `toString` method, and if it doesn't exist, then `valueOf` (so `toString` has the priority for string conversions).
-- For other hints: `valueOf`, and if it doesn't exist, then `toString` (so `valueOf` has the priority for maths).
+- For the `"string"` hint: call `toString` method, and if it doesn't exist or if it returns an object instead of a primitive value, then call `valueOf` (so `toString` has the priority for string conversions).
+- For other hints: call `valueOf`, and if it doesn't exist or if it returns an object instead of a primitive value, then call `toString` (so `valueOf` has the priority for maths).
 
 Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
 
