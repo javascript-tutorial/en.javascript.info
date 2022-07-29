@@ -54,3 +54,18 @@ function parse(expr) {
 
 alert( parse("-1.23 * 3.45") );  // -1.23, *, 3.45
 ```
+
+Also there is another solution for it, with Named groups:
+
+```js run
+function parse(expr) {
+  // We can even skip Non-capturing `pattern:?:`
+	let regexp = /(?<a>-?\d+(?:\.\d+)?)\s*(?<operator>[-+*\/])\s*(?<b>-?\d+(?:\.\d+)?)/;
+
+	let result = expr.match(regexp);
+
+	return [result.groups.a, result.groups.operator, result.groups.b];
+}
+
+alert( parse("-1.23 * 3.45") );  // -1.23, *, 3.45;
+```
