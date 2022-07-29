@@ -14,3 +14,11 @@ let regexp = /<style(>|\s.*?>)/g;
 
 alert( '<style> <styler> <style test="...">'.match(regexp) ); // <style>, <style test="...">
 ```
+
+Also another solution could be to use `\b`:
+
+```js run
+let regexp = /<style\b.*?>/gs; // please note `s` flag, for times there is a `\n` in place `.`
+
+alert( '<style> <styler> <style test="...">'.match(regexp) ); // <style>, <style test="...">
+```
