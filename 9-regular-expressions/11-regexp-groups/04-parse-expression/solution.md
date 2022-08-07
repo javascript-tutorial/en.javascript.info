@@ -10,8 +10,8 @@ The full regular expression: `pattern:-?\d+(\.\d+)?\s*[-+*/]\s*-?\d+(\.\d+)?`.
 
 It has 3 parts, with `pattern:\s*` between them:
 1. `pattern:-?\d+(\.\d+)?` - the first number,
-1. `pattern:[-+*/]` - the operator,
-1. `pattern:-?\d+(\.\d+)?` - the second number.
+2. `pattern:[-+*/]` - the operator,
+3. `pattern:-?\d+(\.\d+)?` - the second number.
 
 To make each of these parts a separate element of the result array, let's enclose them in parentheses: `pattern:(-?\d+(\.\d+)?)\s*([-+*/])\s*(-?\d+(\.\d+)?)`.
 
