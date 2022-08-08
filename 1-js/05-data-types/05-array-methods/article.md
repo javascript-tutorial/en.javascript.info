@@ -262,8 +262,8 @@ The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`,
 ```js run
 let fruits = ['Apple', 'Orange', 'Apple']
 
-alert( arr.indexOf('Apple') ); // 0 (first Apple)
-alert( arr.lastIndexOf('Apple') ); // 2 (last Apple)
+alert( fruits.indexOf('Apple') ); // 0 (first Apple)
+alert( fruits.lastIndexOf('Apple') ); // 2 (last Apple)
 ```
 
 ````smart header="The `includes` method handles `NaN` correctly"
