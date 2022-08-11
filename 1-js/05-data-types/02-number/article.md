@@ -464,7 +464,9 @@ For different numeral systems:
 For regular number tests:
 
 - `isNaN(value)` converts its argument to a number and then tests it for being `NaN`
-- `isFinite(value)` converts its argument to a number and returns `true` if it's a regular number, not `NaN/Infinity/-Infinity`
+- `Number.isNaN(value)` checks whether its argument belongs to the `number` type, and if so, tests it for being `NaN`
+- `isFinite(value)` converts its argument to a number and then tests it for not being `NaN/Infinity/-Infinity`
+- `Number.isFinite(value)` checks whether its argument belongs to the `number` type, and if so, tests it for not being `NaN/Infinity/-Infinity`
 
 For converting values like `12pt` and `100px` to a number:
 
