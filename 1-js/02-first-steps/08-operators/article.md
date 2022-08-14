@@ -303,9 +303,9 @@ Such operators have the same precedence as a normal assignment, so they run afte
 ```js run
 let n = 2;
 
-n *= 3 + 5;
+n *= 3 + 5; // right part evaluated first, same as n *= 8
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16  
 ```
 
 ## Increment/decrement
