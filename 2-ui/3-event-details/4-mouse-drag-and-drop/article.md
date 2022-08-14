@@ -18,7 +18,7 @@ The basic Drag'n'Drop algorithm looks like this:
 2. Then on `mousemove` move it by changing `left/top` with `position:absolute`.
 3. On `mouseup` - perform all actions related to finishing the drag'n'drop.
 
-These are the basics. Later we'll see how to other features, such as highlighting current underlying elements while we drag over them.
+These are the basics. Later we'll see how to add other features, such as highlighting current underlying elements while we drag over them.
 
 Here's the implementation of dragging a ball:
 

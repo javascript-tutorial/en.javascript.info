@@ -29,7 +29,7 @@ And stood awhile in thought.
         timing: bounce,
         draw: function(progress) {
           let result = (to - from) * progress + from;
-          textArea.value = text.substr(0, Math.ceil(result))
+          textArea.value = text.slice(0, Math.ceil(result))
         }
       });
     }

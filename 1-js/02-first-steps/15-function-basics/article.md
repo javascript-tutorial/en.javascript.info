@@ -24,7 +24,7 @@ The `function` keyword goes first, then goes the *name of the function*, then a 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...body...
+ // body
 }
 ```
 
@@ -206,7 +206,13 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 showMessage("Ann"); // Ann: no text given
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
+Now if the `text` parameter is not passed, it will get the value `"no text given"`.
+
+The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+
+```js
+showMessage("Ann", undefined); // Ann: no text given
+```
 
 Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
 
