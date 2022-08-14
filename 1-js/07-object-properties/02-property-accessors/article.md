@@ -1,7 +1,7 @@
 
 # Property getters and setters
 
-There are two kinds of object properties.
+There are two kinds of object property.
 
 The first kind is *data properties*. We already know how to work with them. All properties that we've been using until now were data properties.
 
