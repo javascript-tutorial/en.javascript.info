@@ -2,7 +2,7 @@
 
 Create a regexp to find strings in double quotes `subject:"..."`.
 
-The strings should support escaping, the same way as JavaScript strings do. For instance, quotes can be inserted as `subject:\"` a newline as `subject:\n`, and the slash itself as `subject:\\`.
+The strings should support escaping, the same way as JavaScript strings do. For instance, quotes can be inserted as `subject:\"` a newline as `subject:\n`, and the backslash itself as `subject:\\`.
 
 ```js
 let str = "Just like \"here\".";
@@ -18,11 +18,11 @@ Examples of strings to match:
 ```js
 .. *!*"test me"*/!* ..  
 .. *!*"Say \"Hello\"!"*/!* ... (escaped quotes inside)
-.. *!*"\\"*/!* ..  (double slash inside)
-.. *!*"\\ \""*/!* ..  (double slash and an escaped quote inside)
+.. *!*"\\"*/!* ..  (double backslash inside)
+.. *!*"\\ \""*/!* ..  (double backslash and an escaped quote inside)
 ```
 
-In JavaScript we need to double the slashes to pass them right into the string, like this:
+In JavaScript we need to double the backslashes to pass them right into the string, like this:
 
 ```js run
 let str = ' .. "test me" .. "Say \\"Hello\\"!" .. "\\\\ \\"" .. ';
