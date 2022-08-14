@@ -342,7 +342,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
     ```js run
     alert( Number.isNaN(NaN) ); // true
     alert( Number.isNaN("str" / 2) ); // true
-    
+
     // Note the difference:
     alert( Number.isNaN("str") ); // false, because "str" belongs to the string type, not the number type
     alert( isNaN("str") ); // true, because isNaN converts string "str" into a number and gets NaN as a result of this conversion
@@ -354,16 +354,16 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
     alert( Number.isFinite(123) ); // true
     alert( Number.isFinite(Infinity) ); //false
     alert( Number.isFinite(2 / 0) ); // false
-    
+
     // Note the difference:
     alert( Number.isFinite("123") ); // false, because "123" belongs to the string type, not the number type
     alert( isFinite("123") ); // true, because isFinite converts string "123" into a number 123
     ```
-    
-Do not consider `Number.isNaN` and `Number.isFinite` methods as the more "correct" versions of `isNaN` and `isFinite` functions. They complement each other and are equally essential for different tasks.
+
+In a way, `Number.isNaN` and `Number.isFinite` are simpler and more straightforward than `isNaN` and `isFinite` functions. In practice though, `isNaN` and `isFinite` are mostly used, as they're shorter to write.
 ````
 
-```smart header="Compare with `Object.is`"
+```smart header="Comparison with `Object.is`"
 There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
@@ -371,7 +371,7 @@ There is a special built-in method `Object.is` that compares values like `===`, 
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
-This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+We mention `Object.is` here, because it's often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 
