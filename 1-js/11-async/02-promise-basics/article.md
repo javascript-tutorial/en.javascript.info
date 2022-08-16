@@ -36,7 +36,7 @@ So to summarize: the executor runs automatically and attempts to perform a job. 
 The `promise` object returned by the `new Promise` constructor has these internal properties:
 
 - `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
-- `result` — initially `undefined`, then changes to `value` when `resolve(value)` called or `error` when `reject(error)` is called.
+- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
 
 So the executor eventually moves `promise` to one of these states:
 
@@ -281,7 +281,7 @@ To summarize:
 - If a `finally` handler returns something, it's ignored.
 - When `finally` throws an error, then the execution goes to the nearest error handler.
 
-These features are helpful and make things work just the right way if we `finally` how it's supposed to be used: for generic cleanup procedures.
+These features are helpful and make things work just the right way if we use `finally` how it's supposed to be used: for generic cleanup procedures.
 
 ````smart header="We can attach handlers to settled promises"
 If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
