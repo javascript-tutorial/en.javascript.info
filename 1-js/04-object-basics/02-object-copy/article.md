@@ -21,7 +21,7 @@ Quite an obvious result, right?
 
 Objects are not like that.
 
-**A variable assigned to an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
+**A variable storing an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
 
 Let's look at an example of such a variable:
 
