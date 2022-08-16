@@ -1,3 +1,6 @@
+importance: 5
+
+---
 
 # Rewrite with arrow functions
 
