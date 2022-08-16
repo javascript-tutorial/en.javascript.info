@@ -43,8 +43,8 @@ There are two ways to implement it.
 
     ```js run
     function pow(x, n) {
-      if (n == 1) {
-        return x;
+      if (n == 0) {
+        return 1;
       } else {
         return x * pow(x, n - 1);
       }
@@ -89,7 +89,7 @@ Here we can rewrite the same using the conditional operator `?` instead of `if` 
 
 ```js run
 function pow(x, n) {
-  return (n == 1) ? x : (x * pow(x, n - 1));
+  return (n == 0) ? 1 : (x * pow(x, n - 1));
 }
 ```
 ````
