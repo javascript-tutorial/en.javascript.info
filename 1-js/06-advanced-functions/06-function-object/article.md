@@ -100,7 +100,7 @@ For instance, in the code below the `ask` function accepts a `question` to ask a
 Once a user provides their answer, the function calls the handlers. We can pass two kinds of handlers:
 
 - A zero-argument function, which is only called when the user gives a positive answer.
-- A function with arguments, which is called in either case and returns an answer.
+- A function with arguments, which is called in else case and returns an answer.
 
 To call `handler` the right way, we examine the `handler.length` property.
 
@@ -326,7 +326,7 @@ welcome(); // Hello, Guest (nested call works)
 
 Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it will always reference the current function.
 
-The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", the way for the function to can call itself reliably.
+The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", the way for the function to call itself reliably.
 
 ```smart header="There's no such thing for Function Declaration"
 The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
