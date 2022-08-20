@@ -136,7 +136,7 @@ We can also use the method [Object.assign](https://developer.mozilla.org/en-US/d
 The syntax is:
 
 ```js
-Object.assign(dest, [src1, src2, src3...])
+Object.assign(dest, src1, src2, src3...)
 ```
 
 - The first argument `dest` is a target object.
