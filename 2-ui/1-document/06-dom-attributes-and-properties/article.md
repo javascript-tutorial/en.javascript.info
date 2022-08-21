@@ -162,7 +162,7 @@ In the example below `id` is modified as an attribute, and we can see the proper
 </script>
 ```
 
-But there are exclusions, for instance `input.value` synchronizes only from attribute -> to property, but not back:
+But there are exclusions, for instance `input.value` synchronizes only from attribute -> property, but not back:
 
 ```html run
 <input>
