@@ -7,9 +7,9 @@ Then we can look for 6 of them using the quantifier `pattern:{6}`.
 As a result, we have the regexp: `pattern:/#[a-f0-9]{6}/gi`.
 
 ```js run
-let regexp = /#[a-f0-9]{6}/gi;
+let regexp = /#[a-f0-9]{6}\b/gi;
 
-let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
+let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2 #12345678"
 
 alert( str.match(regexp) );  // #121212,#AA00ef
 ```
