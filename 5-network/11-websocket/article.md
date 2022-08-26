@@ -91,7 +91,7 @@ Sec-WebSocket-Version: 13
 - `Origin` -- the origin of the client page, e.g. `https://javascript.info`. WebSocket objects are cross-origin by nature. There are no special headers or other limitations. Old servers are unable to handle WebSocket anyway, so there are no compatibility issues. But the `Origin` header is important, as it allows the server to decide whether or not to talk WebSocket with this website.
 - `Connection: Upgrade` -- signals that the client would like to change the protocol.
 - `Upgrade: websocket` -- the requested protocol is "websocket".
-- `Sec-WebSocket-Key` -- a random browser-generated key for security.
+- `Sec-WebSocket-Key` -- a random browser-generated key, used to ensure that the server supports WebSocket protocol. It's random to prevent proxies from caching any following communication.
 - `Sec-WebSocket-Version` -- WebSocket protocol version, 13 is the current one.
 
 ```smart header="WebSocket handshake can't be emulated"
@@ -107,7 +107,7 @@ Connection: Upgrade
 Sec-WebSocket-Accept: hsBlbuDTkk24srzEOTBUlZAlC2g=
 ```
 
-Here `Sec-WebSocket-Accept` is `Sec-WebSocket-Key`, recoded using a special algorithm. The browser uses it to make sure that the response corresponds to the request.
+Here `Sec-WebSocket-Accept` is `Sec-WebSocket-Key`, recoded using a special algorithm. Upon seeing it, the browser understands that the server really does support the WebSocket protocol.
 
 Afterwards, the data is transferred using the WebSocket protocol, we'll see its structure ("frames") soon. And that's not HTTP at all.
 
