@@ -100,6 +100,30 @@ alert( a == b ); // false
 
 For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
 
+````smart header="Const objects can be modified"
+An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
+
+In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
+
+That said, if we really need to make constant object properties, it's also possible, but using totally different methods. We'll mention that in the chapter <info:property-descriptors>.
+````
+
 ## Cloning and merging, Object.assign [#cloning-and-merging-object-assign]
 
 So, copying an object variable creates one more reference to the same object.
@@ -219,37 +243,71 @@ let clone = Object.assign({}, user);
 alert( user.sizes === clone.sizes ); // true, same object
 
 // user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, get the result from the other one
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); // 60, get the result from the other one
 ```
 
-To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning" or "structured cloning". There's [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
 
-We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
-````smart header="Const objects can be modified"
-An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
+### structuredClone
+
+The call `structuredClone(object)` clones the `object` with all nested properties.
+
+Here's how we can use it in our example:
+
+```js run
+let user = {
+  name: "John",
+  sizes: {
+    height: 182,
+    width: 50
+  }
+};
+
+*!*
+let clone = structuredClone(user);
+*/!*
+
+alert( user.sizes === clone.sizes ); // false, different objects
+
+// user and clone are totally unrelated now
+user.sizes.width = 60;    // change a property from one place
+alert(clone.sizes.width); // 50, not related
+```
+
+The `structuredClone` method can clone most data types, such as objects, arrays, primitive values.
+
+It also supports circular references, when an object property references the object itself (directly or via a chain or references).
 
 For instance:
 
 ```js run
-const user = {
-  name: "John"
-};
+let user = {};
+// let's create a circular reference:
+// user.me references the user itself
+user.me = user;
 
-*!*
-user.name = "Pete"; // (*)
-*/!*
-
-alert(user.name); // Pete
+let clone = structuredClone(user);
+alert(clone.me === clone); // true
 ```
 
-It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
+As you can see, `clone.me` references the `clone`, not the `user`! So the circular reference was cloned correctly as well.
 
-In other words, the `const user` gives an error only if we try to set `user=...` as a whole.
+Although, there are cases when `structuredClone` fails.
 
-That said, if we really need to make constant object properties, it's also possible, but using totally different methods. We'll mention that in the chapter <info:property-descriptors>.
-````
+For instance, when an object has a function property:
+
+```js run
+// error
+structuredClone({
+  f: function() {}
+});
+```
+
+Function properties aren't supported.
+
+To handle such complex cases we may need to use a combination of cloning methods, write custom code or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
 ## Summary
 
@@ -257,4 +315,4 @@ Objects are assigned and copied by reference. In other words, a variable stores 
 
 All operations via copied references (like adding/removing properties) are performed on the same single object.
 
-To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+To make a "real copy" (a clone) we can use `Object.assign` for the so-called "shallow copy" (nested objects are copied by reference) or a "deep cloning" function `structuredClone` or use a custom cloning implementation, such as [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
