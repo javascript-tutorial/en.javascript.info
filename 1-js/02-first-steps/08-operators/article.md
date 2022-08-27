@@ -147,7 +147,25 @@ alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same thing as `Number(...)`, but is shorter.
+```warn header="Do not use unary plus `+` with values of type `BigInt`!"
+Initially, it may seem that applying a unary plus `+` to a nonnumeric value does the same thing as `Number(...)`, just that the first notation is shorter. As a matter of fact, it is. But there is one exception.
+
+Let's try to use `Number(value)` to convert a value of type `BigInt` into a number:
+
+```js run
+alert( Number(10n) ) // 10
+```
+
+Everything works the way it was meant to work. Now let's try to do the same thing, only using unary plus `+`:
+
+```js run
+alert( +10n ) // TypeError: Cannot convert a BigInt value to a number
+```
+
+Error! For some reasons we cannot apply the unary plus `+` to values of type `BigInt`.
+
+If you want to know more about this data type, see <info:bigint>.
+```
 
 The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
 
