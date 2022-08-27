@@ -265,7 +265,7 @@ function showMessage(from, text) {
 
 ### Alternative default parameters
 
-Sometimes it makes sense to assign default values for parameters not in the function declaration, but at a later stage.
+Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
 
 We can check if the parameter is passed during the function execution, by comparing it with `undefined`:
 
