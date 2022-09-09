@@ -93,25 +93,8 @@ At first sight, "import everything" seems such a cool thing, short to write, why
 
 Well, there are few reasons.
 
-1. Modern build tools ([webpack](https://webpack.js.org/) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
-
-    Let's say, we added a 3rd-party library `say.js` to our project with many functions:
-    ```js
-    // 📁 say.js
-    export function sayHi() { ... }
-    export function sayBye() { ... }
-    export function becomeSilent() { ... }
-    ```
-
-    Now if we only use one of `say.js` functions in our project:
-    ```js
-    // 📁 main.js
-    import {sayHi} from './say.js';
-    ```
-    ...Then the optimizer will see that and remove the other functions from the bundled code, thus making the build smaller. That is called "tree-shaking".
-
-2. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
-3. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+1. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
+1. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
 
 ## Import "as"
 
