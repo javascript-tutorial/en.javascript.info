@@ -13,7 +13,7 @@ Fix the highlighted line for everything to start working right (other lines are 
 ```js run
 function askPassword(ok, fail) {
   let password = prompt("Password?", '');
-  if (password == "rockstar") ok();
+  if (password === "rockstar") ok();
   else fail();
 }
 
