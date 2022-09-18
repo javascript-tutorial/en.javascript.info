@@ -196,7 +196,7 @@ If an object has many methods and we plan to actively pass it around, then we co
 
 ```js
 for (let key in user) {
-  if (typeof user[key] == 'function') {
+  if (typeof user[key] === 'function') {
     user[key] = user[key].bind(user);
   }
 }
