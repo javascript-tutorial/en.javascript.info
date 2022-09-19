@@ -66,7 +66,7 @@ That's allowed for historical reasons, and mostly works, but generally not recom
 1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
 
     ```js run
-    let key = 'length';
+    const key = 'length';
     localStorage[key] = 5; // Error, can't assign length
     ```
 
@@ -81,8 +81,8 @@ Unfortunately, storage objects are not iterable.
 One way is to loop over them as over an array:
 
 ```js run
-for(let i=0; i<localStorage.length; i++) {
-  let key = localStorage.key(i);
+for(let i = 0; i < localStorage.length; i++) {
+  const key = localStorage.key(i);
   alert(`${key}: ${localStorage.getItem(key)}`);
 }
 ```
@@ -93,7 +93,7 @@ It iterates over keys, but also outputs few built-in fields that we don't need:
 
 ```js run
 // bad try
-for(let key in localStorage) {
+for(const key in localStorage) {
   alert(key); // shows getItem, setItem and other built-in stuff
 }
 ```
@@ -101,7 +101,7 @@ for(let key in localStorage) {
 ...So we need either to filter fields from the prototype with `hasOwnProperty` check:
 
 ```js run
-for(let key in localStorage) {
+for(const key in localStorage) {
   if (!localStorage.hasOwnProperty(key)) {
     continue; // skip keys like "setItem", "getItem" etc
   }
@@ -112,8 +112,8 @@ for(let key in localStorage) {
 ...Or just get the "own" keys with `Object.keys` and then loop over them if needed:
 
 ```js run
-let keys = Object.keys(localStorage);
-for(let key of keys) {
+const keys = Object.keys(localStorage);
+for(const key of keys) {
   alert(`${key}: ${localStorage.getItem(key)}`);
 }
 ```
@@ -137,7 +137,7 @@ We can use `JSON` to store objects though:
 localStorage.user = JSON.stringify({name: "John"});
 
 // sometime later
-let user = JSON.parse( localStorage.user );
+const user = JSON.parse( localStorage.user );
 alert( user.name ); // John
 ```
 
