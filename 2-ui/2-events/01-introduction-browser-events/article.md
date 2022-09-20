@@ -373,7 +373,7 @@ For instance:
 
 As we can see, when `addEventListener` receives an object as the handler, it calls `obj.handleEvent(event)` in case of an event.
 
-We could also use a class (although we still have to instantiate it as an object):
+We could also use objects of a custom class, like this:
 
 
 ```html run
@@ -395,6 +395,7 @@ We could also use a class (although we still have to instantiate it as an object
 
 *!*
   let menu = new Menu();
+
   elem.addEventListener('mousedown', menu);
   elem.addEventListener('mouseup', menu);
 */!*
