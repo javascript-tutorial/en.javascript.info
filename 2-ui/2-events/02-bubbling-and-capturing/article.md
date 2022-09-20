@@ -192,7 +192,7 @@ There's a property `event.eventPhase` that tells us the number of the phase on w
 If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
 ```
 
-````smart header="Listeners on same element and same phase run in their set order"
+````smart header="Listeners on the same element and same phase run in their set order"
 If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
 
 ```js
