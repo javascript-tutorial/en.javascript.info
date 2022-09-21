@@ -86,14 +86,14 @@ Here's the full list:
 |`\\`|Backslash|
 |`\t`|Tab|
 |`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- kept for compatibility, not used nowadays. |
-|`\xXX`|Unicode character with the given hexadecimal Unicode `XX`, e.g. `'\x7A'` is the same as `'z'`.|
-|`\uXXXX`|A Unicode symbol with the hex code `XXXX` in UTF-16 encoding, for instance `\u00A9` -- is a Unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{X…XXXXXX}` (1 to 6 hex characters)|A Unicode symbol with the given UTF-32 encoding. Some rare characters are encoded with two Unicode symbols, taking 4 bytes. This way we can insert long codes. |
+|`\xXX`|A character whose [Unicode](https://en.wikipedia.org/wiki/Unicode) code point is `U+00XX`. `XX` is always two hexadecimal digits with value between `00` and `FF`, so `\xXX` notation can be used only for the first 256 Unicode characters (including all 128 ASCII characters). For example, `"\x7A"` is the same as `"z"` (Unicode code point `U+007A`).|
+|`\uXXXX`|A character whose Unicode code point is `U+XXXX` (a character with the hex code `XXXX` in UTF-16 encoding). `XXXX` must be exactly 4 hex digits with the value between `0000` and `FFFF`, so `\uXXXX` notation can be used for the first 65536 Unicode characters. Characters with Unicode value greater than `U+FFFF` can also be represented with this notation, but in this case we will need to use a so called surrogate pair (we will talk about surrogate pairs later in this chapter). For instance, `"\u00A9"` is a copyright symbol `©` (Unicode code point `U+00A9`), but for smiling cat face 😺 we have to use a surrogate pair `"\uD83D\uDE3A"` (because its Unicode code point `U+1F63A` is greater than `U+FFFF`).|
+|`\u{X…XXXXXX}` (1 to 6 hex characters)|A character with any given Unicode code point (a character with the given hex code in UTF-32 encoding). `X…XXXXXX` is a hex value between `0` and `10FFFF` (the highest code point defined by Unicode). This notation was added to the language in ECMAScript 2015 (ES6) standard and allows us to easily represent all existing Unicode characters without need for surrogate pairs. Unlike previous two notations, there is no need to add leading zeros for characters with "small" code point values: `"\u{7A}"`, `"\u{007A}"` and `"\u{00007A}"` are all acceptable.|
 
 Examples with Unicode:
 
 ```js run
-alert( "\u00A9" ); // ©
+alert( "\u00A9" ); // ©, we will get the very same result with alert( "\xA9" ) and alert( "\u{A9}" )
 alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
 alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
 ```
@@ -407,9 +407,9 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
 `str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end`.
+: Returns the part of the string *between* `start` and `end` (not including the greater of them).
 
-    This is almost the same as `slice`, but it allows `start` to be greater than `end`.
+    This is almost the same as `slice`, but it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
 
     For instance:
 
@@ -452,7 +452,7 @@ Let's recap these methods to avoid any confusion:
 | method | selects... | negatives |
 |--------|-----------|-----------|
 | `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
-| `substring(start, end)` | between `start` and `end` | negative values mean `0` |
+| `substring(start, end)` | between `start` and `end` (not including the greater of them)| negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
 
 ```smart header="Which one to choose?"
@@ -486,12 +486,13 @@ To understand what happens, let's review the internal representation of strings 
 All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
 
 `str.codePointAt(pos)`
-: Returns the code for the character at position `pos`:
+: Returns a decimal number representing the code for the character at position `pos`:
 
     ```js run
     // different case letters have different codes
-    alert( "z".codePointAt(0) ); // 122
     alert( "Z".codePointAt(0) ); // 90
+    alert( "z".codePointAt(0) ); // 122
+    alert( "z".codePointAt(0).toString(16) ); // 7a (if we need a more commonly used hex value of the code)
     ```
 
 `String.fromCodePoint(code)`
@@ -499,6 +500,7 @@ All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Th
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
+    alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
     ```
 
     We can also add Unicode characters by their codes using `\u` followed by the hex code:
@@ -600,6 +602,11 @@ In the case above:
 
 alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff
 alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff
+
+// codePointAt is surrogate-pair aware, but with its own specificity
+
+alert( '𝒳'.codePointAt(0).toString(16) ); // 1d4b3, reads both parts of the surrogate pair and returns the correct code for the symbol 𝒳
+alert( '𝒳'.codePointAt(1).toString(16) ); // dcb3, returns only the code for the second part of the surrogate pair
 ```
 
 You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
@@ -608,9 +615,9 @@ You will find more ways to deal with surrogate pairs later in the chapter <info:
 
 In many languages, there are symbols that are composed of the base character with a mark above/under it.
 
-For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
+For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the Unicode table. But not all of them, because there are too many possible combinations.
 
-To support arbitrary compositions, UTF-16 allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
+To support arbitrary compositions, Unicode standard allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
 
 For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
 
@@ -657,7 +664,7 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
+In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so Unicode creators included it in the main table and gave it the code.
 
 If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
 
