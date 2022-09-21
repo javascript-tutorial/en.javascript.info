@@ -207,7 +207,7 @@ input.onclick = function() { alert(1); }
 input.onclick = function() { alert(2); } // replaces the previous handler
 ```
 
-Developers of web standards understood that long ago and suggested an alternative way of managing handlers using the special methods `addEventListener` and `removeEventListener` which do not have the same constraints as event handlers.
+Developers of web standards understood that long ago and suggested an alternative way of managing handlers using the special methods `addEventListener` and `removeEventListener` which aren't bound by such constraint.
 
 The syntax to add a handler:
 
