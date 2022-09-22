@@ -533,7 +533,7 @@ JavaScript allows us to specify a character not only by directly including it in
 Examples with Unicode:
 
 ```js run
-alert( "\uA9" ); // ©, the copyright symbol
+alert( "\xA9" ); // ©, the copyright symbol
 
 alert( "\u00A9" ); // ©, the same as above, using the 4-digit hex notation
 alert( "\u044F" ); // я, the cyrillic alphabet letter
