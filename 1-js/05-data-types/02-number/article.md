@@ -352,7 +352,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 
     ```js run
     alert( Number.isFinite(123) ); // true
-    alert( Number.isFinite(Infinity) ); //false
+    alert( Number.isFinite(Infinity) ); // false
     alert( Number.isFinite(2 / 0) ); // false
 
     // Note the difference:
