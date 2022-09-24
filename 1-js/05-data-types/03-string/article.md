@@ -510,7 +510,7 @@ This method actually has two additional arguments specified in [the documentatio
 The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
 ```
 
-## Unicode characters
+### Unicode characters
 
 As we already mentioned, JavaScript strings are based on [Unicode](https://en.wikipedia.org/wiki/Unicode).
 
