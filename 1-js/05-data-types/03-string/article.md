@@ -516,11 +516,11 @@ As we already mentioned, JavaScript strings are based on [Unicode](https://en.wi
 
 Each character is represented by a byte sequence of 1-4 bytes.
 
-JavaScript allows us to specify a character not only by directly including it into a stirng, but also by its hexadimal Unicode code using these three notations:
+JavaScript allows us to specify a character not only by directly including it into a stirng, but also by its hexadecimal Unicode code using these three notations:
 
 - `\xXX` -- a character whose Unicode code point is `U+00XX`.
 
-    `XX` is always two hexadecimal digits with value between `00` and `FF`, so `\xXX` notation can be used only for the first 256 Unicode characters (including all 128 ASCII characters).
+    `XX` is two hexadecimal digits with value between `00` and `FF`, so `\xXX` notation can be used only for the first 256 Unicode characters (including all 128 ASCII characters).
 
     These first 256 characters include latin alphabet, most basic syntax characters and some others. For example, `"\x7A"` is the same as `"z"` (Unicode `U+007A`).
 - `\uXXXX` -- a character whose Unicode code point is `U+XXXX` (a character with the hex code `XXXX` in UTF-16 encoding).
