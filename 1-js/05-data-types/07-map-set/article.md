@@ -307,7 +307,7 @@ Methods and properties:
 
 - `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
 - [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key, returns the map itself.
-- [`map.get(key)`](mdn:js/Map/get)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
 - [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
 - [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
