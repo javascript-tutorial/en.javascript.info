@@ -269,20 +269,6 @@ So nowadays `getComputedStyle` actually returns the resolved value of the proper
 We should always ask for the exact property that we want, like `paddingLeft` or `marginTop` or `borderTopWidth`. Otherwise the correct result is not guaranteed.
 
 For instance, if there are properties `paddingLeft/paddingTop`, then what should we get for `getComputedStyle(elem).padding`? Nothing, or maybe a "generated" value from known paddings? There's no standard rule here.
-
-There are other inconsistencies. As an example, some browsers (Chrome) show `10px` in the document below, and some of them (Firefox) --  do not:
-
-```html run
-<style>
-  body {
-    margin: 10px;
-  }
-</style>
-<script>
-  let style = getComputedStyle(document.body);
-  alert(style.margin); // empty string in Firefox
-</script>
-```
 ````
 
 ```smart header="Styles applied to `:visited` links are hidden!"
