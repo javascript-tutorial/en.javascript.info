@@ -156,7 +156,7 @@ If we set `expires` to a date in the past, the cookie is deleted.
 
 -  **`max-age=3600`**
 
-Is an alternative to `expires` and specifies the cookie's expiration in seconds from the current moment.
+It's an alternative to `expires` and specifies the cookie's expiration in seconds from the current moment.
 
 If set to zero or a negative value, the cookie is deleted:
 
