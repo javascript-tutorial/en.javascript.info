@@ -50,7 +50,7 @@ let guestList = "Guests: // Error: Unexpected token ILLEGAL
 
 Single and double quotes come from ancient times of language creation, when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
 
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This is called "tagged templates". This feature makes it easier to implement custom templating, but is rarely used in practice. You can read more about it in the [manual](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This feature is called "tagged templates", it's rarely seen, but you can read about it in the MDN: [Template literals](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
 
 ## Special characters
 
@@ -74,7 +74,7 @@ World`;
 alert(str1 == str2); // true
 ```
 
-There are other, less common "special" characters:
+There are other, less common special characters:
 
 | Character | Description |
 |-----------|-------------|
@@ -109,7 +109,7 @@ Of course, only the quotes that are the same as the enclosing ones need to be es
 alert( "I'm the Walrus!" ); // I'm the Walrus!
 ```
 
-Besides these special characters, there's also a special notation for Unicode codes `\u…`, we'll cover it a bit later in this chapter.
+Besides these special characters, there's also a special notation for Unicode codes `\u…`, it's rarely used and is covered in the optional chapter about [Unicode](info:unicode).
 
 ## String length
 
@@ -124,33 +124,36 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 ```warn header="`length` is a property"
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it.
+Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it. Not `.length()`, but `.length`.
 ```
 
 ## Accessing characters
 
-To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
+To get a character at position `pos`, use square brackets `[pos]` or call the method [str.at(pos)](mdn:js/String/at). The first character starts from the zero position:
 
 ```js run
 let str = `Hello`;
 
 // the first character
 alert( str[0] ); // H
-alert( str.charAt(0) ); // H
+alert( str.at(0) ); // H
 
 // the last character
 alert( str[str.length - 1] ); // o
+alert( str.at(-1) );
 ```
 
-The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
+As you can see, the `.at(pos)` method has a benefit of allowing negative position. If `pos` is negative, then it's counted from the end of the string.
 
-The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
+So `.at(-1)` means the last character, and `.at(-2)` is the one before it, etc.
+
+The square brackets always return `undefined` for negative indexes, for instance:
 
 ```js run
 let str = `Hello`;
 
-alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string)
+alert( str[-2] ); // undefined
+alert( str.at(-2) ); // l
 ```
 
 We can also iterate over characters using `for..of`:
@@ -429,9 +432,9 @@ Although, there are some oddities.
 
     This may lead to strange results if we sort these country names. Usually people would expect `Zealand` to come after `Österreich` in the list.
 
-To understand what happens, let's review the internal representation of strings in JavaScript.
+To understand what happens, we should be aware that strings in Javascript are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code.
 
-All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
+There are special methods that allow to get the character for the code and back:
 
 `str.codePointAt(pos)`
 : Returns a decimal number representing the code for the character at position `pos`:
@@ -440,7 +443,7 @@ All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Th
     // different case letters have different codes
     alert( "Z".codePointAt(0) ); // 90
     alert( "z".codePointAt(0) ); // 122
-    alert( "z".codePointAt(0).toString(16) ); // 7a (if we need a more commonly used hex value of the code)
+    alert( "z".codePointAt(0).toString(16) ); // 7a (if we need a hexadecimal value)
     ```
 
 `String.fromCodePoint(code)`
@@ -449,13 +452,6 @@ All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). Th
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
-    ```
-
-    We can also add Unicode characters by their codes using `\u` followed by the hex code:
-
-    ```js run
-    // 90 is 5a in hexadecimal system
-    alert( '\u005a' ); // Z
     ```
 
 Now let's see the characters with codes `65..220` (the latin alphabet and a little bit extra) by making a string of them:
@@ -467,6 +463,7 @@ for (let i = 65; i <= 220; i++) {
   str += String.fromCodePoint(i);
 }
 alert( str );
+// Output:
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
@@ -486,7 +483,7 @@ The "right" algorithm to do string comparisons is more complex than it may seem,
 
 So, the browser needs to know the language to compare.
 
-Luckily, all modern browsers (IE10- requires the additional library [Intl.js](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA-402](https://www.ecma-international.org/publications-and-standards/standards/ecma-402/).
+Luckily, modern browsers support the internationalization standard [ECMA-402](https://www.ecma-international.org/publications-and-standards/standards/ecma-402/).
 
 It provides a special method to compare strings in different languages, following their rules.
 
@@ -504,179 +501,10 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 
 This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
 
-## Internals, Unicode
-
-```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters or other rare symbols.
-```
-
-## Unicode characters
-
-As we already mentioned, JavaScript strings are based on [Unicode](https://en.wikipedia.org/wiki/Unicode).
-
-Each character is represented by a byte sequence of 1-4 bytes.
-
-JavaScript allows us to specify a character not only by directly including it into a string, but also by its hexadecimal Unicode code using these three notations:
-
-- `\xXX` -- a character whose Unicode code point is `U+00XX`.
-
-    `XX` is two hexadecimal digits with value between `00` and `FF`, so `\xXX` notation can be used only for the first 256 Unicode characters (including all 128 ASCII characters).
-
-    These first 256 characters include latin alphabet, most basic syntax characters and some others. For example, `"\x7A"` is the same as `"z"` (Unicode `U+007A`).
-- `\uXXXX` -- a character whose Unicode code point is `U+XXXX` (a character with the hex code `XXXX` in UTF-16 encoding).
-
-    `XXXX` must be exactly 4 hex digits with the value between `0000` and `FFFF`, so `\uXXXX` notation can be used for the first 65536 Unicode characters. Characters with Unicode value greater than `U+FFFF` can also be represented with this notation, but in this case we will need to use a so called surrogate pair (we will talk about surrogate pairs later in this chapter).
-- `\u{X…XXXXXX}` -- a character with any given Unicode code point (a character with the given hex code in UTF-32 encoding).
-
-    `X…XXXXXX` must be a hexadecimal value of 1 to 6 bytes between `0` and `10FFFF` (the highest code point defined by Unicode). This notation allows us to easily represent all existing Unicode characters.
-
-Examples with Unicode:
-
-```js run
-alert( "\uA9" ); // ©, the copyright symbol
-
-alert( "\u00A9" ); // ©, the same as above, using the 4-digit hex notation
-alert( "\u044F" ); // я, the cyrillic alphabet letter
-alert( "\u2191" ); // ↑, the arrow up symbol
-
-alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
-alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
-```
-
-### Surrogate pairs
-
-All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
-
-Initially, JavaScript was based on UTF-16 encoding that only allowed 2 bytes per character. But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol of Unicode.
-
-So rare symbols that require more than 2 bytes are encoded with a pair of 2-byte characters called "a surrogate pair".
-
-As a side effect, the length of such symbols is `2`:
-
-```js run
-alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
-alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
-```
-
-That's because surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
-
-We actually have a single symbol in each of the strings above, but the `length` property shows a length of `2`.
-
-Getting a symbol can also be tricky, because most language features treat surrogate pairs as two characters.
-
-For example, here we can see two odd characters in the output:
-
-```js run
-alert( '𝒳'[0] ); // shows strange symbols...
-alert( '𝒳'[1] ); // ...pieces of the surrogate pair
-```
-
-Pieces of a surrogate pair have no meaning without each other. So the alerts in the example above actually display garbage.
-
-Technically, surrogate pairs are also detectable by their codes: if a character has the code in the interval of `0xd800..0xdbff`, then it is the first part of the surrogate pair. The next character (second part) must have the code in interval `0xdc00..0xdfff`. These intervals are reserved exclusively for surrogate pairs by the standard.
-
-So the methods `String.fromCodePoint` and `str.codePointAt` were added in JavaScript to deal with surrogate pairs.
-
-They are essentially the same as [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt), but they treat surrogate pairs correctly.
-
-One can see the difference here:
-
-```js run
-// charCodeAt is not surrogate-pair aware, so it gives codes for the 1st part of 𝒳:
-
-alert( '𝒳'.charCodeAt(0).toString(16) ); // d835
-
-// codePointAt is surrogate-pair aware
-alert( '𝒳'.codePointAt(0).toString(16) ); // 1d4b3, reads both parts of the surrogate pair
-```
-
-That said, if we take from position 1 (and that's rather incorrect here), then they both return only the 2nd part of the pair:
-
-```js run
-alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3
-alert( '𝒳'.codePointAt(1).toString(16) ); // dcb3
-// meaningless 2nd half of the pair
-```
-
-You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
-
-````warn header="Takeaway: splitting strings at an arbitrary point is dangerous"
-We can't just split a string at an arbitrary position, e.g. take `str.slice(0, 4)` and expect it to be a valid string, e.g.:
-
-```js run
-alert( 'hi 😂'.slice(0, 4) ); //  hi [?]
-```
-
-Here we can see a garbage character (first half of the smile surrogate pair) in the output.
-
-Just be aware of it if you intend to reliably work with surrogate pairs. May not be a big problem, but at least you should understand what happens.
-````
-
-### Diacritical marks and normalization
-
-In many languages, there are symbols that are composed of the base character with a mark above/under it.
-
-For instance, the letter `a` can be the base character for these characters: `àáâäãåā`.
-
-Most common "composite" characters have their own code in the Unicode table. But not all of them, because there are too many possible combinations.
-
-To support arbitrary compositions, Unicode standard allows us to use several Unicode characters: the base character followed by one or many "mark" characters that "decorate" it.
-
-For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
-
-```js run
-alert( 'S\u0307' ); // Ṡ
-```
-
-If we need an additional mark above the letter (or below it) -- no problem, just add the necessary mark character.
-
-For instance, if we append a character "dot below" (code `\u0323`), then we'll have "S with dots above and below": `Ṩ`.
-
-For example:
-
-```js run
-alert( 'S\u0307\u0323' ); // Ṩ
-```
-
-This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different Unicode compositions.
-
-For instance:
-
-```js run
-let s1 = 'S\u0307\u0323'; // Ṩ, S + dot above + dot below
-let s2 = 'S\u0323\u0307'; // Ṩ, S + dot below + dot above
-
-alert( `s1: ${s1}, s2: ${s2}` );
-
-alert( s1 == s2 ); // false though the characters look identical (?!)
-```
-
-To solve this, there exists a "Unicode normalization" algorithm that brings each string to the single "normal" form.
-
-It is implemented by [str.normalize()](mdn:js/String/normalize).
-
-```js run
-alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
-```
-
-It's funny that in our situation `normalize()` actually brings together a sequence of 3 characters to one: `\u1e68` (S with two dots).
-
-```js run
-alert( "S\u0307\u0323".normalize().length ); // 1
-
-alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
-```
-
-In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so Unicode creators included it in the main table and gave it the code.
-
-If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](https://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
-
 ## Summary
 
 - There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
-- Strings in JavaScript are encoded using UTF-16, with surrogate pairs for rare characters (and these cause glitches).
-- We can use special characters like `\n` and insert letters by their Unicode using `\u...`.
+- We can use special characters, such as a line break `\n`.
 - To get a character, use: `[]`.
 - To get a substring, use: `slice` or `substring`.
 - To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
@@ -690,3 +518,5 @@ There are several other helpful methods in strings:
 - ...and more to be found in the [manual](mdn:js/String).
 
 Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+
+Also, as of now it's important to know that strings are based on Unicode encoding, and hence there're issues with comparisons. There's more about Unicode in the chapter <info:unicode>.
