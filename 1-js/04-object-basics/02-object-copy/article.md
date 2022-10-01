@@ -160,16 +160,17 @@ We can also use the method [Object.assign](https://developer.mozilla.org/en-US/d
 The syntax is:
 
 ```js
-Object.assign(dest, src1[, src2, src3...])
+Object.assign(dest, ...sources)
 ```
 
 - The first argument `dest` is a target object.
-- Further arguments `src1, ..., srcN` (can be as many as needed) are source objects.
-- It copies the properties of all source objects `src1, ..., srcN` into the target `dest`. In other words, properties of all arguments starting from the second are copied into the first object.
-- The call returns `dest`.
+- Further arguments is a list of source objects.
 
-For instance, we can use it to merge several objects into one:
-```js
+It copies the properties of all source objects into the target `dest`, and then returns it as the result.
+
+For example, we have `user` object, let's add a couple of permissions to it:
+
+```js run
 let user = { name: "John" };
 
 let permissions1 = { canView: true };
@@ -181,6 +182,9 @@ Object.assign(user, permissions1, permissions2);
 */!*
 
 // now user = { name: "John", canView: true, canEdit: true }
+alert(user.name); // John
+alert(user.canView); // true
+alert(user.canEdit); // true
 ```
 
 If the copied property name already exists, it gets overwritten:
@@ -193,9 +197,9 @@ Object.assign(user, { name: "Pete" });
 alert(user.name); // now user = { name: "Pete" }
 ```
 
-We also can use `Object.assign` to replace `for..in` loop for simple cloning:
+We also can use `Object.assign` to perform a simple object cloning:
 
-```js
+```js run
 let user = {
   name: "John",
   age: 30
@@ -204,9 +208,12 @@ let user = {
 *!*
 let clone = Object.assign({}, user);
 */!*
+
+alert(clone.name); // John
+alert(clone.age); // 30
 ```
 
-It copies all properties of `user` into the empty object and returns it.
+Here it copies all properties of `user` into the empty object and returns it.
 
 There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
 
