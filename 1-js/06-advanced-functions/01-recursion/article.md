@@ -61,7 +61,7 @@ When `pow(x, n)` is called, the execution splits into two branches:
               if n==1  = x
              /
 pow(x, n) =
-             \       
+             \
               else     = x * pow(x, n - 1)
 ```
 
@@ -285,7 +285,7 @@ The iterative `pow` uses a single context changing `i` and `result` in the proce
 
 **Any recursion can be rewritten as a loop. The loop variant usually can be made more effective.**
 
-...But sometimes the rewrite is non-trivial, especially when function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+...But sometimes the rewrite is non-trivial, especially when a function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
 
 Recursion can give a shorter code, easier to understand and support. Optimizations are not required in every place, mostly we need a good code, that's why it's used.
 
