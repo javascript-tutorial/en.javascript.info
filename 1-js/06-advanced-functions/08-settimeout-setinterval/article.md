@@ -27,7 +27,7 @@ Usually, that's a function. For historical reasons, a string of code can be pass
 : The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
 
 `arg1`, `arg2`...
-: Arguments for the function (not supported in IE9-)
+: Arguments for the function
 
 For instance, this code calls `sayHi()` after one second:
 
