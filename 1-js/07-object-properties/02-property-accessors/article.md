@@ -69,6 +69,10 @@ user.fullName = "Test"; // Error (property has only a getter)
 */!*
 ```
 
+```smart header="Errors appear only in strict mode"
+In non-strict mode, when setting a value of an accessor property that has a getter but doesn't have a setter implemented - no errors occur, but the operation still won't succeed.
+```
+
 Let's fix it by adding a setter for `user.fullName`:
 
 ```js run
