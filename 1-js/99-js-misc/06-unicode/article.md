@@ -11,7 +11,7 @@ JavaScript allows us to insert a character into a string by specifying its hexad
 
 - `\xXX`
 
-    `XX` must be two hexadecimal digits with a value between `00` and `FF`, then it's a character whose Unicode code is `XX`.
+    `XX` must be two hexadecimal digits with a value between `00` and `FF`, then `\xXX` is the character whose Unicode code is `XX`.
 
     Because the `\xXX` notation supports only two digits, it can be used only for the first 256 Unicode characters.
 
@@ -23,7 +23,7 @@ JavaScript allows us to insert a character into a string by specifying its hexad
     ```
 
 - `\uXXXX`
-    `XXXX` must be exactly 4 hex digits with the value between `0000` and `FFFF`, then `\uXXXX` is a character whose Unicode code is `XXXX`.
+    `XXXX` must be exactly 4 hex digits with the value between `0000` and `FFFF`, then `\uXXXX` is the character whose Unicode code is `XXXX`.
 
     Characters with Unicode values greater than `U+FFFF` can also be represented with this notation, but in this case, we will need to use a so called surrogate pair (we will talk about surrogate pairs later in this chapter).
 
