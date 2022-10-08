@@ -54,13 +54,13 @@ john = null; // overwrite the reference
 */!*
 ```
 
-`WeakMap` is fundamentally different in this aspect. It doesn't prevent garbage-collection of key objects.
+[`WeakMap`](mdn:js/WeakMap) is fundamentally different in this aspect. It doesn't prevent garbage-collection of key objects.
 
 Let's see what it means on examples.
 
 ## WeakMap
 
-The first difference between `Map` and `WeakMap` is that keys must be objects, not primitive values:
+The first difference between [`Map`](mdn:js/Map) and [`WeakMap`](mdn:js/WeakMap) is that keys must be objects, not primitive values:
 
 ```js run
 let weakMap = new WeakMap();
@@ -94,10 +94,10 @@ Compare it with the regular `Map` example above. Now if `john` only exists as th
 
 `WeakMap` has only the following methods:
 
-- `weakMap.get(key)`
-- `weakMap.set(key, value)`
-- `weakMap.delete(key)`
-- `weakMap.has(key)`
+- [`weakMap.set(key, value)`](mdn:js/WeakMap/set)
+- [`weakMap.get(key)`](mdn:js/WeakMap/get)
+- [`weakMap.delete(key)`](mdn:js/WeakMap/delete)
+- [`weakMap.has(key)`](mdn:js/WeakMap/has)
 
 Why such a limitation? That's for technical reasons. If an object has lost all other references (like `john` in the code above), then it is to be garbage-collected automatically. But technically it's not exactly specified *when the cleanup happens*.
 
@@ -242,11 +242,11 @@ obj = null;
 
 ## WeakSet
 
-`WeakSet` behaves similarly:
+[`WeakSet`](mdn:js/WeakSet) behaves similarly:
 
 - It is analogous to `Set`, but we may only add objects to `WeakSet` (not primitives).
 - An object exists in the set while it is reachable from somewhere else.
-- Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
+- Like `Set`, it supports [`add`](mdn:js/Weakset/add), [`has`](mdn:js/Weakset/has) and [`delete`](mdn:js/Weakset/delete), but not `size`, `keys()` and no iterations.
 
 Being "weak", it also serves as additional storage. But not for arbitrary data, rather for "yes/no" facts. A membership in `WeakSet` may mean something about the object.
 
@@ -280,9 +280,9 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-`WeakMap` is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
+[`WeakMap`](mdn:js/WeakMap) is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
 
-`WeakSet` is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
+[`WeakSet`](mdn:js/WeakSet) is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
 
 Their main advantages are that they have weak reference to objects, so they can easily be removed by garbage collector.
 
