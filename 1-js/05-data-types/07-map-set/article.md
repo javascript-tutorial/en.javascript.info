@@ -300,7 +300,7 @@ The same methods `Map` has for iterators are also supported:
 
 ## Summary
 
-[Map](mdn:js/Map) -- is a collection of keyed values.
+[`Map`](mdn:js/Map) -- is a collection of keyed values.
 
 Methods and properties:
 
