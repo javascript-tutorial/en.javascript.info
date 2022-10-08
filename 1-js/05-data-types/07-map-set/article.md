@@ -236,7 +236,7 @@ A [`Set`](mdn:js/Set) is a special type collection - "set of values" (without ke
 
 Its main methods are:
 
-- [`new Set(iterable)`](mdn:js/Set/Set) -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
+- [`new Set([iterable])`](mdn:js/Set/Set) -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
 - [`set.add(value)`](mdn:js/Set/add) -- adds a value, returns the set itself.
 - [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
@@ -321,7 +321,7 @@ The differences from a regular `Object`:
 
 Methods and properties:
 
-- [`new Set(iterable)`](mdn:js/Set/Set) -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
+- [`new Set([iterable])`](mdn:js/Set/Set) -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
 - [`set.add(value)`](mdn:js/Set/add) -- adds a value (does nothing if `value` exists), returns the set itself.
 - [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
