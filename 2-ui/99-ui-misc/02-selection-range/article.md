@@ -321,7 +321,7 @@ There also exist methods to compare ranges, but these are rarely used. When you 
 
 We may create `Range` objects, pass them around -- they do not visually select anything on their own.
 
-The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`. A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows to select multiple ranges in the document by using `key:Ctrl+click` (`key:Cmd+click` for Mac).
+The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`. A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows to select multiple ranges in the document by using `key:Ctrl`+click (`key:Cmd`+click for Mac).
 
 Here's a screenshot of a selection with 3 ranges, made in Firefox:
 

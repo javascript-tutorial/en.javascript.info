@@ -11,7 +11,7 @@ We'll be using Chrome here, because it has enough features, most other browsers 
 Your Chrome version may look a little bit different, but it still should be obvious what's there.
 
 - Open the [example page](debugging/index.html) in Chrome.
-- Turn on developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
+- Turn on developer tools with `key:F12` (Mac: `key:Cmd`+`key:Opt`+`key:I`).
 - Select the `Sources` panel.
 
 Here's what you should see if you are doing it for the first time:
@@ -88,7 +88,7 @@ Such command works only when the development tools are open, otherwise the brows
 
 ## Pause and look around
 
-In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd`+`key:R` (Mac).
 
 As the breakpoint is set, the execution pauses at the 4th line:
 
@@ -147,7 +147,7 @@ There are buttons for it at the top of the right panel. Let's engage them.
 
     For the future, just note that "Step" command ignores async actions, such as `setTimeout` (scheduled function call), that execute later. The "Step into" goes into their code, waiting for them if necessary. See [DevTools manual](https://developers.google.com/web/updates/2018/01/devtools#async) for more details.
 
-<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue the execution till the end of the current function, hotkey `key:Shift+F11`.
+<span class="devtools" style="background-position:-32px -194px"></span> -- "Step out": continue the execution till the end of the current function, hotkey `key:Shift`+`key:F11`.
 : Continue the execution and stop it at the very last line of the current function. That's handy when we accidentally entered a nested call using <span class="devtools" style="background-position:-200px -190px"></span>, but it does not interest us, and we want to continue to its end as soon as possible.
 
 <span class="devtools" style="background-position:-61px -74px"></span> -- enable/disable all breakpoints.

@@ -37,7 +37,7 @@ The `event.key` is exactly the character, and it will be different. But `event.c
 | Key          | `event.key` | `event.code` |
 |--------------|-------------|--------------|
 | `key:Z`      |`z` (lowercase)         |`KeyZ`        |
-| `key:Shift+Z`|`Z` (uppercase)          |`KeyZ`        |
+| `key:Shift`+`key:Z`|`Z` (uppercase)          |`KeyZ`        |
 
 
 If a user works with different languages, then switching to another language would make a totally different character instead of `"Z"`. That will become the value of `event.key`, while `event.code` is always the same: `"KeyZ"`.
@@ -71,7 +71,7 @@ What if a key does not give any character? For instance, `key:Shift` or `key:F1`
 
 Please note that `event.code` specifies exactly which key is pressed. For instance, most keyboards have two `key:Shift` keys: on the left and on the right side. The `event.code` tells us exactly which one was pressed, and `event.key` is responsible for the "meaning" of the key: what it is (a "Shift").
 
-Let's say, we want to handle a hotkey: `key:Ctrl+Z` (or `key:Cmd+Z` for Mac). Most text editors hook the "Undo" action on it. We can set a listener on `keydown` and check which key is pressed.
+Let's say, we want to handle a hotkey: `key:Ctrl`+`key:Z` (or `key:Cmd`+`key:Z` for Mac). Most text editors hook the "Undo" action on it. We can set a listener on `keydown` and check which key is pressed.
 
 There's a dilemma here: in such a listener, should we check the value of `event.key` or `event.code`?
 
@@ -129,10 +129,10 @@ For instance:
 - A character appears on the screen (the most obvious outcome).
 - A character is deleted (`key:Delete` key).
 - The page is scrolled (`key:PageDown` key).
-- The browser opens the "Save Page" dialog (`key:Ctrl+S`)
+- The browser opens the "Save Page" dialog (`key:Ctrl`+`key:S`)
 -  ...and so on.
 
-Preventing the default action on `keydown` can cancel most of them, with the exception of OS-based special keys. For instance, on Windows `key:Alt+F4` closes the current browser window. And there's no way to stop it by preventing the default action in JavaScript.
+Preventing the default action on `keydown` can cancel most of them, with the exception of OS-based special keys. For instance, on Windows `key:Alt`+`key:F4` closes the current browser window. And there's no way to stop it by preventing the default action in JavaScript.
 
 For instance, the `<input>` below expects a phone number, so it does not accept keys except digits, `+`, `()` or `-`:
 

@@ -52,7 +52,7 @@ Sometimes, when `use strict` makes a difference, you'll get incorrect results.
 
 So, how to actually `use strict` in the console?
 
-First, you can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+First, you can try to press `key:Shift`+`key:Enter` to input multiple lines, and put `use strict` on top, like this:
 
 ```js
 'use strict'; <Shift+Enter for a newline>

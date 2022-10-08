@@ -92,7 +92,7 @@ Event properties:
 
 They are `true` if the corresponding key was pressed during the event.
 
-For instance, the button below only works on `key:Alt+Shift`+click:
+For instance, the button below only works on `key:Alt`+`key:Shift`+click:
 
 ```html autorun height=60
 <button id="button">Alt+Shift+Click on me!</button>
@@ -113,7 +113,7 @@ On Windows and Linux there are modifier keys `key:Alt`, `key:Shift` and `key:Ctr
 
 In most applications, when Windows/Linux uses `key:Ctrl`, on Mac `key:Cmd` is used.
 
-That is: where a Windows user presses `key:Ctrl+Enter` or `key:Ctrl+A`, a Mac user would press `key:Cmd+Enter` or `key:Cmd+A`, and so on.
+That is: where a Windows user presses `key:Ctrl`+`key:Enter` or `key:Ctrl`+`key:A`, a Mac user would press `key:Cmd`+`key:Enter` or `key:Cmd`+`key:A`, and so on.
 
 So if we want to support combinations like `key:Ctrl`+click, then for Mac it makes sense to use `key:Cmd`+click. That's more comfortable for Mac users.
 

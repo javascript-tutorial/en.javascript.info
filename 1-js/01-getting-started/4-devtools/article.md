@@ -16,7 +16,7 @@ Open the page [bug.html](bug.html).
 
 There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
 
-Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
+Press `key:F12` or, if you're on Mac, then `key:Cmd`+`key:Opt`+`key:J`.
 
 The developer tools will open on the Console tab by default.
 
@@ -36,7 +36,7 @@ Now we can see errors, and that's enough for a start. We'll come back to develop
 ```smart header="Multi-line input"
 Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
 
-To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+To insert multiple lines, press `key:Shift`+`key:Enter`. This way one can enter long fragments of JavaScript code.
 ```
 
 ## Firefox, Edge, and others
@@ -53,11 +53,11 @@ Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom
 
 ![safari](safari.png)
 
-Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
+Now `key:Cmd`+`key:Opt`+`key:C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
 
 ## Summary
 
 - Developer tools allow us to see errors, run commands, examine variables, and much more.
-- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
+- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd`+`key:Opt`+`key:J`, Safari: `key:Cmd`+`key:Opt`+`key:C` (need to enable first).
 
 Now we have the environment ready. In the next section, we'll get down to JavaScript.
