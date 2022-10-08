@@ -14,7 +14,7 @@ But that's not enough for real life. That's why `Map` and `Set` also exist.
 
 Methods and properties are:
 
-- `new Map()` -- creates the map.
+- [`new Map()`](mdn:js/Map/Map) -- creates the map.
 - [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key.
 - [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
@@ -99,7 +99,6 @@ map.set('1', 'str1')
   .set(true, 'bool1');
 ```
 ````
-
 
 ## Iteration over Map
 
@@ -233,11 +232,11 @@ That's the same, because `Object.fromEntries` expects an iterable object as the 
 
 ## Set
 
-A `Set` is a special type collection - "set of values" (without keys), where each value may occur only once.
+A [`Set`](mdn:js/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
 
 Its main methods are:
 
-- `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
+- [`new Set(iterable)`](mdn:js/Set/Set) -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
 - [`set.add(value)`](mdn:js/Set/add) -- adds a value, returns the set itself.
 - [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
@@ -301,11 +300,11 @@ The same methods `Map` has for iterators are also supported:
 
 ## Summary
 
-`Map` -- is a collection of keyed values.
+[Map](mdn:js/Map) -- is a collection of keyed values.
 
 Methods and properties:
 
-- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
+- [`new Map([iterable])`](mdn:js/Map/Map) -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
 - [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key, returns the map itself.
 - [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
 - [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
@@ -318,11 +317,11 @@ The differences from a regular `Object`:
 - Any keys, objects can be keys.
 - Additional convenient methods, the `size` property.
 
-`Set` -- is a collection of unique values.
+[`Set`](mdn:js/Set) -- is a collection of unique values.
 
 Methods and properties:
 
-- `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
+- [`new Set(iterable)`](mdn:js/Set/Set) -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
 - [`set.add(value)`](mdn:js/Set/add) -- adds a value (does nothing if `value` exists), returns the set itself.
 - [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
 - [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
