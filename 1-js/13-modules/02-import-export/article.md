@@ -151,7 +151,7 @@ Mostly, the second approach is preferred, so that every "thing" resides in its o
 
 Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier if files are well-named and structured into folders.
 
-Modules provide a special `export default` ("the default export") syntax to make the "one thing per module" way look better.
+Modules provide a special `export default` ("the default export") syntax to make the "one thing per module" look way better.
 
 Put `export default` before the entity to export:
 
