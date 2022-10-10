@@ -44,7 +44,7 @@ JavaScript allows us to insert a character into a string by specifying its hexad
 
 ## Surrogate pairs
 
-All frequently used characters have 2-byte codes (4 hex digits). Letters in most European languages, numbers, and the basic CJK ideograph set (from Chinese, Japanese, and Korean writing systems), have a 2-byte representation.
+All frequently used characters have 2-byte codes (4 hex digits). Letters in most European languages, numbers, and the basic unified CJK ideograph sets (CJK, from Chinese, Japanese, and Korean writing systems), have a 2-byte representation.
 
 Initially, JavaScript was based on UTF-16 encoding that only allowed 2 bytes per character. But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol of Unicode.
 
