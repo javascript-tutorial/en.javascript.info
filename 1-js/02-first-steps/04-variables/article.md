@@ -198,11 +198,12 @@ Variables named `apple` and `APPLE` are two different variables.
 ```
 
 ````smart header="Non-Latin letters are allowed, but not recommended"
-It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+It is possible to use any language, including Cyrillic letters, Hanzi, or even hieroglyphs, like this:
 
 ```js
 let имя = '...';
 let 我 = '...';
+let 𓅂 = '...';
 ```
 
 Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
