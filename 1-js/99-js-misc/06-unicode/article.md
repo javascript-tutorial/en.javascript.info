@@ -2,7 +2,7 @@
 # Unicode, String internals
 
 ```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or hieroglyphic characters, or other rare symbols.
+The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical or logographic characters, or other rare symbols.
 ```
 
 As we already know, JavaScript strings are based on [Unicode](https://en.wikipedia.org/wiki/Unicode): each character is represented by a byte sequence of 1-4 bytes.
@@ -13,9 +13,9 @@ JavaScript allows us to insert a character into a string by specifying its hexad
 
     `XX` must be two hexadecimal digits with a value between `00` and `FF`, then `\xXX` is the character whose Unicode code is `XX`.
 
-    Because the `\xXX` notation supports only two digits, it can be used only for the first 256 Unicode characters.
+    Because the `\xXX` notation supports only two hexadecimal digits, it can be used only for the first 256 Unicode characters.
 
-    These first 256 characters include the latin alphabet, most basic syntax characters, and some others. For example, `"\x7A"` is the same as `"z"` (Unicode `U+007A`).
+    These first 256 characters include the Latin alphabet, most basic syntax characters, and some others. For example, `"\x7A"` is the same as `"z"` (Unicode `U+007A`).
 
     ```js run
     alert( "\x7A" ); // z
@@ -29,7 +29,7 @@ JavaScript allows us to insert a character into a string by specifying its hexad
 
     ```js run
     alert( "\u00A9" ); // ©, the same as \xA9, using the 4-digit hex notation
-    alert( "\u044F" ); // я, the cyrillic alphabet letter
+    alert( "\u044F" ); // я, the Cyrillic alphabet letter
     alert( "\u2191" ); // ↑, the arrow up symbol
     ```
 
@@ -38,13 +38,13 @@ JavaScript allows us to insert a character into a string by specifying its hexad
     `X…XXXXXX` must be a hexadecimal value of 1 to 6 bytes between `0` and `10FFFF` (the highest code point defined by Unicode). This notation allows us to easily represent all existing Unicode characters.
 
     ```js run
-    alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long Unicode)
+    alert( "\u{20331}" ); // 佫, a rare Chinese character (long Unicode)
     alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long Unicode)
     ```
 
 ## Surrogate pairs
 
-All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
+All frequently used characters have 2-byte codes (4 hex digits). Letters in most European languages, numbers, and the basic CJK ideograph set (from Chinese, Japanese, and Korean writing systems), have a 2-byte representation.
 
 Initially, JavaScript was based on UTF-16 encoding that only allowed 2 bytes per character. But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol of Unicode.
 
@@ -55,7 +55,7 @@ As a side effect, the length of such symbols is `2`:
 ```js run
 alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
 alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
+alert( '𩷶'.length ); // 2, a rare Chinese character
 ```
 
 That's because surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
