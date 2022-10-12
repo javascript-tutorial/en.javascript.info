@@ -44,7 +44,7 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 <iframe name="iframe"></iframe>
 */!*
 
-<!-- a form could be dynamically generated and submited by JavaScript -->
+<!-- a form could be dynamically generated and submitted by JavaScript -->
 *!*
 <form target="iframe" method="POST" action="http://another.com/…">
 */!*
