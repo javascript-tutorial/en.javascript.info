@@ -38,31 +38,31 @@ If the connection is lost, because of, say, a network error, the browser immedia
 A sketch of client-side `subscribe` function that makes long requests:
 
 ```js
-async function subscribe() {
-  let response = await fetch("/subscribe");
+async function subscribe(url) {
+  let response = await fetch(url);
 
-  if (response.status == 502) {
-    // Status 502 is a connection timeout error,
+  if(!response.ok) {
+    // Status 502 is a proxy error,
     // may happen when the connection was pending for too long,
-    // and the remote server or a proxy closed it
-    // let's reconnect
-    await subscribe();
-  } else if (response.status != 200) {
-    // An error - let's show it
-    showMessage(response.statusText);
-    // Reconnect in one second
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    await subscribe();
+    // and the proxy closed it; in this case just reconnect
+    // Use status 408 for direct connections to the server
+    if(response.status !== 502) {
+      // An error - let's show it
+      showMessage(response.statusText);
+      // Wait one second
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
   } else {
     // Get and show the message
     let message = await response.text();
     showMessage(message);
-    // Call subscribe() again to get the next message
-    await subscribe();
   }
+
+  // Reconnect to get the next response
+  await subscribe(url);
 }
 
-subscribe();
+subscribe("/subscribe");
 ```
 
 As you can see, `subscribe` function makes a fetch, then waits for the response, handles it and calls itself again.
