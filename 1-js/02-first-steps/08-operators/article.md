@@ -80,7 +80,7 @@ alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 
 ## String concatenation with binary +
 
-Let's meet features of JavaScript operators that are beyond school arithmetics.
+Let's meet the features of JavaScript operators that are beyond school arithmetics.
 
 Usually, the plus operator `+` sums numbers.
 
