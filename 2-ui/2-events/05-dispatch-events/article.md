@@ -8,7 +8,7 @@ We can generate not only completely new events, that we invent for our own purpo
 
 ## Event constructor
 
-Built-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](http://www.w3.org/TR/dom/#event) class.
+Built-in event classes form a hierarchy, similar to DOM element classes. The root is the built-in [Event](https://dom.spec.whatwg.org/#events) class.
 
 We can create `Event` objects like this:
 
