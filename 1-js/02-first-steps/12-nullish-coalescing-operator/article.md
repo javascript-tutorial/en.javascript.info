@@ -29,7 +29,7 @@ For example, here we show `user` if its value isn't `null/undefined`, otherwise 
 ```js run
 let user;
 
-alert(user ?? "Anonymous"); // Anonymous (user not defined)
+alert(user ?? "Anonymous"); // Anonymous (user undefined)
 ```
 
 Here's the example with `user` assigned to a name:
