@@ -20,7 +20,7 @@ function sum(a, b) {
   return a + b;
 }
 
-alert( sum(1, 2, 3, 4, 5) );
+alert( sum(1, 2, 3, 4, 5) ); // 3
 ```
 
 There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted.
