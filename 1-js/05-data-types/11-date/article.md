@@ -376,7 +376,7 @@ for (let i = 0; i < 10; i++) {
 ```warn header="Be careful doing microbenchmarking"
 Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
 
-The great pack of articles about V8 can be found at <http://mrale.ph>.
+The great pack of articles about V8 can be found at <https://mrale.ph>.
 ```
 
 ## Date.parse from a string

@@ -151,7 +151,7 @@ So, we should declare a variable once and then refer to it without `let`.
 ````
 
 ```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](https://www.scala-lang.org/) or [Erlang](https://www.erlang.org/) that forbid changing variable values.
 
 In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
 

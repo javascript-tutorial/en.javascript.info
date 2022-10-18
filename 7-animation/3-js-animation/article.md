@@ -79,7 +79,7 @@ These several independent redraws should be grouped together, to make the redraw
 
 There's one more thing to keep in mind. Sometimes CPU is overloaded, or there are other reasons to redraw less often (like when the browser tab is hidden), so we really shouldn't run it every `20ms`.
 
-But how do we know about that in JavaScript? There's a specification [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`. It addresses all these issues and even more.
+But how do we know about that in JavaScript? There's a specification [Animation timing](https://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`. It addresses all these issues and even more.
 
 The syntax:
 ```js
