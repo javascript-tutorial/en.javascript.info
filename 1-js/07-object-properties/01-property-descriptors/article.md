@@ -123,7 +123,7 @@ user.name = "Pete"; // Error: Cannot assign to read only property 'name'
 Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
 
 ```smart header="Errors appear only in strict mode"
-In the non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+In non-strict mode, no errors occur when writing to non-writable properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
 ```
 
 Here's the same example, but the property is created from scratch:
