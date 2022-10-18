@@ -24,7 +24,7 @@ let promise = fetch(url, {
   body: undefined, // string, FormData, Blob, BufferSource, or URLSearchParams
   referrer: "about:client", // or "" to send no Referer header,
   // or an url from the current origin
-  referrerPolicy: "no-referrer-when-downgrade", // no-referrer, origin, same-origin...
+  referrerPolicy: "strict-origin-when-cross-origin", // no-referrer-when-downgrade, no-referrer, origin, same-origin...
   mode: "cors", // same-origin, no-cors
   credentials: "same-origin", // omit, include
   cache: "default", // no-store, reload, no-cache, force-cache, or only-if-cached
@@ -85,13 +85,13 @@ Unlike the `referrer` option that allows to set the exact `Referer` value, `refe
 
 Possible values are described in the [Referrer Policy specification](https://w3c.github.io/webappsec-referrer-policy/):
 
-- **`"no-referrer-when-downgrade"`** -- the default value: full `Referer` is always sent, unless we send a request from HTTPS to HTTP (to the less secure protocol).
+- **`"strict-origin-when-cross-origin"`** -- the default value: for same-origin send the full `Referer`, for cross-origin send only the origin, unless it's HTTPS→HTTP request, then send nothing.
+- **`"no-referrer-when-downgrade"`** -- full `Referer` is always sent, unless we send a request from HTTPS to HTTP (to the less secure protocol).
 - **`"no-referrer"`** -- never send `Referer`.
 - **`"origin"`** -- only send the origin in `Referer`, not the full page URL, e.g. only `http://site.com` instead of `http://site.com/path`.
 - **`"origin-when-cross-origin"`** -- send the full `Referer` to the same origin, but only the origin part for cross-origin requests (as above).
 - **`"same-origin"`** -- send the full `Referer` to the same origin, but no `Referer` for cross-origin requests.
 - **`"strict-origin"`** -- send only the origin, not the `Referer` for HTTPS→HTTP requests.
-- **`"strict-origin-when-cross-origin"`** -- for same-origin send the full `Referer`, for cross-origin send only the origin, unless it's HTTPS→HTTP request, then send nothing.
 - **`"unsafe-url"`** -- always send the full url in `Referer`, even for HTTPS→HTTP requests.
 
 Here's a table with all combinations:
@@ -99,12 +99,12 @@ Here's a table with all combinations:
 | Value | To same origin | To another origin | HTTPS→HTTP |
 |-------|----------------|-------------------|------------|
 | `"no-referrer"` | - | - | - |
-| `"no-referrer-when-downgrade"` or `""` (default) | full | full | - |
+| `"no-referrer-when-downgrade"` | full | full | - |
 | `"origin"` | origin | origin | origin |
 | `"origin-when-cross-origin"` | full | origin | origin |
 | `"same-origin"` | full | - | - |
 | `"strict-origin"` | origin | origin | - |
-| `"strict-origin-when-cross-origin"` | full | origin | - |
+| `"strict-origin-when-cross-origin"` or `""` (default) | full | origin | - |
 | `"unsafe-url"` | full | full | full |
 
 Let's say we have an admin zone with a URL structure that shouldn't be known from outside of the site.
