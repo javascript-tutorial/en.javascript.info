@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# What is the result of AND'ed alert?
 
 What will this code show?
 
