@@ -14,13 +14,13 @@ But that's not enough for real life. That's why `Map` and `Set` also exist.
 
 Methods and properties are:
 
-- [`new Map()`](mdn:js/Map/Map) -- creates the map.
-- [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key.
-- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
-- [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key.
-- [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
-- [`map.size`](mdn:js/Map/size) -- returns the current element count.
+- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creates the map.
+- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stores the value by the key.
+- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
+- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- removes the value by the key.
+- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- removes everything from the map.
+- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returns the current element count.
 
 For instance:
 
@@ -104,9 +104,9 @@ map.set('1', 'str1')
 
 For looping over a `map`, there are 3 methods:
 
-- [`map.keys()`](mdn:js/Map/keys) -- returns an iterable for keys,
-- [`map.values()`](mdn:js/Map/values) -- returns an iterable for values,
-- [`map.entries()`](mdn:js/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returns an iterable for keys,
+- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returns an iterable for values,
+- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
 
 For instance:
 
@@ -232,7 +232,7 @@ That's the same, because `Object.fromEntries` expects an iterable object as the 
 
 ## Set
 
-A [`Set`](mdn:js/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
+A [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
 
 Its main methods are:
 
