@@ -56,9 +56,9 @@ alert(test); // ReferenceError: test is not defined
 */!*
 ```
 
-The same thing for loops: `var` cannot be block- or loop-local:
+The same thing for loops: `var` cannot be block or loop-local:
 
-```js
+```js run
 for (var i = 0; i < 10; i++) {
   var one = 1;
   // ...
