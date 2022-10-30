@@ -37,7 +37,7 @@ Here's the example with `user` assigned to a name:
 ```js run
 let user = "John";
 
-alert(user ?? "Anonymous"); // John (user is not null/udefined)
+alert(user ?? "Anonymous"); // John (user is not null/undefined)
 ```
 
 We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
