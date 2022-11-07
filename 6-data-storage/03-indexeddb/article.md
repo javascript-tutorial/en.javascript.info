@@ -193,13 +193,12 @@ A key must be one of these types - number, date, string, binary, or array. It's 
 
 ![](indexeddb-structure.svg)
 
-
 As we'll see very soon, we can provide a key when we add a value to the store, similar to `localStorage`. But when we store objects, IndexedDB allows setting up an object property as the key, which is much more convenient. Or we can auto-generate keys.
 
 But we need to create an object store first.
 
-
 The syntax to create an object store:
+
 ```js
 db.createObjectStore(name[, keyOptions]);
 ```
@@ -214,6 +213,7 @@ Please note, the operation is synchronous, no `await` needed.
 If we don't supply `keyOptions`, then we'll need to provide a key explicitly later, when storing an object.
 
 For instance, this object store uses `id` property as the key:
+
 ```js
 db.createObjectStore('books', {keyPath: 'id'});
 ```
@@ -223,6 +223,7 @@ db.createObjectStore('books', {keyPath: 'id'});
 That's a technical limitation. Outside of the handler we'll be able to add/remove/update the data, but object stores can only be created/removed/altered during a version update.
 
 To perform a database version upgrade, there are two main approaches:
+
 1. We can implement per-version upgrade functions: from 1 to 2, from 2 to 3, from 3 to 4 etc. Then, in `upgradeneeded` we can compare versions (e.g. old 2, now 4) and run per-version upgrades step by step, for every intermediate version (2 to 3, then 3 to 4).
 2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existance. And then we can do updates depending on what exists and what doesn't.
 
@@ -242,7 +243,6 @@ openRequest.onupgradeneeded = function() {
 };
 ```
 
-
 To delete an object store:
 
 ```js
@@ -256,6 +256,7 @@ The term "transaction" is generic, used in many kinds of databases.
 A transaction is a group of operations, that should either all succeed or all fail.
 
 For instance, when a person buys something, we need to:
+
 1. Subtract the money from their account.
 2. Add the item to their inventory.
 
@@ -276,7 +277,7 @@ db.transaction(store[, type]);
   - `readonly` -- can only read, the default.
   - `readwrite` -- can only read and write the data, but not create/remove/alter object stores.
 
-There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
+There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `upgradeneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
 ```smart header="Why are there different types of transactions?"
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
@@ -614,6 +615,7 @@ The `delete` method looks up values to delete by a query, the call format is sim
 - **`delete(query)`** -- delete matching values by query.
 
 For instance:
+
 ```js
 // delete the book with id='js'
 books.delete('js');
@@ -632,6 +634,7 @@ request.onsuccess = function() {
 ```
 
 To delete everything:
+
 ```js
 books.clear(); // clear the storage.
 ```
@@ -651,6 +654,7 @@ Cursors provide the means to work around that.
 As an object store is sorted internally by key, a cursor walks the store in key order (ascending by default).
 
 The syntax:
+
 ```js
 // like getAll, but with a cursor:
 let request = store.openCursor(query, [direction]);
@@ -748,7 +752,6 @@ try {
 } catch(err) {
   console.log('error', err.message);
 }
-
 ```
 
 So we have all the sweet "plain async code" and "try..catch" stuff.
@@ -771,9 +774,7 @@ window.addEventListener('unhandledrejection', event => {
 
 ### "Inactive transaction" pitfall
 
-
 As we already know, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put a *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
-
 
 For a promise wrapper and `async/await` the situation is the same.
 
@@ -793,6 +794,7 @@ await inventory.add({ id: 'js', price: 10, created: new Date() }); // Error
 The next `inventory.add` after `fetch` `(*)` fails with an "inactive transaction" error, because the transaction is already committed and closed at that time.
 
 The workaround is the same as when working with native IndexedDB: either make a new transaction or just split things apart.
+
 1. Prepare the data and fetch all that's needed first.
 2. Then save in the database.
 

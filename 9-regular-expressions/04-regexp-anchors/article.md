@@ -16,7 +16,7 @@ The pattern `pattern:^Mary` means: "string start and then Mary".
 Similar to this, we can test if the string ends with `snow` using `pattern:snow$`:
 
 ```js run
-let str1 = "it's fleece was white as snow";
+let str1 = "its fleece was white as snow";
 alert( /snow$/.test(str1) ); // true
 ```
 

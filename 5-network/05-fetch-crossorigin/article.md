@@ -44,7 +44,7 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 <iframe name="iframe"></iframe>
 */!*
 
-<!-- a form could be dynamically generated and submited by JavaScript -->
+<!-- a form could be dynamically generated and submitted by JavaScript -->
 *!*
 <form target="iframe" method="POST" action="http://another.com/…">
 */!*
@@ -169,18 +169,13 @@ For cross-origin request, by default JavaScript may only access so-called "safe"
 
 - `Cache-Control`
 - `Content-Language`
+- `Content-Length`
 - `Content-Type`
 - `Expires`
 - `Last-Modified`
 - `Pragma`
 
 Accessing any other response header causes an error.
-
-```smart
-There's no `Content-Length` header in the list!
-
-This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
-```
 
 To grant JavaScript access to any other response header, the server must send the `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
 
@@ -190,14 +185,15 @@ For example:
 200 OK
 Content-Type:text/html; charset=UTF-8
 Content-Length: 12345
+Content-Encoding: gzip
 API-Key: 2c9de507f2c54aa1
 Access-Control-Allow-Origin: https://javascript.info
 *!*
-Access-Control-Expose-Headers: Content-Length,API-Key
+Access-Control-Expose-Headers: Content-Encoding,API-Key
 */!*
 ```
 
-With such an `Access-Control-Expose-Headers` header, the script is allowed to read the `Content-Length` and `API-Key` headers of the response.
+With such an `Access-Control-Expose-Headers` header, the script is allowed to read the `Content-Encoding` and `API-Key` headers of the response.
 
 ## "Unsafe" requests
 

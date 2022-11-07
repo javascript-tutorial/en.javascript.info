@@ -59,7 +59,7 @@ alert( getMaxSubSum([100, -9, 2, -3, 5]) ); // 100
 
 The solution has a time complexity of [O(n<sup>2</sup>)](https://en.wikipedia.org/wiki/Big_O_notation). In other words, if we increase the array size 2 times, the algorithm will work 4 times longer.
 
-For big arrays (1000, 10000 or more items) such algorithms can lead to a serious sluggishness.
+For big arrays (1000, 10000 or more items) such algorithms can lead to serious sluggishness.
 
 # Fast solution
 
@@ -91,4 +91,4 @@ alert( getMaxSubSum([-1, -2, -3]) ); // 0
 
 The algorithm requires exactly 1 array pass, so the time complexity is O(n).
 
-You can find more detail information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.
+You can find more detailed information about the algorithm here: [Maximum subarray problem](http://en.wikipedia.org/wiki/Maximum_subarray_problem). If it's still not obvious why that works, then please trace the algorithm on the examples above, see how it works, that's better than any words.

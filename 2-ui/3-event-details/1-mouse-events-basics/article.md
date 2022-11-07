@@ -1,3 +1,4 @@
+
 # Mouse events
 
 In this chapter we'll get into more details about mouse events and their properties.
@@ -52,7 +53,7 @@ Click-related events always have the `button` property, which allows to get the 
 
 We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
 
-From the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
+On the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
 
 The possible values of `event.button` are:
 
@@ -154,7 +155,7 @@ Move the mouse over the input field to see `clientX/clientY` (the example is in 
 
 ## Preventing selection on mousedown
 
-Double mouse click has a side-effect that may be disturbing in some interfaces: it selects text.
+Double mouse click has a side effect that may be disturbing in some interfaces: it selects text.
 
 For instance, double-clicking on the text below selects it in addition to our handler:
 

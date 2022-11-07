@@ -142,7 +142,7 @@ Let's use it to look for prices in the format "currency, followed by a digit":
 ```js run
 let regexp = /\p{Sc}\d/gu;
 
-let  str = `Prices: $2, €1, ¥9`;
+let str = `Prices: $2, €1, ¥9`;
 
 alert( str.match(regexp) ); // $2,€1,¥9
 ```

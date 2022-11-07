@@ -51,7 +51,7 @@ describe("pow", function() {
 A spec has three main building blocks that you can see above:
 
 `describe("title", function() { ... })`
-: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
 
 `it("use case description", function() { ... })`
 : In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
@@ -69,7 +69,7 @@ The flow of development usually looks like this:
 
 1. An initial spec is written, with tests for the most basic functionality.
 2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+3. To check whether it works, we run the testing framework [Mocha](https://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
 4. Now we have a working initial implementation with tests.
 5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
 6. Go to 3, update the implementation till tests give no errors.
@@ -79,15 +79,15 @@ So, the development is *iterative*. We write the spec, implement it, make sure t
 
 Let's see this development flow in our practical case.
 
-The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
 
 ## The spec in action
 
 Here in the tutorial we'll be using the following JavaScript libraries for tests:
 
-- [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
-- [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+- [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
 
 These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
 
@@ -338,14 +338,14 @@ The newly added tests fail, because our implementation does not support them. Th
 ```smart header="Other assertions"
 Please note the assertion `assert.isNaN`: it checks for `NaN`.
 
-There are other assertions in [Chai](http://chaijs.com) as well, for instance:
+There are other assertions in [Chai](https://www.chaijs.com/) as well, for instance:
 
 - `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
 - `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
 - `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
 - `assert.isTrue(value)` -- checks that `value === true`
 - `assert.isFalse(value)` -- checks that `value === false`
-- ...the full list is in the [docs](http://chaijs.com/api/assert/)
+- ...the full list is in the [docs](https://www.chaijs.com/api/assert/)
 ```
 
 So we should add a couple of lines to `pow`:

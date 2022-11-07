@@ -102,7 +102,7 @@ As we can see from `alert` output, in a browser the timer identifier is a number
 
 Again, there is no universal specification for these methods, so that's fine.
 
-For browsers, timers are described in the [timers section](https://www.w3.org/TR/html5/webappapis.html#timers) of HTML5 standard.
+For browsers, timers are described in the [timers section](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) of HTML Living Standard.
 
 ## setInterval
 
@@ -232,7 +232,7 @@ setTimeout(function() {...}, 100);
 
 For `setInterval` the function stays in memory until `clearInterval` is called.
 
-There's a side-effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
 ````
 
 ## Zero delay setTimeout
@@ -256,7 +256,7 @@ The first line "puts the call into calendar after 0ms". But the scheduler will o
 There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
 
 ````smart header="Zero delay is in fact not zero (in a browser)"
-In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
 
 Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
 
@@ -297,6 +297,6 @@ Please note that all scheduling methods do not *guarantee* the exact delay.
 For example, the in-browser timer may slow down for a lot of reasons:
 - The CPU is overloaded.
 - The browser tab is in the background mode.
-- The laptop is on battery.
+- The laptop is on battery saving mode.
 
 All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.

@@ -234,11 +234,12 @@ Now let's cover methods that search in an array.
 
 ### indexOf/lastIndexOf and includes
 
-The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+The methods [arr.indexOf](mdn:js/Array/indexOf) and [arr.includes](mdn:js/Array/includes) have the similar syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
 
 - `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
-- `arr.lastIndexOf(item, from)` -- same, but looks for from right to left.
 - `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+
+Usually these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
 
 For instance:
 
@@ -252,19 +253,31 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
-Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
+If we want to check if `item` exists in the array, and don't need the exact index, then `arr.includes` is preferred.
 
-Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
+The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
+
+```js run
+let fruits = ['Apple', 'Orange', 'Apple']
+
+alert( fruits.indexOf('Apple') ); // 0 (first Apple)
+alert( fruits.lastIndexOf('Apple') ); // 2 (last Apple)
+```
+
+````smart header="The `includes` method handles `NaN` correctly"
+A minor, but noteworthy feature of `includes` is that it correctly handles `NaN`, unlike `indexOf`:
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
+alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
 alert( arr.includes(NaN) );// true (correct)
 ```
+That's because `includes` was added to JavaScript much later and uses the more up to date comparison algorithm internally.
+````
 
-### find and findIndex
+### find and findIndex/findLastIndex
 
 Imagine we have an array of objects. How do we find an object with the specific condition?
 
@@ -304,7 +317,28 @@ In real life arrays of objects is a common thing, so the `find` method is very u
 
 Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
 
-The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself and `-1` is returned when nothing is found.
+The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax, but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
+
+The [arr.findLastIndex](mdn:js/Array/findLastIndex) method is like `findIndex`, but searches from right to left, similar to `lastIndexOf`.
+
+Here's an example:
+
+```js run
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"},
+  {id: 4, name: "John"}
+];
+
+// Find the index of the first John
+alert(users.findIndex(user => user.name == 'John')); // 0
+
+// Find the index of the last John
+alert(users.findLastIndex(user => user.name == 'John')); // 3
+```
+
+
 
 ### filter
 
@@ -389,6 +423,7 @@ Literally, all elements are converted to strings for comparisons. For strings, l
 To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
 
 The function should compare two arbitrary values and return:
+
 ```js
 function compare(a, b) {
   if (a > b) return 1; // if the first value is greater than the second
@@ -633,7 +668,6 @@ So it's advised to always specify the initial value.
 
 The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
 
-
 ## Array.isArray
 
 Arrays do not form a separate language type. They are based on objects.
@@ -642,7 +676,7 @@ So `typeof` does not help to distinguish a plain object from an array:
 
 ```js run
 alert(typeof {}); // object
-alert(typeof []); // same
+alert(typeof []); // object (same)
 ```
 
 ...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
@@ -733,7 +767,7 @@ A cheat sheet of array methods:
   - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
 
 - Additionally:
-  - `Array.isArray(arr)` checks `arr` for being an array.
+  - `Array.isArray(value)` checks `value` for being an array, if so returns `true`, otherwise `false`.
 
 Please note that methods `sort`, `reverse` and `splice` modify the array itself.
 
@@ -746,6 +780,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
   These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
 
   We can use `every` to compare arrays:
+
   ```js run
   function arraysEqual(arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);

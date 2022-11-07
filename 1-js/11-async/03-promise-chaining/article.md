@@ -224,7 +224,7 @@ This feature allows us to integrate custom objects with promise chains without h
 
 ## Bigger example: fetch
 
-In frontend programming promises are often used for network requests. So let's see an extended example of that.
+In frontend programming, promises are often used for network requests. So let's see an extended example of that.
 
 We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](info:fetch), but the basic syntax is quite simple:
 

@@ -6,6 +6,19 @@ For example, outputting goods from a list one after another or just running the 
 
 *Loops* are a way to repeat the same code multiple times.
 
+```smart header="The for..of and for..in loops"
+A small announcement for advanced readers.
+
+This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+
+If you came to this article searching for other types of loops, here are the pointers:
+
+- See [for..in](info:object#forin) to loop over object properties.
+- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+
+Otherwise, please read on.
+```
+
 ## The "while" loop
 
 The `while` loop has the following syntax:
@@ -162,9 +175,7 @@ for (i = 0; i < 3; i++) { // use an existing variable
 
 alert(i); // 3, visible, because declared outside of the loop
 ```
-
 ````
-
 
 ### Skipping parts
 
@@ -268,7 +279,7 @@ for (let i = 0; i < 10; i++) {
 
 From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
 
-But as a side-effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
+But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
@@ -285,7 +296,6 @@ if (i > 5) {
 ```
 
 ...and rewrite it using a question mark:
-
 
 ```js no-beautify
 (i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
@@ -321,6 +331,7 @@ We need a way to stop the process if the user cancels the input.
 The ordinary `break` after `input` would only break the inner loop. That's not sufficient -- labels, come to the rescue!
 
 A *label* is an identifier with a colon before a loop:
+
 ```js
 labelName: for (...) {
   ...
@@ -342,6 +353,7 @@ The `break <labelName>` statement in the loop below breaks out to the label:
     // do something with the value...
   }
 }
+
 alert('Done!');
 ```
 
@@ -362,6 +374,7 @@ The `continue` directive can also be used with a label. In this case, code execu
 Labels do not allow us to jump into an arbitrary place in the code.
 
 For example, it is impossible to do this:
+
 ```js
 break label; // jump to the label below (doesn't work)
 
@@ -369,6 +382,7 @@ label: for (...)
 ```
 
 A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
 ```js
 label: {
   // ...

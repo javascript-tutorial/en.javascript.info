@@ -46,7 +46,7 @@ Also, we can put `export` separately.
 
 Here we first declare, and then export:
 
-```js  
+```js
 // 📁 say.js
 function sayHi(user) {
   alert(`Hello, ${user}!`);
@@ -93,25 +93,14 @@ At first sight, "import everything" seems such a cool thing, short to write, why
 
 Well, there are few reasons.
 
-1. Modern build tools ([webpack](https://webpack.js.org/) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+1. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
+2. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
 
-    Let's say, we added a 3rd-party library `say.js` to our project with many functions:
-    ```js
-    // 📁 say.js
-    export function sayHi() { ... }
-    export function sayBye() { ... }
-    export function becomeSilent() { ... }
-    ```
+```smart header="Don't be afraid to import too much"
+Modern build tools, such as [webpack](https://webpack.js.org/) and others, bundle modules together and optimize them to speedup loading. They also removed unused imports.
 
-    Now if we only use one of `say.js` functions in our project:
-    ```js
-    // 📁 main.js
-    import {sayHi} from './say.js';
-    ```
-    ...Then the optimizer will see that and remove the other functions from the bundled code, thus making the build smaller. That is called "tree-shaking".
-
-2. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
-3. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+For instance, if you `import * as library` from a huge code library, and then use only few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimzed bundle.
+```
 
 ## Import "as"
 
@@ -224,7 +213,7 @@ Without `default`, such an export would give an error:
 export class { // Error! (non-default export needs a name)
   constructor() {}
 }
-```     
+```
 
 ### The "default" name
 
@@ -326,7 +315,7 @@ Imagine, we're writing a "package": a folder with a lot of modules, with some of
 The file structure could be like this:
 ```
 auth/
-    index.js  
+    index.js
     user.js
     helpers.js
     tests/
@@ -372,7 +361,7 @@ The syntax `export ... from ...` is just a shorter notation for such import-expo
 
 ```js
 // 📁 auth/index.js
-// re-export login/logout 
+// re-export login/logout
 export {login, logout} from './helpers.js';
 
 // re-export the default export as User
@@ -380,7 +369,7 @@ export {default as User} from './user.js';
 ...
 ```
 
-The notable difference of `export ... from` compared to `import/export` is that re-exported modules aren't available in the current file. So inside the above example of `auth/index.js` we can't use re-exported `login/logout` functions. 
+The notable difference of `export ... from` compared to `import/export` is that re-exported modules aren't available in the current file. So inside the above example of `auth/index.js` we can't use re-exported `login/logout` functions.
 
 ### Re-exporting the default export
 
@@ -399,7 +388,7 @@ We can come across two problems with it:
 
 1. `export User from './user.js'` won't work. That would lead to a syntax error.
 
-    To re-export the default export, we have to write `export {default as User}`, as in the example above.    
+    To re-export the default export, we have to write `export {default as User}`, as in the example above.
 
 2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
 
@@ -430,7 +419,7 @@ Import:
 
 - Importing named exports:
   - `import {x [as y], ...} from "module"`
-- Importing the default export:  
+- Importing the default export:
   - `import x from "module"`
   - `import {default as x} from "module"`
 - Import all:

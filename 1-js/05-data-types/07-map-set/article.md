@@ -15,12 +15,12 @@ But that's not enough for real life. That's why `Map` and `Set` also exist.
 Methods and properties are:
 
 - `new Map()` -- creates the map.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key.
+- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
+- [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key.
+- [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
+- [`map.size`](mdn:js/Map/size) -- returns the current element count.
 
 For instance:
 
@@ -105,9 +105,9 @@ map.set('1', 'str1')
 
 For looping over a `map`, there are 3 methods:
 
-- `map.keys()` -- returns an iterable for keys,
-- `map.values()` -- returns an iterable for values,
-- `map.entries()` -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- [`map.keys()`](mdn:js/Map/keys) -- returns an iterable for keys,
+- [`map.values()`](mdn:js/Map/values) -- returns an iterable for values,
+- [`map.entries()`](mdn:js/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
 
 For instance:
 
@@ -238,11 +238,11 @@ A `Set` is a special type collection - "set of values" (without keys), where eac
 Its main methods are:
 
 - `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
-- `set.add(value)` -- adds a value, returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- [`set.add(value)`](mdn:js/Set/add) -- adds a value, returns the set itself.
+- [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
+- [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
+- [`set.clear()`](mdn:js/Set/clear) -- removes everything from the set.
+- [`set.size`](mdn:js/Set/size) -- is the elements count.
 
 The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
 
@@ -291,13 +291,13 @@ set.forEach((value, valueAgain, set) => {
 
 Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But this may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
 
 The same methods `Map` has for iterators are also supported:
 
-- `set.keys()` -- returns an iterable object for values,
-- `set.values()` -- same as `set.keys()`, for compatibility with `Map`,
-- `set.entries()` -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- [`set.keys()`](mdn:js/Set/keys) -- returns an iterable object for values,
+- [`set.values()`](mdn:js/Set/values) -- same as `set.keys()`, for compatibility with `Map`,
+- [`set.entries()`](mdn:js/Set/entries) -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
 
 ## Summary
 
@@ -306,12 +306,12 @@ The same methods `Map` has for iterators are also supported:
 Methods and properties:
 
 - `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- `map.set(key, value)` -- stores the value by the key, returns the map itself.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
-- `map.clear()` -- removes everything from the map.
-- `map.size` -- returns the current element count.
+- [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key, returns the map itself.
+- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
+- [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
+- [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
+- [`map.size`](mdn:js/Map/size) -- returns the current element count.
 
 The differences from a regular `Object`:
 
@@ -323,10 +323,10 @@ The differences from a regular `Object`:
 Methods and properties:
 
 - `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
-- `set.add(value)` -- adds a value (does nothing if `value` exists), returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- [`set.add(value)`](mdn:js/Set/add) -- adds a value (does nothing if `value` exists), returns the set itself.
+- [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
+- [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
+- [`set.clear()`](mdn:js/Set/clear) -- removes everything from the set.
+- [`set.size`](mdn:js/Set/size) -- is the elements count.
 
 Iteration over `Map` and `Set` is always in the insertion order, so we can't say that these collections are unordered, but we can't reorder elements or directly get an element by its number.

@@ -32,7 +32,7 @@ In many practical cases we'd prefer to get `undefined` instead of an error here 
 let html = document.querySelector('.elem').innerHTML; // error if it's null
 ```
 
-Once again, if the element doesn't exist, we'll get an error accessing `.innerHTML` of `null`. And in some cases, when the absence of the element is normal, we'd like to avoid the error and just accept `html = null` as the result.
+Once again, if the element doesn't exist, we'll get an error accessing `.innerHTML` property of `null`. And in some cases, when the absence of the element is normal, we'd like to avoid the error and just accept `html = null` as the result.
 
 How can we do this?
 
@@ -44,11 +44,19 @@ let user = {};
 alert(user.address ? user.address.street : undefined);
 ```
 
-It works, there's no error... But it's quite inelegant. As you can see, the `"user.address"` appears twice in the code. For more deeply nested properties, that becomes a problem as more repetitions are required.
+It works, there's no error... But it's quite inelegant. As you can see, the `"user.address"` appears twice in the code.
 
-E.g. let's try getting `user.address.street.name`.
+Here's how the same would look for `document.querySelector`:
 
-We need to check both `user.address` and `user.address.street`:
+```js run
+let html = document.querySelector('.elem') ? document.querySelector('.elem').innerHTML : null;
+```
+
+We can see that the element search `document.querySelector('.elem')` is actually called twice here. Not good.
+
+For more deeply nested properties, it becomes even uglier, as more repetitions are required.
+
+E.g. let's get `user.address.street.name` in a similar fashion.
 
 ```js
 let user = {}; // user has no address
@@ -58,7 +66,7 @@ alert(user.address ? user.address.street ? user.address.street.name : null : nul
 
 That's just awful, one may even have problems understanding such code.
 
-Don't even care to, as there's a better way to write it, using the `&&` operator:
+There's a little better way to write it, using the `&&` operator:
 
 ```js run
 let user = {}; // user has no address
@@ -92,6 +100,12 @@ alert( user?.address?.street ); // undefined (no error)
 
 The code is short and clean, there's no duplication at all.
 
+Here's an example with `document.querySelector`:
+
+```js run
+let html = document.querySelector('.elem')?.innerHTML; // will be undefined, if there's no element
+```
+
 Reading the address with `user?.address` works even if `user` object doesn't exist:
 
 ```js run
@@ -108,9 +122,9 @@ E.g. in `user?.address.street.name` the `?.` allows `user` to safely be `null/un
 ```warn header="Don't overuse the optional chaining"
 We should use `?.` only where it's ok that something doesn't exist.
 
-For example, if according to our coding logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
+For example, if according to our code logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
 
-So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
+Then, if `user` happens to be undefined, we'll see a programming error about it and fix it. Otherwise, if we overuse `?.`, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
 
 ````warn header="The variable before `?.` must be declared"
@@ -127,7 +141,7 @@ The variable must be declared (e.g. `let/const/var user` or as a function parame
 
 As it was said before, the `?.` immediately stops ("short-circuits") the evaluation if the left part doesn't exist.
 
-So, if there are any further function calls or side effects, they don't occur.
+So, if there are any further function calls or operations to the right of `?.`, they won't be made.
 
 For instance:
 
@@ -135,7 +149,7 @@ For instance:
 let user = null;
 let x = 0;
 
-user?.sayHi(x++); // no "sayHi", so the execution doesn't reach x++
+user?.sayHi(x++); // no "user", so the execution doesn't reach sayHi call and x++
 
 alert(x); // 0, value not incremented
 ```
@@ -162,13 +176,13 @@ userAdmin.admin?.(); // I am admin
 */!*
 
 *!*
-userGuest.admin?.(); // nothing (no such method)
+userGuest.admin?.(); // nothing happens (no such method)
 */!*
 ```
 
-Here, in both lines we first use the dot (`userAdmin.admin`) to get `admin` property, because we assume that the user object exists, so it's safe read from it.
+Here, in both lines we first use the dot (`userAdmin.admin`) to get `admin` property, because we assume that the `user` object exists, so it's safe read from it.
 
-Then `?.()` checks the left part: if the admin function exists, then it runs (that's so for `userAdmin`). Otherwise (for `userGuest`) the evaluation stops without errors.
+Then `?.()` checks the left part: if the `admin` function exists, then it runs (that's so for `userAdmin`). Otherwise (for `userGuest`) the evaluation stops without errors.
 
 The `?.[]` syntax also works, if we'd like to use brackets `[]` to access properties instead of dot `.`. Similar to previous cases, it allows to safely read a property from an object that may not exist.
 
@@ -179,7 +193,7 @@ let user1 = {
   firstName: "John"
 };
 
-let user2 = null; 
+let user2 = null;
 
 alert( user1?.[key] ); // John
 alert( user2?.[key] ); // undefined
@@ -192,17 +206,16 @@ delete user?.name; // delete user.name if user exists
 ```
 
 ````warn header="We can use `?.` for safe reading and deleting, but not writing"
-The optional chaining `?.` has no use at the left side of an assignment.
+The optional chaining `?.` has no use on the left side of an assignment.
 
 For example:
 ```js run
 let user = null;
 
 user?.name = "John"; // Error, doesn't work
-// because it evaluates to undefined = "John"
+// because it evaluates to: undefined = "John"
 ```
 
-It's just not that smart.
 ````
 
 ## Summary
@@ -217,4 +230,4 @@ As we can see, all of them are straightforward and simple to use. The `?.` check
 
 A chain of `?.` allows to safely access nested properties.
 
-Still, we should apply `?.` carefully, only where it's acceptable that the left part doesn't exist. So that it won't hide programming errors from us, if they occur.
+Still, we should apply `?.` carefully, only where it's acceptable, according to our code logic, that the left part doesn't exist. So that it won't hide programming errors from us, if they occur.

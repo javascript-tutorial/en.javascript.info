@@ -55,7 +55,7 @@ To fully enable all features of modern JavaScript, we should start scripts with 
 
 The directive must be at the top of a script or at the beginning of a function body.
 
-Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
 
 Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
 
@@ -144,7 +144,7 @@ Assignments
 : There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
 Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#Bitwise) when they are needed.
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
 
 Conditional
 : The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
@@ -256,7 +256,7 @@ We covered three ways to create a function in JavaScript:
 3. Arrow functions:
 
     ```js
-    // expression at the right side
+    // expression on the right side
     let sum = (a, b) => a + b;
 
     // or multi-line syntax with { ... }, need return here:
