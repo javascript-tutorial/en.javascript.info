@@ -2,16 +2,16 @@
 
 Keling, JavaScript nimasi bilan o'ziga xosligini, u bilan nimalarga erishishimiz mumkinligini va u bilan boshqa texnologiyalar qanday birga ishlashini ko'rib chiqamiz.
 
-## Javascript o'zi nima?
+## JavaScript o'zi nima?
 
-Dastlab, Javascript "web sahifalarni jonli qilish" maqsadida yaratilgan edi.
+Dastlab, JavaScript "web sahifalarni jonli qilish" maqsadida yaratilgan edi.
 
 Bu tilda yozilgan dasturlar skriptlar deb ataladi. Ular web sahifaning HTML qismida to'g'ridan to'gri yozilishi va sahifa yuklanishi bilan avtomatik ravishda ishga tushirilishi mumkin.
 
 Skriptlar oddiy matn ko'rinishida beriladi va ko'rinadi. Ular ishlashi uchun maxsus tayyorgarlik 
 yoki jamlash talab qilmaydi.
 
-Bu jihati bilan JacaScript boshqa [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) deb atalgan dasturlash tilidan keskin farq qiladi.
+Bu jihati bilan JavaScript boshqa [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) deb atalgan dasturlash tilidan keskin farq qiladi.
 
 ```smart header="Nima uchun <u>Java</u>Script deb nomlanadi?"
 JavaScript yaratilganda uning dastlabki nomi "LiveScript" edi. Lekin, o'sha paytda Java juda 
@@ -21,15 +21,15 @@ yordam beradi deb qaror qilingan.
 Lekin, JavaScript rivojlangani sari [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) deb atalgan o'ziga xosligiga ega to'liq mustaqil til bo'ldi va hozir Java bilan umuman bog'liqlik jihati yo'q. 
 ```
 
-Bugun, JacaScript nafaqat brauzerda balki serverda ham yoki [JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine) deb atalgan maxsus dasturga ega har qanday qurilmada ishlay oladi. 
+Bugun, JavaScript nafaqat brauzerda balki serverda ham yoki [JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine) deb atalgan maxsus dasturga ega har qanday qurilmada ishlay oladi. 
 
-Brauzerning o'zida o'rnatilgan engine mavjud. Ba'zida u "JacaScript virtual machine" deb ham ataladi.
+Brauzerning o'zida o'rnatilgan engine mavjud. Ba'zida u "JavaScript virtual machine" deb ham ataladi.
 
-Turli engine larning turli "kod nomlanishlari" mavjud. Masalan:
+Turli enginelarning turli "kod nomlanishlari" mavjud. Masalan:
 
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- Chrome, Opera va Edge brauzerlari uchun.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox brauzeri uchun.
-- ...Yana IE uchun "Chakra", Safari uchun "JacaScriptCore", "Nitro" va "SquirrelFish" deb
+- ...Yana IE uchun "Chakra", Safari uchun "JavaScriptCore", "Nitro" va "SquirrelFish" deb
 nomlangan va boshqa shu kabi kod nomlari mavjud.
 
 Yuqoridagi terminlar eslab qolishga oson, chunki ulardan internetdagi dasturlashga oid 
@@ -54,23 +54,23 @@ asoslangan mashina kodini yanada optimizatsiya qiladi.
 Zamonaviy JacaScript "xavsiz" dasturlash tilidir. U xotira yoki CPU ga kam darajali kirish 
 ta'minlamaydi, chunki u dastlab uni talab qilmaydigan brauzerlar uchun yaratilgandi.
 
-JacaScript ning qobiliyatlari u ishlab turgan muhitga katta bog'liq. Misol uchun, [Node.js](https://wikipedia.org/wiki/Node.js) JavaScript ga katta hajmdagi fayllarni o'qish/yozish ga yordam beradigan funksiyalarni
+JavaScriptning qobiliyatlari u ishlab turgan muhitga katta bog'liq. Misol uchun, [Node.js](https://wikipedia.org/wiki/Node.js) JavaScript ga katta hajmdagi fayllarni o'qish/yozish ga yordam beradigan funksiyalarni
 qo'llab quvvatlaydi, tizim so'rovlarini amalga oshiradi va hokazo.
 
-Ichki-brauzer JacaScript web sahifalarni boshqarish, foydalanuvchi bilan aloqa qilish va web 
+Ichki-brauzer JavaScript web sahifalarni boshqarish, foydalanuvchi bilan aloqa qilish va web 
 server bilan bog'liq hamma narsani qila oladi.
 
-Misol uchun, ichki-brauzer JacaScript qodir:
+Misol uchun, ichki-brauzer JavaScript qodir:
 
 - Sahifaga yangi HTML qo'shish, mavjud kontentni o'zgartirish, dizaynni o'zgartirishga.
 - Foydalanuvchi harakatlariga reaksiya bildirish, sichqoncha bosilganda, kursor harakatlanganda va klaviatura bosilganda ma'lum harakatlarni amalga oshirishga.
 - Uzoq serverlarga tizim orqali so'rovlar yuborish, yuklab olish va yuklashga ([AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) va [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) deb nomlanadigan texnologiyalar).
 - Kokilar olish va o'rnatish, tashrif buyuruvchidan savollar so'rash, habarlar ko'rsatishga.
-- Mijoz tomonda("mahalliy xotirada") ma'lumotlarni saqlab qolishga.
+- Mijoz tomonda (ya'ni mahalliy xotirada) ma'lumotlarni saqlab qolishga.
 
-## Ichki-brauzer JacaScript nimalar qila olmaydi?
+## Ichki-brauzer JavaScript nimalar qila olmaydi?
 
-Foydalanuvchining xavfsizligini himoya qilish maqsadida JacaScriptning brauzer dagi
+Foydalanuvchining xavfsizligini himoya qilish maqsadida JavaScriptning brauzer dagi
 imkoniyatlari cheklangan. Bundan maqsad yomon web sahifalarning maxfiy ma'lumotlarga kirishini
 yoki foydalanuvchining ma'lumotlariga zarar yetkazishini oldini olishdir.
 
@@ -141,4 +141,4 @@ Yana boshqalar ham bor. Albatta, biz transpilyatsiya qilingan tillardan birini i
 
 - JavaScript dastlab faqat brauzer tili sifatida yaratilgan edi, ammo hozir u ko'plab boshqa muhitlarda ham qo'llaniladi.
 - Bugungi kunda JavaScript HTML/CSS bilan toʻliq birlashgan eng keng tarqalgan brauzer tili sifatida oʻziga xos mavqega ega.
-- JavaScript-ga "ko'chiriladigan" va ma'lum xususiyatlarni ta'minlaydigan ko'plab tillar mavjud. JavaScript-ni o'zlashtirgandan so'ng, ularni hech bo'lmaganda qisqacha ko'rib chiqish tavsiya etiladi.
+- JavaScriptga "ko'chiriladigan" va ma'lum xususiyatlarni ta'minlaydigan ko'plab tillar mavjud. JavaScript-ni o'zlashtirgandan so'ng, ularni hech bo'lmaganda qisqacha ko'rib chiqish tavsiya etiladi.

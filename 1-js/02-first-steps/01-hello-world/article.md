@@ -1,17 +1,17 @@
-# Hello, world!
+# Salom, dunyo!
 
-This part of the tutorial is about core JavaScript, the language itself.
+Qo'llanmaning bu qismi asosiy JavaScript, ya'ni tilning o'zi haqida.
 
-But we need a working environment to run our scripts and, since this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum so that you don't spend time on them if you plan to concentrate on another environment (like Node.js). We'll focus on JavaScript in the browser in the [next part](/ui) of the tutorial.
+Ammo skriptlarimizni ishga tushirish uchun bizga ish muhiti kerak va bu kitob onlayn bo'lgani uchun brauzer eng yaxshi tanlovdir. Agar diqqatingizni boshqa muhitga (masalan, Node.js) qaratmoqchi bo‘lsangiz, ularga vaqt sarflamaslik uchun brauzerga oid buyruqlar miqdorini (masalan, "alert") minimal darajada ushlab turamiz. Biz qo'llanmaning [keyingi qismi](/ui) da e'tiborimizni brauzer ichidagi JavaScriptga qaratamiz.
 
-So first, let's see how we attach a script to a webpage. For server-side environments (like Node.js), you can execute the script with a command like `"node my.js"`.
+Shunday qilib, avval veb-sahifaga skriptni qanday biriktirishimizni ko'rib chiqamiz. Server tomonidagi muhitlar uchun (masalan, Node.js) skriptni `"node my.js"` kabi buyruq bilan bajarishingiz mumkin.
 
 
-## The "script" tag
+## "script" tegi
 
-JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
+JavaScript dasturlarni HTML hujjatning deyarli istalgan joyiga `<script>` tegidan foydalanib kiritish mumkin.
 
-For instance:
+Misol uchun:
 
 ```html run height=100
 <!DOCTYPE HTML>
@@ -19,15 +19,15 @@ For instance:
 
 <body>
 
-  <p>Before the script...</p>
+  <p>Skriptdan avval...</p>
 
 *!*
   <script>
-    alert( 'Hello, world!' );
+    alert( 'Salom, dunyo!' );
   </script>
 */!*
 
-  <p>...After the script.</p>
+  <p>...Skriptdan keyin.</p>
 
 </body>
 
@@ -35,24 +35,23 @@ For instance:
 ```
 
 ```online
-You can run the example by clicking the "Play" button in the right-top corner of the box above.
+Yuqoridagi oynaning o'ng yuqori burchagidagi "Play" tugmasini bosish orqali misolni ishga tushirishingiz mumkin.
 ```
 
-The `<script>` tag contains JavaScript code which is automatically executed when the browser processes the tag.
+`<script>` tegi brauzer tegni ishga tushirganda avtomatik ravishda bajariladigan JavaScript kodini o'z ichiga oladi.
 
+## Zamonaviy ko'rinish
 
-## Modern markup
+`<script>` tegining bir nechta atributlari mavjud boʻlib, ular hozirgi kunda kamdan-kam qoʻllaniladi, lekin ularni eski kodlarda uchratish mumkin:
 
-The `<script>` tag has a few attributes that are rarely used nowadays but can still be found in old code:
+`type` atributi: <code>&lt;script <u>type</u>=...&gt;</code>
+: Eski standart HTML va HTML4 skriptlarda `type` bo'lishini talab qilgan. Odatda u `type="text/javascript"` shaklida bo'lgan. Lekin u boshqa talab qilinmaydi. Hamda, yangi HTML standarti bu atributning mazmunini butunlay o'zgartirib yubordi. Hozir, u JavaScript modullari uchun ishlatilinishi mumkin. Ammo, bu ancha murakkab mavzu, modullar haqida darslikning boshqa qismida gaplashamiz.
 
-The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
-: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+`language` atributi: <code>&lt;script <u>language</u>=...&gt;</code>
+: Bu atributdan skriptning tilini ko'rsatish uchun foydalaniladi. Bu atribut ortiq hech qanday ma'no anglatmaydi, chunki JavaScript doimiy tildir. Uni ishlatishga endi ehtiyoj yo'q.
 
-The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
-: This attribute was meant to show the language of the script. This attribute no longer makes sense because JavaScript is the default language. There is no need to use it.
-
-Comments before and after scripts.
-: In really ancient books and guides, you may find comments inside `<script>` tags, like this:
+Skriptlardan oldin va keyingi izohlar.
+: Eski kitob va qo'llanmalarda, `<script>` teglarining ichida mana bunday izohlarni topishingiz mumkin:
 
     ```html no-beautify
     <script type="text/javascript"><!--
@@ -60,28 +59,29 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+    Zamonaniy JavaScriptda bu usuldan foydalanilmaydi. Bu izohlar `<script>` tegini qanday ishga tushirishni bilmaydigan eski brauzerlardan JavaScript kodini yashiradi. Oxirgi 15 yilda chiqarilgan brauzerlarda bunday muammo bo'lmagani sababli bunday turdagi izohlar eski kodlarni aniqlashga yordam berishi mumkin.
 
 
-## External scripts
+## Tashqi skriptlar
 
-If we have a lot of JavaScript code, we can put it into a separate file.
+Agar bizda ko'p JavaScript kodi bo'lsa, ularni alohida faylga joylashimiz mumkin.
 
-Script files are attached to HTML with the `src` attribute:
+
+Skript fayllar HTMLga `src` artibuti yordamida bog'lanadi:
 
 ```html
 <script src="/path/to/script.js"></script>
 ```
 
-Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"`, just like `src="./script.js"`, would mean a file `"script.js"` in the current folder.
+Bu yerda `/path/to/script.js` sayt ildizidan skriptga mutlaq yo'ldir. One can also provide a relative path from the current page. Misol uchun, `src="script.js"`, xuddi `src="./script.js"` kabi `"script.js"` fayli joriy papkada ekanligini bildiradi. 
 
-We can give a full URL as well. For instance:
+To'liq URL manzilni ham berishimiz mumkin. Misol uchun:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
-To attach several scripts, use multiple tags:
+Bir nechta skriptlarni biriktirish uchun, ko'proq teglardan foydalaning:
 
 ```html
 <script src="/js/script1.js"></script>
@@ -90,19 +90,19 @@ To attach several scripts, use multiple tags:
 ```
 
 ```smart
-As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+Qoida bo'yicha, faqat eng sodda skriptlargina HTMLga joylanadi. Murakkablari esa alohida fayllarda joylashadi.
 
-The benefit of a separate file is that the browser will download it and store it in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+Alohida faylning foydali johati shuki, brauzer uni yuklab oladi va [cache](https://en.wikipedia.org/wiki/Web_cache)da saqlaydi.
 
-Other pages that reference the same script will take it from the cache instead of downloading it, so the file is actually downloaded only once.
+Xuddi shu skriptga havola qilingan boshqa sahifalar uni yuklab olish o'rniga keshdan oladi, shuning uchun fayl faqatgina bir marta yuklab olinadi.
 
-That reduces traffic and makes pages faster.
+Bu trafikni kamaytiradi va sahifalarni tezroq qiladi.
 ```
 
-````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag can't have both the `src` attribute and code inside.
+````warn header="Agar `src` o'rnatilgan bo'lsa, skriptning mazmuni yo'qoladi."
+Yakka `<script>` tegi bir vaqtda `src` atributini ham ichida kodni ham saqlolmaydi.    
 
-This won't work:
+Quyidagi kod ish bermaydi:
 
 ```html
 <script *!*src*/!*="file.js">
@@ -110,9 +110,9 @@ This won't work:
 </script>
 ```
 
-We must choose either an external `<script src="…">` or a regular `<script>` with code.
+Biz yo tashqi `<script src="…">` ni yo oddiy kod yoziladigan `<script>` ni tanlashimiz lozim.
 
-The example above can be split into two scripts to work:
+Yuqoridagi misolni ikkita ishlaydigan skriptga ajratish mumkin:
 
 ```html
 <script src="file.js"></script>
@@ -122,11 +122,11 @@ The example above can be split into two scripts to work:
 ```
 ````
 
-## Summary
+## Xulosa
 
-- We can use a `<script>` tag to add JavaScript code to a page.
-- The `type` and `language` attributes are not required.
-- A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
+- Biz `<script>` tegidan JavaScript kodni sahifaga qo'shish uchun foydalanamiz.
+- `type` va `language` atributlari talab qilinmaydi.
+- Tashqi fayldagi skript `<script src="path/to/script.js"></script>` orqali kiritilishi mumkin.
 
 
-There is much more to learn about browser scripts and their interaction with the webpage. But let's keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn't distract ourselves with browser-specific implementations of it. We'll be using the browser as a way to run JavaScript, which is very convenient for online reading, but only one of many.
+Brauzer skriptlari va ularning veb-sahifa bilan o'zaro ta'siri haqida yanada ko'proq ma'lumot o'rganish mumkin. Ammo shuni yodda tutish kerakki, o'quv qo'llanmaning ushbu qismi JavaScript tiliga bag'ishlangan, shuning uchun o'zimizni uning brauzerga xos amallar bilan chalg'itmasligimiz kerak. Biz brauzerdan JavaScriptni ishga tushirish usuli sifatida foydalanamiz, bu onlayn o'qish uchun juda qulay, lekin ko'p usullardan faqat bittasi.
