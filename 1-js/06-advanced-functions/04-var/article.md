@@ -56,7 +56,7 @@ alert(test); // ReferenceError: test is not defined
 */!*
 ```
 
-The same thing for loops: `var` cannot be block or loop-local:
+The same thing for loops: `var` cannot be block- or loop-local:
 
 ```js run
 for (var i = 0; i < 10; i++) {
@@ -170,7 +170,7 @@ That's best demonstrated with an example:
 
 ```js run
 function sayHi() {
-  alert(phrase);  
+  alert(phrase);
 
 *!*
   var phrase = "Hello";
