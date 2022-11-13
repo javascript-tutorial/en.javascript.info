@@ -38,26 +38,6 @@ button.onclick = () => {
 
 This way users are somewhat protected from unwanted popups, but the functionality is not disabled totally.
 
-What if the popup opens from `onclick`, but after `setTimeout`? That's a bit tricky.
-
-Try this code:
-
-```js run
-// open after 3 seconds
-setTimeout(() => window.open('http://google.com'), 3000);
-```
-
-The popup opens in Chrome, but gets blocked in Firefox.
-
-...If we decrease the delay, the popup works in Firefox too:
-
-```js run
-// open after 1 seconds
-setTimeout(() => window.open('http://google.com'), 1000);
-```
-
-The difference is that Firefox treats a timeout of 2000ms or less are acceptable, but after it -- removes the "trust", assuming that now it's "outside of the user action". So the first one is blocked, and the second one is not.
-
 ## window.open
 
 The syntax to open a popup is: `window.open(url, name, params)`:
