@@ -184,6 +184,7 @@ function process(obj) {
     let result = /* calculations of the result for */ obj;
 
     cache.set(obj, result);
+    return result;
   }
 
   return cache.get(obj);
@@ -223,6 +224,7 @@ function process(obj) {
     let result = /* calculate the result for */ obj;
 
     cache.set(obj, result);
+    return result;
   }
 
   return cache.get(obj);
