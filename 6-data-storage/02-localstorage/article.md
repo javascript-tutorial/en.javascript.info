@@ -10,7 +10,7 @@ We already have cookies. Why additional objects?
 - Also unlike cookies, the server can't manipulate storage objects via HTTP headers. Everything's done in JavaScript.
 - The storage is bound to the origin (domain/protocol/port triplet). That is, different protocols or subdomains infer different storage objects, they can't access data from each other.
 
-Both storage objects provide same methods and properties:
+Both storage objects provide the same methods and properties:
 
 - `setItem(key, value)` -- store key/value pair.
 - `getItem(key)` -- get the value by key.
@@ -124,7 +124,7 @@ The latter works, because `Object.keys` only returns the keys that belong to the
 
 Please note that both key and value must be strings.
 
-If were any other type, like a number, or an object, it gets converted to string automatically:
+If they were any other type, like a number, or an object, they would get converted to a string automatically:
 
 ```js run
 localStorage.user = {name: "John"};
@@ -219,7 +219,7 @@ Modern browsers also support [Broadcast channel API](mdn:/api/Broadcast_Channel_
 
 ## Summary
 
-Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
+Web storage objects `localStorage` and `sessionStorage` allow to store key/value pairs in the browser.
 
 - Both `key` and `value` must be strings.
 - The limit is 5mb+, depends on the browser.
