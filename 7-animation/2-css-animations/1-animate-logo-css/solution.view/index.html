@@ -27,9 +27,9 @@
   <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
 
   <script>
-    flyjet.onclick = function() {
+   let ended = false;
 
-      let ended = false;
+    flyjet.onclick = function() {
 
       flyjet.addEventListener('transitionend', function() {
         if (!ended) {
