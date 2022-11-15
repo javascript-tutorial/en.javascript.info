@@ -50,9 +50,9 @@ The result of `a % b` is the [remainder](https://en.wikipedia.org/wiki/Remainder
 For instance:
 
 ```js run
-alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
-alert( 8 % 4 ); // 0, a remainder of 8 divided by 4
+alert( 5 % 2 ); // 1, the remainder of 5 divided by 2
+alert( 8 % 3 ); // 2, the remainder of 8 divided by 3
+alert( 8 % 4 ); // 0, the remainder of 8 divided by 4
 ```
 
 ### Exponentiation **
