@@ -7,7 +7,7 @@ The optional chaining `?.` is a safe way to access nested object properties, eve
 
 ## The "non-existing property" problem
 
-If you've just started to read the tutorial and learn JavaScript, maybe the problem hasn't touched you yet, but it's quite common.
+If you've just started to learn JavaScript, maybe you haven't encountered this problem yet, but it's quite common.
 
 As an example, let's say we have `user` objects that hold the information about our users.
 
