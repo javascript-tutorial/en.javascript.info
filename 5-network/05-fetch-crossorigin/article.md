@@ -2,11 +2,11 @@
 
 If we send a `fetch` request to another web-site, it will probably fail.
 
-For instance, let's try fetching `http://example.com`:
+For instance, let's try fetching `https://example.com`:
 
 ```js run async
 try {
-  await fetch('http://example.com');
+  await fetch('https://example.com');
 } catch(err) {
   alert(err); // Failed to fetch
 }
