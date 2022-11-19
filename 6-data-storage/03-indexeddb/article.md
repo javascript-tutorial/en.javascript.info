@@ -12,7 +12,7 @@ IndexedDB is a database that is built into a browser, much more powerful than `l
 - Supports key range queries, indexes.
 - Can store much bigger volumes of data than `localStorage`.
 
-That power is usually excessive for traditional client-server apps. The main benefit of IndexedDB is performance, as all the db operations are executed locally without worrying about network speed, and are intended to be combined with ServiceWorkers (to deal in the background with cloud updates for example) and other technologies.
+That power is usually excessive for traditional client-server apps. The main benefit of IndexedDB is performance, as all the db operations are executed locally without worrying about network speed, and they are intended to be combined with ServiceWorkers (to deal in the background with the cloud update for example) and other technologies.
 
 The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
 
