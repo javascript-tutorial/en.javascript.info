@@ -12,7 +12,7 @@ IndexedDB is a database that is built into a browser, much more powerful than `l
 - Supports key range queries, indexes.
 - Can store much bigger volumes of data than `localStorage`.
 
-That power is usually excessive for traditional client-server apps. IndexedDB is intended for offline apps, to be combined with ServiceWorkers and other technologies.
+That power is usually excessive for traditional client-server apps. The main bennefit of IndexedDB is performance, as all the db operations are executed locally without worring about network speed, and intended to be combined with ServiceWorkers (to deal in the backround with cloud updates for example) and other technologies.
 
 The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
 
@@ -819,7 +819,7 @@ let result = await promise; // if still needed
 
 ## Summary
 
-IndexedDB can be thought of as a "localStorage on steroids". It's a simple key-value database, powerful enough for offline apps, yet simple to use.
+IndexedDB can be thought of as a "localStorage on steroids". It's a simple key-value database, powerful enough for offline use, yet simple to use.
 
 The best manual is the specification, [the current one](https://www.w3.org/TR/IndexedDB-2/) is 2.0, but few methods from [3.0](https://w3c.github.io/IndexedDB/) (it's not much different) are partially supported.
 
