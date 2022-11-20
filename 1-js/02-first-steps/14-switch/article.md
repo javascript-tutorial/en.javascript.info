@@ -1,14 +1,14 @@
 # The "switch" statement
 
-A `switch` statement can replace multiple `if` checks.
+`switch` statement ko'plab `if` tekshiruvlarini o'rnini bosishi mumkin.
 
-It gives a more descriptive way to compare a value with multiple variants.
+Bu qiymatni ko'plab variant-lar bilan solishtirishning yanada tavsifiy usulini beradi.
 
-## The syntax
+## Sintaksis
 
-The `switch` has one or more `case` blocks and an optional default.
-
-It looks like this:
+`switch` bir yoki undan ko'proq `case` bloklari va ixtiyoriy default-dan iborat.
+ 
+U shunga o'xshaydi:
 
 ```js no-beautify
 switch(x) {
@@ -26,13 +26,13 @@ switch(x) {
 }
 ```
 
-- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
-- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
-- If no case is matched then the `default` code is executed (if it exists).
+- `x`ning qiymati birinchi `case` (ya'ni `value1`) dan ikkinchisiga (`value2`) va hokazo qiymatlarga qat'iy tenglik uchun tekshiriladi.
+- Agar tenglik topilsa, `switch` mos kelgan `case`dan boshlab eng yaqin `break`ga (yoki `switch` yakuniga) qadar ishlashni boshlaydi.
+- Agar bironta `case` mos kelmasa u holda `default` kod (agar mavjud bo'lsa) ishga tushadi.
 
-## An example
+## Misol
 
-An example of `switch` (the executed code is highlighted):
+`switch`ga misol (bajarilgan kod yoritilgan):
 
 ```js run
 let a = 2 + 2;
@@ -54,13 +54,13 @@ switch (a) {
 }
 ```
 
-Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
+Bu yerda `switch` `a`ni `3`ga teng bo'lgan birinchi `case`dan solishtirishni boshlaydi. O'xshashlik muvaffaqiyatsiz tugaydi.
 
-Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
+So'ngra `4`. U mos keladi, shuning uchun bajaruv `case4`dan boshlanib eng yaqin `break`gacha davom etadi.
 
-**If there is no `break` then the execution continues with the next `case` without any checks.**
+**Agar `break` mavjud bo'lmasa barajuv hech qanday tekshiruvlarsiz keyingi `case` bilan davom etadi.**
 
-An example without `break`:
+`break` mavjud bo'lmagandagi misol:
 
 ```js run
 let a = 2 + 2;
@@ -79,7 +79,7 @@ switch (a) {
 }
 ```
 
-In the example above we'll see sequential execution of three `alert`s:
+Yuqoridagi misolda uchta `alert`ning  ketma-ket bajariluvini ko'ramiz:
 
 ```js
 alert( 'Exactly!' );
@@ -88,9 +88,9 @@ alert( "I don't know such values" );
 ```
 
 ````smart header="Any expression can be a `switch/case` argument"
-Both `switch` and `case` allow arbitrary expressions.
+`switch` ham `case` ham katta hajmli ifodalarga ham ishlaydi.
 
-For example:
+Misol uchun:
 
 ```js run
 let a = "1";
@@ -107,14 +107,15 @@ switch (+a) {
     alert("this doesn't run");
 }
 ```
-Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
+Bu yerda `+a` `1`ni beradi, u `case`da `b + 1` bilan solishtiriladi va mos kelgan kod bajariladi.
+````
 ````
 
-## Grouping of "case"
+## "case"ni guruhlash
 
-Several variants of `case` which share the same code can be grouped.
+Bir xil kodga ega bo'lgan "case" ning bir nechta variantlarini guruhlash mumkin.
 
-For example, if we want the same code to run for `case 3` and `case 5`:
+Misol uchun, agar bir xil kodni `case 3` uchun ham `case 5` uchun bajarilishini xohlasak:
 
 ```js run no-beautify
 let a = 3;
@@ -137,15 +138,16 @@ switch (a) {
 }
 ```
 
-Now both `3` and `5` show the same message.
+Endi `3` ham `5` ham bir xil habarni ko'rsatadi.
 
-The ability to "group" cases is a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+Case-larni guruhlash qobiliyati `switch/case` `break`siz qanday ishlashining yon ta'siridir. Bu yerda `case 3`ning bajariluvi `(*)` qatordan boshlanadi va `case 5`gacha davom etadi, lekin bironta `break` mavjud emas.
 
-## Type matters
 
-Let's emphasize that the equality check is always strict. The values must be of the same type to match.
+## Turning ahamiyati
 
-For example, let's consider the code:
+Shuni ta'kidlash kerakki, tenglikni tekshirish har doim qat'iydir. Qiymatlar mos kelishi uchun bir xil turdga ega bo'lishi kerak.
+
+Misol uchun:
 
 ```js run
 let arg = prompt("Enter a value?");
@@ -167,6 +169,6 @@ switch (arg) {
 }
 ```
 
-1. For `0`, `1`, the first `alert` runs.
-2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+1. `0`, `1` uchun, birnchi `alert` bajariladi.
+2. `2` uchun ikkinchi `alert` bajariladi.
+3. Lekin `3` uchun, `prompt`ning natijasi number `3`ga qat'iy teng `===` bo'lmagan string `"3"`. Shunday qilib bizda  `case 3`da ishlamaydigan kod bor! Va `default` variant bajariladi.
