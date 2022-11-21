@@ -512,6 +512,100 @@ The second variant is easier to understand, isn't it? Instead of the code piece 
 
 So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
 
+
+### What does it mean by Pass-by-Value and Pass-by-Reference in JavaScript?
+
+In JavaScript, when a function is called, the arguments can be passed in two ways, either Pass-by-Value or Pass-by-Reference. Primitive data types such as string, number, Boolean, null, and undefined, are passed by value while non-primitive data types such as objects, arrays, and functions are passed by reference in JavaScript.
+
+## Pass by Value
+
+Pass by value in JavaScript means that a copy of the actual parameter's value is made in memory and all the changes are made in that new value. The original value and the copied value are independent of each other as they both have a different space in memory.
+
+Here's a case of Pass-by-Value:
+
+```js
+function addition(num){
+  num = num + 10;
+  /* We can also write it like this:
+    num += 10;
+  */
+  return num
+}
+let num = 20;
+let result = addition(num);
+console.log(num);     // 20
+console.log(result);  // 30
+```
+
+From the above example, we can see that the function addition takes an argument and changes its value and returns it.
+
+First, we declared a variable num, with a value of 20.
+
+```js
+let num = 20
+```
+
+Then, we passed it to the addition function as an argument and assigned it to a different variable result.
+Now, there's a copy of the original num variable.
+
+```js
+let result = addition(num)
+```
+
+After going througth the function, it returns a different value.
+
+```js
+function addition(num){
+  // Original num value is 20.
+  // Now, 10 is being added to the 20.
+  num = num + 10;
+  // 20 + 10 = 30
+  // The value is now equals to 30.
+  return num
+}
+```
+
+If we prints out both num and result, it will show two different numbers.
+
+```js
+console.log(num)      // 20
+console.log(result)   // 30
+```
+This happens because a seperate copy of variable num is created in the memory as a variable named result with the initial value of 20, which becomes 30 after the calculation.
+
+## Pass by Reference
+
+Unlike pass by value in JavaScript, pass by reference in JavaScript does not create a new space in the memory, instead, we pass the reference (or address) of the actual parameter. It means that the function can access the original value of the variable.
+
+Here's an example:
+
+```js
+// This is an object named "person".
+let person = {
+  name: "Kim",
+  age: 25,
+  rating: 4.5,
+  topic: "JavaScript"
+};
+
+// Here's our function.
+// In this case, tmpPerson is referencing the original person object.
+function example(tmpPerson){
+  tmpPerson.topic = "Intro to JavaScript";
+  console.log(tmpPerson.topic)
+}
+
+// Print result
+console.log(person.topic);  // "JavaScript"
+// Calling the function with the original object as an argument.
+example(person);            // "Intro to JavaScript"
+console.log(person.topic);  // "Intro to JavaScript"
+```
+
+From the above code, we can see that on changing the values in the tmpPerson object, the value of the original person object also gets changed. When we call example function and pass the object, then the original person is passed by its reference, therefore the local parameter tmpPerson will point to the same object person.
+
+You may not able to understand this without knowing about object but it's okay. We will cover object in further lessons.
+
 ## Summary
 
 A function declaration looks like this:
