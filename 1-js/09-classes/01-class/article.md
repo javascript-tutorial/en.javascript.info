@@ -46,7 +46,7 @@ class User {
 
 // Usage:
 let user = new User("John");
-user.sayHi();
+user.sayHi(); // John
 ```
 
 When `new User("John")` is called:
