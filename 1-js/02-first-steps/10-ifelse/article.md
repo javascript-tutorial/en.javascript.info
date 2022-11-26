@@ -33,7 +33,7 @@ We recommend wrapping your code block with curly braces `{}` every time you use 
 
 ## Boolean conversion
 
-The `if (…)` statement evaluates the expression in its parentheses and converts the result to a boolean.
+The `if (...)` statement evaluates the expression in its parentheses and converts the result to a boolean.
 
 Let's recall the conversion rules from the chapter <info:type-conversions>:
 
