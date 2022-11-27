@@ -26,13 +26,19 @@
 
 
   <script>
-    let ball = document.getElementById('ball')
-    let field = document.getElementById('field')
+    const ball = document.getElementById('ball');
+    const field = document.getElementById('field');
 
-    // ball.offsetWidth=0 before image loaded!
-    // to fix: set width
-    ball.style.left = Math.round(field.clientWidth / 2) + 'px'
-    ball.style.top = Math.round(field.clientHeight / 2) + 'px'
+    const updateBallPosition = () => {
+      if (field.clientWidth && field.clientHeight) {
+        ball.style.left = Math.round(field.clientWidth / 2) + 'px';
+        ball.style.top = Math.round(field.clientHeight / 2) + 'px';
+      } else {
+        setTimeout(updateBallPosition, 100);
+      }
+    };
+
+    updateBallPosition();
   </script>
 
 
