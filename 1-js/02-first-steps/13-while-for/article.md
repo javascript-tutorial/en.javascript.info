@@ -231,7 +231,7 @@ while (true) {
   let value = +prompt("Enter a number", '');
 
 *!*
-  if (!value) break; // (*)
+  if (value !== 0 && !value) break; // (*)
 */!*
 
   sum += value;
