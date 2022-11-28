@@ -48,7 +48,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
+Let's say we need to use the new script as soon as it loads. It declares new functions inside it, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
