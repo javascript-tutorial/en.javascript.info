@@ -324,7 +324,7 @@ function loadScript(src, callback) {
 
 Let's rewrite it using Promises.
 
-The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that settles when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
 
 ```js run
 function loadScript(src) {
