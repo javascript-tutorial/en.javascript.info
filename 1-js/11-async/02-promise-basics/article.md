@@ -291,7 +291,7 @@ Sometimes, it might be that a promise is already settled when we add a handler t
 In such case, these handlers just run immediately:
 
 ```js run
-// the promise becomes resolved immediately upon creation
+// the promise becomes settled immediately upon creation
 let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
