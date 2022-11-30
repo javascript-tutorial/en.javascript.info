@@ -153,6 +153,9 @@ http://www.w3.org/Graphics/SVG/IG/resources/svgprimer.html#path_C
 	      points[i].y = y;
 	      setPointCoords(point, i);
 	      drawPath();
+	      if (t > 0) {
+	        drawT(points, t - STEP);
+	      }
 	    }
 	    document.onmouseup = function() {
 	      document.onmousemove = document.onmouseup = null;
@@ -212,6 +215,7 @@ http://www.w3.org/Graphics/SVG/IG/resources/svgprimer.html#path_C
 	  }
 	}
 
+	const STEP = 0.005;
 	let t = 0;
 	let timer;
 
@@ -241,7 +245,7 @@ http://www.w3.org/Graphics/SVG/IG/resources/svgprimer.html#path_C
 	      return;
 	    }
 
-	    t += 0.005;
+	    t += STEP;
 	  }, 30);
 	}
 
