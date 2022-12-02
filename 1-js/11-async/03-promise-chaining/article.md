@@ -181,7 +181,7 @@ loadScript("/article/promise-chaining/one.js").then(script1 => {
 });
 ```
 
-This code does the same: loads 3 scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
+This code does the same: loads three scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
 
 People who start to use promises sometimes don't know about chaining, so they write it this way. Generally, chaining is preferred.
 
