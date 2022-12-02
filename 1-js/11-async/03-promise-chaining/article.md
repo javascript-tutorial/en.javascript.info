@@ -147,7 +147,7 @@ loadScript("/article/promise-chaining/one.js")
   });
 ```
 
-This code can be made bit shorter with arrow functions:
+This code can be made a bit shorter with arrow functions:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
