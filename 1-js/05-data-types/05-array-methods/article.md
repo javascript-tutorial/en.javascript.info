@@ -255,7 +255,7 @@ alert( arr.includes(1) ); // true
 
 Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-If we want to check if `item` exists in the array, and don't need the exact index, then `arr.includes` is preferred.
+If we want to check if `item` exists in the array, and don't need the index, then `arr.includes` is preferred.
 
 The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
 
@@ -337,8 +337,6 @@ alert(users.findIndex(user => user.name == 'John')); // 0
 // Find the index of the last John
 alert(users.findLastIndex(user => user.name == 'John')); // 3
 ```
-
-
 
 ### filter
 
