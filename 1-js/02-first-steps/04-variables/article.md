@@ -71,7 +71,7 @@ let user = 'John',
   message = 'Hello';
 ```
 
-...Yoki "vergul-birinchi" uslubda:
+...Yoki "vergul-birinchi" uslubida:
 
 ```js no-beautify
 let user = 'John'
@@ -79,7 +79,7 @@ let user = 'John'
   , message = 'Hello';
 ```
 
-Texnik jihatdan, bu variantlarning barchasi bir xil ishni bajaradi. Demak, bu shaxsiy did va estetika masalasi.
+Texnik jihatdan, bu variantlarning barchasi bir xil ishni bajaradi. Demak, bu shaxsiy did va estetika masalasidir.
 
 ```smart header="`let` ni o'rniga `var`"
 Eski skriplarda `let`ni o'rniga boshqa kalit so'z - `var` ni uchratishingiz ham mumkin:
@@ -162,7 +162,7 @@ Bir qarashda g'alati ko'rinsada, bu tillar ancha rivojlangan. Bundan tashqari, p
 JavaScriptda o'zgaruvchini nomlashda 2ta cheklov mavjud:
 
 1. Nom faqat harflar, raqamlar, yoki `$` va `_` belgilarini o'zida saqlashi kerak.
-2. Birinchi xarakter raqam bo'lmasligi kerak.
+2. Birinchi belgi raqam bo'lmasligi kerak.
 
 To'g'ri nomlarga misollar:
 
