@@ -1,16 +1,16 @@
-# Arrow functions, the basics
+# Arrow funksiyalar, asoslari
 
-There's another very simple and concise syntax for creating functions, that's often better than Function Expressions.
+Funktsiyalarni yaratish uchun yana bir juda sodda va ixcham sintaksis mavjud bo'lib, u ko'pincha Function Expression lardan yaxshiroq.
 
-It's called "arrow functions", because it looks like this:
+Ular "arrow functions" deb ataladi, chunki ular quyidagicha ko'rinishga ega:
 
 ```js
 let func = (arg1, arg2, ..., argN) => expression;
 ```
 
-This creates a function `func` that accepts arguments `arg1..argN`, then evaluates the `expression` on the right side with their use and returns its result.
+Bu `arg1..argN` argumentlarni qabul qiluvchi `func` funksiyasini yaratadi, so‘ngra ulardan foydalanish bilan o‘ng tarafdagi `ifoda` ni hisoblaydi va uning natijasini qaytaradi.
 
-In other words, it's the shorter version of:
+Boshqacha qilib aytganda, bu quyidagi kodni yozishning qisqa usuli:
 
 ```js
 let func = function(arg1, arg2, ..., argN) {
@@ -18,7 +18,7 @@ let func = function(arg1, arg2, ..., argN) {
 };
 ```
 
-Let's see a concrete example:
+Keling, aniq bir misolni ko'rib chiqaylik:
 
 ```js run
 let sum = (a, b) => a + b;
@@ -33,11 +33,11 @@ let sum = function(a, b) {
 alert( sum(1, 2) ); // 3
 ```
 
-As you can see, `(a, b) => a + b` means a function that accepts two arguments named `a` and `b`. Upon the execution, it evaluates the expression `a + b` and returns the result.
+Ko'rib turganingizdek, `(a, b) => a + b` `a` va `b` nomli ikkita argumentni qabul qiluvchi funktsiyani bildiradi. Amalga oshirilgandan so'ng, u `a + b` ifodasini hisoblaydi va natijani qaytaradi.
 
-- If we have only one argument, then parentheses around parameters can be omitted, making that even shorter.
+- Agar bizda faqat bitta argument bo'lsa, parametrlar atrofidagi qavslarni olib tashlash mumkin, bu esa uni yanada qisqaroq qiladi.
 
-    For example:
+    Masalan:
 
     ```js run
     *!*
@@ -48,7 +48,7 @@ As you can see, `(a, b) => a + b` means a function that accepts two arguments na
     alert( double(3) ); // 6
     ```
 
-- If there are no arguments, parentheses will be empty (but they should be present):
+- Agar argumentlar bo'lmasa, qavslar bo'sh bo'ladi (lekin mavjud bo'lishi shart):
 
     ```js run
     let sayHi = () => alert("Hello!");
@@ -56,9 +56,9 @@ As you can see, `(a, b) => a + b` means a function that accepts two arguments na
     sayHi();
     ```
 
-Arrow functions can be used in the same way as Function Expressions.
+Arrow funktsiyalardan Function Expressions kabi foydalanish mumkin.
 
-For instance, to dynamically create a function:
+Masalan, funktsiyani dinamik tarzda yaratgani:
 
 ```js run
 let age = prompt("What is your age?", 18);
@@ -70,17 +70,17 @@ let welcome = (age < 18) ?
 welcome();
 ```
 
-Arrow functions may appear unfamiliar and not very readable at first, but that quickly changes as the eyes get used to the structure.
+Arroq funktsiyalar notanish va boshida unchalik o'qishga oson bo'lmay ko'rinishi mumkin, lekin ko'zlar tuzilishga o'zganishi bilan bu darhol o'zgaradi.
 
-They are very convenient for simple one-line actions, when we're just too lazy to write many words.
+Ko'p so'zlarni yozishga eringanimizda, ular oddiy bir-qatorli harakatlar uchun judayam qulay.
 
-## Multiline arrow functions
+## Ko'p-qatorli arrow funktsiyalar
 
-The examples above took arguments from the left of `=>` and evaluated the right-side expression with them.
+Yuqorida misollar `=>` ning chap tomonidagi argumentarni oldi va ular bilan o'ng tomondagi ifodalarni hisobladi.
 
-Sometimes we need something a little bit more complex, like multiple expressions or statements. It is also possible, but we should enclose them in curly braces. Then use a normal `return` within them.
+Ba'zan bizga bir nechta iboralar yoki ifodalar kabi biroz murakkabroq narsa kerak bo'ladi. Buning ilojisi bor, lekin biz ularni jingalak qavslar ichiga olishimiz kerak. Keyin ular ichida oddiy `return` dan foydalanamiz.
 
-Like this:
+Mana bunga o'xshash:
 
 ```js run
 let sum = (a, b) => {  // the curly brace opens a multiline function
@@ -94,18 +94,18 @@ alert( sum(1, 2) ); // 3
 ```
 
 ```smart header="More to come"
-Here we praised arrow functions for brevity. But that's not all!
+Bu erda biz qisqaligi uchun arrow funktsiyalarini maqtadik. Lekin bu hammasi emas!
 
-Arrow functions have other interesting features.
+Arrow funktsiyalar boshqa qiziqarli xususiyatlarga ega.
 
-To study them in-depth, we first need to get to know some other aspects of JavaScript, so we'll return to arrow functions later in the chapter <info:arrow-functions>.
+Ularni chuqur o‘rganish uchun avvalo JavaScript-ning ba’zi boshqa jihatlari bilan tanishishimiz kerak, shuning uchun keyinroq <info:arrow-functions> bobida arrow funktsiyalariga qaytamiz.
 
-For now, we can already use arrow functions for one-line actions and callbacks.
+Hozircha, biz allaqachon arrow funktsiyalarni bir qatorli harakatlar va callback lar uchun foydalana olamiz.
 ```
 
-## Summary
+## Xulos
 
-Arrow functions are handy for one-liners. They come in two flavors:
+Arrow funktsiyalar bir qatorchilar uchun qulay. Ular ikki xil ko'rinishda bo'ladi:
 
-1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result.
-2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.
+1. Jingalak qavslarsiz: `(...args) => expression` -- o'ng tomon ifoda: funktsiya uni hosblaydi va qaytaradi.
+2. Jingalak qavslar bilan: `(...args) => { body }` -- qavslar bizga funktsiya ichida bir nechta ifodalarni yozish imkonini beradi, ammo biz biror narsani qaytarish uchun `return` dan foydalanishimiz kereak.
