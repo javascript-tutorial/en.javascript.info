@@ -1,92 +1,89 @@
 
 # Polyfills and transpilers
 
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+JavaScript tili muntazam rivojlanib boradi. Tilga yangi takliflar doimiy ravishda berib boriladi, ular analiz qilinadi va agar munosib topilsa, <https://tc39.github.io/ecma262/> da ro'yxatga va [specification](http://www.ecma-international.org/publications/standards/Ecma-262 da rivojlanishga qo'shiladi.  
 
-Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
+JavaScript engine-ni ortidagi jamoalarning birinchi o'rinda nimani amalga oshirish borasida o'zlarining g'oyalari bor. Ular rejadagi takliflarni amalga oshirishga va allaqachon qo'llanmada paydo bo'lgan narsalarni kechiktirishga qaror qilishi mumkin, chunki ular u darajada ham qiziqarli emas yoki bajarish mushkul. 
 
-So it's quite common for an engine to implement only the part of the standard.
+Shu sabab engineni standardning faqat bir qismini amalga oshirishini ko'rish ko'p uchraydigan holat. 
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+Tilning xususiyatlariga bo'lgan qo'llab-quvvatlashning joriy holatini ko'rishga yaxshi sahifa <https://kangax.github.io/compat-table/es6/> (u katta, o'rganadigan narsa hali ko'p).
 
-As programmers, we'd like to use most recent features. The more good stuff - the better!
+Dastuchi sifatida, biz eng so'ngi xususiyatlardan foydalanishni xoxlaymiz. Yaxshi narsalarn qanchalik ko'p bo'lsa - shuncha yaxshi! 
 
-On the other hand, how to make our modern code work on older engines that don't understand recent features yet?
-
-There are two tools for that:
-
+Boshqa tomondan olib qaraganda, zamonaviy kodlarimizni hali so'ngi xususiyatlarni tushunmaydigan eski enginelarda qanday ishlatish mumkin?
+Buning uchun ikkita vosita mavjud:
 1. Transpilers.
 2. Polyfills.
 
-Here, in this chapter, our purpose is to get the gist of how they work, and their place in web development.
+Bu bo'limda, bizning maqsadimiz ular qanday ishlash mohiyatini va ularning web developmentdagi o'rnini bilib olish.  
 
 ## Transpilers
 
-A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) is a special piece of software that translates source code to another source code. It can parse ("read and understand") modern code and rewrite it using older syntax constructs, so that it'll also work in outdated engines.
+A [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler) maxsus software bo'lagi bo'lib, u bir kod manbasini boshqa bir kod manbasiga tarjima qiladi. U zamonaviy kodni tahlil qila oladi (o'qidi va tushunadi) va eskirgan enginelarda ham ishlashi uchun uni eski sintaksis tuzilmasida qaytadan yozib chiqadi.  
 
-E.g. JavaScript before year 2020 didn't have the "nullish coalescing operator" `??`. So, if a visitor uses an outdated browser, it may fail to understand the code like `height = height ?? 100`.
+Misol uchun, JavaScript 2020 yildan avval "nolga teng birlashtiruvchi operator" yo'q edi `??`. Shuning uchun, agar tashriv buyuruvchi eskirgan brauzerdan foydalansa, u `height = height ?? 100` ga o'xshagan kodlarni tushunmasligi mumkin. 
 
-A transpiler would analyze our code and rewrite `height ?? 100` into `(height !== undefined && height !== null) ? height : 100`.
+Transpiler kodimizni analiz qiladi va `height ?? 100` ni `(height !== undefined && height !== null) ? height : 100` ning ichiga qayta yozib chiqadi.
 
 ```js
-// before running the transpiler
+// transpiler ni amalga oshirishdan avval
 height = height ?? 100;
 
-// after running the transpiler
+// transpiler ni amalga oshirgandan keyin
 height = (height !== undefined && height !== null) ? height : 100;
 ```
 
-Now the rewritten code is suitable for older JavaScript engines.
+Endi, yozilgan kod eski JavaScript enginelariga mos keladi.  
 
-Usually, a developer runs the transpiler on their own computer, and then deploys the transpiled code to the server.
+Odatda dasturchi transpilerni o'z komputerida ishga tushiradi, va transpile bo'lgan koddan serverda foydalanadi. 
 
-Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there. 
+Nomlar bo'yicha gapirilganda, [Babel](https://babeljs.io) eng mashhur transpirlerlardan biri. 
 
-Modern project build systems, such as [webpack](https://webpack.js.org/), provide means to run transpiler automatically on every code change, so it's very easy to integrate into development process.
+[webpack](https://webpack.js.org/) kabi zamonaviy proyekt qurish tizimlari transpilerni barcha kod o'zgarishlarida avtomatik ishga tushirish uchun vositalar bilan ta'minlaydi, shuning uchun ularni dasturlash jarayoniga biriktirish juda ososn.  
 
 ## Polyfills
 
-New language features may include not only syntax constructs and operators, but also built-in functions.
+Yangi til xususiyatlari nafaqat sintaksis tuzilmalar va operatorlarni, balki ichki funksiyalarni ham o'z ichiga olishi mumkin. 
 
-For example, `Math.trunc(n)` is a function that "cuts off" the decimal part of a number, e.g `Math.trunc(1.23)` returns `1`.
+Misol uchun, `Math.trunc(n)` sonning oʻnlik qismini “kesuvchi” funksiyadir, masalan. `Math.trunc(1.23)`  `1` ga qaytadi.
 
-In some (very outdated) JavaScript engines, there's no `Math.trunc`, so such code will fail.
+Ba'zi (juda eskirgan) JavaScript enginelarida `Math.trunc` funksiyasi mavjud emas, shuning uchun bunday kod ishlamaydi. 
 
-As we're talking about new functions, not syntax changes, there's no need to transpile anything here. We just need to declare the missing function.
+Gap sintaksis o‘zgarishlari emas, balki yangi funksiyalar haqida ketayotgan ekan, bu yerda biror narsani tranpile qilishning hojati yo'q. Biz faqat yetishmayotgan funktsiyani e'lon qilishimiz kerak.
 
-A script that updates/adds new functions is called "polyfill". It "fills in" the gap and adds missing implementations.
+Yangi funksiyalr qo'shadigan va ularni yangilaydigan script "polyfill" deb ataladi. U bo'shliqni "to'ldiradi" va yetishmayotkan amallarni qo'shadi. 
 
-For this particular case, the polyfill for `Math.trunc` is a script that implements it, like this:
+Aynan bu holat uchun,  `Math.trunc` uchun polyfill uni amalga oshiradigan scriptdair, quyidagi kabi:
 
 ```js
-if (!Math.trunc) { // if no such function
-  // implement it
+if (!Math.trunc) { // agar bunday funksiya bo'lmasa
+  // uni amalga oshiradi
   Math.trunc = function(number) {
-    // Math.ceil and Math.floor exist even in ancient JavaScript engines
-    // they are covered later in the tutorial
+    // Math.ceil va Math.floor exist xatto qadimgi JavaScript enginelarida ham mavjud
+    // Ular qo'llanmada keyinroq o'rganib chiqiladi
     return number < 0 ? Math.ceil(number) : Math.floor(number);
   };
 }
 ```
 
-JavaScript is a highly dynamic language, scripts may add/modify any functions, even including built-in ones. 
+JavaScript juda o'zgaruvchan til hisoblanadi, scriptlar istalgan funksiyani qo'shishi/o'zgartirishi mumkin, xatto ichki funksiyalarni ham. 
 
-Two interesting libraries of polyfills are:
-- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-- [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+Polyfillning ikkita qiziqarli kutubxonsi: 
+- [core js](https://github.com/zloirock/core-js) ko'p narsani qo'llab-quvvatlaydi, faqat kerakli xususiyatlarni kiritish imkonini beradi.
+- [polyfill.io](http://polyfill.io) xususiyatlar va foydalanuvchi brauzeriga qarab, polifill ga ega skript bilan ta'minlaydigan xizmat.
 
 
-## Summary
+## Xulosa
 
-In this chapter we'd like to motivate you to study modern and even "bleeding-edge" language features, even if they aren't yet well-supported by JavaScript engines.
+Bu bo'limda sizni zamonaviy va xatto eng so'nggi til xususiyatlarini o'rganishingizga undaymiz, agar ular hali JavaScript enginelari tomonidan qo'llab quvvatlanmasa ham. 
 
-Just don't forget to use transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). And they'll ensure that the code works.
+Transpiler dan foydalanish yodingizdan chiqmasin (agar zamonaviy sintaksis yoki operatorlar ishlatilsangiz) va polyfillardan (yetishmayotkan funksiyalarni qo'shish uchun). Bular kod ishlashini kafolatlaydi. 
 
-For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
+Masalan, keyinroq JavaScript bilan tanishib chiqqaningizda, siz kod qurish tizimini [webpack](https://webpack.js.org/)ga asoslangan holda [babel-loader](https://github.com/babel/babel-loader) plugini bilan tashkil etishingiz mumkin bo'ladi. 
 
-Good resources that show the current state of support for various features:
-- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
-- <https://caniuse.com/> - for browser-related functions.
+Turli funktsiyalarni qo'llab-quvvatlovini hozirgi holatini ko'rsatadigan yaxshi manbalar:
+- <https://kangax.github.io/compat-table/es6/> -faqat JavaScript uchun.
+- <https://caniuse.com/> - brauzerga oid funksiyalar uchun.
 
-P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
-
+P.S. Google Chrome odatda til funksiyalari bo'yicha eng soʻnggisi hisoblanadi, agar oʻquv qoʻllanma versiyasi muvaffaqiyatsiz boʻlsa, uni sinab koʻring. Ko'pgina o'quv versiyalari har qanday zamonaviy brauzer bilan ishlaydi.

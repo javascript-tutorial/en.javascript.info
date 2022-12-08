@@ -1,12 +1,12 @@
-# Coding Style
+# Kodlash uslubi
 
-Our code must be as clean and easy to read as possible.
+Bizning kodimiz iloji boricha aniq va o'qishga oson bo'lishi kerak.
 
-That is actually the art of programming -- to take a complex task and code it in a way that is both correct and human-readable. A good code style greatly assists in that.  
+Bu aslida dasturlash san'ati -- murakkab vazifani olib, uni to'g'ri va inson o'qiy oladigan tarzda kodlashdir. Bunda yaxshi kod uslubi katta yordam beradi.
 
-## Syntax
+## Sintaksis
 
-Here is a cheat sheet with some suggested rules (see below for more details):
+Ba'zi tavsiya etilgan qoidalarga ega qo'llanma varog'i (batafsil ma'lumot uchun quyidagilarni ko'ring):
 
 ![](code-style.svg)
 <!--
@@ -34,57 +34,57 @@ if (n < 0) {
 
 -->
 
-Now let's discuss the rules and reasons for them in detail.
+Qoidalar va ularning sabablarini batafsil muhokama qilab chiqamiz.
 
-```warn header="There are no \"you must\" rules"
-Nothing is set in stone here. These are style preferences, not religious dogmas.
+```warn header="Hech qanday \"kerak\" qoidalari yo'q
+Hech narsa qat'iy belgilab qo'yilmagan. Bular shunchaki uslubiy afzalliklar, diniy ishonch(doma)lar emas. 
 ```
 
-### Curly Braces
+### Curly Braces Jingalak qavslar
 
-In most JavaScript projects curly braces are written in "Egyptian" style with the opening brace on the same line as the corresponding keyword -- not on a new line. There should also be a space before the opening bracket, like this:
+Ko'plab JavaScript loyihalarida jingalak qavslar "Misr" uslubida ochilayotkan qavs bilan mos keladigan tugma (keyword) bilan bir qatorda yoziladi -- yangi qatorda emas. Shuningdek ochilish qavsdan oldin ham bo'sh joy bo'lishi kerak, masalan:
 
 ```js
 if (condition) {
-  // do this
-  // ...and that
-  // ...and that
+  // do this buni bajaring 
+  // ...va buni 
+  // ...va buni
 }
 ```
 
-A single-line construct, such as `if (condition) doSomething()`, is an important edge case. Should we use braces at all?
+Bir qatorli konstruksiya, masalan, `if (condition) doSomething()` muhim chekka hol hisoblanadi. Biz umuman olganda qavslardan foydalanishimiz kerakmi?
+ 
+ Quyidagilar izohlangan variantlar, endi shunday qilib ularning o'qilishi mumkinligini o'zingiz baholay olasiz:
 
-Here are the annotated variants so you can judge their readability for yourself:
-
-1. 😠 Beginners sometimes do that. Bad! Curly braces are not needed:
+1. 😠 Ba'zida yangi boshlovchilar shu ishni qilishadi. Bu ish yomon! Jingalak qavslar kerak emas:
     ```js
     if (n < 0) *!*{*/!*alert(`Power ${n} is not supported`);*!*}*/!*
     ```
-2. 😠 Split to a separate line without braces. Never do that, easy to make an error when adding new lines:
+2. 😠 Alohida qatorga qavslarsiz ajratish. Hech qachon bunday qilmang, yangi qatorlarni qo'shishda xato qilish oson bo'lib qoladi:
     ```js
     if (n < 0)
       alert(`Power ${n} is not supported`);
     ```
-3. 😏 One line without braces - acceptable, if it's short:
+3. 😏 Qavssiz bitta qator - qisqa bo'lsa, qabul qilinadi:
     ```js
     if (n < 0) alert(`Power ${n} is not supported`);
     ```
-4. 😃 The best variant:
+4. 😃 Eng yaxshi variant:
     ```js
     if (n < 0) {
       alert(`Power ${n} is not supported`);
     }
     ```
 
-For a very brief code, one line is allowed, e.g. `if (cond) return null`. But a code block (the last variant) is usually more readable.
+Juda qisqa kod uchun bitta qatorga ruxsat beriladi, masalan. `if (cond) return null`. Ammo kod bloki (oxirgi variant) odatda ko'proq o'qishga oson.
 
-### Line Length
+### Qator uzunligi
 
-No one likes to read a long horizontal line of code. It's best practice to split them.
+Hech kim kodning uzun gorizontal chizig'ini o'qishni yoqtirmaydi. Shuning uchun ularni ajratib olish eng yaxshi uslubdir.
 
-For example:
+Misol uchun:
 ```js
-// backtick quotes ` allow to split the string into multiple lines
+// backtick quotes ` satrni bir nechta qatorlarga bo'lish imkonini beradi
 let str = `
   ECMA International's TC39 is a group of JavaScript developers,
   implementers, academics, and more, collaborating with the community
@@ -92,7 +92,7 @@ let str = `
 `;
 ```
 
-And, for `if` statements:
+Va `if` iboralari uchun:
 
 ```js
 if (
@@ -104,23 +104,23 @@ if (
 }
 ```
 
-The maximum line length should be agreed upon at the team-level. It's usually 80 or 120 characters.
+Maksimal chiziq uzunligi jamoa darajasida kelishib olinishi kerak. Odatda 80 yoki 120 belgidan iborat bo'ladi.
 
-### Indents
+### Indentlar
 
-There are two types of indents:
+Ikki turdagi indentlar mavjud:
 
-- **Horizontal indents: 2 or 4 spaces.**
+- **Gorizontal indentlar: 2 yoki 4 bo'sh joy.**
 
-    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old holy war. Spaces are more common nowadays.
+    Gorizontal chekinish 2 yoki 4 bo'shliq yoki gorizontal tab belgisi (kalit `key:Tab` tugmasi) yordamida amalga oshiriladi. Qaysi birini tanlash kerak - qadimgi zamonda qolib ketkan. Hozirgi vaqtda bo'shliqlar keng tarqalgan.
 
-    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
+    Bo'shliqlarning tablarga nisbatan afzalliklaridan biri shundaki, bo'shliqlar tab belgisiga qaraganda ko'proq moslashuvchan konfiguratsiyalarga imkon beradi.
 
-    For instance, we can align the parameters with the opening bracket, like this:
+    Masalan, biz parametrlarni ochilish qavs bilan tenglashtira olamiz, masalan:
 
     ```js no-beautify
     show(parameters,
-         aligned, // 5 spaces padding at the left  
+         aligned, // Chap tomonda 5 ta bo'sh joy 
          one,
          after,
          another
@@ -129,10 +129,9 @@ There are two types of indents:
     }
     ```
 
-- **Vertical indents: empty lines for splitting code into logical blocks.**
+- **Vertikal chekinishlar: kodni mantiqiy bloklarga bo'lish uchun bo'sh qatorlar.**
 
-    Even a single function can often be divided into logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
-
+    Hatto bitta funktsiyani ham ko'pincha mantiqiy bloklarga bo'lish mumkin.Quyidagi misolda o'zgaruvchilarni ishga tushirish, asosiy qaytariluvchi amal va natijani qaytarish vertikal ravishda ajratiladi:
     ```js
     function pow(x, n) {
       let result = 1;
@@ -145,46 +144,46 @@ There are two types of indents:
     }
     ```
 
-    Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.
+    Kodni o'qishga oson bo'lishiga yordam beruchi qo'shimcha yangi qator qo'shing. Vertikal chekinishsiz kodlar qatori to'qqiztadan oshish kerak emas. 
 
-### Semicolons
+### Nuqtali vergullar
 
-A semicolon should be present after each statement, even if it could possibly be skipped.
+Har bir ifodadan so'ng nuqtali vergul bo'lishi kera, hatto uni tashlab ketish mumkin bo'lsa ham. 
 
-There are languages where a semicolon is truly optional and it is rarely used. In JavaScript, though, there are cases where a line break is not interpreted as a semicolon, leaving the code vulnerable to errors. See more about that in the chapter <info:structure#semicolon>.
+Nuqtali vergul chindan ham ixtiyoriy bo'lgan va kamdan-kam qo'llaniladigan tillar mavjud. Lekin  JavaScriptda, ma'lum vaziyatlar bor, ularda qator uzilishi nuqtali vergul deb qaralmaydi, bu narsa kodni xatolikka moyil qiladi. Bu haqida <info:structure#semicolon> bo'limida ko'proq ko'rib chiqsangiz bo'ladi. 
 
-If you're an experienced JavaScript programmer, you may choose a no-semicolon code style like [StandardJS](https://standardjs.com/). Otherwise, it's best to use semicolons to avoid possible pitfalls. The majority of developers put semicolons.
+Agar siz tajribali JavaScript dasturchisi bo'lsangiz, [StandardJS](https://standardjs.com/) kabi nuqtali vergulsiz kod uslubini tanlashingiz mumkin. Aks holda, yuzaga kelishi mumkin bo'lgan tuzoqlardan qochish uchun nuqtali verguldan foydalanish eng yaxshi yo'l. Aksariyat dasturchilar nuqtali vergul qo'yishadi.
 
 ### Nesting Levels
 
-Try to avoid nesting code too many levels deep.
+Kodni juda ko'p darajali chuqurlashtirishdan qochishga harakat qiling.
 
-For example, in the loop, it's sometimes a good idea to use the [`continue`](info:while-for#continue) directive to avoid extra nesting.
+Masalan, qaytariluvchi amalda ba'zan qo'shimcha joylashtirishdan qochish uchun [`davom etish`](info:while-for#continue) ko'rsatmasidan foydalanish yaxshi fikr bo'ladi.
 
-For example, instead of adding a nested `if` conditional like this:
+Misol uchun, bu jabi shartli `if` qo'shish o'rniga:
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (cond) {
-    ... // <- one more nesting level
+    ... // <- yana bir nesting darajasi
   }
 }
 ```
 
-We can write:
+Yozishimiz mumikin:
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (!cond) *!*continue*/!*;
-  ...  // <- no extra nesting level
+  ...  // <- qo'shimcha joylashtirish darajasi yo'q
 }
 ```
 
-A similar thing can be done with `if/else` and `return`.
+Shunga o'xshash narsani `if/else` va `return` bilan qilish mumkin.
 
-For example, two constructs below are identical.
+Masalan, quyida keltirilgan ikkita konstruktsiya bir xil.
 
-Option 1:
+Tanlov 1:
 
 ```js
 function pow(x, n) {
@@ -202,7 +201,7 @@ function pow(x, n) {
 }
 ```
 
-Option 2:
+Tanlov 2:
 
 ```js
 function pow(x, n) {
@@ -221,16 +220,16 @@ function pow(x, n) {
 }
 ```
 
-The second one is more readable because the "special case" of `n < 0` is handled early on. Once the check is done we can move on to the "main" code flow without the need for additional nesting.
+Ikkinchisi ko'proq o'qisa bo'ladigan, chunki `n < 01` ning "maxsus holati" erta ko'rib chiqiladi. Tekshirish tugallangandan so'ng, biz qo'shimcha joylashtirishsiz "asosiy" kod oqimiga o'tishimiz mumkin.
 
-## Function Placement
+## Funktsiyani joylashtirish
 
-If you are writing several "helper" functions and the code that uses them, there are three ways to organize the functions.
+Agar siz bir nechta "yordamchi" funktsiyalarni va ulardan foydalanadigan kodni yozayotgan bo'lsangiz, funktsiyalarni tartibga solishning uchta usuli mavjud.
 
-1. Declare the functions *above* the code that uses them:
+1. Funktsiyalarni ularni ishlatadigan kodning *yuqorisida* e'lon qilish:
 
     ```js
-    // *!*function declarations*/!*
+    // *!*funksiya deklaratsiyasi*/!*
     function createElement() {
       ...
     }
@@ -243,20 +242,20 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
 
-    // *!*the code which uses them*/!*
+    // *!*ulardan foydalanadigan kod*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
     ```
-2. Code first, then functions
+2. Avval kod, keyin funksiyalar
 
     ```js
-    // *!*the code which uses the functions*/!*
+    // *!*funksiyalardan foydalanadigan kod*/!*
     let elem = createElement();
     setHandler(elem);
     walkAround();
 
-    // --- *!*helper functions*/!* ---
+    // --- *!*yordamchi funksiyalar*/!* ---
     function createElement() {
       ...
     }
@@ -269,54 +268,54 @@ If you are writing several "helper" functions and the code that uses them, there
       ...
     }
     ```
-3. Mixed: a function is declared where it's first used.
+3. Aralash: funktsiya birinchi marta ishlatilgan joyda e'lon qilinadi.
 
-Most of time, the second variant is preferred.
+Ko'pincha ikkinchi variantga afzal ko'riladi.
 
-That's because when reading code, we first want to know *what it does*. If the code goes first, then it becomes clear from the start. Then, maybe we won't need to read the functions at all, especially if their names are descriptive of what they actually do.
+Chunki, kod o'qiyotkanimizda birinchi bilmoqchi bo'lgan narsamiz uni *nima qilishi*dir. Agar kod birinchi kelsa, u boshidan aniq bo'lib qoladi. Shunda funksiyalarni umuman o‘qishimiz shart bo‘lmasligi ham mumkin, ayniqsa ularning nomlari ular aslida nima qilayotganini tavsiflab tursa.
 
-## Style Guides
+## Uslub bo'yicha qo'llanmalar
 
-A style guide contains general rules about "how to write" code, e.g. which quotes to use, how many spaces to indent, the maximal line length, etc. A lot of minor things.
+Uslublar qo'lllanmasi kodni "qanday yozish" bo'yicha umumiy qoidalarni o'zida jamlagan, misol uchun, qaysi qo'shtirnoqlardan foydalanish, qancha bo'sh joy ajratish, maksimal chiziq uzunligi va hokazo va ko'plab kichik narsalar.
 
-When all members of a team use the same style guide, the code looks uniform, regardless of which team member wrote it.
+Jamoaning barcha a'zolari bir xil uslublar qo'llanmasidan foydalanganda, jamoaning qays a'zosi yozganidan qat'i nazar, kod bir xil ko'rinadi.
 
-Of course, a team can always write their own style guide, but usually there's no need to. There are many existing guides to choose from.
+Albatta, jamoa har doim o'z uslubiy qo'llanmasini yozishi mumkin, lekin odatda bunga hojat yo'q. Tanlash uchun ko'plab mavjud qo'llanmalar mavjud.
 
-Some popular choices:
+Ba'zi mashhur tanlovlar:
 
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/jsguide.html)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
-- (plus many more)
+- (va yana ko'plari)
 
-If you're a novice developer, start with the cheat sheet at the beginning of this chapter. Then you can browse other style guides to pick up more ideas and decide which one you like best.
+Agar siz yangi dasturchi bo'lsangiz, shu bo'limning boshidagi yordam beruvchi sahifadan boshlang. Keyin ko'proq g'oyalarni tanlash va qaysi biri sizga ko'proq yoqishini aniqlash uchun boshqa uslublar qo'llanmalarini ko'rib chiqishingiz mumkin.
 
-## Automated Linters
+## Avtomatlashtirilgan linterlar
 
-Linters are tools that can automatically check the style of your code and make improving suggestions.
+Linters - bu kodingiz uslubini avtomatik ravishda tekshiradigan va takomillashtirish uchun takliflar beradigan vositalar.
 
-The great thing about them is that style-checking can also find some bugs, like typos in variable or function names. Because of this feature, using a linter is recommended even if you don't want to stick to one particular "code style".
+Ularning ajoyib jihati shundaki, tekshirish jarayonida ular o'zgaruvchilar yoki funksiyadagi imloviy xatolikalar singari xatoliklarni ham topib beradi. Shu jihati uchun ham, xatto ma'lum bir "kod uslubi"ga bog'lanib qolishni istamasangiz ham, bundan foydalanish tavsiya etiladi. 
 
-Here are some well-known linting tools:
+Ba'zi mashhur linting vositalari:
 
-- [JSLint](https://www.jslint.com/) -- one of the first linters.
-- [JSHint](https://jshint.com/) -- more settings than JSLint.
-- [ESLint](https://eslint.org/) -- probably the newest one.
+- [JSLint](https://www.jslint.com/) -- dastlabki linterlardan biri.
+- [JSHint](https://jshint.com/) -- JSLint-ga qaraganda ko'proq sozlamalar.
+- [ESLint](https://eslint.org/) -- ehtimol eng yangisi.
 
-All of them can do the job. The author uses [ESLint](https://eslint.org/).
+Ularning barchasi vazifani bajara oladi. Muallif [ESLint](https://eslint.org/) dan foydalanadi.
 
-Most linters are integrated with many popular editors: just enable the plugin in the editor and configure the style.
+Ko'p linterlar ko'plab mashhur muharrirlar bilan birlashtirilgan: ahunchaki muharrirda plaginni yoqing va uslubni sozlang.
 
-For instance, for ESLint you should do the following:
+Masalan, ESLint uchun quyidagilarni bajarishingiz kerak bo'ladi:
 
-1. Install [Node.js](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is a JavaScript package installer).
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
-4. Install/enable the plugin for your editor that integrates with ESLint. The majority of editors have one.
+1.  [Node.js](https://nodejs.org/) ni O'rnating.
+2. ESLint-ni `npm install -g eslint` buyrug'i bilan o'rnating (npm bu JavaScript paketini o'rnatuvchidir).
+3. JavaScript loyihangizning ildizida (barcha fayllaringiz joylashgan papkada) `.eslintrc` nomli konfiguratsiya faylini yarating.
+4. ESLint bilan integratsiyalashuvchi muharrir uchun plaginni o'rnating/yoqing. Ko'pchilik muharrirlar bitta plagini bo'ladi.
 
-Here's an example of an `.eslintrc` file:
+`.eslintrc` fayliga misol:
 
 ```js
 {
@@ -332,17 +331,17 @@ Here's an example of an `.eslintrc` file:
   }
 }
 ```
+ 
+`"extends"` direkivikatsiyasi konfiguratsiya "eslint:recommended" sozlamalar to'plamiga asoslanganligini bildiradi. Shundan keyin, o'zimiznikini belgilaymiz.
 
-Here the directive `"extends"` denotes that the configuration is based on the "eslint:recommended" set of settings. After that, we specify our own.
+Uslublar qoidalari to'plamini websitedan yuklab olib, ularni kengaytirish ham mumkin. O'rnatish haqida batafsil ma'lumot uchun <https://eslint.org/docs/user-guide/getting-started> ga qarang.
 
-It is also possible to download style rule sets from the web and extend them instead. See <https://eslint.org/docs/user-guide/getting-started> for more details about installation.
-
-Also certain IDEs have built-in linting, which is convenient but not as customizable as ESLint.
+Bundan tashqari, ba'zi IDE-larda o'rnatilgan linting mavjud, bu qulay, ammo ESLint kabi moslashtirilmaydi.
 
 ## Summary
 
-All syntax rules described in this chapter (and in the style guides referenced) aim to increase the readability of your code. All of them are debatable.
+Ushbu bobda tasvirlangan barcha sintaksis qoidalari (va havola qilingan uslublar qo'llanmalari) kodingizning o'qish qobiliyatini oshirishga qaratilgan. Ularning barchasi munozarali.
 
-When we think about writing "better" code, the questions we should ask ourselves are: "What makes the code more readable and easier to understand?" and "What can help us avoid errors?" These are the main things to keep in mind when choosing and debating code styles.
+"Yaxshiroq" kod yozish haqida o'ylaganimizda, o'zimizga quyidagi savollarni berishimiz kerak bo'ladi: "Nima kodni o'qilishi va tushunishni osonlashtiradi?" va "Xatolardan qochishimizga nima yordam beradi?" Bular kod uslublarini tanlash va muhokama qilishda yodda tutish kerak bo'lgan asosiy narsalar.
 
-Reading popular style guides will allow you to keep up to date with the latest ideas about code style trends and best practices.
+Mashhur uslublar bo'yicha qo'llanmalarni o'qish sizga kod uslubi tendentsiyalari va eng yaxshi amaliyotlar haqidagi so'nggi g'oyalardan xabardor bo'lish imkonini beradi.
