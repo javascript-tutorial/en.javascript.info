@@ -1,37 +1,36 @@
 
-# Manuals and specifications
+# Qo'llanma va Ko'rsatmalar
 
-This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other sources.
+Bu kitob qisqa-o'quv qo'llanma hisoblanadi. Bu kitobning maqsadi sizga tilni asta-sekin o'rgatishdir. Lekin, siz boshlang'ich narsalar bilan tanishib bo'lganingizdan kegin, sizga boshqa manbalar kerak bo'ladi.
+## ko'rsatma
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) Javascript haqida eng chuqur, batafsil va rasmiy ma'lumotlarni o'z ichiga oladi. U tilni yoritib, izohlab beradi.
 
-## Specification
+Ammo u rasmiy bo'lishi bilan bir qatorda, dastlab uni tushunish qiyin. Shuning uchun, agar sizga til tafsilotlari haqida eng ishonchli ma'lumotlar manbasi kerak bo'lsa, bu ko'rsatmalar siz uchun to'g'ri joy.Ammo bu kundalik foydalanishda ishlatilmaydi.
 
-[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
 
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
 
-A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+Har yili yangi ko’rsatmalar varianti(versiyasi) chiqariladi. Ushbu versiyalarning orasida eng so'nggi qo'llanmani  htt <https://tc39.es/ecma262/> dan topsa bo'ladi. 
 
-To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
 
-Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+Eng so'ngi xususiyatlar jumladan "almost standard" "Deyarli standart" ("3-bosqich" deb ataladigan) haqida bilish uchun https://github.com/tc39/proposals>. saytidagi takliflarni ko’rib chiqing.
 
-## Manuals
+Bundan tashqari, agar siz brauzer bo'yicha ishlayotkan bo'lsangiz, qo'llanmaning ikkinchi qismida boshqa ko'rsatmalar ham mavjud [second part](info:browser-environment).
 
-- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+## Yo'riqnoma
 
-    One can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+- **MDN (Mozilla) JavaScript Reference** misollar va boshqa maʼlumotlarga ega bo'lgan asosiy qoʻllanmadir.Tilning individual funktsiyalari, usullari va boshqalar haqida chuqur ma'lumot olish bu - juda yaxshi.  
 
-Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
+    Buni <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference> sahifasidan topsangiz bo'ladi.
 
-## Compatibility tables
+Lekin internetdan izlanish ko'pincha eng yaxshisi yo'l hisonblanadi. So'rovda shunchaki "MDN [term]" foydalaning. Masalan, `parseInt` funksiyasini qidirish uchun <https://google.com/search?q=MDN+parseInt> dan foydalaning. 
+## Salohiyat jadvallari                                                                        
 
-JavaScript is a developing language, new features get added regularly.
+JavaScript rivojlanayotgan til bo'lib, yangi xususiyatlar muntazam qo'shiladi.
 
-To see their support among browser-based and other engines, see:
+Ularning brauzer va boshqa enjinlar(engine) ga asoslangan qo'llovini ko'rish uchun quyidagilarni ko'rib chiqing:
 
-- <http://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <http://caniuse.com/#feat=cryptography>.
-- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+- <http://caniuse.com> - har bir xususiyat uchun qo'llab-quvvatlash jadvallari, masalan: Qaysi enjin zamonaviy kriptografiya funktsiyalarini qo'llab-quvvatlashini ko'rish uchun: <http://caniuse.com/#feat=cryptography>.
+- <https://kangax.github.io/compat-table> - til xususiyatlariga va ularni qo'llaydigan yoki qo'llamaydigan enjin(engine) larga ega jadval.
 
-All these resources are useful in real-life development, as they contain valuable information about language details, their support etc.
-
-Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+Bu resurslarning barchasi real hayotni rivojlantirishda foydali, chunki ular til tafsilotlari, ularni qo'llab-quvvatlash va boshqalar haqida qimmatli ma'lumotlarni o'z ichiga oladi.
+ Iltimos, sizga biror dastur to'grisida batafsil ma'lumot kerak bo'lip qolishi mumkin bo'lgan vaziyatlar uchun ularni hammasini (yoki shu betni) eslab qoling. 

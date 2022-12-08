@@ -1,45 +1,47 @@
-# Code editors
+# Kod muharrirlari 
 
-A code editor is the place where programmers spend most of their time.
+Kod muharrirlari bu - dasturchilar eng ko’p vaqtini o’tqazadigan joy. 
 
-There are two main types of code editors: IDEs and lightweight editors. Many people use one tool of each type.
+Kod muharrirlari ikki xil bo’ladi: IDEs va yengil tahrirlovchi. Ko’p odamlar har bir turidagi bittadan vositadan foydalanadi. 
 
 ## IDE
 
-The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) refers to a powerful editor with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
+ [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) atamasi odatda “butun loyihada” ishlaydigan ko’p xususiyatli tahrirlash ma’nosini anglatadi.  Nomidan ko’rinib turibdiki, bu faqatkina muharrir emas, balki  to’liq miqyosdagi “dasturlash muhiti” hamdir. 
 
-An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
 
-If you haven't selected an IDE yet, consider the following options:
+ IDE bu loyihalarni yuklaydi ( bular bir nechata fayl bo’lishi mumkin), fayllar o’rtasida yo’nalishni aniqlashga imkon beradi(navigatsiya),  butun loyihaga asoslangan holda avtomatik tarzda ma’lumotlarni kiritish bilan ta’minlaydi ( bu faqatkina ochiq fayl emas) va versiyalarni boshqaruv tizimi (masalan [git](https://git-scm.com/)), a sinov muhiti va boshqa “loyiha darajasi” dagi narsalar bilan qo’shilib ishlaydi. 
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
-- [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
 
-For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+ Agar siz hali IDE ni tanlamagan bo’lsangiz quyidagi tanlov(variant)larni ko’rib chiqing: 
 
-## Lightweight editors
+- [Visual Studio Code](https://code.visualstudio.com/) (dastur bo’ylab, bepul).
+- [WebStorm](http://www.jetbrains.com/webstorm/) ( dastur bo’ylab, pullik). 
 
-"Lightweight editors" are not as powerful as IDEs, but they're fast, elegant and simple.
+●	Windowslar uchun yana “visual Studio” ham bor, lekin buni “visual studio Code” bilan adashtirib yubormaslik kerak. “ Visual studio”  pullik va kuchli winows muharriri bo’lib, .NET dasturiga juda mos tushadi. U JavaScriptda ham yaxshi ishlaydi. Shuningdek uning bepul versiyasi ham mavjud [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-They are mainly used to open and edit a file instantly.
+Ko’p IDElar pullik, lekin sinov muddati bor. Ularning narxi dasturchilarning maoshi bilan taqqoslaganda arzimas, shuning uchun o’zingizga eng zo’rini tanlang.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+## Yengil muharrirlar
 
-In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
+“Yengil muharrirlar” IDElardek kuchli emas, lekin ular tez, sodda va oddiy. 
 
-The following options deserve your attention:
+Ular asosan fayllarni ochida va darhol tahrir qilishda ishlatiladi. 
 
-- [Atom](https://atom.io/) (cross-platform, free).
-- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
-- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+“yengil tahrirlovchi” va “IDE” o’rtsidagi asosiy farq shundaki, IDE loyiha-darajasida ishlaydi, shuning uchun u ishga tushganda ko’proq ma’lumot yuklaydi,agar kerak bo’lsa, loyiha tuzilishini tahlil qiladi, va hokazo. Agar siz faqat bitta fayl bilan ishlashingiz kerak bo’lsa, yengil tahrirlovchi ancha tez.  
 
-## Let's not argue
+Amalda, yengil tahrirlovchi juda ko’p pluginlari (dasturga ko'proq vazifa bajarishi uchun qo'shiladigan qo'shimcha dastur) bo’lishi mumkin, jumladan katalog darajasidagi sintaksis tahlilchilari va  avtomatik tarzda ma’lumotlarni to’ldirish dasturlari. Shuning uchun, yengil tahrirlovchi va IDE o’rtasida yaqqol chegara yo’q. 
+Quyidagi tanlov(variant)lar ko'rib chiqishingizga:
 
-The editors in the lists above are those that either I or my friends whom I consider good developers have been using for a long time and are happy with.
+- [Atom](https://atom.io/) (dastur bo'ylab, bepul).
+- [Sublime Text](http://www.sublimetext.com) (dastur bo'ylab, sinov versiya).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, bepul).
+- ●	Agar foydalanishni bilsangiz .[Vim](http://www.vim.org/) va [Emacs](https://www.gnu.org/software/emacs/)lar ham ajoyib.
 
-There are other great editors in our big world. Please choose the one you like the most.
+## Keling tortishmaylik
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+Yuqorida takidlab o’tilgan tahrirlovchilarni o'zini yaxshi dasturchi dep biladigan, men yoki mening do’stlarim uzoq vaqtlardan beri foydalanib kelishmoqda va bundan juda xursandmiz. 
+
+Bizding bu katta dunyoda boshqa ajoyib tahrirlovchi dasturlar ham bor. Iltimos o’zingizga eng yoqqanini tanlang. 
+
+Boshqa jihozlar kabi, tahrirlovchi dasturini tanlash ham shaxsiy hisoblanadi, va sizning proyektingiz, odatingiz va o'z xohishingizga bog’liq. 
