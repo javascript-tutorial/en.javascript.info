@@ -50,7 +50,7 @@ That was the theory. Now let's see how we can apply that knowledge.
 
 Let's say we have a CPU-hungry task.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a large amount of text that takes a lot of time.
+For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, the engine performs an analysis, creates many colored elements, then adds them to the document -- for a large amount of text that takes a lot of time.
 
 While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
 
