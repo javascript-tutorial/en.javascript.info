@@ -83,7 +83,7 @@ Here's how the engine sees it:
 alert("Hello")[1, 2].forEach(alert);
 ```
 
-Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert("Hello")` for the code to work correctly.
 
 This can happen in other situations also.
 ````
