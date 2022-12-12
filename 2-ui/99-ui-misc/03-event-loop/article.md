@@ -320,7 +320,7 @@ That may be used to split a big calculation-heavy task into pieces, for the brow
 
 Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
 
-To schedule a new *microtask*
+To schedule a new *microtask*:
 - Use `queueMicrotask(f)`.
 - Also promise handlers go through the microtask queue.
 
