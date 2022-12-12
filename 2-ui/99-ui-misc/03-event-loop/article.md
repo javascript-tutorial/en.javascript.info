@@ -260,7 +260,7 @@ alert("code");
 What's going to be the order here?
 
 1. `code` shows first, because it's a regular synchronous call.
-2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
+2. `promise` shows second, because `.then` passes through the microtask queue and runs after the current code.
 3. `timeout` shows last, because it's a macrotask.
 
 The richer event loop picture looks like this (order is from top to bottom, that is: the script first, then microtasks, rendering and so on):
