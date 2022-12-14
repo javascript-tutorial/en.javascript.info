@@ -53,7 +53,7 @@ Promise.all(requests)
   ));
 ```
 
-A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is identical):
+A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their IDs, the logic is identical):
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
