@@ -42,7 +42,7 @@ So far, quite simple, right?
 
 Two more details:
 1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when a lot of complex calculations take place or when a programming error leads to an infinite loop.
+2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an "Page Unresponsive" alert, suggesting to kill the task along with the whole page. That happens when a lot of complex calculations take place or when a programming error leads to an infinite loop.
 
 That was the theory. Now let's see how we can apply that knowledge.
 
