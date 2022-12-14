@@ -6,7 +6,7 @@ But quite often we find that we need an *ordered collection*, where we have a 1s
 
 It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
 
-There exists a special data structure named `Array`, to store ordered collections.
+There exists a special [data structure](https://www.scaler.com/topics/data-structures/array-data-structure/) named `Array`, to store ordered collections.
 
 ## Declaration
 
