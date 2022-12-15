@@ -64,7 +64,7 @@ Promise.all(requests)
   .then(responses => {
     // all responses are resolved successfully
     for(let response of responses) {
-      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+      alert(`${response.url}: ${response.status}`); // shows 200 for every URL
     }
 
     return responses;
