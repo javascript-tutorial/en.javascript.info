@@ -69,7 +69,7 @@ Promise.all(requests)
 
     return responses;
   })
-  // map array of responses into an array of response.json() to read their content
+  // map the array of responses into an array of response.json() to read their content
   .then(responses => Promise.all(responses.map(r => r.json())))
   // all JSON answers are parsed into the "users" array
   .then(users => users.forEach(user => alert(user.name)));
