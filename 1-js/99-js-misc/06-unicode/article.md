@@ -107,7 +107,7 @@ We can't just split a string at an arbitrary position, e.g. take `str.slice(0, 4
 alert( 'hi 😂'.slice(0, 4) ); //  hi [?]
 ```
 
-Here we can see a garbage character (first half of the smile surrogate pair) in the output.
+Here we can see a garbage character (first half of the face with tears surrogate pair) in the output.
 
 Just be aware of it if you intend to reliably work with surrogate pairs. May not be a big problem, but at least you should understand what happens.
 ````
