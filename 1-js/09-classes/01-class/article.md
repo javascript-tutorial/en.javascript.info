@@ -284,7 +284,7 @@ class User {
 
 }
 
-new User().sayHi();
+new User().sayHi(); // Hello
 ```
 
 Such features are easy to remember, as they resemble that of literal objects.
