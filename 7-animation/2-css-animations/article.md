@@ -86,7 +86,7 @@ In `transition-duration` we can specify how long the animation should take. The 
 
 In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is `2s`, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
 
-Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then animation starts from the halfway point and total duration will be 1 second.
+Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then the animation starts from the halfway point and the total duration will be 1 second.
 
 Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
 
