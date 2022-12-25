@@ -1,6 +1,6 @@
 # CSS-animations
 
-CSS animations make it possible to do simple animations without JavaScript at all.
+CSS animations make it possible to make simple animations without using JavaScript at all.
 
 JavaScript can be used to control CSS animations and make them even better, with little code.
 
