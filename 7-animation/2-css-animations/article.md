@@ -88,7 +88,7 @@ In `transition-delay` we can specify the delay *before* the animation. For insta
 
 Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then the animation starts from the halfway point and the total duration will be 1 second.
 
-Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
+Here the animation shifts numbers from `0` to `9` using the CSS `translate` property:
 
 [codetabs src="digits"]
 
