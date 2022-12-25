@@ -47,7 +47,7 @@ There are 4 properties to describe CSS transitions:
 - `transition-timing-function`
 - `transition-delay`
 
-We'll cover them in a moment, for now let's note that the common `transition` property allows declaring them together in the order: `property duration timing-function delay`, as well as animating multiple properties at once.
+We'll cover them in a moment, for now let's note that the shorthand `transition` property allows declaring them together on the same line in the following order: `property duration timing-function delay`, as well as animating multiple properties at once.
 
 For instance, this button animates both `color` and `font-size`:
 
