@@ -158,7 +158,7 @@ Here's how that curve looks:
 
 ...As we can see, it's just a straight line. As the time (`x`) passes, the completion (`y`) of the animation steadily goes from `0` to `1`.
 
-The train in the example below goes from left to right with the permanent speed (click it):
+The train in the example below goes from left to right at constant speed (click it):
 
 [codetabs src="train-linear"]
 
