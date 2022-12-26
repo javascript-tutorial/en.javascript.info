@@ -162,7 +162,7 @@ The train in the example below goes from left to right at constant speed (click 
 
 [codetabs src="train-linear"]
 
-The CSS `transition` is based on that curve:
+The CSS `transition` is based on this curve:
 
 ```css
 .train {
