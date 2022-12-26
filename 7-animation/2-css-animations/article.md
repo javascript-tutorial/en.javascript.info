@@ -168,7 +168,7 @@ The CSS `transition` is based on this curve:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* clicking on the train sets left to 450px, thus triggering the animation */
 }
 ```
 
@@ -191,7 +191,7 @@ CSS:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, .5, .5, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* clicking on the train sets left to 450px, thus triggering the animation */
 }
 ```
 
@@ -230,7 +230,7 @@ In the example below the animation code is:
 .train {
   left: 100px;
   transition: left 5s cubic-bezier(.5, -1, .5, 2);
-  /* click on a train sets left to 450px */
+  /* clicking on the train sets left to 450px */
 }
 ```
 
