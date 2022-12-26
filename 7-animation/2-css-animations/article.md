@@ -199,7 +199,7 @@ There are several built-in curves: `linear`, `ease`, `ease-in`, `ease-out` and `
 
 The `linear` is a shorthand for `cubic-bezier(0, 0, 1, 1)` -- a straight line, which we described above.
 
-Other names are shorthands for the following `cubic-bezier`:
+The other names are shorthands for the following `cubic-bezier`:
 
 | <code>ease</code><sup>*</sup> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> |
 |-------------------------------|----------------------|-----------------------|--------------------------|
