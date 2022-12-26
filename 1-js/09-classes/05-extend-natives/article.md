@@ -1,7 +1,7 @@
 
 # Extending built-in classes
 
-Built-in classes like Array, Map and others are extendable also.
+Built-in classes like `Array`, `Map` and others are extendable also.
 
 For instance, here `PowerArray` inherits from the native `Array`:
 
