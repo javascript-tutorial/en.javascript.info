@@ -222,7 +222,7 @@ But it looks a bit differently.
 
 **A Bezier curve can make the animation exceed its range.**
 
-The control points on the curve can have any `y` coordinates: even negative or huge ones. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
+The control points on the curve can have any `y` coordinates: even negative or huge values. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
 
 In the example below the animation code is:
 
