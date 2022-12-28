@@ -286,7 +286,7 @@ The `#digit` div has a fixed width and a border, so it looks like a red window.
 
 We'll make a timer: the digits will appear one by one, in a discrete way.
 
-To achieve that, we'll hide the `#stripe` outside of `#digit` using `overflow: hidden`, and then shift the `#stripe` to the left step-by-step.
+To achieve that, we'll hide the `#stripe` outside of `#digit` using `overflow: hidden`, then shift the `#stripe` to the left step-by-step.
 
 There will be 9 steps, a step-move for each digit:
 
