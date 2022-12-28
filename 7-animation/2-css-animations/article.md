@@ -321,7 +321,7 @@ Here, the first change was immediate because of `start` in the `steps`.
 
 The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
 
-So the process for `steps(9, end)` would go like this:
+So the process for `steps(9, end)` would progress like this:
 
 - `0s` -- `0` (during the first second nothing changes)
 - `1s` -- `-10%` (first change at the end of the 1st second)
