@@ -438,7 +438,7 @@ However, not all animations will look as smooth as you'd like, because different
 In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
 
 1. **Layout**: re-compute the geometry and position of each element, then
-2. **Paint**: re-compute how everything should look like at their places, including background, colors,
+2. **Paint**: re-compute how everything should look like at their places, including background and colors, then
 3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
 
 During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
