@@ -344,7 +344,7 @@ These values are rarely used, as they represent not a real animation, but rather
 
 When the CSS animation finishes, the `transitionend` event triggers.
 
-It is widely used to do an action after the animation is done. Also we can join animations.
+It is widely used to do an action after the animation is done and to join multiple animations.
 
 For instance, the ship in the example below starts to sail there and back when clicked, each time farther and farther to the right:
 
