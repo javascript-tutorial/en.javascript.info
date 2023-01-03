@@ -307,7 +307,7 @@ In action:
 
 [codetabs src="step"]
 
-A click on the digit changes it to `1` (the first step) immediately, then it changes again in the beginning of the next second.
+A click on the digit changes it to `1` (the first step) immediately, and then changes in the beginning of the next second.
 
 The process is progressing like this:
 
