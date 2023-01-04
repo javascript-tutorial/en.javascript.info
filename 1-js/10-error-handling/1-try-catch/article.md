@@ -186,7 +186,7 @@ Usually it's used to decode data received over the network, from the server or a
 We receive it and call `JSON.parse` like this:
 
 ```js run
-let json = '{"name":"John", "age": 30}'; // data from the server
+let json = '{"name": "John", "age": 30}'; // data from the server
 
 *!*
 let user = JSON.parse(json); // convert the text representation to JS object
