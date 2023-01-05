@@ -6,106 +6,107 @@ Massivlarda juda ko'p metodlar mavjud. O'rganishni osonlashtirish uchun ushbu bo
 
 Biz allaqachon massivning boshi yoki oxiridan elementlarni qo'shish yoki olib tashlashni bilamiz:
 
-- `arr.push(...items)` -- adds items to the end,
-- `arr.pop()` -- extracts an item from the end,
-- `arr.shift()` -- extracts an item from the beginning,
-- `arr.unshift(...items)` -- adds items to the beginning.
+- `arr.push(...elementlar)` -- oxiriga elementlarni qo'shadi
+- `arr.pop()` -- oxiridan element olib tashlaydi,
+- `arr.shift()` -- boshidan element olib tashlaydi,
+- `arr.unshift(...items)` -- boshiga elementlar qo'shadi.
 
-Here are a few others.
+Quyida yana bir nechtasi keltitilgan.
 
 ### splice
 
-How to delete an element from the array?
+Massivdan elementni qanday o'chirib tashlasa bo'ladi?
 
-The arrays are objects, so we can try to use `delete`:
+Massivlar obyekt hisoblanadi, shuning uchun `delete` ishlatib ko'rsak bo'ladi:
 
 ```js run
-let arr = ["I", "go", "home"];
+let arr = ["Men", "uyga", "boraman"];
 
-delete arr[1]; // remove "go"
+delete arr[1]; // "uyga"ni o'chiradi
 
 alert(arr[1]); // undefined
 
-// now arr = ["I",  , "home"];
+// endi arr = ["Men",  , "boraman"];
 alert(arr.length); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+Element olib tashlandi, biroq massivda hanuz 3ta element mavjud, buni `arr.length == 3` dan ko'rsak bo'ladi.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+Bu tabiiy hol, chunki `delete obj.key` `key` orqali qiymatni olib tashlaydi. Hammasi shu va bu obyektlar uchun yaxshi. Ammo massivlar uchun biz odatda qolgan elementlarning siljishi va bo'sh joyni egallashini xohlaymiz. Endi biz massiv qisqaroq bo'lishini istaymiz.
 
-So, special methods should be used.
+Demak, maxsus metodlar ishlatilinishi zarur.
 
-The [arr.splice](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+[arr.splice](mdn:js/Array/splice) metodi massivlar uchun Shveytsariya armiyasi pichog'idir. U har qanday vazifa bajara oladi: elementlarni kiritish, olib tashlash va almashtirish.
 
-The syntax is:
+Uning sintaksisi quyidagicha:
 
 ```js
 arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 
-It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+U `start` indeksidan boshlab `arr` ni o'zgartiradi: `deleteCount` elementlarini olib tashlaydi va keyin o'z o'rniga `elem1, ..., elementN` qo'yadi. O'chirilgan elementlarni massivda qaytaradi.
 
-This method is easy to grasp by examples.
+Bu usulni misollar orqali tushunish oson.
 
-Let's start with the deletion:
+O'chirishdan boshlaymiz:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Men", "JavaScript", "o'rganaman"];
 
 *!*
-arr.splice(1, 1); // from index 1 remove 1 element
+arr.splice(1, 1); // 1-indeksdan 1 ta elementni olib tashlash
 */!*
 
-alert( arr ); // ["I", "JavaScript"]
+alert( arr ); // ["Men", "o'rganaman"]
 ```
 
-Easy, right? Starting from the index `1` it removed `1` element.
+Oson, shundaymi? `1` indeksidan boshlab `1` elementi olib tashlandi.
 
-In the next example we remove 3 elements and replace them with the other two:
+Keyingi misolda biz 3 ta elementni olib tashlaymiz va ularni qolgan ikkitasi bilan almashtiramiz:
 
 ```js run
-let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
+let arr = [*!*"Men", "JavaScript", "o'rganaman",*/!* "aynan", "hozir"];
 
-// remove 3 first elements and replace them with another
-arr.splice(0, 3, "Let's", "dance");
+// 3 ta birinchi elementni olib tashlash va ularni boshqasi bilan almashtirish
+arr.splice(0, 3, "Keling", "o'ynaymiz");
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // endi [*!*"Keling", "o'ynaymiz"*/!*, "aynan", "hozir"]
 ```
 
-Here we can see that `splice` returns the array of removed elements:
+Bu yerda `splice` olib tashlangan elementlarni massivda qaytarishini ko'rishimiz mumkin:
 
 ```js run
-let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
+let arr = [*!*"Men", "JavaScript",*/!* "o'rganaman", "aynan", "hozir"];
 
-// remove 2 first elements
+// birinchi ikki elementni olib tashlash
 let removed = arr.splice(0, 2);
 
-alert( removed ); // "I", "study" <-- array of removed elements
+alert( removed ); // "Men", "JavaScript" <-- olib tashlangan elementlarning massivi
 ```
 
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+`Splice` usuli, shuningdek, elementlarni hech qanday olib tashlamasdan kiritishga qodir. Buning uchun biz `deleteCount` ni `0` ga qo'yishimiz kerak:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Men", "JavaScript", "O'rganaman"];
 
-// from index 2
-// delete 0
-// then insert "complex" and "language"
-arr.splice(2, 0, "complex", "language");
+// indeks 2dan
+// 0 olib tashlash
+// so'ng "mukammal" va "tilini" qo'shish
+arr.splice(2, 0, "mukammal", "tilini");
 
-alert(arr); // "I", "study", "complex", "language", "JavaScript"
+alert(arr); // "Men", "JavaScript", "mukammal", "tilini", "o'rganaman"
 ```
 
-````smart header="Negative indexes allowed"
-Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
+````smart header="Manfiy indekslar ishlatish mumkin"
+Quyida va boshqa massiv metodlarida manfiy indekslarga ruxsat beriladi. Ular massivning oxiridan joylashuvni aniqlaydilar, masalan:
 
 ```js run
 let arr = [1, 2, 5];
 
-// from index -1 (one step from the end)
-// delete 0 elements,
-// then insert 3 and 4
+// -1 indeksdan (oxiridanbir qadam)
+// 0 ta element o'chirish
+// so'ng 3 va 4 qo'shish
+
 arr.splice(-1, 0, 3, 4);
 
 alert( arr ); // 1,2,3,4,5
