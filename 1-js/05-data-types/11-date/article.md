@@ -31,7 +31,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
     An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
 
-    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
+    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `.getTime()` method (see below).
 
     Dates before 01.01.1970 have negative timestamps, e.g.:
     ```js run
