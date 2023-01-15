@@ -105,7 +105,7 @@ Additionally, we can get a day of week:
 
 There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
 
-If your local time zone is shifted relative to UTC, then the code below shows different hours:
+If your local time zone is offset relative to UTC, then the code below shows different hours:
 
 ```js run
 // current date
