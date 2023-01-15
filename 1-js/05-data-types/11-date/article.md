@@ -59,7 +59,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
     - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
     - The `month` count starts from `0` (Jan), up to `11` (Dec).
-    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
+    - The `day` parameter represents the day of the month, if absent then `1` is assumed.
     - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
 
     For instance:
