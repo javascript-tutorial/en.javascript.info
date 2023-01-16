@@ -164,7 +164,7 @@ alert(today); // still today, now 00:00:00 sharp.
 
 ## Autocorrection
 
-The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+The *autocorrection* is a very handy feature of `Date` objects. We can set an out-of-range value, and it will auto-adjust itself.
 
 For instance:
 
