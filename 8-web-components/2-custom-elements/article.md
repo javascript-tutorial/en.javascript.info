@@ -242,9 +242,9 @@ customElements.define('user-info', class extends HTMLElement {
 
 If you run it, the `alert` is empty.
 
-That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element `<user-info>`, and is going to proceed to its children, but just didn't yet.
+That's exactly because when the HTML parser connects the `<user-info>` element, its children have not been processed yet — the DOM is incomplete. In effect, the children don't exist.
 
-If we'd like to pass information to custom element, we can use attributes. They are available immediately.
+If we'd like to pass information to a custom element, we can use attributes. They are available immediately.
 
 Or, if we really need the children, we can defer access to them with zero-delay `setTimeout`.
 
