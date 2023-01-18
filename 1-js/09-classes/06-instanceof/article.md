@@ -183,7 +183,7 @@ let user = {
   [Symbol.toStringTag]: "User"
 };
 
-alert( {}.toString.call(user) ); // [object User]
+alert( ({}).toString.call(user) ); // [object User]
 ```
 
 For most environment-specific objects, there is such a property. Here are some browser specific examples:
@@ -193,15 +193,15 @@ For most environment-specific objects, there is such a property. Here are some b
 alert( window[Symbol.toStringTag]); // Window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest
 
-alert( {}.toString.call(window) ); // [object Window]
-alert( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
+alert( ({}).toString.call(window) ); // [object Window]
+alert( ({}).toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
 ```
 
 As you can see, the result is exactly `Symbol.toStringTag` (if exists), wrapped into `[object ...]`.
 
 At the end we have "typeof on steroids" that not only works for primitive data types, but also for built-in objects and even can be customized.
 
-We can use `{}.toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
+We can use `({}).toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
 
 ## Summary
 
@@ -210,9 +210,9 @@ Let's summarize the type-checking methods that we know:
 |               | works for   |  returns      |
 |---------------|-------------|---------------|
 | `typeof`      | primitives  |  string       |
-| `{}.toString` | primitives, built-in objects, objects with `Symbol.toStringTag`   |       string |
+| `({}).toString` | primitives, built-in objects, objects with `Symbol.toStringTag`   |       string |
 | `instanceof`  | objects     |  true/false   |
 
-As we can see, `{}.toString` is technically a "more advanced" `typeof`.
+As we can see, `({}).toString` is technically a "more advanced" `typeof`.
 
 And `instanceof` operator really shines when we are working with a class hierarchy and want to check for the class taking into account inheritance.
