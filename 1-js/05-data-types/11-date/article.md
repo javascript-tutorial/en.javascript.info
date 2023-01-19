@@ -241,7 +241,7 @@ There's a special method `Date.now()` that returns the current timestamp.
 
 It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
 
-It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
+It is used mostly for convenience or when performance matters, like in games or other specialized applications.
 
 So this is probably better:
 
