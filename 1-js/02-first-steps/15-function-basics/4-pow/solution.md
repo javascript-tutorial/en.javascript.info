@@ -16,6 +16,6 @@ let n = prompt("n?", '');
 if (n >= 1 && n % 1 == 0) {
   alert( pow(x, n) );
 } else {
-	alert(`Power ${n} is not supported, use a positive integer`);
+  alert(`Power ${n} is not supported, use a positive integer`);
 }
 ```
