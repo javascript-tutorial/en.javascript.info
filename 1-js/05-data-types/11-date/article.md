@@ -413,7 +413,7 @@ alert(date);
 ## Summary
 
 - Date and time are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from zero (yes, January is a zero month).
+- Months are counted from zero (yes, January is month zero).
 - Days of week in `getDay()` are also counted from zero (that's Sunday).
 - `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
 - Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
