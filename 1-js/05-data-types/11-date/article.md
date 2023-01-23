@@ -421,7 +421,7 @@ alert(date);
 
 Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
 
-Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that returns the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
 
 ```js run
 alert(`Loading started ${performance.now()}ms ago`);
