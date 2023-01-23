@@ -412,7 +412,7 @@ alert(date);
 
 ## Summary
 
-- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
+- Date and time are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
 - Months are counted from zero (yes, January is a zero month).
 - Days of week in `getDay()` are also counted from zero (that's Sunday).
 - `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
