@@ -399,7 +399,7 @@ For instance:
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert(ms); // 1327611110417  (timestamp)
+alert(ms); // 1327611110417 (timestamp)
 ```
 
 We can instantly create a `new Date` object from the timestamp:
