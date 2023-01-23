@@ -387,7 +387,7 @@ The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
 
 - `YYYY-MM-DD` -- is the date: year-month-day.
 - The character `"T"` is used as the delimiter.
-- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
+- `HH:mm:ss.sss` -- is the time: hours:minutes:seconds.milliseconds.
 - The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
 
 Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
