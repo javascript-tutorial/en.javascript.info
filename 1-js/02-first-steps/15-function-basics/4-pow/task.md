@@ -4,7 +4,7 @@ importance: 4
 
 # Function pow(x,n)
 
-Write a function `pow(x,n)` that returns `x` in power `n`.
+Write a function `pow(x,n)` that returns `x` to the power of `n`.
 
 ```js
 pow(3, 2) = 3 * 3 = 9
