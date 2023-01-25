@@ -36,7 +36,7 @@ Additionally, there are derived properties:
 ```online
 For instance click this button to see its window coordinates:
 
-<p><input id="brTest" type="button" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
+<p><input id="brTest" type="button" style="max-width: 90vw;" value="Get coordinates using button.getBoundingClientRect() for this button" onclick='showRect(this)'/></p>
 
 <script>
 function showRect(elem) {
