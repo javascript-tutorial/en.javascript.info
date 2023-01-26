@@ -69,7 +69,7 @@ Some pointer devices measure contact area and pressure, e.g. for a finger on the
 - `height` - the height of the area where the pointer touches the device. Where unsupported, it's always `1`.
 - `pressure` - the pressure of the pointer tip, in range from 0 to 1. For devices that don't support pressure must be either `0.5` (pressed) or `0`.
 - `tangentialPressure` - the normalized tangential pressure.
-- `tiltX`, `tiltY`, `twist` - pen-specific properties that describe how the pen is positioned relative the surface.
+- `tiltX`, `tiltY`, `twist` - pen-specific properties that describe how the pen is positioned relative to the surface.
 
 These properties aren't supported by most devices, so they are rarely used. You can find the details about them in the [specification](https://w3c.github.io/pointerevents/#pointerevent-interface) if needed.
 
