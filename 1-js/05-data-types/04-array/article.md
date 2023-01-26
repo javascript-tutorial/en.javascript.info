@@ -98,7 +98,7 @@ The "trailing comma" style makes it easier to insert/remove items, because all l
 
 Let's say we want the last element of the array.
 
-Some programming languages allow to use negative indexes for the same purpose, like `fruits[-1]`.
+Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
 
 Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
 
