@@ -7,11 +7,11 @@ let john = { name: "John", age: 25 };
 let pete = { name: "Pete", age: 30 };
 let mary = { name: "Mary", age: 28 };
 
-let arr = [ pete, john, mary ];
+let arr = [pete, john, mary];
 
 sortByAge(arr);
 
-// now sorted is: [john, mary, pete]
+// endi tartiblangani: [john, mary, pete]
 alert(arr[0].name); // John
 alert(arr[1].name); // Mary
 alert(arr[2].name); // Pete

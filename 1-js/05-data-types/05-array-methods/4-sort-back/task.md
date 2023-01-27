@@ -1,14 +1,13 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Sort in decreasing order
+# Kamayish tartibida saralash
 
 ```js
 let arr = [5, 2, 1, -10, 8];
 
-// ... your code to sort it in decreasing order
+// ... uni kamayish tartibida tartiblash uchun kodingizni kiriting
 
-alert( arr ); // 8, 5, 2, 1, -10
+alert(arr); // 8, 5, 2, 1, -10
 ```
-

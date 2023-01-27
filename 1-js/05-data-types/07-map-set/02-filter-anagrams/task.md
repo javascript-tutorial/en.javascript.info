@@ -1,12 +1,12 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Filter anagrams
+# Anagramlarni filtrlash
 
-[Anagrams](https://en.wikipedia.org/wiki/Anagram) are words that have the same number of same letters, but in different order.
+[Anagrammalar](https://en.wikipedia.org/wiki/Anagram) bir xil harflar soni bir xil, lekin boshqa tartibda bo'lgan so'zlar..
 
-For instance:
+Masalan:
 
 ```
 nap - pan
@@ -14,15 +14,14 @@ ear - are - era
 cheaters - hectares - teachers
 ```
 
-Write a function `aclean(arr)` that returns an array cleaned from anagrams.
+Anagramlardan tozalangan massivni qaytaruvchi `aclean(arr)` funksiyasini yozing.
 
-For instance:
+Masalan:
 
 ```js
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
+alert(aclean(arr)); // "nap,teachers,ear" yoki "PAN,cheaters,era"
 ```
 
-From every anagram group should remain only one word, no matter which one.
-
+Har bir anagram guruhidan qaysi biri bo'lishidan qat'i nazar, faqat bitta so'z qolishi kerak.

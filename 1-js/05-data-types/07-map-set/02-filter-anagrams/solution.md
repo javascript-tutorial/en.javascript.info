@@ -1,6 +1,6 @@
-To find all anagrams, let's split every word to letters and sort them. When letter-sorted, all anagrams are same.
+Barcha anagrammalarni topish uchun keling, har bir so'zni harflarga ajratamiz va ularni tartiblaymiz. Harf bo'yicha tartiblanganda, barcha anagrammalar bir xil bo'ladi.
 
-For instance:
+Masalan:
 
 ```
 nap, pan -> anp
@@ -9,14 +9,14 @@ cheaters, hectares, teachers -> aceehrst
 ...
 ```
 
-We'll use the letter-sorted variants as map keys to store only one value per each key:
+Har bir kalit uchun faqat bitta qiymatni saqlash uchun xarita kalitlari sifatida harflar bo'yicha saralangan variantlardan foydalanamiz:
 
 ```js run
 function aclean(arr) {
   let map = new Map();
 
   for (let word of arr) {
-    // split the word by letters, sort them and join back
+    // so'zni harflarga bo'ling, ularni tartiblang va qayta qo'shiling
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)
 */!*
@@ -31,33 +31,33 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 ```
 
-Letter-sorting is done by the chain of calls in the line `(*)`.
+Harflarni saralash `(*)` qatoridagi qo'ng'iroqlar zanjiri orqali amalga oshiriladi.
 
-For convenience let's split it into multiple lines:
+Qulaylik uchun uni bir nechta qatorlarga ajratamiz:
 
 ```js
 let sorted = word // PAN
   .toLowerCase() // pan
-  .split('') // ['p','a','n']
+  .split("") // ['p','a','n']
   .sort() // ['a','n','p']
-  .join(''); // anp
+  .join(""); // anp
 ```
 
-Two different words `'PAN'` and `'nap'` receive the same letter-sorted form `'anp'`.
+Ikki xil `'PAN'` va `'nap'` so‘zlari bir xil harflar bo‘yicha tartiblangan `'anp'` shaklini oladi.
 
-The next line put the word into the map:
+Keyingi qatorda so'z xaritaga kiritiladi:
 
 ```js
 map.set(sorted, word);
 ```
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+Agar biz yana bir xil harflar bo'yicha tartiblangan so'zni uchratsak, u xaritadagi bir xil kalit bilan oldingi qiymatni qayta yozadi. Shunday qilib, bizda har doim har bir harf shaklida maksimal bitta so'z bo'ladi.
 
-At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
+Oxirida `Array.from(map.values())` xarita qiymatlari bo'yicha takrorlanadigan qiymatni oladi (natijada bizga kalitlar kerak emas) va ularning qatorini qaytaradi.
 
-Here we could also use a plain object instead of the `Map`, because keys are strings.
+Bu yerda biz "Xarita" o'rniga oddiy ob'ektdan ham foydalanishimiz mumkin, chunki kalitlar qatorlardir.
 
-That's how the solution can look:
+Yechim shunday ko'rinishi mumkin:
 
 ```js run demo
 function aclean(arr) {
@@ -73,5 +73,5 @@ function aclean(arr) {
 
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-alert( aclean(arr) );
+alert(aclean(arr));
 ```

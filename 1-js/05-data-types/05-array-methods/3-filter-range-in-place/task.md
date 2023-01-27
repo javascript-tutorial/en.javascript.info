@@ -1,18 +1,19 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Filter range "in place"
+# Filtr diapazoni "joyida"
 
-Write a function `filterRangeInPlace(arr, a, b)` that gets an array `arr` and removes from it all values except those that are between `a` and `b`. The test is: `a ≤ arr[i] ≤ b`.
+`filterRangeInPlace(arr, a, b)` funksiyasini yozing, u `arr` massivini olsin va undan `a` va `b` orasidagi qiymatlardan tashqari barcha qiymatlarni olib tashlasin. Testi: `a ≤ arr[i] ≤ b`.
 
-The function should only modify the array. It should not return anything.
+Funktsiya faqat massivni o'zgartirishi kerak. Bu hech narsani qaytarmasligi kerak.
 
-For instance:
+Misol uchun:
+
 ```js
 let arr = [5, 3, 8, 1];
 
-filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
+filterRangeInPlace(arr, 1, 4); // 1 dan 4 gacha bo'lgan raqamlardan tashqari raqamlar olib tashlandi
 
-alert( arr ); // [3, 1]
+alert(arr); // [3, 1]
 ```

@@ -1,4 +1,3 @@
-
 ```js run no-beautify
 let john = { name: "John", surname: "Smith", id: 1 };
 let pete = { name: "Pete", surname: "Hunt", id: 2 };
@@ -25,9 +24,10 @@ alert( usersMapped[0].id ); // 1
 alert( usersMapped[0].fullName ); // John Smith
 ```
 
-Please note that in the arrow functions we need to use additional brackets. 
+E'tibor bering, arrow funktsiyalarida biz qo'shimcha qavslardan foydalanishimiz kerak.
 
-We can't write like this:
+Biz shunday yoza olmaymiz:
+
 ```js
 let usersMapped = users.map(user => *!*{*/!*
   fullName: `${user.name} ${user.surname}`,
@@ -35,9 +35,9 @@ let usersMapped = users.map(user => *!*{*/!*
 });
 ```
 
-As we remember, there are two arrow functions: without body `value => expr` and with body `value => {...}`.
+Esda tutganimizdek, ikkita arrow funksiyasi mavjud: `value => expr` tanasisiz va `valuei => {...}` tanasi bilan.
 
-Here JavaScript would treat `{` as the start of function body, not the start of the object. The workaround is to wrap them in the "normal" brackets:
+Bu yerda JavaScript `{` ni obyektning boshlanishi emas, balki funksiya tanasining boshlanishi sifatida ko'radi. Vaqtinchalik yechim ularni "oddiy" qavslarga o'rashdir:
 
 ```js
 let usersMapped = users.map(user => *!*({*/!*
@@ -46,6 +46,4 @@ let usersMapped = users.map(user => *!*({*/!*
 }));
 ```
 
-Now fine.
-
-
+Endi yaxshi.

@@ -1,6 +1,7 @@
-Let's walk the array items:
-- For each item we'll check if the resulting array already has that item.
-- If it is so, then ignore, otherwise add to results.
+Keling, massiv elementlarini ko'rib chiqaylik:
+
+- Har bir element uchun biz natijada olingan massivda ushbu element mavjudligini tekshiramiz.
+- Agar shunday bo'lsa, e'tibor bermang, aks holda natijalarga qo'shing.
 
 ```js run demo
 function unique(arr) {
@@ -15,25 +16,33 @@ function unique(arr) {
   return result;
 }
 
-let strings = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let strings = [
+  "Hare",
+  "Krishna",
+  "Hare",
+  "Krishna",
+  "Krishna",
+  "Krishna",
+  "Hare",
+  "Hare",
+  ":-O",
 ];
 
-alert( unique(strings) ); // Hare, Krishna, :-O
+alert(unique(strings)); // Hare, Krishna, :-O
 ```
 
-The code works, but there's a potential performance problem in it.
+Kod ishlaydi, lekin unda mumkin bo'lgan ishlash muammosi mavjud.
 
-The method `result.includes(str)` internally walks the array `result` and compares each element against `str` to find the match.
+`result.includes(str)` usuli `natija` massivida ichki harakat qiladi va moslikni topish uchun har bir elementni `str` bilan solishtiradi.
 
-So if there are `100` elements in `result` and no one matches `str`, then it will walk the whole `result` and do exactly `100` comparisons. And if `result` is large, like `10000`, then there would be `10000` comparisons.
+Demak, agar `natija`da `100`ta element bo'lsa va hech qaysisi `str`ga mos kelmasa, u butun `natija` bo'ylab yuradi va aynan `100`ta taqqoslashni amalga oshiradi. Va agar `natija` katta bo'lsa, masalan, `10000` bo'lsa, `10000`ta taqqoslash bo'ladi.
 
-That's not a problem by itself, because JavaScript engines are very fast, so walk `10000` array is a matter of microseconds.
+Bu o'z-o'zidan muammo emas, chunki JavaScript mexanizmlari juda tez, shuning uchun "10000" qatorini bosib o'tish mikrosoniyalar masalasidir.
 
-But we do such test for each element of `arr`, in the `for` loop.
+Lekin biz `for` tsiklidagi `arr` ning har bir elementi uchun bunday sinovni o'tkazamiz.
 
-So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 millions of comparisons. That's a lot.
+Demak, agar `arr.length` `10000` bo'lsa, bizda `10000*10000` = 100 million taqqoslashlar bo'ladi. Bu juda ko'p.
 
-So the solution is only good for small arrays.
+Shunday qilib, yechim faqat kichik massivlar uchun yaxshi.
 
-Further in the chapter <info:map-set> we'll see how to optimize it.
+Keyinchalik <info:map-set> bo'limida biz uni qanday optimallashtirishni ko'rib chiqamiz.

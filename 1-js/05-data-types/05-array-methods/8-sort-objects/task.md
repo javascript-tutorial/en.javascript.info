@@ -1,23 +1,23 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Sort users by age
+# Foydalanuvchilarni yoshga qarab tartiblang
 
-Write the function `sortByAge(users)` that gets an array of objects with the `age` property and sorts them by `age`.
+`age` xususiyatiga ega ob'ektlar qatorini oladigan va ularni `yosh` bo'yicha saralaydigan `sortByAge(users)` funksiyasini yozing.
 
-For instance:
+Misol uchun:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };
 let pete = { name: "Pete", age: 30 };
 let mary = { name: "Mary", age: 28 };
 
-let arr = [ pete, john, mary ];
+let arr = [pete, john, mary];
 
 sortByAge(arr);
 
-// now: [john, mary, pete]
+// endi: [john, mary, pete]
 alert(arr[0].name); // John
 alert(arr[1].name); // Mary
 alert(arr[2].name); // Pete

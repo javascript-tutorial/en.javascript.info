@@ -1,19 +1,19 @@
-importance: 5
+Muhimlik: 5
 
 ---
 
-# Translate border-left-width to borderLeftWidth
+# Border-left-width ni borderLeftWidth ga o'zgartiring.
 
-Write the function `camelize(str)` that changes dash-separated words like "my-short-string" into camel-cased "myShortString".
+`my-short-string` kabi chiziqcha bilan ajratilgan so'zlarni tuyali `myShortString` ga o'zgartiruvchi `camelize(str)` funksiyasini yozing.
 
-That is: removes all dashes, each word after dash becomes uppercased.
+Ya'ni: barcha tirelarni olib tashlaydi, chiziqdan keyingi har bir so'z bosh harfga aylanadi.
 
-Examples:
+Misollar:
 
 ```js
-camelize("background-color") == 'backgroundColor';
-camelize("list-style-image") == 'listStyleImage';
-camelize("-webkit-transition") == 'WebkitTransition';
+camelize("background-color") == "backgroundColor";
+camelize("list-style-image") == "listStyleImage";
+camelize("-webkit-transition") == "WebkitTransition";
 ```
 
-P.S. Hint: use `split` to split the string into an array, transform it and `join` back.
+P.S. Maslahat: satrni massivga bo'lish, uni o'zgartirish va qayta qo'shilish uchun `split` dan foydalaning.
