@@ -15,10 +15,10 @@ In this aspect, JavaScript is very different from another language called [Java]
 ```smart header="Why is it called <u>Java</u>Script?"
 When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
 
-But as it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
+As it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+Today, JavaScript can execute not only in the browser, but also on the server, or on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
 The browser has an embedded engine sometimes called a "JavaScript virtual machine".
 
@@ -35,8 +35,8 @@ The terms above are good to remember because they are used in developer articles
 Engines are complicated. But the basics are easy.
 
 1. The engine (embedded if it's a browser) reads ("parses") the script.
-2. Then it converts ("compiles") the script to machine code.
-3. And then the machine code runs, pretty fast.
+2. It converts ("compiles") the script to machine code.
+3. The machine code runs, pretty fast.
 
 The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
 ```
@@ -70,7 +70,7 @@ Examples of restrictions include:
     There are ways to interact with the camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
 - Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other page if they come from different sites (from a different domain, protocol or port).
 
-    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and must contain special JavaScript code that handles it. You'll learn that in the tutorial.
+    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain special JavaScript code that handles it. You'll learn that in the tutorial.
 
     This limitation is, again, for the user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com`, for example, and steal information from there.
 - JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's a safety limitation.
@@ -96,13 +96,13 @@ That said, JavaScript can be used to create servers, mobile applications, etc.
 
 ## Languages "over" JavaScript
 
-The syntax of JavaScript does not suit everyone's needs. Different people want different features.
+The JavaScript syntax does not suit everyone's needs. Different people want different features.
 
-That's to be expected, because projects and requirements are different for everyone.
+That's expected, because projects and requirements are different for everyone.
 
-So, recently many new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
+Recently many new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
-Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
+Modern tools make the transpilation very fast and transparent, allowing developers to code in another language and auto-converting it "under the hood".
 
 Examples of these languages:
 
