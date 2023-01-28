@@ -9,8 +9,8 @@ The ECMA-262 specification defines the JavaScript language. The formal document 
 
 - [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information.
 - [The latest specification draft](https://tc39.es/ecma262/) is discussed and reviewed between specification releases.
-- [Proposals about new bleeding-edge features](https://github.com/tc39/proposals), including those that are "almost standard" (so-called "stage 3").
-- If you're developing for the browser, there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+- [Proposals for new bleeding-edge features](https://github.com/tc39/proposals), including those that are "almost standard" (so-called "stage 3").
+- [Part 2 - Browser: Document, Events, Interfaces](info:browser-environment) covers other specifications if you're developing for the browser.
 
 ## Manuals
 
