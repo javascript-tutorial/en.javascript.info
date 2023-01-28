@@ -1,22 +1,22 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# The maximal salary 
+# Maksimal ish haqi
 
-There is a `salaries` object:
+`Salaries` ob'ekti mavjud:
 
 ```js
 let salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
+  John: 100,
+  Pete: 300,
+  Mary: 250,
 };
 ```
 
-Create the function `topSalary(salaries)` that returns the name of the top-paid person.
+Eng ko'p maosh oluvchi shaxs nomini qaytaruvchi `topSalary(salaries)` funksiyasini yarating.
 
-- If `salaries` is empty, it should return `null`.
-- If there are multiple top-paid persons, return any of them.
+- Agar `salaries` bo'sh bo'lsa, u `null` qiymatini qaytarishi kerak.
+- Agar bir nechta yuqori maosh oladigan shaxslar bo'lsa, ulardan birini qaytaring.
 
-P.S. Use `Object.entries` and destructuring to iterate over key/value pairs.
+P.S. Kalit/qiymat juftliklarini takrorlash uchun `Object.entries` va destrukturadan foydalaning.
