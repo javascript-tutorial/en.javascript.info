@@ -8,7 +8,7 @@ This book is a *tutorial* to help you gradually learn the language. Once you're 
 The ECMA-262 specification defines the JavaScript language. The formal document is not for everyday use as it's difficult to understand at first. If you need the most trustworthy source of information about the language details, the specification is the right place. A new specification version is released every year. 
 
 - [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information.
-- Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+- [The latest specification draft](https://tc39.es/ecma262/) is discussed and reviewed between specification releases.
 - To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
 - If you're developing for the browser, there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
 
