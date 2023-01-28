@@ -100,7 +100,7 @@ The syntax of JavaScript does not suit everyone's needs. Different people want d
 
 That's to be expected, because projects and requirements are different for everyone.
 
-So, recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
+So, recently many new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
 Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
 
