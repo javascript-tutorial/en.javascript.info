@@ -14,9 +14,7 @@ The ECMA-262 specification defines the JavaScript language. The formal document 
 
 ## Manuals
 
-- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
-
-    You can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+- [MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
 
 It's often best to use an internet search with "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
 
