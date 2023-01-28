@@ -1,21 +1,20 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Count properties
+# Xususiyatlarni hisoblash
 
-Write a function `count(obj)` that returns the number of properties in the object:
+Ob'ektdagi xususiyatlar sonini qaytaruvchi `count(obj)` funksiyasini yozing:
 
 ```js
 let user = {
-  name: 'John',
-  age: 30
+  name: "John",
+  age: 30,
 };
 
-alert( count(user) ); // 2
+alert(count(user)); // 2
 ```
 
-Try to make the code as short as possible.
+Kodni iloji boricha qisqaroq qilishga harakat qiling.
 
-P.S. Ignore symbolic properties, count only "regular" ones.
-
+P.S. Ramziy xususiyatlarga e'tibor bermang, faqat "muntazam"larni hisoblang.

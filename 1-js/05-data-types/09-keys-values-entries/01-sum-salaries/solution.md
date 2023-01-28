@@ -1,6 +1,5 @@
 ```js run demo
 function sumSalaries(salaries) {
-
   let sum = 0;
   for (let salary of Object.values(salaries)) {
     sum += salary;
@@ -10,20 +9,21 @@ function sumSalaries(salaries) {
 }
 
 let salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
+  John: 100,
+  Pete: 300,
+  Mary: 250,
 };
 
-alert( sumSalaries(salaries) ); // 650
+alert(sumSalaries(salaries)); // 650
 ```
-Or, optionally, we could also get the sum using `Object.values` and `reduce`:
+
+Yoki ixtiyoriy ravishda `Object.values` va `reduce` yordamida yig‘indini ham olishimiz mumkin:
 
 ```js
-// reduce loops over array of salaries,
-// adding them up
-// and returns the result
+// ish haqi to'lovlari bo'yicha tsikllarni qisqartirish,
+// ularni qo'shish
+// va natijani qaytaradi
 function sumSalaries(salaries) {
-  return Object.values(salaries).reduce((a, b) => a + b, 0) // 650
+  return Object.values(salaries).reduce((a, b) => a + b, 0); // 650
 }
 ```

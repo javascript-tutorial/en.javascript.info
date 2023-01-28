@@ -1,86 +1,85 @@
+# Object.keys, qiymatlar, yozuvlar
 
-# Object.keys, values, entries
+Keling, alohida ma'lumotlar tuzilmalaridan uzoqlashaylik va ular ustidagi iteratsiyalar haqida gapiraylik.
 
-Let's step away from the individual data structures and talk about the iterations over them.
+Oldingi bobda biz `map.keys()`, `map.values()`, `map.entries()` metodlarini ko`rdik.
 
-In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
+Ushbu metodlar umumiydir, ulardan ma'lumotlar tuzilmalari uchun foydalanish bo'yicha umumiy kelishuv mavjud. Agar biz o'zimizning ma'lumotlar tuzilmasini yaratsak, ularni ham amalga oshirishimiz kerak.
 
-These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too.
-
-They are supported for:
+Ular quyidagilar uchun qo'llab-quvvatlanadi:
 
 - `Map`
 - `Set`
 - `Array`
 
-Plain objects also support similar methods, but the syntax is a bit different.
+Oddiy ob'ektlar ham shunga o'xshash metodlarni qo'llab-quvvatlaydi, ammo sintaksis biroz boshqacha.
 
-## Object.keys, values, entries
+## Object.keys, qiymatlar, yozuvlar
 
-For plain objects, the following methods are available:
+Oddiy ob'ektlar uchun quyidagi metodlar mavjud:
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- returns an array of keys.
-- [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
-- [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
+- [Object.keys(obj)](mdn:js/Object/keys) -- kalitlar qatorini qaytaradi.
+- [Object.values(obj)](mdn:js/Object/values) -- qiymatlar massivini qaytaradi.
+- [Object.entries(obj)](mdn:js/Object/entries) -- `[kalit, qiymat]` juftlik massivini qaytaradi.
 
-Please note the distinctions (compared to map for example):
+Farqlarga e'tibor bering (masalan, mapga nisbatan):
 
-|             | Map              | Object       |
-|-------------|------------------|--------------|
-| Call syntax | `map.keys()`  | `Object.keys(obj)`, but not `obj.keys()` |
-| Returns     | iterable    | "real" Array                     |
+|                       | Map            | Object                                     |
+| --------------------- | -------------- | ------------------------------------------ |
+| Qo'ng'iroq sintaksisi | `map.keys()`   | `Object.keys(obj)`, ammo `obj.keys()` emas |
+| Qaytaradi             | takrorlanuvchi | "haqiqiy" Masvic                           |
 
-The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
+Birinchi farq shundaki, biz `obj.keys()` emas, balki `Object.keys(obj)` ni chaqirishimiz kerak.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `data` that implements its own `data.values()` method. And we still can call `Object.values(data)` on it.
+Nega shunday? Asosiy sabab - moslashuvchanlik. Esda tutingki, ob'ektlar JavaScript-dagi barcha murakkab tuzilmalarning asosidir. Shunday qilib, bizda o'zining `data.values()` metodini amalga oshiradigan "ma'lumotlar" kabi o'z ob'ektimiz bo'lishi mumkin. Va biz hali ham `Object.values(data)` ni chaqirishimiz mumkin.
 
-The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
+Ikkinchi farq shundaki, `Object.*` metodlari shunchaki takrorlanuvchi emas, balki «haqiqiy» massiv obyektlarini qaytaradi. Bu asosan tarixiy sabablarga ko'ra.
 
-For instance:
+Masalan:
 
 ```js
 let user = {
-  name: "John",
-  age: 30
+  ism: "John",
+  yosh: 30,
 };
 ```
 
-- `Object.keys(user) = ["name", "age"]`
+- `Object.keys(user) = ["ism", "yosh"]`
 - `Object.values(user) = ["John", 30]`
-- `Object.entries(user) = [ ["name","John"], ["age",30] ]`
+- `Object.entries(user) = [ ["ism","John"], ["yosh",30] ]`
 
-Here's an example of using `Object.values` to loop over property values:
+Xususiyat qiymatlari ustidan aylanish uchun `Object.values` dan foydalanishga misol:
 
 ```js run
 let user = {
-  name: "John",
-  age: 30
+  ism: "John",
+  yosh: 30,
 };
 
-// loop over values
+// qiymatlarni aylantirish
 for (let value of Object.values(user)) {
-  alert(value); // John, then 30
+  alert(value); // John, keyin 30
 }
 ```
 
-```warn header="Object.keys/values/entries ignore symbolic properties"
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+``warn header="Object.keys/values/entries ramziy xususiyatlarga e'tibor bermaydi""
+Xuddi `for..in`tsikli kabi, bu metodlar kalit sifatida`Symbol(...)` dan foydalanadigan xususiyatlarni e'tiborsiz qoldiradi.
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
-```
+Odatda bu qulay. Ammo agar biz ramziy kalitlarni ham xohlasak, unda faqat ramziy kalitlar qatorini qaytaradigan alohida metod [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) mavjud. Bundan tashqari, _all_ kalitlarni qaytaradigan [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) metodi mavjud.
 
+``
 
-## Transforming objects
+## Ob'ektlarni o'zgartirish
 
-Objects lack many methods that exist for arrays, e.g. `map`, `filter` and others.
+Ob'ektlarda massivlar uchun mavjud bo'lgan ko'plab metodlar mavjud emas, masalan. `map`, `filter` va boshqalar.
 
-If we'd like to apply them, then we can use `Object.entries` followed by `Object.fromEntries`:
+Agar biz ularni qo'llamoqchi bo'lsak, `Object.entries` dan keyin `Object.fromEntries` dan foydalanishimiz mumkin:
 
-1. Use `Object.entries(obj)` to get an array of key/value pairs from `obj`.
-2. Use array methods on that array, e.g. `map`, to transform these key/value pairs.
-3. Use `Object.fromEntries(array)` on the resulting array to turn it back into an object.
+1. `obj`dan kalit/qiymat juftliklari qatorini olish uchun `Object.entries(obj)` dan foydalaning.
+2. Ushbu massivda massiv metodlaridan foydalaning, masalan. `map`, bu kalit/qiymat juftlarini aylantirish uchun.
+3. Olingan massivni ob'ektga aylantirish uchun `Object.fromEntries(array)` dan foydalaning.
 
-For example, we have an object with prices, and would like to double them:
+Misol uchun, bizda narxlari bo'lgan ob'ekt bor va ularni ikki barobarga oshirishni xohlaymiz:
 
 ```js run
 let prices = {
@@ -91,8 +90,8 @@ let prices = {
 
 *!*
 let doublePrices = Object.fromEntries(
-  // convert prices to array, map each key/value pair into another pair
-  // and then fromEntries gives back the object
+  // narxlarni massivga aylantiring, har bir kalit/qiymat juftligini boshqa juftlikka xaritalang
+  // va keyin fromEntries ob'ektni qaytarib beradi
   Object.entries(prices).map(entry => [entry[0], entry[1] * 2])
 );
 */!*
@@ -100,4 +99,4 @@ let doublePrices = Object.fromEntries(
 alert(doublePrices.meat); // 8
 ```
 
-It may look difficult at first sight, but becomes easy to understand after you use it once or twice. We can make powerful chains of transforms this way.
+Bu birinchi qarashda qiyin ko'rinishi mumkin, lekin uni bir yoki ikki marta ishlatganingizdan keyin tushunish oson bo'ladi. Shu tarzda biz kuchli o'zgarishlar zanjirlarini yaratishimiz mumkin.
