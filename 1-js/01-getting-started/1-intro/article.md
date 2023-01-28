@@ -8,9 +8,9 @@ Let's see what's so special about JavaScript, what you can achieve with it, and 
 
 The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
 
-Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
+JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
-In this aspect, JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
+Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
 
 ```smart header="Why is it called <u>Java</u>Script?"
 When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
