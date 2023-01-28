@@ -49,7 +49,7 @@ JavaScript's capabilities greatly depend on the environment it's running in. For
 
 In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver.
 
-For instance, in-browser JavaScript is able to:
+For instance, in-browser JavaScript can:
 
 - Add new HTML to the page, change the existing content, modify styles.
 - React to user actions, run on mouse clicks, pointer movements, key presses.
