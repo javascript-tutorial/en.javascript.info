@@ -7,22 +7,22 @@ This book is a *tutorial* to help you gradually learn the language. Once you're 
 
 The ECMA-262 specification defines the JavaScript language. The formal document is not for everyday use as it's difficult to understand at first. If you need the most trustworthy source of information about the language details, the specification is the right place. A new specification version is released every year. 
 
-- [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information.
-- [The latest specification draft](https://tc39.es/ecma262/) is discussed and reviewed between specification releases.
-- [Proposals for new bleeding-edge features](https://github.com/tc39/proposals), including those that are "almost standard" (so-called "stage 3").
+- [ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information.
+- [Latest draft](https://tc39.es/ecma262/) is discussed and reviewed between specification releases.
+- [Proposals for bleeding-edge features](https://github.com/tc39/proposals), including those that are "almost standard" (so-called "stage 3").
 - [Part 2 - Browser: Document, Events, Interfaces](info:browser-environment) covers other specifications if you're developing for the browser.
 
 ## Manuals
 
-- [MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+- [MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is the main manual with examples and in-depth information about individual language functions, methods etc.
 
-It's often best to use an internet search with "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
+It's often best to Google "MDN [term]" in your query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
 
 ## Compatibility tables
 
 JavaScript is a developing language, new features get added regularly.
 
-To see their support among browser-based and other engines, see:
+To see browser and engine support, see:
 
 - <https://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <https://caniuse.com/#feat=cryptography>.
 - <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
