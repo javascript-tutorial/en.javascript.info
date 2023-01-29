@@ -43,7 +43,7 @@ alert(surname);  // Smith
 As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
 
 ````smart header="\"Destructuring\" does not mean \"destructive\"."
-It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+It's called "destructuring assignment," because it "destructures" by copying items into variables. But the array itself is not modified.
 
 It's just a shorter way to write:
 ```js
