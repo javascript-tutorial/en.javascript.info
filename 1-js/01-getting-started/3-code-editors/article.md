@@ -6,7 +6,7 @@ The two main types are IDEs and lightweight editors. Many people use one tool of
 
 ## IDE (Integrated Development Environment)
 
-"[IDEs](https://en.wikipedia.org/wiki/Integrated_development_environment)" are powerful editors with many features that usually operates on a whole project. As the name suggests, it's not just an editor, but a full-scale "development environment." An IDE loads the full project (which can be many files) and has features such as:
+"IDEs" ([Wikipedia](https://en.wikipedia.org/wiki/Integrated_development_environment)) are powerful editors with many features that usually operates on a whole project. As the name suggests, it's not just an editor, but a full-scale "development environment." An IDE loads the full project (which can be many files) and has features such as:
 
 - Navigate between files and folders
 - Autocomplete text based on the whole project (not just the open file)
