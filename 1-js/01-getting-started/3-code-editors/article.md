@@ -14,14 +14,12 @@ The two main types are IDEs and lightweight editors. Many people use one tool of
 - Integrate with a testing environment
 - Other "project-level" stuff
 
-If you haven't selected an IDE yet, consider these options:
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you. If you haven't selected an IDE yet, consider these options:
 
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
 - [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
 
 For Windows-only, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty editor well-suited for the .NET platform. It's also good for JavaScript. The free version is [Visual Studio Community](https://www.visualstudio.com/vs/community/).
-
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
 ## Lightweight editors
 
