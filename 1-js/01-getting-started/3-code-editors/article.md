@@ -35,7 +35,7 @@ There are many options, for instance:
 
 - [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Vim](https://www.vim.org/) (Mac/Linux, free) and [Emacs](https://www.gnu.org/software/emacs/) (cross-platform, free) are also cool if you know how to use them.
 
 ## Let's not argue
 
