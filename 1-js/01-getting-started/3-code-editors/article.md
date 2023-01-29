@@ -19,7 +19,7 @@ Many IDEs are paid, but have a trial period. Their cost is usually negligible co
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
 - [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
 
-For Windows-only, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty editor well-suited for the .NET platform. It's also good for JavaScript. The free version is [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+For Windows and Mac, there's also "Visual Studio" (not to be confused with "Visual Studio Code"). "Visual Studio" is a paid and mighty editor well-suited for the .NET platform. It's also good for JavaScript. The free version is [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 ## Lightweight editors
 
