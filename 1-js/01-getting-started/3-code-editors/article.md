@@ -27,7 +27,7 @@ For Windows and Mac, there's also "Visual Studio" (not to be confused with "Visu
 
 They are mainly used to open and edit a file instantly.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level. It loads much more data on start,  and analyzes the project structure if needed. A lightweight editor is much faster if we need only one file.
+The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level. It loads much more data on start, and analyzes the project structure if needed. A lightweight editor is much faster if we need only one file.
 
 In practice, lightweight editors may have many plugins. For example, directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
 
