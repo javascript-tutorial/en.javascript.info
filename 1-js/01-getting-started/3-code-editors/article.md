@@ -47,5 +47,8 @@ The choice of a tool is individual and depends on your projects, habits, and per
 
 The author's personal opinion:
 
-- I'd use Visual Studio Code if I develop mostly frontend.
-- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
+- Frontend development - I'd use Visual Studio Code if I develop mostly frontend.
+- Backend development - If it's another language/platform then consider other editors, such as:
+  - XCode (Mac)
+  - Visual Studio (Windows)
+  - Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
