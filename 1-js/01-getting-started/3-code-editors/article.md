@@ -6,7 +6,7 @@ The two main types are IDEs and lightweight editors. Many people use one tool of
 
 ## IDE (Integrated Development Environment)
 
-"[IDEs](https://en.wikipedia.org/wiki/Integrated_development_environment)" are powerful editors with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
+"[IDEs](https://en.wikipedia.org/wiki/Integrated_development_environment)" are powerful editors with many features that usually operates on a whole project. As the name suggests, it's not just an editor, but a full-scale "development environment."
 
 An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
 
