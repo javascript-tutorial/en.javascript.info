@@ -17,7 +17,7 @@ The nullish coalescing operator isn't anything completely new. It's just a nice 
 We can rewrite `result = a ?? b` using the operators that we already know, like this:
 
 ```js
-result = (a !== null && a !== undefined) ? a : b;
+result = (a != null && a != undefined) ? a : b;
 ```
 
 Now it should be absolutely clear what `??` does. Let's see where it helps.
