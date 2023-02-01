@@ -38,7 +38,7 @@ alert( curriedSum(1)(2) ); // 3
 
 As you can see, the implementation is straightforward: it's just two wrappers.
 
-- The result of `curry(func)` is a wrapper `function(a)`.
+- The result of `curry(f)` is a wrapper `function(a)`.
 - When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
 - Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
 
