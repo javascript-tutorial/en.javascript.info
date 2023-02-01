@@ -13,7 +13,7 @@ Currying doesn't call a function. It just transforms it.
 
 Let's see an example first, to better understand what we're talking about, and then practical applications.
 
-We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into a function that runs as `f(a)(b)`:
+We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, the `curry(f)` function receives the two-argument `f(a, b)`, and returns a function that runs as `f(a)(b)`:
 
 ```js run
 *!*
