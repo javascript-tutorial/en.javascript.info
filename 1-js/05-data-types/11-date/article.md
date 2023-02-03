@@ -1,39 +1,41 @@
-# Date and time
+# Sana va vaqt
 
-Let's meet a new built-in object: [Date](mdn:js/Date). It stores the date, time and provides methods for date/time management.
+Keling, yangi o'rnatilgan ob'ekt bilan tanishamiz: [Date](mdn:js/Date). U sana, vaqtni saqlaydi va sana/vaqtni boshqarish metodlarini taqdim etadi.
 
-For instance, we can use it to store creation/modification times, to measure time, or just to print out the current date.
+Masalan, biz uni yaratish/o'zgartirish vaqtlarini saqlash, vaqtni o'lchash yoki joriy sanani chop etish uchun ishlatishimiz mumkin.
 
-## Creation
+## Yaratilishi
 
-To create a new `Date` object call `new Date()` with one of the following arguments:
+Yangi `Date` ob'ektini yaratish uchun quyidagi argumentlardan biri bilan `new Date()` ga chaqiruv qiling:
 
 `new Date()`
-: Without arguments -- create a `Date` object for the current date and time:
+: Argumentlarsiz – joriy sana va vaqt uchun `Date` ob'ektini yarating:
 
     ```js run
     let now = new Date();
-    alert( now ); // shows current date/time
+    alert( now ); // joriy sana/vaqtni ko'rsatadi
     ```
 
 `new Date(milliseconds)`
-: Create a `Date` object with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
+: 1970-yil 1-yanvar UTC+0 dan keyin oʻtgan millisekundlar soniga (1/1000 soniya) teng vaqtga ega `Date` ob'ektini yarating.
 
-    ```js run
-    // 0 means 01.01.1970 UTC+0
+    ````js run
+    // 0 degani 01.01.1970 UTC+0
     let Jan01_1970 = new Date(0);
     alert( Jan01_1970 );
 
-    // now add 24 hours, get 02.01.1970 UTC+0
+    // endi 24 soat qo'shing, 02.01.1970 UTC+0 oling
     let Jan02_1970 = new Date(24 * 3600 * 1000);
     alert( Jan02_1970 );
-    ```
+    ````
+    ``
 
-    An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
+    1970-yil boshidan buyon oʻtgan millisekundlar sonini ifodalovchi butun songa _timestamp_ deyiladi.
 
-    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
+``    
+Bu sananing yengil raqamli tasviri. Biz har doim`new Date(timestamp)`yordamida vaqt tamg'asidan sana yaratishimiz va mavjud "Sana" ob'ektini`date.getTime()` metodi yordamida vaqt belgisiga aylantirishimiz mumkin (pastga qarang).
 
-    Dates before 01.01.1970 have negative timestamps, e.g.:
+    D01.01.1970 dan oldingi ates salbiy vaqt belgilariga ega, e.g.:
     ```js run
     // 31 Dec 1969
     let Dec31_1969 = new Date(-24 * 3600 * 1000);
@@ -41,101 +43,105 @@ To create a new `Date` object call `new Date()` with one of the following argume
     ```
 
 `new Date(datestring)`
-: If there is a single argument, and it's a string, then it is parsed automatically. The algorithm is the same as `Date.parse` uses, we'll cover it later.
+: Agar bitta argument bo'lsa va u satr bo'lsa, u avtomatik ravishda tahlil qilinadi. Algoritm `Date.parse` ishlatadigan bilan bir xil, biz buni keyinroq ko'rib chiqamiz.
 
     ```js run
     let date = new Date("2017-01-26");
     alert(date);
-    // The time is not set, so it's assumed to be midnight GMT and
-    // is adjusted according to the timezone the code is run in
-    // So the result could be
-    // Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
-    // or
-    // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
+    // Vaqt belgilanmagan, shuning uchun GMT yarim tunda bo'lishi taxmin qilinmoqda va
+    // kod ishlayotgan vaqt zonasiga qarab o'rnatiladi
+    // Shunday qilib, natija bo'lishi mumkin
+    // 2017-yil 26-yanvar, 11:00:00 GMT+1100 (Avstraliyaning Sharqiy kunduzi vaqti)
+    // yoki
+    // 2017 yil 25-yanvar chorshanba 16:00:00 GMT-0800 (Tinch okeani standart vaqti)
     ```
 
 `new Date(year, month, date, hours, minutes, seconds, ms)`
-: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
+: Mahalliy vaqt mintaqasida berilgan komponentlar bilan sana yarating. Faqat birinchi ikkita dalil majburiydir.
 
-    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
-    - The `month` count starts with `0` (Jan), up to `11` (Dec).
-    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
-    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
+- `Year` 4 ta raqamdan iborat bo'lishi kerak. Moslik uchun 2 ta raqam ham qabul qilinadi va "19xx" deb hisoblanadi, masalan. `98` bu yerda `1998` bilan bir xil, lekin har doim 4 ta raqamdan foydalanish qat`iyan tavsiya etiladi.
+- `month` hisobi `0` (yanvar) dan boshlanadi, `11` (dekabr) gacha.
+- `date` parametri aslida oyning kunidir, agar yo'q bo'lsa, `1` qabul qilinadi.
+- Agar `hours/minutes/seconds/ms` bo‘lmasa, ular `0` ga teng deb hisoblanadi.
 
-    For instance:
+  Masalan:
 
-    ```js
-    new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
-    new Date(2011, 0, 1); // the same, hours etc are 0 by default
-    ```
+  ```js
+  new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Yan 2011, 00:00:00
+  new Date(2011, 0, 1); // bir xil, soatlar va boshqalar standart bo'yicha 0 dir
+  ```
 
-    The maximal precision is 1 ms (1/1000 sec):
+  Maksimal aniqlik 1 ms (1/1000 sek):
 
-    ```js run
-    let date = new Date(2011, 0, 1, 2, 3, 4, 567);
-    alert( date ); // 1.01.2011, 02:03:04.567
-    ```
+  ```js run
+  let date = new Date(2011, 0, 1, 2, 3, 4, 567);
+  alert(date); // 1.01.2011, 02:03:04.567
+  ```
 
-## Access date components
+## Sana komponentlariga kirish
 
-There are methods to access the year, month and so on from the `Date` object:
+`Date` obyektidan yil, oy va hokazolarga kirish metodlari mavjud:
 
 [getFullYear()](mdn:js/Date/getFullYear)
-: Get the year (4 digits)
+: Yilni olish (4 ta raqam)
 
 [getMonth()](mdn:js/Date/getMonth)
-: Get the month, **from 0 to 11**.
+: Oyni olish, **0 dan 11** gacha.
 
 [getDate()](mdn:js/Date/getDate)
-: Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
+: Oyning kunini 1 dan 31 gacha oling, metodning nomi biroz g'alati ko'rinadi.
 
 [getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
-: Get the corresponding time components.
+: Tegishli vaqt komponentlarini olish.
 
-```warn header="Not `getYear()`, but `getFullYear()`"
-Many JavaScript engines implement a non-standard method `getYear()`. This method is deprecated. It returns 2-digit year sometimes. Please never use it. There is `getFullYear()` for the year.
+``
+`warn header="``getYear()`emas,`getFullYear()`"
+Ko'pgina JavaScript dvigatellari `getYear()`nostandart metodini qo'llaydi. Bu metod eskirgan. Ba'zan 2 xonali yilni qaytaradi. Iltimos, hech qachon foydalanmang. Yil uchun`getFullYear()` mavjud.
+
 ```
 
-Additionally, we can get a day of week:
+```
+
+Bundan tashqari, biz haftaning bir kunini olishimiz mumkin:
 
 [getDay()](mdn:js/Date/getDay)
-: Get the day of week, from `0` (Sunday) to `6` (Saturday). The first day is always Sunday, in some countries that's not so, but can't be changed.
+: `0` (yakshanba) dan `6` (shanba) gacha haftaning kunini olish. Birinchi kun har doim yakshanba, ba'zi mamlakatlarda bunday emas, lekin o'zgartirib bo'lmaydi.
 
-**All the methods above return the components relative to the local time zone.**
+**Yuqoridagi barcha metodlar mahalliy vaqt mintaqasiga nisbatan komponentlarni qaytaradi.**
 
-There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
+UTC+0 vaqt mintaqasi uchun qaytariladigan kun, oy, yil va shunga o'xshash ularning UTC alternativlari ham bor: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Shunchaki `“get”`dan so‘ng `“UTC”`ni kiriting.
 
-If your local time zone is shifted relative to UTC, then the code below shows different hours:
+Agar sizning mahalliy vaqt mintaqangiz UTC ga nisbatan o'zgartirilsa, quyidagi kod turli soatlarni ko'rsatadi:
 
 ```js run
-// current date
+// joriy sana
 let date = new Date();
 
-// the hour in your current time zone
-alert( date.getHours() );
+// joriy vaqt mintaqangizdagi soat
+alert(date.getHours());
 
-// the hour in UTC+0 time zone (London time without daylight savings)
-alert( date.getUTCHours() );
+// UTC+0 vaqt mintaqasidagi soat (London vaqti kunduzgi vaqtni hisobga olmagan holda)
+alert(date.getUTCHours());
 ```
 
-Besides the given methods, there are two special ones that do not have a UTC-variant:
+Berilgan metodlardan tashqari, UTC-variantiga ega bo'lmagan ikkita maxsus metodlar mavjud:
 
 [getTime()](mdn:js/Date/getTime)
-: Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
+: Sana uchun vaqt tamg'asini qaytaradi -- 1970 yil 1 yanvardan boshlab o'tgan millisekundlar soni UTC+0.
 
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
-: Returns the difference between UTC and the local time zone, in minutes:
+: UTC va mahalliy vaqt mintaqasi o'rtasidagi farqni daqiqalarda qaytaradi:
 
     ```js run
-    // if you are in timezone UTC-1, outputs 60
-    // if you are in timezone UTC+3, outputs -180
+    // agar siz UTC-1 vaqt zonasida bo'lsangiz, 60 chiqadi
+    // agar siz UTC+3 vaqt zonasida bo'lsangiz, -180 chiqadi
     alert( new Date().getTimezoneOffset() );
 
     ```
 
-## Setting date components
+## Sana komponentlarini qo'llash
 
-The following methods allow to set date/time components:
+Quyidagi metodlar sana/vaqt komponentlarini sozlash imkonini beradi:
 
 - [`setFullYear(year, [month], [date])`](mdn:js/Date/setFullYear)
 - [`setMonth(month, [date])`](mdn:js/Date/setMonth)
@@ -146,36 +152,36 @@ The following methods allow to set date/time components:
 - [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
 - [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
 
-Every one of them except `setTime()` has a UTC-variant, for instance: `setUTCHours()`.
+`setTime()`dan tashqari ularning har biri UTC-variantiga ega, masalan: `setUTCHours()`.
 
-As we can see, some methods can set multiple components at once, for example `setHours`. The components that are not mentioned are not modified.
+Ko'rib turganimizdek, ba'zi metodlar bir vaqtning o'zida bir nechta komponentlarni o'rnatishi mumkin, masalan, `setHours`. Ko'rsatilmagan komponentlar o'zgartirilmaydi.
 
-For instance:
+Masalan:
 
 ```js run
 let today = new Date();
 
 today.setHours(0);
-alert(today); // still today, but the hour is changed to 0
+alert(today); // hamon bugun, lekin soat 0 ga o'zgartirildi
 
 today.setHours(0, 0, 0, 0);
-alert(today); // still today, now 00:00:00 sharp.
+alert(today); // hamon bugun, hozir 00:00:00 keskin.
 ```
 
-## Autocorrection
+## Avtokorreksiya
 
-The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+_Avtokorreksiya_ `Date` obyektlarining juda qulay xususiyatidir. Biz diapazondan tashqari qiymatlarni o'rnatishimiz mumkin va u o'zini avtomatik ravishda sozlaydi.
 
-For instance:
+Masalan:
 
 ```js run
-let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
-alert(date); // ...is 1st Feb 2013!
+let date = new Date(2013, 0, *!*32*/!*); // 32 Yan 2013 ?!?
+alert(date); // ...is 1 Fev 2013!
 ```
 
-Out-of-range date components are distributed automatically.
+Diapazondan tashqari sana komponentlari avtomatik ravishda taqsimlanadi.
 
-Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
+Aytaylik, “2016-yil 28-fevral” sanasini 2 kunga oshirishimiz kerak. Kabisa yili bo'lsa, "2 mart" yoki "1 mart" bo'lishi mumkin. Bu haqda o'ylashimiz shart emas. Faqat 2 kun qo'shing. `Date` obyekti qolgan ishlarni bajaradi:
 
 ```js run
 let date = new Date(2016, 1, 28);
@@ -186,92 +192,92 @@ date.setDate(date.getDate() + 2);
 alert( date ); // 1 Mar 2016
 ```
 
-That feature is often used to get the date after the given period of time. For instance, let's get the date for "70 seconds after now":
+Ushbu xususiyat ko'pincha berilgan vaqtdan keyin sanani olish uchun ishlatiladi. Masalan, "70 soniyadan keyin" sanasini olaylik:
 
 ```js run
 let date = new Date();
 date.setSeconds(date.getSeconds() + 70);
 
-alert( date ); // shows the correct date
+alert(date); // to'g'ri sanani ko'rsatadi
 ```
 
-We can also set zero or even negative values. For example:
+Shuningdek, biz nol yoki hatto salbiy qiymatlarni o'rnatishimiz mumkin. Masalan:
 
 ```js run
-let date = new Date(2016, 0, 2); // 2 Jan 2016
+let date = new Date(2016, 0, 2); // 2 Yan 2016
 
-date.setDate(1); // set day 1 of month
-alert( date );
+date.setDate(1); // oyning 1 kunini belgilash
+alert(date);
 
-date.setDate(0); // min day is 1, so the last day of the previous month is assumed
-alert( date ); // 31 Dec 2015
+date.setDate(0); // min kun 1, shuning uchun oldingi oyning oxirgi kuni qabul qilinadi
+alert(date); // 31 Dek 2015
 ```
 
-## Date to number, date diff
+## Sanadan raqamga, sana farqi
 
-When a `Date` object is converted to number, it becomes the timestamp same as `date.getTime()`:
+`Date` obyekti raqamga aylantirilganda, u `date.getTime()` bilan bir xil vaqt tamg‘asiga aylanadi:
 
 ```js run
 let date = new Date();
-alert(+date); // the number of milliseconds, same as date.getTime()
+alert(+date); // millisekundlar soni date.getTime() bilan bir xil
 ```
 
-The important side effect: dates can be subtracted, the result is their difference in ms.
+Muhim yon ta'siri: sanalarni olib tashlash mumkin, natijada ularning msdagi farqi.
 
-That can be used for time measurements:
+Bu vaqtni o'lchash uchun ishlatilishi mumkin:
 
 ```js run
-let start = new Date(); // start measuring time
+let start = new Date(); // vaqtni o'lchashni boshlash
 
-// do the job
+// ishni bajarish
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let end = new Date(); // end measuring time
+let end = new Date(); // vaqt o'lchashni tugatish
 
-alert( `The loop took ${end - start} ms` );
+alert(`Sikl ${end - start} ms vaqt oldi`);
 ```
 
 ## Date.now()
 
-If we only want to measure time, we don't need the `Date` object.
+Agar biz faqat vaqtni o'lchashni istasak, bizga `Date` ob'ekti kerak emas.
 
-There's a special method `Date.now()` that returns the current timestamp.
+Joriy vaqt tamg'asini qaytaruvchi `Date.now()` maxsus metodi mavjud.
 
-It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
+U semantik jihatdan `new Date().getTime()` ga teng, lekin u oraliq “Sana” obyektini yaratmaydi. Shunday qilib, u tezroq va axlat yig'ishda bosim o'tkazmaydi.
 
-It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
+U asosan qulaylik uchun yoki JavaScriptdagi o'yinlarda yoki boshqa maxsus ilovalarda ishlash muhim bo'lganda ishlatiladi.
 
-So this is probably better:
+Shunday qilib, ehtimol bu yaxshiroq:
 
 ```js run
 *!*
-let start = Date.now(); // milliseconds count from 1 Jan 1970
+let start = Date.now(); // millisekundlar 1970 yil 1 yanvardan boshlab hisoblanadi
 */!*
 
-// do the job
+// ishni bajarish
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
 *!*
-let end = Date.now(); // done
+let end = Date.now(); // tayyor
 */!*
 
-alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
+alert( `Sikl ${end - start} ms vaqt oldi` ); // sanalarni emas, raqamlarni ayirish
 ```
 
 ## Benchmarking
 
-If we want a reliable benchmark of CPU-hungry function, we should be careful.
+Agar biz CPUga ochlik funktsiyasining ishonchli mezonini xohlasak, ehtiyot bo'lishimiz kerak.
 
-For instance, let's measure two functions that calculate the difference between two dates: which one is faster?
+Masalan, ikkita sana orasidagi farqni hisoblaydigan ikkita funktsiyani o'lchaymiz: qaysi biri tezroq?
 
-Such performance measurements are often called "benchmarks".
+Bunday ishlash o'lchovlari ko'pincha "benchmarks" deb ataladi.
 
 ```js
-// we have date1 and date2, which function faster returns their difference in ms?
+// bizda date1 va date2 bor, qaysi funktsiya ularning farqini ms da tezroq qaytaradi?
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
@@ -282,13 +288,13 @@ function diffGetTime(date1, date2) {
 }
 ```
 
-These two do exactly the same thing, but one of them uses an explicit `date.getTime()` to get the date in ms, and the other one relies on a date-to-number transform. Their result is always the same.
+Bu ikkalasi aynan bir xil ishni bajaradi, lekin ulardan biri sanani msda olish uchun aniq `date.getTime()` dan foydalanadi, ikkinchisi esa sanadan raqamga o'zgartirishga tayanadi. Ularning natijasi har doim bir xil bo'ladi.
 
-So, which one is faster?
+Xo'sh, qaysi biri tezroq?
 
-The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
+Birinchi g'oya ularni ketma-ket ko'p marta ishlatish va vaqt farqini o'lchash bo'lishi mumkin. Bizning holatlarimiz uchun funktsiyalar juda oddiy, shuning uchun biz buni kamida 100000 marta bajarishimiz kerak.
 
-Let's measure:
+Keling, o'lchaymiz:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -308,23 +314,23 @@ function bench(f) {
   return Date.now() - start;
 }
 
-alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
-alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
+alert("diffSubtract vaqti: " + bench(diffSubtract) + "ms");
+alert("diffGetTime vaqti: " + bench(diffGetTime) + "ms");
 ```
 
-Wow! Using `getTime()` is so much faster! That's because there's no type conversion, it is much easier for engines to optimize.
+Qoyil! `getTime()` dan foydalanish juda tez! Buning sababi, hech qanday turdagi konvertatsiya yo'qligi, dvigatellar uchun optimallashtirish ancha oson.
 
-Okay, we have something. But that's not a good benchmark yet.
+Yaxshi, bizda nimadir bor. Ammo bu hali yaxshi ko'rsatkich emas.
 
-Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
+Tasavvur qiling-a, `bench(diffSubtract)` ishlayotgan vaqtda protsessor parallel ravishda biror narsa qilyapti va u resurslarni olayotgan edi. Va `bench(diffGetTime)` ishga tushirilganda, bu ish tugadi.
 
-A pretty real scenario for a modern multi-process OS.
+Zamonaviy ko'p jarayonli OS uchun juda haqiqiy stsenariy.
 
-As a result, the first benchmark will have less CPU resources than the second. That may lead to wrong results.
+Natijada, birinchi benchmark ikkinchisiga qaraganda kamroq CPU resurslariga ega bo'ladi. Bu noto'g'ri natijalarga olib kelishi mumkin.
 
-**For more reliable benchmarking, the whole pack of benchmarks should be rerun multiple times.**
+**Ishonchliroq taqqoslash uchun barcha ko'rsatkichlar to'plami bir necha marta takrorlanishi kerak.**
 
-For example, like this:
+Masalan, bu kabi:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -348,86 +354,86 @@ let time1 = 0;
 let time2 = 0;
 
 *!*
-// run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
+// bench(diffSubtract) va bench(diffGetTime)ni har 10 marta o'zgartiring
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Total time for diffSubtract: ' + time1 );
-alert( 'Total time for diffGetTime: ' + time2 );
+alert( `diffSubtractning to'liq vaqti: ` + time1 );
+alert( `diffGetTimening to'liq vaqti: ` + time2 );
 ```
 
-Modern JavaScript engines start applying advanced optimizations only to "hot code" that executes many times (no need to optimize rarely executed things). So, in the example above, first executions are not well-optimized. We may want to add a heat-up run:
+Zamonaviy JavaScript dvigatellari ilg'or optimallashtirishni faqat ko'p marta bajariladigan "issiq kod" uchun qo'llashni boshlaydi (kamdan-kam bajariladigan narsalarni optimallashtirishga hojat yo'q). Shunday qilib, yuqoridagi misolda birinchi ijrolar yaxshi optimallashtirilmagan. Biz isitish oqimini qo'shishni xohlashimiz mumkin:
 
 ```js
-// added for "heating up" prior to the main loop
+// asosiy sikldan oldin "isitish" uchun qo'shilgan
 bench(diffSubtract);
 bench(diffGetTime);
 
-// now benchmark
+// endi benchmark
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 ```
 
-```warn header="Be careful doing microbenchmarking"
-Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+```warn header="Mikrobenchmarking qilishda ehtiyot bo'ling"
+Zamonaviy JavaScript dvigatellari ko'plab optimallashtirishlarni amalga oshiradi. Ular "sun'iy testlar" natijalarini "oddiy foydalanish" bilan solishtirganda o'zgartirishi mumkin, ayniqsa biz juda kichik narsalarni, masalan, operator qanday ishlashini yoki o'rnatilgan funksiyani taqqoslaganda. Shunday qilib, agar siz unumdorlikni jiddiy tushunmoqchi bo'lsangiz, iltimos, JavaScript mexanizmi qanday ishlashini o'rganing. Va keyin sizga mikrobenchmarklar umuman kerak bo'lmaydi.
 
-The great pack of articles about V8 can be found at <https://mrale.ph>.
+V8 haqidagi ajoyib maqolalar to'plamini <https://mrale.ph> saytida topish mumkin.
 ```
 
-## Date.parse from a string
+## Stringdan Date.parse
 
-The method [Date.parse(str)](mdn:js/Date/parse) can read a date from a string.
+[Date.parse(string)](mdn:js/Date/parse) metodi qatordan sanani o‘qiy oladi.
 
-The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
+Satr formati quyidagicha bo'lishi kerak: `YYYY-AA-DDTHH:dd:ss.sssZ`, bu erda:
 
-- `YYYY-MM-DD` -- is the date: year-month-day.
-- The character `"T"` is used as the delimiter.
-- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
-- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
+- `YYYY-MM-DD` -- sana: yil-oy-kun.
+- Ajratuvchi sifatida `“T”` belgisi ishlatiladi.
+- `HH:mm:ss.sss` -- vaqt: soatlar, daqiqalar, soniyalar va millisekundlar.
+- Ixtiyoriy `“Z”` qismi “+-ss:mm” formatidagi vaqt mintaqasini bildiradi. Bitta `“Z”` harfi UTC+0 ni bildiradi.
 
-Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
+`YYYY-MM-DD` yoki `YYYY-MM` yoki hatto `YYYY` kabi qisqaroq variantlar ham mumkin.
 
-The call to `Date.parse(str)` parses the string in the given format and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns `NaN`.
+`Date.parse(str)` ga chaqirilgan formatda stringni tahlil qiladi va vaqt tamgʻasini qaytaradi (1970-yil 1-yanvardan boshlab millisekundlar soni UTC+0). Agar format noto‘g‘ri bo‘lsa, `NaN`ni qaytaradi.
 
-For instance:
+Masalan:
 
 ```js run
-let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
+let ms = Date.parse("2012-01-26T13:51:50.417-07:00");
 
-alert(ms); // 1327611110417  (timestamp)
+alert(ms); // 1327611110417  (vaqt tamg'asi)
 ```
 
-We can instantly create a `new Date` object from the timestamp:
+Vaqt tamg'asidan bir zumda "yangi sana" obyektini yaratishimiz mumkin:
 
 ```js run
-let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+let date = new Date(Date.parse("2012-01-26T13:51:50.417-07:00"));
 
 alert(date);
 ```
 
-## Summary
+## Xulosa
 
-- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from zero (yes, January is a zero month).
-- Days of week in `getDay()` are also counted from zero (that's Sunday).
-- `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
-- Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
-- Use `Date.now()` to get the current timestamp fast.
+- JavaScript-da sana va vaqt [Date](mdn:js/Date) obyekti bilan ifodalanadi. Biz “faqat sana” yoki “faqat vaqt”ni yarata olmaymiz: `Date` obyektlari har doim ikkalasini ham olib yuradi.
+- Oylar noldan hisoblanadi (ha, yanvar nol oy).
+- `getDay()` da haftaning kunlari ham noldan boshlab hisoblanadi (bu yakshanba).
+- `Date` diapazondan tashqari komponentlar o'rnatilganda o'zini avtomatik ravishda tuzatadi. Kunlar/oylar/soatlarni qo'shish/ayirish uchun yaxshi.
+- Sanalarni ayirish mumkin, bu ularning farqini millisekundlarda beradi. Buning sababi, `Date` raqamga aylantirilganda vaqt tamg'asi bo'ladi.
+- Joriy vaqt tamg‘asini tezda olish uchun `Date.now()` dan foydalaniladi.
 
-Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
+E'tibor bering, boshqa tizimlardan farqli o'laroq, JavaScript-dagi vaqt belgilari soniyalarda emas, millisekundlarda.
 
-Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Ba'zan bizga aniqroq vaqt o'lchovlari kerak bo'ladi. JavaScript-ning o'zida vaqtni mikrosekundlarda (soniyaning 1 milliondan bir qismi) o'lchash usuli yo'q, lekin ko'pchilik muhitlar buni ta'minlaydi. Masalan, brauzerda [performance.now()](mdn:api/Performance/now) mavjud bo'lib, u sahifa yuklanishi boshlanishidan boshlab mikrosekundlik aniqlikda (nuqtadan keyin 3 ta raqam) millisekundlar sonini beradi:
 
 ```js run
-alert(`Loading started ${performance.now()}ms ago`);
-// Something like: "Loading started 34731.26000000001ms ago"
-// .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
+alert(`Yuklash ${performance.now()}ms oldin boshlandi`);
+// Shunga o'xshash narsa: "Yuklash 34731.26000000001ms oldin boshlangan"
+// .26 mikrosoniya (260 mikrosekund)
+// kasrdan keyin 3 tadan ortiq raqam aniqlik xatosi, faqat birinchi 3 tasi to'g'ri
 ```
 
-Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.
+Node.js da `microtime` moduli va boshqa metodlar mavjud. Texnik jihatdan, deyarli har qanday qurilma va muhit aniqroq bo'lishga imkon beradi, bu shunchaki "Sana" da emas.

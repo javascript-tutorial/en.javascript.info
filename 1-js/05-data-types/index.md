@@ -1,3 +1,3 @@
-# Data types
+# Data tiplari
 
-More data structures and more in-depth study of the types.
+Ko'proq ma'lumotlar tuzilmalari va turlarini chuqurroq o'rganish.

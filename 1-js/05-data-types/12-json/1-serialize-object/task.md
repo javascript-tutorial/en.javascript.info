@@ -1,14 +1,14 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Turn the object into JSON and back
+# Ob'ektni JSONga aylantiring va orqaga qaytaring
 
-Turn the `user` into JSON and then read it back into another variable.
+`user` ni JSONga aylantiring va keyin uni boshqa o'zgaruvchiga o'qing.
 
 ```js
 let user = {
   name: "John Smith",
-  age: 35
+  age: 35,
 };
 ```
