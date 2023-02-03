@@ -164,7 +164,7 @@ function curried(...args) {
 
 When we run it, there are two `if` execution branches:
 
-1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
+1. If passed `args` count is the same or more than the original function has in its definition (`func.length`), then just pass the call to it using `func.apply`. 
 2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
 
 Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
