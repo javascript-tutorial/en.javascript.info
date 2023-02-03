@@ -120,6 +120,7 @@ function curry(func) {
 
   return function curried(...args) {
     if (args.length >= func.length) {
+      // args is an array-like object we can operate on
       return func.apply(this, args);
     } else {
       return function(...args2) {
