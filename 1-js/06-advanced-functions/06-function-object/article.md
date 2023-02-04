@@ -3,7 +3,7 @@
 
 As we already know, a function in JavaScript is a value.
 
-Every value in JavaScript has a type. What type is a function?
+Every value in JavaScript has a type. What is a functions type?
 
 In JavaScript, functions are objects.
 
