@@ -15,7 +15,7 @@ document.forms.my; // the form with name="my"
 document.forms[0]; // the first form in the document
 ```
 
-When we have a form, then any element is available in the named collection `form.elements`.
+When we have a form, then all control elements within the `<form>` are available in the named collection `form.elements`.
 
 For instance:
 
