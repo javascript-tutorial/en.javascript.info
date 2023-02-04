@@ -75,13 +75,13 @@ For instance:
   </form>
 
   <script>
-    alert(form.elements.login); // <input name="login">
+    alert(form.elements.login); // [object HTMLInputElement]
 
 *!*
     let fieldset = form.elements.userFields;
-    alert(fieldset); // HTMLFieldSetElement
+    alert(fieldset); // [object HTMLFieldSetElement]
 
-    // we can get the input by name both from the form and from the fieldset
+    // we can get the <input> by name both from the form and from the fieldset
     alert(fieldset.elements.login == form.elements.login); // true
 */!*
   </script>
@@ -110,7 +110,7 @@ That's easy to see in an example:
 
   // form.elements updated the name:
   alert(form.elements.login); // undefined
-  alert(form.elements.username); // input
+  alert(form.elements.username); // [object HTMLInputElement]
 
 *!*
   // form allows both names: the new one and the old one
@@ -144,7 +144,7 @@ For instance:
   let login = form.login;
 
   // element -> form
-  alert(login.form); // HTMLFormElement
+  alert(login.form); // [object HTMLFormElement]
 */!*
 </script>
 ```
@@ -268,6 +268,9 @@ Option elements have properties:
 
 `option.index`
 : The number of the option among the others in its `<select>`.
+
+`option.value`
+: Value of the option.
 
 `option.text`
 : Text content of the option (seen by the visitor).
