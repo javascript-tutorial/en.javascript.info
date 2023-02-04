@@ -68,7 +68,7 @@ alert(user.sayBye.name); // sayBye
 There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
 
 ```js run
-// function created inside array
+// function created inside of an array
 let arr = [function() {}];
 
 alert( arr[0].name ); // <empty string>
