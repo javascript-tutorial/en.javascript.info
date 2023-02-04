@@ -44,7 +44,7 @@ function f(sayHi = function() {}) {
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
+In the specification, this feature is called a "contextual name". If the function does not provide one, then it is figured out from the context in an assignment.
 
 Object methods have names too:
 
