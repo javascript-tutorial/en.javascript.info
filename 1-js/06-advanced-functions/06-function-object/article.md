@@ -282,7 +282,7 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+The problem with this code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
 
 ```js run
 let sayHi = function(who) {
