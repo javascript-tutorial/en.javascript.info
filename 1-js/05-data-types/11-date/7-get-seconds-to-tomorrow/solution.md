@@ -1,4 +1,4 @@
-To get the number of milliseconds till tomorrow, we can substract the current date from "tomorrow 00:00:00".
+To get the number of milliseconds till tomorrow, we can subtract the current date from "tomorrow 00:00:00".
 
 First, we generate that "tomorrow", and then do it:
 
