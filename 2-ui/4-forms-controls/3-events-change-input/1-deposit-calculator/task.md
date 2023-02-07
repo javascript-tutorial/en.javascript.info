@@ -4,7 +4,7 @@ importance: 5
 
 # Deposit calculator
 
-Create an interface that allows to enter a sum of bank deposit and percentage, then calculates how much it will be after given periods of time.
+Create an interface that allows user to enter their bank deposit and interest percentage, then calculates how much the balance will be after a given period of time.
 
 Here's the demo:
 
@@ -14,8 +14,8 @@ Any input change should be processed immediately.
 
 The formula is:
 ```js
-// initial: the initial money sum
-// interest: e.g. 0.05 means 5% per year
+// initial: the initial money(deposit)
+// interest: e.g. 5% per year means 0.05
 // years: how many years to wait
 let result = Math.round(initial * (1 + interest) ** years);
 ```
