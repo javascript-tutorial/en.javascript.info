@@ -303,7 +303,7 @@ welcome(); // Error, the nested sayHi call doesn't work any more!
 
 That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
+The optional name which we can add into the Function Expression is meant to solve exactly these kinds of problems.
 
 Let's use it to fix our code:
 
