@@ -196,7 +196,7 @@ This will work:
 
 Second, there are `focusin` and `focusout` events -- exactly the same as `focus/blur`, but they bubble.
 
-Note that they must be assigned using `elem.addEventListener` or HTML attribute `on<event>`, not `elem.on<event>`.
+Note that they must be assigned using `elem.addEventListener` or HTML-attribute `on<event>`, not `elem.on<event>`.
 
 So here's another working variant:
 
