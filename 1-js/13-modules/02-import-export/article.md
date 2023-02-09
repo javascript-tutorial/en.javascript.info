@@ -294,7 +294,7 @@ import func from '/path/to/func.js';
 ...
 ```
 
-Still, some teams consider it a serious drawback of default exports. So they prefer to always use named exports. Even if only a single thing is exported, it's still exported under a name, without `default`.
+Still, some teams consider default exports to be a serious drawback. So they prefer to always use named exports. Even if only a single thing is exported, it's still exported under a name, without `default`.
 
 That also makes re-export (see below) a little bit easier.
 
