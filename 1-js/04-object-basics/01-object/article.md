@@ -475,14 +475,14 @@ Now it works as intended.
 If an object has both integer properties and non-integer properties, the integer properties will appear first, regardless of creation order.
 
 ```js run
-let favoriteGames = {};
-favoriteGames.year = 1996;
-favoriteGames.author = "John Smith";
-favoriteGames[3] = "Crash Bandicoot";
-favoriteGames[2] = "Super Mario 64";
-favoriteGames[1] = "Quake";
+let favoriteGamesTopThree = {};
+favoriteGamesTopThree.year = 1996;
+favoriteGamesTopThree.author = "John Smith";
+favoriteGamesTopThree[3] = "Crash Bandicoot";
+favoriteGamesTopThree[2] = "Super Mario 64";
+favoriteGamesTopThree[1] = "Quake";
 
-for (let prop in favoriteGames) {
+for (let prop in favoriteGamesTopThree) {
   alert( prop ); // 1, 2, 3, year, author
 }
 ```
