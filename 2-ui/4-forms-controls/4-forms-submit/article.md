@@ -1,6 +1,6 @@
-# Forms: event and method submit
+# Forms: submit event and method
 
-The `submit` event triggers when the form is submitted, it is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
+The `submit` event triggers when the form is submitted. It is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
 
 The method `form.submit()` allows to initiate form sending from JavaScript. We can use it to dynamically create and send our own forms to server.
 
@@ -10,7 +10,7 @@ Let's see more details of them.
 
 There are two main ways to submit a form:
 
-1. The first -- to click `<input type="submit">` or `<input type="image">`.
+1. The first -- to click `<input type="submit">` or `<button>` or `<input type="image">`.
 2. The second -- press `key:Enter` on an input field.
 
 Both actions lead to `submit` event on the form. The handler can check the data, and if there are errors, show them and call `event.preventDefault()`, then the form won't be sent to the server.
