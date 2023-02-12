@@ -254,7 +254,7 @@ while (true) {
 }
 ```
 
-The same algorithm can be laid out shorter:
+The same algorithm can be made shorter:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
