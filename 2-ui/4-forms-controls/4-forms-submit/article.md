@@ -10,7 +10,7 @@ Let's see more details of them.
 
 There are two main ways to submit a form:
 
-1. The first -- to click `<input type="submit">` or `<button>` or `<input type="image">`.
+1. The first -- to click `<input type="submit">`, `<input type="image">` or `<button>`.
 2. The second -- press `key:Enter` on an input field.
 
 Both actions lead to `submit` event on the form. The handler can check the data, and if there are errors, show them and call `event.preventDefault()`, then the form won't be sent to the server.
