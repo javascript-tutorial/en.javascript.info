@@ -39,7 +39,7 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-2. Recursive thinking: simplify the task and call self:
+2. Recursive thinking -- calls itself to simplify the task:
 
     ```js run
     function pow(x, n) {
