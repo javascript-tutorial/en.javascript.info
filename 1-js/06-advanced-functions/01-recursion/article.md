@@ -121,7 +121,7 @@ Let's see what happens during the `pow(2, 3)` call.
 
 ### pow(2, 3)
 
-In the beginning of the call `pow(2, 3)` the execution context will store variables: `x = 2, n = 3`, the execution flow is at line `1` of the function.
+In the beginning of the call `pow(2, 3)`, the execution context stores the variables: `x = 2, n = 3` and the execution flow that is at line `1` of the function.
 
 We can sketch it as:
 
