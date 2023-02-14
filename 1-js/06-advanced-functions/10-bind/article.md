@@ -60,7 +60,7 @@ setTimeout(function() {
 */!*
 ```
 
-Now it works, because it receives `user` from the outer lexical environment, and then calls the method normally.
+Now it works, because it receives `user` from the outer Environment Record, and then calls the method normally.
 
 The same, but shorter:
 
