@@ -108,7 +108,7 @@ The information about the process of execution of a running function is stored i
 
 The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
 
-One function call has exactly one execution context associated with it.
+One function call has exactly one single execution context associated with it.
 
 When a function makes a nested call, the following happens:
 
