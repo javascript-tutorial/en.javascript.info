@@ -72,7 +72,7 @@ promise.then(function(result) {
 });
 ```
 
-What we did here is just several handlers to one promise. They don't pass the result to each other; instead they process it independently.
+What we did here is just assign several handlers to one promise. They don't pass the result to each other; instead they process it independently.
 
 Here's the picture (compare it with the chaining above):
 
@@ -147,7 +147,7 @@ loadScript("/article/promise-chaining/one.js")
   });
 ```
 
-This code can be made bit shorter with arrow functions:
+This code can be made a bit shorter with arrow functions:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -181,7 +181,7 @@ loadScript("/article/promise-chaining/one.js").then(script1 => {
 });
 ```
 
-This code does the same: loads 3 scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
+This code does the same: loads three scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
 
 People who start to use promises sometimes don't know about chaining, so they write it this way. Generally, chaining is preferred.
 
