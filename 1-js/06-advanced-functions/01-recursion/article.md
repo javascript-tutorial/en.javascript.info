@@ -214,7 +214,7 @@ A new execution context is created, the previous one is pushed on top of the sta
   </li>
 </ul>
 
-There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
+There are now 2 old contexts and 1 currently running context for `pow(2, 1)`.
 
 ### The exit
 
