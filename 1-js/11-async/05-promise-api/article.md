@@ -75,7 +75,7 @@ Promise.all(requests)
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-**If any of the promises is rejected, the promise returned by `Promise.all` immediately rejects with that error.**
+**If any of the promises are rejected, the promise returned by `Promise.all` immediately rejects with that error.**
 
 For instance:
 
