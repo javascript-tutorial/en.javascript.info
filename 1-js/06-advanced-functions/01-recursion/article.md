@@ -326,7 +326,7 @@ In other words, a company has departments.
 
 - A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
 - Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has their own staff.
-- It is also possible that when a subdepartment grows, it divides into subsubdepartments (or teams).
+- It is also possible that when a subdepartment grows, to divide into subsubdepartments (or teams).
 
     For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
 
