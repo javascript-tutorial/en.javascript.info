@@ -357,15 +357,20 @@ let company = { // the same object, compressed for brevity
   }
 };
 
-// The function to do the job
+/**
+ * Sums the salaries of all employees in a department or subdepartments.
+ * 
+ * @param {Object|Array} department - The department or subdepartment to calculate salaries for.
+ * @returns {number} - The sum of all salaries in the department or subdepartments.
+ */
 *!*
 function sumSalaries(department) {
   if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
+    return department.reduce((prev, current) => prev + current.salary, 0); // If the department parameter is an array, use reduce to sum its values.
   } else { // case (2)
     let sum = 0;
     for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+      sum += sumSalaries(subdep); // If the subdepartment is an object, recursively call sumSalaries on the subdepartment and add the result to the sum.
     }
     return sum;
   }
