@@ -495,7 +495,7 @@ list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
 
 *!*
-// prepend the new value to the list
+// add a new item to the beginning of a linked list
 list = { value: "new item", next: list };
 */!*
 ```
