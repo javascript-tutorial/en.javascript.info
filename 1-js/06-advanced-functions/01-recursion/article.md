@@ -467,7 +467,7 @@ list.next.next.next = { value: 4 };
 list.next.next.next.next = null;
 ```
 
-Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following the `next` pointers from it we can reach any element.
 
 The list can be easily split into multiple parts and later joined back:
 
