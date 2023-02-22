@@ -427,7 +427,7 @@ let arr = [obj1, obj2, obj3];
 
 ...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
+The only structural modifications that do not require mass-renumbering are those that operate on the end of arrays: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
 
 Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
 
