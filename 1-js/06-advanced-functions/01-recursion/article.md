@@ -520,7 +520,7 @@ The main drawback is that we can't easily access an element by its number. In an
 
 ...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
 
-Lists can be enhanced:
+Linked lists can be enhanced:
 - We can add property `prev` in addition to `next` to reference the previous element, to move back easily.
 - We can also add a variable named `tail` referencing the last element of the list (and update it when adding/removing elements from the end).
 - ...The data structure may vary according to our needs.
