@@ -528,7 +528,7 @@ Linked lists can be enhanced:
 ## Summary
 
 Terms:
-- *Recursion*  is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
+- *Recursion* is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
 
     When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
 
