@@ -512,7 +512,7 @@ list.next = list.next.next;
 
 We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If there is no reference to it anywhere else, it will be automatically removed from the memory by the garbage collector.
 
-Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+Unlike arrays, there's no mass-renumbering and we can easily rearrange elements.
 
 Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
 
