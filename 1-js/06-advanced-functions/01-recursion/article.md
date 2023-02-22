@@ -510,7 +510,7 @@ list.next = list.next.next;
 
 ![linked list](linked-list-remove-1.svg)
 
-We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If there is no reference to it anywhere else, it will be automatically removed from the memory by the garbage collector.
 
 Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
 
