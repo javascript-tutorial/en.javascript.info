@@ -516,7 +516,7 @@ Unlike arrays, there's no mass-renumbering and we can easily rearrange elements.
 
 Naturally, linked lists are not always better than arrays. Otherwise everyone would use only linked lists.
 
-The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
+The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the linked list we need to start from the first item and go over `next` `N` times to get the Nth element.
 
 ...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
 
