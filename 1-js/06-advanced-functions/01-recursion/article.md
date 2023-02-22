@@ -486,7 +486,7 @@ list.next.next = secondList;
 
 And surely we can insert or remove items in any place.
 
-For instance, to prepend a new value, we need to update the head of the list:
+For instance, to prepend it with a new value, we need to update the head of the list:
 
 ```js
 let list = { value: 1 };
