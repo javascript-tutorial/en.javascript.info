@@ -514,7 +514,7 @@ We made `list.next` jump over `1` to value `2`. The value `1` is now excluded fr
 
 Unlike arrays, there's no mass-renumbering and we can easily rearrange elements.
 
-Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
+Naturally, linked lists are not always better than arrays. Otherwise everyone would use only linked lists.
 
 The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
 
