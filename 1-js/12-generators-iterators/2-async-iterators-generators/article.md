@@ -344,7 +344,7 @@ async function* fetchCommits(repo) {
     const commits = await response.json(); // (2) response is JSON (array of commits)
 
     // (3) the URL of the next page is in the headers, extract it
-    url = response.headers.get('Link').match(/<([^>]+)>; rel="next"/)?.[1];
+    url = response.headers.get('link').match(/<([^>]+)>; rel="next"/)?.[1];
 
     for (const commit of commits) { // (4) yield commits one by one, until the page ends
       yield commit;
