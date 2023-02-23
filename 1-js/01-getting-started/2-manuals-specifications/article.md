@@ -7,7 +7,7 @@ This book is a *tutorial*. It aims to help you gradually learn the language. But
 
 [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
 
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. However; It's not for everyday use.
 
 A new specification version is released every year. Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
 
@@ -34,4 +34,4 @@ To see their support among browser-based and other engines, see:
 
 All these resources are useful in real-life development, as they contain valuable information about language details, their support, etc.
 
-Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+Please remember them (or this page) for cases when you need in-depth information about a particular feature.
