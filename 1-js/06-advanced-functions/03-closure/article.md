@@ -93,7 +93,7 @@ for (let i = 0; i < 3; i++) {
   alert(i); // 0, then 1, then 2
 }
 
-alert(i); // Error, no such variable
+alert(i); // Error: i is not defined
 ```
 
 Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
