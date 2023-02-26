@@ -12,7 +12,7 @@ And what if a function is passed along as an argument and called from another pl
 Let's expand our knowledge to understand these scenarios and more complex ones.
 
 ```smart header="We'll talk about `let/const` variables here"
-In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones) and `var` (the remnant of the past).
 
 - In this article we'll use `let` variables in examples.
 - Variables, declared with `const`, behave the same, so this article is about `const` too.
