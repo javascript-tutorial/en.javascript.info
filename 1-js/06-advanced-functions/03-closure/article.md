@@ -194,7 +194,7 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 Everything looks simple for now, right?
 
 - A variable is a property of a special internal object, associated with the currently executing block/function/script.
-- Working with variables is actually working with the properties of that object.
+- Working with variables means actually working with the properties of that object.
 
 ```smart header="Lexical Environment is a specification object"
 "Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
