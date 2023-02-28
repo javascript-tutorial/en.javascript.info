@@ -160,7 +160,7 @@ For clarity, the explanation is split into multiple steps.
 
 ### Step 1. Variables
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+In JavaScript, every running function, code block `{...}` and the script as a whole, have an internal (hidden) associated object known as the *Environment Record*.
 
 The Lexical Environment object consists of two parts:
 
