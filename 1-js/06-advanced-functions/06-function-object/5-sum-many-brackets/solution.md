@@ -1,7 +1,7 @@
 
-1. For the whole thing to work *anyhow*, the result of `sum` must be function.
-2. That function must keep in memory the current value between calls.
-3. According to the task, the function must become the number when used in `==`. Functions are objects, so the conversion happens as described in the chapter <info:object-toprimitive>, and we can provide our own method that returns the number.
+1. Hamma narsa ishlashi uchun *qanday bo'lmasin*, `sum` natijasi funksiya bo'lishi kerak.
+2. Ushbu funktsiya chaqiruvlar orasidagi joriy qiymatni xotirada saqlashi kerak.
+3. Vazifaga ko'ra, funksiya `==` da ishlatilganda raqamga aylanishi kerak. Funktsiyalar ob'ektlardir, shuning uchun konvertatsiya <info:object-toprimitive> bobida tasvirlanganidek amalga oshiriladi va biz raqamni qaytaradigan o'z uslubimizni taqdim etishimiz mumkin.
 
 Now the code:
 
@@ -28,28 +28,28 @@ alert( sum(6)(-1)(-2)(-3) ); // 0
 alert( sum(0)(1)(2)(3)(4)(5) ); // 15
 ```
 
-Please note that the `sum` function actually works only once. It returns function `f`.
+Esda tutingki, `sum` funksiyasi aslida bir marta ishlaydi. U `f` funksiyasini qaytaradi.
 
-Then, on each subsequent call, `f` adds its parameter to the sum `currentSum`, and returns itself.
+Keyin, har bir keyingi qo'ng'iroqda `f` o'z parametrini `currentSum` yig'indisiga qo'shadi va o'zini qaytaradi.
 
-**There is no recursion in the last line of `f`.**
+**`f` ning oxirgi qatorida rekursiya yo‘q.**
 
-Here is what recursion looks like:
-
-```js
-function f(b) {
-  currentSum += b;
-  return f(); // <-- recursive call
-}
-```
-
-And in our case, we just return the function, without calling it:
+Rekursiya quyidagicha ko'rinishga ega:
 
 ```js
 function f(b) {
   currentSum += b;
-  return f; // <-- does not call itself, returns itself
+  return f(); // <-- rekursiv chaqiruv
 }
 ```
 
-This `f` will be used in the next call, again return itself, as many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`. We could also use `Symbol.toPrimitive` or `valueOf` here for the conversion.
+Va bizning holatimizda, biz faqat funktsiyani chaqirmasdan qaytaramiz:
+
+```js
+function f(b) {
+  currentSum += b;
+  return f; // <-- o'zini chaqirmaydi, o'zini qaytaradi
+}
+```
+
+Bu `f` keyingi chaqiruvda ishlatiladi, yana o'zini, kerak bo'lganda ko'p marta qaytaradi. Keyin, raqam yoki satr sifatida foydalanilganda -- `toString` `currentSum` qaytaradi. Konvertatsiya qilish uchun bu yerda `Symbol.toPrimitive` yoki `valueOf` dan ham foydalanishimiz mumkin.

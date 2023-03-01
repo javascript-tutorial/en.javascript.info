@@ -1,4 +1,4 @@
-The solution using a loop:
+Sikl yordamida yechim:
 
 ```js run
 function sumTo(n) {
@@ -12,7 +12,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using recursion:
+Rekursiya yordamida yechim:
 
 ```js run
 function sumTo(n) {
@@ -23,7 +23,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using the formula: `sumTo(n) = n*(n+1)/2`:
+Formula yordamida yechim: `sumTo(n) = n*(n+1)/2`:
 
 ```js run
 function sumTo(n) {
@@ -33,8 +33,8 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-P.S. Naturally, the formula is the fastest solution. It uses only 3 operations for any number `n`. The math helps!
+P.S. Tabiiyki, formula eng tezkor yechimdir. U har qanday `n` raqami uchun faqat 3 ta amaldan foydalanadi. Matematika yordam beradi!
 
-The loop variant is the second in terms of speed. In both the recursive and the loop variant we sum the same numbers. But the recursion involves nested calls and execution stack management. That also takes resources, so it's slower.
+Loop varianti tezlik bo'yicha ikkinchi o'rinda turadi. Rekursiv va tsikl variantida biz bir xil raqamlarni yig'amiz. Ammo rekursiya ichki qo'ng'iroqlar va ijro stekini boshqarishni o'z ichiga oladi. Bu ham resurslarni talab qiladi, shuning uchun u sekinroq.
 
-P.P.S. Some engines support the "tail call" optimization: if a recursive call is the very last one in the function, with no other calculations performed, then the outer function will not need to resume the execution, so the engine doesn't need to remember its execution context. That removes the burden on memory. But if the JavaScript engine does not support tail call optimization (most of them don't), there will be an error: maximum stack size exceeded, because there's usually a limitation on the total stack size.
+P.P.S. Ba'zi dvigatellar "tail call"ni optimallashtirishni qo'llab-quvvatlaydi: agar rekursiv qo'ng'iroq funktsiyaning eng oxirgisi bo'lsa, boshqa hisoblar bajarilmasa, tashqi funktsiyani bajarishni davom ettirish kerak bo'lmaydi, shuning uchun vosita eslab qolishga hojat yo'q. uning bajarilishi konteksti. Bu xotiradagi yukni olib tashlaydi. Ammo JavaScript dvigateli qo'ng'iroqlarni optimallashtirishni qo'llab-quvvatlamasa (ularning ko'pchiligi yo'q), xatolik yuz beradi: maksimal stek hajmi oshib ketdi, chunki odatda stekning umumiy hajmida cheklov mavjud.

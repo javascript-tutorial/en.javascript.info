@@ -1,5 +1,5 @@
 
-Using `setInterval`:
+`setInterval` ishlatib:
 
 ```js run
 function printNumbers(from, to) {
@@ -18,7 +18,7 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Using nested `setTimeout`:
+Ichma-ich `setTimeout` ishlatib:
 
 
 ```js run
@@ -38,9 +38,9 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. The function is called after `1000ms` the first time.
+E'tibor bering, ikkala yechimda ham birinchi natijadan oldin dastlabki kechikish mavjud. Funktsiya birinchi marta `1000ms` dan keyin chaqiriladi.
 
-If we also want the function to run immediately, then we can add an additional call on a separate line, like this:
+Agar biz funktsiyaning darhol ishlashini xohlasak, biz alohida qatorga qo'shimcha chaqiruvni qo'shishimiz mumkin, masalan:
 
 ```js run
 function printNumbers(from, to) {

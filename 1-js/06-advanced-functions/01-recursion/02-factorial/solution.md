@@ -1,6 +1,6 @@
-By definition, a factorial `n!` can be written as `n * (n-1)!`.
+Ta'rifga ko'ra, faktorial `n!` `n * (n-1)!` shaklida yozilishi mumkin.
 
-In other words, the result of `factorial(n)` can be calculated as `n` multiplied by the result of `factorial(n-1)`. And the call for `n-1` can recursively descend lower, and lower, till `1`.
+Boshqacha qilib aytadigan bo'lsak, `factorial(n)` natijasini "n"ni `factorial(n-1)` natijasiga ko'paytirish orqali hisoblash mumkin. Va `n-1` uchun qo'ng'iroq rekursiv ravishda `1` gacha pastga va pastga tushishi mumkin.
 
 ```js run
 function factorial(n) {
@@ -10,7 +10,7 @@ function factorial(n) {
 alert( factorial(5) ); // 120
 ```
 
-The basis of recursion is the value `1`. We can also make `0` the basis here, doesn't matter much, but gives one more recursive step:
+Rekursiyaning asosi `1` qiymati hisoblanadi. Bundan tashqari, biz bu erda `0` ni asos qilib olamiz, unchalik muhim emas, lekin yana bir rekursiv qadam beradi:
 
 ```js run
 function factorial(n) {

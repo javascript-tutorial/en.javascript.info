@@ -1,26 +1,26 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# What will setTimeout show?
+# setTimeout nimani ko'rsatadi?
 
-In the code below there's a `setTimeout` call scheduled, then a heavy calculation is run, that takes more than 100ms to finish.
+Quyidagi kodda `setTimeout` chaqiruvi rejalashtirilgan, so'ngra yakunlash uchun 100 ms dan ko'proq vaqt ketadigan og'ir hisob bajariladi.
 
-When will the scheduled function run?
+Rejalashtirilgan funksiya qachon ishlaydi?
 
-1. After the loop.
-2. Before the loop.
-3. In the beginning of the loop.
+1. Sikldan keyin.
+2. Sikldan oldin.
+3. Sikl boshida
 
 
-What is `alert` going to show?
+`alert` nimani ko'rsatadi?
 
 ```js
 let i = 0;
 
 setTimeout(() => alert(i), 100); // ?
 
-// assume that the time to execute this function is >100ms
+// bu funksiyani bajarish vaqti >100ms deb faraz qilaylik
 for(let j = 0; j < 100000000; j++) {
   i++; 
 }

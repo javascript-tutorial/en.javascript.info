@@ -1,12 +1,12 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Are counters independent?
+# Hisoblagichlar mustaqilmi?
 
-Here we make two counters: `counter` and `counter2` using the same `makeCounter` function.
+Bu yerda biz ikkita hisoblagich yasaymiz: bir xil `makeCounter` funksiyasidan foydalangan holda `counter` va `counter2`.
 
-Are they independent? What is the second counter going to show? `0,1` or `2,3` or something else?
+Ular mustaqilmi? Ikkinchi hisoblagich nimani ko'rsatadi? `0,1` yoki `2,3` yoki boshqa narsa?
 
 ```js
 function makeCounter() {

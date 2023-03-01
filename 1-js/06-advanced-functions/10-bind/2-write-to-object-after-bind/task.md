@@ -1,10 +1,10 @@
-importance: 5
+Muhimlik: 5
 
 ---
 
-# Bound function as a method
+# Metod sifatida bog'langan funktsiya
 
-What will be the output?
+Natija nima bo'ladi?
 
 ```js
 function f() {

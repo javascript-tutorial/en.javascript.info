@@ -1,26 +1,26 @@
-# Arrow functions revisited
+# Arrow funksiyalari qayta koʻrib chiqildi
 
-Let's revisit arrow functions.
+Keling, arrow funktsiyalarini qayta ko'rib chiqaylik.
 
-Arrow functions are not just a "shorthand" for writing small stuff. They have some very specific and useful features.
+Arrow funksiyalari shunchaki kichik narsalarni yozish uchun "qisqa belgi" emas. Ular juda o'ziga xos va foydali xususiyatlarga ega.
 
-JavaScript is full of situations where we need to write a small function that's executed somewhere else.
+JavaScript boshqa joyda bajariladigan kichik funktsiyani yozishimiz kerak bo'lgan holatlarga to'la.
 
-For instance:
+Masalan:
 
-- `arr.forEach(func)` -- `func` is executed by `forEach` for every array item.
-- `setTimeout(func)` -- `func` is executed by the built-in scheduler.
-- ...there are more.
+- `arr.forEach(func)` -- `func` har bir massiv elementi uchun `forEach` tomonidan bajariladi.
+- `setTimeout(func)` -- `func` o'rnatilgan rejalashtiruvchi tomonidan bajariladi.
+- ..va yana ko'plab mavjud.
 
-It's in the very spirit of JavaScript to create a function and pass it somewhere.
+Funktsiyani yaratish va uni biror joyga o'tkazish JavaScript-ning o'ziga xos ruhida.
 
-And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
+Va bunday funktsiyalarda biz odatda joriy kontekstni tark etishni xohlamaymiz. Bu erda arrow funktsiyalari yordam beradi.
 
-## Arrow functions have no "this"
+## Arrow funksiyalarida "this" yo'q
 
-As we remember from the chapter <info:object-methods>, arrow functions do not have `this`. If `this` is accessed, it is taken from the outside.
+<info:object-methods> bobidan eslaganimizdek, arrow funksiyalarida `this` yo'q. Agar `this` ga kirsa, u tashqaridan olinadi.
 
-For instance, we can use it to iterate inside an object method:
+Misol uchun, biz uni ob'ekt usuli ichida takrorlash uchun ishlatishimiz mumkin:
 
 ```js run
 let group = {
@@ -39,9 +39,9 @@ let group = {
 group.showList();
 ```
 
-Here in `forEach`, the arrow function is used, so `this.title` in it is exactly the same as in the outer method `showList`. That is: `group.title`.
+Bu yerda `forEach` da arrow funksiyasidan foydalaniladi, shuning uchun undagi `this.title` tashqi `showList` metodii bilan aynan bir xil. Ya'ni: `group.title`.
 
-If we used a "regular" function, there would be an error:
+Agar biz "muntazam" funksiyadan foydalansak, xato bo'ladi:
 
 ```js run
 let group = {
@@ -61,28 +61,30 @@ let group = {
 group.showList();
 ```
 
-The error occurs because `forEach` runs functions with `this=undefined` by default, so the attempt to access `undefined.title` is made.
+Xatolik yuzaga keladi, chunki `forEach` standard bo'yicha `this=undefined` bilan funksiyalarni ishga tushiradi, shuning uchun `undefined.title` ga kirishga harakat qilinadi.
 
-That doesn't affect arrow functions, because they just don't have `this`.
-
-```warn header="Arrow functions can't run with `new`"
-Not having `this` naturally means another limitation: arrow functions can't be used as constructors. They can't be called with `new`.
+Bu arrow funktsiyalariga ta'sir qilmaydi, chunki ularda "this" yo'q.
+````
+````
+`` `warn header="Arrow funksiyalari `new` bilan ishlamaydi"
+`this` ga ega bo'lmaslik tabiiy ravishda boshqa cheklovni anglatadi: arrow funktsiyalarini konstruktor sifatida ishlatib bo'lmaydi. Ularni `new`deb atash mumkin emas.
 ```
-
-```smart header="Arrow functions VS bind"
-There's a subtle difference between an arrow function `=>` and a regular function called with `.bind(this)`:
-
-- `.bind(this)` creates a "bound version" of the function.
-- The arrow `=>` doesn't create any binding. The function simply doesn't have `this`. The lookup of `this` is made exactly the same way as a regular variable search: in the outer lexical environment.
 ```
+``smart header="Arrow funktsiyalari VS bind"
+`=>` arrow funksiyasi va `.bind(this)` bilan chaqiriladigan oddiy funksiya o`rtasida nozik farq bor:
+```
+```
+- `.bind(this)` funksiyaning "bog'langan versiyasini" yaratadi.
+- `=>` strelkasi hech qanday bog'lanishni yaratmaydi. Funktsiyada oddiygina `this` yo'q. `This` ni qidirish odatiy o'zgaruvchilarni qidirish bilan bir xil tarzda amalga oshiriladi: tashqi leksik muhitda.
+````
+````
+## Arrowlarda "argumentlar" yo'q
 
-## Arrows have no "arguments"
+Arrow funksiyalarida `arguments` o'zgaruvchisi ham yo'q.
 
-Arrow functions also have no `arguments` variable.
+Joriy `this` va `argumentas` bilan chaqiruvni yo‘naltirishimiz kerak bo‘lganda, bu dekoratorlar uchun juda yaxshi.
 
-That's great for decorators, when we need to forward a call with the current `this` and `arguments`.
-
-For instance, `defer(f, ms)` gets a function and returns a wrapper around it that delays the call by `ms` milliseconds:
+Masalan, `defer(f, ms)` funksiyani oladi va uning atrofida chaqiruvni `ms` millisekundlarga kechiktiradigan o‘ramni qaytaradi:
 
 ```js run
 function defer(f, ms) {
@@ -96,10 +98,10 @@ function sayHi(who) {
 }
 
 let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("John"); // Hello, John after 2 seconds
+sayHiDeferred("John"); // Hello, John 2 soniyadan so'ng
 ```
 
-The same without an arrow function would look like:
+Arrow funksiyasisiz xuddi shunday ko'rinadi:
 
 ```js
 function defer(f, ms) {
@@ -112,15 +114,15 @@ function defer(f, ms) {
 }
 ```
 
-Here we had to create additional variables `args` and `ctx` so that the function inside `setTimeout` could take them.
+Bu yerda biz qo'shimcha `args` va `ctx` o'zgaruvchilarni yaratishimiz kerak edi, shunda `setTimeout` ichidagi funksiya ularni qabul qilishi mumkin edi.
 
-## Summary
+## Xulosa
 
-Arrow functions:
+Arrow funksiyalar:
 
-- Do not have `this`
-- Do not have `arguments`
-- Can't be called with `new`
-- They also don't have `super`, but we didn't study it yet. We will on the chapter <info:class-inheritance>
+- `this` yo'q
+- `arguments` yo'q
+- `new` deb atash mumkin emas
+- Ularda ham `super` yo'q, lekin biz buni hali o'rganmaganmiz. Biz <info:class-inheritance> bobida ko'rib chiqamiz
 
-That's because they are meant for short pieces of code that do not have their own "context", but rather work in the current one. And they really shine in that use case.
+Buning sababi, ular o'zlarining "konteksti" ga ega bo'lmagan, balki joriy kodda ishlaydigan qisqa kod qismlari uchun mo'ljallangan. Va ular haqiqatan ham bu foydalanish holatida porlaydilar.

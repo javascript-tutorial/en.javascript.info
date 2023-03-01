@@ -1,8 +1,8 @@
-# Using a recursion
+# Rekursiyadan foydalanish
 
-The recursive logic is a little bit tricky here.
+Bu yerda rekursiv mantiq biroz qiyin.
 
-We need to first output the rest of the list and *then* output the current one:
+Biz avval ro'yxatning qolgan qismini chiqarishimiz va *then* joriyini chiqarishimiz kerak:
 
 ```js run
 let list = {
@@ -31,13 +31,13 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-# Using a loop
+# Sikldan foydalanish
 
-The loop variant is also a little bit more complicated than the direct output.
+Sikl varianti ham to'g'ridan-to'g'ri chiqishga qaraganda biroz murakkabroq.
 
-There is no way to get the last value in our `list`. We also can't "go back".
+Bizning `list`imizda oxirgi qiymatni olishning hech qanday usuli yo'q. Biz ham "qayta olmaymiz".
 
-So what we can do is to first go through the items in the direct order and remember them in an array, and then output what we remembered in the reverse order:
+Shunday qilib, biz qila oladigan narsa, avval elementlarni to'g'ridan-to'g'ri tartibda ko'rib chiqish va ularni massivda eslab qolish va keyin biz eslab qolgan narsalarni teskari tartibda chiqarishdir:
 
 ```js run
 let list = {
@@ -71,4 +71,4 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-Please note that the recursive solution actually does exactly the same: it follows the list, remembers the items in the chain of nested calls (in the execution context stack), and then outputs them. 
+E'tibor bering, rekursiv yechim aslida xuddi shunday qiladi: u ro'yxatni kuzatib boradi, ichki qo'ng'iroqlar zanjiridagi elementlarni eslab qoladi (bajarish kontekstida) va keyin ularni chiqaradi.

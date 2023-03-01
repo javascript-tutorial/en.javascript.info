@@ -1,14 +1,14 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Sum with closures
+# Closure bilan summa
 
-Write function `sum` that works like this: `sum(a)(b) = a+b`.
+Quyidagi kabi ishlaydigan `sum` funksiyasini yozing: `sum(a)(b) = a+b`.
 
-Yes, exactly this way, using double parentheses (not a mistype).
+Ha, aynan shu tarzda, qo'sh qavslar yordamida (noto'g'ri yozish emas).
 
-For instance:
+Masalan:
 
 ```js
 sum(1)(2) = 3

@@ -1,10 +1,10 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Is variable visible?
+# O'zgaruvchi ko'rinadimi?
 
-What will be the result of this code?
+Ushbu kodning natijasi qanday bo'ladi?
 
 ```js
 let x = 1;
@@ -18,4 +18,4 @@ function func() {
 func();
 ```
 
-P.S. There's a pitfall in this task. The solution is not obvious.
+P.S. Bu vazifada xato bor. Yechim aniq emas.

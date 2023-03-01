@@ -1,10 +1,10 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Function property after bind
+# Bog'lanishdan keyin funksiya xossasi
 
-There's a value in the property of a function. Will it change after `bind`? Why, or why not?
+Funktsiyaning xususiyatida qiymat mavjud. U `bind` dan keyin o'zgaradimi? Nima uchun, yoki nima uchun yo'q?
 
 ```js run
 function sayHi() {
@@ -17,7 +17,7 @@ let bound = sayHi.bind({
   name: "John"
 });
 
-alert( bound.test ); // what will be the output? why?
+alert( bound.test ); // natijasi nima bo'ladi? nima uchun?
 */!*
 ```
 

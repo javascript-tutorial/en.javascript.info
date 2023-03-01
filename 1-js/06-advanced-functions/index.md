@@ -1,1 +1,1 @@
-# Advanced working with functions
+# Funksiyalar bilan ilg'or ishlash

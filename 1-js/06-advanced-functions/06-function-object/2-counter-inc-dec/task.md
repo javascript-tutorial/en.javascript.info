@@ -1,15 +1,15 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Set and decrease for counter
+# Counter uchun set va decrease
 
-Modify the code of `makeCounter()` so that the counter can also decrease and set the number:
+Counter ham kamayishi va raqamni o'rnatishi uchun `makeCounter()` kodini o'zgartiring:
 
-- `counter()` should return the next number (as before).
-- `counter.set(value)` should set the counter to `value`.
-- `counter.decrease()` should decrease the counter by 1.
+- `counter()` keyingi raqamni qaytarish kerak (avvalgi kabi).
+- `counter.set(value)` counterni `value` ga o'rnatish kerak.
+- `counter.decrease()` counterni 1 ga kamaytirish kerak.
 
-See the sandbox code for the complete usage example.
+To'liq foydalanish misoli uchun sandbox kodiga qarang.
 
-P.S. You can use either a closure or the function property to keep the current count. Or write both variants.
+P.S. Joriy countni saqlash uchun closure yoki funksiya xususiyatidan foydalanishingiz mumkin. Yoki ikkala variantni ham yozing.

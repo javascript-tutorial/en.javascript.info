@@ -1,23 +1,23 @@
 
 # Property flags and descriptors
 
-As we know, objects can store properties.
+Ma'lumki, ob'ektlar xususiyatlarni saqlashi mumkin.
 
-Until now, a property was a simple "key-value" pair to us. But an object property is actually a more flexible and powerful thing.
+Hozirgacha mulk biz uchun oddiy “kalit-qiymat” juftligi edi. Lekin ob'ekt xususiyati aslida yanada moslashuvchan va kuchli narsadir.
 
-In this chapter we'll study additional configuration options, and in the next we'll see how to invisibly turn them into getter/setter functions.
+Ushbu bobda biz qo'shimcha konfiguratsiya opsiyalarini o'rganamiz va keyingisida ularni qanday qilib ko'rinmas holda getter/setter funksiyalariga aylantirishni ko'rib chiqamiz.
 
 ## Property flags
 
-Object properties, besides a **`value`**, have three special attributes (so-called "flags"):
+Ob'ekt xususiyatlari, **`value`**dan tashqari, uchta maxsus atributga ega ("flags" deb ataladi):
 
-- **`writable`** -- if `true`, the value can be changed, otherwise it's read-only.
-- **`enumerable`** -- if `true`, then listed in loops, otherwise not listed.
-- **`configurable`** -- if `true`, the property can be deleted and these attributes can be modified, otherwise not.
+- **`writable`** -- agar `true` bo'lsa, qiymat o'zgartirilishi mumkin, aks holda u faqat o'qish uchun mo'ljallangan.
+- **`enumerable`** -- agar `true` bo'lsa, u holda tsikllar ro'yxatiga kiritiladi, aks holda ro'yxatga kiritilmaydi.
+- **`configurable`** -- agar `true` bo'lsa, xususiyat o'chirilishi va bu atributlar o'zgartirilishi mumkin, aks holda emas.
 
-We didn't see them yet, because generally they do not show up. When we create a property "the usual way", all of them are `true`. But we also can change them anytime.
+Biz ularni hali ko'rmadik, chunki ular odatda ko'rinmaydi. Biz "odatiy usul" xususiyatini yaratganimizda, ularning barchasi `true`. Ammo biz ularni istalgan vaqtda o'zgartirishimiz mumkin.
 
-First, let's see how to get those flags.
+Birinchidan, bu bayroqlarni qanday olish kerakligini ko'rib chiqaylik.
 
 The method [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
 

@@ -1,10 +1,10 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Output a single-linked list
+# Bitta bog'langan ro'yxatni chiqaring
 
-Let's say we have a single-linked list (as described in the chapter <info:recursion>):
+Aytaylik, bizda bitta bog'langan ro'yxat bor (<info:recursion> bobida tasvirlanganidek):
 
 ```js
 let list = {
@@ -22,8 +22,8 @@ let list = {
 };
 ```
 
-Write a function `printList(list)` that outputs list items one-by-one.
+Roʻyxat elementlarini birma-bir chiqaradigan `printList(list)` funksiyasini yozing.
 
-Make two variants of the solution: using a loop and using recursion.
+Yechimning ikkita variantini yarating: tsikldan foydalanish va rekursiyadan foydalaning.
 
-What's better: with recursion or without it?
+Qaysi biri yaxshiroq: rekursiya bilan yoki usiz?

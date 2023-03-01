@@ -1,9 +1,9 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Output a single-linked list in the reverse order
+# Teskari tartibda bitta bog'langan ro'yxatni chiqaring
 
-Output a single-linked list from the previous task <info:task/output-single-linked-list> in the reverse order.
+Oldingi <info:task/output-single-linked-list> topshirig'idan teskari tartibda bitta bog'langan ro'yxatni chiqaring.
 
-Make two solutions: using a loop and using a recursion.
+Ikkita yechim yarating: sikldan foydalanish va rekursiyadan foydalanish.

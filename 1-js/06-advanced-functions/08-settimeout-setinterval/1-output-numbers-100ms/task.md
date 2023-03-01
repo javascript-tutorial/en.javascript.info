@@ -1,12 +1,12 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Output every second
+# Har soniyada natija
 
-Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `to`.
+Har soniyada `from` dan boshlab `to` bilan tugaydigan raqam chiqaradigan `printNumbers(from, to)` funksiyasini yozing.
 
-Make two variants of the solution.
+Yechimning ikkita variantini tuzing.
 
-1. Using `setInterval`.
-2. Using nested `setTimeout`.
+1. `setInterval` ishlatib.
+2. Ichma-ich `setTimeout` ishlatib.

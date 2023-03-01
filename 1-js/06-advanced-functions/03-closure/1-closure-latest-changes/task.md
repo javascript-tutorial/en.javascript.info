@@ -1,10 +1,10 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Does a function pickup latest changes?
+# Funktsiya oxirgi o'zgarishlarni qabul qiladimi?
 
-The function sayHi uses an external variable name. When the function runs, which value is it going to use?
+SayHi funksiyasi tashqi oʻzgaruvchi nomidan foydalanadi. Funktsiya ishga tushganda, u qaysi qiymatdan foydalanadi?
 
 ```js
 let name = "John";
@@ -15,9 +15,9 @@ function sayHi() {
 
 name = "Pete";
 
-sayHi(); // what will it show: "John" or "Pete"?
+sayHi(); // nimani ko'rsatadi: "John" yoki "Pete"?
 ```
 
-Such situations are common both in browser and server-side development. A function may be scheduled to execute later than it is created, for instance after a user action or a network request.
+Bunday holatlar brauzerda ham, server tomonida ham keng tarqalgan. Funksiya yaratilganidan keyinroq, masalan, foydalanuvchi harakati yoki tarmoq soʻrovidan keyin bajarilishi rejalashtirilishi mumkin.
 
-So, the question is: does it pick up the latest changes?
+Demak, savol tug'iladi: u so'nggi o'zgarishlarni oladimi?

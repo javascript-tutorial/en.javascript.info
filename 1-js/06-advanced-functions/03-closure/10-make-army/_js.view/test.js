@@ -7,13 +7,13 @@ describe("army", function() {
     window.alert = sinon.stub(window, "alert");
   });
 
-  it("army[0] shows 0", function() {
+  it("army[0] 0 ko'rsatadi", function() {
     army[0]();
     assert(alert.calledWith(0));
   });
 
 
-  it("army[5] shows 5", function() {
+  it("army[5] 5 ko'rsatadi", function() {
     army[5]();
     assert(alert.calledWith(5));
   });

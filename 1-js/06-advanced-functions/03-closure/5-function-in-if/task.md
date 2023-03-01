@@ -1,9 +1,9 @@
-importance: 5
+muhimlik: 5
 
 ---
-# Function in if
+# Ifda funksiya
 
-Look at the code. What will be the result of the call at the last line?
+Kodga qarang. Oxirgi qatordagi qo'ng'iroqning natijasi qanday bo'ladi?
 
 ```js run
 let phrase = "Hello";
