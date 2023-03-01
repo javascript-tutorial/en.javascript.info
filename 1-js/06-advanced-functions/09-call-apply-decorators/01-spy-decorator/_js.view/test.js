@@ -1,5 +1,5 @@
 describe("spy", function() {
-  it("o'z mulkiga qo'ng'iroqlarni yozib oladi", function() {
+  it("o'z mulkiga chaqiruvlarni yozib oladi", function() {
     function work() {}
 
     work = spy(work);

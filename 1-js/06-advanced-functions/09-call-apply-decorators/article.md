@@ -150,7 +150,7 @@ function sayHi() {
 let user = { name: "John" };
 let admin = { name: "Admin" };
 
-// turli ob'ektlarni "this" sifatida o'tkazish uchun qo'ng'iroqdan foydalanish
+// turli ob'ektlarni "this" sifatida o'tkazish uchun chaqiruvdan foydalanish
 sayHi.call(user); // John
 sayHi.call(admin); // Admin
 ```

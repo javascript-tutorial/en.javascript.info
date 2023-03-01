@@ -40,4 +40,4 @@ askPassword(() => user.loginOk(), () => user.loginFail());
 
 Odatda bu ham ishlaydi va yaxshi ko'rinadi.
 
-Bu biroz ishonchli emas, garchi `user` o'zgaruvchisi *so'ng* `askPassword` chaqirilgandan keyin o'zgarishi mumkin bo'lsa-da, lekin tashrifchi `() => user.loginOk()` ga javob berib, *qo'ng'iroq qilishidan* oldin.
+Bu biroz ishonchli emas, garchi `user` o'zgaruvchisi *so'ng* `askPassword` chaqirilgandan keyin o'zgarishi mumkin bo'lsa-da, lekin tashrifchi `() => user.loginOk()` ga javob berib, *chaqiruv qilishidan* oldin.

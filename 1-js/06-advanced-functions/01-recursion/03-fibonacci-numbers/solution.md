@@ -14,7 +14,7 @@ alert( fib(7) ); // 13
 
 ...Lekin `n` ning katta qiymatlari uchun bu juda sekin. Masalan, `fib(77)` barcha protsessor resurslarini iste'mol qilib, dvigatelni bir muddat o'chirib qo'yishi mumkin.
 
-Buning sababi, funktsiya juda ko'p qo'shimcha qo'ng'iroqlarni amalga oshiradi. Xuddi shu qiymatlar qayta-qayta baholanadi.
+Buning sababi, funktsiya juda ko'p qo'shimcha chaqiruvlarni amalga oshiradi. Xuddi shu qiymatlar qayta-qayta baholanadi.
 
 Masalan, `fib(5)` uchun hisob-kitoblarni ko'rib chiqamiz:
 

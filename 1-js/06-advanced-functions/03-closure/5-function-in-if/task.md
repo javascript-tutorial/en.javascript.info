@@ -3,7 +3,7 @@ muhimlik: 5
 ---
 # Ifda funksiya
 
-Kodga qarang. Oxirgi qatordagi qo'ng'iroqning natijasi qanday bo'ladi?
+Kodga qarang. Oxirgi qatordagi chaqiruvning natijasi qanday bo'ladi?
 
 ```js run
 let phrase = "Hello";

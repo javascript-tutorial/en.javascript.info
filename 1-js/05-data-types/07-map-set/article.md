@@ -233,7 +233,7 @@ Uning asosiy metodlari quyidagilardir:
 
 - `new Set(iterable)` -- to‘plamni yaratadi va agar `takrorlanuvchi` ob’ekt taqdim etilsa (odatda massiv), undan qiymatlarni to‘plamga ko‘chiradi.
 - [`set.add(value)`](mdn:js/Set/add) -- qiymat qo'shadi, to'plamning o'zini qaytaradi.
-- [`set.delete(value)`](mdn:js/Set/delete) -- qiymatni olib tashlaydi, agar qo'ng'iroq paytida `qiymat` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`set.delete(value)`](mdn:js/Set/delete) -- qiymatni olib tashlaydi, agar chaqiruv paytida `qiymat` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
 - [`set.has(value)`](mdn:js/Set/has) -- Agar qiymat to'plamda mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
 - [`set.clear()`](mdn:js/Set/clear) -- to'plamdan hamma narsani olib tashlaydi.
 - [`set.size`](mdn:js/Set/size) -- elementlar soni hisoblanadi.
@@ -303,7 +303,7 @@ Metodlari va xususiyatlari:
 - [`map.set(key, value)`](mdn:js/Map/set) -- kalit orqali qiymatni saqlaydi, xaritaning o'zini qaytaradi.
 - [`map.get(key)`](mdn:js/Map/get) -- Agar `key` xaritada mavjud boʻlmasa, `undefined` kalit boʻyicha qiymatni qaytaradi.
 - [`map.has(key)`](mdn:js/Map/has) -- agar `key` mavjud bo‘lsa, `true`, aks holda `yolg‘on` qiymatini qaytaradi.
-- [`map.delete(key)`](mdn:js/Map/delete) -- kalit bo'yicha qiymatni olib tashlaydi, agar qo'ng'iroq paytida `key` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`map.delete(key)`](mdn:js/Map/delete) -- kalit bo'yicha qiymatni olib tashlaydi, agar chaqiruv paytida `key` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
 - [`map.clear()`](mdn:js/Map/clear) -- xaritadan hamma narsani olib tashlaydi.
 - [`map.size`](mdn:js/Map/size) -- joriy elementlar sonini qaytaradi.
 

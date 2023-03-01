@@ -27,4 +27,4 @@ alert(
 */
 ```
 
-Bu erda, shuningdek, `value` `meetup` bo'lishi normal bo'lgan birinchi qo'ng'iroqni istisno qilish uchun `key==""`ni sinab ko'rishimiz kerak.
+Bu erda, shuningdek, `value` `meetup` bo'lishi normal bo'lgan birinchi chaqiruvni istisno qilish uchun `key==""`ni sinab ko'rishimiz kerak.

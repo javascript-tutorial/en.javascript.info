@@ -1,6 +1,6 @@
 Ta'rifga ko'ra, faktorial `n!` `n * (n-1)!` shaklida yozilishi mumkin.
 
-Boshqacha qilib aytadigan bo'lsak, `factorial(n)` natijasini "n"ni `factorial(n-1)` natijasiga ko'paytirish orqali hisoblash mumkin. Va `n-1` uchun qo'ng'iroq rekursiv ravishda `1` gacha pastga va pastga tushishi mumkin.
+Boshqacha qilib aytadigan bo'lsak, `factorial(n)` natijasini "n"ni `factorial(n-1)` natijasiga ko'paytirish orqali hisoblash mumkin. Va `n-1` uchun chaqiruv rekursiv ravishda `1` gacha pastga va pastga tushishi mumkin.
 
 ```js run
 function factorial(n) {

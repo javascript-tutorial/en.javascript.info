@@ -94,9 +94,9 @@ function pow(x, n) {
 `````
 ````
 ``
-Ichki qo'ng'iroqlarning maksimal soni (shu jumladan birinchisi) *rekursiya chuqurligi* deb ataladi. Bizning holatda, bu aniq `n` bo'ladi.
+Ichki chaqiruvlarning maksimal soni (shu jumladan birinchisi) *rekursiya chuqurligi* deb ataladi. Bizning holatda, bu aniq `n` bo'ladi.
 
-Maksimal rekursiya chuqurligi JavaScript dvigateli tomonidan cheklangan. Biz uning 10000 ekanligiga ishonishimiz mumkin, ba'zi dvigatellar ko'proq ruxsat beradi, lekin 100000 ularning aksariyati uchun chegaradan tashqarida. Buni engillashtirishga yordam beradigan avtomatik optimallashtirishlar mavjud ("quyruq qo'ng'iroqlarini optimallashtirish"), lekin ular hali hamma joyda qo'llab-quvvatlanmaydi va faqat oddiy holatlarda ishlaydi.
+Maksimal rekursiya chuqurligi JavaScript dvigateli tomonidan cheklangan. Biz uning 10000 ekanligiga ishonishimiz mumkin, ba'zi dvigatellar ko'proq ruxsat beradi, lekin 100000 ularning aksariyati uchun chegaradan tashqarida. Buni engillashtirishga yordam beradigan avtomatik optimallashtirishlar mavjud ("quyruq chaqiruvlarini optimallashtirish"), lekin ular hali hamma joyda qo'llab-quvvatlanmaydi va faqat oddiy holatlarda ishlaydi.
 
 Bu rekursiyani qo'llashni cheklaydi, lekin u hali ham juda keng bo'lib qolmoqda. Rekursiv fikrlash usuli oddiyroq kodni beradi, saqlash osonroq bo'lgan ko'plab vazifalar mavjud.
 
@@ -110,11 +110,11 @@ Ishlayotgan funktsiyani bajarish jarayoni haqidagi ma'lumotlar uning *bajarish k
 
 Bitta funktsiya chaqiruvi u bilan bog'langan aynan bitta bajarish kontekstiga ega.
 
-Funktsiya ichki qo'ng'iroqni amalga oshirganda, quyidagilar sodir bo'ladi:
+Funktsiya ichki chaqiruvni amalga oshirganda, quyidagilar sodir bo'ladi:
 
 - Joriy funktsiya to'xtatildi.
 - U bilan bog'liq bajarilish konteksti *ijro etuvchi kontekstli stack* deb nomlangan maxsus ma'lumotlar strukturasida eslab qolinadi.
-- Ichki qo'ng'iroq amalga oshiriladi.
+- Ichki chaqiruv amalga oshiriladi.
 - U tugagandan so'ng, eski ijro konteksti stackdan olinadi va tashqi funktsiya u to'xtagan joydan davom ettiriladi.
 
 Keling, `pow(2, 3)` chaqiruvi paytida nima sodir bo'lishini ko'rib chiqaylik.
@@ -167,10 +167,10 @@ Ichki chaqiruvni amalga oshirish uchun JavaScript *ijro kontekst stekidagi* jori
 Bu erda biz bir xil funktsiyani `pow` deb ataymiz, lekin bu mutlaqo muhim emas. Jarayon barcha funktsiyalar uchun bir xil:
 
 1. Joriy kontekst stekning tepasida "eslab qolinadi".
-2. Qo'ng'iroq uchun yangi kontekst yaratiladi.
-3. Qo'ng'iroq tugagach -- oldingi kontekst stackdan chiqariladi va uning bajarilishi davom etadi.
+2. chaqiruv uchun yangi kontekst yaratiladi.
+3. chaqiruv tugagach -- oldingi kontekst stackdan chiqariladi va uning bajarilishi davom etadi.
 
-Mana biz `pow(2, 2)` qo'ng'iroqqa kirganimizda kontekst to'plami:
+Mana biz `pow(2, 2)` chaqiruvqa kirganimizda kontekst to'plami:
 
 <ul class="function-execution-context-list">
   <li>
@@ -185,17 +185,17 @@ Mana biz `pow(2, 2)` qo'ng'iroqqa kirganimizda kontekst to'plami:
 
 Yangi joriy ijro konteksti tepada (va qalin) va oldingi eslab qolingan kontekstlar quyida joylashgan.
 
-Qo'ng'iroqni tugatganimizda -- oldingi kontekstni davom ettirish oson, chunki u ikkala o'zgaruvchini ham, kodning to'xtagan joyini ham saqlaydi.
+chaqiruvni tugatganimizda -- oldingi kontekstni davom ettirish oson, chunki u ikkala o'zgaruvchini ham, kodning to'xtagan joyini ham saqlaydi.
 
 ``smart
-Bu yerda rasmda biz "chiziq" so'zidan foydalanamiz, chunki bizning misolimizda faqat bitta qo'shimcha qo'ng'iroq mavjud, lekin odatda bitta kod satrida `pow(…) + pow(...) + somethingElse(...)` kabi bir nechta qo'shimcha qo'ng'iroqlar bo'lishi mumkin.
+Bu yerda rasmda biz "chiziq" so'zidan foydalanamiz, chunki bizning misolimizda faqat bitta qo'shimcha chaqiruv mavjud, lekin odatda bitta kod satrida `pow(…) + pow(...) + somethingElse(...)` kabi bir nechta qo'shimcha chaqiruvlar bo'lishi mumkin.
 
-Shunday qilib, qatl "qo'ng'iroqdan keyin darhol" davom etadi, deb aytish aniqroq bo'ladi.
+Shunday qilib, qatl "chaqiruvdan keyin darhol" davom etadi, deb aytish aniqroq bo'ladi.
 ```
 ```
 ### pow(2, 1)
 
-Jarayon takrorlanadi: yangi qo'ng'iroq `5` qatorida amalga oshiriladi, endi `x=2`, `n=1` argumentlari bilan.
+Jarayon takrorlanadi: yangi chaqiruv `5` qatorida amalga oshiriladi, endi `x=2`, `n=1` argumentlari bilan.
 
 Yangi ijro konteksti yaratiladi, avvalgisi stack ustiga suriladi:
 
@@ -285,7 +285,7 @@ Takrorlanuvchi `pow` jarayonda `i` va `natija`ni o‘zgartiruvchi yagona konteks
 
 **Har qanday rekursiyani sikl sifatida qayta yozish mumkin. Sikl variantini odatda samaraliroq qilish mumkin.**
 
-...Ammo ba'zida qayta yozish ahamiyatsiz bo'ladi, ayniqsa, funktsiya shartlarga qarab turli xil rekursiv qo'ng'iroqlarni ishlatganda va ularning natijalarini birlashtirganda yoki tarmoqlanish yanada murakkab bo'lsa. Va optimallashtirish keraksiz bo'lishi mumkin va bu harakatlarga mutlaqo arzimaydi.
+...Ammo ba'zida qayta yozish ahamiyatsiz bo'ladi, ayniqsa, funktsiya shartlarga qarab turli xil rekursiv chaqiruvlarni ishlatganda va ularning natijalarini birlashtirganda yoki tarmoqlanish yanada murakkab bo'lsa. Va optimallashtirish keraksiz bo'lishi mumkin va bu harakatlarga mutlaqo arzimaydi.
 
 Rekursiya qisqaroq kod berishi mumkin, tushunish va qo'llab-quvvatlash osonroq. Optimallashtirish hamma joyda talab qilinmaydi, asosan bizga yaxshi kod kerak, shuning uchun u ishlatiladi.
 
@@ -339,7 +339,7 @@ Keling, rekursiyani sinab ko'raylik.
 Ko'rib turganimizdek, bizning funktsiyamiz bo'limni yig'ish uchun olganida, ikkita mumkin bo'lgan holat mavjud:
 
 1. Yoki bu "oddiy" bo'lim bo'lib, odamlarning * massividan iborat bo'ladi -- keyin biz maoshlarni oddiy tsiklda yig'ishimiz mumkin.
-2. Yoki bu `N` bo'limlari bo'lgan *ob'ekt* -- keyin biz har bir kichik bo'lim uchun summani olish va natijalarni birlashtirish uchun "N" rekursiv qo'ng'iroqlarni amalga oshirishimiz mumkin.
+2. Yoki bu `N` bo'limlari bo'lgan *ob'ekt* -- keyin biz har bir kichik bo'lim uchun summani olish va natijalarni birlashtirish uchun "N" rekursiv chaqiruvlarni amalga oshirishimiz mumkin.
 
 1-holat rekursiyaning asosi, massivni olganimizda trivial holat.
 
@@ -377,7 +377,7 @@ alert(sumSalaries(company)); // 7700
 
 Kod qisqa va tushunarli (umid qilamanki?). Bu rekursiyaning kuchi. Shuningdek, u har qanday darajadagi bo'limlarni joylashtirish uchun ishlaydi.
 
-Mana qo'ng'iroqlar diagrammasi:
+Mana chaqiruvlar diagrammasi:
 
 ![recursive salaries](recursive-salaries.svg)
 

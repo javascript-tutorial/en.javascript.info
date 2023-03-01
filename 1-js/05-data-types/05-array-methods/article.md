@@ -747,7 +747,7 @@ alert(soldiers[1].age); // 23
 
 Agar yuqoridagi misolda biz `users.filter(army.canJoin)` dan foydalanilgan bo‘lsak, `army.canJoin` mustaqil funksiya sifatida chaqirilib, `this=undefined` bilan bir lahzada xatolikka olib keladi.
 
-`users.filter(army.canJoin, army)` ga qo'ng'iroqni `users.filter(user => army.canJoin(user))` bilan almashtirish mumkin, bu xuddi shunday qiladi. Ikkinchisi tez-tez ishlatiladi, chunki ko'pchilik uchun tushunish biroz osonroq.
+`users.filter(army.canJoin, army)` ga chaqiruvni `users.filter(user => army.canJoin(user))` bilan almashtirish mumkin, bu xuddi shunday qiladi. Ikkinchisi tez-tez ishlatiladi, chunki ko'pchilik uchun tushunish biroz osonroq.
 
 ## Summary
 
@@ -780,7 +780,7 @@ Massiv metodlari:
   - `sort(func)` -- massivni joyida tartiblaydi, keyin uni qaytaradi.
   - `reverse()` -- massivni joyiga qaytaradi, keyin uni qaytaradi.
   - `split/join` -- stringni massivga va orqaga aylantirish.
-  - `reduce/reduceRight(func, initial)` -- har bir element uchun `func` ni chaqirish va qo'ng'iroqlar o'rtasida oraliq natijani o'tkazish orqali massivda bitta qiymatni hisoblang.
+  - `reduce/reduceRight(func, initial)` -- har bir element uchun `func` ni chaqirish va chaqiruvlar o'rtasida oraliq natijani o'tkazish orqali massivda bitta qiymatni hisoblang.
 
 - Qo'shimcha:
   - `Array.isArray(value)` `value` massiv ekanligini tekshiradi, agar shunday bo'lsa `true`, aks holda `false` ni qaytaradi.

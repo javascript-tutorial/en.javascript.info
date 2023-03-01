@@ -30,7 +30,7 @@ alert( sum(0)(1)(2)(3)(4)(5) ); // 15
 
 Esda tutingki, `sum` funksiyasi aslida bir marta ishlaydi. U `f` funksiyasini qaytaradi.
 
-Keyin, har bir keyingi qo'ng'iroqda `f` o'z parametrini `currentSum` yig'indisiga qo'shadi va o'zini qaytaradi.
+Keyin, har bir keyingi chaqiruvda `f` o'z parametrini `currentSum` yig'indisiga qo'shadi va o'zini qaytaradi.
 
 **`f` ning oxirgi qatorida rekursiya yo‘q.**
 

@@ -27,7 +27,7 @@ Keling, `makeArmy` ichida nima sodir bo'lishini ko'rib chiqaylik va yechim aniq 
 
 3. Massiv funksiyadan qaytariladi.
     
-    Keyin, keyinroq, har qanday a'zoga qo'ng'iroq, masalan. `army[5]()` massivdan `army[5]` elementini oladi (bu funksiya) va uni chaqiradi.
+    Keyin, keyinroq, har qanday a'zoga chaqiruv, masalan. `army[5]()` massivdan `army[5]` elementini oladi (bu funksiya) va uni chaqiradi.
     
     Endi nima uchun bunday funktsiyalarning barchasi bir xil qiymatni ko'rsatadi, `10`?
     

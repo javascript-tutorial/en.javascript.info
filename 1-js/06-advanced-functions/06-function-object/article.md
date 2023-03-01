@@ -7,7 +7,7 @@ JavaScriptdagi har bir qiymat o'z turiga ega. Funktsiya qanday turga kiradi?
 
 JavaScriptda funksiyalar ob'ektlardir.
 
-Funktsiyalarni tasavvur qilishning yaxshi usuli - bu chaqiriladigan "harakat ob'ektlari". Biz ularni nafaqat qo'ng'iroq qilishimiz, balki ularni ob'ekt sifatida ham ko'rib chiqishimiz mumkin: xususiyatlarni qo'shish/o'chirish, ma'lumotnoma orqali o'tish va h.k.
+Funktsiyalarni tasavvur qilishning yaxshi usuli - bu chaqiriladigan "harakat ob'ektlari". Biz ularni nafaqat chaqiruv qilishimiz, balki ularni ob'ekt sifatida ham ko'rib chiqishimiz mumkin: xususiyatlarni qo'shish/o'chirish, ma'lumotnoma orqali o'tish va h.k.
 
 
 ## "Name" xususiyati
@@ -131,7 +131,7 @@ Bu [polymorphism] (https://en.wikipedia.org/wiki/Polymorphism_(computer_science)
 
 Shuningdek, biz o'z xususiyatlarini qo'shishimiz mumkin.
 
-Bu yerda biz umumiy qo'ng'iroqlar sonini kuzatish uchun `counter` xususiyatini qo'shamiz:
+Bu yerda biz umumiy chaqiruvlar sonini kuzatish uchun `counter` xususiyatini qo'shamiz:
 
 ```js run
 function sayHi() {
@@ -299,7 +299,7 @@ sayHi = null;
 welcome(); // Error, ichma-ich sayHi qo'ng'irog'i endi ishlamaydi!
 ```
 
-Buning sababi, funktsiya `sayHi` ni tashqi leksik muhitdan oladi. Mahalliy `sayHi` yo'q, shuning uchun tashqi o'zgaruvchi ishlatiladi. Va qo'ng'iroq paytida tashqi `sayHi` `null` hisoblanadi.
+Buning sababi, funktsiya `sayHi` ni tashqi leksik muhitdan oladi. Mahalliy `sayHi` yo'q, shuning uchun tashqi o'zgaruvchi ishlatiladi. Va chaqiruv paytida tashqi `sayHi` `null` hisoblanadi.
 
 Funktsiya ifodasiga qo'yishimiz mumkin bo'lgan ixtiyoriy nom aynan shu turdagi muammolarni hal qilish uchun mo'ljallangan.
 
@@ -319,7 +319,7 @@ let sayHi = function *!*func*/!*(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Hello, Guest (ichma-ich qo'ng'iroq ishlaydi)
+welcome(); // Hello, Guest (ichma-ich chaqiruv ishlaydi)
 ```
 
 Endi ishlaydi, chunki `"func"` nomi funktsiya-lokaldir. U tashqaridan olinmaydi (va u yerda ko'rinmaydi). Spetsifikatsiya har doim joriy funktsiyaga murojaat qilishini kafolatlaydi.

@@ -220,7 +220,7 @@ Tabiiyki, bu xatti-harakat faqat funksiya deklaratsiyasiga taalluqlidir, bunda b
 
 ### 3-qadam. Ichki va tashqi leksik muhit
 
-Funktsiya ishga tushganda, qo'ng'iroq boshida, qo'ng'iroqning mahalliy o'zgaruvchilari va parametrlarini saqlash uchun avtomatik ravishda yangi Leksik muhit yaratiladi.
+Funktsiya ishga tushganda, chaqiruv boshida, chaqiruvning mahalliy o'zgaruvchilari va parametrlarini saqlash uchun avtomatik ravishda yangi Leksik muhit yaratiladi.
 
 Masalan, `say("John")` uchun u shunday ko'rinadi (bajarish strelka bilan belgilangan qatorda):
 
@@ -286,7 +286,7 @@ Barcha funktsiyalar ular yaratilgan leksik muhitni eslab qoladi. Texnik jihatdan
 
 Demak, `counter.[[Atrof-muhit]]` `{count: 0}` Leksik muhitga havolaga ega. Funktsiya qayerda chaqirilganidan qat'i nazar, qayerda yaratilganligini shunday eslab qoladi. `[[Atrof-muhit]]` mos yozuvi funksiya yaratish vaqtida bir marta va abadiy oʻrnatiladi.
 
-Keyinchalik, `counter()` chaqirilganda, qo'ng'iroq uchun yangi Leksik Muhit yaratiladi va uning tashqi Leksik Muhit havolasi `counter[[Environment]]`dan olinadi:
+Keyinchalik, `counter()` chaqirilganda, chaqiruv uchun yangi Leksik Muhit yaratiladi va uning tashqi Leksik Muhit havolasi `counter[[Environment]]`dan olinadi:
 
 ![](closure-makecounter-nested-call.svg)
 

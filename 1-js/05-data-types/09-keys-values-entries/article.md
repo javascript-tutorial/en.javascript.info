@@ -26,7 +26,7 @@ Farqlarga e'tibor bering (masalan, mapga nisbatan):
 
 |                       | Map            | Object                                     |
 | --------------------- | -------------- | ------------------------------------------ |
-| Qo'ng'iroq sintaksisi | `map.keys()`   | `Object.keys(obj)`, ammo `obj.keys()` emas |
+| chaqiruv sintaksisi | `map.keys()`   | `Object.keys(obj)`, ammo `obj.keys()` emas |
 | Qaytaradi             | takrorlanuvchi | "haqiqiy" Masvic                           |
 
 Birinchi farq shundaki, biz `obj.keys()` emas, balki `Object.keys(obj)` ni chaqirishimiz kerak.

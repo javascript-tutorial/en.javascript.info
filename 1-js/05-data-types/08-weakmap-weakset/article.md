@@ -170,7 +170,7 @@ Endi biz `visitsCountMap` ni tozalashimiz shart emas. `John` ob'ektiga etib bo'l
 
 ## Foydalanish holati: keshlash
 
-Yana bir keng tarqalgan misol keshlashdir. Biz funksiyadan natijalarni ("kesh") saqlashimiz mumkin, shunda bir xil ob'ektga kelajakdagi qo'ng'iroqlar uni qayta ishlatishi mumkin.
+Yana bir keng tarqalgan misol keshlashdir. Biz funksiyadan natijalarni ("kesh") saqlashimiz mumkin, shunda bir xil ob'ektga kelajakdagi chaqiruvlar uni qayta ishlatishi mumkin.
 
 Bunga erishish uchun biz `Map` dan foydalanishimiz mumkin (optimal stsenariy emas):
 

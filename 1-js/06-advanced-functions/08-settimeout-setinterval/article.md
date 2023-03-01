@@ -289,8 +289,8 @@ Server tomonidagi JavaScript uchun bunday cheklov mavjud emas va Node.js uchun [
 - `setTimeout(func, delay, ...args)` va `setInterval(fuc, delay, ...args)` usullari bizga `func` ni bir marta/muntazam ravishda `delay` millisekunddan keyin ishga tushirishga imkon beradi.
 - Amalga oshirishni bekor qilish uchun biz `setTimeout/setInterval` tomonidan qaytarilgan qiymat bilan `clearTimeout/clearInterval` ni chaqirishimiz kerak.
 - Ichma ich `setTimeout` chaqiruvlari `setInterval` ga yanada moslashuvchan muqobil bo'lib, bizga *ijrolar orasidagi* vaqtni aniqroq belgilash imkonini beradi.
-- `setTimeout(func, 0)` (`setTimeout(func)` bilan bir xil) bilan zero delay rejalashtirish qo'ng'iroqni "imkon qadar tezroq, lekin joriy skript tugagandan keyin" rejalashtirish uchun ishlatiladi.
-- Brauzer `setTimeout` yoki `setInterval` uchun (5-qo'ng'iroqdan keyin) besh yoki undan ortiq ichki qo'ng'iroqlar uchun minimal kechikishni 4ms bilan cheklaydi. Bu tarixiy sabablarga ko'ra.
+- `setTimeout(func, 0)` (`setTimeout(func)` bilan bir xil) bilan zero delay rejalashtirish chaqiruvni "imkon qadar tezroq, lekin joriy skript tugagandan keyin" rejalashtirish uchun ishlatiladi.
+- Brauzer `setTimeout` yoki `setInterval` uchun (5-chaqiruvdan keyin) besh yoki undan ortiq ichki chaqiruvlar uchun minimal kechikishni 4ms bilan cheklaydi. Bu tarixiy sabablarga ko'ra.
 
 Shuni esda tutingki, barcha rejalashtirish usullari aniq kechikishga *kafolat* bermaydi.
 

@@ -31,7 +31,7 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 ```
 
-Harflarni saralash `(*)` qatoridagi qo'ng'iroqlar zanjiri orqali amalga oshiriladi.
+Harflarni saralash `(*)` qatoridagi chaqiruvlar zanjiri orqali amalga oshiriladi.
 
 Qulaylik uchun uni bir nechta qatorlarga ajratamiz:
 

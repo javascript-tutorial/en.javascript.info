@@ -6,7 +6,7 @@ muhimlik: 5
 
 `Debounce(f, ms)` dekoratorining natijasi `ms` millisekundlik harakatsizlik (chawiruvlar yo'q, "sovutish davri") bo'lgunga qadar "f" ga chaqiruvlarni to'xtatib turadigan, so'ngra so'nggi argumentlar bilan `f` ni bir marta chaqiradigan o'ramdir. .
 
-Boshqacha qilib aytadigan bo'lsak, `debounce` "telefon qo'ng'iroqlarini" qabul qiladigan kotibga o'xshaydi va `ms` millisekundlar jim bo'lguncha kutadi. Va shundan keyingina u so'nggi qo'ng'iroq ma'lumotlarini "xo'jayin" ga o'tkazadi (haqiqiy `f` ni chaqiradi).
+Boshqacha qilib aytadigan bo'lsak, `debounce` "telefon chaqiruvlarini" qabul qiladigan kotibga o'xshaydi va `ms` millisekundlar jim bo'lguncha kutadi. Va shundan keyingina u so'nggi chaqiruv ma'lumotlarini "xo'jayin" ga o'tkazadi (haqiqiy `f` ni chaqiradi).
 
 Masalan, bizda `f` funksiyasi bor edi va uni `f = debounce(f, 1000)` bilan almashtirdik.
 

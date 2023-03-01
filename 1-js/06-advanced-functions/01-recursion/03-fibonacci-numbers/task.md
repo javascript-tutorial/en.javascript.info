@@ -22,4 +22,4 @@ alert(fib(7)); // 13
 alert(fib(77)); // 5527939700884757
 ```
 
-P.S. Funktsiya tez bo'lishi kerak. `fib(77)` ga qo'ng'iroq qilish soniyaning bir qismidan oshmasligi kerak.
+P.S. Funktsiya tez bo'lishi kerak. `fib(77)` ga chaqiruv qilish soniyaning bir qismidan oshmasligi kerak.

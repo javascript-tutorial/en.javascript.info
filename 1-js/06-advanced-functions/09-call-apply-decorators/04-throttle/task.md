@@ -40,7 +40,7 @@ function f(a) {
   console.log(a);
 }
 
-// f1000 f ga qo'ng'iroqlarni 1000 msda maksimal bir marta o'tkazadi
+// f1000 f ga chaqiruvlarni 1000 msda maksimal bir marta o'tkazadi
 let f1000 = throttle(f, 1000);
 
 f1000(1); // 1 ko'rsatadi

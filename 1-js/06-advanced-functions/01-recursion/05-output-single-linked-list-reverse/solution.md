@@ -71,4 +71,4 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-E'tibor bering, rekursiv yechim aslida xuddi shunday qiladi: u ro'yxatni kuzatib boradi, ichki qo'ng'iroqlar zanjiridagi elementlarni eslab qoladi (bajarish kontekstida) va keyin ularni chiqaradi.
+E'tibor bering, rekursiv yechim aslida xuddi shunday qiladi: u ro'yxatni kuzatib boradi, ichki chaqiruvlar zanjiridagi elementlarni eslab qoladi (bajarish kontekstida) va keyin ularni chiqaradi.
