@@ -222,7 +222,7 @@ Naturally, this behavior only applies to Function Declarations, not Function Exp
 
 When a function runs, at the beginning of the call, a new Lexical Environment is created automatically to store local variables and parameters of the call.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+For instance, for `say("John")`, it looks like this (the execution is at the line labelled with an arrow):
 
 <!--
     ```js
