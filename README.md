@@ -1,39 +1,28 @@
-# The Modern JavaScript Tutorial
+# Mafunzo ya Kisasa ya JavaScript
 
-This repository hosts the English content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+Hii ni hazina inayotunza maudhui ya Kiingereza ya Mafunzo ya Kisasa ya JavaScript yaliyochapishwa kwenye https://javascript.info.
 
-## Translations
+Tafsiri
+Angalia https://javascript.info/translate kwa maelezo zaidi.
 
-We'd like to make the tutorial available in many languages. Please help us to translate.
+Pia tungependa kushirikiana na watu wengine kwenye mafunzo haya.
 
-See <https://javascript.info/translate> for the details.
+Kuna tatizo? Kuna mada inakosekana? Elezea kwa watu, ongeza kama PR 👏
 
-## Contributions
+Unaweza kuhariri maandishi katika mhariri wowote. Mafunzo yanatumia mfumo wa "markdown" ulioimarishwa, rahisi kuelewa. Na ikiwa unataka kuona jinsi inavyoonekana kwenye tovuti, kuna seva ya kuendesha mafunzo kwa upande wa ndani kwenye https://github.com/javascript-tutorial/server.
 
-We'd also like to collaborate on the tutorial with other people.
+Orodha ya wahisani inapatikana kwenye https://javascript.info/about#contributors.
 
-Something's wrong? A topic is missing? Explain it to people, add it as PR 👏
+Muundo
+Kila sura, makala au kazi ina folda yake.
 
-**You can edit the text in any editor.** The tutorial uses an enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+Jina la folda ni kama N-url, ambapo N ni nambari kwa madhumuni ya kupanga na url ni sehemu ya URL na kichwa cha maudhui.
 
-The list of contributors is available at <https://javascript.info/about#contributors>.
+Aina ya vifaa inaamuliwa na faili ndani ya folda:
 
-## Structure
+index.md inawakilisha sura
+article.md inawakilisha makala
+task.md inawakilisha kazi (jibu lazima liwekwe kwenye faili ya solution.md)
+Kila moja ya faili hizi inaanza na # Kichwa Kuu.
 
-Every chapter, article, or task has its folder.
-
-The folder is named like `N-url`, where `N` is a number for the sorting purposes and `URL` is the URL part with the title of the material.
-
-The type of the material is defined by the file inside the folder:
-
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
-
-Each of these files starts from the `# Main header`.
-
-It's very easy to add something new.
-
----  
-♥  
-Ilya Kantor @iliakan
+Ni rahisi sana kuongeza kitu kipya.
