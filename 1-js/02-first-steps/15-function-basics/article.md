@@ -196,7 +196,7 @@ showMessage("Ann");
 
 That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
 
-We can specify the so-called "default" (to use if omitted) value for a parameter in the function declaration, using `=`:
+We can specify the so-called "default" value (to use if omitted) for a parameter in the function declaration, using `=`:
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
