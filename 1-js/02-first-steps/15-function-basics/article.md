@@ -441,7 +441,7 @@ createForm(..)      // creates a form (and usually returns it)
 checkPermission(..) // checks a permission, returns true/false
 ```
 
-With prefixes in place, a glance at a function name gives an understanding what kind of work it does and what kind of value it returns.
+With prefixes in place, a glance at a function name gives an understanding of what kind of work it does and what kind of value it returns.
 
 ```smart header="One function -- one action"
 A function should do exactly what is suggested by its name, no more.
