@@ -290,7 +290,7 @@ Later, when `counter()` is called, a new Lexical Environment is created for the 
 
 ![](closure-makecounter-nested-call.svg)
 
-Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+Now, when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then looks for the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
 
 **A variable is updated in the Lexical Environment where it lives.**
 
