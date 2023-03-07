@@ -375,7 +375,7 @@ But in practice, JavaScript engines try to optimize that. They analyze variable 
 
 Try running the example below in Chrome with the Developer Tools open.
 
-When it pauses, in the console type `alert(value)`.
+When it pauses, type `alert(value)` in the console.
 
 ```js run
 function f() {
