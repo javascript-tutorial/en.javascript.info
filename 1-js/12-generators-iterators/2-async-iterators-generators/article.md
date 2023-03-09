@@ -118,7 +118,7 @@ let range = {
   }
 */!*
 
-})()
+})();
 ```
 
 As we can see, the structure is similar to regular iterators:
