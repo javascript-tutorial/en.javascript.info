@@ -132,7 +132,7 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     *!*false*/!* || alert("printed");
     ```
 
-    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` doesnot run.
 
     Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
