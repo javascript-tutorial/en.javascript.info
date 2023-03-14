@@ -144,7 +144,7 @@ For instance:
 
 The method `elem.closest(css)` looks for the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
 
-In other words, the method `closest` goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned.
+In other words, the method `closest` goes up from the element and checks each of the parents. If it matches the selector, then the search stops, and the ancestor is returned.
 
 For instance:
 
