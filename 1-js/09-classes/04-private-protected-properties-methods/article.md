@@ -148,7 +148,7 @@ let coffeeMachine = new CoffeeMachine(100);
 
 alert(`Power is: ${coffeeMachine.power}W`); // Power is: 100W
 
-coffeeMachine.power = 25; // Error (no setter)
+coffeeMachine.power = 25; // Error (no setter) in strict mode
 ```
 
 ````smart header="Getter/setter functions"
