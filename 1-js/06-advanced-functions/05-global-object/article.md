@@ -48,7 +48,7 @@ window.currentUser = {
 */!*
 
 // somewhere else in code
-alert(currentUser.name);  // John
+alert(currentUser.name); // John
 
 // or, if we have a local variable with the name "currentUser"
 // get it from window explicitly (safe!)
