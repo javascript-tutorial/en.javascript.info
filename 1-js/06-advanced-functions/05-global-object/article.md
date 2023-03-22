@@ -69,7 +69,7 @@ if (!window.Promise) {
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by that environment, but exist in the modern standard.
 
 ```js run
 if (!window.Promise) {
