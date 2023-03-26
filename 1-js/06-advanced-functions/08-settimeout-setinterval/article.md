@@ -98,7 +98,7 @@ clearTimeout(timerId);
 alert(timerId); // same identifier (doesn't become null after canceling)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
+As we can see from the `alert` output in our browser, the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
 
 Again, there is no universal specification for these methods, so that's fine.
 
