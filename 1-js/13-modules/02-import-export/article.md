@@ -63,7 +63,7 @@ export {sayHi, sayBye}; // a list of exported variables
 
 ...Or, technically we could put `export` above functions as well.
 
-## Import *
+## Import "*"
 
 Usually, we put a list of what to import in curly braces `import {...}`, like this:
 
@@ -99,7 +99,7 @@ Well, there are few reasons.
 ```smart header="Don't be afraid to import too much"
 Modern build tools, such as [webpack](https://webpack.js.org/) and others, bundle modules together and optimize them to speedup loading. They also removed unused imports.
 
-For instance, if you `import * as library` from a huge code library, and then use only few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimzed bundle.
+For instance, if you `import * as library` from a huge code library, and then use only few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimized bundle.
 ```
 
 ## Import "as"
