@@ -208,7 +208,7 @@ Did you notice?
 
 That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
 
-It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
+It is possible that `func`'s execution to be longer than we expected and take more than 100ms.
 
 In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
 
