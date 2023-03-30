@@ -279,9 +279,9 @@ First timers run immediately (just as written in the spec), and then we see `9, 
 
 The same thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+This limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
+For server-side JavaScript, this limitation does not exist, and there are other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
 ````
 
 ## Summary
