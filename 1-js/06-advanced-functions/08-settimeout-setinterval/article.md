@@ -258,7 +258,7 @@ There are also advanced browser-related use cases of zero-delay timeout, that we
 ````smart header="Zero delay is in fact not zero (in a browser)"
 In the browser, there's a limitation for how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
 
-Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each iteration remembers the real time interval between calls in the `times` array. What do the real delays look like? Let's see:
 
 ```js run
 let start = Date.now();
