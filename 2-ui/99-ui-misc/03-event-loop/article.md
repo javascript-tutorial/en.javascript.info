@@ -115,7 +115,7 @@ A single run of `count` does a part of the job `(*)`, and then re-schedules itse
 
 Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to the event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react to other user actions.
 
-The notable thing is that, when we split the job by `setTimeout`, the overall execution time increases. To reduce it, let's make an improvement.
+The notable thing is that, when we split the job by `setTimeout`, the overall execution time increases considerably. To reduce it, let's make an improvement.
 
 We'll move the scheduling to the beginning of the `count()`:
 
