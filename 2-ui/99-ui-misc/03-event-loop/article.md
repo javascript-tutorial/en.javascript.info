@@ -1,7 +1,7 @@
 
 # Event loop: microtasks and macrotasks
 
-Browser JavaScript execution flow, as well as in Node.js, is based on an *event loop*.
+JavaScript execution flow in browser, as well as Node.js, is based on an *event loop*.
 
 Understanding how event loop works is important for optimizations, and sometimes for the right architecture.
 
@@ -117,7 +117,7 @@ Now, if a new side task (e.g. `onclick` event) appears while the engine is busy 
 
 The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's not much difference in the overall counting time.
 
-To make them closer, let's make an improvement.
+To make them even closer, let's make an improvement.
 
 We'll move the scheduling to the beginning of the `count()`:
 
