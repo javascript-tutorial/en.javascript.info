@@ -308,7 +308,7 @@ alert(height); // 200
 
 Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
 
-In the code below `prompt` asks for `width`, but not for `title`:
+In the code below, `prompt` asks for `width`, but not for `title`:
 
 ```js run
 let options = {
@@ -420,7 +420,7 @@ alert( title ); // Menu
 
 If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
+In the code below, `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
 
 ```js run
 let options = {
