@@ -328,7 +328,7 @@ alert( "Wid*!*get*/!*".endsWith("get") ); // true, "Widget" ends with "get"
 
 There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
 
-`str.slice(start [, end])`
+`str.slice(start, end)`
 : Returns the part of the string from `start` to (but not including) `end`.
 
     For instance:
@@ -355,7 +355,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     alert( str.slice(-4, -1) ); // 'gif'
     ```
 
-`str.substring(start [, end])`
+`str.substring(start, end)`
 : Returns the part of the string *between* `start` and `end` (not including `end`).
 
     This is almost the same as `slice`, but it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
@@ -377,7 +377,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
 
     Negative arguments are (unlike slice) not supported, they are treated as `0`.
 
-`str.substr(start [, length])`
+`str.substr(start, length)`
 : Returns the part of the string from `start`, with the given `length`.
 
     In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
