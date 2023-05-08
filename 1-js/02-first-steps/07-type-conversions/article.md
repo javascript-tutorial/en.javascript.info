@@ -93,8 +93,8 @@ It happens in logical operations (later we'll meet condition tests and other sim
 
 The conversion rule:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
-- Other values become `true`.
+- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`. These are commonly referred to as *[truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy)* values.
+- Other values become `true`. These are referred to as *[falsy](https://developer.mozilla.org/en-US/docs/Glossary/Falsy)* values.
 
 For instance:
 
