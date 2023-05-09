@@ -195,7 +195,7 @@ Assign a handler to `elem.onclick`, not `elem.ONCLICK`, because DOM properties a
 
 ## addEventListener
 
-The fundamental problem of the aforementioned ways to assign handlers is that we *can't assign multiple handlers to one event*.
+The fundamental problem of the before mentioned ways to assign handlers is that we *can't assign multiple handlers to one event*.
 
 Let's say, one part of our code wants to highlight a button on click, and another one wants to show a message on the same click.
 
