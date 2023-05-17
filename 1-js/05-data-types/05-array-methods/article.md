@@ -735,6 +735,17 @@ If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin
 
 A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The latter is used more often, as it's a bit easier to understand for most people.
 
+````smart header="Preserving `this` when passing function property as arguments"
+For beginners, it is easy to be confused as to why, even though we pass `army.canJoin` into `users.filter`, we still lose the context of `army` for `this`.
+
+We have to remind ourselves that when we pass a function as an argument, it is renamed to match the function's parameter name. This means that our `army.canJoin` becomes a variable named `cb` (or some other name) internally.
+
+When `cb()` runs, there is no reference to `army` preceding it. Thus 'this' become undefined (under strict mode). To address this contextual problem, we can use `thisArg` to make necessary adjustments. Alternatively, wrapping a function around `army.canJoin` will also preserve our original signature, as shown above.
+
+To gain a better understanding of how something like `thisArg` works behind the scenes, refer to the [Function binding](info:bind) chapter.
+
+````
+
 ## Summary
 
 A cheat sheet of array methods:
