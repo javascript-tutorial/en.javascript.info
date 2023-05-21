@@ -441,7 +441,7 @@ createForm(..)      // creates a form (and usually returns it)
 checkPermission(..) // checks a permission, returns true/false
 ```
 
-With prefixes in place, a glance at a function name gives an understanding what kind of work it does and what kind of value it returns.
+With prefixes in place, a glance at a function name gives an understanding of what kind of work it does and what kind of value it returns.
 
 ```smart header="One function -- one action"
 A function should do exactly what is suggested by its name, no more.
@@ -532,7 +532,7 @@ It is always easier to understand a function which gets parameters, works with t
 
 Function naming:
 
-- A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
+- A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding of what it does and returns.
 - A function is an action, so function names are usually verbal.
 - There exist many well-known function prefixes like `create…`, `show…`, `get…`, `check…` and so on. Use them to hint what a function does.
 
