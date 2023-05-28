@@ -593,7 +593,7 @@ Arguments:
 - `index` -- is its position.
 - `array` -- is the array.
 
-As function is applied, the result of the previous function call is passed to the next one as the first argument.
+As the function is applied, the result of the previous function call is passed to the next one as the first argument.
 
 So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
 
