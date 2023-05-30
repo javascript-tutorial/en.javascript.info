@@ -228,7 +228,7 @@ We could also make line `(*)` shorter:
 let obj = Object.fromEntries(map); // omit .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns the same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
 
 ## Set
 
