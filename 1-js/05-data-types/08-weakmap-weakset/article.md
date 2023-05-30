@@ -240,7 +240,7 @@ let result2 = process(obj);
 obj = null;
 
 // Can't get cache.size, as it's a WeakMap,
-// but it's 0 or soon be 0
+// but it's 0 or will soon be 0
 // When obj gets garbage collected, cached data will be removed as well
 ```
 
@@ -284,12 +284,12 @@ The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterati
 
 ## Summary
 
-[`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) is `Map`-like collection that allows only objects as keys and removes them together with associated value once they become inaccessible by other means.
+[`WeakMap`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) is a `Map`-like collection that allows only objects as keys and removes them together with associated values once they become inaccessible by other means.
 
-[`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) is `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
+[`WeakSet`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet) is a `Set`-like collection that stores only objects and removes them once they become inaccessible by other means.
 
-Their main advantages are that they have weak reference to objects, so they can easily be removed by garbage collector.
+Their main advantages are that they have weak references to objects, so they can easily be removed by the garbage collector.
 
-That comes at the cost of not having support for `clear`, `size`, `keys`, `values`...
+That comes at the cost of not having support for `clear`, `size`, `keys`, `values`, etc.
 
 `WeakMap` and `WeakSet` are used as "secondary" data structures in addition to the "primary" object storage. Once the object is removed from the primary storage, if it is only found as the key of `WeakMap` or in a `WeakSet`, it will be cleaned up automatically.
