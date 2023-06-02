@@ -80,7 +80,7 @@ For example, to calculate `pow(2, 4)` the recursive variant does these steps:
 3. `pow(2, 2) = 2 * pow(2, 1)`
 4. `pow(2, 1) = 2`
 
-So, the recursion reduces a function call to a simpler one, and then -- to even more simpler, and so on, until the result becomes obvious.
+So, the recursion reduces a function call to a simpler one, and then -- to an even simpler one, and so on, until the result becomes obvious.
 
 ````smart header="Recursion is usually shorter"
 A recursive solution is usually shorter than an iterative one.
@@ -96,9 +96,9 @@ function pow(x, n) {
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+The maximal recursion depth is limited by the JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
 
-That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
+That limits the application of recursion, but it still remains very wide. There are many tasks where a recursive way of thinking gives simpler, easily maintainable code.
 
 ## The execution context and stack
 
@@ -106,7 +106,7 @@ Now let's examine how recursive calls work. For that we'll look under the hood o
 
 The information about the process of execution of a running function is stored in its *execution context*.
 
-The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
+The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and a few other internal details.
 
 One function call has exactly one execution context associated with it.
 
@@ -381,7 +381,7 @@ Here's the diagram of calls:
 
 ![recursive salaries](recursive-salaries.svg)
 
-We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
+We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate results.
 
 Note that the code uses smart features that we've covered before:
 
