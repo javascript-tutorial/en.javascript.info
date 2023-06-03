@@ -29,7 +29,7 @@ Function declarations have the same effect (statements with `function` keyword i
 
 Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
 
-If we used `let` instead, such thing wouldn't happen:
+If we used `let` instead, this behavior wouldn't happen:
 
 ```js run untrusted refresh
 let gLet = 5;
@@ -55,7 +55,7 @@ alert(currentUser.name);  // John
 alert(window.currentUser.name); // John
 ```
 
-That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces an "output" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
 
 ## Using for polyfills
 
