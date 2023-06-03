@@ -43,18 +43,18 @@ The engine applies optimizations at each step of the process. It even watches th
 
 ## What can in-browser JavaScript do?
 
-Modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or the CPU, because it was initially created for browsers which do not require it.
+Modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or the CPU, because it was initially created for browsers that do not require it.
 
 JavaScript's capabilities greatly depend on the environment it's running in. For instance, [Node.js](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
 
 In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver.
 
-For instance, in-browser JavaScript is able to:
+For instance, in-browser JavaScript can:
 
-- Add new HTML to the page, change the existing content, modify styles.
-- React to user actions, run on mouse clicks, pointer movements, key presses.
+- Add new HTML to the page, change the existing content, and modify styles.
+- React to user actions, run on mouse clicks, pointer movements, and key presses.
 - Send requests over the network to remote servers, download and upload files (so-called [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) and [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) technologies).
-- Get and set cookies, ask questions to the visitor, show messages.
+- Get and set cookies, ask questions to the visitor, and show messages.
 - Remember the data on the client-side ("local storage").
 
 ## What CAN'T in-browser JavaScript do?
@@ -98,7 +98,7 @@ That said, JavaScript can be used to create servers, mobile applications, etc.
 
 The syntax of JavaScript does not suit everyone's needs. Different people want different features.
 
-That's to be expected, because projects and requirements are different for everyone.
+That's to be expected because projects and requirements are different for everyone.
 
 So, recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
 
