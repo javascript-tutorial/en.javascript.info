@@ -17,7 +17,7 @@ If you haven't selected an IDE yet, consider the following options:
 
 For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+Many IDEs are paid but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
 
 ## Lightweight editors
 
@@ -25,7 +25,7 @@ Many IDEs are paid, but have a trial period. Their cost is usually negligible co
 
 They are mainly used to open and edit a file instantly.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data at the start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
 
 In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
 
@@ -46,4 +46,4 @@ The choice of an editor, like any other tool, is individual and depends on your 
 The author's personal opinion:
 
 - I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
-- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
+- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or JetBrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
