@@ -95,7 +95,7 @@ alert(user.surname); // Smith
 ````
 
 ````smart header="Looping with .entries()"
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+In the previous chapter we saw the [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) method.
 
 We can use it with destructuring to loop over keys-and-values of an object:
 
