@@ -19,9 +19,9 @@ Plain objects also support similar methods, but the syntax is a bit different.
 
 For plain objects, the following methods are available:
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- returns an array of keys.
-- [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
-- [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
+- [Object.keys(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) -- returns an array of keys.
+- [Object.values(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values) -- returns an array of values.
+- [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) -- returns an array of `[key, value]` pairs.
 
 Please note the distinctions (compared to map for example):
 
@@ -66,7 +66,7 @@ for (let value of Object.values(user)) {
 ```warn header="Object.keys/values/entries ignore symbolic properties"
 Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
+Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys) that returns *all* keys.
 ```
 
 
