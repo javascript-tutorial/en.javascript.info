@@ -201,7 +201,7 @@ alert( arr.concat(arrayLike) ); // 1,2,something,else
 
 ## Iterate: forEach
 
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+The [arr.forEach](mdn:js/Array/forEach) method allows us to run a function for every element of the array.
 
 The syntax:
 ```js
@@ -468,7 +468,7 @@ The algorithm may compare an element with multiple others in the process, but it
 ````smart header="A comparison function may return any number"
 Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
 
-That allows to write shorter functions:
+That allows us to write shorter functions:
 
 ```js run
 let arr = [ 1, 2, 15 ];
@@ -593,7 +593,7 @@ Arguments:
 - `index` -- is its position.
 - `array` -- is the array.
 
-As function is applied, the result of the previous function call is passed to the next one as the first argument.
+As the function is applied, the result of the previous function call is passed to the next one as the first argument.
 
 So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
 

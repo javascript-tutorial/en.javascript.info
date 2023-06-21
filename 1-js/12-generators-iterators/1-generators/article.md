@@ -2,11 +2,11 @@
 
 Regular functions return only one, single value (or nothing).
 
-Generators can return ("yield") multiple values, one after another, on-demand. They work great with [iterables](info:iterable), allowing to create data streams with ease.
+Generators can return ("yield") multiple values, one after another, on-demand. They work great with [iterables](info:iterable), allowing us to create data streams with ease.
 
 ## Generator functions
 
-To create a generator, we need a special syntax construct: `function*`, so-called "generator function".
+To create a generator, we need a special syntax construct: `function*`, the so-called "generator function".
 
 It looks like this:
 
@@ -18,7 +18,7 @@ function* generateSequence() {
 }
 ```
 
-Generator functions behave differently from regular ones. When such function is called, it doesn't run its code. Instead it returns a special object, called "generator object", to manage the execution.
+Generator functions behave differently from regular ones. When such a function is called, it doesn't run its code. Instead it returns a special object, called "generator object", to manage the execution.
 
 Here, take a look:
 
@@ -222,12 +222,12 @@ The variant with a generator is much more concise than the original iterable cod
 ```smart header="Generators may generate values forever"
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
 
-That surely would require a `break` (or `return`) in `for..of` over such generator. Otherwise, the loop would repeat forever and hang.
+That surely would require a `break` (or `return`) in `for..of` over such a generator. Otherwise, the loop would repeat forever and hang.
 ```
 
 ## Generator composition
 
-Generator composition is a special feature of generators that allows to transparently "embed" generators in each other.
+Generator composition is a special feature of generators that allows us to transparently "embed" generators in each other.
 
 For instance, we have a function that generates a sequence of numbers:
 

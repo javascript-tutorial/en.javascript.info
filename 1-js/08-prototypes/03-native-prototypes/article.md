@@ -187,7 +187,7 @@ Another possibility is to inherit by setting `obj.__proto__` to `Array.prototype
 
 But that's impossible if `obj` already inherits from another object. Remember, we only can inherit from one object at a time.
 
-Borrowing methods is flexible, it allows to mix functionalities from different objects if needed.
+Borrowing methods is flexible, it allows us to mix functionalities from different objects if needed.
 
 ## Summary
 

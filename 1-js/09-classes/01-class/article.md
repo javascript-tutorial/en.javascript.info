@@ -86,7 +86,7 @@ alert(typeof User); // function
 
 What `class User {...}` construct really does is:
 
-1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
+1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write this method).
 2. Stores class methods, such as `sayHi`, in `User.prototype`.
 
 After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
@@ -267,7 +267,7 @@ alert(user.name); // John
 user = new User(""); // Name is too short.
 ```
 
-Technically, such class declaration works by creating getters and setters in `User.prototype`.
+Technically, this class declaration works by creating getters and setters in `User.prototype`.
 
 ## Computed names [...]
 
@@ -297,7 +297,7 @@ Class fields are a recent addition to the language.
 
 Previously, our classes only had methods.
 
-"Class fields" is a syntax that allows to add any properties.
+"Class fields" is a syntax that allows us to add any properties.
 
 For instance, let's add `name` property to `class User`:
 

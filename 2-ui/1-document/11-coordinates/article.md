@@ -5,7 +5,7 @@ To move elements around we should be familiar with coordinates.
 Most JavaScript methods deal with one of two coordinate systems:
 
 1. **Relative to the window** - similar to `position:fixed`, calculated from the window top/left edge.
-    - we'll denote these coordinates as `clientX/clientY`, the reasoning for such name will become clear later, when we study event properties.
+    - we'll denote these coordinates as `clientX/clientY`, the reasoning for this name will become clear later, when we study event properties.
 2. **Relative to the document** - similar to `position:absolute` in the document root, calculated from the document top/left edge.
     - we'll denote them `pageX/pageY`.
 

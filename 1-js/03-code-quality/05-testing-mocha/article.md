@@ -86,7 +86,7 @@ The first step is already complete: we have an initial spec for `pow`. Now, befo
 Here in the tutorial we'll be using the following JavaScript libraries for tests:
 
 - [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
-- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows us to use a lot of different assertions, for now we need only `assert.equal`.
 - [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
 
 These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.

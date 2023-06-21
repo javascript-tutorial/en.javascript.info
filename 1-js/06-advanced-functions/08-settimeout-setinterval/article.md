@@ -27,7 +27,7 @@ Usually, that's a function. For historical reasons, a string of code can be pass
 : The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
 
 `arg1`, `arg2`...
-: Arguments for the function
+: Arguments for the function.
 
 For instance, this code calls `sayHi()` after one second:
 
@@ -61,7 +61,7 @@ So, this will also work:
 setTimeout("alert('Hello')", 1000);
 ```
 
-But using strings is not recommended, use arrow functions instead of them, like this:
+But using strings is not recommended, use arrow functions instead:
 
 ```js run no-beautify
 setTimeout(() => alert('Hello'), 1000);
@@ -177,7 +177,7 @@ let timerId = setTimeout(function request() {
 
 And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
 
-**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+**Nested `setTimeout` allows us to set the delay between the executions more precisely than `setInterval`.**
 
 Let's compare two code fragments. The first one uses `setInterval`:
 

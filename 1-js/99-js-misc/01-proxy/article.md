@@ -41,7 +41,7 @@ As we can see, without any traps, `proxy` is a transparent wrapper around `targe
 
 ![](proxy.svg)
 
-`Proxy` is a special "exotic object". It doesn't have own properties. With an empty `handler` it transparently forwards operations to `target`.
+`Proxy` is a special "exotic object". It doesn't have its own properties. With an empty `handler` it transparently forwards operations to `target`.
 
 To activate more capabilities, let's add traps.
 
@@ -93,7 +93,7 @@ The most common traps are for reading/writing properties.
 
 To intercept reading, the `handler` should have a method `get(target, property, receiver)`.
 
-It triggers when a property is read, with following arguments:
+It triggers when a property is read, with the following arguments:
 
 - `target` -- is the target object, the one passed as the first argument to `new Proxy`,
 - `property` -- property name,
@@ -341,7 +341,7 @@ alert(user._password); // secret
 Let's use proxies to prevent any access to properties starting with `_`.
 
 We'll need the traps:
-- `get` to throw an error when reading such property,
+- `get` to throw an error when reading such a property,
 - `set` to throw an error when writing,
 - `deleteProperty` to throw an error when deleting,
 - `ownKeys` to exclude properties starting with `_` from `for..in` and methods like `Object.keys`.
@@ -969,7 +969,7 @@ Initially, `revoke` is separate from `proxy`, so that we can pass `proxy` around
 
 We can also bind `revoke` method to proxy by setting `proxy.revoke = revoke`.
 
-Another option is to create a `WeakMap` that has `proxy` as the key and the corresponding `revoke` as the value, that allows to easily find `revoke` for a proxy:
+Another option is to create a `WeakMap` that has `proxy` as the key and the corresponding `revoke` as the value, that allows us to easily find `revoke` for a proxy:
 
 ```js run
 *!*
@@ -1024,7 +1024,7 @@ That allows us to create "virtual" properties and methods, implement default val
 
 We can also wrap an object multiple times in different proxies, decorating it with various aspects of functionality.
 
-The [Reflect](mdn:/JavaScript/Reference/Global_Objects/Reflect) API is designed to complement [Proxy](mdn:/JavaScript/Reference/Global_Objects/Proxy). For any `Proxy` trap, there's a `Reflect` call with same arguments. We should use those to forward calls to target objects.
+The [Reflect](mdn:/JavaScript/Reference/Global_Objects/Reflect) API is designed to complement [Proxy](mdn:/JavaScript/Reference/Global_Objects/Proxy). For any `Proxy` trap, there's a `Reflect` call with the same arguments. We should use those to forward calls to target objects.
 
 Proxies have some limitations:
 

@@ -227,7 +227,7 @@ try {
 }
 ```
 
-Here we use the `catch` block only to show the message, but we can do much more: send a new network request, suggest an alternative to the visitor, send information about the error to a logging facility, ... . All much better than just dying.
+Here we use the `catch` block only to show the message, but we can do much more: send a new network request, suggest an alternative to the visitor, send information about the error to a logging facility, and more. All much better than just dying.
 
 ## Throwing our own errors
 
@@ -264,7 +264,7 @@ The syntax is:
 throw <error object>
 ```
 
-Technically, we can use anything as an error object. That may be even a primitive, like a number or a string, but it's better to use objects, preferably with `name` and `message` properties (to stay somewhat compatible with built-in errors).
+Technically, we can use anything as an error object. That may even be a primitive, like a number or a string, but it's better to use objects, preferably with `name` and `message` properties (to stay somewhat compatible with built-in errors).
 
 JavaScript has many built-in constructors for standard errors: `Error`, `SyntaxError`, `ReferenceError`, `TypeError` and others. We can use them to create error objects as well.
 
@@ -489,7 +489,7 @@ The code has two ways of execution:
 1. If you answer "Yes" to "Make an error?", then `try -> catch -> finally`.
 2. If you say "No", then `try -> finally`.
 
-The `finally` clause is often used when we start doing something and want to finalize it in any case of outcome.
+The `finally` clause is often used when we start doing something and want to finalize it regardless of the outcome.
 
 For instance, we want to measure the time that a Fibonacci numbers function `fib(n)` takes. Naturally, we can start measuring before it runs and finish afterwards. But what if there's an error during the function call? In particular, the implementation of `fib(n)` in the code below returns an error for negative or non-integer numbers.
 
@@ -643,7 +643,7 @@ They work like this:
 
 ## Summary
 
-The `try...catch` construct allows to handle runtime errors. It literally allows to "try" running the code and "catch" errors that may occur in it.
+The `try...catch` construct allows us to handle runtime errors. It literally allows us to "try" running the code and "catch" errors that may occur in it.
 
 The syntax is:
 
@@ -660,7 +660,7 @@ try {
 
 There may be no `catch` section or no `finally`, so shorter constructs `try...catch` and `try...finally` are also valid.
 
-Error objects have following properties:
+Error objects have the following properties:
 
 - `message` -- the human-readable error message.
 - `name` -- the string with error name (error constructor name).

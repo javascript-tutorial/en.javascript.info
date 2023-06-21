@@ -131,7 +131,7 @@ alert(document.cookie); // has cookie user=John
 
 For historical reasons, `domain=.site.com` (with a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation and should be used if we need to support very old browsers.
 
-To summarize, the `domain` option allows to make a cookie accessible at subdomains.
+To summarize, the `domain` option allows us to make a cookie accessible at subdomains.
 
 ## expires, max-age
 

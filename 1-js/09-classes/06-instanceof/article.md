@@ -1,6 +1,6 @@
 # Class checking: "instanceof"
 
-The `instanceof` operator allows to check whether an object belongs to a certain class. It also takes inheritance into account.
+The `instanceof` operator allows us to check whether an object belongs to a certain class. It also takes inheritance into account.
 
 Such a check may be necessary in many cases. For example, it can be used for building a *polymorphic* function, the one that treats arguments differently depending on their type.
 
@@ -126,7 +126,7 @@ alert( rabbit instanceof Rabbit ); // false
 
 ## Bonus: Object.prototype.toString for the type
 
-We already know that plain objects are converted to string as `[object Object]`:
+We already know that plain objects are converted to strings as `[object Object]`:
 
 ```js run
 let obj = {};

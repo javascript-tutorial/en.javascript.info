@@ -61,15 +61,15 @@ Settings for `params`:
   - `toolbar` (yes/no) -- shows or hides the browser navigation bar (back, forward, reload etc) on the new window.
   - `location` (yes/no) -- shows or hides the URL field in the new window. FF and IE don't allow to hide it by default.
   - `status` (yes/no) -- shows or hides the status bar. Again, most browsers force it to show.
-  - `resizable` (yes/no) -- allows to disable the resize for the new window. Not recommended.
-  - `scrollbars` (yes/no) -- allows to disable the scrollbars for the new window. Not recommended.
+  - `resizable` (yes/no) -- allows us to disable the resize for the new window. Not recommended.
+  - `scrollbars` (yes/no) -- allows us to disable the scrollbars for the new window. Not recommended.
 
 
 There is also a number of less supported browser-specific features, which are usually not used. Check <a href="https://developer.mozilla.org/en/DOM/window.open">window.open in MDN</a> for examples.
 
 ## Example: a minimalistic window
 
-Let's open a window with minimal set of features, just to see which of them browser allows to disable:
+Let's open a window with minimal set of features, just to see which of them browser allows us to disable:
 
 ```js run
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,

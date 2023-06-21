@@ -7,7 +7,7 @@ That is "a must" practice in developing anything more complex than a "hello worl
 
 To understand this, let's break away from development and turn our eyes into the real world.
 
-Usually, devices that we're using are quite complex. But delimiting the internal interface from the external one allows to use them without problems.
+Usually, devices that we're using are quite complex. But delimiting the internal interface from the external one allows us to use them without problems.
 
 ## A real-life example
 
@@ -263,7 +263,7 @@ class MegaCoffeeMachine extends CoffeeMachine {
 }
 ```
 
-In many scenarios such limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
+In many scenarios this limitation is too severe. If we extend a `CoffeeMachine`, we may have legitimate reasons to access its internals. That's why protected fields are used more often, even though they are not supported by the language syntax.
 
 ````warn header="Private fields are not available as this[name]"
 Private fields are special.
@@ -303,7 +303,7 @@ Supportable
 
     **If we strictly delimit the internal interface, then the developer of the class can freely change its internal properties and methods, even without informing the users.**
 
-    If you're a developer of such class, it's great to know that private methods can be safely renamed, their parameters can be changed, and even removed, because no external code depends on them.
+    If you're a developer of such a class, it's great to know that private methods can be safely renamed, their parameters can be changed, and even removed, because no external code depends on them.
 
     For users, when a new version comes out, it may be a total overhaul internally, but still simple to upgrade if the external interface is the same.
 

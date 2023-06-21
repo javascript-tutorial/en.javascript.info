@@ -18,7 +18,7 @@ let controller = new AbortController();
 A controller is an extremely simple object.
 
 - It has a single method `abort()`,
-- And a single property `signal` that allows to set event listeners on it.
+- And a single property `signal` that allows us to set event listeners on it.
 
 When `abort()` is called:
 - `controller.signal` emits the `"abort"` event.
@@ -97,7 +97,7 @@ try {
 
 ## AbortController is scalable
 
-`AbortController` is scalable. It allows to cancel multiple fetches at once.
+`AbortController` is scalable. It allows us to cancel multiple fetches at once.
 
 Here's a sketch of code that fetches many `urls` in parallel, and uses a single controller to abort them all:
 

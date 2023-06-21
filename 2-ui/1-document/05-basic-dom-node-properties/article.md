@@ -221,7 +221,7 @@ In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
 
 ## innerHTML: the contents
 
-The [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) property allows to get the HTML inside the element as a string.
+The [innerHTML](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) property allows us to get the HTML inside the element as a string.
 
 We can also modify it. So it's one of the most powerful ways to change the page.
 
@@ -342,7 +342,7 @@ So what happened in `div.outerHTML=...` is:
 - Another piece of HTML `<p>A new element</p>` was inserted in its place.
 - `div` still has its old value. The new HTML wasn't saved to any variable.
 
-It's so easy to make an error here: modify `div.outerHTML` and then continue to work with `div` as if it had the new content in it. But it doesn't. Such thing is correct for `innerHTML`, but not for `outerHTML`.
+It's so easy to make an error here: modify `div.outerHTML` and then continue to work with `div` as if it had the new content in it. But it doesn't. Such a thing is correct for `innerHTML`, but not for `outerHTML`.
 
 We can write to `elem.outerHTML`, but should keep in mind that it doesn't change the element we're writing to ('elem'). It puts the new HTML in its place instead. We can get references to the new elements by querying the DOM.
 
@@ -406,7 +406,7 @@ As we can see, only text is returned, as if all `<tags>` were cut out, but the t
 
 In practice, reading such text is rarely needed.
 
-**Writing to `textContent` is much more useful, because it allows to write text the "safe way".**
+**Writing to `textContent` is much more useful, because it allows us to write text the "safe way".**
 
 Let's say we have an arbitrary string, for instance entered by a user, and want to show it.
 

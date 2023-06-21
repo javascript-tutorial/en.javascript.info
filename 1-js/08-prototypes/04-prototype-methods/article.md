@@ -72,7 +72,7 @@ This call makes a truly exact copy of `obj`, including all properties: enumerabl
 
 ## Brief history
 
-There're so many ways to manage `[[Prototype]]`. How did that happen? Why?
+There are so many ways to manage `[[Prototype]]`. How did that happen? Why?
 
 That's for historical reasons.
 
@@ -116,13 +116,13 @@ alert(obj[key]); // [object Object], not "some value"!
 
 Here, if the user types in `__proto__`, the assignment in line 4 is ignored!
 
-That could surely be surprising for a non-developer, but pretty understandable for us. The `__proto__` property is special: it must be either an object or `null`. A string can not become a prototype. That's why an assignment a string to `__proto__` is ignored.
+That could surely be surprising for a non-developer, but pretty understandable for us. The `__proto__` property is special: it must be either an object or `null`. A string can not become a prototype. That's why an assignment of string to `__proto__` is ignored.
 
 But we didn't *intend* to implement such behavior, right? We want to store key/value pairs, and the key named `"__proto__"` was not properly saved. So that's a bug!
 
 Here the consequences are not terrible. But in other cases we may be storing objects instead of strings in `obj`, and then the prototype will indeed be changed. As a result, the execution will go wrong in totally unexpected ways.
 
-What's worse -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
+What's worse -- usually developers do not think about such a possibility at all. That makes such bugs hard to notice and even turns them into vulnerabilities, especially when JavaScript is used on the server-side.
 
 Unexpected things also may happen when assigning to `obj.toString`, as it's a built-in object method.
 
@@ -200,8 +200,8 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 
 - To create an object with the given prototype, use:
 
-    - literal syntax: `{ __proto__: ... }`, allows to specify multiple properties
-    - or [Object.create(proto, [descriptors])](mdn:js/Object/create), allows to specify property descriptors.
+    - literal syntax: `{ __proto__: ... }`, allows us to specify multiple properties
+    - or [Object.create(proto, [descriptors])](mdn:js/Object/create), allows us to specify property descriptors.
 
     The `Object.create` provides an easy way to shallow-copy an object with all descriptors:
 

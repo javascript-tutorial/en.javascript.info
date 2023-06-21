@@ -1,7 +1,7 @@
 
 # Sticky flag "y", searching at position
 
-The flag `pattern:y` allows to perform the search at the given position in the source string.
+The flag `pattern:y` allows us to perform the search at the given position in the source string.
 
 To grasp the use case of `pattern:y` flag, and better understand the ways of regexps, let's explore a practical example.
 

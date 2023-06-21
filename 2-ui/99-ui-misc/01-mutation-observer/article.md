@@ -3,7 +3,7 @@
 
 `MutationObserver` is a built-in object that observes a DOM element and fires a callback when it detects a change.
 
-We'll first take a look at the syntax, and then explore a real-world use case, to see where such thing may be useful.
+We'll first take a look at the syntax, and then explore a real-world use case, to see where such a thing may be useful.
 
 ## Syntax
 
@@ -28,7 +28,7 @@ observer.observe(node, config);
 - `attributeFilter` -- an array of attribute names, to observe only selected ones.
 - `characterData` -- whether to observe `node.data` (text content),
 
-Few other options:
+A few other options:
 - `attributeOldValue` -- if `true`, pass both the old and the new value of attribute to callback (see below), otherwise only the new one (needs `attributes` option),
 - `characterDataOldValue` -- if `true`, pass both the old and the new value of `node.data` to callback (see below), otherwise only the new one (needs `characterData` option).
 
@@ -95,11 +95,11 @@ mutationRecords = [{
 }];
 ```
 
-So, `MutationObserver` allows to react on any changes within DOM subtree.
+So, `MutationObserver` allows us to react on any changes within DOM subtree.
 
 ## Usage for integration
 
-When such thing may be useful?
+When may such a thing be useful?
 
 Imagine the situation when you need to add a third-party script that contains useful functionality, but also does something unwanted, e.g. shows ads `<div class="ads">Unwanted ads</div>`.
 
@@ -109,15 +109,15 @@ Using `MutationObserver`, we can detect when the unwanted element appears in our
 
 There are other situations when a third-party script adds something into our document, and we'd like to detect, when it happens, to adapt our page, dynamically resize something etc.
 
-`MutationObserver` allows to implement this.
+`MutationObserver` allows us to implement this.
 
 ## Usage for architecture
 
-There are also situations when `MutationObserver` is good from architectural standpoint.
+There are also situations when `MutationObserver` is good from an architectural standpoint.
 
 Let's say we're making a website about programming. Naturally, articles and other materials may contain source code snippets.
 
-Such snippet in an HTML markup looks like this:
+Such a snippet in an HTML markup looks like this:
 
 ```html
 ...
@@ -128,7 +128,7 @@ Such snippet in an HTML markup looks like this:
 ...
 ```
 
-For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for above snippet in Prism, `Prism.highlightElem(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
+For better readability and at the same time, to beautify it, we'll be using a JavaScript syntax highlighting library on our site, like [Prism.js](https://prismjs.com/). To get syntax highlighting for the above snippet in Prism, `Prism.highlightElem(pre)` is called, which examines the contents of such `pre` elements and adds special tags and styles for colored syntax highlighting into those elements, similar to what you see in examples here, on this page.
 
 When exactly should we run that highlighting method? Well, we can do it on `DOMContentLoaded` event, or put the script at the bottom of the page. The moment our DOM is ready, we can search for elements `pre[class*="language"]` and call `Prism.highlightElem` on them:
 

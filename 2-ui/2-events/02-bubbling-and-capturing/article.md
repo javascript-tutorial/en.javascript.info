@@ -226,8 +226,8 @@ Any event handler can stop the event by calling `event.stopPropagation()`, but t
 
 The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logical explanation for that.
 
-In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
+In the real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
 
-The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited for that exactly `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
+The same for event handlers. The code that set the handler on a particular element knows maximum details about the element and what it does. A handler on a particular `<td>` may be suited exactly for that `<td>`, it knows everything about it, so it should get the chance first. Then its immediate parent also knows about the context, but a little bit less, and so on till the very top element that handles general concepts and runs the last one.
 
 Bubbling and capturing lay the foundation for "event delegation" -- an extremely powerful event handling pattern that we study in the next chapter.

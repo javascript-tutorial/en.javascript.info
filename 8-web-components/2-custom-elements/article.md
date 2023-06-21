@@ -302,7 +302,7 @@ Output order:
 
 We can clearly see that the outer element finishes initialization `(3)` before the inner one `(4)`.
 
-There's no built-in callback that triggers after nested elements are ready. If needed, we can implement such thing on our own. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
+There's no built-in callback that triggers after nested elements are ready. If needed, we can implement such a thing on our own. For instance, inner elements can dispatch events like `initialized`, and outer ones can listen and react on them.
 
 ## Customized built-in elements
 

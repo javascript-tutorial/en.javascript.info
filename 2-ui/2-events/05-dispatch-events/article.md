@@ -31,7 +31,7 @@ After an event object is created, we should "run" it on an element using the cal
 
 Then handlers react on it as if it were a regular browser event. If the event was created with the `bubbles` flag, then it bubbles.
 
-In the example below the `click` event is initiated in JavaScript. The handler works same way as if the button was clicked:
+In the example below the `click` event is initiated in JavaScript. The handler works the same way as if the button was clicked:
 
 ```html run no-beautify
 <button id="elem" onclick="alert('Click!');">Autoclick</button>
@@ -78,7 +78,7 @@ Notes:
 1. We should use `addEventListener` for our custom events, because `on<event>` only exists for built-in events, `document.onhello` doesn't work.
 2. Must set `bubbles:true`, otherwise the event won't bubble up.
 
-The bubbling mechanics is the same for built-in (`click`) and custom (`hello`) events. There are also capturing and bubbling stages.
+The bubbling mechanics are the same for built-in (`click`) and custom (`hello`) events. There are also capturing and bubbling stages.
 
 ## MouseEvent, KeyboardEvent and others
 
@@ -93,7 +93,7 @@ Here's a short list of classes for UI Events from the [UI Event specification](h
 
 We should use them instead of `new Event` if we want to create such events. For instance, `new MouseEvent("click")`.
 
-The right constructor allows to specify standard properties for that type of event.
+The right constructor allows us to specify standard properties for that type of event.
 
 Like `clientX/clientY` for a mouse event:
 

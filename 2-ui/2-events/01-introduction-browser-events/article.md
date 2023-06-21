@@ -404,7 +404,7 @@ We could also use objects of a custom class, like this:
 
 Here the same object handles both events. Please note that we need to explicitly setup the events to listen using `addEventListener`. The `menu` object only gets `mousedown` and `mouseup` here, not any other types of events.
 
-The method `handleEvent` does not have to do all the job by itself. It can call other event-specific methods instead, like this:
+The method `handleEvent` does not have to do all the work by itself. It can call other event-specific methods instead, like this:
 
 ```html run
 <button id="elem">Click me</button>

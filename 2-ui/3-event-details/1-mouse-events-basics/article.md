@@ -49,11 +49,11 @@ Also, we can see the `button` property that allows us to detect the mouse button
 
 ## Mouse button
 
-Click-related events always have the `button` property, which allows to get the exact mouse button.
+Click-related events always have the `button` property, which allows us to get the exact mouse button.
 
 We usually don't use it for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
 
-On the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows to distinguish between "right-mousedown" and "left-mousedown".
+On the other hand, `mousedown` and `mouseup` handlers may need `event.button`, because these events trigger on any button, so `button` allows us to distinguish between "right-mousedown" and "left-mousedown".
 
 The possible values of `event.button` are:
 

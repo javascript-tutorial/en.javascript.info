@@ -120,7 +120,7 @@ So, the wrapper passes the call to the original method, but without the context 
 
 Let's fix it.
 
-There's a special built-in function method [func.call(context, ...args)](mdn:js/Function/call) that allows to call a function explicitly setting `this`.
+There's a special built-in function method [func.call(context, ...args)](mdn:js/Function/call) that allows us to call a function explicitly setting `this`.
 
 The syntax is:
 
@@ -232,7 +232,7 @@ There are many solutions possible:
 
 1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
 2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
-3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
+3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can provide a *hashing function* for the decorator, that knows how to make one value from many.
 
 For many practical applications, the 3rd variant is good enough, so we'll stick to it.
 
@@ -309,7 +309,7 @@ They perform the same call of `func` with given context and arguments.
 
 There's only a subtle difference regarding `args`:
 
-- The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
+- The spread syntax `...` allows us to pass *iterable* `args` as the list to `call`.
 - The `apply` accepts only *array-like* `args`.
 
 ...And for objects that are both iterable and array-like, such as a real array, we can use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.

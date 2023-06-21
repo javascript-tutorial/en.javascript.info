@@ -18,5 +18,5 @@ Here's the explanations.
 
 To explain the behavior of `(3)` and `(4)` we need to recall that property accessors (dot or square brackets) return a value of the Reference Type.  
 
-Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing to set `this`.
+Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing us to set `this`.
 

@@ -204,7 +204,7 @@ Here is an example of all three methods:
 </script>
 ```
 
-Unlike most other controls, `<select>` allows to select multiple options at once if it has `multiple` attribute. This attribute is rarely used, though.
+Unlike most other controls, `<select>` allows us to select multiple options at once if it has `multiple` attribute. This attribute is rarely used, though.
 
 For multiple selected values, use the first way of setting values: add/remove the `selected` property from `<option>` subelements.
 

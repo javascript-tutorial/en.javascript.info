@@ -19,7 +19,7 @@ We didn't see them yet, because generally they do not show up. When we create a 
 
 First, let's see how to get those flags.
 
-The method [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
+The method [Object.getOwnPropertyDescriptor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor) allows us to query the *full* information about a property.
 
 The syntax is:
 ```js
@@ -230,7 +230,7 @@ There's absolutely nothing we can do with `Math.PI`.
 
 Making a property non-configurable is a one-way road. We cannot change it back with `defineProperty`.
 
-**Please note: `configurable: false` prevents changes of property flags and its deletion, while allowing to change its value.**
+**Please note: `configurable: false` prevents changes of property flags and its deletion, while allowing us to change its value.**
 
 Here `user.name` is non-configurable, but we can still change it (as it's writable):
 
@@ -274,7 +274,7 @@ We can change `writable: true` to `false` for a non-configurable property, thus 
 
 ## Object.defineProperties
 
-There's a method [Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) that allows to define many properties at once.
+There's a method [Object.defineProperties(obj, descriptors)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties) that allows us to define many properties at once.
 
 The syntax is:
 

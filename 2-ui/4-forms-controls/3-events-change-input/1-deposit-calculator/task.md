@@ -4,7 +4,7 @@ importance: 5
 
 # Deposit calculator
 
-Create an interface that allows to enter a sum of bank deposit and percentage, then calculates how much it will be after given periods of time.
+Create an interface that allows us to enter a sum of bank deposit and percentage, then calculates how much it will be after given periods of time.
 
 Here's the demo:
 

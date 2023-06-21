@@ -4,7 +4,7 @@ A part of a pattern can be enclosed in parentheses `pattern:(...)`. This is call
 
 That has two effects:
 
-1. It allows to get a part of the match as a separate item in the result array.
+1. It allows us to get a part of the match as a separate item in the result array.
 2. If we put a quantifier after the parentheses, it applies to the parentheses as a whole.
 
 ## Examples
@@ -65,7 +65,7 @@ That regexp is not perfect, but mostly works and helps to fix accidental mistype
 
 ## Parentheses contents in the match
 
-Parentheses are numbered from left to right. The search engine memorizes the content matched by each of them and allows to get it in the result.
+Parentheses are numbered from left to right. The search engine memorizes the content matched by each of them and allows us to get it in the result.
 
 The method `str.match(regexp)`, if `regexp` has no flag `g`, looks for the first match and returns it as an array:
 
@@ -297,7 +297,7 @@ for(let result of results) {
 
 ## Capturing groups in replacement
 
-Method `str.replace(regexp, replacement)` that replaces all matches with `regexp` in `str` allows to use parentheses contents in the `replacement` string. That's done using `pattern:$n`, where `pattern:n` is the group number.
+Method `str.replace(regexp, replacement)` that replaces all matches with `regexp` in `str` allows us to use parentheses contents in the `replacement` string. That's done using `pattern:$n`, where `pattern:n` is the group number.
 
 For example,
 

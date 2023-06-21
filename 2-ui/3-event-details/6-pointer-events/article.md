@@ -97,7 +97,7 @@ Here's the demo that logs `pointerdown` and `pointerup` events:
 
 [iframe src="multitouch" edit height=200]
 
-Please note: you must be using a touchscreen device, such as a phone or a tablet, to actually see the difference in `pointerId/isPrimary`. For single-touch devices, such as a mouse, there'll be always same `pointerId` with `isPrimary=true`, for all pointer events.
+Please note: you must be using a touchscreen device, such as a phone or a tablet, to actually see the difference in `pointerId/isPrimary`. For single-touch devices, such as a mouse, there'll always be the same `pointerId` with `isPrimary=true`, for all pointer events.
 ```
 
 ## Event: pointercancel
@@ -126,7 +126,7 @@ Here is the flow of user actions and the corresponding events:
 So the issue is that the browser "hijacks" the interaction: `pointercancel` fires in the beginning of the "drag-and-drop" process, and no more `pointermove` events are generated.
 
 ```online
-Here's the drag'n'drop demo with loggin of pointer events (only `up/down`, `move` and `cancel`) in the `textarea`:
+Here's the drag'n'drop demo with logging of pointer events (only `up/down`, `move` and `cancel`) in the `textarea`:
 
 [iframe src="ball" height=240 edit]
 ```
@@ -163,7 +163,7 @@ Pointer capturing is a special feature of pointer events.
 The idea is very simple, but may seem quite odd at first, as nothing like that exists for any other event type.
 
 The main method is:
-- `elem.setPointerCapture(pointerId)` -- binds events with the given `pointerId` to `elem`. After the call all pointer events with the same `pointerId` will have `elem` as the target (as if happened on `elem`), no matter where in document they really happened.
+- `elem.setPointerCapture(pointerId)` -- binds events with the given `pointerId` to `elem`. After the call all pointer events with the same `pointerId` will have `elem` as the target (as if they happened on `elem`), no matter where in document they really happened.
 
 In other words, `elem.setPointerCapture(pointerId)` retargets all subsequent events with the given `pointerId` to `elem`.
 
@@ -200,7 +200,7 @@ And here's the working logic, as it was described, after replacing mouse events 
 
 In the mouse event based solution, to track all pointer movements, including when it goes above/below the `thumb`, we had to assign `mousemove` event handler on the whole `document`.
 
-That's not a cleanest solution, though. One of the problems is that when a user moves the pointer around the document, it may trigger event handlers (such as  `mouseover`) on some other elements, invoke totally unrelated UI functionality, and we don't want that.
+That's not the cleanest solution, though. One of the problems is that when a user moves the pointer around the document, it may trigger event handlers (such as  `mouseover`) on some other elements, invoke totally unrelated UI functionality, and we don't want that.
 
 This is the place where `setPointerCapture` comes into play.
 

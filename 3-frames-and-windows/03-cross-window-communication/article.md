@@ -234,13 +234,13 @@ Here's a list of limitations:
 : Allows the `iframe` to change `parent.location`.
 
 `allow-forms`
-: Allows to submit forms from `iframe`.
+: allows us to submit forms from `iframe`.
 
 `allow-scripts`
-: Allows to run scripts from the `iframe`.
+: allows us to run scripts from the `iframe`.
 
 `allow-popups`
-: Allows to `window.open` popups from the `iframe`
+: allows us to `window.open` popups from the `iframe`
 
 See [the manual](mdn:/HTML/Element/iframe) for more.
 

@@ -209,7 +209,7 @@ These methods allow us to copy typed arrays, mix them, create new arrays from ex
 
 ## DataView
 
-[DataView](mdn:/JavaScript/Reference/Global_Objects/DataView) is a special super-flexible "untyped" view over `ArrayBuffer`. It allows to access the data on any offset in any format.
+[DataView](mdn:/JavaScript/Reference/Global_Objects/DataView) is a special super-flexible "untyped" view over `ArrayBuffer`. It allows us to access the data on any offset in any format.
 
 - For typed arrays, the constructor dictates what the format is. The whole array is supposed to be uniform. The i-th number is `arr[i]`.
 - With `DataView` we access the data with methods like `.getUint8(i)` or `.getUint16(i)`. We choose the format at method call time instead of the construction time.
@@ -244,7 +244,7 @@ alert( dataView.getUint32(0) ); // 4294967295 (biggest 32-bit unsigned int)
 dataView.setUint32(0, 0); // set 4-byte number to zero, thus setting all bytes to 0
 ```
 
-`DataView` is great when we store mixed-format data in the same buffer. For example, when we store a sequence of pairs (16-bit integer, 32-bit float), `DataView` allows to access them easily.
+`DataView` is great when we store mixed-format data in the same buffer. For example, when we store a sequence of pairs (16-bit integer, 32-bit float), `DataView` allows us to access them easily.
 
 ## Summary
 

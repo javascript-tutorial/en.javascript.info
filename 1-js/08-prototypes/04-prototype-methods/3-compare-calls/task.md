@@ -17,7 +17,7 @@ Rabbit.prototype.sayHi = function() {
 let rabbit = new Rabbit("Rabbit");
 ```
 
-These calls do the same thing or not?
+Do these calls do the same thing or not?
 
 ```js
 rabbit.sayHi();

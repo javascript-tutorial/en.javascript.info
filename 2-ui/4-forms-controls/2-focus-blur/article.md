@@ -8,7 +8,7 @@ The moment of losing the focus ("blur") can be even more important. That's when 
 
 Losing the focus generally means: "the data has been entered", so we can run the code to check it or even to save it to the server and so on.
 
-There are important peculiarities when working with focus events. We'll do the best to cover them further on.
+There are important peculiarities when working with focus events. We'll do our best to cover them further on.
 
 ## Events focus/blur
 

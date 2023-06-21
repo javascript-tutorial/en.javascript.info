@@ -174,7 +174,7 @@ There are three levels of cross-origin access:
 ```smart
 You can read more about cross-origin access in the chapter <info:fetch-crossorigin>. It describes the `fetch` method for network requests, but the policy is exactly the same.
 
-Such thing as "cookies" is out of our current scope, but you can read about them in the chapter <info:cookie>.
+Things like "cookies" are out of our current scope, but you can read about them in the chapter <info:cookie>.
 ```
 
 In our case, we didn't have any crossorigin attribute. So the cross-origin access was prohibited. Let's add it.
