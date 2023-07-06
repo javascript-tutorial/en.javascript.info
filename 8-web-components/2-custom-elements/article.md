@@ -393,7 +393,7 @@ Custom elements can be of two types:
     Requires one more `.define` argument, and `is="..."` in HTML:
     ```js
     class MyButton extends HTMLButtonElement { /*...*/ }
-    customElements.define('my-button', MyElement, {extends: 'button'});
+    customElements.define('my-button', MyButton, {extends: 'button'});
     /* <button is="my-button"> */
     ```
 
