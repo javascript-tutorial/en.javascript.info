@@ -47,7 +47,7 @@ document.body.sayHi(); // Hello, I'm BODY
 So, DOM properties and methods behave just like those of regular JavaScript objects:
 
 - They can have any value.
-- They are case-sensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
+- They are case-insensitive (write `elem.nodeType`, not `elem.NoDeTyPe`).
 
 ## HTML attributes
 
