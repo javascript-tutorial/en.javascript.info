@@ -2,10 +2,12 @@
 # Polyfills and transpilers
 
 JavaScript tili muntazam rivojlanib boradi. Tilga yangi takliflar doimiy ravishda berib boriladi, ular analiz qilinadi va agar munosib topilsa, <https://tc39.github.io/ecma262/> da ro'yxatga va [specification](http://www.ecma-international.org/publications/standards/Ecma-262 da rivojlanishga qo'shiladi.  
+The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
 
 JavaScript engine-ni ortidagi jamoalarning birinchi o'rinda nimani amalga oshirish borasida o'zlarining g'oyalari bor. Ular rejadagi takliflarni amalga oshirishga va allaqachon qo'llanmada paydo bo'lgan narsalarni kechiktirishga qaror qilishi mumkin, chunki ular u darajada ham qiziqarli emas yoki bajarish mushkul. 
 
 Shu sabab engineni standardning faqat bir qismini amalga oshirishini ko'rish ko'p uchraydigan holat. 
+So it's quite common for an engine to implement only part of the standard.
 
 Tilning xususiyatlariga bo'lgan qo'llab-quvvatlashning joriy holatini ko'rishga yaxshi sahifa <https://kangax.github.io/compat-table/es6/> (u katta, o'rganadigan narsa hali ko'p).
 
@@ -41,6 +43,9 @@ Odatda dasturchi transpilerni o'z komputerida ishga tushiradi, va transpile bo'l
 Nomlar bo'yicha gapirilganda, [Babel](https://babeljs.io) eng mashhur transpirlerlardan biri. 
 
 [webpack](https://webpack.js.org/) kabi zamonaviy proyekt qurish tizimlari transpilerni barcha kod o'zgarishlarida avtomatik ishga tushirish uchun vositalar bilan ta'minlaydi, shuning uchun ularni dasturlash jarayoniga biriktirish juda ososn.  
+Speaking of names, [Babel](https://babeljs.io) is one of the most prominent transpilers out there.
+
+Modern project build systems, such as [webpack](https://webpack.js.org/), provide a means to run a transpiler automatically on every code change, so it's very easy to integrate into the development process.
 
 ## Polyfills
 
@@ -72,6 +77,11 @@ JavaScript juda o'zgaruvchan til hisoblanadi, scriptlar istalgan funksiyani qo's
 Polyfillning ikkita qiziqarli kutubxonsi: 
 - [core js](https://github.com/zloirock/core-js) ko'p narsani qo'llab-quvvatlaydi, faqat kerakli xususiyatlarni kiritish imkonini beradi.
 - [polyfill.io](http://polyfill.io) xususiyatlar va foydalanuvchi brauzeriga qarab, polifill ga ega skript bilan ta'minlaydigan xizmat.
+JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
+
+Two interesting polyfill libraries are:
+- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+- [polyfill.io](https://polyfill.io/) service that provides a script with polyfills, depending on the features and user's browser.
 
 
 ## Xulosa
@@ -81,6 +91,9 @@ Bu bo'limda sizni zamonaviy va xatto eng so'nggi til xususiyatlarini o'rganishin
 Transpiler dan foydalanish yodingizdan chiqmasin (agar zamonaviy sintaksis yoki operatorlar ishlatilsangiz) va polyfillardan (yetishmayotkan funksiyalarni qo'shish uchun). Bular kod ishlashini kafolatlaydi. 
 
 Masalan, keyinroq JavaScript bilan tanishib chiqqaningizda, siz kod qurish tizimini [webpack](https://webpack.js.org/)ga asoslangan holda [babel-loader](https://github.com/babel/babel-loader) plugini bilan tashkil etishingiz mumkin bo'ladi. 
+Just don't forget to use a transpiler (if using modern syntax or operators) and polyfills (to add functions that may be missing). They'll ensure that the code works.
+
+For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Turli funktsiyalarni qo'llab-quvvatlovini hozirgi holatini ko'rsatadigan yaxshi manbalar:
 - <https://kangax.github.io/compat-table/es6/> -faqat JavaScript uchun.

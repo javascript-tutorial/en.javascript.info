@@ -64,6 +64,7 @@ let message = 'Hello';
 ```
 
 Ba'zilar ushbu ko'p qatorli uslubda bir nechta o'zgaruvchilarni ham e'lon qiladishadi:
+Some people also define multiple variables in this multiline style:
 
 ```js no-beautify
 let user = 'John',
@@ -105,6 +106,8 @@ Masalan, "message" o'zgaruvchisini qiymati "Hello!" bo'lgan "message" yorlig'li 
 Qutiga istalgan qiymatni kiritishimiz mumkin:
 
 Yana uni xohlagancha o'zgartirishimiz ham mumkin:
+We can also change it as many times as we want:
+
 ```js run
 let message;
 
@@ -151,6 +154,7 @@ Shunday qilib, biz o'zgaruvchini bir marta e'lon qilishimiz va keyin unga "let"s
 
 ```smart header="Functional languages"
 Shunisi qiziqki, o'zgaruvchi qiymatlarini o'zgartirishni taqiqlaydigan [Scala](http://www.scala-lang.org/) yoki [Erlang] kabi [funksional](https://en.wikipedia.org/wiki/Functional_programming) dasturlash tillari mavjud. (http://www.erlang.org/).
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](https://www.scala-lang.org/) or [Erlang](https://www.erlang.org/) that forbid changing variable values.
 
 Bunday tillarda qiymat "qutida" saqlanganidan keyin u yerda abadiy qoladi. Agar boshqa biror narsani saqlashimiz kerak bo'lsa, til bizni yangi quti yaratishga (yangi o'zgaruvchini e'lon qilish) majbur qiladi. Eskisini qayta ishlata olmaymiz.
 
@@ -198,6 +202,12 @@ let my-name; // chiziqlar '-' ishlatish mumkin emas
 
 ````smart header="Lotin bo'lmagan harflardan foydalanish mumkin, lekin tavsiya etilmaydi"
 Har qanday tildan, jumladan kirill harflari yoki hatto ierogliflardan foydalanish mumkin:
+```smart header="Case matters"
+Variables named `apple` and `APPLE` are two different variables.
+```
+
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including cyrillic letters, Chinese logograms and so on, like this:
 
 ```js
 let имя = '...';
@@ -263,6 +273,7 @@ Agar dasturchilar o'zgaruvchi hech qachon o'zgarmasligiga ishonchi komil bo'lsa,
 
 
 ### Katta harfdagi konstantalar
+### Uppercase constants
 
 Konstantalar eslab qolishga qiyin qiymatlar uchun taxalluslar sifatida foydalanish keng tarqalgan amaliyotdir.
 
@@ -292,6 +303,8 @@ Qachon konstanta uchun bosh harflardan foydalanishimiz kerak va qachon uni odatd
 "Konstanta" bo'lish shunchaki o'zgaruvchining qiymati hech qachon o'zgarmasligini anglatadi. Lekin shunday konstantalar borki, ular ishlatilinishidan avval ma'lum bo'ladi (masalan, qizil rang uchun o'n oltilik qiymat) va shunday konstantalar borki, ular bajarilish vaqtida  *hisoblanadi*, lekin dastlabki qiymat tayinlanganidan keyin o'zgarmaydi.
 
 Misol uchun:
+For instance:
+
 ```js
 const pageLoadTime = /* time taken by a webpage to load */;
 ```
@@ -299,6 +312,7 @@ const pageLoadTime = /* time taken by a webpage to load */;
 `pageLoadTime` qiymati sahifa yuklanishidan oldin noma`lum, shuning uchun u odatdagidek nomlanadi. Ammo bu hali ham kontanta, chunki u tayinlashdan keyin o'zgarmaydi.
 
 Boshqacha qilib aytganda, katta harflarda nomlangan konstantalar yozilishi qiyin bo'lgan qiymatlarni saqlash uchun ishlatilinadi.
+In other words, capital-named constants are only used as aliases for "hard-coded" values.
 
 ## Narsalarni to'gri nomlang
 

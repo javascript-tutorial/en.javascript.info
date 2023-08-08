@@ -7,6 +7,20 @@ Masalan, ro'yxatdagi tovarlarni ketma-ket chiqarish yoki 1 dan 10 gacha bo'lgan 
 *Loop-lar* bir xil kodni ko'p marotaba qaytarishning usullaridir.
 
 ## "while" loop
+```smart header="The for..of and for..in loops"
+A small announcement for advanced readers.
+
+This article covers only basic loops: `while`, `do..while` and `for(..;..;..)`.
+
+If you came to this article searching for other types of loops, here are the pointers:
+
+- See [for..in](info:object#forin) to loop over object properties.
+- See [for..of](info:array#loops) and [iterables](info:iterable) for looping over arrays and iterable objects.
+
+Otherwise, please read on.
+```
+
+## The "while" loop
 
 `while` loop quyidagicha sintaksisga ega:
 
@@ -162,11 +176,11 @@ for (i = 0; i < 3; i++) { // use an existing variable
 
 alert(i); // 3, visible, because declared outside of the loop
 ```
-
 ````
 
 
 ### Qismlarni o'tkazib yuborish
+### Skipping parts
 
 `for` ning istalgan qismini o'tkazib yuborish mumkin.
 
@@ -270,6 +284,7 @@ for (let i = 0; i < 10; i++) {
 Texnik nuqtai nazardan, bu yuqoridagi misol bilan bir xil. Albatta, biz `continue` dan foydalanish o'rniga kodni `if` blokiga o'rashimiz mumkin.
 
 Ammo nojo'ya ta'sir sifatida, bu yana bir darajali joylashishni yaratdi (jingalak qavslar ichidagi `alert` chaqiruvi). Agar `if` ichidagi kod bir necha qatordan uzun bo'lsa, bu umumiy o'qish qobiliyatini kamaytirishi mumkin.
+But as a side effect, this created one more level of nesting (the `alert` call inside the curly braces). If the code inside of `if` is longer than a few lines, that may decrease the overall readability.
 ````
 
 ````warn header="No `break/continue` to the right side of '?'"
@@ -286,7 +301,6 @@ if (i > 5) {
 ```
 
 ...va uni so'roq belgisi yordamida qayta yozsak:
-
 
 ```js no-beautify
 (i > 5) ? alert(i) : *!*continue*/!*; // continue isn't allowed here
@@ -325,6 +339,8 @@ Agar foydalanuvchi kiritishni bekor qilsa, bizga jarayonni to'xtatish usuli kera
 Bu yetarli emas -- label-lar, shunda ular yordamga keladi!
 
 *Label* bu loop-dan avval keladigan ikki nuqtali identifikator:
+A *label* is an identifier with a colon before a loop:
+
 ```js
 labelName: for (...) {
   ...
@@ -346,6 +362,7 @@ Quyidagi loop-dagi `break <labelName>` ifoda label-ga o'tadi:
     // do something with the value...
   }
 }
+
 alert('Done!');
 ```
 
@@ -366,6 +383,8 @@ for (let i = 0; i < 3; i++) { ... }
 Label-lar koddagi katta o'lchamli joyga sakrashga imkon bermaydi.
 
 Masalan, buni bajarishning iloji yo'q:
+For example, it is impossible to do this:
+
 ```js
 break label; // jump to the label below (doesn't work)
 
@@ -373,6 +392,8 @@ label: for (...)
 ```
 
 `break` direktivi kod blokini ichida bo'lishi kerak. Texnik jihatdan, har qanday label-langan kod bloki shunday qiladi, e.g.:
+A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
+
 ```js
 label: {
   // ...

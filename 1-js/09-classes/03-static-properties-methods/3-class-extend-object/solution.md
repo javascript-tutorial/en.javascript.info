@@ -21,14 +21,14 @@ alert( rabbit.hasOwnProperty('name') ); // true
 
 But that's not all yet.
 
-Even after the fix, there's still important difference in `"class Rabbit extends Object"` versus `class Rabbit`.
+Even after the fix, there's still an important difference between `"class Rabbit extends Object"` and `class Rabbit`.
 
 As we know, the "extends" syntax sets up two prototypes:
 
 1. Between `"prototype"` of the constructor functions (for methods).
 2. Between the constructor functions themselves (for static methods).
 
-In our case, for `class Rabbit extends Object` it means:
+In the case of `class Rabbit extends Object` it means:
 
 ```js run
 class Rabbit extends Object {}
@@ -37,7 +37,7 @@ alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) true
 ```
 
-So `Rabbit` now provides access to static methods of `Object` via `Rabbit`, like this:
+So `Rabbit` now provides access to the static methods of `Object` via `Rabbit`, like this:
 
 ```js run
 class Rabbit extends Object {}
@@ -67,7 +67,7 @@ alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error
 
 So `Rabbit` doesn't provide access to static methods of `Object` in that case.
 
-By the way, `Function.prototype` has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
+By the way, `Function.prototype` also has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
 
 Here's the picture:
 

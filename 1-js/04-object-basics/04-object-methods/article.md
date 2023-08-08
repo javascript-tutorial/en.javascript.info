@@ -51,7 +51,7 @@ let user = {
 // first, declare
 function sayHi() {
   alert("Hello!");
-};
+}
 
 // then add as a method
 user.sayHi = sayHi;
@@ -91,6 +91,7 @@ user = {
 Ko'rsatilgandek, `funksiya` ni tushirib qoldirib, shunchaki `sayHi(` yozishimiz mumkin.
 
 Aslini olganda, yozuvlar tizimi to'liq bir xil emas. Ob'ektni meros qilib olish bilan bog'liq bazi nozik farqlar mavjud (keyinroq muhokama qilinadi), ammo hozircha ular muhim emas. Deyarli barcha hollarda qisqaroq sintaksisga ustunlik beriladi.
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases, the shorter syntax is preferred.
 
 
 

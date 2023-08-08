@@ -171,7 +171,7 @@ alert( new SmallUser().name );  // John
 Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
 ````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+By the way, we can omit parentheses after `new`:
 
 ```js
 let user = new User; // <-- no parentheses

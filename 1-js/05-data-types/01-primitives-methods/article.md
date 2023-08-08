@@ -42,6 +42,8 @@ Quyida JavaScript yaratuvchisi duch kelgan paradoks:
 
 - String yoki Number kabi primitive bilan ko'p amallarni bajarishni xohlashingiz mumkin. Metodlar ularga kirish juda yaxshi yo'lidir.
 - Primitive-lar imkon qadar tez va engil bo'lishi kerak.
+- There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
+- Primitives must be as fast and lightweight as possible.
 
 Yechim biroz noqulay ko'rinadi, lekin u quyidagicha:
 
@@ -109,6 +111,10 @@ if (zero) { // zero is true, because it's an object
 Boshqa tomondan, `new`siz bir xil `String/Number/Boolean` funksiyalaridan foydalanish mutlaqo aqlli va foydali yo'ldir. Ular qiymatni mos keladigan turga o'zgartiradilar: string, number yoki boolean (primitive) ga.
 
 Masalan, mana bu to'liq yaroqli:
+On the other hand, using the same functions `String/Number/Boolean` without `new` is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+
+For example, this is entirely valid:
+
 ```js
 let num = Number("123"); // convert a string to number
 ```

@@ -56,6 +56,7 @@ Zamonaviy JavaScript-ning barcha xususiyatlarini to'liq faollashtirish uchun skr
 Direktiv skriptning yuqori qismida yoki funktsiya tanasining boshida bo'lishi kerak.
 
 `"Qat'iy rejim"`siz hamma narsa ishlayveradi, lekin ba'zi xususiyatlar eskicha, "mos keluvchan" usulda ishlaydi. Biz odatda zamonaviy usulni afzal ko'ramiz.
+Without `"use strict"`, everything still works, but some features behave in the old-fashioned, "compatible" way. We'd generally prefer the modern behavior.
 
 Tilning ba'zi zamonaviy xususiyatlari (masalan, biz keyinroq o'rganadigan class-lar) qat'iy rejimni bilvosita faollashtiradi.
 
@@ -145,6 +146,7 @@ Tayinlashlar
 
 Bitwise
 : Bitwise operatorlar juda past, bit-darajadagi 32-bitli butun sonlar bilan ishlaydi : kerak bo'lganda [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#Bitwise) dan ko'ring.
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
 
 Shart
 : Uchta parametrga ega yagona operator: `cond ? resultA : resultB`. Agar `cond` rost bo'lsa, `resultA` ni, aks holda `resultB` ni qaytaradi.
@@ -254,6 +256,12 @@ Biz JavaScript-da funksiya yaratishning uchta usulini ko'rib chiqdik:
     ```
 
 3. Arrow funktsiyalar
+3. Arrow functions:
+
+    ```js
+    // expression on the right side
+    let sum = (a, b) => a + b;
+
     // or multi-line syntax with { ... }, need return here:
     let sum = (a, b) => {
       // ...

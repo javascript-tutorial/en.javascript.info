@@ -75,6 +75,7 @@ user = null;
 ```
 
 ...Keyin ob'ektga `admin` global o'zgaruvchisi orqali yana kirish mumkin, shuning uchun ham u xotirada. Agar biz `admin`ni ham ustiga yozsak, uni olib tashlash mumkin bo'lib qoladi.
+...Then the object is still reachable via `admin` global variable, so it must stay in memory. If we overwrite `admin` too, then it can be removed.
 
 ## O'zaro bog'langan ob'ektlar
 
@@ -175,6 +176,11 @@ Keyin ularning havolalari belgilanadi:
 ![](garbage-collection-3.svg)
 
 ...Va iloji bo'lganda ularning havolalari:
+Then we follow their references and mark referenced objects:
+
+![](garbage-collection-3.svg)
+
+...And continue to follow further references, while possible:
 
 ![](garbage-collection-4.svg)
 
@@ -185,12 +191,16 @@ Endi jarayonda tashrif buyurib bo'lmaydigan ob'ektlarga kirish imkonsiz deb hiso
 Shungdek jarayonni, ildizlaran bitta katta chelakdagi bo'yoqni to'kilib, barcha havolalar orqali oqishi va barcha yetishish mumkin bo'lgan ob'ektlarni belgilaydi kabi faraz qilishimiz mumkin. Keyin belgilanmaganlar olib tashlanadi.
 
 Bu axlat yig'uvchi qanday ishlashi tushunchasi. JavaScript enginlari tezroq ishlashi va amalga ta'sir qilmasligi uchun ko'plab optimallashtirisharlarni qo'llaydi. 
+That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not introduce any delays into the code execution.
 
 Ba'zi optimallashtirishlar:
 
 - **Avlodlar to'plami** -- ob'ektlar ikkita guruhga bo'linadi: "yangilar" va "eskilar". Ko'p ob'ektlar paydo bo'ladi, o'z ishlarini bajaradi va tezda g'oyib bo'ladi, ular agressiv tarzda tozalanishi mumkin. Yetarlicha uzoq umr ko'rganlar esa "eski" bo'lib, kamroq tekshiriladi.
 - **Qo'shimcha yig'ish** -- agar ob'ektlar ko'p bo'lsa va bir vaqtning o'zida butun ob'ektni yurishga va belgilashga harakat qilsak, bu biroz vaqt talab qilishi va bajarilishida ko'rinib turuvchi kechikishlarni kiritishi mumkin. Shu tufayli, enjin axlat yig'ishni qismlarga bo'lishga harakat qiladi. Keyin qismlar birma-bir, alohida-alohida bajariladi. Bu o'zgarishlarni kuzatish uchun ular o'rtasida qo'shimcha buxgalteriya hisobini talab qiladi, ammo bizda katta kechikishlar o'rniga juda ko'p kichik kechikishlar mavjud.
 - **Bo'sh vaqtlar to'plami** -- axlat yig'uvchi faqat protsessor ishlamay qolganda ishlashga harakat qiladi, bu amalga mumkin bo'lgan ta'sirni kamaytiradi.
+- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". In typical code, many objects have a short life span: they appear, do their job and die fast, so it makes sense to track new objects and clear the memory from them if that's the case. Those that survive for long enough, become "old" and are examined less often.
+- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine splits the whole set of existing objects into multiple parts. And then clear these parts one after another. There are many small garbage collections instead of a total one. That requires some extra bookkeeping between them to track changes, but we get many tiny delays instead of a big one.
+- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
 Axlat yig'ish algoritmlarining boshqa optimallashtirishlari va tushunchalari mavjud. Ularni bu yerda tasvirlashni istardim, lekin to'xtab turishim kerak, chunki turli enjinelar turli xil sozlash va texnikani amalga oshiradi.Va bundan ham muhimi, enjinelar rivojlanishi bilan hamma narsa o'zgaradi, shuning uchun haqiqiy ehtiyojlarsiz "oldindan" chuqurroq o'rganish bunga arzimaydi emas. Agar, albatta, bu haqiqiy qiziqish masalasi bo'lmasa, quyida siz uchun ba'zi havolalar bo'ladi.
 
@@ -201,6 +211,9 @@ Bilish kerak bo'lgan asosiy narsalar:
 - Chiqindilarni yig'ish avtomatik ravishda amalga oshiriladi. Biz buni majburlay olmaymiz yoki oldini ololmaymiz.
 - Ob'ektlar kirish mumkin bo'lganda xotirada saqlanadi.
 - Havola qilish bu erishsa bo'lish bilan bir xil emas (ildizdan): bir qancha o'zaro bog'langan obyektlar umuman erishsa bo'lmaydigan holga kelib qoliahi mumkin. 
+- Garbage collection is performed automatically. We cannot force or prevent it.
+- Objects are retained in memory while they are reachable.
+- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole, as we've seen in the example above.
 
 Zamonaviy enjinlar axlat yig'ishning ilg'or algoritmlarini amalga oshiradi.
 
@@ -211,3 +224,8 @@ Agar siz past darajadagi dasturlash bilan tanish bo'lsangiz, V8 axlat yig'uvchis
 [V8 blog](https://v8.dev/) shuningdek vaqti-vaqti bilan xotira boshqaruvidagi o'zgarishlar haqida ham maqolalar chop etib turadi. Tabiiyki, axlat yig'ishni o'rganish uchun siz V8 ichki qurilmalari haqida umumiy ma'lumotga ega bo'lishingiz va V8 muhandislaridan biri bo'lib ishlagan  [Vyacheslav Egorov](http://mrale.ph) blogini o'qib chiqishingiz kerak. Men aytmoqchimanki: "V8", chunki u Internetdagi maqolalar bilan eng yaxshi yoritilgan. Boshqa enjinelar uchun ko'plab yondashuvlar o'xshash, ammo axlat yig'ish ko'p jihatdan farq qiladi.
 
 Enjinelarni chuqur bilish past darajadagi optimallashtirish kerak bo'lganda yaxshi bo'ladi. Buni til bilan tanishganingizdan keyingi qadam sifatida rejalashtirish oqilona bo'lardi.
+If you are familiar with low-level programming, more detailed information about V8's garbage collector is in the article [A tour of V8: Garbage Collection](https://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+
+The [V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn more about garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](https://mrale.ph) who worked as one of the V8 engineers. I'm saying: "V8", because it is best covered by articles on the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+
+In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.

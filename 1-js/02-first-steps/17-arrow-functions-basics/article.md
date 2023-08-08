@@ -49,6 +49,7 @@ Ko'rib turganingizdek, `(a, b) => a + b` `a` va `b` nomli ikkita argumentni qabu
     ```
 
 - Agar argumentlar bo'lmasa, qavslar bo'sh bo'ladi (lekin mavjud bo'lishi shart):
+- If there are no arguments, parentheses are empty, but they must be present:
 
     ```js run
     let sayHi = () => alert("Hello!");
@@ -64,7 +65,7 @@ Masalan, funktsiyani dinamik tarzda yaratgani:
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
-  () => alert('Hello') :
+  () => alert('Hello!') :
   () => alert("Greetings!");
 
 welcome();
@@ -79,6 +80,9 @@ Ko'p so'zlarni yozishga eringanimizda, ular oddiy bir-qatorli harakatlar uchun j
 Yuqorida misollar `=>` ning chap tomonidagi argumentarni oldi va ular bilan o'ng tomondagi ifodalarni hisobladi.
 
 Ba'zan bizga bir nechta iboralar yoki ifodalar kabi biroz murakkabroq narsa kerak bo'ladi. Buning ilojisi bor, lekin biz ularni jingalak qavslar ichiga olishimiz kerak. Keyin ular ichida oddiy `return` dan foydalanamiz.
+The arrow functions that we've seen so far were very simple. They took arguments from the left of `=>`, evaluated and returned the right-side expression with them.
+
+Sometimes we need a more complex function, with multiple expressions and statements. In that case, we can enclose them in curly braces. The major difference is that curly braces require a `return` within them to return a value (just like a regular function does).
 
 Mana bunga o'xshash:
 
@@ -109,3 +113,7 @@ Arrow funktsiyalar bir qatorchilar uchun qulay. Ular ikki xil ko'rinishda bo'lad
 
 1. Jingalak qavslarsiz: `(...args) => expression` -- o'ng tomon ifoda: funktsiya uni hosblaydi va qaytaradi.
 2. Jingalak qavslar bilan: `(...args) => { body }` -- qavslar bizga funktsiya ichida bir nechta ifodalarni yozish imkonini beradi, ammo biz biror narsani qaytarish uchun `return` dan foydalanishimiz kereak.
+Arrow functions are handy for simple actions, especially for one-liners. They come in two flavors:
+
+1. Without curly braces: `(...args) => expression` -- the right side is an expression: the function evaluates it and returns the result. Parentheses can be omitted, if there's only a single argument, e.g. `n => n*2`.
+2. With curly braces: `(...args) => { body }` -- brackets allow us to write multiple statements inside the function, but we need an explicit `return` to return something.

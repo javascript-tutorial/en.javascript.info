@@ -15,4 +15,4 @@ str.test = 5;
 alert(str.test);
 ```
 
-How do you think, will it work? What will be shown?
+What do you think, will it work? What will be shown?

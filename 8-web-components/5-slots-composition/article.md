@@ -130,6 +130,7 @@ For example, the second `<span>` here is ignored (as it's not a top-level child 
 If there are multiple elements in light DOM with the same slot name, they are appended into the slot, one after another.
 
 For example, this:
+
 ```html
 <user-card>
   <span slot="username">John</span>
@@ -268,7 +269,7 @@ The shadow DOM template with proper slots:
 ```
 
 1. `<span slot="title">` goes into `<slot name="title">`.
-2. There are many `<li slot="item">` in the template, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
+2. There are many `<li slot="item">` in the `<custom-menu>`, but only one `<slot name="item">` in the template. So all such `<li slot="item">` are appended to `<slot name="item">` one after another, thus forming the list.
 
 The flattened DOM becomes:
 
@@ -380,7 +381,7 @@ If we'd like to track internal modifications of light DOM from JavaScript, that'
 
 Finally, let's mention the slot-related JavaScript methods.
 
-As we've seen before, JavaScript looks at the "real" DOM, without flattening. But, if the shadow tree has `{mode: 'open'}`, then we can figure out which elements assigned to a slot and, vise-versa, the slot by the element inside it:
+As we've seen before, JavaScript looks at the "real" DOM, without flattening. But, if the shadow tree has `{mode: 'open'}`, then we can figure out which elements assigned to a slot and, vice-versa, the slot by the element inside it:
 
 - `node.assignedSlot` -- returns the `<slot>` element that the `node` is assigned to.
 - `slot.assignedNodes({flatten: true/false})` -- DOM nodes, assigned to the slot. The `flatten` option is `false` by default. If explicitly set to `true`, then it looks more deeply into the flattened DOM, returning nested slots in case of nested components and the fallback content if no node assigned.

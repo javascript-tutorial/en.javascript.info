@@ -31,7 +31,7 @@ Ko'plab amaliy holatlarda, biz xato (bu yerda "ko'cha yo'q" degan ma'noni bildir
 let html = document.querySelector('.elem').innerHTML; // Agar nol bo'lsa xato hisoblamadi
 ```
 
-Yana bir bor, agar element mavjud bo'lmasa, `null` ning `.innerHTML` ga kirishda xatolikka duch kelamiz. Va ba'zi hollarda, elementning yo'qligi normal bo'lsa, biz xatolikka yo'l qo'ymaslikni va natija sifatida "html = null" ni qabul qilishni xohlaymiz.
+Once again, if the element doesn't exist, we'll get an error accessing `.innerHTML` property of `null`. And in some cases, when the absence of the element is normal, we'd like to avoid the error and just accept `html = null` as the result.
 
 Buni qanday qilishimiz mumkin?
 
@@ -43,11 +43,19 @@ let user = {};
 alert(user.address ? user.address.street : undefined);
 ```
 
-Bu narsa ish beradi, hech qanday xatolik yo'q... Ammo u ancha noaniq. Ko'rib turganingizdek, `"user.address"` kodda ikki marta qaytarilyapti. Ko'proq takrorlash talab etilganligi tufayli chuqurroq joylashtirilgan xususiyatlar uchun bu muammoga aylanib qoladi. 
+It works, there's no error... But it's quite inelegant. As you can see, the `"user.address"` appears twice in the code.
 
-Masalan, `user.address.street.name` ni olishga harakat qilaylik.
+Here's how the same would look for `document.querySelector`:
 
-Biz ham `user.address`ni ham `user.address.street`ni tekshirishimiz kerak:
+```js run
+let html = document.querySelector('.elem') ? document.querySelector('.elem').innerHTML : null;
+```
+
+We can see that the element search `document.querySelector('.elem')` is actually called twice here. Not good.
+
+For more deeply nested properties, it becomes even uglier, as more repetitions are required.
+
+E.g. let's get `user.address.street.name` in a similar fashion.
 
 ```js
 let user = {}; // foydalanuvchining manzili yo'q
@@ -58,6 +66,7 @@ alert(user.address ? user.address.street ? user.address.street.name : null : nul
 Bu shunchaki juda yomon, hatto bunday kodni tushunishda muammolar ham bo'lishi mumkin.
 
 Bunga ahamiyat bermang, chunki uni `&&` operatoridan foydalanib, yozishning yaxshiroq usuli bor:
+There's a little better way to write it, using the `&&` operator:
 
 ```js run
 let user = {}; // foydalanuvchining manzili yo'q
@@ -92,6 +101,13 @@ alert( user?.address?.street ); // aniqlanmagan (xato mavjud emas)
 Kod qisqa va aniq, hech qanday takrorlanishlar mavjud emas. 
 
 Manzilni `user?.address` bilan o'qish hatto `user` obyekti mavjud bo'lmasa ham ishlay oladi:
+Here's an example with `document.querySelector`:
+
+```js run
+let html = document.querySelector('.elem')?.innerHTML; // will be undefined, if there's no element
+```
+
+Reading the address with `user?.address` works even if `user` object doesn't exist:
 
 ```js run
 let user = null;
@@ -111,6 +127,9 @@ Misol uchun, agar bizning kodlash mantiqimizga ko'ra, `foydalanuvchi` ob'ekti ma
 
 Shunday qilib, agar "foydalanuvchi" xato tufayli aniqlanmagan bo'lsa, bu haqda dasturlash xatosini ko'ramiz va uni tuzatamiz.
 Aks holda, kodlash xatolari mos bo'lmagan joyda o'chirilishi mumkin va debug qilish qiyinroq bo'lib qoladi.
+For example, if according to our code logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
+
+Then, if `user` happens to be undefined, we'll see a programming error about it and fix it. Otherwise, if we overuse `?.`, coding errors can be silenced where not appropriate, and become more difficult to debug.
 ```
 
 ````warn header="The variable before `?.` ma'lum qilinishi kerak"
@@ -128,6 +147,7 @@ Oʻzgaruvchi eʼlon qilinishi kerak (masalan, “let/const/var user” yoki funk
 Yuqorida aytib o'tilganidek, agar chap qism mavjud bo'lmasa, `?.` darhol baholashni to'xtatadi ("qisqa tutashuvlar").
 
 Shuning uchun, agar boshqa funktsiya chaqiruvlari yoki nojo'ya ta'sirlar mavjud bo'lsa, ular yuzaga kelmaydi.
+So, if there are any further function calls or operations to the right of `?.`, they won't be made.
 
 Misol uchun:
 
@@ -136,6 +156,7 @@ let user = null;
 let x = 0;
 
 user?.sayHi(x++); // "sayHi" yo'q, shuning uchun amal x++ ga etib bormaydi
+user?.sayHi(x++); // no "user", so the execution doesn't reach sayHi call and x++
 
 alert(x); // 0, qiymat oshirilmagan
 ```
@@ -170,6 +191,13 @@ userGuest.admin?.(); // hech narsa (bunday usul yo'q)
 Bu yerda ikkala qatorda ham `admin` xususiyatini olish uchun avval nuqtadan (`userAdmin.admin`) foydalanamiz, chunki biz foydalanuvchi obyekti mavjud deb hisoblaymiz, shuning uchun uni xavfsiz o'qish mumkin.
 
 Keyin `?.()` chap qismni tekshiradi: agar admin funksiyasi mavjud bo'lsa, u ishlaydi ("userAdmin" uchun shunday). Aks holda (`userGuest` uchun) baholash xatosiz to`xtaydi.
+userGuest.admin?.(); // nothing happens (no such method)
+*/!*
+```
+
+Here, in both lines we first use the dot (`userAdmin.admin`) to get `admin` property, because we assume that the `user` object exists, so it's safe read from it.
+
+Then `?.()` checks the left part: if the `admin` function exists, then it runs (that's so for `userAdmin`). Otherwise (for `userGuest`) the evaluation stops without errors.
 
 Agar biz nuqta `.` o`rniga xususiyatlarga kirish uchun `[]` qavslardan foydalanmoqchi bo`lsak, `?.[]` sintaksisi ham ishlaydi. Oldingi holatlarga o'xshab, u mavjud bo'lmagan ob'ektdan xususiyatni xavfsiz o'qish imkonini beradi.
 
@@ -180,7 +208,7 @@ let user1 = {
   firstName: "John"
 };
 
-let user2 = null; 
+let user2 = null;
 
 alert( user1?.[key] ); // John
 alert( user2?.[key] ); // aniqlanmagan 
@@ -194,6 +222,8 @@ foydalanuvchini o'chirish?.name; // agar foydalanuvchi mavjud bo'lsa, user.name 
 
 ````warn header="Biz xavfsiz o'qish va o'chirish uchun `?.` dan foydalanishimiz mumkin, lekin yozish uchun emas"
 Ixtiyoriy zanjirli `?.` topshiriqning chap tomonida ishlatilmaydi.
+````warn header="We can use `?.` for safe reading and deleting, but not writing"
+The optional chaining `?.` has no use on the left side of an assignment.
 
 Masalan:
 ```js run
@@ -204,6 +234,10 @@ user?.name = "John"; // Xato, ishlamayapti
 ```
 
 Bu shunchaki aqlli ish emas.
+user?.name = "John"; // Error, doesn't work
+// because it evaluates to: undefined = "John"
+```
+
 ````
 
 ## Xulosa 
@@ -219,3 +253,4 @@ Ko'rib turganimizdek, ularning barchasi oddiy va ulardan foydalanish oson. `?.` 
 `?.` zanjiri ichki kiritilgan xususiyatlarga xavfsiz kirish imkonini beradi.
 
 Shunga qaramay, biz `?.` ni faqat chap qism mavjud bo'lmagan hollarda ehtiyotkorlik bilan qo'llashimiz kerak. Agar dasturlash xatolari yuzaga kelsa, ularni bizdan yashirmasligi uchun.
+Still, we should apply `?.` carefully, only where it's acceptable, according to our code logic, that the left part doesn't exist. So that it won't hide programming errors from us, if they occur.

@@ -2,7 +2,7 @@
 
 The `"prototype"` property is widely used by the core of JavaScript itself. All built-in constructor functions use it.
 
-First we'll see at the details, and then how to use it for adding new capabilities to built-in objects.
+First we'll look at the details, and then how to use it for adding new capabilities to built-in objects.
 
 ## Object.prototype
 

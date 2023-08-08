@@ -5,6 +5,9 @@ Zamonaviy JavaScript-da number-larning ikki turi mavjud:
 JavaScript-dagi oddiy raqamlar 64-bit formatda [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) saqlanadi, shuningdek, "ikkita aniqlikdagi kasr sonlar" sifatida ham tanilgan. Bular biz ko'pincha ishlatadigan raqamlar va ushbu bobda ular haqida gaplashamiz.
 
 2. BigInt sonlar - katta o'lchamli butun sonlarni ifodalash uchun. Ba'zan ular kerak bo'ladi, chunki oddiy son <code>2<sup>53</sup></code>dan yuqori yoki <code>-2<sup>53</sup></code>dan past bo'la olmaydi. BigInt-lar bir nechta maxsus sohalarda qo'llanilganligi sababli, biz ular haqida maxsus <info:bigint> bobida o'rganamiz.
+1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
+
+2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
 
 Shunday qilib, biz bu yerda oddiy raqamlar haqida gaplashamiz. Keling, ular haqidagi bilimlarimizni kengaytiraylik.
 
@@ -23,6 +26,7 @@ let billion = 1_000_000_000;
 ```
 
 Bu erda pastki chiziq `_` "sytactic sugar" rolini o'ynaydi, bu raqamning o'qilishini yanada osonlashtiradi. JavaScript engini raqamlar orasidagi `_` ga e'tibor bermaydi, shuning uchun u yuqoridagi kabi bir milliardga teng bo'ladi.
+Here the underscore `_` plays the role of the "[syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
 
 Shunga qaramasdan, biz hayotda nollarning uzun ketma-ketligini yozishdan qochishga harakat qilamiz. Chunki buning uchun juda dangasamiz. Biz milliard uchun `"1bn"` yoki 7 milliard 300 million uchun `"7.3bn"` yozishga harakat qilamiz. Ko'pchilik katta raqamlar uchun ham xuddi shunday.
 
@@ -48,9 +52,10 @@ let mсs = 0.000001;
 ```
 
 Xuddi avvalgidek, `"e"` dan foydalanish yordam berishi mumkin. Agar nollarni yozishdan qochmoqchi bo'lsak, xuddi shunday deyishimiz mumkin:
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
 
 ```js
-let mcs = 1e-6; // six zeroes to the left from 1
+let mcs = 1e-6; // five zeroes to the left from 1
 ```
 
 Agar `0.000001`dagi nollar sonini sanasak, ular 6 ta. Demak, bu tabiiy `1e-6` bo'ladi.
@@ -63,6 +68,9 @@ Boshqacha qilib aytganda, `"e"` dan keyingi manfiy son 1 bilan berilgan nollar s
 
 // -6 divides by 1 with 6 zeroes
 1.23e-6 === 1.23 / 1000000; // 0.00000123
+
+// an example with a bigger number
+1234e-2 === 1234 / 100; // 12.34, decimal point moves 2 times
 ```
 
 ### Hex, binary va octal numbers
@@ -157,6 +165,7 @@ Buni amalga oshirishning ikki usuli mavjud:
 1. Ko'paytirish-va-bo'lish.
 
     Masalan, sonni kasrdan keyingi 2chi raqamgacha yaxlitlagani, sonni `100`ga (yoki 10 ning kattaroq darajasiga) ko'paytirishimiz, yaxlitlash funktsiyasini chaqirishimiz va keyin uni qaytarib bo'lishimiz mumkin.
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
     ```js run
     let num = 1.23456;
 
@@ -178,6 +187,7 @@ Buni amalga oshirishning ikki usuli mavjud:
     ```
 
     Yodda tuting, `toFixed`ning natijasi string-ga teng. Agar kasr qism kerakligidan kichikroq bo'lsa, u holda oxiriga nollar qo'shiladi:
+    Please note that the result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
 
     ```js run
     let num = 12.34;
@@ -185,12 +195,16 @@ Buni amalga oshirishning ikki usuli mavjud:
     ```
 
     Biz uni unary plyus yoki`Number()` chaqiruvi yordamida songa aylantirishimiz mumkin: `+num.toFixed(5)`.
+    We can convert it to a number using the unary plus or a `Number()` call, e.g write `+num.toFixed(5)`.
 
 ## Noto'g'ri hisob-kitoblar
 
 Ichki tomondan, raqam 64 bitli [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision) formatda taqdim etiladi, shuning uchun raqamni saqlash uchun aniq 64 ta bit mavjud: ulardan 52 tasi raqamlarni saqlash uchun ishlatiladi, 11 tasi kasr o'rnini saqlaydi (butun sonlar uchun ular nolga teng), va 1 ta bit belgi uchun.
 
 Agar son juda katta bo'lsa, u 64-bitlik xotiraga sig'maydi va u katta ehtimol bilan cheksizlikni beradi: 
+Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point, and 1 bit is for the sign.
+
+If a number is really huge, it may overflow the 64-bit storage and become a special numeric value `Infinity`:
 
 ```js run
 alert( 1e500 ); // Infinity
@@ -199,6 +213,7 @@ alert( 1e500 ); // Infinity
 Aniqlikni yo'qotish unchalik ravshan bo'lmasligi mumkin, lekin tez-tez sodir bo'ladi.
 
 Ushbu (noto'g'ri!) testni ko'ring:
+Consider this (falsy!) equality test:
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
@@ -213,12 +228,14 @@ alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
 Buning noto'g'ri taqqoslashdan ko'ra ko'proq oqibatlari bo'lishi mumkin. Tasavvur qiling siz elektron xarid qilish saytini yaratyapsiz va tashrif buyuruvchi savatiga `$0.10` va `$0.20` lik tovarlarni qo'yadi. Buyurtma jami `$0.30000000000000004` bo'ladi. Bu albatta hammani hayratlantiradi.
+Ouch! Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their cart. The order total will be `$0.30000000000000004`. That would surprise anyone.
 
 Ammo nega bunday bo'ladi?
 
 Son xotirada binar (ikkilik) shaklda, ya'ni birlar va nollar - bitlar ketma-ketligida saqlanadi. Lekin o'nlik sanoq sistemasida oddiy koʻrinadigan `0.1`, `0.2` kabi kasrlar aslida o'zining binar koʻrinishida tugamaydigan kasrlardir.
 
 Boshqacha qilib aytganda, `0.1` o'zi nima? U bir bo'lingan o'n `1/10`, ya'ni o'ndan bir. O'nlik sanoq sistemasida bunday sonlar osongina ifodalanadi. Uni uchdan birga solishtirsak: `1/3`. U cheksiz kasr `0.33333(3)`ga aylanadi.
+What is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
 
 Demak, `10` darajalariga bo'luv o'nlik sistemada yaxshi ishlashi kafolatlangan, lekin `3`ga bo'luv bunday emas. Ayni sababga ko'ra, ikkilik sanoq sistemasida, `2`ning darajalariga bo'luvlar ishlashi kafolatlanadi, ammo `1/10` cheksiz ikkilik kasrga aylanadi.
 
@@ -245,7 +262,7 @@ Muammoni hal qila olamizmi? Albatta, buning eng ishonchli usuli bu natijani [toF
 
 ```js run
 let sum = 0.1 + 0.2;
-alert( sum.toFixed(2) ); // 0.30
+alert( sum.toFixed(2) ); // "0.30"
 ```
 
 Yodda tuting, `toFixed` doim string qaytaradi. Bu kasr qismda 2 ta raqam bor ekanligini ta'minlaydi. Bu ayniqsa elektron xarid qilayotganda va `$0.30`ni ko'rsatish kerak bo'lganda juda qulay. Boshqa hollarda, uni number-ga aylantirish uchun unar plyusdan foydalanishimiz mumkin:
@@ -305,6 +322,7 @@ Ular `number` turiga qarashli, lekin "odatiy" raqamlar emas, shuning uchun ularn
     ```
 
     Lekin bizga bu funktsiya kerakmi? Shunchaki `=== NaN` taqqoslashdan foydalanib qo'ya olmaymizmi? Kechirasiz, lekin javobi yo'q. `NaN` qiymatini noyob jihati shundaki u hech narsaga teng emas, shu jumladan o'ziga ham:
+    But do we need this function? Can't we just use the comparison `=== NaN`? Unfortunately not. The value `NaN` is unique in that it does not equal anything, including itself:
 
     ```js run
     alert( NaN === NaN ); // false
@@ -330,16 +348,49 @@ alert( isFinite(num) );
 
 Yodda tuting, boʻsh yoki faqat boʻsh joy boʻlgan string barcha raqamli funksiyalarda, jumladan `isFinite`da `0` sifatida qabul qilinadi.
 
-```smart header="Compare with `Object.is`"
+````smart header="`Number.isNaN` and `Number.isFinite`"
+[Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) and [Number.isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite) methods are the more "strict" versions of `isNaN` and `isFinite` functions. They do not autoconvert their argument into a number, but check if it belongs to the `number` type instead.
 
 `===` kabi qiymatlarni taqqoslaydigan maxsus ichki o'rnatilgan [`Object.is`](mdn:js/Object/is) metodi mavjud, ammo u ikki tomonlama holatlar uchun ishonchliroqdir:
 
 1. U `NaN` bilan ishlaydi: `Object.is(NaN, NaN) === true`, bu yaxshi narsa.
 2. `0` va `-0` qiymatlari turlicha: `Object.is(0, -0) === false`, texnik jihatdan bu to'g'ri, chunki ichki tomondan raqam boshqa barcha bitlar nol bo'lsa ham farqli bo'lishi mumkin bo'lgan ishora bitiga ega.
+- `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case it returns `false`.
+
+    ```js run
+    alert( Number.isNaN(NaN) ); // true
+    alert( Number.isNaN("str" / 2) ); // true
+
+    // Note the difference:
+    alert( Number.isNaN("str") ); // false, because "str" belongs to the string type, not the number type
+    alert( isNaN("str") ); // true, because isNaN converts string "str" into a number and gets NaN as a result of this conversion
+    ```
+
+- `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case it returns `false`.
+
+    ```js run
+    alert( Number.isFinite(123) ); // true
+    alert( Number.isFinite(Infinity) ); // false
+    alert( Number.isFinite(2 / 0) ); // false
+
+    // Note the difference:
+    alert( Number.isFinite("123") ); // false, because "123" belongs to the string type, not the number type
+    alert( isFinite("123") ); // true, because isFinite converts string "123" into a number 123
+    ```
+
+In a way, `Number.isNaN` and `Number.isFinite` are simpler and more straightforward than `isNaN` and `isFinite` functions. In practice though, `isNaN` and `isFinite` are mostly used, as they're shorter to write.
+````
+
+```smart header="Comparison with `Object.is`"
+There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
+
+1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct, because internally the number has a sign bit that may be different even if all other bits are zeroes.
 
 Boshqa barcha holatlarda, `Object.is(a, b)` `a === b` bilan bir xil.
 
 Ushbu taqqoslash usulidan JavaScript spesifikatsiyasida tez-tez foydalaniladi. Ichki algoritm ikki qiymatning aynan o'xshash ekanligini taqqoslashi kerak bo'lganida u `Object.is` (ichki tomondan [SameValue](https://tc39.github.io/ecma262/#sec-samevalue) deb nomlangan) metoddan foydalanadi.
+We mention `Object.is` here, because it's often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
 ```
 
 
@@ -401,6 +452,8 @@ Ba'zi misollar:
 
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
 : Argumentlarning ixtiyoriy sonidan eng kattasini/kichigini qaytaradi.
+`Math.max(a, b, c...)` and `Math.min(a, b, c...)`
+: Returns the greatest and smallest from the arbitrary number of arguments.
 
     ```js run
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
@@ -431,6 +484,14 @@ Turli sanoq sistemalari uchun:
 - `num.toString(base)` raqamni berilgan `base` ga ega sanoq sistemasidagi string-ga konvertatsiya qiladi.
 
 `12pt` va `100px` kabi qiymatlarni raqamga konvertatsiya qilish uchun:
+For regular number tests:
+
+- `isNaN(value)` converts its argument to a number and then tests it for being `NaN`
+- `Number.isNaN(value)` checks whether its argument belongs to the `number` type, and if so, tests it for being `NaN`
+- `isFinite(value)` converts its argument to a number and then tests it for not being `NaN/Infinity/-Infinity`
+- `Number.isFinite(value)` checks whether its argument belongs to the `number` type, and if so, tests it for not being `NaN/Infinity/-Infinity`
+
+For converting values like `12pt` and `100px` to a number:
 
 -"yumshoq" konvertatsiya uchun `parseInt/parseFloat` dan foydalaning, u raqamni string-dan o'qiydi va xatogacha o'qiy olgan qiymatni qaytaradi.
 

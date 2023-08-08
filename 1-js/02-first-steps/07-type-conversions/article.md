@@ -8,6 +8,8 @@ Qiymatni kutilgan turga explicit tarzda aylantirishimiz kerak bo'lgan holatlar h
 
 ```smart header="Hozircha object-lar haqida gaplashmaymiz"
 Bu bob object-larni o'z ichiga olmaydi. Hozircha faqat primitive-lar haqida gaplashamiz.
+```smart header="Not talking about objects yet"
+In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
 
 Keyinchalik, ob'ektlar bilan tanishganimizdan so'ng, <info:object-toprimitive> bobida biz ob'ektlar qanday tuzilishini ko'rib chiqamiz.
 ```
@@ -71,6 +73,8 @@ Numeric conversion rules:
 |`null`|`0`|
 |<code>true&nbsp;va&nbsp;false</code> | `1` va `0` |
 | `string` | Bosh va oxirdagi bo'sh joylar olib tashlanadi. Agar mavjud string bo'sh bo'lsa, natija `0` bo'ladi. Aks holda, number string-dan "o'qiladi". Xatolik `NaN`ni ko'rsatadi. |
+|<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
+| `string` | Whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
 
 Examples:
 
@@ -133,6 +137,7 @@ Conversion quyidagi qoidalarga amal qiladi:
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | String qanday bo'lsa shunday o'qiladi, ikkala tomondagi bo'sh joylar olib tashlanadi. Bo'sh string `0`ga aylanadi. Xatolik `NaN`ni qaytaradi. |
+| `string` | The string is read "as is", whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
 
 **`Boolean Conversion`** -- Mantiq operatorlarida sodir bo'ladi. `Boolean(value)` orqali amalga oshirish mumkin.
 

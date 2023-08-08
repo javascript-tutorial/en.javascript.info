@@ -143,6 +143,7 @@ Bu kabi izohlar bizga funksiyani maqsadini tushunish va kodga qaramasdan turib u
 Aytgancha, [WebStorm](https://www.jetbrains.com/webstorm/) kabi ko'plab muharrirlar ham ularni tushunishlari va avtomatik to'ldirish va ba'zi avtomatik kodlarni tekshirish uchun ulardan foydalanishlari mumkin.
 
 Bundan tashqari, izohlardan HTML-hujjatlarni yaratishi mumkin bo'lgan [JSDoc 3](https://github.com/jsdoc3/jsdoc) kabi vositalar ham mavjud. JSDoc haqida batafsil ma'lumotni <http://usejsdoc.org/> sahifasida o'qishingiz mumkin.
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <https://jsdoc.app>.
 
 Nima uchun vazifa bu tarzda hal qilinadi?
 : Yozilgan narsa muhim. Lekin, sodir bo'layotkan narsalarni tushunish uchun esa yozilmagan narsa undan ham muhim bo'lishi mumkin. Nima uchun vazifa aynan shu tarzda hal qilingan? Kod javob bermaydi.

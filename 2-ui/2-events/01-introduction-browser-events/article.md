@@ -24,7 +24,7 @@ Here's a list of the most useful DOM events, just to take a look at:
 **CSS events:**
 - `transitionend` -- when a CSS-animation finishes.
 
-There are many other events. We'll get into more details of particular events in next chapters.
+There are many other events. We'll get into more details of particular events in upcoming chapters.
 
 ## Event handlers
 
@@ -195,7 +195,7 @@ Assign a handler to `elem.onclick`, not `elem.ONCLICK`, because DOM properties a
 
 ## addEventListener
 
-The fundamental problem of the aforementioned ways to assign handlers -- we can't assign multiple handlers to one event.
+The fundamental problem of the aforementioned ways to assign handlers is that we *can't assign multiple handlers to one event*.
 
 Let's say, one part of our code wants to highlight a button on click, and another one wants to show a message on the same click.
 
@@ -207,7 +207,7 @@ input.onclick = function() { alert(1); }
 input.onclick = function() { alert(2); } // replaces the previous handler
 ```
 
-Developers of web standards understood that long ago and suggested an alternative way of managing handlers using special methods `addEventListener` and `removeEventListener`. They are free of such a problem.
+Developers of web standards understood that long ago and suggested an alternative way of managing handlers using the special methods `addEventListener` and `removeEventListener` which aren't bound by such constraint.
 
 The syntax to add a handler:
 
@@ -261,7 +261,7 @@ input.removeEventListener("click", handler);
 Please note -- if we don't store the function in a variable, then we can't remove it. There's no way to "read back" handlers assigned by `addEventListener`.
 ````
 
-Multiple calls to `addEventListener` allow to add multiple handlers, like this:
+Multiple calls to `addEventListener` allow it to add multiple handlers, like this:
 
 ```html run no-beautify
 <input id="elem" type="button" value="Click me"/>
@@ -288,7 +288,7 @@ As we can see in the example above, we can set handlers *both* using a DOM-prope
 ````warn header="For some events, handlers only work with `addEventListener`"
 There exist events that can't be assigned via a DOM-property. Only with `addEventListener`.
 
-For instance, the `DOMContentLoaded` event, that triggers when the document is loaded and DOM is built.
+For instance, the `DOMContentLoaded` event, that triggers when the document is loaded and the DOM has been built.
 
 ```js
 // will never run
@@ -334,10 +334,10 @@ Some properties of `event` object:
 `event.currentTarget`
 : Element that handled the event. That's exactly the same as `this`, unless the handler is an arrow function, or its `this` is bound to something else, then we can get the element from  `event.currentTarget`.
 
-`event.clientX / event.clientY`
+`event.clientX` / `event.clientY`
 : Window-relative coordinates of the cursor, for pointer events.
 
-There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when we come to different events in details.
+There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when as we move on to the details of different events.
 
 ````smart header="The event object is also available in HTML handlers"
 If we assign a handler in HTML, we can also use the `event` object, like this:
@@ -373,7 +373,7 @@ For instance:
 
 As we can see, when `addEventListener` receives an object as the handler, it calls `obj.handleEvent(event)` in case of an event.
 
-We could also use a class for that:
+We could also use objects of a custom class, like this:
 
 
 ```html run
@@ -395,6 +395,7 @@ We could also use a class for that:
 
 *!*
   let menu = new Menu();
+
   elem.addEventListener('mousedown', menu);
   elem.addEventListener('mouseup', menu);
 */!*

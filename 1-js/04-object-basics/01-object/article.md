@@ -44,7 +44,7 @@ The resulting `user` object can be imagined as a cabinet with two signed files l
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+We can add, remove and read files from it at any time.
 
 Property values are accessible using the dot notation:
 
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+To remove a property, we can use the `delete` operator:
 
 ```js
 delete user.age;
@@ -201,13 +201,13 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
 
 So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
 
 ## Property value shorthand
 
-In real code we often use existing variables as values for property names.
+In real code, we often use existing variables as values for property names.
 
 For instance:
 
@@ -252,7 +252,7 @@ let user = {
 
 ## Property names limitations
 
-As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
 
 But for an object property, there's no such restriction:
 
@@ -325,7 +325,7 @@ alert( "blabla" in user ); // false, user.blabla doesn't exist
 
 Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
 
-If we omit quotes, that means a variable, it should contain the actual name to be tested. For instance:
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
 
 ```js run
 let user = { age: 30 };
@@ -355,7 +355,7 @@ In the code above, the property `obj.test` technically exists. So the `in` opera
 Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
 
 
-## The "for..in" loop
+## The "for..in" loop [#forin]
 
 To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
 
@@ -412,7 +412,7 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
 
 But if we run the code, we see a totally different picture:
 
@@ -424,9 +424,10 @@ The phone codes go in the ascending sorted order, because they are integers. So 
 ````smart header="Integer properties? What's that?"
 The "integer property" term here means a string that can be converted to-and-from an integer without a change.
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
 
 ```js run
+// Number(...) explicitly converts to a number
 // Math.trunc is a built-in function that removes the decimal part
 alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
 alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
@@ -481,7 +482,7 @@ They store properties (key-value pairs), where:
 
 To access a property, we can use:
 - The dot notation: `obj.property`.
-- Square brackets notation `obj["property"]`. Square brackets allow to take the key from a variable, like `obj[varWithKey]`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
 
 Additional operators:
 - To delete a property: `delete obj.prop`.

@@ -79,7 +79,7 @@ These several independent redraws should be grouped together, to make the redraw
 
 There's one more thing to keep in mind. Sometimes CPU is overloaded, or there are other reasons to redraw less often (like when the browser tab is hidden), so we really shouldn't run it every `20ms`.
 
-But how do we know about that in JavaScript? There's a specification [Animation timing](http://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`. It addresses all these issues and even more.
+But how do we know about that in JavaScript? There's a specification [Animation timing](https://www.w3.org/TR/animation-timing/) that provides the function `requestAnimationFrame`. It addresses all these issues and even more.
 
 The syntax:
 ```js
@@ -96,7 +96,7 @@ The returned value `requestId` can be used to cancel the call:
 cancelAnimationFrame(requestId);
 ```
 
-The `callback` gets one argument -- the time passed from the beginning of the page load in microseconds. This time can also be obtained by calling [performance.now()](mdn:api/Performance/now).
+The `callback` gets one argument -- the time passed from the beginning of the page load in milliseconds. This time can also be obtained by calling [performance.now()](mdn:api/Performance/now).
 
 Usually `callback` runs very soon, unless the CPU is overloaded or the laptop battery is almost discharged, or there's another reason.
 
@@ -159,7 +159,7 @@ Function `animate` accepts 3 parameters that essentially describes the animation
     }
     ```
 
-    It's graph:
+    Its graph:
     ![](linear.svg)
 
     That's just like `transition-timing-function: linear`. There are more interesting variants shown below.

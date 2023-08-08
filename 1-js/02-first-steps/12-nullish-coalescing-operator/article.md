@@ -25,11 +25,14 @@ Endi `??` nima vazifa bajarishi butunlay tushunarli bo'ladi. Keling u qayerda yo
 `??` ning eng keng tarqalgan ishlatilish holati bu aniqlanmagan o'zgaruvchini doimiy qiymat bilan ta'minlashdir.
 
 Misol uchun, quyida agar aniqlangan bo'lsa `user`ni, aks holda `Anonymous`ni ko'rsatamiz:
+The common use case for `??` is to provide a default value.
+
+For example, here we show `user` if its value isn't `null/undefined`, otherwise `Anonymous`:
 
 ```js run
 let user;
 
-alert(user ?? "Anonymous"); // Anonymous (user not defined)
+alert(user ?? "Anonymous"); // Anonymous (user is undefined)
 ```
 
 Quyida `user`ning name-ga tayinlanganidagi misoli:
@@ -37,7 +40,7 @@ Quyida `user`ning name-ga tayinlanganidagi misoli:
 ```js run
 let user = "John";
 
-alert(user ?? "Anonymous"); // John (user defined)
+alert(user ?? "Anonymous"); // John (user is not null/udefined)
 ```
 
 Biz `??` ketma-ketligidan ro'yhatdagi birinchi `null/undefined` bo'lmagan qiymatni olish uchun ham foydalanishimiz mumkin.
@@ -46,6 +49,9 @@ Let's say we have a user's data in variables `firstName`, `lastName` or `nickNam
 Keling, bizda `firstName`, `lastName` yoki `nickName` o'zgaruvchilarida foydalanuvchi ma'lumotlari bor deymiz. Agar foydalanuchi qiymat kiritishni xohlamasa, ularning barchasi aniqlangan bo'lmasligi ham mumkin.
 
 Biz ushbu o'zgaruvchilardan biri yordamida foydalanuvchi ismini yoki agar ularning barchasi aniqlangan bo'lmasa "Anonymous"ni ko'rsatmoqchimiz.
+Let's say we have a user's data in variables `firstName`, `lastName` or `nickName`. All of them may be not defined, if the user decided not to fill in the corresponding values.
+
+We'd like to display the user name using one of these variables, or show "Anonymous" if all of them are `null/undefined`.
 
 Keling, buning uchun `??` operatoridan foydalanamiz:
 
@@ -110,10 +116,12 @@ Amalda, nol balandlik ko'pincha haqiqiy qiymat bo'lib, uni standart bilan almash
 ## Ustunlik
 
 `??` operatorining ustunligi `||` niki bilan bir xil. Ular ikkalasi ham [MDN jadval](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table)ida `4` ga teng.
+The precedence of the `??` operator is the same as `||`. They both equal `3` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
 
 Bu shuni anglatadiki, nullish coalescing operatori ham xuddi `||` kabi `=` va `?` dan avval, lekin `+`, `*` va boshqa ko'plab operatorlardan keyin hisoblanadi
 
 Agar biz ifodada `??` bilan qiymatni boshqa operatorlar bilan ishlatishni istasak, qavslar qo'shishni ko'ramiz:
+So we may need to add parentheses in expressions like this:
 
 ```js run
 let height = null;
@@ -131,7 +139,7 @@ Aks holda, agar qavslarni tushirib qoldirsak, `??` dan yuqoriroq ustunlikka ega 
 // without parentheses
 let area = height ?? 100 * width ?? 50;
 
-// ...works the same as this (probably not what we want):
+// ...works this way (not what we want):
 let area = height ?? (100 * width) ?? 50;
 ```
 

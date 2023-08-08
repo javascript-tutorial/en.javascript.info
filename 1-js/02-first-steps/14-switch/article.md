@@ -141,6 +141,7 @@ switch (a) {
 Endi `3` ham `5` ham bir xil habarni ko'rsatadi.
 
 Case-larni guruhlash qobiliyati `switch/case` `break`siz qanday ishlashining yon ta'siridir. Bu yerda `case 3`ning bajariluvi `(*)` qatordan boshlanadi va `case 5`gacha davom etadi, lekin bironta `break` mavjud emas.
+The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
 
 
 ## Turning ahamiyati

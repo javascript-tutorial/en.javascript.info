@@ -50,6 +50,7 @@ Spetsifikatsiyada yuqorida ko'rishingiz mumkin bo'lgan uchta asosiy qurilish blo
 
 `describe("title", function() { ... })`
 : Qanday funksiyani tasvirlayabmiz. Hozirgi holatimizda, `pow`funksiyasini tasvirlayabmiz. "ishchilar"ni guruhlashda foydalaniladi -- `it` bloklari.
+: What functionality we're describing? In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
 
 `it("foydalanish holati tavsifi", funksiya() { ... })`
 : `it` sarlavhasida, *odam o'qiy oladigan tarzda* ma'lum bir foydalanish holatini tavsiflaymiz, va ikkinchi argument buni tekshiruvchi funksiya hisoblanadi. 
@@ -72,12 +73,20 @@ Dastur oqimi quyidagiga o'xshash ko'rinishda bo'ladi:
 5. Spesifikatsiyaga ko'proq foydalanish holatlarini kiritamiz, hali amallar tomonidan qo'llab quvvatlanmasligi mumkin. Testlar muvofaqiyatsiz bo'la boshlaydi. 
 6. 3 ga o'tiladi, testlar to'g'ri bermaguncha dasturni yangilanadi. 
 7. Funksiya tayyor bo'lgunga qadar 3-6-bosqichlarni takrorlanadi.
+1. An initial spec is written, with tests for the most basic functionality.
+2. An initial implementation is created.
+3. To check whether it works, we run the testing framework [Mocha](https://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+4. Now we have a working initial implementation with tests.
+5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
 
 Demak, rivojlanish *interativ* hisoblanadi. Spesifikatsiyani yozamiz, uni amalga oshiramiz, testlar o'tkaniga ishonch hosil qilamiz, keyin ko'prroq testlar kiritamiz, ular ishlashiga ishonch hosil qilamiz va shu kabi. 
 
 Keling, ushbu rivojlanish oqimini amaliy misolda ham ko'rib chiqamiz.
 
 Birinchi qadam allaqachon tugallangan: Bizda `pow` uchun dastlabki spesifikatsiya mavjud. Amalni bajarishdan avval, testlarni ishga tushirish uchun bir nechta JavaScript kutunxonalaridan foydalanmiz, bu shunchaki ular ishlayotkanini tekshirish uchun (Ular barchasi muvoffaqiyatsiz bo'ladi). 
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use a few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
 
 ## Harakatdagi spesifikatsiya  
 
@@ -86,6 +95,9 @@ Bu yerda, o'quv qo'llanmada biz testlar uchun quyidagi JavaScript kutubxonalarid
 - [Mocha](http://mochajs.org/) -- asosiy (o'zak) tamoyil: u asosiy test funksiyalari, jumladan `describe` (tasvirlash) va `it` (u) kabi, va shuningdek testlarni ishga tushiradigan funksiyalarni taqdim etadi.  
 - [Chai](http://chaijs.com) -- ko'p tasdiqlarga ega kutubxona. Bu ko'plab turli xil tasdiqlardan foydalanish imkonini beradi, hozircha faqat `assert.equal` kerak. 
 - [Sinon](http://sinonjs.org/) --  Funksiyalar ustidan tekshirish, ichki funksiyalarga taqlid qilish va boshqalarda ishlatiladigan kutubxona, bu ancha keyin kerak bo'ladi.  
+- [Mocha](https://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
+- [Chai](https://www.chaijs.com/) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
+- [Sinon](https://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
 
 Ushbu kutubxonalar brauzerga ham, server tomonidagi testlar uchun ham mos. Bu yerda brauzer variantini ko'rib chiqamiz.
 
@@ -342,6 +354,14 @@ Shuningdek boshqa tasdiqlar ham bor [Chai](http://chaijs.com), masalan:
 - `assert.isTrue(value)` -- shuni tekshiradi `qiymat === to'g'ri`
 - `assert.isFalse(value)` -- shuni tekshiradi `qiymat === noto'g'ti`
 - ...to'liq ro'yxat [docs](http://chaijs.com/api/assert/) da
+There are other assertions in [Chai](https://www.chaijs.com/) as well, for instance:
+
+- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
+- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
+- `assert.isTrue(value)` -- checks that `value === true`
+- `assert.isFalse(value)` -- checks that `value === false`
+- ...the full list is in the [docs](https://www.chaijs.com/api/assert/)
 ```
 
 Shunday qilib, "pow" ga bir nechta qator qo'shishimiz kerak:

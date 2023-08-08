@@ -128,6 +128,14 @@ setTimeout(() => document.body.style.display = "", 1000); // back to normal
 
 If we set `style.display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style.display` property at all.
 
+Also there is a special method for that, `elem.style.removeProperty('style property')`. So, We can remove a property like this:
+
+```js run
+document.body.style.background = 'red'; //set background to red
+
+setTimeout(() => document.body.style.removeProperty('background'), 1000); // remove background after 1 second
+```
+
 ````smart header="Full rewrite with `style.cssText`"
 Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
 
@@ -261,20 +269,6 @@ So nowadays `getComputedStyle` actually returns the resolved value of the proper
 We should always ask for the exact property that we want, like `paddingLeft` or `marginTop` or `borderTopWidth`. Otherwise the correct result is not guaranteed.
 
 For instance, if there are properties `paddingLeft/paddingTop`, then what should we get for `getComputedStyle(elem).padding`? Nothing, or maybe a "generated" value from known paddings? There's no standard rule here.
-
-There are other inconsistencies. As an example, some browsers (Chrome) show `10px` in the document below, and some of them (Firefox) --  do not:
-
-```html run
-<style>
-  body {
-    margin: 10px;
-  }
-</style>
-<script>
-  let style = getComputedStyle(document.body);
-  alert(style.margin); // empty string in Firefox
-</script>
-```
 ````
 
 ```smart header="Styles applied to `:visited` links are hidden!"

@@ -120,26 +120,27 @@ There's usually no real need to prevent the bubbling. A task that seemingly requ
 
 There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
 
-The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+The standard [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
 
 1. Capturing phase -- the event goes down to the element.
 2. Target phase -- the event reached the target element.
 3. Bubbling phase -- the event bubbles up from the element.
 
-Here's the picture of a click on `<td>` inside a table, taken from the specification:
+Here's the picture, taken from the specification, of the capturing `(1)`, target `(2)` and bubbling `(3)` phases for a click event on a `<td>` inside a table:
 
 ![](eventflow.svg)
 
 That is: for a click on `<td>` the event first goes through the ancestors chain down to the element (capturing phase), then it reaches the target and triggers there (target phase), and then it goes up (bubbling phase), calling handlers on its way.
 
-**Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
+Until now, we only talked about bubbling, because the capturing phase is rarely used.
 
-Handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+In fact, the capturing phase was invisible for us, because handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
 
 To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
 
 ```js
 elem.addEventListener(..., {capture: true})
+
 // or, just "true" is an alias to {capture: true}
 elem.addEventListener(..., true)
 ```
@@ -180,9 +181,10 @@ The code sets click handlers on *every* element in the document to see which one
 
 If you click on `<p>`, then the sequence is:
 
-1. `HTML` -> `BODY` -> `FORM` -> `DIV` (capturing phase, the first listener):
-2. `P` (target phase, triggers two times, as we've set two listeners: capturing and bubbling)
-3. `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+1. `HTML` -> `BODY` -> `FORM` -> `DIV -> P` (capturing phase, the first listener):
+2. `P` -> `DIV` -> `FORM` -> `BODY` -> `HTML` (bubbling phase, the second listener).
+
+Please note, the `P` shows up twice, because we've set two listeners: capturing and bubbling. The target triggers at the end of the first and at the beginning of the second phase.
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
@@ -190,7 +192,7 @@ There's a property `event.eventPhase` that tells us the number of the phase on w
 If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
 ```
 
-````smart header="Listeners on same element and same phase run in their set order"
+````smart header="Listeners on the same element and same phase run in their set order"
 If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
 
 ```js
@@ -198,6 +200,12 @@ elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
 elem.addEventListener("click", e => alert(2));
 ```
 ````
+
+```smart header="The `event.stopPropagation()` during the capturing also prevents the bubbling"
+The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the futher capturing is stopped, but the bubbling as well.
+
+In other words, normally the event goes first down ("capturing") and then up ("bubbling"). But if `event.stopPropagation()` is called during the capturing phase, then the event travel stops, no bubbling will occur.
+```
 
 
 ## Summary
@@ -216,7 +224,7 @@ Each handler can access `event` object properties:
 
 Any event handler can stop the event by calling `event.stopPropagation()`, but that's not recommended, because we can't really be sure we won't need it above, maybe for completely different things.
 
-The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logic behind that.
+The capturing phase is used very rarely, usually we handle events on bubbling. And there's a logical explanation for that.
 
 In real world, when an accident happens, local authorities react first. They know best the area where it happened. Then higher-level authorities if needed.
 

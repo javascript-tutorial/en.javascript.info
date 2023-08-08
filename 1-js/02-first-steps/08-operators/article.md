@@ -81,6 +81,7 @@ alert( 8 ** (1/3) ); // 2 (1/3 daraja kvadrat ildiz bilan barobar)
 ## Binary bilan string birlashtirish +
 
 Keling, maktab arifmetikasidan uzoqda bo'lgan JavaScript operatorlarining xususiyatlari bilan tanishaylik.
+Let's meet the features of JavaScript operators that are beyond school arithmetics.
 
 Odatda, plyus `+` operatori raqamlarni qo'shadi.
 
@@ -202,11 +203,19 @@ Quyida [ustunlik jadvali](https://developer.mozilla.org/en-US/docs/Web/JavaScrip
 | 13 | bo'luv | `/` |
 | 12 | qo'shuv | `+` |
 | 12 | ayiruv | `-` |
+| 14 | unary plus | `+` |
+| 14 | unary negation | `-` |
+| 13 | exponentiation | `**` |
+| 12 | multiplication | `*` |
+| 12 | division | `/` |
+| 11 | addition | `+` |
+| 11 | subtraction | `-` |
 | ... | ... | ... |
 | 2 | tayinlash | `=` |
 | ... | ... | ... |
 
 Ko'rib turganimizdek, "unary plyus" "qo'shish" (binary plyus) ning "12" dan yuqori bo'lgan "15" ustuvorligiga ega. Shuning uchun `"+olma + +apelsinlar"` ifodasida qo'shuvdan oldin unary plyuslar ishlaydi.
+As we can see, the "unary plus" has a priority of `14` which is higher than the `11` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
 
 ## Tayinlash
 
@@ -304,9 +313,9 @@ Bunday operatorlar oddiy topshiriq bilan bir xil ustunlikka ega, shuning uchun u
 ```js run
 let n = 2;
 
-n *= 3 + 5;
+n *= 3 + 5; // right part evaluated first, same as n *= 8
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16  
 ```
 
 ## Oshirish/kamaytirish 
@@ -441,6 +450,7 @@ Operatorlar ro'yhati:
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
 Ushbu operatorlar juda kamdan-kam hollarda, eng past (bit bo'yicha) darajadagi raqamlar bilan ishlashimiz kerak bo'lganda qo'llaniladi. Yaqin orada bizga bu operatorlar kerak bo'lmaydi, chunki veb ishlab chiqishda ulardan kam foydalaniladi, lekin kriptografiya kabi ba'zi maxsus sohalarda ular foydalidir. Zarurat tug'ilganda MDN da [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise) bo'limini o'qishingiz mumkin.
+These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
 
 ## Comma (vergul)
 

@@ -39,6 +39,7 @@ Agar `key:Esc` tugmasini bossak, u quyidagini ochadi. U yerga buyruqlarni yozish
 Statment amalga oshirilgandan so'ng, uning natijasi quyida ko'rsatiladi.
 
 Misol uchun, bu yerda `1+2` natijasi `3` da, va `hello("debugger")` hech narsa qaytarmaydi, shu tufayli, natija `undefined` (aniqlanmagan):
+For example, here `1+2` results in `3`, while the function call `hello("debugger")` returns nothing, so the result is `undefined`:
 
 ![](chrome-sources-console.svg)
 
@@ -64,11 +65,14 @@ Har doim o'ng paneldan bir qator breakdownlarni topishimiz mumkin. Bu bizda har 
 
 ```smart header="Shartli breakpointlar"
 Qator raqamidagi *Right click*  *conditional* (shartli) breakdown yaratish imkonini beradi. U faqat berilgan ifoda to'g'ri bo'lgandagina ishga tushadi. 
+```smart header="Conditional breakpoints"
+*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
 
 Bu biz aniq bir o'zgaruvchi qiymat yoki aniq funksiya parametrlai uchun to'xtaganimizda  juda qo'l keladi. 
 ```
 
 ## Debugger burug'i
+## The command "debugger"
 
 Shuningdek, `debugger` buyrug'idan foydalanib ham kodni to'xtatsa bo'ladi, bu kabi: 
 
@@ -86,6 +90,7 @@ function hello(name) {
 
 Bu biz kod tahrirlovchida bo'ib, boshqa brauzerga o'tishni va breakdownni o'rnatish uchun developer toollaridagi scriptlarni ko'rib chiqishni istamasagan hollarimizda qulay bo'ladi. 
 
+Such command works only when the development tools are open, otherwise the browser ignores it.
 
 ## Pauza qiling va atrofga qarang 
 
@@ -100,6 +105,7 @@ O'ng tomondagi ma'lumotlarni oching ( strelka bilan belgilangan). U bizga joriy 
 1. **`Watch` -- istalgan ifodaga joriy qiymatni ko'rsatadi.**
 
     Plus `+` belgisini ustiga bosishingiz, va ifodani kiritishingiz mumkin. Debugger uning qiymatini istalgan vaqtda amal jarayonida hisoblab ko'rsatib beradi. 
+    You can click the plus `+` and input an expression. The debugger will show its value, automatically recalculating it in the process of execution.
 
 2. **`Call Stack` -- ichki qo'ng'iroqlar zanjirini ko'rsatadi.**
 
@@ -140,6 +146,12 @@ Buning uchun o'ng panelning tepasida tugmalar mavjud.  Ularni ishga tushiramiz.
     "Step" buyrug'i unga kiradi va birinchi qatorda bajarishni to'xtatadi, "Step over" esa ichki funksiyalarni o'tkazib yuborgan holda ichki funksiya chaqiruvini ko'rinmas tarzda bajaradi.
 
     Ushbu funktsiyadan so'ng amal darhol to'xtatiladi.
+<span class="devtools" style="background-position:-62px -192px"></span> -- "Step over": run the next command, but *don't go into a function*, hotkey `key:F10`.
+: Similar to the previous "Step" command, but behaves differently if the next statement is a function call (not a built-in, like `alert`, but a function of our own).
+
+    If we compare them, the "Step" command goes into a nested function call and pauses the execution at its first line, while "Step over" executes the nested function call invisibly to us, skipping the function internals.
+
+    The execution is then paused immediately after that function call.
 
     Funktsiya chaqiruvida nima sodir bo'lishini ko'rish bizni qiziqtirmasa, bu yaxshi.
 
@@ -157,6 +169,8 @@ Buning uchun o'ng panelning tepasida tugmalar mavjud.  Ularni ishga tushiramiz.
 
 <span class="devtools" style="background-position:-90px -146px"></span> -- xato mavjud vaziyatda avtomatik to'xtashni imkonini beradi/ishdan chiqaradi.
 : Imkon berilib   va developer toollar ochiq bo'lganda, script xatosi avtomatik ravishda amalni to'xtatadi. Keyin nima xato ketkanligini ko'rish uchun o'zgaruvchilarni analiz qila olamiz. Shunday qilib, agar skriptimiz xatolik bilan buzilib qolsa, biz debuggerni ochishimiz, ushbu parametrni yoqishimiz va sahifani qayta yuklashimiz va uning qayerda buzilishini va o'sha paytdagi kontekstni ko'rishimiz mumkin. 
+<span class="devtools" style="background-position:-90px -146px"></span> -- enable/disable automatic pause in case of an error.
+: When enabled, if the developer tools is open, an error during the script execution automatically pauses it. Then we can analyze variables in the debugger to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
 
 ```smart header="Continue to here"
 Kod satriga sichqonchaning o'ng tugmachasini bosish "Continue to here" (Bu yerga davom eting) deb nomlangan ajoyib tanlov bilan kontekst menyusini ochadi. 
@@ -189,6 +203,7 @@ Ko'rib turganimizdek, scriptni to'xtatishni uchta asosiy yo'li mavjud:
 3. Xato ( dev toollar ochiq va <span class="devtools" style="background-position:-90px -146px"></span> tugmasi "on" bo'lsa).  
 
 To'xtatib qo'yilganda (pauza qilinganda), debug qila olamiz - o'zgaruvchilarni teksira olamiz va qayerda xato ketayotkanini ko'riah uchun kodni kuzata olamiz. 
+When paused, we can debug: examine variables and trace the code to see where the execution goes wrong.
 
 Developer toollarda bu yerda o'rganib chiqilganlardan ko'ra ko'proq tanlovlar mavjud. To'liq q'llanma <https://developers.google.com/web/tools/chrome-devtools> da. 
 

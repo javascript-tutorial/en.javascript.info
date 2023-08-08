@@ -195,7 +195,7 @@ To make a `POST` request, or a request with another method, we need to use `fetc
 - **`method`** -- HTTP-method, e.g. `POST`,
 - **`body`** -- the request body, one of:
   - a string (e.g. JSON-encoded),
-  - `FormData` object, to submit the data as `form/multipart`,
+  - `FormData` object, to submit the data as `multipart/form-data`,
   - `Blob`/`BufferSource` to send binary data,
   - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
 
@@ -298,13 +298,13 @@ fetch(url, options)
 
 Response properties:
 - `response.status` -- HTTP code of the response,
-- `response.ok` -- `true` is the status is 200-299.
+- `response.ok` -- `true` if the status is 200-299.
 - `response.headers` -- Map-like object with HTTP headers.
 
 Methods to get response body:
 - **`response.text()`** -- return the response as text,
 - **`response.json()`** -- parse the response as JSON object,
-- **`response.formData()`** -- return the response as `FormData` object (form/multipart encoding, see the next chapter),
+- **`response.formData()`** -- return the response as `FormData` object (`multipart/form-data` encoding, see the next chapter),
 - **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
 - **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
 

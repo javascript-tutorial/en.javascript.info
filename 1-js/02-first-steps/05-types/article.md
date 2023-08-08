@@ -71,6 +71,20 @@ Raqamlar bilan ishlashni <info:number> bo'limida ko'proq ko'rib chiqamiz.
 JavaScript da "raqam" turi <code>(2<sup>53</sup>-1)</code> (bu  `9007199254740991` ga teng) dan katta butun son qiymatini, yoki manfiylar uchun <code>-(2<sup>53</sup>-1)</code> dan kichigina son qiymatini ko'rsata olmaydi. Bu ularning ichki ifodasidan kelib chiqqan texnik cheklov. 
 
  Shularning o'zi ham ko'p maqsadlarga yetarli bo'la oladi, lekin ba'zan bizga juda katta raqamlar kerak bo'ladi. Misol uchun, kriptografiya yoki mikrosoniyali aniqlikdagi vaqt belgilari uchun.
+In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives.
+
+To be really precise, the "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> there'll be a precision error, because not all digits fit into the fixed 64-bit storage. So an "approximate" value may be stored.
+
+For example, these two numbers (right above the safe range) are the same:
+
+```js
+console.log(9007199254740991 + 1); // 9007199254740992
+console.log(9007199254740991 + 2); // 9007199254740992
+```
+
+So to say, all odd integers greater than <code>(2<sup>53</sup>-1)</code> can't be stored at all in the "number" type.
+
+For most purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps.
 
 `BigInt` ixtiyoriy uzunlikdagi butun sonlarni ifodalash uchun tilga yaqinda qo'shilgan. 
 
@@ -272,6 +286,16 @@ JavaScriptda 8 ta ma'lumot turi mavjud.
 - `undefined` belgilanmagan qiymatlar uchun -- a standalone type that has a single value `undefined`.
 - `object` mukammalroq ma'lumot tuzilmalari uchun.
 - `symbol` yagona aniqlovchilar uchun.
+- Seven primitive data types:
+    - `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
+    - `bigint` for integer numbers of arbitrary length.
+    - `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+    - `boolean` for `true`/`false`.
+    - `null` for unknown values -- a standalone type that has a single value `null`.
+    - `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+    - `symbol` for unique identifiers.
+- And one non-primitive data type:
+    - `object` for more complex data structures.
 
 `typeof` operatori bizga o'zgaruvchida qaysi bir tur o'rnatilganini ko'rish imkonini beradi.
  

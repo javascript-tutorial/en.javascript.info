@@ -27,7 +27,7 @@ Luckily, there's no need to write the code to handle all this. The task has been
 
 ## JSON.stringify
 
-The [JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
+The [JSON](https://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) is a general format to represent values and objects. It is described as in [RFC 4627](https://tools.ietf.org/html/rfc4627) standard. Initially it was made for JavaScript, but many other languages have libraries to handle it as well.  So it's easy to use JSON for data exchange when the client uses JavaScript and the server is written on Ruby/PHP/Java/Whatever.
 
 JavaScript provides methods:
 
@@ -41,7 +41,7 @@ let student = {
   age: 30,
   isAdmin: false,
   courses: ['html', 'css', 'js'],
-  wife: null
+  spouse: null
 };
 
 *!*
@@ -58,7 +58,7 @@ alert(json);
   "age": 30,
   "isAdmin": false,
   "courses": ["html", "css", "js"],
-  "wife": null
+  "spouse": null
 }
 */
 */!*
@@ -451,7 +451,7 @@ let json = `{
 
 Besides, JSON does not support comments. Adding a comment to JSON makes it invalid.
 
-There's another format named [JSON5](http://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
+There's another format named [JSON5](https://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
 
 The regular JSON is that strict not because its developers are lazy, but to allow easy, reliable and very fast implementations of the parsing algorithm.
 
