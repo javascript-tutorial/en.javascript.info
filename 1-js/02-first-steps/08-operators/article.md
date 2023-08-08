@@ -1,15 +1,15 @@
-# Basic operators, maths
+# Asosiy operatorlar, matematika
 
-We know many operators from school. They are things like addition `+`, multiplication `*`, subtraction `-`, and so on.
+Ko'plab operatorlarni maktab davridan bilamiz. Ular qo'shuv `+`, ko'paytiruv `*`, ayiruv `-` va boshqa shunga o'xshash narsalar.
 
-In this chapter, we’ll start with simple operators, then concentrate on JavaScript-specific aspects, not covered by school arithmetic.
+Ushbu bobda oddiy operatorlardan boshlaymiz, so'ngra maktab arifmetikasi bilan qamrab olinmagan JavaScript-ga xos jihatlarga e'tibor qaratamiz.
 
-## Terms: "unary", "binary", "operand"
+## Terminlar: "unary", "binary", "operand"
 
-Before we move on, let's grasp some common terminology.
+Davom etishdan oldin, keling, ba'zi umumiy atamalarni tushunib olaylik.
 
-- *An operand* -- is what operators are applied to. For instance, in the multiplication of `5 * 2` there are two operands: the left operand is `5` and the right operand is `2`. Sometimes, people call these "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of a number:
+- *operand* -- operatorlar qo'llaniladigan narsadir. Misol uchun, `5 * 2` ko'paytmasida ikkita operand mavjud: chap operand `5` va o'ng operand `2`. Ba'zan odamlar bularni "operand"ni o'rniga "argument" deb atashadi.
+- Agar operator yakka operand-ga ega bo'lsa u *unary*. Misol uchun, unary inkor `-` raqam belgisini teskarisiga aylantiradi:
 
     ```js run
     let x = 1;
@@ -17,50 +17,50 @@ Before we move on, let's grasp some common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary negation was applied
+    alert( x ); // -1, unary inkor qo'llanilgan
     ```
-- An operator is *binary* if it has two operands. The same minus exists in binary form as well:
+- Agar operator ikkita operand-ga ega bo'lsa u *binary*. Binary shaklda ham o'xshash minus mavjud:
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus subtracts values
+    alert( y - x ); // 2, binary minus qiymatlarni ayiradi
     ```
 
-    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
+    Rasman, yuqoridagi misollarda bizda bir xil belgiga ega bo'lgan ikki xil operator mavjud: inkor operatori, belgini teskari aylantiruvchi unary operator va ayirish operatori, bir raqamni boshqasidan ayiradigan binary operator.
 
-## Maths
+## Matematika
 
-The following math operations are supported:
+Quyidagi operatorlar qo'llab quvvatlanadi:
 
-- Addition `+`,
-- Subtraction `-`,
-- Multiplication `*`,
-- Division `/`,
-- Remainder `%`,
-- Exponentiation `**`.
+- Qo'shuv `+`,
+- Ayiruv `-`,
+- Ko'paytiruv `*`,
+- Bo'luv `/`,
+- Qoldiq `%`,
+- Darajaga ko'tarish `**`.
 
-The first four are straightforward, while `%` and `**` need a few words about them.
+Birinchi to'rttasi oddiy, `%` va `**` esa ozgina tushuntiruv talab qiladi.
 
-### Remainder %
+### Qoldiq %
 
-The remainder operator `%`, despite its appearance, is not related to percents.
+Qoldiq operatori `%`, ko'rinishiga qaramay, foizlarga bo'gliq emas.
 
-The result of `a % b` is the [remainder](https://en.wikipedia.org/wiki/Remainder) of the integer division of `a` by `b`.
+ `a % b`ning natijasi `a`ni `b`ga bo'lgandagi butun [qoldiq](https://en.wikipedia.org/wiki/Remainder)ga teng.
 
-For instance:
+Misol uchun:
 
 ```js run
-alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
+alert( 5 % 2 ); // 1, 5ni 2ga bo'lgandagi qoldiq
+alert( 8 % 3 ); // 2, 8ni 3ga bo'lgandagi qoldiq
 ```
 
-### Exponentiation **
+### Darajaga ko'tarish **
 
-The exponentiation operator `a ** b` raises `a` to the power of `b`.
+Darajaga ko'tarish operatori `a ** b`, `a`ni `b` darajasiga ko'taradi.
 
-In school maths, we write that as a<sup>b</sup>.
+Maktab matematikasida, uni a<sup>b</sup> ko'rinishida yozamiz.
 
-For instance:
+Misol uchun:
 
 ```js run
 alert( 2 ** 2 ); // 2² = 4
@@ -68,69 +68,71 @@ alert( 2 ** 3 ); // 2³ = 8
 alert( 2 ** 4 ); // 2⁴ = 16
 ```
 
-Just like in maths, the exponentiation operator is defined for non-integer numbers as well. 
+Matematikada bo'lganidek, darajaga ko'tarish operatori butun bo'lmagan raqamlar uchun ham ishlaydi. 
 
-For example, a square root is an exponentiation by ½:
+Misol uchun, kvadrat ildiz ½chi darajaga teng:
 
 ```js run
-alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
-alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
+alert( 4 ** (1/2) ); // 2 (1/2 daraja kvadrat ildiz bilan barobar)
+alert( 8 ** (1/3) ); // 2 (1/3 daraja kvadrat ildiz bilan barobar)
 ```
 
 
-## String concatenation with binary +
+## Binary bilan string birlashtirish +
 
+Keling, maktab arifmetikasidan uzoqda bo'lgan JavaScript operatorlarining xususiyatlari bilan tanishaylik.
 Let's meet the features of JavaScript operators that are beyond school arithmetics.
 
-Usually, the plus operator `+` sums numbers.
+Odatda, plyus `+` operatori raqamlarni qo'shadi.
 
-But, if the binary `+` is applied to strings, it merges (concatenates) them:
+Lekin, binary plyus `+` string-larga qo'llanilsa, u ularni birlashtiradi:
 
 ```js
 let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if any of the operands is a string, then the other one is converted to a string too.
+Esda tuting, agar operand-lardan birontasi string bo'lsa, u holda boshqasi ham string-ga aylantiriladi.
 
-For example:
+Misol uchun:
 
 ```js run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one.
+Ko'rishimiz mumkin, birinchi operand yoki ikkinchisi string bo'lishi ahamiyatsiz.
 
-Here's a more complex example:
+Quyida ancha murakkabroq misol:
 
 ```js run
-alert(2 + 2 + '1' ); // "41" and not "221"
+alert(2 + 2 + '1' ); // "41" va "221" emas
 ```
 
-Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
+Bu yerda operatorlar birin-ketin ishlaydi. Birinchi `+` ikkita raqamni jamlaydi, shuning uchun u `4` ni qaytaradi, keyin keyingi `+` unga `1` qatorini qo`shadi, shuning uchun `4 + '1' = '41'` kabi bo`ladi.
 
 ```js run
-alert('1' + 2 + 2); // "122" and not "14"
+alert('1' + 2 + 2); // "122" va "14" emas
 ```
-Here, the first operand is a string, the compiler treats the other two operands as strings too. The `2` gets concatenated to `'1'`, so it's like `'1' + 2 = "12"` and `"12" + 2 = "122"`.
 
-The binary `+` is the only operator that supports strings in such a way. Other arithmetic operators work only with numbers and always convert their operands to numbers.
+Bu yerda birinchi operand string bo'lib, compiler qolgan ikkita operandga ham string sifatida qaraydi. `2` `'1'` ga birlashtiriladi, shuning uchun u `'1' + 2 = "12"` va `"12" + 2 = "122"` kabi bo'ladi.
 
-Here's the demo for subtraction and division:
+Binary `+` string-larni shu tarzda qo'llab-quvvatlaydigan yagona operatordir. Boshqa arifmetik operatorlar faqat raqamlar bilan ishlaydi va har doim o'z operandlarini raqamlarga aylantiradi.
+
+Quyida ko'paytiruv va bo'luv uchun demo:
 
 ```js run
-alert( 6 - '2' ); // 4, converts '2' to a number
-alert( '6' / '2' ); // 3, converts both operands to numbers
+alert( 6 - '2' ); // 4, '2' ni songa aylantiradi
+alert( '6' / '2' ); // 3, ikkala operandni songa aylantiradi
 ```
 
 ## Numeric conversion, unary +
 
-The plus `+` exists in two forms: the binary form that we used above and the unary form.
+Plyus `+` ikki shaklda mavjud: biz yuqorida ishlatgan binary shakl va unary shakl.
 
-The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+Bitta qiymatga qo'llaniladigan unary plyus yoki boshqacha qilib aytganda, plyus operatori `+` raqamlarga hech qanday o'zgarish kiritmaydi. Ammo operand raqam bo'lmasa, unary plyus uni raqamga aylantiradi.
 
-For example:
+Misol uchun:
 
 ```js run
 // No effect on numbers
@@ -147,11 +149,11 @@ alert( +"" );   // 0
 */!*
 ```
 
-It actually does the same thing as `Number(...)`, but is shorter.
+Aslida u `Number(...)` bilan bir xil vazifa bajaradi, lekin u qisqaroq.
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
+String-larni number-ga aylantirish zarurati tez-tez tug'iladi. Misol uchun, agar biz HTML forma maydonlaridan qiymatlarni olayotgan bo'lsak, ular odatda string-lardir. Agar ularni yig'indisini hisoblamoqchi bo'lsak-chi?
 
-The binary plus would add them as strings:
+Binary plus ularni string-dek qo'shadi:
 
 ```js run
 let apples = "2";
@@ -160,10 +162,10 @@ let oranges = "3";
 alert( apples + oranges ); // "23", the binary plus concatenates strings
 ```
 
-If we want to treat them as numbers, we need to convert and then sum them:
+Agar ularni raqamlar deb hisoblamoqchi bo'lsak, ularni konvertatsiya qilishimiz va keyin qo'shishimiz kerak:
 
 ```js run
-let apples = "2";
+let apples = "2"; 
 let oranges = "3";
 
 *!*
@@ -175,25 +177,32 @@ alert( +apples + +oranges ); // 5
 // alert( Number(apples) + Number(oranges) ); // 5
 ```
 
-From a mathematician's standpoint, the abundance of pluses may seem strange. But from a programmer's standpoint, there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+Matematik nuqtai nazaridan, ortiqcha plyuslarning ko'pligi g'alati tuyulishi mumkin. Ammo dasturchi nuqtai nazaridan, g'alati narsa yo'q: birinchi navbatda unary plyuslar qo'llaniladi, ular string-larni number-larga aylantiradi va so'ngra inary plyus ularni jamlaydi.
 
-Why are unary pluses applied to values before the binary ones? As we're going to see, that's because of their *higher precedence*.
+Nima uchun unary plyuslar binary-dan oldingi qiymatlarga qo'llaniladi? Ko'rib turganimizdek, bu ularning *yuqori ustunligi* bilan bog'liq.
 
-## Operator precedence
+## Operator ustuvorligi
 
-If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
+Agar ifoda bir nechta operatorga ega bo'lsa, bajarilish tartibi ularning *ustuvorligi* yoki boshqacha aytganda, operatorlarning doimiy ustuvorlik tartibi bilan belgilanadi.
 
-From school, we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
+Maktabdan hammamiz bilamizki, `1 + 2 * 2` ifodasidagi ko'paytirish qo'shishdan oldin hisoblanishi kerak. Bu aynan birinchi o'rinda turadigan narsa. Koʻpaytirish qoʻshishga qaraganda *yuqori ustunlikka* ega deyiladi.
 
-Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
+Qavslar har qanday ustunlikni inkor qiladi, shuning uchun standart tartib bizni qoniqtirmasa, uni o'zgartirish uchun ulardan foydalanishimiz mumkin. Masalan, `(1 + 2) * 2` yozish mumkin.
 
-There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the larger number executes first. If the precedence is the same, the execution order is from left to right.
+JavaScript-da ko'plab operatorlar mavjud. Har bir operator tegishli ustunlik raqamiga ega. Ko'proq raqamga ega bo'lgani birinchi bajariladi. Agar ustunlik bir xil bo'lsa, bajarish tartibi chapdan o'ngga qarab bo'ladi.
 
-Here's an extract from the [precedence table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
+Quyida [ustunlik jadvali](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence) dan ko'chirma (buni eslab qolishning hojati yo'q, lekin unary operatorlar mos keladigan binary operatorlardan yuqori ekanligini unutmang):
 
-| Precedence | Name | Sign |
+| Ustuvorlik | Nomi | Belgisi |
 |------------|------|------|
 | ... | ... | ... |
+| 15 | unary plyus | `+` |
+| 15 | unary inkor | `-` |
+| 14 | darajaga ko'ratish | `**` |
+| 13 | ko'paytiruv | `*` |
+| 13 | bo'luv | `/` |
+| 12 | qo'shuv | `+` |
+| 12 | ayiruv | `-` |
 | 14 | unary plus | `+` |
 | 14 | unary negation | `-` |
 | 13 | exponentiation | `**` |
@@ -202,16 +211,17 @@ Here's an extract from the [precedence table](https://developer.mozilla.org/en-U
 | 11 | addition | `+` |
 | 11 | subtraction | `-` |
 | ... | ... | ... |
-| 2 | assignment | `=` |
+| 2 | tayinlash | `=` |
 | ... | ... | ... |
 
+Ko'rib turganimizdek, "unary plyus" "qo'shish" (binary plyus) ning "12" dan yuqori bo'lgan "15" ustuvorligiga ega. Shuning uchun `"+olma + +apelsinlar"` ifodasida qo'shuvdan oldin unary plyuslar ishlaydi.
 As we can see, the "unary plus" has a priority of `14` which is higher than the `11` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
 
-## Assignment
+## Tayinlash
 
-Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `2`.
+Tayinlash `=` ham operator ekanligini ta'kidlaymiz. U ustunlik jadvalida juda past ustunlik `2` bilan berilgan.
 
-That's why, when we assign a variable, like `x = 2 * 2 + 1`, the calculations are done first and then the `=` is evaluated, storing the result in `x`.
+Shuning uchun `x = 2 * 2 + 1` kabi o'zgaruvchini tayinlaganimizda, avval hisob-kitoblar amalga oshiriladi, so'ngra `=` hisoblanadi va natija `x` da saqlanadi.   
 
 ```js
 let x = 2 * 2 + 1;
@@ -219,15 +229,15 @@ let x = 2 * 2 + 1;
 alert( x ); // 5
 ```
 
-### Assignment = returns a value
+### Tayinlash = qiymat qaytaradi
 
-The fact of `=` being an operator, not a "magical" language construct has an interesting implication.
+`=` ning "sehrli" til konstruktsiyasi emas, balki operator ekanligi qiziq ma'noga ega.
 
-All operators in JavaScript return a value. That's obvious for `+` and `-`, but also true for `=`.
+JavaScript-dagi barcha operatorlar qiymat qaytaradi. Bu `+` va `-` uchun aniq, lekin `=` uchun ham amal qiladi.
 
-The call `x = value` writes the `value` into `x` *and then returns it*.
+`x = value` chaqiruvi `qiymat`ni `x` ga yozadi va *keyin uni qaytaradi*.
 
-Here's a demo that uses an assignment as part of a more complex expression:
+Quyida topshiriqni murakkabroq ifodaning bir qismi sifatida ishlatuvchi demo:
 
 ```js run
 let a = 1;
@@ -241,15 +251,15 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
+Yuqoridagi misolda, `(a = b + 1)` ifonading natijasi `a`ga tayinlangan qiymat (`3`)ga teng. Keyin u keyingi hisoblashlarda ishlatilinadi.
 
-Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries.
+Kulgili kod, shunday emasmi? Uni qanday ishlashini tushunishimiz kerak, chunki ba'zida uni JavaScript kutubxonalarida uchratamiz.
 
-Although, please don't write the code like that. Such tricks definitely don't make code clearer or readable.
+Shunga qaramay, kodni unday yozmang. Bunday hiylalar kodni hech qanday aniqroq yoki o'qishga qulay qilib bermaydi.
 
-### Chaining assignments
+### Chaining assignments (Zanjirlash topshiriqlari)
 
-Another interesting feature is the ability to chain assignments:
+Yana bir qiziqarli xususiyati bu topshiriqlarni zanjirlay olishidir:
 
 ```js run
 let a, b, c;
@@ -263,22 +273,22 @@ alert( b ); // 4
 alert( c ); // 4
 ```
 
-Chained assignments evaluate from right to left. First, the rightmost expression `2 + 2` is evaluated and then assigned to the variables on the left: `c`, `b` and `a`. At the end, all the variables share a single value.
+Zanjirlangan topshiriqlar o'ngdan chapga qarab hisoblanadi. Birinchidan, eng o'ngdagi "2 + 2" ifodasi hisoblanadi va keyin chapdagi o'zgaruvchilarga tayinlanadi: "c", "b" va "a". Oxir-oqibat, barcha o'zgaruvchilar bitta qiymatga ega bo'ladi.
 
-Once again, for the purposes of readability it's better to split such code into few lines:
+Yana bir bor, yaxshiroq o'qilishi uchun bunday kodni bir nechta qatorga bo'lgan yaxshiroq:
 
 ```js
 c = 2 + 2;
 b = c;
 a = c;
 ```
-That's easier to read, especially when eye-scanning the code fast.
+U o'qishga osonroq, asosan kodga tez ko'z yugirtirib chiqilganda.
 
 ## Modify-in-place
 
-We often need to apply an operator to a variable and store the new result in that same variable.
+Biz ko'pincha o'zgaruvchiga operatorni qo'llashimiz va yangi natijani o'sha o'zgaruvchida saqlashimiz kerak.
 
-For example:
+Misol uchun:
 
 ```js
 let n = 2;
@@ -286,7 +296,7 @@ n = n + 5;
 n = n * 2;
 ```
 
-This notation can be shortened using the operators `+=` and `*=`:
+Ushbu kodni `+=` va `*=` operatorlari yordamida qisqartirish mumkin:
 
 ```js run
 let n = 2;
@@ -296,9 +306,9 @@ n *= 2; // now n = 14 (same as n = n * 2)
 alert( n ); // 14
 ```
 
-Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=`, etc.
+Qisqa "o'zgartirish va tayinlash" operatorlari barcha arifmetik va bitwise (bitli) operatorlar: `/=`, `-=` va boshqalar uchun mavjud.
 
-Such operators have the same precedence as a normal assignment, so they run after most other calculations:
+Bunday operatorlar oddiy topshiriq bilan bir xil ustunlikka ega, shuning uchun ular boshqa ko'plab hisob-kitoblardan keyin ishlaydi:
 
 ```js run
 let n = 2;
@@ -308,22 +318,22 @@ n *= 3 + 5; // right part evaluated first, same as n *= 8
 alert( n ); // 16  
 ```
 
-## Increment/decrement
+## Oshirish/kamaytirish 
 
 <!-- Can't use -- in title, because the built-in parser turns it into a 'long dash' – -->
 
-Increasing or decreasing a number by one is among the most common numerical operations.
+Raqamni bittaga oshirish yoki kamaytirish eng keng tarqalgan raqamli operatsiyalardan biridir.
 
-So, there are special operators for it:
+Shunday qilib, buning uchun maxsus operatorlar mavjud:
 
-- **Increment** `++` increases a variable by 1:
+- **Oshirish** `++` o'zgaruvchini bittaga oshiradi:
 
     ```js run no-beautify
     let counter = 2;
     counter++;        // works the same as counter = counter + 1, but is shorter
     alert( counter ); // 3
     ```
-- **Decrement** `--` decreases a variable by 1:
+- **Kamaytirish** `--` o'zgaruvchini bittaga kamaytiradi:
 
     ```js run no-beautify
     let counter = 2;
@@ -332,21 +342,21 @@ So, there are special operators for it:
     ```
 
 ```warn
-Increment/decrement can only be applied to variables. Trying to use it on a value like `5++` will give an error.
+Ko'paytirish/kamaytirish faqat o'zgaruvchilarga qo'llanishi mumkin. Uni `5++`ga o'xshash qiymatga ishlatishga urinish xatolikka olib keladi.
 ```
 
-The operators `++` and `--` can be placed either before or after a variable.
+`++` va `--` operatorlari o'zgaruvchidan avval yoki keyin ham qo'yilishi mumkin.
 
-- When the operator goes after the variable, it is in "postfix form": `counter++`.
-- The "prefix form" is when the operator goes before the variable: `++counter`.
+- Operator o'zgaruvchidan keyin kelganda u "postfiks shakl"da bo'ladi: `counter++`.
+- Operator o'zgaruvchidan avval kelganda esa u "prefiks shakl"da bo'ladi: `++counter`.
 
-Both of these statements do the same thing: increase `counter` by `1`.
+Ushbu statement-larning ikkalasi ham bir xil vazifa bajaradi: `counter`ni bittaga oshiradi.
 
-Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
+Biror farq mavjudmi? Ha, lekin biz uni `++/--`dan qaytgan qiymatdan foydalansakgina ko'rishimiz mumkin.
 
-Let's clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+Keling, aniqlik kiritamiz. Ma'lumki, barcha operatorlar qiymat qaytaradi. Oshirish/kamaytirish ham bundan mustasno emas. Prefiks shakli yangi qiymatni qaytaradi, postfiks shakli esa eski (oshirish/kamaytirishdan oldingi) qiymatni qaytaradi.
 
-To see the difference, here's an example:
+Farqni ko'rish uchun, quyida bir misol:
 
 ```js run
 let counter = 1;
@@ -355,9 +365,9 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ```
 
-In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
+`(*)` qatorida *prefiks* shakl `++counter` `counter`ni oshiradi va yangi qiymat, `2`ni qaytaradi. Shunday qilib, `alert` `2`ni ko'rsatadi.
 
-Now, let's use the postfix form:
+Endi postfiks shakldan foydalanib ko'ramiz:
 
 ```js run
 let counter = 1;
@@ -366,11 +376,11 @@ let a = counter++; // (*) changed ++counter to counter++
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
+`(*)` qatorida *prefiks* shakl `++counter` ham `counter`ni oshiradi, lekin *eski* (oshirishdan avvalgi) qiymatni qaytaradi. Shunday qilib, `alert` `1`ni ko'rsatadi.
 
-To summarize:
+Xulosa qilganda:
 
-- If the result of increment/decrement is not used, there is no difference in which form to use:
+- Agar ko'paytirish/kamaytirishning natijasi ishlatilmasa, qaysi shakldan foydalanishning farqi yo'q:
 
     ```js run
     let counter = 0;
@@ -378,41 +388,41 @@ To summarize:
     ++counter;
     alert( counter ); // 2, the lines above did the same
     ```
-- If we'd like to increase a value *and* immediately use the result of the operator, we need the prefix form:
+- Agar qiymatni oshirishni *va* operator natijasini darhol ishlatishni xohlasak, bizga postfiks shakli kerak bo'ladi: 
 
     ```js run
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- If we'd like to increment a value but use its previous value, we need the postfix form:
+- Agar biz qiymatni oshirishni, lekin uning oldingi qiymatidan foydalanishni xohlasak, bizga postfiks shakli kerak bo'ladi:
 
     ```js run
     let counter = 0;
     alert( counter++ ); // 0
     ```
 
-````smart header="Increment/decrement among other operators"
-The operators `++/--` can be used inside expressions as well. Their precedence is higher than most other arithmetical operations.
-
-For instance:
+````smart header="Oshirish/kamaytirish boshqa operatsiyalar orasida"
+`++/--` operatorlari ham ifodalarning ichida ishlatilinishi mumkin. Ularning ustunligi ko'plab boshqa arifmetik operatsiyalardan yuqoriroq.
+````
+Misol uchun:
 
 ```js run
 let counter = 1;
 alert( 2 * ++counter ); // 4
 ```
 
-Compare with:
+Solishtirish uchun:
 
 ```js run
 let counter = 1;
 alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
 ```
 
-Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
+Texnik jihatdan yaxshi bo'lsada, bunday yozuv odatda kodni o'qishga qiyinroq qilishi mumkin. Bitta qator bir nechta ishlarni bajarsa -- yaxshi emas.
 
-While reading code, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+Kodni o'qiyotganda, "vertikal" tez ko'z yugurtirilganda `counter++` kabi narsalarni osongina o'tkazib yuborish mumkin va o'zgaruvchining ortishi aniq bo'lmay qoladi.
 
-We advise a style of "one line -- one action":
+Biz "bitta qator -- bitta xarakat" usulini maslahat beramiz:
 
 ```js run
 let counter = 1;
@@ -420,14 +430,16 @@ alert( 2 * counter );
 counter++;
 ```
 ````
+````
 
-## Bitwise operators
+## Bitwise operatorlar
 
-Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+Bitli operatorlar argumentlarga 32 bitli butun sonlar sifatida qaraydilar va ularning binary tasviri darajasida ishlaydilar.
 
 These operators are not JavaScript-specific. They are supported in most programming languages.
+Bu operatorlar JavaScript-ga xos emas. Ular ko'plab dasturlash tillarid tomonidan qo'llab-quvvatlanadi.
 
-The list of operators:
+Operatorlar ro'yhati:
 
 - AND ( `&` )
 - OR ( `|` )
@@ -437,15 +449,16 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
+Ushbu operatorlar juda kamdan-kam hollarda, eng past (bit bo'yicha) darajadagi raqamlar bilan ishlashimiz kerak bo'lganda qo'llaniladi. Yaqin orada bizga bu operatorlar kerak bo'lmaydi, chunki veb ishlab chiqishda ulardan kam foydalaniladi, lekin kriptografiya kabi ba'zi maxsus sohalarda ular foydalidir. Zarurat tug'ilganda MDN da [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Bitwise) bo'limini o'qishingiz mumkin.
 These operators are used very rarely, when we need to fiddle with numbers on the very lowest (bitwise) level. We won't need these operators any time soon, as web development has little use of them, but in some special areas, such as cryptography, they are useful. You can read the [Bitwise Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) chapter on MDN when a need arises.
 
-## Comma
+## Comma (vergul)
 
-The comma operator `,` is one of the rarest and most unusual operators. Sometimes, it's used to write shorter code, so we need to know it in order to understand what's going on.
+Vergul `,` operatori eng kam uchraydigan va noodatiy operatorlardan biridir. Ba'zan, undan qisqaroq kod yozgani foydalaniladi, shuning uchun kodni tushunish uchun uni bilishimiz kerak.
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated but only the result of the last one is returned.
+Vergul operatori bizga bir nechta iboralarni vergul `,` bilan bo'lish orqali hisoblash imkonini beradi. Ularning har biri baholanadi, lekin faqat oxirgisining natijasi qaytariladi.
 
-For example:
+Misol uchun:
 
 ```js run
 *!*
@@ -455,19 +468,19 @@ let a = (1 + 2, 3 + 4);
 alert( a ); // 7 (the result of 3 + 4)
 ```
 
-Here, the first expression `1 + 2` is evaluated and its result is thrown away. Then, `3 + 4` is evaluated and returned as the result.
+Bu yerda, birinchi `1 + 2` ifodasi hisoblanadi va natijasi tashlab yuboriladi. Keyin, `3 + 4` hisoblanadi va natija sifatida qaytariladi
 
-```smart header="Comma has a very low precedence"
-Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
+```smart header="Vergul juda past ustunlikga ega"
+Vergul operatori juda past, `=` dan ham past ustunlikka egaligini yodda tuting, shuning uchun yuqoridagi misolda qavslar muhimdir.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
+Ularsiz: `a = 1 + 2, 3 + 4` birinchi `+`ni hisoblaydi, sonlarni `a = 3, 7`ga jamlaydi, keyin tayinlash operatori `=` `a = 3`ni tayinlaydi, qolganlari esa e'tiborga olinmaydi. Bu xuddi `( a = 1 + 2), 3 + 4` kabi.
 ```
 
-Why do we need an operator that throws away everything except the last expression?
+Nega bizga oxirgi ifodadan tashqari hamma narsani tashlab yuboradigan operator kerak?
 
-Sometimes, people use it in more complex constructs to put several actions in one line.
-
-For example:
+Ba'zan, odamlar bir qatorga bir nechta harakatlarni qo'yish uchun undan murakkab tuzilmalarda foydalanadilar.
+ 
+Misol uchun:
 
 ```js
 // three operations in one line
@@ -476,4 +489,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
+Bunday usullardan ko'plab JavaScript freymvor-larida foydalaniladi. Shuning uchun ularni aytib o'tyapamiz. Lekin ular odatda kodni o'quvchanligini yaxshilamaydi, shuning uchun ularni qo'llashimizdan oldin yaxshilab o'ylab ko'rishimiz kerak.

@@ -1,31 +1,31 @@
-# Arrays
+# Arrays (Massivlar)
 
-Objects allow you to store keyed collections of values. That's fine.
+Object-lar kalitlangan qiymatlar to'plamini saqlash imkonini beradi. Juda soz.
 
-But quite often we find that we need an *ordered collection*, where we have a 1st, a 2nd, a 3rd element and so on. For example, we need that to store a list of something: users, goods, HTML elements etc.
+Lekin ko'pincha bizga *tartibli to'plam* kerak bo'ladi, bunda 1, 2, 3-element va boshqalar mavjud. Masalan, biz biror narsa ro'yxatini saqlashimiz kerak: foydalanuvchilar, tovarlar, HTML elementlari va hokazo.
 
-It is not convenient to use an object here, because it provides no methods to manage the order of elements. We can’t insert a new property “between” the existing ones. Objects are just not meant for such use.
+Bu erda object-dan foydalanish noqulay, chunki unda elementlar tartibini boshqarish metodlari majud emas. Mavjud bo'lganlar "orasiga" yangi xossa kirita olmaymiz. Oject-lar shunchaki bunday foydalanish uchun mo'ljallanmagan.
 
-There exists a special data structure named `Array`, to store ordered collections.
+Tartiblangan to'plamlarni saqlash uchun `Array` nomli maxsus ma'lumotlar tuzilmasi mavjud.
 
-## Declaration
+## E'lon qilish
 
-There are two syntaxes for creating an empty array:
+Bo'sh massiv yaratishning ikkita sintaksisi mavjud:
 
 ```js
 let arr = new Array();
 let arr = [];
 ```
 
-Almost all the time, the second syntax is used. We can supply initial elements in the brackets:
+Deyarli har doim ikkinchi sintaksisdan foydalaniladi. Dastlabki elementlarni qavslar ichida berishimiz mumkin:
 
 ```js
 let fruits = ["Apple", "Orange", "Plum"];
 ```
 
-Array elements are numbered, starting with zero.
+Array elementlari noldan boshlab raqamlangan bo'ladi.
 
-We can get an element by its number in square brackets:
+Biz elementni to'rtburchak qavslarda uning raqami orqali olishimiz mumkin:
 
 ```js run
 let fruits = ["Apple", "Orange", "Plum"];
@@ -35,13 +35,13 @@ alert( fruits[1] ); // Orange
 alert( fruits[2] ); // Plum
 ```
 
-We can replace an element:
+Biz elementni almashtirishimiz:
 
 ```js
 fruits[2] = 'Pear'; // now ["Apple", "Orange", "Pear"]
 ```
 
-...Or add a new one to the array:
+...Yoki massivga yangisini qo'shishimiz mumkin:
 
 ```js
 fruits[3] = 'Lemon'; // now ["Apple", "Orange", "Pear", "Lemon"]

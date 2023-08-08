@@ -1,3 +1,3 @@
-# An introduction
+# Kirish
 
-About the JavaScript language and the environment to develop with it.
+JavaScript tili va u bilan ishlab chiqiladigan muhit haqida.

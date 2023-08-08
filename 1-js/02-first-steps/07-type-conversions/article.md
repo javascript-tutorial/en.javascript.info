@@ -1,24 +1,26 @@
-# Type Conversions
+# Tur o'zgarishi
 
-Most of the time, operators and functions automatically convert the values given to them to the right type.
+Ko'pincha, operator va funktsiyalar ularga berilgan qiymatlarni kerakli turga avtomatik tarzda aylantiradi.
 
-For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
+Misol uchun, `alert` har qanday qiymatni ko'rsatish uchun uni string-aylantiradi. Matematik ammallar qiymatlarni number-ga aylantiradi.
 
-There are also cases when we need to explicitly convert a value to the expected type.
+Qiymatni kutilgan turga explicit tarzda aylantirishimiz kerak bo'lgan holatlar ham mavjud.
 
+```smart header="Hozircha object-lar haqida gaplashmaymiz"
+Bu bob object-larni o'z ichiga olmaydi. Hozircha faqat primitive-lar haqida gaplashamiz.
 ```smart header="Not talking about objects yet"
 In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
 
-Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
+Keyinchalik, ob'ektlar bilan tanishganimizdan so'ng, <info:object-toprimitive> bobida biz ob'ektlar qanday tuzilishini ko'rib chiqamiz.
 ```
 
 ## String Conversion
 
-String conversion happens when we need the string form of a value.
+String conversion bizga qiymatning string shakli kerak bo'lganda sodir bo'ladi.
 
-For example, `alert(value)` does it to show the value.
+Misol uchun, `alert(value)` qiymatni ko'rsatish uchun buni amalga oshiradi.
 
-We can also call the `String(value)` function to convert a value to a string:
+Shuningdek, qiymatni string-ga aylantirish uchun `String(value)` funksiyani chaqirishimiz ham mumkin.
 
 ```js run
 let value = true;
@@ -30,19 +32,19 @@ alert(typeof value); // string
 */!*
 ```
 
-String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
+String conversion juda aniq. `false` `"false"`ga aylanadi, `null` `"null"`ga aylanadi va hokazo.
 
 ## Numeric Conversion
 
-Numeric conversion happens in mathematical functions and expressions automatically.
+Numeric conversion matematik funktsiya va ifodalarda avtomatik ravishda amalga oshadi.
 
-For example, when division `/` is applied to non-numbers:
+Misol uchun, `/` bo'luv amali raqam bo'lmaganlarga nisbatan qo`llanilganda:
 
 ```js run
-alert( "6" / "2" ); // 3, strings are converted to numbers
+alert( "6" / "2" ); // 3, string-lar number-larga aylanadi
 ```
 
-We can use the `Number(value)` function to explicitly convert a `value` to a number:
+`value`ni raqamga aylantirish uchun `Number(value)` funksiyasidan foydalanishimiz mumkin:
 
 ```js run
 let str = "123";
@@ -53,9 +55,9 @@ let num = Number(str); // becomes a number 123
 alert(typeof num); // number
 ```
 
-Explicit conversion is usually required when we read a value from a string-based source like a text form but expect a number to be entered.
+Bizga matnga o'xshash shakldagi string-ga asoslangann manbadan qiymat kerak bo'lganda va number kiritilishi kutilganda, odatda explicit conversion talab qilinadi.
 
-If the string is not a valid number, the result of such a conversion is `NaN`. For instance:
+Agar string number bo'lamasa, bunday conversion natijasi `Nan` bo'ladi. Misol uchun:
 
 ```js run
 let age = Number("an arbitrary string instead of a number");
@@ -65,10 +67,12 @@ alert(age); // NaN, conversion failed
 
 Numeric conversion rules:
 
-| Value |  Becomes... |
+| Qiymat |  Aylanadi... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
+|<code>true&nbsp;va&nbsp;false</code> | `1` va `0` |
+| `string` | Bosh va oxirdagi bo'sh joylar olib tashlanadi. Agar mavjud string bo'sh bo'lsa, natija `0` bo'ladi. Aks holda, number string-dan "o'qiladi". Xatolik `NaN`ni ko'rsatadi. |
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
 | `string` | Whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
 
@@ -81,7 +85,7 @@ alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
 
-Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
+Esda tutingki,  `null` va `undefined` bu yerda turli harakat qiladi: `null` nolga, `undefined` esa `NaN` ga aylanadi.
 
 Most mathematical operators also perform such conversion, we'll see that in the next chapter.
 
@@ -91,10 +95,11 @@ Boolean conversion is the simplest one.
 
 It happens in logical operations (later we'll meet condition tests and other similar things) but can also be performed explicitly with a call to `Boolean(value)`.
 
-The conversion rule:
+Conversion qoidasi:
 
 - Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
 - Other values become `true`.
+
 
 For instance:
 
@@ -106,45 +111,47 @@ alert( Boolean("hello") ); // true
 alert( Boolean("") ); // false
 ```
 
-````warn header="Please note: the string with zero `\"0\"` is `true`"
-Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
+````warn header="Yodda tuting: qiymati `\"0\"`bo'lgan string `true`ga teng"
+Ba'zi tillar (jumladan PHP) `"0"`ni `false`deb qabul qiladi. Lekin JavaScript-da bo'sh bo'lmagan string doim `true`ga teng.\
 
 ```js run
 alert( Boolean("0") ); // true
 alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 ```
 ````
+````
 
-## Summary
+## Xulosa
 
-The three most widely used type conversions are to string, to number, and to boolean.
+Eng ko'p qo'llaniladigan uchta turdagi conversion-larga string-ga, number-ga va boolean-ga aylantirishlardir.
 
-**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`String Conversion`** -- Biror narsani chiqarganimizda sodir bo'ladi. `String(value)` orqali amalga oshirish mumkin. String-ga aylantirish oadatda primitive qiymatlar uchun aniq.
 
-**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+**`Numeric Conversion`** -- Matematik ammalda sodir bo'ladi. `Number(value)` orqali amalga oshirish mumkin.
 
-The conversion follows the rules:
+Conversion quyidagi qoidalarga amal qiladi:
 
-| Value |  Becomes... |
+| Qiymat |  Aylanadi... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
+| `string` | String qanday bo'lsa shunday o'qiladi, ikkala tomondagi bo'sh joylar olib tashlanadi. Bo'sh string `0`ga aylanadi. Xatolik `NaN`ni qaytaradi. |
 | `string` | The string is read "as is", whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
 
-**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+**`Boolean Conversion`** -- Mantiq operatorlarida sodir bo'ladi. `Boolean(value)` orqali amalga oshirish mumkin.
 
-Follows the rules:
+Quyidagi qoidalarga amal qiladi:
 
-| Value |  Becomes... |
+| Qiymat |  Aylanadi... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
-|any other value| `true` |
+|boshqa har qanday qiymat| `true` |
 
 
-Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
+Ushbu qoidalarning ko'pi tushunish va eslab qolishga oson. Odamlar odatda xato qiladigan e'tiborli istisnolar:
 
-- `undefined` is `NaN` as a number, not `0`.
-- `"0"` and space-only strings like `"   "` are true as a boolean.
+- `undefined` number sifatida `NaN`ga teng, `0`ga emas.
+- `"0"` va faqat bo'shliqdan iborat string-lar `"   "` boolean sifatida true-ga teng.
 
-Objects aren't covered here. We'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects after we learn more basic things about JavaScript.
+Bu yerda object-lar yoritilmagan. JavaScript haqida ko'proq asosiy narsalarni o'rganganimizdan so'ng, faqat object-larga bag'ishlangan <info:object-toprimitive> bobida ularga yana qaytamiz.

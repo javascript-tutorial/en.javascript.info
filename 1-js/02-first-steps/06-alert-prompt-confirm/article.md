@@ -1,105 +1,104 @@
-# Interaction: alert, prompt, confirm
+# O'zaro muloqot : alert, prompt, confirm
 
-As we'll be using the browser as our demo environment, let's see a couple of functions to interact with the user: `alert`, `prompt` and `confirm`.
+Biz brauzerdan namoyish muhiti (demo versiya) sifatida foydalanayotkanimiz bois, keling foydalanuvchi bilan o'zaro a'loqa qilish uchun bir-ikkita funksiyalarni ko'rib chiqmiz: `alert`, `prompt` and `confirm`
 
 ## alert
 
-This one we've seen already. It shows a message and waits for the user to press "OK".
+Biz bu allaqochan ko'rib chiqqanmiz. U habarni ko'rsatadi va foydalanuvchini "ok" tugmasini bosishini kutib turadi. 
 
-For example:
+Miol uchun:
 
 ```js run
 alert("Hello");
 ```
 
-The mini-window with the message is called a *modal window*. The word "modal" means that the visitor can't interact with the rest of the page, press other buttons, etc, until they have dealt with the window. In this case -- until they press "OK".
+Xabar ko'rsatilgan kichik-oyna (mini-window) *modal oyna* (modal window) deb ataladi. Bu yerda *modal* so'zi  tashriv buyuruvchi shu oyna bilan shug'ullanmasan turib, sahifaning qolgann qismlari bilan o'zaro a'loqa qila olmaydi, boshqa tugmalarni bosa olmaydi va shunga o'xshash narsalarni amalga oshirolmasligini bildiradi. Bu vaziyatda esa --- ular "OK" tugmasini bosmagangacha. 
 
 ## prompt
 
-The function `prompt` accepts two arguments:
+`prompt` funksiyasi ikkita argumentni qabul qiladi:
 
 ```js no-beautify
 result = prompt(title, [default]);
 ```
 
-It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+U xabar mantniga ega bo'lgan oynani, kiritish maydonini va OK/Cancel tugmalarini tashrif buyuruvchiga ko'rsatadi.
 
-`title`
-: The text to show the visitor.
+`title` (sarlavha)
+: Tashrif buyuruvchiga ko'rsatish uchun matn.
 
 `default`
-: An optional second parameter, the initial value for the input field.
+: Ixtiyoriy ikkinchi parametr, kiritish maydoni uchun dastlabki qiymat.
 
 ```smart header="The square brackets in syntax `[...]`"
-The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
+Yuqoridagi sintaksisdagi `default` atrofida joylashgan kvadrat kavslar parametr majburuy emas, balki ixtiyoriy ekanligini bildiradi. 
 ```
 
-The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
+Tashrif buyuruvchi so'rov kiritish maydoniga biror narsa yozib, OK tugmasini bosishi mumkin. Keyin, `result` (natija) qismida matnni olamiz. Yoki, ular Cancel yoki `key:Esc` tugmasini bosish orqali bekor qilishi ham mumkin, so'ng biz natija sifatida `null` ni qabul qilamiz. 
 
-The call to `prompt` returns the text from the input field or `null` if the input was canceled.
+"Jumla"(prompt) ni chaqiruv matnni kiritish maydonidan qaytaradi, yoki agar kiritish bekor qilingan bo'lsa, `null` ni 
 
-For instance:
+Misol uchun:
 
 ```js run
-let age = prompt('How old are you?', 100);
+let age = prompt('SIz nechchi yoshdasiz?', 100);
 
-alert(`You are ${age} years old!`); // You are 100 years old!
+alert(`Siz ${age} yoshdasiz!`); // Siz 100 yoshdasiz!
 ```
 
 ````warn header="In IE: always supply a `default`"
-The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
-
-Run this code in Internet Explorer to see:
+Ikkinchi parametr ixtiyoriy, ammo agar biz uni taqdim qilmasak, Internet explorer uni so'rovga `"undefined"` (aniqlanmagan) deb kiritadi.
+Internet explorerda quyidagilarni ko'rish uchun ushbu kodni ishga tushiring:
 
 ```js run
 let test = prompt("Test");
 ```
 
-So, for prompts to look good in IE, we recommend always providing the second argument:
+Shunday qilib, so'rovlarni IE da yaxshi ko'rinishi uchun, har doim ikkinchi argumentni taqdim qilishingizni tavsiya qilamiz:
 
 ```js run
 let test = prompt("Test", ''); // <-- for IE
 ```
 ````
 
-## confirm
+## tasdiqlash
 
-The syntax:
+Sintaksis:
 
 ```js
-result = confirm(question);
+natija = (savol)ni tasdiqlash;
 ```
 
-The function `confirm` shows a modal window with a `question` and two buttons: OK and Cancel.
+`confirm` (tasdiqlov) funksiyasi `question` (savol)li modal oynani hamda ikkita tugma: Ok va Cancel larni ko'rsatadi.
 
-The result is `true` if OK is pressed and `false` otherwise.
+Natija `true` to'g'ri bo'ladi Ok tugmasi bosilgan holda, aks holda `false` xato.
 
-For example:
+Masalan:
 
 ```js run
-let isBoss = confirm("Are you the boss?");
+let isBoss = tasdiqlash("Siz xo'jayinmisiz?");
 
-alert( isBoss ); // true if OK is pressed
+alert( isBoss ); // Agar OK tugmasi bosilsa, to'g'ri
 ```
 
-## Summary
+## Xulosa
 
-We covered 3 browser-specific functions to interact with visitors:
+Biz tashrif buyuruvchilar bilan o'zaro a'loqaga kirishish uchun uchta brauzerga xos funksiyalarni ko'rib chiqdik:
 
 `alert`
-: shows a message.
+: xabarni ko'rsatadi.
 
 `prompt`
-: shows a message asking the user to input text. It returns the text or, if Cancel button or `key:Esc` is clicked, `null`.
+: foydalanuvchidan matn kiritishni so'ragan xabarni ko'rsatadi. U xabarni qaytaradi, yoki agar Cancel yo `key:Esc` tugmalari bosilsa, `null` ni taqdim etadi.  
 
 `confirm`
-: shows a message and waits for the user to press "OK" or "Cancel". It returns `true` for OK and `false` for Cancel/`key:Esc`.
+: xabarni ko'rsatadi, va foydalanuvchini "OK" yo "Cancel" tugmalarini bosishini kutib turadi. OK da `true`(to'g'ri) ni  va Cancel/`key:Esc` da `false`(xato) ni qaytaradi.
 
-All these methods are modal: they pause script execution and don't allow the visitor to interact with the rest of the page until the window has been dismissed.
+Bu usullarning barchasi modal hisoblanadi: Ular script bajarilishini to'xtatishadi va oyna o'chirilmaguncha foydalanuvchiga sahifaning boshqa qismi bilan a'loqa qilish imkonini bermaydi. 
 
-There are two limitations shared by all the methods above:
+Yuqorida ta'kidlab o'tilgan modallarga xos ikkita cheklov mavjud:
 
-1. The exact location of the modal window is determined by the browser. Usually, it's in the center.
-2. The exact look of the window also depends on the browser. We can't modify it.
+1. Modal oynaning aniq joylashuvi brauzer tomonidan aniqlanadi. Odatda, u markazda bo'ladi. 
+2. Oynanig aniq ko'rinishi ham brauzerga bog'liq. Biz uni o'zgartira olmaymiz. 
 
-That is the price for simplicity. There are other ways to show nicer windows and richer interaction with the visitor, but if "bells and whistles" do not matter much, these methods work just fine.
+Bular soodalik hisobiga keldi. Yaxshiroq oynani hamda tashrif buyuruvchi bilan kuchliroq a'loqani ta'minlaydigan boshqa yo'llar ham mavjud, lekin agar sizning qo'shimcha jihatlarga ehtiyojingiz bo'lmasa, bu usullarning o'zi ham ancha yaxshi ishlaydi.  

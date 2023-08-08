@@ -1,20 +1,20 @@
-# Methods of primitives
+# Primitive metodlar
 
-JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
+JavaScript bizga primitive-lar (string-lar, number-lar va hokazo) bilan object-lar kabi ishlash imkonini beradi. Ular, shuningdek, chaqirish metodlarini ham taqdim etadi. Ularni tez orada o'rganamiz, lekin avval biz unlarning qanday ishlashini ko'rib chiqamiz, chunki primitive-lar object-lar emas (va endi buni yanada aniqroq qilamiz).
 
-Let's look at the key distinctions between primitives and objects.
+Keling, primitive va object-lar o'rtasidagi asosiy farqlarni ko'rib chiqaylik.
 
-A primitive
+Primitive
 
-- Is a value of a primitive type.
-- There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+- Primitiv turdagi qiymat.
+- 7 ta primitive tur mavjud: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` va `undefined`.
 
-An object
+Object
 
-- Is capable of storing multiple values as properties.
-- Can be created with `{}`, for instance: `{name: "John", age: 30}`. There are other kinds of objects in JavaScript: functions, for example, are objects.
+- Bir nechta qiymatlarni property sifatida saqlay oladi.
+- `{}` bilan yaratiladi, masalan: `{name: "John", age: 30}`. JavaScriptda boshqa object turlari mavjud: funktsiyalar, masalar, object-lar.
 
-One of the best things about objects is that we can store a function as one of its properties.
+Object-larning eng yaxshi jihatlaridan biri shundaki, biz funktsiyani uning property-laridan biri sifatida saqlashimiz mumkin.
 
 ```js run
 let john = {
@@ -27,32 +27,35 @@ let john = {
 john.sayHi(); // Hi buddy!
 ```
 
-So here we've made an object `john` with the method `sayHi`.
+Shunday qilib, biz bu erda `sayHi` metodiga ega `John` object-ini yaratdik.
 
-Many built-in objects already exist, such as those that work with dates, errors, HTML elements, etc. They have different properties and methods.
+Ko'plab ichki-o'rnatilgan object-lar allaqachon mavjud bolib ularga sanalar, xatolar, HTML elementlari va boshqalar bilan ishlaydiganlar kiradi. Ular turli xususiyat va metodlarga ega.
 
 But, these features come with a cost!
+Ammo bu xususiyatlar o'ziga yarasha 
 
-Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
+Object-lar primitive-lardan ko'ra "yengilroq". Ular ichki mexanizmlarni qo'llab-quvvatlashi uchun qo'shimcha resurslarni talab qiladi.
 
-## A primitive as an object
+## Primitive object sifatida
 
-Here's the paradox faced by the creator of JavaScript:
+Quyida JavaScript yaratuvchisi duch kelgan paradoks:
 
+- String yoki Number kabi primitive bilan ko'p amallarni bajarishni xohlashingiz mumkin. Metodlar ularga kirish juda yaxshi yo'lidir.
+- Primitive-lar imkon qadar tez va engil bo'lishi kerak.
 - There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
 - Primitives must be as fast and lightweight as possible.
 
-The solution looks a little bit awkward, but here it is:
+Yechim biroz noqulay ko'rinadi, lekin u quyidagicha:
 
-1. Primitives are still primitive. A single value, as desired.
-2. The language allows access to methods and properties of strings, numbers, booleans and symbols.
-3. In order for that to work, a special "object wrapper" that provides the extra functionality is created, and then is destroyed.
+1. Primitive-lar hali ham primitive. Yagona qiymat, xohlaganingizcha.
+2. Til string-lar, number-lar, boolean va symbol-larning metodlari va xususiyatlariga kirish imkonini beradi.
+3. Buning ishlashi uchun qo'shimcha funktsiyalarni ta'minlaydigan maxsus "o'rovchi object" yaratiladi va keyin yo'q qilinadi.
 
-The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+"object o'rovchilar" har bir primitive tur uchun turlichadir va ular `String`, `Number`, `Boolean`, `Symbol` va `BigInt` deb ataladi. Shuning uchun, ular turli xil metodlar to'plamini taqdim etadilar.
 
-For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+Masalan, bosh harf bilan yozilgan `str` ni qaytaruvchi [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) string metodi mavjud.
 
-Here's how it works:
+Mana u qanday ishlaydi:
 
 ```js run
 let str = "Hello";
@@ -60,17 +63,17 @@ let str = "Hello";
 alert( str.toUpperCase() ); // HELLO
 ```
 
-Simple, right? Here's what actually happens in `str.toUpperCase()`:
+Oddiy, to'g'rimi? Mana aslida `str.toUpperCase()` da nima sodir bo'ladi:
 
-1. The string `str` is a primitive. So in the moment of accessing its property, a special object is created that knows the value of the string, and has useful methods, like `toUpperCase()`.
-2. That method runs and returns a new string (shown by `alert`).
-3. The special object is destroyed, leaving the primitive `str` alone.
+1. `str` string primitive-dir. Shunday qilib uning qiymatiga kirish vaqtida, string-nig qiymatini biladigan va `toUpperCase()` kabi foydali metodlarga ega maxsus object yaratiladi.
+2. Ushbu metod bajariladi va yangi string (`alert` da ko'rsatilgan) qaytariladi.
+3. Maxsus object yo'q qilinadi va primitive `str` faqat o'zi qoladi.
 
-So primitives can provide methods, but they still remain lightweight.
+Shunday qilib, primitive-lar metodlar taqdim etishi mumkin, ammo ular yengil bo'lib qolaveradi.
 
-The JavaScript engine highly optimizes this process. It may even skip the creation of the extra object at all. But it must still adhere to the specification and behave as if it creates one.
+JavaScript engini bu jarayonni yuqori darajada optimallashtiradi. U hatto qo'shimcha object yaratilishini ham o'tkazib yuborishi mumkin. Lekin u baribir spetsifikatsiyaga rioya qilishi va xuddi uni yaratgandek harakat qilishi kerak.
 
-A number has methods of its own, for instance, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to the given precision:
+Number o'z metodlariga ega, masalan, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) metodi raqamni berilgan aniqlikka yaxlitlaydi:
 
 ```js run
 let n = 1.23456;
@@ -78,15 +81,16 @@ let n = 1.23456;
 alert( n.toFixed(2) ); // 1.23
 ```
 
-We'll see more specific methods in chapters <info:number> and <info:string>.
+<info:number> va <info:string> bo'limlarida ko'proq metodlarni ko'rib chiqamiz.
 
 
-````warn header="Constructors `String/Number/Boolean` are for internal use only"
-Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
+````warn header="Constructors `String/Number/Boolean` faqat ichki foydalanish uchun"
+Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like  or .
+Java kabi ba'zi tillar bizga `new Number(1)` yoki `new Boolean(false)` kabi sintaksisdan foydalangan holda primitive-lar uchun "o'rovchi object-lari" ni qo'lda yaratishga imkon beradi.
 
-In JavaScript, that's also possible for historical reasons, but highly **unrecommended**. Things will go crazy in several places.
+JavaScript-da bu tarixiy sabablarga ko'ra mumkin bo'lishi mumkin, lekin umuman **tavsiya etilmaydi**. Bir necha joylarda narsalar g'alati ishlashi mumkin.
 
-For instance:
+Masalan:
 
 ```js run
 alert( typeof 0 ); // "number"
@@ -94,7 +98,7 @@ alert( typeof 0 ); // "number"
 alert( typeof new Number(0) ); // "object"!
 ```
 
-Objects are always truthy in `if`, so here the alert will show up:
+Ob'ektlar har doim `if` da rostdir, shuning uchun bu yerda alert paydo bo'ladi:
 
 ```js run
 let zero = new Number(0);
@@ -104,6 +108,9 @@ if (zero) { // zero is true, because it's an object
 }
 ```
 
+Boshqa tomondan, `new`siz bir xil `String/Number/Boolean` funksiyalaridan foydalanish mutlaqo aqlli va foydali yo'ldir. Ular qiymatni mos keladigan turga o'zgartiradilar: string, number yoki boolean (primitive) ga.
+
+Masalan, mana bu to'liq yaroqli:
 On the other hand, using the same functions `String/Number/Boolean` without `new` is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
 
 For example, this is entirely valid:
@@ -114,16 +121,16 @@ let num = Number("123"); // convert a string to number
 ````
 
 
-````warn header="null/undefined have no methods"
-The special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
+````warn header="null/undefined metodlarga ega emas"
+`null` va `undefined` maxsus primitivlari bundan mustasno. Ularda mos keladigan "o'rovchi object-lar" yo'q va hech qanday usullarni taqdim etmaydi. Qaysidir ma'noda ular "eng primitive"dir.
 
-An attempt to access a property of such value would give the error:
+Bunday qiymatdagi property-ga kirishga urinish xatoga olib keladi:
 
 ```js run
 alert(null.test); // error
 ````
 
-## Summary
+## Xulosa
 
-- Primitives except `null` and `undefined` provide many helpful methods. We will study those in the upcoming chapters.
-- Formally, these methods work via temporary objects, but JavaScript engines are well tuned to optimize that internally, so they are not expensive to call.
+- `null` va `undefined`dan tashqari primitivlar ko'plab foydali metodlar taqdim etadilar. Ularni kelayotgan bo'limlarda o'rganamiz.
+- Rasman, bu metodlar vaqtinchalik object-lar orqali ishlaydi, ammo JavaScript engine-lari buni ichki optimallashtirish uchun yaxshi sozlangan, shuning uchun ularni chaqirish qiyinchilik tug'dirmaydi.
