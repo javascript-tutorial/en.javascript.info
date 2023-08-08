@@ -130,7 +130,7 @@ is created for each, and `connectedCallback` is called. They become `:defined`.
 
 To get the information about custom elements, there are methods:
 - `customElements.get(name)` -- returns the class for a custom element with the given `name`,
-- `customElements.whenDefined(name)` -- returns a promise that resolves (without value) when a custom element with the given `name` becomes defined.
+- `customElements.whenDefined(name)` -- returns a promise that resolves with the custom element's constructor when a custom element with the given `name` becomes defined.
 ```
 
 ```smart header="Rendering in `connectedCallback`, not in `constructor`"
