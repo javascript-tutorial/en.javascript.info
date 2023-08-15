@@ -1,6 +1,6 @@
 describe("counter", function() {
 
-  it("increases from call to call", function() {
+  it("chaqiruvdan chaqiruvga o'sadi", function() {
 
     let counter = makeCounter();
 
@@ -11,7 +11,7 @@ describe("counter", function() {
 
   
   describe("counter.set", function() {
-    it("sets the count", function() {
+    it("yangi count o'rnatadi", function() {
 
       let counter = makeCounter();
 
@@ -23,7 +23,7 @@ describe("counter", function() {
   });
   
   describe("counter.decrease", function() {
-    it("decreases the count", function() {
+    it("countni kamaytiradi", function() {
 
       let counter = makeCounter();
 

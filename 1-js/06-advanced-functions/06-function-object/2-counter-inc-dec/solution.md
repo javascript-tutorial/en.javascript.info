@@ -1,2 +1,2 @@
 
-The solution uses `count` in the local variable, but addition methods are written right into the `counter`. They share the same outer lexical environment and also can access the current `count`.
+Yechim mahalliy o'zgaruvchida `count` dan foydalanadi, lekin qo'shish usullari to'g'ridan-to'g'ri `counter`ga yoziladi. Ular bir xil tashqi leksik muhitni baham ko'rishadi va joriy `count` ga kirishlari mumkin.

@@ -1,12 +1,12 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Iterable keys
+# Takrorlanadigan kalitlar
 
-We'd like to get an array of `map.keys()` in a variable and then apply array-specific methods to it, e.g. `.push`.
+Biz oʻzgaruvchida `map.keys()` massivini olishni va keyin unga massivga xos usullarni qoʻllashni istaymiz, masalan. `.push`.
 
-But that doesn't work:
+Lekin bu ishlamaydi:
 
 ```js run
 let map = new Map();
@@ -16,9 +16,10 @@ map.set("name", "John");
 let keys = map.keys();
 
 *!*
-// Error: keys.push is not a function
+// Error: keys.push funksiya emas
+
 keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+Nega? `keys.push` ishlashi uchun kodni qanday tuzatishimiz mumkin?

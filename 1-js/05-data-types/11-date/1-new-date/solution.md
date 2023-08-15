@@ -1,18 +1,19 @@
-The `new Date` constructor uses the local time zone. So the only important thing to remember is that months start from zero.
+`new Date` konstruktori mahalliy vaqt mintaqasidan foydalanadi. Shunday qilib, eslash kerak bo'lgan yagona muhim narsa - oylar noldan boshlanadi.
 
-So February has number 1.
+Shunday qilib, fevralda 1-raqam bor.
 
-Here's an example with numbers as date components:
+Sana komponentlari sifatida raqamlar bilan bir misol:
 
 ```js run
-//new Date(year, month, date, hour, minute, second, millisecond)
+//yangi sana (yil, oy, sana, soat, daqiqa, soniya, millisekund)
 let d1 = new Date(2012, 1, 20, 3, 12);
-alert( d1 );
+alert(d1);
 ```
-We could also create a date from a string, like this:
+
+Shuningdek, qatordan sana yaratishimiz mumkin, masalan:
 
 ```js run
 //new Date(datastring)
 let d2 = new Date("2012-02-20T03:12");
-alert( d2 );
+alert(d2);
 ```

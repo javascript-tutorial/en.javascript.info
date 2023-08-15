@@ -2,24 +2,24 @@ importance: 5
 
 ---
 
-# Filter through function
+# Funktsiya orqali filtrlash
 
-We have a built-in method `arr.filter(f)` for arrays. It filters all elements through the function `f`. If it returns `true`, then that element is returned in the resulting array.
+Bizda massivlar uchun o‘rnatilgan `arr.filter(f)` usuli mavjud. U barcha elementlarni `f` funksiyasi orqali filtrlaydi. Agar u `true` qiymatini qaytarsa, u holda bu element olingan massivda qaytariladi.
 
-Make a set of "ready to use" filters:
+"Foydalanishga tayyor" filtrlar to'plamini yarating:
 
-- `inBetween(a, b)` -- between `a` and `b` or equal to them (inclusively).
-- `inArray([...])` -- in the given array.
+- `inBetween(a, b)` -- `a` va `b` orasida yoki ularga teng (shu jumladan).
+- `inArray([...])` -- berilgan massivda.
 
-The usage must be like this:
+Foydalanish quyidagicha bo'lishi kerak:
 
-- `arr.filter(inBetween(3,6))` -- selects only values between 3 and 6.
-- `arr.filter(inArray([1,2,3]))` -- selects only elements matching with one of the members of `[1,2,3]`.
+- `arr.filter(inBetween(3,6))` -- faqat 3 dan 6 gacha bo'lgan qiymatlarni tanlaydi.
+- `arr.filter(inArray([1,2,3]))` -- faqat `[1,2,3]` a`zolaridan biri bilan mos keladigan elementlarni tanlaydi.
 
 For instance:
 
 ```js
-/* .. your code for inBetween and inArray */
+/* .. inBetween and inArraydagi kodingiz */
 let arr = [1, 2, 3, 4, 5, 6, 7];
 
 alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6

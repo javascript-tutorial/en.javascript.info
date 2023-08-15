@@ -1,438 +1,442 @@
-# Array methods
+# Massiv metodlari
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+Massivlarda juda ko'p metodlar mavjud. O'rganishni osonlashtirish uchun ushbu bobda ular guruhlarga bo'lingan.
 
-## Add/remove items
+## Elementlarni qo'shish/o'chirish
 
-We already know methods that add and remove items from the beginning or the end:
+Biz allaqachon massivning boshi yoki oxiridan elementlarni qo'shish yoki olib tashlashni bilamiz:
 
-- `arr.push(...items)` -- adds items to the end,
-- `arr.pop()` -- extracts an item from the end,
-- `arr.shift()` -- extracts an item from the beginning,
-- `arr.unshift(...items)` -- adds items to the beginning.
+- `arr.push(...elementlar)` -- oxiriga elementlarni qo'shadi
+- `arr.pop()` -- oxiridan element olib tashlaydi,
+- `arr.shift()` -- boshidan element olib tashlaydi,
+- `arr.unshift(...items)` -- boshiga elementlar qo'shadi.
 
-Here are a few others.
+Quyida yana bir nechtasi keltitilgan.
 
 ### splice
 
-How to delete an element from the array?
+Massivdan elementni qanday o'chirib tashlasa bo'ladi?
 
-The arrays are objects, so we can try to use `delete`:
+Massivlar obyekt hisoblanadi, shuning uchun `delete` ishlatib ko'rsak bo'ladi:
 
 ```js run
-let arr = ["I", "go", "home"];
+let arr = ["Men", "uyga", "boraman"];
 
-delete arr[1]; // remove "go"
+delete arr[1]; // "uyga"ni o'chiradi
 
-alert( arr[1] ); // undefined
+alert(arr[1]); // undefined
 
-// now arr = ["I",  , "home"];
-alert( arr.length ); // 3
+// endi arr = ["Men",  , "boraman"];
+alert(arr.length); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+Element olib tashlandi, biroq massivda hanuz 3ta element mavjud, buni `arr.length == 3` dan ko'rsak bo'ladi.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+Bu tabiiy hol, chunki `delete obj.key` `key` orqali qiymatni olib tashlaydi. Hammasi shu va bu obyektlar uchun yaxshi. Ammo massivlar uchun biz odatda qolgan elementlarning siljishi va bo'sh joyni egallashini xohlaymiz. Endi biz massiv qisqaroq bo'lishini istaymiz.
 
-So, special methods should be used.
+Demak, maxsus metodlar ishlatilinishi zarur.
 
-The [arr.splice](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+[arr.splice](mdn:js/Array/splice) metodi massivlar uchun Shveytsariya armiyasi pichog'idir. U har qanday vazifa bajara oladi: elementlarni kiritish, olib tashlash va almashtirish.
 
-The syntax is:
+Uning sintaksisi quyidagicha:
 
 ```js
 arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 
-It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+U `start` indeksidan boshlab `arr` ni o'zgartiradi: `deleteCount` elementlarini olib tashlaydi va keyin o'z o'rniga `elem1, ..., elementN` qo'yadi. O'chirilgan elementlarni massivda qaytaradi.
 
-This method is easy to grasp by examples.
+Bu usulni misollar orqali tushunish oson.
 
-Let's start with the deletion:
+O'chirishdan boshlaymiz:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Men", "JavaScript", "o'rganaman"];
 
 *!*
-arr.splice(1, 1); // from index 1 remove 1 element
+arr.splice(1, 1); // 1-indeksdan 1 ta elementni olib tashlash
 */!*
 
-alert( arr ); // ["I", "JavaScript"]
+alert( arr ); // ["Men", "o'rganaman"]
 ```
 
-Easy, right? Starting from the index `1` it removed `1` element.
+Oson, shundaymi? `1` indeksidan boshlab `1` elementi olib tashlandi.
 
-In the next example we remove 3 elements and replace them with the other two:
+Keyingi misolda biz 3 ta elementni olib tashlaymiz va ularni qolgan ikkitasi bilan almashtiramiz:
 
 ```js run
-let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
+let arr = [*!*"Men", "JavaScript", "o'rganaman",*/!* "aynan", "hozir"];
 
-// remove 3 first elements and replace them with another
-arr.splice(0, 3, "Let's", "dance");
+// 3 ta birinchi elementni olib tashlash va ularni boshqasi bilan almashtirish
+arr.splice(0, 3, "Keling", "o'ynaymiz");
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // endi [*!*"Keling", "o'ynaymiz"*/!*, "aynan", "hozir"]
 ```
 
-Here we can see that `splice` returns the array of removed elements:
+Bu yerda `splice` olib tashlangan elementlarni massivda qaytarishini ko'rishimiz mumkin:
 
 ```js run
-let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
+let arr = [*!*"Men", "JavaScript",*/!* "o'rganaman", "aynan", "hozir"];
 
-// remove 2 first elements
+// birinchi ikki elementni olib tashlash
 let removed = arr.splice(0, 2);
 
-alert( removed ); // "I", "study" <-- array of removed elements
+alert( removed ); // "Men", "JavaScript" <-- olib tashlangan elementlarning massivi
 ```
 
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+`Splice` usuli, shuningdek, elementlarni hech qanday olib tashlamasdan kiritishga qodir. Buning uchun biz `deleteCount` ni `0` ga qo'yishimiz kerak:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Men", "JavaScript", "O'rganaman"];
 
-// from index 2
-// delete 0
-// then insert "complex" and "language"
-arr.splice(2, 0, "complex", "language");
+// indeks 2dan
+// 0 olib tashlash
+// so'ng "mukammal" va "tilini" qo'shish
+arr.splice(2, 0, "mukammal", "tilini");
 
-alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+alert(arr); // "Men", "JavaScript", "mukammal", "tilini", "o'rganaman"
 ```
 
-````smart header="Negative indexes allowed"
+`
+`smart header="Manfiy indekslarga ruxsat berilgan"
+
 Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
 
 ```js run
 let arr = [1, 2, 5];
 
-// from index -1 (one step from the end)
-// delete 0 elements,
-// then insert 3 and 4
+// -1 indeksdan (oxiridan bir qadam)
+// 0ta element o'chirish,
+// so'ng 3 va 4 qo'yish
+
 arr.splice(-1, 0, 3, 4);
 
-alert( arr ); // 1,2,3,4,5
+alert(arr); // 1,2,3,4,5
 ```
-````
+
+`
 
 ### slice
 
-The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking `arr.splice`.
+[arr.slice] metodi (mdn:js/Array/slice) oʻxshash koʻrinishdagi `arr.splice`ga qaraganda ancha sodda.
 
-The syntax is:
+Uning sintaksisi quyidagicha:
 
 ```js
-arr.slice([start], [end])
+arr.slice([start], [end]);
 ```
 
 It returns a new array copying to it all items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
-It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+Bu `str.slice` metodiga o'xshash, biroq substring o'rniga submassiv yasaydi.
 
-For instance:
+Misol uchun:
 
 ```js run
 let arr = ["t", "e", "s", "t"];
 
-alert( arr.slice(1, 3) ); // e,s (copy from 1 to 3)
+alert(arr.slice(1, 3)); // e,s (1 dan 3ga ko'chirish)
 
-alert( arr.slice(-2) ); // s,t (copy from -2 till the end)
+alert(arr.slice(-2)); // s,t (-2 dan oxirigacha ko'chirish)
 ```
 
-We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
+Uni argumentsiz chaqirsak ham bo'ladi: `arr.slice()` `arr`ning nushasini yaratadi. Bu ko'pincha asl massivga ta'sir qilmasligi kerak bo'lgan keyingi o'zgartirishlar uchun nusxa olish uchun ishlatiladi.
 
 ### concat
 
-The method [arr.concat](mdn:js/Array/concat) creates a new array that includes values from other arrays and additional items.
+[arr.concat](mdn:js/Array/concat) metodii boshqa massivlar va qoʻshimcha elementlarning qiymatlarini oʻz ichiga olgan yangi massiv yaratadi..
 
-The syntax is:
+Uning sintaksisi quyidagicha:
 
 ```js
 arr.concat(arg1, arg2...)
 ```
 
-It accepts any number of arguments -- either arrays or values.
+U har qanday miqdordagi argumentlarni - massivlarni yoki qiymatlarni qabul qiladi.
 
-The result is a new array containing items from `arr`, then `arg1`, `arg2` etc.
+Natijada `arr`, keyin `arg1`, `arg2` va hokazo elementlarini o`z ichiga olgan yangi massiv hosil bo`ladi.
 
-If an argument `argN` is an array, then all its elements are copied. Otherwise, the argument itself is copied.
+Agar “argN” argumenti massiv boʻlsa, uning barcha elementlari koʻchiriladi. Aks holda, argumentning o'zi ko'chiriladi.
 
-For instance:
+Misol uchun:
 
 ```js run
 let arr = [1, 2];
 
-// create an array from: arr and [3,4]
-alert( arr.concat([3, 4]) ); // 1,2,3,4
+// arr va [3,4]dan massiv yaratish
+alert(arr.concat([3, 4])); // 1,2,3,4
 
-// create an array from: arr and [3,4] and [5,6]
-alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+// massiv yaratish: arr va [3,4] va [5,6]dan
+alert(arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 
-// create an array from: arr and [3,4], then add values 5 and 6
-alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
+// arr va [3,4] dan massiv yaratish, keyin 5 va 6 qiymatlarini qo'shish
+alert(arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
+Odatda, u faqat massivlardan elementlarni nusxalaydi. Boshqa ob'ektlar, hatto massivga o'xshasa ham, bir butun sifatida qo'shiladi:
 
 ```js run
 let arr = [1, 2];
 
 let arrayLike = {
   0: "something",
-  length: 1
+  length: 1,
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,[object Object]
+alert(arr.concat(arrayLike)); // 1,2,[object Object]
 ```
 
-...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
+...Agar massivga o'xshash obyekt maxsus `Symbol.isConcatSpreadable` xususiyatiga ega bo'lsa, u `concat` orqali massiv sifatida ko'rib chiqiladi: uning o'rniga uning elementlari qo'shiladi:
 
 ```js run
 let arr = [1, 2];
 
 let arrayLike = {
-  0: "something",
-  1: "else",
+  0: "bir",
+  1: "ikki",
 *!*
   [Symbol.isConcatSpreadable]: true,
 */!*
   length: 2
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,something,else
+alert( arr.concat(arrayLike) ); // 1,2,bir,ikki
 ```
 
 ## Iterate: forEach
 
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
+[arr.forEach](mdn:js/Array/forEach) metodi massivning har bir elementi uchun funksiyani ishga tushirish imkonini beradi.
 
 The syntax:
+
 ```js
-arr.forEach(function(item, index, array) {
-  // ... do something with item
+arr.forEach(function (item, index, array) {
+  // ... element bilan biror amal bajarish
 });
 ```
 
-For instance, this shows each element of the array:
+Masalan, bu massivning har bir elementini ko'rsatadi:
 
 ```js run
-// for each element call alert
+// har bir element uchun alert chaqirish
 ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
 ```
 
-And this code is more elaborate about their positions in the target array:
+Quyidagi kod mooljaldagi massivda pozitsiyalari haqida batafsilroq ma'lumot beradi:
 
 ```js run
 ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
-  alert(`${item} is at index ${index} in ${array}`);
+  alert(`${item} ${array} massivning  ${index} indeksdagi elementi`);
 });
 ```
 
-The result of the function (if it returns any) is thrown away and ignored.
+Funksiyaning natijasi (agar u qaytarsa) tashlanadi va e'tiborga olinmaydi.
 
+## Massivda izlash
 
-## Searching in array
+Endi massivda qidiradigan usullarni ko'rib chiqamiz.
 
-Now let's cover methods that search in an array.
+### indexOf/lastIndexOf va includes
 
-### indexOf/lastIndexOf and includes
+[arr.indexOf](mdn:js/Array/indexOf) va [arr.includes](mdn:js/Array/includes) metodlari oʻxshash sintaksisga ega va ular tegishli string metodlari bilan deyarli bir xil ishlaydi, lekin buning oʻrniga elementlarda ishlaydi:
 
-The methods [arr.indexOf](mdn:js/Array/indexOf) and [arr.includes](mdn:js/Array/includes) have the similar syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+- `arr.indexOf(item, from)` -- `from` indeksidan boshlab `item` ni qidiradi va u topilgan indeksni qaytaradi, aks holda `-1`.
+- `arr.includes(item, from)` -- `from` indeksidan boshlab `item`ni qidiradi, topilsa `true`ni qaytaradi.
 
-- `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
-- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+Odatda bu metodlar faqat bitta argument bilan qo'llaniladi: qidiruv uchun `item`. Odatiy bo'lib, qidiruv boshidan boshlanadi.
 
-Usually these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
-
-For instance:
+Misol uchun:
 
 ```js run
 let arr = [1, 0, false];
 
-alert( arr.indexOf(0) ); // 1
-alert( arr.indexOf(false) ); // 2
-alert( arr.indexOf(null) ); // -1
+alert(arr.indexOf(0)); // 1
+alert(arr.indexOf(false)); // 2
+alert(arr.indexOf(null)); // -1
 
-alert( arr.includes(1) ); // true
+alert(arr.includes(1)); // true
 ```
 
-Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+Taqqoslash uchun `indexOf` qat'iy `===` tengligidan foydalanishini unutmang. Demak, `false` ni qidirsak, u nolni emas, aynan `false`ni topadi.
 
-If we want to check if `item` exists in the array, and don't need the exact index, then `arr.includes` is preferred.
+Agar biz massivda `item` mavjudligini tekshirmoqchi bo'lsak va aniq indeks kerak bo'lmasa, u holda "arr.includes" afzalroqdir.
 
-The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
+[arr.lastIndexOf](mdn:js/Array/lastIndexOf) metodii `indexOf` bilan bir xil, lekin oʻngdan chapga qarab qidiradi.
 
 ```js run
-let fruits = ['Apple', 'Orange', 'Apple']
+let fruits = ["Olma", "Apelsin", "Olma"];
 
-alert( fruits.indexOf('Apple') ); // 0 (first Apple)
-alert( fruits.lastIndexOf('Apple') ); // 2 (last Apple)
+alert(fruits.indexOf("Apple")); // 0 (birinchi Olma)
+alert(fruits.lastIndexOf("Apple")); // 2 (oxirgi Olma)
 ```
 
-````smart header="The `includes` method handles `NaN` correctly"
-A minor, but noteworthy feature of `includes` is that it correctly handles `NaN`, unlike `indexOf`:
+````smart header= " `includes`metodi`NaN`ni to'g'ri boshqaradi"`Includes`ning kichik, ammo diqqatga sazovor xususiyati shundaki, u`indexOf`dan farqli ravishda`NaN` ni to'g'ri boshqaradi:
 
 ```js run
 const arr = [NaN];
-alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
-alert( arr.includes(NaN) );// true (correct)
+alert(arr.indexOf(NaN)); // -1 (noto'g'ri, 0 bo'lishi kerak)
+alert(arr.includes(NaN)); // true (to'gri)
 ```
-That's because `includes` was added to JavaScript much later and uses the more up to date comparison algorithm internally.
-````
 
-### find and findIndex/findLastIndex
+Buning sababi, `includes` JavaScriptga ancha keyinroq qo'shilgan va ichki jihatdan eng so'nggi taqqoslash algoritmidan foydalanadi.
 
-Imagine we have an array of objects. How do we find an object with the specific condition?
+`
 
-Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
+### find va findIndex/findLastIndex
 
-The syntax is:
+Tasavvur qiling, bizda obyektlar massivi bor. Muayyan shartga ega obyektni qanday topamiz?
+
+Bu yerda [arr.find(fn)](mdn:js/Array/find) usuli qo'l keladi.
+
+Uning sintaksisi quyidagicha:
+
 ```js
-let result = arr.find(function(item, index, array) {
-  // if true is returned, item is returned and iteration is stopped
-  // for falsy scenario returns undefined
+let result = arr.find(function (item, index, array) {
+  // agar true qaytarilsa, element qaytariladi va iteratsiya to'xtatiladi
+  // falsy stsenariy uchun aniqlanmagan qaytariladi
 });
 ```
 
-The function is called for elements of the array, one after another:
+Funktsiya massiv elementlari uchun birin-ketin chaqiriladi:
 
-- `item` is the element.
-- `index` is its index.
-- `array` is the array itself.
+- `item` bu element.
+- `index` bu uning indeksi.
+- `array` bu massivning o'zi.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
+Agar u `true`ni qaytarsa, qidiruv to'xtatiladi, `element` qaytariladi. Hech narsa topilmasa, `undefined` qaytariladi.
 
-For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
+Masalan, bizda har birida `id` va `name` maydonlari bo‘lgan bir qator foydalanuvchilar bor. Keling, `id == 1` bo'lganini topamiz:
 
 ```js run
 let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"}
+  { id: 1, name: "John" },
+  { id: 2, name: "Pete" },
+  { id: 3, name: "Mary" },
 ];
 
-let user = users.find(item => item.id == 1);
+let user = users.find((item) => item.id == 1);
 
 alert(user.name); // John
 ```
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+Aslida obyektlar massivlari keng tarqalgan, shuning uchun "find" metodi juda foydali.
 
-Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
+E'tibor bering, misolda biz `find` uchun `item => item.id == 1` funksiyasini bitta argument bilan taqdim etamiz. Bu odatiy, bu funksiyaning boshqa argumentlari kamdan-kam qo'llaniladi.
 
-The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax, but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
+[arr.findIndex](mdn:js/Array/findIndex) metodi bir xil sintaksisga ega, lekin elementning o'rniga element topilgan indeksni qaytaradi. Hech narsa topilmasa, `-1` qiymati qaytariladi.
 
-The [arr.findLastIndex](mdn:js/Array/findLastIndex) method is like `findIndex`, but searches from right to left, similar to `lastIndexOf`.
+[arr.findLastIndex](mdn:js/Array/findLastIndex) metodi “findIndex”ga oʻxshaydi, lekin “lastIndexOf”ga oʻxshash oʻngdan chapga qidiradi.
 
-Here's an example:
+Misol uchun::
 
 ```js run
 let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"},
-  {id: 4, name: "John"}
+  { id: 1, name: "John" },
+  { id: 2, name: "Pete" },
+  { id: 3, name: "Mary" },
+  { id: 4, name: "John" },
 ];
 
-// Find the index of the first John
-alert(users.findIndex(user => user.name == 'John')); // 0
+// Birinchi Johnning indeksini topish
+alert(users.findIndex((user) => user.name == "John")); // 0
 
-// Find the index of the last John
-alert(users.findLastIndex(user => user.name == 'John')); // 3
+// Oxirgi Johnning indeksini topish
+alert(users.findLastIndex((user) => user.name == "John")); // 3
 ```
-
-
 
 ### filter
 
-The `find` method looks for a single (first) element that makes the function return `true`.
+`find` metodi funksiyani `true`ga qaytaradigan yagona (birinchi) elementni qidiradi.
 
-If there may be many, we can use [arr.filter(fn)](mdn:js/Array/filter).
+Agar ko'p bo'lsa, biz [arr.filter(fn)] (mdn:js/Array/filter) dan foydalanishimiz mumkin.
 
-The syntax is similar to `find`, but `filter` returns an array of all matching elements:
+Sintaksis `find` ga o'xshaydi, lekin `filter` barcha mos elementlar qatorini qaytaradi:
 
 ```js
-let results = arr.filter(function(item, index, array) {
-  // if true item is pushed to results and the iteration continues
-  // returns empty array if nothing found
+let results = arr.filter(function (item, index, array) {
+  // haqiqiy element natijalarga surilsa va iteratsiya davom etsa
+  // hech narsa topilmasa, bo'sh massivni qaytaradi
 });
 ```
 
-For instance:
+Misol uchun:
 
 ```js run
 let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"}
+  { id: 1, name: "John" },
+  { id: 2, name: "Pete" },
+  { id: 3, name: "Mary" },
 ];
 
-// returns array of the first two users
-let someUsers = users.filter(item => item.id < 3);
+// birinchi ikki foydalanuvchining massivini qaytaradi
+let someUsers = users.filter((item) => item.id < 3);
 
 alert(someUsers.length); // 2
 ```
 
-## Transform an array
+## Massivni aylantirish
 
-Let's move on to methods that transform and reorder an array.
+Endi massivni o'zgartiradigan va qayta tartiblaydigan usullarga o'tamiz.
 
 ### map
 
-The [arr.map](mdn:js/Array/map) method is one of the most useful and often used.
+[arr.map](mdn:js/Array/map) metodi eng foydali va tez-tez ishlatiladigan metodlardan biridir.
 
-It calls the function for each element of the array and returns the array of results.
+U massivning har bir elementi uchun funksiyani chaqiradi va natijalar massivini qaytaradi.
 
-The syntax is:
+Uning sintaksisi quyidagicha:
 
 ```js
-let result = arr.map(function(item, index, array) {
-  // returns the new value instead of item
+let result = arr.map(function (item, index, array) {
+  // element o'rniga yangi qiymatni qaytaradi
 });
 ```
 
-For instance, here we transform each element into its length:
+Masalan, bu erda biz har bir elementni uzunligiga aylantiramiz:
 
 ```js run
-let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
+let lengths = ["Bilbo", "Gandalf", "Nazgul"].map((item) => item.length);
 alert(lengths); // 5,7,6
 ```
 
 ### sort(fn)
 
-The call to [arr.sort()](mdn:js/Array/sort) sorts the array *in place*, changing its element order.
+[arr.sort()](mdn:js/Array/sort) ga chaqiruv _inplace_ massivni tartiblaydi, uning element tartibini o'zgartiradi.
 
-It also returns the sorted array, but the returned value is usually ignored, as `arr` itself is modified.
+Shuningdek, u tartiblangan massivni qaytaradi, lekin qaytarilgan qiymat odatda e'tiborga olinmaydi, chunki `arr` ning o'zi o'zgartiriladi.
 
-For instance:
+Misol uchun:
 
 ```js run
-let arr = [ 1, 2, 15 ];
+let arr = [1, 2, 15];
 
-// the method reorders the content of arr
+// metod arr kontentini qayta tartiblaydi
 arr.sort();
 
-alert( arr );  // *!*1, 15, 2*/!*
+alert(arr); // *!*1, 15, 2*/!*
 ```
 
-Did you notice anything strange in the outcome?
+Natijada g'alati narsani sezdingizmi?
 
-The order became `1, 15, 2`. Incorrect. But why?
+Tartib `1, 15, 2` ga aylandi. Noto'g'ri. Lekin nega?
 
-**The items are sorted as strings by default.**
+**Elementlar odatda qatorlar sifatida saralanadi.**
 
-Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed `"2" > "15"`.
+Aslida, barcha elementlar taqqoslash uchun stringlarga aylantiriladi. Satrlar uchun leksikografik tartib qo'llaniladi va haqiqatda `"2" > "15"`.
 
-To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
+O'zimizning tartiblash tartibidan foydalanish uchun biz `arr.sort()`ning argumenti sifatida funktsiyani taqdim etishimiz kerak.
 
-The function should compare two arbitrary values and return:
+Funktsiya ikkita ixtiyoriy qiymatni solishtirishi va qaytarishi kerak:
 
 ```js
 function compare(a, b) {
-  if (a > b) return 1; // if the first value is greater than the second
-  if (a == b) return 0; // if values are equal
-  if (a < b) return -1; // if the first value is less than the second
+  if (a > b) return 1; // agar birinchi qiymat ikkinchisidan katta bo'lsa
+  if (a == b) return 0; // qiymatlar teng bo'lsa
+  if (a < b) return -1; // agar birinchi qiymat ikkinchisidan kichik bo'lsa
 }
 ```
 
-For instance, to sort as numbers:
+Masalan, raqamlar sifatida tartiblash uchun:
 
 ```js run
 function compareNumeric(a, b) {
@@ -450,160 +454,168 @@ arr.sort(compareNumeric);
 alert(arr);  // *!*1, 2, 15*/!*
 ```
 
-Now it works as intended.
+Endi u maqsadga muvofiq ishlaydi.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+Keling, bir chetga chiqib, nima bo'layotganini o'ylab ko'raylik. `Arr` har qanday narsaning massivi bo'lishi mumkin, to'g'rimi? Unda raqamlar, satrlar, ob'ektlar yoki boshqa narsalar bo'lishi mumkin. Bizda _ba'zi narsalar_ to'plami mavjud. Uni saralash uchun bizga uning elementlarini solishtirishni biladigan _tartib berish funksiyasi_ kerak. Odatiy bo'lib string tartibi hisoblanadi.
 
-The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) or [Timsort](https://en.wikipedia.org/wiki/Timsort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+`arr.sort(fn)` usuli umumiy tartiblash algoritmini amalga oshiradi. Biz uning ichida qanday ishlashiga ahamiyat bermasligimiz kerak (optimallashtirilgan [Quicksort](https://en.wikipedia.org/wiki/Quicksort) yoki [Timsort](https://en.wikipedia.org/wiki/Timsort) ko'pincha). U massiv bo'ylab yuradi, taqdim etilgan funksiyadan foydalanib uning elementlarini solishtiradi va ularni qayta tartiblaydi, bizga kerak bo'lgan narsa taqqoslashni amalga oshiradigan `fn` ni taqdim etishdir.
 
-By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
+Aytgancha, agar biz qaysi elementlar taqqoslanayotganini bilmoqchi bo'lsak, ularni alertga chaqirishga hech narsa to'sqinlik qilmaydi:
 
 ```js run
-[1, -2, 15, 2, 0, 8].sort(function(a, b) {
-  alert( a + " <> " + b );
+[1, -2, 15, 2, 0, 8].sort(function (a, b) {
+  alert(a + " <> " + b);
   return a - b;
 });
 ```
 
-The algorithm may compare an element with multiple others in the process, but it tries to make as few comparisons as possible.
+Algoritm jarayonda elementni bir nechta boshqalar bilan solishtirishi mumkin, lekin u imkon qadar kamroq taqqoslashga harakat qiladi.
 
-````smart header="A comparison function may return any number"
-Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
+````smart header="Taqqoslash funksiyasi istalgan raqamni qaytarishi mumkin"`
 
-That allows to write shorter functions:
+Aslida, taqqoslash funktsiyasi faqat `katta` deb aytish uchun ijobiy raqamni va `kamroq` deyish uchun salbiy raqamni qaytarish uchun talab qilinadi.
+
+Bu qisqaroq funktsiyalarni yozish imkonini beradi:
 
 ```js run
-let arr = [ 1, 2, 15 ];
+let arr = [1, 2, 15];
 
-arr.sort(function(a, b) { return a - b; });
+arr.sort(function (a, b) {
+  return a - b;
+});
 
-alert(arr);  // *!*1, 2, 15*/!*
+alert(arr); // *!*1, 2, 15*/!*
 ```
-````
 
-````smart header="Arrow functions for the best"
-Remember [arrow functions](info:arrow-functions-basics)? We can use them here for neater sorting:
+`````
+
+````smart header="Arrow funksiyalari eng yaxshisi"
+[arrow funksiyalari](maʼlumot:arrow-functions-basics) esingizdami? Biz ulardan tozaroq saralash uchun foydalanishimiz mumkin:
 
 ```js
 arr.sort( (a, b) => a - b );
 ```
 
-This works exactly the same as the longer version above.
-````
+Bu yuqoridagi uzunroq versiya bilan bir xil ishlaydi.
+`````
 
-````smart header="Use `localeCompare` for strings"
-Remember [strings](info:string#correct-comparisons) comparison algorithm? It compares letters by their codes by default.
+````smart header="Stringlar uchun `localeCompare` ishlatiladi"
+[strings](info:string#correct-comparisons) taqqoslash algoritmini eslaysizmi? U odatda harflarni kodlari bo'yicha taqqoslaydi.
 
-For many alphabets, it's better to use `str.localeCompare` method to correctly sort letters, such as `Ö`.
+Koʻpgina alifbolar uchun “Ö” kabi harflarni toʻgʻri saralash uchun “str.localeCompare” metodidan foydalangan maʼqul.
 
-For example, let's sort a few countries in German:
+Masalan, nemis tilida bir nechta mamlakatlarni saralaymiz:
 
 ```js run
-let countries = ['Österreich', 'Andorra', 'Vietnam'];
+let countries = ["Österreich", "Andorra", "Vietnam"];
 
-alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
+alert(countries.sort((a, b) => (a > b ? 1 : -1))); // Andorra, Vietnam, Österreich (noto'g'ri)
 
-alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
+alert(countries.sort((a, b) => a.localeCompare(b))); // Andorra,Österreich,Vietnam (to'g'!)
 ```
-````
 
 ### reverse
 
-The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
+[arr.reverse](mdn:js/Array/reverse) metodi `arr` dagi elementlar tartibini teskari qiladi.
 
-For instance:
+Misol uchun:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 arr.reverse();
 
-alert( arr ); // 5,4,3,2,1
+alert(arr); // 5,4,3,2,1
 ```
 
-It also returns the array `arr` after the reversal.
+Shuningdek, teskari o'zgarishlardan keyin `arr` massivini qaytaradi.
 
-### split and join
+### split va join
 
-Here's the situation from real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
+Mana haqiqiy hayotdan vaziyat. Biz xabar almashish ilovasini yozmoqdamiz va odam vergul bilan ajratilgan qabul qiluvchilar ro'yxatiga kiradi: `John, Pett, Mary`. Ammo biz uchun ismlar massivi bir stringga qaraganda ancha qulayroq bo'ladi. Uni qanday olish mumkin?
 
-The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
+[str.split(delim)](mdn:js/String/split) metodii aynan shunday qiladi. U berilgan ajratuvchi `delim` orqali qatorni massivga ajratadi.
 
-In the example below, we split by a comma followed by space:
+Quyidagi misolda biz verguldan keyin bo'sh joy bilan ajratamiz:
 
 ```js run
-let names = 'Bilbo, Gandalf, Nazgul';
+let names = "Bilbo, Gandalf, Nazgul";
 
-let arr = names.split(', ');
+let arr = names.split(", ");
 
 for (let name of arr) {
-  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+  alert(`${name}ga xabar.`); // Bilbo(va boshqa ismlar)ga xabar
 }
 ```
 
-The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
+`Split` usuli ixtiyoriy ikkinchi raqamli argumentga ega – massiv uzunligi chegarasi. Agar u taqdim etilsa, qo'shimcha elementlar e'tiborga olinmaydi. Amalda u kamdan-kam qo'llaniladi:
 
 ```js run
-let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+let arr = "Bilbo, Gandalf, Nazgul, Saruman".split(", ", 2);
 
 alert(arr); // Bilbo, Gandalf
 ```
 
-````smart header="Split into letters"
-The call to `split(s)` with an empty `s` would split the string into an array of letters:
+``smart header=`Harflarga split ishlatish`
+
+Boʻsh `s` bilan `split(s)`ni chaqirish stringni harflar qatoriga boʻladi:
 
 ```js run
 let str = "test";
 
-alert( str.split('') ); // t,e,s,t
+alert(str.split("")); // t,e,s,t
 ```
-````
 
-The call [arr.join(glue)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items joined by `glue` between them.
+``
 
-For instance:
+[arr.join(glue)](mdn:js/Array/join) chaqiruvi `split` ga teskari amal qiladi. U `arr` elementlari qatorini ular orasiga `yelim` bilan bog'laydi.
+
+Misol uchun:
 
 ```js run
-let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+let arr = ["Bilbo", "Gandalf", "Nazgul"];
 
-let str = arr.join(';'); // glue the array into a string using ;
+let str = arr.join(";"); // massivni stringga yelimlash;
 
-alert( str ); // Bilbo;Gandalf;Nazgul
+alert(str); // Bilbo;Gandalf;Nazgul
 ```
 
 ### reduce/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`, `for` or `for..of`.
+Massivni takrorlash kerak bo'lganda, biz `forEach`, `for` yoki `for..of` dan foydalanishimiz mumkin.
 
-When we need to iterate and return the data for each element -- we can use `map`.
+Har bir element uchun ma'lumotlarni takrorlash va qaytarish kerak bo'lganda, biz `map` dan foydalanishimiz mumkin.
 
-The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array/reduceRight) also belong to that breed, but are a little bit more intricate. They are used to calculate a single value based on the array.
+[arr.reduce](mdn:js/Array/reduce) va [arr.reduceRight](mdn:js/Array/reduceRight) metodlari ham shu zotga tegishli, lekin biroz murakkabroq. Ular massiv asosida bitta qiymatni hisoblash uchun ishlatiladi.
 
-The syntax is:
+Ularning sintaksisi quyidagicha:
 
 ```js
-let value = arr.reduce(function(accumulator, item, index, array) {
-  // ...
-}, [initial]);
+let value = arr.reduce(
+  function (accumulator, item, index, array) {
+    // ...
+  },
+  [initial]
+);
 ```
 
-The function is applied to all array elements one after another and "carries on" its result to the next call.
+Funksiya massivning barcha elementlariga birin-ketin qo'llaniladi va o'z natijasini keyingi chaqiruvga `davom etadi`.
 
-Arguments:
+Argumentlar:
 
-- `accumulator` -- is the result of the previous function call, equals `initial` the first time (if `initial` is provided).
-- `item` -- is the current array item.
-- `index` -- is its position.
-- `array` -- is the array.
+- `accumulator` -- oldingi funksiya chaqiruvining natijasi bo‘lib, birinchi marta `initial`ga teng (agar “boshlang‘ich” ko‘rsatilgan bo‘lsa).
+- `item` -- joriy massiv elementidir.
+- `index` -- uning pozitsiyasi.
+- `array` -- massiv.
 
-As function is applied, the result of the previous function call is passed to the next one as the first argument.
+Funktsiya qo'llanilganda, oldingi funktsiya chaqiruvining natijasi birinchi argument sifatida keyingisiga o'tkaziladi.
 
-So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
+Shunday qilib, birinchi argument aslida barcha oldingi ijrolarning umumiy natijasini saqlaydigan akkumulyatordir. Va oxirida u `reduce`ning natijasi bo'ladi.
 
-Sounds complicated?
+Murakkab tuyuladimi?
 
-The easiest way to grasp that is by example.
+Buni tushunishning eng oson yo'li - bu misolda ko'rish.
 
-Here we get a sum of an array in one line:
+Quyida biz bir qatordagi massivning yig'indisini olamiz:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -613,73 +625,73 @@ let result = arr.reduce((sum, current) => sum + current, 0);
 alert(result); // 15
 ```
 
-The function passed to `reduce` uses only 2 arguments, that's typically enough.
+`reduce` ga uzatilgan funksiya faqat 2 ta argumentdan foydalanadi, bu odatda yetarli.
 
-Let's see the details of what's going on.
+Keling, nima bo'layotganini batafsil ko'rib chiqaylik.
 
-1. On the first run, `sum` is the `initial` value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the function result is `1`.
-2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
-3. On the 3rd run, `sum = 3` and we add one more element to it, and so on...
+1. Birinchi ishga tushirishda `sum` `initial` qiymatdir (`reduce` ning oxirgi argumenti), `0` ga, `current` esa massivning birinchi elementi bo'lib, `1` ga teng. Demak, funksiya natijasi `1` bo'ladi.
+2. Ikkinchi ishga tushirishda, `sum = 1`, biz unga ikkinchi massiv elementini (`2`) qo'shamiz va qaytamiz.
+3. Uchinchi ishga tuhsirishda `sum = 3` va biz unga yana bitta element qo'shamiz va hokazo...
 
-The calculation flow:
+Hisoblash tartibi:
 
 ![](reduce.svg)
 
-Or in the form of a table, where each row represents a function call on the next array element:
+Yoki jadval ko'rinishida, bu yerda har bir string keyingi massiv elementida funksiya chaqiruvini ifodalaydi:
 
-|   |`sum`|`current`|result|
-|---|-----|---------|---------|
-|the first call|`0`|`1`|`1`|
-|the second call|`1`|`2`|`3`|
-|the third call|`3`|`3`|`6`|
-|the fourth call|`6`|`4`|`10`|
-|the fifth call|`10`|`5`|`15`|
+|                     | `sum` | `current` | natija |
+| ------------------- | ----- | --------- | ------ |
+| birinchi chaqiruv   | `0`   | `1`       | `1`    |
+| ikkinchi chaqiruv   | `1`   | `2`       | `3`    |
+| uchinchi chaqiruv   | `3`   | `3`       | `6`    |
+| to'rtinchi chaqiruv | `6`   | `4`       | `10`   |
+| beshinchi chaqiruv  | `10`  | `5`       | `15`   |
 
-Here we can clearly see how the result of the previous call becomes the first argument of the next one.
+Bu yerda biz oldingi chaqiruvning natijasi keyingisining birinchi argumentiga aylanishini aniq ko'rishimiz mumkin.
 
-We also can omit the initial value:
+Biz boshlang'ich qiymatni ham o'tkazib yuborishimiz mumkin:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-// removed initial value from reduce (no 0)
+// reducedan boshlang'ich qiymat olib tashlandi (0 yo'q)
 let result = arr.reduce((sum, current) => sum + current);
 
-alert( result ); // 15
+alert(result); // 15
 ```
 
-The result is the same. That's because if there's no initial, then `reduce` takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+Natija bir xil. Buning sababi, agar boshlang'ich bo'lmasa, `reduce` massivning birinchi elementini boshlang'ich qiymat sifatida qabul qiladi va iteratsiyani 2-elementdan boshlaydi.
 
-The calculation table is the same as above, minus the first row.
+Hisoblash jadvali yuqoridagi bilan bir xil, birinchi qator ayrilgan holda.
 
-But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error.
+Ammo bunday foydalanish juda ehtiyotkorlik talab qiladi. Agar massiv bo'sh bo'lsa, boshlang'ich qiymatisiz `reduce` chaqiruvi xatolik beradi.
 
-Here's an example:
+Misol uchun:
 
 ```js run
 let arr = [];
 
-// Error: Reduce of empty array with no initial value
-// if the initial value existed, reduce would return it for the empty arr.
+// Error: Boshlang'ich qiymatsiz bo'sh massivni qisqartirish
+// agar dastlabki qiymat mavjud bo'lsa, reduce uni bo'sh arr uchun qaytaradi.
 arr.reduce((sum, current) => sum + current);
 ```
 
-So it's advised to always specify the initial value.
+Shuning uchun har doim boshlang'ich qiymatni ko'rsatish tavsiya etiladi.
 
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+[arr.reduceRight](mdn:js/Array/reduceRight) metodi ham xuddi shunday qiladi, lekin o'ngdan chapga ketadi.
 
 ## Array.isArray
 
-Arrays do not form a separate language type. They are based on objects.
+Massivlar alohida til tipini hosil qilmaydi. Ular obyektlarga asoslangan.
 
-So `typeof` does not help to distinguish a plain object from an array:
+Shunday qilib, `typeof` oddiy obyektni massivdan ajratishga yordam bermaydi:
 
 ```js run
-alert(typeof {}); // object
-alert(typeof []); // object (same)
+alert(typeof {}); // obyekt
+alert(typeof []); // obyekt (bir xil)
 ```
 
-...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
+...Ammo massivlar shunchalik tez-tez ishlatiladiki, buning uchun maxsus usul mavjud: [Array.isArray(value)](mdn:js/Array/isArray). Agar `qiymat` massiv bo‘lsa `true`, aks holda `false` qiymatini qaytaradi.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -689,23 +701,23 @@ alert(Array.isArray([])); // true
 
 ## Most methods support "thisArg"
 
-Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
+Funksiyalarni chaqiruvchi deyarli barcha massiv usullari -- `find`, `filter`, `map` kabi, `sort` dan tashqari, ixtiyoriy qo'shimcha `thisArg` parametrini qabul qiladi.
 
-That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
+Ushbu parametr yuqoridagi bo'limlarda tushuntirilmagan, chunki u kamdan-kam qo'llaniladi. Ammo to'liqlik uchun biz uni qoplashimiz kerak.
 
-Here's the full syntax of these methods:
+Quyida bu usullarning toʻliq sintaksisi:
 
 ```js
 arr.find(func, thisArg);
 arr.filter(func, thisArg);
 arr.map(func, thisArg);
 // ...
-// thisArg is the optional last argument
+// thisArg ixtiyoriy oxirgi argumentdir
 ```
 
-The value of `thisArg` parameter becomes `this` for `func`.
+`ThisArg` parametrining qiymati `func` uchun `this` ga aylanadi.
 
-For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
+Misol uchun, bu yerda biz filter sifatida `army` obyektining metodidan foydalanamiz va `thisArg` kontekstni o'tkazadi:
 
 ```js run
 let army = {
@@ -724,7 +736,7 @@ let users = [
 ];
 
 *!*
-// find users, for who army.canJoin returns true
+// army.canJoin rost qaytaradigan foydalanuvchilarni topish
 let soldiers = users.filter(army.canJoin, army);
 */!*
 
@@ -733,72 +745,83 @@ alert(soldiers[0].age); // 20
 alert(soldiers[1].age); // 23
 ```
 
-If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+Agar yuqoridagi misolda biz `users.filter(army.canJoin)` dan foydalanilgan bo‘lsak, `army.canJoin` mustaqil funksiya sifatida chaqirilib, `this=undefined` bilan bir lahzada xatolikka olib keladi.
 
-A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The latter is used more often, as it's a bit easier to understand for most people.
+`users.filter(army.canJoin, army)` ga chaqiruvni `users.filter(user => army.canJoin(user))` bilan almashtirish mumkin, bu xuddi shunday qiladi. Ikkinchisi tez-tez ishlatiladi, chunki ko'pchilik uchun tushunish biroz osonroq.
 
 ## Summary
 
-A cheat sheet of array methods:
+Massiv metodlari:
 
-- To add/remove elements:
-  - `push(...items)` -- adds items to the end,
-  - `pop()` -- extracts an item from the end,
-  - `shift()` -- extracts an item from the beginning,
-  - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` deletes `deleteCount` elements and inserts `items`.
-  - `slice(start, end)` -- creates a new array, copies elements from index `start` till `end` (not inclusive) into it.
-  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+- Elementlarni qo'shish/o'chirish:
 
-- To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
-  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
-  - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
-  - `findIndex` is like `find`, but returns the index instead of a value.
+  - `push(...items)` -- elementlarni oxiriga qo'shadi,
+  - `pop()` -- elementni oxiridan olib tashlaydi,
+  - `shift()` -- elementni boshidan olib tashlaydi,
+  - `unshift(...items)` -- boshiga elementlar qo'shadi.
+  - `splice(pos, deleteCount, ...items)` -- `pos` indeksida `deleteCount` elementlari o'chiriladi va `elementlar` qo'shiladi.
+  - `slice(start, end)` -- yangi massiv yaratadi, unga `start` indeksidan `end`gacha (hisobga olinmaydi)) elementlarni ko'chiradi.
+  - `concat(...items)` -- yangi massivni qaytaradi: joriy massivning barcha a'zolaridan nusxa oladi va unga `elementlar` qo'shadi. Agar `elementlar`dan birortasi massiv bo'lsa, unda uning elementlari olinadi.
 
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
+- Elementlar orasida qidirish uchun:
 
-- To transform the array:
-  - `map(func)` -- creates a new array from results of calling `func` for every element.
-  - `sort(func)` -- sorts the array in-place, then returns it.
-  - `reverse()` -- reverses the array in-place, then returns it.
-  - `split/join` -- convert a string to array and back.
-  - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+  - `indexOf/lastIndexOf(item, pos)` -- `pos` pozitsiyasidan boshlab `element` ni qidiradi, indeksni qaytaradi yoki topilmasa `-1`.
+  - `includes(value)` -- agar massivda `value` bo'lsa `true`, aks holda `false` ni qaytaradi.
+  - `find/filter(func)` -- funksiya orqali elementlarni filtrlaydi, uni `true` deb qaytaradigan birinchi/barcha qiymatlarni qaytaring.
+  - `findIndex` `find` ga o'xshaydi, lekin qiymat o'rniga indeksni qaytaradi.
 
-- Additionally:
-  - `Array.isArray(value)` checks `value` for being an array, if so returns `true`, otherwise `false`.
+- Elementlarni takrorlash uchun:
 
-Please note that methods `sort`, `reverse` and `splice` modify the array itself.
+  - `forEach(func)` -- Har bir element uchun `func`ni chaqiradi, hech narsa qaytarmaydi.
 
-These methods are the most used ones, they cover 99% of use cases. But there are few others:
+- Massivni o'zgartirish uchun:
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
+  - `map(func)` -- har bir element uchun `func` chaqiruvi natijalaridan yangi massiv yaratadi.
+  - `sort(func)` -- massivni joyida tartiblaydi, keyin uni qaytaradi.
+  - `reverse()` -- massivni joyiga qaytaradi, keyin uni qaytaradi.
+  - `split/join` -- stringni massivga va orqaga aylantirish.
+  - `reduce/reduceRight(func, initial)` -- har bir element uchun `func` ni chaqirish va chaqiruvlar o'rtasida oraliq natijani o'tkazish orqali massivda bitta qiymatni hisoblang.
 
-  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+- Qo'shimcha:
+  - `Array.isArray(value)` `value` massiv ekanligini tekshiradi, agar shunday bo'lsa `true`, aks holda `false` ni qaytaradi.
 
-  These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
+Esda tutingki, `sort`, `reverse` va `splice` usullari massivning o‘zini o‘zgartiradi.
 
-  We can use `every` to compare arrays:
+Ushbu metodlar eng ko'p qo'llaniladi, ular foydalanish holatlarining 99% ni qamrab oladi. Ammo yana bir nechtasi bor:
 
-  ```js run
-  function arraysEqual(arr1, arr2) {
-    return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
-  }
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) massivni tekshiring.
 
-  alert( arraysEqual([1, 2], [1, 2])); // true
-  ```
+  `Fn` funksiyasi “xarita” ga o‘xshash massivning har bir elementida chaqiriladi. Agar biron-bir/barcha natijalar `true` bo'lsa, `true`, aks holda `false` ni qaytaradi.
 
-- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+Bu metodlar `||` va `&&` operatorlari kabi ishlaydi: agar `fn` rost qiymatni qaytarsa, `arr.some()` darhol `true`ni qaytaradi va qolgan elementlarni takrorlashni to'xtatadi; agar `fn` noto'g'ri qiymat qaytarsa, `arr.every()` darhol `false`ni qaytaradi va qolgan elementlarda ham takrorlashni to`xtatadi.
 
-- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
+Massivlarni solishtirish uchun `every` dan foydalanishimiz mumkin:
 
-- [arr.flat(depth)](mdn:js/Array/flat)/[arr.flatMap(fn)](mdn:js/Array/flatMap) create a new flat array from a multidimensional array.
+```js run
+function arraysEqual(arr1, arr2) {
+  return (
+    arr1.length === arr2.length &&
+    arr1.every((value, index) => value === arr2[index])
+  );
+}
 
-For the full list, see the [manual](mdn:js/Array).
+alert(arraysEqual([1, 2], [1, 2])); // true
+```
 
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier.
+- [arr.fill(value, start, end)](mdn:js/Array/fill) -- massivni `start` indeksidan `end`gacha takrorlanuvchi `value` bilan to'ldiradi.
 
-Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
+- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- o'z elementlarini `start` pozitsiyasidan `end` pozitsiyasigacha bo'lgan _o'ziga_, `target` pozitsiyasiga ko'chiradi (mavjudni ustiga yozadi).
 
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheat sheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+- [arr.flat(depth)](mdn:js/Array/flat)/[arr.flatMap(fn)](mdn:js/Array/flatMap) ko'p o'lchovli massivdan yangi tekis massiv yaratish.
+
+To'liq ro'yxat uchun [qo'llanma] (mdn:js/Array) ga qarang.
+
+Bir qarashda, juda ko'p usullar mavjud bo'lib tuyulishi mumkin, ularni eslab qolish juda qiyin. Lekin aslida bu ancha oson.
+
+Ulardan xabardor bo'lish uchun qo'llanmani ko'rib chiqing. Keyin massiv metodlari bilan tajribaga ega bo'lishingiz uchun mashq qilish uchun ushbu bobning vazifalarini hal qiling.
+
+Keyinchalik massiv bilan biror narsa qilish kerak bo'lganda va qanday qilishni bilmasangiz -- bu yerga keling, qo'llanmaga qarang va to'g'ri metodni toping. Misollar uni to'g'ri yozishga yordam beradi. Tez orada siz o'zingizning aniq harakatlaringizsiz usullarni avtomatik ravishda eslab qolasiz.
+
+```
+
+```

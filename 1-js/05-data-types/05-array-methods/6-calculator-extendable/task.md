@@ -1,36 +1,37 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Create an extendable calculator
+# Kengaytiriladigan kalkulyator yaratish
 
-Create a constructor function `Calculator` that creates "extendable" calculator objects.
+“Uzaytiriladigan” kalkulyator obyektlarini yaratuvchi `Kalkulyator` konstruktor funksiyasini yarating.
 
-The task consists of two parts.
+Vazifa ikki qismdan iborat.
 
-1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
+1. Birinchidan, `"1 + 2"` kabi qatorni "NUMBER operator NUMBER" (bo'sh joy bilan ajratilgan) formatida oladigan va natijani qaytaradigan `calculate(str)` metodini qo'llang. Plyus `+` va minus `-` ni tushunish kerak.
 
-    Usage example:
+   Foydalanish misoli:
 
-    ```js
-    let calc = new Calculator;
+   ```js
+   let calc = new Calculator();
 
-    alert( calc.calculate("3 + 7") ); // 10
-    ```
-2. Then add the method `addMethod(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
+   alert(calc.calculate("3 + 7")); // 10
+   ```
 
-    For instance, let's add the multiplication `*`, division `/` and power `**`:
+2. Keyin kalkulyatorga yangi amalni o'rgatuvchi `addMethod(name, func)` usulini qo'shing. U `name` operatorini va uni amalga oshiradigan ikki argumentli `func(a,b)` funksiyasini oladi.
 
-    ```js
-    let powerCalc = new Calculator;
-    powerCalc.addMethod("*", (a, b) => a * b);
-    powerCalc.addMethod("/", (a, b) => a / b);
-    powerCalc.addMethod("**", (a, b) => a ** b);
+   Masalan, `*` ko'paytirish, bo'lish `/` va quvvat `**` qo`shamiz:
 
-    let result = powerCalc.calculate("2 ** 3");
-    alert( result ); // 8
-    ```
+   ```js
+   let powerCalc = new Calculator();
+   powerCalc.addMethod("*", (a, b) => a * b);
+   powerCalc.addMethod("/", (a, b) => a / b);
+   powerCalc.addMethod("**", (a, b) => a ** b);
 
-- No parentheses or complex expressions in this task.
-- The numbers and the operator are delimited with exactly one space.
-- There may be error handling if you'd like to add it.
+   let result = powerCalc.calculate("2 ** 3");
+   alert(result); // 8
+   ```
+
+- Bu topshiriqda qavs yoki murakkab iboralar mavjud emas.
+- Raqamlar va operator aniq bir bo'sh joy bilan ajratilgan.
+- Agar siz uni qo'shmoqchi bo'lsangiz, xatolik yuz berishi mumkin.

@@ -1,5 +1,5 @@
-The answer is: **Pete**.
+Javob: **Pete**.
 
-A function gets outer variables as they are now, it uses the most recent values.
+Funktsiya tashqi o'zgaruvchilarni hozirgi kabi oladi, u eng so'nggi qiymatlardan foydalanadi.
 
-Old variable values are not saved anywhere. When a function wants a variable, it takes the current value from its own Lexical Environment or the outer one.
+Eski o'zgaruvchilar qiymatlari hech qayerda saqlanmaydi. Agar funktsiya o'zgaruvchini xohlasa, u joriy qiymatni o'zining Leksik Muhitidan yoki tashqi muhitdan oladi.

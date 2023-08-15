@@ -1,14 +1,14 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Show a weekday
+# Ish kunini ko'rsatish
 
-Write a function `getWeekDay(date)` to show the weekday in short format: 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'.
+Hafta kunini qisqa formatda ko'rsatish uchun `getWeekDay(date)` funksiyasini yozing: 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'.
 
-For instance:
+Masalan:
 
 ```js no-beautify
-let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getWeekDay(date) );        // should output "TU"
+let date = new Date(2012, 0, 3); // 3 Jan 2012
+alert(getWeekDay(date)); // "TU" chiqishi kerak
 ```

@@ -1,5 +1,5 @@
-The answer: **0,1.**
+Javob: **0,1.**
 
-Functions `counter` and `counter2` are created by different invocations of `makeCounter`.
+`counter` va `counter`” funksiyalari `makeCounter` ning turli chaqiruvlari bilan yaratilgan.
 
-So they have independent outer Lexical Environments, each one has its own `count`.
+Shunday qilib, ular mustaqil tashqi leksik muhitga ega, har birining o'z `count`iga ega.

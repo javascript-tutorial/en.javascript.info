@@ -1,20 +1,20 @@
-# Rest parameters and spread syntax
+# Rest parametrlari va tarqalish sintaksisi
 
-Many JavaScript built-in functions support an arbitrary number of arguments.
+Ko'pgina JavaScriptning o'rnatilgan funksiyalari ixtiyoriy sonli argumentlarni qo'llab-quvvatlaydi.
 
-For instance:
+Masalan:
 
-- `Math.max(arg1, arg2, ..., argN)` -- returns the greatest of the arguments.
-- `Object.assign(dest, src1, ..., srcN)` -- copies properties from `src1..N` into `dest`.
-- ...and so on.
+- `Math.max(arg1, arg2, ..., argN)` -- argumentlarning eng kattasini qaytaradi.
+- `Object.assign(dest, src1, ..., srcN)` -- `src1..N` dan `dest` ga xossalarni ko`chiradi.
+- ...va hokazo.
 
-In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
+Ushbu bobda biz buni qanday qilishni o'rganamiz. Shuningdek, massivlarni parametrlar kabi funktsiyalarga qanday o'tkazish kerak.
 
-## Rest parameters `...`
+## Rest parametrlari `...`
 
-A function can be called with any number of arguments, no matter how it is defined.
+Funktsiya qanday aniqlanganidan qat'i nazar, uni istalgan miqdordagi argumentlar bilan chaqirish mumkin.
 
-Like here:
+Quyidagidek:
 ```js run
 function sum(a, b) {
   return a + b;
@@ -23,14 +23,14 @@ function sum(a, b) {
 alert( sum(1, 2, 3, 4, 5) );
 ```
 
-There will be no error because of "excessive" arguments. But of course in the result only the first two will be counted, so the result in the code above is `3`.
+"Haddan tashqari" argumentlar tufayli xato bo'lmaydi. Lekin, albatta, natijada faqat birinchi ikkitasi hisobga olinadi, shuning uchun yuqoridagi koddagi natija `3` bo'ladi.
 
-The rest of the parameters can be included in the function definition by using three dots `...` followed by the name of the array that will contain them. The dots literally mean "gather the remaining parameters into an array".
+Qolgan parametrlar funksiya taʼrifiga uchta nuqta `...` va undan keyin ularni oʻz ichiga olgan massiv nomidan foydalanib kiritish mumkin. Nuqtalar tom ma'noda "qolgan parametrlarni massivga to'plash" degan ma'noni anglatadi.
 
-For instance, to gather all arguments into array `args`:
+Masalan, barcha argumentlarni `args` massiviga toʻplash uchun:
 
 ```js run
-function sumAll(...args) { // args is the name for the array
+function sumAll(...args) { // args massivning nomi
   let sum = 0;
 
   for (let arg of args) sum += arg;
@@ -43,15 +43,15 @@ alert( sumAll(1, 2) ); // 3
 alert( sumAll(1, 2, 3) ); // 6
 ```
 
-We can choose to get the first parameters as variables, and gather only the rest.
+Biz birinchi parametrlarni o'zgaruvchilar sifatida olishni tanlashimiz va faqat qolganlarini yig'ishimiz mumkin.
 
-Here the first two arguments go into variables and the rest go into `titles` array:
+Bu erda dastlabki ikkita argument o'zgaruvchilarga, qolganlari esa `titles` massiviga kiradi:
 
 ```js run
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
-  // the rest go into titles array
+  // rest sarlavhalar qatoriga kiradi
   // i.e. titles = ["Consul", "Imperator"]
   alert( titles[0] ); // Consul
   alert( titles[1] ); // Imperator
@@ -61,8 +61,9 @@ function showName(firstName, lastName, ...titles) {
 showName("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-````warn header="The rest parameters must be at the end"
-The rest parameters gather all remaining arguments, so the following does not make sense and causes an error:
+``warn header="Rest parametrlar oxirida bo'lishi kerak"
+Rest parametrlar qolgan barcha argumentlarni to'playdi, shuning uchun quyidagilar mantiqiy emas va xatoga sabab bo'ladi:
+
 
 ```js
 function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
@@ -70,14 +71,14 @@ function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
 }
 ```
 
-The `...rest` must always be last.
+`... rest` har doim oxirgi bo'lishi kerak.
 ````
+````
+## "Argumentlar" o'zgaruvchisi
 
-## The "arguments" variable
+Shuningdek, `arguments` nomli massivga o'xshash maxsus ob'ekt mavjud bo'lib, u indeks bo'yicha barcha argumentlarni o'z ichiga oladi.
 
-There is also a special array-like object named `arguments` that contains all arguments by their index.
-
-For instance:
+Masalan:
 
 ```js run
 function showName() {
@@ -85,29 +86,30 @@ function showName() {
   alert( arguments[0] );
   alert( arguments[1] );
 
-  // it's iterable
+  // u takrorlanadi
   // for(let arg of arguments) alert(arg);
 }
 
-// shows: 2, Julius, Caesar
+// ko'rsatadi: 2, Julius, Caesar
 showName("Julius", "Caesar");
 
-// shows: 1, Ilya, undefined (no second argument)
+// ko'rsatadi: 1, Ilya, undefined (ikkinchi argument yo'q)
 showName("Ilya");
 ```
 
-In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
+Qadimgi davrlarda tilda rest parametrlari mavjud emas edi va `arguments` dan foydalanish funksiyaning barcha argumentlarini olishning yagona usuli edi. Va u hali ham ishlaydi, biz uni eski kodda topishimiz mumkin.
 
-But the downside is that although `arguments` is both array-like and iterable, it's not an array. It does not support array methods, so we can't call `arguments.map(...)` for example.
+Ammo salbiy tomoni shundaki, `arguments` massivga o'xshash va takrorlanadigan bo'lsa ham, u massiv emas. U massiv usullarini qo'llab-quvvatlamaydi, shuning uchun biz, masalan, `arguments.map(...)` ni chaqira olmaymiz.
 
-Also, it always contains all arguments. We can't capture them partially, like we did with rest parameters.
+Bundan tashqari, u har doim barcha dalillarni o'z ichiga oladi. Biz rest parametrlarida bo'lgani kabi, ularni qisman qo'lga kirita olmaymiz.
 
-So when we need these features, then rest parameters are preferred.
+Shunday qilib, bizga ushbu xususiyatlar kerak bo'lganda, rest parametrlariga afzallik beriladi.
 
-````smart header="Arrow functions do not have `\"arguments\"`"
-If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
+``
+``smart header="Arrow funksiyalari mavjud emas `\"arguments\"` "
+Agar biz `arguments` obyektiga o‘q funksiyasidan kirsak, u ularni tashqi “normal” funksiyadan oladi.
 
-Here's an example:
+Misol uchun:
 
 ```js run
 function f() {
@@ -118,25 +120,25 @@ function f() {
 f(1); // 1
 ```
 
-As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
-````
+Esda tutganimizdek, strelka funksiyalarining o‘ziga xos `this` yo‘q. Endi biz ularda maxsus "argumentlar" ob'ekti ham yo'qligini bilamiz.
+`````
+`````
 
+## Spread sintaksisi [#spread-syntax]
 
-## Spread syntax [#spread-syntax]
+Biz hozirgina parametrlar ro‘yxatidan massivni qanday olish mumkinligini ko‘rib chiqdik.
 
-We've just seen how to get an array from the list of parameters.
+Ammo ba'zida biz teskarisini qilishimiz kerak.
 
-But sometimes we need to do exactly the reverse.
-
-For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
+Masalan, roʻyxatdagi eng katta raqamni qaytaruvchi [Math.max](mdn:js/Math/max) funksiyasi mavjud:
 
 ```js run
 alert( Math.max(3, 5, 1) ); // 5
 ```
 
-Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
+Aytaylik, bizda `[3, 5, 1]` massiv bor. U bilan qanday qilib `Math.max` chaqiramiz?
 
-Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
+Uni “xuddi shunday” o‘tkazish ishlamaydi, chunki `Math.max` bitta massivni emas, balki raqamli argumentlar ro‘yxatini kutadi:
 
 ```js run
 let arr = [3, 5, 1];
@@ -146,21 +148,21 @@ alert( Math.max(arr) ); // NaN
 */!*
 ```
 
-And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
+Va, albatta, biz `Math.max(arr[0], arr[1], arr[2])` kodidagi elementlarni qoʻlda roʻyxatga kirita olmaymiz, chunki ularning soni qancha ekanligini bilmasligimiz mumkin. Bizning skriptimiz bajarilganda, ko'p bo'lishi mumkin yoki yo'q. Va bu xunuk bo'lib qoladi.
 
-*Spread syntax* to the rescue! It looks similar to rest parameters, also using `...`, but does quite the opposite.
+Qutqarishga *spread sintaksisi* keladi! U `...` dan foydalangan holda rest parametrlariga o'xshaydi, lekin buning aksini qiladi.
 
-When `...arr` is used in the function call, it "expands" an iterable object `arr` into the list of arguments.
+Funktsiya chaqiruvida `...arr` ishlatilsa, u takrorlanadigan `arr` obyektini argumentlar ro`yxatiga «kengaytiradi».
 
-For `Math.max`:
+`Math.max` uchun:
 
 ```js run
 let arr = [3, 5, 1];
 
-alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
+alert( Math.max(...arr) ); // 5 (spread massivni argumentlar ro'yxatiga aylantiradi)
 ```
 
-We also can pass multiple iterables this way:
+Shuningdek, biz bir nechta iterativlarni shu tarzda o'tkazishimiz mumkin:
 
 ```js run
 let arr1 = [1, -2, 3, 4];
@@ -169,7 +171,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(...arr1, ...arr2) ); // 8
 ```
 
-We can even combine the spread syntax with normal values:
+Biz hatto tarqalish sintaksisini oddiy qiymatlar bilan birlashtira olamiz:
 
 
 ```js run
@@ -179,7 +181,7 @@ let arr2 = [8, 3, -8, 1];
 alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 ```
 
-Also, the spread syntax can be used to merge arrays:
+Shuningdek, tarqalish sintaksisi massivlarni birlashtirish uchun ishlatilishi mumkin:
 
 ```js run
 let arr = [3, 5, 1];
@@ -189,12 +191,12 @@ let arr2 = [8, 9, 15];
 let merged = [0, ...arr, 2, ...arr2];
 */!*
 
-alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
+alert(merged); // 0,3,5,1,2,8,9,15 (0, keyin arr, keyin 2, keyin arr2)
 ```
 
-In the examples above we used an array to demonstrate the spread syntax, but any iterable will do.
+Yuqoridagi misollarda biz tarqalish sintaksisini ko'rsatish uchun massivdan foydalanganmiz, ammo har qanday iteratsiya bajariladi.
 
-For instance, here we use the spread syntax to turn the string into array of characters:
+Misol uchun, bu erda biz satrni belgilar qatoriga aylantirish uchun tarqalish sintaksisidan foydalanamiz:
 
 ```js run
 let str = "Hello";
@@ -202,94 +204,94 @@ let str = "Hello";
 alert( [...str] ); // H,e,l,l,o
 ```
 
-The spread syntax internally uses iterators to gather elements, the same way as `for..of` does.
+Tarqalgan sintaksis, xuddi `for..of` bilan bir xil tarzda elementlarni yig'ish uchun iteratorlardan foydalanadi.
 
-So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l","l","o"`. The list of characters is passed to array initializer `[...str]`.
+Shunday qilib, satr uchun `for..of` belgilarni qaytaradi va `...str` `"H","e","l","l","o"`ga aylanadi. Belgilar ro'yxati `[...str]` massivni ishga tushirgichga uzatiladi.
 
-For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
+Ushbu aniq vazifa uchun biz `Array.from` dan ham foydalanishimiz mumkin, chunki u iteratsiya qilinadigan (string kabi) massivga aylantiradi:
 
 ```js run
 let str = "Hello";
 
-// Array.from converts an iterable into an array
+// Array.from takrorlanuvchini massivga aylantiradi
 alert( Array.from(str) ); // H,e,l,l,o
 ```
 
-The result is the same as `[...str]`.
+Natija `[...str]` bilan bir xil.
 
-But there's a subtle difference between `Array.from(obj)` and `[...obj]`:
+Ammo `Array.from(obj)` va `[...obj]` oʻrtasida nozik farq bor:
 
-- `Array.from` operates on both array-likes and iterables.
-- The spread syntax works only with iterables.
+- `Array.from` massivga o'xshash va takrorlanuvchilar bilan ishlaydi.
+- Tarqalgan sintaksis faqat takrorlanuvchilar bilan ishlaydi.
 
-So, for the task of turning something into an array, `Array.from` tends to be more universal.
+Shunday qilib, biror narsani massivga aylantirish vazifasi uchun `Array.from` ko'proq universal bo'ladi.
 
 
-## Copy an array/object
+## Massiv/obyektdan nusxa olish
 
-Remember when we talked about `Object.assign()` [in the past](info:object-copy#cloning-and-merging-object-assign)?
+Esingizdami, biz `Object.assign()` [o'tmishda](ma'lumot:object-copy#cloning-and-merging-object-assign) haqida gapirgan edik?
 
-It is possible to do the same thing with the spread syntax.
+Tarqalgan sintaksis bilan ham xuddi shunday qilish mumkin.
 
 ```js run
 let arr = [1, 2, 3];
 
 *!*
-let arrCopy = [...arr]; // spread the array into a list of parameters
-                        // then put the result into a new array
+let arrCopy = [...arr]; // massivni parametrlar ro'yxatiga tarqating
+                        // keyin natijani yangi massivga qo'ying
 */!*
 
-// do the arrays have the same contents?
-alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
+// massivlar bir xil tarkibga egami?
+alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // to'g'ri
 
-// are the arrays equal?
-alert(arr === arrCopy); // false (not same reference)
+// massivlar tengmi?
+alert(arr === arrCopy); // noto'g'ri (bir xil havola emas)
 
-// modifying our initial array does not modify the copy:
+// boshlang'ich massivimizni o'zgartirish nusxani o'zgartirmaydi:
 arr.push(4);
 alert(arr); // 1, 2, 3, 4
 alert(arrCopy); // 1, 2, 3
 ```
 
-Note that it is possible to do the same thing to make a copy of an object:
+E'tibor bering, ob'ektning nusxasini yaratish uchun xuddi shunday qilish mumkin:
 
 ```js run
 let obj = { a: 1, b: 2, c: 3 };
 
 *!*
-let objCopy = { ...obj }; // spread the object into a list of parameters
-                          // then return the result in a new object
+let objCopy = { ...obj }; // ob'ektni parametrlar ro'yxatiga tarqatish
+                          // keyin natijani yangi ob'ektga qaytarish
 */!*
 
-// do the objects have the same contents?
-alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true
+// ob'ektlar bir xil tarkibga egami?
+alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // to'g'ri
 
-// are the objects equal?
-alert(obj === objCopy); // false (not same reference)
+// ob'ektlar tengmi?
+alert(obj === objCopy); // noto'g'ri (bir xil havola emas)
 
-// modifying our initial object does not modify the copy:
+// boshlang'ich ob'ektimizni o'zgartirish nusxani o'zgartirmaydi:
 obj.d = 4;
 alert(JSON.stringify(obj)); // {"a":1,"b":2,"c":3,"d":4}
 alert(JSON.stringify(objCopy)); // {"a":1,"b":2,"c":3}
 ```
 
-This way of copying an object is much shorter than `let objCopy = Object.assign({}, obj)` or for an array `let arrCopy = Object.assign([], arr)` so we prefer to use it whenever we can.
+Ob'ektni nusxalashning bu usuli `let objCopy = Object.assign({}, obj)` yoki `let arrCopy = Object.assign([], arr)` massividan ancha qisqaroqdir, shuning uchun biz undan istalgan vaqtda foydalanishni afzal ko'ramiz. mumkin.
 
 
-## Summary
+## Xulosa
 
-When we see `"..."` in the code, it is either rest parameters or the spread syntax.
+Kodda `"..."` ni ko'rsak, bu rest parametrlari yoki tarqalish sintaksisidir.
 
-There's an easy way to distinguish between them:
+Ularni farqlashning oson yo'li bor:
 
-- When `...` is at the end of function parameters, it's "rest parameters" and gathers the rest of the list of arguments into an array.
-- When `...` occurs in a function call or alike, it's called a "spread syntax" and expands an array into a list.
+- `...` funksiya parametrlarining oxirida bo'lsa, u "rest parametrlari" bo'lib, qolgan argumentlar ro'yxatini massivga to'playdi.
+- Funktsiya chaqiruvida yoki shunga o'xshash `...` paydo bo'lsa, u "tarqatish sintaksisi" deb ataladi va massivni ro'yxatga kengaytiradi.
 
-Use patterns:
+Shakllardan foydalanish:
 
-- Rest parameters are used to create functions that accept any number of arguments.
-- The spread syntax is used to pass an array to functions that normally require a list of many arguments.
+- Rest parametrlari istalgan miqdordagi argumentlarni qabul qiladigan funktsiyalarni yaratish uchun ishlatiladi.
+- Spread sintaksisi massivni odatda ko'plab argumentlar ro'yxatini talab qiladigan funktsiyalarga o'tkazish uchun ishlatiladi.
 
-Together they help to travel between a list and an array of parameters with ease.
+Ular birgalikda ro'yxat va parametrlar massivi o'rtasida osongina sayohat qilishga yordam beradi.
 
-All arguments of a function call are also available in "old-style" `arguments`: array-like iterable object.
+Funktsiya chaqiruvining barcha argumentlari "eski uslubdagi" `argumentlar`da ham mavjud: massivga o'xshash takrorlanadigan ob'ekt.

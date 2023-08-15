@@ -1,33 +1,33 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Destructuring assignment
+# Destruktiv topshiriq
 
-We have an object:
+Bizda ob'ekt bor:
 
 ```js
 let user = {
   name: "John",
-  years: 30
+  years: 30,
 };
 ```
 
-Write the destructuring assignment that reads:
+O'qishni buzish topshirig'ini yozing:
 
-- `name` property into the variable `name`.
-- `years` property into the variable `age`.
-- `isAdmin` property into the variable `isAdmin` (false, if no such property)
+- `name` xususiyatini `name` o`zgaruvchisiga kiriting.
+- `years` xususiyati `age` o'zgaruvchisiga.
+- `isAdmin` o'zgaruvchisiga `isAdmin` xususiyati (agar bunday xususiyat bo'lmasa, noto'g'ri)
 
-Here's an example of the values after your assignment:
+Sizning topshirig'ingizdan keyingi qiymatlarga misol:
 
 ```js
 let user = { name: "John", years: 30 };
 
-// your code to the left side:
+// sizning kodingiz chap tomonda:
 // ... = user
 
-alert( name ); // John
-alert( age ); // 30
-alert( isAdmin ); // false
+alert(name); // John
+alert(age); // 30
+alert(isAdmin); // false
 ```

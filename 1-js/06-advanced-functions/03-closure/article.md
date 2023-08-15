@@ -1,75 +1,75 @@
 
-# Variable scope, closure
+# O'zgaruvchi doirasi, Closure
 
-JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+JavaScript juda funktsiyaga yo'naltirilgan tildir. Bu bizga katta erkinlik beradi. Funktsiya istalgan vaqtda yaratilishi, boshqa funktsiyaga argument sifatida uzatilishi va keyin kodning butunlay boshqa joyidan chaqirilishi mumkin.
 
-We already know that a function can access variables outside of it ("outer" variables).
+Biz allaqachon bilamizki, funktsiya undan tashqaridagi o'zgaruvchilarga ("tashqi" o'zgaruvchilarga) kira oladi.
 
-But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+Ammo funktsiya yaratilgandan keyin tashqi o'zgaruvchilar o'zgarsa nima bo'ladi? Funktsiya yangi yoki eski qiymatlarni oladimi?
 
-And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
+Va agar funktsiya argument sifatida uzatilsa va kodning boshqa joyidan chaqirilsa, u yangi joyda tashqi o'zgaruvchilarga kirish huquqiga ega bo'ladimi?
 
-Let's expand our knowledge to understand these scenarios and more complex ones.
+Keling, ushbu va yanada murakkab stsenariylarni tushunish uchun bilimimizni kengaytiraylik.
 
-```smart header="We'll talk about `let/const` variables here"
-In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+`` ``smart header="Bu yerda `let/const` o‘zgaruvchilari haqida gaplashamiz"
+JavaScriptda o'zgaruvchini e'lon qilishning 3 ta usuli mavjud: `let`, `const` (zamonaviylar) va `var` (o'tmish qoldig'i).
 
-- In this article we'll use `let` variables in examples.
-- Variables, declared with `const`, behave the same, so this article is about `const` too.
-- The old `var` has some notable differences, they will be covered in the article <info:var>.
+- Ushbu maqolada biz misollarda `let` o'zgaruvchilardan foydalanamiz.
+- `const` bilan e'lon qilingan o'zgaruvchilar xuddi shunday harakat qiladilar, shuning uchun bu maqola `const` haqida ham.
+- Eski `var` ba`zi sezilarli farqlarga ega, ular <info:var> maqolasida yoritiladi.
 ```
+```
+## Kod bloklari
 
-## Code blocks
+Agar oʻzgaruvchi `{...}` kod blokida eʼlon qilingan boʻlsa, u faqat shu blok ichida koʻrinadi.
 
-If a variable is declared inside a code block `{...}`, it's only visible inside that block.
-
-For example:
+Masalan:
 
 ```js run
 {
-  // do some job with local variables that should not be seen outside
+  // tashqarida ko'rinmasligi kerak bo'lgan mahalliy o'zgaruvchilar bilan ba'zi ishlarni bajaring
 
-  let message = "Hello"; // only visible in this block
+  let message = "Hello"; // faqat ushbu blokda ko'rinadi
 
-  alert(message); // Hello
+  alert(message); // Salom
 }
 
-alert(message); // Error: message is not defined
+alert(message); // Error: message undefined
 ```
 
-We can use this to isolate a piece of code that does its own task, with variables that only belong to it:
+Biz bundan o'z vazifasini bajaradigan, faqat unga tegishli bo'lgan o'zgaruvchilar bilan kod qismini ajratish uchun foydalanishimiz mumkin:
 
 ```js run
 {
-  // show message
+  // message ni ko'rsatish
   let message = "Hello";
   alert(message);
 }
 
 {
-  // show another message
+  // boshqa message ni ko'rsatish
   let message = "Goodbye";
   alert(message);
 }
 ```
 
-````smart header="There'd be an error without blocks"
-Please note, without separate blocks there would be an error, if we use `let` with the existing variable name:
+``smart header="Bloksiz xatolik yuz beradi"
+E'tibor bering, alohida bloklarsiz, mavjud o'zgaruvchi nomi bilan `let` dan foydalansak, xato bo'ladi:
 
 ```js run
-// show message
+// messageni ko'rsatish
 let message = "Hello";
 alert(message);
 
-// show another message
+// boshqa message ni ko'rsatish
 *!*
-let message = "Goodbye"; // Error: variable already declared
+let message = "Goodbye"; // Error: o'zgaruvchi allaqachon e'lon qilingan
 */!*
 alert(message);
 ```
-````
+``
 
-For `if`, `for`, `while` and so on, variables declared in `{...}` are also only visible inside:
+`if`, `for`, `while` va hokazolar uchun `{...}` da e`lon qilingan o`zgaruvchilar ham faqat ichida ko`rinadi:
 
 ```js run
 if (true) {
@@ -78,38 +78,38 @@ if (true) {
   alert(phrase); // Hello!
 }
 
-alert(phrase); // Error, no such variable!
+alert(phrase); // Error, bunday o'zgaruvchi yo'q
 ```
 
-Here, after `if` finishes, the `alert` below won't see the `phrase`, hence the error.
+Bu yerda `if` tugagandan so‘ng, quyidagi `alert` `phrase`ni ko‘rmaydi, shuning uchun error chiqadi.
 
-That's great, as it allows us to create block-local variables, specific to an `if` branch.
+Bu juda zo'r, chunki u bizga `if` tarmog'iga xos bo'lgan blok-lokal o'zgaruvchilarni yaratishga imkon beradi.
 
-The similar thing holds true for `for` and `while` loops:
+Xuddi shunday narsa `for` va `while` sikllari uchun ham amal qiladi:
 
 ```js run
 for (let i = 0; i < 3; i++) {
-  // the variable i is only visible inside this for
-  alert(i); // 0, then 1, then 2
+  // i o'zgaruvchisi faqat buning ichida ko'rinadi
+  alert(i); // 0, keyin 1, keyin 2
 }
 
-alert(i); // Error, no such variable
+alert(i); // Error, bunday o'zgaruvchi yo'q
 ```
 
-Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
+Vizual ravishda `let i` `{...}` dan tashqarida. Lekin bu yerda `for` konstruksiyasi alohida ahamiyatga ega: uning ichida e’lon qilingan o‘zgaruvchi blokning bir qismi hisoblanadi.
 
-## Nested functions
+## Ichma-ich funktsiyalar
 
-A function is called "nested" when it is created inside another function.
+Funktsiya boshqa funktsiya ichida yaratilganda "nested" deb ataladi.
 
-It is easily possible to do this with JavaScript.
+Buni JavaScript bilan osonlik bilan qilish mumkin.
 
-We can use it to organize our code, like this:
+Biz undan kodimizni tartibga solish uchun foydalanishimiz mumkin, masalan:
 
 ```js
 function sayHiBye(firstName, lastName) {
 
-  // helper nested function to use below
+  // quyida foydalanish uchun yordamchi ichki funksiya
   function getFullName() {
     return firstName + " " + lastName;
   }
@@ -120,11 +120,11 @@ function sayHiBye(firstName, lastName) {
 }
 ```
 
-Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name. Nested functions are quite common in JavaScript.
+Bu yerda qulaylik uchun *nested* funksiyasi `getFullName()` yaratilgan. U tashqi o'zgaruvchilarga kirishi mumkin va shuning uchun to'liq ismni qaytarishi mumkin. JavaScriptda ichki o'rnatilgan funktsiyalar juda keng tarqalgan.
 
-What's much more interesting, a nested function can be returned: either as a property of a new object or as a result by itself. It can then be used somewhere else. No matter where, it still has access to the same outer variables.
+Qizig'i shundaki, o'rnatilgan funktsiyani qaytarish mumkin: yangi ob'ektning mulki sifatida yoki natijada o'zi. Keyin uni boshqa joyda ishlatish mumkin. Qaerda bo'lishidan qat'i nazar, u hali ham bir xil tashqi o'zgaruvchilarga kirish huquqiga ega.
 
-Below, `makeCounter` creates the "counter" function that returns the next number on each invocation:
+Quyida `makeCounter` har bir chaqiruvda keyingi raqamni qaytaruvchi “hisoblagich” funksiyasini yaratadi:
 
 ```js run
 function makeCounter() {
@@ -142,87 +142,87 @@ alert( counter() ); // 1
 alert( counter() ); // 2
 ```
 
-Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) to generate random values for automated tests.
+Ushbu kodning sodda bo'lishiga qaramay, biroz o'zgartirilgan variantlari, masalan, avtomatlashtirilgan testlar uchun tasodifiy qiymatlarni yaratish uchun [tasodifiy raqamlar generatori] (https://en.wikipedia.org/wiki/Pseudorandom_number_generator) sifatida amaliy qo'llanilishiga ega.
 
-How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
+U qanday ishlaydi? Agar biz bir nechta hisoblagich yaratsak, ular mustaqil bo'ladimi? Bu erda o'zgaruvchilar bilan nima sodir bo'lmoqda?
 
-Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+Bunday narsalarni tushunish JavaScript-ni umumiy bilish uchun juda yaxshi va murakkabroq stsenariylar uchun foydalidir. Shunday qilib, keling, bir oz chuqurroq boraylik.
 
-## Lexical Environment
+## Leksik muhit
 
-```warn header="Here be dragons!"
-The in-depth technical explanation lies ahead.
+```warn header="Bu yerda ajdarlar!"
+Chuqur texnik tushuntirish oldinda.
 
-As far as I'd like to avoid low-level language details, any understanding without them would be lacking and incomplete, so get ready.
+Men past darajadagi til tafsilotlaridan qochishni istardim, ularsiz har qanday tushunish kam va to'liq bo'lmaydi, shuning uchun tayyorlaning.
 ```
 
-For clarity, the explanation is split into multiple steps.
+Aniqlik uchun tushuntirish bir necha bosqichlarga bo'lingan.
 
-### Step 1. Variables
+### 1-qadam. O'zgaruvchilar
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+JavaScript-da har bir ishlaydigan funksiya, `{...}` kod bloki va umuman skript *Leksik muhit* deb nomlanuvchi ichki (yashirin) bog'langan ob'ektga ega.
 
-The Lexical Environment object consists of two parts:
+Leksik muhit obyekti ikki qismdan iborat:
 
-1. *Environment Record* -- an object that stores all local variables as its properties (and some other information like the value of `this`).
-2. A reference to the *outer lexical environment*, the one associated with the outer code.
+1. *Atrof-muhit yozuvi* -- barcha mahalliy o'zgaruvchilarni o'z xususiyatlari sifatida saqlaydigan ob'ekt (va "bu" qiymati kabi boshqa ma'lumotlar).
+2. Tashqi kod bilan bog'liq bo'lgan *tashqi leksik muhitga* havola.
 
-**A "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
+**"O'zgaruvchi" bu faqat maxsus ichki ob'ekt, 'Atrof-muhit yozuvi' xususiyatidir. "O'zgaruvchini olish yoki o'zgartirish" "ushbu ob'ektning xususiyatini olish yoki o'zgartirish" degan ma'noni anglatadi.**
 
-In this simple code without functions, there is only one Lexical Environment:
+Funktsiyasiz ushbu oddiy kodda faqat bitta leksik muhit mavjud:
 
 ![lexical environment](lexical-environment-global.svg)
 
-This is the so-called *global* Lexical Environment, associated with the whole script.
+Bu butun skript bilan bog'langan *global* Leksik muhit deb ataladi.
 
-On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, that's why the arrow points to `null`.
+Yuqoridagi rasmda to'rtburchak atrof-muhit yozuvi (o'zgaruvchi ombori) va o'q tashqi ma'lumotni anglatadi. Global leksik muhitda tashqi havola yo'q, shuning uchun o'q `null` ni ko'rsatadi.
 
-As the code starts executing and goes on, the Lexical Environment changes.
+Kod bajarila boshlagach va davom etar ekan, leksik muhit o'zgaradi.
 
-Here's a little bit longer code:
+Quyida bir oz ko'proq kod:
 
 ![lexical environment](closure-variable-phrase.svg)
 
-Rectangles on the right-hand side demonstrate how the global Lexical Environment changes during the execution:
+O'ng tomondagi to'rtburchaklar global leksik muhitning bajarilishi davomida qanday o'zgarishini ko'rsatadi:
 
-1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
-    - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
-2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
-3. `phrase` is assigned a value.
-4. `phrase` changes the value.
+1. Skript boshlanganda, leksik muhit barcha e'lon qilingan o'zgaruvchilar bilan oldindan to'ldiriladi.
+    - Dastlab, ular "Boshlanmagan" holatidadir. Bu maxsus ichki holat, ya'ni vosita o'zgaruvchi haqida biladi, lekin `let` bilan e'lon qilinmaguncha unga havola qilib bo'lmaydi. Bu o'zgaruvchi mavjud bo'lmagani bilan deyarli bir xil.
+2. Shundan so'ng `let phrase` ta'rifi paydo bo'ladi. Hali hech qanday topshiriq yoʻq, shuning uchun uning qiymati `undefined`. Biz o'zgaruvchini shu nuqtadan oldinga ishlatishimiz mumkin.
+3. `phrase` qiymat tayinlanadi.
+4. `phrase` qiymatini o'zgartiradi.
 
-Everything looks simple for now, right?
+Hozircha hamma narsa oddiy ko'rinadi, shunday emasmi?
 
-- A variable is a property of a special internal object, associated with the currently executing block/function/script.
-- Working with variables is actually working with the properties of that object.
+- O'zgaruvchi - bu hozir bajarilayotgan blok/funksiya/skript bilan bog'langan maxsus ichki ob'ektning xossasi.
+- O'zgaruvchilar bilan ishlash aslida ushbu ob'ektning xususiyatlari bilan ishlashdir.
 
-```smart header="Lexical Environment is a specification object"
-"Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
+```smart header="Leksik muhit spetsifikatsiya ob'ektidir"
+"Leksik Muhit" spetsifikatsiya ob'ektidir: u faqat [til spetsifikatsiyasida] (https://tc39.es/ecma262/#sec-lexical-environments) narsalar qanday ishlashini tasvirlash uchun "nazariy jihatdan" mavjud. Biz ushbu ob'ektni kodimizga kirita olmaymiz va uni to'g'ridan-to'g'ri boshqara olmaymiz.
 
-JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks, as long as the visible behavior remains as described.
+JavaScript dvigatellari, shuningdek, ko'rinadigan xatti-harakatlar tavsiflanganidek qolsa, uni optimallashtirishi, xotirani saqlash va boshqa ichki fokuslarni bajarish uchun foydalanilmaydigan o'zgaruvchilarni o'chirishi mumkin.
 ```
 
-### Step 2. Function Declarations
+### 2-qadam. Funktsiya deklaratsiyasi
 
-A function is also a value, like a variable.
+Funktsiya ham o'zgaruvchi kabi qiymatdir.
 
-**The difference is that a Function Declaration is instantly fully initialized.**
+**Farqi shundaki, Funktsiya deklaratsiyasi darhol to'liq ishga tushiriladi.**
 
-When a Lexical Environment is created, a Function Declaration immediately becomes a ready-to-use function (unlike `let`, that is unusable till the declaration).
+Leksik muhit yaratilganda, Funktsiya deklaratsiyasi darhol foydalanishga tayyor funktsiyaga aylanadi (`let` dan farqli o'laroq, bu deklaratsiyagacha yaroqsiz).
 
-That's why we can use a function, declared as Function Declaration, even before the declaration itself.
+Shuning uchun biz Funktsiya deklaratsiyasi deb e'lon qilingan funktsiyani deklaratsiyadan oldin ham ishlatishimiz mumkin.
 
-For example, here's the initial state of the global Lexical Environment when we add a function:
+Masalan, funktsiyani qo'shganda global leksik muhitning dastlabki holati:
 
 ![](closure-function-declaration.svg)
 
-Naturally, this behavior only applies to Function Declarations, not Function Expressions where we assign a function to a variable, such as `let say = function(name)...`.
+Tabiiyki, bu xatti-harakat faqat funksiya deklaratsiyasiga taalluqlidir, bunda biz o‘zgaruvchiga funktsiya tayinlashimiz mumkin emas, masalan, `let say = function(name)...` kabi.
 
-### Step 3. Inner and outer Lexical Environment
+### 3-qadam. Ichki va tashqi leksik muhit
 
-When a function runs, at the beginning of the call, a new Lexical Environment is created automatically to store local variables and parameters of the call.
+Funktsiya ishga tushganda, chaqiruv boshida, chaqiruvning mahalliy o'zgaruvchilari va parametrlarini saqlash uchun avtomatik ravishda yangi Leksik muhit yaratiladi.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+Masalan, `say("John")` uchun u shunday ko'rinadi (bajarish strelka bilan belgilangan qatorda):
 
 <!--
     ```js
@@ -237,28 +237,28 @@ For instance, for `say("John")`, it looks like this (the execution is at the lin
 
 ![](lexical-environment-simple.svg)
 
-During the function call we have two Lexical Environments: the inner one (for the function call) and the outer one (global):
+Funktsiyani chaqirish paytida bizda ikkita leksik muhit mavjud: ichki (funktsiya chaqiruvi uchun) va tashqi (global):
 
-- The inner Lexical Environment corresponds to the current execution of `say`. It has a single property: `name`, the function argument. We called `say("John")`, so the value of the `name` is `"John"`.
-- The outer Lexical Environment is the global Lexical Environment. It has the `phrase` variable and the function itself.
+- Ichki leksik muhit `say` amaldagi bajarilishiga mos keladi. U bitta xususiyatga ega: `name`, funktsiya argumenti. Biz `say("John")` deb chaqirdik, shuning uchun `name` qiymati `"John"`.
+- Tashqi leksik muhit global leksik muhitdir. Unda `phrase` o'zgaruvchisi va funksiyaning o'zi mavjud.
 
-The inner Lexical Environment has a reference to the `outer` one.
+Ichki leksik muhit `tashqi` muhitga ishora qiladi.
 
-**When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
+**Kod o‘zgaruvchiga kirishni istasa -- avval ichki leksik muhit, so‘ngra tashqi, so‘ngra ko‘proq tashqi va global bo‘lgunga qadar qidiriladi.**
 
-If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to a non-existing variable creates a new global variable, for compatibility with old code).
+Agar o'zgaruvchi hech qanday joyda topilmasa, bu qat'iy rejimdagi xatodir (`use strict`siz, mavjud bo'lmagan o'zgaruvchiga tayinlash eski kod bilan moslik uchun yangi global o'zgaruvchini yaratadi).
 
-In this example the search proceeds as follows:
+Ushbu misolda qidiruv quyidagicha davom etadi:
 
-- For the `name` variable, the `alert` inside `say` finds it immediately in the inner Lexical Environment.
-- When it wants to access `phrase`, then there is no `phrase` locally, so it follows the reference to the outer Lexical Environment and finds it there.
+- `name` o'zgaruvchisi uchun `say` ichidagi `alert` uni darhol ichki leksik muhitda topadi.
+- Agar u `phrase` ga kirishni xohlasa, u holda mahalliy `phrase` yo'q, shuning uchun u tashqi leksik muhitga havolani kuzatib boradi va uni o'sha yerda topadi.
 
 ![lexical environment lookup](lexical-environment-simple-lookup.svg)
 
 
-### Step 4. Returning a function
+### 4-qadam. Funktsiyani qaytarish
 
-Let's return to the `makeCounter` example.
+Keling, `makeCounter` misoliga qaytaylik.
 
 ```js
 function makeCounter() {
@@ -272,53 +272,53 @@ function makeCounter() {
 let counter = makeCounter();
 ```
 
-At the beginning of each `makeCounter()` call, a new Lexical Environment object is created, to store variables for this `makeCounter` run.
+Har bir `makeCounter()` chaqiruvining boshida ushbu `makeCounter` ishga tushirilishi uchun o‘zgaruvchilarni saqlash uchun yangi Leksik muhit obyekti yaratiladi.
 
-So we have two nested Lexical Environments, just like in the example above:
+Shunday qilib, bizda yuqoridagi misoldagi kabi ikkita ichki leksik muhit mavjud:
 
 ![](closure-makecounter.svg)
 
-What's different is that, during the execution of `makeCounter()`, a tiny nested function is created of only one line: `return count++`. We don't run it yet, only create.
+Farqi shundaki, `makeCounter()` bajarilayotganda faqat bitta qatordan kichik ichki funksiya yaratiladi: `return count++`. Biz uni hali ishga tushirmayapmiz, faqat yaratamiz.
 
-All functions remember the Lexical Environment in which they were made. Technically, there's no magic here: all functions have the hidden property named `[[Environment]]`, that keeps the reference to the Lexical Environment where the function was created:
+Barcha funktsiyalar ular yaratilgan leksik muhitni eslab qoladi. Texnik jihatdan bu yerda hech qanday sehr yo‘q: barcha funksiyalar funksiya yaratilgan leksik muhitga havolani saqlaydigan `[[Atrof-muhit]]` nomli yashirin xususiyatga ega:
 
 ![](closure-makecounter-environment.svg)
 
-So, `counter.[[Environment]]` has the reference to `{count: 0}` Lexical Environment. That's how the function remembers where it was created, no matter where it's called. The `[[Environment]]` reference is set once and forever at function creation time.
+Demak, `counter.[[Atrof-muhit]]` `{count: 0}` Leksik muhitga havolaga ega. Funktsiya qayerda chaqirilganidan qat'i nazar, qayerda yaratilganligini shunday eslab qoladi. `[[Atrof-muhit]]` mos yozuvi funksiya yaratish vaqtida bir marta va abadiy oʻrnatiladi.
 
-Later, when `counter()` is called, a new Lexical Environment is created for the call, and its outer Lexical Environment reference is taken from `counter.[[Environment]]`:
+Keyinchalik, `counter()` chaqirilganda, chaqiruv uchun yangi Leksik Muhit yaratiladi va uning tashqi Leksik Muhit havolasi `counter[[Environment]]`dan olinadi:
 
 ![](closure-makecounter-nested-call.svg)
 
-Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+Endi `counter()` ichidagi kod `count` o‘zgaruvchisini qidirganda, u avval o‘zining leksik muhitini (bo‘sh, chunki u yerda mahalliy o‘zgaruvchilar yo‘q), so‘ngra tashqi `makeCounter()` chaqiruvining leksik muhitini qidiradi, qaerdan topadi va o'zgartiradi.
 
-**A variable is updated in the Lexical Environment where it lives.**
+**O'zgaruvchi o'zi yashaydigan leksik muhitda yangilanadi.**
 
-Here's the state after the execution:
+Ijrodan keyingi holat:
 
 ![](closure-makecounter-nested-call-2.svg)
 
-If we call `counter()` multiple times, the `count` variable will be increased to `2`, `3` and so on, at the same place.
+Agar biz `counter()` ni bir necha marta chaqirsak, `count` o‘zgaruvchisi bir joyda `2`, `3` va hokazolarga ko‘payadi.
 
-```smart header="Closure"
-There is a general programming term "closure", that developers generally should know.
+``smart header="Yopish(closure)"
+Ishlab chiquvchilar odatda bilishi kerak bo'lgan "closure" degan umumiy dasturlash atamasi mavjud.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exception, to be covered in <info:new-function>).
+[yopish](https://en.wikipedia.org/wiki/Closure_(computer_programming)) bu tashqi oʻzgaruvchilarni eslab qoladigan va ularga kira oladigan funksiyadir. Ba'zi tillarda bu mumkin emas yoki funksiya uni amalga oshirish uchun maxsus tarzda yozilishi kerak. Ammo yuqorida aytib o'tilganidek, JavaScriptda barcha funktsiyalar tabiiy ravishda yopiladi (faqat bitta istisno mavjud, <info:new-function> da yoritiladi).
 
-That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and then their code can access outer variables.
+Ya'ni: ular yashirin `[[Environment]]` xususiyati yordamida qayerda yaratilganligini avtomatik ravishda eslab qoladi va keyin ularning kodi tashqi o'zgaruvchilarga kira oladi.
 
-When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
-```
+Intervyuda frontend dasturchisiga “closure(yopilish) nima?” degan savol beriladi, toʻgʻri javob closurening taʼrifi va JavaScriptdagi barcha funksiyalar closure ekanligini tushuntirish va texnik tafsilotlar haqida yana bir necha soʻz boʻlishi mumkin: `[[Environment]]` xususiyati va Leksik muhitlar qanday ishlashi.
+``
 
-## Garbage collection
+## Axlat yig'ish
 
-Usually, a Lexical Environment is removed from memory with all the variables after the function call finishes. That's because there are no references to it. As any JavaScript object, it's only kept in memory while it's reachable.
+Odatda, funktsiya chaqiruvi tugagandan so'ng, leksik muhit barcha o'zgaruvchilar bilan xotiradan o'chiriladi. Buning sababi, unga havolalar yo'q. Har qanday JavaScript ob'ekti kabi, u faqat mavjud bo'lganda xotirada saqlanadi.
 
-However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+Ammo, agar funktsiya tugaganidan keyin ham kirish mumkin bo'lgan ichki o'rnatilgan funksiya mavjud bo'lsa, u lug'aviy muhitga havola qiluvchi `[[Environment]]` xususiyatiga ega.
 
-In that case the Lexical Environment is still reachable even after the completion of the function, so it stays alive.
+Bunday holda, leksik muhitga funktsiya tugagandan keyin ham kirish mumkin, shuning uchun u tirik qoladi.
 
-For example:
+Masalan:
 
 ```js
 function f() {
@@ -329,11 +329,10 @@ function f() {
   }
 }
 
-let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
-// of the corresponding f() call
+let g = f(); // g.[[Environment]] tegishli f() chaqiruvining leksik muhitiga havolani saqlaydi
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
+E'tibor bering, agar `f()` ko'p marta chaqirilsa va natijada olingan funksiyalar saqlangan bo'lsa, barcha mos keladigan Leksik muhit ob'ektlari ham xotirada saqlanib qoladi. Quyidagi kodda ularning uchtasi:
 
 ```js
 function f() {
@@ -342,14 +341,14 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 functions in array, every one of them links to Lexical Environment
-// from the corresponding f() run
+// Massivda 3 ta funksiya, ularning har biri leksik muhitga bog'langan
+// mos keladigan f() ishga tushirishdan
 let arr = [f(), f(), f()];
 ```
 
-A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
+Lexical Environment ob'ekti erishib bo'lmaydigan holga kelganda o'ladi (xuddi boshqa har qanday ob'ekt kabi). Boshqacha qilib aytganda, u faqat unga havola qiluvchi kamida bitta ichki funksiya mavjud bo'lganda mavjud.
 
-In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
+Quyidagi kodda, ichki o'rnatilgan funksiya o'chirilgandan so'ng, uni o'rab turgan leksik muhit (va shuning uchun `value` xotiradan tozalanadi:
 
 ```js
 function f() {
@@ -360,29 +359,29 @@ function f() {
   }
 }
 
-let g = f(); // while g function exists, the value stays in memory
+let g = f(); // g funktsiyasi mavjud bo'lganda, qiymat xotirada qoladi
 
-g = null; // ...and now the memory is cleaned up
+g = null; // ...va endi xotira tozalandi
 ```
 
-### Real-life optimizations
+### Real hayotdagi optimallashtirish
 
-As we've seen, in theory while a function is alive, all outer variables are also retained.
+Ko'rib turganimizdek, nazariy jihatdan funktsiya tirikligida barcha tashqi o'zgaruvchilar ham saqlanib qoladi.
 
-But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
+Lekin amalda JavaScript dvigatellari buni optimallashtirishga harakat qiladi. Ular o'zgaruvchilardan foydalanishni tahlil qiladilar va agar koddan tashqi o'zgaruvchi ishlatilmaganligi aniq bo'lsa, u o'chiriladi.
 
-**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
+**V8 (Chrome, Edge, Opera) ning muhim yon ta'siri shundaki, bunday o'zgaruvchi disk raskadrovkada mavjud bo'lmaydi.**
 
-Try running the example below in Chrome with the Developer Tools open.
+Quyidagi misolni Chrome brauzerida Developer Tools ochiq holda ishga tushirib ko‘ring.
 
-When it pauses, in the console type `alert(value)`.
+U to'xtatilganda, konsolda `alerr(value)` ni kiriting.
 
 ```js run
 function f() {
   let value = Math.random();
 
   function g() {
-    debugger; // in console: type alert(value); No such variable!
+    debugger; // konsolda: alert(value) yozing; Bunday o'zgaruvchi yo'q!
   }
 
   return g;
@@ -392,9 +391,9 @@ let g = f();
 g();
 ```
 
-As you could see -- there is no such variable! In theory, it should be accessible, but the engine optimized it out.
+Ko'rib turganingizdek -- bunday o'zgaruvchi yo'q! Nazariy jihatdan, unga kirish mumkin bo'lishi kerak, ammo dvigatel uni optimallashtirdi.
 
-That may lead to funny (if not such time-consuming) debugging issues. One of them -- we can see a same-named outer variable instead of the expected one:
+Bu nosozliklarni tuzatish bilan bog'liq kulgili (agar ko'p vaqt talab qilmasa) olib kelishi mumkin. Ulardan biri -- kutilgan o'rniga bir xil nomli tashqi o'zgaruvchini ko'rishimiz mumkin:
 
 ```js run global
 let value = "Surprise!";
@@ -403,7 +402,7 @@ function f() {
   let value = "the closest value";
 
   function g() {
-    debugger; // in console: type alert(value); Surprise!
+    debugger; // konsolda: alert(value) yozing; Syurpriz!
   }
 
   return g;
@@ -413,6 +412,6 @@ let g = f();
 g();
 ```
 
-This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
+V8 ning bu xususiyati bilish yaxshi. Agar siz Chrome/Edge/Opera bilan debugging qilsangiz, ertami-kechmi siz uni uchratasiz.
 
-That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
+Bu tuzatuvchidagi xato emas, balki V8 ning o'ziga xos xususiyati. Ehtimol, qachondir o'zgartiriladi. Siz har doim ushbu sahifadagi misollarni ishga tushirish orqali buni tekshirishingiz mumkin.

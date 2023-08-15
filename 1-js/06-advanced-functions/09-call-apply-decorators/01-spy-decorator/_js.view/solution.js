@@ -1,7 +1,7 @@
 function spy(func) {
 
   function wrapper(...args) {
-    // using ...args instead of arguments to store "real" array in wrapper.calls
+    // "haqiqiy" massivni wrapper.call'da saqlash uchun argumentlar o'rniga ...argsdan foydalanish
     wrapper.calls.push(args);
     return func.apply(this, args);
   }

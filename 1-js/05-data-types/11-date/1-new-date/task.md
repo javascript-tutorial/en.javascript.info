@@ -1,9 +1,9 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Create a date
+# Sana yarating
 
-Create a `Date` object for the date: Feb 20, 2012, 3:12am. The time zone is local.
+Sana uchun `Date` obyektini yarating: 2012 yil 20-fevral, soat 03:12. Vaqt mintaqasi mahalliy hisoblanadi.
 
-Show it using `alert`.
+Uni `alert` yordamida ko'rsating.

@@ -1,27 +1,35 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Filter unique array members
+# Noyob massiv a'zolarini filtrlash
 
-Let `arr` be an array.
+`arr` massiv bo`lsin.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+`arr` ning noyob elementlariga ega massivni qaytarishi kerak bo‘lgan `unique(arr)` funksiyasini yarating.
 
-For instance:
+Masalan:
 
 ```js
 function unique(arr) {
   /* your code */
 }
 
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let values = [
+  "Hare",
+  "Krishna",
+  "Hare",
+  "Krishna",
+  "Krishna",
+  "Krishna",
+  "Hare",
+  "Hare",
+  ":-O",
 ];
 
-alert( unique(values) ); // Hare, Krishna, :-O
+alert(unique(values)); // Hare, Krishna, :-O
 ```
 
-P.S. Here strings are used, but can be values of any type.
+P.S. Bu erda satrlar ishlatiladi, lekin har qanday turdagi qiymatlar bo'lishi mumkin.
 
-P.P.S. Use `Set` to store unique values.
+P.P.S. Noyob qiymatlarni saqlash uchun `Set` dan foydalaning.

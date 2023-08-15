@@ -1,6 +1,6 @@
-To get the number of milliseconds till tomorrow, we can from "tomorrow 00:00:00" substract the current date.
+Ertaga millisekundlar sonini olish uchun biz "ertaga 00:00:00" dan joriy sanani ayirishimiz mumkin.
 
-First, we generate that "tomorrow", and then do it:
+Birinchidan, biz "ertaga" ni yaratamiz va keyin buni qilamiz:
 
 ```js run
 function getSecondsToTomorrow() {
@@ -14,7 +14,7 @@ function getSecondsToTomorrow() {
 }
 ```
 
-Alternative solution:
+Muqobil yechim:
 
 ```js run
 function getSecondsToTomorrow() {
@@ -29,4 +29,4 @@ function getSecondsToTomorrow() {
 }
 ```
 
-Please note that many countries have Daylight Savings Time (DST), so there may be days with 23 or 25 hours. We may want to treat such days separately.
+Shuni yodda tutingki, ko'plab mamlakatlarda yozgi vaqt (DST) mavjud, shuning uchun 23 yoki 25 soatlik kunlar bo'lishi mumkin. Biz bunday kunlarni alohida ko'rib chiqishni xohlaymiz.

@@ -1,21 +1,21 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Get average age
+# O'rtacha yoshni aniqlash
 
-Write the function `getAverageAge(users)` that gets an array of objects with property `age` and returns the average age.
+`age` xususiyatiga ega ob'ektlar massivini oladigan va o'rtacha yoshni qaytaruvchi `getAverageAge(users)` funksiyasini yozing.
 
-The formula for the average is `(age1 + age2 + ... + ageN) / N`.
+O'rtacha yosh uchun formula `(age1 + age2 + ... + ageN) / N`.
 
-For instance:
+Misol uchun:
 
 ```js no-beautify
 let john = { name: "John", age: 25 };
 let pete = { name: "Pete", age: 30 };
 let mary = { name: "Mary", age: 29 };
 
-let arr = [ john, pete, mary ];
+let arr = [john, pete, mary];
 
-alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+alert(getAverageAge(arr)); // (25 + 30 + 29) / 3 = 28
 ```

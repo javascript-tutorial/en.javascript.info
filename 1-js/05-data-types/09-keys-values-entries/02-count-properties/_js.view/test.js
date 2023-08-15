@@ -1,13 +1,13 @@
-describe("count", function() {
-  it("counts the number of properties", function() {
-    assert.equal( count({a: 1, b: 2}), 2 );
+describe("count", function () {
+  it("mulklar sonini hisoblaydi", function () {
+    assert.equal(count({ a: 1, b: 2 }), 2);
   });
 
-  it("returns 0 for an empty object", function() {
-    assert.equal( count({}), 0 );
+  it("bo'sh ob'ekt uchun 0 qaytaradi", function () {
+    assert.equal(count({}), 0);
   });
 
-  it("ignores symbolic properties", function() {
-    assert.equal( count({ [Symbol('id')]: 1 }), 0 );
+  it("ramziy xususiyatlarni e'tiborsiz qoldiradi", function () {
+    assert.equal(count({ [Symbol("id")]: 1 }), 0);
   });
 });

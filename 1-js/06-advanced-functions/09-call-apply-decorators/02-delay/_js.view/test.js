@@ -7,7 +7,7 @@ describe("delay", function() {
     this.clock.restore();
   });
 
-  it("calls the function after the specified timeout", function() {
+  it("belgilangan vaqt tugashidan keyin funktsiyani chaqiradi", function() {
     let start = Date.now();
 
     function f(x) {
@@ -18,10 +18,10 @@ describe("delay", function() {
     let f1000 = delay(f, 1000);
     f1000("test");
     this.clock.tick(2000);
-    assert(f.calledOnce, 'calledOnce check fails');
+    assert(f.calledOnce, 'calledOnce tekshirish muvaffaqiyatsiz tugadi');
   });
 
-  it("passes arguments and this", function() {
+  it("argumentlarni va this uzatadi", function() {
     let start = Date.now();
     let user = {
       sayHi: function(phrase, who) {
@@ -41,6 +41,6 @@ describe("delay", function() {
 
     this.clock.tick(2000);
 
-    assert(spy.calledOnce, 'calledOnce check failed');
+    assert(spy.calledOnce, 'calledOnce tekshirish amalga oshmadi');
   });
 });

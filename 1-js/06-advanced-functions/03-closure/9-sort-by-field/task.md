@@ -1,10 +1,10 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Sort by field
+# Maydon bo'yicha saralash
 
-We've got an array of objects to sort:
+Bizda saralash uchun bir qator ob'ektlar mavjud:
 
 ```js
 let users = [
@@ -14,23 +14,23 @@ let users = [
 ];
 ```
 
-The usual way to do that would be:
+Buni qilishning odatiy usuli:
 
 ```js
-// by name (Ann, John, Pete)
+// ism bo'yicha (Ann, John, Pete)
 users.sort((a, b) => a.name > b.name ? 1 : -1);
 
-// by age (Pete, Ann, John)
+// yosh bo'yicha (Pete, Ann, John)
 users.sort((a, b) => a.age > b.age ? 1 : -1);
 ```
 
-Can we make it even less verbose, like this?
+Buni shunga o'xshash yanada batafsilroq qilib bera olamizmi?
 
 ```js
 users.sort(byField('name'));
 users.sort(byField('age'));
 ```
 
-So, instead of writing a function, just put `byField(fieldName)`.
+Shunday qilib, funktsiya yozish o'rniga `byField(fieldName)` ni qo'ying.
 
-Write the function `byField` that can be used for that.
+Buning uchun ishlatilishi mumkin bo'lgan `byField` funksiyasini yozing.

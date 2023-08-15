@@ -1,12 +1,12 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Counter object
+# Hisoblagich ob'ekti
 
-Here a counter object is made with the help of the constructor function.
+Bu yerda konstruktor funksiyasi yordamida hisoblagich obyekti yasaladi.
 
-Will it work? What will it show?
+Bu ishlaydimi? U nimani ko'rsatadi?
 
 ```js
 function Counter() {

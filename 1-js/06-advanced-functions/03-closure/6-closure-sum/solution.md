@@ -1,12 +1,12 @@
-For the second parentheses to work, the first ones must return a function.
+Ikkinchi qavslar ishlashi uchun birinchi qavslar funksiyani qaytarishi kerak.
 
-Like this:
+Shunga o'xshash:
 
 ```js run
 function sum(a) {
 
   return function(b) {
-    return a + b; // takes "a" from the outer lexical environment
+    return a + b; // tashqi leksik muhitdan “a”ni oladi
   };
 
 }

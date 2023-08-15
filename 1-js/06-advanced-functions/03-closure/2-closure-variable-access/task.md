@@ -1,12 +1,12 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Which variables are available?
+# Qaysi o'zgaruvchilar mavjud?
 
-The function `makeWorker` below makes another function and returns it. That new function can be called from somewhere else.
+Quyidagi `makeWorker` funksiyasi boshqa funksiyani yaratadi va uni qaytaradi. Bu yangi funksiya boshqa joydan chaqirilishi mumkin.
 
-Will it have access to the outer variables from its creation place, or the invocation place, or both?
+U yaratilish joyidan yoki chaqiruv joyidan yoki ikkalasidan tashqi o'zgaruvchilarga kirish huquqiga ega bo'ladimi?
 
 ```js
 function makeWorker() {
@@ -19,11 +19,11 @@ function makeWorker() {
 
 let name = "John";
 
-// create a function
+// funksiya yarating
 let work = makeWorker();
 
-// call it
-work(); // what will it show?
+// uni chaqiring
+work(); // nima ko'rsatadi?
 ```
 
-Which value it will show? "Pete" or "John"?
+U qaysi qiymatni ko'rsatadi? "Pete" yoki "John"mi?

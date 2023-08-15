@@ -1,14 +1,14 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Fix a function that loses "this"
+# "this" ni yo'qotadigan funktsiyani tuzating
 
-The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
+Quyidagi koddagi `askPassword()` ni chaqirish parolni tekshirishi va javobga qarab `user.loginOk/loginFail` ni chaqirishi kerak.
 
-But it leads to an error. Why?
+Ammo bu xatoga olib keladi. Nega?
 
-Fix the highlighted line for everything to start working right (other lines are not to be changed).
+Har bir narsa to'g'ri ishlay boshlashi uchun ajratilgan chiziqni tuzating (boshqa qatorlarni o'zgartirish mumkin emas).
 
 ```js run
 function askPassword(ok, fail) {

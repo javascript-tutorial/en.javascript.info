@@ -1,4 +1,4 @@
-We can use `slice()` to make a copy and run the sort on it:
+Nusxa olish va undagi tartibni ishga tushirish uchun `slice()` dan foydalanishimiz mumkin:
 
 ```js run
 function copySorted(arr) {
@@ -14,4 +14,3 @@ let sorted = copySorted(arr);
 alert( sorted );
 alert( arr );
 ```
-

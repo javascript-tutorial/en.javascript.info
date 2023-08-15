@@ -1,8 +1,6 @@
+Buning sababi, `map.keys()` massivni emas, takrorlanuvchini qaytaradi.
 
-That's because `map.keys()` returns an iterable, but not an array.
-
-We can convert it into an array using `Array.from`:
-
+Biz uni `Array.from` yordamida massivga aylantirishimiz mumkin:
 
 ```js run
 let map = new Map();
@@ -15,5 +13,5 @@ let keys = Array.from(map.keys());
 
 keys.push("more");
 
-alert(keys); // name, more
+alert(keys); // ism, va boshqalar
 ```

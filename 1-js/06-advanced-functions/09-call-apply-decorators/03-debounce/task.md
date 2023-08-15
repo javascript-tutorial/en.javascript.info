@@ -1,22 +1,22 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Debounce decorator
+# Debounce dekoratori
 
-The result of `debounce(f, ms)` decorator is a wrapper that suspends calls to `f` until there's `ms` milliseconds of inactivity (no calls, "cooldown period"), then invokes `f` once with the latest arguments.
+`Debounce(f, ms)` dekoratorining natijasi `ms` millisekundlik harakatsizlik (chawiruvlar yo'q, "sovutish davri") bo'lgunga qadar "f" ga chaqiruvlarni to'xtatib turadigan, so'ngra so'nggi argumentlar bilan `f` ni bir marta chaqiradigan o'ramdir. .
 
-In other words, `debounce` is like a secretary that accepts "phone calls", and waits until there's `ms` milliseconds of being quiet. And only then it transfers the latest call information to "the boss" (calls the actual `f`).
+Boshqacha qilib aytadigan bo'lsak, `debounce` "telefon chaqiruvlarini" qabul qiladigan kotibga o'xshaydi va `ms` millisekundlar jim bo'lguncha kutadi. Va shundan keyingina u so'nggi chaqiruv ma'lumotlarini "xo'jayin" ga o'tkazadi (haqiqiy `f` ni chaqiradi).
 
-For instance, we had a function `f` and replaced it with `f = debounce(f, 1000)`.
+Masalan, bizda `f` funksiyasi bor edi va uni `f = debounce(f, 1000)` bilan almashtirdik.
 
-Then if the wrapped function is called at 0ms, 200ms and 500ms, and then there are no calls, then the actual `f` will be only called once, at 1500ms. That is: after the cooldown period of 1000ms from the last call.
+Agar o'ralgan funksiya 0ms, 200ms va 500ms da chaqirilsa va keyin hech qanday chaqiruvlar bo'lmasa, u holda haqiqiy `f` faqat bir marta, 1500ms da chaqiriladi. Ya'ni: oxirgi chaqiruvdan 1000 ms sovutish davridan keyin.
 
 ![](debounce.svg)
 
-...And it will get the arguments of the very last call, other calls are ignored.
+...Va u eng oxirgi chaqqiruvning dalillarini oladi, boshqa chaqiruvlar e'tiborga olinmaydi.
 
-Here's the code for it (uses the debounce decorator from the [Lodash library](https://lodash.com/docs/4.17.15#debounce)):
+Quyida buning kodi ([Lodash kutubxonasi](https://lodash.com/docs/4.17.15#debounce) dan bekor qilish dekoratoridan foydalanadi):
 
 ```js
 let f = _.debounce(alert, 1000);
@@ -24,28 +24,28 @@ let f = _.debounce(alert, 1000);
 f("a");
 setTimeout( () => f("b"), 200);
 setTimeout( () => f("c"), 500);
-// debounced function waits 1000ms after the last call and then runs: alert("c")
+// o'chirilgan funksiya oxirgi chaqiruvdan keyin 1000 ms kutadi va keyin ishlaydi: alert("c")
 ```
 
-Now a practical example. Let's say, the user types something, and we'd like to send a request to the server when the input is finished.
+Endi amaliy misol. Aytaylik, foydalanuvchi biror narsani yozadi va biz kiritish tugagach, serverga so‘rov yubormoqchimiz.
 
-There's no point in sending the request for every character typed. Instead we'd like to wait, and then process the whole result.
+Har bir kiritilgan belgi uchun so'rov yuborishning ma'nosi yo'q. Buning o'rniga biz kutishni va keyin butun natijani qayta ishlashni xohlaymiz.
 
-In a web-browser, we can setup an event handler -- a function that's called on every change of an input field. Normally, an event handler is called very often, for every typed key. But if we `debounce` it by 1000ms, then it will be only called once, after 1000ms after the last input.
+Veb-brauzerda biz event handlerni o'rnatishimiz mumkin -- kirish maydonining har bir o'zgarishida chaqiriladigan funksiya. Odatda, har bir kiritilgan kalit uchun eventhandler tez-tez chaqiriladi. Ammo agar biz uni 1000 ms ga `debounce` qilsak, u oxirgi kiritishdan keyin 1000 ms dan keyin faqat bir marta chaqiriladi.
 
 ```online
 
-In this live example, the handler puts the result into a box below, try it:
+Ushbu jonli misolda event handler natijani quyidagi qutiga qo'yadi, sinab ko'ring:
 
 [iframe border=1 src="debounce" height=200]
 
-See? The second input calls the debounced function, so its content is processed after 1000ms from the last input.
+Ko'rdingizmi? Ikkinchi kirish o'chirilgan funksiyani chaqiradi, shuning uchun uning mazmuni oxirgi kirishdan 1000ms keyin qayta ishlanadi.
 ```
 
-So, `debounce` is a great way to process a sequence of events: be it a sequence of key presses, mouse movements or something else.
+Shunday qilib, `debounce` - bu hodisalar ketma-ketligini qayta ishlashning ajoyib usuli: tugmachalarni bosish ketma-ketligi, sichqoncha harakati yoki boshqa narsa.
 
-It waits the given time after the last call, and then runs its function, that can process the result.
+U oxirgi chaqiruvdan keyin berilgan vaqtni kutadi va keyin natijani qayta ishlay oladigan o'z funksiyasini ishga tushiradi.
 
-The task is to implement `debounce` decorator.
+Vazifa `debounce` dekoratorini amalga oshirishdir.
 
-Hint: that's just a few lines if you think about it :)
+Maslahat: agar siz bu haqda o'ylab ko'rsangiz, bu faqat bir nechta satr :)

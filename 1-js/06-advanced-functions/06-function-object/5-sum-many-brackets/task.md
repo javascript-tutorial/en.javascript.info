@@ -1,10 +1,10 @@
-importance: 2
+muhimlik: 2
 
 ---
 
-# Sum with an arbitrary amount of brackets
+# Qavslarning ixtiyoriy miqdori bilan yig'indisi
 
-Write function `sum` that would work like this:
+Shu tarzda ishlaydigan `sum` funksiyasini yozing:
 
 ```js
 sum(1)(2) == 3; // 1 + 2
@@ -14,4 +14,4 @@ sum(6)(-1)(-2)(-3) == 0
 sum(0)(1)(2)(3)(4)(5) == 15
 ```
 
-P.S. Hint: you may need to setup custom object to primitive conversion for your function.
+P.S. Maslahat: funksiyangiz uchun primitiv konvertatsiya qilish uchun maxsus ob'ektni sozlashingiz kerak bo'lishi mumkin.

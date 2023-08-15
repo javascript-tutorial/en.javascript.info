@@ -1,43 +1,44 @@
-Let's store read messages in `WeakSet`:
+O'qilgan xabarlarni `WeakSet` da saqlaylik:
 
 ```js run
 let messages = [
-  {text: "Hello", from: "John"},
-  {text: "How goes?", from: "John"},
-  {text: "See you soon", from: "Alice"}
+  { text: "Hello", from: "John" },
+  { text: "How goes?", from: "John" },
+  { text: "See you soon", from: "Alice" },
 ];
 
 let readMessages = new WeakSet();
 
-// two messages have been read
+// ikkita xabar o'qildi
 readMessages.add(messages[0]);
 readMessages.add(messages[1]);
-// readMessages has 2 elements
+// readMessages 2 ta elementga ega
 
-// ...let's read the first message again!
+// ...birinchi xabarni yana o'qib chiqamiz!
 readMessages.add(messages[0]);
-// readMessages still has 2 unique elements
+// readMessages hali ham 2 ta noyob elementga ega
 
-// answer: was the message[0] read?
+// javob: xabar [0] o'qilganmi?
 alert("Read message 0: " + readMessages.has(messages[0])); // true
 
 messages.shift();
-// now readMessages has 1 element (technically memory may be cleaned later)
+// endi readMessagesda 1 ta element mavjud (xotirani texnik jihatdan keyinroq tozalash mumkin)
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existence of a message in it.
+`WeakSet` xabarlar to'plamini saqlash va unda xabar mavjudligini osongina tekshirish imkonini beradi.
 
-It cleans up itself automatically. The tradeoff is that we can't iterate over it,  can't get "all read messages" from it directly. But we can do it by iterating over all messages and filtering those that are in the set.
+U o'zini avtomatik ravishda tozalaydi. Bitim shundaki, biz uni takrorlay olmaymiz, undan to'g'ridan-to'g'ri "barcha o'qilgan xabarlarni" ololmaymiz. Lekin biz buni barcha xabarlarni takrorlash va to'plamdagilarni filtrlash orqali amalga oshirishimiz mumkin.
 
-Another, different solution could be to add a property like `message.isRead=true` to a message after it's read. As messages objects are managed by another code, that's generally discouraged, but we can use a symbolic property to avoid conflicts.
+Xabar o‘qilgandan so‘ng unga `message.isRead=true` kabi xususiyatni qo‘shish boshqa, boshqacha yechim bo‘lishi mumkin. Xabarlar ob'ektlari boshqa kod bilan boshqariladiganligi sababli, bu odatda tavsiya etilmaydi, ammo biz ziddiyatlarni oldini olish uchun ramziy xususiyatdan foydalanishimiz mumkin.
 
-Like this:
+Quyidagicha:
+
 ```js
-// the symbolic property is only known to our code
+// ramziy xususiyat faqat bizning kodimizga ma'lum
 let isRead = Symbol("isRead");
 messages[0][isRead] = true;
 ```
 
-Now third-party code probably won't see our extra property.
+Endi uchinchi tomon kodi bizning qo'shimcha mulkimizni ko'rmasligi mumkin.
 
-Although symbols allow to lower the probability of problems, using `WeakSet` is better from the architectural point of view.
+Belgilar muammolar ehtimolini kamaytirishga imkon bersa-da, `WeakSet` dan foydalanish arxitektura nuqtai nazaridan yaxshiroqdir.

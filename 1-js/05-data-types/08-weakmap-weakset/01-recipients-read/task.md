@@ -1,23 +1,23 @@
-importance: 5
+muhimlik: 5
 
 ---
 
-# Store "unread" flags
+# "O'qilmagan" bayroqlarni saqlang
 
-There's an array of messages:
+Bir qator xabarlar mavjud:
 
 ```js
 let messages = [
-  {text: "Hello", from: "John"},
-  {text: "How goes?", from: "John"},
-  {text: "See you soon", from: "Alice"}
+  { text: "Hello", from: "John" },
+  { text: "How goes?", from: "John" },
+  { text: "See you soon", from: "Alice" },
 ];
 ```
 
-Your code can access it, but the messages are managed by someone else's code. New messages are added, old ones are removed regularly by that code, and you don't know the exact moments when it happens.
+Sizning kodingiz unga kirishi mumkin, ammo xabarlar boshqa birovning kodi tomonidan boshqariladi. Yangi xabarlar qo'shiladi, eskilari o'sha kod orqali muntazam ravishda o'chiriladi va siz bu sodir bo'lgan aniq daqiqalarni bilmaysiz.
 
-Now, which data structure could you use to store information about whether the message "has been read"? The structure must be well-suited to give the answer "was it read?" for the given message object.
+Endi xabar "o'qilgan" yoki yo'qligi haqidagi ma'lumotlarni saqlash uchun qaysi ma'lumotlar strukturasidan foydalanishingiz mumkin? Tuzilish "o'qilganmi?" Deb javob berish uchun juda mos bo'lishi kerak. berilgan xabar ob'ekti uchun.
 
-P.S. When a message is removed from `messages`, it should disappear from your structure as well.
+P.S. Xabar `messages` dan o'chirilganda, u sizning tuzilmangizdan ham yo'qolishi kerak.
 
-P.P.S. We shouldn't modify message objects, add our properties to them. As they are managed by someone else's code, that may lead to bad consequences.
+P.P.S. Biz xabar ob'ektlarini o'zgartirmasligimiz kerak, ularga o'z xususiyatlarini qo'shmasligimiz kerak. Ular boshqa birovning kodi tomonidan boshqarilsa, bu yomon oqibatlarga olib kelishi mumkin.

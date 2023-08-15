@@ -1,20 +1,20 @@
-# Decorators and forwarding, call/apply
+# Dekoratorlar va yo'naltirish, call/apply
 
-JavaScript gives exceptional flexibility when dealing with functions. They can be passed around, used as objects, and now we'll see how to *forward* calls between them and *decorate* them.
+JavaScript funksiyalar bilan ishlashda ajoyib moslashuvchanlikni beradi. Ularni atrofga o'tkazish, ob'ekt sifatida ishlatish mumkin va endi biz ular orasidagi chaqiruvlarni qanday _yo'naltirish_ va _bezashni_ ko'rib chiqamiz.
 
-## Transparent caching
+## Shaffof keshlash
 
-Let's say we have a function `slow(x)` which is CPU-heavy, but its results are stable. In other words, for the same `x` it always returns the same result.
+Aytaylik, bizda protsessorga og'ir bo'lgan `slow(x)` funksiyasi bor, lekin uning natijalari barqaror. Boshqacha qilib aytganda, bir xil `x` uchun u har doim bir xil natijani qaytaradi.
 
-If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
+Agar funktsiya tez-tez chaqirilsa, biz qayta hisob-kitoblarga qo'shimcha vaqt sarflamaslik uchun natijalarni keshlashni (eslab qolishni) xohlashimiz mumkin.
 
-But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
+Ammo bu funksiyani `slow()` ga qo'shish o'rniga keshlashni qo'shadigan o'rash funktsiyasini yaratamiz. Ko'rib turganimizdek, buning ko'plab afzalliklari bor.
 
-Here's the code, and explanations follow:
+Kod va tushuntirishlar quyidagicha:
 
 ```js run
 function slow(x) {
-  // there can be a heavy CPU-intensive job here
+  // bu yerda og'ir CPU-intensiv ish bo'lishi mumkin
   alert(`Called with ${x}`);
   return x;
 }
@@ -22,66 +22,67 @@ function slow(x) {
 function cachingDecorator(func) {
   let cache = new Map();
 
-  return function(x) {
-    if (cache.has(x)) {    // if there's such key in cache
-      return cache.get(x); // read the result from it
+  return function (x) {
+    if (cache.has(x)) {
+      // keshda shunday kalit bo'lsa
+      return cache.get(x); // undan olingan natijani o'qish
     }
 
-    let result = func(x);  // otherwise call func
+    let result = func(x); // aks holda funcni chaqirish
 
-    cache.set(x, result);  // and cache (remember) the result
+    cache.set(x, result); // va natijani keshlash (eslab qolish).
     return result;
   };
 }
 
 slow = cachingDecorator(slow);
 
-alert( slow(1) ); // slow(1) is cached and the result returned
-alert( "Again: " + slow(1) ); // slow(1) result returned from cache
+alert(slow(1)); // slow(1) keshlanadi va natija qaytariladi
+alert("Again: " + slow(1)); // slow(1) natija keshdan qaytarildi
 
-alert( slow(2) ); // slow(2) is cached and the result returned
-alert( "Again: " + slow(2) ); // slow(2) result returned from cache
+alert(slow(2)); // slow(2) keshlanadi va natija qaytariladi
+alert("Again: " + slow(2)); // slow(2) natija keshdan qaytarildi
 ```
 
-In the code above `cachingDecorator` is a *decorator*: a special function that takes another function and alters its behavior.
+Yuqoridagi kodda `cachingDecorator` _dekorator_: boshqa funksiyani qabul qiladigan va uning harakatini o'zgartiruvchi maxsus funksiya.
 
-The idea is that we can call `cachingDecorator` for any function, and it will return the caching wrapper. That's great, because we can have many functions that could use such a feature, and all we need to do is to apply `cachingDecorator` to them.
+G'oya shundan iboratki, biz har qanday funktsiya uchun `cachingDecorator` ni chaqirishimiz mumkin va u keshlash paketini qaytaradi. Bu juda zo'r, chunki bizda bunday xususiyatdan foydalanishi mumkin bo'lgan ko'plab funktsiyalar bo'lishi mumkin va biz qilishimiz kerak bo'lgan narsa ularga `cachingDecorator` ni qo'llashdir.
 
-By separating caching from the main function code we also keep the main code simpler.
+Keshlashni asosiy funktsiya kodidan ajratib, biz asosiy kodni ham soddalashtiramiz.
 
-The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
+`cachingDecorator(func)` natijasi `func(x)` chaqiruvini keshlash mantig‘iga “o‘raydigan” `function(x)` bo‘ladi:
 
 ![](decorator-makecaching-wrapper.svg)
 
-From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+Tashqi koddan o'ralgan `slow` funktsiyasi hali ham xuddi shunday qiladi. Uning xatti-harakatlariga keshlash tomoni qo'shildi.
 
-To summarize, there are several benefits of using a separate `cachingDecorator` instead of altering the code of `slow` itself:
+Xulosa qilib aytadigan bo'lsak, `slow` kodini o'zgartirish o'rniga alohida `cachingDecorator` dan foydalanishning bir qancha afzalliklari bor:
 
-- The `cachingDecorator` is reusable. We can apply it to another function.
-- The caching logic is separate, it did not increase the complexity of `slow` itself (if there was any).
-- We can combine multiple decorators if needed (other decorators will follow).
+- `CachingDecorator` qayta foydalanish mumkin. Biz uni boshqa funktsiyaga qo'llashimiz mumkin.
+- Keshlash mantig'i alohida, u `slow`ning murakkabligini oshirmadi (agar mavjud bo'lsa).
+- Agar kerak bo'lsa, biz bir nechta dekorativlarni birlashtira olamiz (boshqa dekoratorlar ergashadi).
 
-## Using "func.call" for the context
+## Kontekst uchun "func.call" dan foydalanish
 
-The caching decorator mentioned above is not suited to work with object methods.
+Yuqorida aytib o'tilgan keshlash dekoratori ob'ekt usullari bilan ishlash uchun mos emas.
 
-For instance, in the code below `worker.slow()` stops working after the decoration:
+Masalan, quyidagi kodda `worker.slow()` bezakdan keyin ishlamay qoladi:
 
 ```js run
-// we'll make worker.slow caching
+// biz `worker.slow` keshini qilamiz
 let worker = {
   someMethod() {
     return 1;
   },
 
   slow(x) {
-    // scary CPU-heavy task here  
+    // Bu yerda qo'rqinchli CPUga og'ir vazifa
     alert("Called with " + x);
     return x * this.someMethod(); // (*)
   }
 };
 
-// same code as before
+// oldingidek bir xil kod
 function cachingDecorator(func) {
   let cache = new Map();
   return function(x) {
@@ -96,49 +97,50 @@ function cachingDecorator(func) {
   };
 }
 
-alert( worker.slow(1) ); // the original method works
+alert( worker.slow(1) ); // original metod ishlaydi
 
-worker.slow = cachingDecorator(worker.slow); // now make it caching
+worker.slow = cachingDecorator(worker.slow); // endi uni keshlaymiz
 
 *!*
-alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined
+alert( worker.slow(2) ); // Voy! Error: Cannot read property 'someMethod' of undefined
 */!*
 ```
 
-The error occurs in the line `(*)` that tries to access `this.someMethod` and fails. Can you see why?
+Error `(*)` qatorida `this.someMethod` ga kirishga harakat qiladi va bajarilmaydi. Ko'ryapsizmi, nega?
 
-The reason is that the wrapper calls the original function as `func(x)` in the line `(**)`. And, when called like that, the function gets `this = undefined`.
+Buning sababi shundaki, o'rovchi asl funktsiyani `(**)` qatorida `func(x)` deb chaqiradi. Va shunday chaqirilganda, funktsiya `this = undefined` ni oladi.
 
-We would observe a similar symptom if we tried to run:
+Agar ishga chiqarishga harakat qilsak, shunga o'xshash alomatni kuzatamiz:
 
 ```js
 let func = worker.slow;
 func(2);
 ```
 
-So, the wrapper passes the call to the original method, but without the context `this`. Hence the error.
+Shunday qilib, o'rovchi chaqiruvni asl metodga o'tkazadi, lekin kontekstsiz `this`. Shuning uchun xato.
 
-Let's fix it.
+Keling to'g'irlaymiz.
 
-There's a special built-in function method [func.call(context, ...args)](mdn:js/Function/call) that allows to call a function explicitly setting `this`.
+Maxsus oʻrnatilgan funksiya metodi [func.call(context, ...args)](mdn:js/Function/call) mavjud boʻlib, bu funksiyani aniq `this` sozlab chaqirish imkonini beradi.
 
-The syntax is:
+Sintaksisi:
 
 ```js
 func.call(context, arg1, arg2, ...)
 ```
 
-It runs `func` providing the first argument as `this`, and the next as the arguments.
+Birinchi argumentni `this`, keyingisini esa argumentlar sifatida ta'minlab, `func` ishlaydi.
 
-To put it simply, these two calls do almost the same:
+Oddiy qilib aytganda, bu ikki chaqiruv deyarli bir xil ishlaydi:
+
 ```js
 func(1, 2, 3);
-func.call(obj, 1, 2, 3)
+func.call(obj, 1, 2, 3);
 ```
 
-They both call `func` with arguments `1`, `2` and `3`. The only difference is that `func.call` also sets `this` to `obj`.
+Ularning ikkalasi ham `1`, `2` va `3` argumentlari bilan `func` ni chaqiradi. Yagona farq shundaki, `func.call` ham `this` ni `obj` ga o`rnatadi.
 
-As an example, in the code below we call `sayHi` in the context of different objects: `sayHi.call(user)` runs `sayHi` providing `this=user`, and the next line sets `this=admin`:
+Misol tariqasida, quyidagi kodda biz turli ob'ektlar kontekstida `sayHi` deb nomlaymiz: `sayHi.call(user)` `his=user` ni ta'minlovchi `sayHi`ni ishga tushiradi va keyingi qatorda `this=admin` o`rnatiladi:
 
 ```js run
 function sayHi() {
@@ -148,26 +150,25 @@ function sayHi() {
 let user = { name: "John" };
 let admin = { name: "Admin" };
 
-// use call to pass different objects as "this"
-sayHi.call( user ); // John
-sayHi.call( admin ); // Admin
+// turli ob'ektlarni "this" sifatida o'tkazish uchun chaqiruvdan foydalanish
+sayHi.call(user); // John
+sayHi.call(admin); // Admin
 ```
 
-And here we use `call` to call `say` with the given context and phrase:
-
+Va bu yerda biz berilgan kontekst va ibora bilan `say` uchun `call` dan foydalanamiz:
 
 ```js run
 function say(phrase) {
-  alert(this.name + ': ' + phrase);
+  alert(this.name + ": " + phrase);
 }
 
 let user = { name: "John" };
 
-// user becomes this, and "Hello" becomes the first argument
-say.call( user, "Hello" ); // John: Hello
+// user this bo'ladi va "Hello" birinchi argumentga aylanadi
+say.call(user, "Hello"); // John: Hello
 ```
 
-In our case, we can use `call` in the wrapper to pass the context to the original function:
+Bizning holatda, kontekstni asl funktsiyaga o'tkazish uchun o'ramdagi `call` dan foydalanishimiz mumkin:
 
 ```js run
 let worker = {
@@ -188,57 +189,57 @@ function cachingDecorator(func) {
       return cache.get(x);
     }
 *!*
-    let result = func.call(this, x); // "this" is passed correctly now
+    let result = func.call(this, x); // "this" endi to'g'ri o'tdi
 */!*
     cache.set(x, result);
     return result;
   };
 }
 
-worker.slow = cachingDecorator(worker.slow); // now make it caching
+worker.slow = cachingDecorator(worker.slow); // endi keshlaymiz
 
-alert( worker.slow(2) ); // works
-alert( worker.slow(2) ); // works, doesn't call the original (cached)
+alert( worker.slow(2) ); // ishlaydi
+alert( worker.slow(2) ); // ishlaydi, asl nusxani chaqirmaydi (keshlangan)
 ```
 
-Now everything is fine.
+Endi hammasi yaxshi.
 
-To make it all clear, let's see more deeply how `this` is passed along:
+Hammasi aniq bo'lishi uchun keling, `this` qanday o'tishini chuqurroq ko'rib chiqaylik:
 
-1. After the decoration `worker.slow` is now the wrapper `function (x) { ... }`.
-2. So when `worker.slow(2)` is executed, the wrapper gets `2` as an argument and `this=worker` (it's the object before dot).
-3. Inside the wrapper, assuming the result is not yet cached, `func.call(this, x)` passes the current `this` (`=worker`) and the current argument (`=2`) to the original method.
+1. Bezatishdan keyin `worker.slow` endi o'rovchi `function (x) { ... }`.
+2. Shunday qilib, `worker.slow(2)` bajarilganda, o'rovchi argument sifatida `2` va `this=worker` (bu nuqtadan oldingi obyekt) ni oladi.
+3. Oʻrovchi ichida, natija hali keshlanmagan deb faraz qilsak, `func.call(this, x)` joriy `this` (`=worker`) va joriy argumentni (`=2`) asl usulga oʻtkazadi.
 
-## Going multi-argument
+## Multi argumentga o'tish
 
-Now let's make `cachingDecorator` even more universal. Till now it was working only with single-argument functions.
+Keling, `cachingDecorator` ni yanada universalroq qilaylik. Hozirgacha u faqat bitta argumentli funktsiyalar bilan ishlagan.
 
-Now how to cache the multi-argument `worker.slow` method?
+Endi ko'p argumentli `worker.slow` usulini qanday keshlash mumkin?
 
 ```js
 let worker = {
   slow(min, max) {
-    return min + max; // scary CPU-hogger is assumed
-  }
+    return min + max; // qo'rqinchli CPU-hogger taxmin qilinadi
+  },
 };
 
-// should remember same-argument calls
+// bir xil argumentli chaqiruvlarni eslab qolishi kerak
 worker.slow = cachingDecorator(worker.slow);
 ```
 
-Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
+Ilgari, bitta `x` argumenti uchun natijani saqlash uchun `cache.set(x, result)` va uni olish uchun `cache.get(x)` ni ishlatishimiz mumkin edi. Ammo endi biz _argumentlar kombinatsiyasi_ `(min,max)` uchun natijani eslab qolishimiz kerak. Mahalliy `Map` faqat bitta qiymatni kalit sifatida qabul qiladi.
 
-There are many solutions possible:
+Ko'p yechimlar mavjud:
 
-1. Implement a new (or use a third-party) map-like data structure that is more versatile and allows multi-keys.
-2. Use nested maps: `cache.set(min)` will be a `Map` that stores the pair `(max, result)`. So we can get `result` as `cache.get(min).get(max)`.
-3. Join two values into one. In our particular case we can just use a string `"min,max"` as the `Map` key. For flexibility, we can allow to provide a *hashing function* for the decorator, that knows how to make one value from many.
+1. Ko'p qirrali va ko'p kalitlarga ruxsat beruvchi yangi (yoki uchinchi tomonning) mapga o'xshash ma'lumotlar strukturasini amalga oshiring.
+2. Ichki xaritalardan foydalaning: `cache.set(min)` `(maksimal, natija)` juftligini saqlaydigan `Xarita` bo'ladi. Shunday qilib, biz `natija`ni `cache.get(min).get(max)` sifatida olishimiz mumkin.
+3. Ikki qiymatni bittaga birlashtiring. Bizning alohida holatda, biz `Map` kaliti sifatida `min, max` qatoridan foydalanishimiz mumkin. Moslashuvchanlik uchun biz ko'pchilikdan bitta qiymatni qanday qilishni biladigan dekorativ uchun _xeshlash funksiyasini_ taqdim etishga ruxsat berishimiz mumkin.
 
-For many practical applications, the 3rd variant is good enough, so we'll stick to it.
+Ko'pgina amaliy ilovalar uchun 3-variant yetarli darajada yaxshi, shuning uchun biz unga yopishib olamiz.
 
-Also we need to pass not just `x`, but all arguments in `func.call`. Let's recall that in a `function()` we can get a pseudo-array of its arguments as `arguments`, so `func.call(this, x)` should be replaced with `func.call(this, ...arguments)`.
+Bundan tashqari, biz faqat `x` emas, balki `func.call` da barcha argumentlarni o'tkazishimiz kerak. Eslatib o'tamiz, `funksiya()`da biz uning argumentlarining psevdomassivini `arguments` sifatida olishimiz mumkin, shuning uchun `func.call(this, x)` `func.call(this, ...arguments)` bilan almashtirilishi kerak..
 
-Here's a more powerful `cachingDecorator`:
+Quyida kuchliroq `cachingDecorator`:
 
 ```js run
 let worker = {
@@ -273,72 +274,72 @@ function hash(args) {
 
 worker.slow = cachingDecorator(worker.slow, hash);
 
-alert( worker.slow(3, 5) ); // works
-alert( "Again " + worker.slow(3, 5) ); // same (cached)
+alert( worker.slow(3, 5) ); // ishlaydi
+alert( "Again " + worker.slow(3, 5) ); // bir xil (keshlangan)
 ```
 
-Now it works with any number of arguments (though the hash function would also need to be adjusted to allow any number of arguments. An interesting way to handle this will be covered below).
+Endi u istalgan miqdordagi argumentlar bilan ishlaydi (garchi hash funksiyasi ham argumentlar soniga ruxsat berish uchun sozlanishi kerak. Buni hal qilishning qiziqarli usuli quyida muhokama qilinadi).
 
-There are two changes:
+Ikki xil o'zgarish mavjud:
 
-- In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
-- Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
+- `(*)` qatorida `arguments` dan bitta kalit yaratish uchun `hash` chaqiriladi. Bu erda biz `(3, 5)` argumentlarni `"3,5"` kalitiga aylantiruvchi oddiy "qo`shilish" funksiyasidan foydalanamiz. Keyinchalik murakkab holatlar boshqa hashlash funktsiyalarini talab qilishi mumkin.
+- Keyin `(**)` kontekstni ham, oʻrovchi olgan (faqat birinchi emas) barcha argumentlarni asl funktsiyaga oʻtkazish uchun `func.call(this, ...arguments)` dan foydalanadi.
 
 ## func.apply
 
-Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
+`func.call(this, ...arguments)` o'rniga biz `func.apply(this, arguments)` dan foydalanishimiz mumkin.
 
-The syntax of built-in method [func.apply](mdn:js/Function/apply) is:
+O'rnatilgan [func.apply] (mdn:js/Function/apply) metodining sintaksisi:
 
 ```js
-func.apply(context, args)
+func.apply(context, args);
 ```
 
-It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
+U `this=context` `func` sozlamasini ishga tushiradi va argumentlar ro‘yxati sifatida massivga o‘xshash `args` obyektidan foydalanadi.
 
-The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
+`call` va `apply` o'rtasidagi yagona sintaktik farq shundaki, `call` argumentlar ro'yxatini kutadi, `apply` esa ular bilan massivga o'xshash ob'ektni oladi.
 
-So these two calls are almost equivalent:
+Shunday qilib, bu ikki chaqiruv deyarli teng:
 
 ```js
 func.call(context, ...args);
 func.apply(context, args);
 ```
 
-They perform the same call of `func` with given context and arguments.
+Ular berilgan kontekst va argumentlar bilan bir xil `func` chaqiruvini bajaradilar.
 
-There's only a subtle difference regarding `args`:
+`args` bilan bog'liq faqat nozik farq bor:
 
-- The spread syntax `...` allows to pass *iterable* `args` as the list to `call`.
-- The `apply` accepts only *array-like* `args`.
+- `...` spread sintaksisi _iterable_ `args`ni `call` ro'yxati sifatida o`tkazish imkonini beradi.
+- `apply` faqat _massivga o'xshash_ `arg`larni qabul qiladi.
 
-...And for objects that are both iterable and array-like, such as a real array, we can use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+...Haqiqiy massiv kabi bir vaqtning o‘zida takrorlanadigan va massivga o‘xshash obyektlar uchun biz ulardan istalganidan foydalanishimiz mumkin, lekin `apply` tezroq bo‘lishi mumkin, chunki ko‘pchilik JavaScript mexanizmlari uni ichki optimallashtiradi.
 
-Passing all arguments along with the context to another function is called *call forwarding*.
+Barcha argumentlarni kontekst bilan birga boshqa funktsiyaga o'tkazish _call forwarding_ deb ataladi.
 
-That's the simplest form of it:
+Quyida uning eng oddiy shakli:
 
 ```js
-let wrapper = function() {
+let wrapper = function () {
   return func.apply(this, arguments);
 };
 ```
 
-When an external code calls such `wrapper`, it is indistinguishable from the call of the original function `func`.
+Agar tashqi kod bunday `wrapper` ni chaqirsa, uni `func` asl funksiyasining chaqiruvidan ajratib bo‘lmaydi.
 
-## Borrowing a method [#method-borrowing]
+## Metodni qarzga olish [#method-borrowing]
 
-Now let's make one more minor improvement in the hashing function:
+Keling, hashlash funktsiyasida yana bir kichik yaxshilanish qilaylik:
 
 ```js
 function hash(args) {
-  return args[0] + ',' + args[1];
+  return args[0] + "," + args[1];
 }
 ```
 
-As of now, it works only on two arguments. It would be better if it could glue any number of `args`.
+Hozircha u faqat ikkita argumentda ishlaydi. Istalgan miqdordagi `args`ni yopishtirib olsa yaxshi bo'lardi.
 
-The natural solution would be to use [arr.join](mdn:js/Array/join) method:
+Tabiiy yechim [arr.join](mdn:js/Array/join) metodidan foydalanish bo'ladi:
 
 ```js
 function hash(args) {
@@ -346,9 +347,9 @@ function hash(args) {
 }
 ```
 
-...Unfortunately, that won't work. Because we are calling `hash(arguments)`, and `arguments` object is both iterable and array-like, but not a real array.
+...Afsuski, bu ishlamaydi. Chunki biz `hash(arguments)` deb nomlaymiz va `arguments` obyekti ham iterativ, ham massivga o‘xshaydi, lekin haqiqiy massiv emas.
 
-So calling `join` on it would fail, as we can see below:
+Shunday qilib, biz quyida ko'rib turganimizdek, `join` ni chaqirish muvaffaqiyatsiz bo'ladi:
 
 ```js run
 function hash() {
@@ -360,7 +361,7 @@ function hash() {
 hash(1, 2);
 ```
 
-Still, there's an easy way to use array join:
+Shunga qaramay, massivni birlashtirishdan foydalanishning oson yo'li mavjud:
 
 ```js run
 function hash() {
@@ -372,55 +373,54 @@ function hash() {
 hash(1, 2);
 ```
 
-The trick is called *method borrowing*.
+Bu hiyla _method borrowing_ deb ataladi.
 
-We take (borrow) a join method from a regular array (`[].join`) and use `[].join.call` to run it in the context of `arguments`.
+Biz oddiy massivdan (`[].join`) birlashish usulini olamiz (borrow) va uni `arguments` kontekstida ishga tushirish uchun `[].join.call` dan foydalanamiz.
 
-Why does it work?
+Nima uchun u ishlaydi?
 
-That's because the internal algorithm of the native method `arr.join(glue)` is very simple.
+Buning sababi `arr.join(glue)` mahalliy metodining ichki algoritmi juda oddiy.
 
-Taken from the specification almost "as-is":
+Deyarli "xuddi shunday" spetsifikatsiyadan olingan:
 
-1. Let `glue` be the first argument or, if no arguments, then a comma `","`.
-2. Let `result` be an empty string.
-3. Append `this[0]` to `result`.
-4. Append `glue` and `this[1]`.
-5. Append `glue` and `this[2]`.
-6. ...Do so until `this.length` items are glued.
-7. Return `result`.
+1. Birinchi argument `glue` bo'lsin yoki argumentlar bo'lmasa, vergul `","` qo'yilsin.
+2. `result` bo'sh qator bo`lsin.
+3. `result`ga `this[0]` qo‘shing.
+4. `glue` va `this[1]`ni qo‘shing.
+5. `glue` va `this[2]`ni qo'shing.
+6. ...`this.length` elementlari yopishtirilguncha shunday qiling.
+7. `result`ni qaytaring.
+   Shunday qilib, texnik jihatdan u `this` ni oladi va ` this[0]`, ` this[1]` ... va hokazolarni birlashtiradi. U ataylab har qanday massivga oʻxshash `this`ga ruxsat beruvchi tarzda yozilgan (tasodif emas, koʻp usullar bu amaliyotga amal qiladi). Shuning uchun u `this=arguments` bilan ham ishlaydi.
 
-So, technically it takes `this` and joins `this[0]`, `this[1]` ...etc together. It's intentionally written in a way that allows any array-like `this` (not a coincidence, many methods follow this practice). That's why it also works with `this=arguments`.
+## Dekoratorlar va funksiya xususiyatlari
 
-## Decorators and function properties
+Umuman olganda, biron bir kichik narsadan tashqari, biron bir funktsiya yoki usulni bezatilgan bilan almashtirish xavfsizdir. Agar asl funktsiyada `func.calledCount` yoki shunga o'xshash xususiyatlar bo'lsa, bezatilgani ularni ta'minlamaydi. Chunki bu o'rovchi. Shuning uchun ulardan foydalanishda ehtiyot bo'lish kerak.
 
-It is generally safe to replace a function or a method with a decorated one, except for one little thing. If the original function had properties on it, like `func.calledCount` or whatever, then the decorated one will not provide them. Because that is a wrapper. So one needs to be careful if one uses them.
+Masalan, yuqoridagi misolda agar `slow` funksiyasi har qanday xususiyatga ega bo'lsa, `cachingDecorator(slow)` ularsiz o'rovchi hisoblanadi.
 
-E.g. in the example above if `slow` function had any properties on it, then `cachingDecorator(slow)` is a wrapper without them.
+Ba'zi dekoratorlar o'z xususiyatlarini taqdim etishlari mumkin. Masalan, dekorator funktsiya necha marta chaqirilganini va qancha vaqt ketganini hisoblashi va bu ma'lumotni o'rovchi xususiyatlari orqali ochishi mumkin.
 
-Some decorators may provide their own properties. E.g. a decorator may count how many times a function was invoked and how much time it took, and expose this information via wrapper properties.
+Funksiya xususiyatlariga kirishni saqlaydigan dekoratorlarni yaratish usuli mavjud, ammo bu funksiyani oʻrash uchun maxsus `Proxy` obyektidan foydalanishni talab qiladi. Bu haqda keyinroq <info:proxy#proxy-apply> maqolasida muhokama qilamiz.
 
-There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article <info:proxy#proxy-apply>.
+## Xulosa
 
-## Summary
+_Dekorator_ funksiyaning harakatini o‘zgartiruvchi o‘rovchidir. Asosiy ish hali ham funktsiya tomonidan amalga oshiriladi.
 
-*Decorator* is a wrapper around a function that alters its behavior. The main job is still carried out by the function.
+Dekoratorlar funktsiyaga qo'shilishi mumkin bo'lgan "xususiyatlar" yoki "aspektlar" sifatida qaralishi mumkin. Biz bitta yoki ko'p qo'shishimiz mumkin. Va bularning barchasi kodini o'zgartirmasdan!
 
-Decorators can be seen as "features" or "aspects" that can be added to a function. We can add one or add many. And all this without changing its code!
+`cashDecorator` ni amalga oshirish uchun biz metodlarni o'rganib chiqdik:
 
-To implement `cachingDecorator`, we studied methods:
+- [func.call(context, arg1, arg2...)](mdn:js/Function/call) -- berilgan kontekst va argumentlar bilan `func` ni chaqiradi.
+- [func.apply(context, args)](mdn:js/Function/apply) -- `context`ni `this` va massivga o'xshash `arg`larni argumentlar ro'yxatiga o'tkazish orqali `func` chaqiradi.
 
-- [func.call(context, arg1, arg2...)](mdn:js/Function/call) -- calls `func` with given context and arguments.
-- [func.apply(context, args)](mdn:js/Function/apply) -- calls `func` passing `context` as `this` and array-like `args` into a list of arguments.
-
-The generic *call forwarding* is usually done with `apply`:
+Umumiy _call forwarding_ odatda `apply` bilan amalga oshiriladi:
 
 ```js
-let wrapper = function() {
+let wrapper = function () {
   return original.apply(this, arguments);
 };
 ```
 
-We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to `arguments`. The alternative is to use rest parameters object that is a real array.
+Biz ob'ektdan usul olib, uni boshqa ob'ekt kontekstida "chaqirayotganimizda" _metod qarz olish_ misolini ham ko'rdik. Massiv usullarini olish va ularni `arguments`ga qo'llash juda keng tarqalgan. Muqobil variant - haqiqiy massiv bo'lgan qolgan parametrlar ob'ektidan foydalanish.
 
-There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
+Yovvoyi tabiatda ko'plab dekorativlar bor. Ushbu bobning vazifalarini hal qilish orqali ularni qanchalik yaxshi olganingizni tekshiring.

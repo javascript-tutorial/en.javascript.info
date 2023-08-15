@@ -7,23 +7,23 @@ function throttle(func, ms) {
   function wrapper() {
 
     if (isThrottled) {
-      // memo last arguments to call after the cooldown
+      // sovugandan keyin chaqiruv qilish uchun oxirgi argumentlarni eslatib qo'ying
       savedArgs = arguments;
       savedThis = this;
       return;
     }
 
-    // otherwise go to cooldown state
+    // aks holda sovutish holatiga o'ting
     func.apply(this, arguments);
 
     isThrottled = true;
 
-    // plan to reset isThrottled after the delay
+    // kechikishdan keyin isThrottledni qayta tiklashni rejalashtiring
     setTimeout(function() {
       isThrottled = false;
       if (savedArgs) {
-        // if there were calls, savedThis/savedArgs have the last one
-        // recursive call runs the function and sets cooldown again
+        // agar chaqiruvlar bo'lsa, savedThis/savedArgs oxirgisi bor
+        // rekursiv chaqiruv funksiyani ishga tushiradi va yana sovutishni o'rnatadi
         wrapper.apply(savedThis, savedArgs);
         savedArgs = savedThis = null;
       }

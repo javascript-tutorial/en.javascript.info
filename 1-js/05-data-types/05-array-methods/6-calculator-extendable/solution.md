@@ -1,3 +1,2 @@
-
-- Please note how methods are stored. They are simply added to `this.methods` property.
-- All tests and numeric conversions are done in the `calculate` method. In future it may be extended to support more complex expressions.
+- Iltimos, metodlar qanday saqlanganiga e'tibor bering. Ular oddiygina `this.methods` xususiyatiga qo'shiladi.
+- Barcha testlar va raqamli konvertatsiyalar `calculate` usulida amalga oshiriladi. Kelajakda u yanada murakkab ifodalarni qo'llab-quvvatlash uchun kengaytirilishi mumkin. Barcha testlar va raqamli o'zgartirishlar `calculate` usulida amalga oshiriladi. Kelajakda u yanada murakkab iboralarni qo'llab-quvvatlash uchun kengaytirilishi mumkin.

@@ -1,115 +1,109 @@
+# Map va Set
 
-# Map and Set
+Hozirgacha biz quyidagi murakkab ma'lumotlar tuzilmalari haqida bilib oldik:
 
-Till now, we've learned about the following complex data structures:
+- Ob'ektlar kalitli kolleksiyalarni saqlash uchun ishlatiladi.
+- Massivlar buyurtma qilingan kollektsiyalarni saqlash uchun ishlatiladi.
 
-- Objects are used for storing keyed collections.
-- Arrays are used for storing ordered collections.
-
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+Ammo bu haqiqiy hayot uchun etarli emas. Shuning uchun `Map` va `Set` ham mavjud.
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map) Ob'ekt kabi kalitli ma'lumotlar to'plamidir. Lekin asosiy farq shundaki, `Map` har qanday turdagi kalitlarga ruxsat beradi.
 
-Methods and properties are:
+Metodlari va xususiyatlari quyidagilardir:
 
-- `new Map()` -- creates the map.
-- [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key.
-- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
-- [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key.
-- [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
-- [`map.size`](mdn:js/Map/size) -- returns the current element count.
+- `new Map()` -- mapni yaratadi.
+- [`map.set(key, value)`](mdn:js/Map/set) -- qiymatni kalit orqali saqlaydi.
+- [`map.get(key)`](mdn:js/Map/get) -- agar `key` xaritada mavjud boʻlmasa, `undefined` kalit boʻyicha qiymatni qaytaradi.
+- [`map.has(key)`](mdn:js/Map/has) -- agar `key` mavjud bo‘lsa, `true`, aks holda `false` qiymatini qaytaradi.
+- [`map.delete(key)`](mdn:js/Map/delete) -- kalit orqali qiymatni olib tashlaydi.
+- [`map.clear()`](mdn:js/Map/clear) -- mapdan hamma narsani olib tashlaydi.
+- [`map.size`](mdn:js/Map/size) -- joriy elementlar sonini qaytaradi.
 
-For instance:
+Masalan:
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set("1", "str1"); // stringli kalit
+map.set(1, "num1"); // raqamli kalit
+map.set(true, "bool1"); // mantiqiy kalit
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
-alert( map.get(1)   ); // 'num1'
-alert( map.get('1') ); // 'str1'
+// oddiy ob'ektni eslaysizmi? u kalitlarni stringga aylantiradi
+// Map tni saqlaydi, shuning uchun bu ikkisi farq qiladi:
+alert(map.get(1)); // 'num1'
+alert(map.get("1")); // 'str1'
 
-alert( map.size ); // 3
+alert(map.size); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+Ko'rib turganimizdek, ob'ektlardan farqli o'laroq, kalitlar satrlarga aylantirilmaydi. Har qanday turdagi kalit mumkin.
 
-```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+``smart header="`map[key]` `Map`ni ishlatishning to'g'ri yo'li emas.`map[key]`ham ishlasa-da, masalan. biz`map[key] = 2`ni oʻrnatishimiz mumkin, bu`map`ni oddiy JavaScript obyekti sifatida koʻrib chiqadi, shuning uchun u barcha tegishli cheklovlarni nazarda tutadi (faqat string/simvol tugmachalari va boshqalar).
 
-So we should use `map` methods: `set`, `get` and so on.
-```
+Shunday qilib, biz `map` usullaridan foydalanishimiz kerak: `set`, `get` va boshqalar.
 
-**Map can also use objects as keys.**
+**Map obyektlardan kalit sifatida ham foydalanishi mumkin.**
 
-For instance:
+Masalan:
 
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store their visits count
+// har bir foydalanuvchi uchun ularning tashriflari sonini saqlaylik
 let visitsCountMap = new Map();
 
-// john is the key for the map
+// John map uchun kalit
 visitsCountMap.set(john, 123);
 
-alert( visitsCountMap.get(john) ); // 123
+alert(visitsCountMap.get(john)); // 123
 ```
 
-Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
+Ob'ektlarni kalit sifatida ishlatish eng muhim va muhim `Map` funksiyalaridan biridir. Xuddi shu narsa `Ob'ekt` uchun hisobga olinmaydi. `Ob'ekt` da kalit sifatida string yaxshi, lekin biz `Ob'ekt` da boshqa `Ob'ekt` dan kalit sifatida foydalana olmaymiz.
 
-Let's try:
+Sinab ko'ramiz:
 
 ```js run
 let john = { name: "John" };
 let ben = { name: "Ben" };
 
-let visitsCountObj = {}; // try to use an object
+let visitsCountObj = {}; // ob'ektdan foydalanishga harakat qiling
 
-visitsCountObj[ben] = 234; // try to use ben object as the key
-visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
+visitsCountObj[ben] = 234; // ben ob'ektini kalit sifatida ishlatishga harakat qiling
+visitsCountObj[john] = 123; // kalit sifatida john ob'ektidan foydalanishga harakat qiling, ben ob'ekti almashtiriladi
 
 *!*
-// That's what got written!
-alert( visitsCountObj["[object Object]"] ); // 123 
+// Bu yozilgan!
+alert( visitsCountObj["[object Object]"] ); // 123
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
+`visitsCountObj` ob'ekt bo'lgani uchun u yuqoridagi `john` va `ben` kabi barcha `Ob'ekt` tugmachalarini bir xil `"[object Object]"` qatoriga o`zgartiradi. Albatta, biz xohlagan narsa emas.
 
-```smart header="How `Map` compares keys"
-To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+``smart header="`Xarita`kalitlarni qanday taqqoslaydi"
+Kalitlarni ekvivalentligini tekshirish uchun`Map` [SameValueZero] algoritmidan foydalanadi (https://tc39.github.io/ecma262/#sec-samevaluezero). Bu qat'iy tenglik`===`bilan taxminan bir xil, ammo farq shundaki,`NaN` `NaN`ga teng hisoblanadi. Shunday qilib, `NaN` kalit sifatida ham ishlatilishi mumkin.
 
-This algorithm can't be changed or customized.
-```
+Bu algoritmni oʻzgartirish yoki sozlash mumkin emas.
 
-````smart header="Chaining"
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+`
+``smart header=`Zanjirlash`Har bir`map.set`qo‘ng‘irog‘i xaritaning o‘zini qaytaradi, shuning uchun biz qo‘ng‘iroqlarni`zanjirlash`imiz mumkin:
 
 ```js
-map.set('1', 'str1')
-  .set(1, 'num1')
-  .set(true, 'bool1');
+map.set("1", "str1").set(1, "num1").set(true, "bool1");
 ```
+
 ````
 
+## Map ustida takrorlash
 
-## Iteration over Map
+`Map` bo'ylab aylanish uchun 3 ta usul mavjud:
 
-For looping over a `map`, there are 3 methods:
+- [`map.keys()`](mdn:js/Map/keys) -- kalitlar uchun iteratsiyani qaytaradi,
+- [`map.values()`](mdn:js/Map/values) -- qiymatlar uchun iteratsiyani qaytaradi,
+- [`map.entries()`](mdn:js/Map/entries) -- `[kalit, qiymat]` yozuvlari uchun iteratsiyani qaytaradi, u sukut bo'yicha `for..of` da ishlatiladi.
 
-- [`map.keys()`](mdn:js/Map/keys) -- returns an iterable for keys,
-- [`map.values()`](mdn:js/Map/values) -- returns an iterable for values,
-- [`map.entries()`](mdn:js/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
-
-For instance:
+Masalan:
 
 ```js run
 let recipeMap = new Map([
@@ -118,53 +112,53 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over keys (vegetables)
+// kalitlar ustida takrorlash (vegetables)
 for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomatoes, onion
 }
 
-// iterate over values (amounts)
+// qiymatlar ustidan takrorlash (amounts)
 for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
-for (let entry of recipeMap) { // the same as of recipeMap.entries()
+// [kalit, qiymat] yozuvlari ustidan takrorlash
+for (let entry of recipeMap) { // retseptMap.entries() bilan bir xil
   alert(entry); // cucumber,500 (and so on)
 }
-```
+````
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
-```
+` `smart header= `Qo'shish tartibi qo'llaniladi"`
+Takrorlash qiymatlar kiritilgan tartibda davom etadi. `Map` oddiy `Ob'ekt` dan farqli o'laroq, bu tartibni saqlaydi.
+``
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+Bundan tashqari, `Map` da `Massiv` ga o'xshash o'rnatilgan `forEach` usuli mavjud:
 
 ```js
-// runs the function for each (key, value) pair
-recipeMap.forEach( (value, key, map) => {
-  alert(`${key}: ${value}`); // cucumber: 500 etc
+// har bir (kalit, qiymat) juftligi uchun funksiyani ishga tushiradi
+recipeMap.forEach((value, key, map) => {
+  alert(`${key}: ${value}`); // cucumber: 500 va boshqalar
 });
 ```
 
-## Object.entries: Map from Object
+## Object.entries: Objectdan Map
 
-When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+`Xarita` yaratilganda, ishga tushirish uchun kalit/qiymat juftlari bilan massivni (yoki boshqa iterativ) o‘tkazishimiz mumkin, masalan:
 
 ```js run
 // array of [key, value] pairs
 let map = new Map([
-  ['1',  'str1'],
-  [1,    'num1'],
-  [true, 'bool1']
+  ["1", "str1"],
+  [1, "num1"],
+  [true, "bool1"],
 ]);
 
-alert( map.get('1') ); // str1
+alert(map.get("1")); // str1
 ```
 
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+Agar bizda oddiy ob'ekt bo'lsa va undan `Xarita` yaratmoqchi bo'lsak, massivni qaytaradigan o'rnatilgan [Object.entries(obj)](mdn:js/Object/entries) metodidan foydalanishimiz mumkin. aynan shu formatdagi ob'ekt uchun kalit/qiymat juftliklari.
 
-So we can create a map from an object like this:
+Shunday qilib, biz bunday ob'ektdan map yaratishimiz mumkin:
 
 ```js run
 let obj = {
@@ -179,30 +173,29 @@ let map = new Map(Object.entries(obj));
 alert( map.get('name') ); // John
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+Bu yerda `Object.entries` kalit/qiymat juftliklari massivini qaytaradi: `[ [["ism","Jon"], ["yosh", 30] ]`. `Map`ga aynan shu kerak.
 
+## Object.fromEntries: Mapdan Ob'ekt
 
-## Object.fromEntries: Object from Map
+Biz hozirgina `Object.entries(obj)` yordamida oddiy obyektdan `Map`ni qanday yaratishni ko‘rib chiqdik.
 
-We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
-
-There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+Buning teskarisini amalga oshiradigan `Object.fromEntries` usuli mavjud: `[kalit, qiymat]` juftlik massivi berilganda, u ulardan obyekt yaratadi:
 
 ```js run
 let prices = Object.fromEntries([
-  ['banana', 1],
-  ['orange', 2],
-  ['meat', 4]
+  ["banana", 1],
+  ["orange", 2],
+  ["meat", 4],
 ]);
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
+// endi narxlar = { banana: 1, orange: 2, meat: 4}
 
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get a plain object from `Map`.
+Biz `Map` dan oddiy obyektni olish uchun `Object.fromEntries` dan foydalanishimiz mumkin.
 
-E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+Masalan, biz ma'lumotlarni `Map` da saqlaymiz, lekin uni oddiy ob'ektni kutayotgan uchinchi tomon kodiga o'tkazishimiz kerak.
 
 Here we go:
 
@@ -213,42 +206,43 @@ map.set('orange', 2);
 map.set('meat', 4);
 
 *!*
-let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj = Object.fromEntries(map.entries()); // oddiy ob'ekt yasash (*)
 */!*
 
-// done!
+// tayyor!
 // obj = { banana: 1, orange: 2, meat: 4 }
 
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
+`map.entries()` ga chaqiruv qilish `Object.fromEntries` uchun aynan to'g'ri formatda kalit/qiymat juftlarining takrorlanishini qaytaradi.
 
-We could also make line `(*)` shorter:
+Biz `(*)` qatorini qisqartirishimiz ham mumkin:
+
 ```js
 let obj = Object.fromEntries(map); // omit .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+Xuddi shunday, chunki `Object.fromEntries` argument sifatida takrorlanadigan ob'ektni kutadi. Massiv bo'lishi shart emas. `Map` uchun standart iteratsiya `map.entries()` bilan bir xil kalit/qiymat juftlarini qaytaradi. Shunday qilib, biz `map` bilan bir xil kalit/qiymatlarga ega oddiy ob'ektni olamiz.
 
 ## Set
 
-A `Set` is a special type collection - "set of values" (without keys), where each value may occur only once.
+`Set` - bu maxsus turdagi to'plam - `qiymatlar to'plami` (kalitlarsiz), unda har bir qiymat faqat bir marta bo'lishi mumkin.
 
-Its main methods are:
+Uning asosiy metodlari quyidagilardir:
 
-- `new Set(iterable)` -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
-- [`set.add(value)`](mdn:js/Set/add) -- adds a value, returns the set itself.
-- [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
-- [`set.clear()`](mdn:js/Set/clear) -- removes everything from the set.
-- [`set.size`](mdn:js/Set/size) -- is the elements count.
+- `new Set(iterable)` -- to‘plamni yaratadi va agar `takrorlanuvchi` ob’ekt taqdim etilsa (odatda massiv), undan qiymatlarni to‘plamga ko‘chiradi.
+- [`set.add(value)`](mdn:js/Set/add) -- qiymat qo'shadi, to'plamning o'zini qaytaradi.
+- [`set.delete(value)`](mdn:js/Set/delete) -- qiymatni olib tashlaydi, agar chaqiruv paytida `qiymat` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`set.has(value)`](mdn:js/Set/has) -- Agar qiymat to'plamda mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`set.clear()`](mdn:js/Set/clear) -- to'plamdan hamma narsani olib tashlaydi.
+- [`set.size`](mdn:js/Set/size) -- elementlar soni hisoblanadi.
 
-The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
+Asosiy xususiyat shundaki, bir xil qiymatga ega `set.add(value)` ning takroriy chaqiruvlari hech narsa qilmaydi. Shuning uchun har bir qiymat `To'plam` da faqat bir marta paydo bo'ladi.
 
-For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
+Misol uchun, bizga tashrif buyuruvchilar bor va biz hammani eslashni xohlaymiz. Ammo takroriy tashriflar dublikatlarga olib kelmasligi kerak. Mehmon faqat bir marta "hisoblanishi" kerak.
 
-`Set` is just the right thing for that:
+`Set` buning uchun to'g'ri narsa:
 
 ```js run
 let set = new Set();
@@ -257,76 +251,80 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-// visits, some users come multiple times
+// tashriflar, ba'zi foydalanuvchilar bir necha marta keladi
 set.add(john);
 set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
 
-// set keeps only unique values
-alert( set.size ); // 3
+// to'plam faqat noyob qiymatlarni saqlaydi
+alert(set.size); // 3
 
 for (let user of set) {
-  alert(user.name); // John (then Pete and Mary)
+  alert(user.name); // Jon (keyin Pit va Meri)
 }
 ```
 
-The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](mdn:js/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+`Set` ga muqobil foydalanuvchilar qatori va [arr.find](mdn:js/Array/find) yordamida har bir qoʻshishda dublikatlarni tekshirish uchun kod boʻlishi mumkin. Ammo ishlash ancha yomonroq bo'lar edi, chunki bu usul har bir elementni tekshirib, butun massiv bo'ylab yuradi. `Set` o'ziga xoslikni tekshirish uchun ichki optimallashtirilgan.
 
-## Iteration over Set
+## To'plam ustidan takrorlash
 
-We can loop over a set either with `for..of` or using `forEach`:
+Biz to'plamni `for..of` yoki `forEach` yordamida aylantirishimiz mumkin:
 
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);
 
-// the same with forEach:
+// forEach bilan bir xil:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
+Qiziqarli narsaga e'tibor bering. `ForEach` da o'tkazilgan qayta chaqiruv funksiyasi 3 ta argumentga ega: `qiymat`, keyin _bir xil qiymat_ `valueAgain` va keyin maqsadli obyekt. Darhaqiqat, bir xil qiymat argumentlarda ikki marta paydo bo'ladi.
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But this may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+Bu `Map` bilan moslik uchun, bu yerda ``forEach` qayta chaqirish uchta argumentga ega. Biroz g'alati ko'rinadi, shubhasiz. Ammo bu ma'lum holatlarda `Map` ni `Set` bilan osongina almashtirishga yordam beradi va aksincha.
 
-The same methods `Map` has for iterators are also supported:
+Iteratorlar uchun `Map` ning bir xil usullari ham qo'llab-quvvatlanadi:
 
-- [`set.keys()`](mdn:js/Set/keys) -- returns an iterable object for values,
-- [`set.values()`](mdn:js/Set/values) -- same as `set.keys()`, for compatibility with `Map`,
-- [`set.entries()`](mdn:js/Set/entries) -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- [`set.keys()`](mdn:js/Set/keys) -- qiymatlar uchun takrorlanadigan ob'ektni qaytaradi,
+- [`set.values()`](mdn:js/Set/values) -- `Map` bilan mosligi uchun `set.keys()` bilan bir xil,
+- [`set.entries()`](mdn:js/Set/entries) -- `[qiymat, qiymat]` yozuvlari uchun takrorlanadigan obyektni qaytaradi, `Map` bilan muvofiqligi uchun mavjud.
 
-## Summary
+## Xulosa
 
-`Map` -- is a collection of keyed values.
+`Map` -- kalitli qiymatlar to'plamidir.
 
-Methods and properties:
+Metodlari va xususiyatlari:
 
-- `new Map([iterable])` -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
-- [`map.set(key, value)`](mdn:js/Map/set) -- stores the value by the key, returns the map itself.
-- [`map.get(key)`](mdn:js/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- [`map.has(key)`](mdn:js/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
-- [`map.delete(key)`](mdn:js/Map/delete) -- removes the value by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
-- [`map.clear()`](mdn:js/Map/clear) -- removes everything from the map.
-- [`map.size`](mdn:js/Map/size) -- returns the current element count.
+- `new Map([iterable])` -- ishga tushirish uchun ixtiyoriy `takrorlanuvchi` (masalan, massiv) `[kalit, qiymat]` juftliklari bilan xaritani yaratadi.
+- [`map.set(key, value)`](mdn:js/Map/set) -- kalit orqali qiymatni saqlaydi, xaritaning o'zini qaytaradi.
+- [`map.get(key)`](mdn:js/Map/get) -- Agar `key` xaritada mavjud boʻlmasa, `undefined` kalit boʻyicha qiymatni qaytaradi.
+- [`map.has(key)`](mdn:js/Map/has) -- agar `key` mavjud bo‘lsa, `true`, aks holda `yolg‘on` qiymatini qaytaradi.
+- [`map.delete(key)`](mdn:js/Map/delete) -- kalit bo'yicha qiymatni olib tashlaydi, agar chaqiruv paytida `key` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`map.clear()`](mdn:js/Map/clear) -- xaritadan hamma narsani olib tashlaydi.
+- [`map.size`](mdn:js/Map/size) -- joriy elementlar sonini qaytaradi.
 
-The differences from a regular `Object`:
+Oddiy `Ob'ekt` dan farqlari:
 
-- Any keys, objects can be keys.
-- Additional convenient methods, the `size` property.
+- Har qanday kalitlar, ob'ektlar kalit bo'lishi mumkin.
+- Qo'shimcha qulay metodlar, `size` xususiyati.
 
-`Set` -- is a collection of unique values.
+`Set` -- noyob qiymatlar to'plamidir.
 
-Methods and properties:
+Metodlari va xususiyatlari:
 
-- `new Set([iterable])` -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
-- [`set.add(value)`](mdn:js/Set/add) -- adds a value (does nothing if `value` exists), returns the set itself.
-- [`set.delete(value)`](mdn:js/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- [`set.has(value)`](mdn:js/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
-- [`set.clear()`](mdn:js/Set/clear) -- removes everything from the set.
-- [`set.size`](mdn:js/Set/size) -- is the elements count.
+- `new Set([iterable])` -- ishga tushirish uchun ixtiyoriy `iterable` (masalan, massiv) qiymatlar to'plamini yaratadi.
+- [`set.add(value)`](mdn:js/Set/add) -- qiymat qo'shadi (agar `value` mavjud bo'lsa, hech narsa qilmaydi), to'plamning o'zini qaytaradi.
+- [`set.delete(value)`](mdn:js/Set/delete) -- qiymatni olib tashlaydi, agar chaqiruv paytida `qiymat` mavjud bo'lsa, `true` qaytaradi, aks holda `false`.
+- [`set.has(value)`](mdn:js/Set/has) -- Agar qiymat to'plamda mavjud bo'lsa, `true` ni qaytaradi, aks holda `false`.
+- [`set.clear()`](mdn:js/Set/clear) -- to'plamdan hamma narsani olib tashlaydi.
+- [`set.size`](mdn:js/Set/size) -- elementlar soni hisoblanadi.
 
-Iteration over `Map` and `Set` is always in the insertion order, so we can't say that these collections are unordered, but we can't reorder elements or directly get an element by its number.
+`Map` va `Set` boʻyicha takrorlash har doim qoʻshish tartibida boʻladi, shuning uchun biz bu toʻplamlar tartibsiz deb ayta olmaymiz, lekin elementlarni qayta tartiblay olmaymiz yoki toʻgʻridan-toʻgʻri uning raqami boʻyicha elementni ololmaymiz.
+
+```
+
+```

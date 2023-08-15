@@ -7,33 +7,33 @@ describe('debounce', function () {
     this.clock.restore();
   });
 
-  it('for one call - runs it after given ms', function () {
+  it('bitta chaqiruv uchun - berilgan msdan keyin uni ishga tushiradi', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
     debounced('test');
-    assert(f.notCalled, 'not called immediately');
+    assert(f.notCalled, 'darhol chaqirilmaydi');
     this.clock.tick(1000);
-    assert(f.calledOnceWith('test'), 'called after 1000ms');
+    assert(f.calledOnceWith('test'), '1000msdan keyin chaqiriladi');
   });
 
-  it('for 3 calls - runs the last one after given ms', function () {
+  it('3 ta chaqiruv uchun - berilgan msdan keyin oxirgisini ishga tushiradi', function () {
     const f = sinon.spy();
     const debounced = debounce(f, 1000);
 
     debounced('a');
-    setTimeout(() => debounced('b'), 200); // ignored (too early)
-    setTimeout(() => debounced('c'), 500); // runs (1000 ms passed)
+    setTimeout(() => debounced('b'), 200); // e'tibor berilmagan (juda erta)
+    setTimeout(() => debounced('c'), 500); // ishlaydi (1000 ms o'tdi)
     this.clock.tick(1000);
 
-    assert(f.notCalled, 'not called after 1000ms');
+    assert(f.notCalled, "1000ms dan so'ng chaqirilmaydi");
 
     this.clock.tick(500);
 
-    assert(f.calledOnceWith('c'), 'called after 1500ms');
+    assert(f.calledOnceWith('c'), '1500ms dan keyin chaqiriladi');
   });
 
-  it('keeps the context of the call', function () {
+  it('chaqiruv kontekstini saqlaydi', function () {
     let obj = {
       f() {
         assert.equal(this, obj);

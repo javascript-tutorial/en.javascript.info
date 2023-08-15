@@ -1,22 +1,21 @@
-importance: 4
+muhimlik: 4
 
 ---
 
-# Filter range
+# Filter diapazoni
 
-Write a function `filterRange(arr, a, b)` that gets an array `arr`, looks for elements with values higher or equal to `a` and lower or equal to `b` and return a result as an array.
+`arr` massivini oladigan, qiymatlari `a` dan yuqori yoki teng, `b` dan past yoki teng bo‘lgan elementlarni qidiradigan va natijani massiv sifatida qaytaradigan `filterRange(arr, a, b)` funksiyasini yozing.
 
-The function should not modify the array. It should return the new array.
+Funksiya massivni o'zgartirmasligi kerak. U yangi massivni qaytarishi kerak.
 
-For instance:
+Misol uchun:
 
 ```js
 let arr = [5, 3, 8, 1];
 
-let filtered = filterRange(arr, 1, 4); 
+let filtered = filterRange(arr, 1, 4);
 
-alert( filtered ); // 3,1 (matching values)
+alert(filtered); // 3,1 (mos keladigan qiymatlar)
 
-alert( arr ); // 5,3,8,1 (not modified)
+alert(arr); // 5,3,8,1 (o'zgartirilmagan)
 ```
-

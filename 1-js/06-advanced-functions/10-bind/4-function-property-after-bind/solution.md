@@ -1,4 +1,4 @@
-The answer: `undefined`.
+Javobi: `undefined`.
 
-The result of `bind` is another object. It does not have the `test` property.
+`bind` natijasi boshqa obyektdir. U `test` xususiyatiga ega emas.
 

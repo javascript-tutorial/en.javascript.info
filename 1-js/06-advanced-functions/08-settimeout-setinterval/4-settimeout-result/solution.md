@@ -1,14 +1,14 @@
 
-Any `setTimeout` will run only after the current code has finished.
+Har qanday `setTimeout` faqat joriy kod tugagandan so'ng ishlaydi.
 
-The `i` will be the last one: `100000000`.
+`i` oxirgisi bo'ladi: `100000000`.
 
 ```js run
 let i = 0;
 
 setTimeout(() => alert(i), 100); // 100000000
 
-// assume that the time to execute this function is >100ms
+// bu funksiyani bajarish vaqti >100ms deb faraz qilaylik
 for(let j = 0; j < 100000000; j++) {
   i++; 
 }
