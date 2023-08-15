@@ -61,4 +61,4 @@ Hozir `key:Cmd+Opt+C` ketma-ketligi komputerni boshqa dasturga o'tkaza oladi. Sh
 
 - Windowsdagi ko'p bruzerlarda ular`key:F12` tugmasi bilan ochiladi. Mac dagi Chrome da dastlab `key:Cmd+Opt+J`, Safarida esa: `key:Cmd+Opt+C` bosilishi lozim bo'ladi.
 
-Endi bizda tayyor muhit bor. Keyingi qismda biz JavaScriptni boshlaymiz. 
+Endi bizda dasturlash muhiti bor. Keyingi qismda biz JavaScriptni boshlaymiz. 
