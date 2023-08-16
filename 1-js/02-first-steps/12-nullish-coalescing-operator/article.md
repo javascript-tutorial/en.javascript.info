@@ -1,6 +1,8 @@
-# Nullish coalescing operator '??'
+# Nullish coalescing and assignment operators: ??, ??=
 
 [recent browser="new"]
+
+## Nullish coalescing operator (??)
 
 The nullish coalescing operator is written as two question marks `??`.
 
@@ -59,7 +61,7 @@ alert(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
 */!*
 ```
 
-## Comparison with ||
+### Comparison with ||
 
 The OR `||` operator can be used in the same way as `??`, as it was described in the [previous chapter](info:logical-operators#or-finds-the-first-truthy-value).
 
@@ -104,7 +106,7 @@ alert(height ?? 100); // 0
 
 In practice, the zero height is often a valid value, that shouldn't be replaced with the default. So `??` does just the right thing.
 
-## Precedence
+### Precedence
 
 The precedence of the `??` operator is the same as `||`. They both equal `3` in the [MDN table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Operator_Precedence#Table).
 
@@ -154,6 +156,50 @@ let x = (1 && 2) ?? 3; // Works
 alert(x); // 2
 ```
 
+## Nullish coalescing assignment (??=)
+
+Suppose we need to check whether a variable is equal to `null` or `undefined`, and if so, assign some other value to that variable.
+
+This is how we'd do it now:
+
+```js
+let userAge = null;
+
+if (userAge === null || userAge === undefined) {
+  userAge = 18;
+}
+```
+
+Looks cumbersome, isn't it? There is an operator more suitable for such tasks. Here's its syntax:
+
+```js
+x ??= y
+```
+
+The `??=` operator will assign `x` to the value of `y` only if `x` *is not defined (`null`/`undefined`)*. 
+
+Now let's try to rewrite a code fragment we already recognize using the nullish assignment operator `??=`:
+
+```js run
+let userAge = null;
+
+userAge ??= 18;
+
+alert(userAge) // 18
+```
+
+Please note: if `userAge` were not equal to `null`/`undefined`, the expression to the right of `??=` would never be evaluated:
+
+```js run
+let userAge = 18;
+
+userAge ??= alert("wouldn't work");
+userAge ??= 21;
+userAge ??= null;
+
+alert(userAge) // still 18
+```
+
 ## Summary
 
 - The nullish coalescing operator `??` provides a short way to choose the first "defined" value from a list.
@@ -167,3 +213,4 @@ alert(x); // 2
 
 - The operator `??` has a very low precedence, only a bit higher than `?` and `=`, so consider adding parentheses when using it in an expression.
 - It's forbidden to use it with `||` or `&&` without explicit parentheses.
+- The nullish assignment operator `??=` is used to assign a value to a variable depending on whether it's "defined" or not.
