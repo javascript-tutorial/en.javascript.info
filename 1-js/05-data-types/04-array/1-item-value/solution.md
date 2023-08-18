@@ -13,5 +13,5 @@ alert( fruits.length ); // 4
 */!*
 ```
 
-That's because arrays are objects. So both `shoppingCart` and `fruits` are the references to the same array.
+That's because arrays are objects. So both `shopping-cart` and `fruits` are the references to the same array.
 
