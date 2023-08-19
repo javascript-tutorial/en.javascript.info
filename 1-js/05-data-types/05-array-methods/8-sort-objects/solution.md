@@ -1,5 +1,5 @@
 ```js run no-beautify
-function sortByAge(arr) {
+function sortByAge(users) {
   arr.sort((a, b) => a.age - b.age);
 }
 
