@@ -108,7 +108,34 @@ Alternatively, there's a simpler, universal solution: special methods [window.sc
     <button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
     ```
 
-These methods work for all browsers the same way.
+Both methods can also use an `options` object as an argument instead of coordinates:
+
+```js
+window.scrollTo(options);
+window.scrollBy(options);
+```
+
+`options` supports three properties:
+
+```js
+window.scrollTo({
+  top: 100,
+  left: 0,
+  behavior: "smooth"
+});
+```
+
+- `top` -- same as `y`/`pageY`
+- `left` -- same as `x`/`pageX`
+- `behavior` -- determines how the page will scroll:
+  - `"smooth"` -- smoothly (not supported in IE and older versions of Safari)
+  - `"instant"` -- instantly
+  - `"auto"` -- the browser itself chooses (depends on the CSS property [scroll-behavior](https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-behavior))
+
+```online
+Demonstration of smooth page scrolling:
+<button onclick="window.scrollBy({ top: 500, left: 0, behavior: 'smooth' })">window.scrollBy({ top: 500, left: 0, behavior: "smooth" })</button>
+```
 
 ## scrollIntoView
 
@@ -128,6 +155,26 @@ And this button scrolls the page to position itself at the bottom:
 
 <button onclick="this.scrollIntoView(false)">this.scrollIntoView(false)</button>
 ```
+
+Like `scrollTo`/`scrollBy`, `scrollIntoView` also takes an `options` object as an argument (it is slightly different):
+
+```js
+this.scrollIntoView(options).
+```
+
+`options` supports three properties:
+
+```js
+this.scrollIntoView({
+  behavior: "smooth",
+  block: "end",
+  inline: "nearest" 
+});
+```
+
+- `behavior` -- scroll animation (`smooth`, `instant`, `auto`)
+- `block` -- vertical alignment (`start`, `center`, `end`, `nearest`). Defaults to `start`
+- `inline` -- horizontal alignment (`start`, `center`, `end`, `nearest`). Defaults to `nearest`
 
 ## Forbid the scrolling
 
