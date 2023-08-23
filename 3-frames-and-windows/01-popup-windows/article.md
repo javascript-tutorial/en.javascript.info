@@ -144,7 +144,7 @@ If you run the code below, it replaces the opener (current) window content with 
 let newWin = window.open("about:blank", "hello", "width=200,height=200");
 
 newWin.document.write(
-  "<script>window.opener.document.body.innerHTML = 'Test'<\/script>"
+  "<script>window.opener.document.body.innerHTML = 'Test'</script>"
 );
 ```
 
