@@ -1,6 +1,6 @@
 # Array methods
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+Arrays provide a lot of methods. In this chapter they are split into groups to make things easier.
 
 ## Add/remove items
 
@@ -15,9 +15,9 @@ Here are a few others.
 
 ### splice
 
-How to delete an element from the array?
+Want to delete an element from the array?
 
-The arrays are objects, so we can try to use `delete`:
+Arrays are objects, so we could try to use `delete`:
 
 ```js run
 let arr = ["I", "go", "home"];
@@ -30,13 +30,13 @@ alert( arr[1] ); // undefined
 alert( arr.length ); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+The element was removed, but the array still has 3 elements. We can see that in `arr.length == 3`.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+This makes sense because `delete obj.key` removes a value by the `key`. That is all it does. Fine for objects, but for arrays, we usually want the rest of elements to shift and occupy the freed place. In this case, this would create a shorter array.
 
 So, special methods should be used.
 
-The [arr.splice](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+The [arr.splice](mdn:js/Array/splice) method is the swiss army knife for arrays. It can do everything: insert, remove and replace elements.
 
 The syntax is:
 
@@ -44,9 +44,9 @@ The syntax is:
 arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 
-It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` in their place. It returns the array of removed elements.
 
-This method is easy to grasp by examples.
+This method is easy to grasp when given examples.
 
 Let's start with the deletion:
 
@@ -60,9 +60,9 @@ arr.splice(1, 1); // from index 1 remove 1 element
 alert( arr ); // ["I", "JavaScript"]
 ```
 
-Easy, right? Starting from the index `1` it removed `1` element.
+Easy, right? Starting from the index `1`, it removed `1` element.
 
-In the next example we remove 3 elements and replace them with the other two:
+In the next example, we remove three elements and replace them with the other two:
 
 ```js run
 let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
@@ -73,7 +73,7 @@ arr.splice(0, 3, "Let's", "dance");
 alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
 ```
 
-Here we can see that `splice` returns the array of removed elements:
+Here, we can see that `splice` returns the array of removed elements:
 
 ```js run
 let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
@@ -122,9 +122,9 @@ The syntax is:
 arr.slice([start], [end])
 ```
 
-It returns a new array copying to it all items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+It returns a new array, copying to it all of the items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in which case it is considered the position from the end of the array.
 
-It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+It's similar to the string method `str.slice`, but instead of substrings, it makes subarrays.
 
 For instance:
 
@@ -136,7 +136,7 @@ alert( arr.slice(1, 3) ); // e,s (copy from 1 to 3)
 alert( arr.slice(-2) ); // s,t (copy from -2 till the end)
 ```
 
-We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
+We can also call it without arguments: `arr.slice()` creates a copy of `arr`. This method is often used to obtain a copy for further transformations that should not affect the original array.
 
 ### concat
 
@@ -169,7 +169,7 @@ alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
 alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
 ```
 
-Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
+Normally it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
 
 ```js run
 let arr = [1, 2];
@@ -253,11 +253,11 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
-Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+Please note that `indexOf` uses the strict equality `===` for comparison. So if we look for `false`, it finds exactly `false`, and not the zero.
 
-If we want to check if `item` exists in the array, and don't need the index, then `arr.includes` is preferred.
+If we want to check if `item` exists in the array, but don't need the index, then `arr.includes` is preferred.
 
-The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
+The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for the argument value starting from the end of the array.
 
 ```js run
 let fruits = ['Apple', 'Orange', 'Apple']
@@ -297,7 +297,7 @@ The function is called for elements of the array, one after another:
 - `index` is its index.
 - `array` is the array itself.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
+If it returns `true`, the search is stopped and the `item` is returned. If nothing found, `undefined` is returned.
 
 For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
 
@@ -313,9 +313,9 @@ let user = users.find(item => item.id == 1);
 alert(user.name); // John
 ```
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+In practical use, arrays of objects are a common thing, so the `find` method is very useful.
 
-Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
+Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical; other arguments of this function are rarely used.
 
 The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax, but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
 
@@ -342,7 +342,7 @@ alert(users.findLastIndex(user => user.name == 'John')); // 3
 
 The `find` method looks for a single (first) element that makes the function return `true`.
 
-If there may be many, we can use [arr.filter(fn)](mdn:js/Array/filter).
+In cases where they might be multiple matching elements, we can use [arr.filter(fn)](mdn:js/Array/filter).
 
 The syntax is similar to `find`, but `filter` returns an array of all matching elements:
 
@@ -450,11 +450,11 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Now it works as intended.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+Let's step back and think about what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
 
 The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) or [Timsort](https://en.wikipedia.org/wiki/Timsort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
 
-By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
+By the way, if we ever want to know which elements are compared -- nothing prevents us from alerting them:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
