@@ -42,7 +42,7 @@ So far, quite simple, right?
 
 Two more details:
 1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
+2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an "Page Unresponsive" alert, suggesting to kill the task along with the whole page. That happens when a lot of complex calculations take place or when a programming error leads to an infinite loop.
 
 That was the theory. Now let's see how we can apply that knowledge.
 
@@ -50,7 +50,7 @@ That was the theory. Now let's see how we can apply that knowledge.
 
 Let's say we have a CPU-hungry task.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a large amount of text that takes a lot of time.
+For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, the engine performs an analysis, creates many colored elements, then adds them to the document -- for a large amount of text that takes a lot of time.
 
 While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
 
@@ -260,7 +260,7 @@ alert("code");
 What's going to be the order here?
 
 1. `code` shows first, because it's a regular synchronous call.
-2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
+2. `promise` shows second, because `.then` passes through the microtask queue and runs after the current code.
 3. `timeout` shows last, because it's a macrotask.
 
 The richer event loop picture looks like this (order is from top to bottom, that is: the script first, then microtasks, rendering and so on):
@@ -320,7 +320,7 @@ That may be used to split a big calculation-heavy task into pieces, for the brow
 
 Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
 
-To schedule a new *microtask*
+To schedule a new *microtask*:
 - Use `queueMicrotask(f)`.
 - Also promise handlers go through the microtask queue.
 
