@@ -37,7 +37,7 @@ Here's the example with `user` assigned to a name:
 ```js run
 let user = "John";
 
-alert(user ?? "Anonymous"); // John (user is not null/udefined)
+alert(user ?? "Anonymous"); // John (user is not null/undefined)
 ```
 
 We can also use a sequence of `??` to select the first value from a list that isn't `null/undefined`.
@@ -76,7 +76,7 @@ alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
 */!*
 ```
 
-Historically, the OR `||` operator was there first. It exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
+Historically, the OR `||` operator was there first. It's been there since the beginning of JavaScript, so developers were using it for such purposes for a long time.
 
 On the other hand, the nullish coalescing operator `??` was added to JavaScript only recently, and the reason for that was that people weren't quite happy with `||`.
 

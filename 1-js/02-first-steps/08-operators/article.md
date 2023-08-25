@@ -50,8 +50,9 @@ The result of `a % b` is the [remainder](https://en.wikipedia.org/wiki/Remainder
 For instance:
 
 ```js run
-alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
+alert( 5 % 2 ); // 1, the remainder of 5 divided by 2
+alert( 8 % 3 ); // 2, the remainder of 8 divided by 3
+alert( 8 % 4 ); // 0, the remainder of 8 divided by 4
 ```
 
 ### Exponentiation **
@@ -68,7 +69,7 @@ alert( 2 ** 3 ); // 2³ = 8
 alert( 2 ** 4 ); // 2⁴ = 16
 ```
 
-Just like in maths, the exponentiation operator is defined for non-integer numbers as well. 
+Just like in maths, the exponentiation operator is defined for non-integer numbers as well.
 
 For example, a square root is an exponentiation by ½:
 
@@ -305,7 +306,7 @@ let n = 2;
 
 n *= 3 + 5; // right part evaluated first, same as n *= 8
 
-alert( n ); // 16  
+alert( n ); // 16
 ```
 
 ## Increment/decrement
