@@ -1,13 +1,13 @@
-describe("checkSpam", function() {
-  it('finds spam in "buy ViAgRA now"', function() {
-    assert.isTrue(checkSpam('buy ViAgRA now'));
+describe("checkVerb", function() {
+  it('finds verb in "You Should Move"', function() {
+    assert.isTrue(checkVerb('You Should Move'));
   });
 
-  it('finds spam in "free xxxxx"', function() {
-    assert.isTrue(checkSpam('free xxxxx'));
+  it('finds verb in "I am going for a swim"', function() {
+    assert.isTrue(checkVerb('I am going for a swim'));
   });
 
-  it('no spam in "innocent rabbit"', function() {
-    assert.isFalse(checkSpam('innocent rabbit'));
+  it('no verb in "innocent rabbit"', function() {
+    assert.isFalse(checkVerb('innocent rabbit'));
   });
 });

@@ -1,5 +1,5 @@
-function checkSpam(str) {
+function checkVerb(str) {
   let lowerStr = str.toLowerCase();
 
-  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+  return lowerStr.includes('move') || lowerStr.includes('swim');
 }
