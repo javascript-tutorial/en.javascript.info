@@ -2,15 +2,14 @@ importance: 5
 
 ---
 
-# Check for spam
+# Check for verb
 
-Write a function `checkSpam(str)` that returns `true` if `str` contains 'viagra' or 'XXX', otherwise `false`.
+Write a function `checkVerb(str)` that returns `true` if `str` contains 'move' or 'SWIM', otherwise `false`.
 
 The function must be case-insensitive:
 
 ```js
-checkSpam('buy ViAgRA now') == true
-checkSpam('free xxxxx') == true
+checkSpam('You Should Move') == true
+checkSpam('I am going for a swim') == true
 checkSpam("innocent rabbit") == false
 ```
-

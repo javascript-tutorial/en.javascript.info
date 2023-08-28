@@ -1,14 +1,14 @@
 To make the search case-insensitive, let's bring the string to lower case and then search:
 
 ```js run demo
-function checkSpam(str) {
+function checkVerb(str) {
   let lowerStr = str.toLowerCase();
 
-  return lowerStr.includes('viagra') || lowerStr.includes('xxx');
+  return lowerStr.includes('move') || lowerStr.includes('swim');
 }
 
-alert( checkSpam('buy ViAgRA now') );
-alert( checkSpam('free xxxxx') );
+alert( checkSpam('You Should Move') );
+alert( checkSpam('I am going for a swim') );
 alert( checkSpam("innocent rabbit") );
 ```
 
