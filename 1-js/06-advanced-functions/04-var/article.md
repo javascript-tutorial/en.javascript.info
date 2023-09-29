@@ -160,7 +160,7 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+People also call such behavior "hoisting" (raising), because all variables declared with `var` are "hoisted" (raised) to the top of the function.
 
 So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
 
