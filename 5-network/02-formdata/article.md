@@ -14,7 +14,7 @@ If HTML `form` element is provided, it automatically captures its fields.
 
 The special thing about `FormData` is that network methods, such as `fetch`, can accept a `FormData` object as a body. It's encoded and sent out with `Content-Type: multipart/form-data`.
 
-From the server point of view, that looks like a usual form submission.
+From the server's point of view, that looks like a usual form submission.
 
 ## Sending a simple form
 
@@ -54,7 +54,7 @@ In this example, the server code is not presented, as it's beyond our scope. The
 We can modify fields in `FormData` with methods:
 
 - `formData.append(name, value)` - add a form field with the given `name` and `value`,
-- `formData.append(name, blob, fileName)` - add a field as if it were `<input type="file">`, the third argument `fileName` sets file name (not form field name), as it were a name of the file in user's filesystem,
+- `formData.append(name, blob, fileName)` - add a field as if it were `<input type="file">`, the third argument `fileName` sets file name (not form field name), as if it were a name of the file in user's filesystem,
 - `formData.delete(name)` - remove the field with the given `name`,
 - `formData.get(name)` - get the value of the field with the given `name`,
 - `formData.has(name)` - if there exists a field with the given `name`, returns `true`, otherwise `false`
