@@ -1,38 +1,38 @@
 # Garbage collection (Axlat yig'ish)
 
-JavaScriptda xotirani boshqaruv avtomatik ravishda va bizga ko'rinmas holda amalga oshiriladi. Biz primitivlar, ob'ektlar, funktsiyalarni yaratamiz ... Bularning barchasi xotiradan joy oladi.
+JavaScriptda xotira boshqaruvi avtomatik ravishda va bizga ko'rinmas holda amalga oshiriladi. Biz primitivlar, obyektlar, funksiyalarni yaratamiz. Bularning barchasi xotiradan joy oladi.
 
 Agar biror narsa keraksiz bo'lib qolsa nima sodir bo'ladi? JavaScript mexanizmi buni qanday topadi va tozalaydi?
 
 ## Qabul qilish imkoniyati
 
-JavaScriptda xotirani boshqarishning asosiy kontseptsiyasi bu *erishish imkoniyati*dir.
+JavaScriptda xotirani boshqarishning asosiy konseptsiyasi bu *erishish imkoniyati*dir.
 
-Sodda qilib aytkanda, "erishib bo'ladigan" qiymatlar qandaydir ma'noda kirsa va foydalansa bo'ladigan qiymatlardir. Ular xotiraga joylanishi kafolatlanadi. 
+Sodda qilib aytkanda, "erishib bo'ladigan" qiymatlar qandaydir ma'noda kirsa va foydalansa bo'ladigan qiymatlardir. Ularning xotiraga joylanishi kafolatlanadi. 
 
-1. Ajralmaydigan, foydalansa bo'ladigan qiymatlar to'plami bor, va ularni ma'lum sabablarga ko'ra o'chirib yuborish mumkin emas. 
+1. Ajralmaydigan, foydalansa bo'ladigan qiymatlar to'plami bor va ularni ma'lum sabablarga ko'ra o'chirib yuborish mumkin emas. 
 
     Misol uchun:
 
     - Joriy bajarilayotgan funksiya, uning mahalliy o'zgaruvchilari va parametrlari.
-    - Joriy ichki chaqiruvlar zanjiridagi boshqa funktsiyalar, ularning mahalliy o'zgaruvchilari va parametrlari.
+    - Joriy ichki chaqiruvlar zanjiridagi boshqa funksiyalar, ularning mahalliy o'zgaruvchilari va parametrlari.
     - Xalqaro o'zgaruvchilar.
     - (Shuningdek boshqa ichki qismlar ham bor)
 
-    Bu qiymatlar *root* (ildiz)lar deb ataladi.
+    Bu qiymatlar *root*, ya'ni ildiz deb ataladi.
 
-2. Har qanday boshqa qiymat, agar u root dan havola yoki havolalar zanjiri orqali erishish mumkin bo'lsa, erishsa bo'ladigan deb hisoblanadi.
+2. Har qanday boshqa qiymatga root dan havola yoki havolalar zanjiri orqali erishish mumkin bo'lsa, erishsa bo'ladigan deb hisoblanadi.
 
-    Misol uchun, agar global o'zgaruvchida ob'ekt mavjud bo'lsa va bu ob'ekt boshqa ob'ektga havola qiluvchi xususiyatga ega bo'lsa, *ushbu* ob'ekt kirish mumkin deb hisoblanadi. Shuningdek u murojaat qilganlar ham kirsa bo'ladigandir. Quyidagilar batafsil misollar.
+    Misol uchun, global o'zgaruvchida obyekt mavjud bo'lsa va bu obyekt boshqa obyektga havola qiluvchi xususiyatga ega bo'lsa, *ushbu* obyektga kirish mumkin hisoblanadi. Shuningdek, unga murojaat qilganlar ham kirsa bo'ladi. Quyida batafsil misollar berilgan.
 
-JavaScript enginesida [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) deb nomlangan fon jarayoni mavjud. U barcha ob'ektlarni kuzatib boradi va erishib bo'lmaydiganlarini olib tashlaydi.
+JavaScript dvigatelida [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)) deb nomlangan fon jarayoni mavjud. U barcha obyektlarni kuzatib boradi va erishib bo'lmaydiganlarini olib tashlaydi.
 
 ## Oddiy misol
 
 Quyidagi eng oddiy misol:
 
 ```js
-// foydalanuvchi ob'ekt uchun havolaga ega
+// foydalanuvchi obyekt uchun havolaga ega
 let user = {
   name: "John"
 };
@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Bu yerda strelka ob'ekt havolasini ko'rsatadi. Global oʻzgaruvchi `“user”` `{name: "John"}` obyektiga ishora qiladi (qisqa qilib uni John dep ataymiz). Jonning `"name"` xususiyati primitiveni saqlaydi, shuning uchun u ob'ektning ichida bo'yalgan.
+Bu yerda strelka obyekt havolasini ko'rsatadi. Global o'zgaruvchi `“user”` `{name: "John"}` obyektiga ishora qiladi (qisqa qilib uni John deb ataymiz). Jonning `"name"` xususiyati primitivni saqlaydi, shuning uchun u obyektning ichida bo'yalgan.
 
 Agar `user` qiymati ustiga yozilgan bo'lsa, havola yo'qoladi:
 
@@ -50,14 +50,14 @@ user = null;
 
 ![](memory-user-john-lost.svg)
 
-Endi Jonga erishib bo'lmaydigan bo'lib qoladi. Unga kirishning hech qanday usuli yo'q, unga havolalar ham yo'q. Chiqindilarni yig'uvchi ma'lumotlarni yo'q qiladi va xotirani bo'shatadi.
+Endi Jon erishib bo'lmaydigan bo'lib qoladi. Unga kirishning hech qanday usuli yo'q, unga havolalar ham yo'q. Chiqindilarni yig'uvchi ma'lumotlarni yo'q qiladi va xotirani bo'shatadi.
 
 ## Ikkita havola
 
-Endi, faraz qilaylik biz havolani `foydalanuvchi`dan `admin`ga nusxa qildik:
+Endi, faraz qilaylik biz havolani `user`dan `admin`ga nusxa qildik:
 
 ```js
-// foydalanuvchi ob'ekt uchun havolaga ega
+// foydalanuvchi obyekt uchun havolaga ega
 let user = {
   name: "John"
 };
@@ -74,12 +74,11 @@ Yana xuddi shunday qilsak:
 user = null;
 ```
 
-...Keyin ob'ektga `admin` global o'zgaruvchisi orqali yana kirish mumkin, shuning uchun ham u xotirada. Agar biz `admin`ni ham ustiga yozsak, uni olib tashlash mumkin bo'lib qoladi.
-...Then the object is still reachable via `admin` global variable, so it must stay in memory. If we overwrite `admin` too, then it can be removed.
+...Keyin obyektga `admin` global o'zgaruvchisi orqali yana kirish mumkin, shuning uchun ham u xotirada joylashgan. Agar biz `admin`ni ham ustiga yozsak, uni olib tashlash mumkin bo'lib qoladi.
 
-## O'zaro bog'langan ob'ektlar
+## O'zaro bog'langan obyektlar
 
-Endi murakkabroq misol. Oila:
+Endi murakkabroq misolga e'tibor qaratamiz. Oila:
 
 ```js
 function marry(man, woman) {
@@ -99,13 +98,13 @@ let family = marry({
 });
 ```
 
-`marry` funksiyasi ikkita ob'ektni bir biriga havola berish orqali uyg'unlashtiradi va ikkisini ham o'z ichiga olgan yangi ob'ektga qaytadi. 
+`marry` funksiyasi ikkita obyektni bir-biriga havola berish orqali uyg'unlashtiradi va ikkisini ham o'z ichiga olgan yangi obyektga qaytadi. 
 
 Natijadagi xotira tuzilishi:
 
 ![](family.svg)
 
-Hozirdan boshlab barcha ob'ektlarga kirish mumkin.
+Hozirdan boshlab barcha obyektlarga kirish mumkin.
 
 Endi ikkita havolani olib tashlaymiz:
 
@@ -116,13 +115,13 @@ delete family.mother.husband;
 
 ![](family-delete-refs.svg)
 
-Ushbu ikkita havoladan faqat bittasini o'chirishning o'zi etarli emas, chunki barcha ob'ektlarga hali ham kirsa bo'ladi.
+Ushbu ikkita havoladan faqat bittasini o'chirishning o'zi yetarli emas, chunki barcha obyektlarga hali ham kirsa bo'ladi.
 
 Ammo ikkalasini ham o'chirib tashlasak, Jonning boshqa kiruvchi havolasi yo'qligini ko'rishimiz mumkin:
 
 ![](family-no-father.svg)
 
-Chiquvchi havolalar ahamiyat kasb etmaydi. Faqarkina kiruvchilari obyektlarni kirish mumkin qila oladi. Shunday uchun, Jon endi mavjud emas va unga kirish imkoni bo'lmagan barcha ma'lumotlari bilan birga xotiradan o'chiriladi. 
+Chiquvchi havolalar ahamiyat kasb etmaydi. Faqatgina kiruvchilari obyektlarni kirish mumkin qila oladi. Shunday uchun, Jon endi mavjud emas va unga kirish imkoni bo'lmagan barcha ma'lumotlari bilan birga xotiradan o'chiriladi. 
 
 Axlat yig'ilgandan keyin:
 
@@ -130,9 +129,9 @@ Axlat yig'ilgandan keyin:
 
 ## Yetib bo'lmaydigan orol
 
-O'zaro bog'langan ob'ektlarning butun oroli yetib bo'lmaydigan holga kelishi va xotiradan olib tashlanishi ham mumkin.
+O'zaro bog'langan obyektlarning butun oroli yetib bo'lmaydigan holga kelishi va xotiradan olib tashlanishi ham mumkin.
 
-Manba ob'ekti yuqoridagi bilan bir xil. Keyin:
+Manba obyekti yuqoridagi bilan bir xil. Keyin:
 
 ```js
 family = null;
@@ -146,8 +145,7 @@ Ushbu misol erishish mumkinligi tushunchasi qay darajada muhimligini ko'rsatadi.
 
 Jon va Enn hali ham bog'langanligi aniq va ikkalasida ham kiruvchi havolalar bor. Lekin bu yetarli emas.
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
-Oldingi `"family"` obyekti root (ildiz)dan uzildi, va endi unga havola yo'q, shuning uchun butun orolga kirish imkonsiz bo'lib qoladi va olib tashlanadi.
+Oldingi `"family"` obyekti root (ildiz)dan uzildi va endi unga havola yo'q, shuning uchun butun orolga kirish imkonsiz bo'lib qoladi va u olib tashlanadi.
 
 ## Ichki algoritmlar
 
@@ -155,13 +153,13 @@ Axlat yig'ishning asosiy algoritmi "belgilash va tozalash" deb ataladi.
 
 Quyidagi "axlat yig'ish" bosqichlari muntazam ravishda amalga oshiriladi:
 
-- Axlat yig'uvchi root (ildiz)lar oladi va ularni "belgilaydi" (eslab qoladi).
-- Keyin u tashrif buyuradi va ulardan barcha havolalarni "belgilaydi".
-- Keyin u belgilangan ob'ektlarga tashrif buyuradi va *ularning* havolalarini belgilaydi. Kelajakda bir xil ob'ektga ikki marta tashrif buyurmaslik uchun barcha tashrif buyurilgan ob'ektlar eslab qolinadi.
-- ...Va shunga o'xshash davom etadi, har bir erishish mumkin bo'lgan (ildizlardan) havolalar tashrif buyurilmagangacha.
-- Belgilanganlardan tashqari barcha ob'ektlar o'chiriladi.
+- Axlat yig'uvchi root (ildiz)larni oladi va ularni "belgilaydi" (eslab qoladi).
+- Keyin u tashrif buyuradi va ulardagi barcha havolalarni "belgilaydi".
+- Keyin u belgilangan obyektlarga tashrif buyuradi va *ularning* havolalarini belgilaydi. Kelajakda bir xil obyektga ikki marta tashrif buyurmaslik uchun barcha tashrif buyurilgan obyektlar eslab qolinadi.
+- ...Har bir erishish mumkin bo'lgan (ildizlardan) havolalar tashrif buyurib bo'lmaydiganlarigacha shunday tarzda davom etadi.
+- Belgilanganlardan tashqari barcha obyektlar o'chiriladi.
 
-Masalan, bizning ob'ekt tuzilishimiz quyidagicha ko'rinsin:
+Masalan, bizning obYekt tuzilishimiz quyidagicha ko'rinsin:
 
 ![](garbage-collection-1.svg)
 
@@ -175,57 +173,44 @@ Keyin ularning havolalari belgilanadi:
 
 ![](garbage-collection-3.svg)
 
-...Va iloji bo'lganda ularning havolalari:
-Then we follow their references and mark referenced objects:
+Keyin biz ularning havolalariga amal qilamiz va havola qilingan obyektlarni belgilaymiz:
 
 ![](garbage-collection-3.svg)
 
-...And continue to follow further references, while possible:
+...Va iloji bo'lsa, qo'shimcha ma'lumotnomalarni kuzatishda davom etamiz:
 
 ![](garbage-collection-4.svg)
 
-Endi jarayonda tashrif buyurib bo'lmaydigan ob'ektlarga kirish imkonsiz deb hisoblanadi va olib tashlanadi:
+Endi jarayonda tashrif buyurib bo'lmaydigan obyektlarga kirish imkonsiz deb hisoblanadi va olib tashlanadi:
 
 ![](garbage-collection-5.svg)
 
-Shungdek jarayonni, ildizlaran bitta katta chelakdagi bo'yoqni to'kilib, barcha havolalar orqali oqishi va barcha yetishish mumkin bo'lgan ob'ektlarni belgilaydi kabi faraz qilishimiz mumkin. Keyin belgilanmaganlar olib tashlanadi.
+Shungdek jarayonni, ildizlardan bitta katta chelakdagi bo'yoqning to'kilib, barcha havolalar orqali oqishi va barcha yetishish mumkin bo'lgan obyektlarni belgilaydi deb faraz qilishimiz mumkin. Keyin belgilanmaganlar olib tashlanadi.
 
-Bu axlat yig'uvchi qanday ishlashi tushunchasi. JavaScript enginlari tezroq ishlashi va amalga ta'sir qilmasligi uchun ko'plab optimallashtirisharlarni qo'llaydi. 
-That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not introduce any delays into the code execution.
+Bu axlat yig'uvchi qanday ishlashi haqida tushuncha. JavaScript dvigatellari tezroq ishlashi va amalga ta'sir qilmasligi uchun ko'plab optimallashtirisharlarni qo'llaydi.
 
 Ba'zi optimallashtirishlar:
 
-- **Avlodlar to'plami** -- ob'ektlar ikkita guruhga bo'linadi: "yangilar" va "eskilar". Ko'p ob'ektlar paydo bo'ladi, o'z ishlarini bajaradi va tezda g'oyib bo'ladi, ular agressiv tarzda tozalanishi mumkin. Yetarlicha uzoq umr ko'rganlar esa "eski" bo'lib, kamroq tekshiriladi.
-- **Qo'shimcha yig'ish** -- agar ob'ektlar ko'p bo'lsa va bir vaqtning o'zida butun ob'ektni yurishga va belgilashga harakat qilsak, bu biroz vaqt talab qilishi va bajarilishida ko'rinib turuvchi kechikishlarni kiritishi mumkin. Shu tufayli, enjin axlat yig'ishni qismlarga bo'lishga harakat qiladi. Keyin qismlar birma-bir, alohida-alohida bajariladi. Bu o'zgarishlarni kuzatish uchun ular o'rtasida qo'shimcha buxgalteriya hisobini talab qiladi, ammo bizda katta kechikishlar o'rniga juda ko'p kichik kechikishlar mavjud.
+- **Avlodlar to'plami** -- obyektlar ikkita guruhga bo'linadi: "yangilar" va "eskilar". Ko'p obyektlar paydo bo'ladi, o'z ishlarini bajaradi va tezda g'oyib bo'ladi, ular agressiv tarzda tozalanishi mumkin. Yetarlicha uzoq umr ko'rganlar esa "eski" bo'lib, kamroq tekshiriladi.
+- **Qo'shimcha yig'ish** -- agar obyektlar ko'p bo'lsa va bir vaqtning o'zida butun obyektni yurishga va belgilashga harakat qilsak, bu biroz vaqt talab qilishi va bajarilishida ko'rinib turuvchi kechikishlarni kiritishi mumkin. Shu tufayli, dvigatel axlat yig'ishni qismlarga bo'lishga harakat qiladi. Keyin qismlar bittadan alohida bajariladi. Bu o'zgarishlarni kuzatish uchun ular o'rtasida qo'shimcha buxgalteriya hisobini talab qiladi, ammo bizda katta kechikishlar o'rniga juda ko'p kichik kechikishlar mavjud.
 - **Bo'sh vaqtlar to'plami** -- axlat yig'uvchi faqat protsessor ishlamay qolganda ishlashga harakat qiladi, bu amalga mumkin bo'lgan ta'sirni kamaytiradi.
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". In typical code, many objects have a short life span: they appear, do their job and die fast, so it makes sense to track new objects and clear the memory from them if that's the case. Those that survive for long enough, become "old" and are examined less often.
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine splits the whole set of existing objects into multiple parts. And then clear these parts one after another. There are many small garbage collections instead of a total one. That requires some extra bookkeeping between them to track changes, but we get many tiny delays instead of a big one.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
-Axlat yig'ish algoritmlarining boshqa optimallashtirishlari va tushunchalari mavjud. Ularni bu yerda tasvirlashni istardim, lekin to'xtab turishim kerak, chunki turli enjinelar turli xil sozlash va texnikani amalga oshiradi.Va bundan ham muhimi, enjinelar rivojlanishi bilan hamma narsa o'zgaradi, shuning uchun haqiqiy ehtiyojlarsiz "oldindan" chuqurroq o'rganish bunga arzimaydi emas. Agar, albatta, bu haqiqiy qiziqish masalasi bo'lmasa, quyida siz uchun ba'zi havolalar bo'ladi.
+Axlat yig'ish algoritmlarining boshqa optimallashtirishlari va tushunchalari mavjud. Ularni bu yerda tasvirlashni istardim, lekin to'xtab turishim kerak, chunki turli dvigatellar turli xil sozlash va texnikani amalga oshiradi. Va bundan ham muhimi, dvigatellarning rivojlanishi bilan hamma narsa o'zgaradi, shuning uchun haqiqiy ehtiyojlarsiz "oldindan" chuqurroq o'rganish bunga arziydi. Agar, albatta, bu haqiqiy qiziqish masalasi bo'lmasa, quyida sizga ba'zi havolalar beriladi.
 
 ## Xulosa
 
 Bilish kerak bo'lgan asosiy narsalar:
 
 - Chiqindilarni yig'ish avtomatik ravishda amalga oshiriladi. Biz buni majburlay olmaymiz yoki oldini ololmaymiz.
-- Ob'ektlar kirish mumkin bo'lganda xotirada saqlanadi.
-- Havola qilish bu erishsa bo'lish bilan bir xil emas (ildizdan): bir qancha o'zaro bog'langan obyektlar umuman erishsa bo'lmaydigan holga kelib qoliahi mumkin. 
-- Garbage collection is performed automatically. We cannot force or prevent it.
-- Objects are retained in memory while they are reachable.
-- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole, as we've seen in the example above.
+- Obyektlar kirish mumkin bo'lganda xotirada saqlanadi.
+- Murojaat qilish bilan (ildizdan) foydalanish mumkin emas: yuqoridagi misolda ko'rganimizdek, bir-biriga bog'langan obyektlar to'plami umuman erishib bo'lmaydigan bo'lib qolishi mumkin.
 
-Zamonaviy enjinlar axlat yig'ishning ilg'or algoritmlarini amalga oshiradi.
+Zamonaviy dvigatellar axlat yig'ishning ilg'or algoritmlarini amalga oshiradi.
 
 "Axlat yig'ish bo'yicha qo'llanma: Xotirani avtomatik boshqarish san'ati" (R. Jones va boshqalar) umumiy kitobi ulardan ba'zilarini qamrab oladi.
 
-Agar siz past darajadagi dasturlash bilan tanish bo'lsangiz, V8 axlat yig'uvchisi haqida batafsil ma'lumot  [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection) maqolada.
+Agar siz past darajadagi dasturlash bilan tanish bo'lsangiz, V8 axlat yig'uvchisi haqida batafsil ma'lumotni [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection) maqolada o'qib chiqing.
 
-[V8 blog](https://v8.dev/) shuningdek vaqti-vaqti bilan xotira boshqaruvidagi o'zgarishlar haqida ham maqolalar chop etib turadi. Tabiiyki, axlat yig'ishni o'rganish uchun siz V8 ichki qurilmalari haqida umumiy ma'lumotga ega bo'lishingiz va V8 muhandislaridan biri bo'lib ishlagan  [Vyacheslav Egorov](http://mrale.ph) blogini o'qib chiqishingiz kerak. Men aytmoqchimanki: "V8", chunki u Internetdagi maqolalar bilan eng yaxshi yoritilgan. Boshqa enjinelar uchun ko'plab yondashuvlar o'xshash, ammo axlat yig'ish ko'p jihatdan farq qiladi.
+[V8 blog](https://v8.dev/) shuningdek vaqti-vaqti bilan xotira boshqaruvidagi o'zgarishlar haqida ham maqolalar chop etib turadi. Tabiiyki, axlat yig'ishni o'rganish uchun siz V8 ichki qurilmalari haqida umumiy ma'lumotga ega bo'lishingiz va V8 muhandislaridan biri bo'lib ishlagan  [Vyacheslav Egorov](http://mrale.ph) blogini o'qib chiqishingiz kerak. Men aytmoqchimanki: "V8", chunki u Internetdagi maqolalar bilan eng yaxshi yoritilgan. Boshqa dvigatellar uchun ko'plab yondashuvlar o'xshash, ammo axlat yig'ish ancha farq qiladi.
 
-Enjinelarni chuqur bilish past darajadagi optimallashtirish kerak bo'lganda yaxshi bo'ladi. Buni til bilan tanishganingizdan keyingi qadam sifatida rejalashtirish oqilona bo'lardi.
-If you are familiar with low-level programming, more detailed information about V8's garbage collector is in the article [A tour of V8: Garbage Collection](https://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
-
-The [V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn more about garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](https://mrale.ph) who worked as one of the V8 engineers. I'm saying: "V8", because it is best covered by articles on the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
-
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.
+Dvigatellarni chuqur bilish past darajadagi optimallashtirish kerak bo'lganda yaxshi bo'ladi. Buni til bilan tanishganingizdan keyingi qadam sifatida rejalashtirish oqilona bo'lardi.

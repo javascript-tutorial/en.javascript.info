@@ -1,68 +1,68 @@
 
-# Objects
+# Obyektlar
 
-As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+<info:types> bo'limidan ma'lumki, JavaScriptda sakkizta ma'lumot turi mavjud. Ulardan yettitasi "ibtidoiy" deb ataladi, chunki ularning qiymatlari faqat bitta narsani o'z ichiga oladi (qator, raqam va h.k).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+Bundan farqli o'laroq, obyektlar turli xil ma'lumotlar va murakkabroq obyektlarning kalitli to'plamlarini saqlash uchun ishlatiladi. JavaScriptda obyektlar tilning deyarli barcha tomonlariga kirib boradi. Shuning uchun biz boshqa joyga chuqurroq kirishdan oldin ularni tushunishimiz kerak.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+Obyektni `{…}` qavslar yordamida, ixtiyoriy *xususiyatlar* ro'yxati bilan yaratish mumkin. Xususiyat "key: value" juftligi bo'lib, bu yerda `key` qator ("xususiyat nomi" deb ham ataladi) va `value` har qanday narsa bo'lishi mumkin.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Obyektni imzolangan fayllarga ega kabinet sifatida tasavvur qilishimiz mumkin. Har bir ma'lumot bo'lagi kalit yordamida o'z faylida saqlanadi. Faylni nomi bo'yicha topish yoki faylni qo'shish/o'chirish oson.
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Bo'sh obyekt ("bo'sh kabinet") ikkita sintaksisdan biri yordamida yaratilishi mumkin:
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // "obyekt konstruktori" sintaksisi
+let user = {};  // "obyekt literal" sintaksisi
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Odatda `{...}` qavslar ishlatiladi. Bu deklaratsiya *obyekt literal* deb ataladi.
 
-## Literals and properties
+## Literallar va xususiyatlar
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Biz darhol ba'zi xususiyatlarni `{...}` ga "key: value" juftlari sifatida qo'yishimiz mumkin:
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // obyekt
+  name: "John",  // "name" kaliti bo'yicha "John" qiymatini saqlang
+  age: 30        //  kalit bo'yicha "age" do'kon qiymati 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+Mulkda ikki nuqta `":"` oldida kalit ("name" yoki "identifikator" sifatida ham tanilgan) va uning o'ng tomonidagi qiymat mavjud.
 
-In the `user` object, there are two properties:
+`user` obyektida ikkita xususiyat mavjud:
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. Birinchi xususiyat `"name"` nomiga va `"John"` qiymatiga ega.
+2. Ikkinchisida `"age"` nomi va `30` qiymati mavjud.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+Natijada paydo bo'lgan `user` obyektini "name" va "age" deb nomlangan ikkita imzolangan faylga ega kabinet sifatida tasavvur qilish mumkin.
 
-![user object](object-user.svg)
+![user obyekti](object-user.svg)
 
-We can add, remove and read files from it at any time.
+Biz istalgan vaqtda undan fayllar qo'shishimiz, o'chirishimiz va o'qishimiz mumkin.
 
-Property values are accessible using the dot notation:
+Xususiyat qiymatlariga nuqta belgisi yordamida kirish mumkin:
 
 ```js
-// get property values of the object:
+// obyektning xususiyat qiymatlarini oling:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+Qiymat har qanday turdagi bo'lishi mumkin. Keling, unga boolean qo'shamiz:
 
 ```js
 user.isAdmin = true;
 ```
 
-![user object 2](object-user-isadmin.svg)
+![user obyekti 2](object-user-isadmin.svg)
 
-To remove a property, we can use the `delete` operator:
+Xususiyatni o'chirish uchun biz `delete` operatoridan foydalanishimiz mumkin:
 
 ```js
 delete user.age;
@@ -70,42 +70,41 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+Biz ko'p so'zli xususiyat nomlaridan ham foydalanishimiz mumkin, ammo keyin ulardan iqtibos keltirish kerak:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // ko'p so'zli xususiyat nomi iqtibos keltirilishi kerak
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+Ro'yxatdagi oxirgi xususiyat vergul bilan tugashi mumkin:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Bu "ortdagi" yoki "osilgan" vergul deb ataladi. Xususiyatlarni qo'shish/o'chirish/ko'chirishni osonlashtiradi, chunki barcha qatorlar bir xil bo'ladi.
 
-## Square brackets
+## Kvadrat qavslar
 
-For multiword properties, the dot access doesn't work:
+Ko'p so'zli xususiyatlar uchun nuqtali kirish ishlamaydi:
 
 ```js run
-// this would give a syntax error
+// bu sintaksis xatosini beradi
 user.likes birds = true
 ```
+JavaScript buni tushunmaydi. Biz `user.likes` ga murojaat qilamiz, deb o'ylaydi va kutilmagan qushlar, ya'ni `birds` ga duch kelganda sintaksis xatosi yuz beradi.
 
-JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+Nuqta kalitning yaroqli o'zgaruvchi identifikatori bo'lishini talab qiladi. Bu shuni anglatadiki: bo'sh joy yo'q, raqam bilan boshlanmaydi va maxsus belgilarni o'z ichiga olmaydi (`$` va `_` ruxsat etiladi).
 
-The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
-
-There's an alternative "square bracket notation" that works with any string:
+Har qanday satr bilan ishlaydigan muqobil "kvadrat qavs belgisi" mavjud:
 
 ```js run
 let user = {};
@@ -120,20 +119,19 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Endi hammasi yaxshi. Qavslar ichidagi satr to'g'ri keltirilishiga e'tibor bering (har qanday turdagi quote mos keladi).
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Kvadrat qavslar, shuningdek, quyidagi kabi o'zgaruvchidan so'zma-so'z satrdan farqli o'laroq, har qanday ifoda natijasi sifatida xususiyat nomini olish usulini taqdim etadi:
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// foydalanuvchi bilan bir xil ["likes birds"] = true;
 user[key] = true;
 ```
+Bu yerda `key` o'zgaruvchisi ish vaqtida hisoblanishi yoki foydalanuvchi kiritishiga bog'liq bo'lishi mumkin. Va keyin biz undan xususiyatga kirish uchun foydalanamiz. Bu bizga katta moslashuvchanlikni beradi.
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
-
-For instance:
+Masalan:
 
 ```js run
 let user = {
@@ -141,13 +139,13 @@ let user = {
   age: 30
 };
 
-let key = prompt("What do you want to know about the user?", "name");
+let key = prompt ("User va name haqida nima bilmoqchisiz?");
 
-// access by variable
-alert( user[key] ); // John (if enter "name")
+// o'zgaruvchi orqali kirish
+alert( user[key] ); // John ("name" ni kiriting)
 ```
 
-The dot notation cannot be used in a similar way:
+Nuqta belgisini o'xshash tarzda ishlatib bo'lmaydi:
 
 ```js run
 let user = {
@@ -156,43 +154,43 @@ let user = {
 };
 
 let key = "name";
-alert( user.key ) // undefined
+alert( user.key ) // undefined (aniqlanmagan)
 ```
 
-### Computed properties
+### Hisoblangan xususiyatlar (Computed properties)
 
-We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+Obyektni yaratishda biz kvadrat qavslardan obyektning literalida foydalanishimiz mumkin. Bu *hisoblangan xususiyatlar* deb ataladi.
 
-For instance:
+Masalan:
 
 ```js run
-let fruit = prompt("Which fruit to buy?", "apple");
+let fruit = prompt("Qaysi mevani sotib olamiz?", "olma");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, //xususiyat nomi o'zgaruvchan mevadan olingan
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( bag.apple ); // 5 agar meva="apple" (olma) bo'lsa
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Hisoblangan xususiyatning ma'nosi oddiy: `[fruit]` xususiyat nomi `fruit` dan olinishi kerakligini bildiradi.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Demak, agar mehmon `` apple`` ga kirsa, `bag` `{apple: 5}`ga aylanadi.
 
-Essentially, that works the same as:
+Asosan, u xuddi shunday ishlaydi:
 ```js run
-let fruit = prompt("Which fruit to buy?", "apple");
+let fruit = prompt("Qaysi mevani sotib olish kerak?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// meva o'zgaruvchisidan xususiyat nomini oling
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...Lekin chiroyliroq ko'rinadi.
 
-We can use more complex expressions inside square brackets:
+Kvadrat qavslar ichida murakkabroq ifodalardan foydalanishimiz mumkin:
 
 ```js
 let fruit = 'apple';
@@ -201,63 +199,62 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Kvadrat qavslar nuqta belgilaridan ko'ra kuchliroqdir. Ular har qanday xususiyat nomlari va o'zgaruvchilarga ruxsat beradi. Lekin ularni yozish ham qiyinroq.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+Shunday qilib, ko'pncha, mulk nomlari ma'lum va sodda bo'lsa, nuqta ishlatiladi. Va agar bizga murakkabroq narsa kerak bo'lsa, biz kvadrat qavslarga o'tamiz.
 
-## Property value shorthand
+## Mulk qiymati qisqartmasi
 
-In real code, we often use existing variables as values for property names.
+Haqiqiy kodda biz ko'pincha mavjud o'zgaruvchilarni mulk nomlari uchun qiymat sifatida ishlatamiz.
 
-For instance:
+Masalan:
 
 ```js run
 function makeUser(name, age) {
   return {
     name: name,
     age: age,
-    // ...other properties
+    // ...boshqa xususiyatlar
   };
 }
 
 let user = makeUser("John", 30);
 alert(user.name); // John
 ```
+Yuqoridagi misolda xususiyatlar o'zgaruvchilar bilan bir xil nomga ega. O'zgaruvchidan xossa yasashdan foydalanish holatlari shunchalik keng tarqalganki, uni qisqartirish uchun maxsus *xususiyat qiymati qisqartmasi* mavjud.
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
-
-Instead of `name:name` we can just write `name`, like this:
+`name:name` o'rniga shunchaki quyidagi kabi `name` deb yozishimiz mumkin:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age,  // same as age: age
+    name, // name bilan bir xil: name
+    age,  // age bilan bir xil: age
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+Xuddi shu obyektda biz oddiy xususiyatlardan ham, qisqartmalardan ham foydalanishimiz mumkin:
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // name bilan bir xil:name
   age: 30
 };
 ```
 
 
-## Property names limitations
+## Mulk nomlari cheklovlari
 
-As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
+Bizga ma'lumki, o'zgaruvchi tilda saqlangan so'zlardan biriga teng nomga ega bo'lishi mumkin emas, masalan, "for", "let", "return" va hokazo.
 
-But for an object property, there's no such restriction:
+Lekin obyekt xususiyati uchun bunday cheklov yo'q:
 
 ```js run
-// these properties are all right
+// bu xususiyatlarвф hammasi yaxshi
 let obj = {
   for: 1,
   let: 2,
@@ -266,108 +263,107 @@ let obj = {
 
 alert( obj.for + obj.let + obj.return );  // 6
 ```
+Muxtasar qilib aytganda, nomlarida hech qanday cheklovlar yo'q. Ular har qanday satr yoki belgilar bo'lishi mumkin (identifikatorlar uchun maxsus tur, keyinroq ko'rib chiqiladi).
 
-In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+Boshqa turlar avtomatik ravishda satrlarga aylantiriladi.
 
-Other types are automatically converted to strings.
-
-For instance, a number `0` becomes a string `"0"` when used as a property key:
+Masalan, `0` raqami xususiyat kaliti sifatida foydalanilganda `0` qatoriga aylanadi:
 
 ```js run
 let obj = {
-  0: "test" // same as "0": "test"
+  0: "test" // "0"  bilan bir xil: "test"
 };
 
-// both alerts access the same property (the number 0 is converted to string "0")
+// Ikkala ogohlantirish ham bir xil xususiyatga kirishadi (0 raqami "0" qatoriga aylantiriladi)
 alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
+alert( obj[0] ); // test (bir xil xususiyat)
 ```
 
-There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+`__proto__` nomli maxsus xususiyatga ega kichik gotcha bor. Biz uni obyekt bo'lmagan qiymatga o'rnatolmaymiz:
 
 ```js run
 let obj = {};
-obj.__proto__ = 5; // assign a number
-alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+obj.__proto__ = 5; // raqam tayinlang
+alert(obj.__proto__); // [object Object] - qiymat obyekt bo'lib, mo'ljallanganidek ishlamadi
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+Koddan ko'rinib turibdiki, ibtidoiy `5` ga tayinlash e'tiborga olinmaydi.
 
-We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+Biz `__proto__` ning o'ziga xos xususiyatini [keyingi boblarda](ma'lumot:prototip-meros) ko'rib chiqamiz va bunday xatti-harakatni [tuzatish yo'llarini](ma'lumot:prototip-metodlar) taklif qilamiz.
 
-## Property existence test, "in" operator
+## Mulk mavjudligi testi, "in" operatori
 
-A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+JavaScriptdagi obyektlarning boshqa ko'plab tillarga nisbatan e'tiborga loyiq xususiyati shundaki, har qanday xususiyatga kirish mumkin. Agar xususiyat mavjud bo'lmasa, xato bo'lmaydi!
 
-Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+Mavjud bo'lmagan xususiyatni o'qish shunchaki `undefined`ni qaytaradi. Shunday qilib, biz mulk mavjudligini osongina tekshirishimiz mumkin:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true "bunday xususiyat yo'q" degan ma'noni anglatadi
 ```
 
-There's also a special operator `"in"` for that.
+Buning uchun `"in"` maxsus operatori ham mavjud.
 
-The syntax is:
+Sintaksis:
 ```js
 "key" in object
 ```
 
-For instance:
+Masalan:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true, user.age mavjud
+alert( "blabla" in user ); // false, user.blabla mavjud emas
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Esda tutingki, `in` chap tomonida *xususiyat nomi* bo'lishi kerak. Bu odatda iqtibosli satrdir.
 
-If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+Agar biz quotelarni tashlab qo'ysak, bu o'zgaruvchida tekshiriladigan haqiqiy nom bo'lishi kerakligini anglatadi. Masalan:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, property "age" exists
+alert( *!*key*/!* in user ); // true, "age" xususiyati mavjud
 ```
 
-Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+Nima uchun `in` operatori mavjud? `undefined` bilan solishtirish yetarli emasmi?
 
-Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+`undefined` bilan taqqoslash ko'p hollarda yaxshi ishlaydi. Lekin u ishlamay qolganda alohida holat bor, lekin `"in"` to'g'ri ishlaydi.
 
-It's when an object property exists, but stores `undefined`:
+Bu obyekt xususiyati mavjud bo'lganda ishlaydi, lekin `undefined`ni saqlaydi:
 
 ```js run
 let obj = {
   test: undefined
 };
 
-alert( obj.test ); // it's undefined, so - no such property?
+alert( obj.test ); // bu aniqlanmagan, shuning uchun - bunday xususiyat yo'qmi?
 
-alert( "test" in obj ); // true, the property does exist!
+alert( "test" in obj ); // true, shunday xususiyat mavjud!
 ```
 
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+Yuqoridagi kodda `obj.test` xususiyati texnik jihatdan mavjud. Shunday qilib, `in` operatori to'g'ri ishlaydi.
 
-Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Bunday holatlar juda kamdan-kam uchraydi, chunki `undefined` aniq belgilanmasligi kerak. Biz asosan "noma'lum" yoki "bo'sh" qiymatlar uchun `null` dan foydalanamiz. Shunday qilib, `in` operatori koddagi ekzotik mehmondir.
 
 
-## The "for..in" loop [#forin]
+## "for..in" halqasi (loop) [#forin]
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+Obyektning barcha tugmalari bo'ylab yurish uchun siklning maxsus shakli mavjud: `for..in`. Bu biz avval o'rgangan `for(;;)` konstruksiyasidan butunlay boshqacha narsa.
 
-The syntax:
+Sintaksis:
 
 ```js
 for (key in object) {
-  // executes the body for each key among object properties
+  // obyekt xususiyatlari orasida har bir kalit uchun body bajaradi
 }
 ```
 
-For instance, let's output all properties of `user`:
+Masalan, `user` ning barcha xususiyatlarini chiqaramiz:
 
 ```js run
 let user = {
@@ -377,24 +373,24 @@ let user = {
 };
 
 for (let key in user) {
-  // keys
+  // kalitlar
   alert( key );  // name, age, isAdmin
-  // values for the keys
+  // kalitlar uchun qiymatlar
   alert( user[key] ); // John, 30, true
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+Shuni yodda tutingki, barcha "for" konstruksiyalari sikl ichidagi o'zgaruvchini e'lon qilish imkonini beradi, masalan, bu erda `let key`.
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
+Bundan tashqari, biz bu erda `key` o'rniga boshqa o'zgaruvchi nomidan foydalanishimiz mumkin. Masalan, `"for (let prop in obj)` ham keng qo'llaniladi.
 
-### Ordered like an object
+### Obyekt kabi buyurtma qilingan
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+Obyektlar buyurtma qilinganmi? Boshqacha qilib aytganda, agar biz obyektni aylantirsak, biz barcha xususiyatlarni ular qo'shilgan tartibda olamizmi? Bunga ishonishimiz mumkinmi?
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+Qisqa javob: "maxsus tartibda buyurtma qilingan": butun son xususiyatlar tartiblangan, boshqalari yaratish tartibida paydo bo'ladi. Tafsilotlarni keyinroq ko'rib chiqamiz.
 
-As an example, let's consider an object with the phone codes:
+Misol tariqasida, telefon kodlari bo'lgan obyektni ko'rib chiqaylik:
 
 ```js run
 let codes = {
@@ -412,57 +408,57 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+Obyekt foydalanuvchiga variantlar ro'yxatini taklif qilish uchun ishlatilishi mumkin. Agar biz asosan nemis auditoriyasi uchun sayt yaratayotgan bo'lsak, ehtimol biz `49` birinchi bo'lishini xohlaymiz.
 
-But if we run the code, we see a totally different picture:
+Ammo agar biz kodni ishlatsak, biz butunlay boshqacha rasmni ko'ramiz:
 
-- USA (1) goes first
-- then Switzerland (41) and so on.
+- AQSH (1) birinchi bo'ladi
+- keyin Shvetsariya (41) va boshqalar.
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
+Telefon kodlari o'sish bo'yicha tartiblanadi, chunki ular butun sonlardir. Shunday qilib, biz `1, 41, 44, 49` ni ko'ramiz.
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="Butun son xususiyatlari? Nima u?"
+Bu yerda "integer xususiyati" atamasi butun songa o'zgarishsiz aylantirilishi mumkin bo'lgan qatorni anglatadi.
 
-So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+Demak, ``49``` butun son xususiyati nomidir, chunki u butun songa va orqaga aylantirilganda hamon bir xil bo`ladi. Lekin `"+49"` va `"1,2"` emas:
 
 ```js run
-// Number(...) explicitly converts to a number
-// Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
-alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+// Number(...) aniq raqamga aylantiradi
+// Math.trunc kasr qismini olib tashlaydigan o'rnatilgan funksiya
+alert( String(Math.trunc(Number("49"))) ); // "49", bir xil, butun sonli xususiyat
+alert( String(Math.trunc(Number("+49"))) ); // "49", bir xil emas "+49" ⇒ butun son emas
+alert( String(Math.trunc(Number("1.2"))) ); // "1", bir xil emas "1.2" ⇒ butun son xususiyati emas
 ```
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...Boshqa tomondan, agar kalitlar butun son bo'lmasa, ular yaratish tartibida ro'yxatga olinadi, masalan:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // add one more
+user.age = 25; // yana bitta qo'shing
 
 *!*
-// non-integer properties are listed in the creation order
+// butun son bo'lmagan xususiyatlar yaratish tartibida keltirilgan
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
+Shunday qilib, telefon kodlari bilan bog'liq muammoni hal qilish uchun biz kodlarni butun son bo'lmagan qilib "aldashimiz" mumkin. Har bir kod oldiga plyus `"+"` belgisini qo'shish kifoya.
 
-Like this:
+Quyidagi kabi:
 
 ```js run
 let codes = {
-  "+49": "Germany",
-  "+41": "Switzerland",
-  "+44": "Great Britain",
+  "+49": "Germaniya",
+  "+41": "Shvetsariya",
+  "+44": "Buyuk Britaniya",
   // ..,
-  "+1": "USA"
+  "+1": "AQSH"
 };
 
 for (let code in codes) {
@@ -470,34 +466,39 @@ for (let code in codes) {
 }
 ```
 
-Now it works as intended.
+Endi u maqsadga muvofiq ishlaydi.
 
-## Summary
+## Xulosa
 
-Objects are associative arrays with several special features.
+Obyektlar bir nechta maxsus xususiyatlarga ega bo'lgan assotsiativ massivlardir (array).
 
-They store properties (key-value pairs), where:
-- Property keys must be strings or symbols (usually strings).
-- Values can be of any type.
+Ular xususiyatlarni (kalit-qiymat juftlari) saqlaydi, bu yerda:
+- Xususiyatlar kalitlari satrlar yoki belgilar (odatda satrlar) bo'lishi kerak.
+- Qiymatlar har qanday turdagi bo'lishi mumkin.
 
-To access a property, we can use:
-- The dot notation: `obj.property`.
-- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+Xususiyatga kirish uchun biz foydalanishimiz mumkin:
+- Nuqta belgisi: `obj.property`.
+- Kvadrat qavs `obj["property"]` belgisi. Kvadrat qavslar `obj[varWithKey]` kabi o'zgaruvchidan kalitni olishga imkon beradi.
 
-Additional operators:
-- To delete a property: `delete obj.prop`.
-- To check if a property with the given key exists: `"key" in obj`.
-- To iterate over an object: `for (let key in obj)` loop.
+Qo'shimcha operatorlar:
+- Xususiyatni o'chirish uchun: `delete obj.prop`.
+- Berilgan kalitga ega xususiyat mavjudligini tekshirish uchun: `"key" in obj`. 
+- Obyektni takrorlash uchun: `for (let key in obj)` sikli.
 
-What we've studied in this chapter is called a "plain object", or just `Object`.
+Ushbu bobda biz o'rgangan narsa "oddiy obyekt" yoki shunchaki `Obyekt` deb ataladi.
 
-There are many other kinds of objects in JavaScript:
+JavaScriptda ko'plab boshqa turdagi obyektlar mavjud:
 
 - `Array` to store ordered data collections,
 - `Date` to store the information about the date and time,
 - `Error` to store the information about an error.
 - ...And so on.
 
-They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
+- `Array` - buyurtma qilingan ma'lumotlar to'plamini saqlash uchun,
+- `Date` - sana va vaqt haqidagi ma'lumotlarni saqlash uchun,
+- `Error` - error haqidagi ma'lumotlarni saqlash uchun.
+- ...Va hokazo.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
+Ularning o'ziga xos xususiyatlari bor, biz ularni keyinroq o'rganamiz. Ba'zan odamlar "Array turi" yoki "Date turi" kabi narsalarni aytadilar, lekin rasmiy ravishda ular o'zlarining turlari emas, balki bitta "obyekt" ma'lumotlar turiga tegishli. Va ular uni turli yo'llar bilan kengaytiradilar.
+
+JavaScriptdagi obyektlar juda kuchli. Bu yerda biz haqiqatan ham ulkan mavzuni ko'rib chiqdik. Biz qo'llanmaning keyingi qismlarida obyektlar bilan yaqindan ishlaymiz va ular haqida ko'proq bilib olamiz.
