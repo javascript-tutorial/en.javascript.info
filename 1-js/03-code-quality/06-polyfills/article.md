@@ -85,7 +85,7 @@ Just don't forget to use a transpiler (if using modern syntax or operators) and 
 For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Good resources that show the current state of support for various features:
-- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
+- <https://compat-table.github.io/compat-table/es6/> - for pure JavaScript.
 - <https://caniuse.com/> - for browser-related functions.
 
 P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
