@@ -7,7 +7,7 @@ Teams behind JavaScript engines have their own ideas about what to implement fir
 
 So it's quite common for an engine to implement only part of the standard.
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+A good page to see the current state of support for language features is <https://compat-table.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
 As programmers, we'd like to use most recent features. The more good stuff - the better!
 
@@ -85,7 +85,7 @@ Just don't forget to use a transpiler (if using modern syntax or operators) and 
 For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Good resources that show the current state of support for various features:
-- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
+- <https://compat-table.github.io/compat-table/es6/> - for pure JavaScript.
 - <https://caniuse.com/> - for browser-related functions.
 
 P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
