@@ -7,7 +7,7 @@ Teams behind JavaScript engines have their own ideas about what to implement fir
 
 So it's quite common for an engine to implement only part of the standard.
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+A good page to see the current state of support for language features is <https://compat-table.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
 
 As programmers, we'd like to use most recent features. The more good stuff - the better!
 
