@@ -13,7 +13,6 @@ function onDigits(req, res) {
   let i = 0;
 
   let timer = setInterval(write, 1000);
-  write();
 
   function write() {
     i++;
