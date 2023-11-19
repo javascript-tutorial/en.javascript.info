@@ -404,7 +404,7 @@ We covered 3 types of loops:
 - `do..while` -- The condition is checked after each iteration.
 - `for (;;)` -- The condition is checked before each iteration, additional settings available.
 
-To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
+To make an "infinite" loop, usually the `while (true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
 If we don't want to do anything in the current iteration and would like to forward to the next one, we can use the `continue` directive.
 
