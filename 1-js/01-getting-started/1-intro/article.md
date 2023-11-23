@@ -112,6 +112,9 @@ Examples of such languages:
 - [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
 - [Brython](https://brython.info/) is a Python transpiler to JavaScript that enables the writing of applications in pure Python without JavaScript.
 - [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) is a modern, concise and safe programming language that can target the browser or Node.
+- [Scala](https://www.scala-js.org/) lets you write less to do more and it's s static types help you to build safe systems by default. It targets browser and Node.
+- [PureScript](https://www.purescript.org/) is a strongly-typed functional programming language that resembles Haskell and compiles to JavaScript.
+- [ReScript](https://rescript-lang.org/) is a robustly typed language that compiles to efficient and human-readable JavaScript.
 
 There are more. Of course, even if we use one of these transpiled languages, we should also know JavaScript to really understand what we're doing.
 
