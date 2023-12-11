@@ -49,7 +49,7 @@ In the example, the `DOMContentLoaded` handler runs when the document is loaded,
 
 But it doesn't wait for the image to load. So `alert` shows zero sizes.
 
-At first sight, the `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. There are few peculiarities though.
+At first sight, the `DOMContentLoaded` event is very simple. The DOM tree is ready -- here's the event. There are a few peculiarities though.
 
 ### DOMContentLoaded and scripts
 
@@ -137,7 +137,7 @@ Naturally, `unload` event is when the user leaves us, and we'd like to save the 
 
 There exists a special `navigator.sendBeacon(url, data)` method for such needs, described in the specification <https://w3c.github.io/beacon/>.
 
-It sends the data in background. The transition to another page is not delayed: the browser leaves the page, but still performs `sendBeacon`.
+It sends the data in the background. The transition to another page is not delayed: the browser leaves the page, but still performs `sendBeacon`.
 
 Here's how to use it:
 ```js
@@ -188,7 +188,7 @@ The behavior was changed, because some webmasters abused this event handler by s
 ````warn header="The `event.preventDefault()` doesn't work from a `beforeunload` handler"
 That may sound weird, but most browsers ignore `event.preventDefault()`.
 
-Which means, following code may not work:
+Which means, the following code may not work:
 ```js run
 window.addEventListener("beforeunload", (event) => {
   // doesn't work, so this event handler doesn't do anything

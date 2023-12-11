@@ -12,7 +12,7 @@ So all hamsters share a single stomach!
 
 Both for `lazy.stomach.push(...)` and `speedy.stomach.push()`, the property `stomach` is found in the prototype (as it's not in the object itself), then the new data is pushed into it.
 
-Please note that such thing doesn't happen in case of a simple assignment `this.stomach=`:
+Please note that such a thing doesn't happen in case of a simple assignment `this.stomach=`:
 
 ```js run
 let hamster = {

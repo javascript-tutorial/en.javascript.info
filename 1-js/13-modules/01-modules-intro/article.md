@@ -312,7 +312,7 @@ For example, the inline script below has `async`, so it doesn't wait for anythin
 
 It performs the import (fetches `./analytics.js`) and runs when ready, even if the HTML document is not finished yet, or if other scripts are still pending.
 
-That's good for functionality that doesn't depend on anything, like counters, ads, document-level event listeners.
+That's good for functionality that doesn't depend on anything, like counters, ads, document-level event listeners, etc.
 
 ```html
 <!-- all dependencies are fetched (analytics.js), and the script runs -->

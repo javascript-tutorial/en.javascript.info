@@ -123,7 +123,7 @@ But that's not the case! The pointer is still over the parent, it just moved dee
 
 If there are some actions upon leaving the parent element, e.g. an animation runs in `parent.onmouseout`, we usually don't want it when the pointer just goes deeper into `#parent`.
 
-To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore such event.
+To avoid it, we can check `relatedTarget` in the handler and, if the mouse is still inside the element, then ignore the event.
 
 Alternatively we can use other events: `mouseenter` and `mouseleave`, that we'll be covering now, as they don't have such problems.
 

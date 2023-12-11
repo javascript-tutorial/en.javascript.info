@@ -1,6 +1,6 @@
 # Eval: run a code string
 
-The built-in `eval` function allows to execute a string of code.
+The built-in `eval` function allows us to execute a string of code.
 
 The syntax is:
 
@@ -71,17 +71,17 @@ Without `use strict`, `eval` doesn't have its own lexical environment, so we wou
 
 In modern programming `eval` is used very sparingly. It's often said that "eval is evil".
 
-The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
+The reason is simple: a long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
 
 Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
 
 Please note that its ability to access outer variables has side-effects.
 
-Code minifiers (tools used before JS gets to production, to compress it) rename local variables into shorter ones (like `a`, `b` etc) to make the code smaller. That's usually safe, but not if `eval` is used, as local variables may be accessed from eval'ed code string. So minifiers don't do that renaming for all variables potentially visible from `eval`. That negatively affects code compression ratio.
+Code minifiers (tools used before JS gets to production, to compress it) rename local variables into shorter ones (like `a`, `b` etc) to make the code smaller. That's usually safe, but not if `eval` is used, as local variables may be accessed from an eval'ed code string. So minifiers don't do that renaming for all variables potentially visible from `eval`. That negatively affects code compression ratio.
 
 Using outer local variables inside `eval` is also considered a bad programming practice, as it makes maintaining the code more difficult.
 
-There are two ways how to be totally safe from such problems.
+There are two ways to be totally safe from such problems.
 
 **If eval'ed code doesn't use outer variables, please call `eval` as `window.eval(...)`:**
 

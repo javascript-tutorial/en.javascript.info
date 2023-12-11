@@ -175,7 +175,7 @@ function loadScript(src, callback) {
 }
 ```
 
-It calls `callback(null, script)` for successful load and `callback(error)` otherwise.
+It calls `callback(null, script)` for a successful load and `callback(error)` otherwise.
 
 The usage:
 ```js

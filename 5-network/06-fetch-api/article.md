@@ -50,7 +50,7 @@ These options govern how `fetch` sets the HTTP `Referer` header.
 
 Usually that header is set automatically and contains the url of the page that made the request. In most scenarios, it's not important at all, sometimes, for security purposes, it makes sense to remove or shorten it.
 
-**The `referrer` option allows to set any `Referer` (within the current origin) or remove it.**
+**The `referrer` option allows us to set any `Referer` (within the current origin) or remove it.**
 
 To send no referrer, set an empty string:
 ```js
@@ -81,7 +81,7 @@ Requests are split into 3 types:
 2. Request to another origin.
 3. Request from HTTPS to HTTP (from safe to unsafe protocol).
 
-Unlike the `referrer` option that allows to set the exact `Referer` value, `referrerPolicy` tells the browser general rules for each request type.
+Unlike the `referrer` option that allows us to set the exact `Referer` value, `referrerPolicy` tells the browser general rules for each request type.
 
 Possible values are described in the [Referrer Policy specification](https://w3c.github.io/webappsec-referrer-policy/):
 
@@ -154,7 +154,7 @@ The `credentials` option specifies whether `fetch` should send cookies and HTTP-
 
 By default, `fetch` requests make use of standard HTTP-caching. That is, it respects the `Expires` and `Cache-Control` headers, sends `If-Modified-Since` and so on. Just like regular HTTP-requests do.
 
-The `cache` options allows to ignore HTTP-cache or fine-tune its usage:
+The `cache` options allows us to ignore HTTP-cache or fine-tune its usage:
 
 - **`"default"`** -- `fetch` uses standard HTTP-cache rules and headers,
 - **`"no-store"`** -- totally ignore HTTP-cache, this mode becomes the default if we set a header `If-Modified-Since`, `If-None-Match`, `If-Unmodified-Since`, `If-Match`, or `If-Range`,
@@ -167,15 +167,15 @@ The `cache` options allows to ignore HTTP-cache or fine-tune its usage:
 
 Normally, `fetch` transparently follows HTTP-redirects, like 301, 302 etc.
 
-The `redirect` option allows to change that:
+The `redirect` option allows us to change that:
 
 - **`"follow"`** -- the default, follow HTTP-redirects,
 - **`"error"`** -- error in case of HTTP-redirect,
-- **`"manual"`** -- allows to process HTTP-redirects manually. In case of redirect, we'll get a special response object, with `response.type="opaqueredirect"` and zeroed/empty status and most other properies.
+- **`"manual"`** -- allows us to process HTTP-redirects manually. In case of redirect, we'll get a special response object, with `response.type="opaqueredirect"` and zeroed/empty status and most other properies.
 
 ## integrity
 
-The `integrity` option allows to check if the response matches the known-ahead checksum.
+The `integrity` option allows us to check if the response matches the known-ahead checksum.
 
 As described in the [specification](https://w3c.github.io/webappsec-subresource-integrity/), supported hash-functions are SHA-256, SHA-384, and SHA-512, there might be others depending on the browser.
 

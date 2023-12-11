@@ -292,7 +292,7 @@ The flattened DOM becomes:
 </custom-menu>
 ```
 
-One might notice that, in a valid DOM, `<li>` must be a direct child of `<ul>`. But that's flattened DOM, it describes how the component is rendered, such thing happens naturally here.
+One might notice that, in a valid DOM, `<li>` must be a direct child of `<ul>`. But that's flattened DOM, it describes how the component is rendered, this happens naturally here.
 
 We just need to add a `click` handler to open/close the list, and the `<custom-menu>` is ready:
 

@@ -197,9 +197,9 @@ In practice, `defer` is used for scripts that need the whole DOM and/or their re
 And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
 
 ```warn header="Page without scripts should be usable"
-Please note: if you're using `defer` or `async`, then user will see the page *before* the script loads.
+Please note: if you're using `defer` or `async`, then the user will see the page *before* the script loads.
 
-In such case, some graphical components are probably not initialized yet.
+In this case, some graphical components are probably not initialized yet.
 
-Don't forget to put "loading" indication and disable buttons that aren't functional yet. Let the user clearly see what he can do on the page, and what's still getting ready.
+Don't forget to put a "loading" indication and disable buttons that aren't functional yet. Let the user clearly see what he can do on the page, and what's still getting ready.
 ```

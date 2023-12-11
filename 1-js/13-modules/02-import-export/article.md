@@ -89,17 +89,17 @@ say.sayHi('John');
 say.sayBye('John');
 ```
 
-At first sight, "import everything" seems such a cool thing, short to write, why should we ever explicitly list what we need to import?
+At first sight, "import everything" seems like such a cool thing, short to write, why should we ever explicitly list what we need to import?
 
-Well, there are few reasons.
+Well, there are a few reasons.
 
 1. Explicitly listing what to import gives shorter names: `sayHi()` instead of `say.sayHi()`.
-2. Explicit list of imports gives better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+2. Explicit lists of imports give a better overview of the code structure: what is used and where. It makes code support and refactoring easier.
 
 ```smart header="Don't be afraid to import too much"
-Modern build tools, such as [webpack](https://webpack.js.org/) and others, bundle modules together and optimize them to speedup loading. They also removed unused imports.
+Modern build tools, such as [webpack](https://webpack.js.org/) and others, bundle modules together and optimize them to speedup loading. They also remove unused imports.
 
-For instance, if you `import * as library` from a huge code library, and then use only few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimzed bundle.
+For instance, if you `import * as library` from a huge code library, and then use only a few methods, then unused ones [will not be included](https://github.com/webpack/webpack/tree/main/examples/harmony-unused#examplejs) into the optimzed bundle.
 ```
 
 ## Import "as"
@@ -300,7 +300,7 @@ That also makes re-export (see below) a little bit easier.
 
 ## Re-export
 
-"Re-export" syntax `export ... from ...` allows to import things and immediately export them (possibly under another name), like this:
+"Re-export" syntax `export ... from ...` allows us to import things and immediately export them (possibly under another name), like this:
 
 ```js
 export {sayHi} from './say.js'; // re-export sayHi
@@ -338,7 +338,7 @@ import {login, logout} from 'auth/index.js'
 
 The "main file", `auth/index.js` exports all the functionality that we'd like to provide in our package.
 
-The idea is that outsiders, other programmers who use our package, should not meddle with its internal structure, search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
+The idea is that outsiders, other programmers who use our package, should not meddle with its internal structure or search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
 
 As the actual exported functionality is scattered among the package, we can import it into `auth/index.js` and export from it:
 

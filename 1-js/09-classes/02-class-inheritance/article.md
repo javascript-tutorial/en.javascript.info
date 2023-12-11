@@ -3,7 +3,7 @@
 
 Class inheritance is a way for one class to extend another class.
 
-So we can create new functionality on top of the existing.
+So we can create new functionality on top of the existing one.
 
 ## The "extends" keyword
 
@@ -55,7 +55,7 @@ rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.hide(); // White Rabbit hides!
 ```
 
-Object of `Rabbit` class have access both to `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
+Objects of `Rabbit` class have access both to `Rabbit` methods, such as `rabbit.hide()`, and also to `Animal` methods, such as `rabbit.run()`.
 
 Internally, `extends` keyword works using the good old prototype mechanics. It sets `Rabbit.prototype.[[Prototype]]` to `Animal.prototype`. So, if a method is not found in `Rabbit.prototype`, JavaScript takes it from `Animal.prototype`.
 
@@ -69,7 +69,7 @@ For instance, to find `rabbit.run` method, the engine checks (bottom-up on the p
 As we can recall from the chapter <info:native-prototypes>, JavaScript itself uses prototypal inheritance for built-in objects. E.g. `Date.prototype.[[Prototype]]` is `Object.prototype`. That's why dates have access to generic object methods.
 
 ````smart header="Any expression is allowed after `extends`"
-Class syntax allows to specify not just a class, but any expression after `extends`.
+Class syntax allows us to specify not just a class, but any expression after `extends`.
 
 For instance, a function call that generates the parent class:
 

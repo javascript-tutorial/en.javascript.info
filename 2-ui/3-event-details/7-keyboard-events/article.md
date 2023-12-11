@@ -2,7 +2,7 @@
 
 Before we get to keyboard, please note that on modern devices there are other ways to "input something". For instance, people use speech recognition (especially on mobile devices) or copy/paste with the mouse.
 
-So if we want to track any input into an `<input>` field, then keyboard events are not enough. There's another event named `input` to track changes of an `<input>` field, by any means. And it may be a better choice for such task. We'll cover it later in the chapter <info:events-change-input>.
+So if we want to track any input into an `<input>` field, then keyboard events are not enough. There's another event named `input` to track changes of an `<input>` field, by any means. And it may be a better choice for such a task. We'll cover it later in the chapter <info:events-change-input>.
 
 Keyboard events should be used when we want to handle keyboard actions (virtual keyboard also counts). For instance, to react on arrow keys `key:Up` and `key:Down` or hotkeys (including combinations of keys).
 
@@ -24,11 +24,11 @@ Try different key combinations in the text field.
 
 ## Keydown and keyup
 
-The `keydown` events happens when a key is pressed down, and then `keyup` -- when it's released.
+The `keydown` event happens when a key is pressed down, and then `keyup` -- when it's released.
 
 ### event.code and event.key
 
-The `key` property of the event object allows to get the character, while the `code` property of the event object allows to get the "physical key code".
+The `key` property of the event object allows us to get the character, while the `code` property of the event object allows us to get the "physical key code".
 
 For instance, the same key `key:Z` can be pressed with or without `key:Shift`. That gives us two different characters: lowercase `z` and uppercase `Z`.
 
@@ -43,7 +43,7 @@ The `event.key` is exactly the character, and it will be different. But `event.c
 If a user works with different languages, then switching to another language would make a totally different character instead of `"Z"`. That will become the value of `event.key`, while `event.code` is always the same: `"KeyZ"`.
 
 ```smart header="\"KeyZ\" and other key codes"
-Every key has the code that depends on its location on the keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
+Every key has the code that depends on its location on the keyboard. Key codes are described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
 
 For instance:
 - Letter keys have codes `"Key<letter>"`: `"KeyA"`, `"KeyB"` etc.
@@ -99,7 +99,7 @@ For the same key, US layout has "Z", while German layout has "Y" (letters are sw
 
 Literally, `event.code` will equal `KeyZ` for people with German layout when they press `key:Y`.
 
-If we check `event.code == 'KeyZ'` in our code, then for people with German layout such test will pass when they press `key:Y`.
+If we check `event.code == 'KeyZ'` in our code, then for people with German layout such a test will pass when they press `key:Y`.
 
 That sounds really odd, but so it is. The [specification](https://www.w3.org/TR/uievents-code/#table-key-code-alphanumeric-writing-system) explicitly mentions such behavior.
 
@@ -107,11 +107,11 @@ So, `event.code` may match a wrong character for unexpected layout. Same letters
 
 To reliably track layout-dependent characters, `event.key` may be a better way.
 
-On the other hand, `event.code` has the benefit of staying always the same, bound to the physical key location. So hotkeys that rely on it work well even in case of a language switch.
+On the other hand, `event.code` has the benefit of always staying the same, bound to the physical key location. So hotkeys that rely on it work well even in case of a language switch.
 
 Do we want to handle layout-dependant keys? Then `event.key` is the way to go.
 
-Or we want a hotkey to work even after a language switch? Then `event.code` may be better.
+Or do we want a hotkey to work even after a language switch? Then `event.code` may be better.
 
 ## Auto-repeat
 

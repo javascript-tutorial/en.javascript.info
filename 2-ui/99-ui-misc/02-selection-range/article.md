@@ -26,7 +26,7 @@ let range = new Range();
 
 Then we can set the selection boundaries using `range.setStart(node, offset)` and `range.setEnd(node, offset)`.
 
-As you might guess, further we'll use the `Range` objects for selection, but first let's create few such objects.
+As you might guess, further we'll use the `Range` objects for selection, but first let's create a few such objects.
 
 ### Selecting the text partially
 
@@ -321,7 +321,7 @@ There also exist methods to compare ranges, but these are rarely used. When you 
 
 We may create `Range` objects, pass them around -- they do not visually select anything on their own.
 
-The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`. A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows to select multiple ranges in the document by using `key:Ctrl+click` (`key:Cmd+click` for Mac).
+The document selection is represented by `Selection` object, that can be obtained as `window.getSelection()` or `document.getSelection()`. A selection may include zero or more ranges. At least, the [Selection API specification](https://www.w3.org/TR/selection-api/) says so. In practice though, only Firefox allows us to select multiple ranges in the document by using `key:Ctrl+click` (`key:Cmd+click` for Mac).
 
 Here's a screenshot of a selection with 3 ranges, made in Firefox:
 
@@ -354,7 +354,7 @@ The main selection properties are:
 
 ```smart header="Selection end/start vs Range"
 
-There's an important differences of a selection anchor/focus compared with a `Range` start/end.
+There are important differences of a selection anchor/focus compared with a `Range` start/end.
 
 As we know, `Range` objects always have their start before the end. 
 
@@ -375,7 +375,7 @@ E.g. if the user starts selecting with mouse and goes from "Example" to "italic"
 
 ## Selection events
 
-There are events on to keep track of selection:
+There are events to keep track of selection:
 
 - `elem.onselectstart` -- when a selection *starts* specifically on element `elem` (or inside it). For instance, when the user presses the mouse button on it and starts to move the pointer.
     - Preventing the default action cancels the selection start. So starting a selection from this element becomes impossible, but the element is still selectable. The visitor just needs to start the selection from elsewhere.

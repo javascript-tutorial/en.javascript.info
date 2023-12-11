@@ -142,7 +142,7 @@ The code below triggers a syntax error:
 let x = 1 && 2 ?? 3; // Syntax error
 ```
 
-The limitation is surely debatable, it was added to the language specification with the purpose to avoid programming mistakes, when people start to switch from `||` to `??`.
+The limitation is surely debatable, it was added to the language specification to help avoid programming mistakes, when people start to switch from `||` to `??`.
 
 Use explicit parentheses to work around it:
 

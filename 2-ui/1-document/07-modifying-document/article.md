@@ -512,7 +512,7 @@ For instance:
 */!*
 ```
 
-So it's kind of unusable at "after loaded" stage, unlike other DOM methods we covered above.
+So it's kind of unusable at the "after loaded" stage, unlike other DOM methods we covered above.
 
 That's the downside.
 
@@ -520,7 +520,7 @@ There's an upside also. Technically, when `document.write` is called while the b
 
 So it works blazingly fast, because there's *no DOM modification* involved. It writes directly into the page text, while the DOM is not yet built.
 
-So if we need to add a lot of text into HTML dynamically, and we're at page loading phase, and the speed matters, it may help. But in practice these requirements rarely come together. And usually we can see this method in scripts just because they are old.
+So if we need to add a lot of text into HTML dynamically, and we're at the page loading phase, and the speed matters, it may help. But in practice these requirements rarely come together. And usually we can see this method in scripts just because they are old.
 
 ## Summary
 

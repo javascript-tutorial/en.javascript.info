@@ -6,7 +6,7 @@ As a general rule, local styles work only inside the shadow tree, and document s
 
 ## :host
 
-The `:host` selector allows to select the shadow host (the element containing the shadow tree).
+The `:host` selector allows us to select the shadow host (the element containing the shadow tree).
 
 For instance, we're making `<custom-dialog>` element that should be centered. For that we need to style the `<custom-dialog>` element itself.
 
@@ -303,7 +303,7 @@ Shadow DOM can include styles, such as `<style>` or `<link rel="stylesheet">`.
 Local styles can affect:
 - shadow tree,
 - shadow host with `:host` and `:host()` pseudoclasses,
-- slotted elements (coming from light DOM), `::slotted(selector)` allows to select  slotted elements themselves, but not their children.
+- slotted elements (coming from light DOM), `::slotted(selector)` allows us to select  slotted elements themselves, but not their children.
 
 Document styles can affect:
 - shadow host (as it lives in the outer document)

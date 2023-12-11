@@ -1,6 +1,6 @@
 # XMLHttpRequest
 
-`XMLHttpRequest` is a built-in browser object that allows to make HTTP requests in JavaScript.
+`XMLHttpRequest` is a built-in browser object that allows us to make HTTP requests in JavaScript.
 
 Despite having the word "XML" in its name, it can operate on any data, not only in XML format. We can upload/download files, track progress and much more.
 

@@ -24,7 +24,7 @@ Here's the implementation of dragging a ball:
 
 ```js
 ball.onmousedown = function(event) {
-  // (1) prepare to moving: make absolute and on top by z-index
+  // (1) prepare for moving: make absolute and on top by z-index
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
 
@@ -87,7 +87,7 @@ In action:
 
 Another important aspect -- we track `mousemove` on `document`, not on `ball`. From the first sight it may seem that the mouse is always over the ball, and we can put `mousemove` on it.
 
-But as we remember, `mousemove` triggers often, but not for every pixel. So after swift move the pointer can jump from the ball somewhere in the middle of document (or even outside of the window).
+But as we remember, `mousemove` triggers often, but not for every pixel. So after a swift move the pointer can jump from the ball somewhere in the middle of document (or even outside of the window).
 
 So we should listen on `document` to catch it.
 
@@ -100,7 +100,7 @@ ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
 ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
 ```
 
-Not bad, but there's a side effect. To initiate the drag'n'drop, we can `mousedown` anywhere on the ball. But if "take" it from its edge, then the ball suddenly "jumps" to become centered under the mouse pointer.
+Not bad, but there's a side effect. To initiate the drag'n'drop, we can `mousedown` anywhere on the ball. But if we "take" it from its edge, then the ball suddenly "jumps" to become centered under the mouse pointer.
 
 It would be better if we keep the initial shift of the element relative to the pointer.
 

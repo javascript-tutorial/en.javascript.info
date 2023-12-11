@@ -89,7 +89,7 @@ The result of a property access `user.hi` is not a function, but a value of Refe
 
 When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`user` in this case).
 
-Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
+Reference type is a special "intermediary" internal type, which lets us pass information from dot `.` to calling parentheses `()`.
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
@@ -105,4 +105,4 @@ That's for the subsequent method call `()` to get the object and set `this` to i
 
 For all other operations, the reference type automatically becomes the property value (a function in our case).
 
-The whole mechanics is hidden from our eyes. It only matters in subtle cases, such as when a method is obtained dynamically from the object, using an expression.
+The whole process is hidden from our eyes. It only matters in subtle cases, such as when a method is obtained dynamically from the object, using an expression.

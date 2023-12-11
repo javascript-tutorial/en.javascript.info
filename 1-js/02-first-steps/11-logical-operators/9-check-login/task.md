@@ -12,7 +12,7 @@ The password is checked as follows:
 
 - If it equals "TheMaster", then show "Welcome!",
 - Another string -- show "Wrong password",
-- For an empty string or cancelled input, show "Canceled"
+- For an empty string or canceled input, show "Canceled"
 
 The schema:
 

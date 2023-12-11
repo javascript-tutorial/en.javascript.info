@@ -430,4 +430,4 @@ alert(`Loading started ${performance.now()}ms ago`);
 // more than 3 digits after the decimal point are precision errors, only the first 3 are correct
 ```
 
-Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.
+Node.js has `microtime` module and other ways. Technically, almost any device and environment allows us to get more precision, it's just not in `Date`.

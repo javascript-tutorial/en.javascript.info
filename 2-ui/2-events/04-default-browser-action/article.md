@@ -129,7 +129,7 @@ By default the browser on `contextmenu` event (right mouse click) shows a contex
 </button>
 ```
 
-Now, in addition to that context menu we'd like to implement document-wide context menu.
+Now, in addition to that context menu we'd like to implement a document-wide context menu.
 
 Upon right click, the closest context menu should show up.
 

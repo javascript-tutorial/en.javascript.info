@@ -91,11 +91,11 @@ user = {
 // Another user in setTimeout!
 ```
 
-The next solution guarantees that such thing won't happen.
+The next solution guarantees that this won't happen.
 
 ## Solution 2: bind
 
-Functions provide a built-in method [bind](mdn:js/Function/bind) that allows to fix `this`.
+Functions provide a built-in method [bind](mdn:js/Function/bind) that lets us fix `this`.
 
 The basic syntax is:
 
@@ -104,7 +104,7 @@ The basic syntax is:
 let boundFunc = func.bind(context);
 ```
 
-The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
+The result of `func.bind(context)` is a special function-like "exotic object", that is callable as a function and transparently passes the call to `func` setting `this=context`.
 
 In other words, calling `boundFunc` is like `func` with fixed `this`.
 
@@ -125,7 +125,7 @@ funcUser(); // John
 */!*
 ```
 
-Here `func.bind(user)` as a "bound variant" of `func`, with fixed `this=user`.
+Here `func.bind(user)` is a "bound variant" of `func`, with fixed `this=user`.
 
 All arguments are passed to the original `func` "as is", for instance:
 
@@ -217,7 +217,7 @@ The full syntax of `bind`:
 let bound = func.bind(context, [arg1], [arg2], ...);
 ```
 
-It allows to bind context as `this` and starting arguments of the function.
+It allows us to bind context as `this` and starting arguments of the function.
 
 For instance, we have a multiplication function `mul(a, b)`:
 

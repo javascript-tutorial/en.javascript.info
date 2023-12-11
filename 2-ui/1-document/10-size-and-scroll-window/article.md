@@ -17,7 +17,7 @@ For instance, this button shows the height of your window:
 ```
 
 ````warn header="Not `window.innerWidth/innerHeight`"
-Browsers also support properties like `window.innerWidth/innerHeight`. They look like what we want, so why not to use them instead?
+Browsers also support properties like `window.innerWidth/innerHeight`. They look like what we want, so why not use them instead?
 
 If there exists a scrollbar, and it occupies some space, `clientWidth/clientHeight` provide the width/height without it (subtract it). In other words, they return the width/height of the visible part of the document, available for the content.
 

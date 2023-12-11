@@ -4,7 +4,7 @@ importance: 2
 
 # Chaining
 
-There's a `ladder` object that allows to go up and down:
+There's a `ladder` object that allows us to go up and down:
 
 ```js
 let ladder = {

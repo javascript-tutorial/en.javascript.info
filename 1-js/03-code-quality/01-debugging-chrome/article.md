@@ -2,7 +2,7 @@
 
 Before writing more complex code, let's talk about debugging.
 
-[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows to trace the code step by step to see what exactly is going on.
+[Debugging](https://en.wikipedia.org/wiki/Debugging) is the process of finding and fixing errors within a script. All modern browsers and most other environments support debugging tools -- a special UI in developer tools that makes debugging much easier. It also allows us to trace the code step by step to see what exactly is going on.
 
 We'll be using Chrome here, because it has enough features, most other browsers have a similar process.
 
@@ -63,7 +63,7 @@ We can always find a list of breakpoints in the right panel. That's useful when 
 - ...And so on.
 
 ```smart header="Conditional breakpoints"
-*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
+*Right click* on the line number allows us to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
 
 That's handy when we need to stop only for a certain variable value or for certain function parameters.
 ```

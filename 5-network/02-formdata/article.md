@@ -81,7 +81,7 @@ for(let [name, value] of formData) {
 
 ## Sending a form with a file
 
-The form is always sent as `Content-Type: multipart/form-data`, this encoding allows to send files. So, `<input type="file">` fields are sent also, similar to a usual form submission.
+The form is always sent as `Content-Type: multipart/form-data`, this encoding allows us to send files. So, `<input type="file">` fields are sent also, similar to a usual form submission.
 
 Here's an example with such form:
 

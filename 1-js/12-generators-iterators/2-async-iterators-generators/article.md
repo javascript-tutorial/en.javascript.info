@@ -75,9 +75,9 @@ To make an object iterable asynchronously:
 3. To iterate over such an object, we should use a `for await (let item of iterable)` loop.
     - Note the `await` word.
 
-As a starting example, let's make an iterable `range` object, similar like the one before, but now it will return values asynchronously, one per second.
+As a starting example, let's make an iterable `range` object, similar to the one before, but now it will return values asynchronously, one per second.
 
-All we need to do is to perform a few replacements in the code above:
+All we need to do is perform a few replacements in the code above:
 
 ```js run
 let range = {
@@ -330,7 +330,7 @@ for await (let commit of fetchCommits("username/repository")) {
 }
 ```
 
-Here's such function, implemented as async generator:
+Here's the function, implemented as an async generator:
 
 ```js
 async function* fetchCommits(repo) {
