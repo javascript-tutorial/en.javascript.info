@@ -204,7 +204,7 @@ In computer science, the data structure that allows this is called [deque](https
     ```js run
     let fruits = ["Orange", "Pear"];
 
-    alert( fruits.unshift('Apple') ); // add "App" in the beginning and return the new array length e.g. 3
+    alert( fruits.unshift('Apple') ); // add "Apple" in the beginning and return the new array length e.g. 3
 
     alert( fruits ); // Apple, Orange, Pear
     ```
