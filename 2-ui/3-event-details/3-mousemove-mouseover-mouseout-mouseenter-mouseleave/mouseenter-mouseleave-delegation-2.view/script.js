@@ -28,8 +28,7 @@ table.onmouseout = function(event) {
   // e.g. from <tr> to another <tr>
   if (!currentElem) return;
 
-  // if we're still inside currentElem
-  // then that's an internal transition – ignore it
+  // if we're still inside currentElem, then that's an internal transition – ignore it
   if (currentElem.contains(event.relatedTarget)) return;
 
   // we left the <td>. really.
