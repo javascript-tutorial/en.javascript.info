@@ -8,7 +8,7 @@ table.onmouseover = function(event) {
   if (currentElem) return;
 
   let target = event.target.closest('td');
-  
+
   // we moved not into a <td> - ignore
   if (!target) return;
 
