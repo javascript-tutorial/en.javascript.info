@@ -2,6 +2,12 @@
 
 Automated testing will be used in further tasks, and it's also widely used in real projects.
 
+```warn header="Advanced topic"
+Writing tests requires a good understanding of JavaScript.
+
+If you are a beginner, you're not required to write tests as of now, but you should know how the procedure works.
+```
+
 ## Why do we need tests?
 
 When we write a function, we can usually imagine what it should do: which parameters give which results.
@@ -18,7 +24,7 @@ For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` wo
 
 That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
 
-**Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.**
+**Tests are entirely separate code from the code being tested. They are developed in parallel to the main code, executing our functions in diverse ways and comparing the results against the expected outcomes.**
 
 ## Behavior Driven Development (BDD)
 
