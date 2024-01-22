@@ -45,9 +45,8 @@ There are two ways to implement it.
     function pow(x, n) {
       if (n == 1) {
         return x;
-      } else {
+      } 
         return x * pow(x, n - 1);
-      }
     }
 
     alert( pow(2, 3) ); // 8
@@ -138,11 +137,10 @@ That's when the function starts to execute. The condition `n == 1` is falsy, so 
 function pow(x, n) {
   if (n == 1) {
     return x;
-  } else {
+  }
 *!*
     return x * pow(x, n - 1);
 */!*
-  }
 }
 
 alert( pow(2, 3) );
@@ -226,9 +224,8 @@ function pow(x, n) {
 *!*
     return x;
 */!*
-  } else {
+  } 
     return x * pow(x, n - 1);
-  }
 }
 ```
 
