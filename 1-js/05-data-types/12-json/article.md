@@ -405,7 +405,7 @@ To decode a JSON-string, we need another method named [JSON.parse](mdn:js/JSON/p
 
 The syntax:
 ```js
-let value = JSON.parse(str, [reviver]);
+let value = JSON.parse(str[, reviver]);
 ```
 
 str
