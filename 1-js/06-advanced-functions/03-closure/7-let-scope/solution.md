@@ -17,7 +17,7 @@ func();
 
 In this example we can observe the peculiar difference between a "non-existing" and "uninitialized" variable.
 
-As you may have read in the article [](info:closure), a variable starts in the "uninitialized" state from the moment when the execution enters a code block (or a function). And it stays uninitalized until the corresponding `let` statement.
+As you may have read in the article [](info:closure), a variable starts in the "uninitialized" state from the moment when the execution enters a code block (or a function). And it stays uninitialized until the corresponding `let` statement.
 
 In other words, a variable technically exists, but can't be used before `let`.
 

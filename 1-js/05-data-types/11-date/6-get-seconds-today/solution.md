@@ -1,4 +1,4 @@
-To get the number of seconds, we can generate a date using the current day and time 00:00:00, then substract it from "now".
+To get the number of seconds, we can generate a date using the current day and time 00:00:00, then subtract it from "now".
 
 The difference is the number of milliseconds from the beginning of the day, that we should divide by 1000 to get seconds:
 

@@ -365,7 +365,7 @@ Our new button extends the built-in one. So it keeps the same styles and standar
 ## References
 
 - HTML Living Standard: <https://html.spec.whatwg.org/#custom-elements>.
-- Compatiblity: <https://caniuse.com/#feat=custom-elementsv1>.
+- Compatibility: <https://caniuse.com/#feat=custom-elementsv1>.
 
 ## Summary
 

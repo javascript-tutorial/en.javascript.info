@@ -112,7 +112,7 @@ Let's update our algorithm:
 
 1. When a visitor presses the button (`mousedown`) - remember the distance from the pointer to the left-upper corner of the ball in variables `shiftX/shiftY`. We'll keep that distance while dragging.
 
-    To get these shifts we can substract the coordinates:
+    To get these shifts we can subtract the coordinates:
 
     ```js
     // onmousedown

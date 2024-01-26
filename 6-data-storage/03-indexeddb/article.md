@@ -21,7 +21,7 @@ We can also use `async/await` with the help of a promise-based wrapper, like <ht
 ```smart header="Where's the data?"
 Technically, the data is usually stored in the visitor's home directory, along with browser settings, extensions, etc.
 
-Different browsers and OS-level users have each their own independant storage.
+Different browsers and OS-level users have each their own independent storage.
 ```
 
 ## Open database
@@ -225,7 +225,7 @@ That's a technical limitation. Outside of the handler we'll be able to add/remov
 To perform a database version upgrade, there are two main approaches:
 
 1. We can implement per-version upgrade functions: from 1 to 2, from 2 to 3, from 3 to 4 etc. Then, in `upgradeneeded` we can compare versions (e.g. old 2, now 4) and run per-version upgrades step by step, for every intermediate version (2 to 3, then 3 to 4).
-2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existance. And then we can do updates depending on what exists and what doesn't.
+2. Or we can just examine the database: get a list of existing object stores as `db.objectStoreNames`. That object is a [DOMStringList](https://html.spec.whatwg.org/multipage/common-dom-interfaces.html#domstringlist) that provides `contains(name)` method to check for existence. And then we can do updates depending on what exists and what doesn't.
 
 For small databases the second variant may be simpler.
 

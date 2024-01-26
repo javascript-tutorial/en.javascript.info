@@ -1,4 +1,4 @@
-To get the time from `date` till now -- let's substract the dates.
+To get the time from `date` till now -- let's subtract the dates.
 
 ```js run demo
 function formatDate(date) {
