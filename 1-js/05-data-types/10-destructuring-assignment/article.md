@@ -5,18 +5,18 @@ The two most used data structures in JavaScript are `Object` and `Array`.
 - Objects allow us to create a single entity that stores data items by key.
 - Arrays allow us to gather data items into an ordered list.
 
-However, when we pass those to a function, it may need not to be an object/array as a whole. It may need individual pieces.
+However, when we pass these to a function, we may not need all of it. The function might only require certain elements or properties.
 
 *Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient.
 
-Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
+Destructuring also works well with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
 
 ## Array destructuring
 
 Here's an example of how an array is destructured into variables:
 
 ```js
-// we have an array with the name and surname
+// we have an array with a name and surname
 let arr = ["John", "Smith"]
 
 *!*
@@ -40,10 +40,10 @@ alert(firstName); // John
 alert(surname);  // Smith
 ```
 
-As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
+As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples to understand it better.
 
 ````smart header="\"Destructuring\" does not mean \"destructive\"."
-It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+It's called "destructuring assignment," because it "destructurizes" by copying items into variables. However, the array itself is not modified.
 
 It's just a shorter way to write:
 ```js
@@ -65,7 +65,7 @@ let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic
 alert( title ); // Consul
 ```
 
-In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
+In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items are also skipped (as there are no variables for them).
 ````
 
 ````smart header="Works with any iterable on the right-side"
@@ -95,9 +95,9 @@ alert(user.surname); // Smith
 ````
 
 ````smart header="Looping with .entries()"
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+In the previous chapter, we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
 
-We can use it with destructuring to loop over keys-and-values of an object:
+We can use it with destructuring to loop over the keys-and-values of an object:
 
 ```js run
 let user = {
@@ -105,7 +105,7 @@ let user = {
   age: 30
 };
 
-// loop over keys-and-values
+// loop over the keys-and-values
 *!*
 for (let [key, value] of Object.entries(user)) {
 */!*
@@ -169,7 +169,7 @@ If we'd like also to gather all that follows -- we can add one more parameter th
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
 *!*
-// rest is array of items, starting from the 3rd one
+// rest is an array of items, starting from the 3rd one
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
@@ -187,7 +187,7 @@ let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Ro
 
 ### Default values
 
-If the array is shorter than the list of variables at the left, there'll be no errors. Absent values are considered undefined:
+If the array is shorter than the list of variables on the left, there will be no errors. Absent values are considered undefined:
 
 ```js run
 *!*
