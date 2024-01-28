@@ -139,7 +139,7 @@ All mouse events provide coordinates in two flavours:
 
 We already covered the difference between them in the chapter <info:coordinates>.
 
-In short, document-relative coordinates `pageX/Y` are counted from the left-upper corner of the document, and do not change when the page is scrolled, while `clientX/Y` are counted from the current window left-upper corner. When the page is scrolled, they change.
+In short, document-relative coordinates `pageX/Y` are counted from the left-upper corner of the document, and do change when the page is scrolled, while `clientX/Y` are counted from the current window left-upper corner. When the page is scrolled, they do not change.
 
 For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`, no matter how the page is scrolled. 
 
