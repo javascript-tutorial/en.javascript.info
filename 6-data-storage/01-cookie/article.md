@@ -214,7 +214,7 @@ The cookie `samesite` option provides another way to protect from such attacks, 
 
 It has two possible values:
 
-- **`samesite=strict` (same as `samesite` without value)**
+- **`samesite=strict`**
 
 A cookie with `samesite=strict` is never sent if the user comes from outside the same site.
 
@@ -230,7 +230,7 @@ When a user follows a legitimate link to `bank.com`, like from their own notes, 
 
 We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then, a person coming from outside of the site will see a welcome, but payments must be initiated from the bank's website, for the second cookie to be sent.
 
-- **`samesite=lax`**
+- **`samesite=lax` (same as `samesite` without value)**
 
 A more relaxed approach that also protects from XSRF and doesn't break the user experience.
 
