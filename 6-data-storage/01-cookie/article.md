@@ -6,13 +6,13 @@ Cookies are usually set by a web-server using the response `Set-Cookie` HTTP-hea
 
 One of the most widespread use cases is authentication:
 
-1. Upon sign in, the server uses the `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
-2. Next time when the request is sent to the same domain, the browser sends the cookie over the net using the `Cookie` HTTP-header.
+1. Upon sign-in, the server uses the `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
+2. Next time the request is sent to the same domain, the browser sends the cookie over the net using the `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
 We can also access cookies from the browser, using `document.cookie` property.
 
-There are many tricky things about cookies and their options. In this chapter we'll cover them in detail.
+There are many tricky things about cookies and their options. In this chapter, we'll cover them in detail.
 
 ## Reading from document.cookie
 
@@ -35,7 +35,7 @@ The value of `document.cookie` consists of `name=value` pairs, delimited by `;â€
 
 To find a particular cookie, we can split `document.cookie` by `;â€ƒ`, and then find the right name. We can use either a regular expression or array functions to do that.
 
-We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
+We leave it as an exercise for the reader. Also, at the end of the chapter, you'll find helper functions to manipulate cookies.
 
 ## Writing to document.cookie
 
@@ -50,12 +50,12 @@ document.cookie = "user=John"; // update only cookie named 'user'
 alert(document.cookie); // show all cookies
 ```
 
-If you run it, then probably you'll see multiple cookies. That's because the `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
+If you run it, you will likely see multiple cookies. That's because the `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
 
 Technically, name and value can have any characters. To keep the valid formatting, they should be escaped using a built-in `encodeURIComponent` function:
 
 ```js run
-// special characters (spaces), need encoding
+// special characters (spaces) need encoding
 let name = "my name";
 let value = "John Smith"
 
@@ -67,12 +67,12 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 
 ```warn header="Limitations"
-There are few limitations:
+There are a few limitations:
 - The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on the browser.
 ```
 
-Cookies have several options, many of them are important and should be set.
+Cookies have several options, many of which are important and should be set.
 
 The options are listed after `key=value`, delimited by `;`, like this:
 
@@ -86,7 +86,7 @@ document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 
 The url path prefix must be absolute. It makes the cookie accessible for pages under that path. By default, it's the current path.
 
-If a cookie is set with `path=/admin`, it's visible at pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
+If a cookie is set with `path=/admin`, it's visible on pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
 
 Usually, we should set `path` to the root: `path=/` to make the cookie accessible from all website pages.
 
@@ -102,7 +102,7 @@ It's a safety restriction, to allow us to store sensitive data in cookies that s
 
 By default, a cookie is accessible only at the domain that set it.
 
-Please note, by default a cookie is also not shared to a subdomain as well, such as `forum.site.com`.
+Please note, by default, a cookie is also not shared to a subdomain as well, such as `forum.site.com`.
 
 ```js
 // if we set a cookie at site.com website...
@@ -114,7 +114,7 @@ alert(document.cookie); // no user
 
 ...But this can be changed. If we'd like to allow subdomains like `forum.site.com` to get a cookie set at `site.com`, that's possible.
 
-For that to happen, when setting a cookie at `site.com`, we should explicitly set the `domain` option to the root domain: `domain=site.com`. Then all subdomains will see such cookie.
+For that to happen, when setting a cookie at `site.com`, we should explicitly set the `domain` option to the root domain: `domain=site.com`. Then all subdomains will see such a cookie.
 
 For example:
 
@@ -141,7 +141,7 @@ To let cookies survive a browser close, we can set either the `expires` or `max-
 
 - **`expires=Tue, 19 Jan 2038 03:14:07 GMT`**
 
-The cookie expiration date defines the time, when the browser will automatically delete it.
+The cookie expiration date defines the time when the browser will automatically delete it.
 
 The date must be exactly in this format, in the GMT timezone. We can use `date.toUTCString` to get it. For instance, we can set the cookie to expire in 1 day:
 
@@ -194,17 +194,17 @@ To understand how it works and when it's useful, let's take a look at XSRF attac
 
 ### XSRF attack
 
-Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request, so that it recognizes you and performs all sensitive financial operations.
+Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request so that it recognizes you and performs all sensitive financial operations.
 
 Now, while browsing the web in another window, you accidentally come to another site `evil.com`. That site has JavaScript code that submits a form `<form action="https://bank.com/pay">` to `bank.com` with fields that initiate a transaction to the hacker's account.
 
-The browser sends cookies every time you visit the site `bank.com`, even if the form was submitted from `evil.com`. So the bank recognizes you and actually performs the payment.
+The browser sends cookies every time you visit the site `bank.com`, even if the form was submitted from `evil.com`. So the bank recognizes you and performs the payment.
 
 ![](cookie-xsrf.svg)
 
 That's a so-called "Cross-Site Request Forgery" (in short, XSRF) attack.
 
-Real banks are protected from it of course. All forms generated by `bank.com` have a special field, a so-called "XSRF protection token", that an evil page can't generate or extract from a remote page. It can submit a form there, but can't get the data back. The site `bank.com` checks for such token in every form it receives.
+Real banks are protected from it of course. All forms generated by `bank.com` have a special field, a so-called "XSRF protection token", that an evil page can't generate or extract from a remote page. It can submit a form there, but can't get the data back. The site `bank.com` checks for such a token in every form it receives.
 
 Such a protection takes time to implement though. We need to ensure that every form has the required token field, and we must also check all requests.
 
@@ -218,17 +218,17 @@ It has two possible values:
 
 A cookie with `samesite=strict` is never sent if the user comes from outside the same site.
 
-In other words, whether a user follows a link from their mail or submits a form from `evil.com`, or does any operation that originates from another domain, the cookie is not sent.
+In other words, whether a user follows a link from their email, submits a form from `evil.com`, or does any operation that originates from another domain, the cookie is not sent.
 
-If authentication cookies have the `samesite` option, then a XSRF attack has no chances to succeed, because a submission from `evil.com` comes without cookies. So `bank.com` will not recognize the user and will not proceed with the payment.
+If authentication cookies have the `samesite` option, then an XSRF attack has no chance of succeeding, because a submission from `evil.com` comes without cookies. So `bank.com` will not recognize the user and will not proceed with the payment.
 
 The protection is quite reliable. Only operations that come from `bank.com` will send the `samesite` cookie, e.g. a form submission from another page at `bank.com`.
 
 Although, there's a small inconvenience.
 
-When a user follows a legitimate link to `bank.com`, like from their own notes, they'll be surprised that `bank.com` does not recognize them. Indeed, `samesite=strict` cookies are not sent in that case.
+When a user follows a legitimate link to `bank.com`, like from their notes, they'll be surprised that `bank.com` does not recognize them. Indeed, `samesite=strict` cookies are not sent in that case.
 
-We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then, a person coming from outside of the site will see a welcome, but payments must be initiated from the bank's website, for the second cookie to be sent.
+We could work around that by using two cookies: one for "general recognition", only to say: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then, a person coming from outside of the site will see a welcome, but payments must be initiated from the bank's website, for the second cookie to be sent.
 
 - **`samesite=lax` (same as `samesite` without value)**
 
@@ -239,13 +239,13 @@ Lax mode, just like `strict`, forbids the browser to send cookies when coming fr
 A `samesite=lax` cookie is sent if both of these conditions are true:
 1. The HTTP method is "safe" (e.g. GET, but not POST).
 
-    The full list of safe HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231#section-4.2.1). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
+    The full list of safe HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231#section-4.2.1). These are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
 
 2. The operation performs a top-level navigation (changes URL in the browser address bar).
 
     That's usually true, but if the navigation is performed in an `<iframe>`, then it's not top-level. Also, JavaScript methods for network requests do not perform any navigation, hence they don't fit.
 
-So, what `samesite=lax` does, is to basically allow the most common "go to URL" operation to have cookies. E.g. opening a website link from notes that satisfy these conditions.
+So, what `samesite=lax` does, is to allow the most common "go to URL" operation to have cookies. E.g. opening a website link from notes that satisfy these conditions.
 
 But anything more complicated, like a network request from another site or a form submission, loses cookies.
 
@@ -259,7 +259,7 @@ There's a drawback:
 
 **So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
 
-But we surely can use `samesite` together with other protection measures, like xsrf tokens, to add an additional layer of defence and then, in the future, when old browsers die out, we'll probably be able to drop xsrf tokens.
+But we surely can use `samesite` together with other protection measures, like xsrf tokens, to add layer of defence and then, in the future, when old browsers die out, we'll probably be able to drop xsrf tokens.
 
 ## httpOnly
 
