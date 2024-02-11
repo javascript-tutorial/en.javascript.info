@@ -31,9 +31,9 @@ alert( document.cookie ); // cookie1=value1; cookie2=value2;...
 ```
 
 
-The value of `document.cookie` consists of `name=value` pairs, delimited by `; `. Each one is a separate cookie.
+The value of `document.cookie` consists of `name=value` pairs, delimited by `; `. Each one is a separate cookie.
 
-To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
+To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
 
 We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
 
@@ -214,7 +214,7 @@ The cookie `samesite` option provides another way to protect from such attacks, 
 
 It has two possible values:
 
-- **`samesite=strict` (same as `samesite` without value)**
+- **`samesite=strict`**
 
 A cookie with `samesite=strict` is never sent if the user comes from outside the same site.
 
@@ -230,7 +230,7 @@ When a user follows a legitimate link to `bank.com`, like from their own notes, 
 
 We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then, a person coming from outside of the site will see a welcome, but payments must be initiated from the bank's website, for the second cookie to be sent.
 
-- **`samesite=lax`**
+- **`samesite=lax` (same as `samesite` without value)**
 
 A more relaxed approach that also protects from XSRF and doesn't break the user experience.
 
@@ -255,7 +255,7 @@ Overall, `samesite` is a great option.
 
 There's a drawback:
 
-- `samesite` is ignored (not supported) by very old browsers, year 2017 or so.
+- `samesite` is ignored (not supported) by very old browsers, the year 2017 or so.
 
 **So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
 
@@ -269,7 +269,7 @@ The web-server uses the `Set-Cookie` header to set a cookie. Also, it may set th
 
 This option forbids any JavaScript access to the cookie. We can't see such a cookie or manipulate it using `document.cookie`.
 
-That's used as a precaution measure, to protect from certain attacks when a hacker injects his own JavaScript code into a page and waits for a user to visit that page. That shouldn't be possible at all, hackers should not be able to inject their code into our site, but there may be bugs that let them do it.
+This is used as a precautionary measure, to protect from certain attacks when a hacker injects his own JavaScript code into a page and waits for a user to visit that page. That shouldn't be possible at all, hackers should not be able to inject their code into our site, but there may be bugs that let them do it.
 
 
 Normally, if such a thing happens, and a user visits a web-page with hacker's JavaScript code, then that code executes and gains access to `document.cookie` with user cookies containing authentication information. That's bad.
