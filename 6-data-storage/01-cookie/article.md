@@ -41,7 +41,7 @@ We leave it as an exercise for the reader. Also, at the end of the chapter, you'
 
 We can write to `document.cookie`. But it's not a data property, it's an [accessor (getter/setter)](info:property-accessors). An assignment to it is treated specially.
 
-**A write operation to `document.cookie` updates only cookies mentioned in it, but doesn't touch other cookies.**
+**A write operation to `document.cookie` updates only the cookie mentioned in it and doesn't touch other cookies.**
 
 For instance, this call sets a cookie with the name `user` and value `John`:
 
@@ -68,6 +68,7 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 ```warn header="Limitations"
 There are a few limitations:
+- You can only set/update a single cookie at a time using `document.cookie`.
 - The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on the browser.
 ```
@@ -79,16 +80,6 @@ The options are listed after `key=value`, delimited by `;`, like this:
 ```js run
 document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 ```
-
-## path
-
-- **`path=/mypath`**
-
-The url path prefix must be absolute. It makes the cookie accessible for pages under that path. By default, it's the current path.
-
-If a cookie is set with `path=/admin`, it's visible on pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
-
-Usually, we should set `path` to the root: `path=/` to make the cookie accessible from all website pages.
 
 ## domain
 
@@ -102,7 +93,7 @@ It's a safety restriction, to allow us to store sensitive data in cookies that s
 
 By default, a cookie is accessible only at the domain that set it.
 
-Please note, by default, a cookie is also not shared to a subdomain as well, such as `forum.site.com`.
+Please note, by default, a cookie is not shared with a subdomain, such as `forum.site.com`.
 
 ```js
 // if we set a cookie at site.com website...
@@ -129,19 +120,31 @@ document.cookie = "user=John; *!*domain=site.com*/!*"
 alert(document.cookie); // has cookie user=John
 ```
 
-For historical reasons, `domain=.site.com` (with a dot before `site.com`) also works the same way, allowing access to the cookie from subdomains. That's an old notation and should be used if we need to support very old browsers.
+```warn header="Legacy syntax"
+Historically, `domain=.site.com` (with a dot before `site.com`) used to work the same way, allowing access to the cookie from subdomains. Leading dots in domain names are now ignored, but some browsers may decline to set the cookie containing such dots.
+```
 
 To summarize, the `domain` option allows to make a cookie accessible at subdomains.
 
+## path
+
+- **`path=/mypath`**
+
+The url path prefix must be absolute. It makes the cookie accessible for pages under that path. By default, it's the current path.
+
+If a cookie is set with `path=/admin`, it's visible on pages `/admin` and `/admin/something`, but not at `/home`, `/home/admin` or `/`.
+
+Usually, we should set `path` to the root: `path=/` to make the cookie accessible from all website pages. If this option is not set the default is calculated using [this method](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies#path_default_value).
+
 ## expires, max-age
 
-By default, if a cookie doesn't have one of these options, it disappears when the browser is closed. Such cookies are called "session cookies"
+By default, if a cookie doesn't have one of these options, it disappears when the browser/tab is closed. Such cookies are called "session cookies"
 
-To let cookies survive a browser close, we can set either the `expires` or `max-age` option.
+To let cookies survive a browser close, we can set either the `expires` or `max-age` option. `max-Age` has precedence if both are set.
 
 - **`expires=Tue, 19 Jan 2038 03:14:07 GMT`**
 
-The cookie expiration date defines the time when the browser will automatically delete it.
+The cookie expiration date defines the time when the browser will automatically delete it (according to the browser's time zone).
 
 The date must be exactly in this format, in the GMT timezone. We can use `date.toUTCString` to get it. For instance, we can set the cookie to expire in 1 day:
 
