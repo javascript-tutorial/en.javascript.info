@@ -422,7 +422,7 @@ GDPR is not only about cookies, it is about other privacy-related issues too, bu
 ## Summary
 
 `document.cookie` provides access to cookies.
-- Write operations modify only cookies mentioned in it.
+- Write operations modify only the cookie mentioned in it.
 - Name/value must be encoded.
 - One cookie may not exceed 4KB in size. The number of cookies allowed on a domain is around 20+ (varies by browser).
 
