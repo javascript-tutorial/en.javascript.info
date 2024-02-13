@@ -262,7 +262,7 @@ There's a drawback:
 
 **So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
 
-But we surely can use `samesite` together with other protection measures, like xsrf tokens, to add a layer of defence and then, in the future, when old browsers die out, we'll probably be able to drop xsrf tokens.
+But we can use `samesite` together with other protection measures, like xsrf tokens, to add a layer of defence and then, in the future, when old browsers die out, we'll probably be able to drop xsrf tokens.
 
 ## httpOnly
 
