@@ -75,7 +75,6 @@ For example, a square root is an exponentiation by ½:
 
 ```js run
 alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
-alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 ```
 
 
