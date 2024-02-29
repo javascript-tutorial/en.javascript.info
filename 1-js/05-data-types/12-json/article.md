@@ -178,7 +178,7 @@ Here, the conversion fails, because of circular reference: `room.occupiedBy` ref
 The full syntax of `JSON.stringify` is:
 
 ```js
-let json = JSON.stringify(value[, replacer, space])
+let json = JSON.stringify(value, [replacer, space])
 ```
 
 value
