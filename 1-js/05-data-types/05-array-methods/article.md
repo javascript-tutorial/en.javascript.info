@@ -96,6 +96,18 @@ arr.splice(2, 0, "complex", "language");
 
 alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 ```
+````smart header="toSpliced"
+A new method `toSpliced` is available that works like `splice` but does not mutate the original array(it is the [copying](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#copying_methods_and_mutating_methods) version of the `splice`). Instead, it returns a new array with the desired changes.
+
+```js run
+let arr = ["I", "study", "JavaScript"];
+
+const splicedArr = arr.toSpliced(1, 1); // from index 1 remove 1 element
+
+alert(arr);        // ["I", "study", "JavaScript"]
+alert(splicedArr); // ["I", "JavaScript"]
+```
+````
 
 ````smart header="Negative indexes allowed"
 Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
@@ -505,6 +517,20 @@ alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,
 ```
 ````
 
+````smart header="toSorted"
+A new method `toSorted` is available that works like `sort` but does not mutate the original array(it is the [copying](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#copying_methods_and_mutating_methods) version of the `sort`). Instead, it returns a new array with the sorted elements.
+
+```js run
+let numbers = [3, 2, 1];
+
+const sortedNumbers = numbers.toSorted();
+
+alert(numbers);       // [3, 2, 1]
+alert(sortedNumbers); // [1, 2, 3]
+```
+````
+
+
 ### reverse
 
 The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
@@ -519,6 +545,19 @@ alert( arr ); // 5,4,3,2,1
 ```
 
 It also returns the array `arr` after the reversal.
+
+````smart header="toReversed"
+A new method `toReversed` is available that works like `reverse` but does not mutate the original array(it is the [copying](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#copying_methods_and_mutating_methods) version of the `reverse`). Instead, it returns a new array with the reversed elements.
+
+```js run
+let arr = [3, 2, 1];
+
+const reversedArr = arr.toReversed();
+
+alert(arr);         // [3, 2, 1]
+alert(reversedArr); // [1, 2, 3]
+```
+````
 
 ### split and join
 
