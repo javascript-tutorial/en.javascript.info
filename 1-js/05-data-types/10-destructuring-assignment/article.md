@@ -449,7 +449,7 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+All properties of `options` object except `extra` which is absent in the left part, are assigned to corresponding variables:
 
 ![](destructuring-complex.svg)
 
@@ -459,7 +459,7 @@ Note that there are no variables for `size` and `items`, as we take their conten
 
 ## Smart function parameters
 
-There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, an item list and so on.
 
 Here's a bad way to write such a function:
 
@@ -469,7 +469,7 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-In real-life, the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+In real-life, the problem is how to remember the order of arguments. Usually, IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
 
 Like this?
 
@@ -534,7 +534,7 @@ function({
 })
 ```
 
-Then, for an object of parameters, there will be a variable `varName` for property `incomingProperty`, with `defaultValue` by default.
+Then, for an object of parameters, there will be a variable `varName` for the property `incomingProperty`, with `defaultValue` by default.
 
 Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
 
@@ -561,7 +561,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 - Destructuring assignment allows for instantly mapping an object or array onto many variables.
 - The full object syntax:
     ```js
-    let {prop : varName = default, ...rest} = object
+    let {prop : varName = defaultValue, ...rest} = object
     ```
 
     This means that property `prop` should go into the variable `varName` and, if no such property exists, then the `default` value should be used.
@@ -571,9 +571,9 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 - The full array syntax:
 
     ```js
-    let [item1 = default, item2, ...rest] = array
+    let [item1 = defaultValue, item2, ...rest] = array
     ```
 
-    The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
+    The first item goes to `item1`; the second goes into `item2`, and all the rest makes the array `rest`.
 
 - It's possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.
