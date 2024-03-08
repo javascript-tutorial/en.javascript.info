@@ -354,7 +354,7 @@ So we should add a couple of lines to `pow`:
 function pow(x, n) {
 *!*
   if (n < 0) return NaN;
-  if (Math.round(n) != n) return NaN;
+  if ((n - n % 1) != n) return NaN;
 */!*
 
   let result = 1;

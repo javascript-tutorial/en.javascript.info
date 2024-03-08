@@ -406,6 +406,6 @@ We covered 3 types of loops:
 
 To make an "infinite" loop, usually the `while(true)` construct is used. Such a loop, just like any other, can be stopped with the `break` directive.
 
-If we don't want to do anything in the current iteration and would like to forward to the next one, we can use the `continue` directive.
+If we don't want to do anything in the current iteration and would like to move forward to the next one, we can use the `continue` directive.
 
 `break/continue` support labels before the loop. A label is the only way for `break/continue` to escape a nested loop to go to an outer one.
