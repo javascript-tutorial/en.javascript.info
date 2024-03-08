@@ -52,7 +52,7 @@ l. __You__ means the individual or entity exercising the Licensed Rights under t
 
 a. ___License grant.___
 
-   1. Subject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to exercise the Licensed Rights in the Licensed Material to:
+   1. Subject to the terms and conditions of this Public License, the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive license to exercise the Licensed Rights in the Licensed Material to:
 
        A. reproduce and Share the Licensed Material, in whole or in part, for NonCommercial purposes only; and
 
@@ -64,13 +64,7 @@ a. ___License grant.___
 
    4. __Media and formats; technical modifications allowed.__ The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this Public License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.
 
-   5. __Downstream recipients.__
-
-        A. __Offer from the Licensor – Licensed Material.__ Every recipient of the Licensed Material automatically receives an offer from the Licensor to exercise the Licensed Rights under the terms and conditions of this Public License.
-
-        B. __No downstream restrictions.__ You may not offer or impose any additional or different terms or conditions on, or apply any Effective Technological Measures to, the Licensed Material if doing so restricts exercise of the Licensed Rights by any recipient of the Licensed Material.
-
-   6. __No endorsement.__ Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
+   5. __No endorsement.__ Nothing in this Public License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
 
 b. ___Other rights.___
 
@@ -88,21 +82,13 @@ a. ___Attribution.___
 
    1. If You Share the Licensed Material (including in modified form), You must:
 
-       A. retain the following if it is supplied by the Licensor with the Licensed Material:
+       A. attribute the Licensor by adding:
 
          i. identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);
 
-         ii. a copyright notice;
-
-         iii. a notice that refers to this Public License;
-
-         iv. a notice that refers to the disclaimer of warranties;
-
-         v. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
+         ii. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
 
        B. indicate if You modified the Licensed Material and retain an indication of any previous modifications; and
-
-       C. indicate the Licensed Material is licensed under this Public License, and include the text of, or the URI or hyperlink to, this Public License.
 
    2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
 
@@ -142,9 +128,11 @@ b. Where Your right to use the Licensed Material has terminated under Section 6(
 
    For the avoidance of doubt, this Section 6(b) does not affect any right the Licensor may have to seek remedies for Your violations of this Public License.
 
-c. For the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.
+c. Notwithstanding the above, the Licensor reserves the right to terminate this Public License with respect to You if the Licensor expressly notifies You of the termination, provided that such termination shall only apply to the party to whom the notice of termination is addressed.
 
-d. Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
+d. For the avoidance of doubt, the Licensor may also offer the Licensed Material under separate terms or conditions or stop distributing the Licensed Material at any time; however, doing so will not terminate this Public License.
+
+e. Sections 1, 5, 6, 7, and 8 survive termination of this Public License.
 
 ### Section 7 – Other Terms and Conditions.
 
