@@ -21,7 +21,7 @@ let answer3 = [coords.left + field.clientLeft, coords.top + field.clientTop];
 
 # Right-bottom inner corner
 
-In our case we need to substract the border size from the outer coordinates.
+In our case we need to subtract the border size from the outer coordinates.
 
 We could use CSS way:
 

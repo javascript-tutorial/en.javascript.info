@@ -30,7 +30,7 @@ Here's the picture:
 
 We have `event.clientX/clientY` -- window-relative coordinates of the click.
 
-To get field-relative `left` coordinate of the click, we can substract the field left edge and the border width:
+To get field-relative `left` coordinate of the click, we can subtract the field left edge and the border width:
 
 ```js
 let left = event.clientX - fieldCoords.left - field.clientLeft;

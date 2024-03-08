@@ -69,7 +69,7 @@ Only the one with truly good intuition will be able to understand such names. Tr
 ```quote author="Laozi (Tao Te Ching)"
 The great square is cornerless<br>
 The great vessel is last complete,<br>
-The great note is rarified sound,<br>
+The great note is rarefied sound,<br>
 The great image has no form.
 ```
 

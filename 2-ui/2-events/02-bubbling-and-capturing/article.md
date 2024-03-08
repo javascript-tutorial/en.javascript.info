@@ -202,7 +202,7 @@ elem.addEventListener("click", e => alert(2));
 ````
 
 ```smart header="The `event.stopPropagation()` during the capturing also prevents the bubbling"
-The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the futher capturing is stopped, but the bubbling as well.
+The `event.stopPropagation()` method and its sibling `event.stopImmediatePropagation()` can also be called on the capturing phase. Then not only the further capturing is stopped, but the bubbling as well.
 
 In other words, normally the event goes first down ("capturing") and then up ("bubbling"). But if `event.stopPropagation()` is called during the capturing phase, then the event travel stops, no bubbling will occur.
 ```

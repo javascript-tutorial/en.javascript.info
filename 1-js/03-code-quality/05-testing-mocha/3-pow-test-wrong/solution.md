@@ -1,6 +1,6 @@
 The test demonstrates one of the temptations a developer meets when writing tests.
 
-What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
+What we have here is actually 3 tests, but laid out as a single function with 3 asserts.
 
 Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
 
