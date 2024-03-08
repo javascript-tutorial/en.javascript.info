@@ -7,7 +7,7 @@ As of now, we license the tutorial to almost everyone for free under the terms o
 
 ## License (Short)
 
-The license is based on [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/legalcode), it's revocable and exclusive.
+The license is based on [CC-BY-NC](https://creativecommons.org/licenses/by-nc/4.0/legalcode).
 
 It gives the right to:
 - **Share** – copy and redistribute the tutorial in any medium or material.
