@@ -64,7 +64,7 @@ a. ___License grant.___
 
    4. __Media and formats; technical modifications allowed.__ The Licensor authorizes You to exercise the Licensed Rights in all media and formats whether now known or hereafter created, and to make technical modifications necessary to do so. The Licensor waives and/or agrees not to assert any right or authority to forbid You from making technical modifications necessary to exercise the Licensed Rights, including technical modifications necessary to circumvent Effective Technological Measures. For purposes of this License, simply making modifications authorized by this Section 2(a)(4) never produces Adapted Material.
 
-   5. __No endorsement.__ Nothing in this License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3(a)(1)(A)(i).
+   5. __No endorsement.__ Nothing in this License constitutes or may be construed as permission to assert or imply that You are, or that Your use of the Licensed Material is, connected with, or sponsored, endorsed, or granted official status by, the Licensor or others designated to receive attribution as provided in Section 3.
 
 b. ___Other rights.___
 
@@ -84,9 +84,9 @@ Your exercise of the Licensed Rights is expressly made subject to the following 
 
    ii. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
 
-2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
+2. You may satisfy the conditions in Section 3(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
 
-3. If requested by the Licensor, You must remove any of the information required by Section 3(a)(1) to the extent reasonably practicable.
+3. If requested by the Licensor, You must remove any of the information required by Section 3(1) to the extent reasonably practicable.
 
 ### Section 4 – Sui Generis Database Rights.
 
@@ -96,7 +96,7 @@ a. for the avoidance of doubt, Section 2(a)(1) grants You the right to extract, 
 
 b. if You include all or a substantial portion of the database contents in a database in which You have Sui Generis Database Rights, then the database in which You have Sui Generis Database Rights (but not its individual contents) is Adapted Material; and
 
-c. You must comply with the conditions in Section 3(a) if You Share all or a substantial portion of the contents of the database.
+c. You must comply with the conditions in Section 3 if You Share all or a substantial portion of the contents of the database.
 
 For the avoidance of doubt, this Section 4 supplements and does not replace Your obligations under this License where the Licensed Rights include other Copyright and Similar Rights.
 
