@@ -78,17 +78,15 @@ b. ___Other rights.___
 
 Your exercise of the Licensed Rights is expressly made subject to the following conditions.
 
-a. ___Attribution.___
+1. If You Share the Licensed Material (including in modified form), You must attribute the Licensor by adding:
 
-   1. If You Share the Licensed Material (including in modified form), You must attribute the Licensor by adding:
+   i. identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);
 
-      i. identification of the creator(s) of the Licensed Material and any others designated to receive attribution, in any reasonable manner requested by the Licensor (including by pseudonym if designated);
+   ii. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
 
-      ii. a URI or hyperlink to the Licensed Material to the extent reasonably practicable;
+2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
 
-   2. You may satisfy the conditions in Section 3(a)(1) in any reasonable manner based on the medium, means, and context in which You Share the Licensed Material. For example, it may be reasonable to satisfy the conditions by providing a URI or hyperlink to a resource that includes the required information.
-
-   3. If requested by the Licensor, You must remove any of the information required by Section 3(a)(1) to the extent reasonably practicable.
+3. If requested by the Licensor, You must remove any of the information required by Section 3(a)(1) to the extent reasonably practicable.
 
 ### Section 4 – Sui Generis Database Rights.
 
