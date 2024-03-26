@@ -40,10 +40,10 @@ console.log(7);
 
 To summarize,
 
-1. Numbers `1` и `7` show up immediately, because simple `console.log` calls don't use any queues.
+1. Numbers `1` and `7` show up immediately, because simple `console.log` calls don't use any queues.
 2. Then, after the main code flow is finished, the microtask queue runs.
     - It has commands: `console.log(3); setTimeout(...4); console.log(5)`.
-    - Numbers `3` и `5` show up, while `setTimeout(() => console.log(4))` adds the `console.log(4)` call to the end of the macrotask queue.
+    - Numbers `3` and `5` show up, while `setTimeout(() => console.log(4))` adds the `console.log(4)` call to the end of the macrotask queue.
     - The macrotask queue is now: `console.log(2); console.log(6); console.log(4)`.
 3. After the microtask queue becomes empty, the macrotask queue executes. It outputs `2`, `6`, `4`.
 
