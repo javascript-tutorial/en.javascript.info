@@ -145,7 +145,7 @@ The page can be divided into five parts:
 
 The result:
 
-[iframe height=250 src="pow-1.view/index.html" border=1 edit]
+[iframe height=250 src="pow-1.view/pow-1.png" border=1 edit]
 
 As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
@@ -336,7 +336,7 @@ Testing finished – after all tests (after)
 [edit src="beforeafter" title="Open the example in the sandbox."]
 
 Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
-````
+
 
 ## Extending the spec
 
