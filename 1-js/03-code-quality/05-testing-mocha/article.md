@@ -93,7 +93,7 @@ These libraries are suitable for both in-browser and server-side testing. Here w
 
 The full HTML page with these frameworks and `pow` spec:
 
-```html src="index.html"
+```html src="./index.html"
 ```
 
 The page can be divided into five parts:
