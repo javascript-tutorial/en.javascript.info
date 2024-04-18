@@ -145,7 +145,7 @@ The page can be divided into five parts:
 
 The result:
 
-[iframe height=250 src="pow-1.view/pow-1.png" border=1 edit]
+![Pow1](./pow-1.view/pow-1.png)
 
 As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
