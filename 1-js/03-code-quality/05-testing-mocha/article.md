@@ -300,7 +300,8 @@ The nested `describe` defines a new "subgroup" of tests. In the output we can se
 
 In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
 
-We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
+```smart header="`before/after` and `beforeEach/afterEach`"
+We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.```
 
 For instance:
 
@@ -334,7 +335,7 @@ Testing finished – after all tests (after)
 
 ![beforeafter](./beforeafter.view/beforeafter.png)
 
-Please open the beforeafter.view/index.html file.
+Please open the `beforeafter.view/index.html` file
 
 Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
 
