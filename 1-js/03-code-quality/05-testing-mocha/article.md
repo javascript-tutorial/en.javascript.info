@@ -59,7 +59,7 @@ A spec has three main building blocks that you can see above:
 `assert.equal(value1, value2)`
 : The code inside `it` block, if the implementation is correct, should execute without errors.
 
-Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
+    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
 
 The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
 
