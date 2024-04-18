@@ -145,7 +145,7 @@ The page can be divided into five parts:
 
 The result:
 
-![Pow1](./pow-1.view/pow-1.png)
+![pow-1](./pow-1.view/pow-1.png)
 
 As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
 
@@ -163,7 +163,7 @@ function pow(x, n) {
 
 Wow, now it works!
 
-[iframe height=250 src="pow-min" border=1 edit]
+![pow-min](./pow-min.view/pow-min.png)
 
 ## Improving the spec
 
@@ -219,7 +219,7 @@ So let's continue with the second variant.
 
 The result:
 
-[iframe height=250 src="pow-2" edit border="1"]
+![pow-2](./pow-2.view/pow-2.png)
 
 As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
 
@@ -260,7 +260,7 @@ describe("pow", function() {
 
 The result:
 
-[iframe height=250 src="pow-3" edit border="1"]
+![pow-3](./pow-3.view/pow-3.png)
 
 ## Nested describe
 
@@ -296,7 +296,7 @@ describe("pow", function() {
 
 The nested `describe` defines a new "subgroup" of tests. In the output we can see the titled indentation:
 
-[iframe height=250 src="pow-4" edit border="1"]
+![pow-4](./pow-4.view/pow-4.png)
 
 In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
 
@@ -333,7 +333,7 @@ After a test – exit a test   (afterEach)
 Testing finished – after all tests (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox."]
+![beforeafter](./beforeafter.view/beforeafter.png)
 
 Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
 
@@ -370,7 +370,7 @@ describe("pow", function() {
 
 The result with new tests:
 
-[iframe height=530 src="pow-nan" edit border="1"]
+![pow-nan](./pow-nan.view/pow-nan.png)
 
 The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
 
@@ -408,7 +408,7 @@ function pow(x, n) {
 
 Now it works, all tests pass:
 
-[iframe height=300 src="pow-full" edit border="1"]
+![pow-full](./pow-full.view/pow-full.png)
 
 [edit src="pow-full" title="Open the full final example in the sandbox."]
 
