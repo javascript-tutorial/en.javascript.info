@@ -5,18 +5,18 @@ The two most used data structures in JavaScript are `Object` and `Array`.
 - Objects allow us to create a single entity that stores data items by key.
 - Arrays allow us to gather data items into an ordered list.
 
-Although, when we pass those to a function, it may need not be an object/array as a whole. It may need individual pieces.
+However, when we pass these to a function, we may not need all of it. The function might only require certain elements or properties.
 
 *Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes that's more convenient.
 
-Destructuring also works great with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
+Destructuring also works well with complex functions that have a lot of parameters, default values, and so on. Soon we'll see that.
 
 ## Array destructuring
 
 Here's an example of how an array is destructured into variables:
 
 ```js
-// we have an array with the name and surname
+// we have an array with a name and surname
 let arr = ["John", "Smith"]
 
 *!*
@@ -40,10 +40,10 @@ alert(firstName); // John
 alert(surname);  // Smith
 ```
 
-As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
+As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples to understand it better.
 
 ````smart header="\"Destructuring\" does not mean \"destructive\"."
-It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
+It's called "destructuring assignment," because it "destructurizes" by copying items into variables. However, the array itself is not modified.
 
 It's just a shorter way to write:
 ```js
@@ -65,7 +65,7 @@ let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic
 alert( title ); // Consul
 ```
 
-In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
+In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items are also skipped (as there are no variables for them).
 ````
 
 ````smart header="Works with any iterable on the right-side"
@@ -95,9 +95,9 @@ alert(user.surname); // Smith
 ````
 
 ````smart header="Looping with .entries()"
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+In the previous chapter, we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
 
-We can use it with destructuring to loop over keys-and-values of an object:
+We can use it with destructuring to loop over the keys-and-values of an object:
 
 ```js run
 let user = {
@@ -105,7 +105,7 @@ let user = {
   age: 30
 };
 
-// loop over keys-and-values
+// loop over the keys-and-values
 *!*
 for (let [key, value] of Object.entries(user)) {
 */!*
@@ -169,7 +169,7 @@ If we'd like also to gather all that follows -- we can add one more parameter th
 let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
 
 *!*
-// rest is array of items, starting from the 3rd one
+// rest is an array of items, starting from the 3rd one
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
@@ -187,7 +187,7 @@ let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Ro
 
 ### Default values
 
-If the array is shorter than the list of variables at the left, there'll be no errors. Absent values are considered undefined:
+If the array is shorter than the list of variables on the left, there will be no errors. Absent values are considered undefined:
 
 ```js run
 *!*
@@ -418,7 +418,7 @@ alert( title ); // Menu
 
 ## Nested destructuring
 
-If an object or an array contain other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+If an object or an array contains other nested objects and arrays, we can use more complex left-side patterns to extract deeper portions.
 
 In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern on the left side of the assignment has the same structure to extract values from them:
 
@@ -449,7 +449,7 @@ alert(item1);  // Cake
 alert(item2);  // Donut
 ```
 
-All properties of `options` object except `extra` that is absent in the left part, are assigned to corresponding variables:
+All properties of `options` object except `extra` which is absent in the left part, are assigned to corresponding variables:
 
 ![](destructuring-complex.svg)
 
@@ -459,9 +459,9 @@ Note that there are no variables for `size` and `items`, as we take their conten
 
 ## Smart function parameters
 
-There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+There are times when a function has many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, an item list and so on.
 
-Here's a bad way to write such function:
+Here's a bad way to write such a function:
 
 ```js
 function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
@@ -469,7 +469,7 @@ function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
 }
 ```
 
-In real-life, the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
+In real-life, the problem is how to remember the order of arguments. Usually, IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
 
 Like this?
 
@@ -534,7 +534,7 @@ function({
 })
 ```
 
-Then, for an object of parameters, there will be a variable `varName` for property `incomingProperty`, with `defaultValue` by default.
+Then, for an object of parameters, there will be a variable `varName` for the property `incomingProperty`, with `defaultValue` by default.
 
 Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
 
@@ -561,7 +561,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 - Destructuring assignment allows for instantly mapping an object or array onto many variables.
 - The full object syntax:
     ```js
-    let {prop : varName = default, ...rest} = object
+    let {prop : varName = defaultValue, ...rest} = object
     ```
 
     This means that property `prop` should go into the variable `varName` and, if no such property exists, then the `default` value should be used.
@@ -571,9 +571,9 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 - The full array syntax:
 
     ```js
-    let [item1 = default, item2, ...rest] = array
+    let [item1 = defaultValue, item2, ...rest] = array
     ```
 
-    The first item goes to `item1`; the second goes into `item2`, all the rest makes the array `rest`.
+    The first item goes to `item1`; the second goes into `item2`, and all the rest makes the array `rest`.
 
 - It's possible to extract data from nested arrays/objects, for that the left side must have the same structure as the right one.
