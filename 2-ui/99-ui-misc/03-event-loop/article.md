@@ -30,7 +30,7 @@ Tasks are set -- the engine handles them -- then waits for more tasks (while sle
 
 It may happen that a task comes while the engine is busy, then it's enqueued.
 
-The tasks form a queue, the so-called "macrotask queue" (v8 term):
+The tasks form a queue, the so-called "macrotask queue" ([v8](https://v8.dev/) term):
 
 ![](eventLoop.svg)
 
