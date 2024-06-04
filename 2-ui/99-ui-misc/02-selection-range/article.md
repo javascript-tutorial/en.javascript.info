@@ -354,7 +354,7 @@ The main selection properties are:
 
 ```smart header="Selection end/start vs Range"
 
-There's an important differences of a selection anchor/focus compared with a `Range` start/end.
+There's an important difference between a selection anchor/focus compared with a `Range` start/end.
 
 As we know, `Range` objects always have their start before the end. 
 
