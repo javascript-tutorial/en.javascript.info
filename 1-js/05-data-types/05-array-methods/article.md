@@ -767,7 +767,7 @@ A cheat sheet of array methods:
 - Additionally:
   - `Array.isArray(value)` checks `value` for being an array, if so returns `true`, otherwise `false`.
 
-Please note that methods `sort`, `reverse` and `splice` modify the array itself.
+Please note that methods `push`, `pop`, `shift`, `unshift`, `sort`, `reverse` and `splice` modify the array itself.
 
 These methods are the most used ones, they cover 99% of use cases. But there are few others:
 
