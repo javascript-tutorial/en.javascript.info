@@ -80,7 +80,7 @@ That works, because internally a destructuring assignment works by iterating ove
 ````
 
 
-````smart header="Assign to anything at the left-side"
+````smart header="Assign to anything on the left-side"
 We can use any "assignables" on the left side.
 
 For instance, an object property:
