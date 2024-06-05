@@ -1,6 +1,6 @@
 # Catastrophic backtracking
 
-Some regular expressions are looking simple, but can execute a veeeeeery long time, and even "hang" the JavaScript engine.
+Some regular expressions look simple, but can execute a veeeeeery long time, and even "hang" the JavaScript engine.
 
 Sooner or later most developers occasionally face such behavior. The typical symptom -- a regular expression works fine sometimes, but for certain strings it "hangs", consuming 100% of CPU.
 
@@ -244,7 +244,7 @@ Modern regular expression engines support possessive quantifiers for that. Regul
 
 Possessive quantifiers are in fact simpler than "regular" ones. They just match as many as they can, without any backtracking. The search process without backtracking is simpler.
 
-There are also so-called "atomic capturing groups" - a way to disable backtracking inside parentheses.
+There are also so-called "atomic groups" - a way to disable backtracking inside parentheses.
 
 ...But the bad news is that, unfortunately, in JavaScript they are not supported.
 
@@ -266,7 +266,7 @@ Let's decipher it:
 
 That is: we look ahead - and if there's a word `pattern:\w+`, then match it as `pattern:\1`.
 
-Why? That's because the lookahead finds a word `pattern:\w+` as a whole and we capture it into the pattern with `pattern:\1`. So we essentially implemented a possessive plus `pattern:+` quantifier. It captures only the whole word `pattern:\w+`, not a part of it.
+Why? That's because the lookahead finds a word `pattern:\w+` as a whole and we capture it into the pattern with `pattern:\1`. So we essentially implemented an atomic group. It captures only the whole word `pattern:\w+`, not a part of it.
 
 For instance, in the word `subject:JavaScript` it may not only match `match:Java`, but leave out `match:Script` to match the rest of the pattern.
 
@@ -283,7 +283,7 @@ alert( "JavaScript".match(/(?=(\w+))\1Script/)); // null
 We can put a more complex regular expression into `pattern:(?=(\w+))\1` instead of `pattern:\w`, when we need to forbid backtracking for `pattern:+` after it.
 
 ```smart
-There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](https://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](https://blog.stevenlevithan.com/archives/mimic-atomic-groups).
+The [`regex`](https://github.com/slevithan/regex) package adds support for atomic groups to native JavaScript regexps. There's also more about the relation between atomic groups and lookahead in articles [Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](https://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](https://blog.stevenlevithan.com/archives/mimic-atomic-groups).
 ```
 
 Let's rewrite the first example using lookahead to prevent backtracking:
