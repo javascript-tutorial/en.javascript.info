@@ -41,7 +41,7 @@ The [arr.splice](mdn:js/Array/splice) method is a Swiss army knife for arrays. I
 The syntax is:
 
 ```js
-arr.splice(start[, deleteCount, elem1, ..., elemN])
+arr.splice(start, deleteCount, elem1, ..., elemN)
 ```
 
 It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
