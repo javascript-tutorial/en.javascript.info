@@ -59,7 +59,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     // anything with canEat property is an animal
     class Animal {
       static [Symbol.hasInstance](obj) {
-        if (obj.canEat) return true;
+        if ('canEat' in obj) return true;
       }
     }
 
