@@ -16,12 +16,15 @@ Please note that such thing doesn't happen in case of a simple assignment `this.
 
 ```js run
 let hamster = {
-  stomach: [],
-
+*!*
+  // stomach: [], (*)
+*/!*
   eat(food) {
 *!*
-    // assign to this.stomach instead of this.stomach.push
-    this.stomach = [food];
+    // assign to this.stomach for all of those prototypically Objects if not found
+    if (!this.stomach) this.stomach = [] // (**)
+    // push a new "food" to stomach array 
+    this.stomach.push(food);
 */!*
   }
 };
