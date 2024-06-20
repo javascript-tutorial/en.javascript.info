@@ -200,7 +200,7 @@ And here's the working logic, as it was described, after replacing mouse events 
 
 In the mouse event based solution, to track all pointer movements, including when it goes above/below the `thumb`, we had to assign `mousemove` event handler on the whole `document`.
 
-That's not a cleanest solution, though. One of the problems is that when a user moves the pointer around the document, it may trigger event handlers (such as  `mouseover`) on some other elements, invoke totally unrelated UI functionality, and we don't want that.
+That's not a clean solution, though. One of the problems is that when a user moves the pointer around the document, it may trigger event handlers (such as  `mouseover`) on some other elements, invoke totally unrelated UI functionality, and we don't want that.
 
 This is the place where `setPointerCapture` comes into play.
 
