@@ -63,7 +63,7 @@ We can always find a list of breakpoints in the right panel. That's useful when 
 - ...And so on.
 
 ```smart header="Conditional breakpoints"
-*Right click* on the line number allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
+Clicking on the pen icon (*Edit condition*) allows to create a *conditional* breakpoint. It only triggers when the given expression, that you should provide when you create it, is truthy.
 
 That's handy when we need to stop only for a certain variable value or for certain function parameters.
 ```
