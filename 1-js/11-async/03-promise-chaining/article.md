@@ -323,6 +323,8 @@ That is, the `.then` handler in line `(*)` now returns `new Promise`, that becom
 
 As a good practice, an asynchronous action should always return a promise. That makes it possible to plan actions after it; even if we don't plan to extend the chain now, we may need it later.
 
+As an aside, for readers who are mystified as to why the `img` disappears from the page only after the alert dialog is closed, there's a subtlety with DOM painting that's explained in the article about the JavaScript [event loop](/event-loop).
+
 Finally, we can split the code into reusable functions:
 
 ```js run
