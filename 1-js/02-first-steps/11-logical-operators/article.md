@@ -241,7 +241,10 @@ So we basically have an analogue for:
 ```js run
 let x = 1;
 
-if (x > 0) alert( 'Greater than zero!' );
+if (x > 0) 
+{
+  alert( 'Greater than zero!' );
+}  
 ```
 
 Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
