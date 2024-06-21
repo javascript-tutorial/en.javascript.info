@@ -1,11 +1,11 @@
 
 
 ```js run demo
-let userName = prompt("Who's there?", '');
+const userName = prompt("Who's there?", '');
 
 if (userName === 'Admin') {
 
-  let pass = prompt('Password?', '');
+  const pass = prompt('Password?', '');
 
   if (pass === 'TheMaster') {
     alert( 'Welcome!' );
@@ -23,3 +23,6 @@ if (userName === 'Admin') {
 ```
 
 Note the vertical indents inside the `if` blocks. They are technically not required, but make the code more readable.
+
+Also Note that I used `const` to declare `userName` and `pass` because we are not modifying them in further code and
+we don't want them to accidentally get modified.
