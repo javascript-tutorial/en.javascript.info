@@ -162,7 +162,7 @@ For a non-strict check `==`
     alert( null == undefined ); // true
     ```
 
-For maths and other comparisons `< , > , <= , >=`: **null / undefined** are converted to numbers, `null` becomes `0`, while `undefined` becomes `NaN`.
+For maths and other comparisons `< , > , <= , >=`: **null / undefined** are converted to numbers. `null` becomes `0`, while `undefined` becomes `NaN`.
 
 For equality `== , === , !== , != ` : **null / undefined** are not converted to numbers , they stay as it is.
 
