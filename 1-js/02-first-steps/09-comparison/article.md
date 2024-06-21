@@ -37,7 +37,7 @@ alert( result ); // true
 
 ## String comparison
 
-To see whether a string is greater than another, JavaScript uses the so-called "dictionary" or "lexicographical" order.
+To see whether a string is greater or less than another, JavaScript uses the so-called "dictionary" or "lexicographical" order.
 
 In other words, strings are compared letter-by-letter.
 
@@ -52,7 +52,7 @@ alert( 'Bee' > 'Be' ); // true
 The algorithm to compare two strings is simple:
 
 1. Compare the first character of both strings.
-2. If the first character from the first string is greater (or less) than the other string's, then the first string is greater (or less) than the second. We're done.
+2. If the first character of first string is greater (or less) than the first character of other string, then we compare those two characters for result.
 3. Otherwise, if both strings' first characters are the same, compare the second characters the same way.
 4. Repeat until the end of either string.
 5. If both strings end at the same length, then they are equal. Otherwise, the longer string is greater.
@@ -162,8 +162,9 @@ For a non-strict check `==`
     alert( null == undefined ); // true
     ```
 
-For maths and other comparisons `< > <= >=`
-: `null/undefined` are converted to numbers: `null` becomes `0`, while `undefined` becomes `NaN`.
+For maths and other comparisons `< , > , <= , >=`: **null / undefined** are converted to numbers, `null` becomes `0`, while `undefined` becomes `NaN`.
+
+For equality `== , === , !== , != ` : **null / undefined** are not converted to numbers , they stay as it is.
 
 Now let's see some funny things that happen when we apply these rules. And, what's more important, how to not fall into a trap with them.
 
@@ -211,6 +212,6 @@ Why did we go over these examples? Should we remember these peculiarities all th
 
 - Comparison operators return a boolean value.
 - Strings are compared letter-by-letter in the "dictionary" order.
-- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
+- When values of different types are compared, they get converted to numbers, except for the case of `null/undefined` with equality operators `== , === , != , !==` and if both operands are String.
 - The values `null` and `undefined` equal `==` each other and do not equal any other value.
 - Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
