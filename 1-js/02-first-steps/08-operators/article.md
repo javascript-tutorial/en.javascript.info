@@ -26,7 +26,7 @@ Before we move on, let's grasp some common terminology.
     alert( y - x ); // 2, binary minus subtracts values
     ```
 
-    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
+    Formally, in the examples above we have two different operators that share the same symbol: the negation operator , a unary operator that reverses the sign `x = -x;`, and the subtraction operator, a binary operator that subtracts one number from another `y - x`.
 
 ## Maths
 
@@ -109,7 +109,7 @@ Here's a more complex example:
 alert(2 + 2 + '1' ); // "41" and not "221"
 ```
 
-Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
+Here, operators work one after another starting from left ,because a expression is evaluated from left to right if all operators are of same priority/precedence. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
 
 ```js run
 alert('1' + 2 + 2); // "122" and not "14"
@@ -351,23 +351,23 @@ To see the difference, here's an example:
 
 ```js run
 let counter = 1;
-let a = ++counter; // (*)
+let a = ++counter; 
 
 alert(a); // *!*2*/!*
 ```
 
-In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
+In the 2nd line of code above, the *prefix* form `++counter` increments `counter` and returns the incremented value, `2`. So now `a` as well as `counter` contains `2`, hence `alert(a)` shows `2`.
 
 Now, let's use the postfix form:
 
 ```js run
 let counter = 1;
-let a = counter++; // (*) changed ++counter to counter++
+let a = counter++; // changed ++counter to counter++
 
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
+In the 2nd line of code above, the *postfix* form `counter++` returns the value `1` and then increments the `counter`. So now `a` contains `1` and `counter` is `2`, hence `alert(a)` shows `1`.
 
 To summarize:
 
@@ -467,14 +467,24 @@ Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `
 Why do we need an operator that throws away everything except the last expression?
 
 Sometimes, people use it in more complex constructs to put several actions in one line.
+- In `for` loop's initialization or iteration parts.
+- For multiple varibale declaration and initialization.
+- For `function` arguments ,to pass multiple arguments when we call a function.
 
 For example:
 
 ```js
-// three operations in one line
-for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
+//multiple varibale declaration and initialization
+let x=1, y=2, z=3;
+
+// three initializations in one line and two iterations in one line
+for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++ , b--) {
  ...
 }
+
+//calling function with multiple arguments
+fun1(1, 2, true);
+
 ```
 
 Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
