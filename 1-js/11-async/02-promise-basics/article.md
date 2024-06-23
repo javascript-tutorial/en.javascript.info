@@ -46,7 +46,7 @@ Later we'll see how "fans" can subscribe to these changes.
 
 Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
 
-```js run
+```js
 let promise = new Promise(function(resolve, reject) {
   // the function is executed automatically when the promise is constructed
 
