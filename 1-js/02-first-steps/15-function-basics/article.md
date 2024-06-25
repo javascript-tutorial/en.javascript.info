@@ -1,10 +1,10 @@
 # Functions
 
-Quite often we need to perform a similar action in many places of the script.
+Quite often we find ourselves in need to execute the same action multiple times throughout the script.
 
 For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Functions are the main "building blocks" of the program. They allow the code to be executed multiple times without repeating the code again and again.
 
 We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
 
@@ -24,7 +24,7 @@ The `function` keyword goes first, then goes the *name of the function*, then a 
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
- // body
+ // function body
 }
 ```
 
@@ -47,7 +47,7 @@ The call `showMessage()` executes the code of the function. Here we will see the
 
 This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+If we ever need to change the message or the way it is shown or if we want to change the functionality of a function completely, let's say we want it to do *5\*5* instead of showing a alert, we only need to modify function's body.
 
 ## Local variables
 
@@ -68,6 +68,7 @@ showMessage(); // Hello, I'm JavaScript!
 
 alert( message ); // <-- Error! The variable is local to the function
 ```
+Here in the given example, message is a local variable, which means it exists only within the function scope, i.e., between the curly braces of the function. Outside the function, no one knows it exists, no one can use it, and no one can modify it.
 
 ## Outer variables
 
@@ -124,7 +125,7 @@ function showMessage() {
 // the function will create and use its own userName
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert("Hello "+ userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
 ```
 
 ```smart header="Global variables"
@@ -132,10 +133,24 @@ Variables declared outside of any function, such as the outer `userName` in the 
 
 Global variables are visible from any function (unless shadowed by locals).
 
-It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
+It's a good practice to minimize the use of global variables. Modern code has few or no global variables. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
 ```
 
 ## Parameters
+
+```smart header="Note to people who know languages like Java and C++"
+
+In Java, C++, and many other languages when parameters are defined, their types are also defined along with them.
+That is not the case with JavaScript; in JavaScript, a parameter can receive any kind of value without the need to explicitly define its type.
+
+```java 
+void JavaFun(Type1 para1 , Type2 para2, ...., TypeN paraN){
+  //function body
+}
+```  
+
+In the example above you can see that a java function is defined by the name `JavaFun` and it have a return type and the parameters also have type.
+```
 
 We can pass arbitrary data to functions using parameters.
 
@@ -143,19 +158,19 @@ In the example below, the function has two parameters: `from` and `text`.
 
 ```js run
 function showMessage(*!*from, text*/!*) { // parameters: from, text
-  alert(from + ': ' + text);
+  alert(from + ': ' + text); //parameters getting used in function body
 }
 
 *!*showMessage('Ann', 'Hello!');*/!* // Ann: Hello! (*)
 *!*showMessage('Ann', "What's up?");*/!* // Ann: What's up? (**)
 ```
 
-When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
+When the function is called in lines `(*)` and `(**)`, the given values (Ann , Hello) & (Ann, What's up?) are copied to parameters `from` and `text`. Then the function uses them.
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value:
+Here's one more example: we have a variable `from` that is passed to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value (with exceptions of array , objects and functions, explained later):
 
 ```js run
-function showMessage(from, text) {
+function showMessage(from, text) { //here 'from' and 'text' are parameters
 
 *!*
   from = '*' + from + '*'; // make "from" look nicer
@@ -164,31 +179,30 @@ function showMessage(from, text) {
   alert( from + ': ' + text );
 }
 
-let from = "Ann";
+let Name = "Ann";
 
-showMessage(from, "Hello"); // *Ann*: Hello
+showMessage(Name, "Hello"); // *Ann*: Hello , here 'Name' and 'Hello' are arguments
 
 // the value of "from" is the same, the function modified a local copy
 alert( from ); // Ann
 ```
 
-When a value is passed as a function parameter, it's also called an *argument*.
+When values are passed to a function's parameters, those values are called *arguments*.
 
-In other words, to put these terms straight:
+In simple terms:
 
-- A parameter is the variable listed inside the parentheses in the function declaration (it's a declaration time term).
-- An argument is the value that is passed to the function when it is called (it's a call time term).
+- **Parameters** are the variable listed inside the parentheses of `function showMessage(from , text){...}` during function declaration. (it is a declaration time term).
+- **Arguments** are the value that are passed to the function during call `showMessage('Ann' ,'hello');`, these values are stored in Parameters and gets used in function body (arguments is a call time term).
 
-We declare functions listing their parameters, then call them passing arguments.
 
-In the example above, one might say: "the function `showMessage` is declared with two parameters, then called with two arguments: `from` and `"Hello"`".
+In the example above : "the function `showMessage` is declared with two parameters `from` and `text`, then called with two arguments: `Name` (Name='Ann') and `"Hello"`.
 
 
 ## Default values
 
 If a function is called, but an argument is not provided, then the corresponding value becomes `undefined`.
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+For instance,the earlier mentioned function `showMessage(from, text)` can be called with a single argument:
 
 ```js
 showMessage("Ann");
@@ -196,7 +210,7 @@ showMessage("Ann");
 
 That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
 
-We can specify the so-called "default" (to use if omitted) value for a parameter in the function declaration, using `=`:
+We can specify the "default" value of a parameter during the declaration of function, using `=` operator:
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
@@ -206,64 +220,36 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 showMessage("Ann"); // Ann: no text given
 ```
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`.
+Now if the `text` parameter is not passed a value during call, the default value `"no text given"` will be used.
 
-The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+The default value is also used if the argument passed strictly equals `undefined`, like this:
 
 ```js
 showMessage("Ann", undefined); // Ann: no text given
 ```
 
-Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+In our example above a simple String value `"no text given"` is used, but it can be a more complex expression, which is evaluated and assigned to the parameter if no argument is passed or `undefined` is passed. So, this is also possible:
 
 ```js run
 function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
+  // anotherFunction() is called for a value if nothing is passed to "text" parameter
   // its result becomes the value of text
 }
 ```
 
 ```smart header="Evaluation of default parameters"
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
+In JavaScript, a default parameter is evaluated every time a function is called without the respective arguments.
 
-In the example above, `anotherFunction()` isn't called at all, if the `text` parameter is provided.
+In the example above, `anotherFunction()` isn't called at all, if the `text` parameter is provided a value other than `undefined` , even if the value is an empty string or null.
 
-On the other hand, it's independently called every time when `text` is missing.
+On the other hand, it's independently called every time if `text` is missing or `undefined` is passed to it.
 ```
 
-````smart header="Default parameters in old JavaScript code"
-Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
-
-Nowadays, we can come across them in old scripts.
-
-For example, an explicit check for `undefined`:
-
-```js
-function showMessage(from, text) {
-*!*
-  if (text === undefined) {
-    text = 'no text given';
-  }
-*/!*
-
-  alert( from + ": " + text );
-}
-```
-
-...Or using the `||` operator:
-
-```js
-function showMessage(from, text) {
-  // If the value of text is falsy, assign the default value
-  // this assumes that text == "" is the same as no text at all
-  text = text || 'no text given';
-  ...
-}
-```
-````
 
 
 ### Alternative default parameters
+
+Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them, they are still widely used for different scenarios.
 
 Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
 
@@ -294,6 +280,7 @@ function showMessage(text) {
   ...
 }
 ```
+Both of these approaches were commonly used before additional methods for default parameters were added to JavaScript.
 
 Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when most falsy values, such as `0`, should be considered "normal":
 
@@ -307,6 +294,8 @@ showCount(0); // 0
 showCount(null); // unknown
 showCount(); // unknown
 ```
+
+In conclusion, you will use old methods along with the new ones for different scenarios, because the old ones are still useful for many cases.
 
 ## Returning a value
 
@@ -395,16 +384,16 @@ For a long expression in `return`, it might be tempting to put it on a separate 
 return
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
-That doesn't work, because JavaScript assumes a semicolon after `return`. That'll work the same as:
+It won't work because JavaScript will automatically insert a semicolon after return, assuming it's the end of the line. So, the code actually becomes:
 
 ```js
 return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 
-So, it effectively becomes an empty return.
+Now, what you have is an empty return.
 
-If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
+If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`, or at least place the opening parentheses there. This makes it clear that the line is not complete until the closing parentheses is provided:
 
 ```js
 return (
@@ -465,6 +454,11 @@ For example, the [jQuery](https://jquery.com/) framework defines a function with
 These are exceptions. Generally function names should be concise and descriptive.
 ```
 
+As for the Naming rules, they are same as variable naming rules
+ 
+- Function names can contain letters (A-Z, a-z), digits (0-9), underscores (`_`), and dollar signs (`$`).
+- The first character of a function name must be a letter, an underscore (`_`), or a dollar sign (`$`).
+
 ## Functions == Comments
 
 Functions should be short and do exactly one thing. If that thing is big, maybe it's worth it to split the function into a few smaller functions. Sometimes following this rule may not be that easy, but it's definitely a good thing.
@@ -512,6 +506,19 @@ The second variant is easier to understand, isn't it? Instead of the code piece 
 
 So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
 
+## Call by Value / Call by Reference
+
+As stated in the Parameters section, when values are passed to a function, their copies are assigned to the parameters. Any modifications to these parameters within the function body do not affect the original values passed as arguments. Although this is always true technically in JavaScript, practical behavior can differ.
+
+There are two ways to pass a value:
+
+- **Call by Value** - When a value is passed to a function and a copy of that value is made, any modification to the value within the function does not affect the original value. This is called `call by value`.
+- **Call by Reference** - When a value is passed to a function and, instead of making a copy, the original value is used in the function, any modification to the value within the function affects the original value. This is called `call by reference`.
+
+In JavaScript, values are always passed by value. That is, a copy of the value is made and any modification to the value within the function does not affect the original value. However, the complication arises when the value passed is not the actual value but a memory address or reference to the value. Modifying the value using that address/reference affects the original value, effectively causing `call by reference`.
+
+In JavaScript, `Arrays` and `Objects`(discussed in detail in later chapters) are such values that are not actual values but references to the addresses of the values. When they are passed as arguments, their address or reference is copied to the parameters, effectively referring to the same values. Consequently, any modification now affects the original data.
+
 ## Summary
 
 A function declaration looks like this:
@@ -522,7 +529,7 @@ function name(parameters, delimited, by, comma) {
 }
 ```
 
-- Values passed to a function as parameters are copied to its local variables.
+- Values passed to a function as arguments are copied to its parameters and used in functions body.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
 - A function can return a value. If it doesn't, then its result is `undefined`.
 
