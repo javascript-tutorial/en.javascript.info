@@ -47,7 +47,7 @@ The call `showMessage()` executes the code of the function. Here we will see the
 
 This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
 
-If we ever need to change the message or the way it is shown or if we want to change the functionality of a function completely, let's say we want it to do *5\*5* instead of showing a alert, we only need to modify function's body.
+If we ever need to change the message or the way it is shown or if we want to change the functionality of a function completely, we only need to modify function's body.
 
 ## Local variables
 
@@ -129,7 +129,7 @@ alert("Hello "+ userName ); // *!*John*/!*, unchanged, the function did not acce
 ```
 
 ```smart header="Global variables"
-Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
+Variables declared outside of any function, such as the outer `userName` in the code above, are called *global* variables.
 
 Global variables are visible from any function (unless shadowed by locals).
 
@@ -149,7 +149,7 @@ void JavaFun(Type1 para1 , Type2 para2, ...., TypeN paraN){
 }
 ```  
 
-In the example above you can see that a java function is defined by the name `JavaFun` and it have a return type and the parameters also have type.
+In the example above you can see that a java function is defined by the name `JavaFun` and it has a return type and the parameters also have type.
 ```
 
 We can pass arbitrary data to functions using parameters.
@@ -167,7 +167,8 @@ function showMessage(*!*from, text*/!*) { // parameters: from, text
 
 When the function is called in lines `(*)` and `(**)`, the given values (Ann , Hello) & (Ann, What's up?) are copied to parameters `from` and `text`. Then the function uses them.
 
-Here's one more example: we have a variable `from` that is passed to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value (with exceptions of array , objects and functions, explained later):
+Here's one more example: 
+we have a variable `Name` that is passed to the function. Please note: the function changes `from` that is passed the value of `Name`, but the change is not seen outside, because a function always gets a copy of the value (with exceptions of array , objects and functions, explained later):
 
 ```js run
 function showMessage(from, text) { //here 'from' and 'text' are parameters
@@ -191,8 +192,8 @@ When values are passed to a function's parameters, those values are called *argu
 
 In simple terms:
 
-- **Parameters** are the variable listed inside the parentheses of `function showMessage(from , text){...}` during function declaration. (it is a declaration time term).
-- **Arguments** are the value that are passed to the function during call `showMessage('Ann' ,'hello');`, these values are stored in Parameters and gets used in function body (arguments is a call time term).
+- **Parameters** are the variable listed inside the parentheses of `function showMessage(from , text){...}` during function declaration. (it is a declaration-time term).
+- **Arguments** are the value that are passed to the function during call `showMessage('Ann' ,'hello');`, these values are stored in Parameters and gets used in function body (arguments is a call-time term).
 
 
 In the example above : "the function `showMessage` is declared with two parameters `from` and `text`, then called with two arguments: `Name` (Name='Ann') and `"Hello"`.
@@ -202,13 +203,14 @@ In the example above : "the function `showMessage` is declared with two paramete
 
 If a function is called, but an argument is not provided, then the corresponding value becomes `undefined`.
 
-For instance,the earlier mentioned function `showMessage(from, text)` can be called with a single argument:
+For instance,the earlier mentioned function `showMessage(from, text)` can be called with a single argument or no argument at all:
 
 ```js
 showMessage("Ann");
+showMessage();
 ```
 
-That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
+That's not an error. Such calls would output `"*Ann*: undefined"` for 1st line and `"*undefined*: undefined"` for 2nd line. Because when the value/s for `from` and `text` are not passed, they become `undefined`.
 
 We can specify the "default" value of a parameter during the declaration of function, using `=` operator:
 
@@ -218,9 +220,18 @@ function showMessage(from, *!*text = "no text given"*/!*) {
 }
 
 showMessage("Ann"); // Ann: no text given
+showMessage(); //User: no text given
 ```
 
-Now if the `text` parameter is not passed a value during call, the default value `"no text given"` will be used.
+Now if second argument is not passed during the call, the default value `"no text given"` will be used for `text` and if both values are not passed during the call then default values will be used for `text` and "undefined" will be used for `from`.
+
+Since the first parameter in function declaration is `from` , first argument will correspond to `from` and similarly `text` will correspond to the second argument passed , their position can't be interchanged during call, it has to be done manually in function declaration.
+
+You can't do :
+```js
+showMessage("hello","Ann"); //hello: Ann
+```
+Expecting the output to be "Ann: hello", because now "hello" is stored in `from` and "Ann" is stored in `text` and used accordingly, giving the output as `hello: Ann`.
 
 The default value is also used if the argument passed strictly equals `undefined`, like this:
 
@@ -242,10 +253,8 @@ In JavaScript, a default parameter is evaluated every time a function is called 
 
 In the example above, `anotherFunction()` isn't called at all, if the `text` parameter is provided a value other than `undefined` , even if the value is an empty string or null.
 
-On the other hand, it's independently called every time if `text` is missing or `undefined` is passed to it.
+On the other hand, it's independently called every time if the argument for `text` is missing or `undefined` is passed to it.
 ```
-
-
 
 ### Alternative default parameters
 
@@ -282,7 +291,7 @@ function showMessage(text) {
 ```
 Both of these approaches were commonly used before additional methods for default parameters were added to JavaScript.
 
-Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when most falsy values, such as `0`, should be considered "normal":
+Modern JavaScript engines support the [nullish coalescing operator](info:nullish-coalescing-operator) `??`, it's better when most falsy values, such as `0`, should be considered as a "normal" values:
 
 ```js run
 function showCount(count) {
@@ -292,7 +301,9 @@ function showCount(count) {
 
 showCount(0); // 0
 showCount(null); // unknown
-showCount(); // unknown
+showCount(); // unknown ,because count===undefined when nothing is passed
+showCount(false); //false
+showCount(undefined) //unknown
 ```
 
 In conclusion, you will use old methods along with the new ones for different scenarios, because the old ones are still useful for many cases.
@@ -508,7 +519,7 @@ So, functions can be created even if we don't intend to reuse them. They structu
 
 ## Call by Value / Call by Reference
 
-As stated in the Parameters section, when values are passed to a function, their copies are assigned to the parameters. Any modifications to these parameters within the function body do not affect the original values passed as arguments. Although this is always true technically in JavaScript, practical behavior can differ.
+As stated in the Parameters section, when values are passed to a function, their copies are assigned to the parameters. Any modifications to these parameters within the function body do not affect the original values passed as arguments. Although, technically this is always true in JavaScript, practical behavior can differ.
 
 There are two ways to pass a value:
 
@@ -531,7 +542,13 @@ function name(parameters, delimited, by, comma) {
 
 - Values passed to a function as arguments are copied to its parameters and used in functions body.
 - A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't, then its result is `undefined`.
+- A function can return any value. If it doesn't, then its result is `undefined`.But remember it can only return one value. You can do as :
+```js
+function Hello(){
+  return "Hello","world" ; 
+}
+```
+while you cannot directly return multiple values from a function, you can encapsulate multiple values within an array or an object and return that composite structure.
 
 To make the code clean and easy to understand, it's recommended to use mainly local variables and parameters in the function, not outer variables.
 
