@@ -20,7 +20,7 @@ switch(x) {
     ...
     [break]
 
-  default:
+  default: // if(X!== value1 && x!==value2)
     ...
     [break]
 }
@@ -79,7 +79,7 @@ switch (a) {
 }
 ```
 
-In the example above we'll see sequential execution of three `alert`s:
+In the example above we'll see sequential execution of three `alerts`:
 
 ```js
 alert( 'Exactly!' );
@@ -87,7 +87,7 @@ alert( 'Too big' );
 alert( "I don't know such values" );
 ```
 
-````smart header="Any expression can be a `switch/case` argument"
+````smart header="Any expression can be a **switch/case** argument"
 Both `switch` and `case` allow arbitrary expressions.
 
 For example:
@@ -141,6 +141,8 @@ Now both `3` and `5` show the same message.
 
 The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
 
+Note that `case 5` have two statements but they are not put inside a code block using curly braces and it still works, because of `switch's` behaviour without `break` . Although, it is recommended to put all the statements of a switch `case` in curly braces (including the break statement) for improving readability, even if there are only two statement and one of them is `break`.
+
 ## Type matters
 
 Let's emphasize that the equality check is always strict. The values must be of the same type to match.
@@ -170,3 +172,6 @@ switch (arg) {
 1. For `0`, `1`, the first `alert` runs.
 2. For `2` the second `alert` runs.
 3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+
+
+**Note :-** `default` can be placed anywhere in the `switch` but for readability purpose it is placed in the last. Another thing to remember is that if you place `default` in the start or middle of other cases , it will require `break` statement, Otherwise the code block of next case will also execute with it. Normally we don't write `break` for default because usually it is the placed in the end. 

@@ -93,8 +93,8 @@ It happens in logical operations (later we'll meet condition tests and other sim
 
 The conversion rule:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
-- Other values become `true`.
+- Everything , except `0` ,`""` (empty string , not even a space between quotes) , `null` ,`undefined` and `NaN` becomes `true` , these five are converted to `false`.
+
 
 For instance:
 
