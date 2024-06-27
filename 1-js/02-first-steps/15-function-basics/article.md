@@ -125,7 +125,7 @@ function showMessage() {
 // the function will create and use its own userName
 showMessage();
 
-alert("Hello "+ userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert("Hello "+ userName ); // *!*Hello John*/!*, unchanged, the function did not access the outer variable
 ```
 
 ```smart header="Global variables"
