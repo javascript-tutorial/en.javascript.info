@@ -1,4 +1,3 @@
-
 # Polyfills and transpilers
 
 The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/).
@@ -33,7 +32,7 @@ A transpiler would analyze our code and rewrite `height ?? 100` into `(height !=
 height = height ?? 100;
 
 // after running the transpiler
-height = (height !== undefined && height !== null) ? height : 100;
+height = height !== undefined && height !== null ? height : 100;
 ```
 
 Now the rewritten code is suitable for older JavaScript engines.
@@ -59,9 +58,10 @@ A script that updates/adds new functions is called "polyfill". It "fills in" the
 For this particular case, the polyfill for `Math.trunc` is a script that implements it, like this:
 
 ```js
-if (!Math.trunc) { // if no such function
+if (!Math.trunc) {
+  // if no such function
   // implement it
-  Math.trunc = function(number) {
+  Math.trunc = function (number) {
     // Math.ceil and Math.floor exist even in ancient JavaScript engines
     // they are covered later in the tutorial
     return number < 0 ? Math.ceil(number) : Math.floor(number);
@@ -72,9 +72,9 @@ if (!Math.trunc) { // if no such function
 JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
 
 Two interesting polyfill libraries are:
-- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-- [polyfill.io](https://polyfill.io/) service that provides a script with polyfills, depending on the features and user's browser.
 
+- [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+- [fastly polyfill](https://polyfill-fastly.io/) service that provides a script with polyfills, depending on the features and user's browser.
 
 ## Summary
 
@@ -85,8 +85,8 @@ Just don't forget to use a transpiler (if using modern syntax or operators) and 
 For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](https://webpack.js.org/) with the [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Good resources that show the current state of support for various features:
+
 - <https://compat-table.github.io/compat-table/es6/> - for pure JavaScript.
 - <https://caniuse.com/> - for browser-related functions.
 
 P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
-
