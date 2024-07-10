@@ -315,7 +315,7 @@ A cross-origin request initiated by JavaScript code by default does not bring an
 
 That's uncommon for HTTP-requests. Usually, a request to `http://site.com` is accompanied by all cookies from that domain. Cross-origin requests made by JavaScript methods on the other hand are an exception.
 
-For example, `fetch('http://another.com')` does not send any cookies, even those  (!) that belong to `another.com` domain.
+For example, `fetch('http://another.com')` does not send any cookies, even those that belong to `another.com` domain.
 
 Why?
 
