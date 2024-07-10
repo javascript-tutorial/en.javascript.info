@@ -73,7 +73,6 @@ JavaScript is a highly dynamic language. Scripts may add/modify any function, ev
 
 Two interesting polyfill libraries are:
 - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
-- [polyfill.io](https://polyfill.io/) service that provides a script with polyfills, depending on the features and user's browser.
 
 
 ## Summary
