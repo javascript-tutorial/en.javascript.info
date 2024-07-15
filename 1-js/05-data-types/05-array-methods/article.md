@@ -505,6 +505,20 @@ alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,
 ```
 ````
 
+#### toSorted
+[recent browser="new"]
+
+The method [arr.toSorted](mdn:js/Array/toSorted) works similarly to the sort method, with one key difference:
+It does not mutate the original array. Instead, it returns a new array that is sorted, leaving the original array unchanged.
+
+For example:
+```js run
+const numbers = [3, 1, 4, 1, 5, 9];
+const sortedNumbers = numbers.toSorted();
+console.log(numbers); // [3, 1, 4, 1, 5, 9]
+console.log(sortedNumbers); // [1, 1, 3, 4, 5, 9]
+```
+
 ### reverse
 
 The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
