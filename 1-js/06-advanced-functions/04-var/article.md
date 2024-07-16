@@ -265,7 +265,7 @@ There exist other ways besides parentheses to tell JavaScript that we mean a Fun
 }()*!*)*/!*;
 
 *!*!*/!*function() {
-  alert("Bitwise NOT operator starts the expression");
+  alert("Logical NOT operator starts the expression");
 }();
 
 *!*+*/!*function() {
