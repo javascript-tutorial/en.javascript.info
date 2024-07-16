@@ -31,7 +31,7 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     
     Now why do all such functions show the same value, `10`?
     
-    That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
+    That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer Environment Record.
     
     Then, what will be the value of `i`?
     
@@ -52,13 +52,13 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     }
     ```
     
-    We can see that all `shooter` functions are created in the lexical environment of `makeArmy()` function. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (`while` stops at `i=10`).
+    We can see that all `shooter` functions are created in the Environment Record of `makeArmy()` function. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (`while` stops at `i=10`).
     
-    As the result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
+    As the result, all `shooter` functions get the same value from the outer Environment Record and that is, the last value, `i=10`.
     
     ![](lexenv-makearmy-empty.svg)
     
-    As you can see above, on each iteration of a `while {...}` block, a new lexical environment is created. So, to fix this, we can copy the value of `i` into a variable within the `while {...}` block, like this:
+    As you can see above, on each iteration of a `while {...}` block, a new Environment Record is created. So, to fix this, we can copy the value of `i` into a variable within the `while {...}` block, like this:
     
     ```js run
     function makeArmy() {
@@ -88,7 +88,7 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     
     Here `let j = i` declares an "iteration-local" variable `j` and copies `i` into it. Primitives are copied "by value", so we actually get an independent copy of `i`, belonging to the current loop iteration.
     
-    The shooters work correctly, because the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds to the current loop iteration:
+    The shooters work correctly, because the value of `i` now lives a little bit closer. Not in `makeArmy()` Environment Record, but in the Environment Record that corresponds to the current loop iteration:
     
     ![](lexenv-makearmy-while-fixed.svg)
     
@@ -117,7 +117,7 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     army[5](); // 5
     ```
     
-    That's essentially the same, because `for` on each iteration generates a new lexical environment, with its own variable `i`. So `shooter` generated in every iteration references its own `i`, from that very iteration.
+    That's essentially the same, because `for` on each iteration generates a new Environment Record, with its own variable `i`. So `shooter` generated in every iteration references its own `i`, from that very iteration.
     
     ![](lexenv-makearmy-for-fixed.svg)
 

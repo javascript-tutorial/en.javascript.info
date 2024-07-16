@@ -1,7 +1,7 @@
 
 Surely it will work just fine.
 
-Both nested functions are created within the same outer Lexical Environment, so they share access to the same `count` variable:
+Both nested functions are created within the same outer Environment Record, so they share access to the same `count` variable:
 
 ```js run
 function Counter() {
