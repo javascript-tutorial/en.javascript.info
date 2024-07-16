@@ -12,10 +12,10 @@ And what if a function is passed along as an argument and called from another pl
 Let's expand our knowledge to understand these scenarios and more complex ones.
 
 ```smart header="We'll talk about `let/const` variables here"
-In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones) and `var` (the remnant of the past).
 
 - In this article we'll use `let` variables in examples.
-- Variables, declared with `const`, behave the same, so this article is about `const` too.
+- Variables declared with `const` behave the same, so this article is about `const` too.
 - The old `var` has some notable differences, they will be covered in the article <info:var>.
 ```
 
@@ -93,7 +93,7 @@ for (let i = 0; i < 3; i++) {
   alert(i); // 0, then 1, then 2
 }
 
-alert(i); // Error, no such variable
+alert(i); // Error: i is not defined
 ```
 
 Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
@@ -160,7 +160,7 @@ For clarity, the explanation is split into multiple steps.
 
 ### Step 1. Variables
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+In JavaScript, every running function, code block `{...}` and the script as a whole, have an internal (hidden) associated object known as the *Environment Record*.
 
 The Lexical Environment object consists of two parts:
 
@@ -194,7 +194,7 @@ Rectangles on the right-hand side demonstrate how the global Lexical Environment
 Everything looks simple for now, right?
 
 - A variable is a property of a special internal object, associated with the currently executing block/function/script.
-- Working with variables is actually working with the properties of that object.
+- Working with variables means actually working with the properties of that object.
 
 ```smart header="Lexical Environment is a specification object"
 "Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
@@ -222,7 +222,7 @@ Naturally, this behavior only applies to Function Declarations, not Function Exp
 
 When a function runs, at the beginning of the call, a new Lexical Environment is created automatically to store local variables and parameters of the call.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+For instance, for `say("John")`, it looks like this (the execution is at the line labelled with an arrow):
 
 <!--
     ```js
@@ -278,19 +278,19 @@ So we have two nested Lexical Environments, just like in the example above:
 
 ![](closure-makecounter.svg)
 
-What's different is that, during the execution of `makeCounter()`, a tiny nested function is created of only one line: `return count++`. We don't run it yet, only create.
+What's different is that, during the execution of `makeCounter()`, a tiny nested function is created of only one line: `return count++`. We don't run it yet, only create it.
 
 All functions remember the Lexical Environment in which they were made. Technically, there's no magic here: all functions have the hidden property named `[[Environment]]`, that keeps the reference to the Lexical Environment where the function was created:
 
 ![](closure-makecounter-environment.svg)
 
-So, `counter.[[Environment]]` has the reference to `{count: 0}` Lexical Environment. That's how the function remembers where it was created, no matter where it's called. The `[[Environment]]` reference is set once and forever at function creation time.
+So, `counter.[[Environment]]` has the reference to `{count: 0}` Lexical Environment. That's how the function remembers where it was created, no matter from where it's called. The `[[Environment]]` reference is set once and forever at function creation time.
 
 Later, when `counter()` is called, a new Lexical Environment is created for the call, and its outer Lexical Environment reference is taken from `counter.[[Environment]]`:
 
 ![](closure-makecounter-nested-call.svg)
 
-Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+Now, when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then looks for the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
 
 **A variable is updated in the Lexical Environment where it lives.**
 
@@ -375,7 +375,7 @@ But in practice, JavaScript engines try to optimize that. They analyze variable 
 
 Try running the example below in Chrome with the Developer Tools open.
 
-When it pauses, in the console type `alert(value)`.
+When it pauses, type `alert(value)` in the console.
 
 ```js run
 function f() {
