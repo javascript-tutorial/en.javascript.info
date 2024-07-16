@@ -4,7 +4,7 @@ importance: 5
 
 # Why do we need Origin?
 
-As you probably know, there's HTTP-header `Referer`, that usually contains an url of the page which initiated a network request.
+As you probably know, there's HTTP-header `Referer`, that usually contains the URL of the page which initiated a network request.
 
 For instance, when fetching `http://google.com` from `http://javascript.info/some/url`, the headers look like this:
 
