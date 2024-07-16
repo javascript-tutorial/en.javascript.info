@@ -70,12 +70,12 @@ Promise.all(requests)
     return responses;
   })
   // map array of responses into an array of response.json() to read their content
-  .then(responses => Promise.all(responses.map(r => r.json())))
+  .then(responses => Promise.all(responses.map(response => response.json())))
   // all JSON answers are parsed: "users" is the array of them
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-**If any of the promises is rejected, the promise returned by `Promise.all` immediately rejects with that error.**
+**If any of the promises are rejected, the promise returned by `Promise.all` immediately rejects with that error.**
 
 For instance:
 
