@@ -7,7 +7,7 @@ In contrast, objects are used to store keyed collections of various data and mor
 
 An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+We can imagine an object as a cabinet with labeled files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
 
 ![](object.svg)
 
@@ -40,7 +40,7 @@ In the `user` object, there are two properties:
 1. The first property has the name `"name"` and the value `"John"`.
 2. The second one has the name `"age"` and the value `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+The resulting `user` object can be imagined as a cabinet with two files labeled "name" and "age".
 
 ![user object](object-user.svg)
 
