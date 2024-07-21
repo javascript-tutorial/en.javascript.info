@@ -117,7 +117,7 @@ delete family.mother.husband;
 
 It's not enough to delete only one of these two references, because all objects would still be reachable.
 
-But if we delete both, then we can see that John has no incoming reference any more:
+But if we delete both, then we can see that John has no incoming reference anymore:
 
 ![](family-no-father.svg)
 
