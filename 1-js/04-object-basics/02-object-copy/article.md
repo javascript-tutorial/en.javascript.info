@@ -254,7 +254,7 @@ user.sizes.width = 60;    // change a property from one place
 alert(clone.sizes.width); // 60, get the result from the other one
 ```
 
-To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and then, if it's an object, replicates its structure as well. That is called a "deep cloning" or "structured cloning". Javascript has a [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
+To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and then, if it's an object, replicates its structure as well. That is called a "deep cloning" or "structured cloning". JavaScript has a [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
 
 
 ### structuredClone
