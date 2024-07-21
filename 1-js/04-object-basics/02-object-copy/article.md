@@ -1,6 +1,6 @@
 # Object references and copying
 
-One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc -- are always copied "as a whole value".
+One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc --- are always copied "as a whole value".
 
 That's easy to understand if we look a bit under the hood of what happens when we copy a value.
 
@@ -21,7 +21,7 @@ Quite an obvious result, right?
 
 Objects are not like that.
 
-**A variable assigned to an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
+**A variable assigned to an object stores not the object itself, but its "address in memory" --- in other words "a reference" to it.**
 
 Let's look at an example of such a variable:
 
@@ -98,7 +98,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely --- usually they appear as a result of a programming mistake.
 
 ````smart header="Const objects can be modified"
 An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
