@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Here, the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Here, the arrow depicts an object reference. The global variable `user` references the object `{name: "John"}` (we'll call it John for brevity). The `name` property of John stores a primitive, so it's painted inside the object.
 
 If the value of `user` is overwritten, the reference is lost:
 
