@@ -25,7 +25,7 @@ Simply put, "reachable" values are those that are accessible or usable somehow. 
 
     For instance, if there's an object in a global variable, and that object has a property referencing another object, *that* object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
 
-There's a background process in the JavaScript engine that is called the [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
+There's a background process in the JavaScript engine called the [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
 
 ## A simple example
 
@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Here, the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
 
 If the value of `user` is overwritten, the reference is lost:
 
