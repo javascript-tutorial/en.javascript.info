@@ -215,7 +215,7 @@ alert(clone.age); // 30
 
 Here it copies all properties of `user` into the empty object and returns it.
 
-There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
+There are also other methods of cloning an object, for example, using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
 
 ## Nested cloning
 
