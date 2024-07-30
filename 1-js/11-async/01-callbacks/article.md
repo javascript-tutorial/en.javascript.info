@@ -12,7 +12,7 @@ Although, we'll try to make things clear anyway. There won't be anything really 
 
 Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
 
-For instance, one such function is the `setTimeout` function.
+For instance, one such function is the `setTimeout` function. Another example is `document.createElement`, which we explore here.
 
 There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
 
