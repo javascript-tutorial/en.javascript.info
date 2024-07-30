@@ -14,7 +14,7 @@ Many functions are provided by JavaScript host environments that allow you to sc
 
 For instance, one such function is the `setTimeout` function.
 
-There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
+There are other real-world examples of asynchronous actions, e.g. [loading scripts](https://javascript.info/loading) and [modules](https://javascript.info/modules) (we'll cover them in later chapters).
 
 Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
 
