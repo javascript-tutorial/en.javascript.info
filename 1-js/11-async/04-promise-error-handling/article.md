@@ -77,7 +77,8 @@ new Promise((resolve, reject) => {
 *!*
   throw new Error("Whoops!"); // rejects the promise
 */!*
-}).catch(alert); // Error: Whoops!
+}).then(alert('jumped')) // skip this line
+.catch(alert); // Error: Whoops!
 ```
 
 This happens for all errors, not just those caused by the `throw` statement. For example, a programming error:
