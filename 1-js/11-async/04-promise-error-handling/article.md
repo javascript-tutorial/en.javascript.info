@@ -51,6 +51,8 @@ new Promise((resolve, reject) => {
 *!*
   throw new Error("Whoops!");
 */!*
+}).then(() => {
+  alert('jump') // line skipped upon error
 }).catch(alert); // Error: Whoops!
 ```
 
