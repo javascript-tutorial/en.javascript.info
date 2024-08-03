@@ -118,7 +118,7 @@ Of course, the `for..of` loop over such an iterable would be endless. But we can
 
 ## String is iterable
 
-Arrays and strings are most widely used built-in iterables.
+Arrays and strings are the most widely used built-in iterables.
 
 For a string, `for..of` loops over its characters:
 
