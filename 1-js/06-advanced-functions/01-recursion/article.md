@@ -183,7 +183,7 @@ Here's the context stack when we entered the subcall `pow(2, 2)`:
   </li>
 </ul>
 
-The new current execution context is on top (and bold), and previous remembered contexts are below.
+The new current execution context is on top (and bold), and previous remembered contexts are below. The current execution context is also known as the [*running execution context*](https://tc39.es/ecma262/#running-execution-context).
 
 When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
 
