@@ -532,7 +532,7 @@ Terms:
     For instance, the linked list can be defined as a data structure consisting of an object referencing a list (or null).
 
     ```js
-    list = { value, next -> list }
+    list = { value, list.next }
     ```
 
     Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
