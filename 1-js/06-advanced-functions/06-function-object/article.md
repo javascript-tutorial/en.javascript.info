@@ -181,7 +181,7 @@ The `count` is now stored in the function directly, not in its outer Lexical Env
 
 Is it better or worse than using a closure?
 
-The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
+The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it; only nested functions may modify it. However if it's bound to a function, then such a thing is possible:
 
 ```js run
 function makeCounter() {
