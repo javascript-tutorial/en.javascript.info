@@ -155,7 +155,7 @@ let user = {
   age: 30
 };
 
-let key = "name";
+let key = prompt("What do you want to know about the user?", "name");
 alert( user.key ) // undefined
 ```
 
