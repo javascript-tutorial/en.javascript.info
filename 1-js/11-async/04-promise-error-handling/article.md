@@ -52,7 +52,7 @@ new Promise((resolve, reject) => {
   throw new Error("Whoops!");
 */!*
 }).then(() => {
-  alert('doesn't execute')
+  alert("doesn't execute")
 }).catch(alert); // Error: Whoops!
 ```
 
