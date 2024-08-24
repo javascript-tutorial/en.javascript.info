@@ -1,4 +1,4 @@
-# Forms: submit event and method
+# Forms: `submit` event and method
 
 The `submit` event triggers when the form is submitted. It is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
 
@@ -6,7 +6,7 @@ The method `form.submit()` allows to initiate form sending from JavaScript. We c
 
 Let's see more details of them.
 
-## Event: submit
+## Event: `submit`
 
 There are two main ways to submit a form:
 
