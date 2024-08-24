@@ -232,7 +232,7 @@ That's the same, because `Object.fromEntries` expects an iterable object as the 
 
 ## Set
 
-A [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
+A [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is a special kind of collection - a "set of values" (without keys), where each value may occur only once.
 
 Its main methods are:
 
