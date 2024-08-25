@@ -160,7 +160,7 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var`s are "hoisted" (raised) to the top of the function.
+People also call such behavior "hoisting" (raising), because all `var` declarations are "hoisted" (raised) to the top of the function.
 
 So in the example above, the `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
 
@@ -205,7 +205,7 @@ sayHi();
 
 Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
 
-In both examples above, `alert` runs without an error, because the variable `phrase` exists, but its value is not yet assigned, so it shows `undefined`.
+In both examples above, `alert` runs without an error because the variable `phrase` exists but its value is not yet assigned, so it shows `undefined`.
 
 ## IIFE
 
