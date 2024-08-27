@@ -418,6 +418,7 @@ arr = arr.fill().map(function(e, i, a) {
 });
 
 alert(arr); // *!*0, 1, 2, 3, 4*/!*
+```
 ````
 
 ### sort(fn)
