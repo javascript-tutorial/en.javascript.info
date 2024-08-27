@@ -393,6 +393,34 @@ let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 alert(lengths); // 5,7,6
 ```
 
+````warn header="map only executes on defined properties"
+When you declare a new array with the constructor syntax and pass in a length, none of the indexes are initialized. Therefore, map won't execute on them.
+
+```js run
+let arr = new Array(5);
+
+// try to count to 4
+arr = arr.map(function(e, i, a) {
+  return i;
+});
+
+alert(arr); // empty string
+```
+
+Use `arr.fill()` to populate the new array's properties with undefined values first, then `map` it.
+
+```js run
+let arr = new Array(5);
+
+// fill with undefined, then count to 4
+arr = arr.fill().map(function(e, i, a) {
+  return i;
+});
+
+alert(arr); // *!*0, 1, 2, 3, 4*/!*
+```
+````
+
 ### sort(fn)
 
 The call to [arr.sort()](mdn:js/Array/sort) sorts the array *in place*, changing its element order.
