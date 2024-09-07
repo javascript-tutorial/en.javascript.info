@@ -140,7 +140,7 @@ alert( str.at(0) ); // H
 
 // the last character
 alert( str[str.length - 1] ); // o
-alert( str.at(-1) );
+alert( str.at(-1) ); // o
 ```
 
 As you can see, the `.at(pos)` method has a benefit of allowing negative position. If `pos` is negative, then it's counted from the end of the string.
