@@ -362,7 +362,7 @@ To walk over all keys of an object, there exists a special form of the loop: `fo
 The syntax:
 
 ```js
-for (key in object) {
+for (let key in object) {
   // executes the body for each key among object properties
 }
 ```
