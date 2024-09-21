@@ -8,6 +8,35 @@ Let's see what's so special about JavaScript, what we can achieve with it, and w
 
 The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
 
+<!--
+<svg xmlns="http://www.w3.org/2000/svg" style="visibility: hidden; position: absolute; z-index: -1;">
+<symbol
+  viewBox="0 0 104 21"
+  id="arrow1">
+<path d="M10.2001 14.6999C17.5001 15.5999 24.3001 16.3999 31.1001 17.2999C31.6001 17.3999 32.0001 17.9999 33.1001 18.8999C29.9001 19.2999 27.4001 19.7999 24.9001 19.8999C18.3001 20.0999 11.8001 20.0999 5.20011 20.0999C4.40011 20.0999 3.60011 20.1999 2.80011 19.9999C0.200114 19.4999 -0.699892 17.7999 0.700108 15.4999C1.40011 14.3999 2.20011 13.3999 3.10011 12.4999C6.50011 9.09991 10.0001 5.79991 13.5001 2.49991C14.1001 1.89991 15.0001 1.5999 16.2001 0.899902C16.4001 5.9999 11.3001 7.3999 10.2001 11.3999C11.1001 11.1999 11.9001 11.0999 12.6001 10.8999C39.6001 3.4999 66.5001 4.29991 93.3001 11.4999C96.1001 12.1999 98.8001 13.2999 101.5 14.2999C102.9 14.7999 104.1 15.8999 103.3 17.5999C102.6 19.2999 101.2 19.2999 99.6001 18.5999C81.7001 10.5999 62.7001 9.69991 43.5001 9.99991C33.5001 10.0999 23.7001 11.1999 14.0001 13.4999C12.8001 13.7999 11.6001 14.1999 10.2001 14.6999Z" fill="green"/>
+</symbol>
+</svg>
+
+ style="transform: rotate(-45deg) scale(0.5,0.5);"
+
+<div id="arrow-console" style="position:relative">
+    <svg>
+        <text fill="black" font-family="PT Sans" font-size="18"><tspan x="66" y="17.116">statement</tspan></text>
+        <use xlink:href="#arrow1" transform="rotate(-45) scale(0.5 0.5) translate(0 300)"/>
+    </svg>
+
+</div>
+-->
+
+<img src="https://ilyakantor.ru/statement.svg">
+
+```js
+console.log('Hello');
+
+console.log('World');
+```
+
+
 Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
 
 In this aspect, JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
