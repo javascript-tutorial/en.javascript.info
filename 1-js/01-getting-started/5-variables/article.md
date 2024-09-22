@@ -106,20 +106,17 @@ let message = "That"; // SyntaxError: 'message' has already been declared
 So, we should declare a variable once and then use it without `let`.
 ````
 
+```smart header="Using `var` instead of `let`"
+A long time ago, JavaScript used another keyword `var` to declare variables.
 
+There're subtle differences between `var` and `let`, but the most important one is that `var` is outdated, people don't use it any more, so neither will we.
 
-
-
-TODO
-
-
-
-
-
+We only mention `var` because you may see it in some really old scripts, so that you know what it means.
+```
 
 ## Variable naming [#variable-naming]
 
-There are two limitations on variable names in JavaScript:
+There are two limitations on variable names:
 
 1. The name must contain only letters, digits, or the symbols `$` and `_`.
 2. The first character must not be a digit.
@@ -164,7 +161,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
+Technically, there is no error here. However, there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
 ````
 
 ````warn header="Reserved names"
@@ -181,7 +178,6 @@ let return = 5; // also can't name it "return", error!
 ````
 
 ````warn header="An assignment without `use strict`"
-
 Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
 
 ```js run no-strict
@@ -208,22 +204,22 @@ num = 5; // error: num is not defined
 To declare a constant (unchanging) variable, use `const` instead of `let`:
 
 ```js
-const myBirthday = '18.04.1982';
+const myBirthDate = '18.04.1982';
 ```
 
 Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
 
 ```js run
-const myBirthday = '18.04.1982';
+const myBirthDate = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, can't reassign the constant!
+myBirthDate = '01.01.2001'; // error, can't reassign the constant!
 ```
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and communicate that fact to everyone.
+When a programmer is sure that a variable must never change, they can declare it with `const` to guarantee it and clearly communicate this fact to everyone.
 
 ### Uppercase constants
 
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known before execution.
+There is a widespread practice to use constants as aliases for difficult-to-remember values.
 
 Such constants are named using capital letters and underscores.
 
@@ -243,62 +239,28 @@ alert(color); // #FF7F00
 Benefits:
 
 - `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
-- It is much easier to mistype `"#FF7F00"` than `COLOR_ORANGE`.
+- It is much easier to mistype in `"#FF7F00"` than in `COLOR_ORANGE`.
 - When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
 
-When should we use capitals for a constant and when should we name it normally? Let's make that clear.
+When should we use capitals for a constant? Let's make that clear.
 
-Being a "constant" just means that a variable's value never changes. But some constants are known before execution (like a hexadecimal value for red) and some constants are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+Being a "constant" just means that a variable's value never changes. But some constants are known before execution (like a hexadecimal value for red), they are also called "hard-coded" values, and for them we should use capital letters.
 
-For instance:
+On the other hand, some constants are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+
+For instance, in a web page:
 
 ```js
 const pageLoadTime = /* time taken by a webpage to load */;
 ```
 
-The value of `pageLoadTime` is not known before the page load, so it's named normally. But it's still a constant because it doesn't change after the assignment.
-
-In other words, capital-named constants are only used as aliases for "hard-coded" values.
-
-## Name things right
-
-Talking about variables, there's one more extremely important thing.
-
-A variable name should have a clean, obvious meaning, describing the data that it stores.
-
-Variable naming is one of the most important and complex skills in programming. A glance at variable names can reveal which code was written by a beginner versus an experienced developer.
-
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
-
-Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
-
-Some good-to-follow rules are:
-
-- Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names like `a`, `b`, and `c`, unless you know what you're doing.
-- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-- Agree on terms within your team and in your mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
-
-Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.
-
-```smart header="Reuse or create?"
-And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.
-
-As a result, their variables are like boxes into which people throw different things without changing their stickers. What's inside the box now? Who knows? We need to come closer and check.
-
-Such programmers save a little bit on variable declaration but lose ten times more on debugging.
-
-An extra variable is good, not evil.
-
-Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for different values can even help the engine optimize your code.
-```
+The value of `pageLoadTime` is not known before the execution, it's not "hard-coded", so it's not capitalized. But it's still a constant because it doesn't change after the assignment.
 
 ## Summary
 
-We can declare variables to store data by using the `var`, `let`, or `const` keywords.
+We can declare variables to store data using `let` and `const` keywords.
 
 - `let` -- is a modern variable declaration.
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
 - `const` -- is like `let`, but the value of the variable can't be changed.
 
-Variables should be named in a way that allows us to easily understand what's inside them.
+There's also `var` -- an old-school variable declaration, which we won't ever use.
