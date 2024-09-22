@@ -1,14 +1,14 @@
 # Variables
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
-
-Variables are used to store this information.
-
-## A variable
+If we want to write a JavaScript application bigger than "Hello, World", we need variables.
 
 A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+
+For example:
+1. An online shop -- variables to store goods being sold and a shopping cart.
+2. A chat application -- variables for users, messages, and much more.
+
+## Let
 
 To create a variable in JavaScript, use the `let` keyword.
 
@@ -17,6 +17,11 @@ The statement below creates (in other words: *declares*) a variable with the nam
 ```js
 let message;
 ```
+
+One can think of a variable as a named "box".
+
+
+
 
 Now, we can put some data into it by using the assignment operator `=`:
 

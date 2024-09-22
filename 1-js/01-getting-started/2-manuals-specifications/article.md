@@ -1,37 +1,34 @@
 
 # Manuals and specifications
 
-This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other resources.
+You're now reading a *tutorial*. It aims to help you gradually learn the language. Once you're familiar with the basics, you'll need other resources, so here's a brief list.
+
+If you're just getting to know JavaScript, you can skip forward, as you don't (yet) need them now. But you will need them later.
 
 ## Specification
 
-[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
+- [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) is a formal definition of the language.
 
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+It contains the most in-depth, detailed and formalized information about JavaScript! If you ever need the ultimately trustworthy source of information, the specification is the right place. However, its highly formal writing style makes it difficult to read. So it's not for everyday use.
 
-A new specification version is released every year. Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+- A new specification version is released every year. Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+- To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
 
-To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
+## MDN manual
 
-Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+- [MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is a great manual with examples.
 
-## Manuals
+It contains a lot of information both about JavaScript and its browser-specific usage.
 
-- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
-
-    You can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
-
-Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
+Instead of accessing it directly, it's often faster to use an internet search, such as Google. Just search for "MDN ..." and the query, for example [MDN parseInt](https://google.com/search?q=MDN+parseInt) to search for the `parseInt` function in MDN.
 
 ## Compatibility tables
 
-JavaScript is a developing language, new features get added regularly.
+JavaScript continues to evolve, new features get added to the specification (and hence to the language) regularly.
 
-To see their support among browser-based and other engines, see:
+Although, when a new feature appears in the specification, JavaScript engines may not support it. Sometimes, significant time is needed to a widespread adoption.
 
-- <https://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <https://caniuse.com/#feat=cryptography>.
-- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+To see the current state of support, there're two great resources:
 
-All these resources are useful in real-life development, as they contain valuable information about language details, their support, etc.
-
-Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+- <https://caniuse.com> – per-feature tables of support, e.g. to see which engines support modern cryptography functions: <https://caniuse.com/#feat=cryptography>.
+- <https://compat-table.github.io/compat-table/es2016plus> – a table with a list of language features and engines that support those or don't support.
