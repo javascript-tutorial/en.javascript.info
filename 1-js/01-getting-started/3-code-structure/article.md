@@ -12,8 +12,24 @@ This is a *statement* that outputs a string `"Hello, world!"`. You can see the o
 
 TODO: arrow with "statement"
 
+![statement|code="3:3"](statement.svg)
+
+![statement|code="4:4"](statement.svg)
+
+![statement|code="5:5"](statement.svg)
+
+![statement|code="6:6"](statement.svg)
+
+![statement|code="7:7"](statement.svg)
+
 ```js
-console.log('Hello');
+console.log('Hello 1');
+console.log('Hello 2');
+console.log('Hello 3');
+console.log('Hello 4');
+console.log('Hello 5');
+console.log('Hello 6');
+console.log('Hello 7');
 ```
 
 ## Statements

@@ -2,17 +2,17 @@
 
 A value in JavaScript is always of a certain type. For example, a string or a number.
 
-There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+There are 8 basic data types in JavaScript. Here we'll introduce them, and in the next chapters we'll talk about each of them in detail.
 
-We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:
+JavaScript is a "dynamically typed" language. It means that a variable can store a value of any type, and it can change dynamically during execition.
+
+For example, `message` can store a string, and then be reassigned to a number:
 
 ```js
 // no error
 let message = "hello";
 message = 123456;
 ```
-
-Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are not bound to any of them.
 
 ## Number
 
@@ -32,29 +32,33 @@ Besides regular numbers, there are so-called "special numeric values" which also
     We can get it as a result of division by zero:
 
     ```js run
-    alert( 1 / 0 ); // Infinity
+    console.log( 1 / 0 ); // Infinity
     ```
 
     Or just reference it directly:
 
     ```js run
-    alert( Infinity ); // Infinity
+    console.log( Infinity ); // Infinity
     ```
 - `NaN` represents a computational error. It is a result of an incorrect or an undefined mathematical operation, for instance:
 
     ```js run
-    alert( "not a number" / 2 ); // NaN, such division is erroneous
+    console.log( "hello" / 2 ); // NaN, such division is erroneous
     ```
 
-    `NaN` is sticky. Any further mathematical operation on `NaN` returns `NaN`:
+    `NaN` is "sticky". Any further mathematical operation on `NaN` returns `NaN`:
 
     ```js run
-    alert( NaN + 1 ); // NaN
-    alert( 3 * NaN ); // NaN
-    alert( "not a number" / 2 - 1 ); // NaN
+    console.log( NaN + 1 ); // NaN
+    console.log( 3 * NaN ); // NaN
+    console.log( "hello" / 2 - 1 ); // NaN
+
+    // The only exception to this rule is:
+    console.log( NaN ** 0 ); // 1
+    // the double star ** is a "raising to power" operation
     ```
 
-    So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result (there's only one exception to that: `NaN ** 0` is `1`).
+    This is natural, because `NaN` value represents an error, and there's no sense in doing computations with an error. So, if there's a `NaN` somewhere in a mathematical expression, it propagates to the whole result.
 
 ```smart header="Mathematical operations are safe"
 Doing maths is "safe" in JavaScript. We can do anything: divide by zero, treat non-numeric strings as numbers, etc.
@@ -64,51 +68,38 @@ The script will never stop with a fatal error ("die"). At worst, we'll get `NaN`
 
 Special numeric values formally belong to the "number" type. Of course they are not numbers in the common sense of this word.
 
-We'll see more about working with numbers in the chapter <info:number>.
-
 ## BigInt [#bigint-type]
 
-In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives.
+In JavaScript, the "number" type cannot safely represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives. There's a similar limitation for floating type values as well.
 
-To be really precise, the "number" type can store larger integers (up to <code>1.7976931348623157 * 10<sup>308</sup></code>), but outside of the safe integer range <code>±(2<sup>53</sup>-1)</code> there'll be a precision error, because not all digits fit into the fixed 64-bit storage. So an "approximate" value may be stored.
+Technically, we can assigns any numeric value, and there won't be an error. However, if the number is outside of this range, then some digits "won't fit" and will be lost, so we'll see an "approximate" value when we try to read from it.
 
-For example, these two numbers (right above the safe range) are the same:
+For example, let's try to store these two numbers, which are right above the safe range:
 
 ```js
 console.log(9007199254740991 + 1); // 9007199254740992
 console.log(9007199254740991 + 2); // 9007199254740992
 ```
 
-So to say, all odd integers greater than <code>(2<sup>53</sup>-1)</code> can't be stored at all in the "number" type.
+As you can see, both outputs are identical. This is exactly for this reason – they don't fit and a tiny bit of precision is lost.
 
-For most purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough, but sometimes we need the entire range of really big integers, e.g. for cryptography or microsecond-precision timestamps.
+For most real-life purposes <code>±(2<sup>53</sup>-1)</code> range is quite enough. However, sometimes we need to work with really big numbers, e.g. for cryptography purposes or to store a time with microsecond precision.
 
-`BigInt` type was recently added to the language to represent integers of arbitrary length.
+`BigInt` type can represent integers of arbitrary length.
 
 A `BigInt` value is created by appending `n` to the end of an integer:
 
 ```js
 // the "n" at the end means it's a BigInt
-const bigInt = 1234567890123456789012345678901234567890n;
+const bigInt = 1234567890123456789012345678901234567890*!*n*/!*;
 ```
-
-As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
-
-
-```smart header="Compatibility issues"
-Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
-```
-
-You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
 
 ## String
 
-A string in JavaScript must be surrounded by quotes.
+A string in JavaScript must be enclosed into quotes, like this:
 
 ```js
 let str = "Hello";
-let str2 = 'Single quotes are ok too';
-let phrase = `can embed another ${str}`;
 ```
 
 In JavaScript, there are 3 types of quotes.
@@ -117,7 +108,7 @@ In JavaScript, there are 3 types of quotes.
 2. Single quotes: `'Hello'`.
 3. Backticks: <code>&#96;Hello&#96;</code>.
 
-Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
+Double and single quotes are "simple" quotes. There's no difference between them in JavaScript, besides being different characters.
 
 Backticks are "extended functionality" quotes. They allow us to embed variables and expressions into a string by wrapping them in `${…}`, for example:
 
@@ -125,17 +116,17 @@ Backticks are "extended functionality" quotes. They allow us to embed variables 
 let name = "John";
 
 // embed a variable
-alert( `Hello, *!*${name}*/!*!` ); // Hello, John!
+console.log( `Hello, *!*${name}*/!*!` ); // Hello, John!
 
 // embed an expression
-alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
+console.log( `the result is *!*${1 + 2}*/!*` ); // the result is 3
 ```
 
 The expression inside `${…}` is evaluated and the result becomes a part of the string. We can put anything in there: a variable like `name` or an arithmetical expression like `1 + 2` or something more complex.
 
 Please note that this can only be done in backticks. Other quotes don't have this embedding functionality!
 ```js run
-alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
+console.log( "the result is ${1 + 2}" ); // the result is ${1 + 2} (double quotes do nothing)
 ```
 
 We'll cover strings more thoroughly in the chapter <info:string>.
@@ -164,7 +155,7 @@ Boolean values also come as a result of comparisons:
 ```js run
 let isGreater = 4 > 1;
 
-alert( isGreater ); // true (the comparison result is "yes")
+console.log( isGreater ); // true (the comparison result is "yes")
 ```
 
 We'll cover booleans more deeply in the chapter <info:logical-operators>.
@@ -196,7 +187,7 @@ If a variable is declared, but not assigned, then its value is `undefined`:
 ```js run
 let age;
 
-alert(age); // shows "undefined"
+console.log(age); // shows "undefined"
 ```
 
 Technically, it is possible to explicitly assign `undefined` to a variable:
@@ -207,7 +198,7 @@ let age = 100;
 // change the value to undefined
 age = undefined;
 
-alert(age); // "undefined"
+console.log(age); // "undefined"
 ```
 
 ...But we don't recommend doing that. Normally, one uses `null` to assign an "empty" or "unknown" value to a variable, while `undefined` is reserved as a default initial value for unassigned things.
@@ -250,7 +241,7 @@ typeof null // "object"  (2)
 */!*
 
 *!*
-typeof alert // "function"  (3)
+typeof console.log // "function"  (3)
 */!*
 ```
 
@@ -258,7 +249,7 @@ The last three lines may need additional explanation:
 
 1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
 2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof`, coming from very early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own. The behavior of `typeof` is wrong here.
-3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
+3. The result of `typeof console.log` is `"function"`, because `console.log` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
 
 ```smart header="The `typeof(x)` syntax"
 You may also come across another syntax: `typeof(x)`. It's the same as `typeof x`.

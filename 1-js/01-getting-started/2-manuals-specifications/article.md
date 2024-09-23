@@ -3,11 +3,11 @@
 
 You're now reading a *tutorial*. It aims to help you gradually learn the language. Once you're familiar with the basics, you'll need other resources, so here's a brief list.
 
-If you're just getting to know JavaScript, you can skip forward, as you don't (yet) need them now. But you will need them later.
+If you're new to JavaScript, then you don't (yet) need them now. But you will need them later, so make a bookmark.
 
 ## Specification
 
-- [The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) is a formal definition of the language.
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) is a formal definition of the language.
 
 It contains the most in-depth, detailed and formalized information about JavaScript! If you ever need the ultimately trustworthy source of information, the specification is the right place. However, its highly formal writing style makes it difficult to read. So it's not for everyday use.
 
@@ -16,7 +16,7 @@ It contains the most in-depth, detailed and formalized information about JavaScr
 
 ## MDN manual
 
-- [MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is a great manual with examples.
+[MDN (Mozilla) JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference) is a great manual with examples.
 
 It contains a lot of information both about JavaScript and its browser-specific usage.
 
@@ -26,7 +26,7 @@ Instead of accessing it directly, it's often faster to use an internet search, s
 
 JavaScript continues to evolve, new features get added to the specification (and hence to the language) regularly.
 
-Although, when a new feature appears in the specification, JavaScript engines may not support it. Sometimes, significant time is needed to a widespread adoption.
+However, when a new feature appears in the specification, it doesn't really mean that everyone can use it. JavaScript engines need time to adopt it. So before actually using a fresh language capability, it's best to make sure that it's well-supported.
 
 To see the current state of support, there're two great resources:
 
