@@ -8,7 +8,7 @@ async function race() {
     const results = await Promise.all([
         babieca.run(), 
         rocinante.run(), 
-        belcebu.run()
+        bucephalus.run()
     ]);
 
     alert("All the horses reached the goal! 🎉🏇\n" + results.join('\n'));
@@ -23,6 +23,6 @@ This has no cost for your code. The horses run simultaneously. You may see when 
 
 Please note: if you only care for the fastest horse, you may use `promise.any` so you dont even need to wait for the slower ones
 
-    const fastest = await Promise.any([babieca.run(), rocinante.run(), belcebu.run()]);
+    const fastest = await Promise.any([babieca.run(), rocinante.run(), bucephalus.run()]);
     alert(`The winner: ${fastest}`);
 
