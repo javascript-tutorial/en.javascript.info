@@ -23,6 +23,6 @@ class Horse {
 
 const babieca = new Horse('Babieca');
 const rocinante = new Horse('Rocinante');
-const belcebu = new Horse('Belcebú');
+const bucephalus = new Horse('Bucephalus');
 
 ```
