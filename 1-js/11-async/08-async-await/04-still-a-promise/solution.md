@@ -13,7 +13,7 @@ async function showTimes() {
     const time2 = await rocinante.run();
     alert(time2);
 
-    const time3 = await belcebu.run();
+    const time3 = await bucephalus.run();
     alert(time3);
 }
 
