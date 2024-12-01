@@ -9,6 +9,7 @@ Here the function `makeUser` returns an object.
 What is the result of accessing its `ref`? Why?
 
 ```js
+"use strict";
 function makeUser() {
   return {
     name: "John",
