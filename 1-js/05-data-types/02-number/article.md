@@ -4,7 +4,7 @@ In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
 
-2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+2. BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular integer number can't safely exceed <code>(2<sup>53</sup>-1)</code> or be less than <code>-(2<sup>53</sup>-1)</code>, as we mentioned earlier in the chapter <info:types>. As bigints are used in a few special areas, we devote them to a special chapter <info:bigint>.
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
 
@@ -41,7 +41,7 @@ In other words, `e` multiplies the number by `1` with the given zeroes count.
 1.23e6 === 1.23 * 1000000; // e6 means *1000000
 ```
 
-Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+Now let's write something very small. Say, 1 microsecond (one-millionth of a second):
 
 ```js
 let mсs = 0.000001;
@@ -103,13 +103,13 @@ alert( num.toString(16) );  // ff
 alert( num.toString(2) );   // 11111111
 ```
 
-The `base` can vary from `2` to `36`. By default it's `10`.
+The `base` can vary from `2` to `36`. By default, it's `10`.
 
 Common use cases for this are:
 
 - **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
 - **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
-- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
+- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole Latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example, to make a short url. Can simply represent it in the numeral system with base `36`:
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
@@ -137,7 +137,7 @@ There are several built-in functions for rounding:
 : Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`, the middle case: `3.5` rounds up to `4` too.
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`. In the middle cases `3.5` rounds up to `4`, and `-3.5` rounds up to `-3`.
 
 `Math.trunc` (not supported by Internet Explorer)
 : Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
@@ -147,8 +147,10 @@ Here's the table to summarize the differences between them:
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
 |`3.1`|  `3`    |   `4`  |    `3`  |   `3`   |
+|`3.5`|  `3`    |   `4`  |    `4`  |   `3`   |
 |`3.6`|  `3`    |   `4`  |    `4`  |   `3`   |
 |`-1.1`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
+|`-1.5`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
 
@@ -188,7 +190,7 @@ There are two ways to do so:
     alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
     ```
 
-    We can convert it to a number using the unary plus or a `Number()` call, e.g write `+num.toFixed(5)`.
+    We can convert it to a number using the unary plus or a `Number()` call, e.g. write `+num.toFixed(5)`.
 
 ## Imprecise calculations
 
@@ -222,7 +224,13 @@ But why does this happen?
 
 A number is stored in memory in its binary form, a sequence of bits - ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
 
-What is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
+```js run
+alert(0.1.toString(2)); // 0.0001100110011001100110011001100110011001100110011001101
+alert(0.2.toString(2)); // 0.001100110011001100110011001100110011001100110011001101
+alert((0.1 + 0.2).toString(2)); // 0.0100110011001100110011001100110011001100110011001101
+```
+
+What is `0.1`? It is one divided by ten `1/10`, one-tenth. In the decimal numeral system, such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`.
 
 So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
 
@@ -242,7 +250,7 @@ That's why `0.1 + 0.2` is not exactly `0.3`.
 ```smart header="Not only JavaScript"
 The same issue exists in many other programming languages.
 
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
+PHP, Java, C, Perl, and Ruby give exactly the same result, because they are based on the same numeric format.
 ```
 
 Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
@@ -266,7 +274,7 @@ alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
 alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 ```
 
-So, multiply/divide approach reduces the error, but doesn't remove it totally.
+So, the multiply/divide approach reduces the error, but doesn't remove it totally.
 
 Sometimes we could try to evade fractions at all. Like if we're dealing with a shop, then we can store prices in cents instead of dollars. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely possible. Just round them to cut "tails" when needed.
 
@@ -288,7 +296,7 @@ Another funny consequence of the internal representation of numbers is the exist
 
 That's because a sign is represented by a single bit, so it can be set or not set for any number including a zero.
 
-In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
+In most cases, the distinction is unnoticeable, because operators are suited to treat them as the same.
 ```
 
 ## Tests: isFinite and isNaN
@@ -337,7 +345,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
 ````smart header="`Number.isNaN` and `Number.isFinite`"
 [Number.isNaN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN) and [Number.isFinite](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite) methods are the more "strict" versions of `isNaN` and `isFinite` functions. They do not autoconvert their argument into a number, but check if it belongs to the `number` type instead.
 
-- `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case it returns `false`.
+- `Number.isNaN(value)` returns `true` if the argument belongs to the `number` type and it is `NaN`. In any other case, it returns `false`.
 
     ```js run
     alert( Number.isNaN(NaN) ); // true
@@ -348,7 +356,7 @@ Please note that an empty or a space-only string is treated as `0` in all numeri
     alert( isNaN("str") ); // true, because isNaN converts string "str" into a number and gets NaN as a result of this conversion
     ```
 
-- `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case it returns `false`.
+- `Number.isFinite(value)` returns `true` if the argument belongs to the `number` type and it is not `NaN/Infinity/-Infinity`. In any other case, it returns `false`.
 
     ```js run
     alert( Number.isFinite(123) ); // true
@@ -367,7 +375,7 @@ In a way, `Number.isNaN` and `Number.isFinite` are simpler and more straightforw
 There is a special built-in method `Object.is` that compares values like `===`, but is more reliable for two edge cases:
 
 1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing.
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct, because internally the number has a sign bit that may be different even if all other bits are zeroes.
+2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, technically that's correct because internally the number has a sign bit that may be different even if all other bits are zeroes.
 
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
@@ -385,7 +393,7 @@ alert( +"100px" ); // NaN
 
 The sole exception is spaces at the beginning or at the end of the string, as they are ignored.
 
-But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
+But in real life, we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries, the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
 
 That's what `parseInt` and `parseFloat` are for.
 
@@ -479,4 +487,4 @@ For fractions:
 
 More mathematical functions:
 
-- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small, but can cover basic needs.
+- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small but can cover basic needs.

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="-38.324 -109.673 191.121 281.642" width="191.121px" height="281.642px" xmlns="http://www.w3.org/2000/svg" xmlns:bx="https://boxy-svg.com">
+  <defs>
+    <style bx:fonts="Open Sans">@import url(https://fonts.googleapis.com/css2?family=Open+Sans%3Aital%2Cwght%400%2C300%3B0%2C400%3B0%2C500%3B0%2C600%3B0%2C700%3B0%2C800%3B1%2C300%3B1%2C400%3B1%2C500%3B1%2C600%3B1%2C700%3B1%2C800&amp;display=swap);</style>
+  </defs>
+  <g id="garbage-collection" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1" transform="matrix(1.6492669582366946, 0, 0, 1.6492669582366946, -81.42222595214844, 62.8305015563965)" style="">
+    <g id="memory-user-john-admin.svg" transform="matrix(1, 0, 0, 1, -1.759865, 4.803441)">
+      <text id="user" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 14px; font-weight: 600; white-space: pre;" transform="matrix(0.735667, 0, 0, 0.753868, 7.56361, 10.722544)" x="31.917" y="-40.191">user</text>
+      <path id="Rectangle-4" fill="#FBF2EC" stroke="#DBAF88" stroke-width="2" d="M 39.02 4.206 L 125.8 4.206 L 125.8 48.227 L 39.02 48.227 L 39.02 4.206 Z" style=""/>
+      <text id="name:-&quot;John&quot;" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 9px; font-weight: 500; white-space: pre;" x="54.086" y="34.58">name: "John"</text>
+      <text id="Object" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 10.5px; font-weight: 500; white-space: pre;" x="64.679" y="23.487">Object</text>
+      <path id="Rectangle-1" fill="#FBF2EC" stroke="#DBAF88" stroke-width="2" d="M 36.398 -102.608 L 129.398 -102.608 L 129.398 -76.608 L 36.398 -76.608 L 36.398 -102.608 Z"/>
+      <text id="&lt;global&gt;" style="fill: rgb(175, 110, 36); font-family: 'Open Sans'; font-size: 10.6px; font-weight: 500; white-space: pre;" x="59.233" y="-86.001"> &lt;global&gt;</text>
+      <path d="M 105.999 1.57 L 113.013 13.895 L 98.985 13.895 L 105.999 1.57 Z" style="fill-rule: nonzero; fill: rgb(172, 67, 67);" transform="matrix(1, 0, 0, -1, 0, 0)" bx:shape="triangle 98.985 1.57 14.028 12.325 0.5 0 1@df7d9fa9"/>
+      <g>
+        <rect x="105.024" y="-69.436" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-59.02" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-48.877" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1.024052, -0.03572, 31.45084)" style="">
+        <rect x="105.024" y="-69.051" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-59.02" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+        <rect x="105.014" y="-48.877" width="1.99" height="5.009" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(172, 67, 67);"/>
+      </g>
+      <g transform="matrix(1, 0, 0, 1, -9.930843, 12.564639)">
+        <path d="M 66.874 14.118 L 73.888 26.443 L 59.86 26.443 L 66.874 14.118 Z" style="fill-rule: nonzero; fill: rgb(192, 99, 52);" transform="matrix(1, 0, 0, -1, 0, 0)" bx:shape="triangle 59.86 14.118 14.028 12.325 0.5 0 1@9d4d6098"/>
+        <rect x="65.833" y="-81.984" width="2.056" height="55.884" style="paint-order: stroke; stroke: rgb(53, 81, 138); stroke-width: 0px; fill: rgb(192, 99, 52);"/>
+      </g>
+      <text id="text-1" style="fill: rgb(172, 67, 67); font-family: 'Open Sans'; font-size: 14px; font-weight: 600; white-space: pre;" transform="matrix(0.735667, 0, 0, 0.753868, 87.03299, 10.790039)" x="31.917" y="-40.191">admin</text>
+    </g>
+  </g>
+</svg>
