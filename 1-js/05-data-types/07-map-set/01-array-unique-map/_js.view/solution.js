@@ -1,3 +1,4 @@
 function unique(arr) {
-  return Array.from(new Set(arr));
+  const uniqueSet = new Set(arr);
+  return Array.from(uniqueSet);
 }
