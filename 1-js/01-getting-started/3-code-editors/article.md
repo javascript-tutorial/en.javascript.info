@@ -14,6 +14,7 @@ If you haven't selected an IDE yet, consider the following options:
 
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
 - [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+- [CodeLobster](https://codelobster.com/) (cross-platform, paid).
 
 For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
