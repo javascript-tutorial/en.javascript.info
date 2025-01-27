@@ -1,7 +1,8 @@
 
+
 # Still a promise
 
-Make the horses run then show their times
+Make the 3 horses run then show their times
 
 ```js
 
@@ -11,11 +12,11 @@ class Horse {
     }
 
     async run() {
-        const time = Math.floor(Math.random() * 3) + 1;
+        const time = Math.floor(Math.random() * 30) + 10;  // 
         
-        await new Promise(resolve => setTimeout(resolve, time * 1000));
+        await new Promise(resolve => setTimeout(resolve, time * 1000 / 20)); // 20x. We don't want to wait realistic times, do we?
 
-        const result = `${time * 20} segundos para ${this.name}!!! `;
+        const result = `${time.toFixed(3)} seconds for ${this.name}!!! `;
         console.log(result);
         return result;
     }
