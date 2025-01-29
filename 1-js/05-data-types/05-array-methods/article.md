@@ -275,7 +275,7 @@ alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
 alert( arr.includes(NaN) );// true (correct)
 ```
 That's because `includes` was added to JavaScript much later and uses the more up-to-date comparison algorithm internally.
-````
+
 
 ### find and findIndex/findLastIndex
 
