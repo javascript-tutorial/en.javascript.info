@@ -39,7 +39,7 @@ class Horse {
     }
 
     async run() {
-        const time = Math.random() * 30 + 10; // 10 to 30 seconds
+        const time = Math.random() * 30 + 10; // 10 to 40 seconds
         
         await new Promise(resolve => setTimeout(resolve, time * 1000 / 20)); // 20x. We don't want to wait realistic times, do we?
 
