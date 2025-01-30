@@ -1,36 +1,4 @@
-
-# Boring times
-
-You may have been tempted to take the lazy, slow, boring pseudo-synchronous way. 
-
-It's ok...
-
-```js
-
-// Your code
-//
-
-async function showTimes() {
-    const time1 = await babieca.run();
-    alert(time1);
-
-    const time2 = await rocinante.run();
-    alert(time2);
-
-    const time3 = await bucephalus.run();
-    alert(time3);
-}
-
-showTimes()
-
-```
-
-No much fun.
-
-There is a better way. Make use of the promise API.
-
-
-# Let's race!
+Let's race!
 
 ```js run
 class Horse {
@@ -57,18 +25,17 @@ const bucephalus = new Horse('Bucephalus');
 //
 
 async function race() {
-    const results = await Promise.all([
+    const fastest = await Promise.any([
         babieca.run(), 
         rocinante.run(), 
         bucephalus.run()
     ]);
 
-    alert("All the horses have reached the goal! 🎉 \n" + results.join('\n'));
+    alert(`We have a winner! : ${fastest}`); 
+    // Fun fact: slower horses will continue running inside the engine, but nobody cares anymore
+
 }
 
 race();
 
 ```
-
-This has no cost for your code. The horses run simultaneously. You may see as they are arriving in your console.
-

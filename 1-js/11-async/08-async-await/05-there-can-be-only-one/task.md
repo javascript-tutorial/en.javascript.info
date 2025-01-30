@@ -1,7 +1,7 @@
 
-# Still a promise
+# There can be only one
 
-Make the 3 horses run then show their times
+Make the 3 horses run, show only the winner
 
 ```js
 
