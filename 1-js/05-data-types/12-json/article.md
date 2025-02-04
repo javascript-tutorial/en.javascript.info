@@ -178,7 +178,7 @@ Here, the conversion fails, because of circular reference: `room.occupiedBy` ref
 The full syntax of `JSON.stringify` is:
 
 ```js
-let json = JSON.stringify(value[, replacer, space])
+let json = JSON.stringify(value,[replacer, space])
 ```
 
 value
@@ -405,7 +405,7 @@ To decode a JSON-string, we need another method named [JSON.parse](mdn:js/JSON/p
 
 The syntax:
 ```js
-let value = JSON.parse(str[, reviver]);
+let value = JSON.parse(str,[reviver]);
 ```
 
 str
