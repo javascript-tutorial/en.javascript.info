@@ -71,7 +71,7 @@ if (!Math.trunc) { // if no such function
 
 JavaScript is a highly dynamic language. Scripts may add/modify any function, even built-in ones.
 
-One interesting polyfill library is [core-js](https://github.com/zloirock/core-js), which supports a wide range of features and allows you to include only the specific ones you need.
+One interesting polyfill library is [core-js](https://github.com/zloirock/core-js), which supports a wide range of features and allows you to include only the ones you need.
 
 ## Summary
 

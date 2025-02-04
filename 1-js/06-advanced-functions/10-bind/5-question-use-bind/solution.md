@@ -1,5 +1,5 @@
 
-The error occurs because `ask` gets functions `loginOk/loginFail` without the object.
+The error occurs because `askPassword` gets functions `loginOk/loginFail` without the object.
 
 When it calls them, they naturally assume `this=undefined`.
 
