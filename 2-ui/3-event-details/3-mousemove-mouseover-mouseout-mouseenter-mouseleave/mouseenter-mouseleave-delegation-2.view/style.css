@@ -1,7 +1,11 @@
 #text {
   display: block;
   height: 100px;
-  width: 456px;
+  width: 480px;
+}
+
+#table {
+	border-spacing: 10px;
 }
 
 #table th {
