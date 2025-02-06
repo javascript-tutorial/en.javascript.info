@@ -34,7 +34,7 @@ let user = {
 };
 ```
 
-Now we want to add a `fullName` property, that should be `"John Smith"`. Of course, we don't want to copy-paste existing information, so we can implement it as an accessor:
+Now we want to add a `fullName` property, which should be `"John Smith"`. Of course, we don't want to copy-paste existing information, so we can implement it as an accessor:
 
 ```js run
 let user = {
@@ -104,10 +104,10 @@ For accessor properties, there is no `value` or `writable`, but instead there ar
 
 That is, an accessor descriptor may have:
 
-- **`get`** -- a function without arguments, that works when a property is read,
-- **`set`** -- a function with one argument, that is called when the property is set,
-- **`enumerable`** -- same as for data properties,
-- **`configurable`** -- same as for data properties.
+- **`get`** -- a function without arguments that works when a property is read
+- **`set`** -- a function with one argument that is called when the property is set
+- **`enumerable`** -- same as for data properties
+- **`configurable`** -- same as for data properties
 
 For instance, to create an accessor `fullName` with `defineProperty`, we can pass a descriptor with `get` and `set`:
 
@@ -185,7 +185,7 @@ Technically, external code is able to access the name directly by using `user._n
 
 ## Using for compatibility
 
-One of the great uses of accessors is that they allow to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweak its behavior.
+One of the great uses of accessors is that they allow us to take control over a "regular" data property at any moment by replacing it with a getter and a setter and tweaking its behavior.
 
 Imagine we started implementing user objects using data properties `name` and `age`:
 
@@ -241,4 +241,4 @@ alert( john.birthday ); // birthday is available
 alert( john.age );      // ...as well as the age
 ```
 
-Now the old code works too and we've got a nice additional property.
+Now the old code works too, and we've got a nice additional property.
