@@ -214,7 +214,7 @@ The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a short
 
 ## Cleanup: finally
 
-Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
+Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's a `finally` in promises also.
 
 The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
 
@@ -222,7 +222,7 @@ The idea of `finally` is to set up a handler for performing cleanup/finalizing a
 
 E.g. stopping loading indicators, closing no longer needed connections, etc.
 
-Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+Think of it as a party finisher. No matter if a party was good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
 
 The code may look like this:
 
@@ -291,7 +291,7 @@ Sometimes, it might be that a promise is already settled when we add a handler t
 In such case, these handlers just run immediately:
 
 ```js run
-// the promise becomes resolved immediately upon creation
+// the promise becomes settled immediately upon creation
 let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
@@ -324,7 +324,7 @@ function loadScript(src, callback) {
 
 Let's rewrite it using Promises.
 
-The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that settles when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
 
 ```js run
 function loadScript(src) {
