@@ -101,11 +101,11 @@ Here we called `append` on `document.body`, but we can call `append` method on a
 
 Here are more insertion methods, they specify different places where to insert:
 
-- `node.append(...nodes or strings)` -- append nodes or strings *at the end* of `node`,
-- `node.prepend(...nodes or strings)` -- insert nodes or strings *at the beginning* of `node`,
-- `node.before(...nodes or strings)` –- insert nodes or strings *before* `node`,
-- `node.after(...nodes or strings)` –- insert nodes or strings *after* `node`,
-- `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
+- `elem.append(...nodes or strings)` -- append nodes or strings *at the end* of `element`,
+- `elem.prepend(...nodes or strings)` -- insert nodes or strings *at the beginning* of `element`,
+- `elem.before(...nodes or strings)` –- insert nodes or strings *before* `element`,
+- `elem.after(...nodes or strings)` –- insert nodes or strings *after* `element`,
+- `elem.replaceWith(...nodes or strings)` –- replaces `element` with the given nodes or strings.
 
 Arguments of these methods are an arbitrary list of DOM nodes to insert, or text strings (that become text nodes automatically).
 
@@ -299,7 +299,7 @@ We could make a function and put the code there. But the alternative way would b
 
 Sometimes when we have a big element, that may be faster and simpler.
 
-- The call `elem.cloneNode(true)` creates a "deep" clone of the element -- with all attributes and subelements. If we call `elem.cloneNode(false)`, then the clone is made without child elements.
+- The call `node.cloneNode(true)` creates a "deep" clone of the node or element -- with all attributes and subelements. If we call `node.cloneNode(false)`, then the clone is made without child nodes.
 
 An example of copying the message:
 
@@ -404,8 +404,8 @@ These methods come from really ancient times. Nowadays, there's no reason to use
 
 The only reason we list these methods here is that you can find them in many old scripts:
 
-`parentElem.appendChild(node)`
-: Appends `node` as the last child of `parentElem`.
+`parentNode.appendChild(node)`
+: Appends `node` as the last child of `parentNode`.
 
     The following example adds a new `<li>` to the end of `<ol>`:
 
@@ -424,8 +424,8 @@ The only reason we list these methods here is that you can find them in many old
     </script>
     ```
 
-`parentElem.insertBefore(node, nextSibling)`
-: Inserts `node` before `nextSibling` into `parentElem`.
+`parentNode.insertBefore(node, nextSibling)`
+: Inserts `node` before `nextSibling` into `parentNode`.
 
     The following code inserts a new list item before the second `<li>`:
 
@@ -450,11 +450,11 @@ The only reason we list these methods here is that you can find them in many old
     list.insertBefore(newLi, list.firstChild);
     ```
 
-`parentElem.replaceChild(node, oldChild)`
-: Replaces `oldChild` with `node` among children of `parentElem`.
+`parentNode.replaceChild(node, oldChild)`
+: Replaces `oldChild` with `node` among children of `parentNode`.
 
-`parentElem.removeChild(node)`
-: Removes `node` from `parentElem` (assuming `node` is its child).
+`parentNode.removeChild(node)`
+: Removes `node` from `parentNode` (assuming `node` is its child).
 
     The following example removes first `<li>` from `<ol>`:
 
@@ -471,7 +471,7 @@ The only reason we list these methods here is that you can find them in many old
     </script>
     ```
 
-All these methods return the inserted/removed node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
+All these methods return the inserted/removed node. In other words, `parentNode.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
 
 ## A word about "document.write"
 
@@ -527,23 +527,23 @@ So if we need to add a lot of text into HTML dynamically, and we're at page load
 - Methods to create new nodes:
     - `document.createElement(tag)` -- creates an element with the given tag,
     - `document.createTextNode(value)` -- creates a text node (rarely used),
-    - `elem.cloneNode(deep)` -- clones the element, if `deep==true` then with all descendants.  
+    - `node.cloneNode(deep)` -- clones the node, if `deep==true` then with all descendants.  
 
 - Insertion and removal:
-    - `node.append(...nodes or strings)` -- insert into `node`, at the end,
-    - `node.prepend(...nodes or strings)` -- insert into `node`, at the beginning,
-    - `node.before(...nodes or strings)` –- insert right before `node`,
-    - `node.after(...nodes or strings)` –- insert right after `node`,
-    - `node.replaceWith(...nodes or strings)` –- replace `node`.
-    - `node.remove()` –- remove the `node`.
+    - `elem.append(...nodes or strings)` -- insert into `element`, at the end,
+    - `elem.prepend(...nodes or strings)` -- insert into `element`, at the beginning,
+    - `elem.before(...nodes or strings)` –- insert right before `element`,
+    - `elem.after(...nodes or strings)` –- insert right after `element`,
+    - `elem.replaceWith(...nodes or strings)` –- replace `element`.
+    - `elem.remove()` –- remove the `element`.
 
     Text strings are inserted "as text".
 
 - There are also "old school" methods:
-    - `parent.appendChild(node)`
-    - `parent.insertBefore(node, nextSibling)`
-    - `parent.removeChild(node)`
-    - `parent.replaceChild(newElem, node)`
+    - `parentNode.appendChild(node)`
+    - `parentNode.insertBefore(node, nextSibling)`
+    - `parentNode.removeChild(node)`
+    - `parentNode.replaceChild(newElem, node)`
 
     All these methods return `node`.
 
