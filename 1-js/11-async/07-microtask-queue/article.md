@@ -103,7 +103,7 @@ In the example above, `.catch` added by `setTimeout` also triggers. But it does 
 
 ## Summary
 
-Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" (V8 term).
+Promise handling is always asynchronous, as all promise actions pass through the internal "promise jobs" queue, also called "microtask queue" ([v8](https://v8.dev/) term).
 
 So `.then/catch/finally` handlers are always called after the current code is finished.
 
