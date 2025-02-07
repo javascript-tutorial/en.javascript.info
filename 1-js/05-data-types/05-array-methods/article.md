@@ -701,7 +701,11 @@ arr.map(func, thisArg);
 // thisArg is the optional last argument
 ```
 
-The value of `thisArg` parameter becomes `this` for `func`.
+The value of `thisArg` parameter becomes `this` for `func`. It actualy binds a this context inside a function that uses the 'this' keyword.
+
+When a function is called as a method on an object, any 'this' keyword that is used inside the function points to that object, so it's not necessary to bind it explicitly.
+In other contexts however, and in particular in arrow functions where they could be called from a different context from where they were originally defined, 
+a 'this' binding is useful as it avoids errors and confusion as to what 'this' context is being used in a function.
 
 For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
 
@@ -731,7 +735,7 @@ alert(soldiers[0].age); // 20
 alert(soldiers[1].age); // 23
 ```
 
-If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+For the example above, the army isn't necessary. canJoin is being called in the context of army, so the this keyword is defined. 
 
 A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The latter is used more often, as it's a bit easier to understand for most people.
 
