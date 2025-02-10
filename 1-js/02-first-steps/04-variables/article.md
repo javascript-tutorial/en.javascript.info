@@ -160,7 +160,7 @@ Though it may seem a little odd at first sight, these languages are quite capabl
 
 ## Variable naming [#variable-naming]
 
-There are two limitations on variable names in JavaScript:
+Following rules are to be followed while naming variables in JavaScript:
 
 1. The name must contain only letters, digits, or the symbols `$` and `_`.
 2. The first character must not be a digit.
