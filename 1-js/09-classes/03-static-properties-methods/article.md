@@ -223,6 +223,8 @@ For example, a method for comparison `Article.compare(article1, article2)` or a 
 
 They are labeled by the word `static` in class declaration.
 
+"this" in a static method declaration points to the class constructor itself, not to an instance object of the class as in regular method declarations.
+
 Static properties are used when we'd like to store class-level data, also not bound to an instance.
 
 The syntax is:
