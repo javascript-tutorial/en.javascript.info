@@ -1,11 +1,7 @@
 function unique(arr) {
-  let result = [];
+	const uniqueArr = [];
+  
+	arr.forEach(item => uniqueArr.includes(item) ? null : uniqueArr.push(item));
+	return uniqueArr;
 
-  for (let str of arr) {
-    if (!result.includes(str)) {
-      result.push(str);
-    }
-  }
-
-  return result;
 }
