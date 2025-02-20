@@ -243,7 +243,7 @@ The full demo:
 
 <p></p>
 
-In the demo, there's also an additional element with `onmouseover` handler showing the current date.
+In the demo, there's also an additional element with `onmousemove` handler showing the current date.
 
 Please note: while you're dragging the thumb, you may hover over this element, and its handler *does not* trigger.
 
