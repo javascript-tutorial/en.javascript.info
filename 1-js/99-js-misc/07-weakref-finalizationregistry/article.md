@@ -469,6 +469,8 @@ Of course, it is important to remember, that such behavior is not guaranteed, an
 Based on this, a completely logical question immediately arises: why do not we use an ordinary cache, where we can manage its entities ourselves, instead of relying on the garbage collector?
 That's right, in the vast majority of cases there is no need to use `WeakRef` and `FinalizationRegistry`.  
 
+We don’t always manage manually because we no longer program for fixed hardware; we delegate to the engine, which adjusts behavior based on available resources. We use this approach when we suspect, as in this case, that memory management might be an issue, allowing for a more flexible and adaptable implementation.
+
 Here, we simply demonstrated an alternative implementation of similar functionality, using a non-trivial approach with interesting language features.
 Still, we cannot rely on this example, if we need a constant and predictable result.
 
