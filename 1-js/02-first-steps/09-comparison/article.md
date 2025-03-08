@@ -126,18 +126,18 @@ The same thing happens with an empty string:
 alert( '' == false ); // true
 ```
 
-This happens because operands of different types are converted to numbers by the equality operator `==`. An empty string, just like `false`, becomes a zero.
+This happens because operands of different data types are converted to numbers by the equality operator `==`. An empty string, just like `false`, becomes a zero.
 
 What to do if we'd like to differentiate `0` from `false`?
 
 **A strict equality operator `===` checks the equality without type conversion.**
 
-In other words, if `a` and `b` are of different types, then `a === b` immediately returns `false` without an attempt to convert them.
+In other words, if `a` and `b` are of different data types, then `a === b` immediately returns `false` without an attempt to convert them.
 
 Let's try it:
 
 ```js run
-alert( 0 === false ); // false, because the types are different
+alert( 0 === false ); // false, because the data types are different
 ```
 
 There is also a "strict non-equality" operator `!==` analogous to `!=`.
@@ -149,7 +149,7 @@ The strict equality operator is a bit longer to write, but makes it obvious what
 There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
 
 For a strict equality check `===`
-: These values are different, because each of them is a different type.
+: These values are different, because each of them is a different data type.
 
     ```js run
     alert( null === undefined ); // false
@@ -211,6 +211,6 @@ Why did we go over these examples? Should we remember these peculiarities all th
 
 - Comparison operators return a boolean value.
 - Strings are compared letter-by-letter in the "dictionary" order.
-- When values of different types are compared, they get converted to numbers (with the exclusion of a strict equality check).
+- When values of different data types are compared, they get converted to numbers (with the exclusion of a strict equality check).
 - The values `null` and `undefined` equal `==` each other and do not equal any other value.
 - Be careful when using comparisons like `>` or `<` with variables that can occasionally be `null/undefined`. Checking for `null/undefined` separately is a good idea.
