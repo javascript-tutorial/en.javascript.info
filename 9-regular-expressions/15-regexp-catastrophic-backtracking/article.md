@@ -1,12 +1,12 @@
 # Catastrophic backtracking
 
-Some regular expressions are looking simple, but can execute a veeeeeery long time, and even "hang" the JavaScript engine.
+Some regular expressions look simple, but can take a veeeeeery long time to execute, and even "hang" the JavaScript engine.
 
 Sooner or later most developers occasionally face such behavior. The typical symptom -- a regular expression works fine sometimes, but for certain strings it "hangs", consuming 100% of CPU.
 
-In such case a web-browser suggests to kill the script and reload the page. Not a good thing for sure.
+In such cases a web-browser might suggest to kill the script and reload the page. Not a good thing for sure.
 
-For server-side JavaScript such a regexp may hang the server process, that's even worse. So we definitely should take a look at it.
+For server-side JavaScript such a regexp may hang the server process, which is even worse. So we definitely should take a look at it.
 
 ## Example
 
@@ -25,7 +25,7 @@ alert( regexp.test("A good string") ); // true
 alert( regexp.test("Bad characters: $@#") ); // false
 ```
 
-The regexp seems to work. The result is correct. Although, on certain strings it takes a lot of time. So long that JavaScript engine "hangs" with 100% CPU consumption.
+The regexp seems to work. The result is correct. Although, on certain strings it takes a lot of time. So long that the JavaScript engine "hangs" with 100% CPU consumption.
 
 If you run the example below, you probably won't see anything, as JavaScript will just "hang". A web-browser will stop reacting on events, the UI will stop working (most browsers allow only scrolling). After some time it will suggest to reload the page. So be careful with this:
 
@@ -37,7 +37,7 @@ let str = "An input string that takes a long time or even makes this regexp hang
 alert( regexp.test(str) );
 ```
 
-To be fair, let's note that some regular expression engines can handle such a search effectively, for example V8 engine version starting from 8.8 can do that (so Google Chrome 88 doesn't hang here), while Firefox browser does hang. 
+To be fair, let's note that some regular expression engines can handle such a search effectively, for example the V8 engine version starting from 8.8 can do that (so Google Chrome 88 doesn't hang here), while Firefox browser does hang.
 
 ## Simplified example
 
@@ -75,7 +75,7 @@ Here's what the regexp engine does:
 
     After all digits are consumed, `pattern:\d+` is considered found (as `match:123456789`).
 
-    Then the star quantifier `pattern:(\d+)*` applies. But there are no more digits in the text, so the star doesn't give anything.
+    Then the star quantifier `pattern:(\d+)*` applies. But there are no more digits in the text, so the star doesn't add anything.
 
     The next character in the pattern is the string end `pattern:$`. But in the text we have `subject:z` instead, so there's no match:
 
@@ -85,7 +85,7 @@ Here's what the regexp engine does:
     (123456789)z
     ```
 
-2. As there's no match, the greedy quantifier `pattern:+` decreases the count of repetitions, backtracks one character back.
+2. As there's no match, the greedy quantifier `pattern:+` decreases the count of repetitions, backtracking one character back.
 
     Now `pattern:\d+` takes all digits except the last one (`match:12345678`):
     ```
@@ -160,7 +160,7 @@ Trying each of them is exactly the reason why the search takes so long.
 
 ## Back to words and strings
 
-The similar thing happens in our first example, when we look for words by pattern `pattern:^(\w+\s?)*$` in the string `subject:An input that hangs!`.
+A similar thing happens in our first example, when we look for words by pattern `pattern:^(\w+\s?)*$` in the string `subject:An input that hangs!`.
 
 The reason is that a word can be represented as one `pattern:\w+` or many:
 
@@ -172,7 +172,7 @@ The reason is that a word can be represented as one `pattern:\w+` or many:
 ...
 ```
 
-For a human, it's obvious that there may be no match, because the string ends with an exclamation sign `!`, but the regular expression expects a wordly character `pattern:\w` or a space `pattern:\s` at the end. But the engine doesn't know that.
+For a human, it's obvious that there can be no match, because the string ends with an exclamation sign `!`, but the regular expression expects a wordly character `pattern:\w` or a space `pattern:\s` at the end. But the engine doesn't know that.
 
 It tries all combinations of how the regexp `pattern:(\w+\s?)*` can "consume" the string, including variants with spaces `pattern:(\w+\s)*` and without them `pattern:(\w+)*` (because spaces `pattern:\s?` are optional). As there are many such combinations (we've seen it with digits), the search takes a lot of time.
 
@@ -182,7 +182,7 @@ Should we turn on the lazy mode?
 
 Unfortunately, that won't help: if we replace `pattern:\w+` with `pattern:\w+?`, the regexp will still hang. The order of combinations will change, but not their total count.
 
-Some regular expression engines have tricky tests and finite automations that allow to avoid going through all combinations or make it much faster, but most engines don't, and it doesn't always help.
+Some regular expression engines have tricky tests and finite automations that allow the engine to avoid going through all combinations or make it much faster, but most engines don't, and it doesn't always help.
 
 ## How to fix?
 
@@ -226,9 +226,9 @@ Besides, a rewritten regexp is usually more complex, and that's not good. Regexp
 
 Luckily, there's an alternative approach. We can forbid backtracking for the quantifier.
 
-The root of the problem is that the regexp engine tries many combinations that are obviously wrong for a human.
+The root of the problem is that the regexp engine tries many combinations that for a human are obviously wrong.
 
-E.g. in the regexp `pattern:(\d+)*$` it's obvious for a human, that `pattern:+` shouldn't backtrack. If we replace one `pattern:\d+` with two separate `pattern:\d+\d+`, nothing changes:
+E.g. in the regexp `pattern:(\d+)*$` it's obvious for a human that `pattern:+` shouldn't backtrack. If we replace one `pattern:\d+` with two separate `pattern:\d+\d+`, nothing changes:
 
 ```
 \d+........
@@ -244,7 +244,7 @@ Modern regular expression engines support possessive quantifiers for that. Regul
 
 Possessive quantifiers are in fact simpler than "regular" ones. They just match as many as they can, without any backtracking. The search process without backtracking is simpler.
 
-There are also so-called "atomic capturing groups" - a way to disable backtracking inside parentheses.
+There are also so-called "atomic groups" - a way to disable backtracking inside parentheses.
 
 ...But the bad news is that, unfortunately, in JavaScript they are not supported.
 
@@ -266,7 +266,7 @@ Let's decipher it:
 
 That is: we look ahead - and if there's a word `pattern:\w+`, then match it as `pattern:\1`.
 
-Why? That's because the lookahead finds a word `pattern:\w+` as a whole and we capture it into the pattern with `pattern:\1`. So we essentially implemented a possessive plus `pattern:+` quantifier. It captures only the whole word `pattern:\w+`, not a part of it.
+Why? That's because the lookahead finds a word `pattern:\w+` as a whole and we capture it into the pattern with `pattern:\1`. So we essentially implemented an atomic group. It captures only the whole word `pattern:\w+`, not a part of it.
 
 For instance, in the word `subject:JavaScript` it may not only match `match:Java`, but leave out `match:Script` to match the rest of the pattern.
 
@@ -283,7 +283,7 @@ alert( "JavaScript".match(/(?=(\w+))\1Script/)); // null
 We can put a more complex regular expression into `pattern:(?=(\w+))\1` instead of `pattern:\w`, when we need to forbid backtracking for `pattern:+` after it.
 
 ```smart
-There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](https://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](https://blog.stevenlevithan.com/archives/mimic-atomic-groups).
+The [`regex`](https://github.com/slevithan/regex) package adds support for atomic groups and possessive quantifiers to native JavaScript regexps, automatically using the lookahead trick under the hood. There's also more about the relationship between atomic groups and lookahead in articles [Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](https://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](https://blog.stevenlevithan.com/archives/mimic-atomic-groups).
 ```
 
 Let's rewrite the first example using lookahead to prevent backtracking:
