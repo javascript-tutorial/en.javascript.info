@@ -342,7 +342,7 @@ The short answer is: we don't.
 
 In the next version 3.0 of the specification, there will probably be a manual way to finish the transaction, but right now in 2.0 there isn't.
 
-**When all transaction requests are finished, and the [microtasks queue](info:microtask-queue) is empty, it is committed automatically.**
+**When all transaction requests are finished, and the [macrotasks queue (event queue)](info:event-loop) is empty, it is committed automatically.**
 
 Usually, we can assume that a transaction commits when all its requests are complete, and the current code finishes.
 
