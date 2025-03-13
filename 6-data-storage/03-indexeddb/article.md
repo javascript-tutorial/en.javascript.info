@@ -367,7 +367,7 @@ request1.onsuccess = function() {
 };
 ```
 
-That's because `fetch` is an asynchronous operation, a macrotask. Transactions are closed before the browser starts doing macrotasks.
+That's because `fetch` is an asynchronous operation, a microtask. Transactions are closed before the browser starts doing microtasks.
 
 Authors of IndexedDB spec believe that transactions should be short-lived. Mostly for performance reasons.
 
