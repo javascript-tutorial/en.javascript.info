@@ -260,6 +260,20 @@ That's a special feature of arrow functions, it's useful when we actually do not
 
 - Functions that are stored in object properties are called "methods".
 - Methods allow objects to "act" like `object.doSomething()`.
+- Method shorthand can be used instead of function expression:
+
+  const user = {
+    sayHi () {
+      alert ('Hello!');
+    }
+  }  
+  
+  const user = {
+    sayHi: function () {
+      alert('Hello!');
+    }
+  }
+  
 - Methods can reference the object as `this`.
 
 The value of `this` is defined at run-time.
