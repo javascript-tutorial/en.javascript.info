@@ -31,6 +31,14 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
+Let's break this down:
+
+- The printReverseList function takes in a singly linked list list as its argument.
+- The first line of the function checks if the current node has a next node. If it does, the function recursively calls printReverseList on the next node. This continues until the end of the list is reached.
+- The nested recursive calls in the printReverseList function do not finish execution with the alert statement because the alert statement is not the last line of the function. 
+- In other words, when the printReverseList function is called recursively on the next node of the current node, it does not immediately log the value of that node to the alert. Instead, it first calls itself recursively on the next node again, which in turn calls itself recursively on the next node again, and so on, until it reaches the end of the list.
+- Once the end of the list is reached, the function starts to print out the values of each node. Since we used recursion to iterate through the list, the function returns to the previous call stack and continues executing the rest of the function, at which point it executes the alert statement for each node in reverse order.
+
 # Using a loop
 
 The loop variant is also a little bit more complicated than the direct output.
