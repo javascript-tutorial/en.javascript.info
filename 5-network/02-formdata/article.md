@@ -18,9 +18,7 @@ From the server point of view, that looks like a usual form submission.
 
 ## Sending a simple form
 
-Let's send a simple form first.
-
-As you can see, that's almost one-liner:
+Let's send a simple form first:
 
 ```html run autorun
 <form id="formElem">
