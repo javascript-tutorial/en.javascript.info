@@ -1,7 +1,7 @@
 
-The problem is that `Promise.all` immediately rejects when one of its promises rejects. In our case, the second query fails, so `Promise.all` rejects, and the `try...catch` block catches this error.
+The root of the problem is that `Promise.all` immediately rejects when one of its promises rejects, but it do nothing to cancel the other promises.
 
-Meanwhile, even if one of the queries fails, other promises are *not affected* - they independently continue their execution. In our case, the third query throws an error of its own after a bit of time. And that error is never caught. We can see it in the console.
+In our case, the second query fails, so `Promise.all` rejects, and the `try...catch` block catches this error.Meanwhile, other promises are *not affected* - they independently continue their execution. In our case, the third query throws an error of its own after a bit of time. And that error is never caught, we can see it in the console.
 
 The problem is especially dangerous in server-side environments, such as Node.js, when an uncaught error may cause the process to crash.
 
