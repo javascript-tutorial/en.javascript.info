@@ -55,9 +55,12 @@ async function run() {
   try {
     await Promise.all([
       // these 3 parallel jobs take different time: 100, 200 and 300 ms
+      // we use delay helper for this effect
+*!*
       delay(() => database.query(true), 100),
       delay(() => database.query(false), 200),
       delay(() => database.query(false), 300)
+*/!*
     ]);
   } catch(error) {
     console.log('Error handled (or was it?)');
