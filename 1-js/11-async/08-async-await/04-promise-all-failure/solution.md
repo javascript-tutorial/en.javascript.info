@@ -7,9 +7,9 @@ The problem is especially dangerous in server-side environments, such as Node.js
 
 How to fix it?
 
-A natural solution would be to cancel all unfinished queries when one of them fails. This way we avoid any potential errors.
+An ideal solution would be to cancel all unfinished queries when one of them fails. This way we avoid any potential errors.
 
-However, the bad news is that service calls (such as `database.query`) are often implemented by a 3rd-party library which doesn't support cancellation. So there's usually no way to cancel a call.
+However, the bad news is that service calls (such as `database.query`) are often implemented by a 3rd-party library which doesn't support cancellation. Then there's no way to cancel a call.
 
 Instead we can write our own wrapper function around `Promise.all` which adds a custom `then/catch` handler to each promise to track them: results are gathered and, if an error occurs, all subsequent promises are ignored.
 
