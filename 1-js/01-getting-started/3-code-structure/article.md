@@ -12,6 +12,10 @@ This is a *statement* that outputs a string `"Hello, world!"`. You can see the o
 
 TODO: arrow with "statement"
 
+![statement|code="1:1"](statement.svg)
+
+![statement|code="2:2"](statement.svg)
+
 ![statement|code="3:3"](statement.svg)
 
 ![statement|code="4:4"](statement.svg)

@@ -29,4 +29,4 @@ Different engines have different "codenames". For example:
 
 The terms above are good to remember because they are often mentioned. For instance, if your hear that "a feature X is supported by V8", then it probably works in Chrome, Opera and Edge browsers.
 
-As mentioned, engines can execute not only in the browser. For instance, [Node.js](https://nodejs.org/) allows to execute JavaScript code without any browser at all. It's based on V8 engine. One can install it locally on your computer and write JavaScript code to assist in daily tasks, file management, etc.
+As mentioned, engines can execute not only in the browser. For instance, [Node.js](https://nodejs.org/) allows to execute JavaScript code without any browser at all. It's based on V8 engine. One can install it locally on your computer and write JavaScript code for to assist in daily tasks or make a web server using it.
