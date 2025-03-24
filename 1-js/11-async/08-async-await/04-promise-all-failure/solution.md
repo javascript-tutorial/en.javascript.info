@@ -46,7 +46,7 @@ It may be important that all queries complete, especially if some of them make i
 
 So we should wait until all promises are settled before going further with the execution and eventually disconnecting.
 
-Here's another implementation. It also resolves with the first error, but waits until all promises are settled.
+Here's another implementation. It behaves similar to `Promise.all` - also resolves with the first error, but waits until all promises are settled.
 
 ```js
 function customPromiseAllWait(promises) {
@@ -82,4 +82,7 @@ function customPromiseAllWait(promises) {
 
 Now `await customPromiseAllWait(...)` will stall the execution until all queries are processed.
 
-This is the most reliable approach.
+This is a more reliable approach.
+
+Lastly, if we'd like to know about all the errors, e.g. for logging purposes, we can use `Promise.allSettled`.
+
