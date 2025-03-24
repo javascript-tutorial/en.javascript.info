@@ -3,7 +3,7 @@
 
 `Promise.all` is a great way to parallelize multiple operations. It's especially useful when we need to make parallel requests to multiple services.
 
-However, there's a hidden danger. Hopefully we'll be able to identify its cause.
+However, there's a hidden danger. We'll see an example in this task and explore how to avoid it.
 
 Let's say we have a connection to a remote service, such as a database.
 
@@ -39,7 +39,7 @@ function disconnect() {
 
 Now here's the problem.
 
-We write a simple code to connect and send 3 queries in parallel (all of them take different time, e.g. 100, 200 and 300ms), then disconnect:
+We wrote the code to connect and send 3 queries in parallel (all of them take different time, e.g. 100, 200 and 300ms), then disconnect:
 
 ```js
 // Helper function to call async function fn after ms milliseconds
@@ -69,8 +69,8 @@ async function run() {
 run();
 ```
 
-Two of these queries are (by chance) unsuccessful, but we're smart enough to wrap the `Promise.all` call into a `try...catch` block.
+Two of these queries are (by chance) unsuccessful, but we handle it by wrapping the `Promise.all` call into a `try..catch` block.
 
-However, this script actually leads to an uncaught error in console!
+However, this doesn't help! This script actually leads to an uncaught error in console!
 
 Why? How to avoid it?
