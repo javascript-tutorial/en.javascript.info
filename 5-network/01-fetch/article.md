@@ -12,7 +12,7 @@ For example, we can use a network request to:
 
 ...And all of that without reloading the page!
 
-Fetch is not limited to network request though. It can load local assets dynamically, like SVGs, HTML fragments, or configurations. For example, `fetch("face.svg")` becames useful when you need to modify the SVG element dynamically.
+Fetch is not limited to network request though. It can load local assets dynamically, like SVGs, HTML fragments, or configurations. For example, `fetch("face.svg")` becomes useful when you need to modify the SVG element dynamically.
 
 There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) for network requests from JavaScript. We don't have to use XML though: the term comes from old times, that's why that word is there. You may have heard that term already.
 
