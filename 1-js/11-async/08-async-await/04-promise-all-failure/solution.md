@@ -82,7 +82,32 @@ function customPromiseAllWait(promises) {
 
 Now `await customPromiseAllWait(...)` will stall the execution until all queries are processed.
 
-This is a more reliable approach.
+This is a more reliable approach, as it guarantees a predictable execution flow.
 
-Lastly, if we'd like to know about all the errors, e.g. for logging purposes, we can use `Promise.allSettled`.
+Lastly, if we'd like to process all errors, we can use either use `Promise.allSettled` or write a wrapper around it to gathers all errors in a single [AggregateError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError) object and rejects with it.
 
+```js
+// wait for all promises to settle
+// return results if no errors
+// throw AggregateError with all errors if any
+function allOrAggregateError(promises) {
+  return Promise.allSettled(promises).then(results => {
+    const errors = [];
+    const values = [];
+
+    results.forEach((res, i) => {
+      if (res.status === 'fulfilled') {
+        values[i] = res.value;
+      } else {
+        errors.push(res.reason);
+      }
+    });
+
+    if (errors.length > 0) {
+      throw new AggregateError(errors, 'One or more promises failed');
+    }
+
+    return values;
+  });
+}
+```
