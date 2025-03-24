@@ -55,7 +55,7 @@ async function run() {
   try {
     await Promise.all([
       // these 3 parallel jobs take different time: 100, 200 and 300 ms
-      // we use delay helper for this effect
+      // we use delay helper to achieve this effect
 *!*
       delay(() => database.query(true), 100),
       delay(() => database.query(false), 200),
@@ -72,7 +72,7 @@ async function run() {
 run();
 ```
 
-Two of these queries are (by chance) unsuccessful, but we handle it by wrapping the `Promise.all` call into a `try..catch` block.
+Two of these queries happen to be unsuccessful, but we're smart enough to wrap the `Promise.all` call into a `try..catch` block.
 
 However, this doesn't help! This script actually leads to an uncaught error in console!
 
