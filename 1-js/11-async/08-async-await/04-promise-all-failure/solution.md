@@ -11,7 +11,7 @@ An ideal solution would be to cancel all unfinished queries when one of them fai
 
 However, the bad news is that service calls (such as `database.query`) are often implemented by a 3rd-party library which doesn't support cancellation. Then there's no way to cancel a call.
 
-Instead we can write our own wrapper function around `Promise.all` which adds a custom `then/catch` handler to each promise to track them: results are gathered and, if an error occurs, all subsequent promises are ignored.
+As an alternative, we can write our own wrapper function around `Promise.all` which adds a custom `then/catch` handler to each promise to track them: results are gathered and, if an error occurs, all subsequent promises are ignored.
 
 ```js
 function customPromiseAll(promises) {
@@ -46,7 +46,7 @@ It may be important that all queries complete, especially if some of them make i
 
 So we should wait until all promises are settled before going further with the execution and eventually disconnecting.
 
-Here's one more implementation. It also resolves with the first error, but waits until all promises are settled.
+Here's another implementation. It also resolves with the first error, but waits until all promises are settled.
 
 ```js
 function customPromiseAllWait(promises) {
