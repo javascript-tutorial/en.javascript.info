@@ -48,18 +48,16 @@ For instance, let's try reading and writing to `<iframe>` from another origin:
 *!*
     let iframeWindow = iframe.contentWindow; // OK
 */!*
-    try {
-      // ...but not to the document inside it
+
+    // ...but when we try to access the document
+
 *!*
-      let doc = iframe.contentDocument; // ERROR
+    let doc = iframe.contentDocument; // ...we'll get null
 */!*
-    } catch(e) {
-      alert(e); // Security Error (another origin)
-    }
 
     // also we can't READ the URL of the page in iframe
     try {
-      // Can't read URL from the Location object
+      // can't read URL from the Location object
 *!*
       let href = iframe.contentWindow.location.href; // ERROR
 */!*
@@ -77,7 +75,7 @@ For instance, let's try reading and writing to `<iframe>` from another origin:
 </script>
 ```
 
-The code above shows errors for any operations except:
+The code above shows `null` or error for any operations except:
 
 - Getting the reference to the inner window `iframe.contentWindow` - that's allowed.
 - Writing to `location`.
