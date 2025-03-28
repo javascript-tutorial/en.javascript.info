@@ -1,5 +1,5 @@
 
-1. For the whole thing to work *anyhow*, the result of `sum` must be function.
+1. For the whole thing to work *anyhow*, the result of `sum` must be a function.
 2. That function must keep in memory the current value between calls.
 3. According to the task, the function must become the number when used in `==`. Functions are objects, so the conversion happens as described in the chapter <info:object-toprimitive>, and we can provide our own method that returns the number.
 
