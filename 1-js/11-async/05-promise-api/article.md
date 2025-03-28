@@ -119,8 +119,6 @@ So we are able to pass ready values to `Promise.all` where convenient.
 
 ## Promise.allSettled
 
-[recent browser="new"]
-
 `Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results successful to proceed:
 
 ```js
@@ -170,29 +168,6 @@ The `results` in the line `(*)` above will be:
 ```
 
 So for each promise we get its status and `value/error`.
-
-### Polyfill
-
-If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
-
-```js
-if (!Promise.allSettled) {
-  const rejectHandler = reason => ({ status: 'rejected', reason });
-
-  const resolveHandler = value => ({ status: 'fulfilled', value });
-
-  Promise.allSettled = function (promises) {
-    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
-    return Promise.all(convertedPromises);
-  };
-}
-```
-
-In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
-
-That handler turns a successful result `value` into `{status:'fulfilled', value}`, and an error `reason` into `{status:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
-
-Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
 
 ## Promise.race
 
@@ -312,11 +287,11 @@ In practice, this method is almost never used.
 There are 6 static methods of `Promise` class:
 
 1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
-2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
+2. `Promise.allSettled(promises)` -- waits for all promises to settle and returns their results as an array of objects with:
     - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
 3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.any(promises)` (recently added method) -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
+4. `Promise.any(promises)` -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
 5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
 6. `Promise.reject(error)` -- makes a rejected promise with the given error.
 
