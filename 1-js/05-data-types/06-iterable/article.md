@@ -5,16 +5,14 @@
 
 Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
 
-If an object isn't technically an array, but represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
+If an object isn't technically an array, but represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it - but only if the object is properly set up to be iterable.
 
 
 ## Symbol.iterator
 
-We can easily grasp the concept of iterables by making one of our own.
+We can make any object iterable by implementing the `Symbol.iterator` method. This is a special built-in symbol that defines how the object should be iterated.
 
-For instance, we have an object that is not an array, but looks suitable for `for..of`.
-
-Like a `range` object that represents an interval of numbers:
+For example, let's create a `range` object that represents an interval of numbers:
 
 ```js
 let range = {
@@ -22,8 +20,8 @@ let range = {
   to: 5
 };
 
-// We want the for..of to work:
-// for(let num of range) ... num=1,2,3,4,5
+// This will NOT work yet:
+// for (let num of range) ... → TypeError: range is not iterable
 ```
 
 To make the `range` object iterable (and thus let `for..of` work) we need to add a method to the object named `Symbol.iterator` (a special built-in symbol just for that).
