@@ -49,7 +49,7 @@ The look & feel of them is quite similar. Once you know how to use one of these 
 
 Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
 
-Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom:
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
 
 ![safari](safari.png)
 
