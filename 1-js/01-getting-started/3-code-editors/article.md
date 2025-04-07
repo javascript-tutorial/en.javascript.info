@@ -1,49 +1,49 @@
-# Code editors
+# Wahariri wa Nambari
 
-A code editor is the place where programmers spend most of their time.
+Wahariri wa nambari ni sehemu ambapo programu huendelezwa.
 
-There are two main types of code editors: IDEs and lightweight editors. Many people use one tool of each type.
+Kuna aina mbili kuu za wahariri wa nambari: IDEs na wahariri mwepesi. Wengi hutumia zana moja ya kila aina.
 
 ## IDE
 
-The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) refers to a powerful editor with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
+Neno [IDE] (https://en.wikipedia.org/wiki/Integrated_development_environment) (Mazingira ya Maendeleo yaliyointishwa) inahusu zana yenye nguvu yenye huduma nyingi ambazo kwa kawaida hufanya kazi kwenye "mradi mzima". Kama jina linavyopendekeza, sio tu mtunzi, lakini ni "mazingira kamili ya maendeleo."
 
-An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
+IDE hulipakia mradi (ambao unaweza kuwa faili nyingi), inaruhusu urambazaji kati ya faili, hutoa autocompletion kulingana na mradi mzima (sio faili tu iliyofunguliwa), na huingiliana na mfumo wa usimamizi wa toleo (kama [git](https://git-scm.com/)), mazingira ya kupima na mambo mengine ya "kiwango cha mradi".
 
-If you haven't selected an IDE yet, consider the following options:
+Ikiwa bado hujachagua IDE, fikiria chaguo zifuatazo:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
-- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+- [Visual Studio Code](https://code.visualstudio.com/) (Inapatikana kwa mifumo yote, bure).
+- [WebStorm](https://www.jetbrains.com/webstorm/) (Inapatikana kwa mifumo yote, kulipwa).
 
-For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+Kama unahitaji IDE na wewe ni mtumiaji wa Windows, unaweza kujaribu "Visual Studio", sio "Visual Studio Code". "Visual Studio" ni mhariri wa kulipwa wenye nguvu kwa Windows pekee, ambao unafaa vizuri kwa jukwaa la .NET. Pia ni mzuri kwa JavaScript. Kuna toleo la bure la [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+Wengi wa IDE huwa ni ya kulipia, lakini huwa na kipindi cha jaribio. Gharama yao kwa kawaida haitoshi kulinganisha na mshahara wa msanidi programu mwenye ujuzi, hivyo chagua tu bora kwako.
 
-## Lightweight editors
+## Wahariri mwepesi
 
-"Lightweight editors" are not as powerful as IDEs, but they're fast, elegant and simple.
+"Wahariri mwepesi" ni tofauti na IDE kwa sababu ni rahisi, yenye kasi na inavutia.
 
-They are mainly used to open and edit a file instantly.
+Kwa kawaida, hutumiwa kufungua na kuhariri faili mara moja.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+Tofauti kuu kati ya "hariri nyepesi" na "IDE" ni kwamba IDE hufanya kazi kwenye ngazi ya mradi, kwa hivyo inapakia data nyingi zaidi mwanzoni, huchambua muundo wa mradi ikihitajika, na kadhalika. "Hariri nyepesi" ni haraka zaidi ikiwa tunahitaji faili moja tu.
 
-In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
+Katika matumizi, "hariri nyepesi" inaweza kuwa na programu-jalizi nyingi, ikiwa ni pamoja na wachambuzi wa muundo wa sarufi na wakamilishi wa maneno ya neno kwa kiwango cha saraka, kwa hivyo hakuna mpaka mkali kati ya "hariri nyepesi" na IDE.
 
-There are many options, for instance:
+Kuna chaguzi nyingi, kwa mfano:
 
-- [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
-- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Sublime Text](https://www.sublimetext.com/) (Inapatikana kwa mifumo yote, programu ya kugawana gharama).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, bure).
+- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) pia ni nzuri ikiwa unajua jinsi ya kuzitumia.
 
-## Let's not argue
+## Sio lazima tushindane.
 
-The editors in the lists above are those that either I or my friends whom I consider good developers have been using for a long time and are happy with.
+Waandishi wa hapa wametumia wahariri katika orodha hapo juu kwa muda mrefu na wamefurahia kutumia.
 
-There are other great editors in our big world. Please choose the one you like the most.
+Kuna wahariri wengine wazuri sana katika ulimwengu wetu. Chagua kile unachopenda zaidi.
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+Uchaguzi wa wahariri, kama zana yoyote nyingine, ni wa kibinafsi na unategemea miradi yako, tabia, na mapendeleo yako binafsi.
 
-The author's personal opinion:
+Maoni ya mwandishi:
 
-- I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
-- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).
+- Ningetumia [Visual Studio Code](https://code.visualstudio.com/) kama ninaendeleza zaidi sehemu ya mbele.
+- Vinginevyo, ikiwa kimsingi unafanya maendeleo kwa lugha/jukwaa tofauti na frontend, na sehemu ndogo ya frontend, basi fikiria wahariri wengine, kama XCode (Mac), Visual Studio (Windows) au familia ya Jetbrains (Webstorm, PHPStorm, RubyMine, nk. Kulingana na lugha).
