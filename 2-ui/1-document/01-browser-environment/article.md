@@ -21,7 +21,8 @@ For instance, we can use it as a global object:
 function sayHi() {
   alert("Hello");
 }
-
+//typeof window
+console.log(typeof window);
 // global functions are methods of the global object:
 window.sayHi();
 ```
