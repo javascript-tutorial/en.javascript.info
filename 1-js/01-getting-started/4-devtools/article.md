@@ -22,7 +22,7 @@ The developer tools will open on the Console tab by default.
 
 It looks somewhat like this:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 The exact look of developer tools depends on your version of Chrome. It changes from time to time but should be similar.
 
