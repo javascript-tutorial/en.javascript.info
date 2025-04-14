@@ -4,7 +4,7 @@ Quite often we need to perform a similar action in many places of the script.
 
 For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Functions are the main "building blocks" of the program. They allow the code to be called many times without rewriting it.
 
 We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
 
@@ -196,7 +196,7 @@ showMessage("Ann");
 
 That's not an error. Such a call would output `"*Ann*: undefined"`. As the value for `text` isn't passed, it becomes `undefined`.
 
-We can specify the so-called "default" (to use if omitted) value for a parameter in the function declaration, using `=`:
+We can specify the so-called "default" value (to use if omitted) for a parameter in the function declaration, using `=`:
 
 ```js run
 function showMessage(from, *!*text = "no text given"*/!*) {
@@ -441,7 +441,7 @@ createForm(..)      // creates a form (and usually returns it)
 checkPermission(..) // checks a permission, returns true/false
 ```
 
-With prefixes in place, a glance at a function name gives an understanding what kind of work it does and what kind of value it returns.
+With prefixes in place, a glance at a function name gives an understanding of what kind of work it does and what kind of value it returns.
 
 ```smart header="One function -- one action"
 A function should do exactly what is suggested by its name, no more.
