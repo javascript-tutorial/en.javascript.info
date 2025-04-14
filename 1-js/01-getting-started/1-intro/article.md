@@ -1,122 +1,122 @@
-# An Introduction to JavaScript
+# Utangulizi wa JavaScript
 
-Let's see what's so special about JavaScript, what we can achieve with it, and what other technologies play well with it.
+Hebu tuone ni kitu gani maalum kuhusu JavaScript, tunaweza kupata nini kwa kutumia lugha hii, na teknolojia nyingine gani inafanya vizuri nayo.
 
-## What is JavaScript?
+## JavaScript ni nini?
 
-*JavaScript* was initially created to "make web pages alive".
+*JavaScript ilianzishwa awali kwa lengo la "kufanya kurasa za wavuti kuwa hai.".
 
-The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
+Programu katika lugha hii huitwa scripts. Zinaweza kuandikwa moja kwa moja katika HTML ya ukurasa wa wavuti na kukimbia moja kwa moja wakati ukurasa unapakia.
 
-Scripts are provided and executed as plain text. They don't need special preparation or compilation to run.
+Scripts hupatikana na kutafsiriwa kama maandishi safi. Haziitaji maandalizi au uundaji maalum ili kuzitumia.
 
-In this aspect, JavaScript is very different from another language called [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
+Katika hili, JavaScript ni tofauti sana na lugha nyingine inayoitwa [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
-```smart header="Why is it called <u>Java</u>Script?"
-When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+```smart header="Kwa nini inaitwa <u>Java</u>Script?"
 
-But as it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
+Wakati JavaScript ilianzishwa, awali ilikuwa na jina lingine: "LiveScript". Lakini Java ilikuwa maarufu sana wakati huo, hivyo iliamuliwa kwamba kuipatia lugha mpya jina la "mdogo wake" Java ingesaidia.
+
+Lakini kama ilivyokua, JavaScript ilikuwa lugha huru kabisa yenye maelezo yake ya kipekee inayoitwa [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), na sasa haina uhusiano wowote na Java.
 ```
 
-Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+Leo hii, JavaScript inaweza kutumika si tu kwenye kivinjari, bali pia kwenye seva, au kwa kweli kwenye kifaa chochote kilicho na programu maalum inayoitwa [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
-The browser has an embedded engine sometimes called a "JavaScript virtual machine".
+Kivinjari kinayo injini ya ndani inayoitwa mara nyingi "JavaScript virtual machine".
 
-Different engines have different "codenames". For example:
+Injini tofauti zina majina tofauti ya kificho. Kwa mfano:
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome, Opera and Edge.
-- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
-- ...There are other codenames like "Chakra" for IE, "JavaScriptCore", "Nitro" and "SquirrelFish" for Safari, etc.
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- katika Chrome, Opera, na Edge.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- katika Firefox.
 
-The terms above are good to remember because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome, Opera and Edge.
+- ...Kuna majina mengine ya kificho kama vile "Chakra" kwa IE, "JavaScriptCore", "Nitro" na "SquirrelFish" kwa Safari, n.k.
 
-```smart header="How do engines work?"
+Maneno yaliyotajwa hapo juu ni muhimu kukumbuka kwa sababu hutumiwa katika makala za waendelezaji kwenye mtandao. Tutayatumia pia. Kwa mfano, ikiwa "kifaa X kinatumiwa na V8," basi inawezekana kinaweza kutumika kwenye Chrome, Opera, na Edge.
 
-Engines are complicated. But the basics are easy.
+```smart header="Injini hufanya kazi vipi?"
 
-1. The engine (embedded if it's a browser) reads ("parses") the script.
-2. Then it converts ("compiles") the script to machine code.
-3. And then the machine code runs, pretty fast.
+Injini ni ngumu. Lakini msingi ni rahisi.
 
-The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+1. Injini (iliyopachikwa ikiwa ni kivinjari) hulisoma ("kuchambua") script.
+2. Kisha inaihuisha ("kuiweka tayari") kwa kuichakata kuwa kanuni ya chombo.
+3. Na kisha kanuni ya chombo hufanya kazi, kwa kasi kubwa.
+
+Injini hupata uboreshaji kila hatua ya mchakato. Hata inaangalia script iliyoundwa wakati inafanya kazi, huchambua data inayopitia kupitia script, na inaboresha kanuni ya chombo kulingana na ujuzi huo.
 ```
 
-## What can in-browser JavaScript do?
+## Je, JavaScript inayofanya kazi kwenye kivinjari inaweza kufanya nini?
 
-Modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or the CPU, because it was initially created for browsers which do not require it.
+Lugha ya programu ya JavaScript ya kisasa ni salama. Haiwezi kutoa ufikiaji wa ngazi ya chini kwa kumbukumbu au CPU, kwa sababu ilianzishwa kwa kivinjari ambacho hauhitaji hivyo.
 
-JavaScript's capabilities greatly depend on the environment it's running in. For instance, [Node.js](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests, etc.
+Uwezo wa JavaScript hutegemea sana mazingira inayofanya kazi. Kwa mfano, Node.js inasaidia kazi ambazo huruhusu JavaScript kusoma/andika faili mbalimbali, kufanya ombi la mtandao, n.k.
 
-In-browser JavaScript can do everything related to webpage manipulation, interaction with the user, and the webserver.
+JavaScript inayofanya kazi kwenye kivinjari inaweza kufanya kila kitu kinachohusiana na upangaji wa wavuti, mwingiliano na mtumiaji, na seva ya wavuti.
 
-For instance, in-browser JavaScript is able to:
+Kwa mfano, JavaScript inayofanya kazi kwenye kivinjari inaweza:
 
-- Add new HTML to the page, change the existing content, modify styles.
-- React to user actions, run on mouse clicks, pointer movements, key presses.
-- Send requests over the network to remote servers, download and upload files (so-called [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) and [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) technologies).
-- Get and set cookies, ask questions to the visitor, show messages.
-- Remember the data on the client-side ("local storage").
+- Kuongeza HTML mpya kwenye ukurasa, kubadilisha yaliyopo, kubadilisha mtindo.
+- Kujibu vitendo vya mtumiaji, kufanya kazi wakati wa kubonyeza kipanya, kusonga kipanya, kubonyeza funguo.
+- utuma maombi kupitia mtandao kwenda kwenye seva za mbali, kupakua na kupakia faili (teknolojia inayoitwa [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) na [COMET](https://en.wikipedia.org/wiki/Comet_(programming))).
+- Kupata na kuweka vidakuzi, kuuliza maswali kwa wageni, kuonyesha ujumbe.
+- Kukumbuka data upande wa mteja ("kumbukumbu ya ndani").
 
-## What CAN'T in-browser JavaScript do?
+## Je, JavaScript ndani ya kivinjari HAKIWEZI kufanya nini?
+Uwezo wa JavaScript ndani ya kivinjari umepunguzwa ili kumlinda mtumiaji. Lengo ni kuzuia ukurasa wa wavuti mbaya usipate ufikiaji wa habari za kibinafsi au kuharibu data ya mtumiaji.
 
-JavaScript's abilities in the browser are limited to protect the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
+Mifano ya vizuizi kama hivyo ni pamoja na:
 
-Examples of such restrictions include:
+- JavaScript kwenye ukurasa wa wavuti haiwezi kusoma/kuandika faili yoyote kwenye diski ngumu, kuiga faili hizo au kutekeleza programu. Haina ufikiaji wa moja kwa moja kwenye kazi za OS.
 
-- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+    Vivinjari vya kisasa vinawezesha kufanya kazi na faili, lakini ufikiaji ni mdogo na unatolewa tu ikiwa mtumiaji atafanya hatua fulani, kama "kuacha" faili kwenye dirisha la kivinjari au kuitumia kupitia tag ya <input>.
 
-    Modern browsers allow it to work with files, but the access is limited and only provided if the user does certain actions, like "dropping" a file into a browser window or selecting it via an `<input>` tag.
+    Kuna njia za kuingiliana na kamera/mikrofoni na vifaa vingine, lakini zinahitaji idhini ya wazi ya mtumiaji. Kwa hivyo, ukurasa wenye uwezo wa JavaScript hauwezi kufanya kazi ya kisiri kwa kumruhusu kamera ya wavuti, kuchunguza mazingira na kutuma habari kwa [NSA].(https://en.wikipedia.org/wiki/National_Security_Agency).
+- Tabsi/Dirisha tofauti kwa kawaida hazijui kuhusu nyingine. Mara nyingi hazina ufahamu kuhusu nyingine, kwa mfano wakati dirisha moja linatumia JavaScript kuifungua nyingine. Lakini hata katika kesi hii, JavaScript kutoka ukurasa mmoja hauwezi kufikia ukurasa mwingine ikiwa zinatoka kwenye tovuti tofauti (kutoka kwenye kikoa, protokali au bandari tofauti).
 
-    There are ways to interact with the camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other page if they come from different sites (from a different domain, protocol or port).
+    Hii inaitwa "Same Origin Policy" (Sera ya chanzo kimoja). Kufanya kazi kuzunguka hilo, ukurasa wote lazima wakubaliane kubadilishana data na lazima ziwe na msimbo maalum wa JavaScript unaoishughulikia. Tutashughulika na hili kwenye somo letu.
 
-    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and must contain special JavaScript code that handles it. We'll cover that in the tutorial.
-
-    This limitation is, again, for the user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com`, for example, and steal information from there.
-- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's a safety limitation.
+    Kikwazo hiki, tena, ni kwa usalama wa mtumiaji. Ukurasa kutoka `http://anysite.com` Ukurasa ambao mtumiaji amefungua hauruhusiwi kupata ufikiaji wa kichupo kingine cha kivinjari chenye URL hiyo, `http://gmail.com`, Kwa mfano, ukurasa wa mtandao ambao mtumiaji ameufungua haupaswi kuweza kupata upatikanaji wa kichupo kingine cha kivinjari chenye URL, kama vile na kuiba habari kutoka huko. JavaScript inaweza kuwasiliana kwa urahisi kupitia mtandao na seva ambapo ukurasa wa sasa ulitoka. Lakini uwezo wake wa kupokea data kutoka kwa tovuti / uwanja mwingine umepunguzwa. Ingawa ni sawa, inahitaji makubaliano wazi (yaliyotolewa katika vichwa vya HTTP) kutoka kwa upande wa mbali. Mara nyingine tena, hii ni kikwazo cha usalama.
 
 ![](limitations.svg)
 
-Such limitations do not exist if JavaScript is used outside of the browser, for example on a server. Modern browsers also allow plugins/extensions which may ask for extended permissions.
+Vikwazo kama hivyo havipo kama JavaScript inatumika nje ya kivinjari, kwa mfano kwenye seva. Vivinjari vya kisasa pia huruhusu programu-jalizi / ugani ambao unaweza kuomba idhini iliyopanuliwa.
 
-## What makes JavaScript unique?
+## Nini kinachofanya JavaScript kuwa tofauti na lugha nyingine za programu?
 
-There are at least *three* great things about JavaScript:
+Kuna mambo mengi mazuri kuhusu JavaScript, angalau matatu kati ya hayo ni:
 
-```compare
-+ Full integration with HTML/CSS.
-+ Simple things are done simply.
-+ Supported by all major browsers and enabled by default.
+```linganisha
++ Ushirikiano kamili na HTML/CSS.
++ Vitu vya rahisi hufanywa kwa njia rahisi.
++ Inasaidiwa na vivinjari vyote vikuu na imezoeleka kuwa haiwezeshwi.
 ```
-JavaScript is the only browser technology that combines these three things.
+JavaScript ni teknolojia pekee ya kivinjari ambayo inachanganya mambo haya matatu.
 
-That's what makes JavaScript unique. That's why it's the most widespread tool for creating browser interfaces.
+Hiyo ndio inayofanya JavaScript kuwa ya kipekee. Ndio sababu inatumika sana kwa kujenga interface za kivinjari.
 
-That said, JavaScript can be used to create servers, mobile applications, etc.
+Hata hivyo, JavaScript inaweza kutumika kwa kujenga seva, programu za rununu, nk.
 
-## Languages "over" JavaScript
+## Lugha "juu" ya JavaScript
 
-The syntax of JavaScript does not suit everyone's needs. Different people want different features.
+Sintaksia ya JavaScript haifai mahitaji ya kila mtu. Watu tofauti wanataka vipengele tofauti.
 
-That's to be expected, because projects and requirements are different for everyone.
+Hii inatarajiwa, kwa sababu miradi na mahitaji ni tofauti kwa kila mtu.
 
-So, recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
+Kwa hivyo, hivi karibuni lugha nyingi mpya zimeonekana, ambazo hufanywa kuwa zilizohaririwa (zilizobadilishwa) kuwa JavaScript kabla hazijazinduliwa kwenye kivinjari.
 
-Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and auto-converting it "under the hood".
+Zana za kisasa hufanya uhariri huu kuwa haraka sana na wazi, huku kuruhusu watengenezaji kuandika katika lugha nyingine na kuiwezesha kuwa "chini ya kapoti" kiatomati.
 
-Examples of such languages:
+Mifano ya lugha kama hizo ni:
 
-- [CoffeeScript](https://coffeescript.org/) is "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
-- [TypeScript](https://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
-- [Flow](https://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
-- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
-- [Brython](https://brython.info/) is a Python transpiler to JavaScript that enables the writing of applications in pure Python without JavaScript.
-- [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) is a modern, concise and safe programming language that can target the browser or Node.
+- [CoffeeScript](https://coffeescript.org/) Ni "sukari ya sintaksia" kwa ajili ya JavaScript. Inaleta sintaksia fupi, kuruhusu kuandika msimbo wazi na sahihi. Kawaida, watumiaji wa Ruby wanapenda hii.
+- [TypeScript](https://www.typescriptlang.org/) iliyokusudiwa kuzidisha "aina ya data yenye nguvu" ili kusaidia maendeleo na usaidizi wa mfumo mgumu. Imetengenezwa na Microsoft.
+- [Flow](https://flow.org/) pia inaongeza aina za data, lakini kwa njia tofauti. Imetengenezwa na Facebook.
+- [Dart](https://www.dartlang.org/) ni lugha isiyoegemea kivinjari ambayo ina injini yake inayotumika katika mazingira yasiyo ya kivinjari (kama programu za rununu), lakini pia inaweza kubadilishwa kuwa JavaScript. Iliyoundwa na Google.
+- [Brython](https://brython.info/) ni Python transpiler kwenda JavaScript ambayo inawezesha kuandika programu kwa kutumia Python pekee bila ya kutumia JavaScript.
+- [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) ni lugha ya programu ya kisasa, fupi na salama ambayo inaweza kulenga kivinjari au Node.
 
-There are more. Of course, even if we use one of these transpiled languages, we should also know JavaScript to really understand what we're doing.
+Kuna zaidi ya hizi. Bila shaka, hata kama tunatumia mojawapo ya lugha hizi zilizotafsiriwa, tunapaswa pia kujua JavaScript ili kuelewa kabisa tunachofanya.
 
-## Summary
+## Muhtasari
 
-- JavaScript was initially created as a browser-only language, but it is now used in many other environments as well.
-- Today, JavaScript has a unique position as the most widely-adopted browser language, fully integrated with HTML/CSS.
-- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+- JavaScript kwanza kabisa ilianzishwa kama lugha ya kivinjari tu, lakini sasa inatumika katika mazingira mengi zaidi pia.
+- Leo hii, JavaScript ina nafasi ya pekee kama lugha inayotumiwa sana katika vivinjari, na imeunganishwa kabisa na HTML/CSS.
+- Kuna lugha nyingi zinazopata "kutafsiriwa" kwa JavaScript na kutoa huduma fulani. Inapendekezwa kuziangalia, angalau kwa ufupi, baada ya kumaliza kujifunza JavaScript.
