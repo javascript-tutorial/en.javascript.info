@@ -141,7 +141,7 @@ Object.defineProperty(user, "name", {
 });
 
 alert(user.name); // John
-user.name = "Pete"; // Error
+user.name = "Pete"; // Error (in strict mode, otherwise ignored)
 ```
 
 ## Non-enumerable
@@ -244,7 +244,7 @@ Object.defineProperty(user, "name", {
 });
 
 user.name = "Pete"; // works fine
-delete user.name; // Error
+delete user.name; // Error (in strict mode, otherwise ignored)
 ```
 
 And here we make `user.name` a "forever sealed" constant, just like the built-in `Math.PI`:
