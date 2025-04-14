@@ -53,7 +53,7 @@ Promise.all(requests)
   ));
 ```
 
-A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is identical):
+A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their IDs, the logic is identical):
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
@@ -64,14 +64,14 @@ Promise.all(requests)
   .then(responses => {
     // all responses are resolved successfully
     for(let response of responses) {
-      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+      alert(`${response.url}: ${response.status}`); // shows 200 for every URL
     }
 
     return responses;
   })
-  // map array of responses into an array of response.json() to read their content
+  // map the array of responses into an array of response.json() to read their content
   .then(responses => Promise.all(responses.map(r => r.json())))
-  // all JSON answers are parsed: "users" is the array of them
+  // all JSON answers are parsed into the "users" array
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
@@ -89,9 +89,9 @@ Promise.all([
 ]).catch(alert); // Error: Whoops!
 ```
 
-Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the entire `Promise.all`.
+Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the return value of the entire `Promise.all`.
 
-```warn header="In case of an error, other promises are ignored"
+```warn header="In case of an error, the other promises are ignored"
 If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
 
 For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
@@ -315,8 +315,8 @@ There are 6 static methods of `Promise` class:
 2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
     - `status`: `"fulfilled"` or `"rejected"`
     - `value` (if fulfilled) or `reason` (if rejected).
-3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.any(promises)` (recently added method) -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
+3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the return value.
+4. `Promise.any(promises)` (recently added method) -- waits for the first promise to fulfill, and its result becomes the return value. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
 5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
 6. `Promise.reject(error)` -- makes a rejected promise with the given error.
 
