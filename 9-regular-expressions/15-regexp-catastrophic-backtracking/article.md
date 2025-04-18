@@ -150,11 +150,11 @@ Here's what the regexp engine does:
     ...And so on.
 
 
-There are many ways to split a sequence of digits `123456789` into numbers. To be precise, there are <code>2<sup>n</sup>-1</code>, where `n` is the length of the sequence.
+There are many ways to split a sequence of digits `123456789` into numbers. To be precise, there are <code>2<sup>n-1</sup></code>, where `n` is the length of the sequence.
 
-- For `123456789` we have `n=9`, that gives 511 combinations.
-- For a longer sequence with `n=20` there are about one million (1048575) combinations.
-- For `n=30` - a thousand times more (1073741823 combinations).
+- For `123456789` we have `n=9`, that gives 256 combinations.
+- For a longer sequence with `n=21` there are about one million (1048576) combinations.
+- For `n=31` - a thousand times more (1073741824 combinations).
 
 Trying each of them is exactly the reason why the search takes so long.
 
