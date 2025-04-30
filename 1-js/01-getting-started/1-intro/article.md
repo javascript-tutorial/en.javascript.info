@@ -18,7 +18,7 @@ When JavaScript was created, it initially had another name: "LiveScript". But Ja
 But as it evolved, JavaScript became a fully independent language with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
 ```
 
-Today, JavaScript can execute not only in the browser, but also on the server, or actually on any device that has a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+Today, JavaScript can run not just in the browser, but also on servers or a device using a (runtime environment](https://en.wikipedia.org/wiki/Runtime_system) like Node.js or Deno. These tools are built on a [JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_enginee and provides extra features, tools, and APIs, so JavaScript can be executed directly on a server or device.
 
 The browser has an embedded engine sometimes called a "JavaScript virtual machine".
 
