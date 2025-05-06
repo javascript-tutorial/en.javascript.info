@@ -119,8 +119,6 @@ So we are able to pass ready values to `Promise.all` where convenient.
 
 ## Promise.allSettled
 
-[recent browser="new"]
-
 `Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results successful to proceed:
 
 ```js
@@ -171,28 +169,6 @@ The `results` in the line `(*)` above will be:
 
 So for each promise we get its status and `value/error`.
 
-### Polyfill
-
-If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
-
-```js
-if (!Promise.allSettled) {
-  const rejectHandler = reason => ({ status: 'rejected', reason });
-
-  const resolveHandler = value => ({ status: 'fulfilled', value });
-
-  Promise.allSettled = function (promises) {
-    const convertedPromises = promises.map(p => Promise.resolve(p).then(resolveHandler, rejectHandler));
-    return Promise.all(convertedPromises);
-  };
-}
-```
-
-In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
-
-That handler turns a successful result `value` into `{status:'fulfilled', value}`, and an error `reason` into `{status:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
-
-Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
 
 ## Promise.race
 
