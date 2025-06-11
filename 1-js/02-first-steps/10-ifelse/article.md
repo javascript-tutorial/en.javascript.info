@@ -31,7 +31,7 @@ if (year == 2015) {
 
 We recommend wrapping your code block with curly braces `{}` every time you use an `if` statement, even if there is only one statement to execute. Doing so improves readability.
 
-## Boolean conversion [#ifelse-boolean-conversion]
+## Boolean conversion [#boolean-conversion]
 
 The `if (…)` statement evaluates the expression in its parentheses and converts the result to a boolean.
 
