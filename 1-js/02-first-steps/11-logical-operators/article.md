@@ -29,7 +29,7 @@ alert( false || false ); // false
 
 As we can see, the result is always `true` except for the case when both operands are `false`.
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
+If an operand is not a boolean, it's converted to a boolean for the evaluation. This is part of the familiar truthy/falsy concept <info:#ifelse-boolean-conversion>.
 
 For instance, the number `1` is treated as `true`, the number `0` as `false`:
 
