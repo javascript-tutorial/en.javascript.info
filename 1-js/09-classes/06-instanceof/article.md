@@ -55,7 +55,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     For example:
 
     ```js run
-    // setup instanceOf check that assumes that
+    // setup instanceof check that assumes that
     // anything with canEat property is an animal
     class Animal {
       static [Symbol.hasInstance](obj) {
@@ -68,7 +68,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) is called
     ```
 
-2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceof Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
 
     In other words, compare one after another:
     ```js
