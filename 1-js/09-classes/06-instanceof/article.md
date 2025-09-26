@@ -55,7 +55,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
     For example:
 
     ```js run
-    // setup instanceof check that assumes that
+    // set up instanceof check that assumes that
     // anything with canEat property is an animal
     class Animal {
       static [Symbol.hasInstance](obj) {
