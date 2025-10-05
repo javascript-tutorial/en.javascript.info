@@ -1,5 +1,5 @@
 
-The root of the problem is that `Promise.all` immediately rejects when one of its promises rejects, but it do nothing to cancel the other promises.
+The root of the problem is that `Promise.all` immediately rejects when one of its promises rejects, but it does nothing to cancel the other promises.
 
 In our case, the second query fails, so `Promise.all` rejects, and the `try...catch` block catches this error.Meanwhile, other promises are *not affected* - they independently continue their execution. In our case, the third query throws an error of its own after a bit of time. And that error is never caught, we can see it in the console.
 
