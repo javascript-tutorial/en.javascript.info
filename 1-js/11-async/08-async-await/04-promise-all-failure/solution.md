@@ -84,7 +84,7 @@ Now `await customPromiseAllWait(...)` will stall the execution until all queries
 
 This is a more reliable approach, as it guarantees a predictable execution flow.
 
-Lastly, if we'd like to process all errors, we can use either use `Promise.allSettled` or write a wrapper around it to gathers all errors in a single [AggregateError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError) object and rejects with it.
+Lastly, if we'd like to process all errors, we can use either use `Promise.allSettled` or write a wrapper around it to gather all errors into a single [AggregateError](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/AggregateError) object and reject with it.
 
 ```js
 // wait for all promises to settle
