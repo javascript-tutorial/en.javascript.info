@@ -52,8 +52,8 @@ For example:
 let map = new Map();
 map["1"] = "test"; // adds a property, not a Map entry
 
-console.log(map.get("1")); // undefined
-console.log(map["1"]);     // "test"
+alert(map.get("1")); // undefined
+alert(map["1"]);     // "test"
 ```
 
 To properly store and retrieve data in a `Map`, always use its methods:
