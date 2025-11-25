@@ -186,11 +186,7 @@ So protected fields are naturally inheritable. Unlike private ones that we'll se
 
 ## Private "#waterLimit"
 
-[recent browser=none]
-
-There's a finished JavaScript proposal, almost in the standard, that provides language-level support for private properties and methods.
-
-Privates should start with `#`. They are only accessible from inside the class.
+Private fields and methods are a standard part of the language. They start with `#` and are only accessible from inside the class.
 
 For instance, here's a private `#waterLimit` property and the water-checking private method `#fixWaterAmount`:
 
@@ -319,4 +315,3 @@ To hide an internal interface we use either protected or private properties:
 - Protected fields start with `_`. That's a well-known convention, not enforced at the language level. Programmers should only access a field starting with `_` from its class and classes inheriting from it.
 - Private fields start with `#`. JavaScript makes sure we can only access those from inside the class.
 
-Right now, private fields are not well-supported among browsers, but can be polyfilled.
