@@ -112,7 +112,7 @@ There are two types of indents:
 
 - **Horizontal indents: 2 or 4 spaces.**
 
-    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old holy war. Spaces are more common nowadays.
+    A horizontal indentation is made using either 2 or 4 spaces or the horizontal tab symbol (key `key:Tab`). Which one to choose is an old war. Spaces are more common nowadays.
 
     One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the tab symbol.
 
