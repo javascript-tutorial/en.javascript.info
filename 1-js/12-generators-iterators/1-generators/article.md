@@ -154,7 +154,7 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
-In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread syntax in the chapter [](info:rest-parameters-spread#spread-syntax))
+In the code above, `...generateSequence()` "expands" the iterable generator object into a list of values (read more about the spread syntax in the chapter [](info:rest-parameters-spread#spread-syntax))
 
 ## Using generators for iterables
 
