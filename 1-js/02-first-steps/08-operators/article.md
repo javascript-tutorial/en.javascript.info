@@ -275,7 +275,7 @@ a = c;
 ```
 That's easier to read, especially when eye-scanning the code fast.
 
-## Modify-in-place
+## Compound Assignment
 
 We often need to apply an operator to a variable and store the new result in that same variable.
 
