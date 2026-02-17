@@ -3,7 +3,7 @@ You could note the following:
 
 ```js no-beautify
 function pow(x,n)  // <- no space between arguments
-{  // <- figure bracket on a separate line
+{  // <- curly braces on a separate line
   let result=1;   // <- no spaces before or after =
   for(let i=0;i<n;i++) {result*=x;}   // <- no spaces
   // the contents of { ... } should be on a new line
@@ -13,7 +13,7 @@ function pow(x,n)  // <- no space between arguments
 let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
 // but better make it 2 lines, also there's no spaces and missing ;
 if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
-{   // <- figure bracket on a separate line
+{   // <- curly braces on a separate line
   // below - long lines can be split into multiple lines for improved readability
   alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
 }
