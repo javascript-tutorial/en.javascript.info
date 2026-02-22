@@ -23,21 +23,21 @@ These ones do not:
 
 The "Same Origin" policy states that:
 
-- if we have a reference to another window, e.g. a popup created by `window.open` or a window inside `<iframe>`, and that window comes from the same origin, then we have full access to that window.
-- otherwise, if it comes from another origin, then we can't access the content of that window: variables, document, anything. The only exception is `location`: we can change it (thus redirecting the user). But we cannot *read* location (so we can't see where the user is now, no information leak).
+- if we have a reference to another `window` object, e.g. a popup created by `window.open` or the `window` inside `<iframe>`, and it's from the same origin, we have full access to it.
+- otherwise, if it's from another origin, then we can’t access its content: variables, `document` object, anything. The only exception is `location`: we can change it (thus redirecting the user). But we cannot *read* `location` (so we can't see where the user is now, no information leak).
 
 ### In action: iframe
 
-An `<iframe>` tag hosts a separate embedded window, with its own separate `document` and `window` objects.
+An `<iframe>` hosts a separate embedded window, with its own separate `document` and `window` objects.
 
 We can access them using properties:
 
-- `iframe.contentWindow` to get the window inside the `<iframe>`.
-- `iframe.contentDocument` to get the document inside the `<iframe>`, shorthand for `iframe.contentWindow.document`.
+- `iframe.contentWindow` to get the `window` object inside the `<iframe>`.
+- `iframe.contentDocument` to get the `document` object inside the `<iframe>`, shorthand for `iframe.contentWindow.document`.
 
 When we access something inside the embedded window, the browser checks if the iframe has the same origin. If that's not so then the access is denied (writing to `location` is an exception, it's still permitted).
 
-For instance, let's try reading and writing to `<iframe>` from another origin:
+For instance, let's try reading and writing to iframe from another origin:
 
 ```html run
 <iframe src="https://example.com" id="iframe"></iframe>
@@ -77,12 +77,12 @@ For instance, let's try reading and writing to `<iframe>` from another origin:
 </script>
 ```
 
-The code above shows errors for any operations except:
+The code above will throw an error or return null for any operations, except:
 
 - Getting the reference to the inner window `iframe.contentWindow` - that's allowed.
 - Writing to `location`.
 
-Contrary to that, if the `<iframe>` has the same origin, we can do anything with it:
+Contrary to that, if the iframe has the same origin, we can do anything with it:
 
 ```html run
 <!-- iframe from the same site -->
@@ -97,9 +97,9 @@ Contrary to that, if the `<iframe>` has the same origin, we can do anything with
 ```
 
 ```smart header="`iframe.onload` vs `iframe.contentWindow.onload`"
-The `iframe.onload` event (on the `<iframe>` tag) is essentially the same as `iframe.contentWindow.onload` (on the embedded window object). It triggers when the embedded window fully loads with all resources.
+The `load` event handler in the `iframe.onload` property (on the `<iframe>` element) is essentially the same as `iframe.contentWindow.onload` (on the `window` object inside the `<iframe>`). Both trigger when the embedded window has fully loaded with all its resources.
 
-...But we can't access `iframe.contentWindow.onload` for an iframe from another origin, so using `iframe.onload`.
+...But the `iframe.onload` property is always accessible from outside the iframe, while access to `iframe.contentWindow.onload` is allowed only from a window with the same origin.
 ```
 
 ## Windows on subdomains: document.domain
@@ -177,10 +177,10 @@ We can try to catch the moment earlier using checks in `setInterval`:
 
 ## Collection: window.frames
 
-An alternative way to get a window object for `<iframe>` -- is to get it from the named collection  `window.frames`:
+An alternative way to get a `window` object for `<iframe>` -- is to get it from the named collection  `window.frames`:
 
-- By number: `window.frames[0]` -- the window object for the first frame in the document.
-- By name: `window.frames.iframeName` -- the window object for the frame with  `name="iframeName"`.
+- By number: `window.frames[0]` -- the `window` object for the first frame in the document.
+- By name: `window.frames.iframeName` -- the `window` object for the frame with  `name="iframeName"`.
 
 For instance:
 
@@ -265,7 +265,7 @@ The interface has two parts.
 
 ### postMessage
 
-The window that wants to send a message calls [postMessage](mdn:api/Window.postMessage) method of the receiving window. In other words, if we want to send the message to `win`, we should call  `win.postMessage(data, targetOrigin)`.
+The window that wants to send a message calls [postMessage](mdn:api/Window.postMessage) method of the receiving window. In other words, if we want to send the message to `targetWin`, we should call  `targetWin.postMessage(data, targetOrigin)`.
 
 Arguments:
 
@@ -279,15 +279,15 @@ The `targetOrigin` is a safety measure. Remember, if the target window comes fro
 
 Specifying `targetOrigin` ensures that the window only receives the data if it's still at the right site. Important when the data is sensitive.
 
-For instance, here `win` will only receive the message if it has a document from the origin `http://example.com`:
+For instance, here `targetWin` will only receive the message if it has a document from the origin `http://example.com`:
 
 ```html no-beautify
 <iframe src="http://example.com" name="example">
 
 <script>
-  let win = window.frames.example;
+  let targetWin = window.frames.example;
 
-  win.postMessage("message", "http://example.com");
+  targetWin.postMessage("message", "http://example.com");
 </script>
 ```
 
@@ -297,16 +297,16 @@ If we don't want that check, we can set `targetOrigin` to `*`.
 <iframe src="http://example.com" name="example">
 
 <script>
-  let win = window.frames.example;
+  let targetWin = window.frames.example;
 
 *!*
-  win.postMessage("message", "*");
+  targetWin.postMessage("message", "*");
 */!*
 </script>
 ```
 
 
-### onmessage
+### Event: message
 
 To receive a message, the target window should have a handler on the `message` event. It triggers when `postMessage` is called (and `targetOrigin` check is successful).
 
@@ -321,7 +321,7 @@ The event object has special properties:
 `source`
 : The reference to the sender window. We can immediately `source.postMessage(...)` back if we want.
 
-To assign that handler, we should use `addEventListener`, a short syntax `window.onmessage` does not work.
+To assign that handler use `addEventListener` (or `window.onmessage` if a single handler is sufficient).
 
 Here's an example:
 
@@ -351,9 +351,9 @@ For popups we have these references:
 - From the popup: `window.opener` -- is a reference to the opener window from a popup.
 
 For iframes, we can access parent/children windows using:
-- `window.frames` -- a collection of nested window objects,
+- `window.frames` -- a collection of nested `window` objects,
 - `window.parent`, `window.top` are the references to parent and top windows,
-- `iframe.contentWindow` is the window inside an `<iframe>` tag.
+- `iframe.contentWindow` is the `window` inside an `<iframe>`.
 
 If windows share the same origin (host, port, protocol), then windows can do whatever they want with each other.
 
