@@ -632,7 +632,7 @@ For instance:
 
 The role of the global handler `window.onerror` is usually not to recover the script execution -- that's probably impossible in case of programming errors, but to send the error message to developers.
 
-There are also web-services that provide error-logging for such cases, like <https://errorception.com> or <http://www.muscula.com>.
+There are also web-services that provide error-logging for such cases, like <https://muscula.com> or <https://www.sentry.io>.
 
 They work like this:
 

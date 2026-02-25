@@ -120,7 +120,7 @@ There's usually no real need to prevent the bubbling. A task that seemingly requ
 
 There's another phase of event processing called "capturing". It is rarely used in real code, but sometimes can be useful.
 
-The standard [DOM Events](http://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
+The standard [DOM Events](https://www.w3.org/TR/DOM-Level-3-Events/) describes 3 phases of event propagation:
 
 1. Capturing phase -- the event goes down to the element.
 2. Target phase -- the event reached the target element.

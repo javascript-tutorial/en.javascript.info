@@ -94,13 +94,6 @@ const bigInt = 1234567890123456789012345678901234567890n;
 
 As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
 
-
-```smart header="Compatibility issues"
-Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
-```
-
-You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
-
 ## String
 
 A string in JavaScript must be surrounded by quotes.
@@ -224,7 +217,7 @@ The `symbol` type is used to create unique identifiers for objects. We have to m
 
 ## The typeof operator [#type-typeof]
 
-The `typeof` operator returns the type of the argument. It's useful when we want to process values of different types differently or just want to do a quick check.
+The `typeof` operator returns the type of the operand. It's useful when we want to process values of different types differently or just want to do a quick check.
 
 A call to `typeof x` returns a string with the type name:
 

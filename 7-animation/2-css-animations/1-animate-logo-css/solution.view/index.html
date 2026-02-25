@@ -27,12 +27,12 @@
   <img id="flyjet" src="https://en.js.cx/clipart/flyjet.jpg">
 
   <script>
+    let ended = false; // will change to true after the animation finishes
+
     flyjet.onclick = function() {
 
-      let ended = false;
-
       flyjet.addEventListener('transitionend', function() {
-        if (!ended) {
+        if (!ended) { // check to show the message only once
           ended = true;
           alert('Done!');
         }

@@ -405,7 +405,7 @@ To decode a JSON-string, we need another method named [JSON.parse](mdn:js/JSON/p
 
 The syntax:
 ```js
-let value = JSON.parse(str, [reviver]);
+let value = JSON.parse(str[, reviver]);
 ```
 
 str
@@ -451,7 +451,7 @@ let json = `{
 
 Besides, JSON does not support comments. Adding a comment to JSON makes it invalid.
 
-There's another format named [JSON5](http://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
+There's another format named [JSON5](https://json5.org/), which allows unquoted keys, comments etc. But this is a standalone library, not in the specification of the language.
 
 The regular JSON is that strict not because its developers are lazy, but to allow easy, reliable and very fast implementations of the parsing algorithm.
 

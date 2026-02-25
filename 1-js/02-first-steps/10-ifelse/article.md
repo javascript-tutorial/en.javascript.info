@@ -68,7 +68,7 @@ if (cond) {
 
 ## The "else" clause
 
-The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
+The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
 
 For example:
 ```js run
@@ -181,9 +181,9 @@ alert( message );
 It may be difficult at first to grasp what's going on. But after a closer look, we can see that it's just an ordinary sequence of tests:
 
 1. The first question mark checks whether `age < 3`.
-2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon '":"', checking `age < 18`.
-3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon '":"', checking `age < 100`.
-4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon '":"', returning `'What an unusual age!'`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
 
 Here's how this looks using `if..else`:
 

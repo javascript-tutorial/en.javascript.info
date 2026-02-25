@@ -354,7 +354,7 @@ The main selection properties are:
 
 ```smart header="Selection end/start vs Range"
 
-There's an important differences of a selection anchor/focus compared with a `Range` start/end.
+There's an important difference between a selection anchor/focus compared with a `Range` start/end.
 
 As we know, `Range` objects always have their start before the end. 
 
@@ -408,7 +408,7 @@ From <input id="from" disabled> – To <input id="to" disabled>
 There are two approaches to copying the selected content:
 
 1. We can use `document.getSelection().toString()` to get it as text.
-2. Otherwise, to copy the full DOM, e.g. if we need to keep formatting, we can get the underlying ranges with `getRangesAt(...)`. A `Range` object, in turn, has `cloneContents()` method that clones its content and returns as `DocumentFragment` object, that we can insert elsewhere.
+2. Otherwise, to copy the full DOM, e.g. if we need to keep formatting, we can get the underlying ranges with `getRangeAt(...)`. A `Range` object, in turn, has `cloneContents()` method that clones its content and returns as `DocumentFragment` object, that we can insert elsewhere.
 
 Here's the demo of copying the selected content both as text and as DOM nodes:
 

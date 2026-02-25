@@ -80,7 +80,7 @@ Do note that, there are properties which can not be animated. However, [most of 
 
 ## transition-duration
 
-In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](http://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
+In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](https://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
 
 ## transition-delay
 
@@ -463,7 +463,7 @@ The `opacity` property also never triggers Layout (also skips Paint in Mozilla G
 
 Paring `transform` with `opacity` can usually solve most of our needs, providing fluid, good-looking animations.
 
-For example, here clicking on the `#boat` element adds the class with `transform: translateX(300)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
+For example, here clicking on the `#boat` element adds the class with `transform: translateX(300px)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
 
 ```html run height=260 autorun no-beautify
 <img src="https://js.cx/clipart/boat.png" id="boat">

@@ -1,6 +1,6 @@
 # Array methods
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+Arrays provide a lot of methods. To make things easier, in this chapter, they are split into groups.
 
 ## Add/remove items
 
@@ -32,11 +32,11 @@ alert( arr.length ); // 3
 
 The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of the elements to shift and occupy the freed place. We expect to have a shorter array now.
 
 So, special methods should be used.
 
-The [arr.splice](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+The [arr.splice](mdn:js/Array/splice) method is a Swiss army knife for arrays. It can do everything: insert, remove and replace elements.
 
 The syntax is:
 
@@ -62,7 +62,7 @@ alert( arr ); // ["I", "JavaScript"]
 
 Easy, right? Starting from the index `1` it removed `1` element.
 
-In the next example we remove 3 elements and replace them with the other two:
+In the next example, we remove 3 elements and replace them with the other two:
 
 ```js run
 let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
@@ -84,7 +84,7 @@ let removed = arr.splice(0, 2);
 alert( removed ); // "I", "study" <-- array of removed elements
 ```
 
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+The `splice` method is also able to insert the elements without any removals. For that, we need to set `deleteCount` to `0`:
 
 ```js run
 let arr = ["I", "study", "JavaScript"];
@@ -114,7 +114,7 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
-The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking `arr.splice`.
+The method [arr.slice](mdn:js/Array/slice) is much simpler than the similar-looking `arr.splice`.
 
 The syntax is:
 
@@ -124,7 +124,7 @@ arr.slice([start], [end])
 
 It returns a new array copying to it all items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in that case position from array end is assumed.
 
-It's similar to a string method `str.slice`, but instead of substrings it makes subarrays.
+It's similar to a string method `str.slice`, but instead of substrings, it makes subarrays.
 
 For instance:
 
@@ -206,7 +206,7 @@ The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for ever
 The syntax:
 ```js
 arr.forEach(function(item, index, array) {
-  // ... do something with item
+  // ... do something with an item
 });
 ```
 
@@ -239,7 +239,7 @@ The methods [arr.indexOf](mdn:js/Array/indexOf) and [arr.includes](mdn:js/Array/
 - `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
 - `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
 
-Usually these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
+Usually, these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
 
 For instance:
 
@@ -255,7 +255,7 @@ alert( arr.includes(1) ); // true
 
 Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
 
-If we want to check if `item` exists in the array, and don't need the exact index, then `arr.includes` is preferred.
+If we want to check if `item` exists in the array and don't need the index, then `arr.includes` is preferred.
 
 The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
 
@@ -274,12 +274,12 @@ const arr = [NaN];
 alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
 alert( arr.includes(NaN) );// true (correct)
 ```
-That's because `includes` was added to JavaScript much later and uses the more up to date comparison algorithm internally.
+That's because `includes` was added to JavaScript much later and uses the more up-to-date comparison algorithm internally.
 ````
 
 ### find and findIndex/findLastIndex
 
-Imagine we have an array of objects. How do we find an object with the specific condition?
+Imagine we have an array of objects. How do we find an object with a specific condition?
 
 Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
 
@@ -297,7 +297,7 @@ The function is called for elements of the array, one after another:
 - `index` is its index.
 - `array` is the array itself.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
+If it returns `true`, the search is stopped, the `item` is returned. If nothing is found, `undefined` is returned.
 
 For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
 
@@ -313,11 +313,11 @@ let user = users.find(item => item.id == 1);
 alert(user.name); // John
 ```
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+In real life, arrays of objects are a common thing, so the `find` method is very useful.
 
 Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
 
-The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax, but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
+The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
 
 The [arr.findLastIndex](mdn:js/Array/findLastIndex) method is like `findIndex`, but searches from right to left, similar to `lastIndexOf`.
 
@@ -337,8 +337,6 @@ alert(users.findIndex(user => user.name == 'John')); // 0
 // Find the index of the last John
 alert(users.findLastIndex(user => user.name == 'John')); // 3
 ```
-
-
 
 ### filter
 
@@ -452,11 +450,11 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Now it works as intended.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+Let's step aside and think about what's happening. The `arr` can be an array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
 
 The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) or [Timsort](https://en.wikipedia.org/wiki/Timsort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
 
-By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
+By the way, if we ever want to know which elements are compared -- nothing prevents us from alerting them:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
@@ -528,7 +526,7 @@ Here's the situation from real life. We are writing a messaging app, and the per
 
 The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
 
-In the example below, we split by a comma followed by space:
+In the example below, we split by a comma followed by a space:
 
 ```js run
 let names = 'Bilbo, Gandalf, Nazgul';
@@ -595,9 +593,9 @@ Arguments:
 - `index` -- is its position.
 - `array` -- is the array.
 
-As function is applied, the result of the previous function call is passed to the next one as the first argument.
+As the function is applied, the result of the previous function call is passed to the next one as the first argument.
 
-So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end it becomes the result of `reduce`.
+So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end, it becomes the result of `reduce`.
 
 Sounds complicated?
 
@@ -666,7 +664,7 @@ arr.reduce((sum, current) => sum + current);
 
 So it's advised to always specify the initial value.
 
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same but goes from right to left.
 
 ## Array.isArray
 
@@ -691,7 +689,7 @@ alert(Array.isArray([])); // true
 
 Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
 
-That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
+That parameter is not explained in the sections above, because it's rarely used. But for completeness, we have to cover it.
 
 Here's the full syntax of these methods:
 
@@ -751,7 +749,7 @@ A cheat sheet of array methods:
   - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
 
 - To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
+  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, and return the index or `-1` if not found.
   - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
   - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
   - `findIndex` is like `find`, but returns the index instead of a value.
@@ -797,7 +795,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
 For the full list, see the [manual](mdn:js/Array).
 
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier.
+At first sight, it may seem that there are so many methods, quite difficult to remember. But actually, that's much easier.
 
 Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
 

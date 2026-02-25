@@ -103,13 +103,13 @@ More in: <info:variables> and <info:types>.
 
 We're using a browser as a working environment, so basic UI functions will be:
 
-[`prompt(question, [default])`](mdn:api/Window/prompt)
+[`prompt(question, [default])`](https://developer.mozilla.org/en-US/docs/Web/API/Window/prompt)
 : Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
 
-[`confirm(question)`](mdn:api/Window/confirm)
+[`confirm(question)`](https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm)
 : Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
 
-[`alert(message)`](mdn:api/Window/alert)
+[`alert(message)`](https://developer.mozilla.org/en-US/docs/Web/API/Window/alert)
 : Output a `message`.
 
 All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
@@ -144,7 +144,7 @@ Assignments
 : There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
 Bitwise
-: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#bitwise_operators) when they are needed.
 
 Conditional
 : The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.

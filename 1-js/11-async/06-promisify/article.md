@@ -25,7 +25,7 @@ function loadScript(src, callback) {
 
 The function loads a script with the given `src`, and then calls `callback(err)` in case of an error, or `callback(null, script)` in case of successful loading. That's a widespread agreement for using callbacks, we saw it before.
 
-Let's promisify it. 
+Let's promisify it.
 
 We'll make a new function `loadScriptPromise(src)`, that does the same (loads the script), but returns a promise instead of using callbacks.
 
@@ -124,7 +124,7 @@ For more exotic callback formats, like those without `err` at all: `callback(res
 There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
 
 ```smart
-Promisification is a great approach, especially when you use `async/await` (see the next chapter), but not a total replacement for callbacks.
+Promisification is a great approach, especially when you use `async/await` (covered later in the chapter <info:async-await>), but not a total replacement for callbacks.
 
 Remember, a promise may have only one result, but a callback may technically be called many times.
 

@@ -14,7 +14,7 @@ The only usage of `__proto__`, that's not frowned upon, is as a property when cr
 
 Although, there's a special method for this too:
 
-- [Object.create(proto, [descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors.
+- [Object.create(proto[, descriptors])](mdn:js/Object/create) -- creates an empty object with given `proto` as `[[Prototype]]` and optional property descriptors.
 
 For instance:
 
@@ -116,7 +116,7 @@ alert(obj[key]); // [object Object], not "some value"!
 
 Here, if the user types in `__proto__`, the assignment in line 4 is ignored!
 
-That could surely be surprising for a non-developer, but pretty understandable for us. The `__proto__` property is special: it must be either an object or `null`. A string can not become a prototype. That's why an assignment a string to `__proto__` is ignored.
+That could surely be surprising for a non-developer, but pretty understandable for us. The `__proto__` property is special: it must be either an object or `null`. A string can not become a prototype. That's why assigning a string to `__proto__` is ignored.
 
 But we didn't *intend* to implement such behavior, right? We want to store key/value pairs, and the key named `"__proto__"` was not properly saved. So that's a bug!
 
@@ -201,7 +201,7 @@ alert(Object.keys(chineseDictionary)); // hello,bye
 - To create an object with the given prototype, use:
 
     - literal syntax: `{ __proto__: ... }`, allows to specify multiple properties
-    - or [Object.create(proto, [descriptors])](mdn:js/Object/create), allows to specify property descriptors.
+    - or [Object.create(proto[, descriptors])](mdn:js/Object/create), allows to specify property descriptors.
 
     The `Object.create` provides an easy way to shallow-copy an object with all descriptors:
 

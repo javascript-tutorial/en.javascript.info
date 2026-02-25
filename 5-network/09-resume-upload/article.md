@@ -48,7 +48,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
 
 3. Then, we can use `Blob` method `slice` to send the file from `startByte`:
     ```js
-    xhr.open("POST", "upload", true);
+    xhr.open("POST", "upload");
 
     // File id, so that the server knows which file we upload
     xhr.setRequestHeader('X-File-Id', fileId);

@@ -69,7 +69,7 @@ Some pointer devices measure contact area and pressure, e.g. for a finger on the
 - `height` - the height of the area where the pointer touches the device. Where unsupported, it's always `1`.
 - `pressure` - the pressure of the pointer tip, in range from 0 to 1. For devices that don't support pressure must be either `0.5` (pressed) or `0`.
 - `tangentialPressure` - the normalized tangential pressure.
-- `tiltX`, `tiltY`, `twist` - pen-specific properties that describe how the pen is positioned relative the surface.
+- `tiltX`, `tiltY`, `twist` - pen-specific properties that describe how the pen is positioned relative to the surface.
 
 These properties aren't supported by most devices, so they are rarely used. You can find the details about them in the [specification](https://w3c.github.io/pointerevents/#pointerevent-interface) if needed.
 
@@ -126,7 +126,7 @@ Here is the flow of user actions and the corresponding events:
 So the issue is that the browser "hijacks" the interaction: `pointercancel` fires in the beginning of the "drag-and-drop" process, and no more `pointermove` events are generated.
 
 ```online
-Here's the drag'n'drop demo with loggin of pointer events (only `up/down`, `move` and `cancel`) in the `textarea`:
+Here's the drag'n'drop demo with logging of pointer events (only `up/down`, `move` and `cancel`) in the `textarea`:
 
 [iframe src="ball" height=240 edit]
 ```

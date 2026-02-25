@@ -29,11 +29,11 @@ The main difference between a "lightweight editor" and an "IDE" is that an IDE w
 
 In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
 
-The following options deserve your attention:
+There are many options, for instance:
 
-- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
 
 ## Let's not argue
 
@@ -42,3 +42,8 @@ The editors in the lists above are those that either I or my friends whom I cons
 There are other great editors in our big world. Please choose the one you like the most.
 
 The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+
+The author's personal opinion:
+
+- I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
+- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).

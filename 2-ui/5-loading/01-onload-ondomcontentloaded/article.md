@@ -265,7 +265,7 @@ Here's a document with `<iframe>`, `<img>` and handlers that log events:
 
 <iframe src="iframe.html" onload="log('iframe onload')"></iframe>
 
-<img src="http://en.js.cx/clipart/train.gif" id="img">
+<img src="https://en.js.cx/clipart/train.gif" id="img">
 <script>
   img.onload = () => log('img onload');
 </script>

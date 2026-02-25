@@ -226,7 +226,7 @@ As we know already, many operators and functions perform type conversions, e.g. 
 
 If we pass an object as an argument, then there are two stages of calculations:
 1. The object is converted to a primitive (using the rules described above).
-2. If the necessary for further calculations, the resulting primitive is also converted.
+2. If necessary for further calculations, the resulting primitive is also converted.
 
 For instance:
 
@@ -253,7 +253,7 @@ let obj = {
   }
 };
 
-alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation
+alert(obj + 2); // "22" ("2" + 2), conversion to primitive returned a string => concatenation
 ```
 
 ## Summary
