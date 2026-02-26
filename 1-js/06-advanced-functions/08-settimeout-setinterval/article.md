@@ -218,7 +218,7 @@ And here is the picture for the nested `setTimeout`:
 
 ![](settimeout-interval.svg)
 
-**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
+**The nested `setTimeout` ensures a minimum delay (100ms here) between the end of one call and the beginning of the subsequent one.**
 
 That's because a new call is planned at the end of the previous one.
 
