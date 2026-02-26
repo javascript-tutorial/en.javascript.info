@@ -167,6 +167,20 @@ alert(obj[key]); // "some value"
 
 `Object.create(null)` creates an empty object without a prototype (`[[Prototype]]` is `null`):
 
+Note that setting __proto__ of an existing object to null also works.
+
+```js run
+*!*
+let obj = {};
+obj.__proto__ = null;
+*/!*
+
+let key = prompt("What's the key?", "__proto__");
+obj[key] = "some value";
+
+alert(obj[key]); // "some value"
+```
+
 ![](object-prototype-null.svg)
 
 So, there is no inherited getter/setter for `__proto__`. Now it is processed as a regular data property, so the example above works right.
