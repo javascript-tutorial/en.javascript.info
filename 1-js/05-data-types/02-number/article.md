@@ -58,10 +58,10 @@ If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e
 In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
 ```js
-// -3 divides by 1 with 3 zeroes
+// -3 means dividing by 1 with 3 zeroes
 1e-3 === 1 / 1000; // 0.001
 
-// -6 divides by 1 with 6 zeroes
+// -6 means dividing by 1 with 6 zeroes
 1.23e-6 === 1.23 / 1000000; // 0.00000123
 
 // an example with a bigger number
