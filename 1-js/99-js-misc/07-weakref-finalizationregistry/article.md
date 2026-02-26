@@ -48,7 +48,7 @@ In JavaScript, there is a concept called `WeakRef`, which behaves slightly diffe
 ````smart header="Terms: \"Strong reference\", \"Weak reference\""
 **Strong reference** - is a reference to an object or value, that prevents them from being deleted by the garbage collector. Thereby, keeping the object or value in memory, to which it points.  
 
-This means, that the object or value remains in memory and is not collected by the garbage collector as long, as there are active strong references to it.  
+This means that the object or value remains in memory and is not collected by the garbage collector as long as there are active strong references to it.  
 
 In JavaScript, ordinary references to objects are strong references. For example:
 
@@ -414,7 +414,7 @@ Moreover, we do not need full-size photos in preview mode.
 ![](weakref-finalizationregistry-demo-02.png)
 
 <br>
-Let's assume, that we need to create a collage of 4 photos: we select them, and then click the "Create collage" button.
+Let's assume that we need to create a collage of 4 photos: we select them, and then click the "Create collage" button.
 At this stage, the already known to us <code>weakRefCache</code> function checks whether the required image is in the cache.
 If not, it downloads it from the cloud and puts it in the cache for further use.
 This happens for each selected image:
