@@ -6,7 +6,7 @@ importance: 5
 
 The function `makeWorker` below makes another function and returns it. That new function can be called from somewhere else.
 
-Will it have access to the outer variables from its creation place, or the invocation place, or both?
+Will the nested function have access to the outer variables from its creation place, or the invocation place, or both?
 
 ```js
 function makeWorker() {

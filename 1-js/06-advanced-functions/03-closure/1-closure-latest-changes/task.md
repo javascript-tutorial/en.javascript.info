@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Does a function pickup latest changes?
+# Does the function pickup latest changes?
 
 The function sayHi uses an external variable name. When the function runs, which value is it going to use?
 
