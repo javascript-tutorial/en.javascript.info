@@ -2,6 +2,12 @@
 
 Automated testing will be used in further tasks, and it's also widely used in real projects.
 
+```warn header="Advanced topic"
+Writing tests requires a good understanding of JavaScript.
+
+If you are a beginner, you're not required to write tests as of now, but you should know how the procedure works.
+```
+
 ## Why do we need tests?
 
 When we write a function, we can usually imagine what it should do: which parameters give which results.
