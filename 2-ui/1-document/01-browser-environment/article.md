@@ -69,7 +69,7 @@ The Browser Object Model (BOM) represents additional objects provided by the bro
 
 For instance:
 
-- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differentiate between Windows/Linux/Mac etc).
+- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform`(deprecated) -- about the platform (can help to differentiate between Windows/Linux/Mac etc).
 - The [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
 
 Here's how we can use the `location` object:
