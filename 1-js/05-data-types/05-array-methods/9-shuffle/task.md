@@ -21,5 +21,3 @@ shuffle(arr);
 // arr = [3, 1, 2]
 // ...
 ```
-
-All element orders should have an equal probability. For instance, `[1,2,3]` can be reordered as `[1,2,3]` or `[1,3,2]` or `[3,1,2]` etc, with equal probability of each case.
