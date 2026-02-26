@@ -51,7 +51,7 @@ The next line put the word into the map:
 map.set(sorted, word);
 ```
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+If we ever meet a word with the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
 
 At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
 
