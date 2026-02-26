@@ -27,6 +27,8 @@ class MyClass {
 
 Then use `new MyClass()` to create a new object with all the listed methods.
 
+Class names should be nouns in UpperCamelCase, and Methods should be verbs in lowerCamelCase by convention.
+
 The `constructor()` method is called automatically by `new`, so we can initialize the object there.
 
 For example:
