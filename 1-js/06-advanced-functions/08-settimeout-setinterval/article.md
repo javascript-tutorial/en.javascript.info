@@ -98,7 +98,7 @@ clearTimeout(timerId);
 alert(timerId); // same identifier (doesn't become null after canceling)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
+As we can see from the `alert` output in our browser, the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
 
 Again, there is no universal specification for these methods, so that's fine.
 
@@ -127,7 +127,7 @@ setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
 ```smart header="Time goes on while `alert` is shown"
-In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
+In most browsers including Chrome and Firefox, the internal timer continues "ticking" while showing `alert/confirm/prompt`.
 
 So if you run the code above and don't dismiss the `alert` window for some time, then the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
 ```
@@ -208,7 +208,7 @@ Did you notice?
 
 That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
 
-It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
+It is possible that `func`'s execution to be longer than we expected and take more than 100ms.
 
 In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
 
@@ -256,9 +256,9 @@ The first line "puts the call into calendar after 0ms". But the scheduler will o
 There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
 
 ````smart header="Zero delay is in fact not zero (in a browser)"
-In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+In the browser, there's a limitation for how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
 
-Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each iteration remembers the real time interval between calls in the `times` array. What do the real delays look like? Let's see:
 
 ```js run
 let start = Date.now();
@@ -277,11 +277,11 @@ setTimeout(function run() {
 
 First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
 
-The similar thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
+The same thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+This limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
+For server-side JavaScript, this limitation does not exist, and there are other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
 ````
 
 ## Summary
