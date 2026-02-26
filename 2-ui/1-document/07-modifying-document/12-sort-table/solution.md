@@ -2,9 +2,9 @@ The solution is short, yet may look a bit tricky, so here I provide it with exte
 
 ```js
 let sortedRows = Array.from(table.tBodies[0].rows) // 1
-  .sort((rowA, rowB) => rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML));
+  .sort((rowA, rowB) => rowA.cells[0].textContent.trim().localeCompare(rowB.cells[0].textContent.trim())); // 2
 
-table.tBodies[0].append(...sortedRows); // (3)
+table.tBodies[0].append(...sortedRows); // 3
 ```
 
 The step-by-step algorthm:
@@ -15,4 +15,4 @@ The step-by-step algorthm:
 
 We don't have to remove row elements, just "re-insert", they leave the old place automatically.
 
-P.S. In our case, there's an explicit `<tbody>` in the table, but even if HTML table doesn't have `<tbody>`, the DOM structure always has it.
+Tables always have an implicit `<tbody>` element, so we need to get it and insert into it: a simple `table.append(...)` will fail.

@@ -24,7 +24,7 @@
 
 <script>
   let sortedRows = Array.from(table.tBodies[0].rows)
-    .sort((rowA, rowB) => rowA.cells[0].innerHTML.localeCompare(rowB.cells[0].innerHTML));
+    .sort((rowA, rowB) => rowA.cells[0].textContent.trim().localeCompare(rowB.cells[0].textContent.trim()));
 
   table.tBodies[0].append(...sortedRows);
 </script>
