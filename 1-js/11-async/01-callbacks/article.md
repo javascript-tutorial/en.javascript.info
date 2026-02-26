@@ -48,7 +48,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
+Let's say we need to use the new script as soon as it loads. It declares new functions inside it, and we want to run them.
 
 But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
 
@@ -60,9 +60,9 @@ newFunction(); // no such function!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Naturally, the browser probably didn't have time to load the script because of some external http request. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
 
-Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+Let's add a `callback` function as a second argument to `loadScript` that should execute when the script finished loading:
 
 ```js
 function loadScript(src, *!*callback*/!*) {
