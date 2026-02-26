@@ -41,11 +41,24 @@ alert( map.size ); // 3
 
 As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
-```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+````smart header="`map[key]` isn’t the correct way to use a `Map`"
+Although you can technically write `map[key] = value`, this does **not** store the data inside the `Map` collection.
 
-So we should use `map` methods: `set`, `get` and so on.
+Instead, it simply adds a regular property to the `Map` object itself—just like with plain JavaScript objects—and the key is always converted to a string.
+
+For example:
+
+```js run
+let map = new Map();
+map["1"] = "test"; // adds a property, not a Map entry
+
+alert(map.get("1")); // undefined
+alert(map["1"]);     // "test"
 ```
+
+To properly store and retrieve data in a `Map`, always use its methods:
+`map.set(key, value)` and `map.get(key)`.
+````
 
 **Map can also use objects as keys.**
 
