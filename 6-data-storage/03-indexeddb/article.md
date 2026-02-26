@@ -109,7 +109,7 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 ```warn header="We can't open a database using an older open call version"
 If the current user database has a higher version than in the `open` call, e.g. the existing DB version is `3`, and we try to `open(...2)`, then that's an error, `openRequest.onerror` triggers.
 
-That's rare, but such a thing may happen when a visitor loads outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
+This situation is rare but can occur when a visitor loads outdated JavaScript code, such as from a proxy cache. In this case, the code is old, but the user's database is already on a newer version. This also implies that you should be careful when you rollback code. For example, if you release version 3 and some users start using it, but then you discover an issue and decide to roll back to version 2, those users with a version 3 database will face errors because the rolled-back code cannot handle the newer database version.
 
 To protect from errors, we should check `db.version` and suggest a page reload. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problems.
 ```
