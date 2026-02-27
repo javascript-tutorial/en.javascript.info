@@ -4,15 +4,11 @@ Let's walk the array items:
 
 ```js run demo
 function unique(arr) {
-  let result = [];
+	const result = [];
 
-  for (let str of arr) {
-    if (!result.includes(str)) {
-      result.push(str);
-    }
-  }
+	arr.forEach(item => result.includes(item) ? null : result.push(item));
+	return result;
 
-  return result;
 }
 
 let strings = ["Hare", "Krishna", "Hare", "Krishna",
@@ -30,7 +26,7 @@ So if there are `100` elements in `result` and no one matches `str`, then it wil
 
 That's not a problem by itself, because JavaScript engines are very fast, so walk `10000` array is a matter of microseconds.
 
-But we do such test for each element of `arr`, in the `for` loop.
+But we do such test for each element of `arr`, in the `forEach` method.
 
 So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 millions of comparisons. That's a lot.
 
