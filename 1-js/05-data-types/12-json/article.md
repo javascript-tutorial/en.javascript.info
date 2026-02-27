@@ -305,6 +305,7 @@ let user = {
   }
 };
 
+// we can use null or undefined here to skip over an optional parameter
 alert(JSON.stringify(user, null, 2));
 /* two-space indents:
 {
