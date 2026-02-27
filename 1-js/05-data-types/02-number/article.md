@@ -50,7 +50,7 @@ let mсs = 0.000001;
 Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could write the same as:
 
 ```js
-let mcs = 1e-6; // five zeroes to the left from 1
+let mcs = 1e-6; // six zeroes to the left from 1
 ```
 
 If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.
