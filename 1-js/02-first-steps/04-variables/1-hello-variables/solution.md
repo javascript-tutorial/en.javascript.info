@@ -9,4 +9,4 @@ admin = name;
 
 alert( admin ); // "John"
 ```
-
+You also use console.log(admin) if you dont want to use alert
