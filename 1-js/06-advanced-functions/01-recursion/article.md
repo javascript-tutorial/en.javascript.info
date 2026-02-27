@@ -8,7 +8,7 @@ If you are not new to programming, then it is probably familiar and you could sk
 
 Recursion is a programming pattern that is useful in situations when a task can be naturally split into several tasks of the same kind, but simpler. Or when a task can be simplified into an easy action plus a simpler variant of the same task. Or, as we'll see soon, to deal with certain data structures.
 
-When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
+When a function solves a task, it can call many other functions in the process. A partial case of this is when a function calls *itself*. That's called *recursion*.
 
 ## Two ways of thinking
 
@@ -39,7 +39,7 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-2. Recursive thinking: simplify the task and call self:
+2. Recursive thinking -- calls itself to simplify the task:
 
     ```js run
     function pow(x, n) {
@@ -108,7 +108,7 @@ The information about the process of execution of a running function is stored i
 
 The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
 
-One function call has exactly one execution context associated with it.
+One function call has exactly one single execution context associated with it.
 
 When a function makes a nested call, the following happens:
 
@@ -121,7 +121,7 @@ Let's see what happens during the `pow(2, 3)` call.
 
 ### pow(2, 3)
 
-In the beginning of the call `pow(2, 3)` the execution context will store variables: `x = 2, n = 3`, the execution flow is at line `1` of the function.
+In the beginning of the call `pow(2, 3)`, the execution context stores the variables: `x = 2, n = 3` and the execution flow that is at line `1` of the function.
 
 We can sketch it as:
 
@@ -188,7 +188,7 @@ The new current execution context is on top (and bold), and previous remembered 
 When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
 
 ```smart
-Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+Here in the representation we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
 
 So it would be more precise to say that the execution resumes "immediately after the subcall".
 ```
@@ -214,7 +214,7 @@ A new execution context is created, the previous one is pushed on top of the sta
   </li>
 </ul>
 
-There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
+There are now 2 old contexts and 1 currently running context for `pow(2, 1)`.
 
 ### The exit
 
@@ -325,8 +325,8 @@ let company = {
 In other words, a company has departments.
 
 - A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
-- Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has their own staff.
-- It is also possible that when a subdepartment grows, it divides into subsubdepartments (or teams).
+- Or a department may split into subdepartments, like `development` in two branches: `sites` and `internals`. Each of them has their own staff.
+- It is also possible that when a subdepartment grows, to divide into subsubdepartments (or teams).
 
     For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
 
@@ -343,7 +343,7 @@ As we can see, when our function gets a department to sum, there are two possibl
 
 The 1st case is the base of recursion, the trivial case, when we get an array.
 
-The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+The 2nd case, when we get an object, is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
 
 The algorithm is probably even easier to read from the code:
 
@@ -357,15 +357,20 @@ let company = { // the same object, compressed for brevity
   }
 };
 
-// The function to do the job
+/**
+ * Sums the salaries of all employees in a department or subdepartments.
+ * 
+ * @param {Object|Array} department - The department or subdepartment to calculate salaries for.
+ * @returns {number} - The sum of all salaries in the department or subdepartments.
+ */
 *!*
 function sumSalaries(department) {
   if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
+    return department.reduce((prev, current) => prev + current.salary, 0); // If the department parameter is an array, use reduce to sum its values.
   } else { // case (2)
     let sum = 0;
     for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+      sum += sumSalaries(subdep); // If the subdepartment is an object, recursively call sumSalaries on the subdepartment and add the result to the sum.
     }
     return sum;
   }
@@ -422,7 +427,7 @@ let arr = [obj1, obj2, obj3];
 
 ...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
+The only structural modifications that do not require mass-renumbering are those that operate on the end of arrays: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
 
 Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
 
@@ -462,7 +467,7 @@ list.next.next.next = { value: 4 };
 list.next.next.next.next = null;
 ```
 
-Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following the `next` pointers from it we can reach any element.
 
 The list can be easily split into multiple parts and later joined back:
 
@@ -481,7 +486,7 @@ list.next.next = secondList;
 
 And surely we can insert or remove items in any place.
 
-For instance, to prepend a new value, we need to update the head of the list:
+For instance, to prepend it with a new value, we need to update the head of the list:
 
 ```js
 let list = { value: 1 };
@@ -490,7 +495,7 @@ list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
 
 *!*
-// prepend the new value to the list
+// add a new item to the beginning of a linked list
 list = { value: "new item", next: list };
 */!*
 ```
@@ -505,17 +510,17 @@ list.next = list.next.next;
 
 ![linked list](linked-list-remove-1.svg)
 
-We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If there is no reference to it anywhere else, it will be automatically removed from the memory by the garbage collector.
 
-Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+Unlike arrays, there's no mass-renumbering and we can easily rearrange elements.
 
-Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
+Naturally, linked lists are not always better than arrays. Otherwise everyone would use only linked lists.
 
-The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
+The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the linked list we need to start from the first item and go over `next` `N` times to get the Nth element.
 
 ...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
 
-Lists can be enhanced:
+Linked lists can be enhanced:
 - We can add property `prev` in addition to `next` to reference the previous element, to move back easily.
 - We can also add a variable named `tail` referencing the last element of the list (and update it when adding/removing elements from the end).
 - ...The data structure may vary according to our needs.
@@ -523,7 +528,7 @@ Lists can be enhanced:
 ## Summary
 
 Terms:
-- *Recursion*  is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
+- *Recursion* is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
 
     When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
 
