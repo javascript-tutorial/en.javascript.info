@@ -2,7 +2,7 @@
 
 Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
 
-What happens when something is not needed any more? How does the JavaScript engine discover it and clean it up?
+What happens when something is not needed anymore? How does the JavaScript engine discover it and clean it up?
 
 ## Reachability
 
@@ -25,7 +25,7 @@ Simply put, "reachable" values are those that are accessible or usable somehow. 
 
     For instance, if there's an object in a global variable, and that object has a property referencing another object, *that* object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
 
-There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
+There's a background process in the JavaScript engine called the [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
 
 ## A simple example
 
@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Here, the arrow depicts an object reference. The global variable `user` references the object `{name: "John"}` (we'll call it John for brevity). The `name` property of John stores a primitive, so it's shown inside the object.
 
 If the value of `user` is overwritten, the reference is lost:
 
@@ -74,7 +74,7 @@ Now if we do the same:
 user = null;
 ```
 
-...Then the object is still reachable via `admin` global variable, so it must stay in memory. If we overwrite `admin` too, then it can be removed.
+...Then the object is still reachable via the `admin` global variable, so it must stay in memory. If we overwrite `admin` too, then it can be removed.
 
 ## Interlinked objects
 
@@ -117,7 +117,7 @@ delete family.mother.husband;
 
 It's not enough to delete only one of these two references, because all objects would still be reachable.
 
-But if we delete both, then we can see that John has no incoming reference any more:
+But if we delete both, then we can see that John has no incoming reference anymore:
 
 ![](family-no-father.svg)
 
@@ -187,9 +187,9 @@ That's the concept of how garbage collection works. JavaScript engines apply man
 
 Some of the optimizations:
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". In typical code, many objects have a short life span: they appear, do their job and die fast, so it makes sense to track new objects and clear the memory from them if that's the case. Those that survive for long enough, become "old" and are examined less often.
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine splits the whole set of existing objects into multiple parts. And then clear these parts one after another. There are many small garbage collections instead of a total one. That requires some extra bookkeeping between them to track changes, but we get many tiny delays instead of a big one.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+- **Generational collection**: objects are split into two sets: "new ones" and "old ones". In typical code, many objects have a short life span: they appear, do their job and die fast, so it makes sense to track new objects and clear the memory from them if that's the case. Those that survive for long enough, become "old" and are examined less often.
+- **Incremental collection**: if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine splits the whole set of existing objects into multiple parts. And then clears these parts one after another. There are many small garbage collections instead of a total one. That requires some extra bookkeeping between them to track changes, but we get many tiny delays instead of a big one.
+- **Idle-time collection**: the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
 
 There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
 
@@ -207,6 +207,6 @@ A general book "The Garbage Collection Handbook: The Art of Automatic Memory Man
 
 If you are familiar with low-level programming, more detailed information about V8's garbage collector is in the article [A tour of V8: Garbage Collection](https://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-The [V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn more about garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](https://mrale.ph) who worked as one of the V8 engineers. I'm saying: "V8", because it is best covered by articles on the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+The [V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn more about garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](https://mrale.ph) who worked as one of the V8 engineers. I'm saying "V8" because it is best covered by articles on the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
 
 In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.
