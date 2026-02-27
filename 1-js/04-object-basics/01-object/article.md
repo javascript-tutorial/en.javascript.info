@@ -392,7 +392,7 @@ Also, we could use another variable name here instead of `key`. For instance, `"
 
 Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+The short answer is: "ordered in a special fashion": Integer properties appear first in sorted order, then other properties appear in creation order. The details follow.
 
 As an example, let's consider an object with the phone codes:
 
@@ -471,6 +471,21 @@ for (let code in codes) {
 ```
 
 Now it works as intended.
+
+If an object has both integer properties and non-integer properties, the integer properties will appear first, regardless of creation order.
+
+```js run
+let favoriteGamesTopThree = {};
+favoriteGamesTopThree.year = 1996;
+favoriteGamesTopThree.author = "John Smith";
+favoriteGamesTopThree[3] = "Crash Bandicoot";
+favoriteGamesTopThree[2] = "Super Mario 64";
+favoriteGamesTopThree[1] = "Quake";
+
+for (let prop in favoriteGamesTopThree) {
+  alert( prop ); // 1, 2, 3, year, author
+}
+```
 
 ## Summary
 
