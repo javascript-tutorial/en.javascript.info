@@ -1,6 +1,6 @@
 # CSS-animations
 
-CSS animations make it possible to do simple animations without JavaScript at all.
+CSS animations make it possible to make simple animations without using JavaScript at all.
 
 JavaScript can be used to control CSS animations and make them even better, with little code.
 
@@ -47,7 +47,7 @@ There are 4 properties to describe CSS transitions:
 - `transition-timing-function`
 - `transition-delay`
 
-We'll cover them in a moment, for now let's note that the common `transition` property allows declaring them together in the order: `property duration timing-function delay`, as well as animating multiple properties at once.
+We'll cover them in a moment, for now let's note that the shorthand `transition` property allows declaring them together on the same line in the following order: `property duration timing-function delay`, as well as animating multiple properties at once.
 
 For instance, this button animates both `color` and `font-size`:
 
@@ -86,9 +86,9 @@ In `transition-duration` we can specify how long the animation should take. The 
 
 In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is `2s`, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
 
-Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then animation starts from the halfway point and total duration will be 1 second.
+Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then the animation starts from the halfway point and the total duration will be 1 second.
 
-Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
+Here the animation shifts numbers from `0` to `9` using the CSS `translate` property:
 
 [codetabs src="digits"]
 
@@ -141,7 +141,7 @@ The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control
 
 1. First control point: `(0,0)`.
 2. Last control point: `(1,1)`.
-3. For intermediate points, the values of `x` must be in the interval `0..1`, `y` can be anything.
+3. For intermediate points, the values of `x` must be in the interval `0..1`, whereas `y` can be anything.
 
 The syntax for a Bezier curve in CSS: `cubic-bezier(x2, y2, x3, y3)`. Here we need to specify only 2nd and 3rd control points, because the 1st one is fixed to `(0,0)` and the 4th one is `(1,1)`.
 
@@ -158,17 +158,17 @@ Here's how that curve looks:
 
 ...As we can see, it's just a straight line. As the time (`x`) passes, the completion (`y`) of the animation steadily goes from `0` to `1`.
 
-The train in the example below goes from left to right with the permanent speed (click it):
+The train in the example below goes from left to right at constant speed (click it):
 
 [codetabs src="train-linear"]
 
-The CSS `transition` is based on that curve:
+The CSS `transition` is based on this curve:
 
 ```css
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* clicking on the train sets left to 450px, thus triggering the animation */
 }
 ```
 
@@ -191,7 +191,7 @@ CSS:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, .5, .5, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* clicking on the train sets left to 450px, thus triggering the animation */
 }
 ```
 
@@ -199,7 +199,7 @@ There are several built-in curves: `linear`, `ease`, `ease-in`, `ease-out` and `
 
 The `linear` is a shorthand for `cubic-bezier(0, 0, 1, 1)` -- a straight line, which we described above.
 
-Other names are shorthands for the following `cubic-bezier`:
+The other names are shorthands for the following `cubic-bezier`:
 
 | <code>ease</code><sup>*</sup> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> |
 |-------------------------------|----------------------|-----------------------|--------------------------|
@@ -222,7 +222,7 @@ But it looks a bit differently.
 
 **A Bezier curve can make the animation exceed its range.**
 
-The control points on the curve can have any `y` coordinates: even negative or huge ones. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
+The control points on the curve can have any `y` coordinates: even negative or huge values. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
 
 In the example below the animation code is:
 
@@ -230,7 +230,7 @@ In the example below the animation code is:
 .train {
   left: 100px;
   transition: left 5s cubic-bezier(.5, -1, .5, 2);
-  /* click on a train sets left to 450px */
+  /* clicking on the train sets left to 450px */
 }
 ```
 
@@ -248,9 +248,9 @@ Why it happens is pretty obvious if we look at the graph of the given Bezier cur
 
 ![](bezier-train-over.svg)
 
-We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
+We moved the `y` coordinate of the 2nd point below zero and the 3rd point over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
 
-As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond the starting `left` and `y>1` -- past the final `left`.
+As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y < 0` move the property beyond the starting `left` and `y > 1` -- past the final `left`.
 
 That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then the train would jump out of the range much more.
 
@@ -301,7 +301,7 @@ The first argument of `steps(9, start)` is the number of steps. The transform wi
 
 The second argument is one of two words: `start` or `end`.
 
-The `start` means that in the beginning of animation we need to make the first step immediately.
+The `start` means that we need to make the first step immediately in the beginning of the animation.
 
 In action:
 
@@ -321,7 +321,7 @@ Here, the first change was immediate because of `start` in the `steps`.
 
 The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
 
-So the process for `steps(9, end)` would go like this:
+So the process for `steps(9, end)` would progress like this:
 
 - `0s` -- `0` (during the first second nothing changes)
 - `1s` -- `-10%` (first change at the end of the 1st second)
@@ -344,7 +344,7 @@ These values are rarely used, as they represent not a real animation, but rather
 
 When the CSS animation finishes, the `transitionend` event triggers.
 
-It is widely used to do an action after the animation is done. Also we can join animations.
+It is widely used to do an action after the animation is done and to join multiple animations.
 
 For instance, the ship in the example below starts to sail there and back when clicked, each time farther and farther to the right:
 
@@ -438,10 +438,10 @@ However, not all animations will look as smooth as you'd like, because different
 In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
 
 1. **Layout**: re-compute the geometry and position of each element, then
-2. **Paint**: re-compute how everything should look like at their places, including background, colors,
+2. **Paint**: re-compute how everything should look like at their places, including background and colors, then
 3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
 
-During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
+During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
 
 The calculations may take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations.
 
