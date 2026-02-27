@@ -795,8 +795,8 @@ These methods are the most used ones, they cover 99% of use cases. But there are
 
 For the full list, see the [manual](mdn:js/Array).
 
-At first sight, it may seem that there are so many methods, quite difficult to remember. But actually, that's much easier.
+At first, looking at a long list of array methods can feel overwhelming. But it’s easier than it looks.
 
-Look through the cheat sheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
+Just skim the cheat sheet to get a basic sense of the most common methods, then practice with the tasks below to understand how they work.
 
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheat sheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+Later in your coding journey, if you get stuck on an array problem, come back to this article. You’ll find an example that fits your situation. With enough practice, you’ll remember the methods naturally and won’t need to check as often.
