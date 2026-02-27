@@ -326,7 +326,7 @@ alert( "Wid*!*get*/!*".endsWith("get") ); // true, "Widget" ends with "get"
 
 ## Getting a substring
 
-There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
+There are 3 methods in JavaScript to get a substring: `slice`, `substring` and `substr`.
 
 `str.slice(start [, end])`
 : Returns the part of the string from `start` to (but not including) `end`.
@@ -356,9 +356,7 @@ There are 3 methods in JavaScript to get a substring: `substring`, `substr` and 
     ```
 
 `str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end` (not including `end`).
-
-    This is almost the same as `slice`, but it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
+: Like `slice`, returns the part of the string from `start` to (but not including) `end`; however, it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
 
     For instance:
 
@@ -400,8 +398,8 @@ Let's recap these methods to avoid any confusion:
 
 | method | selects... | negatives |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
-| `substring(start, end)` | between `start` and `end` (not including `end`)| negative values mean `0` |
+| `slice(start, end)` | from `start` to (but not including) `end` | allows negatives |
+| `substring(start, end)` | from `start` to (but not including) `end` | negative values mean `0` |
 | `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
 
 ```smart header="Which one to choose?"
