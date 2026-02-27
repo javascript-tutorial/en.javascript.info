@@ -108,7 +108,7 @@ Safe Requests are simpler to make, so let's start with them.
 
 A request is safe if it satisfies two conditions:
 
-1. [Safe method](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, POST or HEAD
+1. [Safe method](https://fetch.spec.whatwg.org/#cors-safelisted-method): GET, HEAD, OPTIONS or TRACE
 2. [Safe headers](https://fetch.spec.whatwg.org/#cors-safelisted-request-header) -- the only allowed custom headers are:
     - `Accept`,
     - `Accept-Language`,
@@ -350,7 +350,7 @@ Please note: `Access-Control-Allow-Origin` is prohibited from using a star `*` f
 From the browser point of view, there are two kinds of cross-origin requests: "safe" and all the others.
 
 "Safe" requests must satisfy the following conditions:
-- Method: GET, POST or HEAD.
+- Method: GET, HEAD, OPTIONS or TRACE
 - Headers -- we can set only:
     - `Accept`
     - `Accept-Language`
