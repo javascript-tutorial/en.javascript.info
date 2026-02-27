@@ -13,7 +13,7 @@ Currying doesn't call a function. It just transforms it.
 
 Let's see an example first, to better understand what we're talking about, and then practical applications.
 
-We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into a function that runs as `f(a)(b)`:
+We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, the `curry(f)` function receives the two-argument `f(a, b)`, and returns a function that runs as `f(a)(b)`:
 
 ```js run
 *!*
@@ -38,7 +38,7 @@ alert( curriedSum(1)(2) ); // 3
 
 As you can see, the implementation is straightforward: it's just two wrappers.
 
-- The result of `curry(func)` is a wrapper `function(a)`.
+- The result of `curry(f)` is a wrapper `function(a)`.
 - When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
 - Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
 
@@ -111,7 +111,7 @@ So:
 
 ## Advanced curry implementation
 
-In case you'd like to get in to the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
+In case you'd like to get into the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
 
 It's pretty short:
 
@@ -120,6 +120,7 @@ function curry(func) {
 
   return function curried(...args) {
     if (args.length >= func.length) {
+      // args is an array-like object we can operate on
       return func.apply(this, args);
     } else {
       return function(...args2) {
@@ -164,7 +165,7 @@ function curried(...args) {
 
 When we run it, there are two `if` execution branches:
 
-1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
+1. If passed `args` count is the same or more than the original function has in its definition (`func.length`), then just pass the call to it using `func.apply`. 
 2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
 
 Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
