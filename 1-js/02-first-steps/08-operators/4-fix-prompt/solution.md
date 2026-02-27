@@ -30,3 +30,16 @@ alert(+a + +b); // 3
 ```
 
 Using both unary and binary `+` in the latest code. Looks funny, doesn't it?
+
+or in the `alert`: you can do it this way
+
+```js run
+let a = prompt("First number?", 1);
+let b = prompt("Second number?", 2);
+
+alert(Number(a) + Number(b));
+```
+
+
+
+
