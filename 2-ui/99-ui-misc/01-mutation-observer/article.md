@@ -90,7 +90,7 @@ mutationRecords = [{
   type: "characterData"
   target: <text node>
   // ...mutation details depend on how the browser handles such removal
-  // it may coalesce two adjacent text nodes "edit " and ", please" into one node
+  // it may coalesce two adjacent text nodes "Click and " and ", please" into one node
   // or it may leave them separate text nodes
 }];
 ```
