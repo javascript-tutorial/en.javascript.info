@@ -1,6 +1,6 @@
 The answer is: **Pete**.
 
-The `work()` function in the code below gets `name` from the place of its origin through the outer lexical environment reference:
+The `work()` function in the code below gets `name` from the place of its origin through the outer Environment Record reference:
 
 ![](lexenv-nested-work.svg)
 
