@@ -131,7 +131,6 @@ The handler reads the attribute and executes the method. Take a look at the work
 <script>
   class Menu {
     constructor(elem) {
-      this._elem = elem;
       elem.onclick = this.onClick.bind(this); // (*)
     }
 
