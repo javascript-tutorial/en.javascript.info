@@ -708,10 +708,11 @@ let userProxy = new Proxy(user, {
 });
 
 *!*
-let admin = {
-  __proto__: userProxy,
-  _name: "Admin"
-};
+let admin = Object.create(userProxy, {
+  _name: {
+    value: "Admin"
+  }
+});
 
 // Expected: Admin
 alert(admin.name); // outputs: Guest (?!?)
@@ -757,10 +758,11 @@ let userProxy = new Proxy(user, {
 });
 
 
-let admin = {
-  __proto__: userProxy,
-  _name: "Admin"
-};
+let admin = Object.create(userProxy, {
+  _name: {
+    value: "Admin"
+  }
+});
 
 *!*
 alert(admin.name); // Admin
