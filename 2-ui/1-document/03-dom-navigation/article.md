@@ -163,7 +163,7 @@ Changing DOM needs other methods. We will see them in the next chapter.
 ```warn header="DOM collections are live"
 Almost all DOM collections with minor exceptions are *live*. In other words, they reflect the current state of DOM.
 
-If we keep a reference to `elem.childNodes`, and add/remove nodes into DOM, then they appear in the collection automatically.
+If we keep a reference to `elem.childNodes`, and add/remove nodes in the DOM, then they will automatically appear in the collection -- or be removed from it.
 ```
 
 ````warn header="Don't use `for..in` to loop over collections"
