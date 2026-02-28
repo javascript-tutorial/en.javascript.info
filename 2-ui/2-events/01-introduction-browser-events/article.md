@@ -337,7 +337,7 @@ Some properties of `event` object:
 `event.clientX` / `event.clientY`
 : Window-relative coordinates of the cursor, for pointer events.
 
-There are more properties. Many of them depend on the event type: keyboard events have one set of properties, pointer events - another one, we'll study them later when as we move on to the details of different events.
+There are more properties. Many of them depend on the event type: keyboard events have one set of properties and pointer events have another one. We'll study them later as we move to the details of different events.
 
 ````smart header="The event object is also available in HTML handlers"
 If we assign a handler in HTML, we can also use the `event` object, like this:
