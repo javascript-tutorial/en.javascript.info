@@ -19,11 +19,12 @@ let event = new Event(type[, options]);
 Arguments:
 
 - *type* -- event type, a string like `"click"` or our own like `"my-event"`.
-- *options* -- the object with two optional properties:
+- *options* -- the object with three optional properties:
   - `bubbles: true/false` -- if `true`, then the event bubbles.
   - `cancelable: true/false` -- if `true`, then the "default action"  may be prevented. Later we'll see what it means for custom events.
+  - `composed: true/false` -- if `true`, then the event will trigger listeners outside of a shadow root, exiting the Shadow DOM. Later we’ll cover this in [Web Components](https://javascript.info/shadow-dom-events#event-composed) section.
 
-  By default both are false: `{bubbles: false, cancelable: false}`.
+By default all three are **false**: `{bubbles: false, cancelable: false, composed: false}`.
 
 ## dispatchEvent
 
@@ -274,9 +275,10 @@ The output order becomes: 1 -> 2 -> nested.
 
 To generate an event from code, we first need to create an event object.
 
-The generic `Event(name, options)` constructor accepts an arbitrary event name and the `options` object with two properties:
+The generic `Event(type[, options])` constructor accepts a required `type` parameter -- a string that specifies the event name (type), and an optional `options` object with three properties (all false by default):
 - `bubbles: true` if the event should bubble.
 - `cancelable: true` if the `event.preventDefault()` should work.
+- `composed: true` if the event should exit the Shadow DOM, becoming available to listeners outside of a shadow root.
 
 Other constructors of native events like `MouseEvent`, `KeyboardEvent` and so on accept properties specific to that event type. For instance, `clientX` for mouse events.
 
