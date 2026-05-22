@@ -45,5 +45,6 @@ async function demoGithubUser() {
   return user;
 }
 
-demoGithubUser();
+demoGithubUser()
+.catch(alert);
 ```
