@@ -291,13 +291,9 @@ Such features are easy to remember, as they resemble that of literal objects.
 
 ## Class fields
 
-```warn header="Old browsers may need a polyfill"
-Class fields are a recent addition to the language.
-```
+Class fields are a standard part of the language and are supported in modern browsers.
 
-Previously, our classes only had methods.
-
-"Class fields" is a syntax that allows to add any properties.
+They provide a clean syntax for declaring properties directly inside the class body, without placing them inside the constructor.
 
 For instance, let's add `name` property to `class User`:
 
