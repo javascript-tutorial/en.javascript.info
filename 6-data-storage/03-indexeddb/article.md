@@ -342,7 +342,7 @@ The short answer is: we don't.
 
 In the next version 3.0 of the specification, there will probably be a manual way to finish the transaction, but right now in 2.0 there isn't.
 
-**When all transaction requests are finished, and the [microtasks queue](info:microtask-queue) is empty, it is committed automatically.**
+**When all transaction requests are finished, and the [macrotasks queue (event queue)](info:event-loop) is empty, it is committed automatically.**
 
 Usually, we can assume that a transaction commits when all its requests are complete, and the current code finishes.
 
@@ -367,7 +367,7 @@ request1.onsuccess = function() {
 };
 ```
 
-That's because `fetch` is an asynchronous operation, a macrotask. Transactions are closed before the browser starts doing macrotasks.
+That's because `fetch` is an asynchronous operation, a microtask. Transactions are closed before the browser starts doing microtasks.
 
 Authors of IndexedDB spec believe that transactions should be short-lived. Mostly for performance reasons.
 
@@ -774,7 +774,7 @@ window.addEventListener('unhandledrejection', event => {
 
 ### "Inactive transaction" pitfall
 
-As we already know, a transaction auto-commits as soon as the browser is done with the current code and microtasks. So if we put a *macrotask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
+As we already know, a transaction auto-commits as soon as the browser is done with the current code and macrotasks. So if we put a *microtask* like `fetch` in the middle of a transaction, then the transaction won't wait for it to finish. It just auto-commits. So the next request in it would fail.
 
 For a promise wrapper and `async/await` the situation is the same.
 
