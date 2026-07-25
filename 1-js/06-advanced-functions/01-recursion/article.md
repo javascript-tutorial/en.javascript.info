@@ -357,18 +357,25 @@ let company = { // the same object, compressed for brevity
   }
 };
 
-// The function to do the job
+// Function to sum the salaries of all employees in a department
 *!*
-function sumSalaries(department) {
-  if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
-  } else { // case (2)
+function sumTheSalaries(department) {
     let sum = 0;
-    for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+
+    // If the department is an array (base case), iterate over its employees and sum their salaries
+    if (Array.isArray(department)) { // case (1)
+        for (let employee of department) {
+            sum += employee.salary;
+        }
+    } else { // case (2)
+        // If the department is an object, iterate over its sub-departments
+        for (let subDepartment of Object.values(department)) {
+            // Recursively call sumTheSalaries for each sub-department and add the result to the sum
+            sum += sumTheSalaries(subDepartment);
+        }
     }
+
     return sum;
-  }
 }
 */!*
 
