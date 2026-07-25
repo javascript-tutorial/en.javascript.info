@@ -9,7 +9,7 @@ When passing object methods as callbacks, for instance to `setTimeout`, there's 
 
 In this chapter we'll see the ways to fix it.
 
-## Losing "this"
+## The "losing `this`" problem
 
 We've already seen examples of losing `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
 
