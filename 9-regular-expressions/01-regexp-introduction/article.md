@@ -39,9 +39,9 @@ let regexp = new RegExp(`<${tag}>`); // same as /<h2>/ if answered "h2" in the p
 
 ## Flags
 
-Regular expressions may have flags that affect the search.
+Regular expressions may have flags that affect the search or provide additional information.
 
-There are only 6 of them in JavaScript:
+There are only 7 of them in JavaScript:
 
 `pattern:i`
 : With this flag the search is case-insensitive: no difference between `A` and `a` (see the example below).
@@ -60,6 +60,9 @@ There are only 6 of them in JavaScript:
 
 `pattern:y`
 : "Sticky" mode: searching at the exact position in the text  (covered in the chapter <info:regexp-sticky>)
+
+`pattern:d`
+: With this flag, the result of the regular expression is placed in an array which contains additional information about the regular expression, such as the start and end indices of the substring. This flag does not change the behavior of the regular expression, it just provides additional information.
 
 ```smart header="Colors"
 From here on the color scheme is:
@@ -170,7 +173,7 @@ Full information about the methods is given in the article <info:regexp-methods>
 
 ## Summary
 
-- A regular expression consists of a pattern and optional flags: `pattern:g`, `pattern:i`, `pattern:m`, `pattern:u`, `pattern:s`, `pattern:y`.
+- A regular expression consists of a pattern and optional flags: `pattern:g`, `pattern:i`, `pattern:m`, `pattern:u`, `pattern:s`, `pattern:y`, `pattern:d`.
 - Without flags and special symbols  (that we'll study later), the search by a regexp is the same as a substring search.
 - The method `str.match(regexp)` looks for matches: all of them if there's `pattern:g` flag, otherwise, only the first one.
 - The method `str.replace(regexp, replacement)` replaces matches found using `regexp` with `replacement`: all of them if there's `pattern:g` flag, otherwise only the first one.
