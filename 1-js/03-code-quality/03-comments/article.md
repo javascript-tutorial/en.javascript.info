@@ -120,7 +120,7 @@ In reality, we can't totally avoid "explanatory" comments. There are complex alg
 So, explanatory comments are usually bad. Which comments are good?
 
 Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language called [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
 
 Document function parameters and usage
 : There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
@@ -157,7 +157,7 @@ Why is the task solved this way?
 
     Comments that explain the solution are very important. They help to continue development the right way.
 
-Any subtle features of the code? Where they are used?
+Any subtle features of the code? Where are they used?
 : If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
 
 ## Summary
