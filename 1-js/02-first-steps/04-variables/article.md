@@ -18,7 +18,7 @@ The statement below creates (in other words: *declares*) a variable with the nam
 let message;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Now, we can put some data into it (in other words: *define a variable*) by using the assignment operator `=`:
 
 ```js
 let message;
