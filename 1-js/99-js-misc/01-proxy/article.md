@@ -35,7 +35,7 @@ As there are no traps, all operations on `proxy` are forwarded to `target`.
 
 1. A writing operation `proxy.test=` sets the value on `target`.
 2. A reading operation `proxy.test` returns the value from `target`.
-3. Iteration over `proxy` returns values from `target`.
+3. Iteration over `proxy` returns keys from `target`.
 
 As we can see, without any traps, `proxy` is a transparent wrapper around `target`.
 
