@@ -105,6 +105,8 @@ That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixi
 
 As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`.
 
+It is worth noting that it would be illegal to write `new User("Dude").say()` as `say` that comes from `sayMixin` doesn't reside in a prototype chain of the `User` class. For this to work though, you should copy methods from each mixin separately like so: `Object.assign(User.prototype, sayMixin, sayHiMixin);`
+
 ## EventMixin
 
 Now let's make a mixin for real life.
