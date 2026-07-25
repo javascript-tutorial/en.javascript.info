@@ -619,7 +619,10 @@ rabbit.eat();  // Error calling super (because there's no [[HomeObject]])
     - We must call parent constructor as `super()` in `Child` constructor before using `this`.
 3. When overriding another method:
     - We can use `super.method()` in a `Child` method to call `Parent` method.
-4. Internals:
+4. When overriding class fields, the class field is initialized:
+    - Before constructor for the base class (that doesn’t extend anything).
+    - Immediately after super() for the derived class.
+5. Internals:
     - Methods remember their class/object in the internal `[[HomeObject]]` property. That's how `super` resolves parent methods.
     - So it's not safe to copy a method with `super` from one object to another.
 
