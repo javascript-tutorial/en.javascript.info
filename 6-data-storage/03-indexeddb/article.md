@@ -7,6 +7,8 @@ libs:
 
 IndexedDB is a database that is built into a browser, much more powerful than `localStorage`.
 
+[FYI: This tutorial, while being very well written but is out of date, it's written against idb 3.0.2.  The current version as of November 2022 is 7.0.0.  Lots of breaking changes between the two versions.]
+
 - Stores almost any kind of values by keys, multiple key types.
 - Supports transactions for reliability.
 - Supports key range queries, indexes.
