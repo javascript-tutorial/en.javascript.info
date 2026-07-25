@@ -243,7 +243,7 @@ typeof null // "object"  (2)
 */!*
 
 *!*
-typeof alert // "function"  (3)
+typeof alert // "function" (Browser Console)  (3)
 */!*
 ```
 
