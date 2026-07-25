@@ -1,6 +1,16 @@
 # Logical operators
 
-There are four logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Here we cover the first three, the `??` operator is in the next article.
+There are seven logical operators in JavaScript:
+
+- `||` (OR)
+  - `||=` (Logical OR assignment operator)
+- `&&` (AND)
+  - `&&=` (Logical AND assignment operator)
+- `!` (NOT)
+- `??` (Nullish coalescing operator)
+  - `??=` (Nullish coalescing assignment operator)
+
+Here we cover the first five, the operators `??` and `??=` will be in the next article.
 
 Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
 
@@ -64,7 +74,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
+### OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
 
 The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
 
@@ -136,6 +146,76 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
 
+## ||= (Logical OR assignment)
+
+[recent browser="new"]
+
+The logical OR assignment operator `||=` is written as a regular OR `||` with the addition of the assignment symbol `=`. This notation is not accidental, since the result of this operator depends directly on the behavior of the already known `||`.
+
+Syntax:
+
+```js
+a ||= b
+```
+
+The `||=` operator takes two operands and performs the following actions:
+
+- Evaluates operands from left to right.
+- Converts `a` to a boolean value.
+- If `a` is falsy, assigns `a` the value of `b`.
+
+The concept of the `||=` operator is the "short-circuit" evaluation, the principle of which we analyzed earlier.
+
+Now let's rewrite `a ||= b` under the form of "short-circuit" evaluation:
+
+```js
+a || (a = b);
+```
+
+We already know that OR `||` returns the *first truthy value*, so if `a` is such, the evaluation will not reach the right-hand side of the expression.
+
+Here is an example with an obvious usage of the `||=` operator:
+
+```js run
+let johnHasCar = false;
+
+johnHasCar ||= "John doesn't have a car!"; // same as false || (johnHasCar = "...")
+
+alert( johnHasCar ); // "John doesn't have a car!"
+```
+
+...And this is where the conversion to a boolean value takes place:
+
+```js run
+let manufacturer = ""; // ||= operator will convert the empty string "" to the boolean value (false)
+
+manufacturer ||= "Unknown manufacturer"; // same as false || (manufacturer = "...")
+
+alert( manufacturer ); // "Unknown manufacturer"
+```
+
+The logical OR assignment operator `||=` is a "[syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar)" added to the language as a shorter form of writing `if` assignment statements.
+
+We can rewrite the above examples using the regular `if`:
+
+```js run
+let johnHasCar = false;
+
+if (johnHasCar == false) {
+  johnHasCar = "John doesn't have a car!";
+}
+
+alert(johnHasCar); // "John doesn't have a car!"
+
+let manufacturer = "";
+
+if (manufacturer == false) {
+  manufacturer = "Unknown manufacturer";
+}
+
+alert(manufacturer); // "Unknown manufacturer"
+```
+
 ## && (AND)
 
 The AND operator is represented with two ampersands `&&`:
@@ -173,7 +253,7 @@ if (1 && 0) { // evaluated as true && false
 ```
 
 
-## AND "&&" finds the first falsy value
+### AND "&&" finds the first falsy value
 
 Given multiple AND'ed values:
 
@@ -247,6 +327,49 @@ if (x > 0) alert( 'Greater than zero!' );
 Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
 ````
 
+## &&= (Logical AND assignment)
+
+[recent browser="new"]
+
+The logical AND assignment operator `&&=` is written as two ampersands `&&` and the assignment symbol `=`.
+
+Syntax:
+
+```js
+a &&= b
+```
+
+The principle of `&&=` is almost the same as that of the logical OR assignment operator `||=`. The only difference is that `&&=` will assign `a` to the value of `b` only if `a` is *truthy*.
+
+The concept of the logical AND assignment operator `&&=` is also based on "short-circuit" evaluation:
+
+```js
+a && (a = b);
+```
+
+Here's an example:
+
+```js run
+let greeting = "Hello"; // the string is non-empty, so it will be converted to the boolean value (true) by the &&= operator.
+
+greeting &&= greeting + ", user!"; // same as true && (greeting = greeting + "...")
+
+alert( greeting ) // "Hello, user!"
+```
+
+Since the logical AND assignment operator `&&=` as well as `||=` is "syntactic sugar", we can easily rewrite the example above using the familiar `if`:
+
+```js run
+let greeting = "Hello";
+
+if (greeting) {
+  greeting = greeting + ", user!"
+}
+
+alert( greeting ) // "Hello, user!"
+```
+
+In practice, unlike `||=`, the `&&=` operator is used quite rarely -- usually in combination with more complex language features, about which we will talk later. Finding a context for using this operator is a challenging task.
 
 ## ! (NOT)
 
