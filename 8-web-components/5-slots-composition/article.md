@@ -241,7 +241,7 @@ The flattened DOM looks like this:
 
 ## Menu example
 
-Now let's back to `<custom-menu>`, mentioned at the beginning of the chapter.
+Now let's go back to `<custom-menu>`, mentioned at the beginning of the chapter.
 
 We can use slots to distribute elements.
 
