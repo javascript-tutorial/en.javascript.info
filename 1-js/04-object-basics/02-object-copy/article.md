@@ -285,7 +285,7 @@ alert(clone.sizes.width); // 50, not related
 
 The `structuredClone` method can clone most data types, such as objects, arrays, primitive values.
 
-It also supports circular references, when an object property references the object itself (directly or via a chain or references).
+It also supports circular references, when an object property references the object itself (directly or via a chain of references).
 
 For instance:
 
