@@ -176,7 +176,7 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 ```
 
-Here `<p>John Smith</p>` becomes bold, because CSS inheritance is in effect between the `<slot>` and its contents. But in CSS itself not all properties are inherited.
+Here `<span>John Smith</span>` becomes bold, because CSS inheritance is in effect between the `<slot>` and its contents. But in CSS itself not all properties are inherited.
 
 Another option is to use `::slotted(selector)` pseudo-class. It matches elements based on two conditions:
 
