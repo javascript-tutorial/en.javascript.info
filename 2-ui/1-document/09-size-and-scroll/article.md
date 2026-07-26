@@ -63,9 +63,9 @@ That's the nearest ancestor that is one of the following:
 2. `<td>`, `<th>`, or `<table>`,  or
 3. `<body>`.
 
-Properties `offsetLeft/offsetTop` provide x/y coordinates relative to `offsetParent` upper-left corner.
+Properties `offsetLeft/offsetTop` provide x/y coordinates of the element's upper-left corner relative to its `offsetParent`.
 
-In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its upper-left corner (`180`):
+In the example below, the inner `<div>` has `<main>` as `offsetParent`, and `offsetLeft/offsetTop` are the offsets of its upper-left corner (`180`) relative to the `offsetParent`:
 
 ```html run height=10
 <main style="position: relative" id="main">
@@ -148,7 +148,7 @@ Here's the example in hebrew:
 
 These properties provide the size of the area inside the element borders.
 
-They include the content width together with paddings, but without the scrollbar:
+They include the content width/height together with paddings, but without the scrollbar:
 
 ![](metric-client-width-height.svg)
 
@@ -266,7 +266,7 @@ Please note that the described difference is only about reading `getComputedStyl
 Elements have the following geometry properties:
 
 - `offsetParent` -- is the nearest positioned ancestor or `td`, `th`, `table`, `body`.
-- `offsetLeft/offsetTop` -- coordinates relative to the upper-left edge of `offsetParent`.
+- `offsetLeft/offsetTop` -- coordinates of the upper-left corner relative to the `offsetParent`.
 - `offsetWidth/offsetHeight` -- "outer" width/height of an element including borders.
 - `clientLeft/clientTop` -- the distances from the upper-left outer corner to the upper-left inner (content + padding) corner. For left-to-right OS they are always the widths of left/top borders. For right-to-left OS the vertical scrollbar is on the left so `clientLeft` includes its width too.
 - `clientWidth/clientHeight` -- the width/height of the content including paddings, but without the scrollbar.
