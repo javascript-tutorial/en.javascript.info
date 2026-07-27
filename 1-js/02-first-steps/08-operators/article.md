@@ -271,7 +271,7 @@ Once again, for the purposes of readability it's better to split such code into 
 ```js
 c = 2 + 2;
 b = c;
-a = c;
+a = b;
 ```
 That's easier to read, especially when eye-scanning the code fast.
 
