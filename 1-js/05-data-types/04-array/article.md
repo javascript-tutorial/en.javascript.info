@@ -334,7 +334,7 @@ for (let fruit of fruits) {
 }
 ```
 
-The `for..of` doesn't give access to the number of the current element, just its value, but in most cases that's enough. And it's shorter.
+The `for..of` doesn't give access to the index of the current element, just its value, but in most cases that's enough. And it's shorter.
 
 Technically, because arrays are objects, it is also possible to use `for..in`:
 
