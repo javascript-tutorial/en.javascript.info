@@ -161,9 +161,9 @@ If we want to cancel the transition to another page, we can't do it here. But we
 
 ## window.onbeforeunload [#window.onbeforeunload]
 
-If a visitor initiated navigation away from the page or tries to close the window, the `beforeunload` handler asks for additional confirmation.
+If a visitor initiates navigation away from the page or tries to close the window, the `beforeunload` handler can ask for additional confirmation.
 
-If we cancel the event, the browser may ask the visitor if they are sure.
+If we prevent the default action, the browser will ask the visitor if they are sure.
 
 You can try it by running this code and then reloading the page:
 
@@ -173,7 +173,7 @@ window.onbeforeunload = function() {
 };
 ```
 
-For historical reasons, returning a non-empty string also counts as canceling the event. Some time ago browsers used to show it as a message, but as the [modern specification](https://html.spec.whatwg.org/#unloading-documents) says, they shouldn't.
+For historical reasons, returning a non-empty string also counts as preventing the default browser action. Some time ago browsers used to show it as a message, but as the [modern specification](https://html.spec.whatwg.org/#unloading-documents) says, they shouldn't.
 
 Here's an example:
 
@@ -296,7 +296,7 @@ Page load events:
   - Script such as `<script>...</script>` or `<script src="..."></script>` block DOMContentLoaded, the browser waits for them to execute.
   - Images and other resources may also still continue loading.
 - The `load` event on `window` triggers when the page and all resources are loaded. We rarely use it, because there's usually no need to wait for so long.
-- The `beforeunload` event on `window` triggers when the user wants to leave the page. If we cancel the event, browser asks whether the user really wants to leave (e.g we have unsaved changes).
+- The `beforeunload` event on `window` triggers when the user wants to leave the page. If we prevent the default action, browser asks whether the user really wants to leave (e.g. we have unsaved changes).
 - The `unload` event on `window` triggers when the user is finally leaving, in the handler we can only do simple things that do not involve delays or asking a user. Because of that limitation, it's rarely used. We can send out a network request with `navigator.sendBeacon`.
 - `document.readyState` is the current state of the document, changes can be tracked in the `readystatechange` event:
   - `loading` -- the document is loading.
