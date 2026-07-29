@@ -4,7 +4,7 @@
 ```smart header="This article is for understanding old scripts"
 The information in this article is useful for understanding old scripts.
 
-That's not how we write new code.
+This is not how we write new code.
 ```
 
 In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
@@ -20,11 +20,11 @@ var message = "Hi";
 alert(message); // Hi
 ```
 
-But internally `var` is a very different beast, that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
+But internally `var` is a very different beast that originates from very old times. It's generally not used in modern scripts, but still lurks in the old ones.
 
-If you don't plan on meeting such scripts you may even skip this chapter or postpone it.
+If you don't plan on working with such scripts you may even skip this chapter or postpone it.
 
-On the other hand, it's important to understand differences when migrating old scripts from `var` to `let`, to avoid odd errors.
+On the other hand, it's important to understand the differences when migrating old scripts from `var` to `let` to avoid odd errors.
 
 ## "var" has no block scope
 
@@ -42,7 +42,7 @@ alert(test); // true, the variable lives after if
 */!*
 ```
 
-As `var` ignores code blocks, we've got a global variable `test`.
+As `var` ignores code blocks, we have a global variable `test`.
 
 If we used `let test` instead of `var test`, then the variable would only be visible inside `if`:
 
@@ -85,7 +85,7 @@ sayHi();
 alert(phrase); // ReferenceError: phrase is not defined
 ```
 
-As we can see, `var` pierces through `if`, `for` or other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
+As we can see, `var` pierces through `if`, `for` and other code blocks. That's because a long time ago in JavaScript, blocks had no Lexical Environments, and `var` is a remnant of that.
 
 ## "var" tolerates redeclarations
 
@@ -109,7 +109,7 @@ alert(user); // John
 
 ## "var" variables can be declared below their use
 
-`var` declarations are processed when the function starts (or script starts for globals).
+`var` declarations are processed when the function starts (or the script starts for globals).
 
 In other words, `var` variables are defined from the beginning of the function, no matter where the definition is (assuming that the definition is not in the nested function).
 
@@ -160,9 +160,9 @@ function sayHi() {
 sayHi();
 ```
 
-People also call such behavior "hoisting" (raising), because all `var` are "hoisted" (raised) to the top of the function.
+People also call such behavior "hoisting" (raising), because all `var` declarations are "hoisted" (raised) to the top of the function.
 
-So in the example above, `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
+So in the example above, the `if (false)` branch never executes, but that doesn't matter. The `var` inside it is processed in the beginning of the function, so at the moment of `(*)` the variable exists.
 
 **Declarations are hoisted, but assignments are not.**
 
@@ -205,7 +205,7 @@ sayHi();
 
 Because all `var` declarations are processed at the function start, we can reference them at any place. But variables are undefined until the assignments.
 
-In both examples above, `alert` runs without an error, because the variable `phrase` exists. But its value is not yet assigned, so it shows `undefined`.
+In both examples above, `alert` runs without an error because the variable `phrase` exists but its value is not yet assigned, so it shows `undefined`.
 
 ## IIFE
 
@@ -225,9 +225,9 @@ An IIFE looks like this:
 })();
 ```
 
-Here, a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
+Here, a Function Expression is created and immediately called, so the code executes right away and has its own private variables.
 
-The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
+The Function Expression is wrapped with parentheses `(function {...})`, because when the JavaScript engine encounters `"function"` in the main code, it understands it as the start of a Function Declaration. A Function Declaration must have a name, however, so this kind of code will give an error:
 
 ```js run
 // Tries to declare and immediately call a function
@@ -279,9 +279,9 @@ In all the above cases we declare a Function Expression and run it immediately. 
 
 There are two main differences of `var` compared to `let/const`:
 
-1. `var` variables have no block scope, their visibility is scoped to current function, or global, if declared outside function.
-2. `var` declarations are processed at function start (script start for globals).
+1. `var` variables have no block scope. Their visibility is scoped to the current function, or global, if declared outside the function.
+2. `var` declarations are processed at the function start (or at the script start for globals).
 
-There's one more very minor difference related to the global object, that we'll cover in the next chapter.
+There's one more very minor difference related to the global object that we'll cover in the next chapter.
 
-These differences make `var` worse than `let` most of the time. Block-level variables is such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
+These differences make `var` worse than `let` most of the time. Block-level variables are such a great thing. That's why `let` was introduced in the standard long ago, and is now a major way (along with `const`) to declare a variable.
