@@ -63,7 +63,7 @@ export {sayHi, sayBye}; // a list of exported variables
 
 ...Or, technically we could put `export` above functions as well.
 
-## Import *
+## Import "*"
 
 Usually, we put a list of what to import in curly braces `import {...}`, like this:
 
