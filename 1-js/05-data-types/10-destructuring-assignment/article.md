@@ -327,7 +327,8 @@ We also can combine both the colon and equality:
 
 ```js run
 let options = {
-  title: "Menu"
+  title: "Menu",
+  "meta-data": "Extra Info"
 };
 
 *!*
@@ -337,6 +338,10 @@ let {width: w = 100, height: h = 200, title} = options;
 alert(title);  // Menu
 alert(w);      // 100
 alert(h);      // 200
+
+let {['meta-data']: metaData = "default text"} = options;
+
+alert(metaData);  // Extra Info
 ```
 
 If we have a complex object with many properties, we can extract only what we need:
