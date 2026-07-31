@@ -377,10 +377,10 @@ E.g. if the user starts selecting with mouse and goes from "Example" to "italic"
 
 There are events on to keep track of selection:
 
-- `elem.onselectstart` -- when a selection *starts* specifically on element `elem` (or inside it). For instance, when the user presses the mouse button on it and starts to move the pointer.
-    - Preventing the default action cancels the selection start. So starting a selection from this element becomes impossible, but the element is still selectable. The visitor just needs to start the selection from elsewhere.
-- `document.onselectionchange` -- whenever a selection changes or starts.
-    - Please note: this handler can be set only on `document`, it tracks all selections in it.
+- `selectstart` -- when a selection *starts* specifically on element `elem` (or inside it). For instance, when the user presses the mouse button on it and starts to move the pointer.
+    - Preventing the default action in `elem.onselectstart` handler cancels the selection start. So starting a selection from this element becomes impossible, but the element is still selectable. The visitor just needs to start the selection from elsewhere.
+- `selectionchange` -- whenever a selection changes or starts.
+    - Please note: `onselectionchange` handler can be set only on `document`, it tracks all selections in it.
 
 ### Selection tracking demo
 
@@ -501,7 +501,7 @@ Properties:
 - `input.selectionDirection` -- selection direction, one of: "forward", "backward" or "none" (if e.g. selected with a double mouse click),
 
 Events:
-- `input.onselect` -- triggers when something is selected.
+- `select` -- `input.onselect` handler runs when something is selected.
 
 Methods:
 
@@ -522,7 +522,7 @@ Now let's see these methods in action.
 
 ### Example: tracking selection
 
-For example, this code uses `onselect` event to track selection:
+For example, this code uses `select` event to track selection:
 
 ```html run autorun
 <textarea id="area" style="width:80%;height:60px">
@@ -540,8 +540,8 @@ From <input id="from" disabled> – To <input id="to" disabled>
 ```
 
 Please note:
-- `onselect` triggers when something is selected, but not when the selection is removed.
-- `document.onselectionchange` event should not trigger for selections inside a form control, according to the [spec](https://w3c.github.io/selection-api/#dfn-selectionchange), as it's not related to `document` selection and ranges. Some browsers generate it, but we shouldn't rely on it.
+- `onselect` handler runs when something is selected, but not when the selection is removed.
+- `document.onselectionchange` should not run for selections inside a form control, according to the [spec](https://w3c.github.io/selection-api/#dfn-selectionchange), as it's not related to `document` selection and ranges. Some browsers generate `selectionchange` event, but we shouldn't rely on it.
 
 
 ### Example: moving cursor
@@ -655,7 +655,7 @@ To make something unselectable, there are three ways:
     Then `elem` will become a part of `document.getSelection()`, so the selection actually happens, but its content is usually ignored in copy-paste.
 
 
-2. Prevent default action in `onselectstart` or `mousedown` events.
+2. Prevent default action in handlers of `selectstart` or `mousedown` events.
 
     ```html run
     <div>Selectable <div id="elem">Unselectable</div> Selectable</div>
@@ -713,4 +713,4 @@ The most used recipes are probably:
     selection.addRange(range);
     ```
 
-And finally, about the cursor. The cursor position in editable elements, like `<textarea>` is always at the start or the end of the selection. We can use it  to get cursor position or to move the cursor by setting `elem.selectionStart` and `elem.selectionEnd`.
+And finally, about the cursor. The cursor position in editable elements, like `<textarea>` is always at the start or the end of the selection. We can use it to get cursor position or to move the cursor by setting `elem.selectionStart` and `elem.selectionEnd`.
