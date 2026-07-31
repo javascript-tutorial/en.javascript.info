@@ -124,7 +124,7 @@ Note that `\n` is a single "special" character, so the length is indeed `3`.
 ```warn header="`length` is a property"
 People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
 
-Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it. Not `.length()`, but `.length`.
+Please note that `str.length` is a numeric property, not a function. There is no need to add parentheses after it. Not `.length()`, but `.length`.
 ```
 
 ## Accessing characters
@@ -254,7 +254,7 @@ while (true) {
 }
 ```
 
-The same algorithm can be layed out shorter:
+The same algorithm can be made shorter:
 
 ```js run
 let str = "As sly as a fox, as strong as an ox";
@@ -499,7 +499,7 @@ For instance:
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and set up additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
 
 ## Summary
 
@@ -517,6 +517,6 @@ There are several other helpful methods in strings:
 - `str.repeat(n)` -- repeats the string `n` times.
 - ...and more to be found in the [manual](mdn:js/String).
 
-Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+Strings also have methods for doing search/replace with regular expressions. But that's a big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
 
 Also, as of now it's important to know that strings are based on Unicode encoding, and hence there're issues with comparisons. There's more about Unicode in the chapter <info:unicode>.
