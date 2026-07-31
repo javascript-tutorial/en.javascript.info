@@ -133,7 +133,7 @@ try {
 For all built-in errors, the error object has two main properties:
 
 `name`
-: Error name. For instance, for an undefined variable that's `"ReferenceError"`.
+: Error name. For instance, for an undeclared variable that's `"ReferenceError"`.
 
 `message`
 : Textual message about error details.
