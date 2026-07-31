@@ -1,37 +1,36 @@
 
-# Manuals and specifications
+# Mwongozo na maelezo
 
-This book is a *tutorial*. It aims to help you gradually learn the language. But once you're familiar with the basics, you'll need other resources.
+Kitabu hiki ni mafunzo. Kina lengo la kukusaidia kujifunza lugha hatua kwa hatua. Lakini mara baada ya kuzoea misingi, utahitaji rasilimali nyingine.
+Maelezo
 
-## Specification
+[Maarifa ya ECMA-262](https://www.ecma-international.org/publications/standards/Ecma-262.htm) Maarifa hayo yana habari kamili, za kina na zilizoformalizwa zaidi kuhusu lugha ya JavaScript. Yanatambua lugha hiyo.
 
-[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
+Lakini kutokana na namna ilivyoformalizwa, inaweza kuwa ngumu kuelewa mara ya kwanza. Hivyo, kama unahitaji chanzo sahihi zaidi cha habari kuhusu maelezo ya lugha, basi maarifa hayo ndiyo mahali sahihi. Hata hivyo, si kwa matumizi ya kila siku.
 
-But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+Toleo jipya la maarifa huchapishwa kila mwaka. Kati ya machapisho hayo, rasimu ya karibuni zaidi ya maarifa inapatikana kwenye <https://tc39.es/ecma262/>.
 
-A new specification version is released every year. Between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+Ili kusoma kuhusu vipengele vipya vya kisasa, ikiwa ni pamoja na vile vinavyoitwa "karibu kuwa viwango" (huitwa "hatua ya 3"), unaweza kutazama mapendekezo kwenye <https://github.com/tc39/proposals>.
 
-To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
+Aidha, kama unafanya maendeleo kwa ajili ya kivinjari, basi kuna specifikesheni nyingine zinazojadiliwa katika (info:browser-environment) ya mafunzo.
 
-Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+## Maelezo ya Matumizi
 
-## Manuals
+- **Kumbukumbu ya JavaScript ya MDN (Mozilla) ni mwongozo mkuu wenye mifano na habari nyingine. Ni mzuri kwa kupata habari kamili kuhusu kazi binafsi za lugha, njia za utekelezaji na kadhalika.
 
-- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+    Unaweza kupata mwongozo huo kwa kufuata kiunganishi kifuatacho: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
-    You can find it at <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
+Hata hivyo, mara nyingi ni bora kutumia utafutaji wa mtandao badala yake. Tumia "MDN [neno]" katika utafutaji wako, kwa mfano: <https://google.com/search?q=MDN+parseInt> kutafuta kazi ya parseInt.
 
-Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for the `parseInt` function.
+## Vitabu vya Ulinganisho
 
-## Compatibility tables
+JavaScript ni lugha inayoendelea kukua, vipengele vipya huingizwa mara kwa mara.
 
-JavaScript is a developing language, new features get added regularly.
+    Ili kuona uungwaji mkono wao kwa kivinjari na injini nyingine, tazama:
 
-To see their support among browser-based and other engines, see:
 
-- <https://caniuse.com> - per-feature tables of support, e.g. to see which engines support modern cryptography functions: <https://caniuse.com/#feat=cryptography>.
-- <https://kangax.github.io/compat-table> - a table with language features and engines that support those or don't support.
+- <https://caniuse.com> - vilinganishi vya uungwaji mkono wa vipengele kwa kila kazi, kwa mfano kuona ni injini gani zinaunga mkono kazi za kriptografia za kisasa: <https://caniuse.com/#feat=cryptography>.
+- <https://kangax.github.io/compat-table> - Kuna jedwali la vipengele vya lugha na injini ambazo zinaunga mkono au hazina mkono vipengele hivyo.
+Rasilimali hizi zote ni muhimu katika maendeleo ya kweli ya programu, kwani zina habari muhimu kuhusu maelezo ya lugha, uungwaji mkono wao, na kadhalika.
 
-All these resources are useful in real-life development, as they contain valuable information about language details, their support, etc.
-
-Please remember them (or this page) for the cases when you need in-depth information about a particular feature.
+Tafadhali kumbuka rasilimali hizi (au ukurasa huu) kwa nyakati ambazo unahitaji habari kamili kuhusu kipengele fulani.
