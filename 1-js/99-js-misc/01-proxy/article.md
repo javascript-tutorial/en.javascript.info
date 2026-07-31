@@ -816,8 +816,8 @@ Fortunately, there's a way to fix it:
 let map = new Map();
 
 let proxy = new Proxy(map, {
-  get(target, prop, receiver) {
-    let value = Reflect.get(...arguments);
+  get(target, prop) {
+    let value = Reflect.get(target, prop);
 *!*
     return typeof value == 'function' ? value.bind(target) : value;
 */!*
