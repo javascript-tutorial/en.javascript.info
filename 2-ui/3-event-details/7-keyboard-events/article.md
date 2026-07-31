@@ -24,7 +24,7 @@ Try different key combinations in the text field.
 
 ## Keydown and keyup
 
-The `keydown` events happens when a key is pressed down, and then `keyup` -- when it's released.
+The `keydown` event happens when a key is pressed down, and then `keyup` -- when it's released.
 
 ### event.code and event.key
 
