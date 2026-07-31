@@ -87,7 +87,7 @@ Usually, the plus operator `+` sums numbers.
 
 But, if the binary `+` is applied to strings, it merges (concatenates) them:
 
-```js
+```js run
 let s = "my" + "string";
 alert(s); // mystring
 ```
@@ -214,7 +214,7 @@ Let's note that an assignment `=` is also an operator. It is listed in the prece
 
 That's why, when we assign a variable, like `x = 2 * 2 + 1`, the calculations are done first and then the `=` is evaluated, storing the result in `x`.
 
-```js
+```js run
 let x = 2 * 2 + 1;
 
 alert( x ); // 5
