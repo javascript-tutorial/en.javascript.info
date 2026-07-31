@@ -160,7 +160,7 @@ We can also use the method [Object.assign](https://developer.mozilla.org/en-US/d
 The syntax is:
 
 ```js
-Object.assign(dest, ...sources)
+Object.assign(dest, ..sources)
 ```
 
 - The first argument `dest` is a target object.
