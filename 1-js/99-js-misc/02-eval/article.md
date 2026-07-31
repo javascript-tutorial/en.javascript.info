@@ -30,7 +30,7 @@ let value = eval('let i = 0; ++i');
 alert(value); // 1
 ```
 
-The eval'ed code is executed in the current lexical environment, so it can see outer variables:
+The eval'ed code is executed in the current Environment Record, so it can see outer variables:
 
 ```js run no-beautify
 let a = 1;
@@ -54,7 +54,7 @@ eval("x = 10");
 alert(x); // 10, value modified
 ```
 
-In strict mode, `eval` has its own lexical environment. So functions and variables, declared inside eval, are not visible outside:
+In strict mode, `eval` has its own Environment Record. So functions and variables, declared inside eval, are not visible outside:
 
 ```js untrusted refresh run
 // reminder: 'use strict' is enabled in runnable examples by default
@@ -65,7 +65,7 @@ alert(typeof x); // undefined (no such variable)
 // function f is also not visible
 ```
 
-Without `use strict`, `eval` doesn't have its own lexical environment, so we would see `x` and `f` outside.
+Without `use strict`, `eval` doesn't have its own Environment Record, so we would see `x` and `f` outside.
 
 ## Using "eval"
 

@@ -46,9 +46,9 @@ It is used in very specific cases, like when we receive code from a server, or t
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter <info:closure>).
+Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Environment Record from where it's created  (we covered that in the chapter <info:closure>).
 
-But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Lexical Environment, but the global one.
+But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Environment Record, but the global one.
 
 So, such function doesn't have access to outer variables, only to the global ones.
 
@@ -79,7 +79,7 @@ function getFunc() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // *!*"test"*/!*, from the Environment Record of getFunc
 ```
 
 This special feature of `new Function` looks strange, but appears very useful in practice.
@@ -120,4 +120,4 @@ new Function('a,b', 'return a + b'); // comma-separated
 new Function('a , b', 'return a + b'); // comma-separated with spaces
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+Functions created with `new Function`, have `[[Environment]]` referencing the global Environment Record, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
