@@ -174,7 +174,7 @@ The CSS `transition` is based on that curve:
 
 ...And how can we show a train slowing down?
 
-We can use another Bezier curve: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
+We can use another Bezier curve: `cubic-bezier(0.0, 0.5, 0.5, 1.0)`.
 
 The graph:
 
@@ -190,7 +190,7 @@ CSS:
 ```css
 .train {
   left: 0;
-  transition: left 5s cubic-bezier(0, .5, .5, 1);
+  transition: left 5s cubic-bezier(0, 0.5, 0.5, 1);
   /* click on a train sets left to 450px, thus triggering the animation */
 }
 ```
@@ -214,7 +214,7 @@ So we could use `ease-out` for our slowing down train:
 .train {
   left: 0;
   transition: left 5s ease-out;
-  /* same as transition: left 5s cubic-bezier(0, .5, .5, 1); */
+  /* same as transition: left 5s cubic-bezier(0, 0.5, 0.5, 1); */
 }
 ```
 
@@ -229,7 +229,7 @@ In the example below the animation code is:
 ```css
 .train {
   left: 100px;
-  transition: left 5s cubic-bezier(.5, -1, .5, 2);
+  transition: left 5s cubic-bezier(0.5, -1, 0.5, 2);
   /* click on a train sets left to 450px */
 }
 ```
