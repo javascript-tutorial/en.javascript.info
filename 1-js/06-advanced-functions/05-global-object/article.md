@@ -5,7 +5,7 @@ The global object provides variables and functions that are available anywhere. 
 
 In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
+Recently, `globalThis` was added to the language as a standardized name for a global object intended to be supported across all environments. It's supported in all major browsers.
 
 We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
 
@@ -48,7 +48,7 @@ window.currentUser = {
 */!*
 
 // somewhere else in code
-alert(currentUser.name);  // John
+alert(currentUser.name); // John
 
 // or, if we have a local variable with the name "currentUser"
 // get it from window explicitly (safe!)
@@ -61,14 +61,15 @@ That said, using global variables is generally discouraged. There should be as f
 
 We use the global object to test for support of modern language features.
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+For instance, to test if a built-in `Promise` object exists (it doesn't in really old browsers):
+
 ```js run
 if (!window.Promise) {
   alert("Your browser is really old!");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by that environment, but exist in the modern standard.
 
 ```js run
 if (!window.Promise) {
