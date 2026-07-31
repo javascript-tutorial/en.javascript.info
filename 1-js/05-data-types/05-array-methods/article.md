@@ -668,7 +668,7 @@ The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same but goes fr
 
 ## Array.isArray
 
-Arrays do not form a separate language type. They are based on objects.
+Arrays do not form a separate data type. They are based on objects.
 
 So `typeof` does not help to distinguish a plain object from an array:
 
