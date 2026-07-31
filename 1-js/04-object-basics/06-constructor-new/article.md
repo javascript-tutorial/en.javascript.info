@@ -180,6 +180,7 @@ let user = new User();
 ```
 
 Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
+It's important to note that omitting parentheses is only allowed when the function doesn't require arguments. If you need to pass arguments to the function, you must include parentheses with the appropriate values.
 ````
 
 ## Methods in constructor
