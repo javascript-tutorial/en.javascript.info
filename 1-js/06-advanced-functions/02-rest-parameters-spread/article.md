@@ -110,12 +110,17 @@ If we access the `arguments` object from an arrow function, it takes them from t
 Here's an example:
 
 ```js run
-function f() {
-  let showArg = () => alert(arguments[0]);
-  showArg();
+function f(){
+
+    alert(arguments[0]);  
+    let arrow = msg => {
+        alert(msg); 
+        alert(arguments[0]);    // arguments stores all the arguments passed to a function so this arguments must store the parameters that are passed while calling arrow function right? 
+    }
+    arrow(arguments[1]);
 }
 
-f(1); // 1
+f(1, "Hii");    // 1   Hii   1
 ```
 
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
