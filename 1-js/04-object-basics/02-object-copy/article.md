@@ -1,6 +1,6 @@
 # Object references and copying
 
-One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc -- are always copied "as a whole value".
+One of the fundamental differences of objects versus primitives is that objects are stored and copied "by reference", whereas primitive values: strings, numbers, booleans, etc --- are always copied "as a whole value".
 
 That's easy to understand if we look a bit under the hood of what happens when we copy a value.
 
@@ -21,7 +21,7 @@ Quite an obvious result, right?
 
 Objects are not like that.
 
-**A variable assigned to an object stores not the object itself, but its "address in memory" -- in other words "a reference" to it.**
+**A variable assigned to an object stores not the object itself, but its "address in memory" --- in other words "a reference" to it.**
 
 Let's look at an example of such a variable:
 
@@ -98,7 +98,7 @@ let b = {}; // two independent objects
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely -- usually they appear as a result of a programming mistake.
+For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are needed very rarely --- usually they appear as a result of a programming mistake.
 
 ````smart header="Const objects can be modified"
 An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
@@ -215,7 +215,7 @@ alert(clone.age); // 30
 
 Here it copies all properties of `user` into the empty object and returns it.
 
-There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
+There are also other methods of cloning an object, for example, using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
 
 ## Nested cloning
 
@@ -254,7 +254,7 @@ user.sizes.width = 60;    // change a property from one place
 alert(clone.sizes.width); // 60, get the result from the other one
 ```
 
-To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning" or "structured cloning". There's [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
+To fix that and make `user` and `clone` truly separate objects, we should use a cloning loop that examines each value of `user[key]` and then, if it's an object, replicates its structure as well. That is called a "deep cloning" or "structured cloning". JavaScript has a [structuredClone](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) method that implements deep cloning.
 
 
 ### structuredClone
@@ -285,7 +285,7 @@ alert(clone.sizes.width); // 50, not related
 
 The `structuredClone` method can clone most data types, such as objects, arrays, primitive values.
 
-It also supports circular references, when an object property references the object itself (directly or via a chain or references).
+It also supports circular references, when an object property references the object itself (directly or via a chain of references).
 
 For instance:
 
